@@ -10,7 +10,7 @@ library(nlme);
 data(Oxboys);
 
 str(Oxboys);
-Oxboys;
+# Oxboys;
 
 ##### Chapter 1, Exercise 2 ########################################################################
 ### (a)
@@ -21,8 +21,8 @@ dev.off();
 
 ### (b)
 pdf("../output/exercise-1-2b_bwplot_residuals_lm.pdf");
-lm.model <- lm(formula = height ~ age, data = Oxboys);
-bwplot(Subject ~ resid(lm.model), data = Oxboys);
+oxboys.lm <- lm(formula = height ~ age, data = Oxboys);
+bwplot(Subject ~ resid(oxboys.lm), data = Oxboys);
 dev.off();
 
 
@@ -31,3 +31,8 @@ oxboys.lmList <- lmList(height ~ age, data = Oxboys);
 pdf("../output/exercise-1-2c_Oxboys_lmList.pdf");
 plot(oxboys.lmList,Subject ~ resid(.));
 dev.off();
+
+summary(oxboys.lm);
+
+summary(oxboys.lmList);
+
