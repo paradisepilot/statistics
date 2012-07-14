@@ -36,3 +36,5 @@ summary(oxboys.lm);
 
 summary(oxboys.lmList);
 
+q();
+
