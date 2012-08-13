@@ -9,8 +9,7 @@ Suppose:
 \begin{itemize}
 	\item $X : (\Omega,\mathcal{A},\mu) \longrightarrow (\mathcal{X},\mathcal{B})$ is a random
 	      variable.
-	\item $T : (\mathcal{X},\mathcal{B}) \longrightarrow (\mathcal{T},\mathcal{C})$ be a measurable
-	      map.  $T$ will be called a \textbf{statistic}.
+
 	\item The probability measure $P_{X}$ on $(\mathcal{X},\mathcal{B})$ induced by $X$ is an element
 	      in the following family $\{\,P_{\theta}\;\vert\;\theta\in\Theta\;\}$, indexed by the
 	      parameter space $\Theta$, of probability measures defined on $(\mathcal{X},\mathcal{B})$.
@@ -28,8 +27,11 @@ Suppose:
 	\item $f:G_{\mathcal{X}} \longrightarrow G_{\Theta}$ is a homomorphism of groups.
 
 	\item $h:G_{\mathcal{X}} \longrightarrow G_{\mathcal{T}}$ is a homomorphism of groups.
+
+	\item $T : (\mathcal{X},\mathcal{B}) \longrightarrow (\mathcal{T},\mathcal{C})$ be a measurable
+	      map.  $T$ will be called a \textbf{statistic}.
 \end{itemize}
-The triple $(G_{\mathcal{X}}, G_{\Theta}, f)$ is said to \textbf{act on} the statistical model
+The ordered pair $(G_{\mathcal{X}}, f)$ is said to \textbf{act on} the statistical model
 $\left(X,\Theta\right)$ if the following condition holds:
 \begin{equation*}
 P_{\theta}\circ g \; = \; P_{f(g)(\theta)}
@@ -37,9 +39,14 @@ P_{\theta}\circ g \; = \; P_{f(g)(\theta)}
 P_{\theta}\!\left(g(U)\right) \; = \; P_{f(g)(\theta)}\!\left(U\right),
 \;\;\textnormal{for each}\;\, g \in G_{\mathcal{X}},\; \theta \in \Theta,\; U \in \mathcal{B}.
 \end{equation*}
-Secondly,% the triple $(G_{\mathcal{X}}, G_{\mathcal{T}}, f)$ is said to \textbf{act on} the statistical model
-the statistic $T$ is said to be \textbf{equivariant} with respect to the action $(G_{\mathcal{X}},G_{\mathcal{T}},h)$
-if the following condition holds:
+The ordered triple $(G_{\mathcal{X}},f,h)$ is said to \textbf{act on} the statistical decision
+problem if the following condition holds: 
+\begin{equation*}
+L\!\left(f(g)\cdot\theta,h(g)\cdot d\right) \; = \; L(\theta,d)
+\end{equation*}
+Lastly,% the triple $(G_{\mathcal{X}}, G_{\mathcal{T}}, f)$ is said to \textbf{act on} the statistical model
+the statistic $T$ is said to be \textbf{$(G_{\mathcal{X}},f,h)$-equivariant} if the following
+condition holds:
 \begin{equation*}
 T \circ g \; = \; h(g)(T) \,;
 \quad\textnormal{equivalently}\,\;
