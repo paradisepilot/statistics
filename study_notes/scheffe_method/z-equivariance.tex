@@ -7,19 +7,27 @@
 \begin{definition}\quad
 Suppose:
 \begin{itemize}
-	\item $X : (\Omega,\mathcal{A},\mu) \longrightarrow (\mathcal{X},\mathcal{B})$ is a random variable.
+	\item $X : (\Omega,\mathcal{A},\mu) \longrightarrow (\mathcal{X},\mathcal{B})$ is a random
+	      variable.
+	\item $T : (\mathcal{X},\mathcal{B}) \longrightarrow (\mathcal{T},\mathcal{C})$ be a measurable
+	      map.  $T$ will be called a \textbf{statistic}.
 	\item The probability measure $P_{X}$ on $(\mathcal{X},\mathcal{B})$ induced by $X$ is an element
-	      in the following family $\{\,P_{\theta}\;\vert\;\theta\in\Theta\;\}$, indexed by the parameter space
-	      $\Theta$, of probability measures defined on $(\mathcal{X},\mathcal{B})$.
-	      The ordered pair $(X,\Theta)$ will be called a \textit{statistical model} for $X$.
+	      in the following family $\{\,P_{\theta}\;\vert\;\theta\in\Theta\;\}$, indexed by the
+	      parameter space $\Theta$, of probability measures defined on $(\mathcal{X},\mathcal{B})$.
+	      The ordered pair $(X,\Theta)$ will be called a \textbf{statistical model} for $X$.
 
-	\item $G_{\mathcal{X}} \subset \Aut(\mathcal{X},\mathcal{B})$ is a subgroup of the automorphism group
-	      $\Aut(\mathcal{X},\mathcal{B})$ of the codomain $(\mathcal{X},\mathcal{B})$ of $X$.
+	\item $G_{\mathcal{X}} \subset \Aut(\mathcal{X},\mathcal{B})$ is a subgroup of the automorphism
+	      group $\Aut(\mathcal{X},\mathcal{B})$ of the codomain $(\mathcal{X},\mathcal{B})$ of $X$.
 
-	\item $G_{\Theta} \in \Aut(\Theta)$ is a subgroup of the automorphism group $\Aut(\Theta)$ of the
-	      parameter space $\Theta$.
+	\item $G_{\Theta} \in \Aut(\Theta)$ is a subgroup of the automorphism group $\Aut(\Theta)$ of
+	the parameter space $\Theta$.
+
+	\item $G_{\mathcal{T}} \in \Aut(\mathcal{T})$ is a subgroup of the automorphism group
+	      $\Aut(\mathcal{T})$ of the parameter space $\Theta$.
 
 	\item $f:G_{\mathcal{X}} \longrightarrow G_{\Theta}$ is a homomorphism of groups.
+
+	\item $h:G_{\mathcal{X}} \longrightarrow G_{\mathcal{T}}$ is a homomorphism of groups.
 \end{itemize}
 The triple $(G_{\mathcal{X}}, G_{\Theta}, f)$ is said to \textbf{act on} the statistical model
 $\left(X,\Theta\right)$ if the following condition holds:
@@ -28,5 +36,14 @@ P_{\theta}\circ g \; = \; P_{f(g)(\theta)}
 \,;\quad\textnormal{equivalently,}\quad
 P_{\theta}\!\left(g(U)\right) \; = \; P_{f(g)(\theta)}\!\left(U\right),
 \;\;\textnormal{for each}\;\, g \in G_{\mathcal{X}},\; \theta \in \Theta,\; U \in \mathcal{B}.
+\end{equation*}
+Secondly,% the triple $(G_{\mathcal{X}}, G_{\mathcal{T}}, f)$ is said to \textbf{act on} the statistical model
+the statistic $T$ is said to be \textbf{equivariant} with respect to the action $(G_{\mathcal{X}},G_{\mathcal{T}},h)$
+if the following condition holds:
+\begin{equation*}
+T \circ g \; = \; h(g)(T) \,;
+\quad\textnormal{equivalently}\,\;
+T(g(x)) \; = \; (h(g)T)(x)
+\quad\textnormal{for each}\;\, x \in \mathcal{X}, \; g \in G_{\mathcal{X}}
 \end{equation*}
 \end{definition}
