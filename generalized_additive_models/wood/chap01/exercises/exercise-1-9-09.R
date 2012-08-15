@@ -46,7 +46,7 @@ with(
 			x.factor     = wool,
 			trace.factor = tension
 			);
-	}
+		}
 	);
 
 dev.off();
