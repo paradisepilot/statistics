@@ -1,114 +1,83 @@
-\section{Scheff\'{e}'s $S$-Method: A Special Case}
+\section{One-way Analysis of Variance}
 \setcounter{theorem}{0}
 
-Let $X_{1}, \ldots, X_{r}$ be independent normal $\Re$-valued random variables with common known
-variance $\sigma^{2} = 1$, and $E(X_{i}) = \xi_{i}$.  We seek to find simultaneous confidence
-intervals for the collection of linear functionals
-\begin{equation*}
-f_{\mathbf{u}}(\mathbf{\xi}) \; = \; \mathbf{u} \bullet \mathbf{\xi} \; = \; \sum^{r}_{i=1} u_{i}\,\xi_{i},
-\end{equation*}
-indexed by $\mathbf{u} = (u_{1},u_{2},\ldots,u_{r})$ in the unit sphere $S^{r-1}$ in $\Re^{r}$, i.e. 
-\begin{equation*}
-\Vert\,\mathbf{u}\,\Vert^{2} \; = \; \sum^{r}_{i=1} u_{i}^{2} \; = \; 1.
-\end{equation*}
-In other words, we seek two functions $L,M : S^{r-1} \times \Re^{r} \longrightarrow \Re$ such that,
-for each $\mathbf{x} \in \Re^{r}$, the set
-\begin{equation*}
-S(\mathbf{x};L,M) \; := \;
-\left\{\;
-\zeta \in \Re^{r}
-\;\left\vert\;
-L(\mathbf{u},\mathbf{x}) \leq \mathbf{u} \bullet \mathbf{\zeta} \leq M(\mathbf{u},\mathbf{x}),
-\;\textnormal{for each}\; \mathbf{u} \in S^{r-1}
-\right.
-\;\right\}
-\end{equation*}
-satisfies:
-\begin{equation*}
-P_{\zeta}\!\left(\;
-\left\{\;
-\mathbf{x}\in\Re^{r}
-\;\left\vert\;
-\zeta \in S(\mathbf{x};L,M)
-\right.
-\;\right\}
-\;\right)
-\; = \; \gamma,
-\quad
-\textnormal{for each}\,\; \zeta \in \Re^{r}.
-\end{equation*}
-
-\begin{proposition}\quad
-Given any such $S(\mathbf{x};L,M)$, there exists some constant $c > 0$ such that
-\begin{equation*}
-S(\mathbf{x};L,M) \; = \; S(\mathbf{x};c) \; := \;
-\left\{\;
-\zeta \in \Re^{r}
-\;\left\vert\;
-\Vert\,\mathbf{u} \bullet (\mathbf{x} - \mathbf{\zeta})\,\Vert
-\leq c,
-\;\;
-\textnormal{for each}\;\, \mathbf{u} \in S^{r-1}
-\right.
-\;\right\}
-\end{equation*}
+\begin{proposition}
+\begin{eqnarray*}
+\dfrac{1}{\sigma^{2}}\sum_{g=1}^{G}\sum_{k=1}^{n_{g}}\left(X_{gk} - X_{\bullet\bullet}\right)^{2}
+& = &
+\dfrac{1}{\sigma^{2}}\sum_{g=1}^{G}\sum_{j=1}^{n_{g}}\left(X_{gk}-X_{g\bullet}\right)^{2}
+\;\; + \;\;
+\dfrac{1}{\sigma^{2}}\sum_{g=1}^{G} \sum_{k=1}^{n_{g}} \left(X_{g\bullet} - X_{\bullet\bullet}\right)^{2} \\
+& = &
+\dfrac{1}{\sigma^{2}}\sum_{g=1}^{G}n_{g}\left(\frac{1}{n_{g}}\sum_{j=1}^{n_{g}}\left(X_{gk}-X_{g\bullet}\right)^{2}\right)
+\;\; + \;\;
+\dfrac{1}{\sigma^{2}}\sum_{g=1}^{G} n_{g}\left(X_{g\bullet} - X_{\bullet\bullet}\right)^{2}
+\end{eqnarray*}
 \end{proposition}
-\proof
-We first make the following
-\vskip 0.5cm
-\noindent
-\textbf{CLAIM 1}: Without loss of generality, we may assume that the functions $L$ and $M$ satisfy:
-\begin{equation*}
-L(\mathbf{u};\mathbf{x}) \; = \; -M(-\mathbf{u};\mathbf{x}).
-\end{equation*}
-Indeed, since $\mathbf{u} \in S^{r-1} \Longleftrightarrow -\mathbf{u} \in S^{r-1}$, we have that,
-for any $\mathbf{u} \in S^{r-1}$,
-\begin{equation*}
-L(\mathbf{u},\mathbf{x}) \leq \mathbf{u} \bullet \mathbf{\zeta} \leq M(\mathbf{u},\mathbf{x})
-\;\;\Longrightarrow\;\;
-L(-\mathbf{u},\mathbf{x}) \leq -\mathbf{u} \bullet \mathbf{\zeta} \leq M(-\mathbf{u},\mathbf{x})
-\;\;\Longrightarrow\;\;
--M(-\mathbf{u},\mathbf{x}) \leq \mathbf{u} \bullet \mathbf{\zeta} \leq -L(-\mathbf{u},\mathbf{x})
-\end{equation*}
-Hence, the inequalities
-$L(\mathbf{u},\mathbf{x}) \leq \mathbf{u} \bullet \mathbf{\zeta} \leq M(\mathbf{u},\mathbf{x})$
-in fact imply:
-\begin{equation*}
-\widetilde{L}(\mathbf{u};\mathbf{x}) \; := \;\max\left\{L(\mathbf{u};\mathbf{x}),-M(-\mathbf{u};\mathbf{x})\right\}
-\; \leq \; \mathbf{u} \bullet \mathbf{\zeta} \; \leq \;
-\min\left\{M(\mathbf{u};\mathbf{x}),-L(-\mathbf{u};\mathbf{x})\right\} \; =: \; \widetilde{M}(\mathbf{u};\mathbf{x}).
-\end{equation*}
-Thus, we may replace the original bounding functions $L$ and $M$ with the tighter
-$\widetilde{L}$ and $\widetilde{M}$, respectively.  Furthermore, note that
-\begin{equation*}
-\widetilde{L}(\mathbf{u};\mathbf{x})
-\; := \;
-\max\left\{ L(\mathbf{u};\mathbf{x}),-M(-\mathbf{u};\mathbf{x}) \right\}
-\;  = \;
-- \min\left\{ -L(\mathbf{u};\mathbf{x}),M(-\mathbf{u};\mathbf{x}) \right\}
-\;  = \;
-- \widetilde{M}(-\mathbf{u};\mathbf{x})
-\end{equation*}
-This completes the proof of CLAIM 1.
 
-\vskip 0.5cm
-\noindent
-\textbf{CLAIM 2}: The functions $L$ and $M$ are ``invariant" with respect to the orthogonal group
+\begin{remark}\mbox{}\vskip 0.0cm
+\begin{itemize}
+\item  Single-mean model (Null Model or Reduced Model):
 \begin{equation*}
-O(r) \; := \;
-\left\{\;
-Q \in \textnormal{GL}(\Re^{r})
-\;\left\vert\;
-Q^{\textnormal{T}} \cdot Q = Q \cdot Q^{\textnormal{T}} = I_{r}
-\right.
-\;\right\}
-\end{equation*}
-in the following sense:
-\begin{equation*}
-L(Q\mathbf{u};Q\mathbf{x}) = L(\mathbf{u};\mathbf{x}),
-\quad\textnormal{and}\quad
-M(Q\mathbf{u};Q\mathbf{x}) = M(\mathbf{u};\mathbf{x}),
+X_{gk} = \mu + \epsilon_{gk},
 \quad
-\textnormal{for each}\;\, \mathbf{u} \in S^{r-1}, \mathbf{x} \in \Re^{r}, Q \in O(r).
+X_{gk} \sim N(\mu,\sigma^{2})
 \end{equation*}
-\qed
+\item  Multiple-mean model (Full Model):
+\begin{equation*}
+X_{gk} = \mu_{g} + \epsilon_{gk},
+\quad
+X_{gk} \sim N(\mu_{g},\sigma^{2})
+\end{equation*}
+
+\item The dimension of \textbf{observation space} is $N := \sum_{g=1}^{G} n_{g}$, which is
+simply the number of observed values we have collected.
+The dimension of the single-mean model space is of course just $1$.
+Hence, the dimension of the error subspace for the single-mean model is $N - 1$.
+
+\item Similarly, the dimension of the multiple-mean model space is $G$, which is (rather obviously)
+the number of parameters ($\mu_{1}, \mu_{2}, \ldots, \mu_{G}$) in this model.  Consequently,
+the dimension of the error subspace for the multiple-mean model is $N - G$.
+
+\item Hence, the \textbf{degree of freedom} of the ``error reduction" term
+	\begin{equation*}
+	\dfrac{1}{\sigma^{2}}\sum_{g=1}^{G} \sum_{k=1}^{n_{g}} \left(X_{g\bullet} - X_{\bullet\bullet}\right)^{2} 
+	\end{equation*}
+when going from the single-mean (reduced) model to the multiple-mean (full) model is
+\begin{equation*}
+N -G = (N-1) - (N-G)
+\end{equation*}
+
+\item The $F$-statistic is:
+\begin{equation*}
+F \quad = \quad
+\dfrac{SSBG/\textnormal{df}(SSBG)}{SSWG/\textnormal{df}(SSWG)}
+\quad = \quad
+\dfrac{\textnormal{null-to-full model sum-of-squared-error reduction}}{\textnormal{square of Euclidean norm of full-model error}}
+\quad \sim \quad
+F\,_{N-G}^{G-1}
+\end{equation*}
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+&&&\\
+& degree of freedom (dimension of error subspace) & Euclidean-geometric interpretation & common ANOVA nomenclature \\
+&&&\\
+\hline\hline
+&&&\\
+$\dfrac{1}{\sigma^{2}}\sum_{g=1}^{G}\sum_{k=1}^{n_{g}}\left(X_{gk} - X_{\bullet\bullet}\right)^{2}$ & $N - 1$ & square of Euclidean norm of single-mean model error & total sum of squares \\
+&&&\\
+\hline
+&&&\\
+$\dfrac{1}{\sigma^{2}}\sum_{g=1}^{G}\sum_{j=1}^{n_{g}}\left(X_{gk}-X_{g\bullet}\right)^{2}$ & $N - G$ & square of Euclidean norm of multiple-mean model error & within-group sum of squares, SSWG \\
+&&&\\
+\hline
+&&&\\
+$\dfrac{1}{\sigma^{2}}\sum_{g=1}^{G} \sum_{k=1}^{n_{g}} \left(X_{g\bullet} - X_{\bullet\bullet}\right)^{2}$ & $G - 1$ & error reduction from single- to multiple-mean model & between-group sum of squares, SSBG \\
+&&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{remark}
