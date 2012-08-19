@@ -1,0 +1,114 @@
+\section{Scheff\'{e}'s $S$-Method: A Special Case}
+\setcounter{theorem}{0}
+
+Let $X_{1}, \ldots, X_{r}$ be independent normal $\Re$-valued random variables with common known
+variance $\sigma^{2} = 1$, and $E(X_{i}) = \xi_{i}$.  We seek to find simultaneous confidence
+intervals for the collection of linear functionals
+\begin{equation*}
+f_{\mathbf{u}}(\mathbf{\xi}) \; = \; \mathbf{u} \bullet \mathbf{\xi} \; = \; \sum^{r}_{i=1} u_{i}\,\xi_{i},
+\end{equation*}
+indexed by $\mathbf{u} = (u_{1},u_{2},\ldots,u_{r})$ in the unit sphere $S^{r-1}$ in $\Re^{r}$, i.e. 
+\begin{equation*}
+\Vert\,\mathbf{u}\,\Vert^{2} \; = \; \sum^{r}_{i=1} u_{i}^{2} \; = \; 1.
+\end{equation*}
+In other words, we seek two functions $L,M : S^{r-1} \times \Re^{r} \longrightarrow \Re$ such that,
+for each $\mathbf{x} \in \Re^{r}$, the set
+\begin{equation*}
+S(\mathbf{x};L,M) \; := \;
+\left\{\;
+\zeta \in \Re^{r}
+\;\left\vert\;
+L(\mathbf{u},\mathbf{x}) \leq \mathbf{u} \bullet \mathbf{\zeta} \leq M(\mathbf{u},\mathbf{x}),
+\;\textnormal{for each}\; \mathbf{u} \in S^{r-1}
+\right.
+\;\right\}
+\end{equation*}
+satisfies:
+\begin{equation*}
+P_{\zeta}\!\left(\;
+\left\{\;
+\mathbf{x}\in\Re^{r}
+\;\left\vert\;
+\zeta \in S(\mathbf{x};L,M)
+\right.
+\;\right\}
+\;\right)
+\; = \; \gamma,
+\quad
+\textnormal{for each}\,\; \zeta \in \Re^{r}.
+\end{equation*}
+
+\begin{proposition}\quad
+Given any such $S(\mathbf{x};L,M)$, there exists some constant $c > 0$ such that
+\begin{equation*}
+S(\mathbf{x};L,M) \; = \; S(\mathbf{x};c) \; := \;
+\left\{\;
+\zeta \in \Re^{r}
+\;\left\vert\;
+\Vert\,\mathbf{u} \bullet (\mathbf{x} - \mathbf{\zeta})\,\Vert
+\leq c,
+\;\;
+\textnormal{for each}\;\, \mathbf{u} \in S^{r-1}
+\right.
+\;\right\}
+\end{equation*}
+\end{proposition}
+\proof
+We first make the following
+\vskip 0.5cm
+\noindent
+\textbf{CLAIM 1}: Without loss of generality, we may assume that the functions $L$ and $M$ satisfy:
+\begin{equation*}
+L(\mathbf{u};\mathbf{x}) \; = \; -M(-\mathbf{u};\mathbf{x}).
+\end{equation*}
+Indeed, since $\mathbf{u} \in S^{r-1} \Longleftrightarrow -\mathbf{u} \in S^{r-1}$, we have that,
+for any $\mathbf{u} \in S^{r-1}$,
+\begin{equation*}
+L(\mathbf{u},\mathbf{x}) \leq \mathbf{u} \bullet \mathbf{\zeta} \leq M(\mathbf{u},\mathbf{x})
+\;\;\Longrightarrow\;\;
+L(-\mathbf{u},\mathbf{x}) \leq -\mathbf{u} \bullet \mathbf{\zeta} \leq M(-\mathbf{u},\mathbf{x})
+\;\;\Longrightarrow\;\;
+-M(-\mathbf{u},\mathbf{x}) \leq \mathbf{u} \bullet \mathbf{\zeta} \leq -L(-\mathbf{u},\mathbf{x})
+\end{equation*}
+Hence, the inequalities
+$L(\mathbf{u},\mathbf{x}) \leq \mathbf{u} \bullet \mathbf{\zeta} \leq M(\mathbf{u},\mathbf{x})$
+in fact imply:
+\begin{equation*}
+\widetilde{L}(\mathbf{u};\mathbf{x}) \; := \;\max\left\{L(\mathbf{u};\mathbf{x}),-M(-\mathbf{u};\mathbf{x})\right\}
+\; \leq \; \mathbf{u} \bullet \mathbf{\zeta} \; \leq \;
+\min\left\{M(\mathbf{u};\mathbf{x}),-L(-\mathbf{u};\mathbf{x})\right\} \; =: \; \widetilde{M}(\mathbf{u};\mathbf{x}).
+\end{equation*}
+Thus, we may replace the original bounding functions $L$ and $M$ with the tighter
+$\widetilde{L}$ and $\widetilde{M}$, respectively.  Furthermore, note that
+\begin{equation*}
+\widetilde{L}(\mathbf{u};\mathbf{x})
+\; := \;
+\max\left\{ L(\mathbf{u};\mathbf{x}),-M(-\mathbf{u};\mathbf{x}) \right\}
+\;  = \;
+- \min\left\{ -L(\mathbf{u};\mathbf{x}),M(-\mathbf{u};\mathbf{x}) \right\}
+\;  = \;
+- \widetilde{M}(-\mathbf{u};\mathbf{x})
+\end{equation*}
+This completes the proof of CLAIM 1.
+
+\vskip 0.5cm
+\noindent
+\textbf{CLAIM 2}: The functions $L$ and $M$ are ``invariant" with respect to the orthogonal group
+\begin{equation*}
+O(r) \; := \;
+\left\{\;
+Q \in \textnormal{GL}(\Re^{r})
+\;\left\vert\;
+Q^{\textnormal{T}} \cdot Q = Q \cdot Q^{\textnormal{T}} = I_{r}
+\right.
+\;\right\}
+\end{equation*}
+in the following sense:
+\begin{equation*}
+L(Q\mathbf{u};Q\mathbf{x}) = L(\mathbf{u};\mathbf{x}),
+\quad\textnormal{and}\quad
+M(Q\mathbf{u};Q\mathbf{x}) = M(\mathbf{u};\mathbf{x}),
+\quad
+\textnormal{for each}\;\, \mathbf{u} \in S^{r-1}, \mathbf{x} \in \Re^{r}, Q \in O(r).
+\end{equation*}
+\qed
