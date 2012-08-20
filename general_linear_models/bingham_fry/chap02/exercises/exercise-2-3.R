@@ -1,4 +1,6 @@
 
+library(lattice);
+
 ### Using predefined functions lm() and anova() ####################################################
 DF.doughnut <- data.frame(
 	fat.absorbed = c(
@@ -10,13 +12,22 @@ DF.doughnut <- data.frame(
 	fat.type     = c(rep("Fat1",6),rep("Fat2",6),rep("Fat3",6),rep("Fat4",6))
 	);
 str(DF.doughnut);
-DF.doughnut
+DF.doughnut;
+
+# plot the fat absorbed data, stratified by fat type:
+pdf("exercise-2-3_dotplot-doughnut.pdf");
+dotplot(
+	fat.absorbed ~ fat.type,
+	data = DF.doughnut
+	);
+dev.off();
 
 LM.doughnut <- lm(
 	formula = fat.absorbed ~ fat.type,
 	data    = DF.doughnut
 	);
 
+# generate residual plots for goodness-of-fit diagnostics:
 pdf("exercise-2-3_LM-doughnut.pdf");
 plot(LM.doughnut);
 dev.off();
