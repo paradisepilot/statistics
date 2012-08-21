@@ -78,13 +78,6 @@ p.value <- pf(q = F.statistic, df1 = num.of.groups-1, df2 = num.of.observations-
 p.value;
 
 ### Conclusion #####################################################################################
-# The p-value of 0.006875948 obtained above is the probability of obtaining a value of the test
-# statistic (F-statistic) as extreme as or more extreme than the actual observed value, given that
-# the null hyposthesis (reduced model, or the single-mean model) is true.
-#
-# If we use a 0.05 level significance threshold, then the observed data are declared to contain
-# significant evidence against the null hypothesis.
-#
-# Based on the observed data and a significance threhold of 0.05, we therefore conclude that, the
-# amount of fat absorbed appears to depend on the type of fat used.
+# The large p-value of 0.2550719 suggests that there is no significant evidence in the data that
+# photoperiod does not affect growth.
 
