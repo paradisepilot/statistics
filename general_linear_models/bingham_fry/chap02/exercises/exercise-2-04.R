@@ -15,7 +15,7 @@ str(DF.growth);
 DF.growth;
 
 # plot the fat absorbed data, stratified by fat type:
-pdf("exercise-2-4_dotplot-growth.pdf");
+pdf("exercise-2-04_dotplot-growth.pdf");
 dotplot(
 	growth ~ photoperiod,
 	data = DF.growth
@@ -28,7 +28,7 @@ LM.growth <- lm(
 	);
 
 # generate residual plots for goodness-of-fit diagnostics:
-pdf("exercise-2-4_LM-growth.pdf");
+pdf("exercise-2-04_LM-growth.pdf");
 plot(LM.growth);
 dev.off();
 

@@ -23,7 +23,7 @@ LM.photoperiod <- lm(
 anova(LM.photoperiod);
 
 # plot the fat absorbed data, stratified by fat type:
-pdf("exercise-2-9_dotplot-photoperiod.pdf");
+pdf("exercise-2-09_dotplot-photoperiod.pdf");
 dotplot(
 	growth ~ photoperiod | genotype,
 	data = DF.photoperiod

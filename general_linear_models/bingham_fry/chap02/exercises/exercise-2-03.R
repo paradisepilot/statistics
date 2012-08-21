@@ -15,7 +15,7 @@ str(DF.doughnut);
 DF.doughnut;
 
 # plot the fat absorbed data, stratified by fat type:
-pdf("exercise-2-3_dotplot-doughnut.pdf");
+pdf("exercise-2-03_dotplot-doughnut.pdf");
 dotplot(
 	fat.absorbed ~ fat.type,
 	data = DF.doughnut
@@ -28,7 +28,7 @@ LM.doughnut <- lm(
 	);
 
 # generate residual plots for goodness-of-fit diagnostics:
-pdf("exercise-2-3_LM-doughnut.pdf");
+pdf("exercise-2-03_LM-doughnut.pdf");
 plot(LM.doughnut);
 dev.off();
 
