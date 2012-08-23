@@ -54,10 +54,19 @@ dotplot(
 dev.off();
 
 ### Conclusion #####################################################################################
-# If we take our significance threshold to be 0.05, then we conclude that
-# (1)  there is significant evidence for non-trivial protein.source effect, and
-# (2)  there is significant evidence for non-trivial protein.level effect, but
-# (3)  there is NOT significant evidence for non-trivial protein.source-protein.level interaction.
+# If we take our significance threshold to be 0.05, then we may conclude, from LM.rats.2, that
+# (*)  there is NOT significant evidence for non-trivial interaction between protein level and
+#      protein source.
+#
+# We therefore drop the interaction term in LM.rats.2, and obtain LM.rats.1.
+# Taking a significance threshold of 0.05 again, then we may conclude, from LM.rats.1, that
+# (*)  there is NOT significant evidence for non-trivial protein.source effect, but
+# (*)  there is significant evidence for non-trivial protein.level effect.
+#
+# Hence, we drop the protein.source term in LM.rats.1, and obtain LM.rats.0.
+# Taking a significance threshold of 0.05 again, then we may conclude, from LM.rats.0, that
+# (*)  there is significant evidence for non-trivial protein.level effect.
+#
 
 ### Computing from first principle #################################################################
 num.of.replicates      <- 10;
