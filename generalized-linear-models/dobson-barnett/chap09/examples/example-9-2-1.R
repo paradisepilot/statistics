@@ -138,6 +138,8 @@ sum(DF.residuals.2[, 'Pearson.residual']^2);
 (log.max.likelihood.0 - log.max.likelihood.2) / log.max.likelihood.0;
 
 # likelihood ratio chi-squared statistic of Saturated Model --- method 1
+#   likelihood ratio chi-squared statistic(model of interest)
+# = 2 * [ log(max. likelihood of model of interest) - log(max. likelihood of intercept-only model) ]
 2 * (log.max.likelihood.2 - log.max.likelihood.0);
 
 # likelihood ratio chi-squared statistic of Saturated Model --- method 2
@@ -163,6 +165,8 @@ sum(DF.residuals.1[, 'Pearson.residual']^2);
 (log.max.likelihood.0 - log.max.likelihood.1) / log.max.likelihood.0;
 
 # likelihood ratio chi-squared statistic of Model given by Eqn (9.9) --- method 1
+#   likelihood ratio chi-squared statistic(model of interest)
+# = 2 * [ log(max. likelihood of model of interest) - log(max. likelihood of intercept-only model) ]
 2 * (log.max.likelihood.1 - log.max.likelihood.0);
 
 # likelihood ratio chi-squared statistic of Model given by Eqn (9.9) --- method 2
@@ -188,6 +192,8 @@ sum(DF.residuals.0[, 'Pearson.residual']^2);
 (log.max.likelihood.0 - log.max.likelihood.0) / log.max.likelihood.0;
 
 # likelihood ratio chi-squared statistic of Intercept-only Model --- method 1
+#   likelihood ratio chi-squared statistic(model of interest)
+# = 2 * [ log(max. likelihood of model of interest) - log(max. likelihood of intercept-only model) ]
 2 * (log.max.likelihood.0 - log.max.likelihood.0);
 
 # likelihood ratio chi-squared statistic of Intercept-only Model --- method 2
