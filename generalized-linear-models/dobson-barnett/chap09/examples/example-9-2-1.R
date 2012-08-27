@@ -41,11 +41,20 @@ GLM.british.doctors.1 <- glm(
 	);
 summary(GLM.british.doctors.1);
 
+# expected values (computed from maximum likelihood estimates of model coefficients),
+# (observation-wise) likelihood, Pearson residuals, and deviance residuals:
+X <- model.matrix(GLM.british.doctors.1);
+beta <- coefficients(GLM.british.doctors.1);
+X;
+beta;
+cbind( X %*% beta, DF.british.doctors[,'person.years'] * exp(X %*% beta));
+
 observed.values <- DF.british.doctors[,'deaths'];
 expected.values <- fitted.values(GLM.british.doctors.1);
 DF.residuals.1 <- cbind(
 	observed          = observed.values,
 	expected          = expected.values,
+	by.hand           = DF.british.doctors[,'person.years'] * exp(X %*% beta),
 	likelihood        = dpois(x=observed.values,lambda=expected.values),
 	Pearson.residual  = (observed.values - expected.values) / sqrt(expected.values),
 	deviance.residual = sign(observed.values - expected.values) * sqrt( 2 * (observed.values * log(observed.values/expected.values) - (observed.values - expected.values)) )
