@@ -100,6 +100,8 @@ sum(DF.residuals.1[, 'Pearson.residual']^2);
 sum(DF.residuals.1[,'deviance.residual']^2);
 
 # deviance (method 2)
+# Recall that:
+# deviance(model of interest) := 2 * [ log(max. likelihood of saturated model) - log(max. likelihood of model of interest)) ]
 2 * (log.max.likelihood.2 - log.max.likelihood.1);
 
 ### Minimal Model ##################################################################################
@@ -142,6 +144,14 @@ GLM.melanoma.1$deviance;
 likelihood.ratio.chi.squared.statistic <- GLM.melanoma.1$null.deviance - GLM.melanoma.1$deviance;
 likelihood.ratio.chi.squared.statistic;
 
-# pseudo-R-squared
+# deviance (method 1)
+sum(DF.residuals.0[,'deviance.residual']^2);
+
+# deviance (method 2)
+# Recall that:
+# deviance(model of interest) := 2 * [ log(max. likelihood of saturated model) - log(max. likelihood of model of interest)) ]
+2 * (log.max.likelihood.2 - log.max.likelihood.0);
+
+### pseudo-R-squared ###############################################################################
 (log.max.likelihood.0 - log.max.likelihood.1) / log.max.likelihood.0;
 
