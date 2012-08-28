@@ -215,5 +215,13 @@ log.max.likelihood.0;
 ####################################################################################################
 ####################################################################################################
 
+anova(GLM.british.doctors.0,GLM.british.doctors.1);
+
+
+anova(GLM.british.doctors.0,GLM.british.doctors.2);
+
+
+anova(GLM.british.doctors.1,GLM.british.doctors.2);
+
 print("ZZZ");
 
