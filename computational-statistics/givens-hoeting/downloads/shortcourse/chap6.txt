@@ -1,0 +1,136 @@
+# SIR:  THE SAMPLING IMPORTANCE SAMPLING ALGORITHM
+# Example 6.3 on page 158 in Givens and Hoeting
+# 
+# Key idea:  apply SIR to approximately simulate realizations from a
+# target distribution.  Compare the performance when SIR is used to
+# simulate realizations from the normal distribution using the slash
+# distribution given on page 158 and vice versa.   This is for
+# illustrative purposes only - we can generate samples from both of
+# these distributions easily.
+
+
+dslash=function(x) {
+# The slash density given on page 158
+# input: x=quantile of the distribution
+# output:  the height of the density at x
+
+ifelse(x!=0,(1-exp(-x^2/2))/x^2,1/2)/sqrt(2*pi) 
+}
+
+#________________________________________________________________
+# SIR to simulate draws from the normal distribution using draws from
+# the slash distribution. Y has a slash distribution if Y=X/U where
+# X~N(0,1) and U~Unif(0,1)
+
+# Step 1:  sample candidates from the slash distribution
+set.seed(3)	    #set random seed
+x=rnorm(100000)   
+u=runif(100000)  
+slash.draws=x/u	
+hist(slash.draws,nclass=40)
+stem(slash.draws)
+
+# Step 2: Calculate the standardized weights in equation (6.12)
+weights=dnorm(slash.draws)/dslash(slash.draws)
+std.weights=weights/sum(weights)
+
+# Step 3:  Resample the candidates  with probability equal to the
+# standardize weights.
+# Note:  you might get a warning message that begins "Walker's alias
+# method" when you run this.  You can ignore it.
+sir.normal=sample(slash.draws,5000,prob=std.weights,replace=T)
+
+# Plot the results (similar to Figure 6.7 on page 159)
+par(mfrow=c(2,1))
+hist(sir.normal,prob=T,yaxs="i",xlab="x",ylab="normal density")
+lines(sort(sir.normal),dnorm(sort(sir.normal)))
+
+#________________________________________________________________
+# SIR to simulate draws from the slash distribution using draws from
+# the normal distribution
+
+# Step 1:  sample candidates from the slash distribution
+set.seed(3)	    #set random seed
+x=rnorm(100000)   
+
+# Step 2: Calculate the standardized weights in equation (6.12)
+weights=dslash(x)/dnorm(x)
+std.weights=weights/sum(weights)
+
+# Step 3:  Resample the candidates  with probability equal to the
+# standardize weights
+sir.slash=sample(x,5000,prob=std.weights,replace=T)
+
+# Plot the results (similar to Figure 6.7 on page 159)
+hist(sir.slash,prob=T,xlim=c(-7,7),yaxs="i",,ylab="slash density")
+z=seq(-7,7,len=300)
+lines(z,dslash(z))
+
+#________________________________________________________________
+#________________________________________________________________
+# IMPORTANCE SAMPLING
+# 
+# Key idea:  Let X~exponential(1).  Use importance sampling to find
+# E(sqrt(x)).   Compare the performance of IS using various envelopes. 
+# Some code is commented out for use in exercises in 6.1 below.
+
+# Importance sampling (weights are not standardized)
+set.seed(1)
+samp.size=10000
+
+# Envelopes
+#Case 1: abs(Normal(0,1))
+x=abs(rnorm(samp.size))
+wts=dexp(x)/(dnorm(x)/.5)
+
+#Case 2: uniform(0,1000)
+#x=runif(samp.size,0,1000)
+#wts=dexp(x)/(1/1000)
+
+#Case 3: abs(Cauchy(0,1))
+#x=abs(rcauchy(samp.size))
+#wts=dexp(x)/(dcauchy(x)/.5)
+
+# Importance sampling estimate of the mean
+mu.is = (1/samp.size)*sum(sqrt(x)*wts)
+mu.is
+
+#variance of the weights and effective sample size 
+var(wts)
+samp.size/(1+var(wts)) #ESS
+
+#Importance sampling with standardized weights, estimated mean
+mu.sis = sum(sqrt(x)*wts)/sum(wts)
+mu.sis
+
+#________________________________________________________________
+# Exercises 6.1
+# a.  Run the importance sampling code above three times:  one for
+#     each case shown above.  To do this, you'll need to remove and add the
+#     comment signs (#) for each case in turn.   Fill
+#     in the rows in table below using the results.
+#-------------------------------------------------------------------
+# 			IS		effective	standardized
+# Envelope		estimate	sample size     IS estimate
+#-------------------------------------------------------------------
+# abs(Normal(0,1))
+# Unif(0,1000)
+# abs(Cauchy(0,1)
+#-------------------------------------------------------------------
+#
+# b. Add a column to your table for the estimate given by SIR (resample 
+#    size of 1000).  Also compute the standard Monte Carlo estimate of 
+#    E(sqrt(x)) with a sample size of 10000. 
+#
+# c. Add columns to your table and fill in the standard errors for:
+#    the IS estimate (equation 6.32), the standardized IS estimate 
+#    (equation 6.34), the standard MC estimate, and the SIR estimate 
+#    (s.e. taken to be the sample variance of the final SIR sample, 
+#    divided by 1000).  
+#
+# d. Discuss your findings in a-c.
+#
+# e. Repeat a-c for estimation of P[X>4], using the same envelopes
+#    as above.  (The true value is about 1-pexp(4,1).)  Discuss your
+#    findings.  Develop a superior envelope to those used above.
+

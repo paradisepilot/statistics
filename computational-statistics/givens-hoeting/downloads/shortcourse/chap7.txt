@@ -1,0 +1,408 @@
+# MCMC:  INDEPENDENCE CHAIN
+# Example 7.2 on page 187 in Givens and Hoeting
+# 
+# Key idea:  apply an MCMC independence chain to estimate the
+# proportion in a simple mixture distribution problem.  Demonstrate
+# the performance when using 2 very different prior distributions
+
+#__________________________________________________________________
+# Generate the data from a mixture of 2 normal distributions (see
+# equation (7.6) on page 187.  To simulate a mixture distribution,
+# simulate Bernoulli(.7) first, then simulate from appropriate normal
+# distribution. 
+
+# Note: The data that used in Example 7.2 are available on the book
+# website.  The code is given here in case you want to choose your own
+# parameter values for the problem.
+
+set.seed(3)  #Set random seed 
+a=rbinom(100,1,.7)
+sum(a) #69 from first mixture component
+
+y=ifelse(a==1,rnorm(100,7,.5),rnorm(100,10,.5))
+
+#__________________________________________________________________
+# Examine the data 
+# The histogram is similar to figure 7.1 on page 187.  Your figure
+# will look different if you have generated new y values instead of
+# using the data read from the book webpage.  
+
+hist(y,probability=T,nclass=20,xlab="y",ylab="Density")
+a=seq(min(y),max(y),length=1000)
+lines(a,.7*dnorm(a,7,.5)+(1-.7)*dnorm(a,10,.5),lty=1)	
+
+#__________________________________________________________________
+#Run MH sampler - independence chain
+
+#Notes:  
+# 1.  Since this is an independence chain with uniform prior, the MH ratio 
+#     is the likelihood ratio (see equation 7.4).
+# 
+# 2. We use the log likelihood instead of the likelihood for
+#    computations of the MH ratio.  Using the likelihood in a MH chain can
+#    lead to numerical instabilities in many cases as the number may be
+#    quite small.  Doing calculations on the log scale and transforming
+#    back at the end can avoid many problems associated with underflow.
+
+log.like=function(p,x) {	
+# Computes the log likelihood based on equation (7.6) on page 187
+# Inputs:  p=probability estimate (delta in equation 7.6)
+#	   x=data vector
+# Outputs: the log likelihood
+     sum(log(p*dnorm(x,7,.5)+(1-p)*dnorm(x,10,.5)))
+}
+
+# CASE 1: proposal distribution is Beta(1,1)  [i.e., Uniform dist]
+bshape1=1   
+bshape2=1
+
+num.its=10000	    #Number of iterations
+p=rep(0,num.its)      #MCMC output: vector of p realizations
+p[1]=.2		    #Starting value
+
+set.seed(1)           #Set random seed for repeatability
+
+for (i in 1:(num.its-1)) {
+   #Generate proposal        
+   p[i+1]=rbeta(1,bshape1,bshape2)
+   #Compute Metropolis-Hastings ratio
+   R=exp(log.like(p[i+1],y)-log.like(p[i],y))
+   #Reject or accept proposal
+   if (R<1)
+      if(rbinom(1,1,R)==0)   p[i+1]=p[i]
+}
+P.1.1=p  #Save the output to examine later
+
+#CASE 2: Proposal distribution is Beta(2,10)   [mostly misses]
+bshape1=2
+bshape2=10
+plot(seq(0,1,len=100),dbeta(seq(0,1,len=100),bshape1,bshape2),
+   xlab="x",ylab="density")
+
+num.its=10000	    
+p=rep(0,num.its)    
+p[1]=.2		    
+
+num.its=10000	    #Number of iterations
+p=rep(0,num.its)      #MCMC output: vector of p realizations
+p[1]=.2		    #Starting value        
+
+set.seed(4) #Set random seed 
+for (i in 1:(num.its-1)) {
+	p[i+1]=rbeta(1,bshape1,bshape2)
+	R=	exp(log.like(p[i+1],y)-log.like(p[i],y))
+	if (R<1)
+		 if(rbinom(1,1,R)==0)	p[i+1]=p[i]
+}
+P.2.10=p  #Save the output to examine later
+
+#__________________________________________________________________
+#Plots of the output of the MCMC run:
+
+#Sample paths (similar to figure 7.2 on page 189
+#Note:  you may wish to remove iterations for a burn-in period
+par(mfrow=c(2,1))
+plot(P.1.1,type="l")
+plot(P.2.10,type="l")
+
+#Histograms of the estimated parameter (similar to figure 7.3 on page
+# 189)
+#Note:  you may wish to remove iterations for a burn-in period
+par(mfrow=c(2,1))
+hist(P.1.1,xlim=c(range(c(P.1.1,P.2.10))),nclass=40)
+hist(P.2.10,xlim=c(range(c(P.1.1,P.2.10))),nclass=40)
+
+
+#__________________________________________________________________
+#Exercises 7.1
+# a. What is the acceptance rate of each chain?  What causes the
+#    difference?  Is the acceptance rate of either chain similar 
+#    to the recommended acceptance rate? If not, construct a chain 
+#    with a more appropriate acceptance rate by changing the parameter 
+#    values in the beta distribution.  Report your results.
+# 
+# b.  Do Problems 7.1 and 7.2 on pages 212-213n
+#
+# c. Compute the Gelman and Rubin statistic (section 7.3.1.5).  
+#    Examine additional convergence diagnostics (acf plot, compute the MC
+#    error, and perhaps others) to determine whether each
+#    chain has converged.  Use all available information to determine 
+#    suitable burn-in lengths and chain lengths for the two chains 
+#    discussed in part (a).  
+#
+# d. Compute parameter estimates, standard deviations, and 95% posterior 
+#    credibility regions for p using your output from these chains.
+
+#__________________________________________________________________________
+#__________________________________________________________________________
+# MCMC:  RANDOM WALK
+# Example 7.3 on page 190 in Givens and Hoeting
+# 
+
+# Key idea: Run random walk MH sampler to estimate the proportion, p,
+# in a simple mixture distribution problem.  The likelihood is given in
+# (7.6) and we assume that the prior for p is Uniform(0,1).  This
+# example also demonstrates reparameterization of a MCMC problem,
+# which can sometimes improve convergence performance.  Here, the
+# sampler is run in transformed space, u=log(p/(1-p)), see page 190
+# for more information.  We demonstrate the performance of the random
+# walk chain when using two very different error distributions in the
+# proposal , Unif(-1,1) and Unif(-.01,.01).
+
+#__________________________________________________________________
+# Generate the data from a mixture of 2 normal distributions (see
+# equation (7.6) on page 187.  To simulate a mixture distribution,
+# simulate Bernoulli(.7) first, then simulate from appropriate normal
+# distribution. 
+
+# Note: The data that used in Example 7.2 are available on the book
+# website.  The code is given here in case you want to choose your own
+# parameter values for the problem.
+
+set.seed(3) #Set random seed 
+a=rbinom(100,1,.7)
+y=ifelse(a==1,rnorm(100,7,.5),rnorm(100,10,.5))
+
+#__________________________________________________________________
+# Examine the data 
+# The histogram is similar to figure 7.1 on page 187.  Your figure
+# will look different if you have generated new y values instead of
+# using the data read from the book webpage.  
+
+hist(y,probability=T,nclass=20,xlab="y",ylab="Density")
+a=seq(min(y),max(y),length=1000)
+lines(a,.7*dnorm(a,7,.5)+(1-.7)*dnorm(a,10,.5),lty=1)	
+
+#__________________________________________________________________
+#Run MH sampler - random walk
+
+target.log=function(p,x) {	
+# Computes the log of the likelihood (based on equation (7.6) on page
+# 187) times the prior.  Here the prior for p is
+# Uniform(0,1)=Beta(1,1), so it won't play a part in the computation
+# of the MH ratio and is omitted.
+
+# Inputs:  p=probability estimate (delta in equation 7.6)
+# 	   x=data vector
+# Outputs: the log likelihood
+     sum(log(p*dnorm(x,7,.5)+(1-p)*dnorm(x,10,.5)))
+}
+
+
+# CASE 1: proposal is a random walk with errors generated from
+# Uniform(-1,1). 
+
+set.seed(2) #Set random seed 
+
+num.its=10000		#Number of iterations  
+u=rep(0,num.its)	#MCMC output: vector of u realizations   	   
+u[1]= runif(1,-1,1)     #Starting value          
+p=rep(0,num.its)        #MCMC output: vector of p realizations   	   
+p[1]=exp(u[1])/(1+exp(u[1]))    #transform u to p, see page 190-191
+
+
+# This is the code for the Metropolis Hastings algorithm, random walk
+# chain. 
+for (i in 1:(num.its-1)) {
+   #Generate proposal (random walk)       
+   u[i+1]=u[i]+runif(1,-1,1)      
+
+   #Transform u to p, see page 190-191
+   p[i+1]=exp(u[i+1])/(1+exp(u[i+1]))
+   
+   #Compute Metropolis-Hastings ratio   
+   R=exp(target.log(p[i+1],y)-target.log(p[i],y))*
+      (exp(u[i])*(1+exp(u[i+1]))^2)/(exp(u[i+1])*(1+exp(u[i]))^2)
+
+   #Reject or accept proposal
+   if (R<1)
+      if(rbinom(1,1,R)==0) {p[i+1]=p[i]; u[i+1]=u[i]}
+}
+
+P.rw.1=p  #Save the output to examine later
+u.rw.1=u  
+
+# CASE 2: proposal is a random walk with errors generated from
+# Uniform(-.01,.01).
+
+set.seed(2) #Set random seed 
+
+num.its=10000		#Number of iterations  
+u2=rep(0,num.its)	#MCMC output: vector of u realizations   	   
+u2[1]= runif(1,-1,1)    #Starting value          
+p2=rep(0,num.its)       #MCMC output: vector of u realizations   	   
+p2[1]=exp(u2[1])/(1+exp(u2[1]))  #transform u to p, see page 190-191
+
+
+for (i in 1:(num.its-1)) {
+   #Generate proposal (random walk)       
+   u2[i+1]=u2[i]+runif(1,-.01,.01)
+
+   #Transform u to p, see page 190-191
+   p2[i+1]=exp(u2[i+1])/(1+exp(u2[i+1]))
+
+   #Compute Metropolis-Hastings ratio   
+   R=exp(target.log(p2[i+1],y)-target.log(p2[i],y))*
+      (exp(u2[i])*(1+exp(u2[i+1]))^2)/(exp(u2[i+1])*(1+exp(u2[i]))^2)
+
+   #Reject or accept proposal
+   if (R<1)
+      if(rbinom(1,1,R)==0)	{p2[i+1]=p2[i]; u2[i+1]=u2[i]}
+}
+
+P.rw.01=p2  #Save the output to examine later
+u.rw.01=u2  
+
+#__________________________________________________________________
+#Plots of the output of the MCMC run:
+
+#Sample paths (similar to figure 7.5 on page 192
+#Note:  you may wish to remove iterations as a burn-in period
+par(mfrow=c(2,1))
+plot(P.rw.1,type="l",ylab="p",xlab="Iteration",ylim=c(.3,.85))
+plot(P.rw.01,type="l",ylab="p",xlab="Iteration",ylim=c(.3,.85))
+
+
+#Histograms of the estimated parameter 
+#Note:  you may wish to remove iterations as a burn-in period
+par(mfrow=c(2,1))
+hist(P.rw.1,xlim=c(range(c(P.rw.1,P.rw.01))),nclass=40)
+hist(P.rw.01,xlim=c(range(c(P.rw.1,P.rw.01))),nclass=40)
+
+#__________________________________________________________________
+#Exercises 7.2
+# a. What is the acceptance rate of each chain?  What causes the
+#    difference?  Is the acceptance rate of either chain similar 
+#    to the recommended acceptance rate? If not, construct a chain 
+#    with a more appropriate acceptance rate by changing the size
+#    of the random walk steps.  Report your results.
+# 
+# b. Compute the Gelman and Rubin statistic (section 7.3.1.5).  
+#    Examine additional convergence diagnostics (acf plot, compute the MC
+#    error, and perhaps others) to determine whether each
+#    chain has converged.  Does having a burn-in period equal to 1/2
+#    of the number of iterations improve the convergence diagnostics for
+#    Case 2?  Use all available information to determine suitable burn-in 
+#    lengths and chain lengths for the two chains discussed in part (a).
+#
+# c. Compute parameter estimates, standard deviations, and 95% posterior 
+#    credibility regions for p using your output from Case 1 and 2.
+#
+
+#__________________________________________________________________
+#__________________________________________________________________
+
+# MCMC:  Gibbs sampler
+# Fur Seal Pup Capture-Recapture analysis, Chap 7.4, page 208 in
+# Givens & Hoeting
+
+# Key idea:  apply a Gibbs sampler to estimate the population size and
+# sampling probabilities in a capture-recapture study.
+
+#_______________________________________________________________________
+#DATA 
+num.caught<-c(30,22,29,26,31,32,35) #number caught each time
+				    #num.caught is called "c" in the book
+I<-7			   #total number of capture occasions
+r.param<-84		   #total number of unique animals caught
+#_______________________________________________________________________
+# Gibbs Sampler
+# Implements the Gibbs sampler described on page 210-211
+
+log.target<-function(exp.u,alpha,I) {
+#Inputs:  exp.u = vector of (exp(u1),exp(u2))
+#         alpha = vector of capture probabilities of length I
+#         I = number of capture occasions
+#
+#Output:  log of the target disrtribution for U1,U2 (see second
+# equation on page 211)
+  I*(lgamma(sum(exp.u))-lgamma(exp.u[1])-lgamma(exp.u[2])) +
+    exp.u[1]*sum(log(alpha))+exp.u[2]*sum(log(1-p))-sum(exp.u)/1000+
+    log(exp.u[1])+log(exp.u[2])
+}
+
+#Gibbs set-up
+num.its<-10000		#Number of MCMC iterations
+N<-rep(0,num.its)	#Vector of N=total sample size realizations
+N[1]<-sample(84:500,1) 
+u<-matrix(0,num.its,2)  #Matrix of u realizations, column 1= u1,
+			#column 2= u2
+u[1,]<-log(sample(2:3000,2))
+alpha<-matrix(0,num.its,I)  #Vector of alpha realizations
+set.seed(1)
+
+for (i in 2:num.its) {
+   #First equation on page 211
+   alpha[i,]<-rbeta(I,num.caught+exp(u[i-1,1]),N[i-1]-num.caught+exp(u[i-1,2]))
+
+   #Equation (7.23)
+   N[i]<-rnbinom(1,r.param,1-prod(1-alpha[i,]))+r.param
+   
+   #Implements Metropolis-Hastngs random walk within Gibbs (2nd eq on page 211)
+   u[i,]<-u[i-1,]+rnorm(2,c(0,0),c(.085,.085))
+   R<-exp(log.target(exp(u[i,]),alpha[i,],I)-
+	log.target(exp(u[i-1,]),alpha[i,],I))
+   if (R<1)
+	if(rbinom(1,1,R)==0)	u[i,]<-u[i-1,]
+}
+
+#_______________________________________________________________________
+#Summary statistics of Gibbs sampler
+#Note:  you may wish to remove iterations as a burn-in period
+rbind(round(c("mean.N"=mean(N),"sd.N"=sd(N),quantile(N,c(.025,.975))),2))
+
+mean.alpha=apply(alpha,2,mean)
+sd.alpha=apply(alpha,2,sd)
+d=apply(alpha,2,quantile,c(.025,.975))
+round(rbind(mean.alpha,sd.alpha,d),2)  #alpha summary stats
+#_______________________________________________________________________
+#Plots of the output
+
+# Note:  you may wish to change the burn-in period if you change the
+# number of iterations
+burn.in=1:1000
+
+# Similar to the left panel on page 7.7
+par(mfrow=c(1,1))
+plot(N[-burn.in],type="l")
+
+#Similar to Figure 7.8 on page 211
+boxplot(split(apply(alpha[-burn.in,],1,mean),N[-burn.in]),
+  ylab="mean capture probability over all captures",xlab="N")
+
+#Alpha plot
+boxplot(data.frame(alpha[-burn.in,]),names=1:7,xlab="capture occasion",
+  ylab="capture probability")
+
+#Similar to Figure 7.9 on page 212
+hist(N[-burn.in],probability=T,xlab="N")
+
+#__________________________________________________________________
+#Exercises 7.3
+# a. Derive the equations used in the Gibbs sampler on pages 210-211
+#
+# b. If this group of fur seals will be declared "recovered" when
+#    there are are 100 are more fur seals.  What is the probability that
+#    this population has recovered?
+#
+# c. What does the boxplot called "alpha plot" above tell us?
+# 
+# d. Create your own plots and summaries of the results.
+#
+# e. Apply convergence diagnostics, including the Gelman and Rubin
+#    statistic (sec. 7.1.3.5) to these simulations.  Experiment with
+#    choices for the standard deviation of step sizes (0.085).  Is
+#    the MCMC simulation sensitive to this choice?
+#
+# f. Replace the random-walk-within-Gibbs with an independence-
+#    step-within-Gibbs.
+#
+# g. Implement this algorithm in WinBugs.  Compare the summary
+#    statistics from your R code to the summary statistics based on the
+#    WinBugs implementation.
+# 
+# h. Implement this analysis using a random walk or independence 
+#    Metropolis-Hastings chain, if you can.  HINT:  It will be 
+#    extremely difficult, considering Figure 7.7 and (e) above, to
+#    get decent performance.
+

@@ -1,0 +1,221 @@
+# BASIC EM ALGORITHM
+# Example 4.2 on page 91 in Givens and Hoeting
+# 
+# Key idea:  use the EM algorithm to estimate the parameters in the
+# peppered moth example described on page 91. 
+
+#The observed data (phenotype counts for each variety)
+nc=85  #Number of observed carbonaria phenotype
+ni=196 #number of observed insularia phenotype
+nt=341 #Number of observed typica phenotype
+n=nc+ni+nt #total sample size
+
+#Initialize the parameter estimate vectors
+#One vector for each phenotype
+pct=rep(0,20)  
+pit=rep(0,20)  
+ptt=rep(0,20)
+pct[1]=1/3  #Initial estimates of the parameters
+pit[1]=1/3
+ptt[1]=1/3
+
+#This for loop carries out EM for the peppered moth example.
+for (t in 2:20) {
+  #Equations (4.5)-(4.9)
+  denom1=(pct[t-1]^2+2*pct[t-1]*pit[t-1]+2*pct[t-1]*ptt[t-1])
+  ncct=nc*pct[t-1]^2/denom1
+  ncit=2*nc*pct[t-1]*pit[t-1]/denom1
+  nctt=nc-ncct-ncit
+  niit=ni*pit[t-1]^2/(pit[t-1]^2+2*pit[t-1]*ptt[t-1])
+  nitt=ni-niit
+  nttt=nt
+
+  #Equations (4.13-4.15)
+  pct[t]=(2*ncct+ncit+nctt)/(2*n)  
+  pit[t]=(2*niit+ncit+nitt)/(2*n)
+  ptt[t]=(2*nttt+nctt+nitt)/(2*n) 
+}
+
+#Examine the output
+cbind(pct,pit,ptt)
+
+#equation (4.16) on page 94
+rcc=sqrt( (diff(pct)^2+diff(pit)^2)/(pct[-20]^2+pit[-20]^2) )
+rcc=c(0,rcc)  #adjusts the length to make the table below
+
+#convergence diagnostics defined below (4.16) on page 94
+d1=(pct[-1]-pct[20])/(pct[-20]-pct[20])
+d1=c(d1,0)
+d2=(pit[-1]-pit[20])/(pit[-20]-pit[20])
+d2=c(d2,0)
+
+#Table like Table 4.1 on page 94
+print(cbind(pct,pit,rcc,d1,d2)[1:9,],digits=5)
+
+# EXERCISES  4.1
+# a. If you are familiar with the bootstrap method, obtain standard
+#    errors for the above estimates (pct, pit, ptt) via bootstrapping.
+# b. Do exercise 4.1, part a and b on page 113.
+
+
+#__________________________________________________________________
+#__________________________________________________________________
+# SEM ALGORITHM
+# Example 4.6 on page 102 in Givens and Hoeting
+# 
+# Key idea:  use the SEM algorithm to estimate the standard errors for
+# the parameters estimated above in the "BASIC EM" section.
+
+
+#First, run EM using the code in the basic EM algorithm given above. 
+#Then we run SEM as follows.  
+
+#Starting values for SEM (see description just above equation 4.44)
+#Choosing the parameter values at the 100th iteration of EM.  
+pcthat=pct[20]   
+pithat=pit[20]
+ptthat=ptt[20]
+
+#Initialize the parameter estimate vectors, one vector for each phenotype
+sempct=rep(0,20)  
+sempit=rep(0,20)  
+semptt=rep(0,20)
+sempct[1]=0.07      #Initial SEM estimates of the parameters
+sempit[1]=0.19
+semptt[1]=0.74
+
+rij=array(0,c(3,3,20))
+
+#This for loop implements the SEM algorithm for the peppered moth
+#example.  
+
+#Below t is the number of SEM iterations
+for (t in 2:20) {
+  cat(t,sempct[t-1],sempit[t-1],semptt[t-1])
+  cat("\n")
+  print(rij[,,t-1])
+  cat("\n")
+
+  #Take standard EM step (see code above for detailed description)
+  denom1=(sempct[t-1]^2+2*sempct[t-1]*sempit[t-1]+2*sempct[t-1]*semptt[t-1])
+  ncct=nc*sempct[t-1]^2/denom1
+  ncit=2*nc*sempct[t-1]*sempit[t-1]/denom1
+  nctt=nc-ncct-ncit
+  niit=ni*sempit[t-1]^2/(sempit[t-1]^2+2*sempit[t-1]*semptt[t-1])
+  nitt=ni-niit
+  nttt=nt
+  sempct[t]=(2*ncct+ncit+nctt)/(2*n)
+  sempit[t]=(2*niit+ncit+nitt)/(2*n)
+  semptt[t]=(2*nttt+nctt+nitt)/(2*n) 
+
+  #SEM 
+  #loop over each parameter
+  for (j in 1:3) {
+    #start at estimates from the the 20th iteration of EM
+    sempj=c(pcthat,pithat,ptthat)  
+
+    #replace the jth element of sempj with the most recent EM estimate
+    sempj[j]=c(sempct[t],sempit[t],semptt[t])[j]
+
+    #Take one EM step for sempj    
+    #Equations (4.5)-(4.9)
+    denom1=(sempj[1]^2+2*sempj[1]*sempj[2]+2*sempj[1]*sempj[3])
+    ncct=nc*sempj[1]^2/denom1
+    ncit=2*nc*sempj[1]*sempj[2]/denom1
+    nctt=nc-ncct-ncit
+    niit=ni*sempj[2]^2/(sempj[2]^2+2*sempj[2]*sempj[3])
+    nitt=ni-niit
+    nttt=nt
+    nextstep=c((2*ncct+ncit+nctt)/(2*n),(2*niit+ncit+nitt)/(2*n),
+       (2*nttt+nctt+nitt)/(2*n))
+
+    # Calculate rij.  This is (4.44) on page 101
+    rij[,j,t]=(nextstep-c(pcthat,pithat,ptthat))/
+                  (sempj[j]-c(pcthat,pithat,ptthat)[j]) }
+}
+
+
+#Note that the algorithm becomes unstable on 8th iteration
+#Below is the output for iteration 7 
+#EM after 20 iterations
+#> cbind(pct,pit,ptt)[20,]
+#       pct        pit        ptt 
+#0.07083691 0.18873652 0.74042657 
+
+#SEM after 7 iterations (the way the indices work, this is index 6
+#> cbind(sempct,sempit,semptt)[6,]
+#    sempct     sempit     semptt 
+#0.07083691 0.18873670 0.74042639 
+
+rij[,,6]
+#             [,1]         [,2]        [,3]
+#[1,]  0.034117920 -0.002601059 -0.00260106
+#[2,] -0.006910223  0.140676982 -0.03519589
+#[3,] -0.027207449 -0.138075923  0.03779695
+
+#Now need iyhat (inverse of the information matrix for Y)  used in (4.43)
+
+#Equations (4.5)-(4.9) on page 93
+denom1=(pcthat^2+2*pcthat*pithat+2*pcthat*ptthat)
+ncct=nc*pcthat^2/denom1
+ncit=2*nc*pcthat*pithat/denom1
+nctt=nc-ncct-ncit
+niit=ni*pithat^2/(pithat^2+2*pithat*ptthat)
+nitt=ni-niit
+nttt=nt
+
+#Required derivatives for iyhat (used in eqn (4.41) on page 101)
+d20q=-(2*ncct+ncit+nctt)/pcthat^2 -(2*nttt+nitt+nctt)/(ptthat^2)
+d02q=-(2*niit+ncit+nitt)/pithat^2 -(2*nttt+nitt+nctt)/(ptthat^2)
+d12q=-(2*nttt+nitt+nctt)/(ptthat^2)
+ 
+iyhat=-cbind(c(d20q,d12q),c(d12q,d02q))
+
+solve(iyhat)
+#[1,]  5.290920e-05 -1.074720e-05
+#[2,] -1.074720e-05  1.230828e-04
+
+#Equation (4.41) on page 101
+#Since the percentages of the 3 moth phenotypes add up to 1, we only
+#presented results for carbonaria and insularia phenotypes.  The next
+#lines define (4.41) from the SEM algorithm and delete the last row
+#and column of the 3 x 3 matrix 
+
+psiprime=rij[,,6] #(7th iteration)
+psiprime22=psiprime[-3,-3]
+
+#Equation (4.43) on page 101
+varhat=solve(iyhat)%*%(diag(2)+t(psiprime22)%*%solve(diag(2)-t(psiprime22)))
+varhat=(varhat+t(varhat))/2
+varhat
+#              [,1]          [,2]
+#[1,]  5.481298e-05 -1.223007e-05
+#[2,] -1.223007e-05  1.433249e-04
+
+#sd(pc), sd(pi)
+sqrt(diag(varhat))              
+#[1] 0.007403579 0.011971838
+
+
+#cor(pc,pi)
+varhat[1,2]/prod(sqrt(diag(varhat)))  
+#[1] -0.1379833
+
+#var(pt)
+varhat[1,1]+varhat[2,2]+2*varhat[1,2]  
+#[1] 0.0001736777
+
+#sd(pt)
+sqrt(sum(varhat)) 
+#[1] 0.01317868
+
+#cor(pc,pt)
+(-varhat[1,1]-varhat[1,2])/(sqrt(varhat[1,1])*sqrt(sum(varhat)))
+#[1] -0.4364370
+
+#cor(pi,pt)
+(-varhat[2,2]-varhat[1,2])/(sqrt(varhat[2,2])*sqrt(sum(varhat)))
+#[1] -0.8309075
+
+# EXERCISES  4.2
+# a. Do exercise 4.1 on page 113, part c.

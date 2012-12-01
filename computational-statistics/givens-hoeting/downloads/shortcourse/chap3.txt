@@ -1,0 +1,403 @@
+# RANDOM STARTS LOCAL SEARCH
+# Example 3.3 on page 57 in Givens and Hoeting, 2005
+# 
+# Key idea:  apply random starts local search to the baseball salaries
+# data set to find the best set of predictors in a linear regression
+# model as measured by AIC.    
+
+#Read in the data (you'll need to provide your own path here where
+#you've saved the data.  The data are available from the book webpage
+#  http://www.stat.colostate.edu/computationalstatistics/
+
+baseball=read.table("put.your.path.here/baseball.dat",header=T)
+
+#Fit the full model with all predictors and print the results
+big.model=lm(log(salary)~.,baseball)
+summary(big.model)
+
+#The number of possible models (subsets of predictors) = 2^27
+2^27  
+
+# Note: We could find the best model by fitting all possible models
+# and computing the AIC for each model.  The leaps algorithm is a fast
+# way to do that, but most implementations of the leaps algorithm 
+# limit the number of predictors that can be included. RSLS has no 
+# such limitations.
+
+#__________________________________________________________________
+#These functions are required to initialize the random starts local
+#search (rsls) function below. 
+
+makeformula=function(in.or.out,varnames) {
+# The makeformula function is to create text version of a model
+# formula, given indications of which variables to include
+# Inputs:
+# in.or.out= vector of 0's and 1's of length=(number of predictors) where 1
+#	in entry i indicates the inclusion of predictor i in the model.  
+# varnames =  vector of variable names.  This is dimnames(data.frame)[[2]]
+#   if the data.frame consists of the design matrix.
+# Output:  the model formula corresponding to the predictors indicated
+#	  in the in.or.out vector
+   predictors=paste(varnames[as.logical(in.or.out)],collapse=" + ")
+   my.formula=paste("log(salary) ~ ",predictors,sep="") 
+   return(my.formula) 
+}
+
+base2to10=function(base2.number) {
+# This function converts a base 2 number to base 10.  This is needed
+# to convert the in.or.out vector of 0's and 1's  (see the makeformula
+# function above) into a base 10 model index for bookkeeping purposes. 
+# Inputs:  base2.number is a vector of zeros and ones
+# Outputs: the base 10 version of the input base2.number
+  thelen=length(base2.number)
+  if (thelen>27) {stop("wrote this only for bitstrings <= 27 bits")}
+  sum(base2.number* (2^((thelen-1):0)) ) 
+}
+
+base10to2=function(base10.number) {
+# This function converts a base 10 number to base 2.  This is needed
+# to convert the model index number into the base 2 in.or.out vector
+# indicating which variables are used in the model
+# Inputs:  base10.number is a base 10 index for the model.
+# Outputs: the base 2 in.or.out vector for the model
+  base2.number=rep(0,27)
+  if (base10.number>=2^27) {stop("wrote this only for base10.number<2^27 -1")}
+  mults=2^(26:0)
+  for (i in 1:27) {
+    base2.number[i]=base10.number%/%mults[i]
+    base10.number=base10.number%%mults[i] }
+  base2.number}
+
+
+#__________________________________________________________________
+#Random starts local search (rsls) function for the baseball data.
+
+#Note: a generic function to perform this search would be better than
+#this problem-specific code.  If you write your own generic version,
+#please send us your code this and we'll be happy to add it to our
+#archives.
+
+rsls=function(randomseed=NULL,varnames) {
+# Random starts local search (rsls) function for the baseball data.
+# Inputs:
+# randomseed= random seed uses to start rsls.  If none is provided, 
+#   the current random seed is used.  Specifying your own seed allows you
+#   to replicate your results
+# varnames =  vector of variable names.  This is dimnames(data.frame)[[2]]
+#   if the data.frame consists of the design matrix.
+#
+# Output:  list with 2 elements
+# randomseed = random seed used here
+# record = a 15 by 2 by 5 array.  For each of 5 random starts, a 15 by
+#	 2 matrix is created where 15 is the number of steps taken after each
+#	 start and the columns of this 15 by 2 matrix consist of the 
+#	 model number in base 10 form and the corresponding AIC value
+  
+  #set random seed	
+  if (!is.null(randomseed)) {set.seed(randomseed)}  
+  myseed=.Random.seed  
+  record=array(0,c(15,2,5))
+
+  #The outermost loop indexes random starts
+  for (j in 1:5) {
+   
+     #randomly select the current variables in the model where a 1 in
+     #the ith element of the "current" vector indicates that the ith
+     #predictor is included in the model.
+     current=sample(c(0,1),27,replace=T)
+
+     #fit a linear model to the first model
+     startfit=lm(as.formula(makeformula(current,varnames)),baseball) 
+     starttrms=sum(current)  #total number of predictors in model
+
+     #Compute AIC as given in (3.4) on page 55 (differs from usual AIC
+     #because we dropped the constant terms in linear regression model).
+     #This is the 'best aic value seen yet' so is called "best.yet"
+     best.yet=337*log(sum(startfit$residuals^2)/(337-starttrms-1))+ 
+          2*(starttrms+2) 
+
+     record[1,1,j]=base2to10(current)       #keep model index for first model
+     record[1,2,j]=best.yet		    #keep AIC value for first model
+
+     #The inner loop indexes iterations during a search attempt
+     for (i in 2:15) {
+	 #Create a matrix of candidate models where each row
+	 #corresonds the current model with one predictor deleted
+	 cands=matrix(rep(current,27),nrow=27,ncol=27,byrow=T)
+	 cands=abs(diag(1,27)-cands)
+
+	 #Obtain the corresponding model formulas...
+	 mods=apply(cands,1,makeformula,varnames)
+	 #...and the number of predictors in each candidate model
+	 trms=apply(cands,1,sum)
+
+	 #Creates a list with 27 elements, one for each candidate model
+	 fits=vector("list",27)
+
+	 #Compute AIC (see note above) for each candidate model
+	 aic=rep(0,27)  
+	 for (k in 1:27) {
+	    fits[[k]]=lm(as.formula(mods[k]),baseball) 
+	    aic[k]=337*log(sum(fits[[k]]$residuals^2)/337)+2*(trms[k]+2) 
+	 }
+	 #Ranks the AIC values.  The smallest is the best model.
+	 rankaic=rank(aic)  
+
+	 #If model with smallest AIC is worse than randomly selected
+	 #model, then stay where you are.  Otherwise record the best
+	 #model seen yet.
+	 if (min(aic)>=best.yet) {
+	    record[i,1,j]=base2to10(current)
+	    record[i,2,j]=best.yet 
+	 break } else {
+	       whobest=(1:27)[rankaic==min(rankaic)][1]
+	       best.yet=aic[whobest]
+	       current=cands[whobest,]
+	       record[i,1,j]=base2to10(current)
+	       record[i,2,j]=aic[whobest] 
+	       }
+         } 
+   } 
+   list(randomseed=myseed,record=record) }
+
+#__________________________________________________________________
+#Run random starts local search for the baseball data set
+#This produces results similar to those described in Example 3.3.
+
+baseball.varnames=dimnames(baseball)[[2]][-1]  
+rsls.results=rsls(randomseed=2,baseball.varnames)
+
+#__________________________________________________________________
+#Examine the results (more explanation of the results will be given
+# below)
+rsls.results$record
+
+#Show the best AIC value found for each random start
+apply(rsls.results$record[,2,],2,min)
+
+#Compare the best AIC value found for each random start
+best=apply(rsls.results$record[,2,],2,min)
+plot(1:5,best,xlab="random start number",ylab="AIC")
+
+#Plot similar to Figure 3.3 (except now we are plotting AIC instead of -AIC).
+plot(1:75,c(rsls.results$record[,2,]),type="n",xlab="cummulative iterations",
+    ylab="AIC")
+for (i in 1:5) {
+  num=sum(rsls.results$record[,2,i]!=0)
+  lines((1:num)+(i-1)*15,
+	  rsls.results$record[rsls.results$record[,2,i]!=0,2,i]) } 
+
+#__________________________________________________________________
+#Compare the predictors for the best model from each random start
+
+#A convoluted way to find the base 10 model indices corresponding to
+#the best model found for each random start
+best.nums=unique(rsls.results$record[,1,][rsls.results$record[,2,]==
+     matrix(apply(rsls.results$record[,2,],2,min),15,5,byrow=T)])
+
+best.preds=matrix(0,5,27)
+for (i in 1:5)
+best.preds[i,]=base10to2(best.nums[i])
+dimnames(best.preds)[[2]]=dimnames(baseball)[[2]][-1]  
+
+# The results matrix below has a row for each of the best models found 
+# by the 5 random starts.  The columns show the predictors (a 1 indicates the
+# predictor was included in the model).  Rows are printed in order of AIC
+# values with the top model listed first.
+results=cbind(best.preds,apply(rsls.results$record[,2,],2,min))
+dimnames(results)[[2]][28]="AIC"
+results[order(results[,28]),]
+
+#__________________________________________________________________
+# EXERCISE 3.1
+#
+# a. The R help files mention this wild function:
+#    fw <- function (x) {
+#        10*sin(0.3*x)*sin(1.3*x^2) + 0.00001*x^4 + 0.2*x+80 }
+#    Plot this function on [-50,50].  Visually, we can be pretty
+#    confident that the minimum lies between -30 and 10.  Implement 
+#    a random starts approach to find the global minimum, replacing
+#    pure local search with search via nlm().  Experiment with various
+#    numbers of random starts to determine how the success rate
+#    depends on random starts effort.  Replace nlm() with other
+#    search strategies and compare.
+# b. Reprogram the rsls function given above to make it select models 
+#	on the basis of adjusted R^2.
+# c. Using the code provided above as a foundation, attempt Tabu Search
+#    and/or Genetic Algorithm approaches to the baseball model selection
+#    problem.
+#
+#__________________________________________________________________
+#__________________________________________________________________
+# SIMULATED ANNEALING
+# Example 3.6 on page 71 in Givens and Hoeting, 2005
+# 
+# Key idea:  apply simulated annealing to the baseball salaries
+# data set to find the best set of predictors in a linear regression
+# model as measured by AIC.   
+#
+# NOTE: the optim() function in R also has a method="SANN" that
+# is useful.
+
+#__________________________________________________________________
+#This functions is required to index models, as used above for RSLS
+
+base2to10=function(base2.number) {
+# This function converts a base 2 number to base 10.  This is needed
+# to convert the in.or.out vector of 0's and 1's  (see the makeformula
+# function above) into a base 10 model index for bookkeeping purposes. 
+# Inputs:  base2.number is a vector of zeros and ones
+# Outputs: the base 10 version of the input base2.number
+  thelen=length(base2.number)
+  if (thelen>27) {stop("wrote this only for bitstrings <= 27 bits")}
+  sum(base2.number* (2^((thelen-1):0)) ) 
+}
+#__________________________________________________________________
+
+sim.anneal=function(randomseed=NULL,varnames,temp0=.99,
+       schedlens=c(rep(60,5),rep(120,5),rep(220,5))) {
+# 
+# Simulated annealing function for the baseball data.
+#
+# Inputs:  
+# randomseed= random seed uses to start rsls.  If none is provided, 
+#    the current random seed is used.  Specifying your own seed allows the
+#    user to duplicate his/her results
+# varnames =  vector of variable names (dimnames(data.frame)[[2]]
+#   if the data.frame consists of the design matrix
+# temp0 = a number which indicates the initial temperature 
+#	(this is tau0 on page 67)
+# schedlens=a numeric vector of schedule lengths. The default 
+#	is 15 stages with increasing number of iterations over the
+#	15 stages
+
+#Outputs: 
+# output:  list with 2 elements
+# randomseed = random seed used here
+# record = a 3 dimensional array ('maximum number of iterations per 
+#	stage' by 4 by 'number of stages').  The default is a 
+# 	maximum of 220 iterations per stage by 4 by 15 stages.  For each
+#	stage, a 200 by 4 matrix is created.  The columns of this matrix 
+#	consist of the model number in base 10, the corresponding AIC, the 
+#	current temperature and the switching probability.  
+
+  #set random seed
+  if (!is.null(randomseed)) {set.seed(randomseed)}  
+  myseed=.Random.seed  
+
+  numtemps=length(schedlens)  #number of stages 
+  record=array(0,c(max(schedlens),4,numtemps))
+  
+  #randomly select the current variables in the model where a 1 in
+  #the ith element of the "current" vector indicates that the ith
+  #predictor is included in the model.
+  current=sample(c(0,1),27,replace=T)
+  startfit=lm(as.formula(makeformula(current,base.varnames)),baseball) 
+  starttrms=sum(current)
+ 
+  #Compute AIC as given in (3.4) on page 55 (differs from usual AIC
+  #because dropped the constant terms in linear regression model)
+  best.yet=337*log(sum(startfit$residuals^2)/(337))+
+     2*(starttrms+2) 
+  currentobj=best.yet
+  record[1,1,1]=base2to10(current)	#keep model index for first model
+  record[1,2,1]=best.yet		#keep AIC value for first model
+  record[1,3,1]=temp0
+  temp=temp0
+  
+  #outer loop over temperatures
+  for (i in 1:numtemps) {
+   if (i==1) { lo=2 } else {  lo=1  }
+   #inner loop over iterations at each temperature
+   for (j in lo:schedlens[i]) {
+     cand=current
+     which=sample(1:27,1)  #Step 1 on page 67
+     cand[which]=1-cand[which]
+     candfit=lm(as.formula(makeformula(cand,base.varnames)),baseball) 
+     candtrms=sum(cand)
+   
+     #Compute AIC (see above note)
+     candobj=337*log(sum(candfit$residuals^2)/337)+
+       2*(candtrms+2) 
+
+     #Step 2 on page 67
+     switchprob=min(1,exp((currentobj-candobj)/temp))
+     u=runif(1,0,1)
+     record[j,3,i]=temp
+     record[j,4,i]=switchprob
+     if (u<=switchprob) {
+       current=cand
+       currentobj=candobj
+       record[j,1,i]=base2to10(current)
+       record[j,2,i]=candobj 
+       best.yet=min(best.yet,candobj) 
+       } 
+     else {
+	 record[j,1,i]=base2to10(current)
+       record[j,2,i]=currentobj 
+	 } 
+   }
+   temp=.9*temp #update temperature
+  }
+list(randomseed=myseed,record=record) }
+
+#__________________________________________________________________
+#Run simulated annealing for the baseball data set
+
+base.varnames=dimnames(baseball)[[2]][-1]  
+sa.results=sim.anneal(temp0=1,varnames=base.varnames)
+
+#__________________________________________________________________
+#Examine the results (more explanation of the results will be given
+# below)
+
+#Show the best AIC value found at each stage
+best=apply(sa.results$record[,2,],2,min)
+best
+
+plot(best,xlab="Stage number",ylab="AIC")
+title("Best AIC found at each stage")
+
+#Plot similar to Figure 3.5 (except now we are plotting AIC instead of -AIC).
+aics=as.vector(sa.results$record[,2,])
+aics=aics[aics!=0]
+plot(aics,type="l")
+#__________________________________________________________________
+# Examine the predictors in the best model found via simulated 
+# annealing:
+
+best.num=unique(sa.results$record[,1,][sa.results$record[,2,]==
+	min(sa.results$record[,2,])])
+
+best.preds=matrix(base10to2(best.num),nrow=1)
+dimnames(best.preds)[[2]]=dimnames(baseball)[[2]][-1]  
+
+# The results matrix below gives the predictors for the model with 
+#the lowest AIC (a 1 indicates the predictor was included in the model).  
+results=cbind(best.preds,min(sa.results$record[,2,]))
+dimnames(results)[[2]][28]="AIC"
+results
+
+#__________________________________________________________________
+# EXERCISE 3.2
+#
+# a.  Is the last model visited always the model with the lowest AIC?  
+#	Why?
+# 
+# b.  Rerun the simulated annealing algorithm given above using several 
+#     different starting temperatures and cooling schedule lengths.  How 
+#     do these affect the results?  
+#
+# c. The R help files mention this wild function:
+#    fw <- function (x) {
+#        10*sin(0.3*x)*sin(1.3*x^2) + 0.00001*x^4 + 0.2*x+80 }
+#    Plot this function on [-50,50].  Visually, we can be pretty
+#    confident that the minimum lies between -30 and 10.  Implement 
+#    a simulated annealing approach to find the global minimum.
+# 
+# d. Try using the optim() simulated annealing (method="SANN") to
+#    minimize the wild function.
+#
+# e. Try using simulated annealing to maximize: g(x)=log(x)/(1+x) 
+#    (see chap2.txt).  Comment on why SA is not a good method for
+#    such a simple, smooth problem.
