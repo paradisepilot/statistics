@@ -34,3 +34,7 @@ lambda <- 1/theta;
 ### The posterior estimate of P(lambda > 1000 | data) is given by:
 sum(lambda > 1000) / length(lambda);
 
+png("Fig1_lambda-posterior-density.png");
+qplot(x = lambda, geom = "density");
+dev.off();
+
