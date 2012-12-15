@@ -14,26 +14,8 @@ source(paste(code.directory,"my-contour.R",   sep = "/"));
 setwd(output.directory);
 
 ### AUXILIAR FUNCTIONS #############################################################################
-log.posterior.beta.binomial <- function(parameters = NULL, data = NULL) {
-	
-	eta <- parameters[1];
-	K   <- parameters[2];
-
-	y <- data[,1];
-	n <- data[,2];
-
-	N <- length(y);
-
-	output.value <- lbeta(K * eta + y, K * (1 - eta) + n - y) - lbeta(K * eta, K * (1 - eta));
-	output.value <- sum(output.value);
-	output.value <- output.value - 2 * log(1 + K) - log(eta) - log(1 - eta);
-
-	return(output.value);
-
-	}
-
 log.posterior.beta.binomial.tranformed <- function(parameters = NULL, data = NULL) {
-	
+        
 	eta <- exp(parameters[1]) / (1 + exp(parameters[1]));
 	K   <- exp(parameters[2]);
 
