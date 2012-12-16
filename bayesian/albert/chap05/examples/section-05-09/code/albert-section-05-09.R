@@ -37,6 +37,24 @@ beta.binom.conditional <- function(log.K = NULL, data = NULL) {
 
 	}
 
+log.posterior.beta.binomial.tranformed <- function(parameters = NULL, data = NULL) {
+        
+        eta <- exp(parameters[1]) / (1 + exp(parameters[1]));
+        K   <- exp(parameters[2]);
+
+        y <- data[,1];
+        n <- data[,2];
+
+        N <- length(y);
+
+        output.value <- lbeta(K * eta + y, K * (1 - eta) + n - y) - lbeta(K * eta, K * (1 - eta));
+        output.value <- sum(output.value);
+        output.value <- output.value - 2 * log(1 + K) - log(eta) - log(1 - eta);
+
+        return(output.value);
+
+        }
+
 ### SECTION 5.9 ####################################################################################
 integrate.results <- integrate(
 	f     = beta.binom.conditional,
@@ -46,6 +64,7 @@ integrate.results <- integrate(
 	);
 integrate.results;
 
+### reproduction of Fig. 5.5, p.104
 png("Fig5-05-A.png");
 my.levels <- c('beta.binom','gaussian');
 x.values <- 0 + (20-0) * seq(0,1,1e-3);
@@ -100,5 +119,23 @@ DF.temp <- data.frame(
 	weight = beta.binom.conditional.density / scaled.t2.density
 	);
 qplot(data = DF.temp[x.values < 16,], x = x, y = weight, geom = "line");
+dev.off();
+
+### perform importance sampling
+fit <- laplace(log.posterior.beta.binomial.tranformed, c(-6,7), cancermortality);
+fit;
+
+importance.sampling.results <- impsampling(
+	logf = log.posterior.beta.binomial.tranformed,
+	tpar = tpar.list <- list(m = fit$mode, var = 2 * fit$var, df = 4),
+	h    = function(x) {return(x[2]);},
+	n    = 1e+4,
+	data = cancermortality
+	);
+str(importance.sampling.results);
+summary(importance.sampling.results[['wt']]);
+
+png("histogram-importance-sampling-weights.png");
+qplot(x = importance.sampling.results[['wt']], geom = 'histogram', binwidth = 0.01);
 dev.off();
 
