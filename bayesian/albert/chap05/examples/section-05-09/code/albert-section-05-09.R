@@ -7,7 +7,7 @@ code.directory    <- command.arguments[2];
 library(LearnBayes);
 library(ggplot2);
 library(scales);
-library(sn);
+#library(sn);
 
 setwd(output.directory);
 
@@ -79,7 +79,7 @@ dev.off();
 png("Fig5-05-C.png");
 my.levels <- c('beta.binom','T(8,2,2)');
 x.values <- 3 + (16-3) * seq(0,1,1e-3);
-scaled.t2.density <- dst(x = x.values, location = 8, scale = 2, df = 2);
+scaled.t2.density <- sn::dst(x = x.values, location = 8, scale = 2, df = 2);
 DF.beta.binom.conditional <- data.frame(
 	x            = x.values,
 	density      = beta.binom.conditional.density,
