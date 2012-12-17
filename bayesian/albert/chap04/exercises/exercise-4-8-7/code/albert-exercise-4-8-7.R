@@ -22,10 +22,32 @@ log.joint.posterior.alpha.beta <- function(theta = NULL, data = NULL) {
 	beta          <- theta[2];
 	lambda        <- 1 / beta;
 	y             <- data[['observed']];
-	#log.posterior <- sum(dgamma(x = y, shape = alpha, rate = beta, log = TRUE));
 	log.posterior <- -2*log(beta) + sum(dgamma(x=y, shape=alpha, scale=lambda, log=TRUE));
 	return(log.posterior);
 	}
+###  -2*log(beta) above is the Jacobian term.
+###  Indeed, let f(alpha,beta|data) be the posterior density with respect to the
+###  (alpha,beta)-parametrization.  Note that:
+###
+###        \int f(  \alpha,\beta  |data) d\alpha d\beta 
+###      = \int g(  \alpha,\lambda|data) d\alpha d\lambda
+###      = \int g(F(\alpha,\beta))|data) |Jacobian(F)| d\alpha d\beta,
+###
+###  where F(\alpha,\beta) = (\alpha,1/\beta).  Hence, we see that:
+###
+###      f(\alpha,\beta|data) = g(\alpha,1/\beta|data) |Jacobian(F)|
+###
+###  Now, |Jacobian(F)| is given by:
+###
+###                  | dF_{1}/d\alpha  dF_{1}/d\beta |   | 1   0         |
+###  |Jacobian(F)| = |                               | = |               | = -\dfrac{1}{\beta^{2}}
+###                  | dF_{2}/d\alpha  dF_{2}/d\beta |   | 0  -1/\beta^2 |
+###
+###  The forgoing derivation justifies the numerical formula:
+###
+###    log.posterior <- -2*log(beta) + sum(dgamma(x=y, shape=alpha, scale=lambda, log=TRUE));
+###
+###  implemented in the function log.joint.posterior.alpha.beta().
 
 log.joint.posterior.alpha.mu <- function(theta = NULL, data = NULL) {
 	alpha         <- theta[1];
@@ -35,6 +57,31 @@ log.joint.posterior.alpha.mu <- function(theta = NULL, data = NULL) {
 	log.posterior <- -log(alpha) + sum(dgamma(x=y, shape=alpha, scale=lambda, log=TRUE));
 	return(log.posterior);
 	}
+###  -log(alpha) is above the Jacobian term.
+###  Indeed, let h(alpha,mu|data) be the posterior density with respect to the
+###  (alpha,mu)-parametrization.  Note that:
+###
+###        \int h(  \alpha,\mu    |data) d\alpha d\mu
+###      = \int g(  \alpha,\lambda|data) d\alpha d\lambda
+###      = \int g(F(\alpha,\mu))  |data) |Jacobian(F)| d\alpha d\mu,
+###
+###  where F(\alpha,\mu) = (\alpha,mu/\alpha).  Hence, we see that:
+###
+###      h(\alpha,\mu|data) = g(\alpha,\mu/\alpha|data) |Jacobian(F)|
+###
+###  Now, |Jacobian(F)| is given by:
+###
+###                  | dF_{1}/d\alpha  dF_{1}/d\mu |   |  1              0          |
+###  |Jacobian(F)| = |                             | = |                            |
+###                  | dF_{2}/d\alpha  dF_{2}/d\mu |   | -mu/alpha^{2}  -1/\alpha^2 |
+###
+###                = -\dfrac{1}{\alpha}
+###
+###  The forgoing derivation justifies the numerical formula:
+###
+###    log.posterior <- -log(alpha) + sum(dgamma(x=y, shape=alpha, scale=lambda, log=TRUE));
+###
+###  implemented in the function log.joint.posterior.alpha.mu().
 
 my.simcontour <- function(logf = NULL, limits = NULL, data = NULL, m = NULL) {
 
