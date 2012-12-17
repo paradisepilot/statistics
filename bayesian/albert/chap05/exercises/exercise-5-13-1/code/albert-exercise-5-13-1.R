@@ -61,6 +61,31 @@ theta              <- theta.min + (theta.max - theta.min) * seq(0,1,relative.gri
 
 posterior.density <- dnorm(x=theta, mean=mu.0, sd=sigma.0) * exp(y*theta) / ((1+exp(theta))^n);
 posterior.density <- posterior.density / (grid.size * sum(posterior.density));
+	###  We explain why "grid.size" is necessary in the above.
+	###  Simply put, the "grid.size" is needed above so that the resulting
+	###  numeric vector "posterior.density" is an accurate approximation of the
+	###  actual posterior density function (as opposed to just some multiple of it
+	###  by an unknown factor).
+	###
+	###  Note that the quantity "grid.size * sum(posterior.density)" is simply the
+	###  Riemann sum with respect to the partition defined by the entries in the
+	###  numeric vector "theta".  Thus, as "length(theta)" becomes large,
+	###  "grid.size * sum(posterior.density)" well approximates the integral of
+	###  the function defined by:
+	###
+	###      dnorm(x=theta, mean=mu.0, sd=sigma.0) * exp(y*theta) / ((1+exp(theta))^n); 
+	###
+	###  Without "grid.size", then "posterior.density" would only be proportional
+	###  to the actual posterior density, but not equal to it.
+	###
+	###  This might be sufficient we were to use the numeric vector "posterior.density"
+	###  simply as a vector of sampling weights.  However, since we need to make
+	###  comparison of the posterior density with a number of other entities, including
+	###  its approximating Gaussian density, the rejection-sampling proposal density,
+	###  the sampling-importance-resampling proposal density, and the densities
+	###  generated based on rejection-sampling and sampling-importance-resampling samples. 
+	###  To facilitate these comparisons, we need to know the actual values of the
+	###  posterior density function, not just some multiple of it by an unknown factor.
 
 ###  sanity check:
 summary(posterior.density);
