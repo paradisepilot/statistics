@@ -20,17 +20,19 @@ log.joint.posterior.alpha.lambda <- function(theta = NULL, data = NULL) {
 log.joint.posterior.alpha.beta <- function(theta = NULL, data = NULL) {
 	alpha         <- theta[1];
 	beta          <- theta[2];
+	lambda        <- 1 / beta;
 	y             <- data[['observed']];
-	log.posterior <- sum(dgamma(x = y, shape = alpha, rate = beta, log = TRUE));
+	#log.posterior <- sum(dgamma(x = y, shape = alpha, rate = beta, log = TRUE));
+	log.posterior <- -2*log(beta) + sum(dgamma(x=y, shape=alpha, scale=lambda, log=TRUE));
 	return(log.posterior);
 	}
 
 log.joint.posterior.alpha.mu <- function(theta = NULL, data = NULL) {
 	alpha         <- theta[1];
 	mu            <- theta[2];
-	beta          <- alpha / mu;
+	lambda        <- mu / alpha;
 	y             <- data[['observed']];
-	log.posterior <- sum(dgamma(x = y, shape = alpha, rate = beta, log = TRUE));
+	log.posterior <- -log(alpha) + sum(dgamma(x=y, shape=alpha, scale=lambda, log=TRUE));
 	return(log.posterior);
 	}
 
