@@ -54,11 +54,13 @@ dev.off();
 ###  estimate for 95% probability interval for theta based on estimated posterior density
 posterior.density <- posterior.density / sum(posterior.density);
 posterior.cdf <- cumsum(posterior.density);
-c( eta[min(which(posterior.cdf > 0.025))], eta[min(which(posterior.cdf > 0.975))] );
+temp <- c( eta[min(which(posterior.cdf > 0.025))], eta[min(which(posterior.cdf > 0.975))] );
+exp(temp) / (1 + exp(temp));
 
 ###  estimate for 95% probability interval for theta based on Gaussian approximation to
 ###  posterior density.
-qnorm(p = c(0.025,0.975), mean = posterior.mean, sd = posterior.sd);
+temp <- qnorm(p = c(0.025,0.975), mean = posterior.mean, sd = posterior.sd);
+exp(temp) / (1 + exp(temp));
 
 ####################################################################################################
 
