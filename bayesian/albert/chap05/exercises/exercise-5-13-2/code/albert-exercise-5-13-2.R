@@ -52,8 +52,7 @@ qplot(data = DF.temp, x = eta, y = density, colour = type, geom = "line", xlim =
 dev.off();
 
 ###  estimate for 95% probability interval for theta based on estimated posterior density
-posterior.density <- posterior.density / sum(posterior.density);
-posterior.cdf <- cumsum(posterior.density);
+posterior.cdf <- cumsum(posterior.density/sum(posterior.density));
 temp <- c( eta[min(which(posterior.cdf > 0.025))], eta[min(which(posterior.cdf > 0.975))] );
 exp(temp) / (1 + exp(temp));
 
