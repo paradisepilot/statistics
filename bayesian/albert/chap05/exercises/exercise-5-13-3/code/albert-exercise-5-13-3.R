@@ -61,7 +61,7 @@ rproposal <- function(sample.size = NULL, parameters) {
 	return(output.value);
 	}
 
-### 5.13.2(a) ######################################################################################
+### 5.13.3(a) ######################################################################################
 #
 #  Let f(theta1,theta2|data) be posterior density expressed in terms of (theta1,theta2),
 #  whether (beta,mu) = F(theta1,theta2) := (exp(theta1), t1 - exp(theta2)).
@@ -96,8 +96,8 @@ rproposal <- function(sample.size = NULL, parameters) {
 #  The above formula justifies the definition of the funtion log.posterior.pre.density().
 #
 
-### 5.13.2(b) ######################################################################################
-###  Answer to 5.13.2(b): See the definition of log.posterior.pre.density() above.
+### 5.13.3(b) ######################################################################################
+###  Answer to 5.13.3(b): See the definition of log.posterior.pre.density() above.
 
 ###  The following scatter plot shows the "effective"
 ###  support of the posterior distribution
@@ -149,7 +149,7 @@ my.ggplot <- my.ggplot + stat_contour(
 my.ggplot;
 dev.off();
 
-### 5.13.2(c) ######################################################################################
+### 5.13.3(c) ######################################################################################
 theta.grid <- generate.grid(
 	xlimits            = c(12,19),
 	ylimits            = c(-4,17),
@@ -224,7 +224,7 @@ png("Fig03_posterior-proposal-ratio-histogram.png");
 qplot(x = DF.temp[,'posterior.over.proposal'], geom = "histogram");
 dev.off();
 
-### 5.13.2(d) ######################################################################################
+### 5.13.3(d) ######################################################################################
 theta.SIR.sample <- perform.SIR(
 	log.pre.density        = log.posterior.pre.density,
 	target.pdf             = target.pdf,
@@ -257,7 +257,7 @@ my.ggplot <- my.ggplot + stat_contour(
 my.ggplot;
 dev.off();
 
-### 5.13.2(e) ######################################################################################
+### 5.13.3(e) ######################################################################################
 t0 <- 1e+6;
 
 theta1 <- theta.SIR.sample[,1];
