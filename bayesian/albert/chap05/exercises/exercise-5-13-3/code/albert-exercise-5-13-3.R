@@ -9,6 +9,8 @@ library(LearnBayes);
 library(ggplot2);
 library(scales);
 
+source(paste(code.directory,"utils-monte-carlo.R",sep="/"));
+
 ### AUXILIARY FUNCTIONS ############################################################################
 log.posterior.pre.density <- function(theta = NULL, parameters = NULL) {
 
@@ -38,38 +40,6 @@ log.posterior.pre.density <- function(theta = NULL, parameters = NULL) {
 
 	}
 
-target.pdf <- function(theta = NULL, parameters = NULL) {
-
-	t  <- parameters[['total.time']];
-	t1 <- parameters[['smallest.failure.time']];
-	s  <- parameters[['n.failures.observed']];
-	n  <- parameters[['sample.size']];
-
-	###  set up grid used to compute normalizing constant (i.e. integral) for pre-density
-	theta1.min         <-  12;
-	theta1.max         <-  19;
-	theta2.min         <- - 4;
-	theta2.max         <-  17;
-	relative.grid.size <- 1e-3;
-	theta1             <- theta1.min + (theta1.max - theta1.min) * seq(0,1,relative.grid.size);
-	theta2             <- theta2.min + (theta2.max - theta2.min) * seq(0,1,relative.grid.size);
-	theta.grid         <- expand.grid(x = theta1, y = theta2);
-
-	###  compute normalizing constant (i.e.) for pre-density
-	theta.pre.density <- exp(log.posterior.pre.density(
-		theta = theta.grid, parameters = parameters
-		));
-	area.element      <- (theta1.max-theta1.min)*(theta2.max-theta2.min)*relative.grid.size^2;
-	normalizing.constant <- area.element * sum(theta.pre.density);
-
-	###  compute output value (i.e. posterior density)
-	log.posterior.density <- log.posterior.pre.density(theta = theta, parameters = parameters);
-	posterior.density     <- exp(log.posterior.density) / normalizing.constant;
-
-	return(posterior.density);
-
-	}
-
 proposal.pdf <- function(x, parameters) {
 	output.value <- parameters[['enveloping.constant']] * LearnBayes::dmt(
 		x    = as.matrix(x),
@@ -90,74 +60,6 @@ rproposal <- function(sample.size = NULL, parameters) {
 		);
 	return(output.value);
 	}
-
-generate.bootstrap.sample <- function(sample.size = NULL, logf = NULL, xlimits = NULL, ylimits = NULL, parameters = NULL) {
-
-	grid.points <- data.frame(
-		x = runif(n = sample.size, min = xlimits[1], max = xlimits[2]),
-		y = runif(n = sample.size, min = ylimits[1], max = ylimits[2])
-		); 
-
-	log.posterior <- logf(theta = grid.points, parameters = parameters);
-
-	row.sample <- sample(
-		size    = sample.size,
-		x       = 1:nrow(grid.points),
-		prob    = exp(log.posterior),
-		replace = TRUE
-		);
-
-	DF.temp <- grid.points[row.sample,];
-	LIST.output <- list(x = DF.temp[,1], y = DF.temp[,2]);
-
-	return(LIST.output);
-
-	}
-
-generate.grid <- function(xlimits = NULL, ylimits = NULL, relative.grid.size = NULL) {
-	x.min   <-  xlimits[1];
-	x.max   <-  xlimits[2];
-	y.min   <-  ylimits[1];
-	y.max   <-  ylimits[2];
-	x.grid  <- x.min + (x.max - x.min) * seq(0,1,relative.grid.size);
-	y.grid  <- y.min + (y.max - y.min) * seq(0,1,relative.grid.size);
-	xy.grid <- expand.grid(x = x.grid, y = y.grid);
-	return(xy.grid);
-	}
-
-### function to perform rejection SIR (sample importance resampling)
-perform.SIR <- function(target.pdf = NULL, target.parameters = NULL, proposal.pdf = NULL, rproposal = NULL, proposal.parameters = NULL, proposal.sample.size = NULL, SIR.sample.size = NULL) {
-
-        proposal.sample <- rproposal(
-		sample.size = proposal.sample.size,
-		parameters  = proposal.parameters
-		);
-
-        target.density   <- target.pdf(
-		theta      = proposal.sample,
-		parameters = target.parameters
-		);
-
-        proposal.density <- proposal.pdf(
-		x          = proposal.sample,
-		parameters = proposal.parameters
-		);
-
-        SIR.density <- target.density / proposal.density;
-        SIR.density <- SIR.density / sum(SIR.density);
-
-        row.index.sample <- sample(
-                size    = SIR.sample.size,
-                x       = 1:nrow(proposal.sample),
-                prob    = SIR.density,
-                replace = TRUE
-                );
-
-        SIR.sample <- proposal.sample[row.index.sample,];
-
-        return(SIR.sample);
-
-        }
 
 ### 5.13.2(a) ######################################################################################
 #
@@ -253,10 +155,19 @@ theta.grid <- generate.grid(
 	ylimits            = c(-4,17),
 	relative.grid.size = 1e-2
 	);
-str(theta.grid);
-summary(theta.grid);
 
-posterior.density <- target.pdf(theta = theta.grid, parameters = posterior.parameters);
+grid.parameters <- list(
+	xlimits            = c(12,19),
+	ylimits            = c(-4,17),
+	relative.grid.size = 1e-3
+	);
+
+posterior.density <- target.pdf(
+	log.pre.density        = log.posterior.pre.density,
+	theta                  = theta.grid,
+	pre.density.parameters = posterior.parameters,
+	grid.parameters        = grid.parameters
+	);
 
 laplace.results <- laplace(
 	logpost = log.posterior.pre.density,
@@ -315,13 +226,15 @@ dev.off();
 
 ### 5.13.2(d) ######################################################################################
 theta.SIR.sample <- perform.SIR(
-	target.pdf           = target.pdf,
-	target.parameters    = posterior.parameters,
-	proposal.pdf         = proposal.pdf,
-	rproposal            = rproposal,
-	proposal.parameters  = proposal.parameters,
-	proposal.sample.size = 1e+6,
-	SIR.sample.size      = 1e+5
+	log.pre.density        = log.posterior.pre.density,
+	target.pdf             = target.pdf,
+	pre.density.parameters = posterior.parameters,
+	grid.parameters        = grid.parameters,
+	proposal.pdf           = proposal.pdf,
+	rproposal              = rproposal,
+	proposal.parameters    = proposal.parameters,
+	proposal.sample.size   = 1e+6,
+	SIR.sample.size        = 1e+5
 	);
 theta.SIR.sample <- as.data.frame(theta.SIR.sample);
 colnames(theta.SIR.sample) <- c('theta1','theta2');
