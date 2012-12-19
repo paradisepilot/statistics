@@ -82,7 +82,7 @@ MATRIX.observations <- as.matrix(
 posterior.parameters <- list(observations = MATRIX.observations);
 
 beta.bootstrap.sample <- generate.bootstrap.sample(
-	sample.size = 1e+5,
+	sample.size = 1e+6,
 	logf        = my.log.posterior.pre.density,
 	xlimits     = c( 0,  5  ),
 	ylimits     = c(-0.5,0.5),
@@ -250,8 +250,8 @@ beta.SIR.sample <- perform.SIR(
 	proposal.pdf           = multivariate.t.pdf,
 	rproposal              = r.multivariate.t,
 	proposal.parameters    = t.parameters,
-	proposal.sample.size   = 1e+6,
-	SIR.sample.size        = 1e+5
+	proposal.sample.size   = 2*(1e+6),
+	SIR.sample.size        = 1e+6
 	);
 beta.SIR.sample <- as.data.frame(beta.SIR.sample);
 colnames(beta.SIR.sample) <- c('beta0','beta1');
@@ -280,6 +280,13 @@ beta1.SIR.mean   <- mean(beta1.SIR.sample);
 beta1.SIR.sd     <- sd(beta1.SIR.sample);
 beta1.SIR.mean;
 beta1.SIR.sd;
+
+### posterior estimate for beta1 based on weighted bootstrap:
+beta1.bootstrap.sample <- beta.bootstrap.sample[,'beta1'] 
+beta1.bootstrap.mean   <- mean(beta1.bootstrap.sample);
+beta1.bootstrap.sd     <- sd(beta1.bootstrap.sample);
+beta1.bootstrap.mean;
+beta1.bootstrap.sd;
 
 ### estimate for beta1 based on Gaussian approximation:
 laplace.results[['mode']];
