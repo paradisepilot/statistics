@@ -41,7 +41,7 @@ multivariate.Gaussian.pdf <- function(x = NULL, parameters = NULL) {
 	}
 
 r.multivariate.Gaussian <- function(sample.size = NULL, parameters = NULL) {
-	output.value <- LearnBayes::rmt(
+	output.value <- LearnBayes::rmnorm(
 		n      = sample.size,
 		mean   = parameters[['mean']],
 		varcov = parameters[['varcov']]
