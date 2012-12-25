@@ -77,7 +77,7 @@ DF.contour <- cbind(
 colnames(DF.contour) <- c('thetaA','thetaB','log.pre.density');
 summary(DF.contour);
 
-sample.size <- 1e+5;
+sample.size <- 1e+6;
 
 parameter.limits = as.matrix(t(data.frame(
         thetaA = grid.parameters[['xlimits']],
