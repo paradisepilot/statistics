@@ -85,7 +85,7 @@ log.posterior.pre.density <- function(model.parameters = NULL, prior.and.data = 
 
 	}
 
-### Exercise 6.13.7(a) #############################################################################
+### Exercise 6.13.7(a,b,c,d) #######################################################################
 prior.and.data <- list(
 	prior = list(a0 = 0.25, b0 = 4),
 	data = data.frame(
@@ -137,6 +137,8 @@ laplace.results;
 
 ### generate posterior sample using random walk Metropolis
 sample.size <- 2*(1e+5);
+
+### Exercise 6.13.7(b)
 rwmetrop.results <- rwmetrop(
 	logpost  = log.posterior.pre.density,
 	proposal = list(
@@ -167,12 +169,14 @@ rwmetrop.results <- rwmetrop(
 	);
 str(rwmetrop.results);
 
+### Exercise 6.13.7(c)
 rwmetrop.sample.2 <- as.data.frame(rwmetrop.results[['par']]);
 colnames(rwmetrop.sample.2) <- c('mu','log.sigma','log.m1');
 rwmetrop.sample.2 <- rwmetrop.sample.2[-c(1:5000),];
 str(rwmetrop.sample.2);
 summary(rwmetrop.sample.2);
 
+### Exercise 6.13.7(d)
 ### generate diagnostic plots
 png("Fig01_mu-bootstrap-posterior-density.png");
 my.levels <- c('bootstrap','rwmetrop','rwmetrop.2');
