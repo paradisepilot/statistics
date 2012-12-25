@@ -157,6 +157,7 @@ rwmetrop.sample <- rwmetrop.sample[-c(1:5000),];
 str(rwmetrop.sample);
 summary(rwmetrop.sample);
 
+### Exercise 6.13.7(c)
 rwmetrop.results <- rwmetrop(
 	logpost  = log.posterior.pre.density,
 	proposal = list(
@@ -169,7 +170,6 @@ rwmetrop.results <- rwmetrop(
 	);
 str(rwmetrop.results);
 
-### Exercise 6.13.7(c)
 rwmetrop.sample.2 <- as.data.frame(rwmetrop.results[['par']]);
 colnames(rwmetrop.sample.2) <- c('mu','log.sigma','log.m1');
 rwmetrop.sample.2 <- rwmetrop.sample.2[-c(1:5000),];
