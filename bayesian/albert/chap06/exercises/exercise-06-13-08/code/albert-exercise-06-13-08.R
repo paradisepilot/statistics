@@ -145,7 +145,7 @@ sample.size <- 1e+5;
 rwmetrop.results <- rwmetrop(
 	logpost  = log.posterior.pre.density,
 	proposal = list(
-		var   = 2 * diag(laplace.results[['var']]),
+		var   = 2 * laplace.results[['var']],
 		scale = 2
 		),
 	start    = laplace.results[['mode']],
