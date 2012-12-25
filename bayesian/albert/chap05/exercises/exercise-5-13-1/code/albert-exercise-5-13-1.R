@@ -102,7 +102,7 @@ posterior.sd;
 approximating.gaussian.density <- dnorm(x = theta, mean = posterior.mean, sd = posterior.sd);
 
 ###  tabular comparison of the posterior density and its Gaussian approximation:
-cbind(theta,posterior.density,approximating.gaussian.density);
+#cbind(theta,posterior.density,approximating.gaussian.density);
 
 ###  graphical comparison of the posterior density and its Gaussian approximation:
 png("Fig01_posterior-density.png");
@@ -148,7 +148,7 @@ proposal.density            <- 28 * prior.density;
 posterior.to.proposal.ratio <- posterior.density / proposal.density;
 
 ### tabular comparison of posterior density, proposal density, and their ratio:
-cbind(theta,posterior.density,proposal.density,posterior.to.proposal.ratio);
+#cbind(theta,posterior.density,proposal.density,posterior.to.proposal.ratio);
 
 png("Fig02_rejection-sampling-proposal-density.png");
 my.levels <- c('posterior','proposal');
@@ -244,7 +244,7 @@ proposal.density            <- prior.density;
 posterior.to.proposal.ratio <- posterior.density / proposal.density;
 
 ### tabular comparison of posterior density, proposal density, and their ratio:
-cbind(theta,posterior.density,proposal.density,posterior.to.proposal.ratio);
+#cbind(theta,posterior.density,proposal.density,posterior.to.proposal.ratio);
 
 png("Fig05_SIR-proposal-density.png");
 my.levels <- c('posterior','SIR proposal');
