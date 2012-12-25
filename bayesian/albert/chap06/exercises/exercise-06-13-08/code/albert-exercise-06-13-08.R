@@ -161,7 +161,7 @@ str(rwmetrop.sample);
 summary(rwmetrop.sample);
 
 ### Exercise 6.13.8(b)
-### generate posterior sample using Gibbs Sampling 
+### generate posterior sample using "Metropolis with Gibbs"
 sample.size <- 1e+5;
 
 gibbs.results <- gibbs(
