@@ -40,16 +40,13 @@ log.posterior.pre.density <- function(model.parameters = NULL, prior.and.data = 
 		mu    <- exp(model.parameters[,2]);
 		beta  <- alpha / mu;
 
-		output.value <- numeric(nrow(model.parameters));
-		for (i in 1:length(output.value)) {
-
+		temp.function <- function(i) {
 			temp <- alpha[i] * log(beta[i]) + lgamma(alpha[i] + y);
 			temp <- temp - lgamma(alpha[i]) - (alpha[i] + y) * log(beta[i] + e);
 			temp <- sum(temp);
-
-			output.value[i] <- temp + log(alpha[i]) - 2 * log(alpha[i] + z0);
-
+			return( temp + log(alpha[i]) - 2 * log(alpha[i] + z0) );
 			}
+		output.value <- sapply(X = 1:nrow(model.parameters), FUN = temp.function);
 
 		}
 
@@ -79,7 +76,7 @@ laplace.results;
 grid.parameters <- list(
         xlimits            = c(0,8),
         ylimits            = c(-7.3,-6.6),
-        relative.grid.size = 2^(-6)
+        relative.grid.size = 2^(-8)
         );
 
 model.parameters.grid <- generate.grid(
