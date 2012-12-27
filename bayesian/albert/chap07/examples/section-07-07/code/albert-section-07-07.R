@@ -40,13 +40,13 @@ log.posterior.pre.density <- function(model.parameters = NULL, prior.and.data = 
 		mu    <- exp(model.parameters[,2]);
 		beta  <- alpha / mu;
 
-		temp.function <- function(i) {
+		FUN.temp <- function(i) {
 			temp <- alpha[i] * log(beta[i]) + lgamma(alpha[i] + y);
 			temp <- temp - lgamma(alpha[i]) - (alpha[i] + y) * log(beta[i] + e);
 			temp <- sum(temp);
 			return( temp + log(alpha[i]) - 2 * log(alpha[i] + z0) );
 			}
-		output.value <- sapply(X = 1:nrow(model.parameters), FUN = temp.function);
+		output.value <- sapply(X = 1:nrow(model.parameters), FUN = FUN.temp);
 
 		}
 
