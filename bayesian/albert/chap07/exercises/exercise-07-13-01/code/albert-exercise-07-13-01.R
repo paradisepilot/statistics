@@ -67,6 +67,7 @@ log.posterior.pre.density <- function(model.parameters = NULL, prior.and.data = 
         }
 
 ### Derivation of the above function:
+#
 #  First, we drive g(alpha,beta|y):
 #
 #       g(\alpha,\beta|y)
@@ -98,12 +99,33 @@ log.posterior.pre.density <- function(model.parameters = NULL, prior.and.data = 
 #    =  \dfrac{1}{(\alpha+1)^2} \dfrac{1}{(\beta+1)^2} \cdot
 #       \left(\dfrac{\beta^{\alpha}}{\Gamma(\alpha)}\right)^{94} \cdot
 #       \left(\prod_{i}^{94} \dfrac{e_{i}^{y_{i}}}{y_{i}!} \right) \cdot
-#       \prod_{i=1}^{94} \dfrac{\Gamma(y_{i}+\alpha)}{(e_{i}+\beta)^{y_{i}+\alpha}}
+#       \prod_{i=1}^{94} \dfrac{\Gamma(y_{i}+\alpha)}{(e_{i}+\beta)^{y_{i}+\alpha}}           (*)
 #
 #    where the last equation uses the fact that:
 #
 #    \int^{\infty}_{t=0} t^{s-1} \exp(-Kt) dt = \dfrac{\Gamma(s)}{K^s}
 #
+#  Next, recall that:
+#
+#      \int g(\alpha,\beta|y) d\alpha d\beta = 1
+#    = \int g(F(\theta_{1},\theta_{2})|y) \cdot
+#           \left|\dfrac{\partial(\alpha,\beta)}{\partial(\theta_{1},\theta_{2})}right|
+#      d\theta_{1}d\theta_{2}
+#
+#  where (alpha,beta) = F(theta_{1},theta_{2}) = (exp(theta_{1},theta_{2})).
+#
+#  Hence,
+#
+#      \left|\dfrac{\partial(\alpha,\beta)}{\partial(\theta_{1},\theta_{2})}right|
+#    = ... = \exp(\theta_{1})\exp(\theta_{2}) = \alpha\beta
+#
+#  Thus, the posterior density in terms of (theta_{1},theta_{2}), up to a proportionality
+#  constant, is given by:
+#
+#    g(e^{\theta_{1}},e^{\theta_{2}}|y) \cdot \exp(\theta_{1} + \theta_{2})                   (**)
+#
+#  where g(\alpha,\beta|y) is given in (*).  The R function "log.posterior.pre.density" above
+#  computes, up to a proportionality constant, the logarithm of (**).
 #
 
 ####################################################################################################
