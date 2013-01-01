@@ -1,0 +1,121 @@
+\section{The Bayes Factor}
+\setcounter{theorem}{0}
+
+Suppose we are interested in a certain physical phenomenon.  We have designed and carried out an experiment to study it.  In particular, suppose that we would like to compare two statistical models for the underlying data generation mechanism of the experiment.  Let $\Omega$ be observation space of the experiment.
+
+\vskip 0.5cm
+
+\noindent
+In order to perform a Bayesian statistical model comparison, the following entities must be given:
+\begin{enumerate}
+\item  Model 1
+	\begin{enumerate}
+	\item	parameter space $\Theta_{1}$.
+	\item	prior density $\pi_{1} : \Theta_{1} \longrightarrow [0,\infty)$.
+	\item	sampling density (conditional probability): $f_{1} : \Omega \times \Theta_{1} \longrightarrow [0,\infty)$.
+	\end{enumerate}
+\item  Model 2
+	\begin{enumerate}
+	\item	parameter space $\Theta_{2}$.
+	\item	prior density $\pi_{2} : \Theta_{2} \longrightarrow [0,\infty)$.
+	\item	sampling density (conditional probability): $f_{2} : \Omega \times \Theta_{2} \longrightarrow [0,\infty)$.
+	\end{enumerate}
+\item  prior densities $P(M_{1}), P(M_{2}) \geq 0$, with $P(M_{1}) + P(M_{2}) = 1$.
+\end{enumerate}
+
+\begin{remark}\quad
+Note:
+\begin{equation*}
+\int_{\Theta_{1}}\pi_{1}(\theta_{1})d\theta_{1} = \int_{\Theta_{2}}\pi_{2}(\theta_{2})d\theta_{2} = 1
+\end{equation*}
+\begin{equation*}
+\int_{\Omega}f_{1}(y|\theta_{1})dy = 1, \;\;\textnormal{for each}\;\theta_{1} \in \Theta_{1},
+\quad\textnormal{and}\quad
+\int_{\Omega}f_{2}(y|\theta_{2})dy = 1, \;\;\textnormal{for each}\;\theta_{2} \in \Theta_{2}
+\end{equation*}
+\end{remark}
+
+\noindent
+With the above given entities, we may define the following function:
+\begin{equation*}
+f : \Omega \times \{1,\,2\} \longrightarrow [0,\infty),
+\quad
+f(y,i) := P(M_{i})\cdot\int_{\Theta_{i}}f_{i}(y|\theta_{i})\pi_{i}(\theta_{i})d\theta_{i}
+\end{equation*}
+
+\begin{lemma}\quad
+$f : \Omega\times\{1,\,2\} \longrightarrow [0,\infty)$ integrates to $1$ over $\Omega \times \{1,\,2\}$, and hence can be regarded as a probability density function on $\Omega \times \{1,\,2\}$.
+\end{lemma}
+\proof
+\begin{eqnarray*}
+\int_{\Omega\times\{1,2\}} f
+&=& \sum^{2}_{m=1} \int_{\Omega} f(y,m)dy
+\;\;=\;\; \sum^{2}_{m=1} \int_{\Omega}\left(P(M_{m})\cdot\int_{\Theta_{m}}f_{m}(y|\theta_{m})\pi_{m}(\theta_{m}\right)d\theta_{m} \\
+&=& \sum^{2}_{m=1} P(M_{m})\cdot\int_{\Theta_{m}}\left(\int_{\Omega}f_{m}(y|\theta_{m})dy\right)\pi_{m}(\theta_{m})d\theta_{m} \\
+&=& \sum^{2}_{m=1} P(M_{m})\int_{\Theta_{m}}\,1\cdot\pi_{m}(\theta_{m})d\theta_{m} \\
+&=& \sum^{2}_{m=1} P(M_{m}) \;\; = \;\;1
+\end{eqnarray*}
+\qed
+
+\noindent
+With respect to the joint probability distribution defined on $\Omega \times \{1,\,2\}$ via the preceding Lemma, we have
+\begin{equation*}
+P(M = m|Y = y)
+\;\; :=\;\; \dfrac{f(y,m)}{f(y)}
+\;\; = \;\; \dfrac{f(y,m)}{f(y,1) + f(y,2)}
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+\dfrac{P(M = 1|Y = y)}{P(M = 2|Y = y)}
+& = & \dfrac{f(y,1)/f(y)}{f(y,2)/f(y)}
+\;\; = \;\; \dfrac{f(y,1)/(f(y,1)+f(y,2))}{f(y,2)/(f(y,1)+f(y,2))}
+\;\; = \;\; \dfrac{f(y,1)}{f(y,2)} \\
+&=& \dfrac{P(M_{1})\int_{\Theta_{1}}f_{1}(y|\theta_{1})\pi_{1}(\theta_{1})d\theta_{1}}{P(M_{2})\int_{\Theta_{2}}f_{2}(y|\theta_{2})\pi_{2}(\theta_{2})d\theta_{2}} \\
+&=& \dfrac{P(M_{1})}{P(M_{2})}\cdot
+\left(\dfrac{\int_{\Theta_{1}}f_{1}(y|\theta_{1})\pi_{1}(\theta_{1})d\theta_{1}}{\int_{\Theta_{2}}f_{2}(y|\theta_{2})\pi_{2}(\theta_{2})d\theta_{2}}\right)\\
+&=& \dfrac{P(M_{1})}{P(M_{2})}\cdot B\left(M_{1}:M_{2}\right),
+\end{eqnarray*}
+where
+\begin{equation*}
+B\left(M_{1}:M_{2}\right) \;\; := \;\;
+\dfrac{\int_{\Theta_{1}}f_{1}(y|\theta_{1})\pi_{1}(\theta_{1})d\theta_{1}}{\int_{\Theta_{2}}f_{2}(y|\theta_{2})\pi_{2}(\theta_{2})d\theta_{2}}
+\end{equation*}
+is called the \textit{Bayes factor} in favour of the model $M_{1}$ against the model $M_{2}$.
+
+\begin{remark}\quad
+Note that
+\begin{equation*}
+m_{M_{i}}(y) \;\; := \;\; \int_{\Theta_{i}}f_{i}(y|\theta_{i})\pi_{i}(\theta_{i})d\theta_{i}
+\end{equation*}
+is simply the \textit{marginal density} of the observed data $y$ under model $M_{i}$.  Hence, computationally speaking, the Bayes factor $B(M_{1}:M_{2})$ is simply the ratio of the marginal density of $y$ under $M_{1}$ to that under $M_{2}$. 
+\end{remark}
+
+\begin{remark}\quad
+On the other hand, we also have:
+\begin{equation*}
+B(M_{1}:M_{2}) \;\; = \;\;
+\dfrac{P(M_{1}|Y=y)/P(M_{2}|Y=y)}{P(M_{1})/P(M_{2})}.
+\end{equation*}
+Hence, the Bayes factor $B(M_{1}:M_{2})$ is, probability-theoretically, the odds ratio of the posterior odds $\dfrac{P(M_{1}|Y=y)}{P(M_{2}|Y=y)}$ to the prior odds $\dfrac{P(M_{1})}{P(M_{2})}$.  It is this probabilistic interpretation of the Bayes factor that enables it to be used in Bayesian model comparison.
+\end{remark}
+
+\begin{remark}\quad
+Recall that the map
+\begin{equation*}
+g_{i} : \Omega \times \Theta_{i} \longrightarrow [0,\infty) :
+(y,\theta_{i}) \longmapsto f_{i}(y|\theta_{i})\pi_{i}(\theta_{i})
+\end{equation*}
+integrates to $1$ over $\Omega \times \Theta_{i}$, and hence defines a probability density on $\Omega \times \Theta_{i}$.  And,
+\begin{equation*}
+m_{M_{i}}(y) \;\; := \;\; \int_{\Theta_{i}}f_{i}(y|\theta_{i})\pi_{i}(\theta_{i})d\theta_{i}
+\end{equation*}
+is thus the marginal density on the observation space $\Omega$ with respect to the joint density $g_{i}$ on $\Omega \times \Theta_{i}$.  We now verify that $g_{i}$ indeed integrates to $1$:
+\begin{eqnarray*}
+\int_{\Omega\times\Theta_{i}}g_{i}
+& = & \int_{\Theta_{i}} \int_{\Omega} g_{i}(y,\theta_{i}) dy\,d\theta_{i}
+\; = \; \int_{\Theta_{i}} \int_{\Omega} f_{i}(y|\theta_{i}) \pi_{i}(\theta_{i}) dy\,d\theta_{i}
+\; = \; \int_{\Theta_{i}} \left(\int_{\Omega} f_{i}(y|\theta_{i}) dy\right) \pi_{i}(\theta_{i}) d\theta_{i} \\
+& = & \int_{\Theta_{i}} 1\cdot\pi_{i}(\theta_{i}) d\theta_{i}
+\; = \; 1
+\end{eqnarray*}
+\end{remark}
