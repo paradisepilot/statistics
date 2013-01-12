@@ -1,5 +1,5 @@
 
- myRscript=../code/albert-section-11-01.R
+ myRscript=../code/albert-section-11-02.R
   code_dir=../code
 output_dir=../output
    tmp_dir=${output_dir}/tmp
