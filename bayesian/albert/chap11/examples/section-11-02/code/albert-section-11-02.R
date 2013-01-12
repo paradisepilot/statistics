@@ -36,7 +36,7 @@ bugs.results <- bugs(
 	model.file        = my.model.file,
 	n.chains          = 3,
 	n.iter            = 5000,
-	debug             = TRUE,
+	debug             = FALSE,  # TRUE,
 	useWINE           = TRUE,
 	OpenBUGS.pgm      = "/Applications/OpenBUGS/OpenBUGS321/OpenBUGS.exe",
 	working.directory = tmp.directory
