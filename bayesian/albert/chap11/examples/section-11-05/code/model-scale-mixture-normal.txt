@@ -1,0 +1,15 @@
+model
+{
+	for (i in 1:N) {
+		Y[i]          ~  dnorm(mu[i],precision[i])
+		mu[i]         <- b[1] + b[2] * X[i]
+		precision[i]  <- tau * lambda[i]
+		lambda[i]     ~  dgamma(2,2)
+		}
+
+	for (j in 1:2) {
+		b[j] ~ dnorm(0.0,0.001)
+		}
+
+	tau ~ dgamma(0.001,0.001)
+}
