@@ -8,6 +8,7 @@ tmp.directory     <- command.arguments[3];
 library(LearnBayes);
 library(ggplot2);
 library(R2OpenBUGS);
+library(coda);
 
 ####################################################################################################
 setwd(output.directory);
@@ -83,4 +84,15 @@ coda.results <- read.bugs(bugs.results);
 
 summary(coda.results);
 
+png("trace-plots.png");
+xyplot(coda.results);
+dev.off();
+
+png("autocorrelation-plots.png");
+acfplot(coda.results);
+dev.off();
+
+png("density-plots.png");
+densityplot(coda.results);
+dev.off();
 
