@@ -83,63 +83,55 @@ png("density-plots.png");
 densityplot(coda.results);
 dev.off();
 
+####################################################################################################
+class(coda.results[[1]]);
+str(coda.results[[1]]);
+
+DF.beta <- rbind(
+	as.data.frame(coda.results[[1]]),
+	as.data.frame(coda.results[[2]]),
+	as.data.frame(coda.results[[3]])
+	);
+str(DF.beta);
+
+last.names <- c(
+	'Aaron',   'Greenberg', 'Killebrew', 'Mantle',  'Mays',
+	'McCovey', 'Ott',       'Ruth',      'Schmidt', 'Sosa'
+	);
+
+DF.quantiles <- as.data.frame(matrix(nrow=10,ncol=5));
+rownames(DF.quantiles) <- last.names;
+colnames(DF.quantiles) <- c('2.5%','25%','50%','75%','98%');
+
+for (i in 1:10) {
+
+	last.name <- last.names[i];
+
+	selected.colnames <- paste(paste(paste('beta[',i,',',sep=""),1:3,sep=""),']',sep="");
+	print("selected.colnames");
+	print( selected.colnames );
+	DF.temp <- DF.beta[,selected.colnames];
+	print("str(DF.temp)");
+	print( str(DF.temp) );
+	DF.temp[,'peak.age'] <- -DF.temp[,2]/2/DF.temp[,3];
+	DF.quantiles[last.name,] <- quantile(
+		x     = DF.temp[,'peak.age'],
+		probs = c(0.025,0.25,0.5,0.75,0.98)
+		);
+
+	png(paste(last.name,".png",sep=""));
+	my.ggplot <- ggplot(data = NULL);
+	my.ggplot <- my.ggplot + geom_density(
+		data    = DF.temp,
+		mapping = aes(x = peak.age)
+		);
+	my.ggplot <- my.ggplot + labs(title = last.name);
+	print(my.ggplot);
+	dev.off();
+
+	}
+
+DF.quantiles;
+
 q();
-
-### ROBUST REGRESSION ##############################################################################
-x0 <- 1:200;
-T <- cbind(rep(1,length(x0)),x0);
-
-b <- rbind(
-	coda.results[[1]][,1:2],
-	coda.results[[2]][,1:2],
-	coda.results[[3]][,1:2]
-	);
-str(b);
-
-mean.response.posterior.sample <- T %*% t(b);
-
-mean.response.posterior.interval <- t(apply(
-	X      = mean.response.posterior.sample,
-	MARGIN = 1,
-	FUN    = function(v) {return(quantile(x=v,probs=c(0.05,0.5,0.95)));}
-	));
-str(mean.response.posterior.interval);
-
-png(filename = "buchanan-vs-perot-regression.png", height = 6, width = 6, units = "in", res = 300);
-my.ggplot <- ggplot(data = NULL);
-my.ggplot <- my.ggplot + geom_point(
-	data    = data.frame(
-		sqrt.perot    = sqrt.perot,
-		sqrt.buchanan = sqrt.buchanan
-		),
-	mapping = aes(x = sqrt.perot, y = sqrt.buchanan)
-	);
-my.ggplot <- my.ggplot + geom_line(
-	data    = data.frame(
-		x = x0,
-		y = mean.response.posterior.interval[,1]
-		),
-	mapping = aes(x = x, y = y),
-	colour  = "gray",
-	lty     = 2
-	);
-my.ggplot <- my.ggplot + geom_line(
-	data    = data.frame(
-		x = x0,
-		y = mean.response.posterior.interval[,2]
-		),
-	mapping = aes(x = x, y = y),
-	colour  = "red"
-	);
-my.ggplot <- my.ggplot + geom_line(
-	data    = data.frame(
-		x = x0,
-		y = mean.response.posterior.interval[,3]
-		),
-	mapping = aes(x = x, y = y),
-	colour  = "gray",
-	lty     = 2
-	);
-my.ggplot;
-dev.off();
 
