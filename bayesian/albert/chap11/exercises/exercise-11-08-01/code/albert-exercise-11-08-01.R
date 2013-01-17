@@ -11,6 +11,7 @@ library(R2OpenBUGS);
 library(coda);
 
 source(paste(code.directory, "bugs-chains.R", sep = "/"));
+source(paste(code.directory, "which-bugs.R",  sep = "/"));
 
 ####################################################################################################
 setwd(output.directory);
@@ -45,8 +46,8 @@ bugs.results <- bugs(
 	n.iter            = 10000,
 	codaPkg           = TRUE,
 	debug             = FALSE,
-	useWINE           = TRUE,
-	OpenBUGS.pgm      = "/Applications/OpenBUGS/OpenBUGS321/OpenBUGS.exe",
+	useWINE           = which.bugs()[['use.wine']],
+	OpenBUGS.pgm      = which.bugs()[['bugs.path']],
 	working.directory = tmp.directory
 	);
 str(bugs.results);
