@@ -1,0 +1,6 @@
+model
+{
+	ind        ~ dcat(prior[])
+	p.sampled <- p[ind]
+	y          ~ dbin(p.sampled,n)
+}
