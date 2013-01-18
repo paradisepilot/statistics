@@ -20,7 +20,6 @@ which.bugs <- function() {
 		pattern     = 'Darwin',
 		ignore.case = TRUE
 		);
-
 	return(is.Darwin);
 	}
 
