@@ -1,0 +1,14 @@
+model
+{
+	#  Likelihood
+	#    Data:
+	#    (*)  N = number of coin tosses
+	#    (*)  Y = observed number of heads obtained
+	#    Parameter(s):
+	#    (*)  p = probability of landing head at each toss
+	Y ~ dbin(p,N)
+
+	# prior
+	p ~ dunif(0,1)
+
+}

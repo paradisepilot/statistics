@@ -5,7 +5,6 @@ code.directory    <- command.arguments[2];
 tmp.directory     <- command.arguments[3];
 
 ####################################################################################################
-library(LearnBayes);
 library(ggplot2);
 library(R2OpenBUGS);
 library(coda);
@@ -13,30 +12,27 @@ library(coda);
 source(paste(code.directory, "bugs-chains.R", sep = "/"));
 source(paste(code.directory, "which-bugs.R",  sep = "/"));
 
-data(cancermortality);
-str(cancermortality);
-
 ####################################################################################################
+Y <- 1;
+
+### SET OUTPUT DIRECTORY ###########################################################################
 setwd(output.directory);
-
-####################################################################################################
-x <- c(14,20,20,13,14,10,18,15,11,16,16,24);
-N <- length(x);
-
-cbind(N,x);
 
 ### RUN OpenBUGS ###################################################################################
 current.directory <- getwd();
 setwd(code.directory);
-my.model.file <- paste(getwd(),"model-multinomial.txt",sep="/");
+my.model.file <- paste(getwd(),"probabilistic-model.txt",sep="/");
 setwd(current.directory);
 
 my.model.file;
 file.show(my.model.file);
 
-my.data               <- list("N","x");
-my.inits              <- function() { return(list(log.k = 0, mu = rep(0.5,N))); }
-parameters.to.monitor <- c("mu","theta","k","log.k");
+N  <- 80;
+Y  <- 10;
+
+my.data               <- list("N","Y");
+my.inits              <- function() { return(list(p = 0.5)); }
+parameters.to.monitor <- c("p");
 
 bugs.results <- bugs(
 	data              = my.data,
@@ -44,7 +40,7 @@ bugs.results <- bugs(
 	parameters        = parameters.to.monitor,
 	model.file        = my.model.file,
 	n.chains          = 3,
-	n.iter            = 5000,
+	n.iter            = 100000,
 	codaPkg           = TRUE,
 	debug             = FALSE,
 	useWINE           = which.bugs()[['use.wine']],
