@@ -1,0 +1,9 @@
+model
+{
+	#  Likelihood
+	Test ~ dbern(positive.rate)
+	positive.rate <- HIV * sensitivity + (1 - HIV) * (1 - specificity)
+
+	# prior
+	HIV ~ dbern(prevalence)
+}
