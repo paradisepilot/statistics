@@ -1,5 +1,5 @@
 
- myRscript=../code/lunn-example-03-03-01.R
+ myRscript=../code/lunn-example-03-03-02.R
   code_dir=../code
 output_dir=../output
    tmp_dir=${output_dir}/tmp
