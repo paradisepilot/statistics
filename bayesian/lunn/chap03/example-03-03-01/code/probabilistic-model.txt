@@ -1,0 +1,12 @@
+model
+{
+	#  Likelihood
+	n.observed.deaths ~ dbin(mortality.rate, n.observed.patients)
+
+	n.predicted.deaths ~ dbin(mortality.rate, n.future.observations)
+
+	p.critical <- step(n.predicted.deaths - n.critical + 0.5)
+
+	# prior
+	mortality.rate ~ dbeta(3,27)
+}
