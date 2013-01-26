@@ -1,0 +1,15 @@
+model
+{
+
+	log.k  ~ dlogis(0,1)
+	k     <- exp(log.k)
+
+	for (i in 1:N) {
+		mu[i]     ~ dgamma(k,1)
+		x[i]      ~ dpois(mu[i])
+		theta[i] <- mu[i]/mu.sum
+		}
+
+	mu.sum <- sum(mu[])
+
+}
