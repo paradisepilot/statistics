@@ -1,0 +1,14 @@
+model
+{
+	#  fixed parameters
+	precision <- 1 / pow(sigma,2)
+
+	#  likelihood
+	for (i in 1:n.observations) {
+		THM.observed[i] ~ dnorm(THM.mean, precision)
+		}
+
+	# prior
+	prior.precision <- 1 / pow(prior.sigma,2)
+	THM.mean ~ dnorm(prior.mean, prior.precision)
+}
