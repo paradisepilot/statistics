@@ -13,6 +13,6 @@ if [ ! -d ${tmp_dir} ]; then
 	mkdir ${tmp_dir}
 fi
 
-stdoutFile=stdout.py.`basename ${myRscript} .R`
+stdoutFile=stdout.py.`basename ${myPythonScript} .py`
 python < ${myPythonScript} 2>&1 > ${stdoutFile}
 
