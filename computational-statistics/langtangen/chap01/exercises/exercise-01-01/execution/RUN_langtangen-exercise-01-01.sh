@@ -14,5 +14,5 @@ if [ ! -d ${tmp_dir} ]; then
 fi
 
 stdoutFile=stdout.py.`basename ${myPythonScript} .py`
-python < ${myPythonScript} 2>&1 > ${stdoutFile}
+python ${myPythonScript} 2>&1 > ${stdoutFile}
 
