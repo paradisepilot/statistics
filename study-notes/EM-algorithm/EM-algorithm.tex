@@ -1,0 +1,117 @@
+\documentclass[11pt, letterpaper]{article}
+
+% package used to set margins, adjust parameters with caution
+\usepackage[left = 0.5in, right = 0.5in, top = 1.0in, bottom = 1.5in]{geometry}
+
+% package used to insert images
+\usepackage{graphicx}
+
+% package used to include special header and footer formatting
+\usepackage{fancyhdr}
+
+% package used to include special formatting for image and table captions
+\usepackage[small,bf,justification=raggedright,format=hang]{caption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{verbatim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\qed}{\hfill $\Box$}
+\newcommand{\proof}{\noindent {\small P{\scriptsize ROOF}} \quad}
+\renewcommand{\Re}{\mathbb{R}}
+
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\theenumi.$\;$}
+
+\renewcommand{\theenumii}{\alph{enumii}}
+\renewcommand{\labelenumii}{\mbox{}\;\;\,\theenumii)$\quad$}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+\renewcommand{\labelenumiii}{\mbox{}\;\;\,\theenumiii)$\quad$}
+
+\renewcommand{\theequation}{\thesection .\arabic{equation}}
+
+\newcounter{theorem}
+
+\newtheorem{example}[theorem]{Example}
+\renewcommand{\theexample}{ \thesection .\arabic{example}}
+
+\newtheorem{definition}[theorem]{Definition}
+\renewcommand{\thedefinition}{\thesection .\arabic{definition}}
+
+\newtheorem{theorem}[theorem]{Theorem}
+\renewcommand{\thetheorem}{\thesection .\arabic{theorem}}
+
+\newtheorem{proposition}[theorem]{Proposition}
+\renewcommand{\theproposition}{\thesection .\arabic{proposition}}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\renewcommand{\theconjecture}{\thesection .\arabic{conjecture}}
+
+\newtheorem{lemma}[theorem]{Lemma}
+\renewcommand{\thelemma}{\thesection .\arabic{lemma}}
+
+\newtheorem{corollary}[theorem]{Corollary}
+\renewcommand{\thecorollary}{\thesection .\arabic{corollary}}
+
+\newtheorem{remark}[theorem]{Remark}
+\renewcommand{\theremark}{\thesection .\arabic{remark}}
+
+\newtheorem{notation}[theorem]{Notation}
+\renewcommand{\thenotation}{\thesection .\arabic{notation}}
+
+\renewcommand{\thetable} {\thesection .\arabic{table}}
+
+\renewcommand{\thefigure}{\thesection .\arabic{figure}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{page}{1}
+
+% setting parameters for the special headers and footers...
+\pagestyle{fancy}
+
+% ...today's date in the upper-right corner
+\rhead{\today}
+%\rhead{July 23, 2012}
+% ...author name in the upper-left corner 
+\lhead{Kenneth Chu}
+% ...the title of the document a the top of the page
+\chead[]{{\Large\bf The Expectation-Maximization Algorithm} \\ \vskip 0.1cm Study Notes}
+% ...page number at the bottom of the page
+\cfoot[]{\thepage}
+
+% settings for the gap between the main body of the document and the header
+% and footer, adjust at your own peril
+\headheight = 32pt
+\footskip = 45pt
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{z-EM-algorithm.tex}
+
+			%%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\small
+\appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{plain}
+\bibliography{KenChu-Mendeley}
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{amsplain}
+%\bibliographystyle{acm}
+
+\end{document}
+

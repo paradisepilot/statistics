@@ -1,0 +1,154 @@
+\section{The Expectation-Maximization Algorithm}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Likelihood: $L(\theta;X,Z) = p(X,Z\,|\,\theta)$, where $\theta$ is the random vector of model
+parameters, $X$ is the (non-random) vector of observed data, and $Z$ is the random vector of
+unobservable variables.
+
+The Expectation-Maximization (EM) Algorithm is an algorithm that solves the optimization
+(maximization) problem for a marginal likelihood (or probability):
+\begin{equation*}
+L(\theta;X) \;\; = \;\; p(X\,|\,\theta) \;\; = \;\; \int p(X,Z\,|\,\theta) \,\textnormal{d}Z
+\end{equation*}
+More specifically, the EM Algorithm \textit{attempts} to compute:
+\begin{equation*}
+\widehat{\theta}
+\;\; := \;\;
+\underset{\theta}{\textnormal{argmax}}\left\{\,L(\theta\,;\,X)\,\right\}
+\;\; = \;\;
+\underset{\theta}{\textnormal{argmax}}\left\{\,p(X\,|\,\theta)\,\right\}
+\;\; = \;\;
+\underset{\theta}{\textnormal{argmax}}\left\{\,\int p(X,Z\,|\,\theta) \,\textnormal{d}Z\,\right\}
+\end{equation*}
+In practice, the EM Algorithm produces estimates of a local maximum $\widehat{\theta}$ of $L(\theta;X)$.
+
+\vskip 1.0cm
+\noindent
+\textbf{The Expectation-Maximization (EM) Algorithm}
+\vskip 0.3cm
+\noindent
+Choose (arbitrarily) an initial value $\theta_{0}$ for $\theta$.
+Choose (arbitrarily) a termination threshold $\tau > 0$.
+Generate the sequence $\{\,\theta_{t}\,\}$, for $t = 1, 2, 3, \ldots$, by iterating through the following
+two-step procedure:
+\begin{enumerate}
+\item	\textbf{Expectation Step:}\quad Compute the following expectation value (as a function of $\theta$):
+		\begin{equation}
+		\label{EM:ExpectationStep}
+		Q(\theta\,|\,\theta_{t})
+		\; := \;
+		E_{Z|X,\theta_{t}}\left\{\,\log L(\theta\,;\,X,Z)\,\right\}
+		\; = \;
+		\int \left[\log L(\theta\,;\,X,Z)\right] p(Z\,|\,X,\theta_{t}) \textnormal{d}Z
+		\end{equation}
+\item	\textbf{Maximization Step:}\quad Solve the following optimization (maximization) problem to obtain
+		$\theta_{t+1}$:
+		\begin{equation}
+		\label{EM:MaximizationStep}
+		\theta_{t+1} \; := \;
+		\underset{\theta}{\textnormal{argmax}}\left\{\,Q(\theta\,|\,\theta_{t})\,\right\}
+		\end{equation}
+\end{enumerate}
+Terminate the EM Algorithm when
+\begin{equation}
+\label{EM:terminationCriterion}
+\left\vert\,\dfrac{\theta_{t+1}-\theta_{t}}{\theta_{t}}\,\right\vert
+\;\; \leq \;\; \tau
+\end{equation}
+\vskip 1.0cm
+
+\begin{theorem}\quad
+The sequence $\theta_{1}$, $\theta_{2}$, $\theta_{3}$, $\ldots$ produced by the EM Algorithm
+satisfies the following:
+\begin{equation*}
+\log p(X\,|\,\theta_{t+1}) \;\; \geq \;\; \log p(X\,|\,\theta_{t}),
+\quad
+\textnormal{for each}\;\;t = 1, 2, 3, \ldots
+\end{equation*}
+\end{theorem}
+\proof First, observe that:
+\begin{eqnarray*}
+\log p(X\,|\,\theta)
+& = & \log\left(\dfrac{p(X,\theta)}{p(\theta)}\right)
+\;\; = \;\; \log\left(\dfrac{p(X,Z,\theta)}{p(\theta)}\dfrac{p(X,\theta)}{p(X,Z,\theta)}\right) \\
+&& \\
+& = & \log\left(p(X,Z\,|\,\theta)\right) - \log\left(p(Z\,|\,X,\theta)\right)
+\end{eqnarray*}
+Taking expectation on both sides with respect to $p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z$ yields:
+\begin{eqnarray*}
+E_{Z|X,\theta_{t}}\left\{\log p(X\,|\,\theta)\right\}
+& = &
+E_{Z|X,\theta_{t}}\left\{\log\left(p(X,Z\,|\,\theta)\right)\right\}
+-
+E_{Z|X,\theta_{t}}\left\{\log\left(p(Z\,|\,X,\theta)\right)\right\}
+\\
+\int\left\{\log p(X\,|\,\theta)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
+& = &
+\int\left\{\log\left(p(X,Z\,|\,\theta)\right)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
+-
+\int\left\{\log\left(p(Z\,|\,X,\theta)\right)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
+\\
+\log p(X\,|\,\theta)
+& = &
+Q(\theta\,|\,\theta_{t}) + H(\theta\,|\,\theta_{t})
+\end{eqnarray*}
+where $H(\theta\,|\,\theta_{t})$ is defined as follows:
+\begin{equation*}
+H(\theta\,|\,\theta_{t})
+\;\; := \;\;
+- \int\left\{\log\left(p(Z\,|\,X,\theta)\right)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\textbf{CLAIM 1}:\;\; $H(\theta\,|\,\theta_{t}) \geq H(\theta_{t}\,|\,\theta_{t})$,\;\; for any $\theta$.
+\vskip 0.1cm
+\noindent
+Indeed, 
+
+This completes the proof of \textbf{CLAIM 1}.
+
+Now, the following equation
+\begin{equation}
+\label{EM:pf:theta}
+\log p(X\,|\,\theta)
+\;\; = \;\;
+Q(\theta\,|\,\theta_{t}) + H(\theta\,|\,\theta_{t})
+\end{equation}
+holds for any value of $\theta$; in particular, it holds for $\theta_{t}$:
+\begin{equation}
+\label{EM:pf:thetat}
+\log p(X\,|\,\theta_{t})
+\;\; = \;\;
+Q(\theta_{t}\,|\,\theta_{t}) + H(\theta_{t}\,|\,\theta_{t})
+\end{equation}
+Subtracting Equation \eqref{EM:pf:thetat} from Equation \eqref{EM:pf:theta} yields:
+\begin{equation}
+\log p(X\,|\,\theta) - \log p(X\,|\,\theta_{t})
+\;\; = \;\;
+\left(\,Q(\theta\,|\,\theta_{t}) - Q(\theta_{t}\,|\,\theta_{t})\,\right)
++
+\left(\,H(\theta\,|\,\theta_{t}) - H(\theta_{t}\,|\,\theta_{t})\,\right)
+\end{equation}
+Thus, \textbf{CLAIM 1} implies:
+\begin{equation}
+\log p(X\,|\,\theta) - \log p(X\,|\,\theta_{t})
+\;\; \geq \;\;
+Q(\theta\,|\,\theta_{t}) - Q(\theta_{t}\,|\,\theta_{t})
+\end{equation}
+Since, by definition, $\theta_{t+1} := \underset{\theta}{\textnormal{argmax}}\left\{\,Q(\theta\,|\,\theta_{t})\,\right\}$,
+we therefore have:
+\begin{equation}
+\log p(X\,|\,\theta_{t+1}) - \log p(X\,|\,\theta_{t})
+\;\; \geq \;\;
+Q(\theta_{t+1}\,|\,\theta_{t}) - Q(\theta_{t}\,|\,\theta_{t})
+\;\; \geq \;\;
+0
+\end{equation}
+This proves the Theorem.  \qed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
