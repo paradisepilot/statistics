@@ -4,10 +4,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Likelihood: $L(\theta;X,Z) = p(X,Z\,|\,\theta)$, where $\theta$ is the random vector of model
-parameters, $X$ is the (non-random) vector of observed data, and $Z$ is the random vector of
-unobservable variables.
-
 The Expectation-Maximization (EM) Algorithm is an algorithm that solves the optimization
 (maximization) problem for a marginal likelihood (or probability):
 \begin{equation*}
@@ -23,7 +19,10 @@ More specifically, the EM Algorithm \textit{attempts} to compute:
 \;\; = \;\;
 \underset{\theta}{\textnormal{argmax}}\left\{\,\int p(X,Z\,|\,\theta) \,\textnormal{d}Z\,\right\}
 \end{equation*}
-In practice, the EM Algorithm produces estimates of a local maximum $\widehat{\theta}$ of $L(\theta;X)$.
+Here, $L(\theta;X,Z) = p(X,Z\,|\,\theta)$ is a likelihood, where $\theta$ is the random vector of model
+parameters, $X$ is the (non-random) vector of observed data, and $Z$ is the random vector of
+unobservable variables.
+In practice, the EM Algorithm should produce estimates of a local maximum $\widehat{\theta}$ of $L(\theta;X)$.
 
 \vskip 1.0cm
 \noindent
@@ -55,11 +54,18 @@ two-step procedure:
 Terminate the EM Algorithm when
 \begin{equation}
 \label{EM:terminationCriterion}
-\left\vert\,\dfrac{\theta_{t+1}-\theta_{t}}{\theta_{t}}\,\right\vert
+\left\vert\,\dfrac{\log p(X\,|\,\theta_{t+1})-\log p(X\,|\,\theta_{t})}{\log p(X\,|\,\theta_{t})}\,\right\vert
 \;\; \leq \;\; \tau
 \end{equation}
 \vskip 1.0cm
 
+\begin{remark}\quad
+We remark that the ``Expectation Step" is really an integration ``along the $Z$-direction,"
+with respect to the measure $p(Z\,|\,X,\theta_{t})\textnormal{d}Z$.
+This yields a function $Q(\theta\,|\,\theta_{t})$ of $\theta$.
+The ``Maximization Step" then produces a (local) maximum $\widehat{\theta}$ of the function
+$Q(\theta\,|\,\theta_{t})$.
+\end{remark}
 \begin{theorem}\quad
 The sequence $\theta_{1}$, $\theta_{2}$, $\theta_{3}$, $\ldots$ produced by the EM Algorithm
 satisfies the following:
@@ -107,10 +113,9 @@ H(\theta\,|\,\theta_{t})
 \textbf{CLAIM 1}:\;\; $H(\theta\,|\,\theta_{t}) \geq H(\theta_{t}\,|\,\theta_{t})$,\;\; for any $\theta$.
 \vskip 0.1cm
 \noindent
-Indeed, 
+Note that \textbf{CLAIM 1} is an immediate consequence of Gibb's Inequality (see Appendix).
 
-This completes the proof of \textbf{CLAIM 1}.
-
+\vskip 0.3cm
 Now, the following equation
 \begin{equation}
 \label{EM:pf:theta}
