@@ -1,0 +1,83 @@
+\section{Gibbs' Inequality \& Jensen's Inequality}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{theorem}[Jensen's Inequality]
+\mbox{} \vskip 0.1cm
+\noindent
+Suppose
+\begin{itemize}
+\item  $(\Omega,\mathcal{A},\mu)$ is a probability space (i.e. measure space with $\mu(\Omega) = 1$).
+\item  $\varphi : (a,b) \longrightarrow \Re$ is a convex function, i.e.
+       \begin{equation*}
+       \varphi(t\,x_{1}+(1-t)x_{2}) \leq t\,\varphi(x_{1}) + (1-t)\,\varphi(x_{2}),
+       \quad
+       \textnormal{for any}\;\, t \in [0,1],\;\, x_{1}, x_{2} \in (a,b),
+       \end{equation*}
+       where $-\infty \leq a < b \leq \infty$.
+\item  $g : \Omega \longrightarrow (a,b)$ is a $\mu$-integrable function.
+\end{itemize}
+Then, the following inequality holds:
+\begin{equation*}
+\varphi\left(\,\int_{\Omega} \, g \, \textnormal{d}\mu\,\right)
+\;\; \leq \;\;
+\int_{\Omega}\varphi \circ g \, \textnormal{d}\mu
+\end{equation*}
+\end{theorem}
+
+\begin{corollary}[Jensen's Inequality (Expectation Form)]
+\mbox{} \vskip 0.1cm
+\noindent
+Suppose
+\begin{itemize}
+\item  $X : (\Omega,\mathcal{A},\mu) \longrightarrow (a,b)$ is a $\Re$-valued random variable
+       defined on the probability space $(\Omega,\mathcal{A},\mu)$ with range contained in the
+       open interval $(a,b)$, where $-\infty \leq a < b \leq \infty$.
+\item  $\varphi : (a,b) \longrightarrow \Re$ is a convex function.
+\end{itemize}
+Then, the following inequality holds:
+\begin{equation*}
+\varphi\left(\,E[\,X\,]\,\right) \;\; \leq \;\; E\!\left[\,\varphi(X)\,\right]
+\end{equation*}
+\end{corollary}
+
+\begin{theorem}[Gibbs' Inequality]
+\mbox{} \vskip 0.1cm
+\noindent
+Suppose
+\begin{itemize}
+\item  $(\Omega,\mathcal{A})$ is a measurable space.
+\item  $f, g : \Omega \longrightarrow [0,\infty)$ are two nowhere-vanishing probability density functions defined on $(\Omega,\mathcal{A})$.
+\end{itemize}
+Then, the following inequality holds:
+\begin{equation*}
+- \int_{\Omega} \left(\log f\right) f \, \textnormal{d}x
+\;\; \leq \;\;
+- \int_{\Omega} \left(\log g\right) f \, \textnormal{d}x
+\end{equation*}
+\end{theorem}
+\proof
+First, note that $\varphi := - \log : (0,\infty) \longrightarrow \Re$ is a convex function defined
+on the open unit interval $(0,1)$, and that the domain of $\varphi$ contains the range of $f$ and
+$g$.  Hence, by Jensen's Inequality, we have:
+\begin{equation*}
+\int_{\Omega} \left[-\log\left(\dfrac{g(x)}{f(x)}\right)\right] \cdot f(x) \, \textnormal{d}x
+\;\; \geq \;\;
+- \log\left(\,\int_{\Omega}\, \dfrac{g(x)}{f(x)} \cdot f(x) \, \textnormal{d}x \right)
+=
+- \log\left(\,\int_{\Omega}\, g(x) \, \textnormal{d}x \right)
+=
+- \log\left(\,1\,\right)
+ = 0
+\end{equation*}
+The above inequality immediately implies:
+\begin{equation*}
+- \int_{\Omega}\,\left(\log g(x)\right)\cdot f(x) \,\textnormal{d}x
+\;\; \geq \;\;
+- \int_{\Omega}\,\left(\log f(x)\right)\cdot f(x) \,\textnormal{d}x\,,
+\end{equation*}
+which completes the proof of Gibbs' Inequality.  \qed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
