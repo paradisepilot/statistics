@@ -1,0 +1,83 @@
+
+\noindent
+\textbf{Exercise 1.1(a)}
+
+Let $X$ be the sum of the two number obtained.
+
+Let $X_{1}$ be the number obtained on Die 1.
+
+Let $X_{2}$ be the number obtained on Die 2.
+
+Thus, $X = X_{1} + X_{2}$, and
+\begin{equation*}
+E_{x}
+=
+\{X = x\} = \{X_{1} + X_{2} = x\}
+=
+\{\; X_{1} = x_{1}, X_{2} = x - x_{1} \;\vert\; 1 \leq x_{1}, x - x_{1} \leq 6 \;\}
+\end{equation*}
+Now,
+\begin{equation*}
+1 \leq x - x_{1} \leq 6
+\quad\Longleftrightarrow\quad
+-1 \geq x_{1} - x \geq -6
+\quad\Longleftrightarrow\quad
+x-1 \geq x_{1} \geq x-6
+\quad\Longleftrightarrow\quad
+x-6 \leq x_{1} \leq x-1
+\end{equation*}
+Hence,
+\begin{equation*}
+E_{x}
+=
+\{X = x\} = \{X_{1} + X_{2} = x\}
+=
+\{\; X_{1} = x_{1}, X_{2} = x - x_{1}
+\;\vert\;
+\max\{1,x-6\} \leq x_{1} \leq \min\{6,x-1\} 
+\;\}
+\end{equation*}
+\begin{eqnarray*}
+P(E_{x})
+& = &
+\sum_{x_{1}=\max\{1,x-6\}}^{\min\{6,x-1\}}\,P(X_{1}=x_{1},X_{2}=x-x_{1})
+\;\; = \;\;
+\sum_{x_{1}=\max\{1,x-6\}}^{\min\{6,x-1\}}\,\dfrac{1}{6^{2}} \\
+& & \\
+& = &
+\dfrac{1}{6^{2}}\left( \min\{6,x-1\} - \max\{1,x-6\} + 1 \right)
+\end{eqnarray*}
+Next, note that
+\begin{equation*}
+\min\{6,x-1\}
+=
+\left\{\begin{array}{cl}
+x - 1, & \textnormal{if $x$ = 2, 3, \ldots,  6} \\
+6,     & \textnormal{if $x$ = 7, 8, \ldots, 12} \\
+\end{array}\right.
+\quad\textnormal{and}\quad
+\max\{1,x-6\}
+=
+\left\{\begin{array}{cl}
+1,     & \textnormal{if $x$ = 2, 3, \ldots,  6} \\
+x - 6, & \textnormal{if $x$ = 7, 8, \ldots, 12} \\
+\end{array}\right.
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+P(E_{x})
+& = &
+\dfrac{1}{6^{2}}\left( \min\{6,x-1\} - \max\{1,x-6\} + 1 \right) 
+\;\; = \;\;
+\dfrac{1}{36}\left\{\begin{array}{cl}
+(x-1) - 1 + 1  , & \textnormal{if $x$ = 2, 3, \ldots,  6} \\
+6 - (x - 6) + 1, & \textnormal{if $x$ = 7, 8, \ldots, 12} \\
+\end{array}\right.
+\\
+& = &
+\dfrac{1}{36}\left\{\begin{array}{cl}
+ x - 1, & \textnormal{if $x$ = 2, 3, \ldots,  6} \\
+13 - x, & \textnormal{if $x$ = 7, 8, \ldots, 12} \\
+\end{array}\right.
+\end{eqnarray*}
+\qed
