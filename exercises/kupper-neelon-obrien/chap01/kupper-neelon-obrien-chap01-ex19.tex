@@ -1,0 +1,147 @@
+
+\noindent
+\textbf{Exercise 1.19(a)}
+
+\newcommand{\pih}{\pi_{h}}
+
+\vskip 0.5cm
+\noindent
+Let $n$ be the number of workers in the sample.
+Let $X_{i}$, $i = 1,2,\ldots,n$, be $\{0,\,1\}$-valued random variables defined by:
+\begin{equation*}
+X_{i} \;\; =\;\;
+\left\{\begin{array}{cl}
+1, & \textnormal{if the $i$th subject is highly exposed},    \\
+0, & \textnormal{if the $i$th subject is NOT highly exposed} \\
+\end{array}\right.
+\end{equation*}
+Define
+\begin{equation*}
+S_{n} \; := \; \sum_{i=1}^{n}\,X_{i}\,,
+\quad\textnormal{and}\quad
+S_{n-1} \; := \; \sum_{i=1}^{n-1}\,X_{i}\,.
+\end{equation*}
+First, note that
+\begin{equation*}
+\theta_{n} \;\; = \;\; P(S_{n}\textnormal{ is even})\,,
+\quad\textnormal{and}\quad
+\theta_{n-1} \;\; = \;\; P(S_{n-1}\textnormal{ is even})\,.
+\end{equation*}
+Note also that
+\begin{eqnarray*}
+\theta_{n}
+& = &     P(S_{n}\textnormal{ is even})
+\;\;=\;\; P(X_{n} = 1) P(S_{n-1}\textnormal{ is odd})\;+\;P(X_{n} = 0)P(S_{n-1}\textnormal{ is even}) \\
+& = &     \pih\,(1 - \theta_{n-1}) + (1 - \pih)\,\theta_{n-1}
+\;\;=\;\; \pih + (1 - 2\pih)\,\theta_{n-1}
+\end{eqnarray*}
+Thus, the desired difference equation is:
+\begin{equation}
+\label{differenceEquation:thetaN}
+\theta_{n} \;\;=\;\; \pih + (1 - 2\pih)\,\theta_{n-1}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 1.19(b)}
+
+\vskip 0.5cm
+\noindent
+To solve the difference equation \eqref{differenceEquation:thetaN} obtained in Exercise 1.19(a),
+we assume that $\theta_{n}$ has the following form:
+\begin{equation}
+\label{specialForm:thetaN}
+\theta_{n} = \alpha + \beta\,\gamma^{n}
+\end{equation}
+where $\alpha$, $\beta$, and $\gamma$ are unknown constants to be determined.
+We first make the following:
+
+\vskip 0.3cm
+\noindent
+\textbf{Observation:}\quad $\beta \neq 0$ and $\gamma \notin \{0,\,1\}$. \\
+Indeed, if $\beta = 0$ or $\gamma \in \{0,\,1\}$,
+then $\theta_{n}$ would be constant in $n$.
+In that case, define $\theta := \theta_{n} = \theta_{n-1} = \cdots$.
+By the difference equation \eqref{differenceEquation:thetaN}, we would then have
+\begin{equation*}
+\theta = \pih + (1 - 2\pih)\,\theta
+\quad\Longrightarrow\quad
+0 = \pih\,(1  - 2\theta)
+\quad\Longrightarrow\quad
+\theta = \dfrac{1}{2}
+\quad\textnormal{(since $\pih > 0$)}
+\end{equation*}
+However, this contradicts the initial condition that $\theta_{0} = 1$.
+Thus, this proves the assertion that $\beta \neq 0$ and $\gamma \notin \{0,\,1\}$.
+(Note that if the sample size is $0$, then the number of highly exposed subjects must be $0$;
+hence $\theta_{0} = P(S_{0}\textnormal{ is even}) = 1$, since we have here adopted the
+convention that $0$ is ``even.")
+
+\vskip 0.5cm
+\noindent
+Now, substituting \eqref{specialForm:thetaN} into \eqref{differenceEquation:thetaN} yields:
+\begin{eqnarray*}
+\alpha + \beta\gamma^{n}
+& = & \theta_{n} \;\; = \;\; \pih + (1 - 2\pih)\,\theta_{n-1} \\
+& = & \pih + (1 - 2\pih)\left(\alpha + \beta\gamma^{n-1}\right) \\
+& = & \alpha + \pih(1 - 2\alpha) + \beta\gamma^{n-1}(1 - 2\pih)
+\end{eqnarray*}
+Collecting terms involving $\gamma$ on the right-hand side yields:
+\begin{equation*}
+\pih(2\alpha - 1)
+\;\; = \;\;
+\beta\gamma^{n-1}\left(1 - 2\pih - \gamma\right)
+\end{equation*}
+Now, note that the left-hand side of the preceding equation is independent of $\gamma$,
+while the right-hand side is a scalar multiple of the $(n-1)$th power of $\gamma$;
+in other words, the right-hand side is a scalar multiple of a power of $\gamma$ which
+is constant in $n$.
+This happens if and only if either $\gamma \in \{0,\,1\}$, or if the coefficient
+$\beta(1 - 2\pih - \gamma) = 0$.
+The preceding Observation (i.e. $\beta\neq 0$ and $\gamma \notin \{0,\,1\}$) thus implies:
+\begin{equation*}
+\gamma = 1 - 2\pih
+\end{equation*}
+Since $\pih > 0$, we furthermore conclude that
+\begin{equation*}
+\alpha = \dfrac{1}{2}
+\end{equation*}
+We therefore have:
+\begin{equation*}
+\theta_{n}
+\;\; = \;\;
+\dfrac{1}{2} + \beta\left(1 - 2\pih\right)^{n}
+\end{equation*}
+The initial condition $\theta_{0} = 1$ now implies:
+\begin{equation*}
+1 = \theta_{0} = \dfrac{1}{2} + \beta\left(1 - 2\pih\right)^{0} = \dfrac{1}{2} + \beta
+\quad\Longrightarrow\quad
+\beta = \dfrac{1}{2}
+\end{equation*}
+We may now conclude:
+\begin{equation*}
+\theta_{n} \;\; = \;\;
+\dfrac{1}{2} + \dfrac{1}{2}(1 - 2\pih)^{n}
+\end{equation*}
+Lastly, if $\pih = 0.05$, then
+\begin{equation*}
+\theta_{50}
+\;\; =       \;\; \dfrac{1}{2} + \dfrac{1}{2}(1 - 2\times 0.05)^{50}
+\;\; \approx \;\; 0.5025769
+\end{equation*}
+\qed
+
+\vskip 1.0cm
+\noindent
+{\scriptsize\textbf{Comment:}\quad
+For $0 < \pih < \dfrac{1}{2}$, the formula $\theta_{n} = \dfrac{1}{2} + \dfrac{1}{2}(1-2\pih)^{n}$
+implies that $\theta_{n} > \dfrac{1}{2}$, for any $n = 1, 2, 3, \ldots$;
+in other words, there is a higher than $50:50$ chance that the number of highly exposed subjects
+in the sample is ``even", whenever $0 < \pih < \dfrac{1}{2}$.
+This apparent asymmetry between odd and even is NOT surprising given the fact that $0$ is regarded
+as ``even" here, and that the probability that there are no highly exposed workers in the sample
+is high if $\pih$ is ``small" (e.g. $0 < \pih < \dfrac{1}{2}$).
+}
+
+
