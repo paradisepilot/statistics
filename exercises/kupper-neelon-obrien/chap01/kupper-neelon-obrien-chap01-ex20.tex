@@ -1,0 +1,173 @@
+
+\newcommand{ \expB}{\exp\left(\beta_{0}+\beta^{T}x\right)}
+\newcommand{\explB}{\exp\left[\,\log(\pi_{1}/\pi_{0})+\beta_{0}+\beta^{T}x\,\right]}
+
+\newcommand{ \expBstar}{\exp\left(\beta_{0}+\beta^{T}x^{*}\right)}
+\newcommand{\explBstar}{\exp\left[\,\log(\pi_{1}/\pi_{0})+\beta_{0}+\beta^{T}x^{*}\,\right]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+\textbf{Exercise 1.20(a)}
+
+\vskip 0.5cm
+\noindent
+\begin{equation*}
+p(D\vert S,x)
+= \dfrac{p(D,S,x)}{p(S,x)}
+= \dfrac{p(D,S,x)}{p(D,x)}\,\dfrac{p(D,x)}{p(S,x)}
+= p(S\vert D,x)\,\dfrac{p(D,x)/p(x)}{p(S,x)/p(x)}
+= p(S\vert D,x)\,\dfrac{p(D \vert x)}{p(S \vert x)}
+\end{equation*}
+Now, we are given that
+\begin{equation*}
+p(S \vert D,x) = \pi_{1}\,,
+\quad\textnormal{and}\quad
+p(D \vert x) = \dfrac{\expB}{1+\expB}
+\end{equation*}
+So, we now proceed to compute $p(S \vert x)$.
+To this end,
+\begin{eqnarray*}
+p(S \vert x)
+& = & \dfrac{p(S,x)}{p(x)}
+= \dfrac{1}{p(x)}\left( p(S,D,x) + p(S,\overline{D},x) \right)
+= \dfrac{1}{p(x)}\left(
+  \dfrac{p(S,D,x)}{p(D,x)}p(D,x) + \dfrac{p(S,\overline{D},x)}{p(\overline{D},x)}p(\overline{D},x)
+  \right) \\
+& = &
+p(S \vert D,x) p(D \vert x) + p(S \vert \overline{D},x) p(\overline{D} \vert x)
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+p(D \vert S,x)
+& = &
+p(S \vert D,x) \dfrac{p(D \vert x)}{p(S \vert x)}
+\;\; = \;\;
+\dfrac{p(S\vert D,x)\,p(D\vert x)}{p(S\vert D,x)\,p(D\vert x)+p(S\vert\overline{D},x)\,p(\overline{D}\vert x)}
+\;\; = \;\;
+\dfrac{\pi_{1}\cdot p(D\vert x)}{\pi_{1}\cdot p(D\vert x)+\pi_{0}\cdot p(\overline{D}\vert x)}
+\\
+& = &
+\dfrac{\pi_{1}\cdot\dfrac{\expB}{1+\expB}}
+{\pi_{1}\cdot\dfrac{\expB}{1+\expB} + \pi_{0}\cdot\dfrac{1}{1+\expB}}
+\;\; = \;\;
+\dfrac{\pi_{1}\cdot\expB}{\pi_{1}\cdot\expB + \pi_{0}}
+\\
+& = &
+\dfrac{\dfrac{\pi_{1}}{\pi_{0}}\cdot\expB}{1 + \dfrac{\pi_{1}}{\pi_{0}}\cdot\expB}
+\;\; = \;\;
+\dfrac{\explB}{1 + \explB}\,,
+\end{eqnarray*}
+as required.
+
+\vskip 0.5cm
+\noindent
+\textit{Comment:}\quad
+The above derivations show that, in a case-control study, if one has knowledge (or good estimate)
+of the ratio $\pi_{1}/\pi_{0}$, one can obtain an estimate for $p(D \vert x)$, the disease risk
+associated to covariate value $x$, from the quantity $p(D \vert S,x)$, which can be estimated from
+case-control study data as follows:
+\begin{equation*}
+p(D \vert S,x) \;\; \approx \;\;
+\dfrac
+{\#\textnormal{(subjects in sample with disease and covariate value $x$)}}
+{\#\textnormal{(subjects in sample with covariate value $x$)}}
+\end{equation*}
+However, in practice, the ratio $\pi_{1}/\pi_{0}$ is rarely, if ever, known.
+And, without knowledge or estimate of $\pi_{1}/\pi_{0}$, the disease risk $p(D \vert x)$ associated
+to covariate value $x$ can NOT be estimated based on data from a case-control study.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 1.20(b)}
+
+\vskip 0.5cm
+\noindent
+First, note that
+\begin{equation*}
+            \dfrac{p(D \vert x^{*})}{p(\overline{D} \vert x^{*})}
+\;\; = \;\; \dfrac{\expBstar/(1 + \expBstar)}{1 / (1 + \expBstar)}
+\;\; = \;\; \expBstar
+\end{equation*}
+Similarly,
+\begin{equation*}
+\dfrac{p(D \vert x)}{p(\overline{D} \vert x)}
+\;\; = \;\; \expB
+\end{equation*}
+Hence,
+\begin{equation*}
+\theta_{r}
+\;\; = \;\;
+\theta_{r}(x^{*},x)
+\;\; = \;\;
+\dfrac{
+p(D \vert x^{*}) / p(\overline{D} \vert x^{*})
+}{
+p(D \vert x) / p(\overline{D} \vert x)
+}
+\;\; = \;\; \dfrac{\expBstar}{\expB}
+\;\; = \;\; \exp\left[\,\beta^{T}(x^{*} - x)\,\right]\,,
+\end{equation*}
+as required.
+Next,
+\begin{equation*}
+\theta_{c}
+\;\; = \;\;
+\theta_{c}(x^{*},x)
+\;\; = \;\;
+\dfrac{
+p(D \vert S,x^{*}) / p(\overline{D} \vert S,x^{*})
+}{
+p(D \vert S,x) / p(\overline{D} \vert S,x)
+}
+\;\; = \;\; \dfrac{\explBstar}{\explB}
+\;\; = \;\; \exp\left[\,\beta^{T}(x^{*} - x)\,\right]\,,
+\end{equation*}
+as required.
+
+\vskip 0.5cm
+\noindent
+\textit{Comment:}\quad
+Exercise 1.20(a) showed that, without knowledge or estimate of the ratio $\pi_{1}/\pi_{0}$,
+case-control study data can NOT be used to estimate the disease $p(D \vert x)$ associated to
+covariate value $x$.
+On the other hand, case-control study data can be readily used to estimate the odds ratio
+\begin{equation*}
+\theta_{c}
+\;\; = \;\;
+\theta_{c}(x^{*},x)
+\;\; := \;\;
+\dfrac{
+p(D \vert S,x^{*}) / p(\overline{D} \vert S,x^{*})
+}{
+p(D \vert S,x) / p(\overline{D} \vert S,x)
+}
+\end{equation*}
+Exercise 1.20(b) shows that $\theta_{c}$ is equal to
+\begin{equation*}
+\theta_{r}
+\;\; = \;\;
+\theta_{r}(x^{*},x)
+\;\; := \;\;
+\dfrac{
+p(D \vert x^{*}) / p(\overline{D} \vert x^{*})
+}{
+p(D \vert x) / p(\overline{D} \vert x)
+}
+\end{equation*}
+Thus, Exercise 1.20(a) and Exercise 1.20(b) together show that, while case-control study data can
+NOT be used to estimate disease risk $p(D \vert x)$ associated to covariate value $x$, they can
+be used to estimate the disease odds ratio
+\begin{equation*}
+\theta_{r}
+\;\; = \;\;
+\theta_{r}(x^{*},x)
+\;\; := \;\;
+\dfrac{
+p(D \vert x^{*}) / p(\overline{D} \vert x^{*})
+}{
+p(D \vert x) / p(\overline{D} \vert x)
+}
+\end{equation*}
+associated to the covariate value $x^{*}$ against $x$.
+
