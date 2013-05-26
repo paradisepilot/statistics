@@ -1,0 +1,135 @@
+
+\noindent
+\textbf{Exercise 1.18}
+
+\vskip 0.5cm
+\noindent
+\textit{\textbf{Recapitulation of the rules of craps:}
+Let $x$ be the number obtained on the first roll.
+If $x \in \{7, 11\}$, then the player wins.
+If $x \in \{ 2,3,12\}$, then the player loses.
+If $x \in \{4,5,6,8,9,10\}$, then the player keeps rolling,
+until either $7$ is rolled or $x$ is rolled.
+If $x$ is rolled first (before 7 is rolled), then the player wins.
+If $7$ is rolled first (before $x$ is rolled), then the player loses.
+}
+
+\vskip 0.5cm
+\noindent
+Let $W$ be the $\{0,1\}$-valued random variable such that $W = 1$ if the player wins,
+and $W = 0$ if the player loses.  We thus seek to compute $P(W = 1)$.
+
+Let $X$ be (the random variable of) the sum of the two numbers obtained on the first roll.
+Note that $\textnormal{Range}(X) = \{\,2,3,4,\ldots,12\,\}$.
+Then,
+\begin{eqnarray*}
+P(W = 1)
+& = &
+\sum^{12}_{x=2}P(W=1 \vert X = x)\cdot P(X = x) \\
+& = &
+P(W=1 \vert X = 7)\,P(X = 7) + P(W=1 \vert X = 11)\,P(X = 11) + 
+\sum_{x \in \{4,5,6,8,9,10\}}P(W=1 \vert X = x)\cdot P(X = x)
+\end{eqnarray*}
+Now, note that $P(W = 1 \vert X = 7) = P(W = 1 \vert X = 11) = 1$,
+$P(X = 7) = \dfrac{6}{36} = \dfrac{1}{6}$, and
+$P(X = 11) = \dfrac{2}{36} = \dfrac{1}{18}$.
+
+From Exercise 1.1(a), we have:
+\begin{eqnarray*}
+P(X = x)
+& = &
+\dfrac{1}{6^{2}}\left( \min\{6,x-1\} - \max\{1,x-6\} + 1 \right) 
+\;\; = \;\;
+\dfrac{1}{36}\left\{\begin{array}{cl}
+(x-1) - 1 + 1  , & \textnormal{if $x$ = 2, 3, \ldots,  6} \\
+6 - (x - 6) + 1, & \textnormal{if $x$ = 7, 8, \ldots, 12} \\
+\end{array}\right.
+\\
+& = &
+\dfrac{1}{36}\left\{\begin{array}{cl}
+ x - 1, & \textnormal{if $x$ = 2, 3, \ldots,  6} \\
+13 - x, & \textnormal{if $x$ = 7, 8, \ldots, 12} \\
+\end{array}\right.
+\end{eqnarray*}
+Next, let $Y_{n}$ be the random variable of the sum of the two numbers obtained on the
+$(n+1)$st roll.  Then,
+\begin{eqnarray*}
+P(W = 1 \vert X = x)
+& = &
+\sum_{n=1}^{\infty}\,\left[1 - P(Y_{n} = 7) - P(Y_{n} = x)\right]^{n-1} \cdot P(X = x) \\
+& = &
+P(X = x) \cdot \sum_{n=1}^{\infty}\,\left[1 - P(Y_{n} = 7) - P(Y_{n} = x)\right]^{n-1} \\
+& = &
+P(X = x) \cdot \dfrac{1}{1 - \left[1 - P(Y = 7) - P(Y = x)\right]} \\
+& = &
+\dfrac{P(X = x)}{P(Y = 7) + P(Y = x)} \\
+& = &
+\dfrac{P(X = x)}{\frac{1}{6} + P(Y = x)} \\
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+P(W = 1)
+& = &
+\sum^{12}_{x=2}P(W=1 \vert X = x)\cdot P(X = x) \\
+& = &
+P(W=1 \vert X = 7)\,P(X = 7) + P(W=1 \vert X = 11)\,P(X = 11) + 
+\sum_{x \in \{4,5,6,8,9,10\}}P(W=1 \vert X = x)\cdot P(X = x) \\
+& = &
+\dfrac{6}{36} + \dfrac{2}{36} +
+\sum_{x \in \{4,5,6,8,9,10\}} \dfrac{P(X = x)^{2}}{\frac{1}{6} + P(Y = x)} \\
+& = &
+\dfrac{6}{36} + \dfrac{2}{36}
++ \dfrac{(\frac{4-1}{36})^{2}}{\frac{1}{6} + \frac{4-1}{36}}
++ \dfrac{(\frac{5-1}{36})^{2}}{\frac{1}{6} + \frac{5-1}{36}}
++ \dfrac{(\frac{6-1}{36})^{2}}{\frac{1}{6} + \frac{6-1}{36}}
++ \dfrac{(\frac{13- 8}{36})^{2}}{\frac{1}{6} + \frac{13- 8}{36}}
++ \dfrac{(\frac{13- 9}{36})^{2}}{\frac{1}{6} + \frac{13- 9}{36}}
++ \dfrac{(\frac{13-10}{36})^{2}}{\frac{1}{6} + \frac{13-10}{36}}
+\\
+& = &
+\dfrac{6}{36} + \dfrac{2}{36}
++ \dfrac{(1/36)^{2}}{1/36}\left(
+  \dfrac{3^{2}}{6+3}
++ \dfrac{4^{2}}{6+4}
++ \dfrac{5^{2}}{6+5}
++ \dfrac{5^{2}}{6+5}
++ \dfrac{4^{2}}{6+4}
++ \dfrac{3^{2}}{6+3}
+\right)
+\\
+& = &
+\dfrac{6}{36} + \dfrac{2}{36}
++ \dfrac{2}{36}\left(
+  \dfrac{3^{2}}{6+3}
++ \dfrac{4^{2}}{6+4}
++ \dfrac{5^{2}}{6+5}
+\right)
+\;\; = \;\;
+\dfrac{1}{36}\left[
+6 + 2
++ 2\left(
+  \dfrac{9}{9}
++ \dfrac{16}{10}
++ \dfrac{25}{11}
+\right)
+\right]
+\\
+& = &
+\dfrac{1}{36}\left[
+8
++ 2\left(
+  \dfrac{536}{110}
+\right)
+\right]
+\;\; = \;\;
+\dfrac{1}{36}\left[\dfrac{1952}{110}\right]
+\;\; = \;\;
+\dfrac{1}{2^{2} \cdot 3^{2}}\left[\dfrac{2^{5}\cdot 61}{2 \cdot 5 \cdot 11}\right]
+\\
+& = &
+\dfrac{2^{2}\cdot 61}{3^{2} \cdot 5 \cdot 11}
+\;\; \approx \;\;
+0.4929293
+\end{eqnarray*}
+
+\qed
