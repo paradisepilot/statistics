@@ -1,0 +1,128 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+\textbf{Exercise 1.22}
+
+\vskip 0.5cm
+\noindent
+Let
+\begin{itemize}
+\item 	$A$ be the event that an individual has Alzheimer's Disease.
+\item 	$D$ be the event that an individual has diabetes.
+\item 	$M$ be the event that an individual is male.
+\end{itemize}
+Note that
+\begin{eqnarray*}
+\pi_{1}
+&:=&      P(A \vert D)
+\;\;=\;\; \dfrac{P(A,D)}{P(D)}
+\;\;=\;\; \dfrac{P(A,D,M) + P(A,D,\overline{M})}{P(D)} \\
+&=&  \dfrac{P(A,D,M)}{P(D,M)}\dfrac{P(D,M)}{P(D)}
+    +\dfrac{P(A,D,\overline{M})}{P(D,\overline{M})}\dfrac{P(D,\overline{M})}{P(D)}
+\\
+&=&  P(A \vert D,M) P(M \vert D) + P(A \vert D,\overline{M}) P(\overline{M} \vert D) \\
+&=&  \pi_{11} \cdot P(M \vert D) + \pi_{10} \cdot P(\overline{M} \vert D)
+\end{eqnarray*}
+Similarly,
+\begin{eqnarray*}
+\pi_{0}
+&:=&      P(A \vert \overline{D})
+\;\;=\;\; \dfrac{P(A,\overline{D})}{P(\overline{D})}
+\;\;=\;\; \dfrac{P(A,\overline{D},M) + P(A,\overline{D},\overline{M})}{P(\overline{D})} \\
+&=&  \dfrac{P(A,\overline{D},M)}{P(\overline{D},M)}\dfrac{P(\overline{D},M)}{P(\overline{D})}
+    +\dfrac{P(A,\overline{D},\overline{M})}{P(\overline{D},\overline{M})}
+     \dfrac{P(\overline{D},\overline{M})}{P(\overline{D})}
+\\
+&=&   P(A \vert \overline{D},M) P(M \vert \overline{D})
+    + P(A \vert \overline{D},\overline{M}) P(\overline{M} \vert \overline{D}) \\
+&=&  \pi_{01} \cdot P(M \vert \overline{D}) + \pi_{00} \cdot P(\overline{M} \vert \overline{D})
+\end{eqnarray*}
+We ASSUME
+\begin{itemize}
+\item 	$\pi_{00} \neq 0$, $\pi_{01} \neq 0$, and $\pi_{0} \neq 0$.
+\item 	\textit{homogeneity of risk ratio across gender groups}, i.e.
+		\begin{equation}
+		\label{homogeneity:riskRatio:genderGroups}
+		R_{1} \; = \; R_{0} \; =: \; R\,,
+		\quad\textnormal{where}\quad
+		R_{1} \;:=\; \dfrac{\pi_{11}}{\pi_{01}}\,,\quad
+		R_{0} \;:=\; \dfrac{\pi_{10}}{\pi_{00}}\,.
+		\end{equation}
+\end{itemize}
+We seek to derive sufficient conditions for
+\begin{equation}
+\label{nonConfounder}
+R_{c} \; = \; R\,,
+\quad\textnormal{where}\quad
+R_{c} \; := \; \dfrac{\pi_{1}}{\pi_{0}}\,.
+\end{equation}
+Now, it follows immediately from \eqref{homogeneity:riskRatio:genderGroups}
+and \eqref{nonConfounder} that
+\begin{equation*}
+\pi_{11} \; = \; R\cdot\pi_{01}
+\quad\textnormal{and}\quad
+\pi_{10} \; = \; R\cdot\pi_{00}
+\end{equation*}
+Hence,
+\begin{equation*}
+\pi_{1} \; = \; R\cdot\left(\pi_{01}\cdot P(M \vert D) + \pi_{00}\cdot P(\overline{M}\vert D)\right)
+\end{equation*}
+which in turn implies:
+\begin{equation*}
+\dfrac{\pi_{1}}{\pi_{0}}
+\; = \;
+R\cdot\left(
+\dfrac{\pi_{01}\,P(M \vert D)            + \pi_{00}\,P(\overline{M}\vert D)}
+      {\pi_{01}\,P(M \vert \overline{D}) + \pi_{00}\,P(\overline{M} \vert \overline{D})}
+\right)
+\end{equation*}
+Thus, \eqref{nonConfounder} will follow if the following holds:
+\begin{equation}
+\label{preSufficientCondition}
+\dfrac{\pi_{01}\,P(M \vert D)            + \pi_{00}\,P(\overline{M}\vert D)}
+      {\pi_{01}\,P(M \vert \overline{D}) + \pi_{00}\,P(\overline{M} \vert \overline{D})}
+\; = \; 1
+\end{equation}
+Now, note:
+\begin{eqnarray*}
+\textnormal{\eqref{preSufficientCondition}}
+&\Longleftrightarrow&
+     \pi_{01}\,P(M \vert D)            + \pi_{00}\,P(\overline{M}\vert D)
+   - \pi_{01}\,P(M \vert \overline{D}) - \pi_{00}\,P(\overline{M} \vert \overline{D}) = 0
+\\
+&\Longleftrightarrow&
+     \pi_{01}\,\left[P(M \vert D) - P(M \vert \overline{D})\right]
+   + \pi_{00}\,\left[P(\overline{M}\vert D) - P(\overline{M} \vert \overline{D})\right] = 0
+\\
+&\Longleftrightarrow&
+     \pi_{01}\,\left[P(M \vert D) - P(M \vert \overline{D})\right]
+   + \pi_{00}\,\left[1-P(M\vert D) - 1+P(M \vert \overline{D})\right] = 0
+\\
+&\Longleftrightarrow&
+     \left[\,\pi_{01} - \pi_{00}\,\right]
+     \cdot
+     \left[\,P(M \vert D) - P(M \vert \overline{D})\,\right] = 0
+\end{eqnarray*}
+Thus, two separate sufficient conditions for \eqref{nonConfounder} are:
+\begin{equation*}
+\pi_{01} \; = \; \pi_{00}
+\quad\textnormal{and}\quad
+P(M \vert D) \; = \; P(M \vert \overline{D})
+\end{equation*}
+Furthermore,
+\begin{eqnarray*}
+&&                \textnormal{independence of $M$ and $D$, i.e. $P(M \vert D) = P(M)$} \\
+&\Longrightarrow& \dfrac{P(M,D)}{P(D)} \; = \; P(M,D) + P(M,\overline{D}) \\
+&\Longrightarrow& P(M,D) \; = \; P(M,D)P(D) + P(M,\overline{D}) P(D) \\
+&\Longrightarrow& P(M,D)\left[\,1 - P(D)\,\right] \; = \; P(M,\overline{D}) P(D) \\
+&\Longrightarrow& \dfrac{P(M,D)}{P(D)}\;=\;\dfrac{P(M,\overline{D})}{P(\overline{D})} \\
+&\Longrightarrow& P(M \vert D) \;=\; P(M \vert \overline{D}) \\
+\end{eqnarray*}
+Therefore, we may now conclude that two separate sufficient conditions for \eqref{nonConfounder} are:
+\begin{itemize}
+\item 	independence of $M$ and $D$, i.e. $P(M \vert D) \; = \; P(M)$, and
+\item 	$\pi_{01} \; = \; \pi_{00}$, i.e.
+		$P(A \vert \overline{D},M) = P(A \vert \overline{D},\overline{M})$.
+\end{itemize}
+\qed
+
