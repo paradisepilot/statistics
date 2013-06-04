@@ -1,0 +1,115 @@
+
+\noindent
+\textbf{Exercise 2.1(a)}
+
+Note that our ``stopping criterion" here is that the sequence of selected individuals contains at
+least one individual with the rare blood disorder and at least one individual without the disorder.
+Thus, the following must hold:  Let $n$ be the length of a stopping sequence; the first $n-1$
+individuals of the stopping sequence must all be of one type, while the $n^{\textnormal{th}}$
+individual is of the other type.
+
+Let $1$ represent an individual with the rare blood disorder, while $0$ an individual without
+the disorder.  Then, since there are only four inddividuals with the disorder and three who do not,
+the following sequences are the only possible stopping sequences:
+\begin{equation*}
+	01, \; 001, \; 0001, \; 10, \; 110, \; 1110, \; 11110
+\end{equation*}
+The probabilities of the above admissible stopping sequences are tabulated below:
+\begin{center}
+\begin{tabular}{|l|c|c||l|c|c|}
+\hline
+sequence $s$ & $P(s)$ & length of $s$ & sequence $s$ & $P(s)$ & length of $s$\\
+\hline\hline
+&&&&&\\
+$01$ & $\frac{3}{7}\cdot\frac{4}{6}$ & 2 &
+$10$ & $\frac{4}{7}\cdot\frac{3}{6}$ & 2 \\
+&&&&&\\
+\hline
+&&&&&\\
+$001$ & $\frac{3}{7}\cdot\frac{2}{6}\cdot\frac{4}{5}$ & 3 &
+$110$ & $\frac{4}{7}\cdot\frac{3}{6}\cdot\frac{3}{5}$ & 3 \\
+&&&&&\\
+\hline
+&&&&&\\
+$0001$ & $\frac{3}{7}\cdot\frac{2}{6}\cdot\frac{1}{5}\cdot\frac{4}{4}$ & 4 &
+$1110$ & $\frac{4}{7}\cdot\frac{3}{6}\cdot\frac{2}{5}\cdot\frac{3}{4}$ & 4 \\
+&&&&&\\
+\hline
+&&&&&\\
+ & & &
+$11110$ & $\frac{4}{7}\cdot\frac{3}{6}\cdot\frac{2}{5}\cdot\frac{1}{4}\cdot\frac{3}{3}$ & 5 \\
+&&&&&\\
+\hline
+\end{tabular}
+\end{center}
+We thus see that, letting $N$ denote (the random variable of) the stopping sequence:
+\begin{equation*}
+\begin{array}{ccccccc}
+P(N = 2) & = & P(01) + P(10)
+         & = & \dfrac{3 \cdot 4 + 4 \cdot 3}{7\cdot 6}
+         & = & \dfrac{4}{7}
+\\ \\
+P(N = 3) & = & P(001) + P(110)
+         & = & \dfrac{3 \cdot 2 \cdot 4 + 4 \cdot 3 \cdot 3}{7\cdot 6 \cdot 5}
+         & = & \dfrac{2}{7}
+\\ \\
+P(N = 4) & = & P(0001) + P(1110)
+         & = & \dfrac{3 \cdot 2 \cdot 1 \cdot 4 + 4 \cdot 3 \cdot 2 \cdot 3}{7\cdot 6 \cdot 5 \cdot 4}
+         & = & \dfrac{4}{35}
+\\ \\
+P(N = 5) & = & P(11110)
+         & = & \dfrac{4 \cdot 3 \cdot 2 \cdot 1 \cdot 3}{7\cdot 6 \cdot 5 \cdot 4 \cdot 3}
+         & = & \dfrac{1}{35}
+\\ \\
+\end{array}
+\end{equation*}
+Hence,
+\begin{equation*}
+E\left[\,N\,\right]
+\;\;=\;\;   \sum_{n=2}^{5} \, n \cdot P(N = n)
+\;\;=\;\;   2\cdot\left(\dfrac{4}{7}\right) + 3\cdot\left(\dfrac{2}{7}\right)
+          + 4\cdot\left(\dfrac{4}{35}\right) + 5\cdot\left(\dfrac{1}{35}\right)
+\;\;=\;\;   \dfrac{13}{5} \;\; = \;\; 2.6
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\noindent
+\textbf{Exercise 2.1(b)}
+
+First, consider the concrete example that $M = 10$, $N = 100$, $k = 3$, and $X = 5$.
+Then,
+\begin{eqnarray*}
+         P(X = 5\,;\,100,10,3)
+&=&      \left(\!\begin{array}{c} 5 - 1 \\ 3 - 1 \end{array}\!\right)
+         \cdot \dfrac{10}{100}
+         \cdot \dfrac{9}{99}
+         \times\dfrac{90}{98}
+         \cdot \dfrac{89}{97}
+         \times\dfrac{8}{96}
+\;\;=\;\;\left(\!\begin{array}{c} 5 - 1 \\ 3 - 1 \end{array}\!\right)
+         \cdot\dfrac{10  }{100}
+         \cdot\dfrac{10-1}{100-1}
+         \cdot\dfrac{10-2}{100-2}
+         \cdot\dfrac{90  }{100-3}
+         \cdot\dfrac{90-1}{100-4}
+\\
+&=&      \left(\!\begin{array}{c} 5 - 1 \\ 3 - 1 \end{array}\!\right)
+         \dfrac{10\,!}{(10-3)!} \cdot \dfrac{90\,!}{(90-(5-3))!} \cdot \dfrac{(100-5)!}{100\,!}
+\\
+&=&      \left(\!\begin{array}{c} 5 - 1 \\ 3 - 1 \end{array}\!\right)
+         \left(\!\begin{array}{c} 100 - 5 \\ 10 - 3 \end{array}\!\right)
+         \left/\left(\!\begin{array}{c} 100 \\ 10 \end{array}\!\right)\right.
+\end{eqnarray*}
+In general, we therefore have:
+\begin{equation*}
+P(X = x\,;\,N,M,k)
+\;\; = \;\;
+\dfrac{
+\left(\!\begin{array}{c} x - 1 \\ k - 1 \end{array}\!\right)
+\left(\!\begin{array}{c} N - x \\ M - k \end{array}\!\right)
+}{
+\left(\!\begin{array}{c} N \\ M \end{array}\!\right)
+}
+\end{equation*}
+\qed
