@@ -24,13 +24,26 @@
 	return(0);
 	}
 
+.binarize <- function(x = NULL) {
+	temp    <- integer(length = length(x));
+	split.x <- strsplit(x = x, split = '')[[1]];
+	for (i in 1:length(split.x)) {
+		temp[i] <- length(unique(split.x[1:i]));
+		}
+	lag.temp <- c(0,temp[1:(length(temp)-1)]);
+	return(paste(temp-lag.temp,collapse=''));
+	}
+
 ####################################################################################################
 alphabet      <- c('A','C','G','T');
 string.length <- 7;
 
 strings <- .enumerate.strings(alphabet = alphabet, string.length = string.length);
 DF.temp <- cbind(strings,sapply(X = strings, FUN = .is.stopping.sequence, alphabet = alphabet));
-temp    <- DF.temp[DF.temp[,2]==1,];
-dim(temp);
+
+temp <- DF.temp[DF.temp[,2]==1,];
+temp <- cbind(temp,sapply(X=temp[,1],FUN=.binarize));
 temp;
+
+table(temp[,3]);
 
