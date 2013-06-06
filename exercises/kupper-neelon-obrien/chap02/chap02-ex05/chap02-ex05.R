@@ -36,14 +36,26 @@
 
 ####################################################################################################
 alphabet      <- c('A','C','G','T');
-string.length <- 7;
 
-strings <- .enumerate.strings(alphabet = alphabet, string.length = string.length);
-DF.temp <- cbind(strings,sapply(X = strings, FUN = .is.stopping.sequence, alphabet = alphabet));
+for (string.length in 5:8) {
 
-temp <- DF.temp[DF.temp[,2]==1,];
-temp <- cbind(temp,sapply(X=temp[,1],FUN=.binarize));
-temp;
+	print('################################################################');
 
-table(temp[,3]);
+	print('string.length');
+	print( string.length );
+
+	strings <- .enumerate.strings(alphabet = alphabet, string.length = string.length);
+	DF.temp <- cbind(strings,sapply(X = strings, FUN = .is.stopping.sequence, alphabet = alphabet));
+
+	temp <- DF.temp[DF.temp[,2]==1,];
+	temp <- cbind(temp,sapply(X=temp[,1],FUN=.binarize));
+	#temp;
+
+	print('table(temp[,3])');
+	print( table(temp[,3]) );
+
+	print('table(temp[,3]) / 24');
+	print( table(temp[,3]) / 24 );
+
+	}
 
