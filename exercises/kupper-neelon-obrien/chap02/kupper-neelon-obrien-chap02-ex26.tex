@@ -1,0 +1,51 @@
+
+\noindent
+\textbf{Exercise 2.26(a)}
+
+Recall that:
+\begin{equation*}
+h(t)
+\; := \;
+\lim_{h \rightarrow 0}
+\dfrac{P(t \leq T \leq t + h \,\vert\, t \leq T )}{h},
+\quad\quad
+F(t) \; = \; P(T < t), 
+\quad\quad
+f(t) \; = \; F^{\prime}(t),
+\quad\quad
+S(t) = 1 - F(t)
+\end{equation*}
+We want to prove:
+\begin{equation*}
+h(t)
+\; = \;
+\dfrac{f(t)}{S(t)}.
+\end{equation*}
+\proof
+\begin{eqnarray*}
+    P(t \leq T \leq t + h \,\vert\, t \leq T)
+&=&       \dfrac{P(t \leq T \leq t + h \,\cap\, t \leq T)}{P(t \leq T)}
+\;\;=\;\; \dfrac{P(t \leq T \leq t + h)}{P(t \leq T)}
+\;\;=\;\; \dfrac{P(T \leq t + h) - P(T \leq t)}{P(t \leq T)} \\
+&=&       \dfrac{F(t+h)-F(t)}{1 - F(t)}
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+    \dfrac{P(t \leq T \leq t + h \,\vert\, t \leq T)}{h}
+&=& \dfrac{1}{1-F(t)}\cdot\dfrac{F(t + h) - F(t)}{h}
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+h(t)
+&=&       \lim_{h \rightarrow 0} \dfrac{P(t \leq T \leq t + h \,\vert\, t \leq T )}{h} 
+\;\;=\;\; \dfrac{1}{1-F(t)}\cdot\lim_{h\rightarrow 0}\dfrac{F(t + h) - F(t)}{h}
+\;\;=\;\; \dfrac{1}{1-F(t)}\cdot F^{\prime}(t)
+\;\;=\;\; \dfrac{f(t)}{S(t)}
+\end{eqnarray*}
+\qed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+\noindent
+\textbf{Exercise 2.26(b)}
+
