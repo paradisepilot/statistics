@@ -46,6 +46,178 @@ h(t)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\newpage
+\vskip 1.0cm
 \noindent
 \textbf{Exercise 2.26(b)}
+
+Recall that $S(t) = 1 - F(t)$, hence $S^{\prime}(t) = -F^{\prime}(t) = -f(t)$.
+Consequently,
+\begin{equation*}
+h(t)
+\;=\;   \dfrac{f(t)}{S(t)}
+\;=\; - \dfrac{S^{\prime}(t)}{S(t)}
+\;=\; - \left.\left. \dfrac{\dd}{\dd t}\right( \log S(t) \right)
+\end{equation*}
+Thus,
+\begin{equation*}
+\int^{t}_{0}\,h(\tau)\,\dd\tau
+\;\;=\;\; - \int^{t}_{0}\left.\left.\dfrac{\dd}{\dd\tau}\right(\log S(\tau)\right)\dd\tau
+\;\;=\;\; - \left[\;\log S(\tau)\;\right]_{0}^{t}
+\;\;=\;\; - \log S(t) + \log S(0)
+\end{equation*}
+Now, $S(0) = 1 - F(0) = 1 - P(T < 0) = 1 - 0 = 1$; hence, $\log S(0) = \log(1) = 0$.
+We thus have:
+\begin{equation*}
+\log\left(S(t)\right) \;=\; -\int^{t}_{0}\,h(\tau)\,\dd\tau
+\quad\Longrightarrow\quad
+S(t)
+\;=\; \exp\left\{-\int^{t}_{0}\,h(\tau)\,\dd\tau\right\} 
+\;=\; \exp\left\{-H(t)\right\} 
+\end{equation*}
+\qed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 2.26(c)}
+
+\noindent
+Assuming
+$\underset{t\rightarrow\infty}{\lim}\,t\cdot S(t)
+\;=\; \underset{t\rightarrow\infty}{\lim}\,t\left(1 - F(t)\right)
+\;=\; 0$,
+we want to prove that
+\begin{equation*}
+E\left[\,T\,\right]
+\;\;=\;\;
+\int^{\infty}_{0}\,S(t)\,\dd t
+\end{equation*}
+\proof
+\begin{eqnarray*}
+E\left[\,T\,\right]
+&=& \int^{\infty}_{0}\,t \cdot f(t)\,\dd t
+\;\;=\;\; - \int^{\infty}_{0}\, t \cdot S^{\prime}(t) \,\dd t \\
+&=& -\left[\,t \cdot S(t)\,\right]_{0}^{\infty} + \int^{\infty}_{0}\,S(t)\,\dd t\,,
+\quad\textnormal{by integration by parts:}\;\;
+\int u\,\dd v = uv - \int v\,\dd u,\;\; u = t,\;\; \dd v = S^{\prime}(t)\,\dd t \\
+&=& \int^{\infty}_{0}\,S(t)\,\dd t
+\end{eqnarray*}
+\qed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 2.26(d)}
+
+\vskip 0.5cm
+\noindent
+We want to prove:
+\begin{equation*}
+E\left[\,H(X)\,\right] \;\; = \;\; F_{T}(\,c\,),
+\end{equation*}
+where $X = \min\{\,T,\,c\,\}$, $H(t) = \int^{t}_{0}\,h(\tau)\,\dd\tau$.
+
+\vskip 0.5cm
+\proof
+We first derive the cumulative probability function of the random variable $X := \min\{\,T,\,c\,\}$.
+First, note that $\textnormal{range}(X) = (\,0,\,c\,]$.
+\begin{eqnarray*}
+P\left(\,X \leq x\,\right)
+&=& P\left(\,\min\{\,T,\,c\,\}\leq x \,\right)
+\;\;=\;\; P\left(\,T \leq x \;\;\textnormal{or}\;\; c \leq x \,\right) \\
+&=&  P\left(\,T \leq x\,\right) + P\left(\,c \leq x \,\right)
+   - P\left(\,T \leq x \;\;\textnormal{and}\;\; c \leq x \,\right) \\
+&=&
+\left\{\begin{array}{ll}
+P\left(\,T \leq x\,\right) + 1 - P\left(\,T \leq x \,\right), & \textnormal{fox}\;\; c \leq x \\
+P\left(\,T \leq x\,\right) + 0 - 0,                           & \textnormal{fox}\;\; c >    x \\
+\end{array}\right. \\
+&=&
+\left\{\begin{array}{ll}
+1,                          & \textnormal{for}\;\; c \leq x \\
+P\left(\,T \leq x\,\right), & \textnormal{for}\;\; c >    x \\
+\end{array}\right. \\
+&=&
+\left\{\begin{array}{ll}
+P\left(\,T \leq x\,\right), & \textnormal{for}\;\; x < c \\
+1,                          & \textnormal{for}\;\; x = c \\
+\end{array}\right.
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+\dfrac{\dd}{\dd t}\,P(X \leq x)
+&=&
+\left\{\begin{array}{cl}
+f_{T}(x),               & \textnormal{for}\;\; 0< x < c \\
+\textnormal{undefined}, & \textnormal{for}\;\; x = c \\
+\end{array}\right.
+\\
+\end{eqnarray*}
+{\color{red}We thus see that the probability density $\mu_{X}$ of the random variable $X$
+is a probability measure on $\textnormal{range}(X) = (\,0,\,c\,]$.
+Over the interval $x \in (\,0,\,c\,)$, $\mu_{X}$ is representable by a probability density
+function $f_{X}(x) = f_{T}(x)$ for $x \in (\,0,\,c\,)$.
+When restricted to the single point $x = c$, $\mu_{X}$ is the point mass measure with
+$\mu_{X}(\,c\,) = 1 - F_{T}(\,c\,)$.}
+In other words, the probability density measure $\mu_{X}$ of $X$ is given by:
+\begin{eqnarray*}
+\mu_{X} 
+&=&
+\left\{\begin{array}{cl}
+f_{T}(x), & \textnormal{for}\;\; 0 < x < c \\
+P(X = c), & \textnormal{for}\;\; x = c \\
+\end{array}\right.
+\\
+&=&
+\left\{\begin{array}{cl}
+f_{T}(x),    & \textnormal{for}\;\; 0< x < c \\
+P(T \geq c), & \textnormal{for}\;\; x = c \\
+\end{array}\right.
+\\
+&=&
+\left\{\begin{array}{cl}
+f_{T}(x),         & \textnormal{for}\;\; 0< x < c \\
+1 - F_{T}(\,c\,), & \textnormal{for}\;\; x = c \\
+\end{array}\right.
+\\
+\end{eqnarray*}
+Thus,
+\begin{equation*}
+E\left[\,H(X)\,\right]
+\;\;=\;\; \int_{[\,0,\,c\,]}\,H(x)\,\dd\mu_{X}
+\;\;=\;\; \int_{0}^{c}\,H(x)\cdot f_{T}(x)\,\dd x \;+\; H(c)\,\mu_{X}(\,c\,)
+\end{equation*}
+Now, note that
+\begin{equation*}
+H(c)\cdot \mu_{X}(\,c\,)
+\;\; = \;\;
+-\log S(c) \cdot \left(\,1 - F_{T}(\,c\,)\,\right)
+\end{equation*}
+Next, recall from Exercise 2.26(b) that $H(t) = - \log S(t)$, $f_{T}(x) = - S^{\prime}(x)$.
+\begin{eqnarray*}
+    \int_{0}^{c}\,H(x)\cdot f_{T}(x)\,\dd x
+&=& \int_{0}^{c}\,\left(- \log S(x)\right) \cdot \left(-S^{\prime}(x)\right)\,\dd x \\
+&=& \int_{0}^{c}\,\left.\left.\dfrac{\dd}{\dd\,S(x)}\right(S(x)\log S(x)-S(x)\right) \cdot \left(S^{\prime}(x)\right)\,\dd x \\
+&=& \int_{0}^{c}\,\left.\left.\dfrac{\dd}{\dd x}\right(S(x)\log S(x)-S(x)\right)\,\dd x \\
+&=& \left[\,S(x)\log S(x)-S(x)\,\right]_{0}^{c} \\
+&=& S(c)\log S(c) - S(c) - S(0)\log S(0) + S(0) \\
+&=& S(c)\log S(c) - S(c) - 1\cdot\log(S(0)) + 1 \\
+&=& S(c)\log S(c) - S(c) + 1 \\
+&=& S(c)\log S(c) + F_{T}(\,c\,) \\
+\end{eqnarray*}
+Thus, we now have
+\begin{eqnarray*}
+E[\,H(X)\,]
+&=&       \int_{[\,0,\,c\,]}\,H(x)\,\dd\mu_{X}
+\;\;=\;\; \int_{0}^{c}\,H(x)\cdot f_{T}(x)\,\dd x \;+\; H(c)\cdot \mu_{X}(\,c\,) \\
+&=&       S(c)\log S(c) + F_{T}(\,c\,) - \log S(c) \cdot \left(\,1 - F_{T}(\,c\,)\,\right) \\
+&=&       S(c)\log S(c) + F_{T}(\,c\,) - \log S(c) + \log(S(c)) \cdot F_{T}(\,c\,) \\
+&=&       - \log S(c) \cdot (1 - S(c)) + F_{T}(\,c\,) \cdot (1 + \log S(c)) \\ 
+&=&       - \log S(c) \cdot F_{T}(\,c\,) + F_{T}(\,c\,) \cdot (1 + \log S(c)) \\ 
+&=&       F_{T}(\,c\,) \cdot \left( - \log S(c) + 1 + \log S(c) \right) \\ 
+&=&       F_{T}(\,c\,) \\
+\end{eqnarray*}
+\qed
 
