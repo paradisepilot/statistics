@@ -1,0 +1,118 @@
+
+\noindent
+\textbf{Exercise 2.23(a)}
+
+\vskip 0.3cm
+\noindent
+Since
+\begin{equation*}
+U
+\;\; = \;\;
+\left\{\begin{array}{cl}
+X, & \textnormal{if}\; X \geq L, \\
+g(L), & \textnormal{if}\; X < L,
+\end{array}\right.
+\end{equation*}
+we have:
+\begin{eqnarray*}
+E[\,U\,]
+&=& \int_{0}^{L}\,g(L)\,f_{X}(x)\,\dd x + \int_{L}^{\infty} x\,f_{X}(x)\,\dd x \\
+&=& g(L) \cdot P(X \leq L) + P(X > L)\cdot\int_{L}^{\infty} x\cdot\dfrac{f_{X}(x)}{P(X > L)}\,\dd x \\
+&=& g(L) \cdot (1 - \pi) + \pi\cdot\int_{L}^{\infty} x\cdot f_{X\vert X>L}(x)\,\dd x \\
+&=& g(L) \cdot (1 - \pi) + \pi\cdot E[\,X\,\vert\, X > L\,] \\
+\end{eqnarray*}
+Next, recall
+\begin{equation*}
+V[\,U\,]
+\;\;:=\;\; E[\,(U - E[U])^{2}\,]
+\;\; =\;\; \cdots
+\;\; =\;\; E[\,U^{2}\,] - E[\,U\,]^{2}
+\end{equation*}
+So, we now compute $E[\,U^{2}\,]$:
+\begin{eqnarray*}
+E[\,U^{2}\,]
+&=& \int_{0}^{L}\,g(L)^{2}\,f_{X}(x)\,\dd x \;+\; \int^{\infty}_{L} x^{2}\cdot f_{X}(x)\,\dd x \\
+&=& g(L)^{2}\cdot P(X \leq L) \;+\; P(X > L)\cdot\int^{\infty}_{L} x^{2}\cdot\dfrac{f_{X}(x)}{P(X>L)}\,\dd x \\
+&=& g(L)^{2}\cdot(1-\pi) \;+\; \pi\cdot\int^{\infty}_{L} x^{2}\cdot f_{X|X>L}(x)\,\dd x \\
+&=& g(L)^{2}\cdot(1-\pi) \;+\; \pi\cdot E[\,X^{2}\,\vert\,X>L\,]\\
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+V[\,U\,]
+&=& E[\,U^{2}\,] - E[\,U\,]^{2} \\
+&=&       \left\{\,g(L)^{2}\cdot(1-\pi) \;+\; \pi\cdot E[\,X^{2}\,\vert\,X>L\,]\,\right\}
+    \;-\; \left\{g(L) \cdot (1 - \pi) + \pi\cdot E[\,X\,\vert\, X > L\,]\,\right\}^{2}
+\\
+&=&       g(L)^{2}\cdot(1-\pi) \;+\; \pi\cdot E[\,X^{2}\,\vert\,X>L\,]
+    \;-\; g(L)^{2}(1 - \pi)^{2} \;-\; 2\pi(1-\pi)g(L)E[\,X\,\vert\, X > L\,]
+    \;-\; \pi^{2} E[\,X\,\vert\, X > L\,]^{2}
+\\
+&=&       g(L)^{2}\cdot(1-\pi)\cdot(1-1+\pi) \;+\; \pi\cdot E[\,X^{2}\,\vert\,X>L\,]
+    {\color{blue}\;-\; \pi\cdot E[\,X\,\vert\,X>L\,]^{2} \;+\; \pi\cdot E[\,X\,\vert\,X>L\,]^{2}} \\
+&&  \;-\; 2\pi(1-\pi)g(L)E[\,X\,\vert\, X > L\,]
+    \;-\; \pi^{2} E[\,X\,\vert\, X > L\,]^{2}
+\\
+&=&       \pi(1-\pi)g(L)^{2} \;+\; \pi\cdot V[\,X\,\vert\,X>L\,]
+    \;+\; \pi\cdot E[\,X\,\vert\,X>L\,]^{2}(1-\pi)
+    \;-\; 2\pi(1-\pi)g(L)E[\,X\,\vert\, X > L\,]
+\\
+&=&       \pi\cdot V[\,X\,\vert\,X>L\,]
+    \;+\; \pi(1-\pi)\left\{
+          g(L)^{2} \;-\; 2 g(L) E[\,X\,\vert\, X > L\,] \;+\; E[\,X\,\vert\,X>L\,]^{2}
+          \right\}
+\\
+&=&       \pi\cdot V[\,X\,\vert\,X>L\,]
+    \;+\; \pi(1-\pi)\left( g(L) \;-\; E[\,X\,\vert\, X > L\,] \right)^{2}
+\end{eqnarray*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 2.23(b)}
+
+\vskip 0.3cm
+\noindent
+Recall that
+\begin{equation*}
+E[\,U\,]
+\;\; = \;\; g(L)(1 - \pi) \;+\; \pi E[\,X\,\vert\,X > L\,]
+\end{equation*}
+Hence, setting $E[\,U\,] = E[\,X\,]$ yields:
+\begin{equation*}
+E[\,X\,]
+\;\;=\;\; E[\,U\,]
+\;\;=\;\; g(L)(1 - \pi) \;+\; \pi E[\,X\,\vert\,X > L\,]
+\end{equation*}
+which implies
+\begin{eqnarray*}
+g(L)
+&=& \dfrac{1}{1-\pi}\left(E[\,X\,] - \pi\,E[\,X\,\vert\,X>L\,]\right) \\
+&=& \dfrac{1}{P(X<L)}\left(
+          \int_{0}^{\infty}\,x\,f_{X}(x)\,\dd x
+    \;-\; P(X>L)\,\int_{L}^{\infty}x\,\dfrac{f_{X}(x)}{P(X>L)}\,\dd x
+    \right) \\
+&=& \dfrac{1}{P(X<L)} \int_{0}^{L}\,x\,f_{X}(x)\,\dd x \\
+&=& \int_{0}^{L}\,x\,\dfrac{f_{X}(x)}{P(X<L)}\,\dd x \\
+&=& \int_{0}^{L}\,x\,f_{X|X<L}(x)\,\dd x \\
+&=& E[\,X\,\vert\,X<L\,]
+\end{eqnarray*}
+We conclude that the choice for $g(L)$ that will lead to $E[\,U\,] = E[\,X\,]$ is:
+\begin{equation*}
+g(L) \;=\; E[\,X\,\vert\,X<L\,]
+\end{equation*}
+
+\begin{eqnarray*}
+g(L)
+&=&       \dfrac{\int_{0}^{L}\,x\,f_{X}(x)\,\dd x}{P(X<L)}
+\;\;=\;\; \dfrac{\int_{0}^{L}\,x\,f_{X}(x)\,\dd x}{\int_{0}^{L}\,f_{X}(x)\,\dd x}
+\;\;=\;\; \dfrac{\int_{0}^{L}\,x\,e^{-x}\,\dd x}{\int_{0}^{L}\,e^{-x}\,\dd x}
+\;\;=\;\; \dfrac{\left[\,-e^{-x}(x+1)\,\right]_{0}^{L}}{\left[\,-e^{-x}\,\right]_{0}^{L}}
+\\
+&=& \dfrac{1 - e^{-L}(L+1)}{1 - e^{-L}}
+\\
+\end{eqnarray*}
+For $L = 0.05$, we have
+\begin{equation*}
+g(0.05) \;=\; \dfrac{1 - e^{-0.05}(0.05+1)}{1 - e^{-0.05}} \;\approx\; 0.02479168
+\end{equation*}
+
