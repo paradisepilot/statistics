@@ -1,0 +1,159 @@
+
+\noindent
+\textbf{Exercise 2.27(a)}
+
+\vskip 0.3cm
+\noindent
+Let $Y := \min\{\,X,\,N\,\}$ be the number of units actually sold.
+Note that $\textnormal{range}(Y) = (\,0,\,N\,]$.
+Let $Z$ be the profit.  Then,
+\begin{equation*}
+Z
+\;\; = \;\; GY - L(N-Y)
+\;\; = \;\; (G+L) Y - LN
+\end{equation*}
+Then,
+\begin{equation*}
+E[\,Z\,] = (G+L)\,E[\,Y\,] - LN
+\end{equation*}
+We next compute $E[\,Y\,]$.  To this end, we first need to compute the probability density measure
+of $Y$.  Now,
+\begin{eqnarray*}
+          P(Y \leq y)
+&=&       P\!\left(\,\min\{\,X,\,N\,\} \leq y\,\right)
+\;\;=\;\; P(X \leq y \;\;\textnormal{or}\;\; N \leq y) \\
+&=&       P(X \leq y) + P(N \leq y) - P(X \leq y \;\;\textnormal{and}\;\; N \leq y) \\
+&=&       \left\{\begin{array}{ll}
+          P(X \leq y) + 1 - P(X \leq y), & \textnormal{for}\;\; N \leq y \\
+          P(X \leq y) + 0 - 0,           & \textnormal{for}\;\; N >    y \\
+          \end{array}\right. \\
+&=&       \left\{\begin{array}{cl}
+          P(X \leq y), & \textnormal{for}\;\; 0 < y < N \\
+          1,           & \textnormal{for}\;\; y  = N    \\
+          \end{array}\right.
+\end{eqnarray*}
+\begin{equation*}
+\dfrac{\dd}{\dd y}P(Y \leq y)
+\;\;=\;\;
+\left\{\begin{array}{cl}
+f_{X}(y),               & \textnormal{for}\;\; 0 < y < N \\
+\textnormal{undefined}, & \textnormal{for}\;\; y  = N    \\
+\end{array}\right.
+\end{equation*}
+Thus, we now see that the probability measure $\mu_{Y}$ of $Y$ is representable by the probability
+density function $f_{X}(y)$ for $y \in (\,0,\,N\,)$, and it restricts to the point mass measure
+at $y = N$ with $\mu_{Y}(N) = 1 - F_{X}(N)$.  In other words,
+\begin{equation*}
+\mu_{Y}
+\;\;=\;\;
+\left\{\begin{array}{cl}
+f_{X}(y),     & \textnormal{for}\;\; 0 < y < N \\
+1 - F_{X}(N), & \textnormal{for}\;\; y = N \\
+\end{array}\right.
+\end{equation*}
+Thus,
+\begin{equation*}
+E[\,Y\,]
+\;\;=\;\; \int_{(0,\,N]}y\,\dd\mu_{Y}
+\;\;=\;\; \int_{0}^{N}\,y\,f_{X}(y)\,\dd y + N\cdot\mu_{X}(N)
+\;\;=\;\; \int_{0}^{N}\,y\,f_{X}(y)\,\dd y + N\cdot(1-F_{X}(N))
+\end{equation*}
+And,
+\begin{eqnarray}
+E[\,Z\,]
+&=&        E[\,(G+L)Y - LN\,]
+\;\;=\;\; (G+L)E[\,Y\,] - LN
+\\
+&=&       (G+L)\left\{\,\int_{0}^{N}\,y\,f_{X}(y)\,\dd y + N\cdot(1-F_{X}(N))\,\right\} - LN
+\label{exercise-2-27:EZ}
+\end{eqnarray}
+\begin{eqnarray*}
+\dfrac{\dd}{\dd N}E[\,Z\,]
+&=& (G+L)\left\{\,N\,f_{X}(N) + (1-F_{X}(N)) - N\,f_{X}(N)\,\right\} - L \\
+&=& (G+L)\left(\,1-F_{X}(N)\,\right) - L \\
+&=& G + L - (G+L) \cdot F_{X}(N) - L \\
+&=& G - (G+L) \cdot F_{X}(N) \\
+\end{eqnarray*}
+\begin{equation*}
+\dfrac{\dd^{2}}{\dd N^{2}}E[\,Z\,]
+\;\;=\;\; - (G+L) \cdot f_{X}(N) \;\; < \;\; 0
+\end{equation*}
+Noting that
+\begin{equation*}
+\dfrac{\dd}{\dd N}E[\,Z\,] \;=\; 0
+\quad\Longrightarrow\quad
+F_{X}(N) \;=\; \dfrac{G}{G+L} \\
+\end{equation*}
+we see that $N_{0} := F_{X}^{-1}\left(\dfrac{G}{G+L}\right)$ is a local maximum
+of $E[\,Z\,]$ as a function of $N$ (given by \eqref{exercise-2-27:EZ}).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 2.27(b)}
+
+\vskip 0.5cm
+\noindent
+Recall:
+\begin{equation*}
+\int\,a x \exp\left(-b x^{2} \right)\,\dd x
+\;\;=\;\;
+-\dfrac{a \exp\left(-b x^{2}\right)}{2b}
+\end{equation*}
+Hence, if
+\begin{equation*}
+f_{X}(x)
+\;\;=\;\;
+\left(2 \times 10^{-10}\right)\,x\,\exp\left\{\,-\left(10^{-10}\right)\,x^{2}\,\right\},
+\quad x \in (\,0,\,\infty\,)
+\end{equation*}
+then
+\begin{eqnarray*}
+F_{X}(x)
+&=& \int_{0}^{x}\,f_{X}(\xi)\,\dd\xi
+\;\;=\;\; \int_{0}^{x}\,
+\left(2 \times 10^{-10}\right)\,\xi\,\exp\left\{\,-\left(10^{-10}\right)\,\xi^{2}\,\right\}
+\,\dd\xi \\
+&=&
+\left[
+-\dfrac{2 \times 10^{-10} \times \exp\left(-\left(10^{-10}\right)\xi^{2}\right)}{2 \times 10^{-10}}
+\right]_{0}^{x}
+\;\;=\;\;
+- \left[ \exp\left(-\left(10^{-10}\right)\xi^{2}\right) \right]_{0}^{x} \\
+&=&
+1 - \exp\left(-x^{2}/10^{10}\right)
+\end{eqnarray*}
+Now, seek $x_{0}$ such that
+\begin{eqnarray*}
+&&
+\dfrac{G}{G+L} \;\; = \;\; F_{X}(x_{0}) \;\; = \;\; 1 - \exp\left(-x_{0}^{2}/10^{10}\right)
+\\
+&\Longrightarrow&
+\exp\left(-x_{0}^{2}/10^{10}\right) \;\;=\;\; 1 - \dfrac{G}{G+L} \;\;=\;\; \dfrac{L}{G+L}
+\\
+&\Longrightarrow&
+-\dfrac{x_{0}^{2}}{10^{10}} \;\;=\;\; \log\left(\dfrac{L}{G+L}\right)
+\\
+&\Longrightarrow&
+x_{0}^{2} \;\;=\;\; - 10^{10}\cdot\log\left(\dfrac{L}{G+L}\right)
+\\
+&\Longrightarrow&
+x_{0} \;\;=\;\; 10^{5}\,\left(\log\left(\dfrac{G+L}{L}\right)\right)^{1/2}
+\\
+\end{eqnarray*}
+With $G = 4$, and $L = 1$, we have:
+\begin{equation*}
+x_{0}
+\;\; = \;\;
+10^{5} \left(\log\left(\dfrac{4+1}{1}\right)\right)^{1/2}
+\;\; = \;\;       10^{5} \left(\log 5\right)^{1/2}
+\;\; \approx \;\; 10^{5} \times 1.268636
+\;\; \approx \;\; 126863.6
+\end{equation*}
+The number of units to produce that maximizes the expected value
+$E[\,Z\,]$ of profit $Z$ is, roughly:
+\begin{equation*}
+N = 126,864
+\end{equation*}
+\qed
+
