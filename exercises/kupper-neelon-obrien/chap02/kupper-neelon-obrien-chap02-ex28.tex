@@ -1,0 +1,71 @@
+
+\noindent
+\textbf{Exercise 2.28(a)}
+
+\vskip 0.3cm
+\noindent
+First, note that
+\begin{equation*}
+E[\,P_{2}\,] \; = \; \alpha P_{1} \pi + \beta P_{1} (1 - \pi)
+\; = \; P_{1}\left(\alpha \pi + \beta (1 - \pi)\right)
+\end{equation*}
+Similarly, note that
+\begin{equation*}
+E[\,P_{3}\,\vert\,P_{2}]
+\; = \; P_{2}\left(\alpha \pi + \beta (1 - \pi)\right)
+\end{equation*}
+Hence,
+\begin{equation*}
+E[\,P_{3}\,]
+\;=\; E[\,E[\,P_{3}\,\vert\,P_{2}\,]\,]
+\;=\; E[\,P_{2}\left(\alpha \pi + \beta (1 - \pi)\right)\,]
+\;=\; \left(\alpha \pi + \beta (1 - \pi)\right) E[\,P_{2}\,]
+\;=\; P_{1}\cdot\left(\alpha \pi + \beta (1 - \pi)\right)^{2}
+\end{equation*}
+We now see that an induction argument yields:
+\begin{equation*}
+E[\,P_{k}\,]
+\;=\; P_{1}\cdot\left(\alpha \pi + \beta (1 - \pi)\right)^{k-1},
+\quad k = 2, 3, 4, \ldots
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 2.28(b)}
+
+\vskip 0.5cm
+\noindent
+We seek the smallest value of $\alpha$ (treating all other quantities fixed) such that:
+\begin{equation*}
+P_{1}\cdot\left(\alpha \pi + \beta (1 - \pi)\right)^{k-1}
+\;=\;
+E[\,P_{k}\,]
+\;\geq\; P^{*}
+\end{equation*}
+which in turn implies:
+\begin{eqnarray*}
+&& \alpha\pi + \beta(1-\pi) \;\geq\; \left(\dfrac{P^{*}}{P_{1}}\right)^{\dfrac{1}{k-1}} \\
+\Longrightarrow && \alpha \;\geq\;
+                   \dfrac{1}{\pi}\left\{\left(\dfrac{P^{*}}{P_{1}}\right)^{1/(k-1)} - \beta(1-\pi)\right\}
+\end{eqnarray*}
+Thus, the smallest value $\alpha^{*}$ of $\alpha$ we are seeking is:
+\begin{equation*}
+\alpha^{*} \;=\; \dfrac{1}{\pi}\left\{\left(\dfrac{P^{*}}{P_{1}}\right)^{1/(k-1)} - \beta(1-\pi)\right\}
+\end{equation*}
+And, it is clear that
+\begin{equation*}
+\lim_{k\rightarrow\infty}\alpha^{*} \;=\; \dfrac{1}{\pi}\left(1 - \beta(1-\pi)\right)
+\end{equation*}
+For $\pi = 0.90$ and $\beta = 1.05$,
+\begin{equation*}
+            \lim_{k\rightarrow\infty}\alpha^{*}
+\;=\;       \dfrac{1}{0.90}\left(1 - 1.05(1-0.90) \right)
+\;\approx\; 0.9944444
+\end{equation*}
+
+
+
+
+
+
