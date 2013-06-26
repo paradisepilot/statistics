@@ -214,6 +214,95 @@ Hence,
           \cdot
           \left\{\,\exp\left(\,\dfrac{\sigma^{2}}{n}\,\right)-1\,\right\} \\
 \end{eqnarray*}
+So,
+\begin{eqnarray*}
+          \textnormal{Cov}\left(\,\overline{Y_{a}}\,,\,\overline{Y}_{g}\,\right)
+&=&       \textnormal{Cov}\left(\,
+          \dfrac{1}{n}\sum_{i=1}^{n}Y_{i}
+          \,,\,
+          \overline{Y}_{g}
+          \,\right)
+\;\;=\;\; \dfrac{1}{n}\sum_{i=1}^{n}
+          \textnormal{Cov}\left(\,
+          Y_{i}
+          \,,\,
+          \overline{Y}_{g}
+          \,\right)
+\;\;=\;\; \dfrac{n}{n}\exp\!\left\{
+          2\mu \,+\,
+          \dfrac{\sigma^{2}}{2}
+          \left(1+\frac{1}{n}\right)
+          \right\}
+          \cdot
+          \left\{\,\exp\left(\,\dfrac{\sigma^{2}}{n}\,\right)-1\,\right\} \\
+\\
+&=&       \exp\!\left\{
+          2\mu \,+\,
+          \dfrac{\sigma^{2}}{2}
+          \left(1+\frac{1}{n}\right)
+          \right\}
+          \cdot
+          \left\{\,\exp\left(\,\dfrac{\sigma^{2}}{n}\,\right)-1\,\right\} \\
+\end{eqnarray*}
+Lastly,
+\begin{eqnarray*}
+          \textnormal{Corr}\left(\,\overline{Y_{a}}\,,\,\overline{Y}_{g}\,\right)
+&=&       \dfrac{\textnormal{Cov}\left(\,\overline{Y_{a}}\,,\,\overline{Y}_{g}\,\right)}
+          {\sqrt{V\!\left[\,\overline{Y}_{a}\,\right]\cdot V\!\left[\,\overline{Y}_{g}\,\right]}}
+\\
+&=&       \dfrac{
+          \exp\!\left\{
+          2\mu \,+\,
+          \dfrac{\sigma^{2}}{2}
+          \left(1+\frac{1}{n}\right)
+          \right\}
+          \cdot
+          \left\{\,\exp\left(\,\dfrac{\sigma^{2}}{n}\,\right)-1\,\right\}
+          }{
+          \sqrt{
+          \dfrac{1}{n}\left(e^{2\mu+\sigma^{2}}\right)\cdot\left(e^{\sigma^{2}}-1\right)
+          \cdot
+          \left(\,e^{2\mu+\frac{\sigma^{2}}{n}}\,\right)
+          \cdot
+          \left(e^{\frac{\sigma^{2}}{n}} - 1\right)
+          }
+          }
+\\
+&=&       \dfrac{
+          \sqrt{n}\cdot
+          \exp\!\left\{
+          2\mu \,+\,
+          \dfrac{\sigma^{2}}{2}
+          \left(1+\frac{1}{n}\right)
+          \right\}
+          \cdot
+          \left\{\,\exp\left(\,\dfrac{\sigma^{2}}{n}\,\right)-1\,\right\}
+          }{
+          \left(e^{\mu+\frac{\sigma^{2}}{2}}\right)
+          \cdot
+          \sqrt{e^{\sigma^{2}}-1}
+          \cdot
+          \left(\,e^{\mu+\frac{\sigma^{2}}{2n}}\,\right)
+          \cdot
+          \sqrt{e^{\frac{\sigma^{2}}{n}} - 1}
+          }
+\\
+&=&       \dfrac{
+          \sqrt{n}\cdot\left\{\,\exp\left(\,\dfrac{\sigma^{2}}{n}\,\right)-1\,\right\}
+          }{
+          \sqrt{e^{\sigma^{2}}-1}
+          \cdot
+          \sqrt{e^{\frac{\sigma^{2}}{n}} - 1}
+          }
+\\
+&=&       \sqrt{\dfrac{
+          n\cdot
+          \left(\,e^{\frac{\sigma^{2}}{n}}-1\,\right)
+          }{
+          e^{\sigma^{2}}-1
+          }}
+\\
+\end{eqnarray*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
