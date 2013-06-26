@@ -1,0 +1,104 @@
+
+\noindent
+\textbf{Exercise 3.12}
+
+\vskip 0.3cm
+\noindent
+
+Recall that
+\begin{equation*}
+\textnormal{Corr}\left(\overline{Y}_{a},\overline{Y}_{g}\right)
+\;\;=\;\;
+\dfrac{\textnormal{Cov}\left(\overline{Y}_{a},\overline{Y}_{g}\right)}
+{\sqrt{V\!\left[\,\overline{Y}_{a}\,\right]\cdot V\!\left[\,\overline{Y}_{g}\,\right]}}
+\end{equation*}
+We first compute $V\!\left[\,\overline{Y}_{a}\,\right]$, followed by
+$V\!\left[\,\overline{Y}_{g}\,\right]$, and then
+$\textnormal{Cov}\left(\overline{Y}_{a},\overline{Y}_{g}\right)$.
+Now, if $X \sim N(\mu,\sigma^{2})$ and $Y = \exp(X)$, then
+\begin{equation*}
+Y \sim \textnormal{LogNormal}(\mu,\sigma^{2})
+\end{equation*}
+and we then have
+\begin{equation*}
+E[\,Y\,] \;\; = \;\; e^{\mu + \frac{\sigma^{2}}{2}}
+\quad\textnormal{and}\quad
+V[\,Y\,]
+\;\; = \;\; E[\,Y\,]^{2}\cdot\left(e^{\sigma^{2}}-1\right)
+\;\; = \;\; \left(e^{\mu+\frac{\sigma^{2}}{2}}\right)^{2}\cdot\left(e^{\sigma^{2}}-1\right)
+\;\; = \;\; \left(e^{2\mu+\sigma^{2}}\right)\cdot\left(e^{\sigma^{2}}-1\right)
+\end{equation*}
+Hence,
+\begin{equation*}
+V\left[\,\overline{Y}_{a}\,\right]
+\;\; = \;\;
+V\left[\,\dfrac{1}{n}\sum_{i=1}^{n}Y_{i}\,\right]
+\;\; = \;\;
+\dfrac{1}{n^{2}}\sum_{i=1}^{n}V\left[\,Y_{i}\,\right]
+\;\; = \;\;
+\dfrac{1}{n}V\left[\,Y\,\right]
+\;\; = \;\;
+\dfrac{1}{n} \left(e^{2\mu+\sigma^{2}}\right)\cdot\left(e^{\sigma^{2}}-1\right)
+\end{equation*}
+Next, note that, since $\overline{Y}_{g} = \left(\,\prod_{i=1}^{n}Y_{i}\,\right)^{1/n}$,
+we have
+\begin{equation*}
+\log\left(\,\overline{Y}_{g}\,\right)
+\;\; = \;\;
+\log\left[\left(\prod_{i=1}^{n}Y_{i}\right)^{1/n}\right]
+\;\; = \;\;
+\dfrac{1}{n}\sum_{i=1}^{n}\log\left(\,Y_{i}\,\right)
+\;\; = \;\;
+\dfrac{1}{n}\sum_{i=1}^{n}X_{i}
+\;\; = \;\;
+\overline{X}_{n}
+\;\; \sim \;\;
+N\!\left(\,\mu\,,\,\dfrac{\sigma^{2}}{n}\,\right)
+\end{equation*}
+Thus,
+\begin{equation*}
+\overline{Y}_{g}
+\;\; = \;\;
+e^{\overline{X}_{n}}
+\;\; = \;\;
+\textnormal{LogNormal}\!\left(\,\mu\,,\,\dfrac{\sigma^{2}}{n}\,\right)
+\end{equation*}
+Hence,
+\begin{equation*}
+V\!\left[\,\overline{Y}_{g}\,\right]
+\;\; = \;\;
+\left[\,e^{\mu+\frac{\sigma^{2}}{2n}}\,\right]^{2}
+\cdot
+\left(e^{\frac{\sigma^{2}}{n}} - 1\right)
+\;\; = \;\;
+\left[\,e^{2\mu+\frac{\sigma^{2}}{n}}\,\right]
+\cdot
+\left(e^{\frac{\sigma^{2}}{n}} - 1\right)
+\end{equation*}
+Next,
+\begin{equation*}
+\textnormal{Cov}\left(\,\overline{Y_{a}}\,,\,\overline{Y}_{g}\,\right)
+\;\;=\;\;
+\textnormal{Cov}\left(\,
+\dfrac{1}{n}\sum_{i=1}^{n}Y_{i}
+\,,\,
+\overline{Y}_{g}
+\,\right)
+\;\;=\;\;
+\dfrac{1}{n}\sum_{i=1}^{n}
+\textnormal{Cov}\left(\,
+Y_{i}
+\,,\,
+\overline{Y}_{g} %\left(\,\prod_{k=1}^{n}Y_{k}\right)^{1/n}
+\,\right)
+\;\;=\;\;
+\dfrac{1}{n}\sum_{i=1}^{n}
+\left\{\,
+E\!\left[\,Y_{i}\cdot \overline{Y}_{g}\,\right]
+\;-\;
+E\!\left[\,Y_{i}\,\right]\cdot E\!\left[\overline{Y}_{g}\,\right]
+\,\right\}
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
