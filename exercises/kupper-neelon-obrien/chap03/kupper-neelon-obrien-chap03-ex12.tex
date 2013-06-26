@@ -7,9 +7,9 @@
 
 Recall that
 \begin{equation*}
-\textnormal{Corr}\left(\overline{Y}_{a},\overline{Y}_{g}\right)
+\textnormal{Corr}\left(\,\overline{Y}_{a},\overline{Y}_{g}\,\right)
 \;\;=\;\;
-\dfrac{\textnormal{Cov}\left(\overline{Y}_{a},\overline{Y}_{g}\right)}
+\dfrac{\textnormal{Cov}\left(\,\overline{Y}_{a},\overline{Y}_{g}\,\right)}
 {\sqrt{V\!\left[\,\overline{Y}_{a}\,\right]\cdot V\!\left[\,\overline{Y}_{g}\,\right]}}
 \end{equation*}
 We first compute $V\!\left[\,\overline{Y}_{a}\,\right]$, followed by
@@ -65,6 +65,10 @@ e^{\overline{X}_{n}}
 \end{equation*}
 Hence,
 \begin{equation*}
+E\!\left[\,\overline{Y}_{g}\,\right]
+\;\;=\;\;
+\exp\left\{\,\mu+\frac{\sigma^{2}}{2n}\,\right\}
+\quad\textnormal{and}\quad
 V\!\left[\,\overline{Y}_{g}\,\right]
 \;\; = \;\;
 \left[\,e^{\mu+\frac{\sigma^{2}}{2n}}\,\right]^{2}
@@ -89,7 +93,7 @@ Next,
 \textnormal{Cov}\left(\,
 Y_{i}
 \,,\,
-\overline{Y}_{g} %\left(\,\prod_{k=1}^{n}Y_{k}\right)^{1/n}
+\overline{Y}_{g}
 \,\right)
 \;\;=\;\;
 \dfrac{1}{n}\sum_{i=1}^{n}
@@ -99,6 +103,117 @@ E\!\left[\,Y_{i}\cdot \overline{Y}_{g}\,\right]
 E\!\left[\,Y_{i}\,\right]\cdot E\!\left[\overline{Y}_{g}\,\right]
 \,\right\}
 \end{equation*}
+Now,
+\begin{eqnarray*}
+          E\!\left[\,Y_{i}\cdot \overline{Y}_{g}\,\right]
+&=&       E\!\left[\,Y_{i}\cdot \left(\,\prod_{k=1}^{n}Y_{k}\right)^{1/n} \,\right]
+\;\;=\;\; E\!\left[\,Y_{i}\cdot \prod_{k=1}^{n}Y_{k}^{1/n} \,\right]
+\;\;=\;\; E\!\left[\,Y_{i}^{1+\frac{1}{n}}\cdot \underset{k \neq i}{\prod_{k=1}^{n}}Y_{k}^{1/n} \,\right] \\
+&=&       E\!\left[\,Y_{i}^{1+\frac{1}{n}}\,\right]
+          \cdot
+          E\!\left[\,\underset{k \neq i}{\prod_{k=1}^{n}}Y_{k}^{1/n} \,\right]
+          \quad\textnormal{(by independence of $Y_{1},\ldots,Y_{n}$)} \\
+\end{eqnarray*}
+Now, note that
+\begin{equation*}
+\log\left(\,Y^{1+\frac{1}{n}}\,\right)
+\;\;=\;\;
+\left(1+\dfrac{1}{n}\right)\log(Y)
+\;\;=\;\;
+\left(1+\dfrac{1}{n}\right)X
+\;\;\sim\;\;
+N\!\left(\,\left(1+\dfrac{1}{n}\right)\mu\,,\,\left(1+\dfrac{1}{n}\right)^{2}\sigma^{2}\,\right)
+\end{equation*}
+Hence,
+\begin{equation*}
+Y^{1+\frac{1}{n}} \sim
+\textnormal{LogNormal}
+\!\left(\,\left(1+\dfrac{1}{n}\right)\mu\,,\,\left(1+\dfrac{1}{n}\right)^{2}\sigma^{2}\,\right)
+\end{equation*}
+and
+\begin{equation*}
+E\!\left[\,Y^{1+\frac{1}{n}}\,\right]
+\;\; = \;\;
+\exp\!\left\{\,
+\left(1+\frac{1}{n}\right)\mu
+\;+\;
+\left(1+\frac{1}{n}\right)^{2}\dfrac{\sigma^{2}}{2}
+\,\right\}
+\end{equation*}
+On the other hand,
+\begin{equation*}
+\log\!\left[\,\underset{k \neq i}{\prod_{k=1}^{n}}Y_{k}^{1/n} \,\right]
+\;\;=\;\;
+\log\!\left[\,\left(\,\underset{k \neq i}{\prod_{k=1}^{n}}Y_{k}\,\right)^{1/n} \,\right]
+\;\;=\;\; \dfrac{1}{n} \underset{k\neq i}{\sum_{k=1}^{n}}\log Y_{k}
+\;\;=\;\; \dfrac{1}{n} \underset{k\neq i}{\sum_{k=1}^{n}}X_{k}
+\;\;\sim\;\;
+N\!\left(\,\left(\dfrac{n-1}{n}\right)\mu\,,\,\left(\dfrac{n-1}{n^{2}}\right)\sigma^{2}\,\right)
+\end{equation*}
+Thus,
+\begin{equation*}
+\underset{k \neq i}{\prod_{k=1}^{n}}\,Y_{k}^{1/n}
+\;\;\sim\;\;
+\textnormal{LogNormal}
+\!\left(\,\left(\dfrac{n-1}{n}\right)\mu\,,\,\left(\dfrac{n-1}{n^{2}}\right)\sigma^{2}\,\right)
+\end{equation*}
+Hence,
+\begin{equation*}
+E\!\left[\,\underset{k \neq i}{\prod_{k=1}^{n}}\,Y_{k}^{1/n}\,\right]
+\;\;=\;\;
+\exp
+\!\left\{\,
+\left(\dfrac{n-1}{n}\right)\mu\;+\;\left(\dfrac{n-1}{n^{2}}\right)\dfrac{\sigma^{2}}{2}
+\,\right\}
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+          \textnormal{Cov}\left(\, Y_{i} \,,\, \overline{Y}_{g} \,\right)
+&=&       E\!\left[\,Y_{i}\cdot \overline{Y}_{g}\,\right]
+          \;-\;
+          E\!\left[\,Y_{i}\,\right]\cdot E\!\left[\overline{Y}_{g}\,\right]
+\;\;=\;\; E\!\left[\,Y_{i}^{1+\frac{1}{n}}\,\right]
+          \cdot
+          E\!\left[\,\underset{k \neq i}{\prod_{k=1}^{n}}Y_{k}^{1/n} \,\right]
+          \;-\;
+          E\!\left[\,Y_{i}\,\right]\cdot E\!\left[\overline{Y}_{g}\,\right] \\
+&=&       \exp\!\left\{
+          \left(1+\frac{1}{n}\right)\mu
+          \,+\,
+          \left(1+\frac{1}{n}\right)^{2}\dfrac{\sigma^{2}}{2}
+          \right\}
+          \cdot
+          \exp
+          \!\left\{
+          \left(\dfrac{n-1}{n}\right)\mu+\left(\dfrac{n-1}{n^{2}}\right)\dfrac{\sigma^{2}}{2}
+          \right\}
+          \; - \;
+          \exp\left\{\mu + \frac{\sigma^{2}}{2} \right\}
+          \exp\left\{\mu + \frac{\sigma^{2}}{2n}\right\} \\
+&=&       \exp\!\left\{
+          \left(1+\frac{1}{n}\right)\mu
+          \,+\,
+          \left(1+\frac{2}{n}+\dfrac{1}{n^{2}}\right)\dfrac{\sigma^{2}}{2}
+          \,+\,
+          \left(1-\dfrac{1}{n}\right)\mu+\left(\dfrac{1}{n}-\dfrac{1}{n^{2}}\right)\dfrac{\sigma^{2}}{2}
+          \right\}
+          \; - \;
+          \exp\left\{2\mu + \frac{\sigma^{2}}{2}\left(1+\frac{1}{n}\right) \right\} \\
+&=&       \exp\!\left\{
+          2\mu \,+\,
+          \dfrac{\sigma^{2}}{2}
+          \left(1+\frac{3}{n}\right)
+          \right\}
+          \; - \;
+          \exp\left\{2\mu + \frac{\sigma^{2}}{2}\left(1+\frac{1}{n}\right) \right\} \\
+&=&       \exp\!\left\{
+          2\mu \,+\,
+          \dfrac{\sigma^{2}}{2}
+          \left(1+\frac{1}{n}\right)
+          \right\}
+          \cdot
+          \left\{\,\exp\left(\,\dfrac{\sigma^{2}}{n}\,\right)-1\,\right\} \\
+\end{eqnarray*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
