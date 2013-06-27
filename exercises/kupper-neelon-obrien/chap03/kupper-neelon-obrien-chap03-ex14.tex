@@ -6,6 +6,9 @@
 \noindent
 \textbf{Solution 1 (without using moment generating functions)}
 
+\vskip 0.3cm
+\noindent
+First, note that for $k = 0, 1, 2, \ldots$, we have:
 \begin{eqnarray*}
           P(\,Y_{p} = k\,)
 &=&       \sum_{y=0}^{\infty}\,P(\,Y_{p} = k\,\vert\,Y=y\,)\cdot P(Y = y)
@@ -42,7 +45,12 @@
           \cdot
           ((1-\pi)\lambda L)^{k}
           \cdot e^{(1-\pi)\lambda L}
+\\
+&=&       e^{-\lambda L+\lambda L - \pi\lambda L}\,\dfrac{\left(\pi\lambda L\right)^{k}}{k!}
+\\
+&=&       e^{-\pi\lambda L}\,\dfrac{\left(\pi\lambda L\right)^{k}}{k!}
 \end{eqnarray*}
+Thus, we see that $Y_{p} \sim \textnormal{Poisson}(\pi\lambda L)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
