@@ -1,0 +1,48 @@
+
+\noindent
+\textbf{Exercise 3.14}
+
+\vskip 0.3cm
+\noindent
+\textbf{Solution 1 (without using moment generating functions)}
+
+\begin{eqnarray*}
+          P(\,Y_{p} = k\,)
+&=&       \sum_{y=0}^{\infty}\,P(\,Y_{p} = k\,\vert\,Y=y\,)\cdot P(Y = y)
+\;\;=\;\; \sum_{y=k}^{\infty}\,P(\,Y_{p} = k\,\vert\,Y=y\,)\cdot P(Y = y)
+\\
+&=&       \sum_{y=k}^{\infty}
+          \left(\!\begin{array}{c} y \\ k \end{array}\!\right)
+          \pi^{k} (1 - \pi)^{y-k} \cdot e^{-\lambda L} \dfrac{(\lambda L)^{y}}{y!}
+\\
+&=&
+          e^{-\lambda L}\,\left(\dfrac{\pi}{1-\pi}\right)^{k}\cdot
+          \sum_{y=k}^{\infty}\,
+          \dfrac{y!}{k!\,(y-k)!}\cdot\dfrac{((1-\pi)\lambda L)^{y}}{y!}
+\\
+&=&
+          e^{-\lambda L}\,\left(\dfrac{\pi}{1-\pi}\right)^{k}\dfrac{1}{k!}
+          \cdot
+          \sum_{y=k}^{\infty}\,\dfrac{((1-\pi)\lambda L)^{y}}{(y-k)!}
+\\
+&=&
+          e^{-\lambda L}\,\left(\dfrac{\pi}{1-\pi}\right)^{k}\dfrac{1}{k!}
+          \cdot
+          \sum_{m=0}^{\infty}\,\dfrac{((1-\pi)\lambda L)^{m+k}}{m!}
+\\
+&=&
+          e^{-\lambda L}\,\left(\dfrac{\pi}{1-\pi}\right)^{k}\dfrac{1}{k!}
+          \cdot
+          ((1-\pi)\lambda L)^{k}
+          \cdot
+          \sum_{m=0}^{\infty}\,\dfrac{((1-\pi)\lambda L)^{m}}{m!}
+\\
+&=&
+          e^{-\lambda L}\,\left(\dfrac{\pi}{1-\pi}\right)^{k}\dfrac{1}{k!}
+          \cdot
+          ((1-\pi)\lambda L)^{k}
+          \cdot e^{(1-\pi)\lambda L}
+\end{eqnarray*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
