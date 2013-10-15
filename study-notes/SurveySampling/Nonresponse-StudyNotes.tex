@@ -1,0 +1,157 @@
+
+\documentclass{article}
+
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage{doublespace}
+
+\usepackage{KenChuArticleStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+%\input{../CourseSemesterUnique}
+
+%\rhead[\CourseSemesterUnique]{Kenneth Chu (300517641)}
+%\lhead[Kenneth Chu (300517641)]{\CourseSemesterUnique}
+\rhead[Study Notes]{Kenneth Chu}
+\lhead[Kenneth Chu]{Study Notes}
+\chead[]{{\Large\bf Nonresponse (Survey Sampling Theory)} \\
+\vskip 0.1cm \normalsize \today}
+\lfoot[]{}
+\cfoot[]{}
+\rfoot[]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Three Types of Nonresponse}
+\setcounter{theorem}{0}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Subsampling: a technique to reduce nonresponse (or produce unbiased estimates)}
+\setcounter{theorem}{0}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Randomized Response: a technique to reduce nonresponse}
+\setcounter{theorem}{0}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Nonresponse- \& Poststratification-adjusted Sampling Weights}
+\setcounter{theorem}{0}
+
+First, partition the population $\mathcal{U} = \left\{\,1,2,\ldots,N\,\right\}$ into $H$ disjoint \emph{poststrata}, i.e.\; 
+$\mathcal{U} = \displaystyle{\bigsqcup_{\beta=1}^{H}}\,\mathcal{P}_{\beta}$\,.  For each $i \in \mathcal{U}$, let $\mathcal{P}_{\beta(i)}$ be the unique poststratum that contains $i$.  Let $N_{\beta} \,:=\, \#(\mathcal{P}_{\beta})$ be the number of units in the poststratum $\mathcal{P}_{\beta}$.  \\
+
+\noindent
+Next, let $\mathcal{S}$ be any realized sample. \\
+
+\vskip 0.8cm
+\begin{center}
+\begin{minipage}{6in}
+\noindent
+\textbf{Response distribution conditional on the realized sample $\mathcal{S}$\,:}
+\begin{equation*}
+p_{\mathcal{S}} : \textnormal{PowerSet}(\mathcal{S}) \longrightarrow [0,\infty)
+\end{equation*}
+
+\noindent
+For each $i \in \mathcal{S}$, the \emph{response probabilty} of $i$ is given by:
+\begin{equation*}
+p_{\mathcal{S}}\!\left(i\right)
+\; := \;
+\textnormal{Pr}\!\left(\,i\in\mathcal{R}\,|\,\mathcal{S}\,\right)
+\; = \; 
+\sum_{\mathcal{R}\ni i}\,p_{\mathcal{S}}\!\left(\mathcal{R}\right)
+\end{equation*}
+
+\noindent
+\textbf{We now make the assumption (i.e. model) on the response distribution $p_{\mathcal{S}}$\,:}\\
+Suppose $\mathcal{S} = \displaystyle{\bigsqcup_{\alpha=1}^{A(\mathcal{S})}}\,\mathcal{H}_{\alpha}$ can be partitioned such that the elements in each $\mathcal{H}_{\alpha}$ all have the same response probability. \\
+\end{minipage}
+\end{center}
+\vskip 0.5cm
+
+The disjoint subsets $\mathcal{H}_{\alpha}, \alpha=1,2,\ldots,A(\mathcal{S})$, are called the \emph{response homogeneity groups} of the realized sample $\mathcal{S}$.  We emphasize that the number $A(\mathcal{S})$ of response homogeneity groups may vary from sample to sample. \\
+
+Let $\mathcal{R} \subset \mathcal{S}$ be a response set, selected from $\textnormal{PowerSet}(\mathcal{S})$ according to the $\mathcal{S}$-conditional response distribution $p_{\mathcal{S}}$.  Then, $\mathcal{R} = \displaystyle{\bigsqcup_{\alpha=1}^{A(\mathcal{S})}}\,\mathcal{R} _{\alpha}$, where $\mathcal{R}_{\alpha} := \mathcal{H}_{\alpha}\cap\mathcal{R}$. \\
+
+For each $i \in \mathcal{R}$, let $\alpha(i) \in \left\{\,1,2,\ldots,A\,\right\}$ be the unique element such that $i \in \mathcal{R}_{\alpha(i)} \subset  \mathcal{H}_{\alpha(i)}$.  In other words, for each $i \in \mathcal{R}$, we let $\mathcal{H}_{\alpha(i)}$ denote the unique response homogeneity group that contains $i$, and $\mathcal{R}_{\alpha(i)} \subset \mathcal{H}_{\alpha(i)}$ is the respondent subset of $\mathcal{H}_{\alpha(i)}$. \\
+
+\begin{eqnarray*}
+W_{1,i} & := & \dfrac{1}{\pi_{i}}\,, \quad\textnormal{for}\;\; i \in \mathcal{U} = \left\{\,1,2,\ldots,N\,\right\} \\ \\
+W_{2,i} & := &
+\left\{\begin{array}{cl}
+W_{1,i}\cdot\dfrac{\displaystyle{\sum_{j\in \mathcal{H}_{\alpha(i)}}} W_{1,j}}{\displaystyle{\sum_{j\in\mathcal{R}\cap\mathcal{H}_{\alpha(i)}}} W_{1,j}}\,, & \textnormal{if} \;\; i \in \mathcal{R} = \displaystyle{\bigsqcup_{\alpha=1}^{A(\mathcal{S})}}\,\mathcal{R}_{\alpha}
+\\ \\
+0\,,& \textnormal{if} \;\; i \notin \mathcal{R}
+\end{array}\right.
+\\ \\
+W_{3,i} & := &
+W_{2,i}\cdot\dfrac{N_{\beta(i)}}{\displaystyle{\sum_{j\in\mathcal{S}\cap\mathcal{P}_{\beta(i)}}} W_{2,j}}
+\end{eqnarray*}
+
+\noindent
+We let the final nonresponse- and poststratification-adjusted sampling weights be defined as:
+\begin{equation*}
+W_{i} \;\; := \;\;  W_{3,i}
+\end{equation*}
+
+\noindent
+\textbf{IMPORTANT OBSERVATION:}\;\; The quantity $\displaystyle{\sum_{j\in \mathcal{H}_{\alpha(i)}}} W_{1,j}$ is simply the weight-derived ``size" of the response homogeneity group $\mathcal{H}_{\alpha(i)}$.
+Similarly, $\displaystyle{\sum_{j\in \mathcal{R}_{\alpha(i)}}} W_{1,j}$ is the weight-derived ``size" of the respondent subset $\mathcal{R}_{\alpha(i)} \subset \mathcal{H}_{\alpha(i)}$.  Similarly, $\displaystyle{\sum_{j\in\mathcal{S}\cap\mathcal{P}_{\beta(i)}}} W_{2,j}$ is the weight-derived ``size" of the set $\mathcal{S}\cap\mathcal{P}_{\beta(i)}$ of sampled units in the poststratum $\mathcal{P}_{\beta(i)}$.  In other words, the ``adjustments'' described above are essentially based on ``weight-derived sizes."
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Imputation: techniques for substituting for missing data}
+\setcounter{theorem}{0}
+
+\begin{enumerate}
+\item  Deductive Imputation.
+\item  Overall mean imputation.
+\item  Class mean imputation.
+\item  Hot-deck Imputation.
+          \begin{itemize}
+          \item  Sequential Hot-deck Imputation.
+          \item  Distance Function Matching.
+          \end{itemize}
+\item  Cold-deck Imputation.
+\item  Regression Imputation.
+\item  Multiple Imputation.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{plain}
+%\bibliographystyle{amsplain}
+\bibliographystyle{acm}
+\bibliography{KenChuBioinformatics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

@@ -1,0 +1,540 @@
+
+\documentclass{article}
+
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage{doublespace}
+
+\usepackage{KenChuArticleStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+%\input{../CourseSemesterUnique}
+
+%\rhead[\CourseSemesterUnique]{Kenneth Chu (300517641)}
+%\lhead[Kenneth Chu (300517641)]{\CourseSemesterUnique}
+\rhead[Study Notes]{Kenneth Chu}
+\lhead[Kenneth Chu]{Study Notes}
+\chead[]{{\Large\bf Survey Sampling Theory} \\
+\vskip 0.1cm \normalsize \today}
+\lfoot[]{}
+\cfoot[]{}
+\rfoot[]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The population total, population mean, and population variance of a population characteristic}
+\setcounter{theorem}{0}
+
+Let $n, N \in \N$, with $n \leq N$.  Let $\mathcal{U} = \{\,1,2,\ldots,N\,\}$, which represents the finite population, or universe, of $N$ elements.  
+
+\begin{definition}\quad
+A \emph{population characteristic} is an $\Re$-valued function $y : \mathcal{U} \longrightarrow \Re$ defined on the population $\mathcal{U}$.  We denote the value of $y$ evaluated at $i \in \mathcal{U}$ by $y_{i}$.
+The {population total}, denoted by $t$, of $y$ is defined:
+\begin{equation*}
+    t \; := \; \sum^{N}_{i=1} y_{i} \in \Re\,.
+\end{equation*}
+The \emph{population mean}, denoted by $\overline{y}$, of $y$ is defined by:
+\begin{equation*}
+    \overline{y} \; := \; \dfrac{1}{N}\sum^{N}_{i=1} y_{i} \in \Re\,.
+\end{equation*}
+The \emph{population variance}, denoted by $S^{2}$, of $y$ is defined by:
+\begin{equation*}
+    S^{2} \; := \; \dfrac{1}{N-1}\sum^{N}_{i=1} \left(y_{i}-\overline{y}\right)^{2}
+             \; = \; \dfrac{1}{N-1}\left\{\;\left(\sum^{N}_{i=1}y_{i}^{2}\right) - N\cdot\overline{y}^{2} \;\right\} \in \Re\,.
+\end{equation*}
+\end{definition}
+
+In survey sampling, we seek to estimate population total $t$ and population mean $\overline{y}$ of a population characteristic $y : \mathcal{U} \longrightarrow \Re$ by making observations of values of $y$ on only a (usually proper) subset of $\mathcal{U}$, and extrapolate from these observations.  The subset on which observations of values of $y$ are made is called a \emph{sample}.
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Simple Random Sampling (SRS)}
+\setcounter{theorem}{0}
+
+\begin{definition}\quad
+Let $\mathcal{U}$ be a nonempty finite set, $N:=\#(\mathcal{U})\in\N$, and let $n \in \{\,1,2\ldots,N\,\}$ be given.  We define the probability space $\Omega_{\textnormal{SRS}}(\mathcal{U},n)$ as follows:  Let $\Omega(\mathcal{U},n)$ be the set of all subsets of $\mathcal{U}$ with $n$ elements, i.e.
+\begin{equation*}
+     \Omega(\mathcal{U},n)\; := \; \left\{ \; \omega\subset\mathcal{U} \;\vert\; \#(\omega)=n \; \right\}.
+\end{equation*}
+Note that $\#\!\left(\Omega(\mathcal{U},n)\right)$ $=$ {\small$\left(\!\begin{array}{c} N \\ n \end{array}\!\right)$}.
+Let $\mathcal{P}(\Omega(\mathcal{U},n))$ be the power set of $\Omega(\mathcal{U},n)$.
+Define $\mu : \Omega \longrightarrow \Re$ to be the ``uniform'' probability measure on the (finite) $\sigma$-algebra $\mathcal{P}(\Omega(\mathcal{U},n))$ determined by:
+\begin{equation*}
+   \mu(\omega) \; = \; \dfrac{1}{\textnormal{\small$\left(\!\begin{array}{c} N \\ n \end{array}\!\right)$}} \; = \; \dfrac{n!(N-n)!}{N!}\;,
+   \quad\textnormal{for each}\;\; \omega \in \Omega(\mathcal{U},n).
+\end{equation*}
+Then, $\Omega_{\textnormal{SRS}}(\mathcal{U},n)$ is defined to be the probability space $\left(\;\Omega(\mathcal{U},n)\,,\,\mathcal{P}(\Omega(\mathcal{U},n))\,,\,\mu\;\right)$.
+\end{definition}
+
+
+\begin{definition}\quad
+The \emph{simple-random-sampling sample total} $\widehat{t}_{\textnormal{SRS}}$ of the population characteristic $y$ is, by definition, the random variable $\widehat{t}_{\textnormal{SRS}} : \Omega_{\textnormal{SRS}}(\mathcal{U},n) \longrightarrow \Re$ defined by 
+\begin{equation*}
+    \widehat{t}_{\textnormal{SRS}}(\omega) \; := \; \dfrac{N}{n}\sum_{i\in\omega}y_{i}\,, \quad\textnormal{for each}\;\; \omega\in\Omega.
+\end{equation*}
+The \emph{simple-random-sampling sample mean} $\widehat{\overline{y}}_{\textnormal{SRS}}$ of the population characteristic $y$ is, by definition, the random variable $\widehat{\overline{y}}_{\textnormal{SRS}} : \Omega_{\textnormal{SRS}}(\mathcal{U},n) \longrightarrow \Re$ defined by
+\begin{equation*}
+    \widehat{\overline{y}}_{\textnormal{SRS}}(\omega) \; := \; \dfrac{1}{n}\sum_{i\in\omega} y_{i}\,, \quad\textnormal{for each}\;\; \omega\in\Omega.
+\end{equation*}
+The \emph{simple-random-sampling sample variance} $\widehat{s^{2}}_{\textnormal{SRS}}$ of the population characteristic $y$ is, by definition, the random variable $\widehat{s^{2}}_{\textnormal{SRS}} : \Omega_{\textnormal{SRS}}(\mathcal{U},n) \longrightarrow \Re$ defined by
+\begin{equation*}
+    \widehat{s^{2}}_{\textnormal{SRS}}(\omega) \; := \; \dfrac{1}{n-1}\sum_{i\in\omega} \left(y_{i}-\widehat{\overline{y}}_{\textnormal{SRS}}(\omega)\right)^{2}\,, \quad\textnormal{for each}\;\; \omega\in\Omega.
+\end{equation*}
+\end{definition}
+
+\begin{proposition}\label{SRS:unbiased:estimators}\quad
+\begin{enumerate}
+\item  $\widehat{\overline{y}}_{\textnormal{SRS}}$ is an unbiased estimator of the population mean $\overline{y}$, and
+          $\textnormal{Var}\!\left[\;\widehat{\overline{y}}_{\textnormal{SRS}}\;\right]$ $=$ $\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}}{n}$.
+\item  $\widehat{t}_{\textnormal{SRS}}$ is an unbiased estimator of the population total $t$, and
+          $\textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{SRS}}\;\right]$ $=$ $N^{2}\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}}{n}$.
+\item  $\widehat{s^{2}}_{\textnormal{SRS}}$ is an unbiased estimator of the population variance $S^{2}$.
+\item  $\widehat{\textnormal{Var}}\!\left[\;\widehat{\overline{y}}_{\textnormal{SRS}}\;\right]$
+          $:=$ $\left(1-\dfrac{n}{N}\right)\dfrac{\widehat{s^{2}}_{\textnormal{SRS}}}{n}$
+          is an unbiased estimator of $\textnormal{Var}\!\left[\;\widehat{\overline{y}}_{\textnormal{SRS}}\;\right]$.
+\item  $\widehat{\textnormal{Var}}\!\left[\;\widehat{t}_{\textnormal{SRS}}\;\right]$
+          $:=$ $N^{2}\left(1-\dfrac{n}{N}\right)\dfrac{\widehat{s^{2}}_{\textnormal{SRS}}}{n}$
+          is an unbiased estimator of $\textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{SRS}}\;\right]$.
+\end{enumerate}
+\end{proposition}
+
+\noindent
+A quote from Lohr \cite{Lohr1999}, p.37:
+\emph{
+H\'{a}jek \cite{Hajek1960} proves a central limit theorem for simple random sampling without replacement.  In practical terms, H\'{a}jek's theorem says that if certain technical conditions hold, and if $n$, $N$, and $N-n$ are all ``sufficiently large," then the sampling distribution of
+\begin{equation*}
+    \dfrac{\widehat{\overline{y}}_{\textnormal{SRS}}-\overline{y}}{\sqrt{\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}}{n}}}
+\end{equation*}
+is ``approximately" normal (Gaussian) with mean $0$ and variance $1$.
+}
+
+\begin{corollary}[to H\'{a}jek's theorem]\quad
+For a simple random sampling procedure, an approximate $(1-\alpha)$-confidence interval, $0 < \alpha < 1$, for the population mean $\overline{y}$ is given by:
+\begin{equation*}
+\widehat{\overline{y}}_{\textnormal{SRS}} \, \pm \, z_{\alpha/2} \cdot \sqrt{\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}}{n}}
+\end{equation*}
+For sufficiently large samples, the above approximate confidence interval can itself be estimated from observations by:
+\begin{equation*}
+\widehat{\overline{y}}_{\textnormal{SRS}} \, \pm \, \textnormal{SE}\!\left[\; \widehat{\overline{y}}_{\textnormal{SRS}} \;\right]
+\;\; = \;\;
+\widehat{\overline{y}}_{\textnormal{SRS}} \, \pm \, \sqrt{ \left(1-\dfrac{n}{N}\right)\dfrac{\widehat{s^{2}}_{\textnormal{SRS}}}{n} }
+\end{equation*}
+where
+\begin{equation*}
+\textnormal{SE}\!\left[\; \widehat{\overline{y}}_{\textnormal{SRS}} \;\right]
+\;\; := \;\;
+\sqrt{ \widehat{\textnormal{Var}}\!\left[\;\widehat{\overline{y}}_{\textnormal{SRS}}\;\right] }
+\;\; = \;\;
+\sqrt{ \left(1-\dfrac{n}{N}\right)\dfrac{\widehat{s^{2}}_{\textnormal{SRS}}}{n} }
+\end{equation*}
+\end{corollary}
+
+\noindent
+In order to prove Proposition \ref{SRS:unbiased:estimators}, we introduce some auxiliary random variables:
+
+\begin{definition}\quad
+Let $n, N \in \N$, with $n<N$, $\mathcal{U} := \{\;1,2,\ldots,N\;\}$, and $\Omega := \left\{\;\omega\subset\mathcal{U}\;\vert\;\#(\omega)=n\;\right\}$.  For each $i \in \mathcal{U} = \{\;1,2,\ldots,N\;\}$, we define the random variable $Z_{i} : \Omega \longrightarrow \{0,1\}$ as follows:
+\begin{equation*}
+    Z_{i}(\omega) \; = \;
+    \left\{
+    \begin{array}{cl}
+        1, & \textnormal{if}\;\; i \in \omega\,, \\
+        0, & \textnormal{if}\;\; i \notin \omega
+    \end{array}
+    \right..
+\end{equation*}
+\end{definition}
+
+\noindent\textbf{Immediate observations:}
+\begin{itemize}
+\item  $\widehat{t}_{\textnormal{SRS}}$ $=$ $\dfrac{N}{n}\sum^{N}_{i=1} Z_{i}\,y_{i}$,, as random variables on $(\Omega,P)$, i.e.
+          \begin{equation*}
+              \widehat{t}_{\textnormal{SRS}}(\omega) \; = \; \dfrac{N}{n}\sum_{i=1}^{N} Z_{i}(\omega)\,y_{i},
+               \quad\textnormal{for each} \;\; \omega \in \Omega.
+          \end{equation*}
+\item  $\widehat{\overline{y}}_{\textnormal{SRS}}$ $=$ $\dfrac{1}{n}\sum_{i=1}^{N} Z_{i}\,y_{i}$, as random variables on $(\Omega,P)$, i.e.
+          \begin{equation*}
+              \widehat{\overline{y}}_{\textnormal{SRS}}(\omega) \; = \; \dfrac{1}{n}\sum_{i=1}^{N} Z_{i}(\omega)\,y_{i},
+               \quad\textnormal{for each} \;\; \omega \in \Omega.
+          \end{equation*}
+\item  $E[\;Z_{i}\;] = \dfrac{n}{N}$.  \; Indeed,
+          \begin{equation*}
+              E[\;Z_{i}\;] = 1 \cdot P(Z_{i}=1) + 0 \cdot P(Z_{i}=0) = P(Z_{i}=1)
+              = \dfrac{\textnormal{\small number of samples containing $i$}}{\textnormal{\small number of all possible samples}}
+              = \dfrac{\left(\begin{array}{c} N-1 \\ n-1 \end{array}\right)}{\left(\begin{array}{c} N \\ n \end{array}\right)}
+              = \dfrac{n}{N}
+          \end{equation*}
+\item  $Z_{i}^{2} = Z_{i}$, since $\textnormal{range}(Z_{i}) = \{\,0,1\,\}$.  Consequently,
+          \begin{equation*}
+              E[\;Z_{i}^{2}\;] \; = \; E[\;Z_{i}\;] \; = \; \dfrac{n}{N}\,.
+          \end{equation*}
+\item  $\textnormal{Var}[\;Z_{i}\;] = \dfrac{n}{N}\left(1 - \dfrac{n}{N}\right)$. \; Indeed,
+          \begin{eqnarray*}
+              \textnormal{Var}[\;Z_{i}\;] & := & E\left[\;\left(Z_{i} - E[\;Z_{i}\;]\right)^{2}\;\right]
+                                                      \;\; = \;\; E\left[Z_{i}^{2}\right] - \left(E[\;Z_{i}\;]\right)^{2} \\
+                                                      & = &  E[\;Z_{i}\;] - \left(\dfrac{n}{N}\right)^{2}
+                                                      \;\; = \;\; \dfrac{n}{N} - \left(\dfrac{n}{N}\right)^{2} \\
+                                                      & = & \dfrac{n}{N}\left(1 - \dfrac{n}{N}\right).
+          \end{eqnarray*}
+\item  For $i \neq j$, we have $E[\;Z_{i} \cdot Z_{j}\;] = \left(\!\dfrac{n-1}{N-1}\!\right)\cdot\left(\!\dfrac{n}{N}\!\right)$. \; Indeed,
+          \begin{eqnarray*}
+              E[\;Z_{i}\cdot Z_{j}\;] & = & 1 \cdot P(Z_{i}=1 \textnormal{\;\;and\;\;} Z_{j}=1) + 0\cdot P(Z_{i}=0 \textnormal{\;\;or\;\;} Z_{j}=0) \\
+                                               & = & P(Z_{i}=1 \textnormal{\;\;and\;\;} Z_{j}=1)
+                                               \;\; = \;\; P(Z_{j}=1\vert Z_{i}=1) \cdot P(Z_{i}=1) \\
+                                               & = & \left(\!\dfrac{n-1}{N-1}\!\right)\cdot\left(\!\dfrac{n}{N}\!\right)
+          \end{eqnarray*}
+\item  For $i \neq j$, we have
+          $\textnormal{Cov}\left(Z_{i},Z_{j}\right) = - \dfrac{1}{N-1}\left(1-\dfrac{n}{N}\right)\left(\dfrac{n}{N}\right) \leq 0$.
+          \; Indeed,
+          \begin{eqnarray*}
+                         \textnormal{Cov}\left(Z_{i},Z_{j}\right)
+              & := &  E\left[\;\left(Z_{i}-E[\;Z_{i}\;]\right)\cdot\left(Z_{j}-E[\;Z_{j}\;]\right)\;\right]
+              \;\;=\;\;  E\left[\;Z_{i}\,Z_{j}\;\right] - E[\;Z_{i}\;]\cdot E[\;Z_{j}\;] \\
+              &  = &  \left(\!\dfrac{n-1}{N-1}\!\right)\cdot\left(\!\dfrac{n}{N}\!\right) - \left(\dfrac{n}{N}\right)^{2}
+              \;\;=\;\;  \dfrac{n}{N}\left(\dfrac{nN - N - nN + n}{N(N-1)}\right) \\
+              & = &  - \dfrac{1}{N-1}\left(1-\dfrac{n}{N}\right)\left(\dfrac{n}{N}\right)
+          \end{eqnarray*}
+\end{itemize}
+
+\proofof Proposition \ref{SRS:unbiased:estimators}
+\begin{enumerate}
+\item  \begin{equation*}
+                        E\!\left[\;\widehat{\overline{y}}_{\textnormal{SRS}}\;\right]
+             \;\;=\;\;   E\!\left[\; \dfrac{1}{n}\sum_{i=1}^{N} Z_{i} \, y_{i} \;\right]
+             \;\;=\;\;  \dfrac{1}{n} \sum^{N}_{i=1}E\!\left[\; Z_{i} \;\right]\cdot y_{i}
+             \;\;=\;\;  \dfrac{1}{n} \sum^{N}_{i=1}\left(\dfrac{n}{N}\right)\cdot y_{i} 
+             \;\;=\;\;  \dfrac{1}{N} \sum^{N}_{i=1} y_{i}
+             \;\;=:\;\; \overline{y}.
+          \end{equation*}
+          \begin{eqnarray*}
+                         \textnormal{Var}\!\left[\; \widehat{\overline{y}}_{\textnormal{SRS}} \;\right]
+              & = &  \textnormal{Var}\!\left[\; \dfrac{1}{n}\sum_{i=1}^{N} Z_{i} \, y_{i} \;\right]
+              \;\;=\;\; \dfrac{1}{n^{2}}\,\textnormal{Var}\!\left[\; \sum_{i=1}^{N} Z_{i} \, y_{i} \;\right]
+              \;\;=\;\; \dfrac{1}{n^{2}}\,\textnormal{Cov}\!\left[\; \sum_{i=1}^{N} Z_{i} \, y_{i} \;,\; \sum_{j=1}^{N} Z_{j} \, y_{j} \;\right] \\
+              & = &  \dfrac{1}{n^{2}}\left\{\;\sum^{N}_{i=1}y_{i}^{2}\,\textnormal{Var}(Z_{i})
+                                                        + \sum^{N}_{i=1}\sum_{i\neq j=1}^{N} y_{i}y_{j}\,\textnormal{Cov}(Z_{i},Z_{j})\;\right\} \\
+              & = &  \dfrac{1}{n^{2}}\left\{\;\sum^{N}_{i=1}y_{i}^{2}\,\dfrac{n}{N}\left(1-\dfrac{n}{N}\right)
+                        - \sum^{N}_{i=1}\sum_{i\neq j=1}^{N} y_{i}y_{j}\,\dfrac{1}{N-1}\left(1-\dfrac{n}{N}\right)\left(\dfrac{n}{N}\right)\;\right\} \\
+              & = &  \dfrac{1}{n^{2}}\dfrac{n}{N}\left(1-\dfrac{n}{N}\right)\left\{\;\sum^{N}_{i=1}y_{i}^{2}
+                        - \dfrac{1}{N-1}\sum^{N}_{i=1}\sum_{i\neq j=1}^{N} y_{i}y_{j}\;\right\} \\
+              & = &  \dfrac{1}{n}\left(1-\dfrac{n}{N}\right)\dfrac{1}{N(N-1)}\left\{\;(N-1)\sum^{N}_{i=1}y_{i}^{2}
+                        - \sum^{N}_{i=1}\sum_{i\neq j=1}^{N} y_{i}y_{j}\;\right\} \\
+              & = &  \dfrac{1}{n}\left(1-\dfrac{n}{N}\right)\dfrac{1}{N(N-1)}\left\{\;(N-1)\sum^{N}_{i=1}y_{i}^{2}
+                        - \sum^{N}_{i=1}\sum_{j=1}^{N} y_{i}y_{j} + \sum^{N}_{i=1}y_{i}^{2}\;\right\} \\
+              & = &  \dfrac{1}{n}\left(1-\dfrac{n}{N}\right)\dfrac{1}{N(N-1)}\left\{\;N\sum^{N}_{i=1}y_{i}^{2}
+                        - \left(\sum^{N}_{i=1} y_{i}\right)\left(\sum_{j=1}^{N}y_{j}\right)\;\right\} \\
+              & = &  \dfrac{1}{n}\left(1-\dfrac{n}{N}\right)\dfrac{1}{N-1}\left\{\;\sum^{N}_{i=1}y_{i}^{2}
+                        - N\left(\dfrac{1}{N}\sum^{N}_{i=1} y_{i}\right)^{2}\;\right\} \\
+              & = &  \dfrac{1}{n}\left(1-\dfrac{n}{N}\right)\dfrac{1}{N-1}\left\{\;\sum^{N}_{i=1}y_{i}^{2}
+                        - N\cdot\overline{y}^{2}\;\right\} \\
+              & = &  \left(1-\dfrac{n}{N}\right)\dfrac{S^{2}}{n}
+          \end{eqnarray*}
+\item  \begin{equation*}
+                        E\!\left[\;\widehat{t}_{\textnormal{SRS}}\;\right]
+             \;\; = \;\; E\!\left[\;N\cdot\widehat{\overline{y}}_{\textnormal{SRS}}\;\right]
+             \;\; = \;\; N\cdot E\!\left[\;\widehat{\overline{y}}_{\textnormal{SRS}}\;\right]
+             \;\; = \;\; N\cdot\overline{y}
+             \;\; = \;\; N\cdot\left(\dfrac{1}{N}\sum^{N}_{i=1}y_{i}\right)
+             \;\; = \;\; \sum^{N}_{i=1}y_{i}
+             \;\; =:\;\; t.
+          \end{equation*}
+          \begin{equation*}
+                        \textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{SRS}}\;\right]
+             \;\; = \;\; \textnormal{Var}\!\left[\;N\cdot\widehat{\overline{y}}_{\textnormal{SRS}}\;\right]
+             \;\; = \;\; N^{2} \cdot \textnormal{Var}\!\left[\;\widehat{\overline{y}}_{\textnormal{SRS}}\;\right]
+             \;\; = \;\; N^{2}\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}}{n}
+          \end{equation*}
+\item  \begin{eqnarray*}
+                        E\!\left[\;\widehat{s^{2}}_{\textnormal{SRS}}\;\right]
+              & = &  E\!\left[\; \dfrac{1}{n-1}\sum_{i\in\omega} \left(y_{i}-\widehat{\overline{y}}_{\textnormal{SRS}}\right)^{2} \;\right]      
+              \;\;=\;\;  \dfrac{1}{n-1}\,E\!\left[\; \sum_{i\in\omega}
+                          \left((y_{i}-\overline{y})-(\,\widehat{\overline{y}}_{\textnormal{SRS}}-\overline{y})\right)^{2} \;\right] \\
+              & = &  \dfrac{1}{n-1}\,E\!\left[\; \left(\sum_{i\in\omega}(y_{i}-\overline{y})^{2} \right)
+                          -n\left(\widehat{\overline{y}}_{\textnormal{SRS}}-\overline{y}\right)^{2} \;\right] \\
+              & = &  \dfrac{1}{n-1}\left\{\;E\!\left[\; \sum_{i=1}^{N}Z_{i}(y_{i}-\overline{y})^{2} \;\right]
+                          - n\,\textnormal{Var}\!\left[\;\widehat{\overline{y}}_{\textnormal{SRS}}\;\right] \right\} \\
+              & = &  \dfrac{1}{n-1}\left\{\; \sum_{i=1}^{N} E\!\left[\; Z_{i} \;\right] (y_{i}-\overline{y})^{2}
+                          - n\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}}{n} \; \right\} \\
+              & = &  \dfrac{1}{n-1}\left\{\;\sum_{i=1}^{N} \dfrac{n}{N} (y_{i}-\overline{y})^{2}
+                          - \left(1-\dfrac{n}{N}\right)S^{2}\;\right\} \\
+              & = &  \dfrac{1}{n-1}\left\{\;\dfrac{n(N-1)}{N}\dfrac{1}{N-1}\sum_{i=1}^{N} (y_{i}-\overline{y})^{2}
+                          - \left(1-\dfrac{n}{N}\right)S^{2}\;\right\} \\
+              & = &  \dfrac{1}{n-1}\left\{\;\dfrac{n(N-1)}{N} - \left(1-\dfrac{n}{N}\right)\;\right\} S^{2} \\
+              & = &  \dfrac{1}{n-1}\left\{\;\dfrac{nN-n-N+n}{N}\;\right\} S^{2} \;\; = \;\; S^{2}
+          \end{eqnarray*}
+\item  Immediate from preceding statements.
+\item  Immediate from preceding statements. \qed
+\end{enumerate}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Stratified Simple Random Sampling}
+\setcounter{theorem}{0}
+
+Let $\mathcal{U} = \{\,1,2,\ldots,N\,\}$ be the population, as before.  Let
+\begin{equation*}
+    \mathcal{U} \; = \; \bigsqcup_{h=1}^{H}\,\mathcal{U}_{h}
+\end{equation*}
+be a partition of $\mathcal{U}$.  Such a partition is called a \emph{stratification} of the population $\mathcal{U}$.
+Each of $\mathcal{U}_{1}, \mathcal{U}_{2}, \ldots, \mathcal{U}_{H}$ is called a \emph{stratum}.
+Let $N_{h} := \#\!\left(\mathcal{U}_{h}\right)$, for $h=1,2,\ldots,H$.  Note that $N_{1}+N_{2}+\cdots+N_{H} = N$.
+
+In \emph{stratified simple random sampling}, an SRS is taken within each stratum $\mathcal{U}_{h}$, $h=1,2,\ldots,H$.
+Let $n_{h}$, $h = 1,2,\ldots,H$, be the number elements in the simple random sample taken in the stratum $\mathcal{U}_{h}$.
+In other words, a stratified simple random sample $\omega$ of the stratified population $\mathcal{U} = \bigsqcup_{h=1}^{H}\,\mathcal{U}_{h}$ has the form:
+\begin{equation*}
+     \omega \; = \; \bigsqcup_{h=1}^{H}\,\omega_{h}\,,
+     \quad\textnormal{where}\;\; \omega_{h} \in \Omega_{\textnormal{SRS}}(\mathcal{U}_{h},n_{h})\,,
+     \quad\textnormal{for each}\;\; h = 1,2,\ldots,h\,.
+\end{equation*}
+Note that $n_{1} + n_{2} + \cdots + n_{H} =: n = \#\!(\omega)$.
+
+We now give unbiased estimators, and their variances, of the population total and population mean of a population characteristic under stratified simple random sampling.  Let $y : \mathcal{U} \longrightarrow \Re$ be a population characteristic.  Define:
+\begin{equation*}
+    \widehat{t}_{\textnormal{Str}} \; := \; 
+    \sum^{H}_{h=1}\, N_{h}\cdot\widehat{\overline{y}}_{h,\textnormal{SRS}}
+\end{equation*}
+\begin{equation*}
+              \widehat{\overline{y}}_{\textnormal{Str}}
+    \; := \; \dfrac{1}{N}\cdot\widehat{t}_{\textnormal{Str}}
+    \;  = \; \sum^{H}_{h=1}\, \dfrac{N_{h}}{N}\cdot\widehat{\overline{y}}_{h,\textnormal{SRS}}
+\end{equation*}
+Here,
+\begin{equation*}
+    \widehat{\overline{y}}_{h,\textnormal{SRS}} \; : \; \Omega_{\textnormal{SRS}}(\mathcal{U}_{h},n_{h}) \longrightarrow \Re
+    \; : \: \omega_{h} \; \longmapsto \; \dfrac{1}{n_{h}}\,\sum_{i\in\omega_{h}}\,y_{i}
+\end{equation*}
+is the SRS estimator of
+\begin{equation*}
+    \overline{y}_{h} \; := \; \overline{y|_{\mathcal{U}_{h}}} \; = \; \dfrac{1}{N_{h}} \sum_{i\in\mathcal{U}_{h}} y_{i} \in \Re,
+\end{equation*}
+the ``stratum mean" of the ``stratum characteristic" $y|_{\mathcal{U}_{h}} : \mathcal{U}_{h} \longrightarrow \Re$, the restriction of the population characteristic $y : \mathcal{U} \longrightarrow \Re$ to the stratum $\mathcal{U}_{h}$.  Then,
+\begin{equation*}
+    E\!\left[\;\widehat{t}_{\textnormal{Str}}\;\right] \; = \; t \; := \; \sum^{N}_{i=1}\,y_{i},
+    \quad\textnormal{and}\quad
+    E\!\left[\;\widehat{\overline{y}}_{\textnormal{Str}}\;\right] \; = \; \overline{y} \; := \; \dfrac{1}{N}\,\sum^{N}_{i=1}\,y_{i}.
+\end{equation*}
+In other words, $\widehat{t}_{\textnormal{Str}}$ and $\widehat{\overline{y}}_{\textnormal{Str}}$ are unbiased estimators of the population total $t$ and population mean $\overline{y}$ of the population characteristic $y : \mathcal{U} \longrightarrow \Re$, respectively.  Indeed,
+\begin{eqnarray*}
+            E\!\left[\;\widehat{t}_{\textnormal{Str}}\;\right]
+    &=&  E\!\left[\; \sum^{H}_{h=1}\, N_{h}\cdot\widehat{\overline{y}}_{h,\textnormal{SRS}} \;\right]
+    \;\;=\;\;  \sum^{H}_{h=1}\, N_{h}\,E\!\left[\; \widehat{\overline{y}}_{h,\textnormal{SRS}} \;\right]
+    \;\;=\;\;  \sum^{H}_{h=1}\, N_{h}\,\overline{y}_{h} \\
+    &=& \sum^{H}_{h=1}\, N_{h}\left(\dfrac{1}{N_{h}}\sum_{i\in\mathcal{U}_{h}}\,y_{i}\right)
+    \;\;=\;\;  \sum^{H}_{h=1}   \left(\sum_{i\in\mathcal{U}_{h}}\,y_{i}\right)
+    \;\;=\;\;  \sum^{N}_{i=1}\,y_{i}
+    \;\;=:\;\; t\,.
+\end{eqnarray*}
+And,
+\begin{equation*}
+           E\!\left[\;\widehat{\overline{y}}_{\textnormal{Str}}\;\right]
+   \;=\;  E\!\left[\;\dfrac{1}{N}\cdot\widehat{t}_{\textnormal{Str}}\;\right]
+   \;=\;  \dfrac{1}{N}\,E\!\left[\;\widehat{t}_{\textnormal{Str}}\;\right]
+   \;=\;  \dfrac{1}{N}\,\sum^{N}_{i=1}\,y_{i}
+   \;=:\; \overline{y}\,.
+\end{equation*}
+Furthermore,
+\begin{equation*}
+             \textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{Str}}\;\right]
+    \;=\;  \textnormal{Var}\!\left[\; \sum^{H}_{h=1}\, N_{h}\cdot\widehat{\overline{y}}_{h,\textnormal{SRS}} \;\right]
+    \;=\;  \sum^{H}_{h=1}\, N_{h}^{2}\cdot\textnormal{Var}\!\left[\; \widehat{\overline{y}}_{h,\textnormal{SRS}} \;\right]
+    \;=\;  \sum^{H}_{h=1}\, N_{h}^{2}\left(1-\dfrac{n_{h}}{N_{h}}\right)\dfrac{S^{2}_{h}}{n_{h}}.
+\end{equation*}
+\begin{equation*}
+             \textnormal{Var}\!\left[\;\widehat{\overline{y}}_{\textnormal{Str}}\;\right]
+    \;=\;  \textnormal{Var}\!\left[\; \dfrac{1}{N}\cdot\widehat{t}_{\textnormal{Str}} \;\right]
+    \;=\;  \dfrac{1}{N^{2}}\cdot\textnormal{Var}\!\left[\; \widehat{t}_{\textnormal{Str}} \;\right]
+    \;=\;  \sum^{H}_{h=1}\, \left(\dfrac{N_{h}}{N}\right)^{2}\left(1-\dfrac{n_{h}}{N_{h}}\right)\dfrac{S^{2}_{h}}{n_{h}}.
+\end{equation*}
+
+\noindent
+\textbf{Comparing variances of SRS and stratified simple random sampling with proportional allocation via ANOVA (analysis of variance):}
+
+By definition, in stratified simple random sampling with proportional allocation, the stratum sample size $n_{h}$, for each $h=1,2,\ldots,H$, is chosen such that $n_{h}/N_{h} = n/N$.  Consequently,
+\begin{eqnarray*}
+            \textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{PropStr}}\;\right]
+    &=&  \sum^{H}_{h=1}\, N_{h}^{2}\left(1-\dfrac{n_{h}}{N_{h}}\right)\dfrac{S^{2}_{h}}{n_{h}}
+    \;\;=\;\;  \dfrac{N}{n}\left(1-\dfrac{n}{N}\right) \sum^{H}_{h=1}\, N_{h}\,S^{2}_{h} \\
+    &=&  \dfrac{N}{n}\left(1-\dfrac{n}{N}\right) \left\{\;\sum^{H}_{h=1}\, (N_{h}-1)\,S^{2}_{h} + \sum^{H}_{h=1}\,S^{2}_{h}\;\right\} \\
+    &=&  \dfrac{N}{n}\left(1-\dfrac{n}{N}\right) \left\{\; \textnormal{SSW} + \sum^{H}_{h=1}\,S^{2}_{h}\;\right\},
+\end{eqnarray*}
+where
+\begin{equation*}
+   \textnormal{SSW} \; := \;
+   \sum^{H}_{h=1}\sum_{i\in\mathcal{U}_{h}}\left(y_{i}-\overline{y}_{\mathcal{U}_{h}}\right)^{2}
+   \; = \;
+   \sum^{H}_{h=1}\,(N_{h}-1)\,S^{2}_{h}.
+\end{equation*}
+is called the \emph{inter-strata squared deviation} (or \emph{within-strata squared deviation}), and
+\begin{equation*}
+    S^{2}_{h} \; := \; \dfrac{1}{N_{h}-1}\,\sum_{i\in\mathcal{U}_{h}}\left(y_{i}-\overline{y}_{\mathcal{U}_{h}}\right)^{2}
+\end{equation*}
+is the stratum variance of the population characteristic $y : \mathcal{U} \longrightarrow \Re$ over the stratum $\mathcal{U}_{h}$.  The following relation between $\textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{SRS}}\;\right]$ and $\textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{PropStr}}\;\right]$ always holds (see \cite{Lohr1999}, p.106):
+\begin{equation*}
+\textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{SRS}}\;\right]
+\;=\;
+\textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{PropStr}}\;\right] + 
+\left(1-\dfrac{n}{N}\right)\dfrac{N}{n}\dfrac{N}{N-1}
+\left\{\;\textnormal{SSB} - \sum_{h=1}^{H}\left(1-\dfrac{N_{h}}{N}\right)\!S^{2}_{h}\;\right\},
+\end{equation*}
+where
+\begin{equation*}
+    \textnormal{SSB} \; := \; \sum^{H}_{h=1}\,N_{h}\!\left(\overline{y}_{\mathcal{U}_{h}} - \overline{y}_{\mathcal{U}}\right)^{2}
+    \; = \; \sum^{H}_{h=1}\,\sum_{i\in\mathcal{U}_{h}}\left(\overline{y}_{\mathcal{U}_{h}} - \overline{y}_{\mathcal{U}}\right)^{2}
+\end{equation*}
+is the \emph{inter-strata squared deviation} (or \emph{between-strata squared deviation}).  It is also an easily established fact that the sum of the inter-strata squared deviation $\textnormal{SSB}$ and the intra-strata squared deviation $\textnormal{SSW}$ is always the total population squared deviation $\textnormal{SSTO}$:
+\begin{equation*}
+   \textnormal{SSTO} \; := \; \sum^{N}_{i=1}\left(y_{i}-\overline{y}_{\mathcal{U}}\right)^{2}
+   \; = \; \sum^{H}_{h=1}\sum_{i\in\mathcal{U}_{h}}\left(y_{i}-\overline{y}_{\mathcal{U}}\right)^{2}\,.
+\end{equation*}
+Most importantly, we see from above that, for stratified simple random sampling with proportional allocation, the following implication holds:
+\begin{equation*}
+\sum_{h=1}^{H}\left(1-\dfrac{N_{h}}{N}\right)\!S^{2}_{h} \,\leq\, \textnormal{SSB}
+\quad\Longrightarrow\quad
+\textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{PropStr}}\;\right]
+\leq
+\textnormal{Var}\!\left[\;\widehat{t}_{\textnormal{SRS}}\;\right]\,.
+\end{equation*}
+\emph{In heuristic terms, in proportional-allocation stratification for which each stratum is relatively homogeneous and the strata are relatively dissimilar to each other (intra-strata variation being smaller than inter-strata variation), then the unbiased estimator for the population total from the proportional-allocation stratified simple random sampling is more precise than that from SRS.
+}
+
+%\cite{KrewskiRao1981}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Two-stage Cluster Sampling}
+\setcounter{theorem}{0}
+
+The universe $\mathcal{U} = \displaystyle{\bigsqcup_{i=1}^{N}}\,\mathcal{C}_{i}$ of observation units is partitioned into $N$ \emph{clusters} (or \emph{primary sampling units}, psu's) $\mathcal{C}_{i}$.  In two-stage cluster sampling, the \emph{secondary sampling units} (or ssu's) are the observation units.  Let $M_{i}$ be the number of ssu's in the $i$th psu; in other words, $M_{i} := \#(\mathcal{C}_{i})$. \\
+
+\noindent
+\textbf{First Stage:} \; Select a simple random sample (SRS) $\omega_{1} = \left\{\,\mathcal{C}_{i_{1}},\mathcal{C}_{i_{2}},\ldots,\mathcal{C}_{i_{n}}\,\right\}$ of $n$ psu's from the collection of $N$ psu's. \\
+
+\noindent
+\textbf{Second Stage:} \; From each psu $\mathcal{C} \in \omega_{1}$ selected in the First Stage, select a simple random sample (SRS) $\omega_{\mathcal{C}}$ of $m_{i}$ secondary sampling units (ssu's) from the collection of $M_{i}$ ssu's in $\mathcal{C}$. \\
+
+\noindent
+The sample is then $\omega := \displaystyle{\bigsqcup_{\mathcal{C}\in\omega_{1}}}\,\omega_{\mathcal{C}}$. \,In other words, the sample $\omega$ consists of all the secondary sampling units (or observation units) selected (during the Second Stage) from all the primary sampling units selected in the First Stage. \\
+
+\noindent
+The Horvitz-Thompson estimator $\widehat{t}_{\textnormal{HT}}$, as defined below, is an unbiased estimator for the total of an $\Re$-valued population characteristic $y : \mathcal{U} \longrightarrow \Re$.
+
+\begin{eqnarray*}
+\widehat{t}_{\textnormal{HT}}
+& := & \sum_{k\in\omega}\left(\dfrac{N}{n}\dfrac{M_{y_{k}}}{m_{y_{k}}}\right)y_{k}
+\;\;=\;\; \sum_{k\in\omega}\left(\dfrac{1}{\pi_{k}}\right)y_{k}
+\;\;=\;\; \sum_{\mathcal{C}\in\omega_{1}} \sum_{k\in\omega_{\mathcal{C}}}\left(\dfrac{N}{n}\dfrac{M_{y_{k}}}{m_{y_{k}}}\right)y_{k},
+\end{eqnarray*}
+where $M_{y_{k}} := M_{i} := \#(\mathcal{C}_{i})$ and $m_{y_{k}} := m_{i} := \#(\omega_{\mathcal{C}_{i}})$ such that $\mathcal{C}_{i}$ is the unique psu containing the ssu $k \in \mathcal{U} = \displaystyle{\bigsqcup_{i}^{N}}\,\mathcal{C}_{i}$.  The variance of the Horvitz-Thompson estimator $\widehat{t}_{\textnormal{HT}}$ is given by:
+\begin{eqnarray*}
+%\widehat{t}_{\textnormal{HT}}
+%& := & \sum_{k\in\omega}\left(\dfrac{N}{n}\dfrac{M_{y_{k}}}{m_{y_{k}}}\right)y_{k}
+%\;\;=\;\; \sum_{k\in\omega}\left(\dfrac{1}{\pi_{k}}\right)y_{k}
+%\;\;=\;\; \sum_{\mathcal{C}\in\omega_{1}} \sum_{k\in\mathcal{C}}\left(\dfrac{N}{n}\dfrac{M_{y_{k}}}{m_{y_{k}}}\right)y_{k}
+%\\
+\textnormal{Var}\!\left(\,\widehat{t}_{\textnormal{HT}}\,\right)
+& = & N^{2}\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}_{t}}{n} \; + \; 
+\sum^{N}_{i=1}\dfrac{N}{n}\cdot M_{i}^{2}\left(1-\dfrac{m_{i}}{M_{i}}\right)\dfrac{S^{2}_{i}}{m_{i}},
+\end{eqnarray*}
+where
+\begin{equation*}
+S_{t}^{2} \; := \; \dfrac{1}{N-1}\sum^{N}_{i=1}\left(t_{i}-\dfrac{t}{N}\right)^{2}
+\,,\quad
+S_{i}^{2} \; := \; \dfrac{1}{M_{i}-1}\sum^{M_{i}}_{j=1}\left(y_{j}-\dfrac{t_{i}}{M_{i}}\right)^{2}
+\,,\quad
+t \; := \; \sum_{k\in\mathcal{U}}\,y_{k}
+\,,\quad\textnormal{and}\quad
+t_{i} \; := \; \sum_{k\in\mathcal{C}_{i}}\,y_{k}
+\end{equation*}
+
+\noindent
+\textbf{IMPORTANT OBSERVATION:}\;\;
+The first summand in the expression of $\textnormal{Var}\!\left(\,\widehat{t}_{\textnormal{HT}}\,\right)$ is due to variability in the First-Stage sampling, whereas the second summand is due to variability in the Second-Stage sampling.
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{One-stage Cluster Sampling}
+\setcounter{theorem}{0}
+
+One-stage cluster sampling is a special form of two-stage cluster sampling in which all second-stage samples are censuses.  In other words, following the notation introduced for two-stage cluster sampling, in one-stage cluster sampling, we have $\omega_{\mathcal{C}} = \mathcal{C}$, for each first-stage-selected $\mathcal{C} \in \omega_{1}$.  This also implies $m_{i} = M_{i}$ for each $i = 1, 2, \ldots, N$. \\
+
+Then, the Horvitz-Thompson estimator $\widehat{t}_{\textnormal{HT}}$ and its variance reduces to:
+\begin{eqnarray*}
+\widehat{t}_{\textnormal{HT}}
+& := & \sum_{\mathcal{C}\in\omega_{1}} \sum_{k\in\mathcal{C}}\left(\dfrac{N}{n}\dfrac{M_{y_{k}}}{m_{y_{k}}}\right)y_{k}
+\;\;=\;\; \dfrac{N}{n}\cdot\sum_{\mathcal{C}\in\omega_{1}} \sum_{k\in\mathcal{C}}\,y_{k} 
+\;\;=\;\; \dfrac{N}{n}\cdot\sum_{\mathcal{C}\in\omega_{1}} t_{\mathcal{C}}\,,
+\quad\textnormal{where}\;\; t_{\mathcal{C}} := \sum_{k\in\mathcal{C}}y_{k} \\
+\\
+\textnormal{Var}\!\left(\,\widehat{t}_{\textnormal{HT}}\,\right)
+& = &
+N^{2}\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}_{t}}{n} \; + \; 
+\sum^{N}_{i=1}\dfrac{N}{n}\cdot M_{i}^{2}\left(1-\dfrac{m_{i}}{M_{i}}\right)\dfrac{S^{2}_{i}}{m_{i}} \\
+& = &
+N^{2}\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}_{t}}{n} \; + \; 
+\sum^{N}_{i=1}\dfrac{N}{n}\cdot M_{i}^{2}\left(1-1\right)\dfrac{S^{2}_{i}}{m_{i}}
+\;\;=\;\;
+N^{2}\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}_{t}}{n}
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Stratified Simple Random Sampling as a special case of Two-stage Cluster Sampling}
+\setcounter{theorem}{0}
+
+Stratified simple random sampling is a special case of two-stage cluster sampling in which the first-stage sampling is a census.  In other words, if $\mathcal{U} = \displaystyle{\bigsqcup_{i=1}^{N}}\,\mathcal{C}_{i}$, then $\omega_{1} = \left\{\,\mathcal{C}_{1},\mathcal{C}_{2},\ldots,\mathcal{C}_{N}\,\right\}$.  In particular, $n = N$.
+
+Then, the Horvitz-Thompson estimator $\widehat{t}_{\textnormal{HT}}$ and its variance reduces to:
+\begin{eqnarray*}
+\widehat{t}_{\textnormal{HT}}
+& := & \sum_{\mathcal{C}\in\omega_{1}} \sum_{k\in\omega_{\mathcal{C}}}\left(\dfrac{N}{n}\dfrac{M_{y_{k}}}{m_{y_{k}}}\right)y_{k}
+\;\;=\;\;  \sum_{i=1}^{N} M_{i}\left(\dfrac{1}{m_{i}} \sum_{k\in\omega_{\mathcal{C}_{i}}}y_{k}\right) 
+\;\;=\;\;  \sum_{i=1}^{N} M_{i}\,\overline{y}_{\omega_{\mathcal{C}_{i}}}
+\\
+\textnormal{Var}\!\left(\,\widehat{t}_{\textnormal{HT}}\,\right)
+& = &
+N^{2}\left(1-\dfrac{n}{N}\right)\dfrac{S^{2}_{t}}{n} \; + \; 
+\sum^{N}_{i=1}\dfrac{N}{n}\cdot M_{i}^{2}\left(1-\dfrac{m_{i}}{M_{i}}\right)\dfrac{S^{2}_{i}}{m_{i}} \\
+& = &
+N^{2}\left(1-1\right)\dfrac{S^{2}_{t}}{n} \; + \; 
+\sum^{N}_{i=1}1\cdot M_{i}^{2}\left(1-\dfrac{m_{i}}{M_{i}}\right)\dfrac{S^{2}_{i}}{m_{i}}
+\;\;=\;\;
+\sum^{N}_{i=1}\,M_{i}^{2}\left(1-\dfrac{m_{i}}{M_{i}}\right)\dfrac{S^{2}_{i}}{m_{i}}
+\end{eqnarray*}
+The above formula agree exactly with those derived earlier for stratified simple random sampling (apart from obvious notational changes).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{plain}
+%\bibliographystyle{amsplain}
+\bibliographystyle{acm}
+\bibliography{KenChuBioinformatics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

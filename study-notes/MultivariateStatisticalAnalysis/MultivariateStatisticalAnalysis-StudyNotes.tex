@@ -1,0 +1,177 @@
+
+\documentclass{article}
+
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage{doublespace}
+
+\usepackage{KenChuArticleStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+%\input{../CourseSemesterUnique}
+
+%\rhead[\CourseSemesterUnique]{Kenneth Chu (300517641)}
+%\lhead[Kenneth Chu (300517641)]{\CourseSemesterUnique}
+\rhead[Study Notes]{Kenneth Chu (300517641)}
+\lhead[Kenneth Chu (300517641)]{Study Notes}
+\chead[]{{\Large\bf Multivariate Statistical Analysis} \\
+\vskip 0.1cm \normalsize \today}
+\lfoot[]{}
+\cfoot[]{}
+\rfoot[]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Discriminant Analysis}
+\setcounter{theorem}{0}
+
+\emph{Discriminant analysis} is essentially ``supervised machine learning" applied to ``classification" problems.  One can also view discriminant analysis as a form of regression analysis in which the criterion variables are discrete.
+
+In a typical discriminant analysis problem,
+\begin{itemize}
+\item  Given:
+           \begin{itemize}
+               \item  A finite collection of observation units, enumerated by $\{\,1,2,\ldots,N\,\}$.
+               \item  For each observation unit, $i$, measurements
+                         $\mathbf{v}^{T}_{i} = \left(\,v_{i1},v_{i2},\ldots,v_{in}\,\right) \in \Re^{1 \times n}$on $n \in \N$
+                         of the observation unit on $n$ predictor variables $V_{1},V_{2},\ldots,V_{n}$.
+                         Thus, $\left\{\mathbf{v}_{i}\right\}^{N}_{i=1} \subset \Re^{n}$ is a set of
+                         $N$ points in $\Re^{n} = \Re^{n \times 1}$.
+               \item  A classification of the $N$ observational units into $g$ groups.
+           \end{itemize}
+\item  Want to determine:
+          \begin{itemize}
+          \item  A linear function $L = \beta_{1}V_{1} + \beta_{2}V_{2} + \cdots + \beta_{n}V_{n}$ that
+                    can be used to ``predict" the given classification of observational units.
+                    $L$ is called a \emph{discriminant function}.
+          \end{itemize}
+\end{itemize}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Principal Component Analysis}
+\setcounter{theorem}{0}
+
+In a typical discriminant analysis problem,
+\begin{itemize}
+\item  Given:
+           \begin{itemize}
+               \item  A finite collection of observation units, enumerated by $\{\,1,2,\ldots,N\,\}$.
+               \item  For each observation unit, $i$, measurements
+                         $\mathbf{v}^{T}_{i} = \left(\,x_{i1},x_{i2},\ldots,x_{in}\,\right) \in \Re^{1 \times n}$
+                         of the observation unit on $n\in\N$ predictor variables $X_{1},X_{2},\ldots,X_{n}$.
+                         Thus, $\left\{\mathbf{v}_{i}\right\}^{N}_{i=1} \subset \Re^{n}$ is a set of
+                         $N$ points in $\Re^{n}$.
+           \end{itemize}
+\item  Want to determine:
+          \begin{itemize}
+          \item  A linear transformation $\left(Y_{1},Y_{2},\ldots,Y_{n}\right) = \mathcal{L}\!\left(X_{1},X_{2},\ldots,X_{n}\right)$
+                    such that the correlation matrix with respect to the coordinates $(Y_{1},\ldots,Y_{n})$ is a
+                    diagonal matrix with non-negative and non-decreasing entries.  The new coordinates $Y_{1},\ldots,Y_{n}$
+                    are called the \emph{principal components}.
+          \end{itemize}
+\end{itemize}
+For each $k = 1, 2, \ldots, n$,
+\begin{equation*}
+\mathbf{x}_{k}
+\;\; = \;\;
+\left(\!\begin{array}{c}
+x_{1k} \\ x_{2k} \\ \vdots \\ \vdots \\ x_{Nk}
+\end{array}\!\right).
+\end{equation*}
+Correlation matrix:  For $k, l = 1, 2, \ldots, n$,
+\begin{equation*}
+R_{kl}
+\;\; := \;\;
+\textnormal{Cor}\!\left(\,\mathbf{x}_{k}\,,\,\mathbf{x}_{l}\,\right)
+\;\; := \;\;
+\dfrac{\underset{i=1}{\overset{N}{\sum}}(x_{ik}-\overline{\mathbf{x}}_{k})(x_{il}-\overline{\mathbf{x}}_{l})}
+{(N-1)\,\textnormal{SE}(\mathbf{x}_{k})\textnormal{SE}(\mathbf{x}_{l})}
+\;\; = \;\;
+\dfrac{\underset{i=1}{\overset{N}{\sum}}(x_{ik}-\overline{\mathbf{x}}_{k})(x_{il}-\overline{\mathbf{x}}_{l})}
+{\sqrt{\underset{i=1}{\overset{N}{\sum}}\left(x_{ik} - \overline{\mathbf{x}}_{k}\right)^{2}}\,\sqrt{\underset{i=1}{\overset{N}{\sum}}\left(x_{il} - \overline{\mathbf{x}}_{l}\right)^{2}}}\,,
+\end{equation*}
+where
+\begin{equation*}
+\overline{\mathbf{x}}_{k} \; = \; \dfrac{1}{N}\,\sum^{N}_{i=1}\,x_{ik}\,,
+\quad\textnormal{and}\quad
+\textnormal{SE}(\mathbf{x}_{k})
+\; := \;
+\sqrt{\dfrac{1}{N-1}\sum^{N}_{i=1}\left(x_{ik} - \overline{\mathbf{x}}_{k}\right)^{2}}.
+\end{equation*}
+$R := (\,R_{kl}\,)_{k,l=1,\ldots,n} \in \Re^{n \times n}$ is a real symmetric matrix.
+Note that the diagonal entries of $R$ are all $1$:
+\begin{equation*}
+R_{kk}
+\;\; = \;\;
+\dfrac{\underset{i=1}{\overset{N}{\sum}}(x_{ik}-\overline{\mathbf{x}}_{k})(x_{ik}-\overline{\mathbf{x}}_{k})}
+{\sqrt{\underset{i=1}{\overset{N}{\sum}}\left(x_{ik} - \overline{\mathbf{x}}_{k}\right)^{2}}\,\sqrt{\underset{i=1}{\overset{N}{\sum}}\left(x_{ik} - \overline{\mathbf{x}}_{k}\right)^{2}}}
+\;\; = \;\;
+1,
+\end{equation*}
+which furthermore implies that $\textnormal{trace}(R) = n$.
+Now, recall:
+\begin{theorem}\quad
+A real square matrix is symmetric if and only if it has an orthonormal basis of eigenvectors.
+\end{theorem}
+\begin{theorem}\quad
+Every real symmetric matrix $A \in \Re^{n \times n} $ is orthogonally diagonalizable, i.e.
+there exists an orthogonal matrix $Q \in \Re^{n \times n}$ such that 
+\begin{equation*}
+  D \;\; := \;\;  Q^{T} \, A \, Q 
+\end{equation*}
+is a diagonal matrix.  Moreover, the set of eigenvalues of $A$ is equal to the set of diagonal entries of $D$.
+The $i^{\textnormal{th}}$ column of Q is an eigenvector of A corresponding to the $i^{\textnormal{th}}$ diagonal
+entry of $D$.
+\end{theorem}
+Let $D$ be the diagonalization of $R$ which has non-decreasing diagonal entries.
+Note that $\textnormal{trace}(D) = \textnormal{trace}(R) = n$.  Recall also that the diagonal entries of $D$ are necessarily non-negative and they are the eigenvalues of $R$.  Consequently, the $k^{\textnormal{th}}$ diagonal entry $\lambda_{k}\geq 0$ of $D$ (or eigenvalue of $R$) can be interpreted as the number of dimension(s) ``explained" by the corresponding principal component $\textnormal{span}\!\left(Y_{k}\right)$.
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Factor Analysis}
+\setcounter{theorem}{0}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{plain}
+%\bibliographystyle{amsplain}
+\bibliographystyle{acm}
+\bibliography{KenChuBioinformatics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

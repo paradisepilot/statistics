@@ -1,0 +1,230 @@
+
+\documentclass{article}
+
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage{doublespace}
+
+\usepackage{KenChuArticleStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+%\input{../CourseSemesterUnique}
+
+%\rhead[\CourseSemesterUnique]{Kenneth Chu (300517641)}
+%\lhead[Kenneth Chu (300517641)]{\CourseSemesterUnique}
+\rhead[Study Notes]{Kenneth Chu}
+\lhead[Kenneth Chu]{Study Notes}
+\chead[]{{\Large\bf Univariate One-way Analysis of Variance (ANOVA)} \\
+\vskip 0.1cm \normalsize \today}
+\lfoot[]{}
+\cfoot[]{}
+\rfoot[]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Motivating Example}
+\setcounter{theorem}{0}
+
+\noindent
+GOAL: To evaluate the effect of smoking on heart rate.
+
+\begin{itemize}
+\item  Suppose the collection $\mathcal{U}$ of all human beings has been divided into four overlapping groups: $\mathcal{U}_{1}$ non-smokers, $\mathcal{U}_{2}$ light smokers, $\mathcal{U}_{3}$ moderate smokers, and $\mathcal{U}_{4}$ heavy smokers, i.e.
+\begin{equation*}
+\mathcal{U} \;\; = \;\; \bigsqcup_{j=1}^{4} \; \mathcal{U}_{j}
+\end{equation*}
+\item  In each group, we take a random sample of $6$ individuals, and measure their heart rates after three minutes of resting.
+\item  Let $\mu_{j}$ be the population mean heart rate of $\mathcal{U}_{j}$, $j = 1, \ldots, 4$, respectively.  We would like to use the collected data to test:
+\begin{eqnarray*}
+&H_{0}: \quad \mu_{1} = \mu_{2} = \mu_{3} = \mu_{4} &\\
+&\textnormal{versus}& \\
+&H_{1}: \quad \textnormal{not all of $\mu_{1}$, $\mu_{2}$, $\mu_{3}$, and $\mu_{4}$ are equal.}&\\
+\end{eqnarray*}
+\end{itemize}
+
+%\begin{tabular}{|c|c|c|c|}
+%\begin{tabular}{0.75\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|}
+
+\noindent
+Suppose the collected data are as follows:
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+%\begin{tabular}{0.75\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|}
+%\begin{tabular}[30\textwidth]{@{\extracolsep{\fill}}|c|c|c|c|}
+%\begin{tabular}[5cm]{@{\extracolsep{\fill}}|c|c|c|c|}
+%\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+&&&\\
+non-smokers & light smokers & moderate smokers & heavy smokers \\
+$j$ = 1&$j$ = 2&$j$ = 3&$j$ = 4\\
+&&&\\
+\hline
+69 & 55 & 66 & 91 \\
+52 & 60 & 81 & 72 \\
+71 & 78 & 70 & 81 \\
+58 & 58 & 77 & 67 \\
+59 & 62 & 57 & 95 \\
+65 & 66 & 79 & 84 \\
+\hline
+\end{tabular}
+\end{center}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Sums of Squares and Their Relevant Properties}
+\setcounter{theorem}{0}
+
+\begin{eqnarray*}
+SS_{\textnormal{inter-level}}
+& := & \sum^{k}_{j=1}\,\sum^{n_{j}}_{i=1}\left(\overline{Y}_{\cdot j} - \overline{Y}_{\cdot\cdot}\right)^{2}
+\;\;\; = \;\;\; \sum^{k}_{j=1}\,n_{j}\left(\overline{Y}_{\cdot j} - \overline{Y}_{\cdot\cdot}\right)^{2} \\
+SS_{\textnormal{intra-level}}
+& := & \sum^{k}_{j=1}\,\sum^{n_{j}}_{i=1}\left(Y_{ij} - \overline{Y}_{\cdot j}\right)^{2} \\
+SS_{\textnormal{total}}
+& := & \sum^{k}_{j=1}\,\sum^{n_{j}}_{i=1}\left(Y_{ij} - \overline{Y}_{\cdot\cdot}\right)^{2} \\
+\end{eqnarray*}
+
+\begin{proposition}
+\begin{equation*}
+SS_{\textnormal{total}} \;\; = \;\; SS_{\textnormal{inter-level}} \;\; + \;\; SS_{\textnormal{intra-level}}
+\end{equation*}
+\end{proposition}
+
+\begin{proposition}
+\mbox{}\vskip 0.15cm\noindent
+Suppose:
+\begin{enumerate}
+\item  $Y_{ij}$, for $j = 1, \ldots, k$ and $i = 1, \ldots, n_{j}$, are independent random variables.
+\item  there exist $\sigma^{2} > 0$ and $\mu_{1}, \ldots, \mu_{k} \in \Re$ such that $Y_{ij} \sim N(\mu_{j},\sigma^{2})$, for each $j = 1, \ldots, k$, and each $i = 1, \ldots, n_{j}$.
+\end{enumerate}
+Then, regardless of whether $H_{0}$ ($\mu_{1} = \mu_{2} = \mu_{3} = \mu_{4}$) is true, we have:
+\begin{itemize}
+\item  $\dfrac{SS_{\textnormal{intra-level}}}{\sigma^{2}}$ has a $\chi^{2}$ distribution with $(n - k)$ degrees of freedom.
+          In particular, $E\!\left[\,\dfrac{SS_{\textnormal{intra-level}}}{\sigma^{2}}\,\right] = n-k$.
+\item  $SS_{\textnormal{intra-level}}$ and $SS_{\textnormal{inter-level}}$ are independent random variables.
+\end{itemize}
+\end{proposition}
+
+\begin{proposition}\quad
+\mbox{}\vskip 0.15cm\noindent
+Suppose:
+\begin{enumerate}
+\item  $Y_{ij}$, for $j = 1, \ldots, k$ and $i = 1, \ldots, n_{j}$, are independent random variables.
+\item  there exist $\sigma^{2} > 0$ and $\mu_{1}, \ldots, \mu_{k} \in \Re$ such that $Y_{ij} \sim N(\mu_{j},\sigma^{2})$, for each $j = 1, \ldots, k$, and each $i = 1, \ldots, n_{j}$.
+\end{enumerate}
+Then,
+\begin{equation*}
+H_{0}:\mu_{1} = \mu_{2} = \mu_{3} = \mu_{4}
+\quad\Longrightarrow\quad
+\dfrac{SS_{\textnormal{inter-level}}}{\sigma^{2}} \;\; \sim \;\; \chi^{2}_{k-1}
+\end{equation*}
+\end{proposition}
+
+\begin{corollary}
+\mbox{}\vskip 0.15cm\noindent
+Suppose:
+\begin{enumerate}
+\item  $Y_{ij}$, for $j = 1, \ldots, k$ and $i = 1, \ldots, n_{j}$, are independent random variables.
+\item  there exist $\sigma^{2} > 0$ and $\mu_{1}, \ldots, \mu_{k} \in \Re$ such that $Y_{ij} \sim N(\mu_{j},\sigma^{2})$, for each $j = 1, \ldots, k$, and each $i = 1, \ldots, n_{j}$.
+\end{enumerate}
+Then,
+\begin{equation*}
+H_{0}:\mu_{1} = \mu_{2} = \mu_{3} = \mu_{4}
+\quad\Longrightarrow\quad
+F \;:=\; \dfrac{SS_{\textnormal{inter-level}}/(k-1)}{SS_{\textnormal{intra-level}}/(n-k)} \;\; \sim \;\; \mathcal{F}^{k-1}_{n-k}
+\end{equation*}
+\end{corollary}
+
+\begin{lemma}
+\mbox{}\vskip 0.15cm\noindent
+Suppose:
+\begin{enumerate}
+\item  $Y_{ij}$, for $j = 1, \ldots, k$ and $i = 1, \ldots, n_{j}$, are independent random variables.
+\item  there exist $\sigma^{2} > 0$ and $\mu_{1}, \ldots, \mu_{k} \in \Re$ such that $Y_{ij} \sim N(\mu_{j},\sigma^{2})$, for each $j = 1, \ldots, k$, and each $i = 1, \ldots, n_{j}$.
+\end{enumerate}
+Then,
+\begin{equation*}
+E\left[\,SS_{\textnormal{inter-level}}\,\right]
+\;\; = \;\;
+(k-1)\,\sigma^{2} \;\; + \;\; \sum^{k}_{j=1}\,n_{j}(\mu_{j}-\mu)^{2}\,,
+\end{equation*}
+where $\mu := \dfrac{1}{n}\sum^{k}_{j=1}\,\mu_{j}$, and $n = n_{1} + n_{2} + \cdots + n_{k}$.  In particular,
+\begin{equation*}
+\dfrac{E\left[\,SS_{\textnormal{inter-level}}/(k-1)\,\right]}{E\left[\,SS_{\textnormal{intra-level}}/(n-k)\,\right]}
+\;\; = \;\;
+\dfrac{\sigma^{2}+\dfrac{1}{k-1}\,\underset{j=1}{\overset{k}{\textnormal{\Large$\sum$}}}\,n_{j}(\mu_{j}-\mu)^{2}}{\sigma^{2}}
+\;\; \geq \;\; 1
+\end{equation*}
+\end{lemma}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Experimental Design of Univariate One-way ANOVA}
+\setcounter{theorem}{0}
+
+Let $n, N \in \N$, with $n \leq N$.  Let $\mathcal{U} = \{\,1,2,\ldots,N\,\}$, which represents the finite population, or universe, of $N$ elements.  
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\appendix
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical Results}
+\setcounter{theorem}{0}
+
+\begin{theorem}
+\mbox{}\vskip 0.15cm\noindent
+Let $Y_{1}, Y_{2}, \ldots, Y_{n}$ be independent identically distributed random variables with common distribution $N(\mu,\sigma^{2})$.  Then,
+\begin{itemize}
+\item  the following two random variables are independent:
+          \begin{equation*}
+          \overline{Y} \;\; := \;\; \frac{1}{n}\sum^{n}_{i=1}\,Y_{i}
+          \quad\textnormal{and}\quad
+          S^{2} \;\; := \;\; \frac{1}{n-1}\sum^{n}_{i=1}\left(Y_{i}-\overline{Y}\right)^{2}
+          \end{equation*}
+\item  the random variable
+          \begin{equation*}
+          \dfrac{1}{\sigma^{2}}\cdot(n-1)\,S^{2} \;\; = \;\; \dfrac{1}{\sigma^{2}}\sum^{n}_{i=1}(Y_{i}-\overline{Y})^{2}
+          \end{equation*}
+          has a $\chi^{2}$ distribution with $(n-1)$ degrees of freedom.
+\end{itemize}
+\end{theorem}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{plain}
+%\bibliographystyle{amsplain}
+%\bibliographystyle{acm}
+%\bibliography{KenChuBioinformatics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

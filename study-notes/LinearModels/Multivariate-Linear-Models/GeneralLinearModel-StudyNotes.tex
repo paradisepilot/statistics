@@ -1,0 +1,185 @@
+
+\documentclass{article}
+
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage{doublespace}
+
+\usepackage{KenChuArticleStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+%\input{../CourseSemesterUnique}
+
+\rhead[Study Notes]{Kenneth Chu}
+\lhead[Kenneth Chu (300517641)]{Study Notes}
+\chead[]{{\Large\bf The General Linear Statistical Model} \\
+\vskip 0.1cm \normalsize \today}
+\lfoot[]{}
+\cfoot[]{}
+\rfoot[]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+Let $Y : \Omega \longrightarrow \Re^{n}$ be an $\Re^{n}$-valued random variable defined on the probability space $\Omega$.  We assume that the expected value $E[\,Y\,]$ of $Y$ exists.  Then, trivially, we have $E[\,Y\,] \in \Re^{n}$.  
+
+\section{Assumption on the expected value of the response variable $Y$}
+\setcounter{theorem}{0}\setcounter{equation}{0}
+
+The most fundamental assumption of the General Linear Model is that the expected value of the response variable $Y$ lies in a model-specific subspace of $\Re^{n}$ (this subspace will be called the \emph{estimation space} of the model), in the following sense:  One of the ``components'' of a general linear model is its \emph{model matrix} $X \in \Re^{n \times p}$, and the expected value of the response variable $Y$ is assumed to lie in the column space $\mathcal{C}(X) \subset \Re^{n}$.
+
+\vskip 0.3cm
+\noindent In other words:\vskip 0.1cm
+\begin{center}
+\begin{minipage}{16cm}
+\noindent
+\textbf{The Estimation Space Assumption}
+\begin{equation}\label{StandardMultivariateLinearModel}
+E[\,Y\,] \in \mathcal{C}(X);\;\;\textnormal{equivalently},\;\; E[\,Y\,] = X\beta,\; \textnormal{for some (unknown)}\; \beta \in \Re^{p},
+\end{equation}
+where $\mathcal{C}(X) \subset \Re^{n}$ is the column space of the model matrix $X \in \Re^{n \times p}$.
+\end{minipage}
+\end{center}
+
+\vskip 0.25cm
+\noindent
+We will call $\Re^{n}$ the \emph{observation space}, and $\mathcal{C}(X)$ the \emph{estimation space} of the model.
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Assumption of the distribution of the response variable $Y$}
+\setcounter{theorem}{0}\setcounter{equation}{0}
+
+In order to make estimation and hypothesis testing computationally feasible, we need to make certain assumptions on the distribution of the response variable $Y$.
+
+\begin{center}
+\begin{minipage}{16cm}
+\vskip 0.3cm
+\noindent
+\textbf{Assumptions on the distribution of $Y$:}
+\begin{enumerate}
+\item	The response variable $Y$ has a multivariate normal distribution.
+\item	The components of $Y$ are independent $\Re$-valued random variables.
+\item	The variances of the components of $Y$ are all equal.
+\end{enumerate}
+\end{minipage}
+\end{center}
+
+\vskip 0.3cm
+\noindent
+The assumptions on the expected value and distribution on $Y$ together are equivalent to the following:
+\begin{equation}\label{ErrorNormalityIndependenceEqualVariance}
+Y \sim N\!\left(X\beta,\sigma^{2}I_{n}\right),\;\textnormal{for some (unknown but fixed)}\;\beta\in\Re^{p},\;\textnormal{and some (unknown but fixed)}\;\sigma > 0.
+\end{equation}
+
+Define $\epsilon := Y - X\beta$.  Then, $\epsilon : \Omega \longrightarrow \Omega$ is also an $\Re^{n}$-valued random variable, with
+\begin{equation}
+\epsilon \sim N\!\left(0,\sigma^{2}I_{n}\right),\;\;\textnormal{for some}\;\;\sigma > 0.
+\end{equation}
+
+\begin{proposition}[Distribution of the full-model error sum-of-squares] \mbox{}
+\vskip 0.1cm
+\noindent
+Let $P_{\mathcal{C}(X)^{\perp}} : \Re^{n} \longrightarrow \Re^{n}$ denote the orthogonal projection operator onto the subspace $\mathcal{C}(X)^{\perp}$.  Then,
+\begin{equation*}
+\dfrac{\Vert\,P_{\mathcal{C}(X)^{\perp}}(Y)\,\Vert^{2}}{\sigma^{2}} \; \sim \; \chi^{2}\!\left(\rank\!\left(\mathcal{C}(X)^{\perp}\right)\right)
+\end{equation*}
+\end{proposition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Testing the hypothesis that $H_{0}: E[\,Y\,] \in \mathcal{C}(X_{0}) \subset \mathcal{C}(X)$}
+\setcounter{theorem}{0}
+
+\begin{proposition}\mbox{}\vskip 0.1cm
+\noindent
+Let $P_{\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)} : \Re^{n} \longrightarrow \Re^{n}$ denote the orthogonal projection operator onto the subspace $\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)$.  Then,
+\begin{equation*}
+\dfrac{\Vert\,P_{\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)}(Y)\,\Vert^{2}}{\sigma^{2}} \; \sim \; \chi^{2}\!\left(\rank\!\left(\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)\right)\,,\,\dfrac{\Vert\,P_{\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)}X\beta\,\Vert^{2}}{2\,\sigma^{2}}\,\right)
+\end{equation*}
+\end{proposition}
+
+\vskip 0.5cm
+\begin{corollary}[Distribution of $F$-statistics under validity of full model]
+\begin{equation*}
+\dfrac
+{\Vert\,P_{\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)}(Y)\,\Vert^{2}\,/\,\rank\!\left(\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)\right)}
+{\Vert\,P_{\mathcal{C}(X)^{\perp}}(Y)\,\Vert^{2}\,/\,\rank\!\left(\mathcal{C}(X)^{\perp}\right)}
+\;\sim\;
+F\!\left(
+\rank\!\left(\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)\right)
+\,,\,
+\rank\!\left(\mathcal{C}(X)^{\perp}\right)
+\,;\,
+\dfrac{\Vert\,P_{\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)}X\beta\,\Vert^{2}}{2\,\sigma^{2}}
+\right)
+\end{equation*}
+\end{corollary}
+
+\vskip 0.5cm
+\begin{corollary}[Distribution of $F$-statistics under validity of reduced model]
+\begin{equation*}
+\dfrac
+{\Vert\,P_{\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)}(Y)\,\Vert^{2}\,/\,\rank\!\left(\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)\right)}
+{\Vert\,P_{\mathcal{C}(X)^{\perp}}(Y)\,\Vert^{2}\,/\,\rank\!\left(\mathcal{C}(X)^{\perp}\right)}
+\;\sim\;
+F\!\left(
+\rank\!\left(\mathcal{C}(X_{0})^{\perp}\,\cap\,\mathcal{C}(X)\right)
+\,,\,
+\rank\!\left(\mathcal{C}(X)^{\perp}\right)
+\,;\,
+0
+\right)
+\end{equation*}
+\end{corollary}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Testing for the vanishing of linear parametric functions}
+\setcounter{theorem}{0}
+
+\begin{equation*}
+H_{0}: \Lambda'\,\beta = 0
+\end{equation*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{plain}
+%\bibliographystyle{amsplain}
+\bibliographystyle{acm}
+\bibliography{KenChuBioinformatics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

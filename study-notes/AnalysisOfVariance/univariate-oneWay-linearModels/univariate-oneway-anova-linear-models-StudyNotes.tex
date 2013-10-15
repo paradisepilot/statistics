@@ -1,0 +1,367 @@
+
+\documentclass{article}
+
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage{doublespace}
+
+\usepackage{KenChuArticleStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\rank}{\textnormal{rank}}
+\newcommand{\id}{\textnormal{id}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+%\input{../CourseSemesterUnique}
+
+%\rhead[\CourseSemesterUnique]{Kenneth Chu (300517641)}
+%\lhead[Kenneth Chu (300517641)]{\CourseSemesterUnique}
+\rhead[Study Notes]{Kenneth Chu}
+\lhead[Kenneth Chu]{Study Notes}
+\chead[]{{\large\bf Linear Models for the Univariate One-way Analysis of Variance (ANOVA)} \\
+\vskip 0.1cm \normalsize \today}
+\lfoot[]{}
+\cfoot[]{}
+\rfoot[]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\large
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Linear models \& estimable functions}
+\setcounter{theorem}{0}
+
+Let $X \in \Re^{n \times p}$ be the \emph{model matrix} of a certain linear model $Y = X\beta + e$, where $\Re^{p}$ is the \emph{parameter space}, and $\Re^{n}$ is the \emph{observation space} (or \emph{measurement space}) of the model.
+
+Then, $X$ can be regarded as a linear map from the parameter space $\Re^{p}$ into the measurement space $\Re^{n}$, i.e. $X : \Re^{p} \longrightarrow \Re^{n} : \beta \longmapsto X\cdot \beta$.  The image $\image(X) = X\!\left(\Re^{p}\right) \subset \Re^{n}$ of $X : \Re^{p} \longrightarrow \Re^{n}$ is the \emph{estimation space}, which of course is a subspace of the measurement space $\Re^{n}$.
+
+\begin{remark}\quad
+Let two vector spaces $V$ and $W$ be given, with $V^{*}$ and $W^{*}$ being their respective dual spaces.  Then, every linear map $f : V \longrightarrow W$ naturally induces its \textbf{dual map} $f^{*} : W^{*} \longrightarrow V^{*} : \rho \longmapsto \rho \circ f$.  More explicitly, given $\rho \in W^{*}$, $f^{*}(\rho) \in V^{*}$ is the functional on $V$ defined as follows:
+\begin{equation*}
+V \longrightarrow \Re : \mathbf{v} \longmapsto (\rho \circ f)\left[\mathbf{v}\right] = \rho(f(\mathbf{v}))
+\end{equation*}
+\end{remark}
+
+\begin{remark}\quad
+In particular, the linear map:
+\begin{equation*}
+\Re^{p} \overset{X}{\longrightarrow} \Re^{n} : \beta \longmapsto X\beta
+\end{equation*}
+induces
+\begin{equation*}
+(\Re^{n})^{*} \overset{X^{*}}{\longrightarrow} (\Re^{p})^{*} : \rho^{T} \longmapsto \left(\beta\mapsto\rho^{T}X\beta\right),
+\end{equation*}
+\end{remark}
+
+%\begin{remark}\quad
+%In particular, the composite map:
+%\begin{equation*}
+%\Re^{p} \overset{X}{\longrightarrow} X(\Re^{p}) \overset{\iota}{\longhookrightarrow} \Re^{n}
+%\end{equation*}
+%induces
+%\begin{equation*}
+%(\Re^{n})^{*} \overset{\iota^{*}}{\longrightarrow} (X(\Re^{p}))^{*} \overset{X^{*}}{\longrightarrow} (\Re^{p})^{*}
+%\end{equation*}
+%Note that the first map is given by:
+%\begin{equation*}
+%(\Re^{n})^{*} \overset{\iota^{*}}{\longrightarrow} (X(\Re^{p}))^{*} : \rho^{T} \longmapsto \left(X\beta\mapsto\rho^{T}X\beta\right),
+%\end{equation*}
+%whereas the second map is given by:
+%\begin{equation*}
+%(X(\Re^{p}))^{*} \overset{X^{*}}{\longrightarrow} (\Re^{p})^{*} : \iota^{*}(\rho^{T}) \longmapsto \left(\beta\mapsto\rho^{T}X\beta\right) = \left(\beta\mapsto(X^{T}\rho)^{T}\beta\right)
+%\end{equation*}
+%\end{remark}
+
+\begin{definition}[Estimable functionals on parameter space]
+\mbox{}\\
+The set of \emph{estimable functionals} on the parameter space $\Re^{p}$ is, by definition, the image $\image(X^{*}) \subset (\Re^{p})^{*}$.
+In other words, a function $\lambda^{T} \in (\Re^{p})^{*} = \Re^{1 \times p}$ is an estimable functional on $\Re^{p}$ if and only if $\lambda = X^{T}\rho$, for some $\rho \in \Re^{n}$.
+\end{definition}
+
+\begin{lemma}\quad
+Two functionals $\rho_{1}, \rho_{2} \in (\Re^{n})^{*}$ induce, via $\Re^{p}\overset{X}{\longrightarrow}\Re^{n}$, the same estimable functional in $(\Re^{p})^{*}$ if and only if $\rho_{1} - \rho_{2} \in \ker\!\left(X^{T}\right)$.
+\end{lemma}
+\proof
+\begin{eqnarray*}
+&& \textnormal{Two functionals $\rho_{1}, \rho_{2} \in (\Re^{n})^{*}$ induce the same functional in $(X(\Re^{p}))^{*}$} \\
+\Longleftrightarrow&& \rho_{1}^{T} X \beta = \rho_{2}^{T} X \beta, \;\;\textnormal{for each}\;\; \beta \in \Re^{p} \\
+\Longleftrightarrow&& (\rho_{1}^{T} X - \rho_{2}^{T} X)\beta = \mathbf{0}, \;\;\textnormal{for each}\;\; \beta \in \Re^{p} \\
+\Longleftrightarrow&& \rho_{1}^{T} X - \rho_{2}^{T} X = \mathbf{0} \in \Re^{1 \times p} = (\Re^{p})^{*} \\
+\Longleftrightarrow&& X^{T}(\rho_{1} - \rho_{2}) = \mathbf{0} \\
+\Longleftrightarrow&& \rho_{1} - \rho_{2} \in \ker\!\left(X^{T}\right)
+\end{eqnarray*}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\newpage
+\section{Fundamental Theorem of Testing in Linear Models: Testing a linear model against a reduced model}
+\setcounter{theorem}{0}
+
+\begin{theorem}\mbox{}\\
+Let $X \in \Re^{n \times p}$ and $X_{0} \in \Re^{n \times q}$ be given, with $\Col(X_{0}) \subset \Col(X) \subset \Re^{n}$.  Let $P_{X}$ and $P_{X_{0}}$ denote the projection map from $\Re^{n}$ onto $\Col(X)$ and $\Col(X_{0})$, respectively.  Let $Y : \Omega \longrightarrow \Re^{n}$ be $\Re^{n}$-valued random variables defined on a probably space $\Omega$.  Then, the following statements are true:
+
+\begin{enumerate}
+
+\item  If there exists $\beta \in \Re^{p}$ such that $Y - X\beta \sim N(0,\sigma^{2}I_{n \times n})$, then
+\begin{eqnarray*}
+&&\dfrac{\Vert\,(P_{X}-P_{X_{0}})Y\,\Vert^{2}\;/\;\rank(P_{X}-P_{X_{0}})}{\Vert\,(\id_{\Re^{n}}-P_{X})Y\,\Vert^{2}\;/\;\rank(\id_{\Re^{n}}-P_{X})}
+\;\;=\;\;\dfrac{Y^{T}(P_{X}-P_{X_{0}})Y\;/\;\rank(P_{X}-P_{X_{0}})}{Y^{T}(\id_{\Re^{n}}-P_{X})Y\;/\;\rank(\id_{\Re^{n}}-P_{X})}
+\\ \\
+&\sim&
+F\!\left(\rank(P_{X}-P_{X_{0}}),\,\rank(P_{X}-P_{X_{0}});\,\frac{1}{2\sigma^{2}}\Vert\,(P_{X}-P_{X_{0}})X\beta\,\Vert^{2}\right)
+\end{eqnarray*}
+
+\item  If there exists $\gamma \in \Re^{q}$ such that $Y - X_{0}\gamma \sim N(0,\sigma^{2}I_{n \times n})$, then
+\begin{eqnarray*}
+&&\dfrac{\Vert\,(P_{X}-P_{X_{0}})Y\,\Vert^{2}\;/\;\rank(P_{X}-P_{X_{0}})}{\Vert\,(\id_{\Re^{n}}-P_{X})Y\,\Vert^{2}\;/\;\rank(\id_{\Re^{n}}-P_{X})}
+\;\;=\;\;\dfrac{Y^{T}(P_{X}-P_{X_{0}})Y\;/\;\rank(P_{X}-P_{X_{0}})}{Y^{T}(\id_{\Re^{n}}-P_{X})Y\;/\;\rank(\id_{\Re^{n}}-P_{X})}
+\\ \\
+&\sim&
+F\!\left(\rank(P_{X}-P_{X_{0}}),\,\rank(P_{X}-P_{X_{0}});\,0\right)
+\end{eqnarray*}
+
+\end{enumerate}
+
+\end{theorem}
+
+\begin{remark}[Intuitive idea behind testing a linear model against a reduced model]\mbox{}\\
+Assume the ``full model" $Y = X\beta + e$, with $e \sim N(0,\sigma^{2}I_{n \times n})$, is true.
+Then, $\Vert\,(\id_{\Re^{n}}-P_{X})Y\,\Vert^{2}$ is the squared norm of the error vector between the observed vector $Y$ and its full-model estimate $P_{X}Y$.
+Next, observe that:
+\begin{equation*}
+P_{X}Y \; = \; P_{X_{0}}Y + \left(P_{X} - P_{X_{0}}\right)Y.
+\end{equation*}
+Hence, $\Vert\,(P_{X} - P_{X_{0}})Y\,\Vert^{2}$ is the squared norm of the error vector between the full-model estimate $P_{X}Y$ of $Y$ and the reduced-model estimate $P_{X_{0}}Y$ of $Y$.  Thus, intuitively, the ratio
+\begin{equation*}
+\dfrac{\Vert\,(P_{X}-P_{X_{0}})Y\,\Vert^{2}\;/\;\rank(P_{X}-P_{X_{0}})}{\Vert\,(\id_{\Re^{n}}-P_{X})Y\,\Vert^{2}\;/\;\rank(\id_{\Re^{n}}-P_{X})}
+\end{equation*}
+is the ratio of the dimension-adjusted full-to-reduced-model error to the dimension-adjusted observed-to-full-model error.
+If this ratio of dimension-adjusted errors turns out to be ``large'', then we reject the reduced model in favour of the full model.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\newpage
+\section{Special Case: Testing full one-way ANOVA model against the reduced model of the vanishing of all contrasts (i.e. no treatment effects)}
+\setcounter{theorem}{0}
+
+\begin{remark}\mbox{}\\
+By choosing to test the full model against only those reduced models whose corresponding estimation spaces are defined by the vanishing of contrasts, one in effect chooses to only test the full model against those reduced models whose corresponding estimation spaces contain the vector $(1,1,\ldots,1) \in \Re^{n}$.\\
+
+Note that the vector $(1,1,\ldots,1) \in \Re^{n}$ in the measurement space $\Re^{n}$ spans the estimation subspace in $\Re^{n}$ corresponding to the ``grand-mean'' reduced model $Y = \mu + e$, with $\mu \in \Re^{n}$ being a fixed grand-mean vector, and $e \sim N(0,\sigma^{2}I_{n \times n})$.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Special Case: Testing full one-way ANOVA model against the reduced model of the vanishing of a given contrast}
+\setcounter{theorem}{0}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Motivating Example}
+\setcounter{theorem}{0}
+
+\noindent
+GOAL: To evaluate the effect of smoking on heart rate.
+
+\begin{itemize}
+\item  Suppose the collection $\mathcal{U}$ of all human beings has been divided into four overlapping groups: $\mathcal{U}_{1}$ non-smokers, $\mathcal{U}_{2}$ light smokers, $\mathcal{U}_{3}$ moderate smokers, and $\mathcal{U}_{4}$ heavy smokers, i.e.
+\begin{equation*}
+\mathcal{U} \;\; = \;\; \bigsqcup_{j=1}^{4} \; \mathcal{U}_{j}
+\end{equation*}
+\item  In each group, we take a random sample of $6$ individuals, and measure their heart rates after three minutes of resting.
+\item  Let $\mu_{j}$ be the population mean heart rate of $\mathcal{U}_{j}$, $j = 1, \ldots, 4$, respectively.  We would like to use the collected data to test:
+\begin{eqnarray*}
+&H_{0}: \quad \mu_{1} = \mu_{2} = \mu_{3} = \mu_{4} &\\
+&\textnormal{versus}& \\
+&H_{1}: \quad \textnormal{not all of $\mu_{1}$, $\mu_{2}$, $\mu_{3}$, and $\mu_{4}$ are equal.}&\\
+\end{eqnarray*}
+\end{itemize}
+
+%\begin{tabular}{|c|c|c|c|}
+%\begin{tabular}{0.75\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|}
+
+\noindent
+Suppose the collected data are as follows:
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+%\begin{tabular}{0.75\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|}
+%\begin{tabular}[30\textwidth]{@{\extracolsep{\fill}}|c|c|c|c|}
+%\begin{tabular}[5cm]{@{\extracolsep{\fill}}|c|c|c|c|}
+%\begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+\hline
+&&&\\
+non-smokers & light smokers & moderate smokers & heavy smokers \\
+$j$ = 1&$j$ = 2&$j$ = 3&$j$ = 4\\
+&&&\\
+\hline
+69 & 55 & 66 & 91 \\
+52 & 60 & 81 & 72 \\
+71 & 78 & 70 & 81 \\
+58 & 58 & 77 & 67 \\
+59 & 62 & 57 & 95 \\
+65 & 66 & 79 & 84 \\
+\hline
+\end{tabular}
+\end{center}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Sums of Squares and Their Relevant Properties}
+\setcounter{theorem}{0}
+
+\begin{eqnarray*}
+SS_{\textnormal{inter-level}}
+& := & \sum^{k}_{j=1}\,\sum^{n_{j}}_{i=1}\left(\overline{Y}_{\cdot j} - \overline{Y}_{\cdot\cdot}\right)^{2}
+\;\;\; = \;\;\; \sum^{k}_{j=1}\,n_{j}\left(\overline{Y}_{\cdot j} - \overline{Y}_{\cdot\cdot}\right)^{2} \\
+SS_{\textnormal{intra-level}}
+& := & \sum^{k}_{j=1}\,\sum^{n_{j}}_{i=1}\left(Y_{ij} - \overline{Y}_{\cdot j}\right)^{2} \\
+SS_{\textnormal{total}}
+& := & \sum^{k}_{j=1}\,\sum^{n_{j}}_{i=1}\left(Y_{ij} - \overline{Y}_{\cdot\cdot}\right)^{2} \\
+\end{eqnarray*}
+
+\begin{proposition}
+\begin{equation*}
+SS_{\textnormal{total}} \;\; = \;\; SS_{\textnormal{inter-level}} \;\; + \;\; SS_{\textnormal{intra-level}}
+\end{equation*}
+\end{proposition}
+
+\begin{proposition}
+\mbox{}\vskip 0.15cm\noindent
+Suppose:
+\begin{enumerate}
+\item  $Y_{ij}$, for $j = 1, \ldots, k$ and $i = 1, \ldots, n_{j}$, are independent random variables.
+\item  there exist $\sigma^{2} > 0$ and $\mu_{1}, \ldots, \mu_{k} \in \Re$ such that $Y_{ij} \sim N(\mu_{j},\sigma^{2})$, for each $j = 1, \ldots, k$, and each $i = 1, \ldots, n_{j}$.
+\end{enumerate}
+Then, regardless of whether $H_{0}$ ($\mu_{1} = \mu_{2} = \mu_{3} = \mu_{4}$) is true, we have:
+\begin{itemize}
+\item  $\dfrac{SS_{\textnormal{intra-level}}}{\sigma^{2}}$ has a $\chi^{2}$ distribution with $(n - k)$ degrees of freedom.
+          In particular, $E\!\left[\,\dfrac{SS_{\textnormal{intra-level}}}{\sigma^{2}}\,\right] = n-k$.
+\item  $SS_{\textnormal{intra-level}}$ and $SS_{\textnormal{inter-level}}$ are independent random variables.
+\end{itemize}
+\end{proposition}
+
+\begin{proposition}\quad
+\mbox{}\vskip 0.15cm\noindent
+Suppose:
+\begin{enumerate}
+\item  $Y_{ij}$, for $j = 1, \ldots, k$ and $i = 1, \ldots, n_{j}$, are independent random variables.
+\item  there exist $\sigma^{2} > 0$ and $\mu_{1}, \ldots, \mu_{k} \in \Re$ such that $Y_{ij} \sim N(\mu_{j},\sigma^{2})$, for each $j = 1, \ldots, k$, and each $i = 1, \ldots, n_{j}$.
+\end{enumerate}
+Then,
+\begin{equation*}
+H_{0}:\mu_{1} = \mu_{2} = \mu_{3} = \mu_{4}
+\quad\Longrightarrow\quad
+\dfrac{SS_{\textnormal{inter-level}}}{\sigma^{2}} \;\; \sim \;\; \chi^{2}_{k-1}
+\end{equation*}
+\end{proposition}
+
+\begin{corollary}
+\mbox{}\vskip 0.15cm\noindent
+Suppose:
+\begin{enumerate}
+\item  $Y_{ij}$, for $j = 1, \ldots, k$ and $i = 1, \ldots, n_{j}$, are independent random variables.
+\item  there exist $\sigma^{2} > 0$ and $\mu_{1}, \ldots, \mu_{k} \in \Re$ such that $Y_{ij} \sim N(\mu_{j},\sigma^{2})$, for each $j = 1, \ldots, k$, and each $i = 1, \ldots, n_{j}$.
+\end{enumerate}
+Then,
+\begin{equation*}
+H_{0}:\mu_{1} = \mu_{2} = \mu_{3} = \mu_{4}
+\quad\Longrightarrow\quad
+F \;:=\; \dfrac{SS_{\textnormal{inter-level}}/(k-1)}{SS_{\textnormal{intra-level}}/(n-k)} \;\; \sim \;\; \mathcal{F}^{k-1}_{n-k}
+\end{equation*}
+\end{corollary}
+
+\begin{lemma}
+\mbox{}\vskip 0.15cm\noindent
+Suppose:
+\begin{enumerate}
+\item  $Y_{ij}$, for $j = 1, \ldots, k$ and $i = 1, \ldots, n_{j}$, are independent random variables.
+\item  there exist $\sigma^{2} > 0$ and $\mu_{1}, \ldots, \mu_{k} \in \Re$ such that $Y_{ij} \sim N(\mu_{j},\sigma^{2})$, for each $j = 1, \ldots, k$, and each $i = 1, \ldots, n_{j}$.
+\end{enumerate}
+Then,
+\begin{equation*}
+E\left[\,SS_{\textnormal{inter-level}}\,\right]
+\;\; = \;\;
+(k-1)\,\sigma^{2} \;\; + \;\; \sum^{k}_{j=1}\,n_{j}(\mu_{j}-\mu)^{2}\,,
+\end{equation*}
+where $\mu := \dfrac{1}{n}\sum^{k}_{j=1}\,\mu_{j}$, and $n = n_{1} + n_{2} + \cdots + n_{k}$.  In particular,
+\begin{equation*}
+\dfrac{E\left[\,SS_{\textnormal{inter-level}}/(k-1)\,\right]}{E\left[\,SS_{\textnormal{intra-level}}/(n-k)\,\right]}
+\;\; = \;\;
+\dfrac{\sigma^{2}+\dfrac{1}{k-1}\,\underset{j=1}{\overset{k}{\textnormal{\Large$\sum$}}}\,n_{j}(\mu_{j}-\mu)^{2}}{\sigma^{2}}
+\;\; \geq \;\; 1
+\end{equation*}
+\end{lemma}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Experimental Design of Univariate One-way ANOVA}
+\setcounter{theorem}{0}
+
+Let $n, N \in \N$, with $n \leq N$.  Let $\mathcal{U} = \{\,1,2,\ldots,N\,\}$, which represents the finite population, or universe, of $N$ elements.  
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\appendix
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical Results}
+\setcounter{theorem}{0}
+
+\begin{theorem}
+\mbox{}\vskip 0.15cm\noindent
+Let $Y_{1}, Y_{2}, \ldots, Y_{n}$ be independent identically distributed random variables with common distribution $N(\mu,\sigma^{2})$.  Then,
+\begin{itemize}
+\item  the following two random variables are independent:
+          \begin{equation*}
+          \overline{Y} \;\; := \;\; \frac{1}{n}\sum^{n}_{i=1}\,Y_{i}
+          \quad\textnormal{and}\quad
+          S^{2} \;\; := \;\; \frac{1}{n-1}\sum^{n}_{i=1}\left(Y_{i}-\overline{Y}\right)^{2}
+          \end{equation*}
+\item  the random variable
+          \begin{equation*}
+          \dfrac{1}{\sigma^{2}}\cdot(n-1)\,S^{2} \;\; = \;\; \dfrac{1}{\sigma^{2}}\sum^{n}_{i=1}(Y_{i}-\overline{Y})^{2}
+          \end{equation*}
+          has a $\chi^{2}$ distribution with $(n-1)$ degrees of freedom.
+\end{itemize}
+\end{theorem}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{plain}
+%\bibliographystyle{amsplain}
+%\bibliographystyle{acm}
+%\bibliography{KenChuBioinformatics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

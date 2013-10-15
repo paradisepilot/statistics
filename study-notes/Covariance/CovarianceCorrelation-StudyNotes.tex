@@ -1,0 +1,128 @@
+
+\documentclass{article}
+
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage{doublespace}
+
+\usepackage{KenChuArticleStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+%\input{../CourseSemesterUnique}
+
+%\rhead[\CourseSemesterUnique]{Kenneth Chu (300517641)}
+%\lhead[Kenneth Chu (300517641)]{\CourseSemesterUnique}
+\rhead[Study Notes]{Kenneth Chu}
+\lhead[Kenneth Chu (300517641)]{Study Notes}
+\chead[]{{\Large\bf Covariance and Correlation} \\
+\vskip 0.1cm \normalsize \today}
+\lfoot[]{}
+\cfoot[]{}
+\rfoot[]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Covariance}
+\setcounter{theorem}{0}
+
+Let $X$ and $Y$ be two random variables, with mean $\mu_{X}$ and $\mu_{Y}$ respectively.
+The \emph{covariance} $\textnormal{Cov}(X,Y)$ of $X$ and $Y$ is defined as:
+\begin{equation*}
+\textnormal{Cov}(X,Y) \; := \; E\!\left[\,(X-\mu_{X})(Y-\mu_{Y})\,\right].
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\textbf{Observations}
+\begin{itemize}
+\item  $\textnormal{Cov}(X,X) = E\left[\,(X-\mu_{X})(X-\mu_{X})\,\right] = \textnormal{Var}(X)$.
+\item  $\textnormal{Cov}(X,Y)$ \; $:=$ \; $E\!\left[\,(X-\mu_{X})(Y-\mu_{Y})\,\right]$
+          \; $=$ \; $E\!\left[\,XY-\mu_{X}Y - \mu_{Y}X + \mu_{X}\mu_{Y}\,\right]$
+          \; $=$ \; $E\!\left[\,XY\,\right] - \mu_{X}\mu_{Y}$.
+\item  $X$, $Y$ independent \; $\Longrightarrow$ \; $\textnormal{Cov}(X,Y) = 0$. \\
+          \proof  $X$, $Y$ independent $\Longrightarrow$ $f_{X,Y}(x,y) = f_{X}(x)f_{Y}(y)$ $\Longrightarrow$
+          $E\!\left[\,XY\,\right]$ $=$ $\displaystyle{\int} xy \cdot f_{X,Y}(x,y)\,\d x \,\d y$ \\ $=$
+          $\displaystyle{\int xy \cdot f_{X}(x) f_{Y}(y) \, \d x \, \d y}$ $=$
+          $\left(\displaystyle{\int x \cdot f_{X}(x) \,\d x}\right)\left(\displaystyle{\int y \cdot f_{Y}(y) \, \d y}\right)$
+          $=$ $E\!\left[\,X\,\right]\cdot E\!\left[\,Y\,\right]$ $=$ $\mu_{X}\,\mu_{Y}$. \qed
+\end{itemize}
+
+\vskip 0.5cm
+\noindent
+\textbf{Fact} \quad Let $X_{1},X_{2},\ldots,X_{n}$ be random variables, and $\alpha_{1},\ldots,\alpha_{n}\in\Re$.
+Then,
+\begin{equation*}
+\textnormal{Var}\!\left(\alpha_{1}X_{1}+\alpha_{2}X_{2}+\cdots+\alpha_{n}X_{n}\right) \;\; = \;\;
+\sum^{n}_{i=1} \alpha_{i}^{2}\,\textnormal{Var}(X_{i}) \; + \sum_{1\leq i < j \leq n}\alpha_{i}\alpha_{j}\,\textnormal{Cov}(X_{i},X_{j})
+\end{equation*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Correlation}
+\setcounter{theorem}{0}
+
+Let $X$ and $Y$ be two random variables with nonzero variance (equivalently, $X$, $Y$ are non-constant).
+Let $\mu_{X}$ and $\mu_{Y}$ be the means of $X$ and $Y$ respectively.
+Let $\sigma_{X}^{2}$ and $\sigma_{Y}^{2}$ be the variances of $X$ and $Y$ respectively.
+The \emph{correlation} $\rho(X,Y)$ of $X$ and $Y$ is defined as:
+\begin{equation*}
+\rho(X,Y)
+\; := \; E\!\left[\,\left(\dfrac{X-\mu_{X}}{\sigma_{X}}\right)\cdot\left(\dfrac{Y-\mu_{Y}}{\sigma_{Y}}\right)\,\right]
+\end{equation*}
+
+\noindent
+\textbf{Observations}
+\begin{equation*}
+\rho(X,Y)
+\; = \; \textnormal{Cov}\!\left[\,\dfrac{X-\mu_{X}}{\sigma_{X}}\;,\;\dfrac{Y-\mu_{Y}}{\sigma_{Y}}\,\right]
+\; = \; \dfrac{\textnormal{Cov}(\,X,Y\,)}{\sigma_{X}\,\sigma_{Y}}
+\end{equation*}
+
+\vskip 0.5cm
+\begin{theorem}\quad For any two random variables $X$ and $Y$,
+\begin{itemize}
+\item  $\left\vert\,\rho(X,Y)\,\right\vert \leq 1$, and
+\item  $\left\vert\,\rho(X,Y)\,\right\vert = 1$ if and only if $X$ and $Y$ are affinely dependent, i.e.
+          there exist $\alpha, \beta, \gamma \in \Re$, not all zero, such that $\alpha\,X + \beta\,Y + \gamma=0$ almost surely.
+\end{itemize}
+\end{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{plain}
+%\bibliographystyle{amsplain}
+\bibliographystyle{acm}
+\bibliography{KenChuBioinformatics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

@@ -1,0 +1,186 @@
+
+\documentclass{article}
+
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage{doublespace}
+
+\usepackage{KenChuArticleStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+%\input{../CourseSemesterUnique}
+
+%\rhead[\CourseSemesterUnique]{Kenneth Chu (300517641)}
+%\lhead[Kenneth Chu (300517641)]{\CourseSemesterUnique}
+\rhead[Study Notes]{Kenneth Chu}
+\lhead[Kenneth Chu (300517641)]{Study Notes}
+\chead[]{{\Large\bf Linear Statistical Models} \\
+\vskip 0.1cm \normalsize \today}
+\lfoot[]{}
+\cfoot[]{}
+\rfoot[]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{One-parameter families of random variables}
+\setcounter{theorem}{0}
+
+Let $I \subset \Re$ be an interval in $\Re$.
+Let $Y|_{x} : (\Omega,p) \longrightarrow \Re$ be a family of random variables, parametrized by $x\in I \subset \Re$, defined on the probability set $(\Omega,p)$.  \\
+
+\noindent
+The \emph{regression function} of the family $Y|_{x}$ is defined as follows:
+\begin{equation*}
+    I \longrightarrow \Re : x \longmapsto E(Y|_{x}).
+\end{equation*}
+
+\noindent
+The \emph{regression curve} of the family $Y|_{x}$ is the graph of the regression function. \\
+
+\noindent
+For each fixed $x\in\Re$, let $f_{Y|x}(y)$ denote the probability distribution of $Y|_{x}$.
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The Simple Linear Model}
+\setcounter{theorem}{0}
+
+A one-parameter family $\left\{\,Y|_{x}\,\right\}_{x\in I}$ of random variables is called a \emph{simple linear model} if the following conditions are satisfied:
+\begin{enumerate}
+\item  There exists $\beta_{0},\beta_{1},\sigma\in\Re$, with $\sigma > 0$, such that
+          $Y|_{x} \, \sim \, \mathcal{N}(\,\beta_{0}+\beta_{1}x\,,\,\sigma^{2}\,)$, for each $x \in I$.
+          In other words,
+          \begin{equation*}
+              f_{Y|x}(y) \; = \; f_{Y|x}(y\,;\,\beta_{0},\beta_{1},\sigma) \; = \; \dfrac{1}{\sqrt{2\pi}\,\sigma}\,e^{-\frac{1}{2}\left(\frac{y-\beta_{0}-\beta_{1}x}{\sigma}\right)^{2}}
+          \end{equation*}
+\item  For any $x_{1},x_{2}\in I$ with $x_{1}\neq x_{2}$, we have that $Y|_{x_{1}}$ and $Y|_{x_{2}}$
+          are independent random variables. 
+\end{enumerate}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The maximum likelihood estimators of the parameters $\beta_{0}$, $\beta_{1}$, and $\sigma^{2}$ of the Simple Linear Model}
+\setcounter{theorem}{0}
+
+Suppose $\left\{\,Y|_{x}\,\right\}_{x\in I}$ is a simple linear model, with parameters $\beta_{0}$, $\beta_{1}$, and $\sigma^{2}$.  Let $x_{1}, x_{2}, \ldots, x_{n} \in I$ be distinct.
+The \emph{likelihood function} of the observations $Y_{1} := Y|_{x_{1}}$, $Y_{2} := Y|_{x_{2}}$, $\ldots,$ $Y_{n} := Y|_{x_{n}}$ is defined as follows:
+\begin{equation*}
+   L\!\left(\;\beta_{0},\beta_{1},\sigma\,;\,y_{1},\ldots,y_{n}\;\right)
+   \; := \;
+    f_{Y|x_{1}}(y_{1}) \cdot f_{Y|x_{2}}(y_{2})\,\cdots\,f_{Y|x_{n}}(y_{n})
+   \; = \;
+   \left(\dfrac{1}{\sqrt{2\pi}\,\sigma}\right)^{n}\cdot\displaystyle{\prod^{n}_{i=1}} \; e^{-\frac{1}{2}\left(\frac{y_{i}-\beta_{0}-\beta_{1}x_{i}}{\sigma}\right)^{2}}
+\end{equation*}
+\begin{theorem}\mbox{}\\
+The maximum likelihood estimators for $\beta_{0}$, $\beta_{1}$, and $\sigma^{2}$ of the simple linear model $\left\{\,Y|_{x}\,\right\}_{x\in I}$ based on the observations $Y_{1} := Y|_{x_{1}}$, $Y_{2} := Y|_{x_{2}}$, $\ldots,$ $Y_{n} := Y|_{x_{n}}$ are given respectively by:
+\begin{eqnarray*}
+\widehat{\beta_{1}} & = &
+%\dfrac{n\left(\displaystyle{\sum^{n}_{i=1}}\,x_{i}Y_{i}\right) - \left(\displaystyle{\sum^{n}_{i=1}}\,x_{i}\right)\!\left(\displaystyle{\sum^{n}_{i=1}}\,Y_{i}\right)}{n\left(\displaystyle{\sum^{n}_{i=1}}\,x_{i}^{2}\right) - \left(\displaystyle{\sum^{n}_{i=1}}\,x_{i}\right)^{2}}\;\; = \;\;
+\dfrac{n\left(\displaystyle{\sum^{n}_{i=1}}\,x_{i}Y_{i}\right) - \left(\displaystyle{\sum^{n}_{i=1}}\,x_{i}\right)\!\left(\displaystyle{\sum^{n}_{i=1}}\,Y_{i}\right)}{n\left(\displaystyle{\sum^{n}_{i=1}}\,x_{i}^{2}\right) - \left(\displaystyle{\sum^{n}_{i=1}}\,x_{i}\right)^{2}} \;\;=\;\; \cdots \;\;=\;\; \dfrac{\displaystyle{\sum^{n}_{i=1}}(x_{i}-\overline{x})\,Y_{i}}{\displaystyle{\sum^{n}_{i=1}}(x_{i}-\overline{x})^{2}}\\
+\widehat{\beta_{0}} & = & \overline{Y} - \widehat{\beta}_{1}\,\overline{x}
+\;\; = \;\; \left(\dfrac{1}{n}\sum^{n}_{i=1}Y_{i}\right) - \widehat{\beta}_{1}\left(\dfrac{1}{n}\sum^{n}_{i=1}x_{i}\right),
+\;\;\textnormal{where}\;\; \overline{x} := \dfrac{1}{n}\sum^{n}_{i=1}x_{i}, \; \overline{Y} := \dfrac{1}{n}\sum^{n}_{i=1}Y|_{x_{i}} = \dfrac{1}{n}\sum^{n}_{i=1}Y_{i} \\
+\widehat{\sigma^{2}} & = & \dfrac{1}{n}\sum^{n}_{i=1}\left(Y_{i}-\widehat{Y}_{i}\right)^{2}
+\;\; = \;\; \dfrac{1}{n}\sum^{n}_{i=1}\left(Y_{i}-\widehat{\beta}_{0}-\widehat{\beta}_{1}x_{i}\right)^{2}
+\end{eqnarray*}
+\end{theorem}
+\proof
+\begin{equation*}
+-2\log L \;=\; -2\log L\!\left(\;\beta_{0},\beta_{1},\sigma\,;\,y_{1},\ldots,y_{n}\;\right)
+\;=\;
+n\cdot\log(2\pi) + n\cdot\log\!\left(\sigma^{2}\right)+\dfrac{1}{\sigma^{2}}\sum^{n}_{i=1}\left(y_{i}-\beta_{0}-\beta_{1}x_{i}\right)^{2}
+\end{equation*}
+Hence, setting the partial derivatives of $-2\log L$ with respect to $\beta_{0}$, $\beta_{1}$, and $\sigma^{2}$ to zero yields:
+\begin{eqnarray*}
+0\;\; = \;\; \dfrac{\partial(-2\log L)}{\partial\beta_{0}} & = & \dfrac{2}{\sigma^{2}}\sum^{n}_{i=1}\left(y_{i}-\beta_{0}-\beta_{1}x_{i}\right)\left(-1\right) \;\; = \;\; - \dfrac{2}{\sigma^{2}}\left\{\left(\sum^{n}_{i=1}y_{i}\right)-n\,\beta_{0}-\beta_{1}\left(\sum^{n}_{i=1}x_{i}\right)\right\} \\
+0\;\; = \;\; \dfrac{\partial(-2\log L)}{\partial\beta_{1}} & = & \dfrac{2}{\sigma^{2}}\sum^{n}_{i=1}\left(y_{i}-\beta_{0}-\beta_{1}x_{i}\right)\left(-x_{i}\right) \;\; = \;\; - \dfrac{2}{\sigma^{2}}\left\{\left(\sum^{n}_{i=1}x_{i}y_{i}\right)-\beta_{0}\left(\sum^{n}_{i=1}x_{i}\right)-\beta_{1}\left(\sum^{n}_{i=1}x_{i}^{2}\right)\right\}  \\
+0\;\; = \;\; \dfrac{\partial(-2\log L)}{\partial\sigma^{2}} & = & \dfrac{n}{\sigma^{2}} - \dfrac{1}{(\sigma^{2})^{2}}\sum^{n}_{i=1}\left(y_{i}-\beta_{0}-\beta_{1}x_{i}\right)^{2} \\
+\end{eqnarray*}
+Then, $\left(\displaystyle{\sum^{n}_{i=1}}x_{i}\right)\times(\textnormal{first equation}) - n\times(\textnormal{second equation})$ yields:
+\begin{equation*}
+\beta_{1}\left\{n\left(\sum^{n}_{i=1}x_{i}^{2}\right)-\left(\sum^{n}_{i=1}x_{i}\right)^{2}\right\}
+\; -\; \left\{n\left(\sum^{n}_{i=1}x_{i}y_{i}\right)-\left(\sum^{n}_{i=1}x_{i}\right)\left(\sum^{n}_{i=1}y_{i}\right)\right\} \;\; = \;\; 0,
+\end{equation*}
+which gives the expression for $\widehat{\beta_{1}}$.  Substituting this expression for $\widehat{\beta}_{1}$ into the first equation immediately yields the expression for $\widehat{\beta_{0}}$.  Substituting the expressions for $\widehat{\beta_{0}}$ and $\widehat{\beta_{1}}$ into the third equation yields that for $\widehat{\sigma^{2}}$.
+\qed
+
+\begin{theorem} \quad The following are true:
+\begin{itemize}
+\item  $\widehat{\beta_{0}}$ is normally distributed with
+          \begin{equation*}
+          E\!\left(\widehat{\beta_{0}}\right) = \beta_{0}
+          \quad\textnormal{and}\quad
+          \textnormal{Var}\!\left(\widehat{\beta_{0}}\right) = 
+          \sigma^{2}
+          \left(\dfrac{\displaystyle{\dfrac{1}{n}\,\sum^{n}_{i=1}x_{i}^{2}}}{\displaystyle{\sum^{n}_{i=1}}\left(x_{i}-\overline{x}\right)^{2}}\right)
+          \end{equation*}
+\item  $\widehat{\beta_{1}}$ is normally distributed with
+          \begin{equation*}
+          E\!\left(\widehat{\beta_{1}}\right) = \beta_{1}
+          \quad\textnormal{and}\quad
+          \textnormal{Var}\!\left(\widehat{\beta_{1}}\right) = 
+          \sigma^{2}
+          \left(\dfrac{1}{\displaystyle{\sum^{n}_{i=1}}\left(x_{i}-\overline{x}\right)^{2}}\right)
+          \end{equation*}
+\item  $\widehat{\beta_{1}}$, \, $\widehat{\sigma^{2}}$, \, and \,
+          $\overline{Y} := \dfrac{1}{n}\,\displaystyle{\sum^{n}_{i=1}}\,Y_{i}$
+          are mutually independent random variables.
+\item  \textbf{Corollary}\quad $\widehat{\sigma^{2}}$ \, and \, $\widehat{Y}|_{x} := \widehat{\beta}_{0} + \widehat{\beta}_{1}x = \overline{Y}+\widehat{\beta}_{1}(x-\overline{x})$ \, are independent random variables.
+\item  $\widehat{Y}|_{x} \; := \; \widehat{\beta}_{0} + \widehat{\beta}_{1}\cdot x$ is normally distributed with
+          \begin{equation*}
+          E\!\left(\widehat{Y}|_{x}\right) = \beta_{0} + \beta_{1}\,x
+          \quad\textnormal{and}\quad
+          \textnormal{Var}\!\left(\widehat{Y}|_{x}\right) = 
+          \sigma^{2}
+          \left(\dfrac{1}{n} + \dfrac{\left(x-\overline{x}\right)^{2}}{\displaystyle{\sum^{n}_{i=1}}\left(x_{i}-\overline{x}\right)^{2}}\right)
+          \end{equation*}
+\item  $S^{2} := \dfrac{n}{n-2}\cdot\widehat{\sigma^{2}} \, = \, \dfrac{1}{n-2}\,\displaystyle{\sum^{n}_{i=1}}\left(Y_{i}-\widehat{\beta}_{0}-\widehat{\beta}_{1}x_{i}\right)^{2}$ \, is an unbiased estimator for $\sigma^{2}$, and \\
+          $\left(\dfrac{n}{\sigma^{2}}\right)\cdot\widehat{\sigma^{2}}$ \, $=$ \,
+          $\dfrac{(n-2)S^{2}}{\sigma^{2}}$ \,$=$ \,
+          $\dfrac{1}{\sigma^{2}}\,\displaystyle{\sum^{n}_{i=1}}\left(Y_{i}-\widehat{\beta}_{0}-\widehat{\beta}_{1}x_{i}\right)^{2}$  
+          \, has a $\chi^{2}$-distribution with $n-2$ degrees of freedom.
+\end{itemize}
+\end{theorem}
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{plain}
+%\bibliographystyle{amsplain}
+\bibliographystyle{acm}
+\bibliography{KenChuBioinformatics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+

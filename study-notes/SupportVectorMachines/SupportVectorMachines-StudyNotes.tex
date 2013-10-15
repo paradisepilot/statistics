@@ -1,0 +1,149 @@
+
+\documentclass{article}
+
+\usepackage{fancyheadings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{graphicx}
+%\usepackage{doublespace}
+
+\usepackage{KenChuArticleStyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+%\input{../CourseSemesterUnique}
+
+%\rhead[\CourseSemesterUnique]{Kenneth Chu (300517641)}
+%\lhead[Kenneth Chu (300517641)]{\CourseSemesterUnique}
+\rhead[Study Notes]{Kenneth Chu}
+\lhead[Kenneth Chu]{Study Notes}
+\chead[]{{\Large\bf Support Vector Machines} \\
+\vskip 0.1cm \normalsize \today}
+\lfoot[]{}
+\cfoot[]{}
+\rfoot[]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\dist}{\textnormal{dist}}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Support Vector Machines for Two-Class Classification}
+\setcounter{theorem}{0}
+
+\begin{equation*}
+\mathcal{D} \;\; = \;\; \left\{\,(\mathbf{x}_{1},y_{1})\,,\,(\mathbf{x}_{2},y_{2})\,,\,\ldots\,,\,(\mathbf{x}_{m},y_{m})\,\right\},
+\quad\quad
+\mathbf{x}_{i} \in \Re^{d},
+\quad\quad
+y_{i} \in \{\,-1,\,1\,\}
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\textbf{Reminder:}
+\begin{itemize}
+\item  Let $\mathbf{n}, \mathbf{z} \in \Re^{d}$, with $\mathbf{n} \neq \mathbf{0}$, be given.
+          The hyperplane $H_{\mathbf{n},\mathbf{z}} \subset \Re^{d}$ with normal vector $\mathbf{n}$ and
+          containing the point $\mathbf{z}$ is given by: 
+          \begin{equation*}
+          H_{\mathbf{n},\mathbf{z}}
+          \;\; := \;\;
+          \left\{\;\mathbf{x}\in\Re^{d}\;\left\vert\;\left\langle\,\mathbf{x}-\mathbf{z}\,,\,\mathbf{n}\,\right\rangle = 0 \right.\;\right\}
+          \;\; = \;\;
+          \left\{\;\mathbf{x}\in\Re^{d}\;\left\vert\;\left\langle\,\mathbf{x}-\mathbf{z}\,,\,\frac{\mathbf{n}}{\Vert\,\mathbf{n}\,\Vert}\,\right\rangle = 0 \right.\;\right\}
+          \;\; = \;\;
+          \left\{\;\mathbf{x}\in\Re^{d}\;\left\vert\;\left\langle\,\mathbf{x}-\mathbf{z}\,,\,\widehat{\mathbf{n}}\,\right\rangle = 0 \right.\;\right\}
+          \end{equation*}
+\item  Note that $H_{\mathbf{n},\mathbf{z}} = H_{\alpha\mathbf{n},\mathbf{z}}$, for any $\alpha \neq 0$.
+\item  Let $\mathbf{x} \in \Re^{d}$.  The distance between $\mathbf{x}$ and the hyperplane $H_{\mathbf{n},\mathbf{z}}$
+          is given by:
+          \begin{equation*}
+          \dist\!\left(\mathbf{x},H_{\mathbf{n},\mathbf{z}}\right) \;\; = \;\;
+          \left\vert
+          \left\langle\,\mathbf{x}-\mathbf{z}\,,\,\dfrac{\mathbf{n}}{\Vert\mathbf{n}\Vert}\,\right\rangle
+          \right\vert
+          \end{equation*}
+          This implies:
+          \begin{equation*}
+          ||\,\mathbf{n}\,||\cdot\dist\!\left(\mathbf{x},H_{\mathbf{n},\mathbf{z}}\right) \;\; = \;\;
+          \left\vert\left\langle\,\mathbf{x}-\mathbf{z}\,,\,\mathbf{n}\,\right\rangle\right\vert
+          \end{equation*}
+\item  Note that $\dist\!\left(\mathbf{x},H_{\mathbf{n},\mathbf{z}}\right)$ is well-defined, i.e. it depends only on the point
+          $\mathbf{x}$ and the hyperplane $H_{\mathbf{n},\mathbf{z}}$, and is indeed independent of the particular choice
+          of the normal vector $\mathbf{n}$ and the point $\mathbf{z} \in H_{\mathbf{n},\mathbf{z}}$. 
+\end{itemize}
+
+\vskip 0.5cm
+\begin{lemma}\quad
+Let $\mathbf{x}_{1},\ldots,\mathbf{x}_{m}\in\Re^{d}$ and a hyperplane $H_{\mathbf{n},\mathbf{z}} \subset \Re^{d}$ be given, with $\mathbf{x}_{i} \notin H_{\mathbf{n},\mathbf{z}}$, for each $i = 1,\ldots,m$.  Without loss of generality, we may assume (by rescaling $\mathbf{n}$, if necessary) that the normal vector $\mathbf{n}$ satisfies
+\begin{equation*}
+\underset{1\leq i \leq m}{\min}\left\vert\,\langle\,\mathbf{x}_{i} - \mathbf{z} \,,\, \mathbf{n}\,\rangle\,\right\vert \;\; = \;\; 1
+\end{equation*}
+\end{lemma}
+\proof
+Without loss of generality, we may assume (by rescaling $\mathbf{n}$, if necessary, while leaving $\mathbf{z}$ unchanged) that the normal vector $\mathbf{n}$ satisfies
+\begin{equation*}
+\Vert\,\mathbf{n}\,\Vert \;\; = \;\; \dfrac{1}{\underset{1\leq i \leq m}{\min}\left\{\,\dist\!\left(\,\mathbf{x}_{i},H_{\mathbf{n},\mathbf{z}}\right)\,\right\}}
+\end{equation*}
+With this choice of normal vector $\mathbf{n}$, we have
+\begin{equation*}
+\underset{1\leq i \leq m}{\min}\left\vert\,\langle\,\mathbf{x}_{i} - \mathbf{z} \,,\, \mathbf{n}\,\rangle\,\right\vert
+\;\; = \;\;
+\underset{1\leq i \leq m}{\min}\left\{\,||\,\mathbf{n}\,||\cdot\dist\!\left(\mathbf{x}_{i},H_{\mathbf{n},\mathbf{z}}\right)\,\right\}
+\;\; = \;\;
+||\,\mathbf{n}\,||\cdot\underset{1\leq i \leq m}{\min}\left\{\,\dist\!\left(\mathbf{x}_{i},H_{\mathbf{n},\mathbf{z}}\right)\,\right\}
+\;\; = \;\; 1
+\end{equation*}
+\qed
+
+\begin{definition}\quad
+Let $\mathcal{D}_{0} := \left\{\,\mathbf{x}_{1},\ldots,\mathbf{x}_{m}\,\right\} \subset \Re^{d}$, and $H \subset \Re^{d}$ be a hyperplane, with $\mathbf{x}_{1}, \ldots, \mathbf{x}_{m} \notin H$.  A representation $H_{\mathbf{n},\mathbf{z}} = H$ of $H$ is said to be in $\mathcal{D}_{0}$-canonical form if
+\begin{equation*}
+\underset{1\leq i \leq m}{\min}\left\vert\,\langle\,\mathbf{x}_{i} - \mathbf{z} \,,\, \mathbf{n}\,\rangle\,\right\vert \;\; = \;\; 1
+\end{equation*}
+\end{definition}
+
+\vskip 0.5cm
+\begin{corollary}\quad
+A $\mathcal{D}$-separating hyperplane $H_{\mathbf{n},\mathbf{z}}$ in $\mathcal{D}_{0}$-canonical form satisfies:
+\begin{equation*}
+y_{i}\cdot\langle\,\mathbf{x}_{i}-\mathbf{z}\,,\,\mathbf{n}\,\rangle \;\; \geq \;\; 1,
+\quad\quad
+\textnormal{for each} \;\; i = 1, \ldots, m.
+\end{equation*}
+\end{corollary}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{plain}
+%\bibliographystyle{amsplain}
+\bibliographystyle{acm}
+\bibliography{KenChuBioinformatics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
