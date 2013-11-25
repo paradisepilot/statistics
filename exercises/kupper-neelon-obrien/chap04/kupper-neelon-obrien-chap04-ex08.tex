@@ -1,0 +1,256 @@
+
+\noindent
+\textbf{Exercise 4.8(a)}
+
+\vskip 0.3cm
+\noindent
+The likelihood function is:
+\begin{equation*}
+L(\theta\,\vert\,y_{1},\ldots,y_{n})
+\;=\;\prod_{i=1}^{n}\dfrac{1}{\alpha}\exp\left(-\,\dfrac{y_{i}}{\alpha}\right)
+\;=\;\prod_{i=1}^{n}\theta^{-1/2}\exp\left(-\,\theta^{-1/2}\cdot y_{i}\right)
+\;=\;\theta^{-n/2}\exp\left(-\,\theta^{-1/2}\sum_{i=1}^{n}y_{i}\right)
+\end{equation*}
+Hence, the $\log$-likelihood function is:
+\begin{equation*}
+l(\theta\,\vert\,y_{1},\ldots,y_{n})
+\;=\; \log L(\theta\,\vert\,y_{1},\ldots,y_{n})
+\;=\; -\dfrac{n}{2}\log\theta - \theta^{-1/2} \sum^{n}_{i=1} y_{i}
+\end{equation*}
+Thus,
+\begin{equation*}
+l^{\prime}(\theta\,\vert\,y_{1},\ldots,y_{n})
+\;=\; -\dfrac{n}{2}\theta^{-1} + \dfrac{1}{2} \theta^{-3/2} \sum^{n}_{i=1} y_{i}
+\;=\; -\dfrac{\theta^{-1}}{2}\left(n - \theta^{-1/2} \sum^{n}_{i=1} y_{i}\right)
+\end{equation*}
+Thus,
+\begin{equation*}
+l^{\prime}(\theta\,\vert\,y_{1},\ldots,y_{n}) = 0
+\quad\Longrightarrow\quad
+\theta =  \left(\dfrac{1}{n}\sum^{n}_{i=1} y_{i}\right)^{2}
+\end{equation*}
+We may now conclude that:
+\begin{equation*}
+\widehat{\theta}_{\textnormal{MLE}}
+\;=\;\left(\dfrac{1}{n}\sum^{n}_{i=1}Y_{i}\right)^{2}
+\end{equation*}
+Next, we compute an asymptotic estimate for $\textnormal{Var}\!\left(\widehat{\theta}_{\textnormal{MLE}}\right)$.
+To this end, we recall from general MLE theory that $\textnormal{Var}\!\left(\widehat{\theta}_{\textnormal{MLE}}\right)$
+asymptotically attains the Cram\'er-Rao Lower Bound (CRLB) for any unbiased estimator of $\theta$.
+Now,
+\begin{equation*}
+\textnormal{CRLB}(\theta)
+\;=\; \dfrac{1}{\textnormal{E}\left[l^{\prime}(\theta\,\vert\,y_{1},\ldots,y_{n})^{2}\right]} 
+\;=\; \dfrac{-1}{\textnormal{E}\left[l^{\prime\prime}(\theta\,\vert\,y_{1},\ldots,y_{n})\right]} 
+\end{equation*}
+Now,
+\begin{equation*}
+l^{\prime\prime}(\theta\,\vert\,y_{1},\ldots,y_{n})
+\;=\; \dfrac{n}{2}\theta^{-2} - \dfrac{3}{4}\theta^{-5/2}\sum_{i=1}^{n}y_{i}
+\end{equation*}
+Hence,
+\begin{equation*}
+E\left[l^{\prime\prime}(\theta\,\vert\,y_{1},\ldots,y_{n})\right]
+\;=\; E\left[\dfrac{n}{2}\theta^{-2} - \dfrac{3}{4}\theta^{-5/2}\sum_{i=1}^{n}y_{i}\right]
+\;=\; \dfrac{n}{2}\theta^{-2} - \dfrac{3}{4}\theta^{-5/2}\sum_{i=1}^{n}E\left[y_{i}\right]
+\;=\; \dfrac{n}{2}\theta^{-2} - \dfrac{3}{4}\theta^{-5/2}\cdot n\,\theta^{1/2}
+\;=\; -\,\dfrac{n}{4\theta^{2}}
+\end{equation*}
+Thus,
+\begin{equation*}
+\textnormal{CRLB}(\theta)
+\;=\; \dfrac{-1}{\textnormal{E}\left[l^{\prime\prime}(\theta\,\vert\,y_{1},\ldots,y_{n})\right]} 
+\;=\; \dfrac{4\theta^{2}}{n}
+\end{equation*}
+Since $\widehat{\theta}_{\textnormal{MLE}}$ is asymptotically Gaussian, with an asymptotic 95\% confidence interval
+for $\widehat{\theta}_{\textnormal{MLE}}$ is thus:
+\begin{equation*}
+\widehat{\theta}_{\textnormal{MLE}} \pm 1.96 \sqrt{\textnormal{Var}\!\left[\widehat{\theta}_{\textnormal{MLE}}\right]}
+\;=\; \widehat{\theta}_{\textnormal{MLE}} \pm 1.96\cdot\sqrt{\frac{4\,\widehat{\theta}_{\textnormal{MLE}}^{\,2}}{n}}
+\;=\; \left(\dfrac{1}{n}\sum_{i=1}^{n}Y_{i}\right)^{2} \pm \dfrac{3.92}{\sqrt{n}}\,\left(\dfrac{1}{n}\sum_{i=1}^{n}Y_{i}\right)^{2}
+\;=\; \left(\dfrac{1}{n}\sum_{i=1}^{n}Y_{i}\right)^{2}\left[\;1 \pm \dfrac{3.92}{\sqrt{n}} \;\right]
+\end{equation*}
+For $n = 50$ and $S = \sum^{n}_{i=1}Y_{i} = 40$, we thus have:
+\begin{equation*}
+\widehat{\theta}_{\textnormal{MLE}} \pm 1.96 \sqrt{\textnormal{Var}\!\left[\widehat{\theta}_{\textnormal{MLE}}\right]}
+\;=\; \left(\dfrac{1}{n}\sum_{i=1}^{n}Y_{i}\right)^{2}\left[\;1 \pm \dfrac{3.92}{\sqrt{n}}\;\right]
+\;=\; \left(\dfrac{40}{50}\right)^{2} \left(\, 1 \pm \dfrac{3.92}{\sqrt{50}} \,\right)
+\;\approx\; (0.285,\;0.995)
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\noindent
+\textbf{Exercise 4.8(b)}
+
+\vskip 0.3cm
+\noindent
+The probability density function of the sample observations, given $\theta$, is:
+\begin{equation*}
+f_{\mathbf{Y}}(y_{1},\ldots,y_{n}\,\vert\,\theta)
+\;=\;\prod_{i=1}^{n}\dfrac{1}{\alpha}\exp\left(-\,\dfrac{y_{i}}{\alpha}\right)
+\;=\;\prod_{i=1}^{n}\theta^{-1/2}\exp\left(-\,\theta^{-1/2}\cdot y_{i}\right)
+\;=\;\theta^{-n/2}\exp\left(-\,\theta^{-1/2}\sum_{i=1}^{n}y_{i}\right)
+\end{equation*}
+As $\theta$ varies, this gives an exponential family of probability distributions.
+Indeed,
+\begin{equation*}
+f_{\mathbf{Y}}(y_{1},\ldots,y_{n}\,\vert\,\theta)
+\;=\;\theta^{-n/2}\exp\left\{\,(-\,\theta^{-1/2})\cdot\sum_{i=1}^{n}y_{i}\,\right\}
+\;=\;(-\,\tau)^{n}\exp\left(\tau\,S(\mathbf{y})\right)\,,
+\end{equation*}
+where $\tau := -\,\theta^{-1/2}$ and $S(\mathbf{y}) := \sum_{i=1}^{n}y_{i}$.
+By the general theory of exponential families, we now see that
+$S(\mathbf{Y}) := \sum_{i=1}^{n}Y_{i}$ is a complete and sufficient statistic
+of $\tau = -\,\theta^{-1/2}$, and hence of $\theta$.
+Consequently, by the Rao-Blackwell Theorem, the unique MVUE (minimum variance unbiased estimator)
+of $\theta$ can be given as $E\left[\,U\,\vert\,S\,\right]$, for any unbiased estimator $U$ of the $\theta$.
+
+Next, we claim that $\dfrac{n}{n+1}\cdot\widehat{\theta}_{\textnormal{MLE}}$ is an unbiased estimator of
+$\theta$. First, observe that:
+\begin{eqnarray*}
+E\left[\,\widehat{\theta}_{\textnormal{MLE}}\,\right]
+&=& E\left[\,\left(\dfrac{1}{n}\sum_{i=1}^{n}Y_{i}\right)^{2}\,\right]
+\;\;=\;\; E\left[\,\dfrac{1}{n^{2}}\left(\sum_{i=1}^{n}Y_{i}^{2}+\sum_{i\neq j}Y_{i}Y_{j}\right)\,\right] \\
+&=& \dfrac{1}{n^{2}}\left\{\,n \, E[\,Y^{2}\,] + (n^{2} - n) E[\,Y\,]\,E[\,Y\,]\,\right\}
+\;\;=\;\; \dfrac{1}{n^{2}}\left\{\,n\left(\textnormal{Var}(\,Y\,) + E(Y)^{2}\right) + n(n-1) E[\,Y\,]^{2}\,\right\} \\
+&=& \dfrac{1}{n^{2}}\left\{\,n\left(\alpha^{2} + \alpha^{2}\right) + n(n-1) \alpha^{2}\,\right\}
+\;\;=\;\; \dfrac{n\,\alpha^{2}}{n^{2}}\left\{\,2 + n-1\,\right\}
+\;\;=\;\; \left(\dfrac{n+1}{n}\right)\alpha^{2}
+\;\;=\;\; \left(\dfrac{n+1}{n}\right)\theta
+\end{eqnarray*}
+which implies
+\begin{equation*}
+E\left[\,\left(\dfrac{n}{n+1}\right)\widehat{\theta}_{\textnormal{MLE}}\,\right] \;\; = \;\; \theta
+\end{equation*}
+Hence, $\left(\dfrac{n}{n+1}\right)\widehat{\theta}_{\textnormal{MLE}}$ is indeed an unbiased estimator of $\theta$,
+and
+\begin{equation*}
+\widehat{\theta}^{\,*}
+\;\; := \;\; E\left[\,\left.\left(\dfrac{n}{n+1}\right)\widehat{\theta}_{\textnormal{MLE}}\;\right\vert\;S\,\right]
+\;\;  = \;\; E\left[\,\left.\left(\dfrac{n}{n+1}\right)\left(\dfrac{1}{n}\sum_{i=1}^{n}Y_{i}\right)^{2}\;\right\vert\;S\,\right]
+\;\;  = \;\; \dfrac{1}{n(n+1)}E\left[\,\left.S^{2}\;\right\vert\;S\,\right]
+\;\;  = \;\; \dfrac{S^{2}}{n(n+1)}
+\end{equation*}
+is the unique MVUE of $\theta$.
+Next, we compute $\textnormal{Var}\!\left(\,\widehat{\theta}^{\,*}\,\right)$:
+\begin{equation*}
+\textnormal{Var}\!\left(\,\widehat{\theta}^{\,*}\,\right)
+\;\;=\;\; E\!\left[\,\left(\widehat{\theta}^{\,*}\right)^{2}\,\right] - E\!\left[\,\widehat{\theta}^{\,*}\,\right]^{2}
+\;\;=\;\; E\!\left[\,\left(\dfrac{S^{2}}{n(n+1)}\right)^{2}\,\right] - E\!\left[\,\widehat{\theta}^{\,*}\,\right]^{2}
+\;\;=\;\; \dfrac{1}{n^{2}(n+1)^{2}}\,E\!\left[\,S^{4}\,\right] - \theta^{2}
+\end{equation*}
+Thus, we need to compute $E\!\left[\,S^{4}\,\right]$.
+To this end, we claim that $S \sim \textnormal{Gamma}(\alpha = \theta^{1/2},\,\beta = n)$,
+and we will the moment  generating function $M_{S}(t)$ of $S$ to compute its fourth moment $E\!\left[\,S^{4}\,\right]$.
+\begin{eqnarray*}
+M_{S}(t)
+&:=& E\!\left[\,e^{tS}\,\right]
+\;\; = \;\; \int\;e^{ts}f_{\mathbf{Y}}(\mathbf{y})\,\dd y_{1} \dd y_{2} \cdots \dd y_{n}
+\;\; = \;\; \int\;\exp\left\{t\cdot\sum_{i=1}^{n}y_{i}\right\}\cdot\prod_{i=1}^{n}\theta^{-1/2}\exp(-\,\theta^{-1/2}y_{i})\,\dd y_{1} \dd y_{2} \cdots \dd y_{n} \\
+&=& \int\;\prod_{i=1}^{n}\exp(ty_{i})\cdot\theta^{-1/2}\exp(-\,\theta^{-1/2}y_{i})\,\dd y_{1} \dd y_{2} \cdots \dd y_{n}
+\;\;=\;\; \prod_{i=1}^{n}\,\left(\int\,\exp(ty_{i})\cdot\theta^{-1/2}\exp(-\,\theta^{-1/2}y_{i})\,\dd y_{i}\right) \\
+&=& \prod_{i=1}^{n}\,E\!\left[\,e^{ty_{i}}\,\right]
+\;\;=\;\; \prod_{i=1}^{n}\,M_{Y_{i}}(t)
+\;\;=\;\; \prod_{i=1}^{n}\,\left(\,1-\theta^{1/2}\,t\,\right)^{-1}
+\;\;=\;\; \left(\,1-\theta^{1/2}\,t\,\right)^{-n}
+\;\;=\;\; M_{X}(t),
+\end{eqnarray*}
+where $X \sim \textnormal{Gamma}(\alpha = \theta^{1/2},\,\beta = n)$.
+This shows that $S := \sum_{i=1}^{n}Y_{i} \sim \textnormal{Gamma}(\alpha = \theta^{1/2},\,\beta = n)$.
+Hence,
+\begin{eqnarray*}
+M_{S}(t) & = & \left(\,1 - \theta^{1/2}\,t\,\right)^{-n} \\
+M^{\prime}_{S}(t) & = & n\,\theta^{1/2}\left(\,1 - \theta^{1/2}\,t\,\right)^{-(n+1)} \\
+M^{\prime\prime}_{S}(t) & = & n(n+1)\,\theta\left(\,1 - \theta^{1/2}\,t\,\right)^{-(n+2)} \\
+M^{(3)}_{S}(t) & = & n(n+1)(n+2)\,\theta^{3/2}\left(\,1 - \theta^{1/2}\,t\,\right)^{-(n+3)} \\
+M^{(4)}_{S}(t) & = & n(n+1)(n+2)(n+3)\,\theta^{2}\left(\,1 - \theta^{1/2}\,t\,\right)^{-(n+4)}
+\end{eqnarray*}
+And, we now have
+\begin{equation*}
+E\!\left[\,S^{4}\,\right]
+\;\; = \;\; M^{(4)}_{S}(0)
+\;\; = \;\; n(n+1)(n+2)(n+3)\,\theta^{2}\left(\,1 - \theta^{1/2}\cdot 0\,\right)^{-(n+4)}
+\;\; = \;\; n(n+1)(n+2)(n+3)\,\theta^{2}
+\end{equation*}
+Hence, an explicit expression for $\textnormal{Var}\!\left(\widehat{\theta}^{\,*}\right)$ is:
+\begin{equation*}
+\textnormal{Var}\!\left(\widehat{\theta}^{\,*}\right)
+\; = \; \frac{1}{n^{2}(n+1)^{2}}\,E\!\left[\,S^{4}\,\right] - \theta^{2}
+\; = \; \frac{n(n+1)(n+2)(n+3)\,\theta^{2}}{n^{2}(n+1)^{2}} \; - \; \theta^{2}
+\; = \; \theta^{2}\left(\frac{(n+2)(n+3)}{n(n+1)} - 1\right)
+\; = \; \theta^{2}\cdot\frac{2(2n+3)}{n(n+1)}
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 4.8(c)}
+
+No, $\widehat{\theta}^{\,*}$ does NOT achieve the Cram\'er-Rao lower bound for the variance of unbiased estimators of $\theta$.
+The following calculation shows indeed that $\textnormal{Var}\!\left(\widehat{\theta}^{\,*}\right) > \textnormal{CRLB}(\theta)$:
+\begin{equation*}
+\textnormal{Var}\!\left(\widehat{\theta}^{\,*}\right)
+\; = \; \theta^{2}\cdot\frac{2(2n+3)}{n(n+1)}
+\; = \; \dfrac{4\,\theta^{2}}{n}\cdot\frac{2n+3}{2n+2}
+\; > \; \dfrac{4\,\theta^{2}}{n}
+\; = \; \textnormal{CRLB}(\theta)
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 4.8(d)}
+
+Recall that for any random variable $X$ and any constant $\theta$, we have:
+\begin{equation*}
+\textnormal{MSE}(X,\theta)
+\;=\; E\!\left[\,\left(X - \theta\right)^{2}\,\right]
+\;=\; \cdots
+\;=\; E\!\left[\,\left(X - \mu_{X} + \mu_{X} - \theta\right)^{2}\,\right]
+\;=\; E\!\left[\,\left(X - \mu_{X}\right)^{2}\,\right] + \left(\mu_{X} - \theta\right)^{2}
+\;=\; \textnormal{Var}(X) + \left(\mu_{X} - \theta\right)^{2}
+\end{equation*}
+Since $\widehat{\theta}^{\,*}$ is an unbiased estimator of $\theta$, we have
+\begin{equation*}
+\textnormal{MSE}\!\left(\widehat{\theta}^{\,*},\theta\right)
+\;=\; \textnormal{Var}\!\left(\widehat{\theta}^{\,*}\right) + \left(E\!\left[\,\widehat{\theta}^{\,*}\,\right] - \theta\right)^{2}
+\;=\; \textnormal{Var}\!\left(\widehat{\theta}^{\,*}\right) + \left(\,0\,\right)^{2}
+\;=\; \theta^{2}\cdot\frac{2(2n+3)}{n(n+1)}
+\;=\; \dfrac{\theta^{2}}{n}\left(\frac{4n+6}{n+1}\right)
+\;=\; \dfrac{\theta^{2}}{n}\left(4 + \frac{2}{n+1}\right)
+\end{equation*}
+On the other hand,
+\begin{eqnarray*}
+\textnormal{MSE}\!\left(\widehat{\theta}_{\textnormal{MLE}},\theta\right)
+&=& \textnormal{Var}\!\left(\widehat{\theta}_{\textnormal{MLE}}\right) + \left(E\!\left[\,\widehat{\theta}_{\textnormal{MLE}}\,\right] - \theta\right)^{2}
+\;\;=\;\; \textnormal{Var}\!\left[\,\left(\dfrac{1}{n}\sum^{n}_{i=1}Y_{i}\right)^{2}\,\right] + \left(\left(\dfrac{n+1}{n}\right)\theta - \theta\right)^{2} \\
+&=& \textnormal{Var}\!\left[\,\dfrac{1}{n^{2}}S^{2}\,\right] + \dfrac{\theta^{2}}{n^{2}}
+\;\;=\;\; \textnormal{Var}\!\left[\,\dfrac{n(n+1)}{n^{2}}\dfrac{S^{2}}{n(n+1)}\,\right] + \dfrac{\theta^{2}}{n^{2}}
+\;\;=\;\; \dfrac{n^{2}(n+1)^{2}}{n^{4}}\textnormal{Var}\!\left[\,\widehat{\theta}^{\,*}\,\right] + \dfrac{\theta^{2}}{n^{2}} \\
+&=& \dfrac{(n+1)^{2}}{n^{2}}\,\dfrac{\theta^{2}}{n}\left(\frac{4n+6}{n+1}\right) + \dfrac{\theta^{2}}{n^{2}}
+\;\;=\;\; \dfrac{\theta^{2}}{n}\left\{\,\dfrac{(n+1)(4n+6)}{n^{2}} + \dfrac{1}{n}\,\right\} \\
+&=& \dfrac{\theta^{2}}{n}\left\{\,\dfrac{4n^{2} + 10n + 6 + n}{n^{2}}\,\right\}
+\;\;=\;\; \dfrac{\theta^{2}}{n}\left\{\,4 + \dfrac{11}{n} + \dfrac{6}{n^{2}}\,\right\}
+\end{eqnarray*}
+To compare $\textnormal{MSE}\!\left(\widehat{\theta}_{\textnormal{MLE}},\theta\right)$
+and $\textnormal{MSE}\!\left(\widehat{\theta}^{\,*},\theta\right)$, note that
+\begin{equation*}
+\textnormal{MSE}\!\left(\widehat{\theta}_{\textnormal{MLE}},\theta\right)
+\;=\; \cdots \; = \; \dfrac{n^{2}(n+1)^{2}}{n^{4}}\textnormal{Var}\!\left[\,\widehat{\theta}^{\,*}\,\right] + \dfrac{\theta^{2}}{n^{2}}
+\;=\; \dfrac{(n+1)^{2}}{n^{2}}\,\textnormal{MSE}\!\left(\widehat{\theta}^{\,*},\theta\right) + \dfrac{\theta^{2}}{n^{2}}
+\;>\; \textnormal{MSE}\!\left(\widehat{\theta}^{\,*},\theta\right)
+\end{equation*}
+So, for finite $n$, the estimator $\widehat{\theta}^{\,*}$ is preferred since it has smaller mean squared error.
+However, we also easily see that
+\begin{equation*}
+\lim_{n\rightarrow\infty}\textnormal{MSE}\!\left(\widehat{\theta}_{\textnormal{MLE}},\theta\right)
+\;=\; \lim_{n\rightarrow\infty}\left(\,\dfrac{(n+1)^{2}}{n^{2}}\,\textnormal{MSE}\!\left(\widehat{\theta}^{\,*},\theta\right) + \dfrac{\theta^{2}}{n^{2}}\,\right)
+\;=\; \textnormal{MSE}\!\left(\widehat{\theta}^{\,*},\theta\right)
+\end{equation*}
+Thus, asymptotically, there is no difference in the mean squared error
+between $\widehat{\theta}_{\textnormal{MLE}}$ and $\widehat{\theta}^{\,*}$.
+
+
+
+
