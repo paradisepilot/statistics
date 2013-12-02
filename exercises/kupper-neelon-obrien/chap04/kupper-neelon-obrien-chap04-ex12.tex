@@ -1,0 +1,110 @@
+
+\noindent
+\textbf{Exercise 4.12(a)}
+
+\vskip 0.3cm
+\noindent
+The likelihood function is:
+\begin{eqnarray*}
+L(\lambda_{0},\lambda_{1})
+&=&\prod_{i=0}^{1}\prod_{j=1}^{n_{i}}\,P\!\left(Y_{ij} = y_{ij}\right)
+\;=\;\prod_{i=0}^{1}\prod_{j=1}^{n_{i}}\,\exp\!\left(-\,L_{ij}\lambda_{i}\right)\dfrac{\lambda_{i}^{y_{ij}}}{y_{ij}!} \\
+&=&\dfrac{1}{\prod_{i=0}^{1}\prod_{j=1}^{n_{i}}\,y_{ij}!}
+\,\exp\!\left(-\,\sum_{i=0}^{1}\sum_{j=1}^{n_{i}}L_{ij}\lambda_{i}\right)
+\,\prod_{i=0}^{1}\,\lambda_{i}^{\sum_{j=1}^{n_{i}}y_{ij}}
+\end{eqnarray*}
+The log likelihood function is thus:
+\begin{eqnarray*}
+l(\lambda_{0},\lambda_{1})
+&=&\log\,L(\lambda_{0},\lambda_{1})
+\;=\;-\,\log K - \sum_{i=0}^{1}\left(\lambda_{i}\sum_{j=1}^{n_{i}}L_{ij}\right)
++ \sum_{i=0}^{1}\left(\sum_{j=1}^{n_{i}}y_{ij}\right)\log(\lambda_{i})
+\end{eqnarray*}
+The partial derivatives of $l(\lambda_{0},\lambda_{1})$ with respect to $\lambda_{0}$ and $\lambda_{1}$ are:
+\begin{equation*}
+\dfrac{\partial l}{\partial\lambda_{0}}
+\;=\; -\,\sum_{j=1}^{n_{0}}L_{0j} + \dfrac{1}{\lambda_{0}}\sum_{j=1}^{n_{0}}\,y_{0j}\,,
+\quad\quad
+\dfrac{\partial l}{\partial\lambda_{1}}
+\;=\; -\,\sum_{j=1}^{n_{1}}L_{1j} + \dfrac{1}{\lambda_{1}}\sum_{j=1}^{n_{1}}\,y_{1j}
+\end{equation*}
+Setting these two partial derivatives to zero yields:
+\begin{equation*}
+\dfrac{\partial l}{\partial\lambda_{0}} = 0
+\;\;\Longrightarrow\;\;\lambda_{0} = \dfrac{\sum_{j=1}^{n_{0}}\,y_{0j}}{\sum_{j=1}^{n_{0}}L_{0j}}\,,
+\quad\quad
+\dfrac{\partial l}{\partial\lambda_{1}} = 0
+\;\;\Longrightarrow\;\; \lambda_{1} = \dfrac{\sum_{j=1}^{n_{1}}\,y_{1j}}{\sum_{j=1}^{n_{1}}L_{1j}}
+\end{equation*}
+Hence,
+\begin{equation*}
+\widehat{\lambda}_{0} = \dfrac{\sum_{j=1}^{n_{0}}\,Y_{0j}}{\sum_{j=1}^{n_{0}}L_{0j}}\,,
+\quad\quad
+\widehat{\lambda}_{1} = \dfrac{\sum_{j=1}^{n_{1}}\,Y_{1j}}{\sum_{j=1}^{n_{1}}L_{1j}}
+\end{equation*}
+Consequently,
+\begin{equation*}
+\widehat{\log\psi}
+\; = \; \log\!\left(\widehat{\lambda}_{1}\right) - \log\!\left(\widehat{\lambda}_{0}\right)
+\; = \; \log\!\left(\dfrac{\sum_{j=1}^{n_{0}}\,Y_{1j}}{\sum_{j=1}^{n_{1}}L_{1j}}\right)
+\,-\, \log\!\left(\dfrac{\sum_{j=1}^{n_{1}}\,Y_{0j}}{\sum_{j=1}^{n_{0}}L_{0j}}\right)
+\end{equation*}
+Next,
+\begin{eqnarray*}
+\textnormal{Var}\!\left[\widehat{\log\psi}\right]
+&=& \textnormal{Var}\!\left[\log\!\left(\widehat{\lambda}_{1}\right) - \log\!\left(\widehat{\lambda}_{0}\right)\right]
+\;\;=\;\; \textnormal{Var}\!\left[\log\!\left(\widehat{\lambda}_{1}\right)\right] + \textnormal{Var}\!\left[\log\!\left(\widehat{\lambda}_{0}\right)\right]
+\;\;=\;\; \left(\dfrac{1}{\widehat{\lambda}_{1}}\right)^{2}\textnormal{Var}\!\left[\widehat{\lambda}_{1}\right]
++ \left(\dfrac{1}{\widehat{\lambda}_{0}}\right)^{2}\textnormal{Var}\!\left[\widehat{\lambda}_{0}\right]
+\\
+&=&
+\dfrac{\left(\sum_{j=1}^{n_{1}}\,L_{1j}\right)^{2}}{\left(\sum_{j=1}^{n_{1}}Y_{1j}\right)^{2}}
+\dfrac{\sum_{j=1}^{n_{1}}\,Y_{1j}}{\left(\sum_{j=1}^{n_{1}}L_{1j}\right)^{2}}
+\,+\,
+\dfrac{\left(\sum_{j=1}^{n_{0}}\,L_{0j}\right)^{2}}{\left(\sum_{j=1}^{n_{0}}Y_{0j}\right)^{2}}
+\dfrac{\sum_{j=1}^{n_{0}}\,Y_{0j}}{\left(\sum_{j=1}^{n_{0}}L_{0j}\right)^{2}}
+\\
+&=&
+\dfrac{1}{\sum_{j=1}^{n_{1}}Y_{1j}} \,+\, \dfrac{1}{\sum_{j=1}^{n_{0}}Y_{0j}}
+\end{eqnarray*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 4.12(b)}
+
+\begin{eqnarray*}
+\widehat{\log\psi}
+&=& \log\!\left(\dfrac{\sum_{j=1}^{n_{0}}\,Y_{1j}}{\sum_{j=1}^{n_{1}}L_{1j}}\right)
+\,-\, \log\!\left(\dfrac{\sum_{j=1}^{n_{1}}\,Y_{0j}}{\sum_{j=1}^{n_{0}}L_{0j}}\right)
+\\
+&=& \log\!\left(\dfrac{40}{350}\right) \,-\, \log\!\left(\dfrac{35}{400}\right)
+\;\;=\;\; \log\!\left(\dfrac{40}{350}\,\dfrac{400}{35}\right)
+\;\;=\;\; \log\!\left(\dfrac{8}{7}\right)^{2}
+\;\;=\;\; 2\,\log\!\left(\dfrac{8}{7}\right)
+\;\approx\; 0.2670
+\end{eqnarray*}
+\begin{eqnarray*}
+\textnormal{Var}\!\left[\widehat{\log\psi}\right]
+&=& \dfrac{1}{\sum_{j=1}^{n_{1}}Y_{1j}} \,+\, \dfrac{1}{\sum_{j=1}^{n_{0}}Y_{0j}}
+\;\;=\;\; \dfrac{1}{40} \, + \, \dfrac{1}{35}
+\;\approx\; 0.05357
+\end{eqnarray*}
+Approximate 95\% confidence interval for $\log\psi$:
+\begin{equation*}
+2 \cdot \log\left(\dfrac{8}{7}\right) \;\pm\; 1.96 \times \sqrt{\dfrac{1}{40} + \dfrac{1}{35}} \;\;\approx\;\; (-\,0.18659,\,0.72071)
+\end{equation*}
+Approximate 95\% confidence interval for $\psi$:
+\begin{equation*}
+(e^{-\,0.18659},\,e^{0.72071}) \;\;\approx\;\; (0.8298,\,2.05589)
+\end{equation*}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,143 @@
+
+\noindent
+\textbf{Exercise 4.13(a)}
+
+\vskip 0.3cm
+\noindent
+The likelihood function is:
+\begin{equation*}
+L(\theta)
+\;=\;\prod_{i=1}^{n}\,f_{T}(t_{i};\theta)
+\;=\;\prod_{i=1}^{n}\,\theta\,e^{-\theta\,t_{i}}
+\;=\;\theta^{n}\,e^{-\,\theta\sum_{i=1}^{n}t_{i}}
+\end{equation*}
+The log likelihood function is:
+\begin{equation*}
+l(\theta)
+\;=\; \log L(\theta)
+\;=\; n\,\log(\theta) - \theta\,\sum_{i=1}^{n}\,t_{i}
+\end{equation*}
+\begin{equation*}
+\dfrac{\partial l}{\partial\theta}
+\;=\; \dfrac{n}{\theta} \, - \, \sum_{i=1}^{n}\,t_{i}
+\end{equation*}
+Thus,
+\begin{equation*}
+\dfrac{\partial l}{\partial\theta} \; = \; 0
+\quad\Longrightarrow\quad
+\theta \; = \; \dfrac{n}{\sum_{i=1}^{n}\,t_{i}}
+\end{equation*}
+Hence,
+\begin{equation*}
+\widehat{\theta}_{\textnormal{MLE}} \; = \; \dfrac{n}{\sum_{i=1}^{n}\,T_{i}}
+\end{equation*}
+Next, note that:
+\begin{equation*}
+\dfrac{\partial^{2}l}{\partial\theta^{2}}
+\;=\; -\,\dfrac{n}{\theta^{2}}
+\end{equation*}
+Hence,
+\begin{equation*}
+n\,\textnormal{Var}\!\left[\widehat{\theta}_{\textnormal{MLE}}\right]
+\;\approx\; n\left(-E\!\left[\dfrac{\partial^{2}l}{\partial\theta^{2}}\right]\right)^{-1}
+\;=\; n\left(-E\!\left[-\,\dfrac{n}{\theta^{2}}\right]\right)^{-1}
+\quad\Longrightarrow\quad
+\textnormal{Var}\!\left[\widehat{\theta}_{\textnormal{MLE}}\right]
+\;=\; \dfrac{\theta^{2}}{n}
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 4.13(b)}
+
+\vskip 0.3cm
+\noindent
+First, note that
+\begin{equation*}
+P\!\left(Y=1\right)
+\;=\; P\!\left(T > t^{*} \right)
+\;=\; \int_{t^{*}}^{\infty}f_{T}(t;\theta)\,\dd t
+\;=\; \int_{t^{*}}^{\infty}\theta\,e^{-\theta t}\,\dd t
+\;=\; \theta\left[\,-\,\dfrac{e^{-\theta t}}{\theta}\,\right]_{t^{*}}^{\infty}
+\;=\; e^{-\theta t^{*}}
+\end{equation*}
+Hence,
+\begin{equation*}
+P\!\left(Y=0\right)
+\;=\; 1 - P\!\left(Y=1\right)
+\;=\; 1 - e^{-\theta t^{*}}
+\end{equation*}
+The likelihood function is thus:
+\begin{equation*}
+L^{*}(\theta)
+\;=\; \prod_{i=1}^{n}\,P(Y_{i}=1)^{Y_{i}}\,P(Y_{i}=0)^{1-Y_{i}}
+\;=\; P(Y=1)^{\sum_{i=1}^{n}Y_{i}} \cdot P(Y=0)^{n - \sum_{i=1}^{n}Y_{i}}
+\;=\; \left(e^{-\theta t^{*}}\right)^{S} \cdot \left(1-e^{-\theta t^{*}}\right)^{n - S}\,,
+\end{equation*}
+where $S := \sum_{i=1}^{n}Y_{i}$.
+Hence, the log likelihood function is:
+\begin{equation*}
+l^{*}(\theta)
+\;=\; \log L^{*}(\theta)
+\;=\; -\,\theta t^{*}S \, + \, (n - S)\log\left(1 - e^{-\theta t^{*}}\right)
+\end{equation*}
+Hence,
+\begin{equation*}
+\dfrac{\partial l^{*}}{\partial\theta}
+\;=\; -t^{*}S + \dfrac{n-S}{1-e^{-\theta t^{*}}}\left(-\,e^{-\theta t^{*}}\cdot(-t^{*})\right)
+\;=\; -t^{*}S + \dfrac{t^{*}e^{-\theta t^{*}}(n-S)}{1 - e^{-\theta t^{*}}}
+\end{equation*}
+And,
+\begin{equation*}
+\dfrac{\partial l^{*}}{\partial\theta} \; = \; 0
+\quad\Longrightarrow\quad\cdots\quad\Longrightarrow\quad
+\widehat{\theta}^{*}
+\;=\; \dfrac{1}{t^{*}}\log\left(\dfrac{n}{S}\right)
+\;=\; \dfrac{1}{t^{*}}\log\left(\dfrac{n}{\sum_{i=1}^{n}Y_{i}}\right)
+\end{equation*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 4.13(c)}
+
+\begin{equation*}
+\dfrac{\partial l^{*}}{\partial\theta}
+\;=\; -t^{*}S + \dfrac{t^{*}e^{-\theta t^{*}}(n-S)}{1 - e^{-\theta t^{*}}}
+\;=\; -t^{*}S + (n-S)\cdot t^{*}\cdot e^{-\theta t^{*}}\cdot\left(1 - e^{-\theta t^{*}}\right)^{-1}
+\end{equation*}
+And,
+\begin{equation*}
+\dfrac{\partial^{2}l^{*}}{\partial\theta^{2}}
+\;=\;\cdots\;=\;
+\;=\; -\,(n-S)\,\dfrac{e^{-\theta t^{*}}(t^{*})^{2}}{\left(1 - e^{-\theta t^{*}}\right)^{2}}
+\end{equation*}
+Now, note that:\;\;$S \; \sim \; \textnormal{Binomial}\!\left(\,n,\,e^{-\theta t^{*}}\,\right)$.
+Hence,
+\begin{equation*}
+E\!\left[\,\dfrac{\partial^{2}l^{*}}{\partial\theta^{2}}\,\right]
+\;=\; -\,(n-E[\,S\,])\,\dfrac{e^{-\theta t^{*}}(t^{*})^{2}}{\left(1 - e^{-\theta t^{*}}\right)^{2}}
+\;=\; -\,(n-n\,e^{-\theta t^{*}})\,\dfrac{e^{-\theta t^{*}}(t^{*})^{2}}{\left(1 - e^{-\theta t^{*}}\right)^{2}}
+\;=\; \dfrac{n\,e^{-\theta t^{*}}(t^{*})^{2}}{\left(e^{-\theta t^{*}} - 1\right)}
+\;=\; \dfrac{n(t^{*})^{2}}{\left(1 - e^{{\color{red}+}\theta t^{*}}\right)}
+\end{equation*}
+Hence,
+\begin{equation*}
+\textnormal{Var}\!\left[\,\widehat{\theta}^{*}\,\right]
+\;=\; -\,\left(E\!\left[\,\dfrac{\partial^{2}l^{*}}{\partial\theta^{2}}\,\right]\right)^{-1}
+\;=\; \dfrac{\left(e^{\theta t^{*}} - 1\right)}{n(t^{*})^{2}}
+\end{equation*}
+Thus,
+\begin{equation*}
+\dfrac{\textnormal{Var}\!\left[\,\widehat{\theta}_{\textnormal{MLE}}\,\right]}{\textnormal{Var}\!\left[\,\widehat{\theta}^{*}\,\right]}
+\;=\; \dfrac{\theta^{2}}{n}\cdot\dfrac{n(t^{*})^{2}}{\left(e^{\theta t^{*}} - 1\right)}
+\;=\; \dfrac{(\theta t^{*})^{2}}{\left(e^{\theta t^{*}} - 1\right)}
+\end{equation*}
+
+
+
+
+
+
+
