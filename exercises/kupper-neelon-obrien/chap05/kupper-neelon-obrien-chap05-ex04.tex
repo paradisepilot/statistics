@@ -1,0 +1,273 @@
+
+\noindent
+\textbf{Exercise 5.4(a)}
+
+\vskip 0.3cm
+\noindent
+The likelihood function is:
+\begin{equation*}
+L(\theta_{1},\theta_{2})
+\;=\; \prod_{i=1}^{n}\theta_{1}^{x_{i}}\,(1-\theta_{1})^{1-x_{i}} \cdot \prod_{j=1}^{n}\theta_{2}^{y_{j}}\,(1-\theta_{2})^{1-y_{j}}
+\;=\; \theta_{1}^{S_{X}}\cdot(1-\theta_{1})^{n - S_{X}}\cdot\theta_{2}^{S_{Y}}\cdot(1-\theta_{2})^{n - S_{Y}}
+\end{equation*}
+where $S_{X} := \sum_{i=1}^{n}X_{i}$ and $S_{Y} := \sum_{j=1}^{n}Y_{j}$.
+Hence
+\begin{equation*}
+\dfrac{L(0.5,0.5)}{L(0.6,0.6)}
+\;=\;\dfrac{0.5^{S_{X}}\cdot(1-0.5)^{n - S_{X}}\cdot0.5^{S_{Y}}\cdot(1-0.5)^{n - S_{Y}}}{0.6^{S_{X}}\cdot(1-0.6)^{n - S_{X}}\cdot0.6^{S_{Y}}\cdot(1-0.6)^{n - S_{Y}}}
+\;=\;\left(\dfrac{5}{4}\right)^{2n}\cdot\left(\dfrac{2}{3}\right)^{S_{X}+S_{Y}}
+\end{equation*}
+By the Neyman-Pearson Lemma, the most powerful test has rejection region of the form:
+\begin{equation*}
+\dfrac{L(0.5,0.5)}{L(0.6,0.6)} < k
+\quad\Longrightarrow\quad
+\left(\dfrac{5}{4}\right)^{2n}\cdot\left(\dfrac{2}{3}\right)^{S_{X}+S_{Y}} < k
+\quad\Longrightarrow\quad
+S_{X} + S_{Y} > -\,\dfrac{1}{\log(3/2)}\left(\log k - 2n\log(5/4)\right) 
+\end{equation*}
+Thus, we see that the most powerful test has rejection region of the form:
+\begin{equation*}
+S_{X} + S_{Y} > k^{\prime}
+\end{equation*}
+for some suitable $k^{\prime}$.
+
+\vskip 0.3cm
+\noindent
+Now, assume $n = 30$ and $\alpha = 0.05$.
+Under the null hypothesis $H_{0}: \theta_{1} = \theta_{2} = 0.5$, note that $S_{X} + S_{Y} \sim \textnormal{Binomial}(N=60,p=0.5)$.
+We see the threshold $\tau$ such that $P(S_{X} + S_{Y} \geq \tau\,\vert\, H_{0}: \theta_{1}=\theta_{2}=0.5) = \alpha = 0.05$.
+In other words, $\tau$ is the smallest integer such that $P(W \geq \tau) \leq 0.05$, where $W \sim \textnormal{Binomial}(N=60,p=0.5)$.
+Now, note that $P(W \geq 36) \approx 0.07750095$ and $P(W \geq 37) \approx 0.04623049$. We conclude that the threshold $\tau = 37$.
+
+\vskip 0.3cm
+\noindent
+The power of the test is thus:
+\begin{equation*}
+P\!\left(\left.S_{X} + S_{Y} \geq 37 \,\right\vert\,H_{1}:\theta_{1}=\theta_{2}=0.6\,\right)
+\;=\; P(V \geq 37) \;\approx\; 0.4511064,
+\end{equation*}
+where $V \sim \textnormal{Binomial}(N = 60, p = 0.6)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 1.0cm
+\noindent
+\textbf{Exercise 5.4(b)}
+
+\vskip 0.3cm
+\noindent
+The likelihood function is:
+\begin{equation*}
+L(\theta_{1},\theta_{2})
+\;=\; \prod_{i=1}^{n}\theta_{1}^{x_{i}}\,(1-\theta_{1})^{1-x_{i}} \cdot \prod_{j=1}^{n}\theta_{2}^{y_{j}}\,(1-\theta_{2})^{1-y_{j}}
+\;=\; \theta_{1}^{S_{X}}\cdot(1-\theta_{1})^{n - S_{X}}\cdot\theta_{2}^{S_{Y}}\cdot(1-\theta_{2})^{n - S_{Y}}
+\end{equation*}
+where $S_{X} := \sum_{i=1}^{n}X_{i}$ and $S_{Y} := \sum_{j=1}^{n}Y_{j}$.
+The log likelihood is thus:
+\begin{equation*}
+l(\theta_{1},\theta_{2})
+\;=\; \log L(\theta_{1},\theta_{2})
+\;=\; S_{X}\log\theta_{1} + (n - S_{X})\log(1-\theta_{1}) + S_{Y}\log\theta_{2} + (n - S_{Y})\log(1-\theta_{2})
+\end{equation*}
+Thus,
+\begin{equation*}
+\dfrac{\partial l}{\partial\theta_{1}} \;=\; \dfrac{S_{X}}{\theta_{1}} - \dfrac{n - S_{X}}{1-\theta_{1}}\,,
+\quad\textnormal{and}\quad
+\dfrac{\partial l}{\partial\theta_{2}} \;=\; \dfrac{S_{Y}}{\theta_{2}} - \dfrac{n - S_{Y}}{1-\theta_{2}}
+\end{equation*}
+Hence,
+\begin{equation*}
+\dfrac{\partial l}{\partial\theta_{1}} \,=\, 0
+\;\;\Longrightarrow\;\;
+\widehat{\theta}_{1} \,=\, \dfrac{1}{n}S_{X} \,=\, \dfrac{1}{n}\sum_{i=1}^{n}X_{i}
+\quad\textnormal{and}\quad
+\dfrac{\partial l}{\partial\theta_{2}} \,=\, 0
+\;\;\Longrightarrow\;\;
+\widehat{\theta}_{2} \,=\, \dfrac{1}{n}S_{Y} \,=\, \dfrac{1}{n}\sum_{j=1}^{n}Y_{j}
+\end{equation*}
+Now, define
+\begin{equation*}
+\widehat{\tau}
+\;:=\; \widehat{\theta}_{1} - \widehat{\theta}_{2}
+\;=\; \dfrac{1}{n}\left(\sum_{i=1}^{n}X_{i}+\sum_{j=1}^{n}Y_{j}\right)
+\end{equation*}
+Then, $E\!\left[\,\widehat{\tau}\,\right] = \cdots = \theta_{1} - \theta_{2}$, and
+\begin{eqnarray*}
+\textnormal{Var}\!\left[\,\widehat{\tau}\,\right]
+&=& \textnormal{Var}\!\left[\,\widehat{\theta}_{1} - \widehat{\theta}_{2}\,\right]
+\;\;=\;\; \textnormal{Var}\!\left[\,\widehat{\theta}_{1}\,\right] + \textnormal{Var}\!\left[\,\widehat{\theta}_{2}\,\right]
+\;\;=\;\; \textnormal{Var}\!\left[\,\dfrac{1}{n}\sum_{i=1}^{n}X_{i}\,\right] + \textnormal{Var}\!\left[\,\dfrac{1}{n}\sum_{j=1}^{n}Y_{j}\,\right]
+\\
+&=& \dfrac{1}{n^{2}}\,\sum_{i=1}^{n}\textnormal{Var}\!\left[\,X_{i}\,\right] + \dfrac{1}{n^{2}}\,\sum_{j=1}^{n}\textnormal{Var}\!\left[\,Y_{j}\,\right]
+\;\;=\;\; \dfrac{1}{n^{2}}\,\sum_{i=1}^{n}\theta_{1}(1-\theta_{1}) + \dfrac{1}{n^{2}}\,\sum_{j=1}^{n}\theta_{2}(1-\theta_{2})
+\\
+&=& \dfrac{1}{n}\left[\theta_{1}(1-\theta_{1}) + \theta_{2}(1-\theta_{2})\right]\,,
+\end{eqnarray*}
+since, for each $i = 1,\ldots, n$, we have $X_{i} \sim \textnormal{Bernoulli}(p = \theta_{1})$,
+hence $\textnormal{Var}\!\left[\,X_{i}\,\right] = \theta_{1}(1-\theta_{1})$,
+and similarly, for each $j = 1,\ldots,n$, we have $Y_{i} \sim \textnormal{Bernoulli}(p = \theta_{2})$,
+hence $\textnormal{Var}\!\left[\,Y_{j}\,\right] = \theta_{2}(2-\theta_{2})$.
+
+\vskip 0.3cm
+\noindent
+Since $\tau := \widehat{\theta}_{1} - \widehat{\theta}_{2}$ is the maximum likelihood estimator of $\theta_{1} - \theta_{2}$,
+we know, by the general theory of maximum likelihood estimators, that
+\begin{equation*}
+\dfrac{\widehat{\tau} - E\!\left[\,\widehat{\tau}\,\right]}{\sqrt{\textnormal{Var}\!\left[\,\widehat{\tau}\,\right]}}
+\quad\overset{\textnormal{asymp.}}{\sim}\quad
+N(0,1)
+\end{equation*}
+Under that null hypothesis $H_{0}: \theta_{1} = \theta_{2} = \theta_{0}$, we have:
+\begin{equation*}
+E\!\left[\,\widehat{\tau}\,\right] \;=\; 0
+\quad\textnormal{and}\quad
+\textnormal{Var}\!\left[\,\tau\,\right] \;=\; \dfrac{2}{n}\theta_{0}(1-\theta_{0})
+\end{equation*}
+So, a one-sided $\alpha = 0.05$ test has rejection region:
+\begin{equation*}
+\dfrac{\widehat{\tau}}{\sqrt{(2/n)\theta_{0}(1-\theta_{0})}} \; > \; z_{1-\alpha} \; = \; z_{0.95} \;\approx\; 1.644854
+\quad\Longleftrightarrow\quad
+\widehat{\tau} \;>\; z_{0.95}\sqrt{\dfrac{2}{n}\,\theta_{0}(1-\theta_{0})}
+\end{equation*}
+Next, the power of the test is:
+\begin{eqnarray*}
+\textnormal{power}
+&=& P\!\left(\,\left.\widehat{\tau}\,\geq\,z_{1-\alpha}\,\sqrt{\dfrac{2}{n}\,\theta_{0}(1-\theta_{0})}\;\right\vert\;H_{1}:\theta_{1} - \theta_{2} \geq 0.2\,\right)
+\\
+&\geq& P\!\left(\,\left.\widehat{\tau}\,\geq\,z_{1-\alpha}\,\sqrt{\dfrac{2}{n}\,\theta_{0}(1-\theta_{0})}\;\right\vert\;H_{1}:\theta_{1} - \theta_{2} = 0.2\,\right)
+\\
+&=& P\!\left(\,\left.\dfrac{\widehat{\tau}\;-\;0.2}{\sqrt{\dfrac{1}{n}\left[\,\theta_{1}(1-\theta_{1}) + \theta_{2}(1-\theta_{2})\,\right]}}\,\geq\,
+\dfrac{z_{1-\alpha}\,\sqrt{\dfrac{2}{n}\,\theta_{0}(1-\theta_{0})}\;-\;0.2}{\sqrt{\dfrac{1}{n}\left[\,\theta_{1}(1-\theta_{1}) + \theta_{2}(1-\theta_{2})\,\right]}}
+\;\right\vert\;H_{1}:\theta_{1} - \theta_{2} = 0.2\,\right)
+\\
+&\approx& P\!\left(\,
+\left.
+Z
+\,\geq\,
+\dfrac{z_{1-\alpha}\,\sqrt{\dfrac{2}{n}\,\theta_{0}(1-\theta_{0})}\;-\;0.2}
+{\sqrt{\dfrac{1}{n}\left[\,\theta_{1}(1-\theta_{1}) + \theta_{2}(1-\theta_{2})\,\right]}}\;
+\right\vert\;
+Z \sim N(0,1)
+\,\right)
+\\
+&\geq& P\!\left(\,
+\left.
+Z
+\,\geq\,
+\dfrac{z_{1-\alpha}\,\sqrt{\dfrac{2}{n}\,\theta_{0}(1-\theta_{0})}\;-\;0.2}
+{\dfrac{1}{\sqrt{n}}\cdot\underset{0<\theta_{2}<1}{\max}\,\left\{\sqrt{\left[\,(\theta_{2}+0.2)(1-\theta_{2}-0.2) + \theta_{2}(1-\theta_{2})\,\right]}\right\}}\;
+\right\vert\;
+Z \sim N(0,1)
+\,\right)
+\end{eqnarray*}
+Now, let
+\begin{equation*}
+f(\theta_{2})
+\; := \; (\theta_{2}+0.2)(1-\theta_{2}-0.2) + \theta_{2}(1-\theta_{2})
+\; = \; -2\theta_{2}^{2} + 1.6\theta_{2} + 0.16
+\end{equation*}
+Then,
+\begin{equation*}
+f^{\prime}(\theta_{2})
+\; = \; -4\theta_{2} + 1.6
+\end{equation*}
+Hence,
+\begin{equation*}
+f^{\prime}(\theta_{2}) \;=\; 0
+\quad\Longrightarrow\quad
+\theta_{2} \,=\, \dfrac{1.6}{4} \,=\, \dfrac{2}{5}
+\end{equation*}
+And,
+\begin{equation*}
+f\!\left(\dfrac{2}{5}\right)
+\; = \; -2\times\left(\dfrac{2}{5}\right)^{2} + 1.6\times\left(\dfrac{2}{5}\right) + 0.16
+\; = \; -\dfrac{8}{25} + \dfrac{16}{10}\times\dfrac{2}{5} + \dfrac{16}{100}
+\; = \; -\dfrac{8}{25} + \dfrac{16}{25} + \dfrac{4}{25}
+\; = \; \dfrac{12}{25}
+\end{equation*}
+Therefore,
+\begin{eqnarray*}
+\textnormal{power}
+&=& P\!\left(\,\left.\widehat{\tau}\,\geq\,z_{1-\alpha}\,\sqrt{\dfrac{2}{n}\,\theta_{0}(1-\theta_{0})}\;\right\vert\;H_{1}:\theta_{1} - \theta_{2} \geq 0.2\,\right)
+\\
+&\geq& P\!\left(\,
+\left.
+Z
+\,\geq\,
+\dfrac{z_{1-\alpha}\,\sqrt{\dfrac{2}{n}\,\theta_{0}(1-\theta_{0})}\;-\;0.2}
+{\dfrac{1}{\sqrt{n}}\cdot\underset{0<\theta_{2}<1}{\max}\,\left\{\sqrt{\left[\,(\theta_{2}+0.2)(1-\theta_{2}-0.2) + \theta_{2}(1-\theta_{2})\,\right]}\right\}}\;
+\right\vert\;
+Z \sim N(0,1)
+\,\right)
+\\
+&=& P\!\left(\,
+\left.
+Z
+\,\geq\,
+\dfrac{z_{1-\alpha}\,\sqrt{\dfrac{2}{n}\,\theta_{0}(1-\theta_{0})}\;-\;0.2}
+{\dfrac{1}{\sqrt{n}}\cdot\sqrt{\dfrac{12}{25}}}\;
+\right\vert\;
+Z \sim N(0,1)
+\,\right)
+\\
+&=& P\!\left(\,
+\left.
+Z
+\,\geq\,
+\sqrt{\dfrac{25}{12}}\left(z_{1-\alpha}\,\sqrt{2\theta_{0}(1-\theta_{0})}\;-\;0.2\,\sqrt{n}\right)\;
+\right\vert\;
+Z \sim N(0,1)
+\,\right)
+\\
+&=& P\!\left(\,
+\left.
+Z
+\,\geq\,
+\dfrac{5}{2\sqrt{3}}\left(z_{1-\alpha}\,\sqrt{2\times0.1(1-0.1)}\;-\;0.2\,\sqrt{n}\right)\;
+\right\vert\;
+Z \sim N(0,1)
+\,\right)
+\\
+&=& P\!\left(\,
+\left.
+Z
+\,\geq\,
+\dfrac{5}{2\sqrt{3}}\left(z_{1-\alpha}\,\sqrt{2\times\dfrac{9}{100}}\;-\;0.2\,\sqrt{n}\right)\;
+\right\vert\;
+Z \sim N(0,1)
+\,\right)
+\\
+&=& P\!\left(\,
+\left.
+Z
+\,\geq\,
+\dfrac{5}{2\sqrt{3}}\left(\dfrac{3\sqrt{2}}{10}z_{1-\alpha}\;-\;0.2\,\sqrt{n}\right)\;
+\right\vert\;
+Z \sim N(0,1)
+\,\right)
+\\
+&=& P\!\left(\,
+\left.
+Z
+\,\geq\,
+\dfrac{5}{2\sqrt{3}}\left(\dfrac{3}{5\sqrt{2}}z_{1-\alpha}\;-\;\dfrac{\sqrt{n}}{5}\right)\;
+\right\vert\;
+Z \sim N(0,1)
+\,\right)
+\end{eqnarray*}
+Since we want to impose power $\geq$ $\beta = 0.9$, we seek $n$ such that
+\begin{eqnarray*}
+&& \dfrac{1}{2\sqrt{3}}\left(\dfrac{3}{\sqrt{2}}\,z_{1-\alpha} - \sqrt{n}\right)
+\; = \; z_{1-\beta} \;=\; z_{1-0.9} \;=\; z_{0.1}
+\\
+&\Longrightarrow&
+n \;=\; \left(\dfrac{3}{\sqrt{2}}\cdot z_{0.95} - 2\sqrt{3}\cdot z_{0.1}\right)^{2}
+\;=\; \left(\dfrac{3}{\sqrt{2}}\cdot 1.644854 - 2\sqrt{3}\cdot (-1.281552)\right)^{2}
+\;=\; 62.86407
+\end{eqnarray*}
+Thus, the required sample size is at least:
+\begin{equation*}
+n \;\geq\; 63
+\end{equation*}
+
+
+
