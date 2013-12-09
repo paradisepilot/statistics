@@ -17,7 +17,18 @@ setwd(output.directory);
 ####################################################################################################
 data(teengamb);
 
-str(teengamb);
+teengamb[,'sex'] <- as.factor(teengamb[,'sex']);
+#str(teengamb);
+#summary(teengamb);
+#teengamb;
+
+####################################################################################################
+lm.results <- lm(formula = gamble ~ sex + status + income + verbal, data = teengamb);
+summary(lm.results);
+
+### (a) ############################################################################################
+### The percentage of variation in the response explained by these predictors is the
+### "multiple R-squared", which has value 0.5267, i.e. 52.67%
 
 ####################################################################################################
 
