@@ -1,6 +1,6 @@
 
  myRscript=../code/montgomery-exercise-02-01.R
-  data_dir=../../../../data/data-sets-processed
+  data_dir=../../../../data-reformatted
   code_dir=../code
 output_dir=../output
    tmp_dir=${output_dir}/tmp
