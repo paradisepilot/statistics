@@ -73,24 +73,3 @@ beta.hat[2] + qt(p = 0.975, df = nrow(DF.data)-2) * beta.hat.sd * c(-1,1);
 
 q();
 
-####################################################################################################
-data(uswages);
-
-str(uswages);
-
-lm.results <- lm(
-	formula = wage ~ educ + exper,
-	data    = uswages
-	);
-summary(lm.results);
-
-lm.results <- lm(
-	formula = log(wage) ~ educ + exper,
-	data    = uswages
-	);
-summary(lm.results);
-
-####################################################################################################
-
-q();
-
