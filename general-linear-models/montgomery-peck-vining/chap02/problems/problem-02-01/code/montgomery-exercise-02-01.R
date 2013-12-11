@@ -6,7 +6,7 @@ code.directory   <- command.arguments[3];
 tmp.directory    <- command.arguments[4];
 
 ####################################################################################################
-library(faraway);
+library(MPV);
 library(ggplot2);
 
 #source(paste(code.directory, "bugs-chains.R", sep = "/"));
@@ -16,13 +16,7 @@ library(ggplot2);
 setwd(output.directory);
 
 ####################################################################################################
-DF.data <- read.csv(
-	file   = paste0(data.directory,'/appendices/data-table-B1.csv'),
-	header = TRUE,
-	sep    = "\t",
-	quote  = "\""
-	);
-str(DF.data);
+DF.data <- table.b1;
 
 ### (a) ############################################################################################
 lm.results <- lm(
