@@ -26,6 +26,10 @@ DF.data <- read.table(
 colnames(DF.data) <- c('effective.life','revolution.speed','tool.type');
 str(DF.data);
 
+### data correction: downloaded data were differ from those in text.
+### here, we correct the downloaded data to those in the text.
+DF.data[7,'revolution.speed'] <- 680;
+
 ####################################################################################################
 lm.full <- lm(
 	formula = effective.life ~ revolution.speed + tool.type + revolution.speed * tool.type,
@@ -91,6 +95,29 @@ anova(lm.full);
 anova(lm.null,lm.zeroBeta23);
 anova(lm.zeroBeta23, lm.zeroBeta3);
 anova(lm.zeroBeta3, lm.full);
+
+####################################################################################################
+resolution <- 100;
+graphics.format <- 'png';
+my.filename <- paste('figure-08-05',graphics.format,sep='.');
+my.ggplot <- ggplot();
+my.ggplot <- my.ggplot + ylim(0,50);
+my.ggplot <- my.ggplot + geom_point(
+        data     = DF.data,
+        mapping  = aes(x = revolution.speed, y = effective.life, col = tool.type)
+        );
+temp.x <- seq(480,1020,1);
+my.ggplot <- my.ggplot + geom_line(
+	data    = data.frame(x = temp.x, y = betas[1] + betas[2] * temp.x),
+	mapping = aes(x = x, y = y)
+	);
+my.ggplot <- my.ggplot + geom_line(
+	data    = data.frame(x = temp.x, y = betas[1]+betas[3]+(betas[2]+betas[4])*temp.x),
+	mapping = aes(x = x, y = y)
+	);
+ggsave(file = my.filename, plot = my.ggplot, height = 0.5 * par("din")[1], dpi = resolution, units = 'in');
+
+####################################################################################################
 
 q();
 

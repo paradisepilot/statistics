@@ -26,6 +26,10 @@ DF.data <- read.table(
 
 colnames(DF.data) <- c('effective.life','revolution.speed','tool.type');
 
+### data correction: downloaded data were differ from those in text.
+### here, we correct the downloaded data to those in the text.
+DF.data[7,'revolution.speed'] <- 680;
+
 str(DF.data);
 
 ####################################################################################################
