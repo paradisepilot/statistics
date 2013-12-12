@@ -1,5 +1,5 @@
 
- myRscript=../code/montgomery-problem-08-03.R
+ myRscript=../code/montgomery-problem-08-04.R
   data_dir=../../../../data-reformatted
   code_dir=../code
 output_dir=../output
