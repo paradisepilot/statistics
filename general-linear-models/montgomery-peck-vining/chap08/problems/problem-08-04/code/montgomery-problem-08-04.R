@@ -56,44 +56,30 @@ lm.reduced <- lm(
 	data    = DF.data
 	);
 
-summary(lm.full);
-anova(lm.reduced,lm.full);
-
-### The above shows that transmission type does NOT significantly affect mileage performance,
-### at least in the model with only engine displacement as the other predictor variable.
-
-### There is no difference whether 'transmission.type' is converted to a factor or not:
-DF.temp <- DF.data;
-DF.temp[,'transmission.type'] <- as.factor(DF.temp[,'transmission.type']);
-str(DF.temp);
-
-lm.full <- lm(
-	formula = mileage ~ displacement + transmission.type,
-	data    = DF.temp
-	);
-summary(lm.full);
-
 ### manual verification
 X <- as.matrix(cbind(
 	intercept = rep(1,nrow(DF.data)),DF.data[,c('displacement','transmission.type')]
 	));
 
-betas.hat <- solve(t(X) %*% X) %*% t(X) %*% DF.data[,'mileage'];
-betas.hat;
-
 y.hat   <- X %*% solve(t(X) %*% X) %*% t(X) %*% DF.data[,'mileage'];
 SS.full <- sum((DF.data[,'mileage'] - y.hat)^2);
-SS.full;
-MS.full <- SS.full / (nrow(DF.data) - 3);
+MS.full <- SS.full / (nrow(X) - ncol(X));
 
+ones <- matrix(X[,1],ncol=1);
+y.hat.grand.mean <- ones %*% solve(t(ones) %*% ones) %*% t(ones) %*% DF.data[,'mileage'];
+SS.grand.mean <- sum((DF.data[,'mileage'] - y.hat.grand.mean)^2);
+
+betas.hat    <- solve(t(X) %*% X) %*% t(X) %*% DF.data[,'mileage'];
 betas.sd.hat <- sqrt(MS.full * diag(solve(t(X) %*% X)));
-betas.sd.hat;
-
-t.stats <- betas.hat / betas.sd.hat;
-t.stats;
-
-p.values <- 2 * pt(q = t.stats, df = nrow(DF.data) - 3);
-p.values;
+t.stats      <- betas.hat / betas.sd.hat;
+p.values     <- 2 * pt(q = t.stats, df = nrow(X) - ncol(X));
+cbind(betas = betas.hat, stddev = betas.sd.hat,t.stat = t.stats, pval = p.values);
+F.stat <- ((SS.grand.mean - SS.full)/(ncol(X)-1)) / (SS.full/(nrow(X)-ncol(X)))
+F.stat;
+pf(q = F.stat, df1 = ncol(X)-1, df2 = nrow(X)-ncol(X), lower.tail = FALSE);
+1 - SS.full / SS.grand.mean;
+1 - (SS.full/(nrow(X)-ncol(X))) / (SS.grand.mean/(nrow(X)-1));
+summary(lm.full);
 
 X.reduced <- as.matrix(cbind(
 	intercept = rep(1,nrow(DF.data)),DF.data[,'displacement']
@@ -106,6 +92,96 @@ SS.reduced;
 F.stat <- ((SS.reduced - SS.full)/1) / MS.full;
 F.stat;
 
-F.pvalue <- pf(q = F.stat, df1 = 1, df2 = nrow(DF.data) - 3, lower.tail = FALSE);
+F.pvalue <- pf(q = F.stat, df1 = 1, df2 = nrow(X) - ncol(X), lower.tail = FALSE);
 F.pvalue;
+
+anova(lm.reduced,lm.full);
+
+### GRAPHICS (a) ###################################################################################
+DF.temp <- DF.data[,c('mileage','displacement','transmission.type')];
+DF.temp[,'transmission.type'] <- as.factor(DF.temp[,'transmission.type']);
+DF.temp[order(DF.temp[,'displacement']),];
+
+resolution <- 100;
+graphics.format <- 'png';
+my.filename <- paste('problem-08-04',graphics.format,sep='.');
+my.ggplot <- ggplot();
+my.ggplot <- my.ggplot + xlim(-20,620);
+my.ggplot <- my.ggplot + ylim(0,50);
+my.ggplot <- my.ggplot + geom_point(
+        data     = DF.temp,
+        mapping  = aes(x = displacement, y = mileage, col = transmission.type)
+        );
+temp.x <- seq(-20,620,1);
+my.ggplot <- my.ggplot + geom_line(
+	data    = data.frame(x = temp.x, y = betas.hat[1] + betas.hat[2] * temp.x),
+	mapping = aes(x = x, y = y)
+	);
+my.ggplot <- my.ggplot + geom_line(
+	data    = data.frame(x = temp.x, y = betas.hat[1]+betas.hat[3]+betas.hat[2]*temp.x),
+	mapping = aes(x = x, y = y)
+	);
+ggsave(file = my.filename, plot = my.ggplot, height = 0.5 * par("din")[1], dpi = resolution, units = 'in');
+
+### (b) ############################################################################################
+### manual verification
+X <- as.matrix(cbind(
+	intercept = rep(1,nrow(DF.data)),DF.data[,c('displacement','transmission.type')]
+	));
+X <- as.matrix(cbind(
+	X,displacement_transmission.type = X[,'displacement'] * X[,'transmission.type']
+	));
+#X;
+
+y.hat   <- X %*% solve(t(X) %*% X) %*% t(X) %*% DF.data[,'mileage'];
+SS.full <- sum((DF.data[,'mileage'] - y.hat)^2);
+SS.full;
+MS.full <- SS.full / (nrow(X) - ncol(X));
+
+betas.hat <- solve(t(X) %*% X) %*% t(X) %*% DF.data[,'mileage'];
+betas.sd.hat <- sqrt(MS.full * diag(solve(t(X) %*% X)));
+t.stats      <- betas.hat / betas.sd.hat;
+p.values     <- 2 * pt(q = t.stats, df = nrow(X) - ncol(X));
+
+cbind(betas = betas.hat, stddev = betas.sd.hat,t.stat = t.stats, pval = p.values);
+
+### using R built-in functions
+lm.full <- lm(
+	formula = mileage ~ displacement + transmission.type + displacement*transmission.type,
+	data    = DF.data
+	);
+
+lm.reduced <- lm(
+	formula = mileage ~ displacement,
+	data    = DF.data
+	);
+
+summary(lm.full);
+anova(lm.reduced,lm.full);
+
+### GRAPHICS (b) ###################################################################################
+DF.temp <- DF.data[,c('mileage','displacement','transmission.type')];
+DF.temp[,'transmission.type'] <- as.factor(DF.temp[,'transmission.type']);
+DF.temp[order(DF.temp[,'displacement']),];
+
+resolution <- 100;
+graphics.format <- 'png';
+my.filename <- paste('problem-08-04-interaction',graphics.format,sep='.');
+my.ggplot <- ggplot();
+my.ggplot <- my.ggplot + xlim(-20,620);
+my.ggplot <- my.ggplot + ylim(0,50);
+my.ggplot <- my.ggplot + geom_point(
+        data     = DF.temp,
+        mapping  = aes(x = displacement, y = mileage, col = transmission.type)
+        );
+temp.x <- seq(-20,620,1);
+my.ggplot <- my.ggplot + geom_line(
+	data    = data.frame(x = temp.x, y = betas.hat[1] + betas.hat[2] * temp.x),
+	mapping = aes(x = x, y = y)
+	);
+my.ggplot <- my.ggplot + geom_line(
+	data    = data.frame(x = temp.x, y = betas.hat[1]+betas.hat[3]+(betas.hat[2]+betas.hat[4])*temp.x),
+	mapping = aes(x = x, y = y)
+	);
+ggsave(file = my.filename, plot = my.ggplot, height = 0.5 * par("din")[1], dpi = resolution, units = 'in');
 
