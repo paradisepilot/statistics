@@ -75,6 +75,7 @@ summary(lm.full);
 anova(lm.reduced,lm.full);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+sum((yhat.full - yhat.reduced)^2);
 sum(yhat.full^2) - sum(yhat.reduced^2);
 SS.reduced - SS.full;
 
