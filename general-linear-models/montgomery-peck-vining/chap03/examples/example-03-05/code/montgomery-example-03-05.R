@@ -50,14 +50,16 @@ X.reduced <- cbind(rep(1,nrow(DF.data)),DF.data[,'num.of.cases']);
 
 beta.full    <- solve(t(X.full) %*% X.full) %*% t(X.full) %*% DF.data[,'delivery.time'];
 yhat.full    <- X.full %*% beta.full;
+SS.full      <- sum((DF.data[,'delivery.time']-yhat.full)^2);
 df.full      <- nrow(DF.data) - ncol(X.full);
-MS.full      <- sum((DF.data[,'delivery.time']-yhat.full)^2) / df.full;
+MS.full      <- SS.full / df.full;
 beta.sd.full <- sqrt(diag(MS.full * solve(t(X.full) %*% X.full)));
 t.stat.full  <- beta.full / beta.sd.full;
 pvalue.full  <- my.pvalue(pt(q = t.stat.full, df = df.full));
 
 beta.reduced <- solve(t(X.reduced) %*% X.reduced) %*% t(X.reduced) %*% DF.data[,'delivery.time'];
 yhat.reduced <- X.reduced %*% beta.reduced;
+SS.reduced   <- sum((DF.data[,'delivery.time']-yhat.reduced)^2);
 
 cbind(beta.full,beta.sd.full,t.stat.full,pvalue.full);
 ss01    <- sum(yhat.full^2) - sum(yhat.reduced^2);
@@ -71,6 +73,10 @@ c(ss01,df01,ms01,fstat01,pv01);
 ### using R build-in functions:
 summary(lm.full);
 anova(lm.reduced,lm.full);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+sum(yhat.full^2) - sum(yhat.reduced^2);
+SS.reduced - SS.full;
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ### comparing t-stat and F-stat:
