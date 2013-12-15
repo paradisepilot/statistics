@@ -120,6 +120,26 @@ anova(lm.reduced,lm.full);
 # non-significant results. This suggests that there might be non-trivial multicollinearity among
 # the nine predictor variables.
 
+library(faraway);
+
+vif(lm.full);
+
+lm.temp <- lm(formula = price ~ taxes+n.baths+lot.size+lvng.spc+n.garage+n.bdrms+age+n.frpls, data = DF.data);
+vif(lm.temp);
+summary(lm.temp);
+
+lm.temp <- lm(formula = price ~ n.baths+lot.size+lvng.spc+n.garage+n.bdrms+age+n.frpls, data = DF.data);
+vif(lm.temp);
+summary(lm.temp);
+
+lm.temp <- lm(formula = price ~ n.baths+lot.size+n.garage+n.bdrms+age+n.frpls, data = DF.data);
+vif(lm.temp);
+summary(lm.temp);
+
+lm.temp <- lm(formula = price ~ n.baths+lot.size+n.garage+age+n.frpls, data = DF.data);
+vif(lm.temp);
+summary(lm.temp);
+
 ####################################################################################################
 
 q();
