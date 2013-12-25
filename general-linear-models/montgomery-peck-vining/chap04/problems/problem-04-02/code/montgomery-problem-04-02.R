@@ -132,6 +132,63 @@ ggsave(file = my.filename, plot = my.ggplot, dpi = resolution, units = 'in');
 ### rushing plays may indicate that the variance of the error terms is
 ### increasing as the value of percentage of rushing plays increases.
 
+### (d) ############################################################################################
+lm.y.x78  <- lm(formula = y  ~ x7 + x8, data = DF.data);
+lm.x2.x78 <- lm(formula = x2 ~ x7 + x8, data = DF.data);
+
+DF.temp <- data.frame(
+	 y.x78 = residuals(lm.y.x78),
+	x2.x78 = residuals(lm.x2.x78)
+	);
+
+my.filename <- paste('problem-04-02-d-y-x2',graphics.format,sep='.');
+my.ggplot <- ggplot();
+my.ggplot <- my.ggplot + ylim(-5.2,5.2);
+my.ggplot <- my.ggplot + geom_point(
+        data    = DF.temp,
+        mapping = aes(y = y.x78, x = x2.x78)
+        );
+my.ggplot <- my.ggplot + geom_hline(y = 0, colour = 'red');
+ggsave(file = my.filename, plot = my.ggplot, dpi = resolution, units = 'in');
+
+###~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lm.y.x28  <- lm(formula = y  ~ x2 + x8, data = DF.data);
+lm.x7.x28 <- lm(formula = x7 ~ x2 + x8, data = DF.data);
+
+DF.temp <- data.frame(
+	 y.x28 = residuals(lm.y.x28),
+	x7.x28 = residuals(lm.x7.x28)
+	);
+
+my.filename <- paste('problem-04-02-d-y-x7',graphics.format,sep='.');
+my.ggplot <- ggplot();
+my.ggplot <- my.ggplot + ylim(-5.2,5.2);
+my.ggplot <- my.ggplot + geom_point(
+        data    = DF.temp,
+        mapping = aes(y = y.x28, x = x7.x28)
+        );
+my.ggplot <- my.ggplot + geom_hline(y = 0, colour = 'red');
+ggsave(file = my.filename, plot = my.ggplot, dpi = resolution, units = 'in');
+
+###~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lm.y.x27  <- lm(formula = y  ~ x2 + x7, data = DF.data);
+lm.x8.x27 <- lm(formula = x8 ~ x2 + x7, data = DF.data);
+
+DF.temp <- data.frame(
+	 y.x27 = residuals(lm.y.x27),
+	x8.x27 = residuals(lm.x8.x27)
+	);
+
+my.filename <- paste('problem-04-02-d-y-x8',graphics.format,sep='.');
+my.ggplot <- ggplot();
+my.ggplot <- my.ggplot + ylim(-5.2,5.2);
+my.ggplot <- my.ggplot + geom_point(
+        data    = DF.temp,
+        mapping = aes(y = y.x27, x = x8.x27)
+        );
+my.ggplot <- my.ggplot + geom_hline(y = 0, colour = 'red');
+ggsave(file = my.filename, plot = my.ggplot, dpi = resolution, units = 'in');
+
 ####################################################################################################
 
 q();
