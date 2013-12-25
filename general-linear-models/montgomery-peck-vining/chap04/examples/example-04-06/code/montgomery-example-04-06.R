@@ -39,6 +39,8 @@ yhat <- H %*% DF.data[,'delivery.time'];
 ordinary.residuals <- DF.data[,'delivery.time']-yhat;
 PRESS.residuals    <- ordinary.residuals/(1-diag(H));
 DF.temp <- cbind(ordinary.residuals,diag(H),PRESS.residuals,(PRESS.residuals)^2);
+
+### Columns (1), (4), (5) and (7) of Table 4.1 [p.128]
 DF.temp;
 
 PRESS <- sum(DF.temp[,4]);
@@ -48,6 +50,22 @@ SS.grand.mean <- sum((DF.data[,'delivery.time']-mean(DF.data[,'delivery.time']))
 SS.grand.mean;
 
 1 - PRESS / SS.grand.mean;
+
+####################################################################################################
+### repeat, but using only 'num.of.cases' as predictor
+X <- cbind(rep(1,nrow(DF.data)),as.matrix(DF.data[,'num.of.cases']));
+H <- X %*% solve(t(X) %*% X) %*% t(X);
+str(H);
+
+yhat <- H %*% DF.data[,'delivery.time'];
+
+ordinary.residuals <- DF.data[,'delivery.time']-yhat;
+PRESS.residuals    <- ordinary.residuals/(1-diag(H));
+DF.temp <- cbind(ordinary.residuals,diag(H),PRESS.residuals,(PRESS.residuals)^2);
+DF.temp;
+
+PRESS <- sum(DF.temp[,4]);
+PRESS;
 
 ####################################################################################################
 
