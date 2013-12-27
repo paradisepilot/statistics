@@ -20,6 +20,9 @@
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\rank}{\textnormal{rank}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\setcounter{page}{1}
 
@@ -89,9 +92,9 @@ The assumptions on the expected value and distribution on $Y$ together are equiv
 Y \sim N\!\left(X\beta,\sigma^{2}I_{n}\right),\;\textnormal{for some (unknown but fixed)}\;\beta\in\Re^{p},\;\textnormal{and some (unknown but fixed)}\;\sigma > 0.
 \end{equation}
 
-Define $\epsilon := Y - X\beta$.  Then, $\epsilon : \Omega \longrightarrow \Omega$ is also an $\Re^{n}$-valued random variable, with
-\begin{equation}
-\epsilon \sim N\!\left(0,\sigma^{2}I_{n}\right),\;\;\textnormal{for some}\;\;\sigma > 0.
+Define $\varepsilon := Y - X\beta$.  Then, $\varepsilon : \Omega \longrightarrow \Re^{n}$ is also an $\Re^{n}$-valued random variable, with
+\begin{equation}\label{residualDistribution}
+\varepsilon \sim N\!\left(0,\sigma^{2}I_{n}\right),\;\;\textnormal{for some}\;\;\sigma > 0.
 \end{equation}
 
 \begin{proposition}[Distribution of the full-model error sum-of-squares] \mbox{}
@@ -152,14 +155,65 @@ F\!\left(
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Testing for the vanishing of linear parametric functions}
-\setcounter{theorem}{0}
-
-\begin{equation*}
-H_{0}: \Lambda'\,\beta = 0
-\end{equation*}
+%\section{Testing for the vanishing of linear parametric functions}
+%\setcounter{theorem}{0}
+%
+%\begin{equation*}
+%H_{0}: \Lambda'\,\beta = 0
+%\end{equation*}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Model adequacy checking}
+\setcounter{theorem}{0}
+
+Model adequacy checking is large done via examination of the residuals of the model fit.
+Recall that the least-squares estimator $\widehat{Y}  : \Omega \longrightarrow \mathcal{C}(X)$
+of the response variable $Y : \Omega \longrightarrow \Re^{n}$
+is given by:
+\begin{equation*}
+\widehat{Y} \; = \; X\cdot\left(X^{t}\cdot X\right)^{-1}\cdot X^{t} \cdot Y \; = \; H \cdot Y\,,
+\end{equation*}
+where $H := X\cdot\left(X^{t}\cdot X\right)^{-1}\cdot X^{t}$ is called the \textbf{hat matrix}
+of the model. Recall also that, geometrically speaking, the hat matrix $H$ is simply the orthogonal
+projection operator, defined on $\Re^{n}$ (the observation space), onto the column space
+$\mathcal{C}(X)$ of $X$ (the estimation space, or the model space).
+The \textbf{residual} $\mathbf{e} : \Omega \longrightarrow \mathcal{C}(X)^{\perp}$ is defined to be:
+\begin{equation*}
+\mathbf{e}
+\; := \; Y - \widehat{Y}
+\;  = \; \left(I_{n} - H\right) \cdot Y\,,
+\end{equation*}
+where $I - H$ is the orthogonal projection operator defined on $\Re^{n}$ (the observation space)
+onto the orthogonal complement $\mathcal{C}(X)^{\perp}$ of $\mathcal{C}(X)$.
+Note that $\mathcal{C}(X)^{\perp}$ can be regarded as the \textbf{error space} of the model.
+Recall that our model assumption is:
+\begin{equation*}
+Y \; = \; X\cdot\beta \, + \, \varepsilon\,,
+\end{equation*}
+with $\varepsilon \sim N\!\left(0,\sigma^{2}I_{n}\right)$; see \eqref{residualDistribution}.
+Note that in general, the codomain of the error term $\varepsilon : \Omega \longrightarrow \Re^{n}$
+is NOT $\mathcal{C}(X)^{\perp}$ but all of the observation space $\Re^{n}$.
+On the other hand, observe that
+\begin{equation*}
+\mathbf{e}
+\; = \; \left(I_{n} - H\right)\cdot Y 
+\; = \; \left(I_{n} - H\right)\cdot \left(X\cdot\beta \, + \, \varepsilon\right)
+\; = \; \left(I_{n} - H\right)\cdot \varepsilon\,,
+\end{equation*}
+since $I_{n} - H$ is the orthogonal projection operator onto $\mathcal{C}(X)^{\perp}$, which maps
+$X\cdot\beta \in \mathcal{C}(X)$ to zero.
+We thus see that the residual $\mathbf{e} : \Omega \longrightarrow \mathcal{C}(X)^{\perp}$ is the
+orthogonal projection of the error term $\varepsilon : \Omega \longrightarrow \Re^{n}$ onto the
+error space $\mathcal{C}(X)^{\perp}$.
+Or, more strictly speaking, the residual $\mathbf{e} : \Omega \longrightarrow \mathcal{C}(X)^{\perp}$
+is the composition
+\begin{equation*}
+\mathbf{e} :
+\;\Omega
+\;\overset{\varepsilon}{\longrightarrow} \; \Re^{n}
+\;\overset{I_{n}-H}{\longrightarrow} \; \mathcal{C}(X)^{\perp}
+\end{equation*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
