@@ -214,6 +214,68 @@ is the composition
 \;\overset{\varepsilon}{\longrightarrow} \; \Re^{n}
 \;\overset{I_{n}-H}{\longrightarrow} \; \mathcal{C}(X)^{\perp}
 \end{equation*}
+Furthermore, note that
+\begin{eqnarray*}
+\textnormal{Var}\!\left(\mathbf{e}\right)
+&=&\textnormal{Var}\!\left[\,\left(I_{n} - H\right)\cdot \varepsilon\,\right]
+\;\;=\;\;\left(I_{n}-H\right)\cdot\textnormal{Var}\!\left[\,\varepsilon\,\right]\cdot \left(I_{n} - H\right)^{t}
+\;\;=\;\;\left(I_{n}-H\right)\cdot\textnormal{Var}\!\left[\,\varepsilon\,\right]\cdot \left(I_{n} - H\right)\\
+&=&\left(I_{n}-H\right)\cdot \sigma^{2}I_{n} \cdot \left(I_{n} - H\right)
+\;\;=\;\;\sigma^{2}\cdot\left(I_{n}-H\right) \cdot \left(I_{n} - H\right) \\
+&=&\sigma^{2}\cdot\left(I_{n}-H\right)\,,
+\end{eqnarray*}
+where the symmetry and idempotence of the orthogonal projection operator $I_{n} - H$ is used in the above
+derivation.
+The above observations lead to the following ``model adequacy checks'':
+\begin{itemize}
+\item 	Generate the scatter plot of the observed residuals $\mathbf{e}$ against the fitted values
+		$\widehat{y}$.
+		Examine this scatter plot for trends between the observed residuals and the fitted values;
+		any trend between the observed residuals and the fitted values may indicate violations
+		of model assumptions.
+
+		This adequacy check is based on the following fact:
+		\begin{equation*}
+		\textnormal{Cov}\!\left(\,\widehat{Y}\,,\,\mathbf{e}\,\right)
+		\; = \; \textnormal{Cov}\!\left(\,H\cdot Y\,,\,\left(I_{n}-H\right)\cdot Y\,\right)
+		\; = \; H\cdot\textnormal{Cov}\!\left(\,Y\,,\,Y\,\right)\cdot \left(I_{n}-H\right)
+		\; = \; H\cdot \sigma^{2} I_{n} \cdot \left(I_{n}-H\right)
+		\; = \; 0_{n \times n}
+		\end{equation*}
+
+\item 	Generate the scatter plot of the observed residuals $\mathbf{e}$ against the observed values of
+		each of the predictor variables (columns of the model matrix $X$). Any trends in any of these
+		scatter plots may indicate violations of model assumptions.
+
+\item 	Generate the QQ-plot of the \textbf{Studentized residuals} against the theoretical quantiles
+		of the standard Gaussian distribution, where the Studentized residuals are defined as follows:
+		\begin{equation*}
+		r_{i} \; := \; \dfrac{e_{i}}{\sqrt{\textnormal{MS}_{\textnormal{error}}\left(1 - h_{ii}\right)}}
+		\end{equation*}
+		where $e_{i}$ is the $i^{\textnormal{th}}$ component of the observed residual $\mathbf{e}$,
+		$h_{ii}$ is the $i^{\textnormal{th}}$ diagonal element of the hat matrix
+		$H := X \cdot \left(X^{t}\cdot X\right)^{-1}\cdot X^{t}$, and
+		$\textnormal{MS}_{\textnormal{error}}$ is the mean squared error of the model fit, which is
+		defined as follows:
+		\begin{equation*}
+		\textnormal{MS}_{\textnormal{error}}
+		\; := \;
+		\dfrac{1}{n - p}\,\sum_{i=1}^{n}\left(y_{i} - \widehat{y}_{i}\right)^{2}
+		\end{equation*}
+		Large deviations of the data points on this QQ-plot from the $y = x$ line may indicate
+		violations of model assumptions.
+		This model adequacy check is based on the observations that (1)
+		$\textnormal{MS}_{\textnormal{error}}$ is an unbiased estimator of $\sigma^{2}$, and (2):
+		\begin{equation*}
+		\mathbf{e} \; \sim \; N\!\left(\,0\,,\,\sigma^{2}\left(I_{n}-H\right)\,\right)\,,
+		\end{equation*}
+		which in turn implies that, for each $i = 1, \ldots, n$,
+		\begin{equation*}
+		\dfrac{e_{i}}{\sqrt{\sigma^{2}\left(1 - h_{ii}\right)}}
+		\; \sim \;
+		N(0,1)
+		\end{equation*}
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
