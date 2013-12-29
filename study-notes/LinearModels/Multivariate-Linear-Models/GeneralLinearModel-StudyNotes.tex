@@ -20,7 +20,7 @@
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\rank}{\textnormal{rank}}
+%\newcommand{\rank}{\textnormal{rank}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -167,6 +167,95 @@ F\!\left(
 \section{Model adequacy checking}
 \setcounter{theorem}{0}
 
+\vskip 0.3cm
+\noindent Goals for model adequacy checking:
+\begin{center}
+\begin{minipage}{17cm}
+\begin{itemize}
+\item  Linearity of the relationship between the response variable and each of the predictor variables.
+\item  The error terms are independent.
+\item  The error terms follow a common Gaussian distribution with zero mean.
+\end{itemize}
+\end{minipage}
+\end{center}
+
+\vskip 0.75cm
+\noindent The main graphical tools:
+\begin{center}
+\begin{minipage}{17cm}
+\begin{itemize}
+\item Partial regression plots.
+         \begin{itemize}
+         \item  Used to assess the linearity of the relationship between the response variable and each of the predictor variables.
+         \end{itemize}
+\item QQ-plot of standardized residuals against theoretical Gaussian quantiles.
+         \begin{itemize}
+         \item outliers and non-normality of error terms.
+         \end{itemize} 
+\item Scatter plot of (ordinary) residuals against fitted values for response variable.
+         \begin{itemize}
+         \item Validity of model assumptions implies that the fitted values and the ordinary residuals will have zero correlation.
+                  Any trends in this scatter plot (i.e. any pattern other than an constant-width horizontal band) may indicate departure
+                  from model assumptions.
+         \item This plot can be used to diagnose presence of outliers, as well as non-constancy of error variance.
+         \end{itemize} 
+\item Scatter plot of (ordinary) residuals against each of the predictor variables.
+\item Time series plot and autocorrelation plot of residuals.
+         \begin{itemize}
+         \item These apply if the data (for the response and predictor variables) are collected at different times.
+                  If so, these plots can be used to examine whether the residuals show any trend or periodicity with respect to time.
+         \end{itemize}
+\end{itemize}
+\end{minipage}
+\end{center}
+
+\vskip 0.75cm
+\noindent
+\textbf{Partial regression plots} \vskip 0.1cm
+Suppose our multiple linear model is:
+\begin{equation}\label{modelEquation}
+Y \; = \; \beta_{0} + \beta_{1} X_{1} + \beta_{2} X_{2} + \cdots + \beta_{p} X_{p} + \mathbf{\varepsilon}
+\; = \; X \cdot \beta + \mathbf{\varepsilon}
+\end{equation}
+We seek a method to assess ``correctness'' or ``adequacy'' or ``appropriateness'' of the above model.
+To this end, we assume the model is correct, and we derive equations whose validity can be examined visually.
+We proceed as follows: For each $i = 1,\ldots,p$, let $X_{(i)}$ be the matrix obtained from $X$ by deleting the
+$i^{\textnormal{th}}$ column of $X$. Let $H_{(i)}$ be the corresponding hat matrix.
+More concretely, we have:
+\begin{eqnarray*}
+X & = & \left[\; X_{1} \; X_{2} \; \cdots \; X_{i-1} \; X_{i} \; X_{i+1} \; \cdots \; X_{p} \;\right] \\
+X_{(i)} & = & \left[\; X_{1} \; X_{2} \; \cdots \; X_{i-1} \; X_{i+1} \; \cdots \; X_{p} \;\right] \\
+H_{(i)} & = & X_{(i)} \cdot \left( X_{(i)}^{t} \cdot X_{(i)} \right)^{-1} \cdot X_{(i)}^{t}
+\end{eqnarray*}
+Recall that $H_{(i)}$ is the matrix for the orthogonal projection operator from $\Re^{n}$ onto the column space
+$\mathcal{C}\!\left(X_{(i)}\right)$ of $X_{(i)}$, and $\left(I_{n} - H_{(i)}\right)$ is thus the matrix for the orthogonal
+projection operator onto residual space $\mathcal{C}\!\left(X_{(i)}\right)^{\perp}$ with respect to the model $X_{(i)}$.
+The model equation \eqref{modelEquation} can be rewritten in terms of $X_{(i)}$ as follows:
+\begin{equation}\label{modelEquation:i}
+Y \; = \; X_{(i)} \cdot \beta_{(i)} + \beta_{i}X_{i} + \mathbf{\varepsilon}\,,
+\end{equation}
+where $\beta_{(i)} = \left(\beta_{0}, \beta_{1}, \ldots, \beta_{i-1}, \beta_{i+1}, \ldots \beta_{p} \right)^{t}$.
+Left-multiplying through the model equation \eqref{modelEquation:i} by the matrix $\left(I_{n} - H_{(i)}\right)$ yields:
+\begin{equation*}
+\left(I_{n} - H_{(i)}\right)Y
+\;=\;
+\underset{0}{\underbrace{\left(I_{n} - H_{(i)}\right)X_{(i)}}} \cdot \beta_{(i)}
+        + \beta_{i}\left(I_{n} - H_{(i)}\right)X_{i} + \left(I_{n} - H_{(i)}\right)\mathbf{\varepsilon}
+\end{equation*}
+which simplifies to:
+\begin{equation}\label{equation:partialRegression}
+\left(I_{n} - H_{(i)}\right)Y
+\;=\; \beta_{i}\left(I_{n} - H_{(i)}\right)X_{i} + \left(I_{n} - H_{(i)}\right)\mathbf{\varepsilon}
+\end{equation}
+Now, observe that $\left(I_{n} - H_{(i)}\right)Y$ is the residuals resulting from regressing $Y$ to $X_{(i)}$,
+while $\left(I_{n} - H_{(i)}\right)X_{i}$ is the residuals resulting from regressing $X_{i}$ to $X_{(i)}$.
+In other words, the validity of the model equation \eqref{modelEquation} implies the validity of \eqref{equation:partialRegression},
+which in turn can be assessed visually: For each $i = 1, \ldots, p$, generate the scatter plot of $\left(I_{n} - H_{(i)}\right)Y$ against
+$\left(I_{n} - H_{(i)}\right)X_{i}$ and examine whether the resulting data points roughly lie on a straight line with zero intercept.
+
+\vskip 1.00cm
+\noindent
+\textbf{(Ordinary) residuals and standardized residuals} \vskip 0.1cm
 Model adequacy checking is large done via examination of the residuals of the model fit.
 Recall that the least-squares estimator $\widehat{Y}  : \Omega \longrightarrow \mathcal{C}(X)$
 of the response variable $Y : \Omega \longrightarrow \Re^{n}$
@@ -184,9 +273,11 @@ The \textbf{residual} $\mathbf{e} : \Omega \longrightarrow \mathcal{C}(X)^{\perp
 \; := \; Y - \widehat{Y}
 \;  = \; \left(I_{n} - H\right) \cdot Y\,,
 \end{equation*}
-where $I - H$ is the orthogonal projection operator defined on $\Re^{n}$ (the observation space)
+where $I_{n} - H$ is the orthogonal projection operator defined on $\Re^{n}$ (the observation space)
 onto the orthogonal complement $\mathcal{C}(X)^{\perp}$ of $\mathcal{C}(X)$.
-Note that $\mathcal{C}(X)^{\perp}$ can be regarded as the \textbf{error space} of the model.
+Sometimes, the residuals may be referred to as the \textbf{ordinary residuals} in order to clearly
+distinguish them from other types of residuals under the same discussion.
+Note that $\mathcal{C}(X)^{\perp}$ can be regarded as the \textbf{residual space} of the model.
 Recall that our model assumption is:
 \begin{equation*}
 Y \; = \; X\cdot\beta \, + \, \varepsilon\,,
@@ -205,7 +296,7 @@ since $I_{n} - H$ is the orthogonal projection operator onto $\mathcal{C}(X)^{\p
 $X\cdot\beta \in \mathcal{C}(X)$ to zero.
 We thus see that the residual $\mathbf{e} : \Omega \longrightarrow \mathcal{C}(X)^{\perp}$ is the
 orthogonal projection of the error term $\varepsilon : \Omega \longrightarrow \Re^{n}$ onto the
-error space $\mathcal{C}(X)^{\perp}$.
+residual space $\mathcal{C}(X)^{\perp}$.
 Or, more strictly speaking, the residual $\mathbf{e} : \Omega \longrightarrow \mathcal{C}(X)^{\perp}$
 is the composition
 \begin{equation*}
@@ -247,8 +338,8 @@ The above observations lead to the following ``model adequacy checks'':
 		each of the predictor variables (columns of the model matrix $X$). Any trends in any of these
 		scatter plots may indicate violations of model assumptions.
 
-\item 	Generate the QQ-plot of the \textbf{Studentized residuals} against the theoretical quantiles
-		of the standard Gaussian distribution, where the Studentized residuals are defined as follows:
+\item 	Generate the QQ-plot of the \textbf{standardized residuals} against the theoretical quantiles
+		of the standard Gaussian distribution, where the standardized residuals are defined as follows:
 		\begin{equation*}
 		r_{i} \; := \; \dfrac{e_{i}}{\sqrt{\textnormal{MS}_{\textnormal{error}}\left(1 - h_{ii}\right)}}
 		\end{equation*}
