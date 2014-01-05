@@ -86,24 +86,40 @@ anova(glm.noFaculty, glm.full, test = 'LRT');
 anova(glm.noFaculty, glm.full, test = 'Chisq');
 
 ### (d) ############################################################################################
-#DF.temp <- DF.data[DF.data[,'faculty'] %in% c('arts','science'),];
-DF.temp <- DF.data;
+# For this question, we will need to fit the model
+#
+#     'response ~ 1 + year + sex * faculty'.
+#
+# The interaction between sex and faculty is needed because we are comparing the differences
+#
+#     [(Arts,Women) - (Arts,Men)] - [(Science,Women) - (Science,Men)]                        (1)
+#
+# In the glm() output (see below), we see that the Intercept term corresponds to the group (Arts,Men).
+# The additional components in the fitted intercepts for the other pertinent groups are:
+# (*)  (Arts,   Women): beta['sexwomen']
+# (*)  (Arts,     Men): no additional intercept components
+# (*)  (Science,Women): beta['sexwomen'] + beta['facultyscience'] + beta['sexwomen:facultyscience']
+# (*)  (Science,  Men): beta['facultyscience']
+#
+# Thus, we see that the desired difference of differences (1) can be estimated by the following
+# linear combination of the model paramters:
+#
+#  { beta['sexwoman'] - 0 } - { beta['sexwomen'] + beta['facultyscience'] + beta['sexwomen:facultyscience'] - beta['facultyscience'] },
+#
+# which simplifies to the single term:  - beta['sexwomen:facultyscience'].
+# From the summary of the glm() output, we see that this parameter has p-value 0.39523, and is thus
+# not significant.
+#
+# We conclude that the difference of the differences (1) above is NOT significant.
+#
 
+DF.temp <- DF.data;
 glm.full <- glm(
 	formula = cbind(survive,deceased) ~ year + sex * faculty,
 	data    = DF.temp,
 	family  = binomial(link = "logit")
 	);
 summary(glm.full);
-
-glm.noInteraction <- glm(
-	formula = cbind(survive,deceased) ~ year + sex + faculty,
-	data    = DF.temp,
-	family  = binomial(link = "logit")
-	);
-summary(glm.noInteraction);
-
-anova(glm.noInteraction, glm.full, test = 'LRT');
 
 ####################################################################################################
 resolution      <- 100;
