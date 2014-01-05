@@ -58,6 +58,80 @@ anova(model2.glm,model1.glm);
 anova(model3.glm,model2.glm);
 
 ####################################################################################################
+resolution <- 100;
+graphics.format <- 'png';
+my.filename <- paste('example-07-04-01',graphics.format,sep='.');
+my.ggplot <- ggplot();
+#my.ggplot <- my.ggplot + xlim(-200,6200);
+my.ggplot <- my.ggplot + ylim(0.48,0.75);
+my.ggplot <- my.ggplot + geom_point(
+        data    = DF.data,
+        mapping = aes(
+		x   = log(centrifuge),
+		y   = num.embryonic.anthers / num.prepared.anthers,
+		col = storage
+		)
+        );
+
+# Model 3
+temp.x <- seq(3,6,0.1);
+betas.hat <- coefficients(model3.glm);
+betas.hat;
+temp.y <- betas.hat[1] + betas.hat[2] * temp.x;
+temp.y <- exp(temp.y) / (1 + exp(temp.y));
+my.ggplot <- my.ggplot + geom_line(
+        data    = data.frame(x = temp.x, y = temp.y),
+        mapping = aes(x = x, y = y),
+	col     = 'black'
+	);
+
+# Model 2
+betas.hat <- coefficients(model2.glm);
+betas.hat;
+temp.y <- betas.hat[1] + betas.hat[3] * temp.x;
+temp.y <- exp(temp.y) / (1 + exp(temp.y));
+my.ggplot <- my.ggplot + geom_line(
+        data    = data.frame(x = temp.x, y = temp.y),
+        mapping = aes(x = x, y = y),
+	col     = 'red'
+	);
+
+temp.y <- betas.hat[1] + betas.hat[2] +  betas.hat[3] * temp.x;
+temp.y <- exp(temp.y) / (1 + exp(temp.y));
+my.ggplot <- my.ggplot + geom_line(
+        data    = data.frame(x = temp.x, y = temp.y),
+        mapping = aes(x = x, y = y),
+	col     = 'red'
+	);
+
+# Model 1
+betas.hat <- coefficients(model1.glm);
+betas.hat;
+temp.y <- betas.hat[1] + betas.hat[3] * temp.x;
+temp.y <- exp(temp.y) / (1 + exp(temp.y));
+my.ggplot <- my.ggplot + geom_line(
+        data    = data.frame(x = temp.x, y = temp.y),
+        mapping = aes(x = x, y = y),
+	col     = 'blue'
+	);
+
+temp.y <- betas.hat[1]+betas.hat[2] +  (betas.hat[3]+betas.hat[4]) * temp.x;
+temp.y <- exp(temp.y) / (1 + exp(temp.y));
+my.ggplot <- my.ggplot + geom_line(
+        data    = data.frame(x = temp.x, y = temp.y),
+        mapping = aes(x = x, y = y),
+	col     = 'blue'
+	);
+
+ggsave(
+	file   = my.filename,
+	plot   = my.ggplot,
+	height = 0.5 * par("din")[1],
+	dpi    = resolution,
+	units  = 'in'
+	);
+
+####################################################################################################
 
 q();
 
