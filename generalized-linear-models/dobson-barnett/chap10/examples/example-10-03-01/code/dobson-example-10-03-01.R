@@ -87,6 +87,25 @@ ggsave(
         );
 
 ####################################################################################################
+### Figure 10.4
+
+my.filename <- paste('figure-10-04',graphics.format,sep='.');
+my.ggplot <- ggplot();
+my.ggplot <- my.ggplot + scale_x_continuous(limits = c(-0.1,3.1), breaks = seq(0,3,0.5));
+my.ggplot <- my.ggplot + scale_y_continuous(limits = c(-2.6,2.6), breaks = seq(-2.5,2.5,0.5));
+my.ggplot <- my.ggplot + geom_point(
+        data    = DF.KM.estimates,
+        mapping = aes(x = log(time), y = log(-log(km.estimate)), colour = group)
+        );
+ggsave(
+        file   = my.filename,
+        plot   = my.ggplot,
+        height = 0.5 * par("din")[1],
+        dpi    = resolution,
+        units  = 'in'
+        );
+
+####################################################################################################
 
 q();
 
