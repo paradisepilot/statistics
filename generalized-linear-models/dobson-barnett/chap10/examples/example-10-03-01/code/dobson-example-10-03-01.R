@@ -91,7 +91,7 @@ ggsave(
 
 my.filename <- paste('figure-10-04',graphics.format,sep='.');
 my.ggplot <- ggplot();
-my.ggplot <- my.ggplot + scale_x_continuous(limits = c(-0.1,3.1), breaks = seq(0,3,0.5));
+my.ggplot <- my.ggplot + scale_x_continuous(limits = c(-0.6,3.6), breaks = seq(-0.5,3.5,0.5));
 my.ggplot <- my.ggplot + scale_y_continuous(limits = c(-2.6,2.6), breaks = seq(-2.5,2.5,0.5));
 my.ggplot <- my.ggplot + geom_point(
         data    = DF.KM.estimates,
