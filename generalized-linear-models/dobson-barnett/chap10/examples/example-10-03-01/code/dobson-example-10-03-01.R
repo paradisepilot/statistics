@@ -6,6 +6,7 @@ code.directory   <- command.arguments[3];
 tmp.directory    <- command.arguments[4];
 
 ####################################################################################################
+library(survival);
 library(ggplot2);
 
 #source(paste(code.directory, "bugs-chains.R", sep = "/"));
@@ -19,7 +20,11 @@ DF.data <- read.delim(
 	file = paste0(data.directory,'/table-10-01-remission-times.csv'),
 	sep  = '\t'
 	);
-DF.data[,'censor'] <- as.factor(DF.data[,'censor']);
+#DF.data[,'group'] <- factor(x = as.character(DF.data[,'group']), levels = c('treatment','control'));
+#DF.data[,'censored'] <- rep(FALSE,nrow(DF.data));
+#DF.data['0' == DF.data[,'censor'],'censored'] <- TRUE;
+DF.data[,'censored'] <- rep(TRUE,nrow(DF.data));
+DF.data['0' == DF.data[,'censor'],'censored'] <- FALSE;
 
 str(DF.data);
 DF.data;
@@ -34,7 +39,8 @@ km.estimate.single.group <- function(DF.input = NULL) {
 		);
 	for (i in 1:nrow(DF.output)) {
 		DF.output[i,'alive.up.to'] <- sum(DF.output[i,'time'] <= DF.input[,'time']);
-		DF.output[i,'death.at']    <- sum(DF.output[i,'time'] == DF.input[,'time'] & '1' == DF.input[,'censor']);
+		#DF.output[i,'death.at']    <- sum(DF.output[i,'time'] == DF.input[,'time'] & FALSE == DF.input[,'censored']);
+		DF.output[i,'death.at']    <- sum(DF.output[i,'time'] == DF.input[,'time'] & TRUE == DF.input[,'censored']);
 		}
 	DF.output <- DF.output[0 < DF.output[,'death.at'],];
 	DF.output <- rbind(
@@ -51,6 +57,7 @@ km.estimate <- function(DF.input = NULL) {
 	DF.output <- data.frame();
 	for (group in groups) {
 		DF.temp <- DF.input[group == DF.input[,'group'],];
+		DF.temp <- DF.temp[order(DF.temp[,'time']),];
 		DF.temp <- km.estimate.single.group(DF.input = DF.temp);
 		DF.temp <- cbind(
 			group = factor(x = rep(group,nrow(DF.temp)), levels = levels(DF.input[,'group'])),
@@ -104,6 +111,21 @@ ggsave(
         dpi    = resolution,
         units  = 'in'
         );
+
+####################################################################################################
+### Table 10.3
+
+DF.data;
+str(DF.data);
+
+surv.weibull <- survreg(Surv(time,censor) ~ group, data = DF.data, dist = 'weibull');
+summary(surv.weibull);
+
+surv.exponential <- survreg(Surv(time,censor) ~ group, data = DF.data, dist = 'exponential');
+summary(surv.exponential);
+
+glm.poisson <- glm(censor ~ group + offset(log(time)), data = DF.data, family = poisson);
+summary(glm.poisson);
 
 ####################################################################################################
 
