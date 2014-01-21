@@ -24,7 +24,7 @@ DF.data <- read.delim(
 #DF.data[,'censored'] <- rep(FALSE,nrow(DF.data));
 #DF.data['0' == DF.data[,'censor'],'censored'] <- TRUE;
 DF.data[,'censored'] <- rep(TRUE,nrow(DF.data));
-DF.data['0' == DF.data[,'censor'],'censored'] <- FALSE;
+DF.data['1' == DF.data[,'censor'],'censored'] <- FALSE;
 
 str(DF.data);
 DF.data;
@@ -39,8 +39,7 @@ km.estimate.single.group <- function(DF.input = NULL) {
 		);
 	for (i in 1:nrow(DF.output)) {
 		DF.output[i,'alive.up.to'] <- sum(DF.output[i,'time'] <= DF.input[,'time']);
-		#DF.output[i,'death.at']    <- sum(DF.output[i,'time'] == DF.input[,'time'] & FALSE == DF.input[,'censored']);
-		DF.output[i,'death.at']    <- sum(DF.output[i,'time'] == DF.input[,'time'] & TRUE == DF.input[,'censored']);
+		DF.output[i,'death.at']    <- sum(DF.output[i,'time'] == DF.input[,'time'] & FALSE == DF.input[,'censored']);
 		}
 	DF.output <- DF.output[0 < DF.output[,'death.at'],];
 	DF.output <- rbind(
@@ -115,6 +114,7 @@ ggsave(
 ####################################################################################################
 ### Table 10.3
 
+#DF.data[,'censor'] <- (1 - DF.data[,'censor']);
 DF.data;
 str(DF.data);
 
@@ -124,8 +124,11 @@ summary(surv.weibull);
 surv.exponential <- survreg(Surv(time,censor) ~ group, data = DF.data, dist = 'exponential');
 summary(surv.exponential);
 
-glm.poisson <- glm(censor ~ group + offset(log(time)), data = DF.data, family = poisson);
+glm.poisson <- glm(censor ~ offset(log(time)) + group, data = DF.data, family = poisson);
 summary(glm.poisson);
+
+####################################################################################################
+str(surv.exponential);
 
 ####################################################################################################
 
