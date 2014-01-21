@@ -118,10 +118,10 @@ ggsave(
 DF.data;
 str(DF.data);
 
-surv.weibull <- survreg(Surv(time,censor) ~ group, data = DF.data, dist = 'weibull');
+surv.weibull <- survreg(Surv(time = time, event = censor) ~ group, data = DF.data, dist = 'weibull');
 summary(surv.weibull);
 
-surv.exponential <- survreg(Surv(time,censor) ~ group, data = DF.data, dist = 'exponential');
+surv.exponential <- survreg(Surv(time = time,event = censor) ~ group, data = DF.data, dist = 'exponential');
 summary(surv.exponential);
 
 glm.poisson <- glm(censor ~ offset(log(time)) + group, data = DF.data, family = poisson);
@@ -130,7 +130,7 @@ summary(glm.poisson);
 ####################################################################################################
 str(surv.exponential);
 
-temp <- with(DF.data, Surv(time,censor));
+temp <- with(DF.data, Surv(time = time, event = censor));
 cbind(DF.data,temp);
 
 ####################################################################################################
