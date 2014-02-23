@@ -1,14 +1,3 @@
-### PARAMETERS ####################################################################################
-#library(ggplot2);
-#library(gridExtra);
-#library(lattice);
-#library(latticeExtra);
-#library(lubridate);
-#library(reshape);
-#library(zoo); # Needed to override as.Date.numeric
-
-### PARAMETERS ####################################################################################
-
 #access.date <- "20130913"; # Used for Summary Reports
 #access.date <- "20131125";
 access.date <- "20140113";
@@ -17,10 +6,10 @@ end.of.year <- "2012-12-31";
 
 ### HELPER FUNCTIONS ##############################################################################
 command.arguments <- commandArgs(trailingOnly = TRUE);
-table.directory   <- command.arguments[1];
-code.directory    <- command.arguments[2];
-output.directory  <- command.arguments[3];
-tmp.directory     <- command.arguments[4];
+table.directory   <- normalizePath(command.arguments[1]);
+code.directory    <- normalizePath(command.arguments[2]);
+output.directory  <- normalizePath(command.arguments[3]);
+tmp.directory     <- normalizePath(command.arguments[4]);
 
 ### LOAD DATA #####################################################################################
 source(paste0(code.directory,'/CFregistry-utils.R'));
@@ -62,4 +51,32 @@ data$annual.clinical <- data$annual.clinical[data$annual.clinical$AnnualDataKey 
 
 print('str(data)');
 print( str(data) );
+
+####################################################################################################
+print(output.directory);
+setwd(output.directory);
+
+DF.data <- data[['annual.data']];
+
+DF.data <- merge(
+	x    = data[['patients']],
+	y    = DF.data,
+	by.x = 'PatientID',
+	by.y = 'PatientKey'
+	);
+
+DF.data <- merge(
+	x    = data[['annual.clinical']],
+	y    = DF.data,
+	by.x = 'AnnualDataKey',
+	by.y = 'AnnualDataID'
+	);
+
+write.table(
+	file      = 'new-born-screen.csv',
+	x         = DF.data,
+	row.names = FALSE,
+	sep       = '\t',
+	quote     = FALSE
+	);
 
