@@ -1,0 +1,501 @@
+### PARAMETERS ####################################################################################
+library(ggplot2);
+library(gridExtra);
+library(lattice);
+library(latticeExtra);
+library(lubridate);
+library(reshape);
+library(zoo); # Needed to override as.Date.numeric
+
+if (.Platform$OS.type == "unix") {
+  scripts.directory <- "/Users/Denise/Documents/Cystic Fibrosis/CF Registry/Scripts";
+  table.directory   <- "/Users/Denise/Documents/Cystic Fibrosis/CF Registry/Tables";
+  results.directory <- "/Users/Denise/Documents/Cystic Fibrosis/CF Registry/Results";
+  plots.directory   <- "/Users/Denise/Documents/Cystic Fibrosis/CF Registry/Plots";
+  adj.directory     <- "/Users/Denise/Documents/Cystic Fibrosis/CF Registry/Adjusted Analysis";
+  latex.directory   <- "/Users/Denise/Documents/Cystic Fibrosis/CF Registry/Latex";
+  reports.directory <- "/Users/Denise/Documents/Cystic Fibrosis/CF Registry/Reports";
+} else {
+  scripts.directory <- "M:/CF Registry/Scripts";
+  table.directory   <- "M:/CF Registry/Tables";
+  results.directory <- "M:/CF Registry/Results";
+  plots.directory   <- "M:/CF Registry/Plots";
+  adj.directory     <- "M:/CF Registry/Adjusted Analysis";
+  latex.directory   <- "M:/CF Registry/Latex";
+  reports.directory <- "M:/CF Registry/Reports";
+}
+
+### PARAMETERS ####################################################################################
+
+#access.date <- "20130913"; # Used for Summary Reports
+#access.date <- "20131125";
+access.date <- "20140113";
+year <- 2012;
+end.of.year <- "2012-12-31";
+
+### HELPER FUNCTIONS ##############################################################################
+
+read.custom.csv <- function(filename) {
+  temp <- read.csv(
+      file = filename,
+      quote = "\"",
+      as.is = TRUE
+      );
+}
+
+load.data <- function() {
+  patients <- read.custom.csv(
+    filename = paste0("tblPatients_", access.date, ".csv")    );
+  
+  annual.data <- read.custom.csv(
+    file = paste0("tblAnnualData_", access.date, ".csv")
+    );
+ 
+  annual.clinical <- read.custom.csv(
+    file = paste0("tblAnnualClinicals_", access.date, ".csv")
+  );
+  
+  centres <- read.custom.csv(
+    file = paste0("tblCentres_", access.date, ".csv")
+    );
+  
+  transplants <- read.custom.csv(
+    filename = paste0("tblTransplants_", access.date, ".csv")
+    );
+  
+  disposition <- read.custom.csv(
+    filename = paste0("tblDisposition_", access.date, ".csv")
+  );
+  
+#   provinces <- read.custom.csv(
+#     filename = paste0("tblProvStates_", access.date, ".csv")
+#   );
+   
+  mutations <- read.custom.csv(
+    filename = paste0("tblMutations_", access.date, ".csv")
+  );  
+  
+  cultures <- read.custom.csv(
+    filename = paste0("tblCultures_", access.date, ".csv")
+  );   
+  
+  annual.cultures <- read.custom.csv(
+    filename = paste0("tlinkAnnualCultures_", access.date, ".csv")
+  );     
+  
+  BCepacia <- read.custom.csv(
+    filename = paste0("tblBCepacia_", access.date, ".csv")
+  );   
+  
+  annualBCepacia <- read.custom.csv(
+    filename = paste0("tlinkAnnualBCepacia_", access.date, ".csv")
+  );    
+  
+  races <-  read.custom.csv(
+    filename = paste0("tblRaces_", access.date, ".csv")
+  );    
+  
+  physio <- read.custom.csv(
+    filename = paste0("tblPhysiotherapy_", access.date, ".csv")
+  );
+  
+  annual.physio <- read.custom.csv(
+    filename = paste0("tlinkAnnualPhysio_", access.date, ".csv")
+  );
+  
+  hospitalizations <- read.custom.csv(
+    filename = paste0("tblHospReasons_", access.date, ".csv")
+  );
+  
+  annual.hospitalizations <- read.custom.csv(
+    filename = paste0("tlinkAnnualHospitalizations_", access.date, ".csv")
+  );
+  
+  return(
+    list(
+      patients        = patients, 
+      annual.data     = annual.data, 
+      annual.clinical = annual.clinical,
+      centres         = centres,
+      transplants     = transplants,
+      disposition     = disposition,
+#      provinces       = provinces,
+      mutations       = mutations,
+      cultures        = cultures,
+      annual.cultures = annual.cultures,
+      BCepacia        = BCepacia,
+      annualBCepacia  = annualBCepacia,
+      races           = races,
+      physio          = physio,
+      annual.physio   = annual.physio,
+      hospitalizations = hospitalizations,
+      annual.hospitalizations = annual.hospitalizations
+      )
+    );
+  }
+
+# Retrieve all patients from clinics, checking for patients had transplant, disposition = 6
+get.all.patients.from.clinic.no.deaths <- function(clinic.id, year) {
+  
+  temp <- retrieve.annual.clinical(year);
+  patients.with.clinicals <- unique(data$annual.data$PatientKey[data$annual.data$ReportYr == year & data$annual.data$AnnualDataID %in% temp$AnnualDataID & data$annual.data$RptCentreKey %in% clinic.id]);
+  # Add patients with transplant date in year X
+  patients.transplant <- unique(data$annual.data$PatientKey[data$annual.data$PatientKey %in% data$transplants$PatientKey[format(data$transplants$TransplantDt, "%Y") %in% year] & data$annual.data$ReportYr == year & data$annual.data$RptCentreKey %in% clinic.id]);
+  
+  # Add patients with eligible disposition in year X
+  patients.eligible.disposition <- data$annual.data$PatientKey[data$annual.data$ReportYr == year & data$annual.data$RptCentreKey %in% clinic.id & data$annual.data$DispositionKey %in% c(1, 7)];
+  
+  return(unique(c(patients.with.clinicals, patients.transplant, patients.eligible.disposition)));
+}
+
+convert.date <- function(dates) {
+#  if (.Platform$OS.type == "unix") {
+    return(as.Date(dates, "%m/%d/%Y"));
+#  } else {
+#    return(as.Date(dates, "%d/%m/%Y"));  
+#  }
+}
+
+# retrieve last known annual reports for a vector patient IDs
+get.last.report.info <- function(patient.ids) {
+  last <- data$annual.data[data$annual.data$PatientKey %in% patient.ids,];
+  last.annual <- sapply(unique(last$PatientKey), function(x){temp <- last[last$PatientKey == x,]; temp[temp$ReportYr == max(temp$ReportYr),]}, simplify = FALSE);
+  
+  last.report <- do.call(rbind, last.annual);
+  last.report <- merge(last.report, cpdr.patients, by.x = "PatientKey", by.y = "Patient.ID");
+  last.report <- merge(last.report, data$centres,  by.x = "RptCentreKey", by.y = "CentreID");
+  
+  return(last.report);
+}
+
+# Return earliest report year for 1 patient ID
+get.earliest.ReportYr <- function(x){
+  temp <- data$annual.data[data$annual.data$PatientKey == x,];
+  return(min(temp$ReportYr));
+}
+
+
+# Adding 1 to today because decimal_date sometimes returns
+# 16.99997 between 1995-01-05 and 2012-01-05
+# Return decimal value
+calculate.age <- function(birthdate, today) {
+  return(decimal_date(today + 1) - decimal_date(birthdate));
+#  return(as.period(new_interval(birthdate, as.Date(as.character(today.year), format = "%Y-%m-%d"))));
+}
+
+# Return as a period
+calculate.age.period <- function(birthdate, today) {
+  return(as.period(new_interval(birthdate, today)));
+}
+
+# Calculate FEV1 percent predicted per patient
+predicted.fev1.formula <- function(age, sex, height, fev1) {
+  
+  if (class(age) == "Period") {
+    age <- age$year;
+  }
+  
+  if (sex == "F") {
+    predicted.fev1 <- switch(as.character(age),
+      "6"  = exp(-0.109 + 1.949*log(height/100)),
+      "7"  = exp(-0.144 + 2.243*log(height/100)),
+      "8"  = exp(-0.137 + 2.239*log(height/100)),
+      "9"  = exp(-0.123 + 2.222*log(height/100)),
+      "10" = exp(-0.161 + 2.364*log(height/100)),
+      "11" = exp(-0.223 + 2.558*log(height/100)),
+      "12" = exp(-0.264 + 2.709*log(height/100)),
+      "13" = exp(-0.153 + 2.535*log(height/100)),
+      "14" = exp(0.046  + 2.178*log(height/100)),
+      "15" = exp(0.148  + 2.008*log(height/100)),
+      "16" = -0.8710 + 0.06537*age + 0.00011496*height^2,
+      "17" = -0.8710 + 0.06537*age + 0.00011496*height^2,
+      0.4333 - 0.00361*age - 0.000194*age^2 + 0.00011496*height^2   
+    );        
+  } else if (sex == "M") {
+    predicted.fev1 <- switch(as.character(age),
+      "6"  = exp(-0.109 + 2.252*log(height/100)),
+      "7"  = exp(-0.104 + 2.27*log(height/100)),
+      "8"  = exp(-0.089 + 2.257*log(height/100)),
+      "9"  = exp(-0.063 + 2.197*log(height/100)),
+      "10" = exp(-0.057 + 2.212*log(height/100)),
+      "11" = exp(-0.093 + 2.324*log(height/100)),
+      "12" = exp(-0.161 + 2.512*log(height/100)),
+      "13" = exp(-0.292 + 2.843*log(height/100)),
+      "14" = exp(-0.329 + 2.983*log(height/100)),
+      "15" = exp(-0.141 + 2.709*log(height/100)),
+      "16" = exp(0.062  + 2.409*log(height/100)),
+      "17" = exp(0.262  + 2.099*log(height/100)),
+      "18" = -0.7453 - 0.04106*age + 0.004477*age^2 + 0.00014098*height^2,   
+      "19" = -0.7453 - 0.04106*age + 0.004477*age^2 + 0.00014098*height^2,      
+      0.5536 - 0.01303*age - 0.000172*age^2 +0.00014098*height^2   
+    );    
+  }
+  
+  return(predicted.fev1);
+}
+
+# Calculate BMI percentile per patient
+# age is of class Period
+# height (cm)
+# weight (kg)
+bmi.percentile.formula <- function(age, sex, height, weight) {
+
+  # weight (kg) / [height (m)]2
+  bmi <- weight/(height/100)^2;
+
+  # Calculate BMI-for-age if < 20
+  # http://www.cdc.gov/growthcharts/html_charts/bmiagerev.htm
+  if (age$year >= 18) {
+    return(bmi);
+  } else {
+    age.in.months <- age$year*12 + age$month + age$day/30;
+    
+    # http://www.cdc.gov/growthcharts/percentile_data_files.htm
+    # Delete line 221
+    if (!exists("full.chart")) {
+      setwd(table.directory);
+      full.chart <- read.csv("bmiagerev.csv", sep = ",", dec = ".", as.is = TRUE, header = TRUE);
+      full.chart$Agemos <- full.chart$Agemos - 0.01;
+    }
+  
+    if (sex == "M") {
+      chart <- full.chart[full.chart$Sex == 1,]; 
+    } else {
+      chart <- full.chart[full.chart$Sex == 2,]; 
+    }
+    
+    row.index <- which.min(abs(chart$Agemos - age.in.months));
+    chart[row.index,]
+    
+    M <- chart$M[row.index];
+    L <- chart$L[row.index];
+    S <- chart$S[row.index];
+    
+    # Calculate BMI z-score
+    bmi.z <- ((bmi/M)^L - 1)/(L*S);
+    
+    # Rounding down?
+    return(round(pnorm(bmi.z)*100, digits = 3));
+  }
+}
+
+height.weight.percentile.formula <- function(age, sex, height, weight, type = "height") {
+   
+  # Calculate Height-for-age or Weight-for-age if < 20
+  # http://www.cdc.gov/growthcharts/html_charts/bmiagerev.htm
+  if (age$year >= 18) {
+    return(NA);
+  } else {
+    age.in.months <- age$year*12 + age$month + age$day/30;
+    
+    # http://www.cdc.gov/growthcharts/percentile_data_files.htm
+    # Delete line 221
+    if (!exists("full.chart")) {
+      setwd(table.directory);
+      if (type %in% "Weight") {
+        full.chart <- read.csv("wtage.csv", sep = ",", dec = ".", as.is = TRUE, header = TRUE);
+      } else if (type %in% "Height") {
+        full.chart <- read.csv("statage.csv", sep = ",", dec = ".", as.is = TRUE, header = TRUE);
+      }
+      full.chart$Agemos <- full.chart$Agemos - 0.01;
+    }
+    
+    if (sex == "M") {
+      chart <- full.chart[full.chart$Sex == 1,]; 
+    } else {
+      chart <- full.chart[full.chart$Sex == 2,]; 
+    }
+    
+    row.index <- which.min(abs(chart$Agemos - age.in.months));
+    chart[row.index,]
+    
+    M <- chart$M[row.index];
+    L <- chart$L[row.index];
+    S <- chart$S[row.index];
+    
+    # Calculate z-score
+    value <- if (type %in% "Height") height else weight;
+    value.z <- ((value/M)^L - 1)/(L*S);
+    
+    # Rounding down
+    return(floor(pnorm(value.z)*100));
+  }
+}
+
+convert.sec.to.year <- function(seconds) {
+  return(seconds/3600/24/365);
+}
+
+bmi.percentile.formula.old <- function(age, sex, height, weight){
+  
+  # weight (kg) / [height (m)]2
+  bmi <- weight/(height/100)^2;
+  
+  # Calculate BMI-for-age if < 20
+  # http://www.cdc.gov/growthcharts/html_charts/bmiagerev.htm
+  if (age$year >= 20) {
+    return(bmi);
+  } else {
+    age.in.months <- age$year*12 + age$month + age$day/30;
+    
+    if (!exists("male.chart")) {
+      setwd(table.directory);
+      male.chart <- read.delim("BMI.chart.child.male.txt", col.names = c("Age.in.months", 3, 5, 10, 25, 50, 75, 85, 90, 95, 97), check.names = FALSE);
+    }
+    if (!exists("female.chart")) {
+      setwd(table.directory);
+      female.chart <- read.delim("BMI.chart.child.female.txt", col.names = c("Age.in.months", 3, 5, 10, 25, 50, 75, 85, 90, 95, 97), check.names = FALSE);
+    }
+  }
+  
+  chart <- switch(sex,
+    "M" = male.chart,
+    "F" = female.chart
+  );
+  
+  row.index <- which.min(abs(chart$Age.in.months - age.in.months));
+  col.index <- which.min(abs(chart[row.index, 2:11] - bmi)) + 1;
+  
+  calculate.bmi <- function(bmi, left.bmi, right.bmi, left.percentile, right.percentile) {
+    difference <- (right.bmi- bmi)/(right.bmi - left.bmi);
+    return(right.percentile - (right.percentile - left.percentile)*difference);
+  }
+  
+  # Calculate percentile within bmi range
+  if (bmi < chart[row.index, col.index]) {
+    left.bmi <- if (col.index == 2) {12} else {chart[row.index, col.index - 1]}
+    right.bmi <- chart[row.index, col.index];
+    left.percentile <- if (col.index == 2) {0} else {colnames(chart)[col.index - 1]}
+    right.percentile <- colnames(chart)[col.index];
+  } else {
+    right.bmi <- if (col.index == 11) {45} else {chart[row.index, col.index + 1]}
+    left.bmi <- chart[row.index, col.index];
+    right.percentile <- if (col.index == 11) {99} else {colnames(chart)[col.index + 1]}
+    left.percentile <- colnames(chart)[col.index];
+    
+    
+  }
+  return(round(calculate.bmi(bmi, left.bmi, right.bmi, as.numeric(left.percentile), as.numeric(right.percentile))));
+  
+}
+
+# FEV1 calculated for 6+
+# Calculate FEV1% predicted
+# Need age, sex, height, weight for FEV1% predicted
+calculate.fev1 <- function(patient.ids, values, year) {
+  fev1.values.per.patient <- sapply(patient.ids, function(x){
+    temp <- values[values$PatientKey == x & !is.na(values$HeightCM) & !is.na(values$WeightKG) & !is.na(values$FEV_1) & !is.na(values$ExamDt),];
+    if (nrow(temp) > 0){
+      #      if (nrow(temp[temp$ExamDt == min(temp$ExamDt),]) > 1) {print(temp[temp$ExamDt == min(temp$ExamDt),])}
+      return(temp[temp$ExamDt == min(temp$ExamDt),][1,]);
+    } else {
+      return(NA);
+    }
+  }, simplify = FALSE);
+  
+  fev1.values.per.patient <- do.call(rbind.data.frame, fev1.values.per.patient);
+  fev1.values.per.patient <- fev1.values.per.patient[!is.na(fev1.values.per.patient$PatientKey),];
+  fev1.values.per.patient$age           <- calculate.age(fev1.values.per.patient$BirthDt, fev1.values.per.patient$ExamDt);
+  fev1.values.per.patient$age.diagnosis <- calculate.age(fev1.values.per.patient$BirthDt, fev1.values.per.patient$DiagDt);  
+  fev1.values.per.patient$RptYear <- year;
+  
+  return(fev1.values.per.patient);
+}
+
+# Calculate BMI (or BMI percentile for 2-19)
+# Need age, sex, height, weight for BMI
+calculate.bmi <- function(patient.ids, values, year) {
+  bmi.values.per.patient <- sapply(patient.ids, function(x){
+    temp <- values[values$PatientKey == x & !is.na(values$HeightCM) & !is.na(values$WeightKG) & !is.na(values$ExamDt),];
+    if (nrow(temp) > 0){
+      #   if (nrow(temp[temp$ExamDt == min(temp$ExamDt),]) > 1) {print(temp[temp$ExamDt == min(temp$ExamDt),])}
+      return(temp[temp$ExamDt == min(temp$ExamDt),][1,]);
+    } else {
+      return(NA);
+    }
+  }, simplify = FALSE);
+  
+  bmi.values.per.patient <- do.call(rbind.data.frame, bmi.values.per.patient);
+  bmi.values.per.patient <- bmi.values.per.patient[!is.na(bmi.values.per.patient$PatientKey),];
+  bmi.values.per.patient$age           <- calculate.age(bmi.values.per.patient$BirthDt, bmi.values.per.patient$ExamDt);
+  bmi.values.per.patient$age.period    <- calculate.age.period(bmi.values.per.patient$BirthDt, bmi.values.per.patient$ExamDt);
+  bmi.values.per.patient$age.diagnosis <- calculate.age(bmi.values.per.patient$BirthDt, bmi.values.per.patient$DiagDt);
+  bmi.values.per.patient$RptYear <- year;
+  
+  return(bmi.values.per.patient);
+}
+
+# Retrieve annual records for the year
+retrieve.annual.clinical <- function(year) {
+  annual          <- data$annual.data[data$annual.data$ReportYr == year,];
+  annual.clinical <- merge(annual, data$annual.clinical, by.x = "AnnualDataID", by.y = "AnnualDataKey");
+  annual.clinical <- merge(annual.clinical, data$patients, by.x = "PatientKey", by.y = "PatientID");
+  
+  # If DiagDt is empty, add 30 days to BirthDt
+  empty.diagdt.indices <- which(is.na(annual.clinical$DiagDt));
+  annual.clinical$DiagDt[empty.diagdt.indices] <- annual.clinical$BirthDt[empty.diagdt.indices] + 30;
+  
+  # If BirthDt is > DiagDt, make DiagtDt = BirthDt (prenatal diagnosis)
+  prenatal.diagdt.indices <- which(annual.clinical$DiagDt < annual.clinical$BirthDt);
+  annual.clinical$DiagDt[prenatal.diagdt.indices] <- annual.clinical$BirthDt[prenatal.diagdt.indices];
+  
+  return(annual.clinical);
+}
+
+# Retrieve all patients from clinics, checking for patients who died, had transplant, disposition = 6
+get.all.patients.from.clinic <- function(clinic.id, year) {
+  
+  temp <- retrieve.annual.clinical(year);
+  patients.with.clinicals <- unique(data$annual.data$PatientKey[data$annual.data$ReportYr == year & data$annual.data$AnnualDataID %in% temp$AnnualDataID & data$annual.data$RptCentreKey %in% clinic.id]);
+  # Add patients who died in year X
+  patients.deceased <- unique(data$annual.data$PatientKey[data$annual.data$PatientKey %in% data$patients$PatientID[format(data$patients$DeathDt, "%Y") %in% year] & data$annual.data$ReportYr == year & data$annual.data$RptCentreKey %in% clinic.id]);
+  
+  # Add patients with transplant date in year X
+  patients.transplant <- unique(data$annual.data$PatientKey[data$annual.data$PatientKey %in% data$transplants$PatientKey[format(data$transplants$TransplantDt, "%Y") %in% year] & data$annual.data$ReportYr == year & data$annual.data$RptCentreKey %in% clinic.id]);
+  
+  #patients.transplant <- data$transplants$PatientKey[format(data$transplants$TransplantDt, "%Y") %in% x & !data$transplants$PatientKey %in% patients.with.clinicals & data$annual.data$RptCentreKey %in% valid.clinic.ids];
+  # Add patients with eligible disposition in year X
+  patients.eligible.disposition <- data$annual.data$PatientKey[data$annual.data$ReportYr == year & data$annual.data$RptCentreKey %in% clinic.id & data$annual.data$DispositionKey %in% c(1, 7)];
+  
+  return(unique(c(patients.with.clinicals, patients.deceased, patients.transplant, patients.eligible.disposition)));
+  
+}
+
+### LOAD DATA #####################################################################################
+
+setwd(table.directory);
+
+data <- load.data();
+
+# Retrieve patient names
+if (.Platform$OS.type == "windows") {
+  cpdr.patients <- read.custom.csv("cpdrPatients.csv");
+  cpdr.patients$Birth.Date      <- convert.date(cpdr.patients$Birth.Date);
+}
+
+# Convert dates
+data$patients$BirthDt         <- convert.date(data$patients$BirthDt);
+data$patients$DeathDt         <- convert.date(data$patients$DeathDt);
+data$patients$DiagDt          <- convert.date(data$patients$DiagDt);
+data$transplants$TransplantDt <- convert.date(data$transplants$TransplantDt);
+data$annual.clinical$ExamDt   <- convert.date(data$annual.clinical$ExamDt);
+
+#annual.2012          <- data$annual.data[data$annual.data$ReportYr == year,];
+#annual.clinical <- merge(annual.2012, data$annual.clinical, by.x = "AnnualDataID", by.y = "AnnualDataKey");
+#annual.clinical <- merge(annual.clinical, data$patients, by.x = "PatientKey", by.y = "PatientID");
+annual.clinical <- retrieve.annual.clinical(year);
+
+# Add culture data
+all.annual.cultures  <- merge(data$annual.cultures, data$cultures, by.x = "CultureKey", by.y = "CultureID");
+all.BCepacia         <- merge(data$BCepacia, data$annualBCepacia, by.x = "BCepaciaID", by.y = "BCepaciaKey");
+
+### FILTERING STEP ################################################################################
+
+print("Filter patients with disposition flag = 6!!");
+
+# Remove patients with Disposition flag = 6
+data$patients <- data$patients[!data$patients$Disp6Flag,];
+# Remove those patients from annual.data
+data$annual.data <- data$annual.data[data$annual.data$PatientKey %in% data$patients$PatientID,];
+# Remove those patients from annual.clinical
+data$annual.clinical <- data$annual.clinical[data$annual.clinical$AnnualDataKey %in% data$annual.data$AnnualDataID,];
