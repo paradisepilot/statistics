@@ -20,9 +20,13 @@ dbListFields(conn.CFC, 'tblPatients');
 print("dbListFields(conn.CFC, 'tblAnnualData')");
 dbListFields(conn.CFC, 'tblAnnualData');
 
+print("dbListFields(conn.CFC, 'tblDisposition')");
+dbListFields(conn.CFC, 'tblDisposition');
+
 ####################################################################################################
 setwd(output.directory);
 
+####################################################################################################
 sql <- "select PatientID,BirthDt from tblPatients";
 myQuery <- dbSendQuery(conn.CFC, sql);
 DF.patient.birth.dates <- fetch(myQuery, n = -1);
@@ -50,6 +54,13 @@ write.table(
 	sep       = '\t',
 	quote     = FALSE
 	);
+
+####################################################################################################
+sql <- "select * from tblDisposition";
+myQuery <- dbSendQuery(conn.CFC, sql);
+DF.dispositions <- fetch(myQuery, n = -1);
+str(DF.dispositions);
+DF.dispositions;
 
 ####################################################################################################
 
