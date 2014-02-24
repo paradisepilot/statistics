@@ -1,4 +1,11 @@
 
+command.arguments <- commandArgs(trailingOnly = TRUE);
+table.directory   <- normalizePath(command.arguments[1]);
+code.directory    <- normalizePath(command.arguments[2]);
+output.directory  <- normalizePath(command.arguments[3]);
+tmp.directory     <- normalizePath(command.arguments[4]);
+
+####################################################################################################
 library(RMySQL);
 
 ####################################################################################################
@@ -14,7 +21,39 @@ print("dbListFields(conn.CFC, 'tblAnnualData')");
 dbListFields(conn.CFC, 'tblAnnualData');
 
 ####################################################################################################
+setwd(output.directory);
 
+sql <- "select PatientID,BirthDt from tblPatients";
+myQuery <- dbSendQuery(conn.CFC, sql);
+DF.patient.birth.dates <- fetch(myQuery, n = -1);
+DF.patient.birth.dates[,'BirthDate'] <- as.Date(DF.patient.birth.dates[,'BirthDt']);
+str(DF.patient.birth.dates);
+summary(DF.patient.birth.dates);
+
+write.table(
+	file      = 'patient-birth-dates.csv',
+	x         = DF.patient.birth.dates,
+	row.names = FALSE,
+	sep       = '\t',
+	quote     = FALSE
+	);
+
+is.selected <- DF.patient.birth.dates[,'BirthDate'] >= as.Date("2008-01-01");
+DF.temp <- DF.patient.birth.dates[is.selected,];
+str(DF.temp);
+summary(DF.temp);
+
+write.table(
+	file      = 'temp.csv',
+	x         = DF.temp,
+	row.names = FALSE,
+	sep       = '\t',
+	quote     = FALSE
+	);
+
+####################################################################################################
+
+dbDisconnect(conn.CFC);
 q();
 
 ####################################################################################################
