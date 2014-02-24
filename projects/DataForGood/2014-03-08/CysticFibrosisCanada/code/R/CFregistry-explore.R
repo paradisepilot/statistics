@@ -63,6 +63,21 @@ str(DF.dispositions);
 DF.dispositions;
 
 ####################################################################################################
+sql <- "select * from tblTransplants";
+myQuery <- dbSendQuery(conn.CFC, sql);
+DF.transplants <- fetch(myQuery, n = -1);
+str(DF.transplants);
+DF.transplants;
+
+write.table(
+	file      = 'transplants.csv',
+	x         = DF.transplants,
+	row.names = FALSE,
+	sep       = '\t',
+	quote     = FALSE
+	);
+
+####################################################################################################
 
 dbDisconnect(conn.CFC);
 q();
