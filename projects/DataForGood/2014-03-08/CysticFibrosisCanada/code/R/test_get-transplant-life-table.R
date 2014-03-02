@@ -8,7 +8,7 @@ tmp.directory      <- normalizePath(command.arguments[4]);
 ####################################################################################################
 library(RMySQL);
 
-source(paste0(code.directory,'/extract-transplant-data.R'));
+source(paste0(code.directory,'/get-transplant-life-table.R'));
 
 ####################################################################################################
 load(file = RData.CFC.Registry);
@@ -16,7 +16,7 @@ load(file = RData.CFC.Registry);
 ####################################################################################################
 setwd(output.directory);
 
-extract.transplant.data(
+get.transplant.life.table(
 	CFC.Registry     = RData.CFC.Registry,
 	output.directory = output.directory
 	);

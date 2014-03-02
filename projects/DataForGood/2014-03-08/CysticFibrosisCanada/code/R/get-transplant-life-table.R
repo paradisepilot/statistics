@@ -1,5 +1,5 @@
 
-extract.transplant.data <- function(
+get.transplant.life.table <- function(
 	CFC.Registry     = NULL,
 	output.directory = NULL
 	) {
