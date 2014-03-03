@@ -15,7 +15,7 @@ if [ ! -d ${tmpDIR} ]; then
 	mkdir ${tmpDIR}
 fi
 
-myRscript=../../code/R/test_extract-transplant-data.R
+myRscript=../../code/R/test_get-transplant-life-table.R
 stdoutFile=stdout.R.`basename ${myRscript} .R`
 R --no-save --args ${CFCRegistry} ${codeDIR} ${outputDIR} ${tmpDIR} < ${myRscript} 2>&1 > ${stdoutFile}
 
