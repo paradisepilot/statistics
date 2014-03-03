@@ -1,6 +1,6 @@
 
 dataForGoodDIR=~/Work/github/paradisepilot/statistics/projects/DataForGood/2014-03-08/CysticFibrosisCanada
-CFCRegistry=${dataForGoodDIR}/mysql-to-RData/output.SNAPSHOT.2014-02-26.02/CFC-Registry.RData
+CFCRegistry=${dataForGoodDIR}/mysql-to-RData/output.SNAPSHOT.2014-03-02.01/CFC-Registry.RData
 
   codeDIR=${dataForGoodDIR}/code/R;
 outputDIR=../output
