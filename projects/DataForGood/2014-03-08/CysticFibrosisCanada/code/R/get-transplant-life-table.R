@@ -75,11 +75,41 @@ get.transplant.life.table <- function(
 	print('str(DF.annual.data)');
 	print( str(DF.annual.data) );
 
-	DF.annual.data <- aggregate(formula = ReportYr ~ PatientKey, data = DF.annual.data, FUN = max);
+	DF.temp <- aggregate(
+		formula = ReportYr ~ PatientKey,
+		data    = DF.annual.data,
+		FUN     = max
+		);
+	DF.annual.data <- merge(
+		x  = DF.annual.data,
+		y  = DF.temp,
+		by = c('PatientKey','ReportYr')
+		);
+	DF.annual.data <- DF.annual.data[order(DF.annual.data[,'PatientKey'],DF.annual.data[,'ReportYr']),]; 
+
 	print('str(DF.annual.data)');
 	print( str(DF.annual.data) );
 	print('summary(DF.annual.data)');
 	print( summary(DF.annual.data) );
+
+	write.table(file = 'annual-data.csv', x = DF.annual.data, sep = '\t', quote = FALSE, row.names = FALSE);
+
+	DF.patients.with.transplants <- merge(
+		x     = DF.patients.with.transplants,
+		y     = DF.annual.data,
+		by.x  = 'PatientID',
+		by.y  = 'PatientKey',
+		all.x = TRUE,
+		all.y = FALSE
+		);
+
+	write.table(
+		file      = 'patients-with-transplants.csv',
+		x         = DF.patients.with.transplants,
+		sep       = '\t',
+		quote     = FALSE,
+		row.names = FALSE
+		);
 
 	return(1);
 
