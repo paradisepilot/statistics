@@ -1,5 +1,6 @@
 
-dataForGoodDIR=~/Work/github/paradisepilot/statistics/projects/DataForGood/2014-03-08/CysticFibrosisCanada
+#dataForGoodDIR=~/Work/github/paradisepilot/statistics/projects/DataForGood/2014-03-08/CysticFibrosisCanada
+dataForGoodDIR=../../
 CFCRegistry=${dataForGoodDIR}/mysql-to-RData/output.SNAPSHOT.2014-03-02.01/CFC-Registry.RData
 
   codeDIR=${dataForGoodDIR}/code/R;

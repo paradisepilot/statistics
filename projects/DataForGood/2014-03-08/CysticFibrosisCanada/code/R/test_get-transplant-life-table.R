@@ -6,7 +6,7 @@ output.directory   <- normalizePath(command.arguments[3]);
 tmp.directory      <- normalizePath(command.arguments[4]);
 
 ####################################################################################################
-library(RMySQL);
+#library(RMySQL);
 
 source(paste0(code.directory,'/get-transplant-life-table.R'));
 
