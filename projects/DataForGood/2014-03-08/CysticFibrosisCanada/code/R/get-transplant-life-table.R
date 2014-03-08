@@ -185,8 +185,8 @@ get.transplant.life.table <- function(
 		FUN    = max
 		);
 
-	DF.patients.with.transplants[,'integer.FirstTransplantDt'] <- as.integer(DF.patients.with.transplants[,'FirstTransplantDt']);
-	DF.patients.with.transplants[,'integer.ExitDt']       <- as.integer(DF.patients.with.transplants[,'ExitDt']);
+	DF.patients.with.transplants[,'integer.FirstTransplantDt'] <- as.integer(DF.patients.with.transplants[,'FirstTransplantDt']) / 365.25;
+	DF.patients.with.transplants[,'integer.ExitDt']       <- as.integer(DF.patients.with.transplants[,'ExitDt']) / 365.25;
 
 	DF.patients.with.transplants[,'integer.followup.time'] <- DF.patients.with.transplants[,'integer.ExitDt'] - DF.patients.with.transplants[,'integer.FirstTransplantDt'];
 
