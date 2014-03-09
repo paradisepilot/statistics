@@ -212,11 +212,16 @@ get.transplant.life.table <- function(
 
 	################################################################################################
 	resolution <- 300;
+	xmin <-  0;
+	xmax <- 30;
+	ymax <-  1;
+
 	library(survival)
 	library(ggplot2);
 	library(GGally);
 	#library(eha);
 
+	### Overall
 	temp.filename <- 'post-transplant-survival-overall.png';
 	temp.surv <- survfit(Surv(integer.followup.time,Event) ~ 1, data = DF.patients.with.transplants);
 	my.ggplot <- ggsurv(temp.surv);
@@ -224,32 +229,64 @@ get.transplant.life.table <- function(
 	my.ggplot <- my.ggplot + theme(axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
 	ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 6, width = 12, units = 'in');
 
+	### Sex
 	temp.filename <- 'post-transplant-survival-Sex.png';
+
+	results.logrank <- coxph(Surv(integer.followup.time,Event) ~ Sex, data = DF.patients.with.transplants);
+	temp <- summary(results.logrank);
+	logrank.stat <- temp[['sctest']][['test']];
+	logrank.pval <- temp[['sctest']][['pvalue']];
+
 	temp.surv <- survfit(Surv(integer.followup.time,Event) ~ Sex, data = DF.patients.with.transplants);
 	my.ggplot <- ggsurv(temp.surv);
 	my.ggplot <- my.ggplot + xlab("Time (Years)");
 	my.ggplot <- my.ggplot + theme(axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
+	my.ggplot <- my.ggplot + ggtitle(paste0("log.rank: ",formatC(logrank.stat),", pval: ",logrank.pval));
 	ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 6, width = 12, units = 'in');
 
+	### B. Cepacia
 	temp.filename <- 'post-transplant-survival-BCepacia.png';
+
+	results.logrank <- coxph(Surv(integer.followup.time,Event) ~ BCepacia, data = DF.patients.with.transplants);
+	temp <- summary(results.logrank);
+	logrank.stat <- temp[['sctest']][['test']];
+	logrank.pval <- temp[['sctest']][['pvalue']];
+
 	temp.surv <- survfit(Surv(integer.followup.time,Event) ~ BCepacia, data = DF.patients.with.transplants);
 	my.ggplot <- ggsurv(temp.surv);
 	my.ggplot <- my.ggplot + xlab("Time (Years)");
 	my.ggplot <- my.ggplot + theme(axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
+	my.ggplot <- my.ggplot + ggtitle(paste0("log.rank: ",formatC(logrank.stat),", pval: ",logrank.pval));
 	ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 6, width = 12, units = 'in');
 
+	### Y2K
 	temp.filename <- 'post-transplant-survival-Y2K.png';
+
+	results.logrank <- coxph(Surv(integer.followup.time,Event) ~ post.Y2K, data = DF.patients.with.transplants);
+	temp <- summary(results.logrank);
+	logrank.stat <- temp[['sctest']][['test']];
+	logrank.pval <- temp[['sctest']][['pvalue']];
+
 	temp.surv <- survfit(Surv(integer.followup.time,Event) ~ post.Y2K, data = DF.patients.with.transplants);
 	my.ggplot <- ggsurv(temp.surv);
 	my.ggplot <- my.ggplot + xlab("Time (Years)");
 	my.ggplot <- my.ggplot + theme(axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
+	my.ggplot <- my.ggplot + ggtitle(paste0("log.rank: ",formatC(logrank.stat),", pval: ",logrank.pval));
 	ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 6, width = 12, units = 'in');
 
+	### Lung
 	temp.filename <- 'post-transplant-survival-lung.png';
+
+	results.logrank <- coxph(Surv(integer.followup.time,Event) ~ lung.transplant, data = DF.patients.with.transplants);
+	temp <- summary(results.logrank);
+	logrank.stat <- temp[['sctest']][['test']];
+	logrank.pval <- temp[['sctest']][['pvalue']];
+
 	temp.surv <- survfit(Surv(integer.followup.time,Event) ~ lung.transplant, data = DF.patients.with.transplants);
 	my.ggplot <- ggsurv(temp.surv);
 	my.ggplot <- my.ggplot + xlab("Time (Years)");
 	my.ggplot <- my.ggplot + theme(axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
+	my.ggplot <- my.ggplot + ggtitle(paste0("log.rank: ",formatC(logrank.stat),", pval: ",logrank.pval));
 	ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 6, width = 12, units = 'in');
 
 	return(1);
