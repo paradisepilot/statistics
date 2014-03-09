@@ -240,7 +240,7 @@ get.transplant.life.table <- function(
 	temp.surv <- survfit(Surv(integer.followup.time,Event) ~ Sex, data = DF.patients.with.transplants);
 	my.ggplot <- ggsurv(temp.surv);
 	my.ggplot <- my.ggplot + xlab("Time (Years)");
-	my.ggplot <- my.ggplot + theme(axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
+	my.ggplot <- my.ggplot + theme(title = element_text(size = 20), axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
 	my.ggplot <- my.ggplot + ggtitle(paste0("log.rank: ",formatC(logrank.stat),", pval: ",logrank.pval));
 	ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 6, width = 12, units = 'in');
 
@@ -255,7 +255,7 @@ get.transplant.life.table <- function(
 	temp.surv <- survfit(Surv(integer.followup.time,Event) ~ BCepacia, data = DF.patients.with.transplants);
 	my.ggplot <- ggsurv(temp.surv);
 	my.ggplot <- my.ggplot + xlab("Time (Years)");
-	my.ggplot <- my.ggplot + theme(axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
+	my.ggplot <- my.ggplot + theme(title = element_text(size = 20), axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
 	my.ggplot <- my.ggplot + ggtitle(paste0("log.rank: ",formatC(logrank.stat),", pval: ",logrank.pval));
 	ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 6, width = 12, units = 'in');
 
@@ -270,7 +270,7 @@ get.transplant.life.table <- function(
 	temp.surv <- survfit(Surv(integer.followup.time,Event) ~ post.Y2K, data = DF.patients.with.transplants);
 	my.ggplot <- ggsurv(temp.surv);
 	my.ggplot <- my.ggplot + xlab("Time (Years)");
-	my.ggplot <- my.ggplot + theme(axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
+	my.ggplot <- my.ggplot + theme(title = element_text(size = 20), axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
 	my.ggplot <- my.ggplot + ggtitle(paste0("log.rank: ",formatC(logrank.stat),", pval: ",logrank.pval));
 	ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 6, width = 12, units = 'in');
 
@@ -285,7 +285,7 @@ get.transplant.life.table <- function(
 	temp.surv <- survfit(Surv(integer.followup.time,Event) ~ lung.transplant, data = DF.patients.with.transplants);
 	my.ggplot <- ggsurv(temp.surv);
 	my.ggplot <- my.ggplot + xlab("Time (Years)");
-	my.ggplot <- my.ggplot + theme(axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
+	my.ggplot <- my.ggplot + theme(title = element_text(size = 20), axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
 	my.ggplot <- my.ggplot + ggtitle(paste0("log.rank: ",formatC(logrank.stat),", pval: ",logrank.pval));
 	ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 6, width = 12, units = 'in');
 
