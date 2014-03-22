@@ -117,7 +117,10 @@ DF.predicted <- rbind(
 ####################################################################################################
 my.ggplot <- ggplot(data = NULL);
 
-my.ggplot <- my.ggplot + geom_point(mapping = aes(x = temp, y = damage/6), data = orings);
+DF.temp <- aggregate(formula = damage ~ temp, data = orings, FUN = mean);
+my.ggplot <- my.ggplot + geom_point(mapping = aes(x = temp, y = damage/6), data = DF.temp);
+#my.ggplot <- my.ggplot + geom_point(mapping = aes(x = temp, y = damage/6), data = orings);
+
 my.ggplot <- my.ggplot + geom_line(mapping = aes(x = temp, y = fitted, colour = link), data = DF.predicted);
 
 my.ggplot <- my.ggplot + scale_x_continuous(limits = c(0,85), breaks = seq(0,80,10));
