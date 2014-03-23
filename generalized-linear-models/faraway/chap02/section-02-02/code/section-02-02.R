@@ -66,6 +66,7 @@ results.logit <- glm(
 	family  = binomial(link = logit)
 	);
 summary(results.logit);
+pchisq(q = deviance(results.logit), df = df.residual(results.logit), lower = FALSE);
 
 results.probit <- glm(
 	data    = orings,
@@ -73,6 +74,7 @@ results.probit <- glm(
 	family  = binomial(link = probit)
 	);
 summary(results.probit);
+pchisq(q = deviance(results.probit), df = df.residual(results.probit), lower = FALSE);
 
 results.cloglog <- glm(
 	data    = orings,
@@ -80,6 +82,7 @@ results.cloglog <- glm(
 	family  = binomial(link = cloglog)
 	);
 summary(results.cloglog);
+pchisq(q = deviance(results.cloglog), df = df.residual(results.cloglog), lower = FALSE);
 
 ####################################################################################################
 temperatures <- data.frame(temp = seq(0,100,1));
