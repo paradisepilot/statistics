@@ -22,20 +22,36 @@ colnames(XY) <- c('X','Y');
 
 prob.independent <- c( 8,12,20,12,18,30);
 prob.perturb     <- c( 1, 1,-2, 2,-1,-1);
-DF.prob          <- cbind(XY, prob = prob.independent + 5*prob.perturb);
 
-sizes <- seq(10,10000,10);
-DF.output <- data.frame(size = numeric(length(sizes)), pval = numeric(length(sizes)));
+sizes       <- seq(100,500000,1000);
+DF.prob     <- cbind(XY, prob = prob.independent + 0.2*prob.perturb);
+DF.output.1 <- data.frame(size = numeric(length(sizes)), pval = numeric(length(sizes)));
 for (i in 1:length(sizes)) {
 	temp.size     <- sizes[i];
 	DF.temp       <- cbind(XY, Z = rmultinom(n = 1, size = temp.size, prob = DF.prob[,'prob']));
 	results.glm   <- glm(formula = Z ~ X + Y + X:Y, data = DF.temp, family = 'poisson');
 	results.anova <- anova(results.glm,test='LRT');
 	temp.pvalue   <- results.anova[['Pr(>Chi)']][4];
-	DF.output[i,] <- c(temp.size,temp.pvalue);
+	DF.output.1[i,] <- c(temp.size,temp.pvalue);
 	}
-DF.output[,'log10.pval'] <- log10(DF.output[,'pval']);
+DF.output.1[,'log10.pval'] <- log10(DF.output.1[,'pval']);
+DF.output.1 <- cbind(DF.output.1, group = factor(rep('A',nrow(DF.output.1)),levels = c('A','B')));
 
+sizes       <- seq(10,1000,10);
+DF.prob     <- cbind(XY, prob = prob.independent + 5 * prob.perturb);
+DF.output.2 <- data.frame(size = numeric(length(sizes)), pval = numeric(length(sizes)));
+for (i in 1:length(sizes)) {
+	temp.size     <- sizes[i];
+	DF.temp       <- cbind(XY, Z = rmultinom(n = 1, size = temp.size, prob = DF.prob[,'prob']));
+	results.glm   <- glm(formula = Z ~ X + Y + X:Y, data = DF.temp, family = 'poisson');
+	results.anova <- anova(results.glm,test='LRT');
+	temp.pvalue   <- results.anova[['Pr(>Chi)']][4];
+	DF.output.2[i,] <- c(temp.size,temp.pvalue);
+	}
+DF.output.2[,'log10.pval'] <- log10(DF.output.2[,'pval']);
+DF.output.2 <- cbind(DF.output.2, group = factor(rep('B',nrow(DF.output.2)),levels = c('A','B')));
+
+DF.output <- rbind(DF.output.1,DF.output.2);
 write.table(
 	file      = 'rare-events-count-data.csv',
 	x         = DF.output,
@@ -46,7 +62,7 @@ write.table(
 
 temp.filename <- 'pvalues.png';
 my.ggplot <- ggplot(data = NULL);
-my.ggplot <- my.ggplot + geom_point(mapping = aes(x = size, y = log10.pval), data = DF.output);
+my.ggplot <- my.ggplot + geom_point(mapping = aes(x = size, y = log10.pval, colour = group), data = DF.output, alpha = 0.5);
 my.ggplot <- my.ggplot + xlab("size of first group");
 my.ggplot <- my.ggplot + ylab("log10(p-value)");
 my.ggplot <- my.ggplot + theme(title = element_text(size = 20), axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
