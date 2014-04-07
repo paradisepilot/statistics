@@ -26,6 +26,31 @@ Smarket[,'day'] <- 1:nrow(Smarket);
 setwd(output.directory);
 
 ####################################################################################################
+N <- 5000;
+DF.output <- data.frame(n = 1:N, accuracy = numeric(length = N));
+
+factor.UP.DOWN <- factor(x = c('Up','Down'), levels = levels(Smarket[,'Direction']));
+
+for (i in 1:nrow(DF.output)) {
+	is.training <- sample(x = c(TRUE,FALSE), size = nrow(Smarket), replace = TRUE, prob = c(0.6,0.4));
+	Smarket.testing  <- Smarket[!is.training,];
+	random.predictions <- sample(x = factor.UP.DOWN, size = nrow(Smarket.testing), replace = TRUE, prob = c(0.5,0.5));
+	DF.output[i,'accuracy'] <- mean(random.predictions == Smarket.testing[,'Direction']);
+	}
+
+summary(DF.output);
+
+my.ggplot <- ggplot(data = NULL);
+my.ggplot <- my.ggplot + geom_histogram(mapping = aes(x = accuracy, y = ..density..), data = DF.output, binwidth = 0.01, alpha = 0.6);
+my.ggplot <- my.ggplot + geom_density(mapping = aes(x = accuracy), data = DF.output);
+
+my.ggplot <- my.ggplot + scale_x_continuous(limits = c(0,1), breaks = seq(0,1,0.1));
+#my.ggplot <- my.ggplot + scale_y_continuous(limits = c(0,1),  breaks = seq(0,1,0.2));
+my.ggplot <- my.ggplot + theme(title = element_text(size = 20), axis.title = element_text(size = 30), axis.text  = element_text(size = 25));
+temp.filename <- 'accuracy-histogram-RANDOM.png';
+ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 6, width = 12, units = 'in');
+
+####################################################################################################
 lda.fit <- lda(formula = Direction ~ Lag1 + Lag2, data = Smarket);
 
 results.predict.lda <- predict(object = lda.fit, type = "response");
@@ -36,7 +61,6 @@ DF.Smarket <- cbind(Smarket, prediction = DF.lda.predictions[,'prediction']);
 table(DF.Smarket[,'prediction'], DF.Smarket[,'Direction']);
 (training.accuracy <- mean(DF.Smarket[,'prediction']==DF.Smarket[,'Direction']));
 
-####################################################################################################
 N <- 5000;
 DF.output <- data.frame(n = 1:N, accuracy = numeric(length = N));
 
