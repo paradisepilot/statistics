@@ -61,7 +61,7 @@ setwd(output.directory);
 
 ####################################################################################################
 num.replicates <- 5;
-lambdas        <- seq(1000,2e6,1000);
+lambdas        <- seq(1000,1e6,1000);
 fold.change    <- 1;
 
 DF.output.0 <- generate.DF.output(
@@ -73,7 +73,7 @@ DF.output.0 <- generate.DF.output(
 
 ####################################################################################################
 num.replicates <- 5;
-lambdas        <- seq(1000,2e6,1000);
+lambdas        <- seq(1000,1e6,1000);
 fold.change    <- 1.01;
 
 DF.output.1 <- generate.DF.output(
