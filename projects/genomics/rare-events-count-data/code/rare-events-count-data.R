@@ -25,10 +25,12 @@ generate.DF.output <- function(
 
 	for (i in 1:length(lambdas)) {
 
-		temp.mean = lambdas[i];
+		temp.mean   <- lambdas[i];
+		temp.factor <- fold.change;
+		if (0.5 < sample(x = c(0,1), size = 1)) { temp.factor <- 1/temp.factor; }
 
-		lambda0 <- rnorm(n = num.replicates, mean = temp.mean, sd = temp.mean/100);
-		lambda1 <- rnorm(n = num.replicates, mean = fold.change * temp.mean, sd = fold.change * temp.mean/100);
+		lambda0 <- rnorm(n = num.replicates, mean =               temp.mean, sd =               temp.mean/100);
+		lambda1 <- rnorm(n = num.replicates, mean = temp.factor * temp.mean, sd = temp.factor * temp.mean/100);
 
 		obs0 <- rpois(n = num.replicates, lambda = lambda0);
 		obs1 <- rpois(n = num.replicates, lambda = lambda1);
@@ -72,7 +74,7 @@ DF.output.0 <- generate.DF.output(
 ####################################################################################################
 num.replicates <- 5;
 lambdas        <- seq(1000,2e6,1000);
-fold.change    <- 1.02;
+fold.change    <- 1.01;
 
 DF.output.1 <- generate.DF.output(
 	num.replicates = num.replicates,
