@@ -5,10 +5,7 @@ output.directory  <- normalizePath(command.arguments[2]);
 tmp.directory     <- normalizePath(command.arguments[3]);
 
 ####################################################################################################
-#library(RMySQL);
 library(ggplot2);
-
-#source(paste0(code.directory,'/get-transplant-life-table.R'));
 
 resolution <- 100;
 
@@ -16,7 +13,8 @@ resolution <- 100;
 generate.DF.output <- function(
 	num.replicates = NULL,
 	lambdas        = NULL,
-	fold.change    = NULL
+	fold.change    = NULL,
+	group          = NULL
 	) {
 
 	DF.output <- data.frame(
@@ -50,6 +48,7 @@ generate.DF.output <- function(
 		}
 
 	DF.output[,'minus.log10.pval'] <- -log10(DF.output[,'pval']);
+	DF.output <- cbind(DF.output, group = factor(rep(group,nrow(DF.output))));
 
 	return(DF.output);
 
@@ -63,51 +62,63 @@ num.replicates <- 5;
 lambdas        <- seq(1000,2e6,1000);
 fold.change    <- 1;
 
-DF.output <- generate.DF.output(
+DF.output.0 <- generate.DF.output(
 	num.replicates = num.replicates,
 	lambdas        = lambdas,
-	fold.change    = fold.change
+	fold.change    = fold.change,
+	group          = paste0('FC = ',fold.change)
 	);
-DF.output.1 <- cbind(DF.output, group = factor(rep('FC1',nrow(DF.output)),levels = paste0('FC',1:4)));
+
+####################################################################################################
+num.replicates <- 5;
+lambdas        <- seq(1000,2e6,1000);
+fold.change    <- 1.02;
+
+DF.output.1 <- generate.DF.output(
+	num.replicates = num.replicates,
+	lambdas        = lambdas,
+	fold.change    = fold.change,
+	group          = paste0('FC = ',fold.change)
+	);
 
 ####################################################################################################
 num.replicates <- 5;
 lambdas        <- seq(10,100,1);
 fold.change    <- 2;
 
-DF.output <- generate.DF.output(
+DF.output.2 <- generate.DF.output(
 	num.replicates = num.replicates,
 	lambdas        = lambdas,
-	fold.change    = fold.change
+	fold.change    = fold.change,
+	group          = paste0('FC = ',fold.change)
 	);
-DF.output.2 <- cbind(DF.output, group = factor(rep('FC2',nrow(DF.output)),levels = paste0('FC',1:4)));
 
 ####################################################################################################
 num.replicates <- 5;
 lambdas        <- seq(10,100,1);
 fold.change    <- 3;
 
-DF.output <- generate.DF.output(
+DF.output.3 <- generate.DF.output(
 	num.replicates = num.replicates,
 	lambdas        = lambdas,
-	fold.change    = fold.change
+	fold.change    = fold.change,
+	group          = paste0('FC = ',fold.change)
 	);
-DF.output.3 <- cbind(DF.output, group = factor(rep('FC3',nrow(DF.output)),levels = paste0('FC',1:4)));
 
 ####################################################################################################
 num.replicates <- 5;
 lambdas        <- seq(10,100,1);
 fold.change    <- 4;
 
-DF.output <- generate.DF.output(
+DF.output.4 <- generate.DF.output(
 	num.replicates = num.replicates,
 	lambdas        = lambdas,
-	fold.change    = fold.change
+	fold.change    = fold.change,
+	group          = paste0('FC = ',fold.change)
 	);
-DF.output.4 <- cbind(DF.output, group = factor(rep('FC4',nrow(DF.output)),levels = paste0('FC',1:4)));
 
 ####################################################################################################
-DF.output <- rbind(DF.output.1,DF.output.2,DF.output.3,DF.output.4);
+DF.output <- rbind(DF.output.0,DF.output.1,DF.output.2,DF.output.3,DF.output.4);
 write.table(
 	file      = 'rare-events-count-data.csv',
 	x         = DF.output,
