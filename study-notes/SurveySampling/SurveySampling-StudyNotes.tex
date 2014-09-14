@@ -573,7 +573,42 @@ Roughly, a calibration estimator for $T_{y}$ is an estimator of the form:
 where the sample-dependent ``calibrated" weights $w_{k}(s)$ are the solution of a
 constrained minimization problem where the objective function depends on the
 $w_{k}(s)$'s and the Horvitz-Thompson weights $d_{k}$'s, while the constraints
-involve the $w_{k}(s)$'s and auxiliary information.
+involve the $w_{k}(s)$'s and auxiliary information. More precisely, the calibrated
+weights $w_{k}(s)$ solve the following constrained minimization problem:
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.0in}
+\noindent
+\textbf{Conceptual framework:}\;\;
+Let $\mathbf{x} : U \longrightarrow \Re^{1 \times J}$ be an $\Re^{1 \times J}$-valued
+function defined on $U$.
+We use the common notation $\mathbf{x}_{k}$ for $\mathbf{x}(k)$, for each $k \in U$.
+\vskip 0.3cm
+\noindent
+\textbf{Assumptions:}
+\begin{itemize}
+\item	The population total of $\mathbf{x}$
+		\begin{equation*} T_{\mathbf{x}} \; := \; \sum_{k \in U} \mathbf{x}_{k} \in \Re^{1\times J} \end{equation*}
+		is known.
+\item	For each $s \in \mathcal{S}$, the value $(y_{k},\mathbf{x}_{k})$ can be observed for each $k \in s$ via the sampling procedure.
+\end{itemize}
+\vskip 0.3cm
+\noindent
+\textbf{Constrained Minimization Problem:}\;\;
+For each $k \in U$, let $q_{k} > 0$ be chosen.
+For each $s \in \mathcal{S}$, the calibrated weights $w_{k}(s)$, for $k \in s$, are obtained
+by minimizing the following objective function:
+\begin{equation*}
+f_{s}(w_{k}(s)\;;\,d_{k},q_{k})
+\;:=\;\sum_{k \in s}\,\dfrac{(w_{k}(s) - d_{k})^{2}}{d_{k}q_{k}}
+\end{equation*}
+subject to the (vectorial) constraint on $w_{k}(s)$:
+\begin{equation*}
+\mathbf{h}(w_{k}(s)\,;\,\mathbf{x}_{k},T_{\mathbf{x}})
+\;:=\; - T_{\mathbf{x}} + \sum_{k \in s}\, w_{k}(s)\,\mathbf{x}_{k} \; = \; 0
+\end{equation*}
+\end{minipage}
+\end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
