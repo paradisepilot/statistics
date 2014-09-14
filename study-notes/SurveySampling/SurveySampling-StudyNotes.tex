@@ -522,13 +522,66 @@ N^{2}\left(1-1\right)\dfrac{S^{2}_{t}}{n} \; + \;
 \end{eqnarray*}
 The above formula agree exactly with those derived earlier for stratified simple random sampling (apart from obvious notational changes).
 
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Calibration Estimators in Survey Sampling}
+\setcounter{theorem}{0}
+
+This is a summary of \cite{DevilleSarndal1992}.
+
+Let $U = \{1,2,\ldots,N\}$ be a finite population.
+Let $y : U \longrightarrow \Re$ be an $\Re$-valued function defined on $U$
+(commonly called a ``population parameter").
+We will use the common notation $y_{i}$ for $y(i)$.
+We wish to estimate $T_{y} := \sum_{i \in U} y_{i}$ via survey sampling.
+Let $p:\mathcal{S} \longrightarrow (0,1]$ be our chosen sampling design,
+where $\mathcal{S} \subseteq \mathcal{P}(U)$ is the set of all possible
+samples in the design, and $\mathcal{P}(U)$ is the power set of $U$.
+For each $k \in U$, let $\pi_{k} := \sum_{s \ni k}p(s)$ be the inclusion probability
+of $k$ under the sampling design $p$.
+We assume $\pi_{k} > 0$ for each $k \in U$.
+Then, the Horvitz-Thompson estimator
+\begin{equation*}
+\widehat{T}^{\textnormal{HT}}_{y}(s)
+\;:=\;\sum_{k \in s} \dfrac{y_{k}}{\pi_{k}}
+\; =\;\sum_{k \in s} d_{k}y_{k}
+\; =\;\sum_{k \in U} I_{ks}\dfrac{y_{k}}{\pi_{k}},
+\quad
+\textnormal{where $d_{k} := \dfrac{1}{\pi_{k}}$ and}
+\;
+I_{ks} \; := \; \left\{\begin{array}{cl} 1, & \textnormal{if $k \in s$} \\ 0, &  \textnormal{otherwise} \end{array}\right. 
+\end{equation*}
+is well-defined and is known to be a design-unbiased estimator of $T_{y}$; in other words,
+\begin{equation*}
+E_{p}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]
+\; = \; \sum_{s \in \mathcal{S}} p(s)\cdot \widehat{T}^{\textnormal{HT}}_{y}(s)
+\; = \; \sum_{s \in \mathcal{S}} p(s)\cdot\left(\sum_{k \in U} I_{ks}\dfrac{y_{k}}{\pi_{k}}\right)
+\; = \; \sum_{k \in U} \dfrac{y_{k}}{\pi_{k}} \left(\sum_{s \in \mathcal{S}} p(s) I_{ks}\right)
+\; = \; \sum_{k \in U} \dfrac{y_{k}}{\pi_{k}}\,\pi_{k}
+\; = \; T_{y}.
+\end{equation*}
+We will call the $d_{k}$'s above the \textit{Horvitz-Thompson weights}.
+
+\vskip 0.5cm
+
+Roughly, a calibration estimator for $T_{y}$ is an estimator of the form:
+\begin{equation*}
+\widehat{T}^{\textnormal{Cal}}_{y}(s)
+\; := \;
+\sum_{k \in s} w_{k}(s) y_{k},
+\end{equation*}
+where the sample-dependent ``calibrated" weights $w_{k}(s)$ are the solution of a
+constrained minimization problem where the objective function depends on the
+$w_{k}(s)$'s and the Horvitz-Thompson weights $d_{k}$'s, while the constraints
+involve the $w_{k}(s)$'s and auxiliary information.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\bibliographystyle{alpha}
 %\bibliographystyle{plain}
 %\bibliographystyle{amsplain}
 \bibliographystyle{acm}
-\bibliography{KenChuBioinformatics}
+\bibliography{KenChuStatistics}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
