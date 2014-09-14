@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{epsfig}
 \usepackage{graphicx}
+\usepackage{color}
 %\usepackage{doublespace}
 
 \usepackage{KenChuArticleStyle}
@@ -524,7 +525,7 @@ The above formula agree exactly with those derived earlier for stratified simple
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Calibration Estimators in Survey Sampling}
+\section{Generalized Regression Estimator as a special case of Calibration Estimators}
 \setcounter{theorem}{0}
 
 This is a summary of \cite{DevilleSarndal1992}.
@@ -564,20 +565,24 @@ We will call the $d_{k}$'s above the \textit{Horvitz-Thompson weights}.
 
 \vskip 0.5cm
 
-Roughly, a calibration estimator for $T_{y}$ is an estimator of the form:
+Roughly, the generalized regression estimator for $T_{y}$ is an estimator of the form:
 \begin{equation*}
-\widehat{T}^{\textnormal{Cal}}_{y}(s)
+\widehat{T}^{\textnormal{GREG}}_{y}(s)
 \; := \;
 \sum_{k \in s} w_{k}(s) y_{k},
 \end{equation*}
 where the sample-dependent ``calibrated" weights $w_{k}(s)$ are the solution of a
-constrained minimization problem where the objective function depends on the
-$w_{k}(s)$'s and the Horvitz-Thompson weights $d_{k}$'s, while the constraints
-involve the $w_{k}(s)$'s and auxiliary information. More precisely, the calibrated
-weights $w_{k}(s)$ solve the following constrained minimization problem:
-\vskip 0.5cm
+certain constrained minimization problem (see below) where the objective function
+depends on the $w_{k}(s)$'s and the Horvitz-Thompson weights $d_{k}$'s, while
+the constraints involve the $w_{k}(s)$'s and auxiliary information.
+More precisely, the calibrated weights $w_{k}(s)$ solve the following constrained
+minimization problem:
+\vskip 1.0cm
 \begin{center}
 \begin{minipage}{6.0in}
+\begin{center}
+\textbf{\large\underline{Constrained Minimization Problem for the GREG calibrated weights}}
+\end{center}
 \noindent
 \textbf{Conceptual framework:}\;\;
 Let $\mathbf{x} : U \longrightarrow \Re^{1 \times J}$ be an $\Re^{1 \times J}$-valued
@@ -609,6 +614,77 @@ subject to the (vectorial) constraint on $w_{k}(s)$:
 \end{equation*}
 \end{minipage}
 \end{center}
+\vskip 1.0cm
+The above constrained minimization problem for the calibrated weights can be solved
+by the method of Lagrange Multipliers.
+
+\vskip 0.5cm
+\noindent
+\textbf{Solution of the Constrained Minimization Problem for the Generalized Regression Estimator calibrated weights:}\\
+Let $s \in \mathcal{S}$ be fixed. We write the objective function as
+\begin{equation*}
+f(\{w_{k}(s)\,:k\in s\,\}) \; = \; \sum_{k \in s} \dfrac{(w_{k}(s) - d_{k})^{2}}{d_{k}q_{k}},
+\end{equation*}
+and we write the constraints on $w_{k}(s)$ as:
+\begin{equation*}
+h_{j}(\{w_{k}(s)\,:k\in s\,\}) \; = \; \sum_{k \in s} w_{k}(s)\,x_{kj} - T_{x_{j}} = 0,
+\quad j = 1, 2, \ldots, J.
+\end{equation*}
+By the Method of Lagrange Multipliers, if $\mathbf{w}_{0} = \{w_{k}(s)\,:\,k \in s\}$ is a
+solution to the constrained minimization problem, then $\mathbf{w}_{0}$ satisfies:
+\begin{equation*}
+\nabla_{w}f(\mathbf{w}_{0}) \;\in\; \span\!\left\{\,\nabla_{w}h_{j}(\mathbf{w}_{0})\,:\;j = 1,2,\ldots, J\,\right\}.
+\end{equation*}
+Now,
+\begin{equation*}
+\dfrac{\partial f}{\partial w_{k}(s)} \; = \; \dfrac{2(w_{k}(s) - d_{k})}{d_{k}q_{k}}
+\quad\textnormal{and}\quad
+\dfrac{\partial h_{j}}{\partial w_{k}(s)} \; = \; x_{kj}.
+\end{equation*}
+Thus, we seek $\lambda_{1},\lambda_{2},\ldots,\lambda_{J}$ such that
+\begin{equation*}
+\dfrac{2(w_{k}(s) - d_{k})}{d_{k}q_{k}}
+\;=\; \dfrac{\partial f}{\partial w_{k}(s)}
+\;=\; \sum_{j = 1}^{J} 2\,\lambda_{j}\,\dfrac{\partial h_{j}}{\partial w_{k}(s)}
+\;=\; \sum_{j = 1}^{J} 2\,\lambda_{j}\,x_{kj},
+\end{equation*}
+which immediately implies:
+\begin{equation*}
+w_{k}(s) \;=\; d_{k}\left(1 + q_{k}\sum_{j=1}^{J}\lambda_{j}x_{kj}\right).
+\end{equation*}
+Substituting the above expression for $w_{k}(s)$ back into the constraints yields,
+for each $i = 1, 2, \ldots, J$:
+\begin{equation*}
+-T_{x_{i}} + \sum_{k \in s} d_{k}\left(1 + q_{k}\,\sum_{j=1}^{J}\lambda_{j}x_{kj}\right)\,x_{ki} = 0,
+\end{equation*}
+which can be rearranged to be:
+\begin{equation*}
+\sum_{k \in s}\,d_{k}\,x_{ki} + \sum_{j=1}^{J}\left(\sum_{k \in s}d_{k}q_{k}x_{ki}x_{kj}\right)\lambda_{j} = T_{x_{i}}
+\end{equation*}
+The preceding equation can be rewritten in vectorial form:
+\begin{equation*}
+\widehat{T}^{\textnormal{HT}}_{\mathbf{x}}(s) + \mathbf{A}(s)\cdot\mathbf{\lambda} \; = \; T_{\mathbf{x}},
+\end{equation*}
+where $\mathbf{A}(s) \in \Re^{J \times J}$ is the symmetric matrix with entries:
+\begin{equation*}
+\mathbf{A}(s)_{ij} = \sum_{k \in s}d_{k}q_{k}x_{ki}x_{kj}.
+\end{equation*}
+{\color{red}Assuming the matrix $\mathbf{A}(s)$ is invertible}, the vector $\lambda$ of Lagrange multipliers
+is given by:
+\begin{equation*}
+\mathbf{\lambda} \;=\; \mathbf{A}(s)^{-1}\left(\,T_{\mathbf{x}} \,-\, \widehat{T}^{\textnormal{HT}}_{x}(s)\,\right).
+\end{equation*}
+Hence, the generalized regression estimator $\widehat{T}^{\textnormal{GREG}}_{y}(s)$
+is given by:
+\begin{eqnarray*}
+\widehat{T}^{\textnormal{GREG}}_{y}(s)
+&=& \sum_{k \in s}w_{k}(s)y_{k}
+\quad = \quad \sum_{k \in s}\,d_{k}(1 + q_{k}\,\mathbf{x}_{k}^{T}\,\mathbf{\lambda})\,y_{k}
+\quad = \quad \sum_{k \in s}\,d_{k}y_{k} + \sum_{k \in s}\,d_{k}q_{k}(\mathbf{x}_{k}^{T}\cdot\mathbf{\lambda})\,y_{k}\\
+&=& \widehat{T}^{\textnormal{HT}}_{y}(s) + \left(\sum_{k \in s}\,d_{k}q_{k}y_{k}\cdot\mathbf{x}_{k}^{T}\right)\cdot\mathbf{\lambda}\\
+&=& \widehat{T}^{\textnormal{HT}}_{y}(s) + \left(\sum_{k \in s}\,d_{k}q_{k}y_{k}\cdot\mathbf{x}_{k}^{T}\right)\cdot\mathbf{A}(s)^{-1}\cdot\left(\,T_{\mathbf{x}} \,-\, \widehat{T}^{\textnormal{HT}}_{x}(s)\,\right).
+\end{eqnarray*}
+\qed
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
