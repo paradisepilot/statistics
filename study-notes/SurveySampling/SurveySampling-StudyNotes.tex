@@ -42,6 +42,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\mbox{}\vskip 0.0cm
 \section{The population total, population mean, and population variance of a population characteristic}
 \setcounter{theorem}{0}
 
@@ -685,6 +686,135 @@ is given by:
 &=& \widehat{T}^{\textnormal{HT}}_{y}(s) + \left(\sum_{k \in s}\,d_{k}q_{k}y_{k}\cdot\mathbf{x}_{k}^{T}\right)\cdot\mathbf{A}(s)^{-1}\cdot\left(\,T_{\mathbf{x}} \,-\, \widehat{T}^{\textnormal{HT}}_{x}(s)\,\right).
 \end{eqnarray*}
 \qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Conditional inference in finite-population sampling}
+\setcounter{theorem}{0}
+
+In this section, we give a justification for making inference conditional on the observed sample size
+for sampling designs with random sample size.
+
+\vskip 0.5cm
+\noindent
+\textbf{Observation (``mixture" of experiments) [see \cite{Valliant2000}, p.15.]}\vskip 0.1cm
+\noindent
+Consider a population $\mathcal{U}$ of 1000 units.
+We wish to estimate the total $T_{y}$ of a certain population characteristic $\mathbf{y} = (y_{1},y_{2},\ldots,y_{1000})$.
+Suppose we use the following two-step sampling scheme:
+\begin{itemize}
+\item	Step 1: We first flip a fair coin.\\
+		Define the random variable $X$ by letting $X = 1$ if the coin lands heads, and $X = 0$ if it lands tails.
+\item	Step 2: If $X = 1$, we select an SRS from $\mathcal{U}$ of size 100. If $X = 0$, we take a census on all of $\mathcal{U}$.
+\end{itemize}
+Let $\mathcal{S} \subset \mathcal{P}(\mathcal{U})$ denote the probability space of all
+possible samples induced by the (two-step) sampling design above.
+Note that $\mathcal{S} = \mathcal{S}_{0} \sqcup \mathcal{S}_{1}$,
+where $\mathcal{S}_{0} = \left\{\,\,\mathcal{U}\,\right\}$ and
+$\mathcal{S}_{1}$ is the set of all subsets of $\mathcal{U}$ of size 100.
+The sampling design is determined by the following probability distribution on $\mathcal{S}$:
+\begin{equation*}
+P\!\left(\,\mathcal{U}\,\right) = \dfrac{1}{2}
+\quad\textnormal{and}\quad
+P\!\left(\,s\,\right) = \frac{1}{2\left(\begin{array}{c}1000\\100\end{array}\right)},
+\;\;\textnormal{for each $s \in \mathcal{S}_{1}$}.
+\end{equation*}
+Let $\widehat{T}_{y}:\mathcal{S} \longrightarrow \Re$ denote our chosen estimator for $T_{y}$.
+Then the (unconditional) probability distribution of $\widehat{T}_{y}$ can be ``decomposed" as follows:
+\begin{eqnarray*}
+P\left(\,\left.\widehat{T}_{y} = t\;\right\vert\,\mathbf{y}\,\right)
+&=& P\left(\,\left.\widehat{T}_{y} = t,\,X = 0\;\right\vert\,\mathbf{y}\,\right) + P\left(\,\left.\widehat{T}_{y} = t,\,X = 1\,\right\vert\,\mathbf{y}\,\right) \\
+&=& P\left(\,\left.\widehat{T}_{y} = t\;\right\vert X = 0,\,\mathbf{y}\,\right)\cdot P\left(\,\left.X = 0\;\right\vert\,\mathbf{y}\,\right)
+	+ P\left(\,\left.\widehat{T}_{y} = t\;\right\vert X = 1,\,\mathbf{y}\,\right)\cdot P\left(\,\left.X = 1\;\right\vert\,\mathbf{y}\,\right) \\
+&=& P\left(\,\left.\widehat{T}_{y} = t\;\right\vert X = 0,\,\mathbf{y}\,\right)\cdot P\left(\,X = 0\,\right)
+	+ P\left(\,\left.\widehat{T}_{y} = t\;\right\vert X = 1,\,\mathbf{y}\,\right)\cdot P\left(\,X = 1\,\right),
+\end{eqnarray*}
+where the last equality follows because the distribution of $X$ is independent of $\mathbf{y}$.
+Suppose the observation we make consists of $\left(\,\widehat{T}_{y}\,,\,X\,\right)$.
+The unconditional probability distribution of $\widehat{T}_{y}$,
+given by $P\left(\,\left.\widehat{T}_{y} = t\;\right\vert\,\mathbf{y}\,\right)$ above,
+describes of course the randomness of the estimator $\widehat{T}_{y}$ as induced
+by both the randomness of the sample
+$s \in \mathcal{S} = \mathcal{S}_{0} \sqcup \mathcal{S}_{1}$
+as well as that of $X$ (the outcome of the coin flip in Step 1).
+Now, suppose we have indeed carried out the sampling procedure and have obtained
+an observation of $\left(\,\widehat{T}_{y}\,,\,X\,\right)$.
+Suppose it happened that $X = 1$.
+Hence, we know that the estimate $\widehat{T}_{y}(s)$ we actually obtained
+was generated from an SRS of size 100 (rather than a census).
+Note also that the probability distribution of $X$ is independent of $\mathbf{y}$
+and the observation of $X$ gives no information about $\mathbf{y}$.
+{\color{red}One school of thought therefore argues that downstream inferences
+about $\mathbf{y}$ should be carried out using the conditional probability
+$P\!\left(\,\left.\widehat{T}_{y} = t\;\right\vert\;X = 1\,,\,\mathbf{y}\,\right)$,
+rather than the unconditional probability
+$P\left(\,\left.\widehat{T}_{y} = t\;\right\vert\,\mathbf{y}\,\right)$.}
+In other words, in the present example, as far as making inferences about $\mathbf{y}$
+is concerned, only the randomness in Step 2 is relevant, and the randomness in Step 1
+(i.e. the randomness of $X$, the outcome of the coin flip) is irrelevant to any inference
+about $\mathbf{y}$. Consequently randomness of $X$ ``should" be removed in any
+inference procedure for $\mathbf{y}$, and this is achieved by conditioning on the
+observed value of $X$. \qed
+
+\vskip 0.5cm
+\noindent
+\textbf{Conditioning on obtained sample size for sample designs with random sample size}\vskip 0.1cm
+\noindent
+Suppose $\mathcal{U}$ is a finite population.
+We wish to estimate the total $T_{y} = \sum_{i\in\mathcal{U}}y_{i}$ of a
+population characteristic $\mathbf{y} : \mathcal{U} \longrightarrow \Re$,
+using a sample design $p: \mathcal{S} \longrightarrow [\,0\,,1\,]$
+and a estimator $\widehat{T} : \mathcal{S} \longrightarrow \Re$.
+{\color{red}We make the assumption that the sampling design $p$ is independent of $\mathbf{y}$.}
+Let $N : \mathcal{S} \longrightarrow \N\cup\{\,0\,\}$ be the random variable
+of sample size, i.e. $N(s)$ $=$ number of elements in $s$,
+for each possible sample $s \in \mathcal{S}$. Then,
+\begin{eqnarray*}
+P\left(\,\left.\widehat{T} = t \,\right\vert\,\mathbf{y}\,\right)
+&=&  \sum_{n}\,P\left(\,\left.\widehat{T} = t,\, N = n \,\right\vert\,\mathbf{y}\,\right) \\
+&=&  \sum_{n}\,P\left(\,\left.\widehat{T} = t\,\right\vert\,\,N = n,\, \mathbf{y}\,\right)\cdot P\left(\left.\,N = n\,\right\vert\,\mathbf{y}\,\right)\\
+&=&  \sum_{n}\,P\left(\,\left.\widehat{T} = t\,\right\vert\,\,N = n,\, \mathbf{y}\,\right)\cdot P\left(\,N = n\,\right),
+\end{eqnarray*}
+where the last equality follows from the assumed independence of the probability distribution
+$p : \mathcal{S} \longrightarrow [\,0\,,\,1\,]$ (hence that of $N$) from $\mathbf{y}$.
+The key observation to make now is that:
+{\color{red}Although the actual sampling procedure operationally may or may not
+have been a two-step procedure, the independence of $p$ from $\mathbf{y}$ makes it probabilistically
+equivalent to a two-step procedure, as shown by the above decomposition of
+$P\!\left(\,\left.\widehat{T} = t\;\right\vert\,\mathbf{y}\right)$}
+--- Step (1): randomly select a sample size $N = n$ according to the distribution $P(N = n)$, and then
+Step (2): randomly select a sample $s$ of size $n$ chosen in Step (1) according to the distribution
+$P\!\left(\,s\;\vert\,N = n\,\right)$.
+By the statistical reasoning explained in the preceding observation, it follows that
+post-sampling inference about $\mathbf{y}$ should be made based on the conditional
+distribution $P\!\left(\,\left.\widehat{T} = t\;\right\vert\,N = n\,,\,\mathbf{y}\,\right)$,
+rather than the unconditional distribution $P\!\left(\,\left.\widehat{T} = t\;\right\vert\,\mathbf{y}\,\right)$.
+This is because the sampling scheme is probabilistically equivalent to a two-step procedure,
+with the probability distribution of the first step (choosing a sample size) independent of the parameters
+of interest ($T_{y}$), and thus only the probability distribution of the second step (choosing a sample
+of the size chosen in first step) should be used to make inference about $T_{y}$.
+\qed
+
+\vskip 0.5cm
+\noindent
+\textbf{Caution}\vskip 0.1cm
+\noindent
+In more formal parlance, the random variable $N : \mathcal{S} \longrightarrow \N\cup\{\,0\,\}$
+is \underline{ancillary} to the parameter $\mathbf{y}$.
+Thus, conditioning on sample size, for finite-population sampling schemes with random
+sample size, \emph{partially} conforms to the \textbf{Conditionality Principle},
+which states that statistical inference about a parameter should be made conditioned on
+observed values of statistics ancillary to that parameter.
+The conformance is only partial due to the (obvious) fact that it is the sample $s$ itself
+which is ancillary to the parameter of interest $\mathbf{y}$, not just its sample size $N(s)$.
+Thus, full conformance to the Conditionality Principle would require inference about
+$\mathbf{y}$ be made conditioned on the observed sample $s$ itself (rather than its
+size $N(s)$).
+However, if we did condition on the obtained sample $s$ itself, the domain of the estimator
+$\widehat{T}$ would be restricted to the singleton $\{\,s\,\}$, and $\widehat{T}$ could then
+attain only one value under conditioning on $s$, and no randomization-based
+(i.e. design-based) inference --- apart from the observed value of $\widehat{T}(s)$ --- could
+be made any longer.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
