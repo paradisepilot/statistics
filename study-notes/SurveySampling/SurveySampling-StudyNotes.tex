@@ -529,7 +529,7 @@ The above formula agree exactly with those derived earlier for stratified simple
 \section{Generalized Regression Estimator as a special case of Calibration Estimators}
 \setcounter{theorem}{0}
 
-This is a summary of \cite{DevilleSarndal1992}.
+This is a summary of Section 1 of the article \cite{DevilleSarndal1992}.
 
 Let $U = \{1,2,\ldots,N\}$ be a finite population.
 Let $y : U \longrightarrow \Re$ be an $\Re$-valued function defined on $U$
@@ -686,6 +686,72 @@ is given by:
 &=& \widehat{T}^{\textnormal{HT}}_{y}(s) + \left(\sum_{k \in s}\,d_{k}q_{k}y_{k}\cdot\mathbf{x}_{k}^{T}\right)\cdot\mathbf{A}(s)^{-1}\cdot\left(\,T_{\mathbf{x}} \,-\, \widehat{T}^{\textnormal{HT}}_{x}(s)\,\right).
 \end{eqnarray*}
 \qed
+
+\vskip 0.5cm
+\noindent
+\textbf{Example: Ratio estimator as a special case of GREG estimator (hence also of calibration estimator)}
+\vskip 0.3cm
+\noindent
+We first give the definition of the Ratio Estimator.
+\vskip 0.3cm
+\begin{center}
+\begin{minipage}{6.0in}
+\noindent
+\textbf{Definition 
+(Ratio Estimator of the population total $T_{y}$ of a population characteristic $y$ with respect to that of another characteristic $x$)
+[See Section 5.6, \cite{Sarndal1992}, p.176; see also Chapter 6, \cite{Cochran1977}.]}
+\vskip 0.1cm
+Let $U = \{\,1,2,\ldots,N\,\}$ be a finite population.
+Let $x, y : U \longrightarrow \Re$ be two population characteristics.
+Suppose the population total $T_{x} := \sum_{k=1}^{N}x_{k}$ of $x$ is known.
+Let $p : \mathcal{S} \subset \mathcal{P}(U) \longrightarrow (0,1]$ be a sampling design
+such that the inclusion probability $\pi_{k} := \sum_{s \ni k}p(s) > 0$, for each $k \in U$.
+Hence, $\widehat{T}^{\textnormal{HT}}_{y}(s)$ and $\widehat{T}^{\textnormal{HT}}_{x}(s)$ are well-defined for each sample $s \in \mathcal{S}$.
+The \textbf{ratio estimator}, $\widehat{T}^{\textnormal{R}}_{y} : \mathcal{S} \longrightarrow \Re$, of the population $T_{y}$ of $y$ is, by definition,
+\begin{equation*}
+\widehat{T}^{\textnormal{R}}_{y}(s)
+\;:=\;
+T_{x}\cdot\dfrac{\widehat{T}^{\textnormal{HT}}_{y}\!(s)}{\widehat{T}^{\textnormal{HT}}_{x}\!(s)},
+\quad
+\textnormal{for each $s \in \mathcal{S}$}.
+\end{equation*}
+\end{minipage}
+\end{center}
+
+\noindent
+Now, we make the following:
+\vskip 0.3cm
+\begin{center}
+\begin{minipage}{6.0in}
+\noindent
+\textbf{Observation:\quad$\widehat{T}^{\textnormal{GREG}}_{y} = \widehat{T}^{\textnormal{R}}_{y}$, under the choice $d_{i} = 1/\pi_{i}$ and $q_{k} = 1/x_{k}$}
+\vskip 0.1cm
+Indeed, $\mathbf{A}(s)$ is now a scalar, and we write $A(s)$, and
+\begin{equation*}
+A(s)
+\;=\; \sum_{k \in s}d_{k}q_{k}x_{k}^{2}
+\;=\; \sum_{k \in s}\dfrac{1}{\pi_{k}}\dfrac{1}{x_{k}}x_{k}^{2}
+\;=\; \sum_{k \in s}\dfrac{x_{k}}{\pi_{k}}
+\;=\; \widehat{T}^{\textnormal{HT}}_{x}\!(s).
+\end{equation*}
+Next, the Lagrange multiplier $\lambda = \lambda(s)$ is now given by:
+\begin{equation*}
+\lambda \; = \; \lambda(s)
+\;=\; \dfrac{1}{A(s)}\left(T_{x} - \widehat{T}^{\textnormal{HT}}_{x}\!(s)\right)
+\;=\; \dfrac{1}{\widehat{T}^{\textnormal{HT}}_{x}\!(s)}\left[\,T_{x} - \widehat{T}^{\textnormal{HT}}_{x}\!(s)\,\right]
+\;=\; \dfrac{T_{x}}{\widehat{T}^{\textnormal{HT}}_{x}\!(s)} - 1
+\end{equation*}
+Thus, the Generalized Regression Estimator $\widehat{T}^{\textnormal{GREG}_{y}}$ of $T_{y}$ is given by:
+\begin{eqnarray*}
+\widehat{T}^{\textnormal{GREG}}_{y}\!(s)
+&=& \widehat{T}^{\textnormal{HT}}_{y}\!(s) + \left(\,\sum_{k\in s}\dfrac{1}{\pi_{k}}\dfrac{1}{x_{k}}y_{k}x_{k}\,\right)\lambda
+\quad=\quad \widehat{T}^{\textnormal{HT}}_{y}\!(s) + \widehat{T}^{\textnormal{HT}}_{y}\!(s)\left(\,\dfrac{T_{x}}{\widehat{T}^{\textnormal{HT}}_{x}\!(s)} - 1\,\right)\\
+&=& T_{x}\cdot\dfrac{\widehat{T}^{\textnormal{HT}}_{y}\!(s)}{\widehat{T}^{\textnormal{HT}}_{x}\!(s)} \\
+&=:& \widehat{T}^{\textnormal{R}}_{y}(s),
+\end{eqnarray*}
+as required. \qed
+\end{minipage}
+\end{center}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
