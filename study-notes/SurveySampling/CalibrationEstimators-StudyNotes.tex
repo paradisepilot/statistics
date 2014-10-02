@@ -42,7 +42,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\mbox{}\vskip 0.0cm
+\mbox{}\vskip -0.3cm
 \section{Generalized Regression Estimator as a special case of Calibration Estimators}
 \setcounter{theorem}{0}
 
@@ -81,8 +81,6 @@ E_{p}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]
 \end{equation*}
 We will call the $d_{k}$'s above the \textit{Horvitz-Thompson weights}.
 
-\vskip 0.5cm
-
 Roughly, the generalized regression estimator for $T_{y}$ is an estimator of the form:
 \begin{equation*}
 \widehat{T}^{\textnormal{GREG}}_{y}(s)
@@ -95,7 +93,8 @@ depends on the $w_{k}(s)$'s and the Horvitz-Thompson weights $d_{k}$'s, while
 the constraints involve the $w_{k}(s)$'s and auxiliary information.
 More precisely, the calibrated weights $w_{k}(s)$ solve the following constrained
 minimization problem:
-\vskip 1.0cm
+
+\vskip 0.5cm
 \begin{center}
 \begin{minipage}{6.0in}
 \begin{center}
@@ -128,7 +127,7 @@ f_{s}(w_{k}(s)\;;\,d_{k},q_{k})
 subject to the (vectorial) constraint on $w_{k}(s)$:
 \begin{equation*}
 \mathbf{h}(w_{k}(s)\,;\,\mathbf{x}_{k},T_{\mathbf{x}})
-\;:=\; - T_{\mathbf{x}} + \sum_{k \in s}\, w_{k}(s)\,\mathbf{x}_{k} \; = \; 0
+\;:=\; - T_{\mathbf{x}} + \sum_{k \in s}\, w_{k}(s)\,\mathbf{x}_{k} \; = \; 0.
 \end{equation*}
 \end{minipage}
 \end{center}
@@ -138,7 +137,8 @@ by the method of Lagrange Multipliers.
 
 \vskip 0.5cm
 \noindent
-\textbf{Solution of the Constrained Minimization Problem for the Generalized Regression Estimator calibrated weights:}\\
+\textbf{Solution of the Constrained Minimization Problem for the Generalized Regression Estimator calibrated weights:}
+\vskip 0.3cm
 Let $s \in \mathcal{S}$ be fixed. We write the objective function as
 \begin{equation*}
 f(\{w_{k}(s)\,:k\in s\,\}) \; = \; \sum_{k \in s} \dfrac{(w_{k}(s) - d_{k})^{2}}{d_{k}q_{k}},
@@ -275,10 +275,16 @@ as required. \qed
 \section{Calibration Estimators}
 \setcounter{theorem}{0}
 
+The general calibration estimator $\widehat{T}^{\textnormal{Cal}}_{y}$ is very similar to the
+generalized regression estimator $\widehat{T}^{\textnormal{GREG}}_{y}$, in that 
+$\widehat{T}^{\textnormal{Cal}}_{y}$ is also the solution to a constrained minimization problem.
+The difference is that the objection function in the case of $\widehat{T}^{\textnormal{Cal}}_{y}$
+has a more general form.
+
 \begin{center}
 \begin{minipage}{6.0in}
 \begin{center}
-\textbf{\large\underline{Constrained Minimization Problem for the GREG calibrated weights}}
+\textbf{\large\underline{Constrained Minimization Problem for Weights of Calibration Estimators}}
 \end{center}
 \noindent
 \textbf{Conceptual framework:}\;\;
@@ -292,7 +298,16 @@ We use the common notation $\mathbf{x}_{k}$ for $\mathbf{x}(k)$, for each $k \in
 \item	The population total of $\mathbf{x}$
 		\begin{equation*} T_{\mathbf{x}} \; := \; \sum_{k \in U} \mathbf{x}_{k} \in \Re^{1\times J} \end{equation*}
 		is known.
-\item	For each $s \in \mathcal{S}$, the value $(y_{k},\mathbf{x}_{k})$ can be observed for each $k \in s$ via the sampling procedure.
+\item	For each $s \in \mathcal{S}$, the value $(y_{k},\mathbf{x}_{k})$ can be observed for each $k \in s$
+		via the sampling procedure.
+\item	For each $k \in U$, $G_{k}(w\;;\,d)$ is an $\Re$-valued function which satisfies:
+		\begin{enumerate}
+		\item	For each $d > 0$, $G_{k}(w\;;\,d)$ is non-negative, differentiable with respect to $w$,
+				strictly convex in $w$, defined on an open interval $D_{k}(d)$ containing $d$, and
+				such that $G_{k}(k\;;\,k) = 0$.
+		\item	$g_{k}(w\;;\,d) := \dfrac{\partial G_{k}(w\;;\,d)}{\partial w}$ is continuous in $w$ and maps
+				$D_{k}(d)$ bijectively onto its image.
+		\end{enumerate}
 \end{itemize}
 \vskip 0.3cm
 \noindent
@@ -301,16 +316,82 @@ For each $k \in U$, let $q_{k} > 0$ be chosen.
 For each $s \in \mathcal{S}$, the calibrated weights $w_{k}(s)$, for $k \in s$, are obtained
 by minimizing the following objective function:
 \begin{equation*}
-f_{s}(w_{k}(s)\;;\,d_{k},q_{k})
-\;:=\;\sum_{k \in s}\,\dfrac{(w_{k}(s) - d_{k})^{2}}{d_{k}q_{k}}
+f_{s}(w_{k}(s)\;;\,d_{k})
+\;:=\;\sum_{k \in s}\,G_{k}(w_{k}(s)\;;\,d_{k})
 \end{equation*}
 subject to the (vectorial) constraint on $w_{k}(s)$:
 \begin{equation*}
 \mathbf{h}(w_{k}(s)\,;\,\mathbf{x}_{k},T_{\mathbf{x}})
-\;:=\; - T_{\mathbf{x}} + \sum_{k \in s}\, w_{k}(s)\,\mathbf{x}_{k} \; = \; 0
+\;:=\; - T_{\mathbf{x}} + \sum_{k \in s}\, w_{k}(s)\,\mathbf{x}_{k} \; = \; 0.
 \end{equation*}
 \end{minipage}
 \end{center}
+
+\vskip 0.5cm
+\noindent
+\textbf{Solution of the Constrained Minimization Problem for weights of calibration estimators:}
+\vskip 0.3cm
+Let $s \in \mathcal{S}$ be fixed. We write the objective function as
+\begin{equation*}
+f(\{w_{k}(s)\,:k\in s\,\}) \; = \; \sum_{k \in s} G_{k}(w_{k}(s)\;;\,d_{k}),
+\end{equation*}
+and we write the constraints on $w_{k}(s)$ as:
+\begin{equation*}
+h_{j}(\{w_{k}(s)\,:k\in s\,\}) \; = \; \sum_{k \in s} w_{k}(s)\,x_{kj} - T_{x_{j}} = 0,
+\quad j = 1, 2, \ldots, J.
+\end{equation*}
+By the Method of Lagrange Multipliers, if $\mathbf{w}_{0} = \{w_{k}(s)\,:\,k \in s\}$ is a
+solution to the constrained minimization problem, then $\mathbf{w}_{0}$ satisfies:
+\begin{equation*}
+\nabla_{w}f(\mathbf{w}_{0}) \;\in\; \span\!\left\{\,\nabla_{w}h_{j}(\mathbf{w}_{0})\,:\;j = 1,2,\ldots, J\,\right\}.
+\end{equation*}
+Now,
+\begin{equation*}
+\dfrac{\partial f}{\partial w_{k}(s)} \; = \; g_{k}(w_{k}(s)\;;\,d_{k})
+\quad\textnormal{and}\quad
+\dfrac{\partial h_{j}}{\partial w_{k}(s)} \; = \; x_{kj}.
+\end{equation*}
+Thus, we seek $\lambda_{1},\lambda_{2},\ldots,\lambda_{J}$ such that
+\begin{equation*}
+g_{k}(w_{k}(s)\;;\,d_{k})
+\;=\; \dfrac{\partial f}{\partial w_{k}(s)}
+\;=\; \sum_{j = 1}^{J} \lambda_{j}\,\dfrac{\partial h_{j}}{\partial w_{k}(s)}
+\;=\; \sum_{j = 1}^{J} \lambda_{j}\,x_{kj}
+\;=\; \mathbf{x}_{k}^{T}\cdot\mathbf{\lambda}.
+\end{equation*}
+By hypothesis, $g_{k}(\;\cdot\;;\,d_{k})$ is bijective on $D_{k}(d_{k})$.
+We denote its inverse by $g^{-1}_{k}(\;\cdot\;;\,d_{k})$.
+Thus, we have
+\begin{equation*}
+w_{k}(s)
+\;=\; g^{-1}_{k}\!\left(\,\mathbf{x}_{k}^{T}\cdot\mathbf{\lambda}\;;\,d_{k}\,\right)
+\;=\; d_{k}\cdot F_{k}\!\left(\,\mathbf{x}_{k}^{T}\cdot\mathbf{\lambda}\,\right),
+\end{equation*}
+where $F_{k}(\;\cdot\;) := \dfrac{1}{d_{k}}\,g^{-1}_{k}\!\left(\;\cdot\;;\,d_{k}\,\right)$.
+The constraint equation can thus be rewritten as follows:
+For each $j = 1, 2, \ldots, J$,
+\begin{eqnarray*}
+\sum_{k \in s}\,w_{k}(s)\,x_{kj} &=& T_{x_{j}} \\
+\sum_{k \in s}\,d_{k}F_{k}(\mathbf{x}_{k}^{T}\cdot\lambda)\,x_{kj} &=& T_{x_{j}} \\
+\sum_{k \in s}\,d_{k}\left[F_{k}(\mathbf{x}_{k}^{T}\cdot\lambda) - 1\right] x_{kj} &=& T_{x_{j}} -  \sum_{k \in s}\,d_{k}x_{kj} \;\;=\;\; T_{x_{j}} - \widehat{T}^{\textnormal{HT}}_{x_{j}}(s). \\
+\end{eqnarray*}
+In vectorial form, we have:
+\begin{equation*}
+\sum_{k \in s}\,d_{k}\left[F_{k}(\mathbf{x}_{k}^{T}\cdot\lambda) - 1\right] \mathbf{x}_{k}
+\;\;=\;\; T_{\mathbf{x}} - \widehat{T}^{\textnormal{HT}}_{\mathbf{x}}(s).
+\end{equation*}
+Note that, for each obtained sample $s \in \mathcal{S}$, the Lagrange multiplier vector
+$\lambda = (\lambda_{1},\lambda_{2},\ldots,\lambda_{J}) \in \Re^{J}$
+is the only unknown quantity in the above constraint equation.
+{\color{red}We now assume the above vectorial constraint equation is solvable for $\lambda$},
+and denote its solution by $\lambda^{*}$.
+Then, the \textbf{calibration estimator} of $T_{y}$ is given by:
+\begin{equation*}
+\widehat{T}^{\textnormal{Cal}}_{y}(s)
+\;\;=\;\;
+\sum_{k \in s}\,d_{k}\cdot F_{k}\!\left(\,\mathbf{x}_{k}^{T}\cdot\lambda^{*}\,\right)\cdot y_{k}
+\end{equation*}
+\qed
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
