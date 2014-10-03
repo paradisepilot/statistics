@@ -393,6 +393,32 @@ Then, the \textbf{calibration estimator} of $T_{y}$ is given by:
 \end{equation*}
 \qed
 
+\vskip 0.5cm
+\noindent
+\textbf{Observation:}
+\vskip 0.2cm
+\noindent
+If $y$ is a deterministic linear function of $\mathbf{x}$, i.e. there exists some $\beta \in \Re^{J}$
+such that for each $k \in U$, we have $y_{k} = \beta^{T}\cdot\mathbf{x}_{k}$,
+then $\widehat{T}^{\textnormal{Cal}}_{y}(s) = T_{y}$, for each $s \in \mathcal{S}$.
+\vskip 0.2cm
+\noindent
+\proof
+\begin{eqnarray*}
+\widehat{T}^{\textnormal{Cal}}_{y}(s)
+&=&   \sum_{k\in s}\,d_{k}\cdot F_{k}\!\left(\mathbf{x}^{T}_{k}\cdot\lambda^{*}\right)\cdot y_{k}
+\;\;=\;\; \sum_{k\in s}\,d_{k}\cdot F_{k}\!\left(\mathbf{x}^{T}_{k}\cdot\lambda^{*}\right)\cdot\left(\beta^{T}\cdot\mathbf{x}_{k}\right) 
+\;\;=\;\;   \beta^{T}\cdot\left[\sum_{k\in s}\,d_{k}\cdot F_{k}\!\left(\mathbf{x}^{T}_{k}\cdot\lambda^{*}\right)\cdot\mathbf{x}_{k}\right] \\
+&=& \beta^{T}\cdot T_{\mathbf{x}}
+\;\;=\;\; \beta^{T}\cdot\left(\sum_{k\in U}\,\mathbf{x}_{k}\right)
+\;\;=\;\; \sum_{k\in U}\,\beta^{T}\cdot\mathbf{x}_{k}
+\;\;=\;\; \sum_{k\in U}\,y_{k} \\
+&=:& T_{y},
+\end{eqnarray*}
+where the third equality holds because $d_{k}$ and $F_{k}(\;\cdot\;)$ are scalars, and
+the fourth equality holds since $\lambda^{*}$ is a solution of the vectorial constraint equation.
+\qed
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\bibliographystyle{alpha}
