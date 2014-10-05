@@ -526,14 +526,16 @@ The above formula agree exactly with those derived earlier for stratified simple
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Linear estimators for population totals}
+\section{General linear estimators for (multivariate) population totals}
 \setcounter{theorem}{0}
 
 Let $U = \{1,2,\ldots,N\}$ be a finite population.
-Let $y : U \longrightarrow \Re$ be an $\Re$-valued function defined on $U$
+Let $\mathbf{y} : U \longrightarrow \Re^{m}$ be an $\Re^{m}$-valued function defined on $U$
 (commonly called a ``population parameter").
-We will use the common notation $y_{k}$ for $y(k)$.
-We wish to estimate $T_{y} := \sum_{k \in U} y_{k}$ via survey sampling.
+We will use the common notation $\mathbf{y}_{k}$ for $\mathbf{y}(k)$.
+We wish to estimate
+$\mathbf{T}_{\mathbf{y}} := \underset{k \in U}{\sum}\,\mathbf{y}_{k} \in \Re^{m}$
+via survey sampling.
 Let $p:\mathcal{S} \longrightarrow (0,1]$ be our chosen sampling design,
 where $\mathcal{S} \subseteq \mathcal{P}(U)$ is the set of all possible
 samples in the design, and $\mathcal{P}(U)$ is the power set of $U$.
@@ -542,18 +544,31 @@ samples in the design, and $\mathcal{P}(U)$ is the power set of $U$.
 \mbox{}
 \vskip 0.1cm
 \noindent
-A random variable $\widehat{T}_{y} : \mathcal{S} \longrightarrow \Re$ is said to be
-\underline{\emph{linear} in the population parameter $y : U \longrightarrow \Re$}
+A random variable $\widehat{\mathbf{T}}_{\mathbf{y}} : \mathcal{S} \longrightarrow \Re^{m}$
+is said to be \underline{\emph{linear} in the population parameter $\mathbf{y} : U \longrightarrow \Re$}
 if it has the following form:
 \begin{equation*}
 \begin{array}{cccl}
-\widehat{T}_{y} : & \mathcal{S} & \longrightarrow & \Re \\
-     & s &\longmapsto & \underset{k\in s}{\sum}\,w_{k}(s)\,y_{k},
+\widehat{\mathbf{T}}_{\mathbf{y}} : & \mathcal{S} & \longrightarrow & \Re^{m} \\
+     & s &\longmapsto & \underset{k\in s}{\sum}\,w_{k}(s)\,\mathbf{y}_{k} \;=\; \underset{k\in U}{\sum}\,I_{k}(s)\,w_{k}(s)\,\mathbf{y}_{k},
 \end{array}
 \end{equation*}
 where, for each $k \in U$, $w_{k} : \mathcal{S} \longrightarrow \Re$ is itself
-an $\Re$-valued random variable.
-We call the $w_{k}$'s the \underline{\emph{weights}} of $\widehat{T}_{y}$.
+an $\Re$-valued random variable, and $I_{k} : \mathcal{S} \longrightarrow \{0,1\}$
+is the indicator random variable defined by:
+\begin{equation*}
+I_{k}(s)
+\;=\;
+\left\{
+\begin{array}{cl}
+1, & \textnormal{if $k \in s$}, \\
+0, & \textnormal{otherwise}
+\end{array}
+\right.
+\end{equation*}
+We call the $w_{k}$'s the \underline{\emph{weights}} of $\widehat{\mathbf{T}}_{\mathbf{y}}$,
+and we use the notation $\widehat{\mathbf{T}}_{\mathbf{y};w}$ to indicate that the random
+variable depends on the weights $w_{k}$.
 \end{definition}
 
 \noindent
@@ -576,180 +591,307 @@ $\mathcal{S}$ of all admissible samples in the design.
 \mbox{}
 \vskip 0.2cm
 \noindent
-Let $\widehat{T}_{y;w} : \mathcal{S} \longrightarrow \Re$,
-with $\widehat{T}_{y;w}(s) = \underset{k \in s}{\sum}\,w_{k}(s)\,y_{k}$,
-be a random variable linear in the population parameter $y : U \longrightarrow \Re$.
+Let $\widehat{\mathbf{T}}_{\mathbf{y};w} : \mathcal{S} \longrightarrow \Re^{m}$, with
+$\widehat{\mathbf{T}}_{\mathbf{y};w}(s)$
+$=$ $\underset{k \in U}{\sum}\,I_{k}(s)\,w_{k}(s)\,\mathbf{y}_{k}$
+$=$ $\underset{k \in s}{\sum}\,w_{k}(s)\,\mathbf{y}_{k}$,
+be a random variable linear in the population parameter
+$\mathbf{y} : U \longrightarrow \Re$.
 Then,
 \begin{equation*}
-E\!\left[\;\widehat{T}_{y;w}\;\right] \; = \; T_{y},\;\textnormal{for arbitrary $y$}
+E\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right] \; = \; \mathbf{T}_{\mathbf{y}},\;\textnormal{for arbitrary $\mathbf{y}$}
 \quad\Longleftrightarrow\quad
-\sum_{s\ni k}\,p(s)\,w_{k}(s) \; = \; 1,\;\textnormal{for each $k \in U$}.
+E\!\left[\;I_{k}\,w_{k}\;\right] \; = \; 1,\;\textnormal{for each $k \in U$}.
 \end{equation*}
 \end{proposition}
 \proof
-For each $k \in U$, define the indicator random variable
-$I_{k} : \mathcal{S} \longrightarrow \{0,1\}$ by:
+Note:
 \begin{equation*}
-I_{k}(s)
-\;\;=\;\;
-\left\{
-\begin{array}{cl}
-1\,, & \textnormal{if $k \in s$} \\
-0\,, & \textnormal{otherwise}
-\end{array}.
-\right.
+E\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]
+\;=\; E\!\left[\;\underset{k \in s}{\sum}\,w_{k}\,\mathbf{y}_{k}\;\right]
+\;=\; E\!\left[\;\underset{k \in U}{\sum}\,I_{k}\,w_{k}\,\mathbf{y}_{k}\;\right]
+\;=\; \underset{k \in U}{\sum}\,E\!\left[\,I_{k}\,w_{k}\,\right]\,\mathbf{y}_{k}
 \end{equation*}
-Note that
+Hence, since $\mathbf{y} : U \longrightarrow \Re$ is arbitrary,
 \begin{equation*}
-E\!\left[\;\widehat{T}_{y;w}\;\right]
-\;=\; E\!\left[\,\underset{k \in s}{\sum}\,w_{k}\,y_{k}\,\right]
-\;=\; E\!\left[\,\underset{k \in U}{\sum}\,I_{k}w_{k}\,y_{k}\,\right]
-\;=\; \underset{k \in U}{\sum}\,E\!\left[\,I_{k}w_{k}\,\right]\,y_{k}
-\end{equation*}
-Hence, since $y : U \longrightarrow \Re$ is arbitrary,
-\begin{equation*}
-E\!\left[\;\widehat{T}_{y;w}\;\right] \;=\; T_{y} \; := \; \underset{k \in U}{\sum}\,y_{k}
+E\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right] \;=\; \mathbf{T}_{\mathbf{y}} \; := \; \underset{k \in U}{\sum}\,\mathbf{y}_{k}
 \quad\Longleftrightarrow\quad
-\sum_{k \in U}\left(E\!\left[\,I_{k}w_{k}\,\right]-1\right)\cdot y_{k} \; = \; 0
+\sum_{k \in U}\left(E\!\left[\,I_{k}\,w_{k}\,\right]-1\right)\cdot\mathbf{y}_{k} \; = \; \mathbf{0}
 \quad\Longleftrightarrow\quad
-E\!\left[\,I_{k}w_{k}\,\right] \; = \; 1,\;\textnormal{for each $k \in U$}
+E\!\left[\;I_{k}\,w_{k}\;\right] \; = \; 1,\;\textnormal{for each $k \in U$}.
 \end{equation*}
-Lastly, note that
-\begin{equation*}
-E\!\left[\,I_{k}w_{k}\,\right]
-\;\;=\;\; \sum_{s \in \mathcal{S}}\,p(s)\,I_{k}(s)\,w_{k}(s)
-\;\;=\;\; \sum_{k \ni s}\,p(s)\,w_{k}(s),
-\end{equation*}
-and the proof of the Proposition is complete. \qed
+The proof of the Proposition is now complete. \qed
 
 \begin{corollary}
 \mbox{}
 \vskip 0.2cm
 \noindent
-For a sampling design each of whose inclusion probabilities is strictly positive,
-the Horvitz-Thompson estimator $\widehat{T}^{\textnormal{HT}}_{y}$ is well-defined
-and it is the unique unbiased estimator for $T_{y}$, for arbitrary $y$, which is linear in $y$ and
-whose weights are constants in $s$.
+Let $U = \{1,2,\ldots,N\}$ be a finite population.
+For any fixed but arbitrary population parameter $\mathbf{y} : U \longrightarrow \Re^{m}$ and
+for any sampling design $p : \mathcal{S} \longrightarrow (0,1]$ such that each of
+its first-order inclusion probabilities is strictly positive,
+the Horvitz-Thompson estimator $\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}$ is well-defined
+and it is the unique unbiased estimator for $\mathbf{T}_{\mathbf{y}}$, which is linear in $\mathbf{y}$ and
+whose weights are constant in $s$.
 \end{corollary}
 
 \proof
 Recall that the Horvitz-Thompson estimator is defined as:
 \begin{equation*}
-\widehat{T}^{\textnormal{HT}}_{y}(s)
-\;:=\;
-\sum_{k \in s}\,\dfrac{y_{k}}{\pi_{k}},
+\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}(s)
+\;:=\; \sum_{k \in s}\,\dfrac{1}{\pi_{k}}\,\mathbf{y}_{k}
+\;:=\; \sum_{k \in U}\,I_{k}(s)\,\dfrac{1}{\pi_{k}}\,\mathbf{y}_{k},
 \end{equation*}
-where $\pi_{k} := \underset{s \ni k}{\sum}\,p(s)$ is the inclusion probability of $k \in U$
-under the sampling design $p : \mathcal{S} \longrightarrow (0,1]$.
-Clearly, $\widehat{T}^{\textnormal{HT}}_{y}$ is linear in $y$ with weights constant in $s$.
+where $\pi_{k} := E\!\left[\,I_{k}\,\right] = \underset{k \in U}{\sum}\,p(s)\,I_{k}(s) = \underset{s \ni k}{\sum}\,p(s)$
+is the inclusion probability of $k \in U$ under the sampling design $p : \mathcal{S} \longrightarrow (0,1]$.
+Clearly, $\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}$ is linear in $\mathbf{y}$ with weights constant in $s$.
 Next, note that:
-\begin{eqnarray*}
-E\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]
-&=& E\!\left[\;\sum_{k \in s}\,\dfrac{y_{k}}{\pi_{k}}\;\right]
-\;\;=\;\; E\!\left[\;\sum_{k \in U}\,I_{k}\,\dfrac{y_{k}}{\pi_{k}}\;\right]
-\;\;=\;\; \sum_{k \in U}\,E\!\left[\;I_{k}\;\right]\,\dfrac{y_{k}}{\pi_{k}}
-\;\;=\;\; \sum_{k \in U}\,\left[\,\sum_{s\in\mathcal{S}}\,p(s)I_{k}(s)\,\right]\,\dfrac{y_{k}}{\pi_{k}} \\
-&=& \sum_{k \in U}\,\left[\,\sum_{s \ni k}\,p(s)\,\right]\,\dfrac{y_{k}}{\pi_{k}}
-\;\;=\;\; \sum_{k \in U}\,\pi_{k}\,\dfrac{y_{k}}{\pi_{k}}
-\;\;=\;\; \sum_{k \in U}\,y_{k} \;\; = \;\; T_{y}
-\end{eqnarray*}
-Hence, $\widehat{T}^{\textnormal{HT}}_{y}$ is an unbiased estimator for $T_{y}$.
+\begin{equation*}
+E\!\left[\;\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}\;\right]
+\;\;=\;\; E\!\left[\;\sum_{k \in s}\,\dfrac{1}{\pi_{k}}\,\mathbf{y}_{k}\;\right]
+\;\;=\;\; E\!\left[\;\sum_{k \in U}\,I_{k}\,\dfrac{\mathbf{y}_{k}}{\pi_{k}}\;\right]
+\;\;=\;\; \sum_{k \in U}\,E\!\left[\;I_{k}\;\right]\,\dfrac{\mathbf{y}_{k}}{\pi_{k}}
+\;\;=\;\; \sum_{k \in U}\,\pi_{k}\,\dfrac{\mathbf{y}_{k}}{\pi_{k}}
+\;\;=\;\; \sum_{k \in U}\,\mathbf{y}_{k} \;\; = \;\; \mathbf{T}_{y}
+\end{equation*}
+Hence, $\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}$ is an unbiased estimator for $\mathbf{T}_{\mathbf{y}}$.
 Conversely, let
 \begin{equation*}
-\widehat{T}_{y;w}(s) \; = \; \sum_{k \in s}\,w_{k}\,y_{k}
+\widehat{\mathbf{T}}_{y;w}(s) \; = \; \sum_{k \in s}\,w_{k}\,\mathbf{y}_{k}
 \end{equation*}
-be any unbiased estimator for $T_{y}$ which linear in $y$ with weights constant in $s$.
+be any unbiased estimator for $\mathbf{T}_{\mathbf{y}}$ which linear in $\mathbf{y}$ with weights $w_{k}$ constant in $s$.
 Thus,
 \begin{equation*}
-\sum_{k \in U}\,y_{k}
-\;=\; T_{y}
-\;=\; E\!\left[\;\widehat{T}_{y;w}\;\right]
-\;=\; E\!\left[\;\sum_{k \in s}\,w_{k}\,y_{k}\;\right]
-\;=\; E\!\left[\;\sum_{k \in U}\,I_{k}\,w_{k}\,y_{k}\;\right]
-\;=\; \sum_{k \in U}\,E\!\left[\;I_{k}\;\right]\,w_{k}\,y_{k}
-\;=\; \sum_{k \in U}\,\pi_{k}\,w_{k}\,y_{k}.
+\sum_{k \in U}\,\mathbf{y}_{k}
+\;=\; \mathbf{T}_{\mathbf{y}}
+\;=\; E\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]
+\;=\; E\!\left[\;\sum_{k \in s}\,w_{k}\,\mathbf{y}_{k}\;\right]
+\;=\; E\!\left[\;\sum_{k \in U}\,I_{k}\,w_{k}\,\mathbf{y}_{k}\;\right]
+\;=\; \sum_{k \in U}\,E\!\left[\;I_{k}\;\right]\,w_{k}\,\mathbf{y}_{k}
+\;=\; \sum_{k \in U}\,\pi_{k}\,w_{k}\,\mathbf{y}_{k}.
 \end{equation*}
-Since $y$ is arbitrary, the above equation immediately implies that
+Since $\mathbf{y}$ is arbitrary, the above equation immediately implies that
 \begin{equation*}
 \pi_{k}w_{k} - 1 = 0,
 \end{equation*}
 or equivalently, $w_{k} = \dfrac{1}{\pi_{k}}$; in other words,
-$\widehat{T}_{y;w}$ is in fact equal to the Horvitz-Thompson estimator.
+$\widehat{\mathbf{T}}_{\mathbf{y};w}$ is in fact equal to the Horvitz-Thompson estimator.
 The proof of the Corollary is now complete.
 \qed
 
+\begin{lemma}
+\label{lemma:technical}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $(\Omega,\mathcal{A},p)$ be a probability space,
+$X, Y : \Omega \longrightarrow \Re$ be two $\Re$-valued random variables defined on $\Omega$,
+and $\mathbf{u}, \mathbf{v} \in \Re^{m}$ be two fixed vectors in $\Re^{m}$.
+Then,
+\begin{equation*}
+\Cov\!\left(\,X\cdot\mathbf{u}\,,\,Y\cdot\mathbf{v}\,\right)
+\;\;=\;\;
+\Cov(X,Y)\cdot\mathbf{u}\cdot\mathbf{v}^{T}
+\;\;\in\;\; \Re^{m \times m}
+\end{equation*}
+\end{lemma}
+
+\proof
+Note:
+\begin{eqnarray*}
+\Cov\!\left(\;X\cdot\mathbf{u}\;,\;Y\cdot\mathbf{v}\;\right)
+&:=& E\!\left[\;\left(X\,\mathbf{u} - \mu_{X}\mathbf{u}\right)\cdot\left(Y\,\mathbf{v} - \mu_{Y}\mathbf{v}\right)^{T}\;\right]
+\;\;=\;\; E\!\left[\;\left(X - \mu_{X}\right)\mathbf{u}\cdot\left(Y - \mu_{Y}\right)\mathbf{v}^{T}\;\right] \\
+&=& E\!\left[\;\left(X - \mu_{X}\right)\left(Y - \mu_{Y}\right)\cdot\mathbf{u}\cdot\mathbf{v}^{T}\;\right] 
+\;\;=\;\; E\!\left[\;\left(X - \mu_{X}\right)\left(Y - \mu_{Y}\right)\;\right]\cdot\mathbf{u}\cdot\mathbf{v}^{T} \\
+&=& \Cov(X,Y)\cdot\mathbf{u}\cdot\mathbf{v}^{T},
+\end{eqnarray*}
+as required.
+\qed
+
 \begin{proposition}
+\label{proposition:generalLinear:Var}
 \mbox{}
 \vskip 0.2cm
 \noindent
-Let $\widehat{T}_{y;w} : \mathcal{S} \longrightarrow \Re$,
-with $\widehat{T}_{y;w}(s) = \underset{k \in s}{\sum}\,w_{k}(s)\,y_{k}$,
-be a random variable linear in the population parameter $y : U \longrightarrow \Re$.
-Then, the variance of $\widehat{T}_{y;w}$ is given by:
+Let $\widehat{\mathbf{T}}_{\mathbf{y};w} : \mathcal{S} \longrightarrow \Re$,
+with $\widehat{\mathbf{T}}_{\mathbf{y};w}(s)$
+$=$ $\underset{k \in s}{\sum}\,w_{k}(s)\,\mathbf{y}_{k}$
+$=$ $\underset{k \in U}{\sum}\,I_{k}(s)\,w_{k}(s)\,\mathbf{y}_{k}$,
+be a random variable linear in the population parameter $\mathbf{y} : U \longrightarrow \Re$.
+Then, the covariance matrix of $\widehat{\mathbf{T}}_{\mathbf{y};w}$ is given by:
 \begin{equation*}
-\Var\!\left[\;\widehat{T}_{y;w}\;\right]
-\;\;=\;\;
-\sum_{i \in U}a_{i}\,y_{i}^{2} + \underset{i \neq j}{\sum_{i,j \in U}}\,a_{ij}\,y_{i}\,y_{j},
+\Var\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]
+\;\;=\;\;\sum_{i\in U}\,\sum_{k\in U}\,\Cov\!\left[\;I_{i}\,w_{i}\,,\,I_{k}\,w_{k}\;\right]\,\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;\; \in \Re^{m \times m}
 \end{equation*}
-where
+%where
+%\begin{equation*}
+%a_{i}\; := \;\Var\left[\;I_{i}\,w_{i}\;\right],
+%\quad
+%a_{ij} \; := \; \textnormal{Cov}\left[\;I_{i}w_{i}\,,\,I_{j}w_{j}\;\right].
+%\quad\textnormal{and}\quad
+%I_{i}(s)
+%\;=\;
+%\left\{
+%\begin{array}{cl}
+%1\,, & \textnormal{if $i \in s$} \\
+%0\,, & \textnormal{otherwise}
+%\end{array}.
+%\right.
+%\end{equation*}
+%Furthermore, if $\widehat{T}_{y;w}$ is an unbiased estimator for $T_{y} := \underset{k \in U}{\sum}y_{k}$
+%for arbitrary $y$, then
+%\begin{equation*}
+%a_{i} \; = \; \Var\!\left[\;I_{i}w_{i}\;\right]
+%\; = \; \left(\sum_{s\in\mathcal{S}}\,p(s)\,I_{i}(s)\,w_{i}^{2}(s)\right) - 1
+%\end{equation*}
+Furthermore, if the first-order and second-order inclusion probabilities of the sampling design
+$p : \mathcal{S} \longrightarrow (0,1]$ are all strictly positive,
+i.e. $\pi_{k} = \pi_{kk} := \underset{s \ni k}{\sum}\,p(s) > 0$, for each $k \in U$, and
+$\pi_{ik} := \underset{s \ni i,k}{\sum}\,p(s) > 0$, for any distinct $i,k \in U$,
+then an unbiased estimator for $\Var\!\left[\;\widehat{\mathbf{T}}_{y;w}\;\right]$ is given by:
 \begin{equation*}
-a_{i}\; := \;\Var\left[\;I_{i}\,w_{i}\;\right],
-\quad
-a_{ij} \; := \; \textnormal{Cov}\left[\;I_{i}w_{i}\,,\,I_{j}w_{j}\;\right],
-\quad\textnormal{and}\quad
-I_{i}(s)
-\;=\;
-\left\{
-\begin{array}{cl}
-1\,, & \textnormal{if $i \in s$} \\
-0\,, & \textnormal{otherwise}
-\end{array}.
-\right.
-\end{equation*}
-Furthermore, if $\widehat{T}_{y;w}$ is an unbiased estimator for $T_{y} := \underset{k \in U}{\sum}y_{k}$
-for arbitrary $y$, then
-\begin{equation*}
-a_{i} \; = \; \Var\!\left[\;I_{i}w_{i}\;\right]
-\; = \; \left(\sum_{s\in\mathcal{S}}\,p(s)\,I_{i}(s)\,w_{i}^{2}(s)\right) - 1
+\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{y;w}\;\right]\!(s)
+\;:=\; \sum_{i,k \in s}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\,\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;=\; \sum_{k \in s}\dfrac{\Var(I_{k}w_{k})}{\pi_{k}}\,\mathbf{y}_{k}\cdot\mathbf{y}_{k}^{T}
+       + \underset{i \neq k}{\sum_{i,k \in s}}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\,\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T},
+\;\;\textnormal{for each $s \in \mathcal{S}$}.
 \end{equation*}
 \end{proposition}
 
 \proof
+First, note that Lemma \ref{lemma:technical} implies:
+\begin{equation*}
+\Var\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]
+\;\;=\;\; \Cov\!\left[\;\sum_{i\in U}\,I_{i}\,w_{i}\,\mathbf{y}_{i}\;,\;\sum_{k\in U}\,I_{k}\,w_{k}\,\mathbf{y}_{k}\;\right]
+\;\;=\;\; \sum_{i\in U}\,\sum_{k\in U}\,\Cov\!\left[\;I_{i}\,w_{i}\,,\,I_{k}\,w_{k}\;\right]\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;\;\in\;\;\Re^{m \times m}
+\end{equation*}
+Next,
 \begin{eqnarray*}
-\Var\!\left[\;\widehat{T}_{y;w}\;\right]
-&=& \Cov\!\left[\;\sum_{i\in U}\,I_{i}\,w_{i}\,y_{i}\;,\;\sum_{k\in U}\,I_{k}\,w_{k}\,y_{k}\;\right]
-\;\;=\;\; \sum_{i\in U}\,\sum_{k\in U}\,\Cov\!\left[\;I_{i}\,w_{i}\,,\,I_{k}\,w_{k}\;\right]\,y_{i}\,y_{k} \\
-&=&    \sum_{k\in U}\Var\!\left[\;I_{k}\,w_{k}\;\right] y_{k}^{2}
-         \;\;+\;\; \underset{i \neq k}{\sum_{i,k\in U}}\Cov\!\left[\;I_{i}\,w_{i}\,,\,I_{k}\,w_{k}\;\right]\,y_{i}\,y_{k} \\
+E\!\left(\;\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]\;\right)
+&=& \sum_{s\in\mathcal{S}}\,p(s)\cdot\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]\!(s)
+\;\;=\;\; \sum_{s\in\mathcal{S}}\,p(s)\cdot\left(\sum_{i,k \in s}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}\right) \\
+&=& \sum_{s\in\mathcal{S}}\,p(s)\cdot
+\left(\sum_{i,k \in U}I_{i}(s)I_{k}(s)\cdot\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}\right) \\
+&=& \sum_{i,k \in U}\left(\sum_{s\in\mathcal{S}}\,p(s)I_{i}(s)I_{k}(s)\right)\cdot\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T} \\
+&=& \sum_{i,k \in U}\left(\sum_{s\ni i, k}\,p(s)\right)\cdot\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T} \\
+&=& \sum_{i,k \in U}\,\pi_{ik}\cdot\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;\;=\;\; \sum_{i,k \in U}\,\Cov(I_{i}w_{i},I_{k}w_{k})\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T} \\
+&=& \Var\!\left[\;\widehat{\mathbf{T}}_{y;w}\;\right]
 \end{eqnarray*}
-Furthermore, if $\widehat{T}_{y;w}$ is an unbiased estimator for $T_{y} := \underset{k\in U}{\sum}\,y_{k}$
-for arbitrary $y$, then $\underset{s \ni k}{\sum}\,p(s)\,w_{k}(s) = 1$, for each $k \in U$, by the preceding
-Proposition. Hence, for each $k \in U$,
+Lastly, recall that $\pi_{kk} = \pi_{k}$ and $\Cov(I_{k}w_{k},I_{k}w_{k}) = \Var[\,I_{k}w_{k}\,]$,
+and the validity of the following identity is thus trivial:
+\begin{equation*}
+\sum_{i,k \in s}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;\;=\;\; \sum_{k \in s}\dfrac{\Var(I_{k}w_{k})}{\pi_{k}}\cdot\mathbf{y}_{k}\cdot\mathbf{y}_{k}^{T}
+       + \underset{i \neq k}{\sum_{i,k \in s}}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\end{equation*}
+The proof of the Proposition is complete.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Unbiased variance estimators for the Horvitz-Thompson Estimator \& Estimation of Domain Totals}
+\setcounter{theorem}{0}
+
+Let $U = \{1,2,\ldots,N\}$ be a finite population.
+Let $\mathbf{y} = (y_{1},y_{2},\ldots,y_{m}) : U \longrightarrow \Re^{m}$ be an $\Re^{m}$-valued function defined on $U$
+(commonly called a ``population parameter").
+We will use the common notation $\mathbf{y}_{k}$ for $\mathbf{y}(k)$.
+We wish to estimate
+$\mathbf{T}_{\mathbf{y}} := \underset{k \in U}{\sum}\,\mathbf{y}_{k} \in \Re^{m}$
+via survey sampling.
+Let $p:\mathcal{S} \longrightarrow (0,1]$ be our chosen sampling design,
+where $\mathcal{S} \subseteq \mathcal{P}(U)$ is the set of all possible
+samples in the design, and $\mathcal{P}(U)$ is the power set of $U$.
+
+\begin{proposition}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose the first-order and second-order inclusion probabilities of $p:\mathcal{S}\longrightarrow(0,1]$
+are all strictly positive, i.e.
+\begin{equation*}
+\pi_{k} := \sum_{s \ni k}\,p(s) = \sum_{k \in U}\,I_{k}(s)p(s) > 0
+\quad\textnormal{and}\quad
+\pi_{ik} := \sum_{s \ni i,k}\,p(s) = \sum_{i,k \in U}\,I_{i}(s)I_{k}(s)p(s) > 0,
+\end{equation*}
+for any $i,k \in U$.
+Then, an unbiased estimator for the covariance matrix of the Horvitz-Thompson estimator
+\begin{equation*}
+\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}(s)
+\;\;:=\;\;
+\sum_{k \in s} \dfrac{1}{\pi_{k}}\,\mathbf{y}_{k}
+\end{equation*}
+is given by:
+\begin{equation*}
+\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}\;\right]\!(s)
+\;\;=\;\;
+\sum_{i,k \in s}\left(\dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\right)\cdot\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}}\right)\cdot\left(\dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T},
+\;\;\textnormal{for each $s \in \mathcal{S}$}.
+\end{equation*}
+\end{proposition}
+
+\proof
+By Proposition \ref{proposition:generalLinear:Var},
+for any random variable (a.k.a. estimator) $\widehat{\mathbf{T}}_{\mathbf{y};w}$
+linear in the population parameter $\mathbf{y} : \mathcal{S} \longrightarrow \Re^{m}$
+with weights $w_{k} : \mathcal{S} \longrightarrow \Re$, $k \in U$, the following
+\begin{equation}
+\label{eqn:generalLinear:VarEstimator}
+\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{y;w}\;\right]\!(s)
+\;:=\; \sum_{i,k \in s}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\,\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\end{equation}
+always gives an unbiased estimator for the covariance matrix of $\widehat{\mathbf{T}}_{y;w}$.
+For the Horvitz-Thompson estimator, the weights are $w_{k} = 1/\pi_{k}$, for each $k \in U$,
+and the weights are independent of the sample $s \in \mathcal{S}$.
+Thus, for the Horvitz-Thompson estimator, the right-hand side of equation
+\eqref{eqn:generalLinear:VarEstimator} becomes:
 \begin{eqnarray*}
-a_{k} &:=& \Var\!\left[\;I_{k}\,w_{k}\;\right]
-\;\;=\;\; E\!\left[\;I_{k}^{2}\,w_{k}^{2}\;\right] - E\!\left[\;I_{k}\,w_{k}\;\right] \\
-&=&\left(\sum_{s\in\mathcal{S}}\,p(s)\,I^{2}_{i}(s)\,w_{i}^{2}(s)\right) - \left(\sum_{s\in\mathcal{S}}\,p(s)\,I_{i}(s)\,w_{i}(s)\right)
-\;\;=\;\;\left(\sum_{s\in\mathcal{S}}\,p(s)\,I^{2}_{i}(s)\,w_{i}^{2}(s)\right) - \left(\sum_{s \ni k}\,p(s)\,w_{i}(s)\right) \\
-&=&\left(\sum_{s\in\mathcal{S}}\,p(s)\,I_{i}(s)\,w_{i}^{2}(s)\right) - 1,
+\sum_{i,k \in s}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\,\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+&=&\sum_{i,k \in s}\dfrac{\Cov(I_{i},I_{k})}{\pi_{ik}}\,\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}}\right)\cdot\left(\dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T} \\
+&=&\sum_{i,k \in s}\dfrac{E(I_{i}I_{k})-E(I_{i})E(I_{k})}{\pi_{ik}}\,\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}}\right)\cdot\left(\dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T} \\
+&=&\sum_{i,k \in s}\dfrac{\pi_{ik}-\pi_{i}\pi_{k}}{\pi_{ik}}\,\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}}\right)\cdot\left(\dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T},
 \end{eqnarray*}
-and the proof of the Proposition is complete. \qed
+which coincides with the right-hand side of the equation of the conclusion of the present Proposition.
+Thus this present Proposition is but a special case of Proposition \ref{proposition:generalLinear:Var},
+specialized to the Horvitz-Thompson estimator, and the proof is now complete. \qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Calibrated linear estimators for (multivariate) population totals}
+\setcounter{theorem}{0}
 
 \begin{definition}
 \mbox{}
 \vskip 0.1cm
 \noindent
-Let $\widehat{T}_{y;w} : \mathcal{S} \longrightarrow \Re$ be a random variable 
-which is linear in the population parameter $y : U \longrightarrow \Re$, i.e.
+Let $\widehat{\mathbf{T}}_{\mathbf{y};w} : \mathcal{S} \longrightarrow \Re^{m}$
+be an $\Re^{m}$-valued random variable which is linear in the $\Re^{m}$-valued
+population parameter $\mathbf{y} : U \longrightarrow \Re^{m}$, i.e.
 \begin{equation*}
 \begin{array}{cccl}
-\widehat{T}_{y;w} : & \mathcal{S} & \longrightarrow & \Re \\
-     & s &\longmapsto & \underset{k\in s}{\sum}\,w_{k}(s)\,y_{k},
+\widehat{\mathbf{T}}_{\mathbf{y};w} : & \mathcal{S} & \longrightarrow & \Re^{m} \\
+     & s &\longmapsto & \underset{k\in s}{\sum}\,w_{k}(s)\cdot\mathbf{y}_{k} \;\; = \;\; \underset{k\in U}{\sum}\,I_{k}(s)\,w_{k}(s)\cdot\mathbf{y}_{k},
 \end{array}
 \end{equation*}
-where, for each $k \in U$, $w_{k} : \mathcal{S} \longrightarrow \Re$ is itself
-an $\Re$-valued random variable.
-Let $x : U \longrightarrow \Re$ be another population parameter and $T_{x} := \underset{k\in U}{\sum}\,x_{k}$.
-Then, $\widehat{T}_{y;w}$ is said to be
+where, for each $k \in U$, $w_{k} : \mathcal{S} \longrightarrow \Re$ is itself an $\Re$-valued random variable,
+and $I_{k} : \mathcal{S} \longrightarrow \{0,1\}$ is the indicator random variable defined by:
+\begin{equation*}
+I_{k}(s)
+\;\;=\;\;
+\left\{
+\begin{array}{cl}
+1, & \textnormal{if $k \in s$}, \\
+0, & \textnormal{otherwise}
+\end{array}
+\right.
+\end{equation*}
+Let $x : U \longrightarrow \Re$ be an $\Re$-valued population parameter
+and  $T_{x} := \underset{k\in U}{\sum}\,x_{k}$.\\
+Then, $\widehat{\mathbf{T}}_{\mathbf{y};w}$ is said to be
 \underline{\emph{calibrated with respect to $x$}} if
 \begin{equation*}
 \sum_{k \in s}\,w_{k}(s)\,x_{k} \; = \; T_{x},
@@ -758,64 +900,86 @@ Then, $\widehat{T}_{y;w}$ is said to be
 \end{definition}
 
 \begin{proposition}
-\label{proposition:MSE}
+\label{proposition:calibratedLinear:MSE}
 \mbox{}
 \vskip 0.1cm
 \noindent
-Let $\widehat{T}_{y;w,x} : \mathcal{S} \longrightarrow \Re$ be a random variable 
-which is linear in the population parameter $y : U \longrightarrow \Re$ and
-calibrated with respect to the population parameter $x : U \longrightarrow \Re$,
-with $x_{k} > 0$ for each $k \in U$.
-Then, the mean squared error of $\widehat{T}_{y;w,x}$ as an estimator of $T_{y}$ is given by:
+Let $\widehat{\mathbf{T}}_{\mathbf{y};w,x} : \mathcal{S} \longrightarrow \Re^{m}$ be an $\Re^{m}$-valued random variable 
+which is linear in the $\Re^{m}$-valued population parameter $\mathbf{y} : U \longrightarrow \Re^{m}$
+and calibrated with respect to the population parameter $x : U \longrightarrow \Re$, with $x_{k} \neq 0$ for each $k \in U$.\\
+Then, the mean squared error matrix of $\widehat{\mathbf{T}}_{\mathbf{y};w,x}$ as an estimator of $\mathbf{T}_{\mathbf{y}}$ is given by:
 \begin{equation*}
-\MSE\!\left[\;\widehat{T}_{y;w,x}\;\right]
+\MSE\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w,x}\;\right]
 \;=\;
-- \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}\left(\dfrac{y_{i}}{x_{i}} - \dfrac{y_{k}}{x_{k}}\right)^{2}\,x_{i}\,x_{k},
-\quad\textnormal{where}\;\;
-a_{ik} \;:=\; E\!\left[\;\left(I_{i}\,w_{i}-1\right)\left(I_{k}\,w_{k}-1\right)\;\right].
+- \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}
+\left(\dfrac{\mathbf{y}_{i}}{x_{i}} - \dfrac{\mathbf{y}_{k}}{x_{k}}\right)\cdot\left(\dfrac{\mathbf{y}_{i}}{x_{i}} - \dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}
+x_{i}\,x_{k}
+\;\in\;\Re^{m \times m},
+\;\;\textnormal{where}\;\;
+a_{ik} \;:=\; E\!\left[\,\left(I_{i}\,w_{i}-1\right)\left(I_{k}\,w_{k}-1\right)\,\right].
 \end{equation*}
 \end{proposition}
 
 \proof
 \begin{eqnarray*}
-\MSE\!\left[\;\widehat{T}_{y;w,x}\;\right]
-&=& E\!\left[\;\left(\widehat{T}_{y;w,x} - T_{y}\right)^{2}\;\right]
-\;\;=\;\; E\!\left[\;\left(\sum_{k\in U}y_{k}(I_{k}w_{k}-1)\right)\left(\sum_{i\in U}y_{i}(I_{i}w_{i}-1)\right)\;\right] \\
-&=& \sum_{k\in U}\,\sum_{i\in U}\,E\!\left[\;\left(I_{k}w_{k}-1\right)\left(I_{i}w_{i}-1\right)\;\right]\,y_{k}\,y_{i}
-\;\;=\;\; \sum_{k \in U}\,a_{kk}\,y_{k}^{2} + \underset{i\neq k}{\sum_{i,k\in U}}\,a_{ik}\,y_{i}\,y_{k} \\
-&=& \sum_{k \in U}\,a_{kk}\left(\dfrac{y_{k}}{x_{k}}\right)^{2}x_{k}^{2}
-+ \underset{i\neq k}{\sum_{i,k\in U}}\,a_{ik}\left(\dfrac{y_{i}}{x_{i}}\right)\left(\dfrac{y_{k}}{x_{k}}\right)x_{i}\,x_{k}
+\MSE\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w,x}\;\right]
+&=& E\!\left[\;\left(\widehat{\mathbf{T}}_{\mathbf{y};w,x} - \mathbf{T}_{\mathbf{y}}\right)\cdot\left(\widehat{\mathbf{T}}_{\mathbf{y};w,x} - \mathbf{T}_{\mathbf{y}}\right)^{T}\;\right]
+\;\;=\;\; E\!\left[\;\left(\sum_{i\in U}(I_{i}w_{i}-1)\,\mathbf{y}_{i}\right)\cdot\left(\sum_{k\in U}(I_{k}w_{k}-1)\,\mathbf{y}_{k}\right)^{T}\;\right] \\
+&=& \sum_{i\in U}\,\sum_{k\in U}\,E\!\left[\;\left(I_{i}w_{i}-1\right)\left(I_{k}w_{k}-1\right)\;\right]\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;\;=\;\; \sum_{k \in U}\,a_{kk}\cdot\mathbf{y}_{k}\cdot\mathbf{y}_{k}^{T} + \underset{i\neq k}{\sum_{i,k\in U}}\,a_{ik}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T} \\
+&=& \sum_{k \in U}\,a_{kk}\left(\dfrac{\mathbf{y}_{k}\cdot\mathbf{y}_{k}^{T}}{x_{k}^{2}}\right)x_{k}^{2}
++ \underset{i\neq k}{\sum_{i,k\in U}}\,a_{ik}\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\cdot\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}\,x_{i}\,x_{k}
 \end{eqnarray*}
 On the other hand,
 \begin{eqnarray*}
-&&   - \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}\left(\dfrac{y_{i}}{x_{i}} - \dfrac{y_{k}}{x_{k}}\right)^{2}\,x_{i}\,x_{k} \\
+&&   - \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}
+\left(\dfrac{\mathbf{y}_{i}}{x_{i}} - \dfrac{\mathbf{y}_{k}}{x_{k}}\right)\cdot\left(\dfrac{\mathbf{y}_{i}}{x_{i}} - \dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}
+\,x_{i}\,x_{k} \\
 &=& - \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}
-\left[\left(\dfrac{y_{i}}{x_{i}}\right)^{2} - 2\left(\dfrac{y_{i}}{x_{i}}\right)\left(\dfrac{y_{k}}{x_{k}}\right) + \left(\dfrac{y_{k}}{x_{k}}\right)^{2}\right]\,x_{i}\,x_{k} \\
-&=& - \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}
-\left[\left(\dfrac{y_{i}}{x_{i}}\right)^{2} + \left(\dfrac{y_{k}}{x_{k}}\right)^{2}\right]\,x_{i}\,x_{k}
-+ \underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}\left(\dfrac{y_{i}}{x_{i}}\right)\left(\dfrac{y_{k}}{x_{k}}\right)x_{i}\,x_{k}
+\left[\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)^{T}
+- \left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}
+- \left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)^{T}
++ \left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}\right]\,x_{i}\,x_{k} \\
+&=& - \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}\left[
+    \left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)^{T}
++ \left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}
+\right]\,x_{i}\,x_{k}
++ \underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}\,x_{i}\,x_{k}
 \end{eqnarray*}
 Thus, the proof of the present Proposition will be complete once we show:
 \begin{equation*}
-\sum_{k \in U}\,a_{kk}\left(\dfrac{y_{k}}{x_{k}}\right)^{2}x_{k}^{2}
+\underset{
+\dfrac{1}{2}\,\underset{i {\color{red}=} k}{\underset{i,k\in U}{\textnormal{\large$\sum$}}}\,a_{ik}\left[
+   \left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)^{T}
++ \left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}
+\right]\,x_{i}\,x_{k}
+}{
+\underbrace{\sum_{k \in U}\,a_{kk}\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}x_{k}^{2}}
+}
 \;\;=\;\;
-- \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}\left[\left(\dfrac{y_{i}}{x_{i}}\right)^{2} + \left(\dfrac{y_{k}}{x_{k}}\right)^{2}\right]\,x_{i}\,x_{k},
+- \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}\left[
+   \left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)^{T}
++ \left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}
+\right]\,x_{i}\,x_{k},
 \end{equation*}
 which is equivalent to:
 \begin{equation}\label{MSE}
-\sum_{i\in U}\,\sum_{k\in U}\,a_{ik}\left[\left(\dfrac{y_{i}}{x_{i}}\right)^{2} + \left(\dfrac{y_{k}}{x_{k}}\right)^{2}\right]\,x_{i}\,x_{k}
+\sum_{i\in U}\,\sum_{k\in U}\,a_{ik}\left[
+   \left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)^{T}
++ \left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}
+\right]\,x_{i}\,x_{k}
 \;\;=\;\; 0.
 \end{equation}
 Observe that
 \begin{eqnarray*}
 \textnormal{LHS\eqref{MSE}}
 &=&
-\sum_{i\in U}\,\sum_{k\in U}\,a_{ik}\left(\dfrac{y_{i}}{x_{i}}\right)^{2}x_{i}\,x_{k}
+\sum_{i\in U}\,\sum_{k\in U}\,a_{ik}\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)^{T}x_{i}\,x_{k}
 +
-\sum_{i\in U}\,\sum_{k\in U}\,a_{ik}\left(\dfrac{y_{k}}{x_{k}}\right)^{2}x_{i}\,x_{k}
-\;\;=\;\;
-2\,\sum_{i\in U}\,\sum_{k\in U}\,a_{ik}\left(\dfrac{y_{i}}{x_{i}}\right)^{2}x_{i}\,x_{k} \\
-&=& 2\,\sum_{i\in U}\,x_{i}\left(\dfrac{y_{i}}{x_{i}}\right)^{2}\left(\sum_{k\in U}\,a_{ik}x_{k}\right).
+\sum_{i\in U}\,\sum_{k\in U}\,a_{ik}\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)\left(\dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}x_{i}\,x_{k} \\
+&=&
+2\,\sum_{i\in U}\,\sum_{k\in U}\,a_{ik}\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)^{T}x_{i}\,x_{k}
+\;\;=\;\; 2\,\sum_{i\in U}\,x_{i}\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)\left(\dfrac{\mathbf{y}_{i}}{x_{i}}\right)^{T}\left(\sum_{k\in U}\,a_{ik}x_{k}\right).
 \end{eqnarray*}
 Hence, \eqref{MSE} follows once we show
 \begin{equation}\label{MSE2}
@@ -835,49 +999,55 @@ Indeed,
 \end{eqnarray*}
 The proof of the present Proposition is now complete. \qed
 
-\begin{proposition}[The Yates-Grundy-Sen Variance Estimator]
+\begin{proposition}[The Yates-Grundy-Sen Variance Estimator for calibrated linear population total estimators]
 \mbox{}
 \vskip 0.1cm
 \noindent
 Let $p : \mathcal{S} \longrightarrow (0,1]$ be a sampling design each of whose
 first-order and second-order inclusion probabilities is strictly positively.
-Let $\widehat{T}_{y;w,x} : \mathcal{S} \longrightarrow \Re$ be a random variable 
-which is linear in the population parameter $y : U \longrightarrow \Re$ and
-calibrated with respect to the population parameter $x : U \longrightarrow \Re$,
-with $x_{k} > 0$ for each $k \in U$.
-Suppose that $\widehat{T}_{y;w,x}$ is an unbiased estimator for
-$T_{y} := \underset{k \in U}{\sum}y_{k}$, for arbitrary $y$.
+Let $\widehat{\mathbf{T}}_{\mathbf{y};w,x} : \mathcal{S} \longrightarrow \Re^{m}$
+be a random variable  which is linear in the population parameter
+$\mathbf{y} : U \longrightarrow \Re^{m}$
+and calibrated with respect to the population parameter $x : U \longrightarrow \Re$,
+with $x_{k} \neq 0$ for each $k \in U$.
+Suppose that $\widehat{\mathbf{T}}_{\mathbf{y};w,x}$ is an unbiased estimator for
+$\mathbf{T}_{\mathbf{y}} := \underset{k \in U}{\sum}\mathbf{y}_{k}$, for arbitrary $\mathbf{y}$.
 Then, the following is an unbiased estimator of the variance
-$\Var\!\left[\;\widehat{T}_{y;w,x} \;\right]$ of $\widehat{T}_{y;w,x} $:
+$\Var\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w,x} \;\right]$ of $\widehat{\mathbf{T}}_{\mathbf{y};w,x} $:
 For each $s \in \mathcal{S}$ admissible in the sampling design $p : \mathcal{S} \longrightarrow (0,1]$,
 \begin{equation*}
-\widehat{\Var}\!\left[\;\widehat{T}_{y;w,x} \;\right]\!(s)
+\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w,x} \;\right]\!(s)
 \;\;:=\;\;
--\dfrac{1}{2}\underset{i\neq k}{\sum_{i,k\in s}}\left(w_{i}(s)w_{k}(s) - \dfrac{1}{\pi_{ik}}\right)\left(\dfrac{y_{i}}{x_{i}} - \dfrac{y_{k}}{x_{k}}\right)^{2}x_{i}\,x_{k}
+-\dfrac{1}{2}\underset{i\neq k}{\sum_{i,k\in s}}\left(w_{i}(s)w_{k}(s) - \dfrac{1}{\pi_{ik}}\right)
+\left(\dfrac{\mathbf{y}_{i}}{x_{i}} - \dfrac{\mathbf{y}_{k}}{x_{k}}\right)\cdot\left(\dfrac{\mathbf{y}_{i}}{x_{i}} - \dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}
+x_{i}\,x_{k}
 \end{equation*}
 \end{proposition}
 
 \noindent
 \textbf{Terminology:}\quad
-$\widehat{\Var}\!\left[\;\widehat{T}_{y;w,x} \;\right]$ is called the Yates-Grundy-Sen Variance Estimator.
+$\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w,x} \;\right]$ is called the Yates-Grundy-Sen Variance Estimator.
 
 \vskip 0.5cm
 \proof
-Since $\widehat{T}_{y;w,x}$ is an unbiased estimator for $T_{y}$ by hypothesis, we have
-$\Var\!\left[\;\widehat{T}_{y;w,x}\;\right] = \MSE\!\left[\;\widehat{T}_{y;w,x}\;\right]$.
-By Proposition \ref{proposition:MSE}, we thus have:
+Since $\widehat{\mathbf{T}}_{\mathbf{y};w,x}$ is an unbiased estimator for $\mathbf{T}_{\mathbf{y}}$ by hypothesis, we have
+$\Var\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w,x}\;\right] = \MSE\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w,x}\;\right]$.
+By Proposition \ref{proposition:calibratedLinear:MSE}, we thus have:
 \begin{equation*}
-\Var\!\left[\;\widehat{T}_{y;w,x}\;\right]
+\Var\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w,x}\;\right]
 \;\;=\;\;
-- \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}\left(\dfrac{y_{i}}{x_{i}} - \dfrac{y_{k}}{x_{k}}\right)^{2}\,x_{i}\,x_{k},
+- \dfrac{1}{2}\,\underset{i \neq k}{\sum_{i,k\in U}}\,a_{ik}\left(\dfrac{\mathbf{y}_{i}}{x_{i}} - \dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{2}\,x_{i}\,x_{k},
 \quad\textnormal{where}\;\;
 a_{ik} \;:=\; E\!\left[\;\left(I_{i}\,w_{i}-1\right)\left(I_{k}\,w_{k}-1\right)\;\right].
 \end{equation*}
 On the other hand,
 \begin{eqnarray*}
-E\!\left(\;\widehat{\Var}\!\left[\;\widehat{T}_{y;w,x} \;\right]\;\right)
+E\!\left(\;\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w,x} \;\right]\;\right)
 &=& 
--\dfrac{1}{2}\underset{i \neq k}{\sum_{i,k\in U}}E\!\left[\;I_{i}I_{k}\left(w_{i}w_{k} - \dfrac{1}{\pi_{ik}}\right)\;\right]\left(\dfrac{y_{i}}{x_{i}} - \dfrac{y_{k}}{x_{k}}\right)^{2}x_{i}\,x_{k}
+-\dfrac{1}{2}\underset{i \neq k}{\sum_{i,k\in U}}
+E\!\left[\;I_{i}I_{k}\left(w_{i}w_{k} - \dfrac{1}{\pi_{ik}}\right)\;\right]
+\left(\dfrac{\mathbf{y}_{i}}{x_{i}} - \dfrac{\mathbf{y}_{k}}{x_{k}}\right)\cdot\left(\dfrac{\mathbf{y}_{i}}{x_{i}} - \dfrac{\mathbf{y}_{k}}{x_{k}}\right)^{T}
+x_{i}\,x_{k}
 \end{eqnarray*}
 Thus, it remains only to show:
 \begin{equation*}
@@ -895,13 +1065,12 @@ and
 a_{ik}
 &=& E\!\left[\;\left(I_{i}\,w_{i}-1\right)\left(I_{k}\,w_{k}-1\right)\;\right]
 \;\;=\;\; E\!\left[\;I_{i}\,I_{k}\,w_{i}\,w_{k}\;\right] - E\!\left[\;I_{i}\,w_{i}\;\right] - E\!\left[\;I_{k}\,w_{k}\;\right] + 1 \\
-&=& E\!\left[\;I_{i}\,I_{k}\,w_{i}\,w_{k}\;\right] - \sum_{s \ni i}\,p(s)\,w_{i} - \sum_{s \ni k}\,p(s)\,w_{k} + 1
-\;\;=\;\; E\!\left[\;I_{i}\,I_{k}\,w_{i}\,w_{k}\;\right] - 1 - 1 + 1
+&=&E\!\left[\;I_{i}\,I_{k}\,w_{i}\,w_{k}\;\right] - 1 - 1 + 1
 \;\;=\;\; E\!\left[\;I_{i}\,I_{k}\,w_{i}\,w_{k}\;\right] - 1 \\
 &=& E\!\left[\;I_{i}I_{k}\left(w_{i}w_{k} - \dfrac{1}{\pi_{ik}}\right)\;\right],
 \end{eqnarray*}
 where third last equality follows from Proposition \ref{proposition:Unbiasedness} and
-the unbiasedness hypothesis on $\widehat{T}_{y;w,x}$ as an estimator for $T_{y}$.
+the unbiasedness hypothesis on $\widehat{\mathbf{T}}_{\mathbf{y};w,x}$ as an estimator for $\mathbf{T}_{\mathbf{y}}$.
 The proof of the present Proposition is now complete.  \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
