@@ -904,6 +904,68 @@ Then, $\widehat{\mathbf{T}}_{\mathbf{y};w}$ is said to be
 \end{equation*}
 \end{definition}
 
+\begin{example}
+\mbox{}
+\vskip 0.1cm
+\noindent
+If the sampling design has fixed sample size and each of its first-order inclusion probabilities is strictly positive, then Horvitz-Thompson estimator is calibrated with respect to the first-order inclusion probabilities.
+\vskip 0.2cm
+\noindent
+To see this, let $U = \{1,2,\ldots,N\}$ be a finite population,
+$\mathbf{y} : U \longrightarrow \Re^{m}$ a population parameter, and
+$p : \mathcal{S}\subset\mathcal{P}(U) \longrightarrow (0,1]$ a sampling design
+such that $\pi_{k} := \sum_{s \ni k}p(s) > 0$, for each $k \in U$.
+The Horvitz-Thompson estimator
+$\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}} : \mathcal{S} \longrightarrow \Re$
+is then well-defined and is given by:
+\begin{equation*}
+\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}\!(s)
+\;\; := \;\; \sum_{k \in s}\,\dfrac{\mathbf{y}_{k}}{\pi_{k}}
+\end{equation*}
+Let $x : U \longrightarrow \Re$ be defined by
+\begin{equation*}
+x_{k} \; = \; \pi_{k},
+\;\;\textnormal{for each $k \in U$},
+\end{equation*}
+i.e. $x_{k}$ is simply the inclusion probability of $k \in U$
+under the sampling design $p : \mathcal{S} \longrightarrow (0,1]$.
+
+Now, suppose that the sampling design has a fixed sample size $n$,
+and we shall show that $\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}$
+is consequently calibrated with respect to $x : U \longrightarrow \Re$.
+Indeed, recall that the weights of the Horvitz-Thompson estimator are simply
+$w_{k}(s) = 1 / \pi_{k}$, for each $k \in U$ and each $s \in \mathcal{S}$.
+Hence,
+\begin{equation*}
+\sum_{k \in s}\,w_{k}(s)\,x_{k}
+\;\;=\;\; \sum_{k \in s}\,\dfrac{1}{\pi_{k}}\,\pi_{k}
+\;\;=\;\; \sum_{k \in s}\,1
+\;\;=\;\; \left(\begin{array}{c} \textnormal{sample} \\ \textnormal{size of $s$} \end{array}\right)
+\;\;=\;\; n,
+\end{equation*}
+since the sampling design has fixed size $n$.
+On the other hand,
+\begin{equation*}
+T_{x}
+\;\;=\;\;\sum_{k\in U}x_{k}
+\;\;=\;\; \sum_{k \in U}\pi_{k}
+\;\;=\;\; \sum_{k \in U}E\!\left[\;I_{k}\;\right]
+\;\;=\;\; E\!\left[\;\sum_{k \in U}I_{k}\;\right]
+\;\;=\;\; E\!\left[\begin{array}{c} \textnormal{sample} \\ \textnormal{size} \end{array}\right]
+\;\;=\;\; n,
+\end{equation*}
+again since the sample size is fixed and equals $n$.
+Therefore, we have, for any $s \in \mathcal{S}$,
+\begin{equation*}
+\sum_{k \in s}\,w_{k}(s)\,x_{k}
+\;\;=\;\; n
+\;\;=\;\; T_{x}
+\end{equation*}
+Therefore, the Horvitz-Thompson estimator, under the assumption of fixed sample size,
+is indeed calibrated with respect to the inclusion probabilities $x : U \longrightarrow \Re$,
+$x _{k} = \pi_{k} := \sum_{s \ni k}\,p(s)$, for each $k \in U$. \qed
+\end{example}
+
 \begin{proposition}
 \label{proposition:calibratedLinear:MSE}
 \mbox{}
