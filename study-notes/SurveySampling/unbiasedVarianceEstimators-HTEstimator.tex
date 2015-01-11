@@ -1,0 +1,90 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Unbiased variance estimators for the Horvitz-Thompson Estimator}
+\setcounter{theorem}{0}
+
+Let $U = \{1,2,\ldots,N\}$ be a finite population.
+Let $\mathbf{y} = (y_{1},y_{2},\ldots,y_{m}) : U \longrightarrow \Re^{m}$ be an $\Re^{m}$-valued function defined on $U$
+(commonly called a ``population parameter").
+We will use the common notation $\mathbf{y}_{k}$ for $\mathbf{y}(k)$.
+We wish to estimate
+$\mathbf{T}_{\mathbf{y}} := \underset{k \in U}{\sum}\,\mathbf{y}_{k} \in \Re^{m}$
+via survey sampling.
+Let $p:\mathcal{S} \longrightarrow (0,1]$ be our chosen sampling design,
+where $\mathcal{S} \subseteq \mathcal{P}(U)$ is the set of all possible
+samples in the design, and $\mathcal{P}(U)$ is the power set of $U$.
+
+\begin{proposition}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose the first-order and second-order inclusion probabilities of $p:\mathcal{S}\longrightarrow(0,1]$
+are all strictly positive, i.e.
+\begin{equation*}
+\pi_{k} := \sum_{s \ni k}\,p(s) = \sum_{k \in U}\,I_{k}(s)p(s) > 0
+\quad\textnormal{and}\quad
+\pi_{ik} := \sum_{s \ni i,k}\,p(s) = \sum_{i,k \in U}\,I_{i}(s)I_{k}(s)p(s) > 0,
+\end{equation*}
+for any $i,k \in U$.
+Then, the Horvitz-Thompson estimator for $\mathbf{T}_{\mathbf{y}}$ is:
+\begin{equation*}
+\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}(s)
+\;\;:=\;\; \sum_{k \in s} \dfrac{1}{\pi_{k}}\,\mathbf{y}_{k},
+\end{equation*}
+and the covariance matrix of the Horvitz-Thompson estimator can be given by:
+\begin{equation*}
+\Var\!\left[\;\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}\;\right]
+\;\;=\;\; \sum_{i,k \in U}\left(\pi_{ik} - \pi_{i}\pi_{k}\right)\cdot
+\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}}\right)\cdot\left(\dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T}
+\end{equation*}
+An unbiased estimator for the covariance matrix of the Horvitz-Thompson estimator is given by:
+\begin{equation*}
+\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}\;\right]\!(s)
+\;\;=\;\;
+\sum_{i,k \in s}\left(\dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\right)\cdot\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}}\right)\cdot\left(\dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T},
+\;\;\textnormal{for each $s \in \mathcal{S}$}.
+\end{equation*}
+Furthermore, if the sampling design has fixed sample size, then an alternative expression
+of the covariance matrix of the Horvitz-Thompson estimator is:
+\begin{equation*}
+\Var\!\left[\;\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}\;\right]
+\;\;=\;\; -\dfrac{1}{2}\sum_{i,k \in U}\left(\pi_{ik} - \pi_{i}\pi_{k}\right)\cdot
+\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}} - \dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)\cdot
+\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}} - \dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T}
+\end{equation*}
+and the corresponding Yates-Grundy-Sen variance estimator is:
+\begin{equation*}
+\widehat{\Var}^{\textnormal{YGS}}\!\left[\;\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}\;\right]\!(s)
+\;\;:=\;\; -\dfrac{1}{2}\sum_{i,k \in s}\left(\dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\right)\cdot
+\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}} - \dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)\cdot
+\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}} - \dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T}
+\end{equation*}
+\end{proposition}
+
+\proof
+By Proposition \ref{proposition:generalLinear:Var},
+for any random variable (a.k.a. estimator) $\widehat{\mathbf{T}}_{\mathbf{y};w}$
+linear in the population parameter $\mathbf{y} : \mathcal{S} \longrightarrow \Re^{m}$
+with weights $w_{k} : \mathcal{S} \longrightarrow \Re$, $k \in U$, the following
+\begin{equation}
+\label{eqn:generalLinear:VarEstimator}
+\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{y;w}\;\right]\!(s)
+\;:=\; \sum_{i,k \in s}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\,\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\end{equation}
+always gives an unbiased estimator for the covariance matrix of $\widehat{\mathbf{T}}_{y;w}$.
+For the Horvitz-Thompson estimator, the weights are $w_{k} = 1/\pi_{k}$, for each $k \in U$,
+and the weights are independent of the sample $s \in \mathcal{S}$.
+Thus, for the Horvitz-Thompson estimator, the right-hand side of equation
+\eqref{eqn:generalLinear:VarEstimator} becomes:
+\begin{eqnarray*}
+\sum_{i,k \in s}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\,\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+&=&\sum_{i,k \in s}\dfrac{\Cov(I_{i},I_{k})}{\pi_{ik}}\,\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}}\right)\cdot\left(\dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T} \\
+&=&\sum_{i,k \in s}\dfrac{E(I_{i}I_{k})-E(I_{i})E(I_{k})}{\pi_{ik}}\,\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}}\right)\cdot\left(\dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T} \\
+&=&\sum_{i,k \in s}\dfrac{\pi_{ik}-\pi_{i}\pi_{k}}{\pi_{ik}}\,\left(\dfrac{\mathbf{y}_{i}}{\pi_{i}}\right)\cdot\left(\dfrac{\mathbf{y}_{k}}{\pi_{k}}\right)^{T},
+\end{eqnarray*}
+which coincides with the right-hand side of the equation of the conclusion of the present Proposition.
+Thus this present Proposition is but a special case of Proposition \ref{proposition:generalLinear:Var},
+specialized to the Horvitz-Thompson estimator, and the proof is now complete. \qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

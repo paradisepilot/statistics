@@ -1,0 +1,558 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Sample space of two-stage sampling \& its probability function}
+\setcounter{theorem}{0}
+
+Let $U^{(1)}$ be a finite set of size $N^{(1)}$.
+Let $U^{(2)}_{1}, U^{(2)}_{2},\ldots,U^{(2)}_{N^{(1)}}$ be finite sets
+of sizes $N^{(2)}_{1}, N^{(2)}_{2},\ldots,N^{(2)}_{N^{(1)}}$, respectively.
+For each $i = 1, 2, \ldots, N^{(1)}$, we enumerate the elements of $U^{(2)}_{i}$ as follows:
+\begin{equation*}
+U^{(2)}_{i}
+\;=\; \left\{\;u_{i1},u_{i2},\ldots,u_{iN^{(2)}_{i}}\;\right\}
+\;=\; \left\{\;u_{ik}\;\left\vert\; k = 1,2,\ldots,N^{(2)}_{i}\right.\;\right\}
+\end{equation*}
+Let
+\begin{equation*}
+U
+\;:=\; \bigsqcup_{i \in U^{(1)}}U^{(2)}_{i}
+\;=\;  \left\{\;u_{ik}\;\left\vert\; i=1,2,\ldots,N^{(1)},\,k = 1,2,\ldots,N^{(2)}_{i}\right.\;\right\}
+\end{equation*}
+
+\vskip 0.3cm
+\begin{remark}\quad
+We consider only the case where the two stages of sampling design are independent
+of each other, and the sampling designs on $U^{(2)}_{k}$, for all $k \in U^{(1)}$, are
+independent.
+More precisely, we assume that Equation \eqref{twoStageSampleProbability} is satisfied.
+\end{remark}
+
+\vskip 0.3cm
+\noindent
+Let $p^{(1)}:\mathcal{S}^{(1)} \longrightarrow (0,1]$ be our chosen first-stage sampling design,
+where $\mathcal{S}^{(1)} \subseteq \mathcal{P}\!\left(U^{(1)}\right)$
+is the set of all possible first-stage samples in the design, and
+$\mathcal{P}\!\left(U^{(1)}\right)$ is the power set of $U^{(1)}$.
+
+\vskip 0.3cm
+\noindent
+For each $i \in U^{(1)}$, let $p^{(2)}_{i} : \mathcal{S}^{(2)}_{i} \longrightarrow (0,1]$ be our chosen second-stage sampling design,
+where $\mathcal{S}^{(2)}_{i} \subseteq \mathcal{P}\!\left(U^{(2)}_{i}\right)$
+is the set of all possible second-stage samples in the design, and
+$\mathcal{P}\!\left(U^{(2)}_{i}\right)$ is the power set of $U^{(2)}_{i}$.
+
+\vskip 0.3cm
+\noindent
+The sample space $\mathcal{S}$ of the two-stage sampling design is:
+\begin{equation*}
+\mathcal{S}
+\;:=\;
+\left\{\;
+\left.\left(s^{(1)},\left\{\,s^{(2)}_{i}\,\right\}_{i\in U^{(1)}}\right) \in \mathcal{S}^{(1)} \times \prod_{i \in U^{(1)}}\mathcal{S}^{(2)}_{i}\;\right\vert\;
+\begin{array}{ll}
+s^{(2)}_{i} \in \mathcal{S}^{(2)}_{i}, &\textnormal{if $i \in s^{(1)}$}
+\\
+s^{(2)}_{i} = \varemptyset, & \textnormal{if $i \notin s^{(1)}$}
+\end{array}
+\;\right\}
+\end{equation*}
+We will use the following abbreviation for an element in $\mathcal{S}$:
+\begin{equation*}
+s \;=\; \left(\;s^{(1)}\;,\left\{\,s^{(2)}_{i}\,\right\}_{i \in s^{(i)}}\,\right)
+\end{equation*}
+We now define the probability function $p : \mathcal{S} \longrightarrow (0,1]$ as follows:
+For each $s \in \mathcal{S}$,
+\begin{equation}
+\label{twoStageSampleProbability}
+p(s)
+\;:=\; p\left(\left(\;s^{(1)}\;,\left\{\,s^{(2)}_{i}\,\right\}_{i \in s^{(1)}}\,\right)\right)
+\;=\; p^{(1)}\!\left(s^{(1)}\right)\cdot\prod_{i\in s^{(1)}}p^{(2)}_{i}\!\left(s^{(2)}_{i}\right)
+\end{equation}
+
+\begin{lemma}\quad
+For each first-stage sample $s^{(1)} \in \mathcal{S}^{(1)}$,
+let $\Omega\!\left(s^{(1)}\right)$ $:=$ $\left\{\,\left.s^{(2)}_{i}\in\mathcal{S}^{(2)}_{i}\;\right\vert\;i \in s^{(1)}\,\right\}$,
+i.e. $\Omega\!\left(s^{(1)}\right)$ is the collection of all second-stage samples compatible with the first-stage sample
+$s^{(1)} \in \mathcal{S}^{(1)}$.
+Then, we have:
+\begin{equation*}
+\sum_{\xi\in\Omega(s^{(1)})}  p\left((\;s^{(1)},\xi\;)\right) \;\; = \;\; p^{(1)}\!\left(s^{(1)}\right).
+\end{equation*}
+\end{lemma}
+\proof
+Let $n$ be the number of elements in $s^{(1)}$, we write $s^{(1)} = \{\,i_{1},i_{2},\ldots,i_{n}\,\}$. Then,
+\begin{equation*}
+p\left(\left(\;s^{(1)}\;,\left\{\,s^{(2)}_{i_{1}},s^{(2)}_{i_{2}},\ldots,s^{(2)}_{i_{n}}\,\right\}\,\right)\right)
+\;=\;
+p^{(1)}\!\left(s^{(1)}\right)
+\cdot p^{(2)}_{i_{1}}\!\left(s^{(2)}_{i_{1}}\right)
+\cdot p^{(2)}_{i_{2}}\!\left(s^{(2)}_{i_{2}}\right)
+\;\cdots\;
+p^{(2)}_{i_{n}}\!\left(s^{(2)}_{i_{n}}\right)
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+\sum_{\xi\in\Omega(s^{(1)})}  p\left((\;s^{(1)},\xi\;)\right)
+&=&
+\sum_{\zeta_{1} \in \mathcal{S}^{(2)}_{i_{1}}}\,
+\sum_{\zeta_{2} \in \mathcal{S}^{(2)}_{i_{2}}}\,
+\cdots
+\sum_{\zeta_{n} \in \mathcal{S}^{(2)}_{i_{n}}}\,
+p\left(\left(\;s^{(1)}\;,\left\{\,\zeta_{1},\zeta_{2},\ldots,\zeta_{n}\,\right\}\,\right)\right) \\
+&=& 
+\sum_{\zeta_{1} \in \mathcal{S}^{(2)}_{i_{1}}}\,
+\sum_{\zeta_{2} \in \mathcal{S}^{(2)}_{i_{2}}}
+\;\cdots\;
+\sum_{\zeta_{n} \in \mathcal{S}^{(2)}_{i_{n}}}\,
+p^{(1)}\!\left(s^{(1)}\right)
+\cdot p^{(2)}_{i_{1}}\!\left(\zeta_{1}\right)
+\cdot p^{(2)}_{i_{2}}\!\left(\zeta_{2}\right)
+\;\cdots\;
+p^{(2)}_{i_{n}}\!\left(\zeta_{n}\right)
+\\
+&=&
+p^{(1)}\!\left(s^{(1)}\right)
+\cdot\left(\sum_{\zeta_{1} \in \mathcal{S}^{(2)}_{i_{1}}}\,p^{(2)}_{i_{1}}\!\left(\zeta_{1}\right)\right)
+\cdot\left(\sum_{\zeta_{2} \in \mathcal{S}^{(2)}_{i_{2}}}\,p^{(2)}_{i_{2}}\!\left(\zeta_{2}\right)\right)
+\;\cdots\;
+\left(\sum_{\zeta_{n} \in \mathcal{S}^{(2)}_{i_{n}}}\,p^{(2)}_{i_{n}}\!\left(\zeta_{n}\right)\right)
+\\
+&=&
+p^{(1)}\!\left(s^{(1)}\right)
+\cdot\left(\,1\,\right)
+\cdot\left(\,1\,\right)
+\;\cdots\;
+\left(\,1\,\right)
+\\
+&=&
+p^{(1)}\!\left(s^{(1)}\right)
+\end{eqnarray*}
+\qed
+
+\begin{proposition}\label{proposition:probability:sampleSpace}
+\quad
+\begin{equation*}
+\sum_{s\in\mathcal{S}}\,p(s) \;\;=\;\; 1
+\end{equation*}
+\end{proposition}
+\proof
+\begin{equation*}
+\sum_{s \in \mathcal{S}}\,p(s)
+\;=\; \sum_{(s^{(1)},\xi) \in \mathcal{S}}\,p(s^{(1)},\xi)
+\;=\; \sum_{s^{(1)}\in \mathcal{S}^{(1)}}\,\sum_{\xi\in\Omega(s^{(1)})} \,p(s^{(1)},\xi)
+\;=\; \sum_{s^{(1)}\in \mathcal{S}^{(1)}}\,p^{(1)}(s^{(1)})
+\;=\; 1,
+\end{equation*}
+where the second-last equality follows from the preceding Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Estimation in two-stage sampling}
+\setcounter{theorem}{0}
+
+Let $\mathbf{y} : U \longrightarrow \Re^{m}$ be an $\Re^{m}$-valued function defined on $U$
+(such a $\mathbf{y}$ commonly called a ``population parameter").
+We will use the common notation $\mathbf{y}_{kl}$ for $\mathbf{y}(u_{kl})$,
+for $k = 1,2,\ldots,N^{(1)}$ and $l = 1,2,\ldots,N^{(2)}_{k}$.
+We wish to estimate
+\begin{equation*}
+\mathbf{T}_{\mathbf{y}}
+\;:=\; \underset{u \in U}{\sum}\,\mathbf{y}(u)
+\;=\; \sum_{k \in U^{(1)}}\,\sum_{l \in U^{(2)}_{k}}\,\mathbf{y}_{kl}
+\;=\; \sum_{k = 1}^{N^{(1)}}\,\sum_{l = 1}^{N^{(2)}_{k}}\,\mathbf{y}_{kl}
+\;\in\; \Re^{m}
+\end{equation*}
+via two-stage sampling.
+We consider estimators for $\widehat{\mathbf{T}}_{\mathbf{y}}$ of the following form:
+\begin{equation*}
+\begin{array}{cccl}
+\widehat{\mathbf{T}}_{\mathbf{y}} : & \mathcal{S} & \longrightarrow & \Re^{m} \\
+& \left(s^{(1)},\{s^{(2)}_{k}\}_{k \in s^{(1)}}\right) & \longmapsto &
+\underset{k\in s^{(1)}}{\sum}\,
+w^{(1)}_{k}(s^{(1)})\,
+\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+\;=\; \underset{k\in U^{(1)}}{\sum}\,I_{k}(s^{(1)})\,w^{(1)}_{k}(s^{(1)})\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k}),
+\end{array}
+\end{equation*}
+where, for each $k \in U^{(1)}$, $w^{(1)}_{k} : \mathcal{S}^{(1)} \longrightarrow \Re$ and
+$\widehat{\mathbf{T}}_{\mathbf{y}\vert k} : \mathcal{S}^{(2)}_{k} \longrightarrow \Re^{m}$ are random variables.
+
+\begin{proposition}
+\quad
+Suppose:
+\begin{itemize}
+\item	The first-stage weights $w^{(1)}_{k} : \mathcal{S}^{(1)} \longrightarrow (0,1]$
+		satisfy the following:
+		\begin{equation*}
+		E^{(1)}\!\left[\;\,\widehat{T}_{z}\,\;\right] \;\; = \;\; T_{z} \;\;:=\;\; \sum_{k\in U^{(1)}}z_{k},
+		\quad\textnormal{for any function $z : U^{(1)} \longrightarrow \Re$,}
+		\end{equation*}
+		where $\widehat{T}_{z} : \mathcal{S}^{(1)} \longrightarrow \Re$ is a random variable defined by
+		$\widehat{T}_{z}(s^{(1)}) := \underset{k \in s^{(1)}}{\sum}\,w^{(1)}_{k}(s^{(1)})\,z_{k}$.
+\item	For each $k \in U^{(1)}$, the random variable
+		$\widehat{\mathbf{T}}_{\mathbf{y}\vert k} : \mathcal{S}^{(2)}_{k} : \longrightarrow \Re$
+		is a design-unbiased
+		estimator for $\mathbf{T}_{\mathbf{y}\vert k}$, i.e.
+		\begin{equation*}
+		E^{(2)}_{k}\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y}\,\vert\,k}\;\right]
+		\;\;=\;\; \mathbf{T}_{\mathbf{y}\,\vert k}
+		\;\;:=\;\; \sum_{l \in U^{(2)}_{k}}\,\mathbf{y}_{kl}
+		\end{equation*}
+\end{itemize}
+Then, the random variable $\widehat{\mathbf{T}}_{\mathbf{y}}$ is an unbiased estimator for $\mathbf{T}_{\mathbf{y}}$.
+\end{proposition}
+
+\proof
+\begin{eqnarray*}
+E\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y}}\;\right]
+&=& E^{(1)}\!\left[\;E^{(2)}\!\left[\;\left.\widehat{\mathbf{T}}_{\mathbf{y}}\;\right\vert\;s^{(1)}\;\right]\;\right]
+\;\;=\;\; E^{(1)}\!\left[\;E^{(2)}\!\left[\;\left.
+\sum_{k\in s^{(1)}}\,w^{(1)}_{k}(s^{(1)})\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+\;\right\vert\;s^{(1)}\;\right]\;\right] \\
+&=& E^{(1)}\!\left[\;
+\sum_{k\in s^{(1)}}\,w^{(1)}_{k}(s^{(1)})
+\cdot
+E^{(2)}\!\left[\;\left.
+\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+\;\right\vert\;s^{(1)}\;\right]\;\right] \\
+&=& E^{(1)}\!\left[\;
+\sum_{k\in s^{(1)}}\,w^{(1)}_{k}(s^{(1)})
+\cdot
+E^{(2)}\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})\;\right]
+\;\right] \\
+&=& E^{(1)}\!\left[\;
+\sum_{k\in s^{(1)}}\,w^{(1)}_{k}(s^{(1)})
+\cdot
+\mathbf{T}_{\mathbf{y}\vert k}
+\;\right] \\
+&=&
+\sum_{k\in U^{(1)}}\,\mathbf{T}_{\mathbf{y}\vert k}
+\;\;=\;\;
+\sum_{k\in U^{(1)}}\,\sum_{l \in U^{(2)}_{k}}\,\mathbf{y}_{kl}
+\\
+&=&
+\mathbf{T}_{\mathbf{y}}
+\end{eqnarray*}
+\qed
+
+\begin{proposition}
+\quad
+Suppose that
+the first-stage weights $w^{(1)}_{k} : \mathcal{S}^{(1)} \longrightarrow (0,1]$
+satisfy the following:
+\begin{equation*}
+E^{(1)}\!\left[\;\,\widehat{T}_{z}\,\;\right] \;\; = \;\; T_{z} \;\;:=\;\; \sum_{k\in U^{(1)}}z_{k},
+\quad\textnormal{for any function $z : U^{(1)} \longrightarrow \Re$,}
+\end{equation*}
+where $\widehat{T}_{z} : \mathcal{S}^{(1)} \longrightarrow \Re$ is a random variable defined by
+$\widehat{T}_{z}(s^{(1)}) := \underset{k \in s^{(1)}}{\sum}\,w^{(1)}_{k}(s^{(1)})\,z_{k}$.
+Then, the variance $\Var\!\left(\widehat{\mathbf{T}}_{\mathbf{y}}\right)$ can be expressed as follows:
+		\begin{equation*}
+		\Var\!\left(\widehat{\mathbf{T}}_{\mathbf{y}}\right)
+		\;\;=\;\;
+		E^{(2)}\!\left[\;\Var^{(1)}\!\left(\left.
+		\sum_{k\in s^{(1)}}\,w^{(1)}_{k}(s^{(1)})\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+		\right\vert s^{(2)}\right)\;\right]
+		\;\;+\;\;
+		\sum_{k\in U^{(1)}}\Var^{(2)}_{k}\!\left[\;\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}\;\right]
+		\end{equation*}
+\end{proposition}
+
+\proof
+\begin{eqnarray*}
+\Var\!\left(\widehat{\mathbf{T}}_{\mathbf{y}}\right)
+&=&
+E^{(2)}\!\left[\;\Var^{(1)}\!\left(\left.\widehat{\mathbf{T}}_{\mathbf{y}}\right\vert s^{(2)}\right)\;\right]
++
+\Var^{(2)}\!\left[\;E^{(1)}\!\left(\left.\widehat{\mathbf{T}}_{\mathbf{y}}\right\vert s^{(2)}\right)\;\right] \\
+&=&
+E^{(2)}\!\left[\;\Var^{(1)}\!\left(\left.
+\sum_{k\in s^{(1)}}\,w^{(1)}_{k}(s^{(1)})\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+\right\vert s^{(2)}\right)\;\right]
++
+\Var^{(2)}\!\left[\;E^{(1)}\!\left(\left.
+\sum_{k\in s^{(1)}}\,w^{(1)}_{k}(s^{(1)})\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+\right\vert s^{(2)}\right)\;\right]
+\\
+&=&
+E^{(2)}\!\left[\;\Var^{(1)}\!\left(\left.
+\sum_{k\in s^{(1)}}\,w^{(1)}_{k}(s^{(1)})\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+\right\vert s^{(2)}\right)\;\right]
++
+\Var^{(2)}\!\left[\;
+\sum_{k\in U^{(1)}}\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+\;\right]
+\\
+&=&
+E^{(2)}\!\left[\;\Var^{(1)}\!\left(\left.
+\sum_{k\in s^{(1)}}\,w^{(1)}_{k}(s^{(1)})\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+\right\vert s^{(2)}\right)\;\right]
++
+\sum_{k\in U^{(1)}}
+\Var^{(2)}\!\left[\;
+\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+\;\right]
+\\
+&=&
+E^{(2)}\!\left[\;\Var^{(1)}\!\left(\left.
+\sum_{k\in s^{(1)}}\,w^{(1)}_{k}(s^{(1)})\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}(s^{(2)}_{k})
+\right\vert s^{(2)}\right)\;\right]
++
+\sum_{k\in U^{(1)}}\Var^{(2)}_{k}\!\left[\;\,\widehat{\mathbf{T}}_{\mathbf{y}\vert k}\;\right]
+\end{eqnarray*}
+\qed
+
+\begin{definition}
+\mbox{}
+\vskip 0.1cm
+\noindent
+A random variable $\widehat{\mathbf{T}}_{\mathbf{y}} : \mathcal{S} \longrightarrow \Re^{m}$
+is said to be \underline{\emph{linear} in the population parameter $\mathbf{y} : U \longrightarrow \Re$}
+if it has the following form:
+\begin{equation*}
+\begin{array}{cccl}
+\widehat{\mathbf{T}}_{\mathbf{y}} : & \mathcal{S} & \longrightarrow & \Re^{m} \\
+     & s &\longmapsto & \underset{k\in s}{\sum}\,w_{k}(s)\,\mathbf{y}_{k} \;=\; \underset{k\in U}{\sum}\,I_{k}(s)\,w_{k}(s)\,\mathbf{y}_{k},
+\end{array}
+\end{equation*}
+where, for each $k \in U$, $w_{k} : \mathcal{S} \longrightarrow \Re$ is itself
+an $\Re$-valued random variable, and $I_{k} : \mathcal{S} \longrightarrow \{0,1\}$
+is the indicator random variable defined by:
+\begin{equation*}
+I_{k}(s)
+\;=\;
+\left\{
+\begin{array}{cl}
+1, & \textnormal{if $k \in s$}, \\
+0, & \textnormal{otherwise}
+\end{array}
+\right.
+\end{equation*}
+We call the $w_{k}$'s the \underline{\emph{weights}} of $\widehat{\mathbf{T}}_{\mathbf{y}}$,
+and we use the notation $\widehat{\mathbf{T}}_{\mathbf{y};w}$ to indicate that the random
+variable depends on the weights $w_{k}$.
+\end{definition}
+
+\noindent
+\textbf{Nomenclature}
+\;
+In the context of finite-population probability sampling, under a design
+$p : \mathcal{S} \longrightarrow (0,1]$,
+an ``estimator" is precisely just a random variable defined on the space
+$\mathcal{S}$ of all admissible samples in the design.
+%When we speak of a random variable $\widehat{\theta} : \mathcal{S} \longrightarrow \Re$
+%as an estimator for a certain population characteristic $\theta \in \Re$, we are merely
+%conveying the connotation that $\widehat{\theta}$ is supposed to have an expected
+%value equal or close to $\theta$ and that its variance is supposed to be sufficiently small
+%that we have some degree of confidence that an actual observed value of $\widehat{\theta}$,
+%i.e. $\widehat{\theta}(s)$ where $s \in \mathcal{S}$ is the actual obtained sample, should be
+%reasonably close to the actual value of $\theta$.
+
+\begin{proposition}
+\label{proposition:Unbiasedness}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Let $\widehat{\mathbf{T}}_{\mathbf{y};w} : \mathcal{S} \longrightarrow \Re^{m}$, with
+$\widehat{\mathbf{T}}_{\mathbf{y};w}(s)$
+$=$ $\underset{k \in U}{\sum}\,I_{k}(s)\,w_{k}(s)\,\mathbf{y}_{k}$
+$=$ $\underset{k \in s}{\sum}\,w_{k}(s)\,\mathbf{y}_{k}$,
+be a random variable linear in the population parameter
+$\mathbf{y} : U \longrightarrow \Re$.
+Then,
+\begin{equation*}
+E\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right] \; = \; \mathbf{T}_{\mathbf{y}},\;\textnormal{for arbitrary $\mathbf{y}$}
+\quad\Longleftrightarrow\quad
+E\!\left[\;I_{k}\,w_{k}\;\right] \; = \; 1,\;\textnormal{for each $k \in U$}.
+\end{equation*}
+\end{proposition}
+\proof
+Note:
+\begin{equation*}
+E\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]
+\;=\; E\!\left[\;\underset{k \in s}{\sum}\,w_{k}\,\mathbf{y}_{k}\;\right]
+\;=\; E\!\left[\;\underset{k \in U}{\sum}\,I_{k}\,w_{k}\,\mathbf{y}_{k}\;\right]
+\;=\; \underset{k \in U}{\sum}\,E\!\left[\,I_{k}\,w_{k}\,\right]\,\mathbf{y}_{k}
+\end{equation*}
+Hence, since $\mathbf{y} : U \longrightarrow \Re$ is arbitrary,
+\begin{equation*}
+E\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right] \;=\; \mathbf{T}_{\mathbf{y}} \; := \; \underset{k \in U}{\sum}\,\mathbf{y}_{k}
+\quad\Longleftrightarrow\quad
+\sum_{k \in U}\left(E\!\left[\,I_{k}\,w_{k}\,\right]-1\right)\cdot\mathbf{y}_{k} \; = \; \mathbf{0}
+\quad\Longleftrightarrow\quad
+E\!\left[\;I_{k}\,w_{k}\;\right] \; = \; 1,\;\textnormal{for each $k \in U$}.
+\end{equation*}
+The proof of the Proposition is now complete. \qed
+
+\begin{corollary}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Let $U = \{1,2,\ldots,N\}$ be a finite population.
+For any fixed but arbitrary population parameter $\mathbf{y} : U \longrightarrow \Re^{m}$ and
+for any sampling design $p : \mathcal{S} \longrightarrow (0,1]$ such that each of
+its first-order inclusion probabilities is strictly positive,
+the Horvitz-Thompson estimator $\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}$ is well-defined
+and it is the unique unbiased estimator for $\mathbf{T}_{\mathbf{y}}$, which is linear in $\mathbf{y}$ and
+whose weights are constant in $s$.
+\end{corollary}
+
+\proof
+Recall that the Horvitz-Thompson estimator is defined as:
+\begin{equation*}
+\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}(s)
+\;:=\; \sum_{k \in s}\,\dfrac{1}{\pi_{k}}\,\mathbf{y}_{k}
+\;:=\; \sum_{k \in U}\,I_{k}(s)\,\dfrac{1}{\pi_{k}}\,\mathbf{y}_{k},
+\end{equation*}
+where $\pi_{k} := E\!\left[\,I_{k}\,\right] = \underset{k \in U}{\sum}\,p(s)\,I_{k}(s) = \underset{s \ni k}{\sum}\,p(s)$
+is the inclusion probability of $k \in U$ under the sampling design $p : \mathcal{S} \longrightarrow (0,1]$.
+Clearly, $\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}$ is linear in $\mathbf{y}$ with weights constant in $s$.
+Next, note that:
+\begin{equation*}
+E\!\left[\;\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}\;\right]
+\;\;=\;\; E\!\left[\;\sum_{k \in s}\,\dfrac{1}{\pi_{k}}\,\mathbf{y}_{k}\;\right]
+\;\;=\;\; E\!\left[\;\sum_{k \in U}\,I_{k}\,\dfrac{\mathbf{y}_{k}}{\pi_{k}}\;\right]
+\;\;=\;\; \sum_{k \in U}\,E\!\left[\;I_{k}\;\right]\,\dfrac{\mathbf{y}_{k}}{\pi_{k}}
+\;\;=\;\; \sum_{k \in U}\,\pi_{k}\,\dfrac{\mathbf{y}_{k}}{\pi_{k}}
+\;\;=\;\; \sum_{k \in U}\,\mathbf{y}_{k} \;\; = \;\; \mathbf{T}_{y}
+\end{equation*}
+Hence, $\widehat{\mathbf{T}}^{\textnormal{HT}}_{\mathbf{y}}$ is an unbiased estimator for $\mathbf{T}_{\mathbf{y}}$.
+Conversely, let
+\begin{equation*}
+\widehat{\mathbf{T}}_{y;w}(s) \; = \; \sum_{k \in s}\,w_{k}\,\mathbf{y}_{k}
+\end{equation*}
+be any unbiased estimator for $\mathbf{T}_{\mathbf{y}}$ which linear in $\mathbf{y}$ with weights $w_{k}$ constant in $s$.
+Thus,
+\begin{equation*}
+\sum_{k \in U}\,\mathbf{y}_{k}
+\;=\; \mathbf{T}_{\mathbf{y}}
+\;=\; E\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]
+\;=\; E\!\left[\;\sum_{k \in s}\,w_{k}\,\mathbf{y}_{k}\;\right]
+\;=\; E\!\left[\;\sum_{k \in U}\,I_{k}\,w_{k}\,\mathbf{y}_{k}\;\right]
+\;=\; \sum_{k \in U}\,E\!\left[\;I_{k}\;\right]\,w_{k}\,\mathbf{y}_{k}
+\;=\; \sum_{k \in U}\,\pi_{k}\,w_{k}\,\mathbf{y}_{k}.
+\end{equation*}
+Since $\mathbf{y}$ is arbitrary, the above equation immediately implies that
+\begin{equation*}
+\pi_{k}w_{k} - 1 = 0,
+\end{equation*}
+or equivalently, $w_{k} = \dfrac{1}{\pi_{k}}$; in other words,
+$\widehat{\mathbf{T}}_{\mathbf{y};w}$ is in fact equal to the Horvitz-Thompson estimator.
+The proof of the Corollary is now complete.
+\qed
+
+\begin{lemma}
+\label{lemma:technical}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $(\Omega,\mathcal{A},p)$ be a probability space,
+$X, Y : \Omega \longrightarrow \Re$ be two $\Re$-valued random variables defined on $\Omega$,
+and $\mathbf{u}, \mathbf{v} \in \Re^{m}$ be two fixed vectors in $\Re^{m}$.
+Then,
+\begin{equation*}
+\Cov\!\left(\,X\cdot\mathbf{u}\,,\,Y\cdot\mathbf{v}\,\right)
+\;\;=\;\;
+\Cov(X,Y)\cdot\mathbf{u}\cdot\mathbf{v}^{T}
+\;\;\in\;\; \Re^{m \times m}
+\end{equation*}
+\end{lemma}
+
+\proof
+Note:
+\begin{eqnarray*}
+\Cov\!\left(\;X\cdot\mathbf{u}\;,\;Y\cdot\mathbf{v}\;\right)
+&:=& E\!\left[\;\left(X\,\mathbf{u} - \mu_{X}\mathbf{u}\right)\cdot\left(Y\,\mathbf{v} - \mu_{Y}\mathbf{v}\right)^{T}\;\right]
+\;\;=\;\; E\!\left[\;\left(X - \mu_{X}\right)\mathbf{u}\cdot\left(Y - \mu_{Y}\right)\mathbf{v}^{T}\;\right] \\
+&=& E\!\left[\;\left(X - \mu_{X}\right)\left(Y - \mu_{Y}\right)\cdot\mathbf{u}\cdot\mathbf{v}^{T}\;\right] 
+\;\;=\;\; E\!\left[\;\left(X - \mu_{X}\right)\left(Y - \mu_{Y}\right)\;\right]\cdot\mathbf{u}\cdot\mathbf{v}^{T} \\
+&=& \Cov(X,Y)\cdot\mathbf{u}\cdot\mathbf{v}^{T},
+\end{eqnarray*}
+as required.
+\qed
+
+\begin{proposition}
+\label{proposition:generalLinear:Var}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Let $\widehat{\mathbf{T}}_{\mathbf{y};w} : \mathcal{S} \longrightarrow \Re$,
+with $\widehat{\mathbf{T}}_{\mathbf{y};w}(s)$
+$=$ $\underset{k \in s}{\sum}\,w_{k}(s)\,\mathbf{y}_{k}$
+$=$ $\underset{k \in U}{\sum}\,I_{k}(s)\,w_{k}(s)\,\mathbf{y}_{k}$,
+be a random variable linear in the population parameter $\mathbf{y} : U \longrightarrow \Re$.
+Then, the covariance matrix of $\widehat{\mathbf{T}}_{\mathbf{y};w}$ is given by:
+\begin{equation*}
+\Var\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]
+\;\;=\;\;\sum_{i\in U}\,\sum_{k\in U}\,\Cov\!\left[\;I_{i}\,w_{i}\,,\,I_{k}\,w_{k}\;\right]\,\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;\; \in \Re^{m \times m}
+\end{equation*}
+%where
+%\begin{equation*}
+%a_{i}\; := \;\Var\left[\;I_{i}\,w_{i}\;\right],
+%\quad
+%a_{ij} \; := \; \textnormal{Cov}\left[\;I_{i}w_{i}\,,\,I_{j}w_{j}\;\right].
+%\quad\textnormal{and}\quad
+%I_{i}(s)
+%\;=\;
+%\left\{
+%\begin{array}{cl}
+%1\,, & \textnormal{if $i \in s$} \\
+%0\,, & \textnormal{otherwise}
+%\end{array}.
+%\right.
+%\end{equation*}
+%Furthermore, if $\widehat{T}_{y;w}$ is an unbiased estimator for $T_{y} := \underset{k \in U}{\sum}y_{k}$
+%for arbitrary $y$, then
+%\begin{equation*}
+%a_{i} \; = \; \Var\!\left[\;I_{i}w_{i}\;\right]
+%\; = \; \left(\sum_{s\in\mathcal{S}}\,p(s)\,I_{i}(s)\,w_{i}^{2}(s)\right) - 1
+%\end{equation*}
+Furthermore, if the first-order and second-order inclusion probabilities of the sampling design
+$p : \mathcal{S} \longrightarrow (0,1]$ are all strictly positive,
+i.e. $\pi_{k} = \pi_{kk} := \underset{s \ni k}{\sum}\,p(s) > 0$, for each $k \in U$, and
+$\pi_{ik} := \underset{s \ni i,k}{\sum}\,p(s) > 0$, for any distinct $i,k \in U$,
+then an unbiased estimator for $\Var\!\left[\;\widehat{\mathbf{T}}_{y;w}\;\right]$ is given by:
+\begin{equation*}
+\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{y;w}\;\right]\!(s)
+\;:=\; \sum_{i,k \in s}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\,\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;=\; \sum_{k \in s}\dfrac{\Var(I_{k}w_{k})}{\pi_{k}}\,\mathbf{y}_{k}\cdot\mathbf{y}_{k}^{T}
+       + \underset{i \neq k}{\sum_{i,k \in s}}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\,\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T},
+\;\;\textnormal{for each $s \in \mathcal{S}$}.
+\end{equation*}
+\end{proposition}
+
+\proof
+First, note that Lemma \ref{lemma:technical} implies:
+\begin{equation*}
+\Var\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]
+\;\;=\;\; \Cov\!\left[\;\sum_{i\in U}\,I_{i}\,w_{i}\,\mathbf{y}_{i}\;,\;\sum_{k\in U}\,I_{k}\,w_{k}\,\mathbf{y}_{k}\;\right]
+\;\;=\;\; \sum_{i\in U}\,\sum_{k\in U}\,\Cov\!\left[\;I_{i}\,w_{i}\,,\,I_{k}\,w_{k}\;\right]\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;\;\in\;\;\Re^{m \times m}
+\end{equation*}
+Next,
+\begin{eqnarray*}
+E\!\left(\;\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]\;\right)
+&=& \sum_{s\in\mathcal{S}}\,p(s)\cdot\widehat{\Var}\!\left[\;\widehat{\mathbf{T}}_{\mathbf{y};w}\;\right]\!(s)
+\;\;=\;\; \sum_{s\in\mathcal{S}}\,p(s)\cdot\left(\sum_{i,k \in s}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}\right) \\
+&=& \sum_{s\in\mathcal{S}}\,p(s)\cdot
+\left(\sum_{i,k \in U}I_{i}(s)I_{k}(s)\cdot\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}\right) \\
+&=& \sum_{i,k \in U}\left(\sum_{s\in\mathcal{S}}\,p(s)I_{i}(s)I_{k}(s)\right)\cdot\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T} \\
+&=& \sum_{i,k \in U}\left(\sum_{s\ni i, k}\,p(s)\right)\cdot\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T} \\
+&=& \sum_{i,k \in U}\,\pi_{ik}\cdot\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;\;=\;\; \sum_{i,k \in U}\,\Cov(I_{i}w_{i},I_{k}w_{k})\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T} \\
+&=& \Var\!\left[\;\widehat{\mathbf{T}}_{y;w}\;\right]
+\end{eqnarray*}
+Lastly, recall that $\pi_{kk} = \pi_{k}$ and $\Cov(I_{k}w_{k},I_{k}w_{k}) = \Var[\,I_{k}w_{k}\,]$,
+and the validity of the following identity is thus trivial:
+\begin{equation*}
+\sum_{i,k \in s}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\;\;=\;\; \sum_{k \in s}\dfrac{\Var(I_{k}w_{k})}{\pi_{k}}\cdot\mathbf{y}_{k}\cdot\mathbf{y}_{k}^{T}
+       + \underset{i \neq k}{\sum_{i,k \in s}}\dfrac{\Cov(I_{i}w_{i},I_{k}w_{k})}{\pi_{ik}}\cdot\mathbf{y}_{i}\cdot\mathbf{y}_{k}^{T}
+\end{equation*}
+The proof of the Proposition is complete.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
