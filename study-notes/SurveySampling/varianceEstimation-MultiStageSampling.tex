@@ -38,7 +38,7 @@ T
 \;\;=\;\; \sum_{i \in U^{(1)}_{\color{white} i}}\,\cdots\,\sum_{u \in U^{(r)}_{i\cdots}}\,y_{u}
 \end{equation}
 
-\begin{theorem}
+\begin{theorem}\label{rStage}
 \mbox{}\vskip 0.1cm
 \noindent
 If $\widehat{T}_{i} : \mathcal{S}^{(2+)}_{i} \longrightarrow \Re$ is an unbiased estimator for $T_{i}$,
@@ -110,9 +110,20 @@ then
 \dfrac{\widehat{T}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}}
 \cdot
 \dfrac{\widehat{T}_{j}(s^{(2+)}_{j})}{\pi^{(1)}_{j}}
+\;-\;
+\sum_{i\in s^{(1)}}\,\left(\dfrac{1}{\pi^{(1)}_{i}} - 1\right)\dfrac{\widehat{V}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}}
+\\
+&=&
+\sum_{i\in s^{(1)}}\,\sum_{j\in s^{(1)}}\,
+\dfrac{\Delta^{(1)}_{ij}}{\pi^{(1)}_{ij}}
+\cdot
+\dfrac{\widehat{T}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}}
+\cdot
+\dfrac{\widehat{T}_{j}(s^{(2+)}_{j})}{\pi^{(1)}_{j}}
 \;+\;
-\sum_{i\in s^{(1)}}\,\left(1 - \dfrac{1}{\pi^{(1)}_{i}}\right)\dfrac{\widehat{V}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}},
-\;\;\textnormal{and}
+\sum_{i\in s^{(1)}}\,\dfrac{\widehat{V}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}}
+\;-\;
+\sum_{i\in s^{(1)}}\,\dfrac{\widehat{V}_{i}(s^{(2+)}_{i})}{\left(\pi^{(1)}_{i}\right)^{2}}
 \\
 \widehat{\Var}^{(2+)}\!\left[\,\widehat{T}\,\right]\!(s)
 &:=&
@@ -136,7 +147,7 @@ respectively.
 \end{equation}
 \end{corollary}
 
-\proof
+\proof\!\!\!\!\!\!of Theorem \ref{rStage}
 
 \begin{eqnarray*}
 \Var^{(1)}\!\left[E^{(2+)}\!\left[\;\left.\widehat{T}\;\right\vert\;s^{(1)}\;\right]\right]
@@ -365,7 +376,7 @@ E^{(1)}\!\left(\Var^{(2+)}(\,\left.\widehat{T}\,\right\vert s^{(1)})\right)
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-%\clearpage
+\clearpage
 \section{Variance estimation for three-stage sampling}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
@@ -574,6 +585,14 @@ be the random variable defined in a recursive manner as follows:
 \end{array}
 \end{equation*}
 where
+\begin{equation*}
+\widehat{T}_{ia}(s^{(3)}_{ia})\;:=\;\sum_{u \in s^{(3)}_{ia}}\,\dfrac{y_{u}}{\pi^{(3)}_{ia\vert u}}
+\quad\quad\textnormal{and}\quad\quad
+\widehat{T}_{i}(s^{(2+)}_{i})
+\;:=\;\sum_{a\in s^{(2)}_{i}}\dfrac{\widehat{T}_{ia}(s^{(3)}_{ia})}{\pi^{(2)}_{i\vert a}}
+\;=\;\sum_{a\in s^{(2)}_{i}}\dfrac{1}{\pi^{(2)}_{i\vert a}}\left(\sum_{u \in s^{(3)}_{ia}}\,\dfrac{y_{u}}{\pi^{(3)}_{ia\vert u}}\right),
+\end{equation*}
+and
 \begin{eqnarray*}
 \Delta^{(1)}_{ij}
 &:=&
@@ -609,7 +628,8 @@ Then, $\widehat{\Var}\!\left[\,\widehat{T}\,\right]$ is a design-unbiased estima
 $\Var\!\left[\,\widehat{T}\,\right]$ of the $\widehat{T}$.
 \end{theorem}
 
-\begin{corollary}\mbox{}\\
+\begin{corollary}\label{corollary:threeStage}\mbox{}\vskip 0.1cm
+\noindent
 For a three-stage sampling design with invariant and independent subsampling,
 the fully expanded expression for $\widehat{\Var}\!\left[\,\widehat{T}\,\right]$ is as follows:
 \begin{eqnarray*}
@@ -655,25 +675,89 @@ the fully expanded expression for $\widehat{\Var}\!\left[\,\widehat{T}\,\right]$
 +
 \sum_{a \in s^{^{(2)}}_{i}}\,\dfrac{1}{\pi^{(2)}_{i \vert a}}
 \left(\sum_{u \in s^{(3)}_{ia}}\,\sum_{v \in s^{(3)}_{ia}}\Delta^{(3)}_{ia\vert uv}\dfrac{y_{u}}{\pi^{(3)}_{ia\vert u}}\dfrac{y_{v}}{\pi^{(3)}_{ia\vert v}}\right)
-\right\},
+\right\}
 \end{eqnarray*}
-where
-\begin{equation*}
-\widehat{T}_{ia}(s^{(3)}_{ia})\;=\;\sum_{u \in s^{(3)}_{ia}}\,\dfrac{y_{u}}{\pi^{(3)}_{ia\vert u}}
-\quad\textnormal{and}\quad
-\widehat{T}_{i}(s^{(2+)}_{i})
-\;=\;\sum_{a\in s^{(2)}_{i}}\dfrac{\widehat{T}_{ia}(s^{(3)}_{ia})}{\pi^{(2)}_{i\vert a}}
-\;=\;\sum_{a\in s^{(2)}_{i}}\dfrac{1}{\pi^{(2)}_{i\vert a}}\left(\sum_{u \in s^{(3)}_{ia}}\,\dfrac{y_{u}}{\pi^{(3)}_{ia\vert u}}\right)
-\end{equation*}
-\begin{equation*}
-\Delta^{(3)}_{ia \vert uv}
-\;\;:=\;\;
-\left\{
-\begin{array}{cl}
-\pi^{(3)}_{ia \vert u}\left(1 - \pi^{(3)}_{ia \vert u}\right), & \textnormal{if}\;\; u = v
-\\ \\
-\pi^{(3)}_{ia \vert uv} - \pi^{(3)}_{ia \vert u}\,\pi^{(3)}_{ia \vert v}, & \textnormal{if}\;\; u \neq v
-\end{array}
-\right.
-\end{equation*}
 \end{corollary}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\clearpage
+\section{Variance estimation for three-stage sampling, with SRSWOR at each stage}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+First, recall that for a simple random sampling without replacement (SRSWOR),
+with fixed sample size $n$ from a population of size $N$,
+the first- and second-order selection probabilities are given by: 
+\begin{equation*}
+\pi_{i}\;=\;\dfrac{n}{N}
+\quad\textnormal{and}\quad
+\pi_{ij}\;=\;\dfrac{n(n-1)}{N(N-1)},
+\end{equation*}
+for any distinct units $i$, $j$ in the population.
+The Horvitz-Thompson estimator of the population total of a population characteristic $y$ is, by definition:
+\begin{equation*}
+\widehat{T}^{\textnormal{HT}}_{y}(s)
+\;:=\;\dfrac{N}{n}\sum_{k \in s}\,y_{k}
+\;=\; w\cdot\sum_{k \in s}\,y_{k},
+\quad\textnormal{where}\;\; w\;:=\;\dfrac{N}{n}.
+\end{equation*}
+The design variance of $\widehat{T}^{\textnormal{HT}}_{y}$ is given by:
+\begin{eqnarray*}
+\Var\!\left[\,\widehat{T}^{\textnormal{HT}}_{y}\,\right]
+&=& N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\left\{\dfrac{1}{{\color{red}N}-1}\sum_{k \in{\color{red}U}}\left(y_{k}-\overline{y}_{\color{red}U}\right)^{2}\right\}
+\;\;=\;\; N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}U}}\right) \\
+&=& (nw)^{2}\left(1-\dfrac{1}{w}\right)\cdot\dfrac{1}{n}\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in U}\right)
+\;\;=\;\; nw^{2}\left(1-\dfrac{1}{w}\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in U}\right) \\
+&=& nw\left(w-1\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}U}}\right),
+\end{eqnarray*}
+where $\overline{y}_{U} := \dfrac{1}{N}\underset{k \in U}{\sum}\,y_{k}$.
+Recall also that a design-unbiased estimator of $\widehat{T}^{\textnormal{HT}}_{y}$ is given by:
+\begin{eqnarray*}
+\widehat{\Var}\!\left[\,\widehat{T}^{\textnormal{HT}}_{y}\,\right]
+&=& N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\left\{\dfrac{1}{{\color{red}n}-1}\sum_{k \in{\color{red}s}}\left(y_{k}-\overline{y}_{\color{red}s}\right)^{2}\right\}
+\;\;=\;\; N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}s}}\right) \\
+&=& nw\left(w-1\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}s}}\right) \\
+\end{eqnarray*}
+With the above observations, Corollary \ref{corollary:threeStage} immediately yields the following:
+\begin{corollary}\mbox{}\vskip 0.1cm
+\noindent
+For a three-stage sampling design with invariant and independent subsampling,
+where sampling random sampling without replacement (SRSWOR) is used at each stage, we have
+\begin{eqnarray*}
+\widehat{\Var}\!\left[\,\widehat{T}\,\right](s)
+&=& n^{(1)}w^{(1)}\!\left(w^{(1)}-1\right)\SVar\!\left(\left\{\,\widehat{T}_{i}\,\right\}_{i \in s^{(1)}}\right)\\
+&& +\;
+w^{(1)}\underset{i\in s^{(1)}}{\sum}
+\underset{\widehat{V}^{(2+)}_{i}}{
+\underbrace{
+\left\{
+n^{(2)}_{i}w^{(2)}_{i}\!\left(w^{(2)}_{i}-1\right)\SVar\!\left(\left\{\,\widehat{T}_{ia}\,\right\}_{a\in s^{(2)}_{i}}\right)
+\;+\;
+w^{(2)}_{i}\underset{a \in s^{(2)}_{i}}{\sum}\,n^{(3)}_{ia} w^{(3)}_{ia}\!\left(w^{(3)}_{ia}-1\right)\SVar\!\left(\left\{y_{k}\right\}_{k\in s^{(3)}_{ia}}\right)
+\right\}
+}%underbrace
+}%underset
+\\
+&=& n^{(1)}w^{(1)}\!\left(w^{(1)}-1\right)\SVar\!\left(\left\{\,\widehat{T}_{i}\,\right\}_{i \in s^{(1)}}\right)\;+\;w^{(1)}\underset{i\in s^{(1)}}{\sum}\,\widehat{V}^{(2+)}_{i}
+\end{eqnarray*}
+\begin{eqnarray*}
+\widehat{\Var}^{(1)}\!\left[\,\widehat{T}\,\right](s)
+&=& n^{(1)}w^{(1)}\!\left(w^{(1)}-1\right)\SVar\!\left(\left\{\,\widehat{T}_{i}\,\right\}_{i \in s^{(1)}}\right)
+\;+\;w^{(1)}\underset{i\in s^{(1)}}{\sum}\,\widehat{V}^{(2+)}_{i}
+\;-\;\left(w^{(1)}\right)^{2}\underset{i\in s^{(1)}}{\sum}\,\widehat{V}^{(2+)}_{i}
+\\
+&=& n^{(1)}w^{(1)}\!\left(w^{(1)}-1\right)\SVar\!\left(\left\{\,\widehat{T}_{i}\,\right\}_{i \in s^{(1)}}\right)
+\;+\;w^{(1)}\left(1 - w^{(1)}\right)\underset{i\in s^{(1)}}{\sum}\,\widehat{V}^{(2+)}_{i}
+\\ {\color{white}1} \\
+\widehat{\Var}^{(2+)}\!\left[\,\widehat{T}\,\right](s)
+&=& \left(w^{(1)}\right)^{2}\underset{i\in s^{(1)}}{\sum}\,\widehat{V}^{(2+)}_{i}
+\end{eqnarray*}
+\end{corollary}
+
+
+
+
+
+
+
