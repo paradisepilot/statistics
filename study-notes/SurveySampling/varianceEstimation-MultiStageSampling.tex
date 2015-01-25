@@ -110,8 +110,8 @@ then
 \dfrac{\widehat{T}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}}
 \cdot
 \dfrac{\widehat{T}_{j}(s^{(2+)}_{j})}{\pi^{(1)}_{j}}
-\;-\;
-\sum_{i\in s^{(1)}}\,\left(\dfrac{1}{\pi^{(1)}_{i}} - 1\right)\dfrac{\widehat{V}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}}
+\;+\;
+\sum_{i\in s^{(1)}}\,\left(1 - \dfrac{1}{\pi^{(1)}_{i}}\right)\dfrac{\widehat{V}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}}
 \\
 &=&
 \sum_{i\in s^{(1)}}\,\sum_{j\in s^{(1)}}\,
@@ -669,13 +669,43 @@ the fully expanded expression for $\widehat{\Var}\!\left[\,\widehat{T}\,\right]$
 \dfrac{\widehat{T}_{j}(s^{(2+)}_{j})}{\pi^{(1)}_{j}}
 \\&&
 +
-\sum_{i\in s^{(1)}}\,\dfrac{1}{\pi^{(1)}_{i}}\,\left\{
+\sum_{i\in s^{(1)}}\,\dfrac{1}{\pi^{(1)}_{i}}\,
+\underset{\widehat{V}_{i}(s^{(2+)}_{i})}{
+\underbrace{
+\left\{
 \sum_{a\in s^{(2)}_{i}}\,\sum_{b\in s^{(2)}_{i}}
 \Delta^{(2)}_{i \vert ab}\cdot\dfrac{\widehat{T}_{ia}(s^{(3)}_{ia})}{\pi^{(2)}_{i \vert a}}\cdot\dfrac{\widehat{T}_{ib}(s^{(3)}_{ib})}{\pi^{(2)}_{i \vert b}}
 +
 \sum_{a \in s^{^{(2)}}_{i}}\,\dfrac{1}{\pi^{(2)}_{i \vert a}}
 \left(\sum_{u \in s^{(3)}_{ia}}\,\sum_{v \in s^{(3)}_{ia}}\Delta^{(3)}_{ia\vert uv}\dfrac{y_{u}}{\pi^{(3)}_{ia\vert u}}\dfrac{y_{v}}{\pi^{(3)}_{ia\vert v}}\right)
 \right\}
+}%underbrace
+}%underset
+\end{eqnarray*}
+Furthermore,
+\begin{eqnarray*}
+\widehat{\Var}^{(1)}\!\left[\,\widehat{T}\,\right]\!(s)
+&=&
+\sum_{i\in s^{(1)}}\,\sum_{j\in s^{(1)}}\,
+\dfrac{\Delta^{(1)}_{ij}}{\pi^{(1)}_{ij}}
+\cdot
+\dfrac{\widehat{T}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}}
+\cdot
+\dfrac{\widehat{T}_{j}(s^{(2+)}_{j})}{\pi^{(1)}_{j}}
+\;+\;\sum_{i\in s^{(1)}}\,\dfrac{\widehat{V}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}}
+\;-\;\sum_{i\in s^{(1)}}\,\dfrac{\widehat{V}_{i}(s^{(2+)}_{i})}{\left(\pi^{(1)}_{i}\right)^{2}}
+\\
+&=&
+\sum_{i\in s^{(1)}}\,\sum_{j\in s^{(1)}}\,
+\dfrac{\Delta^{(1)}_{ij}}{\pi^{(1)}_{ij}}
+\cdot
+\dfrac{\widehat{T}_{i}(s^{(2+)}_{i})}{\pi^{(1)}_{i}}
+\cdot
+\dfrac{\widehat{T}_{j}(s^{(2+)}_{j})}{\pi^{(1)}_{j}}
+\;+\;\sum_{i\in s^{(1)}}\,\dfrac{1}{\pi^{(1)}_{i}} \left(1 - \dfrac{1}{\pi^{(1)}_{i}}\right) \, \widehat{V}_{i}(s^{(2+)}_{i})
+\\
+\widehat{\Var}^{(2+)}\!\left[\,\widehat{T}\,\right]\!(s)
+&=&\sum_{i\in s^{(1)}}\,\dfrac{\widehat{V}_{i}(s^{(2+)}_{i})}{\left(\pi^{(1)}_{i}\right)^{2}}
 \end{eqnarray*}
 \end{corollary}
 
@@ -743,10 +773,10 @@ w^{(2)}_{i}\underset{a \in s^{(2)}_{i}}{\sum}\,n^{(3)}_{ia} w^{(3)}_{ia}\!\left(
 \end{eqnarray*}
 \begin{eqnarray*}
 \widehat{\Var}^{(1)}\!\left[\,\widehat{T}\,\right](s)
-&=& n^{(1)}w^{(1)}\!\left(w^{(1)}-1\right)\SVar\!\left(\left\{\,\widehat{T}_{i}\,\right\}_{i \in s^{(1)}}\right)
-\;+\;w^{(1)}\underset{i\in s^{(1)}}{\sum}\,\widehat{V}^{(2+)}_{i}
-\;-\;\left(w^{(1)}\right)^{2}\underset{i\in s^{(1)}}{\sum}\,\widehat{V}^{(2+)}_{i}
-\\
+%&=& n^{(1)}w^{(1)}\!\left(w^{(1)}-1\right)\SVar\!\left(\left\{\,\widehat{T}_{i}\,\right\}_{i \in s^{(1)}}\right)
+%\;+\;w^{(1)}\underset{i\in s^{(1)}}{\sum}\,\widehat{V}^{(2+)}_{i}
+%\;-\;\left(w^{(1)}\right)^{2}\underset{i\in s^{(1)}}{\sum}\,\widehat{V}^{(2+)}_{i}
+%\\
 &=& n^{(1)}w^{(1)}\!\left(w^{(1)}-1\right)\SVar\!\left(\left\{\,\widehat{T}_{i}\,\right\}_{i \in s^{(1)}}\right)
 \;+\;w^{(1)}\left(1 - w^{(1)}\right)\underset{i\in s^{(1)}}{\sum}\,\widehat{V}^{(2+)}_{i}
 \\ {\color{white}1} \\
