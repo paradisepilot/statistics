@@ -38,7 +38,7 @@ T
 \;\;=\;\; \sum_{i \in U^{(1)}_{\color{white} i}}\,\cdots\,\sum_{u \in U^{(r)}_{i\cdots}}\,y_{u}
 \end{equation}
 
-\begin{theorem}\label{rStage}
+\begin{theorem}\label{theorem:rStage}
 \mbox{}\vskip 0.1cm
 \noindent
 If $\widehat{T}_{i} : \mathcal{S}^{(2+)}_{i} \longrightarrow \Re$ is an unbiased estimator for $T_{i}$,
@@ -147,7 +147,7 @@ respectively.
 \end{equation}
 \end{corollary}
 
-\proof\!\!\!\!\!\!of Theorem \ref{rStage}
+\proof\!\!\!\!\!\!of Theorem \ref{theorem:rStage}
 
 \begin{eqnarray*}
 \Var^{(1)}\!\left[E^{(2+)}\!\left[\;\left.\widehat{T}\;\right\vert\;s^{(1)}\;\right]\right]
@@ -257,7 +257,7 @@ E^{(2+)}\!\left[\;\widehat{T}_{i}(s^{(2+)}_{i})\cdot\widehat{T}_{j}(s^{(2+)}_{j}
 \left\{
 \begin{array}{ll}
 \Var^{(2+)}\!\left(\,\widehat{T}_{i}\,\right) + E^{(2+)}\!\left(\,\widehat{T}_{i}\,\right)^{2}, & \textnormal{if}\;\; i = j, \\
-E^{(2+)}\!\left(\,\widehat{T}_{i}\,\right)\cdot E^{(2+)}\!\left(\,\widehat{T}_{i}\,\right)      , & \textnormal{if}\;\; i \neq j
+E^{(2+)}\!\left(\,\widehat{T}_{i}\,\right)\cdot E^{(2+)}\!\left(\,\widehat{T}_{j}\,\right)      , & \textnormal{if}\;\; i \neq j
 \end{array}
 \right.
 \end{equation*}
@@ -376,6 +376,7 @@ E^{(1)}\!\left(\Var^{(2+)}(\,\left.\widehat{T}\,\right\vert s^{(1)})\right)
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{comment}
 \clearpage
 \section{Variance estimation for three-stage sampling}
 \setcounter{theorem}{0}
@@ -708,6 +709,7 @@ Furthermore,
 &=&\sum_{i\in s^{(1)}}\,\dfrac{\widehat{V}_{i}(s^{(2+)}_{i})}{\left(\pi^{(1)}_{i}\right)^{2}}
 \end{eqnarray*}
 \end{corollary}
+\end{comment}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -735,29 +737,39 @@ The Horvitz-Thompson estimator of the population total of a population character
 The design variance of $\widehat{T}^{\textnormal{HT}}_{y}$ is given by:
 \begin{eqnarray*}
 \Var\!\left[\,\widehat{T}^{\textnormal{HT}}_{y}\,\right]
-&=& N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\left\{\dfrac{1}{{\color{red}N}-1}\sum_{k \in{\color{red}U}}\left(y_{k}-\overline{y}_{\color{red}U}\right)^{2}\right\}
-\;\;=\;\; N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}U}}\right) \\
-&=& (nw)^{2}\left(1-\dfrac{1}{w}\right)\cdot\dfrac{1}{n}\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in U}\right)
-\;\;=\;\; nw^{2}\left(1-\dfrac{1}{w}\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in U}\right) \\
-&=& nw\left(w-1\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}U}}\right),
+&=& \sum_{i\in U}\sum_{j\in U}\,\Delta_{ij}\,\frac{y_{i}}{\pi_{i}}\,\frac{y_{j}}{\pi_{j}}
+\;\;=\;\; \cdots \;\;=\;\; N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\left\{\dfrac{1}{{\color{red}N}-1}\sum_{k \in{\color{red}U}}\left(y_{k}-\overline{y}_{\color{red}U}\right)^{2}\right\} \\
+&=& N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}U}}\right)
+\;\;=\;\; (nw)^{2}\left(1-\dfrac{1}{w}\right)\cdot\dfrac{1}{n}\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in U}\right) \\
+%\;\;=\;\; nw^{2}\left(1-\dfrac{1}{w}\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in U}\right) \\
+&=& nw\left(w-1\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}U}}\right)
+\;\;=\;\; N\cdot\left(w-1\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}U}}\right),
 \end{eqnarray*}
 where $\overline{y}_{U} := \dfrac{1}{N}\underset{k \in U}{\sum}\,y_{k}$.
 Recall also that a design-unbiased estimator of $\widehat{T}^{\textnormal{HT}}_{y}$ is given by:
 \begin{eqnarray*}
-\widehat{\Var}\!\left[\,\widehat{T}^{\textnormal{HT}}_{y}\,\right]
-&=& N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\left\{\dfrac{1}{{\color{red}n}-1}\sum_{k \in{\color{red}s}}\left(y_{k}-\overline{y}_{\color{red}s}\right)^{2}\right\}
-\;\;=\;\; N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}s}}\right) \\
-&=& N\cdot\left(w-1\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}s}}\right)
-\;\;=\;\; nw\left(w-1\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}s}}\right)
+\widehat{\Var}\!\left[\,\widehat{T}^{\textnormal{HT}}_{y}\,\right](s)
+&=& \sum_{i\in s}\sum_{j\in s}\,\dfrac{\Delta_{ij}}{\pi_{ij}}\,\frac{y_{i}}{\pi_{i}}\,\frac{y_{j}}{\pi_{j}}
+\;\;=\;\; N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\left\{\dfrac{1}{{\color{red}n}-1}\sum_{k \in{\color{red}s}}\left(y_{k}-\overline{y}_{\color{red}s}\right)^{2}\right\} \\
+&=& N^{2}\left(1-\dfrac{n}{N}\right)\cdot\dfrac{1}{n}\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}s}}\right) \\
+&=&
+nw\left(w-1\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}s}}\right)
+\;\;=\;\;
+N\cdot\left(w-1\right)\cdot\SVar\!\left(\left\{y_{k}\right\}_{k\in{\color{red}s}}\right)
 \end{eqnarray*}
-With the above observations, Corollary \ref{corollary:threeStage} immediately yields the following:
+With the above observations, applying Theorem \ref{theorem:rStage} recursively to
+\, $\widehat{\Var}\!\left[\,\widehat{T}\,\right]$,
+\, $\widehat{V}^{(2+)}_{i}$,
+\, $\widehat{V}^{(3+)}_{ia}$,
+\, and \, $\widehat{V}^{(4)}_{iac}$ \,
+immediately yields the following:
 \begin{corollary}\mbox{}\vskip 0.1cm
 \noindent
 For a four-stage sampling design with invariant and independent subsampling,
 where sampling random sampling without replacement (SRSWOR) is used at each stage, we have
 \begin{equation*}
 \begin{array}{cclcc}
-\widehat{\Var}\!\left[\,\widehat{T}\,\right](s)
+\widehat{\Var}\!\left[\,\widehat{T}\,\right]\!(s)
 &=& N^{(1)} \left(w^{(1)}-1\right)\SVar\!\left(\left\{\,\widehat{T}_{i}\,\right\}_{i \in s^{(1)}}\right)
 &+& w^{(1)}\underset{i\in s^{(1)}}{\textnormal{\Large$\sum$}}\,\widehat{V}^{(2+)}_{i}
 \\ \\
@@ -767,9 +779,9 @@ where sampling random sampling without replacement (SRSWOR) is used at each stag
 \\ \\
 \widehat{V}^{(3+)}_{ia}
 &=& N^{(3)}_{ia} \left(w^{(3)}_{ia}-1\right)\SVar\!\left(\left\{\,\widehat{T}_{iac}\,\right\}_{c\in s^{(3)}_{ia}}\right)
-&+& w^{(3)}_{ia}\underset{a \in s^{(3)}_{ia}}{\textnormal{\Large$\sum$}}\widehat{V}^{(4+)}_{iac}
+&+& w^{(3)}_{ia}\underset{a \in s^{(3)}_{ia}}{\textnormal{\Large$\sum$}}\widehat{V}^{(4)}_{iac}
 \\ \\
-\widehat{V}^{(4+)}_{iac}
+\widehat{V}^{(4)}_{iac}
 &=& N^{(4)}_{iac} \left(w^{(4)}_{iac}-1\right) \SVar\!\left(\left\{\,y_{u}\,\right\}_{u \in s^{(3)}_{iac}}\right)
 \end{array}
 \end{equation*}
