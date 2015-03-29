@@ -13,7 +13,7 @@ We seek to determine a necessary and sufficient condition for the (associated se
 ``standardized deviations from the mean" of the Horvitz-Thompson estimator for population mean
 to converge in distribution to the standard Gaussian distribution.
 
-\begin{theorem}
+\begin{theorem}[The H\`ajek Central Limit Theorem for SRSWOR]
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -74,6 +74,288 @@ if and only if
 \underset{i \in U_{\nu}}{\sum}\left(y^{(\nu)}_{i} - \mu_{\nu}\right)^{2}
 }\;\; = \;\; 0,
 \;\;\textnormal{for every}\;\, \delta > 0.
+\end{equation*}
+\end{theorem}
+
+\begin{lemma}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Bernoulli sampling from a finite population $U$ of size $N$ with individual selection probability $n/N$, where $n = 1,2,\ldots,N$, is equivalent to the following two-step sampling scheme:
+\begin{itemize}
+\item	\textbf{Step 1:} Sample $k$ from $\textnormal{Binomial}\left(N,n/N\right)$.
+\item	\textbf{Step 2:} Take an SRSWOR sample $s$ of size $k$ from $U$.
+\end{itemize}
+\end{lemma}
+\proof
+Note that the collection of possible samples for both schemes is the power set $\mathcal{P}(U)$ of $U$,
+i.e. all possible subsets of $U$. Let $P_{\textnormal{B}}$ and $P_{1}$ be the probability functions defined
+on $\mathcal{P}(U)$ under Bernoulli sampling and the two-step scheme, respectively. Then,
+\begin{equation*}
+P_{\textnormal{B}}(s) \;\;=\;\; \left(\dfrac{n}{N}\right)^{k} \left(1 - \dfrac{n}{N}\right)^{N-k},
+\quad\textnormal{for each}\;\; s \in \mathcal{P}(U), \;\;\textnormal{where}\;\; k = \vert\,s\,\vert.
+\end{equation*}
+On the other hand,
+\begin{eqnarray*}
+P_{1}(s)
+&=& P\!\left(\;S = s\;\vert\;S \sim \textnormal{SRSWOR}(k,N)\;\right) \cdot
+P\!\left(\;K = k\;\vert\; K \sim \textnormal{Binomial}(N,n/N)\;\right)
+\\
+& = & \dfrac{1}{\left(\!\!\begin{array}{c} N \\ k \end{array}\!\!\right)} \cdot \left(\!\!\begin{array}{c} N \\ k \end{array}\!\!\right)\left(\dfrac{n}{N}\right)^{k} \left(1 - \dfrac{n}{N}\right)^{N-k}
+\\
+& = & \left(\dfrac{n}{N}\right)^{k} \left(1 - \dfrac{n}{N}\right)^{N-k},
+\quad\textnormal{for each}\;\; s \in \mathcal{P}(U), \;\;\textnormal{where}\;\; k = \vert\,s\,\vert.
+\end{eqnarray*}
+Thus, $P_{\textnormal{B}} = P_{1}$ as (probability) functions on $\mathcal{P}(U)$.
+Hence, the two sampling schemes are equivalent.
+\qed
+
+\begin{definition}[The H\`ajek Sampling Design]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $U$ is a finite population of size $N \in \N$ with $N \geq 3$.
+Let $n \in \{2,\ldots,N\}$ be fixed.
+Let $\mathcal{P}(U)$ be the power set of $U$.
+Let $\mathcal{S}(U,n)$ be the collection of all subsets of $U$ with exactly $n$ elements. 
+The H\`ajek Sampling Design, by definition, selects an ordered pair of samples $\left(s^{(0)}, s^{(1)}\right) \in \mathcal{S}(U,n) \times \mathcal{P}(U)$ as follows:
+\begin{itemize}
+
+\item	First, select $k \in \{0,1,2,\ldots,N\}$ based on the binomial distribution $\textnormal{Binom}(N,n/N)$.
+\vskip 0.1cm
+More precisely, let $K \sim \textnormal{Binomial}(N,n/N)$, i.e. let $K$ be a random variable following the binomial distribution with number of trials $N$ and probability of success $n/N$. In other words,
+\begin{equation*}
+P(K=k) \;\;=\;\; \left(\!\begin{array}{c} N \\ k \end{array}\!\right) \cdot \left(\dfrac{n}{N}\right)^{k} \cdot \left(1 - \dfrac{n}{N}\right)^{N-k},
+\quad\textnormal{for each}\;\; k = 0, 1, 2, \ldots, N.
+\end{equation*}
+Let $k \in \{0,1,2,\ldots,N\}$ be a realization of the random variable $K \sim \textnormal{Binomial}(N,n/N)$.
+
+\item	If $k = n$, take an SRSWOR sample $s^{(0)} \subset U$ of size $n$, and let $s^{(1)} = s^{(0)}$.
+
+\item	If $k > n$, take an SRSWOR sample $s^{(1)} \subset U$ of size $k$.
+		Then, select an SRSWOR sample $s^{(0)}$ of $s^{(1)}$ of size $n$.
+
+\item	If $k < n$, take an SRSWOR sample $s^{(0)} \subset U$ of size $n$.
+		Then, select an SRSWOR sample $s^{(1)}$ of $s^{(0)}$ of size $k$.
+\end{itemize}
+\end{definition}
+
+\newcommand{\PKk}{\left(\!\begin{array}{c}N \\ k\end{array}\!\right)\left(\dfrac{n}{N}\right)^{k}\left(1 - \dfrac{n}{N}\right)^{N-k}}
+\newcommand{\PKn}{\left(\!\begin{array}{c}N \\ n\end{array}\!\right)\left(\dfrac{n}{N}\right)^{n}\left(1 - \dfrac{n}{N}\right)^{N-n}}
+\newcommand{\NCk}{\left(\!\begin{array}{c} N \\ k \end{array}\!\right)}
+\newcommand{\NCn}{\left(\!\begin{array}{c} N \\ n \end{array}\!\right)}
+\newcommand{\kCn}{\left(\!\begin{array}{c} k \\ n \end{array}\!\right)}
+\newcommand{\nCk}{\left(\!\begin{array}{c} n \\ k \end{array}\!\right)}
+
+\begin{remark}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Note that the H\`ajek Sampling Design defines implicitly a probability function
+$P_{\textnormal{H}}$ on $\mathcal{S}(U,n) \times \mathcal{P}(U)$,
+making it a finite probability space.
+More explicitly, for each $\left(s^{(0)},s^{(1)}\right) \in \mathcal{S}(U,n) \times \mathcal{P}(U)$,
+writing $k = \vert\,s^{(1)}\,\vert$, we have
+\begin{equation*}
+P_{\textnormal{H}}\!\left(s^{(0)},s^{(1)}\right)
+\;\; = \;\;
+\left\{\begin{array}{ll}
+\PKn\cdot\dfrac{1}{\NCn}, & \textnormal{if} \;\; s^{(0)} = s^{(1)}
+\\ \\
+\PKk\cdot\dfrac{1}{\NCk}\cdot\dfrac{1}{\kCn}, & \textnormal{if} \;\; s^{(0)} \subsetneq s^{(1)}
+\\ \\
+\PKk\cdot\dfrac{1}{\NCn}\cdot\dfrac{1}{\nCk}, & \textnormal{if} \;\; s^{(0)} \supsetneq s^{(1)}
+\\ \\
+0, & \textnormal{otherwise}
+\end{array}\right.
+\end{equation*}
+\end{remark}
+
+\begin{lemma}[Properties of the H\`ajek Sampling Design]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $U$ is a finite population of size $N \in \N$ with $N \geq 3$.
+Let $n \in \{2,\ldots,N\}$ be fixed.
+Let $P_{\textnormal{H}} : \mathcal{S}(U,n) \times \mathcal{P}(U) \longrightarrow [0,1]$
+be the H\`ajek Sampling Design.
+Then, the following statements are true:
+\begin{enumerate}
+\item	The marginal sampling design induced on $\mathcal{S}(U,n)$ by $P_{\textnormal{H}}$ is
+		$\textnormal{SRSWOR}(U,n)$.
+\item	The marginal sampling design induced on $\mathcal{P}(U)$ by $P_{\textnormal{H}}$ is
+		Bernoulli Sampling from $U$ with unit selection probability $n/N$.
+\item	For each fixed $k \in \{n+1, n+2, \ldots, N\}$, the sampling design induced on $\mathcal{S}(U,k-n)$
+		by pushing forward the conditional sampling design of $P_{\textnormal{H}}\,\vert_{|S^{(1)}| = k}$ via the following map:
+		\begin{equation*}
+		\left\{\,\left.
+		\left(s^{(0)},s^{(1)}\right) \in \mathcal{S}(U,n) \times \mathcal{P}(U)
+		\;\right\vert\;
+		\vert\,s^{(1)}\,\vert = k
+		\,\right\}
+		\longrightarrow \mathcal{S}(U,k-n)
+		:
+		\left(s^{(0)},s^{(1)}\right) \longmapsto s^{(1)} \backslash\,s^{(0)}
+		\end{equation*}
+		is equivalent to $\textnormal{SRSWOR}(U,k-n)$.
+\item	For each fixed $k \in \{0, 1, 2, \ldots, n-1\}$, the sampling design induced on $\mathcal{S}(U,n-k)$
+		by pushing forward the pertinent restriction of $P_{\textnormal{H}}$ via the following map:
+		\begin{equation*}
+		\left\{\,\left.
+		\left(s^{(0)},s^{(1)}\right) \in \mathcal{S}(U,n) \times \mathcal{P}(U)
+		\;\right\vert\;
+		\vert\,s^{(1)}\,\vert = k
+		\,\right\}
+		\longrightarrow \mathcal{S}(U,n-k)
+		:
+		\left(s^{(0)},s^{(1)}\right) \longmapsto s^{(0)} \backslash\,s^{(1)}
+		\end{equation*}
+		is equivalent to $\textnormal{SRSWOR}(U,n-k)$.
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+
+\item
+For each $s^{(0)} \in \mathcal{S}(U,n)$, it suffices to show that the marginal probability
+$P_{\textnormal{H}}\!\left(s^{(0)},\;\cdot\;\right)$
+is given by:
+\begin{equation*}
+P_{\textnormal{H}}\!\left(s^{(0)},\;\cdot\;\right) \;\; = \;\; \dfrac{1}{\NCn}
+\end{equation*}
+To this end,
+\begin{eqnarray*}
+P_{\textnormal{H}}\!\left(s^{(0)},\;\cdot\;\right)
+&=&
+\underset{s^{(1)} = s^{(0)}}{\sum}\,P_{\textnormal{H}}\!\left(s^{(0)},s^{(1)}\right)
++ \underset{s^{(1)} \supsetneq s^{(0)}}{\sum}\,P_{\textnormal{H}}\!\left(s^{(0)},s^{(1)}\right)
++ \underset{s^{(1)} \subsetneq s^{(0)}}{\sum}\,P_{\textnormal{H}}\!\left(s^{(0)},s^{(1)}\right)
+\\
+&=&
+\PKn\cdot\dfrac{1}{\NCn}
+\\ &&
++\;\;\overset{N}{\underset{k = n+1}{\sum}}\;\PKk\cdot\dfrac{1}{\NCk}\cdot\dfrac{1}{\kCn}\cdot{\color{red}\left(\!\begin{array}{c} N - n \\ k - n \end{array}\!\right)}
+\\ &&
++\;\;\overset{n-1}{\underset{k = 0}{\sum}}\;\PKk\cdot\dfrac{1}{\NCn}\cdot\dfrac{1}{\nCk}\cdot{\color{red}\left(\!\begin{array}{c} n \\ k \end{array}\!\right)}
+\end{eqnarray*}
+We remark that, for a given $s^{(0)} \in \mathcal{S}(U,n)$ and $k > n$,
+the quantity $\left(\!\begin{array}{c} N - n \\ k - n \end{array}\!\right)$
+is the number of elements in $\mathcal{P}(U)$ (i.e. number of subsets of $U$) of size $k$ containing $s^{(0)}$ as a proper subset.
+Note also that, for $k > n$,
+\begin{equation*}
+\dfrac{1}{\NCk}\cdot\dfrac{1}{\kCn}\cdot\left(\!\begin{array}{c} N - n \\ k - n \end{array}\!\right)
+\;\; = \;\; \dfrac{k!(N-k)!}{N!} \cdot \dfrac{n!(k-n)!}{k!} \cdot \dfrac{(N-n)!}{(k-n)!(N-k)!}
+\;\; = \;\; \dfrac{n!(N-n)!}{N!}
+\;\; = \;\; \dfrac{1}{\NCn}.
+\end{equation*}
+Hence, we have
+\begin{equation*}
+P_{\textnormal{H}}\!\left(s^{(0)},\;\cdot\;\right)
+\;\; = \;\; \dfrac{1}{\NCn}\cdot\overset{N}{\underset{k=0}{\sum}}\,\PKk
+\;\; = \;\; \dfrac{1}{\NCn} \cdot 1 
+\;\; = \;\; \dfrac{1}{\NCn}
+\end{equation*}
+
+\item
+For each $s^{(1)} \in \mathcal{P}(U)$, it suffices to show that the marginal probability
+$P_{\textnormal{H}}\!\left(\;\cdot\;,s^{(1)}\right)$
+is given by:
+\begin{equation*}
+P_{\textnormal{H}}\!\left(\;\cdot\;,s^{(1)}\right) \;\; = \;\; \left(\dfrac{n}{N}\right)^{k} \cdot \left(1 - \dfrac{n}{N}\right)^{N-k},
+\quad\textnormal{where}\;\; k = \vert\,s^{(1)}\,\vert.
+\end{equation*}
+To this end, first note that either $k = \vert\,s^{(1)}\,\vert \geq n$ holds, or $k = \vert\,s^{(1)}\,\vert < n$ holds.
+In the first case, i.e. $k = \vert\,s^{(1)}\,\vert \geq n$, we have
+\begin{eqnarray*}
+P_{\textnormal{H}}\!\left(\;\cdot\;,s^{(1)}\right)
+&=&P\!\left(\left.S^{(1)} = s^{(1)}\;\right\vert\;K = k\,\right) \cdot P(K = k)
+\\
+&=& \dfrac{1}{\NCk} \cdot \PKk
+\\
+&=& \left(\dfrac{n}{N}\right)^{k} \cdot \left(1 - \dfrac{n}{N}\right)^{N-k}.
+\end{eqnarray*}
+In the second case, i.e. $k = \vert\,s^{(1)}\,\vert < n$, we have
+\begin{eqnarray*}
+P_{\textnormal{H}}\!\left(\;\cdot\;,s^{(1)}\right)
+&=& \underset{s^{(0)} \supsetneq s^{(1)}}{\sum}\,P_{\textnormal{H}}\!\left(s^{(0)},s^{(1)}\right)
+\;\; = \;\; \underset{s^{(0)} \supsetneq s^{(1)}}{\sum}\,\PKk\cdot\dfrac{1}{\NCn}\cdot\dfrac{1}{\nCk}
+\\
+&=& {\color{red}\left(\!\begin{array}{c} N-k \\ n-k \end{array}\!\right)}\cdot\PKk\cdot\dfrac{1}{\NCn}\cdot\dfrac{1}{\nCk}
+\\
+&=& \PKk\cdot{\color{red}\dfrac{(N-k)!}{(n-k)!(N-n)!}} \cdot\dfrac{n!(N-n)!}{N!}\cdot\dfrac{k!(n-k)!}{n!}
+\\
+&=& \PKk\cdot\dfrac{k!(N-k)!}{N!} \;\; = \;\; \PKk\cdot\dfrac{1}{\NCk}
+\\
+&=& \left(\dfrac{n}{N}\right)^{k} \cdot \left(1 - \dfrac{n}{N}\right)^{N-k}
+\end{eqnarray*}
+We remark that, for a given $s^{(1)} \in \mathcal{P}(U)$ with $\vert\,s^{(1)}\,\vert = k < n$,
+the quantity $\left(\!\begin{array}{c} N - k \\ n - k \end{array}\!\right)$
+is the number of elements in $\mathcal{S}(U,n)$ containing $s^{(1)}$ as a proper subset.
+
+\item
+Let $\widetilde{P} : \mathcal{S}(U,k-n)$ be the induced sampling design on $\mathcal{S}(U,k-n)$.
+Then, for each $s^{(2)} \in \mathcal{S}(U,k-n)$, we have
+\begin{eqnarray*}
+\widetilde{P}\!\left(s^{(2)}\right)
+& = & \underset{s^{(1)}\backslash\,s^{(0)}=s^{(2)}}{\sum} P_{\textnormal{H}}\!\left(\left. s^{(0)},s^{(1)}\;\right\vert K = k \right)
+\;\; = \;\; \underset{s^{(1)}\backslash\,s^{(0)}=s^{(2)}}{\sum} \dfrac{1}{\NCk}\cdot\dfrac{1}{\kCn}
+\\
+& = & \left(\!\!\begin{array}{c} N - k + n \\ n \end{array}\!\!\right)\cdot\dfrac{1}{\NCk}\cdot\dfrac{1}{\kCn}
+\;\;=\;\; \dfrac{(N-k+n)!}{n!(N-k)!} \cdot \dfrac{k!(N-k)!}{N!} \cdot \dfrac{n!(k-n)!}{k!}
+\\
+& = & \dfrac{(k-n)!(N-k+n)!}{N!} \;\; = \;\; 1 \left/ \left(\!\!\begin{array}{c} N \\ k - n \end{array}\!\!\right) \right.
+\end{eqnarray*}
+This proves that $\widetilde{P}$ is indeed equivalent to $\textnormal{SRSWOR}(U,k-n)$.
+
+\item
+Let $P' : \mathcal{S}(U,n-k)$ be the induced sampling design on $\mathcal{S}(U,n-k)$.
+Then, for each $s^{(2)} \in \mathcal{S}(U,n-k)$, we have
+\begin{eqnarray*}
+P'\!\left(s^{(2)}\right)
+& = & \underset{s^{(0)}\backslash\,s^{(1)}=s^{(2)}}{\sum} P_{\textnormal{H}}\!\left(\left. s^{(0)},s^{(1)}\;\right\vert K = k \right)
+\;\; = \;\; \underset{s^{(0)}\backslash\,s^{(1)}=s^{(2)}}{\sum} \dfrac{1}{\NCn}\cdot\dfrac{1}{\nCk}
+\\
+& = & \left(\!\!\begin{array}{c} N - n + k \\ k \end{array}\!\!\right)\cdot\dfrac{1}{\NCn}\cdot\dfrac{1}{\nCk}
+\;\;=\;\; \dfrac{(N-n+k)!}{k!(N-n)!} \cdot \dfrac{n!(N-n)!}{N!} \cdot \dfrac{k!(n-k)!}{n!}
+\\
+& = & \dfrac{(n-k)!(N-n+k)!}{N!} \;\; = \;\; 1 \left/ \left(\!\!\begin{array}{c} N \\ n - k \end{array}\!\!\right) \right.
+\end{eqnarray*}
+This proves that $P'$ is indeed equivalent to $\textnormal{SRSWOR}(U,n-k)$.
+\end{enumerate}
+The proof of this Lemma is complete.
+\qed
+
+\begin{theorem}[H\`ajek's Fundamental Lemma]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $U$ is a finite population of size $N \in \N$ with $N \geq 3$, and $y : U \longrightarrow \Re$ is a population characteristic.
+Let $n \in \{2,\ldots,N\}$ be fixed. Let $\overline{y}_{U} := \frac{1}{N}\sum_{i \in U}y_{i}$.
+Let $\mathcal{S}(U,n) \times \mathcal{P}(U)$ be endowed with
+the probability function $P_{\textnormal{H}}$ defined by the H\`ajek Sampling Design.
+Define the $\Re^{2}$-valued random variable
+$X = \left(X^{(0)}, X^{(1)}\right) : \mathcal{S}(U,n) \times \mathcal{P}(U) \longrightarrow \Re^{2}$
+as follows:
+For any $\left(s^{(0)},s^{(1)}\right) \in \mathcal{S}(U,n) \times \mathcal{P}(U)$,
+\begin{equation*}
+X^{(0)}\!\left(s^{(0)}\right)
+\;\; := \;\;
+\dfrac{1}{n}\,\underset{i \in s^{(0)}}{\sum} \left(y_{i} - \overline{y}_{U}\right),
+\quad\textnormal{and}\quad
+X^{(1)}\!\left(s^{(1)}\right)
+\;\; := \;\;
+\dfrac{1}{n}\,\underset{i \in s^{(1)}}{\sum} \left(y_{i} - \overline{y}_{U}\right).
+\end{equation*}
+Then,
+\begin{equation*}
+E\!\left[\,\left(
+  \dfrac{X^{(0)}}{\sqrt{\Var\!\left[\,X^{(1)}\,\right]}}
+- \dfrac{X^{(1)}}{\sqrt{\Var\!\left[\,X^{(1)}\,\right]}}
+\right)^{2}\,\right]
+\;\; = \;\;
+\dfrac{E\!\left[\,\left(X^{(0)} - X^{(1)}\right)^{2}\,\right]}{\Var\!\left[\,X^{(1)}\,\right]}
+\;\; \leq \;\;
+\sqrt{\dfrac{1}{n} + \dfrac{1}{N-n}}
 \end{equation*}
 \end{theorem}
 
