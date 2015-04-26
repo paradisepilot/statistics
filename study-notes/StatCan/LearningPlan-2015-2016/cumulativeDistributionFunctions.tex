@@ -26,40 +26,6 @@ A function $f : D \subseteq \Re \longrightarrow \Re$ is said to be
 \end{definition}
 
 \begin{theorem}\quad
-A function $F : \Re \longrightarrow [0,1]$ is a cumulative distribution function of some
-$\Re$-valued random variable if and only if each of following four conditions holds:
-\begin{itemize}
-\item	$F$ is non-decreasing.
-\item	$F$ is right-continuous.
-\item	$\lim_{x\rightarrow-\infty}F(x) = 0$.
-\item	$\lim_{x\rightarrow+\infty}F(x) = 1$.
-\end{itemize}
-\end{theorem}
-
-\proof
-If $F : \Re \longrightarrow [0,1]$ is a cumulative distribution function of some
-$\Re$-valued random variable $X : \left(\,\Omega,\mathcal{A},\mu\,\right) \longrightarrow \Re$,
-then the four conditions follow immediately from the property of the probability measure $\mu$.
-Conversely, suppose the four conditions hold. Let $\Omega := (0,1)$ and $\mathcal{B}(\Omega)$ the Borel subsets of $\Omega$.
-Let $\mu$ be the Lebesgue measure on $(\Omega,\mathcal{B}(\Omega))$, i.e. $\mu$ is determined by:
-\begin{equation*}
-\mu\!\left(\,(0,\omega]\,\right) \; := \; \omega,
-\quad
-\textnormal{for each $\omega \in \Omega = (0,1)$}.
-\end{equation*}
-Define the random variable $X : (\Omega,\mathcal{B}(\Omega),\mu) \longrightarrow \Re$ by:
-\begin{equation*}
-X(\omega) \; := \; \sup F^{-1}\!\left(\,(0,\omega]\,\right),
-\quad
-\textnormal{for each $\omega \in \Omega = (0,1)$}.
-\end{equation*}
-Then,
-%\begin{equation*}
-
-%\end{equation*}
-\qed
-
-\begin{theorem}\quad
 Let $f : D \subseteq \Re \longrightarrow \Re$ be a monotone function.
 Then,
 \begin{equation*}
@@ -84,6 +50,84 @@ exist but they are unequal.
 \begin{corollary}\quad
 A monotone $\Re$-valued function defined on an interval of $\Re$ can have only jump discontinuities.
 \end{corollary}
+
+\begin{theorem}\quad
+A function $F : \Re \longrightarrow [0,1]$ is a cumulative distribution function of some
+$\Re$-valued random variable if and only if each of following four conditions holds:
+\begin{itemize}
+\item	$F$ is non-decreasing.
+\item	$F$ is right-continuous.
+\item	$\lim_{x\rightarrow-\infty}F(x) = 0$.
+\item	$\lim_{x\rightarrow+\infty}F(x) = 1$.
+\end{itemize}
+\end{theorem}
+
+\proof
+If $F : \Re \longrightarrow [0,1]$ is a cumulative distribution function of some
+$\Re$-valued random variable $X : \left(\,\Omega,\mathcal{A},\mu\,\right) \longrightarrow \Re$,
+then the four conditions follow immediately from the property of the probability measure $\mu$.
+Conversely, suppose the four conditions hold. Let $\Omega := [0,1]$ and $\mathcal{B}(\Omega)$ the Borel subsets of $\Omega$.
+Let $\mu$ be the Lebesgue measure on $(\Omega,\mathcal{B}(\Omega))$, i.e. $\mu$ is determined by:
+\begin{equation*}
+\mu\!\left(\,[0,\omega]\,\right) \; := \; \omega,
+\quad
+\textnormal{for each $\omega \in \Omega = [0,1]$}.
+\end{equation*}
+Define the random variable $X : (\Omega,\mathcal{B}(\Omega),\mu) \longrightarrow \Re$ by:
+\begin{equation*}
+X(\omega) \; := \; \inf \left\{\,x \in \Re \;\vert\; \omega \leq F(x)\,\right\},
+\quad
+\textnormal{for each $\omega \in \Omega = [0,1]$}.
+\end{equation*}
+Note that $X$ is simply the quantile function of $F$.
+\vskip 0.2cm
+\begin{center}
+\begin{minipage}{6in}
+\noindent
+\textbf{Claim:}\;\; Suppose $G : \Re \longrightarrow [0,1]$ is non-decreasing and right-continuous.
+Then, for any $\omega \in [0,1]$ and $x \in \Re$,
+\begin{equation*}
+\inf\left\{\,\xi \in \Re \;\vert\; \omega \leq G(\xi) \,\right\} \leq x
+\;\; \Longleftrightarrow \;\;
+\omega \leq G(x).
+\end{equation*}
+Proof of Claim:\;\; Suppose $\omega \leq G(x)$.
+Then, $x \in \left\{\,\xi \in \Re \;\vert\; \omega \leq G(\xi) \,\right\}$.
+Hence, $\inf\left\{\,\xi \in \Re \;\vert\; \omega \leq G(\xi) \,\right\} \leq x$.
+Conversely, suppose $\inf\left\{\,\xi \in \Re \;\vert\; \omega \leq G(\xi) \,\right\} \leq x$.
+Since $G$ is non-decreasing and right-continuous, we have:
+\begin{eqnarray*}
+\inf\left\{\,\xi \in \Re \;\vert\; \omega \leq G(\xi) \,\right\} \leq x
+&\Longrightarrow&
+\textnormal{for any $\varepsilon > 0$, $\exists \;\; \xi \in \Re$, satisfying $\omega \leq G(\xi)$, such that $\xi \leq x + \varepsilon$}
+\\
+&\Longrightarrow&
+\textnormal{for any $\varepsilon > 0$, $\exists \;\; \xi \in \Re$, satisfying $\omega \leq G(\xi)$ and $G(\xi) \leq G(x + \varepsilon)$}
+\\
+&\Longrightarrow&
+\textnormal{for any $\varepsilon > 0$, $\omega \leq G(x + \varepsilon)$}
+\\
+&\Longrightarrow&
+\omega \;\leq\; \lim_{\varepsilon\rightarrow 0^{+}}G(x + \varepsilon) \;=\; G(x).
+\end{eqnarray*}
+This completes the proof of the Claim.
+\end{minipage}
+\end{center}
+Noting that, by hypothesis, $F$ is non-decreasing right-continuous, and invoking the Claim above, we see that
+\begin{eqnarray*}
+P\!\left(\,X \leq x\,\right)
+&=& P\!\left(\left\{\,\omega\in\Omega\;\vert\; X(\omega) \leq x\,\right\}\right)
+\;\;=\;\; P\!\left(\left\{\,\omega\in\Omega\;\vert\; \inf \left\{\,\xi \in \Re \;\vert\; \omega \leq F(\xi)\,\right\} \leq x\,\right\}\right)
+\\
+&=& P\!\left(\left\{\,\omega\in\Omega\;\vert\; \omega \leq F(x)\,\right\}\right)
+\;\;=\;\; \mu\!\left(\left\{\,\omega\in [0,1] \;\vert\; \omega \leq F(x)\,\right\}\right)
+\;\;=\;\; \mu\!\left(\,[0,F(x)]\,\right)
+\\
+&=& F(x)
+\end{eqnarray*}
+This shows that if $F$ satisfies the four conditions, then $F$ is the cumulative distribution function of the random variable $X$ constructed above.
+The proof of the Theorem is now complete.
+\qed
 
 \begin{theorem}[Darboux-Froda]\mbox{}\vskip 0.1cm
 \noindent
