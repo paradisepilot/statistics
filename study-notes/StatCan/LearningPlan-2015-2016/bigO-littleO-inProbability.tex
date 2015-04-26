@@ -5,8 +5,6 @@
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
-\cite{DevilleSarndal1992}
-
 \begin{definition}[The Big-$O_{P}$ notation]
 \mbox{}\vskip 0.1cm
 \noindent
@@ -215,15 +213,61 @@ of $\Re^{k}$-valued random variables is said to be \textbf{bounded in probabilit
 
 \begin{theorem}\mbox{}\vskip 0.1cm
 \noindent
-If a sequence $\{\,X_{n} : \left(\,\Omega_{n},\mathcal{A}_{n},\mu_{n}\,\right) \longrightarrow \Re^{k}\,\}_{n \in \N}$
-of $\Re^{k}$-valued random variables converges in distribution to some random variable
-$X : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{k}$,
+If a sequence $\{\,X_{n} : \left(\,\Omega_{n},\mathcal{A}_{n},\mu_{n}\,\right) \longrightarrow \Re\,\}_{n \in \N}$
+of $\Re$-valued random variables converges in distribution to some random variable
+$X : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$,
 then the sequence $\{\,X_{n}\,\}$ is bounded in probability.
 \end{theorem}
 
 \proof
-Let
-
+Let $\varepsilon > 0$ be given.
+We need to show that there exist $C_{\varepsilon} > 0$ and $n_{\varepsilon} \in \N$ such that
+\begin{equation*}
+P\!\left(\,|X_{n}| > C_{\varepsilon} \,\right) \; \leq \; \varepsilon,
+\quad
+\textnormal{for each $n \geq n_{\varepsilon}$}.
+\end{equation*}
+Denote by $F, F_{n} : \Re \longrightarrow [0,1]$ the cumulative distribution functions of $X$ and $X_{n}$, respectively.
+By Theorem \ref{ThmCharacterizationCDF} and
+the Darboux-Froda Theorem (Theorem \ref{Thm:DarbouxFroda}),
+the cumulative distribution function $F$ satisfies:
+$\lim_{x\rightarrow+\infty}\,F(x) = 1$, $\lim_{x\rightarrow-\infty}\,F(x) = 0$, and that
+$F$ can have at most countably many (jump) discontinuities.
+Thus for the given $\varepsilon > 0$, we may choose $C_{\varepsilon} > 0$ sufficiently large such that
+\begin{equation*}
+0 \,\leq\, F(-C_{\varepsilon}) \,<\, \dfrac{\varepsilon}{4},
+\quad\quad
+\vert\,1 - F(C_{\varepsilon})\,\vert \, < \, \dfrac{\varepsilon}{4},
+\quad\quad\textnormal{and}\quad\quad
+\{\,\pm C_{\varepsilon}\,\} \,\subset\, \mathcal{C}(F)
+\end{equation*}
+where $\mathcal{C}(F)$ denotes the continuity set of $F$.
+Now, since $\pm C_{\varepsilon} \in \mathcal{C}(F)$, the convergence in distribution
+$X_{n} \overset{\mathcal{L}}{\longrightarrow} X$ implies that the convergences
+$F_{n}(-C_{\varepsilon}) \longrightarrow F(-C_{\varepsilon})$ and
+$F_{n}(C_{\varepsilon}) \longrightarrow F(C_{\varepsilon})$ (of sequences of real numbers).
+Thus, we may choose $n_{\varepsilon} \in \N$ sufficiently large such that
+\begin{equation*}
+\vert\,F_{n}(-C_{\varepsilon}) - F(-C_{\varepsilon})\,\vert < \dfrac{\varepsilon}{4},
+\quad\textnormal{and}\quad
+\vert\,F_{n}(C_{\varepsilon}) - F(C_{\varepsilon})\,\vert < \dfrac{\varepsilon}{4},
+\quad\textnormal{for every $n \geq n_{\varepsilon}$}.
+\end{equation*}
+Therefore, for each $n \geq n_{\varepsilon}$, we have:
+\begin{eqnarray*}
+P\!\left(\,|X_{n}| > C_{\varepsilon} \,\right)
+&=& P\!\left(\,X_{n} < - C_{\varepsilon} \,\right) \, + \, P\!\left(\, X_{n} > C_{\varepsilon} \,\right)
+\;\;=\;\; P\!\left(\,X_{n} < - C_{\varepsilon} \,\right) \, + 1 \, - \, P\!\left(\, X_{n} \leq C_{\varepsilon} \,\right)
+\\
+&\leq& P\!\left(\,X_{n} \leq - C_{\varepsilon} \,\right) \, + 1 \, - \, P\!\left(\, X_{n} \leq C_{\varepsilon} \,\right)
+\;\;=\;\; F_{n}\!\left(\, - C_{\varepsilon} \,\right) \, + 1 \, - \, F_{n}\!\left(\, C_{\varepsilon} \,\right)
+\\
+&\leq& \vert\,F_{n}\!\left(\, - C_{\varepsilon} \,\right) - F\!\left(\,-C_{\varepsilon}\,\right)\vert \; + \; \vert\,F\!\left(\,-C_{\varepsilon}\,\right)\vert \; + \;
+\vert\, 1 \, - \, F\!\left(\, C_{\varepsilon} \,\right)\,\vert \;+\; \vert\, F\!\left(\, C_{\varepsilon} \,\right) \, - \, F_{n}\!\left(\, C_{\varepsilon} \,\right)\,\vert
+\\
+&<& \dfrac{\varepsilon}{4} \; + \; \dfrac{\varepsilon}{4} \; + \; \dfrac{\varepsilon}{4} \; + \; \dfrac{\varepsilon}{4} \;\; = \;\; \varepsilon
+\end{eqnarray*}
+This completes the proof that $\left\{\,X_{n}\,\right\}_{n\in\N}$ is bounded in probability whenever it converges in distribution.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
