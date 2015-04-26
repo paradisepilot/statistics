@@ -1,0 +1,70 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Cumulative distribution functions}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\begin{definition}\quad
+Let $X : \left(\,\Omega,\mathcal{A},\mu\,\right) \longrightarrow \Re$ be a $\Re$-valued random variable.
+The \textbf{cumulative distribution function} of $X$ is, by definition, the function
+$F_{X} : \Re \longrightarrow [0,1]$ defined as follows:
+\begin{equation*}
+F_{X}(x) \; := \; P\!\left(\,X \leq x\,\right) \; = \; \mu\!\left(\left\{\,\omega \in \Omega \;\vert\; X(\omega) \leq x \,\right\}\right),
+\quad
+\textnormal{for each $x \in \Re$}.
+\end{equation*}
+\end{definition}
+
+\begin{definition}\quad
+A function $f : D \subseteq \Re \longrightarrow \Re$ is said to be 
+\begin{itemize}
+\item	\textbf{non-decreasing} if $f(x) \leq f(y)$, for any $x, y \in D$ with $x \leq y$.
+\item	\textbf{non-increasing} if $f(x) \geq f(y)$, for any $x, y \in D$ with $x \leq y$.
+\item	\textbf{monotone} if $f$ is either non-decreasing or non-increasing.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}\quad
+A function $F : \Re \longrightarrow [0,1]$ is a cumulative distribution function of some
+$\Re$-valued random variable if and only if each of following four conditions holds:
+\begin{itemize}
+\item	$F$ is non-decreasing.
+\item	$F$ is right-continuous.
+\item	$\lim_{x\rightarrow-\infty}F(x) = 0$.
+\item	$\lim_{x\rightarrow+\infty}F(x) = 1$.
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}\quad
+Let $f : D \subseteq \Re \longrightarrow \Re$ be a monotone function.
+Then,
+\begin{equation*}
+\lim_{x \rightarrow a^{-}} f(x)
+\quad\textnormal{and}\quad
+\lim_{x \rightarrow a^{+}} f(x)
+\end{equation*}
+exist for every $a \in \textnormal{interior}(D)$.
+\end{theorem}
+
+\begin{definition}\quad
+Let $f : D \subseteq \Re \longrightarrow \Re$.
+A point $a \in \textnormal{interior}(D)$ is a \textbf{jump discontinuity} of $f$ if both
+\begin{equation*}
+\lim_{x \rightarrow a^{-}} f(x)
+\quad\textnormal{and}\quad
+\lim_{x \rightarrow a^{+}} f(x)
+\end{equation*}
+exist but they are unequal.
+\end{definition}
+
+\begin{corollary}\quad
+A monotone $\Re$-valued function defined on an interval of $\Re$ can have only jump discontinuities.
+\end{corollary}
+
+\begin{theorem}[Darboux-Froda]\mbox{}\vskip 0.1cm
+\noindent
+The set of discontinuities of a monotone $\Re$-valued function defined on an interval of $\Re$ is at most countable.
+\end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

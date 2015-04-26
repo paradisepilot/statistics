@@ -1,0 +1,229 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The $O_{P}$ and $o_{P}$ notations; convergence in distribution implies boundedness in probability}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\cite{DevilleSarndal1992}
+
+\begin{definition}[The Big-$O_{P}$ notation]
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\{\,X_{n} : \left(\,\Omega_{n},\mathcal{A}_{n},\mu_{n}\,\right) \longrightarrow \Re^{k}\,\}_{n \in \N}$
+be a sequence of $\Re^{k}$-valued random variables.
+Let $\left\{\,a_{n}\,\right\}_{n \in \N}$ be sequence of positive numbers.
+The notation $X_{n} = O_{p}(a_{n})$ means:
+\begin{center}
+For every $\varepsilon > 0$, there exist $C_{\varepsilon} > 0$ and $n_{\varepsilon} \in \N$
+such that $P\!\left(\,|X_{n}| \leq C_{\varepsilon}\cdot a_{n}\,\right) > 1 - \varepsilon$, for every $n \geq n_{\varepsilon}$. 
+\end{center}
+\end{definition}
+
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{proposition}
+\quad
+The following are equivalent:
+\begin{enumerate}
+\item \label{bigOPa} $X_{n} = O_{P}(a_{n})$.
+
+\item\label{bigOPb}
+For every $\varepsilon > 0$, there exists $C_{\varepsilon} > 0$ such that
+$P\!\left(\,|X_{n}| \leq C_{\varepsilon}\cdot a_{n}\,\right) > 1 - \varepsilon$, for each $n \in \N$.
+
+\item\label{bigOPc}
+For every $\varepsilon > 0$, there exists $C_{\varepsilon} > 0$ such that
+$\underset{n\rightarrow\infty}{\limsup}\;P\!\left(\,|X_{n}| > C_{\varepsilon}\cdot a_{n}\,\right) \leq \varepsilon$.
+
+\item\label{bigOPd}
+For every $\varepsilon > 0$, there exists $C_{\varepsilon} > 0$ such that
+$\underset{n \in \N}{\sup}\;P\!\left(\,|X_{n}| > C_{\varepsilon}\cdot a_{n}\,\right) \leq \varepsilon$.
+
+\item\label{bigOPe}
+$\underset{C\rightarrow\infty}{\lim}\;\underset{n\rightarrow\infty}{\limsup}\;P\!\left(\,|X_{n}| > C \cdot a_{n}\,\right) = 0$.
+
+\item\label{bigOPf}
+$\underset{C\rightarrow\infty}{\lim}\;\underset{n\in\N}{\sup}\;P\!\left(\,|X_{n}| > C \cdot a_{n}\,\right) = 0$.
+
+\end{enumerate}
+\end{proposition}
+
+\proof
+
+\vskip 0.3cm
+\noindent
+\underline{\eqref{bigOPa} $\Longrightarrow$ \eqref{bigOPb}}\vskip 0.2cm
+\noindent
+Let $\varepsilon > 0$ be given. By \eqref{bigOPa}, there exist $B_{\varepsilon} > 0$ and $n_{\varepsilon} \in \N$
+such that $P\!\left(\,|X_{n}| \leq B_{\varepsilon}\cdot a_{n}\,\right) > 1 - \varepsilon$, for each $n \geq n_{\varepsilon}$.
+
+\begin{center}
+\begin{minipage}{6in}
+\noindent
+\textbf{Claim}:\quad Let $Y$ be an $\Re^{k}$-valued random variable.
+Then, for each $\varepsilon > 0$, there exists $A_{\varepsilon} > 0$ such that $P\!\left(\,|Y| \leq A_{\varepsilon}\,\right) > 1 - \varepsilon$.
+\vskip 0.2cm
+\noindent
+Proof of Claim: Suppose the Claim were false. Then, there exists some $\varepsilon > 0$
+such that $P\!\left(\,|Y| \leq A\,\right) \leq 1 - \varepsilon$, for every $A > 0$;
+equivalently, $P\!\left(\,|Y| > A\,\right) > \varepsilon$, for every $A > 0$.
+This implies
+$\lim_{A\rightarrow\infty}\,P\!\left(\,|Y| > A\,\right) = \limsup_{A\rightarrow\infty}\,P\!\left(\,|Y| > A\,\right) \geq \varepsilon > 0$.
+But this is a contradiction since $\lim_{A\rightarrow\infty}\,P\!\left(\,|Y| > A\,\right) = 0$, for every $\Re^{k}$-valued random variable $Y$.
+This proves the Claim.
+\end{minipage}
+\end{center}
+
+\noindent
+By the Claim, for each $i = 1, 2, \ldots, n_{\varepsilon} - 1$, there exists $B^{(i)}_{\varepsilon} > 0$ such that
+$P\!\left(|X_{i}| \leq B^{(i)}_{\varepsilon}\cdot a_{i}\right) > 1 - \varepsilon$.
+Now, let
+$C_{\varepsilon} := \max\left\{\,B^{(1)}_{\varepsilon},B^{(1)}_{\varepsilon},\ldots,B^{(n_{\varepsilon}-1)}_{\varepsilon},B_{\varepsilon}\,\right\}$.
+Then, $P\!\left(\,|X_{n}| \leq C_{\varepsilon}\cdot a_{n}\,\right) > 1 - \varepsilon$, for every $n \in \N$.
+This proves the implication \eqref{bigOPa} $\Longrightarrow$ \eqref{bigOPb}.
+
+\vskip 0.3cm
+\noindent
+\underline{\eqref{bigOPb} $\Longrightarrow$ \eqref{bigOPa}}\quad Trivial:
+Suppose \eqref{bigOPb} holds. Then \eqref{bigOPa} immediately follows with $n_{\varepsilon} = 1$.
+
+\vskip 0.3cm
+\noindent
+\underline{\eqref{bigOPa} $\Longleftrightarrow$ \eqref{bigOPc}}\quad
+Let $\varepsilon > 0$ be given.
+\begin{eqnarray*}
+\eqref{bigOPa}
+&\Longleftrightarrow&
+\textnormal{There exist $C_{\varepsilon} > 0$ and $n_{\varepsilon} \in \N$ such that
+$P\!\left(\,|X_{n}| \leq C_{\varepsilon}\cdot a_{n}\,\right) > 1 - \varepsilon$, for every $n \geq n_{\varepsilon}$.
+}
+\\
+&\Longleftrightarrow&
+\textnormal{There exist $C_{\varepsilon} > 0$ and $n_{\varepsilon} \in \N$ such that
+$P\!\left(\,|X_{n}| > C_{\varepsilon}\cdot a_{n}\,\right) \leq \varepsilon$, for every $n \geq n_{\varepsilon}$.
+}
+\\
+&\Longleftrightarrow&
+\textnormal{There exist $C_{\varepsilon} > 0$ such that
+$\limsup_{n \rightarrow \infty}\;P\!\left(\,|X_{n}| > C_{\varepsilon}\cdot a_{n}\,\right) \leq \varepsilon
+\quad\Longleftrightarrow\quad \eqref{bigOPc}$
+}
+\end{eqnarray*}
+
+\vskip 0.3cm
+\noindent
+\underline{\eqref{bigOPb} $\Longleftrightarrow$ \eqref{bigOPd}}\quad
+Let $\varepsilon > 0$ be given.
+\begin{eqnarray*}
+\eqref{bigOPb}
+&\Longleftrightarrow&
+\textnormal{There exists $C_{\varepsilon} > 0$ such that
+$P\!\left(\,|X_{n}| \leq C_{\varepsilon}\cdot a_{n}\,\right) > 1 - \varepsilon$, for every $n \in \N$.
+}
+\\
+&\Longleftrightarrow&
+\textnormal{There exists $C_{\varepsilon} > 0$ such that
+$P\!\left(\,|X_{n}| > C_{\varepsilon}\cdot a_{n}\,\right) \leq \varepsilon$, for every $n \in \N$.
+}
+\\
+&\Longleftrightarrow&
+\textnormal{There exist $C_{\varepsilon} > 0$ such that
+$\sup_{n \in \N}\;P\!\left(\,|X_{n}| > C_{\varepsilon}\cdot a_{n}\,\right) \leq \varepsilon
+\quad\Longleftrightarrow\quad \eqref{bigOPd}$
+}
+\end{eqnarray*}
+
+\vskip 0.3cm
+\noindent
+\underline{\eqref{bigOPd} $\Longleftrightarrow$ \eqref{bigOPf}}\quad
+Let $\varepsilon > 0$ be given.
+We first establish that \eqref{bigOPf} $\Longrightarrow$ \eqref{bigOPd}.
+\begin{eqnarray*}
+\eqref{bigOPf}
+&\Longleftrightarrow&
+\textnormal{There exists $C_{\varepsilon} > 0$ such that
+$\sup_{n \in \N}\;P\!\left(\,|X_{n}| > C \cdot a_{n}\,\right) \leq \varepsilon$,
+for each $C \geq C_{\varepsilon}$.
+}
+\\
+&\Longrightarrow&
+\textnormal{There exists $C_{\varepsilon} > 0$ such that
+$\sup_{n \in \N}\;P\!\left(\,|X_{n}| > C_{\varepsilon} \cdot a_{n}\,\right) \leq \varepsilon
+\quad\Longleftrightarrow\quad \eqref{bigOPd}$
+}
+\end{eqnarray*}
+Conversely, suppose \eqref{bigOPd} holds and $C \geq C_{\varepsilon}$.
+Then, $|X_{n}| > C \cdot a_{n} \Longrightarrow |X_{n}| > C_{\varepsilon} \cdot a_{n}$.
+Hence, $\left\{\,|X_{n}| > C \cdot a_{n}\,\right\} \subseteq \left\{\,|X_{n}| > C_{\varepsilon} \cdot a_{n}\,\right\}$,
+which in turn implies $P\!\left(\,|X_{n}| > C \cdot a_{n}\,\right) \leq P\!\left(\,|X_{n}| > C_{\varepsilon} \cdot a_{n}\,\right)$.
+Thus, we have
+\begin{equation*}
+\sup_{n\in\N}\;P\!\left(\,|X_{n}| > C \cdot a_{n}\,\right)
+\;\;\leq\;\;
+\sup_{n\in\N}\;P\!\left(\,|X_{n}| > C_{\varepsilon} \cdot a_{n}\,\right)
+\;\;\leq\;\;
+\varepsilon,
+\end{equation*}
+i.e. \eqref{bigOPf} holds.
+
+\vskip 0.3cm
+\noindent
+\underline{\eqref{bigOPc} $\Longleftrightarrow$ \eqref{bigOPe}}\quad
+Let $\varepsilon > 0$ be given.
+We first establish that \eqref{bigOPe} $\Longrightarrow$ \eqref{bigOPc}.
+\begin{eqnarray*}
+\eqref{bigOPe}
+&\Longleftrightarrow&
+\textnormal{There exists $C_{\varepsilon} > 0$ such that
+$\limsup_{n\rightarrow\infty}\;P\!\left(\,|X_{n}| > C \cdot a_{n}\,\right) \leq \varepsilon$,
+for each $C \geq C_{\varepsilon}$.
+}
+\\
+&\Longrightarrow&
+\textnormal{There exists $C_{\varepsilon} > 0$ such that
+$\limsup_{n\rightarrow\infty}\;P\!\left(\,|X_{n}| > C_{\varepsilon} \cdot a_{n}\,\right) \leq \varepsilon
+\quad\Longleftrightarrow\quad \eqref{bigOPc}$
+}
+\end{eqnarray*}
+Conversely, suppose \eqref{bigOPc} holds and $C \geq C_{\varepsilon}$.
+Then, $|X_{n}| > C \cdot a_{n} \Longrightarrow |X_{n}| > C_{\varepsilon} \cdot a_{n}$.
+Hence, $\left\{\,|X_{n}| > C \cdot a_{n}\,\right\} \subseteq \left\{\,|X_{n}| > C_{\varepsilon} \cdot a_{n}\,\right\}$,
+which in turn implies $P\!\left(\,|X_{n}| > C \cdot a_{n}\,\right) \leq P\!\left(\,|X_{n}| > C_{\varepsilon} \cdot a_{n}\,\right)$.
+Thus, we have
+\begin{equation*}
+\limsup_{n\rightarrow\infty}\;P\!\left(\,|X_{n}| > C \cdot a_{n}\,\right)
+\;\;\leq\;\;
+\limsup_{n\rightarrow\infty}\;P\!\left(\,|X_{n}| > C_{\varepsilon} \cdot a_{n}\,\right)
+\;\;\leq\;\;
+\varepsilon,
+\end{equation*}
+i.e. \eqref{bigOPe} holds.
+
+\vskip 0.3cm
+\noindent
+This completes the proof of the Proposition.
+\qed
+
+\begin{definition}[Bounded in probability]
+\mbox{}\vskip 0.1cm
+\noindent
+A sequence $\{\,X_{n} : \left(\,\Omega_{n},\mathcal{A}_{n},\mu_{n}\,\right) \longrightarrow \Re^{k}\,\}_{n \in \N}$
+of $\Re^{k}$-valued random variables is said to be \textbf{bounded in probability} if $X_{n} = O_{P}(1)$.
+\end{definition}
+
+\begin{theorem}\mbox{}\vskip 0.1cm
+\noindent
+If a sequence $\{\,X_{n} : \left(\,\Omega_{n},\mathcal{A}_{n},\mu_{n}\,\right) \longrightarrow \Re^{k}\,\}_{n \in \N}$
+of $\Re^{k}$-valued random variables converges in distribution to some random variable
+$X : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{k}$,
+then the sequence $\{\,X_{n}\,\}$ is bounded in probability.
+\end{theorem}
+
+\proof
+Let
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
