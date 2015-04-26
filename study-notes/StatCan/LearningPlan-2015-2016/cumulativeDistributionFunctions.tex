@@ -25,7 +25,9 @@ A function $f : D \subseteq \Re \longrightarrow \Re$ is said to be
 \end{itemize}
 \end{definition}
 
-\begin{theorem}[Theorem 4.29, \cite{Rudin1976}]\mbox{}\vskip 0.2cm
+\begin{theorem}[Theorem 4.29, \cite{Rudin1976}]
+\label{ThmMonotoneFunctions}
+\mbox{}\vskip 0.2cm
 \noindent
 Let $f : (a,b) \subseteq \Re \longrightarrow \Re$ be a non-decreasing function.
 Then,
@@ -37,11 +39,11 @@ f(x+) := \lim_{t \rightarrow x^{+}} f(t)
 exist for every $x \in (a,b)$.
 More precisely,
 \begin{equation*}
-\sup_{a < t < x}\,f(t)
-\; = \; f(x-)
+f(x-)
+\; = \; \sup_{a < t < x}\,f(t)
 \;\leq\; f(x)
-\;\leq\; f(x+)
-\;=\; \inf_{x < t < b}\,f(t).
+\;\leq\; \inf_{x < t < b}\,f(t)
+\;=\; f(x+).
 \end{equation*}
 Furthermore, if $a < x < y < b$, then
 \begin{equation*}
@@ -50,7 +52,13 @@ f(x+) \;\;\leq\;\; f(y-).
 \end{theorem}
 
 \proof
-We first show that $f(x-) := \lim_{t\rightarrow x^{-}}f(t)$ exists and equals $A := \sup_{a<t<x}f(t)$.
+First note that, since $f$ is non-decreasing, it immediately follows that:
+\begin{equation*}
+\sup_{a < t < x}\,f(t)
+\;\leq\; f(x)
+\;\leq\; \inf_{x < t < b}\,f(t).
+\end{equation*}
+Next, we show that $f(x-) := \lim_{t\rightarrow x^{-}}f(t)$ exists and equals $A := \sup_{a<t<x}f(t)$.
 Let $\varepsilon > 0$ be given. We need to find $\delta > 0$ such that
 \begin{equation*}
 \vert\, f(t) - A \,\vert < \varepsilon,
@@ -72,8 +80,16 @@ We therefore see that
 \vert\, f(t) - A \,\vert \; < \; \varepsilon,
 \end{equation*}
 as desired. This proves that $f(x-) := \lim_{t\rightarrow x^{-}}f(t)$ indeed exists and equals $A := \sup_{t\in(a,x)}f(t)$.
-Note that $A \leq f(x)$, since $f$ is non-decreasing hence $f(x)$ is an upper bound of $\left\{\,f(t)\;\vert\; t\in(a,x) \,\right\}$.
 The proof that $f(x+)$ exists and equals $\inf_{t\in(x,b)}f(t)$ is analogous.
+Lastly, let $a < x < y < b$. Then, choose some $z \in (x,y) = (x,b) \,\bigcap\, (a,y)$.
+Hence, we have
+\begin{equation*}
+f(x+) = \inf_{t\in(x,b)}f(t)
+\;\leq\; f(z)
+\;\leq\; \sup_{t\in(a,y)}f(t)
+\;=\; f(y-).
+\end{equation*}
+This proof the Theorem is complete.
 \qed
 
 \begin{remark}\quad
@@ -91,7 +107,7 @@ A point $a \in \textnormal{interior}(D)$ is a \textbf{jump discontinuity} of $f$
 exist but they are unequal.
 \end{definition}
 
-\begin{corollary}\quad
+\begin{corollary}\label{CorollaryMonotoneJumpDiscontinuities}\quad
 A monotone $\Re$-valued function defined on an interval of $\Re$ can have only jump discontinuities.
 \end{corollary}
 
@@ -173,7 +189,7 @@ This shows that if $F$ satisfies the four conditions, then $F$ is the cumulative
 The proof of the Theorem is now complete.
 \qed
 
-\begin{theorem}[Darboux-Froda]
+\begin{theorem}[Darboux-Froda, Theorem 4.30, \cite{Rudin1976}]
 \label{Thm:DarbouxFroda}
 \mbox{}\vskip 0.1cm
 \noindent
@@ -181,7 +197,41 @@ The set of discontinuities of a monotone $\Re$-valued function defined on an int
 \end{theorem}
 
 \proof
-
+We give the proof for non-decreasing functions; the proof for non-increasing functions is analogous.
+Let $f : (a,b) \longrightarrow \Re$ be non-decreasing, and let $\mathcal{D}(f) \subset (a,b)$ be the
+set of discontinuities of $f$.
+By Corollary \ref{CorollaryMonotoneJumpDiscontinuities}, each $x \in \mathcal{D}(f)$ is a jump discontinuity of $f$,
+i.e. both one-sided limits $\lim_{t\rightarrow x^{-}}f(t)$ and $\lim_{t\rightarrow x^{+}}f(t)$ exist, and
+\begin{equation*}
+\lim_{t\rightarrow x^{-}}f(t)
+\;\;<\;\;
+\lim_{t\rightarrow x^{+}}f(t)
+\end{equation*}
+Thus, for each $x \in \mathcal{D}(f)$, we may choose a rational number $r(x) \in \Q$ such that
+\begin{equation*}
+\lim_{t\rightarrow x^{-}}f(t)
+\;\;<\;\; r(x)
+\;\;<\;\; \lim_{t\rightarrow x^{+}}f(t).
+\end{equation*}
+This defines a function $r : \mathcal{D}(f) \longrightarrow \Q$.
+Note that this function is injective.
+Indeed, let $x, y \in \mathcal{D}(f)$ with $x < y$.
+Then, by Theorem \ref{ThmMonotoneFunctions},
+\begin{equation*}
+r(x)
+\;\;<\;\; \lim_{t\rightarrow x^{+}}f(t)
+\;\;=\;\; f(x+)
+\;\;\leq\;\; f(y-)
+\;\;=\;\; \lim_{t\rightarrow y^{-}}f(t)
+\;\;<\;\; r(y)
+\end{equation*}
+This shows $r : \mathcal{D}(f) \longrightarrow \Q$ is indeed injective.
+Since $\Q$ is countable, we may now conclude that $\mathcal{D}(f)$ is at most countable.
 \qed
+
+\begin{corollary}\quad
+The cumulative distribution function of an $\Re$-valued random variable can have only jump discontinuities,
+and its set of (jump) discontinuities is at most countable.
+\end{corollary}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
