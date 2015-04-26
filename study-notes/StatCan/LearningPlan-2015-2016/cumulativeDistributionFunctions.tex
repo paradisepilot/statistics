@@ -25,16 +25,60 @@ A function $f : D \subseteq \Re \longrightarrow \Re$ is said to be
 \end{itemize}
 \end{definition}
 
-\begin{theorem}\quad
-Let $f : D \subseteq \Re \longrightarrow \Re$ be a monotone function.
+\begin{theorem}[Theorem 4.29, \cite{Rudin1976}]\mbox{}\vskip 0.2cm
+\noindent
+Let $f : (a,b) \subseteq \Re \longrightarrow \Re$ be a non-decreasing function.
 Then,
 \begin{equation*}
-\lim_{x \rightarrow a^{-}} f(x)
+f(x-) := \lim_{t \rightarrow x^{-}} f(t)
 \quad\textnormal{and}\quad
-\lim_{x \rightarrow a^{+}} f(x)
+f(x+) := \lim_{t \rightarrow x^{+}} f(t)
 \end{equation*}
-exist for every $a \in \textnormal{interior}(D)$.
+exist for every $x \in (a,b)$.
+More precisely,
+\begin{equation*}
+\sup_{a < t < x}\,f(t)
+\; = \; f(x-)
+\;\leq\; f(x)
+\;\leq\; f(x+)
+\;=\; \inf_{x < t < b}\,f(t).
+\end{equation*}
+Furthermore, if $a < x < y < b$, then
+\begin{equation*}
+f(x+) \;\;\leq\;\; f(y-).
+\end{equation*}
 \end{theorem}
+
+\proof
+We first show that $f(x-) := \lim_{t\rightarrow x^{-}}f(t)$ exists and equals $A := \sup_{a<t<x}f(t)$.
+Let $\varepsilon > 0$ be given. We need to find $\delta > 0$ such that
+\begin{equation*}
+\vert\, f(t) - A \,\vert < \varepsilon,
+\quad
+\textnormal{for every $t \in (x-\delta,x)$}.
+\end{equation*}
+By definition of the supremum, there exists $\delta > 0$ with $x-\delta \in (a,x)$ such that
+\begin{equation*}
+A - \varepsilon \;<\; f(x-\delta) \;\leq\; A.
+\end{equation*}
+Since $f$ is non-decreasing, we have
+\begin{equation*}
+f(x-\delta) \; \leq \; f(t) \; \leq \; A \, := \, \sup_{\xi\in(x-\delta,x)}f(\xi),
+\quad
+\textnormal{for every $t \in (x-\delta,x)$}.
+\end{equation*}
+We therefore see that
+\begin{equation*}
+\vert\, f(t) - A \,\vert \; < \; \varepsilon,
+\end{equation*}
+as desired. This proves that $f(x-) := \lim_{t\rightarrow x^{-}}f(t)$ indeed exists and equals $A := \sup_{t\in(a,x)}f(t)$.
+Note that $A \leq f(x)$, since $f$ is non-decreasing hence $f(x)$ is an upper bound of $\left\{\,f(t)\;\vert\; t\in(a,x) \,\right\}$.
+The proof that $f(x+)$ exists and equals $\inf_{t\in(x,b)}f(t)$ is analogous.
+\qed
+
+\begin{remark}\quad
+The analogous results of the preceding Theorem for non-increasing functions hold, obviously.
+\end{remark}
 
 \begin{definition}\quad
 Let $f : D \subseteq \Re \longrightarrow \Re$.
@@ -135,5 +179,9 @@ The proof of the Theorem is now complete.
 \noindent
 The set of discontinuities of a monotone $\Re$-valued function defined on an interval of $\Re$ is at most countable.
 \end{theorem}
+
+\proof
+
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
