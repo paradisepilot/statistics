@@ -1,0 +1,121 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The Central Limit Theorems}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{lemma}[\S 7.1, \cite{Chung2001}]
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\{\,\theta_{nj} \in \C\,\;\vert\;1 \leq j \leq k_{n}, n \in \N \,\}$ be doubly indexed array of complex numbers.
+If all the following three conditions are true:
+\begin{enumerate}
+\item	\label{ChungLemmaA}
+		there exists $M > 0$ such that
+		\begin{equation*}
+		\overset{k_{n}}{\underset{j =1}{\sum}}\left\vert\, \theta_{nj} \,\right\vert \;\leq\; M,
+		\quad
+		\textnormal{for each $n \in \N$},
+		\end{equation*}
+\item	\label{ChungLemmaB}
+		$\underset{n\rightarrow\infty}{\lim} \; \underset{1 \leq j \leq k_{n}}{\max}\left\vert\, \theta_{nj} \,\right\vert$ \;$=$\; $0$, and
+\item	\label{ChungLemmaC}
+		there exists $\theta \in \C$ such that
+		\begin{equation*}
+		\lim_{n\rightarrow\infty}\;\overset{k_{n}}{\underset{j =1}{\sum}} \; \theta_{nj} \; = \; \theta,
+		\end{equation*}
+\end{enumerate}
+then
+\begin{equation*}
+\lim_{n\rightarrow\infty}\,\prod_{j=1}^{k_{n}}\left( 1 + \theta_{nj} \right) \; = \; e^{\theta}.
+\end{equation*}
+\end{lemma}
+\proof
+First, note that hypothesis \eqref{ChungLemmaB} immediately implies that there exists some $n_{0} \in \N$ such that
+\begin{equation*}
+\vert\,\theta_{nj}\,\vert \;\leq\; \dfrac{1}{2},
+\quad
+\textnormal{for each $n \geq n_{0}$, for each $1 \leq j \leq k_{n}$}.
+\end{equation*}
+Thus, without loss of generality, we may assume that:
+\begin{equation*}
+\vert\,\theta_{nj}\,\vert \;\leq\; \dfrac{1}{2},
+%1 + \theta_{nj} \; \neq \; 0,
+\quad
+\textnormal{for each $n\in\N$, for each $1 \leq j \leq k_{n}$}.
+\end{equation*}
+We denote by $\log(1+\theta_{nj})$ the (unique) complex logarithm\footnote{Recall that the complex exponential function is defined by
+$\exp : \C \rightarrow \C : x + \i\,y \mapsto e^{x}\cdot e^{\i\,y} = e^{x}\left(\cos y + \i\sin y\right)$.
+Clearly, $\exp$ is not injective.
+More precisely, for $x_{1} + \i\,y_{1}$, $x_{2} + \i\,y_{2} \in \C\backslash\{\,0\,\}$,
+we have $e^{x_{1}+\i y_{1}} = e^{x_{2}+\i y_{2}}$ if and only if $x_{1} = x_{2} \in \Re\backslash\{\,0\,\}$ and $y_{1} - y_{2} \in 2\pi\Z$.
+For $z = re^{\i\theta} \in \C\backslash\{\,0\,\}$, a complex logarithm
+of $z$ is any $w = x + \i\,y \in \C\backslash\{\,0\,\}$ such that $e^{x+\i y} = e^{w} = z = re^{\i\theta}$, i.e.
+$x = \log r$ and $y = \theta + 2\pi\Z$. In particular, let $\mathcal{D} := \left\{\,x  +\i\, y \in \C \;\vert\; x \in \Re, y \in(-\pi,\pi]\,\right\}$.
+Then, the restriction $\exp : \mathcal{D} \rightarrow \C\backslash\{\,0\,\}$ is bijective.} of $1 + \theta_{nj}$ with argument in $(-\pi,\pi]$.
+Next, recall the MacLaurin Series for $\log(1+x)$:
+\begin{equation*}
+\log(1+x) \;=\; \sum_{m=1}^{\infty}\,(-1)^{n+1}\,\dfrac{x^{m}}{m},
+\quad
+\textnormal{for any $x \in \C$ with $\vert\,x\,\vert < 1$}. 
+\end{equation*}
+Hence, we have the following inequality: for each $n \in \N$ and for each $1 \leq j \leq k_{n}$,
+\begin{eqnarray*}
+\left\vert\; \log(1 + \theta_{nj}) - \theta_{nj} \;\right\vert
+&=& \left\vert\; \sum_{m=2}^{\infty}\,(-1)^{n+1}\,\dfrac{(\theta_{nj})^{m}}{m} \;\right\vert
+\;\;\leq\;\; \sum_{m=2}^{\infty}\,\dfrac{\vert\,\theta_{nj}\,\vert^{m}}{m}
+\;\;\leq\;\; \dfrac{\vert\,\theta_{nj}\,\vert^{2}}{2}\sum_{m=2}^{\infty}\,\vert\,\theta_{nj}\,\vert^{m-2}
+\\
+&\leq& \dfrac{\vert\,\theta_{nj}\,\vert^{2}}{2}\sum_{m=2}^{\infty}\,\left(\dfrac{1}{2}\right)^{m-2}
+\;\;=\;\; \dfrac{\vert\,\theta_{nj}\,\vert^{2}}{2}\sum_{i=2}^{\infty}\,\left(\dfrac{1}{2}\right)^{i-2}
+\;\;=\;\; \dfrac{\vert\,\theta_{nj}\,\vert^{2}}{2} \cdot 2
+\;\;=\;\; \left\vert\,\theta_{nj}\,\right\vert^{2}.
+\end{eqnarray*}
+This in turn implies: for each $n \in \N$,
+\begin{equation*}
+\left\vert\; \sum_{j=1}^{k_{n}}\log(1 + \theta_{nj}) \; - \; \sum_{j=1}^{k_{n}}\theta_{nj} \;\right\vert
+\;\;=\;\; \left\vert\; \sum_{j=1}^{k_{n}}\,\left(\log(1+\theta_{nj}) - \theta_{nj}\right) \;\right\vert
+\;\;\leq\;\; \sum_{j=1}^{k_{n}}\,\left\vert\,\log(1+\theta_{nj}) \, - \, \theta_{nj} \,\right\vert
+\;\;\leq\;\; \sum_{j=1}^{k_{n}}\,\vert\,\theta_{nj}\,\vert^{2}.
+\end{equation*}
+Thus, for each $n \in \N$, there exists $\Lambda_{n} \in \C$ with $\left\vert\,\Lambda_{n}\,\right\vert \leq 1$ such that
+\begin{equation*}
+\sum_{j=1}^{k_{n}}\log(1 + \theta_{nj})
+\;\; = \;\; \sum_{j=1}^{k_{n}}\theta_{nj} \;+\; \Lambda_{n}\cdot\sum_{j=1}^{k_{n}}\,\vert\,\theta_{nj}\,\vert^{2}.
+\end{equation*}
+(Since for any $z \in \C$, $\left\vert\,z\,\right\vert \leq A$\;\;$\Longrightarrow$\;\;$z = A\cdot w$,
+for some $w\in\C$ with $\vert\,w\,\vert \leq 1$.)
+Next note that, hypotheses \eqref{ChungLemmaA} and \eqref{ChungLemmaB} together imply:
+\begin{equation*}
+\sum_{j=1}^{k_{n}}\left\vert\,\theta_{nj}\,\right\vert^{2}
+\;\;\leq\;\; \left(\max_{1\leq j \leq k_{n}}\left\vert\,\theta_{nj}\,\right\vert\right)\left(\sum_{j=1}^{k_{n}}\left\vert\,\theta_{nj}\,\right\vert\right) 
+\;\;\leq\;\; M\cdot\left(\max_{1\leq j \leq k_{n}}\left\vert\,\theta_{nj}\,\right\vert\right)
+\quad\longrightarrow\quad 0,
+\quad\textnormal{as $n \longrightarrow \infty$.}
+\end{equation*}
+Therefore, since $\left\vert\,\Lambda_{n}\,\right\vert \leq 1$ for each $n \in \N$, we now see that
+\begin{equation*}
+\lim_{n\rightarrow\infty}\,\sum_{j=1}^{k_{n}}\log(1 + \theta_{nj})
+\;\; = \;\;
+\lim_{n\rightarrow\infty}\,\sum_{j=1}^{k_{n}}\theta_{nj} \;+\; 
+\lim_{n\rightarrow\infty}\left(\, \Lambda_{n}\cdot\sum_{j=1}^{k_{n}}\,\vert\,\theta_{nj}\,\vert^{2} \,\right)
+\;\; = \;\; \theta + 0
+\;\; = \;\; \theta.
+\end{equation*}
+We may now conclude, by continuity of the exponential function $\exp(\,\cdot\,)$:
+\begin{eqnarray*}
+\lim_{n\rightarrow\infty}\,\prod_{j=1}^{k_{n}}\left(\,1+\theta_{nj}\,\right)
+&=& \lim_{n\rightarrow\infty}\,\exp\left(\log\;\prod_{j=1}^{k_{n}}\left(\,1+\theta_{nj}\,\right)\right)
+\;\;=\;\; \lim_{n\rightarrow\infty}\,\exp\left(\sum_{j=1}^{k_{n}}\,\log\left(\,1+\theta_{nj}\,\right)\right)
+\\
+&=& \exp\left(\lim_{n\rightarrow\infty}\,\sum_{j=1}^{k_{n}}\,\log\left(\,1+\theta_{nj}\,\right)\right)
+\;\;=\;\; \exp\left(\,\theta\,\right)
+\end{eqnarray*}
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
