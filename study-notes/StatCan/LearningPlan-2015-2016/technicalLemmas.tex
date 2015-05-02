@@ -8,6 +8,44 @@
 \renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
+\begin{lemma}[p.358, \cite{Billingsley1995}]
+\label{BillingsleyThreeFiveEight}
+Let $a_{1},a_{2},\ldots,a_{m},b_{1},b_{2},\ldots,b_{m}\in\C$.
+Then,
+\begin{equation*}
+\vert\,a_{i}\,\vert, \vert\,b_{i}\,\vert \leq 1,
+\;\textnormal{for each}\;\, i = 1, 2, \ldots, m
+\quad\Longrightarrow\quad
+\vert\;a_{1} a_{2} \cdots a_{m} \,-\, b_{1}b_{2}\cdots b_{m}\;\vert
+\;\; \leq \;\;
+\sum_{i=1}^{m}\,\left\vert\; a_{i} \, - \, b_{i} \;\right\vert
+\end{equation*}
+\end{lemma}
+\proof
+Equality holds trivially for $m = 1$. We first prove the inequality for $m = 2$.
+\begin{eqnarray*}
+\left\vert\; a_{1}a_{2} \,-\, b_{1}b_{2} \;\right\vert
+&=& \left\vert\; a_{1}a_{2} \,-\, b_{1}a_{2} \,+\, b_{1}a_{2} \,-\, b_{1}b_{2} \;\right\vert
+\;\;\leq\;\; \left\vert\; a_{1}a_{2} \,-\, b_{1}a_{2} \;\right\vert \;+\; \left\vert\; b_{1}a_{2} \,-\, b_{1}b_{2} \;\right\vert
+\\
+&\leq& \left\vert\; a_{1}a_{2} \,-\, b_{1}a_{2} \;\right\vert \;+\; \left\vert\; b_{1}a_{2} \,-\, b_{1}b_{2} \;\right\vert
+\;\;\leq\;\; \left\vert\; a_{1} \,-\, b_{1} \;\right\vert \left\vert\;a_{2}\;\right\vert \;+\; \left\vert\;b_{1}\;\right\vert \left\vert\; a_{2} \,-\, b_{2} \;\right\vert
+\\
+&\leq& \left\vert\; a_{1} \,-\, b_{1} \;\right\vert \;+\; \left\vert\; a_{2} \,-\, b_{2} \;\right\vert,
+\quad\textnormal{since $\vert\,a_{2}\,\vert$, $\vert\,b_{1}\,\vert \leq 1$, by hypothesis}.
+\end{eqnarray*}
+The general case now follows by induction: Assume the Lemma is valid for $1, 2, \ldots, m$,
+and we prove that it is also valid for $m+1$.
+\begin{eqnarray*}
+\vert\;a_{1}\cdots a_{m}a_{m+1} \,-\, b_{1}\cdots b_{m}b_{m+1}\;\vert
+&\leq& \vert\;a_{1}\cdots a_{m} \,-\, b_{1}\cdots b_{m}\;\vert \;+\; \vert\;a_{m+1} \,-\, b_{m+1}\;\vert
+\\
+&\leq& \sum_{i=1}^{m}\vert\;a_{i} \,-\, b_{i}\;\vert \;+\; \vert\;a_{m+1} \,-\, b_{m+1}\;\vert
+\;\;=\;\; \sum_{i=1}^{m+1}\vert\;a_{i} \,-\, b_{i}\;\vert
+\end{eqnarray*}
+The proof of the Lemma is complete.
+\qed
+
 \begin{lemma}[p.343, \cite{Billingsley1995}]
 \label{BillingsleyThreeFourThree}
 \mbox{}\vskip 0.2cm
@@ -22,8 +60,8 @@
 \end{lemma}
 \proof
 We first establish a number of Claims, which will easily imply the Lemma.
-\begin{center}
-\begin{minipage}{6.5in}
+
+\vskip 0.5cm
 \noindent
 \textbf{Claim 1:}
 \begin{equation*}
@@ -33,7 +71,7 @@ We first establish a number of Claims, which will easily imply the Lemma.
 \quad
 \textnormal{for any $x \in \Re$ and any $n \geq 0$.}
 \end{equation*}
-Proof of Claim 1: We proceed by integration by parts.
+{\small Proof of Claim 1: We proceed by integration by parts.
 %Recall the integration by parts formula:
 %\begin{equation*}
 %\int\,u\,\d v \;\; = \;\; uv \;-\; \int\,v\,\d u.
@@ -58,13 +96,9 @@ Hence,
 \dfrac{x^{n+1}}{n+1} \;\; + \;\; \dfrac{\i}{n+1}\int_{0}^{x}\left(x-s\right)^{n+1}\,e^{\i s}\,\d s.
 \end{eqnarray*}
 This proves Claim 1.
-\end{minipage}
-\end{center}
+}
 
 \vskip 0.5cm
-
-\begin{center}
-\begin{minipage}{6.5in}
 \noindent
 \textbf{Claim 2:}
 \begin{equation*}
@@ -75,7 +109,7 @@ e^{\i x}
 \quad
 \textnormal{for any $x \in \Re$ and any $n \geq 0$.}
 \end{equation*}
-Proof of Claim 2: We proceed by induction.
+{\small Proof of Claim 2: We proceed by induction.
 For $n = 0$, we have:
 \begin{eqnarray*}
 \textnormal{RHS}(n=0)
@@ -108,13 +142,9 @@ and we verify that Claim 2 is also true for $n+1$.
 \end{eqnarray*}
 where the second equality follows from Claim 1 and the last equality follows from the induction hypothesis (that Claim 2 holds for $n$).
 This proves Claim 2.
-\end{minipage}
-\end{center}
+}
 
 \vskip 0.5cm
-
-\begin{center}
-\begin{minipage}{6.5in}
 \noindent
 \textbf{Claim 3:}
 \begin{equation*}
@@ -125,7 +155,7 @@ e^{\i x}
 \quad
 \textnormal{for any $x \in \Re$ and any $n \geq 1$.}
 \end{equation*}
-Proof of Claim 3: By Claim 1, we have (replacing $n$ with $n-1$):
+{\small Proof of Claim 3: By Claim 1, we have (replacing $n$ with $n-1$):
 \begin{equation*}
 \int_{0}^{x}\left(x-s\right)^{n-1}e^{\i s}\,\d s
 \;\;=\;\;
@@ -208,13 +238,9 @@ e^{\i x}
 \textnormal{for any $x \in \Re$ and any $n \geq 1$}
 \end{eqnarray*}
 This proves Claim 3.
-\end{minipage}
-\end{center}
+}
 
 \vskip 0.5cm
-
-\begin{center}
-\begin{minipage}{6.5in}
 \noindent
 \textbf{Claim 4:}
 \begin{equation*}
@@ -225,7 +251,7 @@ This proves Claim 3.
 \quad
 \textnormal{for any $x \in \Re$ and any $n \geq 0$.}
 \end{equation*}
-Proof of Claim 4:
+{\small Proof of Claim 4:
 First, consider $x \geq 0$, in which case, we have, for any $n \geq 0$,
 \begin{equation*}
 \left\vert\;
@@ -248,13 +274,9 @@ Next, for $x < 0$, let $y := -x > 0$. Then,
 \;\;=\;\; \cdots \;\;=\;\; \dfrac{y^{n+1}}{n+1} \;\;=\;\; \dfrac{\vert\,x\,\vert^{n+1}}{n+1}
 \end{eqnarray*}
 This completes the proof Claim 4.
-\end{minipage}
-\end{center}
+}
 
 \vskip 0.5cm
-
-\begin{center}
-\begin{minipage}{6.5in}
 \noindent
 \textbf{Claim 5:}
 \begin{equation*}
@@ -265,7 +287,7 @@ This completes the proof Claim 4.
 \quad
 \textnormal{for any $x \in \Re$ and any $n \geq 1$.}
 \end{equation*}
-Proof of Claim 5: First, consider $x \geq 0$, in which case, we have, for any $n \geq 1$,
+{\small Proof of Claim 5: First, consider $x \geq 0$, in which case, we have, for any $n \geq 1$,
 \begin{equation*}
 \left\vert\;
 \int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s} - 1\right)\,\d s
@@ -307,8 +329,10 @@ Next, for $x < 0$, let $y:=-x > 0$. Then,
 \;\;=\;\; \dfrac{2\,\vert\,x\,\vert^{n}}{n}.
 \end{eqnarray*}
 This completes the proof of Claim 5.
-\end{minipage}
-\end{center}
+}
+
+\vskip 0.5cm
+\noindent
 The proof of the Lemma now follows readily from the preceding Claims.
 \begin{eqnarray*}
 && \left\vert\;e^{\i x} \;-\; \sum_{k = 0}^{n}\,\dfrac{(\i\,x)^{k}}{k!} \;\right\vert

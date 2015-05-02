@@ -24,9 +24,14 @@ Suppose:
 		0 \;<\; \sigma^{2}_{n} \;:=\; \Var\!\left[\;\overset{k_{n}}{\underset{j=1}{\sum}}\,X^{(n)}_{j}\;\right] \;<\; \infty.
 		\end{equation*}
 \end{itemize}
-Let $N(0,1)$ denote the standard Gaussian distribution on $\Re$.
-Then, the following implication holds:
-If
+Then, Lindeberg's condition implies
+\begin{equation*}
+\dfrac{1}{\sigma_{n}}\;\sum^{k_{n}}_{j=1}\left(\,X^{(n)}_{j} - \mu^{(n)}_{j}\,\right)
+\;\;\overset{\mathcal{L}}{\longrightarrow}\;\;
+N(0,1),
+\end{equation*}
+where $N(0,1)$ denotes the standard Gaussian distribution on $\Re$,
+and \textbf{Lindeberg's condition} is the following condition:
 \begin{equation*}
 \lim_{n\rightarrow\infty}\;
 \dfrac{1}{\sigma^{2}_{n}}
@@ -34,18 +39,12 @@ If
 E\!\left[\;
 \left(X^{(n)}_{j} - \mu^{(n)}_{j}\right)^{2}
 \cdot
-I_{\left\{\vert X^{(n)}_{j} - \mu^{(n)}_{j}\vert \;>\; \epsilon \sigma_{n}\right\}}
+I_{\left\{\left\vert X^{(n)}_{j} - \mu^{(n)}_{j}\right\vert \;\geq\; \varepsilon \sigma_{n}\right\}}
 \;\right]
 \;\;=\;\;
 0,
-\quad
-\textnormal{for each $\epsilon > 0$},
-\end{equation*}
-then
-\begin{equation*}
-\dfrac{1}{\sigma_{n}}\;\sum^{k_{n}}_{j=1}\left(\,X^{(n)}_{j} - \mu^{(n)}_{j}\,\right)
-\;\;\overset{\mathcal{L}}{\longrightarrow}\;\;
-N(0,1).
+\;\;\,
+\textnormal{for each $\varepsilon > 0$}.
 \end{equation*}
 \end{theorem}
 
@@ -56,8 +55,228 @@ E\!\left[\;X^{(n)}_{j}\;\right] = 0,
 \quad\textnormal{and}\quad
 \sigma^{2}_{n}\;:=\;\Var\!\left[\;\sum^{k_{n}}_{j=1}X^{(n)}_{j}\;\right] = 1.
 \end{equation*}
-\qed
+Let $t \in \Re$ be fixed.
+Let $\sigma^{2}_{nj} \,:=\, \Var\!\left[\,X^{(n)}_{j}\,\right]$.
+Note that $\overset{k_{n}}{\underset{j=1}{\sum}}\,\sigma^{2}_{nj} \,=\, \sigma^{2}_{n} \,=\,1$.
 
-Lemma \ref{ChungSevenOne}.
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}
+\begin{equation*}
+\lim_{n\rightarrow\infty}\;\max_{1\leq j \leq k_{n}}\left\{\; \sigma^{2}_{nj} \;\right\}
+\;\;=\;\; 0.
+\end{equation*}
+{\small Proof of Claim 1:
+First, note that, for an arbitrary $\varepsilon > 0$, we have
+\begin{eqnarray*}
+0 \;\;\leq\;\;
+\sigma^{2}_{nj}
+&=& \Var\!\left[\,X^{(n)}_{j}\,\right]
+\;\;=\;\; \int x^{2}\,\d\mu_{X^{(n)}_{j}}(x)
+\;\;\leq\;\;  \int_{\left\{\left\vert X^{(n)}_{j}\right\vert\,<\,\varepsilon\right\}}x^{2}\,\d\mu_{X^{(n)}_{j}}(x)
+\;+\;  \int_{\left\{\left\vert X^{(n)}_{j}\right\vert\,\geq\,\varepsilon\right\}}x^{2}\,\d\mu_{X^{(n)}_{j}}(x)
+\\
+&\leq& \varepsilon^{2}
+\;+\; E\!\left[\;\left(X^{(n)}_{j}\right)^{2}\cdot I_{\left\{\left\vert X^{(n)}_{j}\right\vert\,\geq\,\varepsilon\right\}}\;\right]
+\;\;\leq\;\; \varepsilon^{2}
+\;+\; \sum_{i=1}^{k_{n}}E\!\left[\;\left(X^{(n)}_{i}\right)^{2}\cdot I_{\left\{\left\vert X^{(n)}_{i}\right\vert\,\geq\,\varepsilon\right\}}\;\right].
+\end{eqnarray*}
+It follows that
+\begin{equation*}
+0 \;\;\leq\;\;
+\max_{1 \leq j \leq k_{n}}\left\{\;\sigma^{2}_{nj}\;\right\}
+\;\;\leq\;\; \varepsilon^{2}
+\;+\; \sum_{i=1}^{k_{n}}E\!\left[\;\left(X^{(n)}_{i}\right)^{2}\cdot I_{\left\{\left\vert X^{(n)}_{i}\right\vert\,\geq\,\varepsilon\right\}}\;\right].
+\end{equation*}
+Hence, Lindeberg's condition implies:
+\begin{equation*}
+0 \;\;\leq\;\;
+\limsup_{n\rightarrow\infty}\;\max_{1 \leq j \leq k_{n}}\left\{\;\sigma^{2}_{nj}\;\right\}
+\;\;\leq\;\; \varepsilon^{2}
+\;+\; \lim_{n\rightarrow\infty}\;\sum_{i=1}^{k_{n}}E\!\left[\;\left(X^{(n)}_{i}\right)^{2}\cdot I_{\left\{\left\vert X^{(n)}_{i}\right\vert\,\geq\,\varepsilon\right\}}\;\right]
+\;\;=\;\; \varepsilon^{2}.
+\end{equation*}
+Since $\varepsilon > 0$ is arbitrary, we see that:
+\begin{equation*}
+0 \;\;\leq\;\;
+\limsup_{n\rightarrow\infty}\;\max_{1 \leq j \leq k_{n}}\left\{\;\sigma^{2}_{nj}\;\right\}
+\;\;=\;\; 0,
+\end{equation*}
+which implies
+\begin{equation*}
+\lim_{n\rightarrow\infty}\;\max_{1 \leq j \leq k_{n}}\left\{\;\sigma^{2}_{nj}\;\right\}
+\;\;=\;\; 0
+\end{equation*}
+This proves Claim 1.
+}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}
+For each sufficiently large $n \in \N$, we have:
+\begin{equation*}
+0 \;\;\leq\;\; 1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2} \;\; \leq \;\; 1,
+\;\;\,
+\textnormal{for each $1 \leq j \leq k_{n}$}.
+\end{equation*}
+{\small Proof of Claim 2: Recall that $t \in \Re$ is fixed in this argument. Hence, Claim 2 follows immediately from Claim 1.
+}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}
+For each sufficiently large $n \in \N$, we have:
+\begin{equation*}
+\left\vert\;
+\prod_{j=1}^{k_{n}}\varphi_{X^{(n)}_{j}}(t) \; - \; \prod_{j=1}^{k_{n}}\left(1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)
+\;\right\vert
+\;\;\leq\;\;
+\sum_{j=1}^{k_{n}}\,
+\left\vert\;\varphi_{X^{(n)}_{j}}(t) \; - \; \left(1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)\;\right\vert.
+\end{equation*}
+{\small Proof of Claim 3:
+This follows immediately from Lemma \ref{BillingsleyThreeFiveEight}, Claim 2, and the
+fact that characteristic functions of $\Re$-valued random variables (or probability measures defined on $\Re$)
+always map into the closed unit disk in the complex plane.
+}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4:}
+For each sufficiently large $n \in \N$, we have:
+\begin{equation*}
+\left\vert\;
+\prod_{j=1}^{k_{n}} e^{-t^{2}\sigma^{2}_{nj}/2} \; - \; \prod_{j=1}^{k_{n}}\left(1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)
+\;\right\vert
+\;\;\leq\;\;
+\sum_{j=1}^{k_{n}}\,
+\left\vert\; e^{-t^{2}\sigma^{2}_{nj}/2} \; - \; \left(1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)\;\right\vert.
+\end{equation*}
+{\small Proof of Claim 4:
+This follows immediately from Lemma \ref{BillingsleyThreeFiveEight}, Claim 2, and the
+fact that $\exp\!\left\{\,(-\infty,0]\,\right\} \subset [0,1]$.
+}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 5:}
+For each $t \in \Re$, we have:
+\begin{equation*}
+\lim_{n\rightarrow\infty}\,
+\sum_{j=1}^{k_{n}}\,
+\left\vert\;\varphi_{X^{(n)}_{j}}(t) \, - \, \left(1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)\;\right\vert
+\;\;=\;\; 0.
+\end{equation*}
+{\small Proof of Claim 5: By Lemma \ref{BillingsleyThreeFourThree}, we have
+\begin{equation*}
+\left\vert\;
+e^{\i tx} - \left(1 + \i\,tx - \dfrac{t^2x^2}{2}\right)
+\;\right\vert
+\;\;\leq\;\;
+\min\left\{\,
+\vert\,tx\,\vert^{2}
+\,,\,
+\vert\,tx\,\vert^{3}
+\,\right\}.
+\end{equation*}
+Next, note that
+\begin{eqnarray*}
+\int e^{\i tx} - \left(1 + \i\,tx - \dfrac{t^2x^2}{2}\right)\,\d\mu_{X^{(n)}_{j}}(x)
+&=&
+\int e^{\i tx} \,\d\mu_{X^{(n)}_{j}}(x) \; -\; \int \left(1 + \i\,tx - \dfrac{t^2x^2}{2}\right) \,\d\mu_{X^{(n)}_{j}}(x)
+\\
+&=&
+\varphi_{X^{(n)}_{j}}(t) \, - \, \left(1 \, + \, \i t \cdot E\!\left[\,X^{(n)}_{j}\right] \, - \, \dfrac{t^{2}}{2}\cdot E\!\left[\;\left(X^{(n)}_{j}\right)^{2}\,\right]\right)
+\\
+&=&
+\varphi_{X^{(n)}_{j}}(t) \, - \, \left(1 \, - \, \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)
+\end{eqnarray*}
+Hence, for an arbitrary $\epsilon > 0$,
+\begin{eqnarray*}
+\left\vert\;
+\varphi_{X^{(n)}_{j}}(t) \, - \, \left(1 \, - \, \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)
+\;\right\vert
+&=&\left\vert\;
+\int e^{\i tx} - \left(1 + \i\,tx - \dfrac{t^2x^2}{2}\right)\,\d\mu_{X^{(n)}_{j}}(x)
+\;\right\vert
+\;\;\leq\;\;
+\int
+\left\vert\;
+e^{\i tx} - \left(1 + \i\,tx - \dfrac{t^2x^2}{2}\right)
+\;\right\vert
+\,\d\mu_{X^{(n)}_{j}}(x)
+\\
+&\leq&
+\int
+\min\left\{\,
+\vert\,tx\,\vert^{2}
+\,,\,
+\vert\,tx\,\vert^{3}
+\,\right\}
+\,\d\mu_{X^{(n)}_{j}}(x)
+\\
+&=&
+\int_{\left\{\left\vert X^{(n)}_{j} \right\vert\;<\;\varepsilon\right\}}\min\left\{\vert\,tx\,\vert^{2},\vert\,tx\,\vert^{3}\right\}\d\mu_{X^{(n)}_{j}}(x)
+\;+\;
+\int_{\left\{\left\vert X^{(n)}_{j} \right\vert\;\geq\;\varepsilon\right\}}\min\left\{\vert\,tx\,\vert^{2},\vert\,tx\,\vert^{3}\right\}\d\mu_{X^{(n)}_{j}}(x)
+\\
+&\leq&
+\int_{\left\{\left\vert X^{(n)}_{j} \right\vert\;<\;\varepsilon\right\}} \vert\,tx\,\vert^{3} \,\d\mu_{X^{(n)}_{j}}(x)
+\;+\;
+\int_{\left\{\left\vert X^{(n)}_{j} \right\vert\;\geq\;\varepsilon\right\}} \vert\,tx\,\vert^{2} \,\d\mu_{X^{(n)}_{j}}(x)
+\\
+&\leq&
+\varepsilon \vert\,t\,\vert^{3} \int_{\left\{\left\vert X^{(n)}_{j} \right\vert\;<\;\varepsilon\right\}} \vert\,x\,\vert^{2} \,\d\mu_{X^{(n)}_{j}}(x)
+\;+\;
+\vert\,t\,\vert^{2} \int_{\left\{\left\vert X^{(n)}_{j} \right\vert\;\geq\;\varepsilon\right\}} \vert\,x\,\vert^{2} \,\d\mu_{X^{(n)}_{j}}(x)
+\\
+&\leq&
+\varepsilon \vert\,t\,\vert^{3}\cdot\sigma^{2}_{nj}
+\;+\;
+\vert\,t\,\vert^{2}\cdot E\!\left[\;\left(X^{(n)}_{j}\right)^{2} \cdot I_{\left\{\left\vert X^{(n)}_{j} \right\vert\;\geq\;\varepsilon\right\}} \;\right]
+\end{eqnarray*}
+Thus, for an arbitrary $\epsilon > 0$,
+\begin{equation*}
+\sum_{j=1}^{k_{n}}\;
+\left\vert\;
+\varphi_{X^{(n)}_{j}}(t) \, - \, \left(1 \, - \, \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)
+\;\right\vert
+\;\;\leq\;\;
+\varepsilon \vert\,t\,\vert^{3}\cdot \sum_{j=1}^{k_{n}}\;\sigma^{2}_{nj}
+\;+\;
+\vert\,t\,\vert^{2}\cdot
+\sum_{j=1}^{k_{n}}\;E\!\left[\;\left(X^{(n)}_{j}\right)^{2} \cdot I_{\left\{\left\vert X^{(n)}_{j} \right\vert\;\geq\;\varepsilon\right\}} \;\right].
+\end{equation*}
+Recall that $t \in \Re$ is fixed and $\sum_{j=1}^{k_{n}}\sigma^{2}_{nj} = 1$.
+Lindeberg's condition therefore implies:
+\begin{equation*}
+0\;\;\leq\;\;
+\limsup_{n\rightarrow\infty}\;
+\sum_{j=1}^{k_{n}}\;
+\left\vert\;
+\varphi_{X^{(n)}_{j}}(t) \, - \, \left(1 \, - \, \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)
+\;\right\vert
+\;\;\leq\;\;
+\varepsilon \vert\,t\,\vert^{3}
+\;+\;
+\vert\,t\,\vert^{2}\cdot
+\lim_{n\rightarrow\infty}\;
+\sum_{j=1}^{k_{n}}\;E\!\left[\;\left(X^{(n)}_{j}\right)^{2} \cdot I_{\left\{\left\vert X^{(n)}_{j} \right\vert\;\geq\;\varepsilon\right\}} \;\right]
+\;\;=\;\;
+\varepsilon \vert\,t\,\vert^{3}.
+\end{equation*}
+Since $\epsilon > 0$ is arbitrary, we have
+\begin{equation*}
+\lim_{n\rightarrow\infty}\;
+\sum_{j=1}^{k_{n}}\;
+\left\vert\;
+\varphi_{X^{(n)}_{j}}(t) \, - \, \left(1 \, - \, \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)
+\;\right\vert
+\;\;=\;\; 0.
+\end{equation*}
+This proves Claim 5.
+}
+
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
