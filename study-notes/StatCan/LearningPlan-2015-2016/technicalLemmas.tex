@@ -21,6 +21,7 @@
 \end{equation*}
 \end{lemma}
 \proof
+We first establish a number of Claims, which will easily imply the Lemma.
 \begin{center}
 \begin{minipage}{6.5in}
 \noindent
@@ -124,10 +125,218 @@ e^{\i x}
 \quad
 \textnormal{for any $x \in \Re$ and any $n \geq 1$.}
 \end{equation*}
-Proof of Claim 3:
+Proof of Claim 3: By Claim 1, we have (replacing $n$ with $n-1$):
+\begin{equation*}
+\int_{0}^{x}\left(x-s\right)^{n-1}e^{\i s}\,\d s
+\;\;=\;\;
+\dfrac{x^{n}}{n} \;+\; \dfrac{\i}{n}\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s,
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}.
+\end{equation*}
+Isolating the integral on the right-hand-side, we have:
+\begin{equation*}
+\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s
+\;\;=\;\;
+\frac{n}{\i}\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}e^{\i s}\,\d s
+\; - \;
+\dfrac{x^{n}}{n}
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}.
+\end{equation*}
+Next, note that, for any $x \in \Re$ and any $n \geq 1$,
+\begin{equation*}
+\int_{0}^{x}\left(\,x-s\,\right)^{n-1}\,\d s
+\;\;=\;\; - \left[\;\dfrac{(x-s)^{n}}{n}\;\right]_{s=0}^{s=x}
+\;\;=\;\; - \left[\;0 \; - \; \dfrac{x^{n}}{n}\;\right]
+\;\;=\;\; \dfrac{x^{n}}{n}
+\end{equation*}
+Hence, we have:
+\begin{eqnarray*}
+\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s
+&=&
+\frac{n}{\i}\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}e^{\i s}\,\d s
+\; - \;
+\dfrac{x^{n}}{n}
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}.
+\\
+&=&
+\frac{n}{\i}\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}e^{\i s}\,\d s
+\; - \;
+\int_{0}^{x}\left(\,x-s\,\right)^{n-1}\,\d s
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}.
+\\
+&=&
+\frac{n}{\i}\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(\,e^{\i s}\,-\,1\,\right)\,\d s
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}.
+\end{eqnarray*}
+Substituting the above into the right-hand-side of Claim 2, we have:
+\begin{eqnarray*}
+e^{\i x}
+&=&
+\sum_{k=0}^{n}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\i^{n+1}}{n!}\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s,
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 0$}
+\\
+&=&
+\sum_{k=0}^{n}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\i^{n+1}}{n!}\cdot\frac{n}{\i}\cdot
+\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s}\,-\,1\right)\,\d s
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}
+\\
+&=&
+\sum_{k=0}^{n}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\i^{n}}{(n-1)!}\cdot
+\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s}\,-\,1\right)\,\d s
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}
+\end{eqnarray*}
+This proves Claim 3.
 \end{minipage}
 \end{center}
 
+\vskip 0.5cm
+
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim 4:}
+\begin{equation*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n}\,e^{\i s}\,\d s
+\;\right\vert
+\;\; \leq \;\; \dfrac{\vert\,x\,\vert^{n+1}}{n+1},
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 0$.}
+\end{equation*}
+Proof of Claim 4:
+First, consider $x \geq 0$, in which case, we have, for any $n \geq 0$,
+\begin{equation*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n}\,e^{\i s}\,\d s
+\;\right\vert
+\;\;\leq\;\; \int_{0}^{x}\left\vert\; x-s\,\right\vert^{n} \,\d s
+\;\;\leq\;\; \int_{0}^{x}\left(\; x-s\,\right)^{n} \,\d s
+\;\;=\;\; \cdots \;\;=\;\; \dfrac{x^{n+1}}{n+1} \;\;=\;\; \dfrac{\vert\,x\,\vert^{n+1}}{n+1}
+\end{equation*}
+Next, for $x < 0$, let $y := -x > 0$. Then,
+\begin{eqnarray*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n}\,e^{\i s}\,\d s
+\;\right\vert
+&=& \left\vert\; \int_{0}^{-y}\left(-y-s\right)^{n}\,e^{\i s}\,\d s \;\right\vert
+\;\;=\;\; \left\vert\; \int_{0}^{y}\left(-y+t\right)^{n}\,e^{-\i t}\,\d t \;\right\vert
+\\
+&\leq& \int_{0}^{y}\left\vert\, y-t \,\right\vert^{n} \,\d t
+\;\;=\;\; \int_{0}^{y}\left(\, y-t \,\right)^{n} \,\d t
+\;\;=\;\; \cdots \;\;=\;\; \dfrac{y^{n+1}}{n+1} \;\;=\;\; \dfrac{\vert\,x\,\vert^{n+1}}{n+1}
+\end{eqnarray*}
+This completes the proof Claim 4.
+\end{minipage}
+\end{center}
+
+\vskip 0.5cm
+
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim 5:}
+\begin{equation*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(\,e^{\i s} - 1\,\right)\,\d s
+\;\right\vert
+\;\; \leq \;\; \dfrac{2\,\vert\,x\,\vert^{n}}{n},
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$.}
+\end{equation*}
+Proof of Claim 5: First, consider $x \geq 0$, in which case, we have, for any $n \geq 1$,
+\begin{equation*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s} - 1\right)\,\d s
+\;\right\vert
+\;\;\leq\;\;
+\int_{0}^{x}
+\left\vert\;
+\left(x-s\right)^{n-1}\left(e^{\i s} - 1\right)
+\,\right\vert
+\,\d s
+\;\;\leq\;\; 2 \int_{0}^{x}\left(x-s\right)^{n-1}\,\d s
+\;\;=\;\; \dfrac{2\,x^{n}}{n}
+\;\;=\;\; \dfrac{2\,\vert\,x\,\vert^{n}}{n},
+\end{equation*}
+where the second last equality follows from the simple calculation:
+\begin{equation*}
+\int_{0}^{x}\left(\,x-s\,\right)^{n-1}\,\d s
+\;\;=\;\; - \left[\;\dfrac{(x-s)^{n}}{n}\;\right]_{s=0}^{s=x}
+\;\;=\;\; - \left[\;0 \; - \; \dfrac{x^{n}}{n}\;\right]
+\;\;=\;\; \dfrac{x^{n}}{n}.
+\end{equation*}
+Next, for $x < 0$, let $y:=-x > 0$. Then,
+\begin{eqnarray*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s} - 1\right)\,\d s
+\;\right\vert
+&=&
+\left\vert\;
+\int_{0}^{-y}\left(-y-s\right)^{n-1}\left(e^{\i s} - 1\right)\,\d s
+\;\right\vert
+\;\;=\;\;
+\left\vert\;
+-\int_{0}^{y}\left(-y+t\right)^{n-1}\left(e^{-\i t} - 1\right)\,\d t
+\;\right\vert
+\\
+&\leq& 2\int_{0}^{y}\left\vert\,t-y\,\right\vert^{n-1}\,\d t
+\;\;=\;\; 2 \int_{0}^{y}\left(y-t\right)^{n-1}\,\d t
+\;\;=\;\; \dfrac{2\,y^{n}}{n}
+\;\;=\;\; \dfrac{2\,\vert\,x\,\vert^{n}}{n}.
+\end{eqnarray*}
+This completes the proof of Claim 5.
+\end{minipage}
+\end{center}
+The proof of the Lemma now follows readily from the preceding Claims.
+\begin{eqnarray*}
+&& \left\vert\;e^{\i x} \;-\; \sum_{k = 0}^{n}\,\dfrac{(\i\,x)^{k}}{k!} \;\right\vert
+\\
+&\leq&
+\min\left\{\;
+\left\vert\;\dfrac{\i^{n+1}}{n!}\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s\;\right\vert
+\,,\,
+\left\vert\;\dfrac{\i^{n}}{(n-1)!}\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s}-1\right)\,\d s\;\right\vert
+\;\right\},
+\;\;\textnormal{by Claims 2 and 3}
+\\
+&\leq&
+\min\left\{\;
+\dfrac{1}{n!}\cdot\dfrac{\vert\,x\,\vert^{n+1}}{n+1}
+\,,\,
+\dfrac{1}{(n-1)!}\cdot\dfrac{2\,\vert\,x\,\vert^{n}}{n}
+\;\right\},
+\;\;\textnormal{by Claims 4 and 5}
+\\
+&\leq&
+\min\left\{\;
+\dfrac{\vert\,x\,\vert^{n+1}}{(n+1)!}
+\,,\,
+\dfrac{2\,\vert\,x\,\vert^{n}}{n!}
+\;\right\}
+\end{eqnarray*}
+This completes the proof of the Lemma.
 \qed
 
 \begin{lemma}[\S 7.1, \cite{Chung2001}]
