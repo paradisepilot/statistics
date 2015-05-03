@@ -414,3 +414,114 @@ This completes the proof of Lindeberg's Central Limit Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Lyapunov's Central Limit Theorem}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\begin{theorem}[Lyapunov's Central Limit Theorem]
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$\{\,k_{n}\,\}_{n\in\N}\subset\N$ is a sequence of natural numbers such that $k_{n} \rightarrow \infty$ as $n \rightarrow \infty$, and
+\item	for each $n \in \N$, $X^{(n)}_{1}, X^{(n)}_{2}, \ldots, X^{(n)}_{k_{n}} : \Omega_{n} \longrightarrow \Re$
+		are {\color{red}independent} (but not necessarily identically distributed)
+		$\Re$-valued random variables defined on a common probability space
+		$\left(\,\Omega_{n},\mathcal{A}_{n},\mu_{n}\,\right)$ such that
+		\begin{equation*}
+		\mu^{(n)}_{j} \;:=\; E\!\left[\,X^{(n)}_{j}\,\right] \;\in\; \Re \;\;\textnormal{exists, for each $1 \leq j \leq k_{n}$},
+		\quad\textnormal{and}\quad
+		0 \;<\; \sigma^{2}_{n} \;:=\; \Var\!\left[\;\overset{k_{n}}{\underset{j=1}{\sum}}\,X^{(n)}_{j}\;\right] \;<\; \infty.
+		\end{equation*}
+\end{itemize}
+Then, \textbf{Lyapunov's condition}:
+\begin{equation*}
+\textnormal{there exists $\delta > 0$ such that}
+\;\;
+\lim_{n\rightarrow\infty}\;
+\dfrac{1}{\sigma^{2+\delta}_{n}}\,
+\sum_{j=1}^{k_{n}}\;
+E\!\left(\;
+\left\vert\;X^{(n)}_{j} - \mu^{(n)}_{j}\;\right\vert^{2+\delta}
+\;\right)
+\;\;=\;\; 0
+\end{equation*}
+implies \textbf{Lindeberg's condition}:
+\begin{equation*}
+\lim_{n\rightarrow\infty}\;
+\dfrac{1}{\sigma^{2}_{n}}
+\sum_{j=1}^{k_{n}}\;
+E\!\left[\;
+\left(X^{(n)}_{j} - \mu^{(n)}_{j}\right)^{2}
+\cdot
+I_{\left\{\left\vert X^{(n)}_{j} - \mu^{(n)}_{j}\right\vert \;\geq\; \varepsilon \sigma_{n}\right\}}
+\;\right]
+\;\;=\;\;
+0,
+\;\;\,
+\textnormal{for each $\varepsilon > 0$}.
+\end{equation*}
+Consequently, Lyapunov's Condition implies
+\begin{equation*}
+Z_{n} \; := \;
+\dfrac{1}{\sigma_{n}}\;\sum^{k_{n}}_{j=1}\left(\,X^{(n)}_{j} - \mu^{(n)}_{j}\,\right)
+\;\;\overset{\mathcal{L}}{\longrightarrow}\;\;
+N(0,1),
+\end{equation*}
+where $N(0,1)$ denotes the standard Gaussian distribution on $\Re$.
+\vskip 0.1cm
+\noindent
+\vskip 0.1cm
+\noindent
+\end{theorem}
+
+\proof
+Suppose Lyapunov's condition holds.
+Let $\varepsilon > 0$ be given.
+Note that:
+\begin{equation*}
+\left\vert\; X^{(n)}_{j} - \mu^{(n)}_{j} \;\right\vert \;\geq\; \varepsilon\,\sigma_{n}
+\;\;\Longrightarrow\;\;
+\left\vert\; \dfrac{X^{(n)}_{j} - \mu^{(n)}_{j}}{\varepsilon\,\sigma_{n}} \;\right\vert^{\delta} \;\geq\; 1,
+\end{equation*}
+where $\delta > 0$ is as in Lyapunov's condition.
+Then,
+\begin{eqnarray*}
+0
+&\leq& \dfrac{1}{\sigma^{2}_{n}}\cdot
+\sum_{j=1}^{k_{n}}\;
+E\!\left[\;
+\left(X^{(n)}_{i} \, - \, \mu^{(n)}_{i}\right)^{2}\cdot I_{\left\{\left\vert\,X^{(n)}_{j} - \mu^{(n)}_{j}\,\right\vert\;\geq\;\varepsilon\sigma_{n}\right\}}
+\;\right]
+\\
+&\leq&
+\dfrac{1}{\sigma^{2}_{n}}\cdot
+\sum_{j=1}^{k_{n}}\;
+E\!\left[\;
+\left(X^{(n)}_{i} \, - \, \mu^{(n)}_{i}\right)^{2}
+\cdot \left\vert\; \dfrac{X^{(n)}_{j} - \mu^{(n)}_{j}}{\varepsilon\,\sigma_{n}} \;\right\vert^{\delta}
+\cdot I_{\left\{\left\vert\,X^{(n)}_{j} - \mu^{(n)}_{j}\,\right\vert\;\geq\;\varepsilon\sigma_{n}\right\}}
+\;\right]
+\\
+&=&
+\dfrac{1}{\varepsilon^{\delta}\,\sigma^{2+\delta}_{n}}\cdot
+\sum_{j=1}^{k_{n}}\;
+E\!\left[\;
+\left\vert\; X^{(n)}_{j} - \mu^{(n)}_{j} \;\right\vert^{2 + \delta}
+\cdot I_{\left\{\left\vert\,X^{(n)}_{j} - \mu^{(n)}_{j}\,\right\vert\;\geq\;\varepsilon\sigma_{n}\right\}}
+\;\right]
+\\
+&\leq&
+\dfrac{1}{\varepsilon^{\delta}\,\sigma^{2+\delta}_{n}}\cdot
+\sum_{j=1}^{k_{n}}\;
+E\!\left(\;
+\left\vert\; X^{(n)}_{j} - \mu^{(n)}_{j} \;\right\vert^{2 + \delta}
+\;\right)
+\;\;\longrightarrow\;\; 0, \;\;\textnormal{as $n \longrightarrow \infty$}.
+\end{eqnarray*}
+Since $\varepsilon > 0$ is arbitrary, we see that Lindeberg's condition indeed holds.
+By Lindeberg's Central Limit Theorem, we thus have $Z_{n} \overset{\mathcal{L}}{\longrightarrow} N(0,1)$.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
