@@ -160,7 +160,6 @@ fact that $\exp\!\left\{\,(-\infty,0]\,\right\} \subset [0,1]$.
 \vskip 0.5cm
 \noindent
 \textbf{Claim 5:}
-For each $t \in \Re$, we have:
 \begin{equation*}
 \lim_{n\rightarrow\infty}\,
 \sum_{j=1}^{k_{n}}\,
@@ -275,6 +274,58 @@ Since $\epsilon > 0$ is arbitrary, we have
 \;\;=\;\; 0.
 \end{equation*}
 This proves Claim 5.
+}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 6:}
+\begin{equation*}
+\lim_{n\rightarrow\infty}\;
+\sum_{j=1}^{k_{n}}\,
+\left\vert\; e^{-t^{2}\sigma^{2}_{nj}/2} \; - \; \left(1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)\;\right\vert
+\;\;=\;\; 0
+\end{equation*}
+{\small Proof of Claim 6:
+Since $t \in \Re$ is fixed, by Claim 1, we have that, for each sufficiently large $n \in \N$,
+\begin{equation*}
+\left\vert\;\dfrac{t^{2}\sigma^{2}_{nj}}{2}\;\right\vert \;\; \leq \;\; \dfrac{1}{2},
+\;\;\,
+\textnormal{for each $1 \leq j \leq k_{n}$}.
+\end{equation*}
+Thus, Lemma \ref{BoundEOneZ} implies that, for each sufficiently large $n \in \N$,
+\begin{equation*}
+\left\vert\; e^{-t^{2}\sigma^{2}_{nj}/2} \; - \; \left(1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)\;\right\vert
+\;\; = \;\; \left\vert\; e^{-t^{2}\sigma^{2}_{nj}/2} \; - \; 1 - \left( - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)\;\right\vert
+\;\; \leq \;\; \left\vert\; \dfrac{t^{2}\sigma^{2}_{nj}}{2} \;\right\vert^{2}
+\;\; \leq \;\; t^{4}\sigma^{4}_{nj}
+\end{equation*}
+Summing over $j$, we have: for each sufficiently large $n$,
+\begin{eqnarray*}
+0 \;\; \leq \;\;
+\sum_{j=1}^{k_{n}}\;\left\vert\; e^{-t^{2}\sigma^{2}_{nj}/2} \; - \; \left(1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)\;\right\vert
+&\leq& t^{4}\cdot\sum_{j=1}^{k_{n}}\;\sigma^{4}_{nj}
+\\
+&\leq& t^{4}\cdot\sum_{j=1}^{k_{n}}\left(\sigma^{2}_{nj}\cdot\max_{1\leq i \leq k_{n}}\left\{\,\sigma^{2}_{ni}\,\right\}\right)
+\\
+&=& t^{4}\cdot\left(\sum_{j=1}^{k_{n}}\sigma^{2}_{nj}\right)\left(\max_{1\leq i \leq k_{n}}\left\{\,\sigma^{2}_{ni}\,\right\}\right)
+\\
+&=& t^{4}\cdot\left(\max_{1\leq i \leq k_{n}}\left\{\,\sigma^{2}_{ni}\,\right\}\right).
+\end{eqnarray*}
+Claim 1 now implies
+\begin{equation*}
+0 \;\; \leq \;\;
+\limsup_{n\rightarrow\infty}\;
+\sum_{j=1}^{k_{n}}\;\left\vert\; e^{-t^{2}\sigma^{2}_{nj}/2} \; - \; \left(1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)\;\right\vert
+\;\;=\;\; t^{4}\cdot\lim_{n\rightarrow\infty}\left(\max_{1\leq i \leq k_{n}}\left\{\,\sigma^{2}_{ni}\,\right\}\right)
+\;\; = \;\; 0,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+\lim_{n\rightarrow\infty}\;
+\sum_{j=1}^{k_{n}}\;\left\vert\; e^{-t^{2}\sigma^{2}_{nj}/2} \; - \; \left(1 - \dfrac{t^{2}\sigma^{2}_{nj}}{2}\right)\;\right\vert
+\;\; = \;\; 0.
+\end{equation*}
+This proves Claim 6.
 }
 
 \qed

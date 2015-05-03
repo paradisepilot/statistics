@@ -8,6 +8,33 @@
 \renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
+\begin{lemma}
+\label{BoundEOneZ}
+\begin{equation*}
+\left\vert\; e^{z} - 1 \, - \, z \;\right\vert \; \leq \; z^{2},
+\;\;\,
+\textnormal{for each $\vert\,z\,\vert \leq \dfrac{1}{2}$}. 
+\end{equation*}
+\end{lemma}
+\proof
+First, note that $g(z) := e^{z} - 1 - z\geq 0$, for each $z \in \Re$.
+Indeed, $g'(z) = e^{z} - 1$ and $g''(z) = e^{z} > 0$.
+So, $g$ is strictly convex.
+Next, note that $g'(z) = 0 \Longleftrightarrow z = 0$.
+So, $g$ achieves its unique minimum at $z = 0$.
+Since $g(0) = 0$, we see that $g(z) \geq 0$,
+for each $z \in \Re$.
+Thus, $\left\vert\; e^{z} - 1 \, - \, z \;\right\vert \;=\; e^{z} - 1 \, - \, z$, for each $z \in \Re$.
+Hence, to prove the Lemma, it suffices to prove that
+$h(z) := z^{2} - (e^{z} - 1 - z) = z^{2} + z + 1 - e^{z} \geq 0$,
+for each $z \in [-1/2,1/2]$.
+Now, $h'(z) = 2z + 1 - e^{z}$ and $h''(z) = 2 - e^{z}$.
+So, $h''(z) = 0 \Longleftrightarrow z = \log(2) \approx 0.6931$, and $h''(z) > 0$ for each $z \in (-\infty,\log(2)) \supset [-1/2,1/2]$.
+So, $h$ is strictly convex on the interval $[-1/2,1/2]$. But $h(0) = h'(0) = 0$.
+Hence, $z = 0$ is the unique minimum of $h$ on $[-1/2,1/2]$, and we may now conclude that $h(z) \geq 0$,
+for each $z \in [-1/2,1/2]$, as required.
+\qed
+
 \begin{lemma}[p.358, \cite{Billingsley1995}]
 \label{BillingsleyThreeFiveEight}
 Let $a_{1},a_{2},\ldots,a_{m},b_{1},b_{2},\ldots,b_{m}\in\C$.
