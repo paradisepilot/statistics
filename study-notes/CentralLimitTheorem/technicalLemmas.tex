@@ -1,0 +1,504 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical Lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{lemma}
+\label{BoundEOneZ}
+\begin{equation*}
+\left\vert\; e^{z} - 1 \, - \, z \;\right\vert \; \leq \; z^{2},
+\;\;\,
+\textnormal{for each $\vert\,z\,\vert \leq \dfrac{1}{2}$}. 
+\end{equation*}
+\end{lemma}
+\proof
+First, note that $g(z) := e^{z} - 1 - z\geq 0$, for each $z \in \Re$.
+Indeed, $g'(z) = e^{z} - 1$ and $g''(z) = e^{z} > 0$.
+So, $g$ is strictly convex.
+Next, note that $g'(z) = 0 \Longleftrightarrow z = 0$.
+So, $g$ achieves its unique minimum at $z = 0$.
+Since $g(0) = 0$, we see that $g(z) \geq 0$,
+for each $z \in \Re$.
+Thus, $\left\vert\; e^{z} - 1 \, - \, z \;\right\vert \;=\; e^{z} - 1 \, - \, z$, for each $z \in \Re$.
+Hence, to prove the Lemma, it suffices to prove that
+$h(z) := z^{2} - (e^{z} - 1 - z) = z^{2} + z + 1 - e^{z} \geq 0$,
+for each $z \in [-1/2,1/2]$.
+Now, $h'(z) = 2z + 1 - e^{z}$ and $h''(z) = 2 - e^{z}$.
+So, $h''(z) = 0 \Longleftrightarrow z = \log(2) \approx 0.6931$, and $h''(z) > 0$ for each $z \in (-\infty,\log(2)) \supset [-1/2,1/2]$.
+So, $h$ is strictly convex on the interval $[-1/2,1/2]$. But $h(0) = h'(0) = 0$.
+Hence, $z = 0$ is the unique minimum of $h$ on $[-1/2,1/2]$, and we may now conclude that $h(z) \geq 0$,
+for each $z \in [-1/2,1/2]$, as required.
+\qed
+
+\begin{lemma}[p.358, \cite{Billingsley1995}]
+\label{BillingsleyThreeFiveEight}
+Let $a_{1},a_{2},\ldots,a_{m},b_{1},b_{2},\ldots,b_{m}\in\C$.
+Then,
+\begin{equation*}
+\vert\,a_{i}\,\vert, \vert\,b_{i}\,\vert \leq 1,
+\;\textnormal{for each}\;\, i = 1, 2, \ldots, m
+\quad\Longrightarrow\quad
+\vert\;a_{1} a_{2} \cdots a_{m} \,-\, b_{1}b_{2}\cdots b_{m}\;\vert
+\;\; \leq \;\;
+\sum_{i=1}^{m}\,\left\vert\; a_{i} \, - \, b_{i} \;\right\vert
+\end{equation*}
+\end{lemma}
+\proof
+Equality holds trivially for $m = 1$. We first prove the inequality for $m = 2$.
+\begin{eqnarray*}
+\left\vert\; a_{1}a_{2} \,-\, b_{1}b_{2} \;\right\vert
+&=& \left\vert\; a_{1}a_{2} \,-\, b_{1}a_{2} \,+\, b_{1}a_{2} \,-\, b_{1}b_{2} \;\right\vert
+\;\;\leq\;\; \left\vert\; a_{1}a_{2} \,-\, b_{1}a_{2} \;\right\vert \;+\; \left\vert\; b_{1}a_{2} \,-\, b_{1}b_{2} \;\right\vert
+\\
+&\leq& \left\vert\; a_{1}a_{2} \,-\, b_{1}a_{2} \;\right\vert \;+\; \left\vert\; b_{1}a_{2} \,-\, b_{1}b_{2} \;\right\vert
+\;\;\leq\;\; \left\vert\; a_{1} \,-\, b_{1} \;\right\vert \left\vert\;a_{2}\;\right\vert \;+\; \left\vert\;b_{1}\;\right\vert \left\vert\; a_{2} \,-\, b_{2} \;\right\vert
+\\
+&\leq& \left\vert\; a_{1} \,-\, b_{1} \;\right\vert \;+\; \left\vert\; a_{2} \,-\, b_{2} \;\right\vert,
+\quad\textnormal{since $\vert\,a_{2}\,\vert$, $\vert\,b_{1}\,\vert \leq 1$, by hypothesis}.
+\end{eqnarray*}
+The general case now follows by induction: Assume the Lemma is valid for $1, 2, \ldots, m$,
+and we prove that it is also valid for $m+1$.
+\begin{eqnarray*}
+\vert\;a_{1}\cdots a_{m}a_{m+1} \,-\, b_{1}\cdots b_{m}b_{m+1}\;\vert
+&\leq& \vert\;a_{1}\cdots a_{m} \,-\, b_{1}\cdots b_{m}\;\vert \;+\; \vert\;a_{m+1} \,-\, b_{m+1}\;\vert
+\\
+&\leq& \sum_{i=1}^{m}\vert\;a_{i} \,-\, b_{i}\;\vert \;+\; \vert\;a_{m+1} \,-\, b_{m+1}\;\vert
+\;\;=\;\; \sum_{i=1}^{m+1}\vert\;a_{i} \,-\, b_{i}\;\vert
+\end{eqnarray*}
+The proof of the Lemma is complete.
+\qed
+
+\begin{lemma}[p.343, \cite{Billingsley1995}]
+\label{BillingsleyThreeFourThree}
+\mbox{}\vskip 0.2cm
+\noindent
+\begin{equation*}
+\left\vert\;e^{\i x} \;-\; \sum_{k = 0}^{n}\,\dfrac{(\i\,x)^{k}}{k!} \;\right\vert
+\;\;\leq\;\;
+\min\left\{\;\dfrac{\vert\,x\,\vert^{n+1}}{(n+1)!}\;,\;\dfrac{2\,\vert\,x\,\vert^{n}}{n!}\;\right\},
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 0$.}
+\end{equation*}
+\end{lemma}
+\proof
+We first establish a number of Claims, which will easily imply the Lemma.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}
+\begin{equation*}
+\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s
+\;\;=\;\;
+\dfrac{x^{n+1}}{n+1} \;+\; \dfrac{\i}{n+1}\int_{0}^{x}\left(x-s\right)^{n+1}e^{\i s}\,\d s,
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 0$.}
+\end{equation*}
+{\small Proof of Claim 1: We proceed by integration by parts.
+%Recall the integration by parts formula:
+%\begin{equation*}
+%\int\,u\,\d v \;\; = \;\; uv \;-\; \int\,v\,\d u.
+%\end{equation*}
+Let $u = e^{\i s}$ and $\d v = (x-s)^{n}\,\d s$.
+Then, $\d u = \i\,e^{\i s}$ and $v = -(x-s)^{n+1}/(n+1)$.
+Hence,
+\begin{eqnarray*}
+\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s
+&=& \int\,u\,\d v
+\;\;=\;\; uv \; - \; \int\,v\,\d u
+\\
+&=&
+\left[\;e^{\i s}\cdot\dfrac{(-1)(x-s)^{n+1}}{n+1}\;\right]_{s=0}^{s=x}
+\;\; - \;\; \int_{0}^{x}\dfrac{(-1)\left(x-s\right)^{n+1}}{n+1}\cdot\i e^{\i s}\,\d s,
+%\\
+%&=&
+%\left[\;0 \; - \; \dfrac{(-1)\cdot x^{n+1}}{n+1}\;\right]
+%\;\; + \;\; \dfrac{\i}{n+1}\int_{0}^{x}\left(x-s\right)^{n+1}\,e^{\i s}\,\d s,
+\\
+&=&
+\dfrac{x^{n+1}}{n+1} \;\; + \;\; \dfrac{\i}{n+1}\int_{0}^{x}\left(x-s\right)^{n+1}\,e^{\i s}\,\d s.
+\end{eqnarray*}
+This proves Claim 1.
+}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}
+\begin{equation*}
+e^{\i x}
+\;\;=\;\;
+\sum_{k=0}^{n}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\i^{n+1}}{n!}\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s,
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 0$.}
+\end{equation*}
+{\small Proof of Claim 2: We proceed by induction.
+For $n = 0$, we have:
+\begin{eqnarray*}
+\textnormal{RHS}(n=0)
+&=&
+\sum_{k=0}^{0}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\i^{0+1}}{0!}\int_{0}^{x}\left(x-s\right)^{0}e^{\i s}\,\d s
+\;\;=\;\; 1 \;+\; \i\int_{0}^{x} e^{\i s}\,\d s
+\;\;=\;\; 1 \;+\; \i\left[\;\dfrac{e^{\i s}}{\i}\;\right]_{s=0}^{s=x}
+\\
+&=& 1 + \left(\,e^{\i x} - 1\,\right) \;\;=\;\; e^{\i x}.
+\end{eqnarray*}
+Thus, Claim 2 is indeed true for $n = 0$.
+Next, by induction hypothesis, assume Claim 2 is true for $n$,
+and we verify that Claim 2 is also true for $n+1$.
+\begin{eqnarray*}
+\textnormal{RHS}(n+1)
+&=& \sum_{k=0}^{n+1}\dfrac{\left(\i\,x\right)^{k}}{k!} \;+\; \dfrac{\i^{n+2}}{(n+1)!}\int_{0}^{x}\left(x-s\right)^{n+1}e^{\i s}\,\d s
+\\
+&=&
+\sum_{k=0}^{n}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\left(\i\,x\right)^{n+1}}{(n+1)!}
+\;+\; \dfrac{\i^{n+2}}{(n+1)!}\cdot\dfrac{n+1}{\i}\left[\;\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s \;-\; \dfrac{x^{n+1}}{n+1} \;\right]
+\\
+&=& 
+\sum_{k=0}^{n}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\i^{n+1}}{n!}\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s
+\;+\; \dfrac{\left(\i\,x\right)^{n+1}}{(n+1)!}
+\;-\; \dfrac{\i^{n+1}}{n!}\cdot\dfrac{x^{n+1}}{n+1}
+\;\;=\;\; e^{\i x},
+\end{eqnarray*}
+where the second equality follows from Claim 1 and the last equality follows from the induction hypothesis (that Claim 2 holds for $n$).
+This proves Claim 2.
+}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}
+\begin{equation*}
+e^{\i x}
+\;\;=\;\;
+\sum_{k=0}^{n}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\i^{n}}{(n-1)!}\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s}-1\right)\,\d s,
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$.}
+\end{equation*}
+{\small Proof of Claim 3: By Claim 1, we have (replacing $n$ with $n-1$):
+\begin{equation*}
+\int_{0}^{x}\left(x-s\right)^{n-1}e^{\i s}\,\d s
+\;\;=\;\;
+\dfrac{x^{n}}{n} \;+\; \dfrac{\i}{n}\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s,
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}.
+\end{equation*}
+Isolating the integral on the right-hand-side, we have:
+\begin{equation*}
+\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s
+\;\;=\;\;
+\frac{n}{\i}\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}e^{\i s}\,\d s
+\; - \;
+\dfrac{x^{n}}{n}
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}.
+\end{equation*}
+Next, note that, for any $x \in \Re$ and any $n \geq 1$,
+\begin{equation*}
+\int_{0}^{x}\left(\,x-s\,\right)^{n-1}\,\d s
+\;\;=\;\; - \left[\;\dfrac{(x-s)^{n}}{n}\;\right]_{s=0}^{s=x}
+\;\;=\;\; - \left[\;0 \; - \; \dfrac{x^{n}}{n}\;\right]
+\;\;=\;\; \dfrac{x^{n}}{n}
+\end{equation*}
+Hence, we have:
+\begin{eqnarray*}
+\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s
+&=&
+\frac{n}{\i}\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}e^{\i s}\,\d s
+\; - \;
+\dfrac{x^{n}}{n}
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}.
+\\
+&=&
+\frac{n}{\i}\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}e^{\i s}\,\d s
+\; - \;
+\int_{0}^{x}\left(\,x-s\,\right)^{n-1}\,\d s
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}.
+\\
+&=&
+\frac{n}{\i}\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(\,e^{\i s}\,-\,1\,\right)\,\d s
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}.
+\end{eqnarray*}
+Substituting the above into the right-hand-side of Claim 2, we have:
+\begin{eqnarray*}
+e^{\i x}
+&=&
+\sum_{k=0}^{n}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\i^{n+1}}{n!}\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s,
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 0$}
+\\
+&=&
+\sum_{k=0}^{n}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\i^{n+1}}{n!}\cdot\frac{n}{\i}\cdot
+\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s}\,-\,1\right)\,\d s
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}
+\\
+&=&
+\sum_{k=0}^{n}\dfrac{\left(\i\,x\right)^{k}}{k!}
+\;+\; \dfrac{\i^{n}}{(n-1)!}\cdot
+\left[\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s}\,-\,1\right)\,\d s
+\;\right],
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$}
+\end{eqnarray*}
+This proves Claim 3.
+}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4:}
+\begin{equation*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n}\,e^{\i s}\,\d s
+\;\right\vert
+\;\; \leq \;\; \dfrac{\vert\,x\,\vert^{n+1}}{n+1},
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 0$.}
+\end{equation*}
+{\small Proof of Claim 4:
+First, consider $x \geq 0$, in which case, we have, for any $n \geq 0$,
+\begin{equation*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n}\,e^{\i s}\,\d s
+\;\right\vert
+\;\;\leq\;\; \int_{0}^{x}\left\vert\; x-s\,\right\vert^{n} \,\d s
+\;\;\leq\;\; \int_{0}^{x}\left(\; x-s\,\right)^{n} \,\d s
+\;\;=\;\; \cdots \;\;=\;\; \dfrac{x^{n+1}}{n+1} \;\;=\;\; \dfrac{\vert\,x\,\vert^{n+1}}{n+1}
+\end{equation*}
+Next, for $x < 0$, let $y := -x > 0$. Then,
+\begin{eqnarray*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n}\,e^{\i s}\,\d s
+\;\right\vert
+&=& \left\vert\; \int_{0}^{-y}\left(-y-s\right)^{n}\,e^{\i s}\,\d s \;\right\vert
+\;\;=\;\; \left\vert\; \int_{0}^{y}\left(-y+t\right)^{n}\,e^{-\i t}\,\d t \;\right\vert
+\\
+&\leq& \int_{0}^{y}\left\vert\, y-t \,\right\vert^{n} \,\d t
+\;\;=\;\; \int_{0}^{y}\left(\, y-t \,\right)^{n} \,\d t
+\;\;=\;\; \cdots \;\;=\;\; \dfrac{y^{n+1}}{n+1} \;\;=\;\; \dfrac{\vert\,x\,\vert^{n+1}}{n+1}
+\end{eqnarray*}
+This completes the proof Claim 4.
+}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 5:}
+\begin{equation*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(\,e^{\i s} - 1\,\right)\,\d s
+\;\right\vert
+\;\; \leq \;\; \dfrac{2\,\vert\,x\,\vert^{n}}{n},
+\quad
+\textnormal{for any $x \in \Re$ and any $n \geq 1$.}
+\end{equation*}
+{\small Proof of Claim 5: First, consider $x \geq 0$, in which case, we have, for any $n \geq 1$,
+\begin{equation*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s} - 1\right)\,\d s
+\;\right\vert
+\;\;\leq\;\;
+\int_{0}^{x}
+\left\vert\;
+\left(x-s\right)^{n-1}\left(e^{\i s} - 1\right)
+\,\right\vert
+\,\d s
+\;\;\leq\;\; 2 \int_{0}^{x}\left(x-s\right)^{n-1}\,\d s
+\;\;=\;\; \dfrac{2\,x^{n}}{n}
+\;\;=\;\; \dfrac{2\,\vert\,x\,\vert^{n}}{n},
+\end{equation*}
+where the second last equality follows from the simple calculation:
+\begin{equation*}
+\int_{0}^{x}\left(\,x-s\,\right)^{n-1}\,\d s
+\;\;=\;\; - \left[\;\dfrac{(x-s)^{n}}{n}\;\right]_{s=0}^{s=x}
+\;\;=\;\; - \left[\;0 \; - \; \dfrac{x^{n}}{n}\;\right]
+\;\;=\;\; \dfrac{x^{n}}{n}.
+\end{equation*}
+Next, for $x < 0$, let $y:=-x > 0$. Then,
+\begin{eqnarray*}
+\left\vert\;
+\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s} - 1\right)\,\d s
+\;\right\vert
+&=&
+\left\vert\;
+\int_{0}^{-y}\left(-y-s\right)^{n-1}\left(e^{\i s} - 1\right)\,\d s
+\;\right\vert
+\;\;=\;\;
+\left\vert\;
+-\int_{0}^{y}\left(-y+t\right)^{n-1}\left(e^{-\i t} - 1\right)\,\d t
+\;\right\vert
+\\
+&\leq& 2\int_{0}^{y}\left\vert\,t-y\,\right\vert^{n-1}\,\d t
+\;\;=\;\; 2 \int_{0}^{y}\left(y-t\right)^{n-1}\,\d t
+\;\;=\;\; \dfrac{2\,y^{n}}{n}
+\;\;=\;\; \dfrac{2\,\vert\,x\,\vert^{n}}{n}.
+\end{eqnarray*}
+This completes the proof of Claim 5.
+}
+
+\vskip 0.5cm
+\noindent
+The proof of the Lemma now follows readily from the preceding Claims.
+\begin{eqnarray*}
+&& \left\vert\;e^{\i x} \;-\; \sum_{k = 0}^{n}\,\dfrac{(\i\,x)^{k}}{k!} \;\right\vert
+\\
+&\leq&
+\min\left\{\;
+\left\vert\;\dfrac{\i^{n+1}}{n!}\int_{0}^{x}\left(x-s\right)^{n}e^{\i s}\,\d s\;\right\vert
+\,,\,
+\left\vert\;\dfrac{\i^{n}}{(n-1)!}\int_{0}^{x}\left(x-s\right)^{n-1}\left(e^{\i s}-1\right)\,\d s\;\right\vert
+\;\right\},
+\;\;\textnormal{by Claims 2 and 3}
+\\
+&\leq&
+\min\left\{\;
+\dfrac{1}{n!}\cdot\dfrac{\vert\,x\,\vert^{n+1}}{n+1}
+\,,\,
+\dfrac{1}{(n-1)!}\cdot\dfrac{2\,\vert\,x\,\vert^{n}}{n}
+\;\right\},
+\;\;\textnormal{by Claims 4 and 5}
+\\
+&\leq&
+\min\left\{\;
+\dfrac{\vert\,x\,\vert^{n+1}}{(n+1)!}
+\,,\,
+\dfrac{2\,\vert\,x\,\vert^{n}}{n!}
+\;\right\}
+\end{eqnarray*}
+This completes the proof of the Lemma.
+\qed
+
+\begin{lemma}[\S 7.1, \cite{Chung2001}]
+\label{ChungSevenOne}
+\mbox{}\vskip 0.2cm
+\noindent
+Let $\{\,\theta_{nj} \in \C\,\;\vert\;1 \leq j \leq k_{n}, n \in \N \,\}$ be doubly indexed array of complex numbers.
+If all the following three conditions are true:
+\begin{enumerate}
+\item	\label{ChungLemmaA}
+		there exists $M > 0$ such that
+		\begin{equation*}
+		\overset{k_{n}}{\underset{j =1}{\sum}}\left\vert\, \theta_{nj} \,\right\vert \;\leq\; M,
+		\quad
+		\textnormal{for each $n \in \N$},
+		\end{equation*}
+\item	\label{ChungLemmaB}
+		$\underset{n\rightarrow\infty}{\lim} \; \underset{1 \leq j \leq k_{n}}{\max}\left\vert\, \theta_{nj} \,\right\vert$ \;$=$\; $0$, and
+\item	\label{ChungLemmaC}
+		there exists $\theta \in \C$ such that
+		\begin{equation*}
+		\lim_{n\rightarrow\infty}\;\overset{k_{n}}{\underset{j =1}{\sum}} \; \theta_{nj} \; = \; \theta,
+		\end{equation*}
+\end{enumerate}
+then
+\begin{equation*}
+\lim_{n\rightarrow\infty}\,\prod_{j=1}^{k_{n}}\left( 1 + \theta_{nj} \right) \; = \; e^{\theta}.
+\end{equation*}
+\end{lemma}
+\proof
+First, note that hypothesis \eqref{ChungLemmaB} immediately implies that there exists some $n_{0} \in \N$ such that
+\begin{equation*}
+\vert\,\theta_{nj}\,\vert \;\leq\; \dfrac{1}{2},
+\quad
+\textnormal{for each $n \geq n_{0}$, for each $1 \leq j \leq k_{n}$}.
+\end{equation*}
+Thus, without loss of generality, we may assume that:
+\begin{equation*}
+\vert\,\theta_{nj}\,\vert \;\leq\; \dfrac{1}{2},
+%1 + \theta_{nj} \; \neq \; 0,
+\quad
+\textnormal{for each $n\in\N$, for each $1 \leq j \leq k_{n}$}.
+\end{equation*}
+We denote by $\log(1+\theta_{nj})$ the (unique) complex logarithm\footnote{Recall that the complex exponential function is defined by
+$\exp : \C \rightarrow \C : x + \i\,y \mapsto e^{x}\cdot e^{\i\,y} = e^{x}\left(\cos y + \i\sin y\right)$.
+Clearly, $\exp$ is not injective.
+More precisely, for $x_{1} + \i\,y_{1}$, $x_{2} + \i\,y_{2} \in \C\backslash\{\,0\,\}$,
+we have $e^{x_{1}+\i y_{1}} = e^{x_{2}+\i y_{2}}$ if and only if $x_{1} = x_{2} \in \Re\backslash\{\,0\,\}$ and $y_{1} - y_{2} \in 2\pi\Z$.
+For $z = re^{\i\theta} \in \C\backslash\{\,0\,\}$, a complex logarithm
+of $z$ is any $w = x + \i\,y \in \C\backslash\{\,0\,\}$ such that $e^{x+\i y} = e^{w} = z = re^{\i\theta}$, i.e.
+$x = \log r$ and $y = \theta + 2\pi\Z$. In particular, let $\mathcal{D} := \left\{\,x  +\i\, y \in \C \;\vert\; x \in \Re, y \in(-\pi,\pi]\,\right\}$.
+Then, the restriction $\exp : \mathcal{D} \rightarrow \C\backslash\{\,0\,\}$ is bijective.} of $1 + \theta_{nj}$ with argument in $(-\pi,\pi]$.
+Next, recall the MacLaurin Series for $\log(1+x)$:
+\begin{equation*}
+\log(1+x) \;=\; \sum_{m=1}^{\infty}\,(-1)^{n+1}\,\dfrac{x^{m}}{m},
+\quad
+\textnormal{for any $x \in \C$ with $\vert\,x\,\vert < 1$}. 
+\end{equation*}
+Hence, we have the following inequality: for each $n \in \N$ and for each $1 \leq j \leq k_{n}$,
+\begin{eqnarray*}
+\left\vert\; \log(1 + \theta_{nj}) - \theta_{nj} \;\right\vert
+&=& \left\vert\; \sum_{m=2}^{\infty}\,(-1)^{n+1}\,\dfrac{(\theta_{nj})^{m}}{m} \;\right\vert
+\;\;\leq\;\; \sum_{m=2}^{\infty}\,\dfrac{\vert\,\theta_{nj}\,\vert^{m}}{m}
+\;\;\leq\;\; \dfrac{\vert\,\theta_{nj}\,\vert^{2}}{2}\sum_{m=2}^{\infty}\,\vert\,\theta_{nj}\,\vert^{m-2}
+\\
+&\leq& \dfrac{\vert\,\theta_{nj}\,\vert^{2}}{2}\sum_{m=2}^{\infty}\,\left(\dfrac{1}{2}\right)^{m-2}
+\;\;=\;\; \dfrac{\vert\,\theta_{nj}\,\vert^{2}}{2}\sum_{i=2}^{\infty}\,\left(\dfrac{1}{2}\right)^{i-2}
+\;\;=\;\; \dfrac{\vert\,\theta_{nj}\,\vert^{2}}{2} \cdot 2
+\;\;=\;\; \left\vert\,\theta_{nj}\,\right\vert^{2}.
+\end{eqnarray*}
+This in turn implies: for each $n \in \N$,
+\begin{equation*}
+\left\vert\; \sum_{j=1}^{k_{n}}\log(1 + \theta_{nj}) \; - \; \sum_{j=1}^{k_{n}}\theta_{nj} \;\right\vert
+\;\;=\;\; \left\vert\; \sum_{j=1}^{k_{n}}\,\left(\log(1+\theta_{nj}) - \theta_{nj}\right) \;\right\vert
+\;\;\leq\;\; \sum_{j=1}^{k_{n}}\,\left\vert\,\log(1+\theta_{nj}) \, - \, \theta_{nj} \,\right\vert
+\;\;\leq\;\; \sum_{j=1}^{k_{n}}\,\vert\,\theta_{nj}\,\vert^{2}.
+\end{equation*}
+Thus, for each $n \in \N$, there exists $\Lambda_{n} \in \C$ with $\left\vert\,\Lambda_{n}\,\right\vert \leq 1$ such that
+\begin{equation*}
+\sum_{j=1}^{k_{n}}\log(1 + \theta_{nj})
+\;\; = \;\; \sum_{j=1}^{k_{n}}\theta_{nj} \;+\; \Lambda_{n}\cdot\sum_{j=1}^{k_{n}}\,\vert\,\theta_{nj}\,\vert^{2}.
+\end{equation*}
+(Since for any $z \in \C$, $\left\vert\,z\,\right\vert \leq A$\;\;$\Longrightarrow$\;\;$z = A\cdot w$,
+for some $w\in\C$ with $\vert\,w\,\vert \leq 1$.)
+Next note that, hypotheses \eqref{ChungLemmaA} and \eqref{ChungLemmaB} together imply:
+\begin{equation*}
+\sum_{j=1}^{k_{n}}\left\vert\,\theta_{nj}\,\right\vert^{2}
+\;\;\leq\;\; \left(\max_{1\leq j \leq k_{n}}\left\vert\,\theta_{nj}\,\right\vert\right)\left(\sum_{j=1}^{k_{n}}\left\vert\,\theta_{nj}\,\right\vert\right) 
+\;\;\leq\;\; M\cdot\left(\max_{1\leq j \leq k_{n}}\left\vert\,\theta_{nj}\,\right\vert\right)
+\quad\longrightarrow\quad 0,
+\quad\textnormal{as $n \longrightarrow \infty$.}
+\end{equation*}
+Therefore, since $\left\vert\,\Lambda_{n}\,\right\vert \leq 1$ for each $n \in \N$, we now see that
+\begin{equation*}
+\lim_{n\rightarrow\infty}\,\sum_{j=1}^{k_{n}}\log(1 + \theta_{nj})
+\;\; = \;\;
+\lim_{n\rightarrow\infty}\,\sum_{j=1}^{k_{n}}\theta_{nj} \;+\; 
+\lim_{n\rightarrow\infty}\left(\, \Lambda_{n}\cdot\sum_{j=1}^{k_{n}}\,\vert\,\theta_{nj}\,\vert^{2} \,\right)
+\;\; = \;\; \theta + 0
+\;\; = \;\; \theta.
+\end{equation*}
+We may now conclude, by continuity of the exponential function $\exp(\,\cdot\,)$:
+\begin{eqnarray*}
+\lim_{n\rightarrow\infty}\,\prod_{j=1}^{k_{n}}\left(\,1+\theta_{nj}\,\right)
+&=& \lim_{n\rightarrow\infty}\,\exp\left(\log\;\prod_{j=1}^{k_{n}}\left(\,1+\theta_{nj}\,\right)\right)
+\;\;=\;\; \lim_{n\rightarrow\infty}\,\exp\left(\sum_{j=1}^{k_{n}}\,\log\left(\,1+\theta_{nj}\,\right)\right)
+\\
+&=& \exp\left(\lim_{n\rightarrow\infty}\,\sum_{j=1}^{k_{n}}\,\log\left(\,1+\theta_{nj}\,\right)\right)
+\;\;=\;\; \exp\left(\,\theta\,\right)
+\end{eqnarray*}
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
