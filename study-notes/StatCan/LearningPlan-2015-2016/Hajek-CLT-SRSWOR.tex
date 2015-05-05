@@ -13,6 +13,9 @@ We seek to determine a necessary and sufficient condition for the (associated se
 ``standardized deviations from the mean" of the Horvitz-Thompson estimator for population mean
 to converge in distribution to the standard Gaussian distribution.
 
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
 \begin{theorem}[The H\`ajek Central Limit Theorem for SRSWOR]
 \mbox{}
 \vskip 0.1cm
@@ -121,7 +124,7 @@ Let $\mathcal{S}(U,n)$ be the collection of all subsets of $U$ with exactly $n$ 
 The H\`ajek Sampling Design, by definition, selects an ordered pair of samples $\left(s^{(0)}, s^{(1)}\right) \in \mathcal{S}(U,n) \times \mathcal{P}(U)$ as follows:
 \begin{itemize}
 
-\item	First, select $k \in \{0,1,2,\ldots,N\}$ based on the binomial distribution $\textnormal{Binom}(N,n/N)$.
+\item	First, select $k \in \{0,1,2,\ldots,N\}$ based on the binomial distribution $\textnormal{Binomial}(N,n/N)$.
 \vskip 0.1cm
 More precisely, let $K \sim \textnormal{Binomial}(N,n/N)$, i.e. let $K$ be a random variable following the binomial distribution with number of trials $N$ and probability of success $n/N$. In other words,
 \begin{equation*}
@@ -172,6 +175,7 @@ P_{\textnormal{H}}\!\left(s^{(0)},s^{(1)}\right)
 \end{remark}
 
 \begin{lemma}[Properties of the H\`ajek Sampling Design]
+\label{HajekSamplingDesignProperties}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -358,5 +362,51 @@ E\!\left[\,\left(
 \sqrt{\dfrac{1}{n} + \dfrac{1}{N-n}}
 \end{equation*}
 \end{theorem}
+
+\proof
+First, observed that
+\begin{equation*}
+X^{(0)} - X^{(1)}
+\;\; = \;\;
+\left\{
+\begin{array}{cl}
+0, & \textnormal{if $k = n$}
+\\ \\
+\dfrac{\vert\,k-n\,\vert}{n}\cdot
+\dfrac{1}{\vert\,k-n\,\vert}\cdot
+\underset{i\in s^{(0)} \backslash s^{(1)}}{\textnormal{\Large$\sum$}}\left(y_{i} - \overline{y}_{U}\right), & \textnormal{if $k < n$}
+\\ \\
+\dfrac{\vert\,k-n\,\vert}{n}\cdot
+\dfrac{1}{\vert\,k-n\,\vert}\cdot
+\underset{i\in s^{(1)} \backslash s^{(0)}}{\textnormal{\Large$\sum$}}\left(y_{i} - \overline{y}_{U}\right), & \textnormal{if $k > n$}
+\end{array}
+\right.
+\end{equation*}
+We argue conditionally on $k := \left\vert\,s^{(1)}\,\right\vert$.
+Lemma \ref{HajekSamplingDesignProperties}(c,d), for $k := \left\vert\,s^{(1)}\,\right\vert$ fixed,
+we may regard $s^{0}\,\backslash\,s^{(1)}$ and $s^{1}\,\backslash\,s^{(0)}$ as realizations
+from $\textnormal{SRSWOR}(U,\vert\,k-n\,\vert)$.
+Hence,
+\begin{eqnarray*}
+E\!\left[\;\left.\left(X^{(0)} - X^{(1)}\right)^{2}\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]
+&=& \Var\!\left[\;\left.X^{(0)} - X^{(1)}\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]
+\\
+&=&
+\dfrac{\left\vert\,k - n\,\right\vert^{2}}{n^{2}}
+\left(1\,-\,\dfrac{\vert\,k-n\,\vert}{N}\right)
+\dfrac{1}{\vert\,k-n\,\vert}
+\dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N-1}
+\\
+&=&
+\dfrac{\left\vert\,k - n\,\right\vert}{n^{2}}
+\left(\dfrac{N - \vert\,k-n\,\vert}{N - 1}\right)
+\dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
+\\
+&\leq&
+\dfrac{\left\vert\,k - n\,\right\vert}{n^{2}}
+\dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
+\end{eqnarray*}
+
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
