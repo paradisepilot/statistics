@@ -364,6 +364,7 @@ E\!\left[\,\left(
 \end{theorem}
 
 \proof
+We write $k := \left\vert\,s^{(1)}\,\right\vert$.
 First, observed that
 \begin{equation*}
 X^{(0)} - X^{(1)}
@@ -382,10 +383,15 @@ X^{(0)} - X^{(1)}
 \end{array}
 \right.
 \end{equation*}
-We argue conditionally on $k := \left\vert\,s^{(1)}\,\right\vert$.
-Lemma \ref{HajekSamplingDesignProperties}(c,d), for $k := \left\vert\,s^{(1)}\,\right\vert$ fixed,
+By Lemma \ref{HajekSamplingDesignProperties}(c,d), for $k := \left\vert\,s^{(1)}\,\right\vert$ fixed,
 we may regard $s^{0}\,\backslash\,s^{(1)}$ and $s^{1}\,\backslash\,s^{(0)}$ as realizations
 from $\textnormal{SRSWOR}(U,\vert\,k-n\,\vert)$.
+Hence,
+\begin{eqnarray*}
+E\!\left[\;\left.\left(X^{(0)} - X^{(1)}\right)\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]
+&=& \dfrac{\vert\,k-n\,\vert}{n}\cdot E\!\left[\;\widehat{\overline{T}}^{\mbox{}\,\textnormal{HT}}_{\mbox{}\,\textnormal{SRSWOR}}\;\right]
+\;\;=\;\; 0
+\end{eqnarray*}
 Hence,
 \begin{eqnarray*}
 E\!\left[\;\left.\left(X^{(0)} - X^{(1)}\right)^{2}\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]
@@ -406,7 +412,90 @@ E\!\left[\;\left.\left(X^{(0)} - X^{(1)}\right)^{2}\;\right\vert\;\left\vert\,s^
 \dfrac{\left\vert\,k - n\,\right\vert}{n^{2}}
 \dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
 \end{eqnarray*}
-
+Consequently,
+\begin{eqnarray*}
+E\!\left\{\;\left(X^{(0)} - X^{(1)}\right)^{2}\;\right\}
+&=& E\!\left\{\;E\!\left[\;\left.\left(X^{(0)} - X^{(1)}\right)^{2}\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]\;\right\}
+\\
+&\leq& E\!\left\{\;E\!\left[\;\left.
+\dfrac{\left\vert\,k - n\,\right\vert}{n^{2}}
+\dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
+\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]\;\right\}
+\\
+&=&
+\dfrac{1}{n^{2}}
+\dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
+\cdot
+E\!\left\{\;\left\vert\,k - n\,\right\vert\;\right\}
+\;\;\leq\;\;
+\dfrac{1}{n^{2}}
+\dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
+\cdot
+\sqrt{E\!\left\{\;\left\vert\,k - n\,\right\vert^{2}\;\right\}}
+\\
+&\leq&
+\dfrac{1}{n^{2}}
+\dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
+\cdot
+\sqrt{n\left(1 - \dfrac{n}{N}\right)},
+\end{eqnarray*}
+where we used the Cauchy-Schwarz inequality (Theorem 9.3, \cite{JacodProtter})
+for the second last inequality.
+Next, we compute $\Var\!\left[\,X^{(1)}\,\right]$.
+To this end, note that
+\begin{equation*}
+X^{(1)} \; = \; \sum_{i\in U}\,Z_{i},
+\end{equation*}
+where, for each $i \in U$,
+\begin{equation*}
+Z_{i} : \mathcal{S}(U,n) \times \mathcal{P}(U) \longrightarrow \Re :
+\left(s^{(0)},s^{(1)}\right) \longmapsto
+\left\{\begin{array}{cl}
+\dfrac{1}{n}\left(y_{i}\,-\,\overline{y}_{U}\right), & \textnormal{if $i \in s^{(1)}$}
+\\ \\
+0, & \textnormal{if $i \notin s^{(1)}$}
+\end{array}\right.
+\end{equation*}
+Note that, since $Z_{i}$ depends only on $s^{(1)}$,
+which can be regarded as a Bernoulli sample from $U$,
+by Lemma \ref{HajekSamplingDesignProperties},
+we see that the $Z_{i}, i \in U$, are independent, and
+\begin{equation*}
+P\!\left(\,Z_{i} = \dfrac{1}{n}\left(y_{i}\,-\,\overline{y}_{U}\right)\,\right) \;\; = \;\; \dfrac{n}{N},
+\quad\textnormal{and}\quad
+P\!\left(\,Z_{i} = 0\,\right) \;\; = \;\; 1 - \dfrac{n}{N}.
+\end{equation*}
+Thus,
+\begin{equation*}
+\Var\!\left[\,Z_{i}\,\right] \; = \; \left(\dfrac{y_{i} - \overline{y}}{n}\right)^{2}\cdot\dfrac{n}{N}\left(1 - \dfrac{n}{N}\right),
+\end{equation*}
+which in turn imples
+\begin{equation*}
+\Var\!\left[\,X^{(1)}\,\right]
+\;\;=\;\; \sum_{i\in U}\,\Var\!\left[\,Z_{i}\,\right]
+\;\;=\;\; \sum_{i\in U}\,\left(\dfrac{y_{i} - \overline{y}}{n}\right)^{2}\cdot\dfrac{n}{N}\left(1 - \dfrac{n}{N}\right)
+\;\;=\;\; \cdots
+\;\;=\;\; \dfrac{1}{n^{2}}
+\dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
+\cdot n\left(1 - \dfrac{n}{N}\right)
+\end{equation*}
+Thus, we see that
+\begin{equation*}
+\dfrac{E\!\left[\,\left(X^{(0)} - X^{(1)}\right)^{2}\,\right]}{\Var\!\left[\,X^{(1)}\,\right]}
+\;\;\leq\;\;
+\dfrac{
+\dfrac{1}{n^{2}}
+\dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
+\cdot \sqrt{n\left(1 - \dfrac{n}{N}\right)}
+}{
+\dfrac{1}{n^{2}}
+\dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
+\cdot n\left(1 - \dfrac{n}{N}\right)
+}
+\;\;=\;\; \dfrac{1}{\sqrt{n\left(1 - \dfrac{n}{N}\right)}}
+\;\;=\;\; \cdots \;\; = \;\; \sqrt{\dfrac{1}{n} + \dfrac{1}{N-n}}.
+\end{equation*}
+This completes the proof of H\'ajek's Fundamental Lemma.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
