@@ -16,7 +16,7 @@ to converge in distribution to the standard Gaussian distribution.
 \renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
-\begin{theorem}[The H\`ajek Central Limit Theorem for SRSWOR]
+\begin{theorem}[The H\'ajek Central Limit Theorem for SRSWOR]
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -113,7 +113,7 @@ Thus, $P_{\textnormal{B}} = P_{1}$ as (probability) functions on $\mathcal{P}(U)
 Hence, the two sampling schemes are equivalent.
 \qed
 
-\begin{definition}[The H\`ajek Sampling Design]
+\begin{definition}[The H\'ajek Sampling Design of size $n$]
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -121,7 +121,8 @@ Suppose $U$ is a finite population of size $N \in \N$ with $N \geq 3$.
 Let $n \in \{2,\ldots,N\}$ be fixed.
 Let $\mathcal{P}(U)$ be the power set of $U$.
 Let $\mathcal{S}(U,n)$ be the collection of all subsets of $U$ with exactly $n$ elements. 
-The H\`ajek Sampling Design, by definition, selects an ordered pair of samples $\left(s^{(0)}, s^{(1)}\right) \in \mathcal{S}(U,n) \times \mathcal{P}(U)$ as follows:
+The \textbf{H\'ajek Sampling Design of size $n$ on $U$},
+by definition, selects an ordered pair of samples $\left(s^{(0)}, s^{(1)}\right) \in \mathcal{S}(U,n) \times \mathcal{P}(U)$ as follows:
 \begin{itemize}
 
 \item	First, select $k \in \{0,1,2,\ldots,N\}$ based on the binomial distribution $\textnormal{Binomial}(N,n/N)$.
@@ -154,7 +155,7 @@ Let $k \in \{0,1,2,\ldots,N\}$ be a realization of the random variable $K \sim \
 \mbox{}
 \vskip 0.1cm
 \noindent
-Note that the H\`ajek Sampling Design defines implicitly a probability function
+Note that the H\'ajek Sampling Design defines implicitly a probability function
 $P_{\textnormal{H}}$ on $\mathcal{S}(U,n) \times \mathcal{P}(U)$,
 making it a finite probability space.
 More explicitly, for each $\left(s^{(0)},s^{(1)}\right) \in \mathcal{S}(U,n) \times \mathcal{P}(U)$,
@@ -174,7 +175,7 @@ P_{\textnormal{H}}\!\left(s^{(0)},s^{(1)}\right)
 \end{equation*}
 \end{remark}
 
-\begin{lemma}[Properties of the H\`ajek Sampling Design]
+\begin{lemma}[Properties of the H\'ajek Sampling Design]
 \label{HajekSamplingDesignProperties}
 \mbox{}
 \vskip 0.1cm
@@ -182,7 +183,7 @@ P_{\textnormal{H}}\!\left(s^{(0)},s^{(1)}\right)
 Suppose $U$ is a finite population of size $N \in \N$ with $N \geq 3$.
 Let $n \in \{2,\ldots,N\}$ be fixed.
 Let $P_{\textnormal{H}} : \mathcal{S}(U,n) \times \mathcal{P}(U) \longrightarrow [0,1]$
-be the H\`ajek Sampling Design.
+be the H\'ajek Sampling Design.
 Then, the following statements are true:
 \begin{enumerate}
 \item	The marginal sampling design induced on $\mathcal{S}(U,n)$ by $P_{\textnormal{H}}$ is
@@ -329,35 +330,36 @@ This proves that $P'$ is indeed equivalent to $\textnormal{SRSWOR}(U,n-k)$.
 The proof of this Lemma is complete.
 \qed
 
-\begin{theorem}[H\`ajek's Fundamental Lemma]
+\begin{theorem}[The H\'ajek Fundamental Lemma]
+\label{HajekFundamentalLemma}
 \mbox{}
 \vskip 0.1cm
 \noindent
 Suppose $U$ is a finite population of size $N \in \N$ with $N \geq 3$, and $y : U \longrightarrow \Re$ is a population characteristic.
 Let $n \in \{2,\ldots,N\}$ be fixed. Let $\overline{y}_{U} := \frac{1}{N}\sum_{i \in U}y_{i}$.
 Let $\mathcal{S}(U,n) \times \mathcal{P}(U)$ be endowed with
-the probability function $P_{\textnormal{H}}$ defined by the H\`ajek Sampling Design.
+the probability function $P_{\textnormal{H}}$ defined by the H\'ajek Sampling Design.
 Define the $\Re^{2}$-valued random variable
-$X = \left(X^{(0)}, X^{(1)}\right) : \mathcal{S}(U,n) \times \mathcal{P}(U) \longrightarrow \Re^{2}$
+$Y = \left(Y^{(0)}, Y^{(1)}\right) : \mathcal{S}(U,n) \times \mathcal{P}(U) \longrightarrow \Re^{2}$
 as follows:
 For any $\left(s^{(0)},s^{(1)}\right) \in \mathcal{S}(U,n) \times \mathcal{P}(U)$,
 \begin{equation*}
-X^{(0)}\!\left(s^{(0)}\right)
+Y^{(0)}\!\left(s^{(0)}\right)
 \;\; := \;\;
 \dfrac{1}{n}\,\underset{i \in s^{(0)}}{\sum} \left(y_{i} - \overline{y}_{U}\right),
 \quad\textnormal{and}\quad
-X^{(1)}\!\left(s^{(1)}\right)
+Y^{(1)}\!\left(s^{(1)}\right)
 \;\; := \;\;
 \dfrac{1}{n}\,\underset{i \in s^{(1)}}{\sum} \left(y_{i} - \overline{y}_{U}\right).
 \end{equation*}
 Then,
 \begin{equation*}
 E\!\left[\,\left(
-  \dfrac{X^{(0)}}{\sqrt{\Var\!\left[\,X^{(1)}\,\right]}}
-- \dfrac{X^{(1)}}{\sqrt{\Var\!\left[\,X^{(1)}\,\right]}}
+  \dfrac{Y^{(0)}}{\sqrt{\Var\!\left[\,Y^{(1)}\,\right]}}
+- \dfrac{Y^{(1)}}{\sqrt{\Var\!\left[\,Y^{(1)}\,\right]}}
 \right)^{2}\,\right]
 \;\; = \;\;
-\dfrac{E\!\left[\,\left(X^{(0)} - X^{(1)}\right)^{2}\,\right]}{\Var\!\left[\,X^{(1)}\,\right]}
+\dfrac{E\!\left[\,\left(Y^{(0)} - Y^{(1)}\right)^{2}\,\right]}{\Var\!\left[\,Y^{(1)}\,\right]}
 \;\; \leq \;\;
 \sqrt{\dfrac{1}{n} + \dfrac{1}{N-n}}
 \end{equation*}
@@ -367,7 +369,7 @@ E\!\left[\,\left(
 We write $k := \left\vert\,s^{(1)}\,\right\vert$.
 First, observed that
 \begin{equation*}
-X^{(0)} - X^{(1)}
+Y^{(0)} - Y^{(1)}
 \;\; = \;\;
 \left\{
 \begin{array}{cl}
@@ -388,14 +390,14 @@ we may regard $s^{0}\,\backslash\,s^{(1)}$ and $s^{1}\,\backslash\,s^{(0)}$ as r
 from $\textnormal{SRSWOR}(U,\vert\,k-n\,\vert)$.
 Hence,
 \begin{eqnarray*}
-E\!\left[\;\left.\left(X^{(0)} - X^{(1)}\right)\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]
+E\!\left[\;\left.\left(Y^{(0)} - Y^{(1)}\right)\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]
 &=& \dfrac{\vert\,k-n\,\vert}{n}\cdot E\!\left[\;\widehat{\overline{T}}^{\mbox{}\,\textnormal{HT}}_{\mbox{}\,\textnormal{SRSWOR}}\;\right]
 \;\;=\;\; 0
 \end{eqnarray*}
 Hence,
 \begin{eqnarray*}
-E\!\left[\;\left.\left(X^{(0)} - X^{(1)}\right)^{2}\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]
-&=& \Var\!\left[\;\left.X^{(0)} - X^{(1)}\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]
+E\!\left[\;\left.\left(Y^{(0)} - Y^{(1)}\right)^{2}\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]
+&=& \Var\!\left[\;\left.Y^{(0)} - Y^{(1)}\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]
 \\
 &=&
 \dfrac{\left\vert\,k - n\,\right\vert^{2}}{n^{2}}
@@ -414,8 +416,8 @@ E\!\left[\;\left.\left(X^{(0)} - X^{(1)}\right)^{2}\;\right\vert\;\left\vert\,s^
 \end{eqnarray*}
 Consequently,
 \begin{eqnarray*}
-E\!\left\{\;\left(X^{(0)} - X^{(1)}\right)^{2}\;\right\}
-&=& E\!\left\{\;E\!\left[\;\left.\left(X^{(0)} - X^{(1)}\right)^{2}\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]\;\right\}
+E\!\left\{\;\left(Y^{(0)} - Y^{(1)}\right)^{2}\;\right\}
+&=& E\!\left\{\;E\!\left[\;\left.\left(Y^{(0)} - Y^{(1)}\right)^{2}\;\right\vert\;\left\vert\,s^{(1)}\,\right\vert = k\;\right]\;\right\}
 \\
 &\leq& E\!\left\{\;E\!\left[\;\left.
 \dfrac{\left\vert\,k - n\,\right\vert}{n^{2}}
@@ -441,10 +443,10 @@ E\!\left\{\;\left\vert\,k - n\,\right\vert\;\right\}
 \end{eqnarray*}
 where we used the Cauchy-Schwarz inequality (Theorem 9.3, \cite{JacodProtter})
 for the second last inequality.
-Next, we compute $\Var\!\left[\,X^{(1)}\,\right]$.
+Next, we compute $\Var\!\left[\,Y^{(1)}\,\right]$.
 To this end, note that
 \begin{equation*}
-X^{(1)} \; = \; \sum_{i\in U}\,Z_{i},
+Y^{(1)} \; = \; \sum_{i\in U}\,Z_{i},
 \end{equation*}
 where, for each $i \in U$,
 \begin{equation*}
@@ -467,13 +469,13 @@ P\!\left(\,Z_{i} = 0\,\right) \;\; = \;\; 1 - \dfrac{n}{N}.
 \end{equation*}
 Thus,
 \begin{equation*}
-\Var\!\left[\,Z_{i}\,\right] \; = \; \left(\dfrac{y_{i} - \overline{y}}{n}\right)^{2}\cdot\dfrac{n}{N}\left(1 - \dfrac{n}{N}\right),
+\Var\!\left[\,Z_{i}\,\right] \; = \; \left(\dfrac{y_{i} - \overline{y}_{U}}{n}\right)^{2}\cdot\dfrac{n}{N}\left(1 - \dfrac{n}{N}\right),
 \end{equation*}
 which in turn imples
 \begin{equation*}
-\Var\!\left[\,X^{(1)}\,\right]
+\Var\!\left[\,Y^{(1)}\,\right]
 \;\;=\;\; \sum_{i\in U}\,\Var\!\left[\,Z_{i}\,\right]
-\;\;=\;\; \sum_{i\in U}\,\left(\dfrac{y_{i} - \overline{y}}{n}\right)^{2}\cdot\dfrac{n}{N}\left(1 - \dfrac{n}{N}\right)
+\;\;=\;\; \sum_{i\in U}\,\left(\dfrac{y_{i} - \overline{y}_{U}}{n}\right)^{2}\cdot\dfrac{n}{N}\left(1 - \dfrac{n}{N}\right)
 \;\;=\;\; \cdots
 \;\;=\;\; \dfrac{1}{n^{2}}
 \dfrac{\underset{i\in U}{\sum}\left(y_{i}-\overline{y}_{U}\right)^{2}}{N}
@@ -481,7 +483,7 @@ which in turn imples
 \end{equation*}
 Thus, we see that
 \begin{equation*}
-\dfrac{E\!\left[\,\left(X^{(0)} - X^{(1)}\right)^{2}\,\right]}{\Var\!\left[\,X^{(1)}\,\right]}
+\dfrac{E\!\left[\,\left(Y^{(0)} - Y^{(1)}\right)^{2}\,\right]}{\Var\!\left[\,Y^{(1)}\,\right]}
 \;\;\leq\;\;
 \dfrac{
 \dfrac{1}{n^{2}}
@@ -496,6 +498,152 @@ Thus, we see that
 \;\;=\;\; \cdots \;\; = \;\; \sqrt{\dfrac{1}{n} + \dfrac{1}{N-n}}.
 \end{equation*}
 This completes the proof of H\'ajek's Fundamental Lemma.
+\qed
+
+\begin{corollary}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose we have the following:
+\begin{itemize}
+
+\item Let $\left\{\,U_{\nu}\,\right\}_{\nu \in \N}$ be a sequence of finite populations,
+and $N_{\nu} = \left\vert\,U_{\nu}\,\right\vert$ be the population size of $U_{\nu}$.
+Let the elements of $U_{\nu}$ be indexed by $1,2,3,\ldots,N_{\nu}$.
+
+\item For each $\nu \in \N$, let $y^{(\nu)} : U_{\nu} \longrightarrow \Re$ be an $\Re$-valued population characteristic.
+For each $i \in U_{\nu}$, let $y^{(\nu)}_{i}$ denote $y^{(\nu)}(i)$,
+the value of $y^{(\nu)}$ evaluated at the $i^{\textnormal{th}}$ element of $U_{\nu}$.
+Let $\overline{y}_{U_{\nu}} := \dfrac{1}{N_{\nu}}\cdot\underset{i\in U_{\nu}}{\sum}\,y^{(\nu)}_{i}$.
+
+\item For each $\nu \in \N$, let $n_{\nu} \in \{ 1,2,3,\ldots,N_{\nu} \}$ be given,
+and let $p_{\nu} : \mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu}) \longrightarrow [0,1]$
+be the H\'ajek Sampling Design of size $n_{\nu}$ on $U_{\nu}$.
+
+\item
+For each $\nu \in \N$, let 
+$Y_{\nu} = \left(Y^{(0)}_{\nu}, Y^{(1)}_{\nu}\right) : \mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu}) \longrightarrow \Re^{2}$
+be the $\Re^{2}$-valued random variable defined as follows:
+For any $\left(s^{(0)}_{\nu},s^{(1)}_{\nu}\right) \in \mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu})$,
+\begin{equation*}
+Y^{(0)}_{\nu}\!\left(s^{(0)}_{\nu}\right)
+\;\; := \;\;
+\dfrac{1}{n_{\nu}}\,\underset{i \in s^{(0)}_{\nu}}{\sum} \left(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\right),
+\quad\textnormal{and}\quad
+Y^{(1)}_{\nu}\!\left(s^{(1)}_{\nu}\right)
+\;\; := \;\;
+\dfrac{1}{n_{\nu}}\,\underset{i \in s^{(1)}_{\nu}}{\sum} \left(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\right).
+\end{equation*}
+\end{itemize}
+Then, the following implication holds:
+\begin{equation*}
+\left.\begin{array}{ccc}
+n_{\nu} &\longrightarrow & \infty \\ \\
+N_{\nu} \, - \, n_{\nu} &\longrightarrow & \infty \\ \\
+\dfrac{Y^{(1)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}} & \overset{\mathcal{L}}{\longrightarrow} & N(0,1)
+\end{array}\right\}
+\quad\quad\Longrightarrow\quad\quad
+\dfrac{Y^{(0)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(0)}_{\nu}\,\right]}} \;\; \overset{\mathcal{L}}{\longrightarrow} \;\; N(0,1).
+\end{equation*}
+\end{corollary}
+
+\proof
+By the H\'ajek Fundamental Lemma (Theorem \ref{HajekFundamentalLemma}),
+we have for each $\nu \in \N$,
+\begin{equation*}
+E\!\left[\,\left(
+  \dfrac{Y^{(0)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}}
+- \dfrac{Y^{(1)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}}
+\right)^{2}\,\right]
+\;\; \leq \;\;
+\sqrt{\dfrac{1}{n_{\nu}} + \dfrac{1}{N_{\nu}-n_{\nu}}}.
+\end{equation*}
+Thus, the hypotheses $n_{\nu} \longrightarrow \infty$ and $N_{\nu} - n_{\nu} \longrightarrow \infty$
+together imply that
+\begin{equation*}
+\dfrac{Y^{(0)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}}
+\; - \;
+\dfrac{Y^{(1)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}}
+\end{equation*}
+converges to $0$ in the second mean (Definition 3, p.4, \cite{Ferguson1996}),
+hence also in probability (by Theorem 1(b), p.4, \cite{Ferguson1996}).
+This convergence to $0$ in probability and the hypothesis\;
+$Y^{(1)}_{\nu}\left/\,\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}\right.\;\overset{\mathcal{L}}{\longrightarrow}\;N(0,1)$
+then together imply, by Slutsky's Theorem (Theorem 6(b), p.39, \cite{Ferguson1996}),
+\begin{equation*}
+\dfrac{Y^{(0)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}}
+\;\;\overset{\mathcal{L}}{\longrightarrow}\;\;
+N(0,1).
+\end{equation*}
+Next, recall from the proof of the H\'ajek Fundamental Lemma (Theorem \ref{HajekFundamentalLemma}) that
+\begin{equation*}
+\Var\!\left[\,Y^{(1)}_{\nu}\,\right]
+\;\; = \;\; \cdots \;\; = \;\;
+\dfrac{1}{n_{\nu}}
+\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\dfrac{\underset{i\in U_{\nu}}{\sum}\left(y^{(\nu)}_{i}\,-\,\overline{y}_{U_{\nu}}\right)^{2}}{N_{\nu}}.
+\end{equation*}
+On the other hand,
+\begin{equation*}
+\Var\!\left[\,Y^{(0)}_{\nu}\,\right]
+\;\; = \;\;
+\Var\!\left[\,
+\dfrac{1}{n_{\nu}}\,\underset{i \in s^{(0)}_{\nu}}{\sum} \left(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\right)
+\,\right]
+\;\; = \;\;
+\Var\!\left[\,
+\dfrac{1}{n_{\nu}}\,\underset{i \in s^{(0)}_{\nu}}{\sum}\,y^{(\nu)}_{i}
+\,\right]
+\;\; = \;\;
+\dfrac{1}{n_{\nu}}
+\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\dfrac{\underset{i\in U_{\nu}}{\sum}\left(y^{(\nu)}_{i}\,-\,\overline{y}_{U_{\nu}}\right)^{2}}{N_{\nu}-1}
+\end{equation*}
+Hence,
+\begin{equation*}
+\dfrac{
+\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}
+}{
+\sqrt{\Var\!\left[\,Y^{(0)}_{\nu}\,\right]}
+}
+\;\;=\;\;
+\left(
+\dfrac{
+\dfrac{1}{n_{\nu}}
+\cdot
+\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\cdot
+\left.\underset{i\in U_{\nu}}{\sum}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}\right/ N_{\nu}\mbox{\color{white}11111}
+}{
+\dfrac{1}{n_{\nu}}
+\cdot
+\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\cdot
+\left.\underset{i\in U_{\nu}}{\sum}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}\right/ \left(N_{\nu}-1\right)
+}
+\right)^{1/2}
+\;\;=\;\;
+\sqrt{\dfrac{N_{\nu}-1}{N_{\nu}}}
+\;\; \longrightarrow \;\; 1,
+\;\;\textnormal{as $\nu \longrightarrow \infty$.}
+\end{equation*}
+Note that $\left\{\left. \sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]} \,\right/ \sqrt{\Var\!\left[\,Y^{(0)}_{\nu}\,\right]}\;\right\}_{\nu\in\N}$
+is a sequence of real numbers; we may regard it as a sequence of (constant) $\Re$-valued random variables
+(defined on $\mathcal{S}(U_{\nu}) \times \mathcal{P}(U_{\nu})$).
+Its convergence (as a sequence of real numbers) to $1$, as we have established above, implies that it converges
+(as constant $\Re$-valued random variables) almost surely to $1$, hence also in probability as well as in distribution
+(see Theorem 1, p.4, \cite{Ferguson1996}).
+By a corollary of Slutkey's Theorem (Corollary and Example 6, p.40, \cite{Ferguson1996}), we therefore have
+\begin{equation*}
+\dfrac{Y^{(0)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(0)}_{\nu}\,\right]}}
+\;\; = \;\;
+\dfrac{\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}}{\sqrt{\Var\!\left[\,Y^{(0)}_{\nu}\,\right]}}
+\cdot
+\dfrac{Y^{(0)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}}
+\;\;\overset{\mathcal{L}}{\longrightarrow}\;\;
+1 \cdot N(0,1) \; = \; N(0,1).
+\end{equation*}
+This completes the proof of the Corollary.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
