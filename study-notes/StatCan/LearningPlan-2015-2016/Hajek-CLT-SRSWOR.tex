@@ -23,12 +23,12 @@ to converge in distribution to the standard Gaussian distribution.
 Suppose we have the following:
 \begin{itemize}
 \item Let $\left\{\,U_{\nu}\,\right\}_{\nu \in \N}$ be a sequence of finite populations,
-and $N_{\nu} = \left\vert\,U_{\nu}\,\right\vert$ be the population size of $U_{\nu}$.
+and $N_{\nu} = \left\vert\,U_{\nu}\,\right\vert \geq 2$ be the population size of $U_{\nu}$.
 Let the elements of $U_{\nu}$ be indexed by $1,2,3,\ldots,N_{\nu}$.
-\item For each $\nu \in \N$, let $y^{(\nu)} : U_{\nu} \longrightarrow \Re$ be an $\Re$-valued population characteristic.
+\item For each $\nu \in \N$, let $y^{(\nu)} : U_{\nu} \longrightarrow \Re$ be a non-constant $\Re$-valued population characteristic.
 For each $i \in U_{\nu}$, let $y^{(\nu)}_{i}$ denote $y^{(\nu)}(i)$,
 the value of $y^{(\nu)}$ evaluated at the $i^{\textnormal{th}}$ element of $U_{\nu}$.
-\item For each $\nu \in \N$, let $n_{\nu} \in \{ 1,2,3,\ldots,N_{\nu} \}$ be given,
+\item For each $\nu \in \N$, let $n_{\nu} \in \{ 1,2,3,\ldots,N_{\nu}-1 \}$ be given,
 and let $\mathcal{S}_{\nu}$ be the set of all $n_{\nu}$-element subsets of $U_{\nu}$.
 Let $\mathcal{S}_{\nu}$ be endowed with the uniform probability function, namely
 \begin{equation*}
@@ -52,6 +52,8 @@ Let
 where
 \begin{equation*}
 S^{2}_{\nu} \;:=\; \dfrac{1}{N_{\nu} - 1}\sum_{i \in U_{\nu}}\left(y^{(\nu)}_{i} - \mu_{\nu}\right)^{2}
+\;\; > \;\; 0
+\quad\left(\textnormal{since $y^{(\nu)} : U^{(\nu)} \longrightarrow \Re$ is non-constant}\right).
 \end{equation*}
 \item For each $\nu \in \N$ and each $\delta > 0$ define:
 \begin{equation*}
@@ -66,7 +68,9 @@ Then,
 P\!\left\{\;s \in \mathcal{S}_{\nu} \;\,\left\vert\;\,\dfrac{\widehat{\overline{Y}}_{\nu}(s) - \mu_{\nu}}{\sqrt{\sigma_{\nu}^{2}}}\right. < x \;\right\}
 \;\;=\;\;
 \dfrac{1}{\sqrt{2\pi}}
-\int_{-\infty}^{x}\,e^{-t^{2}/2}\,\d t
+\int_{-\infty}^{x}\,e^{-t^{2}/2}\,\d t,
+\quad
+\textnormal{for each $x \in \Re$}
 \end{equation*}
 if and only if
 \begin{equation*}
@@ -79,6 +83,12 @@ if and only if
 \;\;\textnormal{for every}\;\, \delta > 0.
 \end{equation*}
 \end{theorem}
+
+\proofoutline
+For each $\nu\in\N$, deploying the H\'ajek Sampling Design (see Definition \ref{HajekSamplingDesign} below)
+of size $n_{\nu}$ on each $U_{\nu}$ yields a pair of samples $\left(s^{(0)}_{\nu},s^{(1)}_{\nu}\right)$, where $s^{(0)}_{\nu}$
+is a simple random sample of $U_{\nu}$ of sample size $n_{\nu}$, and $s^{(1)}_{\nu}$ is a Bernoulli sample of $U_{\nu}$. 
+\qed
 
 \begin{lemma}
 \mbox{}
@@ -114,6 +124,7 @@ Hence, the two sampling schemes are equivalent.
 \qed
 
 \begin{definition}[The H\'ajek Sampling Design of size $n$]
+\label{HajekSamplingDesign}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -508,15 +519,15 @@ Suppose we have the following:
 \begin{itemize}
 
 \item Let $\left\{\,U_{\nu}\,\right\}_{\nu \in \N}$ be a sequence of finite populations,
-and $N_{\nu} = \left\vert\,U_{\nu}\,\right\vert$ be the population size of $U_{\nu}$.
+and $N_{\nu} = \left\vert\,U_{\nu}\,\right\vert \geq 2$ be the population size of $U_{\nu}$.
 Let the elements of $U_{\nu}$ be indexed by $1,2,3,\ldots,N_{\nu}$.
 
-\item For each $\nu \in \N$, let $y^{(\nu)} : U_{\nu} \longrightarrow \Re$ be an $\Re$-valued population characteristic.
+\item For each $\nu \in \N$, let $y^{(\nu)} : U_{\nu} \longrightarrow \Re$ be a non-constant $\Re$-valued population characteristic.
 For each $i \in U_{\nu}$, let $y^{(\nu)}_{i}$ denote $y^{(\nu)}(i)$,
 the value of $y^{(\nu)}$ evaluated at the $i^{\textnormal{th}}$ element of $U_{\nu}$.
 Let $\overline{y}_{U_{\nu}} := \dfrac{1}{N_{\nu}}\cdot\underset{i\in U_{\nu}}{\sum}\,y^{(\nu)}_{i}$.
 
-\item For each $\nu \in \N$, let $n_{\nu} \in \{ 1,2,3,\ldots,N_{\nu} \}$ be given,
+\item For each $\nu \in \N$, let $n_{\nu} \in \{ 1,2,3,\ldots,N_{\nu}-1 \}$ be given,
 and let $p_{\nu} : \mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu}) \longrightarrow [0,1]$
 be the H\'ajek Sampling Design of size $n_{\nu}$ on $U_{\nu}$.
 
