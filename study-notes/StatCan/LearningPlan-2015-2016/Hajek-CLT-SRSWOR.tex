@@ -713,6 +713,36 @@ provides a sufficient condition for
 the asymptotic normality of $Y^{(1)}_{\nu}\!\left/\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}\right.$.
 Thus, it remains only to show that the hypotheses in Theorem \ref{HajekCLTSRSWOR}
 implies the validity of Lindeberg's condition (as in Lindeberg's Central Limit Theorem).
+Recall from the proof of H\'ajek's Fundamental Lemma (Theorem \ref{HajekFundamentalLemma})
+that, for each $\nu\in\N$,
+\begin{equation*}
+Y^{(1)}_{\nu} \; = \; \sum_{i\in U_{\nu}}\,Z^{(\nu)}_{i},
+\end{equation*}
+where, for each $i \in U_{\nu}$,
+\begin{equation*}
+Z^{(\nu)}_{i} : \mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu}) \longrightarrow \Re :
+\left(s^{(0)},s^{(1)}\right) \longmapsto
+\left\{\begin{array}{cl}
+\dfrac{1}{n}\left(y^{(\nu)}_{i}\,-\,\overline{y}_{U_{\nu}}\right), & \textnormal{if $i \in s^{(1)}$}
+\\ \\
+0, & \textnormal{if $i \notin s^{(1)}$}
+\end{array}\right.
+\end{equation*}
+We emphasize again that for each $\nu\in\N$, the random variables
+$Z^{(\nu)}_{1}, \ldots, Z^{(\nu)}_{N_{\nu}}$ are independent
+(though not necessarily identically distributed).
+Then, Lindeberg's condition on $Y^{(1)}_{\nu}$ can be expressed as:
+\begin{equation*}
+\lim_{n\rightarrow\infty}\,
+\dfrac{1}{\sigma^{2}_{\nu}}\,
+\sum_{i=1}^{N_{\nu}}\,
+\int_{\left\{\vert x\vert \,>\, \varepsilon\sigma_{\nu}\right\}}
+\vert\,x\,\vert^{2}\;
+\d\,P^{Z^{(\nu)}_{i} - E\left(Z^{(\nu)}_{i}\right)}(x)
+\;\;=\;\;0,
+\quad\textnormal{for each $\varepsilon > 0$,}
+\end{equation*}
+where $\sigma^{2}_{\nu}$ $:=$ $\Var\!\left[\,Y^{(1)}_{\nu}\,\right]$.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
