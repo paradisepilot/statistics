@@ -736,13 +736,59 @@ Then, Lindeberg's condition on $Y^{(1)}_{\nu}$ can be expressed as:
 \lim_{n\rightarrow\infty}\,
 \dfrac{1}{\sigma^{2}_{\nu}}\,
 \sum_{i=1}^{N_{\nu}}\,
-\int_{\left\{\vert x\vert \,>\, \varepsilon\sigma_{\nu}\right\}}
+\int_{\left\{\vert x\vert \,\geq\, \varepsilon\sigma_{\nu}\right\}}
 \vert\,x\,\vert^{2}\;
-\d\,P^{Z^{(\nu)}_{i} - E\left(Z^{(\nu)}_{i}\right)}(x)
+\d\,P^{Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)}(x)
 \;\;=\;\;0,
 \quad\textnormal{for each $\varepsilon > 0$,}
 \end{equation*}
 where $\sigma^{2}_{\nu}$ $:=$ $\Var\!\left[\,Y^{(1)}_{\nu}\,\right]$.
+Now, each random variable $Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)$ has a Bernoulli distribution, with
+\begin{equation*}
+\left\{
+\begin{array}{lcc}
+P\!\left[\;
+Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right) \;\;=\;\; (y^{(\nu)}_{i} - \overline{y}_{U_{\nu}})\cdot\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\;\right]
+& = & \dfrac{n_{\nu}}{N_{\nu}}
+\\ \\
+P\!\left[\;
+Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right) \;\;=\;\;
+{\color{white}??}
+-(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}})\cdot\dfrac{n_{\nu}}{N_{\nu}}
+{\color{white}??}\;\right]
+& = & 1 - \dfrac{n_{\nu}}{N_{\nu}}
+\end{array}
+\right.
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+\int_{\left\{\vert x\vert \,>\, \varepsilon\sigma_{\nu}\right\}}
+\vert\,x\,\vert^{2}\;
+\d\,P^{Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)}(x)
+&=&
+\left(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\right)^{2}\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)^{2} \cdot
+I\left\{
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\cdot
+\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\,\geq\,\varepsilon\sigma_{\nu}
+\right\}
+\cdot
+\dfrac{n_{\nu}}{N_{\nu}}
+\\
+&&
++\;\;
+\left(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\right)^{2}\left(\dfrac{n_{\nu}}{N_{\nu}}\right)^{2} \cdot
+I\left\{
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\cdot
+\dfrac{n_{\nu}}{N_{\nu}}
+\,\geq\,\varepsilon\sigma_{\nu}
+\right\}
+\cdot
+\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\end{eqnarray*}
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
