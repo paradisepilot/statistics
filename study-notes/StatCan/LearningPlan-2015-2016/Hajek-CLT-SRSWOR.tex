@@ -17,6 +17,7 @@ to converge in distribution to the standard Gaussian distribution.
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
 \begin{theorem}[The H\'ajek Central Limit Theorem for SRSWOR]
+\label{HajekCLTSRSWOR}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -511,7 +512,18 @@ Thus, we see that
 This completes the proof of H\'ajek's Fundamental Lemma.
 \qed
 
+\begin{remark}
+The importance of H\'ajek's Fundamental Lemma is the following Corollary,
+which allows one to ``replace" the sequence of SRSWOR samples in
+Theorem \ref{HajekCLTSRSWOR} with a sister sequence of Bernoulli samples
+(in the sense of H\'ajek's sampling design), in the following sense: prove that
+the sequence of estimators associated to the Bernoulli samples is asymptotically
+normal, and then ``transfer" that asymptotic behaviour to the sequence of
+SRSWOR samples of interest, by appealing to H\'ajek's Fundamental Lemma.
+\end{remark}
+
 \begin{corollary}
+\label{HajekFundementalLemmaCorollary}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -655,6 +667,52 @@ By a corollary of Slutkey's Theorem (Corollary and Example 6, p.40, \cite{Fergus
 1 \cdot N(0,1) \; = \; N(0,1).
 \end{equation*}
 This completes the proof of the Corollary.
+\qed
+
+\vskip 0.5cm
+\proofof \textbf{Theorem \ref{HajekCLTSRSWOR} (H\'ajek's Central Limit Theorem for SRSWOR).}
+\vskip 0.2cm
+\noindent
+Let $\left\{\,U_{\nu}\,\right\}_{\nu\in\N}$, $\left\{\,n_{\nu}\,\right\}_{\nu\in\N}$, and
+$\left\{\,y^{(\nu)} : U_{\nu} \longrightarrow \Re\,\right\}_{\nu\in\N}$
+be the sequence of finite populations, SRSWOR sample sizes, and
+population characteristics
+as given in the statement of Theorem \ref{HajekCLTSRSWOR}.
+We seek to prove that
+\begin{equation*}
+\dfrac{\widehat{\overline{Y}}_{\nu} - \mu_{\nu}}{\sqrt{\sigma^{2}_{\nu}}}
+\;\;\overset{\mathcal{L}}{\longrightarrow}\;\;
+N(0,1),
+\quad
+\textnormal{as $\nu\longrightarrow\infty$}.
+\end{equation*}
+To this end, for each $\nu \in \N$, first let 
+$P_{\textnormal{H}}^{(\nu)} : \mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu}) \longrightarrow \Re$
+be the probability function induced on $\mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu})$
+by the H\'ajek Sampling Design of size $n_{\nu}$ on $U_{\nu}$.
+Let $\left(Y^{(0)}_{\nu},Y^{(1)}_{\nu}\right) : \mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu}) \longrightarrow\Re^{2}$
+be the $\Re^{2}$-valued random variable defined on $\mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu})$
+as in the H\'ajek Fundamental Lemma.
+Then, note that, for each $\nu\in\N$, the random variables
+$\left(\widehat{\overline{Y}}_{\nu} - \mu_{\nu}\right) : \mathcal{S}(U_{\nu},n_{\nu}) \longrightarrow \Re$ and
+$Y^{(0)}_{\nu} : \mathcal{S}(U_{\nu},n_{\nu}) \longrightarrow \Re$
+are equal.
+By Corollary \ref{HajekFundementalLemmaCorollary}, it therefore suffices to show the following:
+\begin{equation*}
+\dfrac{Y^{(1)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}} \;\; \overset{\mathcal{L}}{\longrightarrow} \;\; N(0,1).
+\end{equation*}
+Now, observe that for each $\nu\in\N$,
+since $Y^{(1)}_{\nu} : \mathcal{P}(U_{\nu}) \longrightarrow \Re$ is a random variable
+defined on the collection of Bernoulli samples of $U_{\nu}$,
+each $Y^{(1)}_{\nu}$ can be regarded as a sum of independent random variables
+(but not identically distributed, unless the population characteristic
+$y^{(\nu)} : U_{\nu} \longrightarrow \Re$ is constant).
+Therefore, the classical Lindeberg Central Limit Theorem
+(see Chapter 5, p.27, \cite{Ferguson1996})
+provides a sufficient condition for
+the asymptotic normality of $Y^{(1)}_{\nu}\!\left/\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}\right.$.
+Thus, it remains only to show that the hypotheses in Theorem \ref{HajekCLTSRSWOR}
+implies the validity of Lindeberg's condition (as in Lindeberg's Central Limit Theorem).
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
