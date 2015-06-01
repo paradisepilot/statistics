@@ -723,7 +723,7 @@ where, for each $i \in U_{\nu}$,
 Z^{(\nu)}_{i} : \mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu}) \longrightarrow \Re :
 \left(s^{(0)},s^{(1)}\right) \longmapsto
 \left\{\begin{array}{cl}
-\dfrac{1}{n}\left(y^{(\nu)}_{i}\,-\,\overline{y}_{U_{\nu}}\right), & \textnormal{if $i \in s^{(1)}$}
+\dfrac{1}{n_{\nu}}\left(y^{(\nu)}_{i}\,-\,\overline{y}_{U_{\nu}}\right), & \textnormal{if $i \in s^{(1)}$}
 \\ \\
 0, & \textnormal{if $i \notin s^{(1)}$}
 \end{array}\right.
@@ -734,28 +734,58 @@ $Z^{(\nu)}_{1}, \ldots, Z^{(\nu)}_{N_{\nu}}$ are independent
 Then, Lindeberg's condition on $Y^{(1)}_{\nu}$ can be expressed as:
 \begin{equation*}
 \lim_{n\rightarrow\infty}\,
-\dfrac{1}{\sigma^{2}_{\nu}}\,
+\dfrac{1}{\tau^{2}_{\nu}}\,
 \sum_{i=1}^{N_{\nu}}\,
-\int_{\left\{\vert x\vert \,\geq\, \varepsilon\sigma_{\nu}\right\}}
+\int_{\left\{\vert x\vert \,\geq\, \varepsilon\tau_{\nu}\right\}}
 \vert\,x\,\vert^{2}\;
 \d\,P^{Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)}(x)
 \;\;=\;\;0,
 \quad\textnormal{for each $\varepsilon > 0$,}
 \end{equation*}
-where $\sigma^{2}_{\nu}$ $:=$ $\Var\!\left[\,Y^{(1)}_{\nu}\,\right]$.
+where (recalling from the proof of the H\'ajek Fundamental Lemma (Theorem \ref{HajekFundamentalLemma}))
+\begin{eqnarray*}
+\tau^{2}_{\nu}
+& := &
+\Var\!\left[\,Y^{(1)}_{\nu}\,\right]
+\;\; = \;\;
+\dfrac{1}{n_{\nu}}
+\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\dfrac{\underset{i\in U_{\nu}}{\sum}\left(y^{(\nu)}_{i}\,-\,\overline{y}_{U_{\nu}}\right)^{2}}{N_{\nu}}
+\;\; = \;\;
+\dfrac{1}{n_{\nu}}
+\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\dfrac{\underset{i\in U_{\nu}}{\sum}\left(y^{(\nu)}_{i}\,-\,\overline{y}_{U_{\nu}}\right)^{2}}{N_{\nu}-1}
+\cdot
+\dfrac{N_{\nu}-1}{N_{\nu}}
+\\
+& = &
+\sigma^{2}_{\nu}
+\cdot
+\dfrac{N_{\nu}-1}{N_{\nu}},
+\end{eqnarray*}
+and where
+\begin{equation*}
+\sigma^{2}_{\nu}
+\;\; := \;\;
+\Var\!\left[\,Y^{(0)}_{\nu}\,\right]
+\;\; = \;\;
+\dfrac{1}{n_{\nu}}
+\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\dfrac{\underset{i\in U_{\nu}}{\sum}\left(y^{(\nu)}_{i}\,-\,\overline{y}_{U_{\nu}}\right)^{2}}{N_{\nu}-1}.
+\end{equation*}
 Now, each random variable $Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)$ has a Bernoulli distribution, with
 \begin{equation*}
 \left\{
 \begin{array}{lcc}
 P\!\left[\;
-Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right) \;\;=\;\; (y^{(\nu)}_{i} - \overline{y}_{U_{\nu}})\cdot\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right) \;\;=\;\; (y^{(\nu)}_{i} - \overline{y}_{U_{\nu}})\cdot\left(\dfrac{1}{n_{\nu}} - \dfrac{1}{N_{\nu}}\right)
 \;\right]
 & = & \dfrac{n_{\nu}}{N_{\nu}}
 \\ \\
 P\!\left[\;
 Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right) \;\;=\;\;
 {\color{white}??}
--(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}})\cdot\dfrac{n_{\nu}}{N_{\nu}}
+-(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}})\cdot\dfrac{1}{N_{\nu}}
 {\color{white}??}\;\right]
 & = & 1 - \dfrac{n_{\nu}}{N_{\nu}}
 \end{array}
@@ -767,27 +797,64 @@ Hence,
 \vert\,x\,\vert^{2}\;
 \d\,P^{Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)}(x)
 &=&
-\left(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\right)^{2}\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)^{2} \cdot
+\left(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\right)^{2}\left(\dfrac{1}{n_{\nu}} - \dfrac{1}{N_{\nu}}\right)^{2} \cdot
 I\left\{
 \left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
 \cdot
-\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
-\,\geq\,\varepsilon\sigma_{\nu}
+\left(\frac{1}{n_{\nu}} - \frac{1}{N_{\nu}}\right)
+\,\geq\,\varepsilon\,\tau_{\nu}
 \right\}
 \cdot
 \dfrac{n_{\nu}}{N_{\nu}}
 \\
 &&
 +\;\;
-\left(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\right)^{2}\left(\dfrac{n_{\nu}}{N_{\nu}}\right)^{2} \cdot
+\left(y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\right)^{2}\left(\dfrac{1}{N_{\nu}}\right)^{2} \cdot
 I\left\{
 \left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
-\cdot
-\dfrac{n_{\nu}}{N_{\nu}}
-\,\geq\,\varepsilon\sigma_{\nu}
+\cdot\,
+\frac{1}{N_{\nu}}
+\,\geq\,\varepsilon\,\tau_{\nu}
 \right\}
 \cdot
 \left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\end{eqnarray*}
+Next, note that
+\begin{eqnarray*}
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\cdot
+\left(\dfrac{1}{n_{\nu}} - \dfrac{1}{N_{\nu}}\right)
+\,\geq\,\varepsilon\,\tau_{\nu}
+&\Longleftrightarrow&
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\cdot
+\left(\dfrac{N_{\nu} - n_{\nu}}{n_{\nu}N_{\nu}}\right)
+\,\geq\,\varepsilon\,\sigma_{\nu}
+\cdot
+\sqrt{\dfrac{N_{\nu}-1}{N_{\nu}}}
+\\
+&\Longleftrightarrow&
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\,\geq\,
+\sigma_{\nu}\cdot\varepsilon\cdot
+\dfrac{n_{\nu}}{N_{\nu} - n_{\nu}}
+\cdot
+\sqrt{N_{\nu}(N_{\nu}-1)}
+\end{eqnarray*}
+Similarly,
+\begin{eqnarray*}
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert \cdot \dfrac{1}{N_{\nu}}
+\,\geq\,\varepsilon\,\tau_{\nu}
+&\Longleftrightarrow&
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\,\geq\,
+N_{\nu} \cdot \varepsilon \cdot \sigma_{\nu} \cdot
+\sqrt{\dfrac{N_{\nu}-1}{N_{\nu}}}
+\\
+&\Longleftrightarrow&
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\,\geq\,
+\sigma_{\nu} \cdot \varepsilon \cdot \sqrt{N_{\nu}(N_{\nu}-1)}
 \end{eqnarray*}
 \qed
 
