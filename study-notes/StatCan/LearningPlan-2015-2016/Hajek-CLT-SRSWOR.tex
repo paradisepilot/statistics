@@ -58,7 +58,7 @@ S^{2}_{\nu} \;:=\; \dfrac{1}{N_{\nu} - 1}\sum_{i \in U_{\nu}}\left(y^{(\nu)}_{i}
 \end{equation*}
 \item For each $\nu \in \N$ and each $\delta > 0$ define:
 \begin{equation*}
-U_{\nu}(\delta) \;:=\; \left\{\,i \in U_{\nu}\;\left\vert\; \vert y^{(\nu)}_{i} - \mu_{\nu} \vert > \delta \, \sqrt{\sigma_{\nu}^{2}} \right.\,\right\}
+U_{\nu}(\delta) \;:=\; \left\{\,i \in U_{\nu}\;\left\vert\; \vert y^{(\nu)}_{i} - \mu_{\nu} \vert \geq \delta \, \sqrt{\sigma_{\nu}^{2}} \right.\,\right\}
 \; \subset \; U_{\nu}.
 \end{equation*}
 \end{itemize}
@@ -838,24 +838,22 @@ Next, note that
 \,\geq\,
 \sigma_{\nu}\cdot\varepsilon
 \cdot
-\dfrac{n_{\nu}}{N_{\nu} - n_{\nu}}
+\dfrac{n_{\nu}\,N_{\nu}}{N_{\nu} - n_{\nu}}
 \cdot
-\sqrt{N_{\nu}(N_{\nu}-1)}
+\sqrt{\dfrac{N_{\nu}-1}{N_{\nu}}}
+\\
+&\Longleftrightarrow&
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\,\geq\,
+\sigma_{\nu}\cdot\varepsilon
+\cdot n_{\nu} \cdot
+\sqrt{\dfrac{N_{\nu}}{N_{\nu} - n_{\nu}}\cdot\dfrac{N_{\nu}-1}{N_{\nu} - n_{\nu}}}
 \\
 &\Longrightarrow&
 \left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
 \,\geq\,
-\sigma_{\nu}\cdot\varepsilon,
+\sigma_{\nu}\cdot\varepsilon
 \end{eqnarray*}
-where the last implication follows from the following observation:
-\begin{equation*}
-\dfrac{\sqrt{N_{\nu}(N_{\nu}-1)}}{N_{\nu} - n_{\nu}} \;\geq\; 1
-\quad\Longleftrightarrow\quad
-\dfrac{N_{\nu}(N_{\nu}-1)}{(N_{\nu} - n_{\nu})^{2}} \;\geq\; 1
-\quad\Longleftrightarrow\quad
-\dfrac{N_{\nu}}{N_{\nu} - n_{\nu}}\cdot\dfrac{N_{\nu}-1}{N_{\nu} - n_{\nu}}\;\geq\; 1,
-\end{equation*}
-since the right-most inequality is clearly true.
 Thus, we see that
 \begin{equation*}
 \left\{
