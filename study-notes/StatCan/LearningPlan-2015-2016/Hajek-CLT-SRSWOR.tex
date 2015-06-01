@@ -836,11 +836,43 @@ Next, note that
 &\Longleftrightarrow&
 \left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
 \,\geq\,
-\sigma_{\nu}\cdot\varepsilon\cdot
+\sigma_{\nu}\cdot\varepsilon
+\cdot
 \dfrac{n_{\nu}}{N_{\nu} - n_{\nu}}
 \cdot
 \sqrt{N_{\nu}(N_{\nu}-1)}
+\\
+&\Longrightarrow&
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\,\geq\,
+\sigma_{\nu}\cdot\varepsilon,
 \end{eqnarray*}
+where the last implication follows from the following observation:
+\begin{equation*}
+\dfrac{\sqrt{N_{\nu}(N_{\nu}-1)}}{N_{\nu} - n_{\nu}} \;\geq\; 1
+\quad\Longleftrightarrow\quad
+\dfrac{N_{\nu}(N_{\nu}-1)}{(N_{\nu} - n_{\nu})^{2}} \;\geq\; 1
+\quad\Longleftrightarrow\quad
+\dfrac{N_{\nu}}{N_{\nu} - n_{\nu}}\cdot\dfrac{N_{\nu}-1}{N_{\nu} - n_{\nu}}\;\geq\; 1,
+\end{equation*}
+since the right-most inequality is clearly true.
+Thus, we see that
+\begin{equation*}
+\left\{
+\; i \in U_{\nu} \;:\;
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\cdot
+\left(\frac{1}{n_{\nu}} - \frac{1}{N_{\nu}}\right)
+\,\geq\,\varepsilon\,\tau_{\nu}
+\right\}
+\;\;\subseteq\;\;
+\left\{
+\; i \in U_{\nu} \;:\;
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\,\geq\,\varepsilon\,\sigma_{\nu}
+\right\}
+\;\;=:\;\; U_{\nu}(\varepsilon).
+\end{equation*}
 Similarly,
 \begin{eqnarray*}
 \left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert \cdot \dfrac{1}{N_{\nu}}
@@ -855,7 +887,88 @@ N_{\nu} \cdot \varepsilon \cdot \sigma_{\nu} \cdot
 \left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
 \,\geq\,
 \sigma_{\nu} \cdot \varepsilon \cdot \sqrt{N_{\nu}(N_{\nu}-1)}
+\\
+&\Longrightarrow&
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\,\geq\,
+\sigma_{\nu} \cdot \varepsilon,
 \end{eqnarray*}
+hence
+\begin{equation*}
+\left\{
+\; i \in U_{\nu} \;:\;
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\cdot
+\dfrac{1}{N_{\nu}}
+\,\geq\,\varepsilon\,\tau_{\nu}
+\right\}
+\;\;\subseteq\;\;
+\left\{
+\; i \in U_{\nu} \;:\;
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\,\geq\,\varepsilon\,\sigma_{\nu}
+\right\}
+\;\;=:\;\; U_{\nu}(\varepsilon).
+\end{equation*}
+Thus, we now see that:
+\begin{eqnarray*}
+&&
+\sum_{i=1}^{N_{\nu}}\,
+\int_{\left\{\vert x\vert \,\geq\, \varepsilon\tau_{\nu}\right\}}
+\vert\,x\,\vert^{2}\;
+\d\,P^{Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)}(x)
+\\
+&\leq&
+\dfrac{n_{\nu}}{N_{\nu}}\left(\dfrac{1}{n_{\nu}}-\dfrac{1}{N_{\nu}}\right)^{2}
+\cdot\sum_{i\in U_{\nu}(\varepsilon)}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}
+\;\; + \;\;
+\left(1-\dfrac{n_{\nu}}{N_{\nu}}\right)
+\left(\dfrac{1}{N_{\nu}}\right)^{2}
+\cdot\sum_{i\in U_{\nu}(\varepsilon)}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}
+\\
+&=&
+\dfrac{1}{N_{\nu}}
+\left(1- \dfrac{n_{\nu}}{N_{\nu}}\right)
+\cdot
+\left[\,\left(\dfrac{1}{n_{\nu}} - \dfrac{1}{N_{\nu}}\right) + \dfrac{1}{N_{\nu}}\,\right]
+\cdot\sum_{i\in U_{\nu}(\varepsilon)}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}
+\\
+&=&
+\dfrac{1}{n_{\nu}\,N_{\nu}}
+\left(1- \dfrac{n_{\nu}}{N_{\nu}}\right)
+\cdot\sum_{i\in U_{\nu}(\varepsilon)}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2},
+\end{eqnarray*}
+which in turn implies
+\begin{eqnarray*}
+\dfrac{1}{\tau^{2}_{\nu}}\,
+\sum_{i=1}^{N_{\nu}}\,
+\int_{\left\{\vert x\vert \,\geq\, \varepsilon\tau_{\nu}\right\}}
+\vert\,x\,\vert^{2}\;
+\d\,P^{Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)}(x)
+& \leq &
+\dfrac{
+\dfrac{1}{n_{\nu}\,N_{\nu}}
+\left(1- \dfrac{n_{\nu}}{N_{\nu}}\right)
+\cdot\underset{i\in U_{\nu}(\varepsilon)}{\textnormal{\Large$\sum$}}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}
+}{
+\dfrac{1}{n_{\nu}\,N_{\nu}}
+\left(1- \dfrac{n_{\nu}}{N_{\nu}}\right)
+\cdot\underset{i\in U_{\nu}}{\textnormal{\Large$\sum$}}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}
+}
+\\
+& = &
+\dfrac{
+\underset{i\in U_{\nu}(\varepsilon)}{\textnormal{\Large$\sum$}}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}
+}{
+\underset{i\in U_{\nu}}{\textnormal{\Large$\sum$}}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}
+}
+\;\;\longrightarrow 0,
+\quad
+\textnormal{for each $\varepsilon > 0$},
+\end{eqnarray*}
+where the last convergence follows by hypothesis of Theorem \ref{HajekCLTSRSWOR}.
+This shows that $Y^{(1)}_{\nu}$ indeed satisfy Lindeberg's condition, and completes the proof of
+Theorem \ref{HajekCLTSRSWOR}.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
