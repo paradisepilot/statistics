@@ -692,29 +692,23 @@ be the probability function induced on $\mathcal{S}(U_{\nu},n_{\nu}) \times \mat
 by the H\'ajek Sampling Design of size $n_{\nu}$ on $U_{\nu}$.
 Let $\left(Y^{(0)}_{\nu},Y^{(1)}_{\nu}\right) : \mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu}) \longrightarrow\Re^{2}$
 be the $\Re^{2}$-valued random variable defined on $\mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu})$
-as in the H\'ajek Fundamental Lemma.
+as in the H\'ajek Fundamental Lemma (Theorem \ref{HajekFundamentalLemma}).
 Then, note that, for each $\nu\in\N$, the random variables
 $\left(\widehat{\overline{Y}}_{\nu} - \mu_{\nu}\right) : \mathcal{S}(U_{\nu},n_{\nu}) \longrightarrow \Re$ and
 $Y^{(0)}_{\nu} : \mathcal{S}(U_{\nu},n_{\nu}) \longrightarrow \Re$
-are equal.
+are in fact equal.
 By Corollary \ref{HajekFundementalLemmaCorollary}, it therefore suffices to show the following:
 \begin{equation*}
 \dfrac{Y^{(1)}_{\nu}}{\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}} \;\; \overset{\mathcal{L}}{\longrightarrow} \;\; N(0,1).
 \end{equation*}
-Now, observe that for each $\nu\in\N$,
+Now, recall that for each $\nu\in\N$,
 since $Y^{(1)}_{\nu} : \mathcal{P}(U_{\nu}) \longrightarrow \Re$ is a random variable
 defined on the collection of Bernoulli samples of $U_{\nu}$,
 each $Y^{(1)}_{\nu}$ can be regarded as a sum of independent random variables
 (but not identically distributed, unless the population characteristic
 $y^{(\nu)} : U_{\nu} \longrightarrow \Re$ is constant).
-Therefore, the classical Lindeberg Central Limit Theorem
-(see Chapter 5, p.27, \cite{Ferguson1996})
-provides a sufficient condition for
-the asymptotic normality of $Y^{(1)}_{\nu}\!\left/\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}\right.$.
-Thus, it remains only to show that the hypotheses in Theorem \ref{HajekCLTSRSWOR}
-implies the validity of Lindeberg's condition (as in Lindeberg's Central Limit Theorem).
-Recall from the proof of H\'ajek's Fundamental Lemma (Theorem \ref{HajekFundamentalLemma})
-that, for each $\nu\in\N$,
+More precisely, recall from the proof of H\'ajek's Fundamental Lemma
+(Theorem \ref{HajekFundamentalLemma}) that, for each $\nu\in\N$,
 \begin{equation*}
 Y^{(1)}_{\nu} \; = \; \sum_{i\in U_{\nu}}\,Z^{(\nu)}_{i},
 \end{equation*}
@@ -731,9 +725,15 @@ Z^{(\nu)}_{i} : \mathcal{S}(U_{\nu},n_{\nu}) \times \mathcal{P}(U_{\nu}) \longri
 We emphasize again that for each $\nu\in\N$, the random variables
 $Z^{(\nu)}_{1}, \ldots, Z^{(\nu)}_{N_{\nu}}$ are independent
 (though not necessarily identically distributed).
-Then, Lindeberg's condition on $Y^{(1)}_{\nu}$ can be expressed as:
+Therefore, the classical Lindeberg Central Limit Theorem
+(see Chapter 5, p.27, \cite{Ferguson1996})
+provides a sufficient condition for
+the asymptotic normality of $Y^{(1)}_{\nu}\!\left/\sqrt{\Var\!\left[\,Y^{(1)}_{\nu}\,\right]}\right.$.
+Thus, it remains only to show that the hypotheses in Theorem \ref{HajekCLTSRSWOR}
+implies the validity of Lindeberg's condition (as in Lindeberg's Central Limit Theorem) on the $Y^{(1)}_{\nu}$'s.
+Now, Lindeberg's condition on $Y^{(1)}_{\nu}$ can be expressed as:
 \begin{equation*}
-\lim_{n\rightarrow\infty}\,
+\lim_{\nu\rightarrow\infty}\,
 \dfrac{1}{\tau^{2}_{\nu}}\,
 \sum_{i=1}^{N_{\nu}}\,
 \int_{\left\{\vert x\vert \,\geq\, \varepsilon\tau_{\nu}\right\}}
@@ -773,7 +773,7 @@ and where
 \left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
 \dfrac{\underset{i\in U_{\nu}}{\sum}\left(y^{(\nu)}_{i}\,-\,\overline{y}_{U_{\nu}}\right)^{2}}{N_{\nu}-1}.
 \end{equation*}
-Now, each random variable $Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)$ has a Bernoulli distribution, with
+Each random variable $Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)$ has a Bernoulli distribution, with
 \begin{equation*}
 \left\{
 \begin{array}{lcc}
@@ -817,9 +817,59 @@ I\left\{
 \,\geq\,\varepsilon\,\tau_{\nu}
 \right\}
 \cdot
-\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)
+\left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right),
 \end{eqnarray*}
-Next, note that
+which implies
+\begin{eqnarray*}
+&&
+\sum_{i=1}^{N_{\nu}}\,
+\int_{\left\{\vert x\vert \,\geq\, \varepsilon\tau_{\nu}\right\}}
+\vert\,x\,\vert^{2}\;
+\d\,P^{Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)}(x)
+\\
+&=&
+\dfrac{n_{\nu}}{N_{\nu}}\left(\dfrac{1}{n_{\nu}}-\dfrac{1}{N_{\nu}}\right)^{2}
+\cdot\sum_{i\in C_{\nu}(\varepsilon)}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}
+\;\; + \;\;
+\left(1-\dfrac{n_{\nu}}{N_{\nu}}\right)
+\left(\dfrac{1}{N_{\nu}}\right)^{2}
+\cdot\sum_{i\in B_{\nu}(\varepsilon)}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2},
+\end{eqnarray*}
+where
+\begin{equation*}
+C_{\nu}(\varepsilon)
+\; := \;
+\left\{
+\; i \in U_{\nu} \;:\;
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\cdot
+\left(\frac{1}{n_{\nu}} - \frac{1}{N_{\nu}}\right)
+\,\geq\,\varepsilon\,\tau_{\nu}
+\right\}
+\;\;\;\textnormal{and}\;\;\;
+B_{\nu}(\varepsilon)
+\; := \;
+\left\{
+\; i \in U_{\nu} \;:\;
+\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
+\cdot
+\dfrac{1}{N_{\nu}}
+\,\geq\,\varepsilon\,\tau_{\nu}
+\right\}
+\end{equation*}
+We now make the following:
+\begin{center}
+\begin{minipage}{6.0in}
+\noindent
+\textbf{Claim:}\quad
+$
+C_{\nu}(\varepsilon) \;\;\subseteq\;\; U_{\nu}(\varepsilon),
+\quad\textnormal{and}\quad
+B_{\nu}(\varepsilon) \;\;\subseteq\;\; U_{\nu}(\varepsilon).
+$
+\vskip 0.2cm
+\noindent
+Proof of Claim: \; Note that
 \begin{eqnarray*}
 \left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
 \cdot
@@ -854,24 +904,8 @@ Next, note that
 \,\geq\,
 \sigma_{\nu}\cdot\varepsilon
 \end{eqnarray*}
-Thus, we see that
-\begin{equation*}
-\left\{
-\; i \in U_{\nu} \;:\;
-\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
-\cdot
-\left(\frac{1}{n_{\nu}} - \frac{1}{N_{\nu}}\right)
-\,\geq\,\varepsilon\,\tau_{\nu}
-\right\}
-\;\;\subseteq\;\;
-\left\{
-\; i \in U_{\nu} \;:\;
-\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
-\,\geq\,\varepsilon\,\sigma_{\nu}
-\right\}
-\;\;=:\;\; U_{\nu}(\varepsilon).
-\end{equation*}
-Similarly,
+This proves the first inclusion.
+Secondly, note that
 \begin{eqnarray*}
 \left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert \cdot \dfrac{1}{N_{\nu}}
 \,\geq\,\varepsilon\,\tau_{\nu}
@@ -889,32 +923,26 @@ N_{\nu} \cdot \varepsilon \cdot \sigma_{\nu} \cdot
 &\Longrightarrow&
 \left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
 \,\geq\,
-\sigma_{\nu} \cdot \varepsilon,
+\sigma_{\nu} \cdot \varepsilon
 \end{eqnarray*}
-hence
-\begin{equation*}
-\left\{
-\; i \in U_{\nu} \;:\;
-\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
-\cdot
-\dfrac{1}{N_{\nu}}
-\,\geq\,\varepsilon\,\tau_{\nu}
-\right\}
-\;\;\subseteq\;\;
-\left\{
-\; i \in U_{\nu} \;:\;
-\left\vert\,y^{(\nu)}_{i} - \overline{y}_{U_{\nu}}\,\right\vert
-\,\geq\,\varepsilon\,\sigma_{\nu}
-\right\}
-\;\;=:\;\; U_{\nu}(\varepsilon).
-\end{equation*}
-Thus, we now see that:
+This proves the second inclusion, and concludes the proof of the Claim.
+\end{minipage}
+\end{center}
+The Claim implies:
 \begin{eqnarray*}
 &&
 \sum_{i=1}^{N_{\nu}}\,
 \int_{\left\{\vert x\vert \,\geq\, \varepsilon\tau_{\nu}\right\}}
 \vert\,x\,\vert^{2}\;
 \d\,P^{Z^{(\nu)}_{i} - E\!\left(Z^{(\nu)}_{i}\right)}(x)
+\\
+& = &
+\dfrac{n_{\nu}}{N_{\nu}}\left(\dfrac{1}{n_{\nu}}-\dfrac{1}{N_{\nu}}\right)^{2}
+\cdot\sum_{i\in C_{\nu}(\varepsilon)}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}
+\;\; + \;\;
+\left(1-\dfrac{n_{\nu}}{N_{\nu}}\right)
+\left(\dfrac{1}{N_{\nu}}\right)^{2}
+\cdot\sum_{i\in B_{\nu}(\varepsilon)}\left(y^{(\nu)}_{i}-\overline{y}_{U_{\nu}}\right)^{2}
 \\
 &\leq&
 \dfrac{n_{\nu}}{N_{\nu}}\left(\dfrac{1}{n_{\nu}}-\dfrac{1}{N_{\nu}}\right)^{2}
