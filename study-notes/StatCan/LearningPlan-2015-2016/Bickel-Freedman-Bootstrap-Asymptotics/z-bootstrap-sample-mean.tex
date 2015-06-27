@@ -1,0 +1,176 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Bootstrap asymptotics for sample mean}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\newcommand{\Snm}{\mathcal{S}^{(n)}_{m}}
+\newcommand{\Xnm}{\overline{X}^{(n)}_{m}}
+
+\begin{theorem}[Bootstrap Central Limit Theorem for I.I.D. sample mean, Theorem 2.1 \cite{BickelFreedman1981}]
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\left(\Omega,\mathcal{A},\nu\right)$ be a probability space.
+Let $X, X_{1}, X_{2}, \ldots : \Omega \longrightarrow \Re$ be a sequence
+of independent and identically distributed $\Re$-valued random variables
+defined on $\Omega$
+{\color{red}with finite expectation value $\mu_{X} \in \Re$ and variance $\sigma^{2}_{X} < \infty$}.
+%Let $P_{X}$ be the probability measure induced on $\Re$ by $X$.
+%Suppose
+%\begin{equation*}
+%\mu_{X}
+%\; := \; E\!\left[\,X\,\right]
+%\; = \; \int_{\Re}\; x \; \d P_{X}(x)
+%\; = \; \int_{\Omega}\; X(\omega) \; \d\nu(\omega) 
+%\; \in \; \Re,
+%\quad\textnormal{and}
+%\end{equation*}
+%\begin{equation*}
+%\sigma^{2}_{X}
+%\; := \; E\!\left[\,\left(X - \mu_{X}\right)^{2}\,\right]
+%\; = \; \int_{\Re}\; (x - \mu_{X})^{2} \; \d P_{X}(x)
+%\; = \; \int_{\Omega}\; \left(X(\omega) - \mu_{X}\right)^{2} \; \d\nu(\omega) 
+%\; < \; \infty
+%\end{equation*}
+For each $n \in \N$ be fixed, define:
+\begin{equation*}
+\overline{X}_{n} \;:\; \Omega \; \longrightarrow \; \Re \;:\; \omega \; \longmapsto \; \dfrac{1}{n}\sum^{n}_{i=1}\,X_{i}(\omega).
+\end{equation*}
+For $n, m \in \N$, define $\Snm$ to be the set of all functions from $\{1,2,\ldots,m\} \longrightarrow \{1,2,\ldots,n\}$.
+Thus, each
+\begin{equation*}
+s \; = \; \left(s(1), s(2), \ldots, s(m) \right) \;\in\; \Snm
+\end{equation*}
+can be regarded as a length-$m$ finite (ordered) sequence of positive integers between $1$ and $n$, inclusive.
+Note that $\Snm$ is a finite set with $\vert\;\Snm\;\vert = n^{m}$.
+Endow $\Snm$ with the probability space structure induced by the uniform probability function:
+\begin{equation*}
+P_{\Snm}(s) \;\; := \;\; \dfrac{1}{n^{m}},
+\quad\textnormal{for each $s \in \Snm$}.
+\end{equation*}
+Let $\Omega \times \Snm$ be the product probability space of $\Omega$ and $\Snm$.
+Define:
+\begin{equation*}
+\Xnm
+\;:\;\Omega \times \Snm \;\longrightarrow \; \Re
+\;:\; (\omega,s) \; \longmapsto \; \dfrac{1}{m}\,\sum^{n}_{j=1}\,X_{s(j)}(\omega).
+\end{equation*}
+For each $\omega \in \Omega$, define:
+\begin{equation*}
+\Phi^{(n)}_{m,\omega}
+\;:\;
+\Snm\;\longrightarrow\; \Re
+\;:\;
+s
+\;\longmapsto\;
+\sqrt{m}\left(\,\Xnm(\omega,s) - \overline{X}_{n}(\omega)\,\right)
+\end{equation*}
+Then,
+\begin{equation*}
+P\!\left(\;
+\Phi^{(n)}_{m,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnormal{as $n,m\rightarrow\infty$}
+\;\right)
+\;\; = \;\;
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;
+\Phi^{(n)}_{m,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnormal{as $n,m\rightarrow\infty$}
+\right.
+\;\right\}\right)
+\;\; = \;\;
+1.
+\end{equation*}
+\end{theorem}
+
+\begin{remark}
+\mbox{}\vskip 0.1cm
+\noindent
+For each fixed $\omega \in \Omega$,
+$\left\{\,\Phi^{(n)}_{m,\omega} : \Snm \longrightarrow \Re\,\right\}_{n,m\in\N}$
+is a doubly indexed sequence of $\Re$-valued random variables.
+Note that their respective domains $\Snm$ are pairwise distinct probability spaces.
+The \textbf{Bootstrap Central Limit Theorem for I.I.D. sample mean}
+asserts that for almost every $\omega \in \Omega$,
+the doubly indexed sequence $\left\{\,\Phi^{(n)}_{m,\omega}\,\right\}$
+of $\Re$-valued random variables converges in distribution to
+$N(0,\sigma^{2}_{X})$ as $n, m \longrightarrow \infty$.
+\end{remark}
+
+\begin{remark}\quad
+The following results are well known from classical asymptotic theory:
+\vskip 0.1cm
+\noindent
+By the \textbf{Weak Law of Large Numbers}, $\overline{X}_{n}$ converges in probability to $\mu_{X}$,
+as $n \longrightarrow \infty$; in other words,
+\begin{equation*}
+\lim_{n\rightarrow\infty}\,P\!\left(\;\left\vert\,\overline{X}_{n} - \mu_{X}\,\right\vert \,>\, \varepsilon\;\right)
+\;\;=\;\;
+\lim_{n\rightarrow\infty}\,\nu\left(\left\{\;\omega\in\Omega\;:\;\left\vert\,\overline{X}_{n}(\omega) - \mu_{X}\,\right\vert \,>\, \varepsilon\;\right\}\right)
+\;\;=\;\; 0,
+\quad\textnormal{for each $\varepsilon > 0$}.
+\end{equation*}
+By the \textbf{Strong Law of Large Numbers}, $\overline{X}_{n}$ converges almost surely to $\mu_{X}$,
+as $n \longrightarrow \infty$; in other words,
+\begin{equation*}
+P\!\left(\;\lim_{n\rightarrow\infty}\,\overline{X}_{n} = \mu_{X}\;\right)
+\;\;=\;\;
+\nu\left(\left\{\;\omega\in\Omega \;\left\vert\; \lim_{n\rightarrow\infty}\,\overline{X}_{n}(\omega) = \mu_{X} \right. \,\right\}\right)
+\;\;=\;\; 1.
+\end{equation*}
+By the \textbf{Central Limit Theorem}, $\sqrt{n}\left(\overline{X}_{n} - \mu_{X}\right)$ converges in distribution to $N(0,\sigma^{2}_{X})$.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+Then, for each $\omega \in \Omega$,
+$\mathbf{X}_{n}(\omega) := \left(X_{1}(\omega),X_{2}(\omega),\ldots,X_{n}(\omega)\right) \in \Re^{n}$.
+Define the \textbf{empirical measure}:
+\begin{equation*}
+\overline{\delta}_{\mathbf{X}_{n}(\omega)}
+\;\;:=\;\;
+\dfrac{1}{n}\sum_{i=1}^{n}\,\delta_{X_{i}(\omega)}
+\;\;\in\;\;
+\mathcal{M}_{1}(\Re,\mathcal{B}(\Re)),
+\end{equation*}
+where $\delta_{x} \in \mathcal{M}_{1}(\Re,\mathcal{B}(\Re))$ is the Dirac measure concentrated at $x \in \Re$.
+Define $\widehat{\theta}_{n} : \Omega \longrightarrow \Re$ by
+\begin{equation*}
+\widehat{\theta}_{n}(\omega)
+\;\;:=\;\;
+\theta\!\left(\,\overline{\delta}_{\mathbf{X}_{n}(\omega)}\,\right)
+\end{equation*}
+Suppose $\widehat{\theta}_{n}$ is a weakly consistent sequence of estimators of $\theta(\nu)$,
+i.e. $\widehat{\theta}_{n} \overset{p}{\longrightarrow} \theta(\nu)$;
+equivalently, for each $\varepsilon > 0$, we have
+\begin{equation*}
+\lim_{n\rightarrow\infty}\,
+P\!\left(\;
+\left\vert\,\widehat{\theta}_{n}(\omega) - \theta(\nu)\,\right\vert > \varepsilon
+\;\right)
+\;\; = \;\;
+\lim_{n\rightarrow\infty}\,
+\mu\!\left(\left\{\;
+\omega\in\Omega
+\;\left\vert\;\;
+\left\vert\,\widehat{\theta}_{n}(\omega) - \theta(\nu)\,\right\vert > \varepsilon
+\right.
+\right\}\right)
+\;\; = \;\; 0.
+\end{equation*}
+\textbf{The Bootstrap is a resampling method that allows one
+to estimate asymptotically (as $n \rightarrow \infty$)
+the sampling distribution of $\widehat{\theta}_{n}$,
+i.e. the probability measure induced on $\Re$ by the $\Re$-valued random variable
+$\widehat{\theta}_{n} : \Omega \longrightarrow \Re$.}
+\begin{equation*}
+F_{n}(t;\mathbf{X}(\omega))
+\;\;:=\;\;
+\dfrac{1}{n}\sum_{i=1}^{n}\,I_{\{X_{i}(\omega) \leq t\}}
+\end{equation*}
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
