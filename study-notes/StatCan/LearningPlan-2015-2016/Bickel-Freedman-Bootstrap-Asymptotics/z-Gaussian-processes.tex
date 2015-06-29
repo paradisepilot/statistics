@@ -1,0 +1,220 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Gaussian Processes}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\begin{definition}[Stochastic processes]
+\mbox{}\vskip 0cm
+\noindent
+Suppose $\left(\Omega,\mathcal{A},\mu\right)$ is a probability space,
+$\left(V,\mathcal{F}\right)$ is a measurable space, and 
+$T$ is an arbitrary non-empty set.
+A \textbf{stochastic process} indexed by $T$ defined on $\Omega$ with codomain $V$
+is a family $\left\{\,X_{t}\,:\,\Omega\,\longrightarrow\,V\,\right\}_{t \in T}$
+indexed by $T$ of $V$-valued random variables defined on $\Omega$.
+\end{definition}
+
+\begin{definition}[Finite-dimensional distributions of a stochastic processes]
+\mbox{}\vskip 0cm
+\noindent
+Let $\left\{\,X_{t}\,:\,\Omega\,\longrightarrow\,(V,\mathcal{F})\,\right\}_{t \in T}$ be a stochastic process.
+Let $n \in \N$ and $t_{1},t_{2},\ldots,t_{n} \in T$ be distinct elements of $T$.
+The probability distribution induced on the product measurable space
+$\left(V^{n},\mathcal{F}^{\otimes n}\right)$
+by $\left(X_{t_{1}},X_{t_{2}},\ldots,X_{t_{n}}\right):\Omega\longrightarrow V^{n}$
+is called a \textbf{finite-dimensional distribution} of the stochastic process.
+\end{definition}
+
+\begin{definition}[Komolgorov systems of finite-dimensional distributions \& Komolgorov consistency]
+\mbox{}\vskip 0cm
+\noindent
+Let $T$ be an arbitrary non-empty set, and
+$\mathcal{D}(T)$ the set of all finite ordered sequences of elements of $T$ whose elements are pairwise distinct;
+in other words,
+\begin{equation*}
+\mathcal{D}(T)
+\; := \;
+\left\{
+\left. (t_{1},t_{2},\ldots,t_{n}) \in \bigcup_{k=1}^{\infty}\,T^{k} \;\,\right\vert\;\,
+n \in \N, \; t_{i} \neq t_{j}, \;\textnormal{whenever $i \neq j$}
+\right\}.
+\end{equation*}
+For each $n \in \N$, let $\mathcal{M}_{1}\!\left(R^{n},\mathcal{B}(\Re^{n})\right)$
+be the set of all probability measures defined on the product measurable space
+$\left(\Re^{n},\mathcal{B}(\Re^{n})\right)$.
+A \textbf{Komolgorov system of finite-dimensional distributions} is a $\mathcal{D}(T)$-indexed family $\mathcal{P}$
+of probability measures of the following form:
+\begin{equation*}
+\mathcal{P}
+\; = \;
+\left\{\;\left.
+P_{(t_{1},\ldots,t_{n})} \in \mathcal{M}_{1}\!\left(\Re^{n},\mathcal{B}(\Re^{n})\right)
+\;\right\vert\;
+(t_{1},\ldots,t_{n}) \in \mathcal{D}(T)
+\;\right\}.
+\end{equation*}
+Furthermore, $\mathcal{P}$ is said to be \textbf{Komolgorov consistent}
+if it satisfies both of the following conditions:
+\begin{itemize}
+\item
+\textbf{permutation invariance:}\;
+For any $n \in \N$, any $\left(t_{1},\ldots,t_{n}\right)\in \mathcal{D}(T)$,
+any $B_{1},\ldots,B_{n}\in\mathcal{B}(\Re)$,
+and any permutation $\pi\,:\,\{1,\ldots,n\}\longrightarrow\{1,\ldots,n\}$,
+the following equality holds:
+\begin{equation*}
+P_{(t_{1},\ldots,t_{n})}\!\left(B_{1} \times \cdots \times B_{n}\right)
+\;=\;
+P_{(t_{\pi(1)},\ldots,t_{\pi(n)})}\!\left(B_{\pi(1)} \times \cdots \times B_{\pi(n)}\right).
+\end{equation*}
+\item
+\textbf{projection invariance:}\;
+For any $n \in \N$, any $\left(t_{1},\ldots,t_{n+1}\right)\in \mathcal{D}(T)$,
+and any $B_{1},\ldots,B_{n}\in\mathcal{B}(\Re)$,
+the following equality holds:
+\begin{equation*}
+P_{(t_{1},\ldots,t_{n},t_{n+1})}\!\left(B_{1} \times \cdots \times B_{n} \times \Re \right)
+\;=\;
+P_{(t_{1},\ldots,t_{n})}\!\left(B_{1} \times \cdots \times B_{n}\right).
+\end{equation*}
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+\mbox{}\vskip 0cm
+\noindent
+It is obvious that the collection of finite-dimensional distributions of
+any $\Re$-valued stochastic process is a
+Komolgorov consistent Komolgorov system of finite-dimensional distributions.
+\end{remark}
+
+\begin{definition}
+\mbox{}\vskip 0cm
+\noindent
+Let $\left\{\,X_{t}:\Omega\longrightarrow\Re\,\right\}_{t \in T}$ be an $\Re$-valued stochastic process, and
+\begin{equation*}
+\mathcal{P}
+\; = \;
+\left\{\;
+P_{(t_{1},\ldots,t_{n})} \in \mathcal{M}_{1}\!\left(\Re^{n},\mathcal{B}(\Re^{n})\right)
+\,\;\left\vert\;\,
+(t_{1},\ldots,t_{n}) \in \mathcal{D}(T)
+\right.
+\;\right\}
+\end{equation*}
+be a Komolgorov system of finite-dimensional distributions.
+We say that
+\textbf{the stochastic process $\{\,X_{t}\,\}$ admits $\mathcal{P}$ as its collection of finite-dimensional distributions}
+if, for each $n \in \N$ and any $(t_{1},t_{2},\ldots,t_{n}) \in \mathcal{D}(T)$,
+the probability distribution induced on $\left(\Re^{n},\mathcal{B}(\Re^{n})\right)$ by the map
+\begin{equation*}
+(X_{t_{1}},\ldots,X_{t_{n}}) \,:\,\Omega\longrightarrow \Re^{n}
+\end{equation*}
+equals $P_{(t_{1},\ldots,t_{n})} \in \mathcal{P}$.
+\end{definition}
+
+\begin{theorem}[Komolgorov's Existence Theorem, Theorem 36.2, \cite{Billingsley1995}]
+\mbox{}\vskip 0cm
+\noindent
+Let
+\begin{equation*}
+\mathcal{P}
+\; = \;
+\left\{\;\left.
+P_{(t_{1},\ldots,t_{n})} \in \mathcal{M}_{1}\!\left(\Re^{n},\mathcal{B}(\Re^{n})\right)
+\,\;\right\vert\;\,
+(t_{1},\ldots,t_{n}) \in \mathcal{D}(T)
+\;\right\}.
+\end{equation*}
+be a Komolgorov system of finite-dimensional distributions.
+Then, there exists a stochastic process
+\begin{equation*}
+\left\{\,X_{t} : \left(\Omega,\mathcal{A},\mu\right) \,\longrightarrow\, \left(\Re,\mathcal{B}(\Re)\right)\,\right\}_{t\in T}
+\end{equation*}
+which admits $\mathcal{P}$ as its collection of finite-dimensional distributions
+if and only if $\mathcal{P}$ is Komolgorov consistent.
+\end{theorem}
+
+\begin{definition}[Mean and covariance functions of $\Re$-valued stochastic processes]
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\left\{\,X_{t}:\Omega\longrightarrow\Re\,\right\}_{t \in T}$ be an
+$\Re$-valued stochastic process.
+\begin{itemize}
+\item If, for each $t \in T$, we have $E\!\left(\,X_{t}\,\right) \in \Re$, then the function
+\begin{equation*}
+a_{X} \,:\, T \, \longrightarrow \, \Re \, : \, t \, \longmapsto \, E\!\left(\,X_{t}\,\right)
+\end{equation*}
+is called the \textbf{mean} function of the $\Re$-valued stochastic process $\{\,X_{t}\,\}$.
+\item In addition, if, for each $t_{1},t_{2} \in T$, we have $0 \leq \Cov\!\left(X_{t_{1}},X_{t_{2}}\right) < \infty$,
+then the function
+\begin{equation*}
+\Sigma_{X} \,:\, T \times T \, \longrightarrow \, \Re \, : \, (t_{1},t_{2}) \, \longmapsto \, \Cov\!\left(X_{t_{1}},X_{t_{2}}\right)
+\end{equation*}
+is called the \textbf{covariance} function of the $\Re$-valued stochastic process $\{\,X_{t}\,\}$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Gaussian processes]
+\mbox{}\vskip 0cm
+\noindent
+An $\Re$-valued stochastic process
+$\left\{\,X_{t}:\Omega\longrightarrow\Re\,\right\}_{t \in T}$
+is said to be \textbf{Gaussian} if each of its finite-dimensional distribution is a
+Gaussian distribution defined on some finite-dimensional Euclidean space.
+\end{definition}
+
+\begin{theorem}
+\mbox{}\vskip 0cm
+\noindent
+Let $T$ be an arbitrary non-empty set, $a : T \longrightarrow \Re$ an arbitrary $\Re$-valued function
+defined on $T$, and $\Sigma : T \times T \longrightarrow [0,\infty)$ a non-negative $\Re$-valued function
+defined on $T \times T$. Then, there exists a Gaussian process whose mean and covariance functions
+are $a$ and $\Sigma$, respectively. 
+\end{theorem}
+
+\begin{theorem}
+\mbox{}\vskip 0cm
+\noindent
+The mean and covariance functions of a Gaussian process together completely determine
+its collection of finite-dimensional distributions.
+\end{theorem}
+
+\begin{definition}[Brownian motion, a.k.a. Wiener process]
+\mbox{}\vskip 0.1cm
+\noindent
+A \textbf{Brownian motion}, or \textbf{Wiener process}, is a stochastic process
+$\{\,W_{t} : \left(\Omega,\mathcal{A},\mu\right) \longrightarrow \Re\,\}_{t \geq 0}$ indexed by the non-negative real line
+satisfying the following conditions:
+\begin{itemize}
+\item At $t = 0$, the process takes value $0$ with probability $1$; more precisely:
+	\begin{equation*}
+	P\!\left(\,W_{0} = 0\,\right)\; = \; \mu\!\left(\left\{\;\omega\in\Omega\;\vert\;W_{0}(\omega)=0\;\right\}\right) \; = \; 1.
+	\end{equation*}
+\item The process $\{\,W_{t}\,\}$ has independent increments; more precisely:
+	for any $0 \leq t_{1} \leq t_{2} \leq \cdots \leq t_{n} < \infty$,
+	\begin{equation*}
+	W_{t_{n}} - W_{t_{n-1}}, 	\quad W_{t_{n-1}} - W_{t_{n-2}}, \quad \ldots \;\; , \quad W_{t_{2}} - W_{t_{1}}
+	\; : \; \Omega \longrightarrow \Re
+	\end{equation*}
+	are independent random variables.
+\item For $0 \leq t_{1} < t_{2} < \infty$, the increment $W_{t_{2}} - W_{t_{1}}$
+	follows a Gaussian distribution with mean $0$ and variance $t_{2} - t_{1}$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Brownian bridge]
+\mbox{}\vskip 0.1cm
+\noindent
+A \textbf{Brownian bridge} is a Gaussian process
+$\{\,W^{\circ}_{t} : \left(\Omega,\mathcal{A},\mu\right) \longrightarrow \Re\,\}_{t \in [0,1]}$
+indexed by the closed unit interval in $\Re$ satisfying the following conditions:
+\begin{itemize}
+\item For each $t \in [0,1]$, we have $E\!\left(\,W^{\circ}_{t}\,\right) = 0$.
+\item For any $t_{1}, t_{2} \in [0,1]$, we have $\Cov\!\left(W^{0}_{t_{1}},W^{\circ}_{t_{2}}\right) = \min\{t_{1},t_{2}\} - t_{1}t_{2}$.
+\end{itemize}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
