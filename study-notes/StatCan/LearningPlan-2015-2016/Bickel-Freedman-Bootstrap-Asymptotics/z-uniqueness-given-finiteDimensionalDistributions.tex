@@ -7,201 +7,69 @@ its finite-dimensional distributions}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
-In this section, we state the precise sense in which the finite-dimensional distributions
-of a stochastic process completely determine the ``full distribution" of the stochastic process.
-
-First, let $\Omega$, $T$, and $V$ be non-empty sets.
-Let $\left\{\,X_{t} : \Omega \longrightarrow V \,\right\}_{t \in T}$
-be a $T$-index family of maps, each of which maps from $\Omega$ into $V$.
-Note that this family of maps is set-theoretically equivalent
-(in the sense that either completely determines the other)
-to the following $(V^{T})$-valued map defined on $\Omega$:
-\begin{equation*}
-X \,:\, \Omega \,\longrightarrow\, V^{T} \,:\, \omega \,\longmapsto\, \left(t \longmapsto X_{t}(\omega)\right),
-\end{equation*}
-where $V^{T} = \prod_{t\in T}V$ denotes the set of all (arbitrary) $V$-valued functions defined on $T$.
-
-Next, suppose $\left(\Omega,\mathcal{A},\mu\right)$ is a probability space structure on $\Omega$,
-and $\left(V,\mathcal{F}\right)$ is a measurable space structure on $V$.
-It will be shown that $X : \Omega \longrightarrow V^{T}$ is
-$\left(\mathcal{A},\sigma[(V,\mathcal{F})^{T}]\right)$-measurable if and only if
-$X_{t} : \Omega \longrightarrow V$ is $(\mathcal{A},\mathcal{F})$-measurable for each $t \in T$.
-Here, $\sigma[(V,\mathcal{F})^{T}]$ denotes the product $\sigma$-algebra on $V^{T}$,
-which is by definition the smallest $\sigma$-algebra on $V^{T}$ such that,
-for each $t \in T$, the projection map (or evaluation map)
-\begin{equation*}
-\pi_{t} \,:\, V^{T} \, \longrightarrow\, V
-\,:\, x \,\longmapsto\, x(t)
-\end{equation*}
-is $\left(\sigma[(V,\mathcal{F})^{T}],\mathcal{F}\right)$-measurable.
-
-The result we aim to state precisely and prove is the following:
-The finite-dimensional distributions of a stochastic process
-$\left\{\,X_{t}: (\Omega,\mathcal{A},\mu) \longrightarrow (V,\mathcal{F})\,\right\}_{t \in T}$
-completely determines the distribution of its associated $(V^{T})$-valued random variable
-$X : (\Omega,\mathcal{A},\mu) \longrightarrow (V^{T},\sigma[(V,\mathcal{F})^{T}])$.
-
-\begin{definition}[Stochastic processes]
-\mbox{}\vskip 0.1cm
-\noindent
-Suppose $\left(\Omega,\mathcal{A},\mu\right)$ is a probability space,
-$\left(V,\mathcal{F}\right)$ is a measurable space, and 
-$T$ is an arbitrary non-empty set.
-A
-\textbf{stochastic process indexed by $T$ defined on $(\Omega,\mathcal{A},\mu)$
-with state space $(V,\mathcal{F})$}
-is a family
-\begin{equation*}
-\left\{\;
-X_{t} \,:\, \left(\Omega,\mathcal{A},\mu\right)
-\,\longrightarrow\,
-\left(V,\mathcal{F}\right)
-\;\right\}_{t \in T}
-\end{equation*}
-indexed by $T$ of $V$-valued $\left(\mathcal{A},\mathcal{F}\right)$-measurable
-maps from $\Omega$ into $V$.
-\end{definition}
-
-\begin{definition}[The product $\sigma$-algebra of a Cartesian product of measurable spaces]
-\mbox{}\vskip 0.1cm
-\noindent
-Let $T$ be an arbitrary non-empty set.
-For each $t \in T$, let $\left(V_{t},\mathcal{F}_{t}\right)$ be a measurable space
-(in particular, $V_{t} \neq \varemptyset$).
-Let $\prod_{t \in T}V_{t}$ be the Cartesian product of $\left\{\,V_{t}\,\right\}_{t \in T}$.
-In other words,
-\begin{equation*}
-\prod_{t \in T}V_{t}
-\; := \;
-\left\{\;
-\left.
-v : T \longrightarrow \bigsqcup_{t \in T}V_{t}
-\;\;\right\vert\;
-v(t) \in V_{t},
-\;\textnormal{for each $t \in T$}
-\;\right\}.
-\end{equation*}
-That $\prod_{t \in T}V_{t} \neq \varemptyset$ follows from the Axiom of Choice.
-For each $t \in T$, let
-\begin{equation*}
-\pi_{t} \,:\, \prod_{\tau \in T}V_{\tau} \,\longrightarrow\, V_{t} \,:\, v \, \longmapsto \, v(t)
-\end{equation*}
-be the projection map from $\prod_{\tau \in T}V_{\tau}$ onto $V_{t}$.
-The \textbf{product $\sigma$-algebra} on $\prod_{t \in T}V_{t}$ is the following:
-\begin{equation*}
-\sigma\!\left(\left\{\;
-\left.
-\pi_{t}^{-1}\!\left(F\right) \,\subset\, \prod_{\tau \in T}V_{\tau}
-\;\;\right\vert\;\,
-F \in \mathcal{F}_{t} \,,\, t \in T
-\;\right\}\right)
-\;\; \subset \;\; \textnormal{PowerSet}\!\left(\,\prod_{t \in T}V_{t}\,\right).
-\end{equation*}
-Clearly, it is the smallest $\sigma$-algebra on $\prod_{t \in T}V_{t}$
-with respect to which each projection map
-$\pi_{t} : \prod_{t \in T}V_{t} \longrightarrow \left(V_{t},\mathcal{F}_{t}\right)$
-is measurable.
-We denote the product $\sigma$-algebra on $\prod_{t \in T}V_{t}$ by
-\begin{equation*}
-\sigma\!\left(\,\prod_{t \in T}(V_{t},\mathcal{F}_{t})\,\right)
-\end{equation*}
-\end{definition}
-
-\begin{proposition}
-\mbox{}\vskip 0.1cm
-\noindent
-Suppose $\Omega$, $T$, and $V$ are non-empty sets.
-Let $\left\{\,X_{t} : \Omega \longrightarrow V \,\right\}_{t \in T}$
-be a $T$-index family of maps, each of which maps from $\Omega$ into $V$.
-Then,
-\begin{enumerate}
-\item
-The family $\left\{\,X_{t} : \Omega \longrightarrow V \,\right\}_{t \in T}$
-of maps is set-theoretically equivalent (in the sense that either completely determines the other)
-to the following $(V^{T})$-valued map defined on $\Omega$:
-\begin{equation*}
-X \,:\, \Omega \,\longrightarrow\, V^{T} \,:\, \omega \,\longmapsto\, \left(t \longmapsto X_{t}(\omega)\right),
-\end{equation*}
-where $V^{T} = \prod_{t\in T}V$ denotes the set of all (arbitrary) $V$-valued functions defined on $T$.
-\item
-Suppose $\left(\Omega,\mathcal{A},\mu\right)$ is a probability space structure on $\Omega$,
-$\left(V,\mathcal{F}\right)$ is a measurable space structure on $V$, and
-$\sigma[(V,\mathcal{F})^{T}]$ denotes the corresponding product $\sigma$-algebra on $V^{T}$.
-Then, $X : \Omega \longrightarrow V^{T}$ is
-$\left(\mathcal{A},\sigma[(V,\mathcal{F})^{T}]\right)$-measurable if and only if
-$X_{t} : \Omega \longrightarrow V$ is $(\mathcal{A},\mathcal{F})$-measurable for each $t \in T$.
-\end{enumerate}
-\end{proposition}
-\proof
-The proof of the first statement is routine and we omit it.
-We now prove the second statement.
-Suppose $X : \Omega \longrightarrow V^{T}$
-is $(\mathcal{A},\sigma[(V,\mathcal{F})^{T}])$-measurable.
-Note that $X_{t} = \pi_{t} \circ X$, where $\pi_{t} : \prod_{t\in T}V \longrightarrow V$
-is the projection from $V^{T} = \prod_{\tau\in T}V$ onto the $t$-th factor.
-By construction of the product $\sigma$-algebra $\sigma[(V,\mathcal{F})^{T}]$ on $V^{T}$,
-$\pi_{t} : V^{T} \longrightarrow V$ is $(\sigma[(V,\mathcal{F})^{T}],\mathcal{F})$-measurable
-for each $t \in T$.
-This implies, for each $t \in T$, $X_{t} = \pi_{t} \circ X$ is
-$(\mathcal{A},\mathcal{F})$-measurable, being a composition of two measurable maps.
-Conversely, suppose $X_{t}$ is $(\mathcal{A},\mathcal{F})$-measurable for each $t \in T$.
-Recall that the product $\sigma$-algebra on $V^{T}$ is generated by
-sets of the form:
-\begin{equation*}
-\pi^{-1}_{t}\!\left(F\right),
-\;\;\textnormal{for some $t \in T$ and $F \in \mathcal{F}$}.
-\end{equation*}
-It follows that, for each $t \in T$ and each $F \in \mathcal{F}$, we have
-\begin{equation*}
-X^{-1}\!\left(\pi^{-1}_{t}\!\left(F\right)\right)
-\; = \; (X^{-1}\circ\pi^{-1}_{t})\!\left(F\right)
-\; = \; (\pi_{t} \circ X)^{-1}\!\left(F\right)
-\; = \; X_{t}^{-1}\!\left(F\right)
-\; \subset \; \Omega
-\end{equation*}
-is $\mathcal{A}$-measurable, since
-$X_{t} : (\Omega,\mathcal{A}) \longrightarrow (V,\mathcal{F})$
-is $(\mathcal{A},\mathcal{F})$-measurable by hypothesis.
-This proves that $X : \Omega \longrightarrow U$ is
-$(\mathcal{A},\sigma[(V,\mathcal{F})^{T}])$-measurable.
-\qed
-
-\begin{corollary}
-\mbox{}\vskip 0.1cm
-\noindent
-Suppose $\Omega$, $T$, $V$ are non-empty sets,
-$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space structure on $\Omega$,
-$\left(V,\mathcal{F}\right)$ is a measurable space structure on $V$, and
-$\sigma[(V,\mathcal{F})^{T}]$ denotes the corresponding product $\sigma$-algebra
-on $V^{T} = \prod_{t\in T}V$.
-Let $\left\{\,X_{t} : \Omega \longrightarrow V \,\right\}_{t \in T}$
-be a $T$-index family of maps, each of which maps from $\Omega$ into $V$,
-and let
-\begin{equation*}
-X \,:\, \Omega \,\longrightarrow\, V^{T} \,:\, \omega \,\longmapsto\, \left(t \longmapsto X_{t}(\omega)\right)
-\end{equation*}
-be its set-theoretically equivalent $(V^{T})$-valued map defined on $\Omega$.
-Then,
-\begin{equation*}
-\left\{\; X_{t} \,:\, \left(\Omega,\mathcal{A},\mu\right)\,\longrightarrow\,\left(V,\mathcal{F}\right) \;\right\}_{t \in T}
-\end{equation*}
-is a stochastic process if and only if
-\begin{equation*}
-X \,:\, \left(\Omega,\mathcal{A},\mu\right)\,\longrightarrow\,\left(V^{T},\sigma[(V,\mathcal{F})^{T}]\right)
-\end{equation*}
-is a $(V^{T})$-valued random variable.
-\end{corollary}
-
-\begin{definition}[Finite-dimensional distributions of a stochastic processes]
+\begin{definition}[Finite-dimensional distributions of a stochastic process]
 \mbox{}\vskip 0cm
 \noindent
 Let $\left\{\,X_{t}\,:\,(\Omega,\mathcal{A},\mu)\,\longrightarrow\,(V,\mathcal{F})\,\right\}_{t \in T}$
 be a stochastic process.
 Let $n \in \N$ and $t_{1},t_{2},\ldots,t_{n} \in T$ be distinct elements of $T$.
-The probability distribution induced on the product measurable space
+Let
+$\mathcal{P}_{\left(X_{t_{1}},\ldots,X_{t_{n}}\right)} \in \mathcal{M}_{1}\!\left(V^{n},\mathcal{F}^{\otimes n}\right)$
+denote the probability measure
+induced on the product measurable space
 $\left(V^{n},\mathcal{F}^{\otimes n}\right)$
-by $\left(X_{t_{1}},X_{t_{2}},\ldots,X_{t_{n}}\right):\Omega\longrightarrow V^{n}$
+by the random variable
+\begin{equation*}
+\left(X_{t_{1}},X_{t_{2}},\ldots,X_{t_{n}}\right)
+\,:\, \left(\Omega,\mathcal{A},\mu\right) \,\longrightarrow\, \left(V^{n},\mathcal{F}^{\otimes n}\right)
+\end{equation*}
+$\mathcal{P}_{\left(X_{t_{1}},\ldots,X_{t_{n}}\right)}$
 is called a \textbf{finite-dimensional distribution} of the stochastic process.
 \end{definition}
+
+\begin{theorem}
+\mbox{}\vskip 0cm
+\noindent
+Let $\left(V,\mathcal{F}\right)$ be a measurable space, and
+$\sigma\!\left[(V,\mathcal{F})^{T}\right]$ the product $\sigma$-algebra
+on $V^{T} = \prod_{t \in T}V$.
+Let
+\begin{equation*}
+\left\{\,X_{t}\,:\,(\Omega_{X},\mathcal{A}_{X},\mu_{X})\,\longrightarrow\,(V,\mathcal{F})\,\right\}_{t \in T}
+\;\;\textnormal{and}\;\;
+\left\{\,Y_{t}\,:\,(\Omega_{Y},\mathcal{A}_{Y},\mu_{Y})\,\longrightarrow\,(V,\mathcal{F})\,\right\}_{t \in T}
+\end{equation*}
+be two stochastic processes with the same index set $T$ and
+the same state space $\left(V,\mathcal{F}\right)$.
+Let
+\begin{equation*}
+X \,:\, \left(\Omega_{X},\mathcal{A}_{X},\mu_{X}\right)\,\longrightarrow\,\left(V^{T},\sigma\!\left[\left(V,\mathcal{F}\right)^{T}\right]\right)
+\quad\textnormal{and}\quad
+Y \,:\, \left(\Omega_{Y},\mathcal{A}_{Y},\mu_{Y}\right)\,\longrightarrow\,\left(V^{T},\sigma\!\left[\left(V,\mathcal{F}\right)^{T}\right]\right)
+\end{equation*}
+be their respective
+$\left(V^{T},\sigma\!\left[\left(V,\mathcal{F}\right)^{T}\right]\right)$-valued random variables.
+Let $\mathcal{P}_{X}$, $\mathcal{P}_{Y}$ $\in$
+$\mathcal{M}_{1}\!\left(V^{T},\sigma\!\left[\left(V,\mathcal{F}\right)^{T}\right]\right)$
+be the probability measures induced on
+$\left(V^{T},\sigma\!\left[\left(V,\mathcal{F}\right)^{T}\right]\right)$ by $X$ and $Y$, respectively.
+Then,
+\begin{equation*}
+\mathcal{P}_{X} \,=\, \mathcal{P}_{Y}
+\,\in\, \mathcal{M}_{1}\!\left(V^{T},\sigma\!\left[\left(V,\mathcal{F}\right)^{T}\right]\right)
+\end{equation*}
+if and only if
+\begin{equation*}
+\mathcal{P}_{\left(X_{t_{1}},X_{t_{2}},\ldots,X_{t_{n}}\right)}
+\,=\,
+\mathcal{P}_{\left(Y_{t_{1}},Y_{t_{2}},\ldots,Y_{t_{n}}\right)}
+\,\in\, \mathcal{M}_{1}\!\left(V^{n},\mathcal{F}^{\otimes n}\right),
+\;\;
+\textnormal{for each $n \in \N$ and pairwise distinct $t_{1}, t_{2}, \ldots, t_{n} \in T$}.
+\end{equation*}
+\end{theorem}
+\proof
+
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
