@@ -1,0 +1,236 @@
+
+\newcommand{\Wpo}{\mathcal{W}^{p}_{1}}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Wasserstein Spaces}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+Proofs of results mentioned in this section can be found in Chapters 1 and 6 of \cite{Villani2009}.
+
+\vskip 0.5cm
+\noindent
+Suppose $\left(S,\mathcal{S}\right)$ and $\left(T,\mathcal{T}\right)$ are two measurable spaces.
+We will use the following notations:
+\begin{itemize}
+\item $\left(S \times T, \mathcal{S} \otimes \mathcal{T}\right)$ denotes their product measurable space (see Chapter 10, \cite{JacodProtter}).
+\item $\mathcal{M}_{1}\!\left(S,\mathcal{S}\right)$, $\mathcal{M}_{1}\!\left(T,\mathcal{T}\right)$, and
+	$\mathcal{M}_{1}\!\left(S \times T, \mathcal{S}\otimes\mathcal{T}\right)$
+	denote the sets of probability measures on the respective measurable spaces.
+\item $\Pi^{S} : S \times T \longrightarrow S : (s,t) \longmapsto s$,
+	$\Pi^{T} : S \times T \longrightarrow T : (s,t) \longmapsto t$
+	are the canonical projection maps, and
+	\begin{equation*}
+	\begin{array}{ccccccccc}
+	\Pi^{S}_{*}
+	&:
+	&\mathcal{M}_{1}\!\left(S \times T, \mathcal{S}\otimes\mathcal{T}\right)
+	&\longrightarrow
+	&\mathcal{M}_{1}\!\left(S,\mathcal{S}\right)
+	&:
+	&\pi
+	&\longmapsto
+	&\left(\;\;A \in \mathcal{S} \longmapsto \pi\!\left[(\Pi^{S})^{-1}(A)\right]\;\;\right),
+	\\ \\
+	\Pi^{T}_{*}
+	&:
+	&\mathcal{M}_{1}\!\left(S \times T, \mathcal{S}\otimes\mathcal{T}\right)
+	&\longrightarrow
+	&\mathcal{M}_{1}\!\left(T,\mathcal{T}\right)
+	&:
+	&\pi
+	&\longmapsto
+	&\left(\;\;B \in \mathcal{T} \longmapsto \pi\!\left[(\Pi^{T})^{-1}(B)\right]\;\;\right)
+	\end{array}
+	\end{equation*}
+	are the corresponding push-forward maps of measures.
+\end{itemize}
+
+\begin{definition}[Coupling measures and couplings]
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\left(S,\mathcal{S}\right)$ and $\left(T,\mathcal{T}\right)$ be two measurable spaces.
+Let $\mu \in \mathcal{M}_{1}\!\left(S,\mathcal{S}\right)$ and
+$\nu \in \mathcal{M}_{1}\!\left(T,\mathcal{T}\right)$.
+\begin{itemize}
+\item
+	A \textbf{coupling (probability) measure} of $\mu$ and $\nu$ is a probability measure
+	$\pi \in \mathcal{M}_{1}\!\left(S \times T, \mathcal{S} \otimes \mathcal{T}\right)$
+	whose push-forwards under the canonical projection maps are $\mu$ and $\nu$ respectively;
+	in other words
+	$\pi \in \mathcal{M}_{1}\!\left(S \times T, \mathcal{S} \otimes \mathcal{T}\right)$
+	is a coupling measure of
+	$(\mu,\nu ) \in \mathcal{M}_{1}\!\left(S,\mathcal{S}\right) \times \mathcal{M}_{1}\!\left(T,\mathcal{T}\right)$
+	if $\pi$ satisfies:
+	\begin{equation*}
+		\Pi^{S}_{*}(\pi) = \mu
+		\quad\textnormal{and}\quad
+		\Pi^{T}_{*}(\pi) = \nu.
+	\end{equation*}
+	In this case, $\mu$ and $\nu$ are called the \textbf{marginal (probability) measures} of $\pi$.
+	We denote by $\Pi\!\left(\mu,\nu\right)$ the subset of
+	$\mathcal{M}_{1}\!\left(S \times T, \mathcal{S} \otimes \mathcal{T}\right)$
+	of all coupling probability measures of $\mu$ and $\nu$.
+\item
+	A \textbf{coupling} of $\mu$ and $\nu$ is an $(S \times T)$-valued random variable
+	\begin{equation*}
+		Z \, = \, (X,Y)
+		\,:\, \left(\,\Omega,\mathcal{A},P_{\Omega}\,\right)
+		\,\longrightarrow\, \left(\,S \times T, \mathcal{S} \otimes \mathcal{T}\,\right)
+	\end{equation*}
+	whose induced measure on $\left(\,S \times T, \mathcal{S} \otimes \mathcal{T}\,\right)$
+	is a coupling probability measure of $\mu$ and $\nu$. More precisely,
+	\begin{equation*}
+	\begin{array}{cccl}
+		\mu(A) & = & P_{X}(A)
+			\,=\, P_{\Omega}\!\left(X^{-1}(A)\right)
+			\,=\, P_{\Omega}\!\left((\Pi^{S}\circ Z)^{-1}(A)\right)
+			\,=\, P_{\Omega}\!\left(\,Z^{-1}\!\left[(\Pi^{S})^{-1}(A)\right]\,\right),
+			& \textnormal{for each $A \in \mathcal{S}$}
+		\\ \\
+		\nu(B) & = & P_{Y}(B)
+			\,=\, P_{\Omega}\!\left(Y^{-1}(B)\right)
+			\,=\, P_{\Omega}\!\left((\Pi^{T}\circ Z)^{-1}(B)\right)
+			\,=\, P_{\Omega}\!\left(\,Z^{-1}\!\left[(\Pi^{T})^{-1}(B)\right]\,\right),
+			& \textnormal{for each $B \in \mathcal{T}$}
+	\end{array}
+	\end{equation*}
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Wasserstein distances and Wasserstein spaces]
+\mbox{}\vskip 0.1cm
+\noindent
+Let $p \in [1,\infty)$.
+Let $\left(S,\rho\right)$ be a Polish space (i.e. separable complete metric space),
+and $\mathcal{S}$ its Borel $\sigma$-algebra.
+\begin{itemize}
+\item
+	The \textbf{Wasserstein distance of order $p$} is, by definition, the map
+	$W_{p} : \mathcal{M}_{1}\!\left(S,\mathcal{S}\right) \times \mathcal{M}_{1}\!\left(S,\mathcal{S}\right)
+	\longrightarrow \Re\cup\{\,+\infty\,\}$
+	given by:
+	\begin{eqnarray*}
+	W_{p}\!\left(\mu,\nu\right)
+	& := &
+	\inf_{\pi\in\Pi(\mu,\nu)}
+	\left\{\;
+	\left(\;
+	\int_{S \times S}\,\rho(x,y)^{p} \;\d\pi(x,y)
+	\;\right)^{1/p}
+	\;\right\}
+	\\ \\
+	& = &
+	\inf\left\{\;
+	\left(\,E\!\left[\,\rho(X,Y)^{p}\,\right]\,\right)^{1/p} \in \Re\cup\{\,+\infty\,\}
+	\;\;\left\vert\;
+	\begin{array}{c}
+	\textnormal{\small$X\,,\,Y : (\Omega,\mathcal{A},\pi) \longrightarrow (S,\mathcal{S})$ are $S$-valued}
+	\\
+	\textnormal{\small random variables with $X^{*}(\pi) = \mu, Y^{*}(\pi) = \nu$}
+	\end{array}
+	\right.
+	\;\right\}.
+	\end{eqnarray*}
+\item
+	The \textbf{Wasserstein space of order $p$} is defined to be:
+	\begin{equation*}
+		\Wpo\!\left(S,\mathcal{S}\right)
+		\;\; := \;\;
+		\left\{\;
+		\mu \in \mathcal{M}_{1}\!\left(S,\mathcal{S}\right)
+		\;\;\left\vert\;\;
+		\int_{S}\,\rho(x_{0},x)^{p}\,\d\mu(x) \, < \, \infty
+		\right.
+		\;\right\},
+	\end{equation*}
+	where $x_{0} \in S$ is an arbitrary point in $S$
+	(\,$\Wpo\!\left(S,\mathcal{S}\right)$ is independent of the choice of $x_{0} \in S$).
+	Thus, $\Wpo\!\left(S,\mathcal{S}\right)$ is the set of probability measures
+	on	$\left(S,\mathcal{S}\right)$ with finite moment of order $p$.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Wasserstein metrics]
+\mbox{}\vskip0cm
+\begin{itemize}
+\item
+	The Wasserstein space $\Wpo\!\left(S,\mathcal{S}\right)$ is independent of the
+	choice of the point $x_{0} \in S$ in its definition.
+\item
+	The Wasserstein distance $W_{p}$ restricts to a metric on
+	$\Wpo\!\left(S,\mathcal{S}\right) \times \Wpo\!\left(S,\mathcal{S}\right)$.
+\item
+	For a Polish space (i.e. separable complete metric space) $(S,\rho)$
+	with Borel $\sigma$-algebra $\mathcal{S}$,
+	the Wassertein space $\Wpo\!\left(S,\mathcal{S}\right)$,
+	when metrized by the Wasserstein metric $W_{p}$, is itself a Polish space.
+\end{itemize}
+\end{theorem}
+
+\begin{definition}[Weak convergence in metric spaces (Chapter 1, \cite{Billingsley1999})]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item $\left(S,\rho\right)$ is a metric space and $\mathcal{S}$ is its Borel $\sigma$-algebra.
+\item $\mathcal{M}_{1}\!\left(S,\mathcal{S}\right)$ denotes the set of probability measures defined on $\left(S,\mathcal{S}\right)$.
+\item $\mu \in \mathcal{M}_{1}\!\left(S,\mathcal{S}\right)$ and
+	$\left\{\,\mu_{k}\,\right\}_{k\in\N} \subset \mathcal{M}_{1}\!\left(S,\mathcal{S}\right)$.
+\end{itemize}
+Then, $\left\{\,\mu_{k}\,\right\}_{k\in\N}$ is said to
+\textbf{converge weakly} to $\mu$ if, for each $f \in C_{b}(S,\Re)$,
+\begin{equation*}
+\int_{S}\,f(x)\,\d\mu_{k}(x) \;\longrightarrow\;\int_{S}\,f(x)\,\d\mu(x),
+\;\;\textnormal{as $k \longrightarrow \infty$},
+\end{equation*}
+where $C_{b}(S,\Re)$ denotes the set of all bounded continuous $\Re$-valued functions on $S$.
+We write $\mu_{k}\overset{w}{\longrightarrow}\mu$ for $\mu_{k}$ converging weakly to $\mu$.
+\end{definition}
+
+\begin{definition}[Weak convergence in Wassertein spaces (Definition 6.8, \cite{Villani2009})]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item $(X, \rho)$ is a Polish space, and $\mathcal{S}$ is its Borel $\sigma$-algebra.
+\item $p \in [1,\infty)$ and\,
+	$\Wpo\!\left(S,\mathcal{S}\right)$ is the corresponding Wasserstein space of order $p$.
+\item $\mu \in \Wpo\!\left(S,\mathcal{S}\right)$ and
+	$\left\{\,\mu_{k}\,\right\}_{k\in\N} \subset \Wpo\!\left(S,\mathcal{S}\right)$.
+\end{itemize}
+Then, $\left\{\,\mu_{k}\,\right\}_{k\in\N}$ is said to
+\textbf{converge weakly in $\Wpo\!\left(S,\mathcal{S}\right)$} to $\mu$
+if, for some (hence any) $x_{0} \in S$, we have:
+\begin{equation*}
+\mu_{k} \overset{w}{\longrightarrow} \mu
+\quad\textnormal{and}\quad
+\int_{S}\, \rho(x_{0},x)^{p}\,\d\mu_{k}(x) \,\longrightarrow\,\int_{S}\, \rho(x_{0},x)^{p}\,\d\mu(x),
+\;\;\textnormal{as $k \longrightarrow \infty$}.
+\end{equation*}
+We write $\mu_{k} \overset{\Wpo}{\longrightarrow} \mu$
+for $\mu_{k}$ converging weakly to $\mu$ in $\Wpo\!\left(S,\mathcal{S}\right)$.
+\end{definition}
+
+\begin{theorem}[Wasserstein metrics metrize weak convergence in Wassertein spaces (Theorem 6.9, \cite{Villani2009})]
+%\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item $(X, \rho)$ is a Polish space, and $\mathcal{S}$ is its Borel $\sigma$-algebra.
+\item $p \in [1,\infty)$,
+	$\left(\,\Wpo\!\left(S,\mathcal{S}\right),W_{p}\,\right)$ is the corresponding Wasserstein space of order $p$,
+	metrized by the Wasserstein metric $W_{p}$ defined on it.
+\item $\mu \in \Wpo\!\left(S,\mathcal{S}\right)$ and
+	$\left\{\,\mu_{k}\,\right\}_{k\in\N} \subset \Wpo\!\left(S,\mathcal{S}\right)$.
+\end{itemize}
+Then,
+\begin{equation*}
+\mu_{k} \, \overset{\Wpo}{\longrightarrow} \, \mu
+\quad\textnormal{if and only if}\quad
+W_{p}\!\left(\mu_{k},\mu\right) \longrightarrow 0.
+\end{equation*}
+\end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
