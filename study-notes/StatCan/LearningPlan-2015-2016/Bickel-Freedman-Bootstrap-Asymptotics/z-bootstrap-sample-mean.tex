@@ -33,7 +33,7 @@ defined on $\Omega$
 %\; = \; \int_{\Omega}\; \left(X(\omega) - \mu_{X}\right)^{2} \; \d\nu(\omega) 
 %\; < \; \infty
 %\end{equation*}
-For each $n \in \N$ be fixed, define:
+For each $n \in \N$, define:
 \begin{equation*}
 \overline{X}_{n} \;:\; \Omega \; \longrightarrow \; \Re \;:\; \omega \; \longmapsto \; \dfrac{1}{n}\sum^{n}_{i=1}\,X_{i}(\omega).
 \end{equation*}
@@ -54,7 +54,7 @@ Define:
 \begin{equation*}
 \Xnm
 \;:\;\Omega \times \Snm \;\longrightarrow \; \Re
-\;:\; (\omega,s) \; \longmapsto \; \dfrac{1}{m}\,\sum^{n}_{j=1}\,X_{s(j)}(\omega).
+\;:\; (\omega,s) \; \longmapsto \; \dfrac{1}{m}\,\sum^{m}_{j=1}\,X_{s(j)}(\omega).
 \end{equation*}
 For each $\omega \in \Omega$, define:
 \begin{equation*}
@@ -120,6 +120,174 @@ P\!\left(\;\lim_{n\rightarrow\infty}\,\overline{X}_{n} = \mu_{X}\;\right)
 \end{equation*}
 By the \textbf{Central Limit Theorem}, $\sqrt{n}\left(\overline{X}_{n} - \mu_{X}\right)$ converges in distribution to $N(0,\sigma^{2}_{X})$.
 \end{remark}
+
+\proof
+Let $\mathcal{M}_{1}(\Re,\mathcal{B}(\Re))$ denotes the collection
+of probability measures on $(\Re,\mathcal{B}(\Re))$.
+Define
+\begin{equation*}
+\Gamma_{2}
+\; := \;
+\left\{\;
+G \in \mathcal{M}_{1}(\Re,\mathcal{B}(\Re))
+\;\;\left\vert\;\;
+\int_{\Re}\,x^{2}\,\d G(x) < \infty
+\right.
+\;\right\}.
+\end{equation*}
+Define the \textbf{Wasserstein metric} on $\Gamma_{2}$:
+\begin{equation*}
+d_{2}
+\,:\, \Gamma_{2} \times \Gamma_{2} \longrightarrow \Re
+\,:\, (G,G^{\prime}) \longmapsto
+\inf\left\{\;
+\left.
+\sqrt{E\!\left[\rho(X,Y)^{2}\right]}
+\;\;\right\vert\;\;
+(X,Y)\in C(G,G^{\prime})
+\;\right\}
+\end{equation*}
+\mbox{}
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\; $d_{2}$ is indeed a metric on $\Gamma_{2}$.
+
+\mbox{}
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\; For $G, G_{1}, G_{2}, \ldots \in \Gamma_{2}$,
+\begin{equation*}
+G_{n} \overset{d_{2}}{\longrightarrow} G
+\quad\quad\textnormal{if and only if}\quad\quad
+G_{n}\longrightarrow G\;\,\textnormal{weakly}
+\quad\textnormal{and}\quad
+\int_{\Re}\,x^{2}\,\d G_{n}(x) \longrightarrow \int_{\Re}\,x^{2}\,\d G(x)
+\end{equation*}
+
+\mbox{}
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}\; For $G \in \Gamma_{2}$ and $m \in \N$,
+let $G^{(m)}$ be the \textbf{$m$-fold empirical measure} of $G$, i.e.
+$G^{(m)}$ is the (empirical) measure of the random variable
+\begin{equation*}
+S_{m}^{(G)} \;\; := \;\; \dfrac{1}{m^{1/2}} \sum_{i=1}^{m}\left(Z_{i}^{(G)} - \mu_{G}\right),
+\end{equation*}
+where $\mu_{G} := \int_{\Re}\,x\,\d G(x)$ is the expectation value of the measure $G$,
+and $Z^{(G)}_{1},Z^{(G)}_{2},\ldots,Z^{(G)}_{m}$ are independent and
+identically distributed random variables with distribution $G$.
+Then, for any $G, H \in \Gamma_{2}$, we have
+\begin{equation*}
+d_{2}\!\left(G^{(m)},H^{(m)}\right)
+\;\; \leq \;\;
+d_{2}\!\left(\,G,H\,\right)
+\end{equation*}
+
+\mbox{}
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4:}\;
+\begin{equation*}
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+F_{n}(\omega) \overset{\textnormal{w}}{\longrightarrow} F
+\right.
+\;\right\}\right)
+\;\; = \;\;
+1
+\end{equation*}
+Claim 4 follows from the Glivenko-Cantelli Theorem, which states that:
+\begin{equation*}
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+\lim_{n\rightarrow\infty}\,\sup_{t \in \Re}\,\left\vert F_{n}(\omega)(t) - F(t) \right\vert \,=\, 0
+\right.
+\;\right\}\right)
+\;\; = \;\;
+1,
+\end{equation*}
+which implies trivially
+\begin{equation*}
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+\lim_{n\rightarrow\infty}F_{n}(\omega)(t) = F(t),
+\;\,\textnormal{for each $t\in\Re$}
+\right.
+\;\right\}\right)
+\;\; = \;\;
+1,
+\end{equation*}
+which, in turn, is equivalent to Claim 4.
+
+\mbox{}
+\vskip 0.5cm
+\noindent
+\textbf{Claim 5:}\;
+\begin{equation*}
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+\int_{\Re}\,x^{2}\,\d F_{n}(\omega)(x) \longrightarrow \int_{\Re}\,x^{2}\,\d F(x)
+\right.
+\;\right\}\right)
+\;\; = \;\;
+1
+\end{equation*}
+By the Strong Law of Large Numbers, we have
+\begin{equation*}
+\int_{\Re}\,x^{2}\,\d F_{n}(\omega)(x)
+\;\; = \;\; \dfrac{1}{n}\sum_{i=1}^{n}X_{i}(\omega)^{2}
+\;\; \overset{\textnormal{a.e.}}{\longrightarrow} \;\; E\!\left[\,X^{2}\,\right]
+\;\; = \;\; \int_{\Re}\,x^{2}\,\d F(x)
+\end{equation*}
+
+\mbox{}
+\vskip 0.6cm
+\noindent
+\textbf{Claim 6:}\;
+\begin{equation*}
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+F_{n}(\omega) \overset{d_{2}}{\longrightarrow} F
+\right.
+\;\right\}\right)
+\;\; = \;\;
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+d_{2}\!\left(F_{n}(\omega),F\,\right) \longrightarrow 0
+\right.
+\;\right\}\right)
+\;\; = \;\;
+1
+\end{equation*}
+Immediate by Claims 2, 4, and 5.
+
+\vskip 0.5cm
+\noindent
+Let $\omega \in \Omega$ be fixed.
+\begin{eqnarray*}
+d_{2}\!\left(F^{(m)}_{n}(\omega),N(0,\sigma^{2}_{X})\right)
+& \leq & d_{2}\!\left(F^{(m)}_{n}(\omega),F^{(m)}\right) \;+\; d_{2}\!\left(F^{(m)},N(0,\sigma^{2}_{X})\right) \\
+& \leq & d_{2}\!\left(\,F_{n}(\omega),F\,\right) \;+\; d_{2}\!\left(F^{(m)},N(0,\sigma^{2}_{X})\right) \\
+\end{eqnarray*}
+Now, $d_{2}\!\left(F^{(m)},N(0,\sigma^{2}_{X}))\right) \longrightarrow 0$ by the classical Central Limit Theorem.
+
+\begin{equation*}
+\begin{array}{ccccl}
+& d_{2}\!\left(\,F_{n}(\omega),F\,\right) \;+\; d_{2}\!\left(F^{(m)},N(0,\sigma^{2}_{X})\right) &\longrightarrow& 0, & \textnormal{as $n, m \longrightarrow \infty$}
+\\ \\
+\Longrightarrow& d_{2}\!\left(F^{(m)}_{n}(\omega),N(0,\sigma^{2}_{X})\right) &\longrightarrow& 0, &\textnormal{as $n, m \longrightarrow \infty$}
+\\ \\
+\Longrightarrow& F^{(m)}_{n}(\omega) & \overset{\textnormal{w}}{\longrightarrow}& N(0,\sigma^{2}_{X}), &\textnormal{as $n, m \longrightarrow \infty$}
+\end{array}
+\end{equation*}
+
+\qed
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
