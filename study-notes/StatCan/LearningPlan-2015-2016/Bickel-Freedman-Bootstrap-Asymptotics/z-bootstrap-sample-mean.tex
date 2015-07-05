@@ -1,7 +1,12 @@
 
+\newcommand{\Wpo}{\mathcal{W}^{p}_{1}}
+\newcommand{\Wto}{\mathcal{W}^{2}_{1}\!\left(\Re,\mathcal{B}(\Re)\right)}
+\newcommand{\Wt}{W_{2}}
+\newcommand{\MoR}{\mathcal{M}_{1}(\Re,\mathcal{B}(\Re))}
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Bootstrap asymptotics for sample mean}
+\section{Bootstrap asymptotics for the I.I.D. sample mean}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -58,7 +63,7 @@ Define:
 \end{equation*}
 For each $\omega \in \Omega$, define:
 \begin{equation*}
-\Phi^{(n)}_{m,\omega}
+Y^{(n)}_{m,\omega}
 \;:\;
 \Snm\;\longrightarrow\; \Re
 \;:\;
@@ -69,13 +74,13 @@ s
 Then,
 \begin{equation*}
 P\!\left(\;
-\Phi^{(n)}_{m,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnormal{as $n,m\rightarrow\infty$}
+Y^{(n)}_{m,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnormal{as $n,m\rightarrow\infty$}
 \;\right)
 \;\; = \;\;
 \nu\!\left(\left\{\;
 \omega \in \Omega
 \;\left\vert\;
-\Phi^{(n)}_{m,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnormal{as $n,m\rightarrow\infty$}
+Y^{(n)}_{m,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnormal{as $n,m\rightarrow\infty$}
 \right.
 \;\right\}\right)
 \;\; = \;\;
@@ -87,12 +92,12 @@ P\!\left(\;
 \mbox{}\vskip 0.1cm
 \noindent
 For each fixed $\omega \in \Omega$,
-$\left\{\,\Phi^{(n)}_{m,\omega} : \Snm \longrightarrow \Re\,\right\}_{n,m\in\N}$
+$\left\{\,Y^{(n)}_{m,\omega} : \Snm \longrightarrow \Re\,\right\}_{n,m\in\N}$
 is a doubly indexed sequence of $\Re$-valued random variables.
 Note that their respective domains $\Snm$ are pairwise distinct probability spaces.
 The \textbf{Bootstrap Central Limit Theorem for I.I.D. sample mean}
 asserts that for almost every $\omega \in \Omega$,
-the doubly indexed sequence $\left\{\,\Phi^{(n)}_{m,\omega}\,\right\}$
+the doubly indexed sequence $\left\{\,Y^{(n)}_{m,\omega}\,\right\}$
 of $\Re$-valued random variables converges in distribution to
 $N(0,\sigma^{2}_{X})$ as $n, m \longrightarrow \infty$.
 \end{remark}
@@ -122,71 +127,267 @@ By the \textbf{Central Limit Theorem}, $\sqrt{n}\left(\overline{X}_{n} - \mu_{X}
 \end{remark}
 
 \proof
-Let $\mathcal{M}_{1}(\Re,\mathcal{B}(\Re))$ denotes the collection
-of probability measures on $(\Re,\mathcal{B}(\Re))$.
-Define
+Let $\MoR$ denotes the set of probability measures on $(\Re,\mathcal{B}(\Re))$.
+Let
 \begin{equation*}
-\Gamma_{2}
+\Wto
 \; := \;
 \left\{\;
-G \in \mathcal{M}_{1}(\Re,\mathcal{B}(\Re))
+G \in \MoR
 \;\;\left\vert\;\;
 \int_{\Re}\,x^{2}\,\d G(x) < \infty
 \right.
 \;\right\}.
 \end{equation*}
-Define the \textbf{Wasserstein metric} on $\Gamma_{2}$:
+denote the Wasserstein space (Definition \ref{definition:WassersteinSpace}) of order $2$
+of the measurable space $\left(\Re,\mathcal{B}(\Re)\right)$, whose underlying topological
+space ($1$-dimensional Euclidean space) is a Polish space (i.e. separable complete metric space).
+Let
 \begin{equation*}
-d_{2}
-\,:\, \Gamma_{2} \times \Gamma_{2} \longrightarrow \Re
-\,:\, (G,G^{\prime}) \longmapsto
+\Wt
+\,:\, \Wto \times \Wto \, \longrightarrow \, \Re
+\,:\, (G,G^{\prime}) \, \longmapsto \,
 \inf\left\{\;
 \left.
-\sqrt{E\!\left[\rho(X,Y)^{2}\right]}
+\sqrt{E\!\left(\,\vert X - Y \vert^{2}\,\right)}
 \;\;\right\vert\;\;
-(X,Y)\in C(G,G^{\prime})
+(X,Y)\in \Pi(G,G^{\prime})
 \;\right\}
 \end{equation*}
-\mbox{}
-\vskip 0.5cm
-\noindent
-\textbf{Claim 1:}\; $d_{2}$ is indeed a metric on $\Gamma_{2}$.
+denote the Wasserstein metric (Theorem \ref{theorem:WassersteinMetric}) on $\Wto$.
 
-\mbox{}
 \vskip 0.5cm
 \noindent
-\textbf{Claim 2:}\; For $G, G_{1}, G_{2}, \ldots \in \Gamma_{2}$,
+For each $m \in \N$, let $F^{(m)} \in \MoR$ denote the distribution of
 \begin{equation*}
-G_{n} \overset{d_{2}}{\longrightarrow} G
-\quad\quad\textnormal{if and only if}\quad\quad
-G_{n}\longrightarrow G\;\,\textnormal{weakly}
-\quad\textnormal{and}\quad
-\int_{\Re}\,x^{2}\,\d G_{n}(x) \longrightarrow \int_{\Re}\,x^{2}\,\d G(x)
+Y^{(m)}
+\,:\, \Omega \,\longrightarrow\, \Re
+\,:\, \omega \,\longmapsto\, \sqrt{m}\left(\,\overline{X}_{m}(\omega) - \mu_{X}\,\right).
+\end{equation*}
+And, for each $\omega \in \Omega$, and each $m, n \in \N$, let $F^{(m)}_{n}(\omega) \in \MoR$ denote the distribution of
+\begin{equation*}
+Y^{(n)}_{m,\omega}
+\;:\;
+\Snm\;\longrightarrow\; \Re
+\;:\;
+s
+\;\longmapsto\;
+\sqrt{m}\left(\,\Xnm(\omega,s) - \overline{X}_{n}(\omega)\,\right).
 \end{equation*}
 
-\mbox{}
-\vskip 0.5cm
 \noindent
-\textbf{Claim 3:}\; For $G \in \Gamma_{2}$ and $m \in \N$,
+Note that $N(0,\sigma^{2}_{X}) \in \Wto$.
+By hypothesis, $F^{(m)} \in$ $\Wto$ for each $m \in \N$.
+And, for each $\omega \in \Omega$, $m, n \in \N$, we have $F^{(m)}_{n}(\omega) \in \Wto$,
+since $\mathcal{S}^{(n)}_{m}$ is a finite probability space.
+Therefore, by Theorem \ref{theorem:WassersteinMetric} and Claim 3 below, the following inequalities hold:
+For each $\omega \in \Omega$ and $m, n \in \N$,
+\begin{eqnarray*}
+\Wt\!\left(F^{(m)}_{n}(\omega),N(0,\sigma^{2}_{X})\right)
+& \leq & \Wt\!\left(F^{(m)}_{n}(\omega),F^{(m)}\right) \;+\; \Wt\!\left(F^{(m)},N(0,\sigma^{2}_{X})\right) \\
+& \leq & \Wt\!\left(\,F_{n}(\omega),F\,\right) \;+\; \Wt\!\left(F^{(m)},N(0,\sigma^{2}_{X})\right).
+\end{eqnarray*}
+Thus, the present Theorem follows by Theorem \ref{theorem:WassersteinMetricMetrizesWassersteinConvergence}
+and the following two claims:
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{5in}
+\noindent
+\textbf{Claim 1:}\;\; $\Wt\!\left(F^{(m)},N(0,\sigma^{2}_{X}))\right) \longrightarrow 0$,\; as $m \longrightarrow \infty$.
+\vskip 0.3cm
+\textbf{Claim 2:}\;\;
+	$
+	\nu\!\left(\left\{\;
+	\omega \in \Omega
+	\;\left\vert\;\;
+	W_{2}\!\left(\,F_{n}(\omega), F\,\right) \overset{\textnormal{\color{white}X}}{\longrightarrow} 0\,,
+	\;\textnormal{as $n\longrightarrow\infty$}
+	\right.
+	\;\right\}\right)
+	\;\; = \;\; 1.
+	$
+\end{minipage}
+\end{center}
+
+\vskip 0.8cm
+\noindent
+\underline{Proof of Claim 1:}\;\;
+By the Classical Central Limit Theorem, $F^{(m)} \overset{w}{\longrightarrow} N(0,\sigma^{2}_{X})$.
+Since $E\!\left[\,Y^{(m)}\,\right] = 0$, we have
+\begin{eqnarray*}
+\int_{\Re}\;y^{2}\;\d F^{(m)}(y)
+& = & E\!\left[\,\left(Y^{(m)}\right)^{2}\,\right]
+\;\; = \;\; \Var\!\left[\, Y^{(m)} \,\right]
+\;\; = \;\; m\cdot\Var\!\left[\, \left(\dfrac{1}{m}\sum^{m}_{i=1}X_{i}\right) - \mu_{X} \,\right]
+\\
+& = & \dfrac{m}{m^{2}}\cdot\sum^{m}_{i=1}\Var\!\left[\,X_{i}\,\right]
+\;\; = \;\; \dfrac{1}{m}\cdot m \cdot \sigma^{2}_{X}
+\;\; = \;\; \sigma^{2}_{X},
+\end{eqnarray*}
+which is the second moment of $N(0,\sigma^{2}_{X})$.
+Hence, by Definition \ref{definition:WassersteinConvergence}, we have
+$F^{(m)} \overset{\mathcal{W}^{2}_{1}}{\longrightarrow} N(0,\sigma^{2}_{X})$,
+and by Theorem \ref{theorem:WassersteinMetricMetrizesWassersteinConvergence},
+we have
+$\Wt\!\left(F^{(m)},N(0,\sigma^{2}_{X}))\right) \longrightarrow 0$, as $m \longrightarrow \infty$.
+This completes the proof of Claim 1.
+
+\vskip 0.8cm
+\noindent
+\underline{Proof of Claim 2:}\;\;
+By hypothesis $\mu_{X} := E\!\left[\,X\,\right] \in \Re$ and $\sigma^{2}_{X} := \Var\!\left[\,X\,\right] < \infty$.
+Hence $E\!\left[\,X^{2}\,\right] = \Var\!\left[\,X\,\right] + E\!\left[\,X\,\right]^{2} < \infty$.
+Thus, by the Strong Law of Large Numbers, we have:
+\begin{equation*}
+\int_{\Re}\,x^{2}\,\d F_{n}(\omega)(x)
+\;\; = \;\; \dfrac{1}{n}\sum_{i=1}^{n}X_{i}(\omega)^{2}
+\;\; \overset{\textnormal{a.e.}}{\longrightarrow} \;\; E\!\left[\,X^{2}\,\right]
+\;\; = \;\; \int_{\Re}\,x^{2}\,\d F(x),
+\end{equation*}
+equivalently,
+\begin{equation*}
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+\int_{\Re}\,x^{2}\,\d F_{n}(\omega)(x) \longrightarrow \int_{\Re}\,x^{2}\,\d F(x)
+\right.
+\;\right\}\right)
+\;\; = \;\;
+1.
+\end{equation*}
+On the other hand, by the Glivenko-Cantelli Theorem, we have:
+\begin{equation*}
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+\lim_{n\rightarrow\infty}\,\sup_{t \in \Re}\,\left\vert F_{n}(\omega)(t) - F(t) \right\vert \,=\, 0
+\right.
+\;\right\}\right)
+\;\; = \;\;
+1,
+\end{equation*}
+which implies trivially
+\begin{equation*}
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+\lim_{n\rightarrow\infty}F_{n}(\omega)(t) = F(t),
+\;\,\textnormal{for each $t\in\Re$}
+\right.
+\;\right\}\right)
+\;\; = \;\;
+1,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+F_{n}(\omega) \overset{w}{\longrightarrow} F
+\right.
+\;\right\}\right)
+\;\; = \;\;
+1.
+\end{equation*}
+Note that in the above assertion, we used the slight abuse of notation that $F_{n}(\omega)$ represents both
+the distribution (measure) $F_{n}(\omega) \in \MoR$ as well as its cumulative distribution function defined on $\Re$.
+Thus, we see that
+Theorem \ref{theorem:WassersteinMetricMetrizesWassersteinConvergence},
+the Glivenko-Cantelli Theorem, and
+the Strong Law of Large Numbers together imply:
+\begin{eqnarray*}
+&&
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+W_{2}\!\left(\,F_{n}(\omega), F\,\right) \overset{\textnormal{\color{white}X}}{\longrightarrow} 0
+\right.
+\;\right\}\right)
+\\
+& = &
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+F_{n}(\omega) \overset{\mathcal{W}^{2}_{1}}{\longrightarrow} F
+\right.
+\;\right\}\right)
+\\
+& = &
+\nu\!\left(\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+F_{n}(\omega) \overset{w}{\longrightarrow} F
+\;\;\textnormal{and}\;\;
+\int_{\Re}\,x^{2}\,\d F_{n}(\omega)(x) \longrightarrow \int_{\Re}\,x^{2}\,\d F(x)
+\right.
+\;\right\}\right)
+\\
+& = &
+\nu\!\left(
+\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+F_{n}(\omega) \overset{w}{\longrightarrow} F
+\right.
+\;\right\}
+\;\bigcap\;
+\left\{\;
+\omega \in \Omega
+\;\left\vert\;\;
+\int_{\Re}\,x^{2}\,\d F_{n}(\omega)(x) \longrightarrow \int_{\Re}\,x^{2}\,\d F(x)
+\right.
+\;\right\}
+\right)
+\\
+&=& 1.
+\end{eqnarray*}
+This completes the proof of Claim 2.
+
+\vskip 0.8cm
+\begin{center}
+\begin{minipage}{5.5in}
+\noindent
+\textbf{Claim 3:}\; For $G \in \Wto$ and $m \in \N$,
 let $G^{(m)}$ be the \textbf{$m$-fold empirical measure} of $G$, i.e.
 $G^{(m)}$ is the (empirical) measure of the random variable
 \begin{equation*}
-S_{m}^{(G)} \;\; := \;\; \dfrac{1}{m^{1/2}} \sum_{i=1}^{m}\left(Z_{i}^{(G)} - \mu_{G}\right),
+Y_{m}^{(G)} \;\; := \;\; \dfrac{1}{m^{1/2}} \sum_{i=1}^{m}\left(Z_{i}^{(G)} - \mu_{G}\right),
 \end{equation*}
-where $\mu_{G} := \int_{\Re}\,x\,\d G(x)$ is the expectation value of the measure $G$,
+where $\mu_{G} := \int_{\Re}\,x\,\d G(x)$ is the expectation value of the distribution $G$,
 and $Z^{(G)}_{1},Z^{(G)}_{2},\ldots,Z^{(G)}_{m}$ are independent and
 identically distributed random variables with distribution $G$.
-Then, for any $G, H \in \Gamma_{2}$, we have
+Then, for any $G, H \in \Wto$, we have
 \begin{equation*}
-d_{2}\!\left(G^{(m)},H^{(m)}\right)
+\Wt\!\left(G^{(m)},H^{(m)}\right)
 \;\; \leq \;\;
-d_{2}\!\left(\,G,H\,\right)
+\Wt\!\left(\,G,H\,\right).
+\end{equation*}
+\end{minipage}
+\end{center}
+
+\noindent
+\underline{Proof of Claim 3:}\;\;
+
+\qed
+
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\begin{equation*}
+\begin{array}{ccccl}
+& d_{2}\!\left(\,F_{n}(\omega),F\,\right) \;+\; d_{2}\!\left(F^{(m)},N(0,\sigma^{2}_{X})\right) &\longrightarrow& 0, & \textnormal{as $n, m \longrightarrow \infty$}
+\\ \\
+\Longrightarrow& d_{2}\!\left(F^{(m)}_{n}(\omega),N(0,\sigma^{2}_{X})\right) &\longrightarrow& 0, &\textnormal{as $n, m \longrightarrow \infty$}
+\\ \\
+\Longrightarrow& F^{(m)}_{n}(\omega) & \overset{w}{\longrightarrow}& N(0,\sigma^{2}_{X}), &\textnormal{as $n, m \longrightarrow \infty$}
+\end{array}
 \end{equation*}
 
 \mbox{}
 \vskip 0.5cm
 \noindent
-\textbf{Claim 4:}\;
+\textbf{Claim 2:}\;
 \begin{equation*}
 \nu\!\left(\left\{\;
 \omega \in \Omega
@@ -197,7 +398,7 @@ F_{n}(\omega) \overset{\textnormal{w}}{\longrightarrow} F
 \;\; = \;\;
 1
 \end{equation*}
-Claim 4 follows from the Glivenko-Cantelli Theorem, which states that:
+Claim 2 follows from the Glivenko-Cantelli Theorem, which states that:
 \begin{equation*}
 \nu\!\left(\left\{\;
 \omega \in \Omega
@@ -225,7 +426,7 @@ which, in turn, is equivalent to Claim 4.
 \mbox{}
 \vskip 0.5cm
 \noindent
-\textbf{Claim 5:}\;
+\textbf{Claim 3:}\;
 \begin{equation*}
 \nu\!\left(\left\{\;
 \omega \in \Omega
@@ -247,7 +448,7 @@ By the Strong Law of Large Numbers, we have
 \mbox{}
 \vskip 0.6cm
 \noindent
-\textbf{Claim 6:}\;
+\textbf{Claim 4:}\;
 \begin{equation*}
 \nu\!\left(\left\{\;
 \omega \in \Omega
@@ -267,78 +468,9 @@ d_{2}\!\left(F_{n}(\omega),F\,\right) \longrightarrow 0
 \end{equation*}
 Immediate by Claims 2, 4, and 5.
 
-\vskip 0.5cm
-\noindent
-Let $\omega \in \Omega$ be fixed.
-\begin{eqnarray*}
-d_{2}\!\left(F^{(m)}_{n}(\omega),N(0,\sigma^{2}_{X})\right)
-& \leq & d_{2}\!\left(F^{(m)}_{n}(\omega),F^{(m)}\right) \;+\; d_{2}\!\left(F^{(m)},N(0,\sigma^{2}_{X})\right) \\
-& \leq & d_{2}\!\left(\,F_{n}(\omega),F\,\right) \;+\; d_{2}\!\left(F^{(m)},N(0,\sigma^{2}_{X})\right) \\
-\end{eqnarray*}
-Now, $d_{2}\!\left(F^{(m)},N(0,\sigma^{2}_{X}))\right) \longrightarrow 0$ by the classical Central Limit Theorem.
-
-\begin{equation*}
-\begin{array}{ccccl}
-& d_{2}\!\left(\,F_{n}(\omega),F\,\right) \;+\; d_{2}\!\left(F^{(m)},N(0,\sigma^{2}_{X})\right) &\longrightarrow& 0, & \textnormal{as $n, m \longrightarrow \infty$}
-\\ \\
-\Longrightarrow& d_{2}\!\left(F^{(m)}_{n}(\omega),N(0,\sigma^{2}_{X})\right) &\longrightarrow& 0, &\textnormal{as $n, m \longrightarrow \infty$}
-\\ \\
-\Longrightarrow& F^{(m)}_{n}(\omega) & \overset{\textnormal{w}}{\longrightarrow}& N(0,\sigma^{2}_{X}), &\textnormal{as $n, m \longrightarrow \infty$}
-\end{array}
-\end{equation*}
-
-\qed
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{comment}
-Then, for each $\omega \in \Omega$,
-$\mathbf{X}_{n}(\omega) := \left(X_{1}(\omega),X_{2}(\omega),\ldots,X_{n}(\omega)\right) \in \Re^{n}$.
-Define the \textbf{empirical measure}:
-\begin{equation*}
-\overline{\delta}_{\mathbf{X}_{n}(\omega)}
-\;\;:=\;\;
-\dfrac{1}{n}\sum_{i=1}^{n}\,\delta_{X_{i}(\omega)}
-\;\;\in\;\;
-\mathcal{M}_{1}(\Re,\mathcal{B}(\Re)),
-\end{equation*}
-where $\delta_{x} \in \mathcal{M}_{1}(\Re,\mathcal{B}(\Re))$ is the Dirac measure concentrated at $x \in \Re$.
-Define $\widehat{\theta}_{n} : \Omega \longrightarrow \Re$ by
-\begin{equation*}
-\widehat{\theta}_{n}(\omega)
-\;\;:=\;\;
-\theta\!\left(\,\overline{\delta}_{\mathbf{X}_{n}(\omega)}\,\right)
-\end{equation*}
-Suppose $\widehat{\theta}_{n}$ is a weakly consistent sequence of estimators of $\theta(\nu)$,
-i.e. $\widehat{\theta}_{n} \overset{p}{\longrightarrow} \theta(\nu)$;
-equivalently, for each $\varepsilon > 0$, we have
-\begin{equation*}
-\lim_{n\rightarrow\infty}\,
-P\!\left(\;
-\left\vert\,\widehat{\theta}_{n}(\omega) - \theta(\nu)\,\right\vert > \varepsilon
-\;\right)
-\;\; = \;\;
-\lim_{n\rightarrow\infty}\,
-\mu\!\left(\left\{\;
-\omega\in\Omega
-\;\left\vert\;\;
-\left\vert\,\widehat{\theta}_{n}(\omega) - \theta(\nu)\,\right\vert > \varepsilon
-\right.
-\right\}\right)
-\;\; = \;\; 0.
-\end{equation*}
-\textbf{The Bootstrap is a resampling method that allows one
-to estimate asymptotically (as $n \rightarrow \infty$)
-the sampling distribution of $\widehat{\theta}_{n}$,
-i.e. the probability measure induced on $\Re$ by the $\Re$-valued random variable
-$\widehat{\theta}_{n} : \Omega \longrightarrow \Re$.}
-\begin{equation*}
-F_{n}(t;\mathbf{X}(\omega))
-\;\;:=\;\;
-\dfrac{1}{n}\sum_{i=1}^{n}\,I_{\{X_{i}(\omega) \leq t\}}
-\end{equation*}
 \end{comment}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
