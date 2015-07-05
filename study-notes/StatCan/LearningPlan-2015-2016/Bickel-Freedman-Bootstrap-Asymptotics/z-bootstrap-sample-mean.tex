@@ -10,8 +10,8 @@
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
-\newcommand{\Snm}{\mathcal{S}^{(n)}_{m}}
-\newcommand{\Xnm}{\overline{X}^{(n)}_{m}}
+\newcommand{\Snm}{\mathcal{S}^{(m)}_{n}}
+\newcommand{\Xnm}{\overline{X}^{(m)}_{n}}
 
 \begin{theorem}[Bootstrap Central Limit Theorem for I.I.D. sample mean, Theorem 2.1 \cite{BickelFreedman1981}]
 \mbox{}\vskip 0.1cm
@@ -38,9 +38,9 @@ defined on $\Omega$
 %\; = \; \int_{\Omega}\; \left(X(\omega) - \mu_{X}\right)^{2} \; \d\nu(\omega) 
 %\; < \; \infty
 %\end{equation*}
-For each $n \in \N$, define:
+For each $m \in \N$, define:
 \begin{equation*}
-\overline{X}_{n} \;:\; \Omega \; \longrightarrow \; \Re \;:\; \omega \; \longmapsto \; \dfrac{1}{n}\sum^{n}_{i=1}\,X_{i}(\omega).
+\overline{X}^{(m)} \;:\; \Omega \; \longrightarrow \; \Re \;:\; \omega \; \longmapsto \; \dfrac{1}{m}\sum^{m}_{i=1}\,X_{i}(\omega).
 \end{equation*}
 For $n, m \in \N$, define $\Snm$ to be the set of all functions from $\{1,2,\ldots,m\} \longrightarrow \{1,2,\ldots,n\}$.
 Thus, each
@@ -63,7 +63,7 @@ Define:
 \end{equation*}
 For each $\omega \in \Omega$, define:
 \begin{equation*}
-Y^{(n)}_{m,\omega}
+Y^{(m)}_{n,\omega}
 \;:\;
 \Snm\;\longrightarrow\; \Re
 \;:\;
@@ -74,13 +74,13 @@ s
 Then,
 \begin{equation*}
 P\!\left(\;
-Y^{(n)}_{m,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnormal{as $n,m\rightarrow\infty$}
+Y^{(m)}_{n,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnormal{as $n,m\rightarrow\infty$}
 \;\right)
 \;\; = \;\;
 \nu\!\left(\left\{\;
 \omega \in \Omega
 \;\left\vert\;
-Y^{(n)}_{m,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnormal{as $n,m\rightarrow\infty$}
+Y^{(m)}_{n,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnormal{as $n,m\rightarrow\infty$}
 \right.
 \;\right\}\right)
 \;\; = \;\;
@@ -92,12 +92,12 @@ Y^{(n)}_{m,\omega} \overset{d}{\longrightarrow} N(0,\sigma^{2}_{X}),\,\textnorma
 \mbox{}\vskip 0.1cm
 \noindent
 For each fixed $\omega \in \Omega$,
-$\left\{\,Y^{(n)}_{m,\omega} : \Snm \longrightarrow \Re\,\right\}_{n,m\in\N}$
+$\left\{\,Y^{(m)}_{n,\omega} : \Snm \longrightarrow \Re\,\right\}_{n,m\in\N}$
 is a doubly indexed sequence of $\Re$-valued random variables.
 Note that their respective domains $\Snm$ are pairwise distinct probability spaces.
 The \textbf{Bootstrap Central Limit Theorem for I.I.D. sample mean}
 asserts that for almost every $\omega \in \Omega$,
-the doubly indexed sequence $\left\{\,Y^{(n)}_{m,\omega}\,\right\}$
+the doubly indexed sequence $\left\{\,Y^{(m)}_{n,\omega}\,\right\}$
 of $\Re$-valued random variables converges in distribution to
 $N(0,\sigma^{2}_{X})$ as $n, m \longrightarrow \infty$.
 \end{remark}
@@ -162,17 +162,17 @@ For each $m \in \N$, let $F^{(m)} \in \MoR$ denote the distribution of
 \begin{equation*}
 Y^{(m)}
 \,:\, \Omega \,\longrightarrow\, \Re
-\,:\, \omega \,\longmapsto\, \sqrt{m}\left(\,\overline{X}_{m}(\omega) - \mu_{X}\,\right).
+\,:\, \omega \,\longmapsto\, \sqrt{m}\left(\,\overline{X}^{(m)}(\omega) - \mu_{X}\,\right).
 \end{equation*}
 And, for each $\omega \in \Omega$, and each $m, n \in \N$, let $F^{(m)}_{n}(\omega) \in \MoR$ denote the distribution of
 \begin{equation*}
-Y^{(n)}_{m,\omega}
+Y^{(m)}_{n,\omega}
 \;:\;
 \Snm\;\longrightarrow\; \Re
 \;:\;
 s
 \;\longmapsto\;
-\sqrt{m}\left(\,\Xnm(\omega,s) - \overline{X}_{n}(\omega)\,\right).
+\sqrt{m}\left(\,\Xnm(\omega,s) - \overline{X}^{(n)}(\omega)\,\right).
 \end{equation*}
 
 \noindent
