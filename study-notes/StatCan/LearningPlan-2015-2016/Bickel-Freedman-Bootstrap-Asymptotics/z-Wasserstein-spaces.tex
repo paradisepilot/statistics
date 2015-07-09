@@ -284,11 +284,15 @@ Then,
 \end{lemma}
 
 \proof
+First, we make two observations:
+
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\vskip 0.5cm
+\textbf{Claim 1:}
 \begin{eqnarray*}
 &&
-	\Wt\!\left(G^{(m)},H^{(m)}\right)
-\\
-& = &
 	\inf\left\{\; \left. \int_{\Re^{2}}(x - y)^{2}\,\d\mu(x,y) \in [0,\infty) \;\;\right\vert\;\, \mu \in \Pi\!\left(G^{(m)},H^{(m)}\right) \;\right\}
 \\
 &\leq&
@@ -297,37 +301,65 @@ Then,
 	\d\mu_{1}(x_{1},y_{1})\,\cdots\,\d\mu_{m}(x_{m},y_{m})
 	\;\;\right\vert\;\,
 	(\mu_{1},\ldots,\mu_{m}) \in \Pi\!\left(G^{(1)},H^{(1)}\right)^{m}
-	\;\right\}
+	\;\right\},
+\end{eqnarray*}
+where
+$(\mu_{1},\ldots,\mu_{m}) \in \Pi\!\left(G^{(1)},H^{(1)}\right)^{m}$ means that
+each of $\mu_{1}$, $\ldots$, $\mu_{m}$ $\in$ $\Pi\!\left(G^{(1)},H^{(1)}\right)$
+$\subset$ $\mathcal{M}_{1}(\Re^{2},\mathcal{B}(\Re^{2}))$,
+and that the $m$ $\Re^{2}$-valued random variables  respectively corresponding to
+$\mu_{1}, \ldots, \mu_{m}$ are independent.
+
+\vskip 0.8cm
+\textbf{Claim 2:}
+\begin{equation*}
+	\int_{\Re^{2m}}\left(\dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}x_{i} \;-\; \dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}y_{i}\right)^{2}
+	\d\mu_{1}(x_{1},y_{1})\,\cdots\,\d\mu_{m}(x_{m},y_{m})
+	\;\; = \;\;
+	\dfrac{1}{m}\sum_{i=1}^{m}\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i}).
+\end{equation*}
+\end{minipage}
+\end{center}
+
+\mbox{}
+\vskip 4cm
+\noindent
+\underline{Proof of Claim 1:}
+\vskip 0.2cm
+\noindent
+First, note that we have the following set inclusion (of subsets of non-negative real numbers):
+\begin{eqnarray*}
+&&
+	\left\{\; \left. \int_{\Re^{2}}(x - y)^{2}\,\d\mu(x,y) \in [0,\infty) \;\;\right\vert\;\, \mu \in \Pi\!\left(G^{(m)},H^{(m)}\right) \;\right\}
 \\
-&\vdots&
-\\
-&=& \cdots\cdots
-\\
-&\vdots&
-\\
-&=&
-	\inf\left\{\; \left.
-	\dfrac{1}{m}\sum_{i=1}^{m}\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i})	
+&\textnormal{\large$\supseteq$}&
+	\left\{\; \left.
+	\int_{\Re^{2m}}\left(\dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}x_{i} \;-\; \dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}y_{i}\right)^{2}
+	\d\mu_{1}(x_{1},y_{1})\,\cdots\,\d\mu_{m}(x_{m},y_{m})
 	\;\;\right\vert\;\,
 	(\mu_{1},\ldots,\mu_{m}) \in \Pi\!\left(G^{(1)},H^{(1)}\right)^{m}
-	\;\right\}
-\\
-&=&
-	\dfrac{1}{m}\cdot\sum_{i=1}^{m}\,
-	\inf\left\{\; \left.
-	\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i})	
-	\;\;\right\vert\;\,
-	\mu_{i} \in \Pi\!\left(G^{(1)},H^{(1)}\right)
-	\;\right\}
-\\
-&=&
-	\dfrac{1}{m}\cdot\sum_{i=1}^{m} \, \Wt\!\left(G^{(1)},H^{(1)}\right)
-\\
-&=&
-	\Wt\!\left(G^{(1)},H^{(1)}\right),
+	\;\right\},
 \end{eqnarray*}
-where the inequality follows from ...
-the ellipses follow from the following arithmetic:
+due to the following implication:
+\begin{equation*}
+\left.
+\begin{array}{c}
+	\mathcal{L}(X_{1},Y_{1}), \;\ldots\;, \mathcal{L}(X_{m},Y_{m}) \;\in\; \Pi\!\left(G^{(1)},H^{(1)}\right)
+	\\
+	{\color{white}\dfrac{1}{1}}\textnormal{and independence of the $m$ $\Re^{2}$-valued}
+	\\
+	\textnormal{random variables}\;\,(X_{1},Y_{1}), \;\ldots\;, (X_{m},Y_{m})
+\end{array}
+\right\}
+\quad\Longrightarrow\quad
+\left(\dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}X_{i}\,,\,\dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}Y_{i}\right) \;\sim\; \Pi\!\left(G^{(m)},H^{(m)}\right).
+\end{equation*}
+Claim 1 now follows, since $\inf A \geq \inf B$, for $A \subset B \subset \Re$.
+
+
+\vskip 0.8cm
+\noindent
+\underline{Proof of Claim 2:}
 \begin{eqnarray*}
 &&
 	\int_{\Re^{2m}}\left(\dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}x_{i} \;-\; \dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}y_{i}\right)^{2}
@@ -358,7 +390,53 @@ the ellipses follow from the following arithmetic:
 &=&
 	\dfrac{1}{m}\sum_{i=1}^{m}\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i}).
 \end{eqnarray*}
+This proves Claim 2.
 
+\vskip 1.0cm
+\noindent
+By Claims 1 and 2 above, we have:
+\begin{eqnarray*}
+&&
+	\Wt\!\left(G^{(m)},H^{(m)}\right)
+\\
+& = &
+	\inf\left\{\; \left. \int_{\Re^{2}}(x - y)^{2}\,\d\mu(x,y) \in [0,\infty) \;\;\right\vert\;\, \mu \in \Pi\!\left(G^{(m)},H^{(m)}\right) \;\right\}
+\\
+&\leq&
+	\inf\left\{\; \left.
+	\int_{\Re^{2m}}\left(\dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}x_{i} \;-\; \dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}y_{i}\right)^{2}
+	\d\mu_{1}(x_{1},y_{1})\,\cdots\,\d\mu_{m}(x_{m},y_{m})
+	\;\;\right\vert\;\,
+	(\mu_{1},\ldots,\mu_{m}) \in \Pi\!\left(G^{(1)},H^{(1)}\right)^{m}
+	\;\right\}
+%\\
+%&\vdots&
+%\\
+%&=& \cdots\cdots
+%\\
+%&\vdots&
+\\
+&=&
+	\inf\left\{\; \left.
+	\dfrac{1}{m}\sum_{i=1}^{m}\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i})	
+	\;\;\right\vert\;\,
+	(\mu_{1},\ldots,\mu_{m}) \in \Pi\!\left(G^{(1)},H^{(1)}\right)^{m}
+	\;\right\}
+\\
+&=&
+	\dfrac{1}{m}\cdot\sum_{i=1}^{m}\,
+	\inf\left\{\; \left.
+	\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i})	
+	\;\;\right\vert\;\,
+	\mu_{i} \in \Pi\!\left(G^{(1)},H^{(1)}\right)
+	\;\right\}
+\;\;=\;\;
+	\dfrac{1}{m}\cdot\sum_{i=1}^{m} \, \Wt\!\left(G^{(1)},H^{(1)}\right)
+\\
+&=&
+	\Wt\!\left(G^{(1)},H^{(1)}\right).
+\end{eqnarray*}
+This proves the present Lemma.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
