@@ -237,4 +237,128 @@ W_{p}\!\left(\mu_{k},\mu\right) \longrightarrow 0.
 \end{equation*}
 \end{theorem}
 
+\vskip 0.3cm
+\noindent
+To conclude this Appendix, we present several technical results regarding $\Wto$
+that are used in the main text.
+
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$m \in \N$ is a positive integer.
+\item
+	$X_{1}, X_{2}, \ldots, X_{m} : \Omega_{X} \longrightarrow \Re$
+	are independent and identically distributed $\Re$-valued random variables
+	defined on the same probability space $\Omega_{X}$ such that
+	$E\!\left[\,X_{i}\,\right] \; = \; 0$, for each $i = 1, 2, \ldots, m$.
+
+\item
+	$Y_{1}, Y_{2}, \ldots, Y_{m} : \Omega_{Y} \longrightarrow \Re$
+	are independent and identically distributed $\Re$-valued random variables
+	defined on the same probability space $\Omega_{Y}$ such that
+	$E\!\left[\,Y_{i}\,\right] \; = \; 0$, for each $i = 1, 2, \ldots, m$.
+\item
+	$G^{(1)} \in \Wto$ denotes the common probability distribution of $X_{i}$, for $i = 1, 2, \ldots, m$, and
+	$G^{(m)} \in \Wto$ denotes the probability distribution
+	on $(\Re,\mathcal{B}(\Re))$ induced by:
+	\begin{equation*}
+	\dfrac{1}{\sqrt{m}}\,\sum^{m}_{i=1}\,X_{i}\,:\,\Omega_{X}\,\longrightarrow\,\Re\,.
+	\end{equation*}
+\item
+	$H^{(1)} \in \Wto$ denotes the common probability distribution of $Y_{i}$, for $i = 1, 2, \ldots, m$, and
+	$H^{(m)} \in \Wto$ denotes the probability distribution
+	on $(\Re,\mathcal{B}(\Re))$ induced by:
+	\begin{equation*}
+	\dfrac{1}{\sqrt{m}}\,\sum^{m}_{i=1}\,Y_{i}\,:\,\Omega_{Y}\,\longrightarrow\,\Re\,.
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{equation*}
+\Wt\!\left(G^{(m)},H^{(m)}\right)
+\;\;\leq\;\;
+\Wt\!\left(G^{(1)},H^{(1)}\right)\,.
+\end{equation*}
+\end{lemma}
+
+\proof
+\begin{eqnarray*}
+&&
+	\Wt\!\left(G^{(m)},H^{(m)}\right)
+\\
+& = &
+	\inf\left\{\; \left. \int_{\Re^{2}}(x - y)^{2}\,\d\mu(x,y) \in [0,\infty) \;\;\right\vert\;\, \mu \in \Pi\!\left(G^{(m)},H^{(m)}\right) \;\right\}
+\\
+&\leq&
+	\inf\left\{\; \left.
+	\int_{\Re^{2m}}\left(\dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}x_{i} \;-\; \dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}y_{i}\right)^{2}
+	\d\mu_{1}(x_{1},y_{1})\,\cdots\,\d\mu_{m}(x_{m},y_{m})
+	\;\;\right\vert\;\,
+	(\mu_{1},\ldots,\mu_{m}) \in \Pi\!\left(G^{(1)},H^{(1)}\right)^{m}
+	\;\right\}
+\\
+&\vdots&
+\\
+&=& \cdots\cdots
+\\
+&\vdots&
+\\
+&=&
+	\inf\left\{\; \left.
+	\dfrac{1}{m}\sum_{i=1}^{m}\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i})	
+	\;\;\right\vert\;\,
+	(\mu_{1},\ldots,\mu_{m}) \in \Pi\!\left(G^{(1)},H^{(1)}\right)^{m}
+	\;\right\}
+\\
+&=&
+	\dfrac{1}{m}\cdot\sum_{i=1}^{m}\,
+	\inf\left\{\; \left.
+	\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i})	
+	\;\;\right\vert\;\,
+	\mu_{i} \in \Pi\!\left(G^{(1)},H^{(1)}\right)
+	\;\right\}
+\\
+&=&
+	\dfrac{1}{m}\cdot\sum_{i=1}^{m} \, \Wt\!\left(G^{(1)},H^{(1)}\right)
+\\
+&=&
+	\Wt\!\left(G^{(1)},H^{(1)}\right),
+\end{eqnarray*}
+where the inequality follows from ...
+the ellipses follow from the following arithmetic:
+\begin{eqnarray*}
+&&
+	\int_{\Re^{2m}}\left(\dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}x_{i} \;-\; \dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}y_{i}\right)^{2}
+	\d\mu_{1}(x_{1},y_{1})\,\cdots\,\d\mu_{m}(x_{m},y_{m})
+\\
+&=&
+	\dfrac{1}{m}\int_{\Re^{2m}}\left[\;\sum_{i=1}^{m}(x_{i}-y_{i})\;\right]^{2}
+	\d\mu_{1}(x_{1},y_{1})\,\cdots\,\d\mu_{m}(x_{m},y_{m})
+\\
+&=&
+	\dfrac{1}{m}\int_{\Re^{2m}}\left[\;\sum_{i=1}^{m}(x_{i}-y_{i})^{2} + \underset{i \neq j}{\sum\sum}(x_{i}-y_{i})(x_{j}-y_{j})\;\right]
+	\d\mu_{1}(x_{1},y_{1})\,\cdots\,\d\mu_{m}(x_{m},y_{m})
+\\
+&=&
+	\dfrac{1}{m}\cdot\sum_{i=1}^{m}\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i})
+	+
+	\dfrac{1}{m}\cdot\underset{i \neq j}{\sum\sum}\,
+	\left( \int_{\Re^{2}}\,(x_{i}-y_{i})\;\d\mu_{i}(x_{i},y_{i}) \right)\cdot
+	\left( \int_{\Re^{2}}\,(x_{j}-y_{j})\;\d\mu_{j}(x_{j},y_{j}) \right)
+\\
+&=&
+	\dfrac{1}{m}\sum_{i=1}^{m}\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i})
+	+
+	\dfrac{1}{m}\cdot\underset{i \neq j}{\sum\sum}\,
+	\left( E\!\left[\,X_{i}\,\right] - E\!\left[\,Y_{i}\,\right] \right)\cdot
+	\left( E\!\left[\,X_{j}\,\right] - E\!\left[\,Y_{j}\,\right]  \right)
+\\
+&=&
+	\dfrac{1}{m}\sum_{i=1}^{m}\int_{\Re^{2}}\,(x_{i}-y_{i})^{2}\;\d\mu_{i}(x_{i},y_{i}).
+\end{eqnarray*}
+
+\qed
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
