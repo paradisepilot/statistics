@@ -311,7 +311,13 @@ and that the $m$ $\Re^{2}$-valued random variables  respectively corresponding t
 $\mu_{1}, \ldots, \mu_{m}$ are independent.
 
 \vskip 0.8cm
-\textbf{Claim 2:}
+\textbf{Claim 2:}\quad
+If\; $\mu_{1}, \mu_{2}, \ldots, \mu_{m} \in \mathcal{M}_{1}(\Re^{2},\mathcal{B}(\Re^{2}))$\; such that
+\begin{equation*}
+\int_{\Re^{2}}\,x\,\d\mu_{i}(x,y) \;=\; \int_{\Re^{2}}\,y\,\d\mu_{i}(x,y) \;=\; 0\,,
+\quad\textnormal{for each $i = 1, 2, \ldots, m$},
+\end{equation*}
+then
 \begin{equation*}
 	\int_{\Re^{2m}}\left(\dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}x_{i} \;-\; \dfrac{1}{\sqrt{m}}\sum_{i=1}^{m}y_{i}\right)^{2}
 	\d\mu_{1}(x_{1},y_{1})\,\cdots\,\d\mu_{m}(x_{m},y_{m})
@@ -321,8 +327,6 @@ $\mu_{1}, \ldots, \mu_{m}$ are independent.
 \end{minipage}
 \end{center}
 
-\mbox{}
-\vskip 4cm
 \noindent
 \underline{Proof of Claim 1:}
 \vskip 0.2cm
@@ -437,6 +441,66 @@ By Claims 1 and 2 above, we have:
 	\Wt\!\left(G^{(1)},H^{(1)}\right).
 \end{eqnarray*}
 This proves the present Lemma.
+\qed
+
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$G$, $H$ $\in$ $\Wto$, with $\mu_{G} := \int_{\Re}\,x\,\d G(x)$, and $\mu_{H} := \int_{\Re}\,x\,\d H(x)$.
+\item
+	$\left(\,X\,,Y\right)$ is an $\Re^{2}$-valued random variable such that
+	the marginal distributions of $X$ and $Y$ are $G$ and $H$, respectively.
+	And, $G^{(1)}$ and $H^{(1)}$ are the marginal distributions of the
+	$\Re$-valued random variables $X - \mu_{G}$ and $Y - \mu_{H}$, respectively.
+\end{itemize}
+Then,
+\begin{equation*}
+\Wt\!\left(G^{(1)},H^{(1)}\right) \;+\; \left(\,\mu_{G} - \mu_{H}\,\right)^{2}
+\;\; \leq \;\; \Wt\!\left(\,G,H\,\right),
+\end{equation*}
+and, in particular,
+\begin{equation*}
+\Wt\!\left(G^{(1)},H^{(1)}\right) \;\;\leq\;\; \Wt\!\left(G,H\right).
+\end{equation*}
+\end{lemma}
+
+\proof
+\begin{eqnarray*}
+\Wt\!\left(G^{(1)},H^{(1)}\right)
+&=& \inf\left\{\;\left.\int_{\Re^{2}}\,(x - y)^{2}\,\d\mu(x,y)\;\;\right\vert\;\;\mu\in\Pi(G^{(1)},H^{(1)})\;\right\}
+\\
+&\leq& \inf\left\{\;\left.\int_{\Re^{2}}\,(\xi - \mu_{G} - \eta + \mu_{H})^{2}\,\d\nu(\xi,\eta)\;\;\right\vert\;\;\nu\in\Pi(G,H)\;\right\}
+\\
+&=& \inf\left\{\;\left.\int_{\Re^{2}}\,\left[\,(\xi - \eta) - (\mu_{G} - \mu_{H})\right]^{2}\,\d\nu(\xi,\eta)\;\;\right\vert\;\;\nu\in\Pi(G,H)\;\right\}
+\\
+&=& \inf\left\{\;\left.\int_{\Re^{2}}\,\left[\,
+	(\xi - \eta)^{2} - 2\,(\xi - \eta)(\mu_{G} - \mu_{H}) + (\mu_{G} - \mu_{H})^{2}
+	\,\right]\,\d\nu(\xi,\eta)\;\;\right\vert\;\;\nu\in\Pi(G,H)\;\right\}
+\\
+&=& \inf\left\{\;\left.
+	\int_{\Re^{2}}\,(\xi - \eta)^{2}\,\d\nu(\xi,\eta)
+	- 2\,(\mu_{G} - \mu_{H})\,\int_{\Re^{2}}\,(\xi - \eta)\,\d\nu(\xi,\eta)
+	+ (\mu_{G} - \mu_{H})^{2}
+	\;\;\right\vert\;\;\nu\in\Pi(G,H)\;\right\}
+\\
+&=& \inf\left\{\;\left.
+	\int_{\Re^{2}}\,(\xi - \eta)^{2}\,\d\nu(\xi,\eta) - (\mu_{G} - \mu_{H})^{2}
+	\;\;\right\vert\;\;\nu\in\Pi(G,H)\;\right\}
+\\
+&=& \inf\left\{\;\left.
+	\int_{\Re^{2}}\,(\xi - \eta)^{2}\,\d\nu(\xi,\eta)
+	\;\;\right\vert\;\;\nu\in\Pi(G,H)\;\right\}
+	\; - \; (\mu_{G} - \mu_{H})^{2}
+\end{eqnarray*}
+This establishes the following inequality:
+\begin{equation*}
+\Wt\!\left(G^{(1)},H^{(1)}\right) \;+\; \left(\,\mu_{G} - \mu_{H}\,\right)^{2}
+\;\; \leq \;\; \Wt\!\left(\,G,H\,\right),
+\end{equation*}
+and completes the proof of the present Lemma.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
