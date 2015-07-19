@@ -1,0 +1,80 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The Portmanteau Theorem}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{theorem}[The Portmanteau Theorem, Theorem 2.1, \cite{Billingsley1999}]
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$\left(S,\rho\right)$ is a metric space, $\mathcal{B}(S)$ its the Borel $\sigma$-algebra,
+		$\left(S,\mathcal{B}(S)\right)$ is the corresponding measurable space.
+\item	$P, P_{1}, P_{2}, \ldots \in \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$
+		are probability measures on $\left(S,\mathcal{B}(S)\right)$.
+\end{itemize}
+Then, the following are equivalent:
+\begin{enumerate}
+\item	$P_{n}$ converges weakly to $P$,
+		i.e. for each bounded continuous $\Re$-valued function $f : S \longrightarrow \Re$, we have
+		\begin{equation*}
+		\lim_{n\rightarrow\infty}\,\int_{S}\,f(s)\,\d P_{n}(s) \;=\; \int_{S}\,f(s)\,\d P(s).
+		\end{equation*}
+\item	For each closed set $F \subset S$, we have
+		\begin{equation*}
+		\limsup_{n\rightarrow\infty}P_{n}(F) \;\leq\; P(F).
+		\end{equation*}
+\item	For each open set $G \subset S$, we have
+		\begin{equation*}
+		\limsup_{n\rightarrow\infty}P_{n}(G) \;\geq\; P(G).
+		\end{equation*}
+\item	For each $P$-continuity set $A \in \mathcal{B}(S)$, i.e. $P(\partial A) = 0$, we have
+		\begin{equation*}
+		\lim_{n\rightarrow\infty}P_{n}(A) \;=\; P(A).
+		\end{equation*}
+\end{enumerate}
+\end{theorem}
+
+\proof
+\vskip 0.1cm
+\noindent
+\underline{(i) $\Longrightarrow$ (ii)}
+\vskip 0.2cm
+\noindent
+For each $\varepsilon > 0$, by Lemma \ref{LemmaAEpsilon}(ii), choose
+a bounded continuous functions $f_{\varepsilon} : S \longrightarrow [0,1]$ such that
+\begin{equation*}
+I_{F} \; \leq \; f_{\varepsilon} \; \leq \; I_{F^{\varepsilon}}.
+\end{equation*}
+This implies, for each $\varepsilon > 0$, we have
+\begin{equation*}
+P_{n}(F)
+\;\; = \;\; \int_{S}\,I_{F}(x)\,\d P_{n}(x)
+\;\; \leq \;\; \int_{S}\,f_{\varepsilon}(x)\,\d P_{n}(x).
+\end{equation*}
+By (i), we thus have
+\begin{equation*}
+\limsup_{n\rightarrow\infty}\,P_{n}(F)
+\;\;\leq\;\; \lim_{n\rightarrow\infty}\,\int_{S}\,f_{\varepsilon}(x)\,\d P_{n}(x)
+\;\;=\;\; \int_{S}\,f_{\varepsilon}(x)\,\d P(x)
+\;\;\leq\;\; \int_{S}\,I_{F^{\varepsilon}}(x)\,\d P(x)
+\;\;=\;\; P\!\left(F^{\varepsilon}\right).
+\end{equation*}
+By Lemma \ref{LemmaAEpsilon}(i), we have $F^{\varepsilon}\downarrow F$ as $\varepsilon\downarrow 0$.
+Hence, $P\!\left(F^{\varepsilon}\right)\downarrow P(F)$ as $\varepsilon\downarrow 0$.
+We may now conclude:
+\begin{equation*}
+\limsup_{n\rightarrow\infty}\,P_{n}(F)
+\;\;\leq\;\; \lim_{\varepsilon\rightarrow 0^{+}}P\!\left(F^{\varepsilon}\right)
+\;\;=\;\; P\!\left(F\right).
+\end{equation*}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
