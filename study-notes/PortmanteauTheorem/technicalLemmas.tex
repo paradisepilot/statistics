@@ -112,6 +112,17 @@ Then the following are true:
 \proof
 \begin{enumerate}
 \item
+	Let $x \in A^{\varepsilon}$. Let $\delta := \varepsilon - \rho(x,A) > 0$.
+	Let $U := \left\{\,y \in S \;\vert\; \rho(x,y) < \delta/2 \,\right\}$.
+	Then, for each $y \in U$ and $a \in A$, we have
+	\begin{equation*}
+	\rho(y,a) \;\leq\; \rho(y,x) + \rho(x,a)
+	\;\;\Longrightarrow\;\;
+	\rho(y,A) \;\leq\; \rho(y,x) + \rho(x,A) \;\leq\; \dfrac{\delta}{2} + \varepsilon - \delta \;=\; \varepsilon - \dfrac{\delta}{2},
+	\end{equation*}
+	which implies $\rho(y,A) \;\leq\; \varepsilon - \dfrac{\delta}{2} \; < \; \varepsilon$.
+	Hence $U \subset A^{\varepsilon}$.
+	Since $U$ is an open subset of $S$, we may now conclude that $A^{\varepsilon}$ is indeed an open subset of $S$.
 \item
 \item
 	Define $f : S \longrightarrow \Re$ as follows:
@@ -122,9 +133,9 @@ Then the following are true:
 	1 - \dfrac{\rho(x,A)}{\varepsilon}
 	\;\right\}.
 	\end{equation*}
-	Then, by Lemma \ref{LemmaRho}(i), $f$ is continuous $\Re$-valued function on $S$.
+	Then, by Lemma \ref{LemmaRho}, $f$ is continuous $\Re$-valued function on $S$.
 	Clear, $0 \leq f(x) \leq 1$, for each $x \in S$.
-	By Lemma \ref{LemmaRho}(ii), we have
+	By Lemma \ref{LemmaRho}, we have
 	\begin{equation*}
 	x \;\in\; \overline{A}
 	\quad\Longleftrightarrow\quad
@@ -171,11 +182,12 @@ E\!\left[\,f^{p}\,\right]
 \vskip 0.1cm
 \noindent
 We first prove the first equality:
+By elementary Calculus (change of variable formula) and Fubini's Theorem, we have
 \begin{eqnarray*}
 E\!\left[\,f^{p}\,\right]
 &:=& \int_{\Omega}\,f(\omega)^{p}\,\d P(\omega)
 \;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{f(\omega)^{p}}\,1\,\d s\;\right]\,\d P(\omega)
-\;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0 \,\leq\, s \,<\, f(\omega)^{p}\,\right\}}\,\d s\;\right]\,\d P(\omega)
+\;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0\,<\,s\,<\,f(\omega)^{p}\right\}}(s)\,\d s\;\right]\,\d P(\omega)
 \\
 &=& \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0 \,\leq\, s^{1/p} \,<\, f(\omega)\,\right\}}\,\d s\;\right]\,\d P(\omega)
 \;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0 \,\leq\, t \,<\, f(\omega)\,\right\}}\cdot p \cdot t^{p-1} \,\d t\;\right]\,\d P(\omega)
@@ -187,5 +199,57 @@ E\!\left[\,f^{p}\,\right]
 \end{eqnarray*}
 The proof of the second inequality is analogous.
 \qed
+
+\begin{lemma}
+\label{LemmaUncountablePartition}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose
+\begin{itemize}
+\item	$\left(S,\rho\right)$ is a metric space, and $\mathcal{B}(S)$ is its Borel $\sigma$-algebra.
+\item	$S = \underset{\gamma\in\Gamma}{\bigsqcup}\,F_{\gamma}$ is a partition of $S$ into
+		pairwise disjoint $\mathcal{B}(S)$-measurable subsets $F_{\gamma} \in \mathcal{B}(S)$.\\
+		Note that here the index set $\Gamma$ may be uncountable.
+\end{itemize}
+Then, for any probability measure $\mu \in \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$, we have:
+\begin{equation*}
+\mu\!\left(F_{\gamma}\right) \; = \; 0,
+\;\;\textnormal{for all but countably many $\gamma \in \Gamma$}.
+\end{equation*}
+\end{lemma}
+\proof
+Define
+$\Gamma_{0} := \left\{\,\gamma\in\Gamma\;\,\left\vert\;\,\mu(F_{\gamma}) = 0\right.\,\right\}$,
+and for each $n \in \N$, define
+$\Gamma_{n} := \left\{\,\gamma\in\Gamma\;\,\left\vert\;\,\mu(F_{\gamma}) \geq \dfrac{1}{n}\right.\,\right\}$.
+Clearly,
+\begin{equation*}
+\Gamma \;\; = \;\; \Gamma_{0}\;\bigsqcup\left(\;\bigcup_{n=1}^{\infty}\,\Gamma_{n}\;\right).
+\end{equation*}
+Thus, the Lemma follows immediately from the following
+
+	\begin{center}
+	\begin{minipage}{6.5in}
+	\vskip 0.1cm
+	\noindent
+	\textbf{Claim:}\;\;For each $n \geq 1$, $\Gamma_{n}$ is a finite set with $\left\vert\,\Gamma_{n}\,\right\vert \leq n$.
+	\vskip 0.2cm
+	\noindent
+	Proof of Claim:\quad
+	If the Claim were false, there would exist $n \in \N$ such that $\Gamma_{n}$ contained at least $n+1$ distinct elements,
+	say $\gamma_{1}, \gamma_{2}, \ldots, \gamma_{n+1} \in \Gamma_{n}$.
+	It would follow that:
+	\begin{equation*}
+	\mu\!\left(\;\bigsqcup_{i=1}^{n+1} F_{\gamma_{i}}\,\right)
+	\;\;=\;\; \sum_{i=1}^{n+1}\,\mu\!\left(F_{\gamma_{i}}\right)
+	\;\;\geq\;\; \sum_{i=1}^{n+1}\,\dfrac{1}{n}
+	\;\;=\;\;\dfrac{n+1}{n}
+	\;\;>\;\; 1,
+	\end{equation*}
+	which would contradict that hypothesis that $\mu$ is a probability measure.
+	Thus, the Claim must be true. \qed
+	\end{minipage}
+	\end{center}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

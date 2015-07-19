@@ -48,7 +48,7 @@ Then, the following are equivalent:
 \underline{(i) $\Longrightarrow$ (ii)}
 \vskip 0.2cm
 \noindent
-For each $\varepsilon > 0$, by Lemma \ref{LemmaAEpsilon}(ii), choose
+For each $\varepsilon > 0$, by Lemma \ref{LemmaAEpsilon}, choose
 a bounded continuous functions $f_{\varepsilon} : S \longrightarrow [0,1]$ such that
 \begin{equation*}
 I_{F} \; \leq \; f_{\varepsilon} \; \leq \; I_{F^{\varepsilon}}.
@@ -67,8 +67,8 @@ By (i), we thus have
 \;\;\leq\;\; \int_{S}\,I_{F^{\varepsilon}}(x)\,\d P(x)
 \;\;=\;\; P\!\left(F^{\varepsilon}\right).
 \end{equation*}
-By Lemma \ref{LemmaAEpsilon}(i), we have $F^{\varepsilon}\downarrow F$ as $\varepsilon\downarrow 0$.
-Hence, $P\!\left(F^{\varepsilon}\right)\downarrow P(F)$ as $\varepsilon\downarrow 0$.
+By Lemma \ref{LemmaAEpsilon}, we have $F^{\varepsilon}\downarrow F$ as $\varepsilon\downarrow 0$.
+Hence, $P\!\left(F^{\varepsilon}\right)\downarrow P(F)$ as $\varepsilon\downarrow 0$ (by Theorem 2.3, \cite{JacodProtter}).
 We may now conclude:
 \begin{equation*}
 \limsup_{n\rightarrow\infty}\,P_{n}(F)
@@ -101,7 +101,7 @@ which yields
 
 \vskip 0.3cm
 \noindent
-\underline{(ii) $\Longrightarrow$ (iii)}
+\underline{(iii) $\Longrightarrow$ (ii)}
 \vskip 0.2cm
 \noindent
 Assume (iii) holds. Let $F \subset S$ be an closed subset.
@@ -142,43 +142,133 @@ $P\!\left(A^{\circ}\right) = P\!\left(\,A\,\right) = P\!\left(\,\overline{A}\,\r
 
 \vskip 0.8cm
 \noindent
-\underline{(iv) $\Longrightarrow$ (ii)}
+\underline{(iv) $\Longrightarrow$ (i)}
 \vskip 0.2cm
 \noindent
+Let $f : S \longrightarrow \Re$ be a bounded continuous $\Re$-valued function on $S$.
+We need to show $\int_{S}\,f(s)\,\d P_{n}(s) \longrightarrow \int_{S}\,f(s)\,\d P(s)$.
+By linearity, we may assume $0 \leq f \leq 1$.
 
-\vskip 0.8cm
+	\begin{center}
+	\vskip 0.3cm
+	\begin{minipage}{6.5in}
+	\noindent
+	\textbf{Claim:}
+	\vskip 0.1cm
+	\noindent
+	$f^{-1}\!\left(\,(t,\infty)\,\right) = \{\,s\in S \;\vert\; f(s) > t\,\}$ is a $P$-continuity set,
+	except for at most countably many $t \in [0,1]$.
+	\vskip 0.2cm
+	\noindent
+	Proof of Claim:\;\;
+	First, note that the continuity of $f$ implies that
+	\begin{equation*}
+	\partial\left\{\,s \in S \;\vert\; f(s) > t\,\right\} \;\subset\; \left\{\,s \in S \;\vert\; f(s) = t\,\right\},
+	\;\;\textnormal{for each $t \in [0,1]$}.
+	\end{equation*}
+	Indeed,
+	\begin{eqnarray*}
+	&&
+		s_{0} \in \partial\left\{\,s \in S \;\vert\; f(s) > t\,\right\}
+	\\	
+	&\Longleftrightarrow&
+		\textnormal{every neighbourhood of $s_{0}$ non-trivially intersects both
+		$\left\{\,s \in S \;\vert\; f(s) > t\,\right\}$ and $\left\{\,s \in S \;\vert\; f(s) \leq t\,\right\}$}
+	\\
+	&\Longrightarrow&
+		\exists\;s_{1},s_{2},\ldots\in\left\{\,s \in S \;\vert\; f(s) > t\,\right\},
+		\;s'_{1},s'_{2},\ldots\in\left\{\,s \in S \;\vert\; f(s) \leq t\,\right\}
+		\;\textnormal{with}\; s_{n}\longrightarrow s_{0},\; s'_{n}\longrightarrow s_{0}
+	\\
+	&\Longrightarrow&
+		f(s_{0}) = \lim_{n\rightarrow\infty}f(s_{n}) \geq t
+		\;\;\textnormal{and}\;\;
+		f(s_{0}) = \lim_{n\rightarrow\infty}f(s'_{n}) \leq t
+		\;\;\textnormal{(by continuity of $f$)}
+	\\
+	&\Longrightarrow&
+		f(s_{0}) = t,
+		\;\;\textnormal{i.e.}\;\;
+		s_{0} \in \left\{\,s \in S \;\vert\; f(s) = t\,\right\}.
+	\end{eqnarray*}
+	\end{minipage}
+	\end{center}
+	\begin{center}
+	\begin{minipage}{6.5in}
+	\noindent
+	Next, note that, since $f$ is continuous,
+	$f^{-1}\!\left(\left\{\,t\,\right\}\right)$ is $\mathcal{B}(S)$-measurable for each $t \in [0,1]$.
+	Thus,
+	\begin{equation*}
+	S \;\; = \;\; \bigsqcup_{t \in [0,1]}\,\left\{\,s\in S \;\vert\; f(s) = t\,\right\}
+	\;\; = \;\; \bigsqcup_{t \in [0,1]}\, f^{-1}\!\left(\left\{\,t\,\right\}\right)
+	\end{equation*}
+	is a partition of $S$ into uncountably many pairwise disjoint $\mathcal{B}(S)$-measurable subsets.
+	By Lemma \ref{LemmaUncountablePartition},
+	\begin{equation*}
+	P\!\left(\,f^{-1}\!\left(\left\{\,t\,\right\}\right)\,\right) \; = \; 0,
+	\;\;\textnormal{for all but countably many $t \in [0,1]$},
+	\end{equation*}
+	which in turn implies
+	\begin{equation*}
+	P\!\left(\,\partial\left\{\,s\in S\;\vert\;f(s) > t\,\right\}\,\right) \; = \; 0,
+	\;\;\textnormal{for all but countably many $t \in [0,1]$}.
+	\end{equation*}
+	This completes the proof of the Claim.
+	\end{minipage}
+	\end{center}
+
+\vskip 0.3cm
 \noindent
-\underline{(iii) $\Longrightarrow$ (i)}
-\vskip 0.2cm
-\noindent
-Let $g : S \longrightarrow [0,\infty)$ be continuous $\Re$-valued function on $S$.
-Then, for each $t \in (0,\infty)$, the set
-$g^{-1}\!\left(\,(t,\infty)\,\right) = \left\{\,s \in S \;\vert\; g(s) > t \,\right\}$
-is an open subset of $S$. 
-Hence, by (iii), Lemma \ref{LemmaMomentsAndTails}, and Fatou's Lemma, we have
+The above Claim and (iv) together imply:
+\begin{equation*}
+P_{n}\!\left(\,f > t\,\right) \;\longrightarrow\; P\!\left(\,f > t\,\right),
+\;\;\textnormal{for almost every $t \in [0,1]$}.
+\end{equation*}
+By Lemma \ref{LemmaMomentsAndTails} and the Lebesgue Dominated Convergence Theorem, we have
 \begin{eqnarray*}
-\int_{S}\,g(s)\,\d P(s)
-&=& \int_{0}^{\infty}\,P(g > t)\,\d t
-\;\;\leq\;\; \int_{0}^{\infty}\,\liminf_{n\rightarrow\infty}\,P_{n}(g > t)\,\d t
+\int_{S}\,f(s)\,\d P_{n}(s) &=& \int_{0}^{\infty}\,P_{n}\!\left(\,f > t\,\right)\,\d t
 \\
-&\leq& \liminf_{n\rightarrow\infty}\,\int_{0}^{\infty} P_{n}(g > t)\,\d t
-\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,\int_{S}\,g(s)\,\d P_{n}(s).
-\end{eqnarray*}
-Now, let $f : S \longrightarrow \Re$ be continuous and bounded with $|\,f\,| \leq c < \infty$.
-Then, $c \pm f : S \longrightarrow [0,\infty)$ are continuous and non-negative $\Re$-valued functions on $S$.
-Applying the preceding inequality to each yields:
-\begin{eqnarray*}
-\int_{S}\,c + f(s)\,\d P(s) &\leq& \liminf_{n\rightarrow\infty}\,\int_{S}\,c + f(s)\,\d P_{n}(s)
+&=& \int_{0}^{1}\,P_{n}\!\left(\,f > t\,\right)\,\d t \;\;\longrightarrow\;\; \int_{0}^{1}\,P\!\left(\,f > t\,\right)\,\d t
 \\
-\int_{S}\,c - f(s)\,\d P(s) &\leq& \liminf_{n\rightarrow\infty}\,\int_{S}\,c - f(s)\,\d P_{n}(s).
+&=& \int_{0}^{\infty}\,P\!\left(\,f > t\,\right)\,\d t
+\;\;=\;\; \int_{S}\,f(s)\,\d P(s),
 \end{eqnarray*}
-These respectively imply:
-\begin{eqnarray*}
-\int_{S}\,f(s)\,\d P(s) &\leq& \liminf_{n\rightarrow\infty}\,\int_{S}\,f(s)\,\d P_{n}(s)
-\\
-\limsup_{n\rightarrow\infty}\,\int_{S}\,f(s)\,\d P_{n}(s) &\leq& \int_{S}\,f(s)\,\d P(s),
-\end{eqnarray*}
-which proves (i).
+which proves that (iv) $\Longrightarrow$ (i).
+
+%\vskip 0.8cm
+%\noindent
+%\underline{(iii) $\Longrightarrow$ (i)}
+%\vskip 0.2cm
+%\noindent
+%Let $g : S \longrightarrow [0,\infty)$ be continuous $\Re$-valued function on $S$.
+%Then, for each $t \in (0,\infty)$, the set
+%$g^{-1}\!\left(\,(t,\infty)\,\right) = \left\{\,s \in S \;\vert\; g(s) > t \,\right\}$
+%is an open subset of $S$. 
+%Hence, by (iii), Lemma \ref{LemmaMomentsAndTails}, and Fatou's Lemma, we have
+%\begin{eqnarray*}
+%\int_{S}\,g(s)\,\d P(s)
+%&=& \int_{0}^{\infty}\,P(g > t)\,\d t
+%\;\;\leq\;\; \int_{0}^{\infty}\,\liminf_{n\rightarrow\infty}\,P_{n}(g > t)\,\d t
+%\\
+%&\leq& \liminf_{n\rightarrow\infty}\,\int_{0}^{\infty} P_{n}(g > t)\,\d t
+%\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,\int_{S}\,g(s)\,\d P_{n}(s).
+%\end{eqnarray*}
+%Now, let $f : S \longrightarrow \Re$ be continuous and bounded with $|\,f\,| \leq c < \infty$.
+%Then, $c \pm f : S \longrightarrow [0,\infty)$ are continuous and non-negative $\Re$-valued functions on $S$.
+%Applying the preceding inequality to each yields:
+%\begin{eqnarray*}
+%\int_{S}\,c + f(s)\,\d P(s) &\leq& \liminf_{n\rightarrow\infty}\,\int_{S}\,c + f(s)\,\d P_{n}(s)
+%\\
+%\int_{S}\,c - f(s)\,\d P(s) &\leq& \liminf_{n\rightarrow\infty}\,\int_{S}\,c - f(s)\,\d P_{n}(s).
+%\end{eqnarray*}
+%These respectively imply:
+%\begin{eqnarray*}
+%\int_{S}\,f(s)\,\d P(s) &\leq& \liminf_{n\rightarrow\infty}\,\int_{S}\,f(s)\,\d P_{n}(s)
+%\\
+%\limsup_{n\rightarrow\infty}\,\int_{S}\,f(s)\,\d P_{n}(s) &\leq& \int_{S}\,f(s)\,\d P(s),
+%\end{eqnarray*}
+%which proves that (iii) $\Longrightarrow$ (i).
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
