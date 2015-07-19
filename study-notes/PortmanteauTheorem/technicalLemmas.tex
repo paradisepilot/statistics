@@ -151,4 +151,41 @@ Then the following are true:
 \end{enumerate}
 \qed
 
+\begin{lemma}
+\label{LemmaMomentsAndTails}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $\left(\,\Omega,\mathcal{A},P\,\right)$ be any probability space.
+Then, for each $p > 0$ and
+for each non-negative random variable (i.e. measurable function) $f : \Omega \longrightarrow [0,\infty)$,
+we have:
+\begin{equation*}
+E\!\left[\,f^{p}\,\right]
+\;\; = \;\; p\,\int_{0}^{\infty}\,P\!\left(\,f > t\,\right)\cdot t^{p-1}\,\d t
+\;\; = \;\; p\,\int_{0}^{\infty}\,P\!\left(\,f \geq t\,\right)\cdot t^{p-1}\,\d t\,.
+\end{equation*}
+\end{lemma}
+
+\proof
+\vskip 0.1cm
+\noindent
+We first prove the first equality:
+\begin{eqnarray*}
+E\!\left[\,f^{p}\,\right]
+&:=& \int_{\Omega}\,f(\omega)^{p}\,\d P(\omega)
+\;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{f(\omega)^{p}}\,1\,\d s\;\right]\,\d P(\omega)
+\;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0 \,\leq\, s \,<\, f(\omega)^{p}\,\right\}}\,\d s\;\right]\,\d P(\omega)
+\\
+&=& \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0 \,\leq\, s^{1/p} \,<\, f(\omega)\,\right\}}\,\d s\;\right]\,\d P(\omega)
+\;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0 \,\leq\, t \,<\, f(\omega)\,\right\}}\cdot p \cdot t^{p-1} \,\d t\;\right]\,\d P(\omega)
+\\
+&=& \int_{0}^{\infty}\,\left[\;\int_{\Omega}\,1_{\left\{\,0 \,\leq\, t \,<\, f(\omega)\,\right\}}\cdot p \cdot t^{p-1} \,\d P(\omega)\;\right]\,\d t
+\;\;=\;\; p \cdot \int_{0}^{\infty}\,\left[\;\int_{\Omega}\,1_{\left\{\,0 \,\leq\, t \,<\, f(\omega)\,\right\}}\,\d P(\omega)\;\right] \cdot t^{p-1} \,\d t
+\\
+&=& p \cdot \int_{0}^{\infty}\, P\!\left(\,f > t\,\right)\cdot t^{p-1} \,\d t.
+\end{eqnarray*}
+The proof of the second inequality is analogous.
+\qed
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
