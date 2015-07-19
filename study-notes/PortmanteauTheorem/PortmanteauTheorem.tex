@@ -33,7 +33,7 @@ Then, the following are equivalent:
 		\end{equation*}
 \item	For each open set $G \subset S$, we have
 		\begin{equation*}
-		\limsup_{n\rightarrow\infty}P_{n}(G) \;\geq\; P(G).
+		\liminf_{n\rightarrow\infty}P_{n}(G) \;\geq\; P(G).
 		\end{equation*}
 \item	For each $P$-continuity set $A \in \mathcal{B}(S)$, i.e. $P(\partial A) = 0$, we have
 		\begin{equation*}
@@ -43,7 +43,7 @@ Then, the following are equivalent:
 \end{theorem}
 
 \proof
-\vskip 0.1cm
+\vskip 0.3cm
 \noindent
 \underline{(i) $\Longrightarrow$ (ii)}
 \vskip 0.2cm
@@ -75,6 +75,77 @@ We may now conclude:
 \;\;\leq\;\; \lim_{\varepsilon\rightarrow 0^{+}}P\!\left(F^{\varepsilon}\right)
 \;\;=\;\; P\!\left(F\right).
 \end{equation*}
+
+\vskip 0.3cm
+\noindent
+\underline{(ii) $\Longrightarrow$ (iii)}
+\vskip 0.2cm
+\noindent
+Assume (ii) holds. Let $G \subset S$ be a open subset.
+Then, $F := S\,\backslash\,G$ is closed. By (ii), we have:
+\begin{eqnarray*}
+1 - \liminf_{n\rightarrow\infty}\,P_{n}\!\left(G\right)
+&=& \limsup_{n\rightarrow\infty}\,\left\{\,1 - P_{n}\!\left(G\right)\,\right\}
+\;\;=\;\;\limsup_{n\rightarrow\infty}\,P_{n}\!\left(\,S\,\backslash\,G\,\right)
+\;\;=\;\;\limsup_{n\rightarrow\infty}\,P_{n}(F)
+\\
+&\leq& P\!\left(F\right)
+\;\;=\;\; P\!\left(\,S\,\backslash\,G\,\right)
+\;\;=\;\; 1 - P\!\left(G\right),
+\end{eqnarray*}
+which yields
+\begin{equation}
+\liminf_{n\rightarrow\infty}\,P_{n}\!\left(G\right)
+\;\;\geq\;\; P\!\left(G\right).
+\end{equation}
+
+\vskip 0.3cm
+\noindent
+\underline{(ii) $\Longrightarrow$ (iii)}
+\vskip 0.2cm
+\noindent
+Assume (iii) holds. Let $F \subset S$ be an closed subset.
+Then, $G := S\,\backslash\,F$ is open. By (iii), we have:
+\begin{eqnarray*}
+1 - \limsup_{n\rightarrow\infty}\,P_{n}\!\left(F\right)
+&=& \liminf_{n\rightarrow\infty}\,\left\{\,1 - P_{n}\!\left(F\right)\,\right\}
+\;\;=\;\;\liminf_{n\rightarrow\infty}\,P_{n}\!\left(\,S\,\backslash\,F\,\right)
+\;\;=\;\;\liminf_{n\rightarrow\infty}\,P_{n}(G)
+\\
+&\geq& P\!\left(G\right)
+\;\;=\;\; P\!\left(\,S\,\backslash\,F\,\right)
+\;\;=\;\; 1 - P\!\left(F\right),
+\end{eqnarray*}
+which yields
+\begin{equation}
+\limsup_{n\rightarrow\infty}\,P_{n}\!\left(F\right)
+\;\;\leq\;\; P\!\left(F\right).
+\end{equation}
+
+\vskip 0.3cm
+\noindent
+\underline{(ii) and (iii) $\Longrightarrow$ (iv)}
+\vskip 0.2cm
+\noindent
+Let $A \in \mathcal{B}(S)$. Then, by (ii) and (iii), we have:
+\begin{equation*}
+P\!\left(A^{\circ}\right)
+\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A^{\circ}\right)
+\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(\,\overline{A}\,\right)
+\;\;\leq\;\; P\!\left(\,\overline{A}\,\right).
+\end{equation*}
+Hence, if $\partial A := \overline{A}\,\backslash\,A^{\circ}$ is a $P$-continuity set,
+i.e. $P\!\left(\partial A\right) = 0$, hence
+$P\!\left(A^{\circ}\right) = P\!\left(\,A\,\right) = P\!\left(\,\overline{A}\,\right)$, then (iv) follows.
+
+\vskip 0.8cm
+\noindent
+\underline{(iv) $\Longrightarrow$ (i)}
+\vskip 0.2cm
+\noindent
+
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
