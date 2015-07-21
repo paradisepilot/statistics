@@ -11,6 +11,7 @@
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
 \begin{theorem}[The Portmanteau Theorem, Theorem 2.1, \cite{Billingsley1999}]
+\label{PortmanteauTheorem}
 \mbox{}\vskip 0.2cm
 \noindent
 Suppose:
@@ -35,6 +36,15 @@ Then, the following are equivalent:
 		\begin{equation*}
 		\liminf_{n\rightarrow\infty}P_{n}(G) \;\geq\; P(G).
 		\end{equation*}
+\item	For each $A \in \mathcal{B}(S)$, we have
+		\begin{equation*}
+		P\!\left(A^{\circ}\right)
+		\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A^{\circ}\right)
+		\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+		\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+		\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(\,\overline{A}\,\right)
+		\;\;\leq\;\; P\!\left(\,\overline{A}\,\right).
+		\end{equation*}
 \item	For each $P$-continuity set $A \in \mathcal{B}(S)$, i.e. $P(\partial A) = 0$, we have
 		\begin{equation*}
 		\lim_{n\rightarrow\infty}P_{n}(A) \;=\; P(A).
@@ -53,7 +63,7 @@ a bounded continuous functions $f_{\varepsilon} : S \longrightarrow [0,1]$ such 
 \begin{equation*}
 I_{F} \; \leq \; f_{\varepsilon} \; \leq \; I_{F^{\varepsilon}}.
 \end{equation*}
-This implies, for each $\varepsilon > 0$, we have
+This implies that, for each $\varepsilon > 0$, we have
 \begin{equation*}
 P_{n}(F)
 \;\; = \;\; \int_{S}\,I_{F}(x)\,\d P_{n}(x)
@@ -127,22 +137,33 @@ which yields
 \underline{(ii) and (iii) $\Longrightarrow$ (iv)}
 \vskip 0.2cm
 \noindent
-Let $A \in \mathcal{B}(S)$. Then, by (ii) and (iii), we have:
-\begin{equation*}
-P\!\left(A^{\circ}\right)
-\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A^{\circ}\right)
-\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
-\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
-\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(\,\overline{A}\,\right)
-\;\;\leq\;\; P\!\left(\,\overline{A}\,\right).
-\end{equation*}
-Hence, if $\partial A := \overline{A}\,\backslash\,A^{\circ}$ is a $P$-continuity set,
-i.e. $P\!\left(\partial A\right) = 0$, hence
-$P\!\left(A^{\circ}\right) = P\!\left(\,A\,\right) = P\!\left(\,\overline{A}\,\right)$, then (iv) follows.
+Note first that the middle three inequalities in (iv) are trivially true.
+On the other hand, the leftmost inequality in (iv) follows immediately from (iii),
+while the rightmost follows immediately from (ii).
+%Let $A \in \mathcal{B}(S)$. Then, by (ii) and (iii), we have:
+%\begin{equation*}
+%P\!\left(A^{\circ}\right)
+%\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A^{\circ}\right)
+%\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+%\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+%\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(\,\overline{A}\,\right)
+%\;\;\leq\;\; P\!\left(\,\overline{A}\,\right).
+%\end{equation*}
+
+\mbox{}
+\vskip 0.3cm
+\noindent
+\underline{(iv) $\Longrightarrow$ (v)}
+\vskip 0.2cm
+\noindent
+If $\partial A := \overline{A}\,\backslash\,A^{\circ}$ is a $P$-continuity set,
+i.e. $P\!\left(\partial A\right) = 0$, then
+$P\!\left(A^{\circ}\right) = P\!\left(\,A\,\right) = P\!\left(\,\overline{A}\,\right)$,
+in which case, (v) follows immediately from (iv).
 
 \vskip 0.8cm
 \noindent
-\underline{(iv) $\Longrightarrow$ (i)}
+\underline{(v) $\Longrightarrow$ (i)}
 \vskip 0.2cm
 \noindent
 Let $f : S \longrightarrow \Re$ be a bounded continuous $\Re$-valued function on $S$.
@@ -172,24 +193,36 @@ By linearity, we may assume $0 \leq f \leq 1$.
 		s_{0} \in \partial\left\{\,s \in S \;\vert\; f(s) > t\,\right\}
 	\\	
 	&\Longleftrightarrow&
-		\textnormal{every neighbourhood of $s_{0}$ non-trivially intersects both
+		\textnormal{every neighbourhood of $s_{0}$ non-trivially intersects each of
 		$\left\{\,s \in S \;\vert\; f(s) > t\,\right\}$ and $\left\{\,s \in S \;\vert\; f(s) \leq t\,\right\}$}
 	\\
 	&\Longrightarrow&
-		\exists\;s_{1},s_{2},\ldots\in\left\{\,s \in S \;\vert\; f(s) > t\,\right\},
-		\;s'_{1},s'_{2},\ldots\in\left\{\,s \in S \;\vert\; f(s) \leq t\,\right\}
-		\;\textnormal{with}\; s_{n}\longrightarrow s_{0},\; s'_{n}\longrightarrow s_{0}
+		\textnormal{for each}\;\,\varepsilon > 0,\;\textnormal{we have}\;
+		\left\{\begin{array}{l}
+			f^{-1}\!\left(\,(f(s_{0})-\varepsilon,f(s_{0})+\varepsilon)\,\right) \cap \{\,s\in S\;\vert\;f(s) > t \,\} \neq \varemptyset,\;\textnormal{and}
+			\\
+			f^{-1}\!\left(\,(f(s_{0})-\varepsilon,f(s_{0})+\varepsilon)\,\right) \cap \{\,s\in S\;\vert\;f(s) \leq t \,\} \neq \varemptyset
+		\end{array}\right.
 	\\
 	&\Longrightarrow&
-		f(s_{0}) = f\!\left(\lim_{n\rightarrow\infty}s_{n}\right) = \lim_{n\rightarrow\infty}f(s_{n}) \geq t
-		\;\;\textnormal{and}\;\;
-		f(s_{0}) = f\!\left(\lim_{n\rightarrow\infty}s'_{n}\right) =\lim_{n\rightarrow\infty}f(s'_{n}) \leq t
-		\;\;\textnormal{(by continuity of $f$)}
+		\textnormal{for each}\;\,\varepsilon > 0,\;\textnormal{we have}\;
+		\left\{\begin{array}{l}
+			\exists\;\,s_{\varepsilon} \in S
+			\;\;\textnormal{with}\; -\varepsilon < f(s_{0})-f(s_{\varepsilon}) < \varepsilon
+			\;\;\textnormal{and}\;\; t < f(s_{\varepsilon}),\;\textnormal{and}
+			\\
+			\exists\;\,s'_{\varepsilon} \in S
+			\;\;\textnormal{with}\; -\varepsilon < f(s_{0})-f(s'_{\varepsilon}) < \varepsilon
+			\;\;\textnormal{and}\;\;f(s'_{\varepsilon}) \leq t
+		\end{array}\right.
 	\\
 	&\Longrightarrow&
-		f(s_{0}) = t,
-		\;\;\textnormal{i.e.}\;\;
-		s_{0} \in \left\{\,s \in S \;\vert\; f(s) = t\,\right\}.
+		\textnormal{for each}\;\,\varepsilon > 0,\;\textnormal{we have}\;\;
+		t -\varepsilon < f(s_{0})\;\;\textnormal{and}\;\;f(s_{0}) \leq t + \varepsilon,
+		\;\,\textnormal{or equivalently}\;\,\vert\, f(s_{0}) - t \,\vert \,\leq\, \varepsilon
+	\\
+	&\Longrightarrow&
+		f(s_{0}) \;=\; t
 	\end{eqnarray*}
 	\end{minipage}
 	\end{center}
@@ -220,7 +253,7 @@ By linearity, we may assume $0 \leq f \leq 1$.
 
 \vskip 0.3cm
 \noindent
-The above Claim and (iv) together imply:
+The above Claim and (v) together imply:
 \begin{equation*}
 P_{n}\!\left(\,f > t\,\right) \;\longrightarrow\; P\!\left(\,f > t\,\right),
 \;\;\textnormal{for almost every $t \in [0,1]$}.
@@ -234,7 +267,7 @@ By Lemma \ref{LemmaMomentsAndTails} and the Lebesgue Dominated Convergence Theor
 &=& \int_{0}^{\infty}\,P\!\left(\,f > t\,\right)\,\d t
 \;\;=\;\; \int_{S}\,f(s)\,\d P(s),
 \end{eqnarray*}
-which proves that (iv) $\Longrightarrow$ (i).
+which proves that (v) $\Longrightarrow$ (i).
 %\vskip 0.8cm
 %\noindent
 %\underline{(iii) $\Longrightarrow$ (i)}
@@ -269,5 +302,25 @@ which proves that (iv) $\Longrightarrow$ (i).
 %\end{eqnarray*}
 %which proves that (iii) $\Longrightarrow$ (i).
 \qed
+
+\begin{remark}\mbox{}\;
+In Theorem \ref{PortmanteauTheorem} (the Portmanteau Theorem):
+\begin{itemize}
+\item	The statements (ii), (iii), and (iv) are essentially restatements of each other.
+		(ii) and (iii) are ``complemented" versions of each other.
+		And, the middle three inequalities in (iv) hold trivially, while the leftmost is equivalent to (iii) and the rightmost to (ii).
+\item	(v) is an immediate consequence of (iv).
+\item	All the implications in the Theorem, except (i) $\Longrightarrow$ (ii), require only the fact that $S$ is a topological space;
+		in other words, their validity does NOT explicitly require the metric space structure of $S$.
+		This is evident in our proof.
+\item	On the other hand, our proof of the implication (i) $\Longrightarrow$ (ii) explicitly uses the metric space properties of $S$.
+		More precisely, the proof invokes the fact that in a metric space, the characteristic function
+		of a closed subset $F$ can be ``doubly enveloped" arbitrarily tightly, by the characteristic function of the
+		open $\varepsilon$-neighbourhood $F^{\varepsilon}$ of $F$, and additionally by a bounded continuous
+		$\Re$-valued function bounded between these two aforementioned characteristic functions.
+		This metric space property allows us to deduce the statement (ii) about closed subsets
+		from the statement (i) about bound continuous $\Re$-valued functions.
+\end{itemize}
+\end{remark}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

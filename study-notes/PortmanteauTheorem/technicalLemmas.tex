@@ -24,47 +24,52 @@ Then,
 \proof
 \begin{enumerate}
 \item
-	Suppose $x_{n} \longrightarrow x$. We need to prove $\rho(x_{n},A) \longrightarrow \rho(x,A)$,
-	which follows immediately from the following two Claims:
-	\vskip 0.8cm
+	Suppose $x_{n} \longrightarrow x$. We need to prove $\rho(x_{n},A) \longrightarrow \rho(x,A)$.
+	We first make the following two claims:
+
+	\vskip 0.5cm
 	\begin{center}
-	\begin{minipage}{6.5in}
+	\begin{minipage}{6.0in}
 	\noindent
-	\textbf{Claim 1:}\quad$\rho(x,A) \;\leq\; \underset{n\rightarrow\infty}{\liminf}\;\rho(x_{n},A)$.
+	\textbf{Claim 1:}\quad$\rho(x,A) \;-\; \rho(x_{n},A) \;\leq\; \rho(x,x_{n})$.
 	\vskip 0.2cm
-	\textbf{Claim 2:}\quad$\underset{n\rightarrow\infty}{\limsup}\;\rho(x_{n},A) \;\leq\; \rho(x,A)$.
+	\textbf{Claim 2:}\quad$- \rho(x_{n},x) \;\leq\; \rho(x,A) \;-\; \rho(x_{n},A)$.
 	\end{minipage}
 	\end{center}
-	\vskip 0.3cm
+
+	\vskip 0.1cm
+	\noindent
+	The hypothesis $x_{n} \longrightarrow x$, Claim 1, and Claim 2 together imply:
+	\begin{equation*}
+	\left\vert\;\rho(x,A) \,-\, \rho(x_{n},A)\;\right\vert \; \leq \; \rho(x,x_{n})
+	\;\;\longrightarrow\;\;0,
+	\end{equation*}
+	which proves (i). We now prove the two Claims.
+
+	\vskip 0.2cm
 	\noindent
 	\underline{Proof of Claim 1:}\quad
-	For each $y \in S$, we have:
+	By the Triangle Inequality, we have
 	\begin{equation*}
-	\rho(x,y) \;\leq\; \rho(x,x_{n}) \;+\; \rho(x_{n},y).
+	\rho(x,y) \;\leq\; \rho(x,x_{n}) \;+\; \rho(x_{n},y),
+	\;\;\textnormal{for each $y \in S$},
 	\end{equation*}
-	Hence,
+	which implies
 	\begin{equation*}
 	\rho(x,A) \;=\; \inf_{y \in A}\,\rho(x,y) \;\leq\; \rho(x,x_{n}) \;+\; \inf_{y \in A}\,\rho(x_{n},y) \;=\; \rho(x,x_{n}) \;+\; \rho(x_{n},A).
-	\end{equation*}
-	Since $\rho(x,x_{n}) \longrightarrow 0$, the preceding inequality implies
-	\begin{equation*}
-	\rho(x,A) \;\leq\; \liminf_{n\rightarrow\infty}\,\rho(x_{n},A).
 	\end{equation*}
 	This proves Claim 1.
 	\vskip 0.5cm
 	\noindent
 	\underline{Proof of Claim 2:}\quad
-	For each $y \in S$, we have:
+	By the Triangle Inequality, we have
 	\begin{equation*}
-	\rho(x_{n},y) \;\leq\; \rho(x_{n},x) \;+\; \rho(x,y).
+	\rho(x_{n},y) \;\leq\; \rho(x_{n},x) \;+\; \rho(x,y),
+	\;\;\textnormal{for each $y \in S$},
 	\end{equation*}
-	Hence,
+	which implies
 	\begin{equation*}
 	\rho(x_{n},A) \;=\; \inf_{y \in A}\,\rho(x_{n},y) \;\leq\; \rho(x_{n},x) \;+\; \inf_{y \in A}\,\rho(x,y) \;=\; \rho(x_{n},x) \;+\; \rho(x,A).
-	\end{equation*}
-	Since $\rho(x,x_{n}) \longrightarrow 0$, the preceding inequality implies
-	\begin{equation*}
-	\limsup_{n\rightarrow\infty}\,\rho(x_{n},A) \;\leq\; \rho(x,A).
 	\end{equation*}
 	This proves Claim 2.
 
@@ -75,7 +80,7 @@ Then,
 	\\
 	&\Longleftrightarrow& \textnormal{For each $\varepsilon > 0$, there exists $y \in A$ such that $\rho(x,y) < \varepsilon$}
 	\\
-	&\Longleftrightarrow& y \in \overline{A}
+	&\Longleftrightarrow& x \in \overline{A}
 	\end{eqnarray*}
 \qed
 \end{enumerate}
@@ -167,7 +172,7 @@ Then the following are true:
 	\begin{equation*}
 	x \;\in\; \overline{A}
 	\quad\Longleftrightarrow\quad
-	\rho(x,F) \;=\; 0
+	\rho(x,A) \;=\; 0
 	\quad\Longleftrightarrow\quad
 	f(x) \; = \; 1.
 	\end{equation*}
@@ -215,7 +220,7 @@ By elementary Calculus (change of variable formula) and Fubini's Theorem, we hav
 E\!\left[\,f^{p}\,\right]
 &:=& \int_{\Omega}\,f(\omega)^{p}\,\d P(\omega)
 \;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{f(\omega)^{p}}\,1\,\d s\;\right]\,\d P(\omega)
-\;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0\,<\,s\,<\,f(\omega)^{p}\right\}}(s)\,\d s\;\right]\,\d P(\omega)
+\;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0\,<\,s\,<\,f(\omega)^{p}\right\}}\,\d s\;\right]\,\d P(\omega)
 \\
 &=& \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0 \,\leq\, s^{1/p} \,<\, f(\omega)\,\right\}}\,\d s\;\right]\,\d P(\omega)
 \;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0 \,\leq\, t \,<\, f(\omega)\,\right\}}\cdot p \cdot t^{p-1} \,\d t\;\right]\,\d P(\omega)
