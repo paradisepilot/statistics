@@ -168,19 +168,34 @@ in which case, (v) follows immediately from (iv).
 \noindent
 Let $f : S \longrightarrow \Re$ be a bounded continuous $\Re$-valued function on $S$.
 We need to show $\int_{S}\,f(s)\,\d P_{n}(s) \longrightarrow \int_{S}\,f(s)\,\d P(s)$.
-By linearity, we may assume $0 \leq f \leq 1$.
-Now, by Lemma \ref{LemmaContinuitySetCountableExceptions},
+Since $f$ is assumed bounded, there exists some $c > 0$ such that $\vert\,f\,\vert < c$.
+Observe that
+\begin{equation*}
+\int_{S}\,f(s)\,\d P_{n}(s) \;\longrightarrow\; \int_{S}\,f(s)\,\d P(s)
+\quad\Longleftrightarrow\quad
+\int_{S}\left(\dfrac{f(s)+c}{2 c}\right)\d P_{n}(s) \;\longrightarrow\; \int_{S}\left(\dfrac{f(s)+c}{2 c}\right)\d P(s).
+\end{equation*}
+Thus, by replacing $f$ with $(f + c)\,/\,2c$ if necessary, we may assume, without loss of generality, that $0 \leq f \leq 1$.
+\vskip 0.2cm
+\noindent
+Now, for $0 \leq f \leq 1$, we have, by Lemma \ref{LemmaMomentsAndTails}:
+\begin{equation*}
+\int_{S}\,f(s)\,\d P_{n}(s)
+\;\;=\;\; \int_{0}^{\infty}\,P_{n}\!\left(\,f > t\,\right)\,\d t
+\;\;=\;\; \int_{0}^{1}\,P_{n}\!\left(\,f > t\,\right)\,\d t.
+\end{equation*}
+Next, by Lemma \ref{LemmaContinuitySetCountableExceptions},
 \begin{equation*}
 \{\,f > t\,\}
 \;=\;\left\{\, s \in S \;\,\vert\;\, f(s) > t \,\right\}
 \end{equation*}
-is a $P$-continuity set, except for countably many $t \in [0,1]$.
+is a $P$-continuity set, except for at most countably many $t \in [0,1]$.
 Hence, (v) implies:
 \begin{equation*}
 P_{n}\!\left(\,f > t\,\right) \;\longrightarrow\; P\!\left(\,f > t\,\right),
 \;\;\textnormal{for almost every $t \in [0,1]$}.
 \end{equation*}
-By Lemma \ref{LemmaMomentsAndTails} and the Lebesgue Dominated Convergence Theorem, we have
+Lastly, by the Lebesgue Dominated Convergence Theorem, we have
 \begin{eqnarray*}
 \int_{S}\,f(s)\,\d P_{n}(s) &=& \int_{0}^{\infty}\,P_{n}\!\left(\,f > t\,\right)\,\d t
 \\
