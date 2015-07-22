@@ -176,50 +176,79 @@ Observe that
 \int_{S}\left(\dfrac{f(s)+c}{2 c}\right)\d P_{n}(s) \;\longrightarrow\; \int_{S}\left(\dfrac{f(s)+c}{2 c}\right)\d P(s).
 \end{equation*}
 Thus, by replacing $f$ with $(f + c)\,/\,2c$ if necessary, we may assume, without loss of generality, that $0 \leq f \leq 1$.
+We make this assumption for the remainder of the proof.
 \vskip 0.2cm
 \noindent
-Now, for $0 \leq f \leq 1$, we have, by Lemma \ref{LemmaMomentsAndTails}:
-\begin{equation*}
+Now, the fact that $0 \leq f \leq 1$ and Lemma \ref{LemmaMomentsAndTails}
+together imply:
+\begin{eqnarray*}
+\int_{S}\,f(s)\,\d P(s)
+&=& \int_{0}^{\infty}\;P\!\left(\,f > t\,\right)\,\d t\;\mbox{}
+\;\;=\;\; \int_{0}^{1}\;P\!\left(\,f > t\,\right)\,\d t,
+\;\;\textnormal{and}
+\\
 \int_{S}\,f(s)\,\d P_{n}(s)
-\;\;=\;\; \int_{0}^{\infty}\,P_{n}\!\left(\,f > t\,\right)\,\d t
-\;\;=\;\; \int_{0}^{1}\,P_{n}\!\left(\,f > t\,\right)\,\d t.
-\end{equation*}
+&=& \int_{0}^{\infty}P_{n}\!\left(\,f > t\,\right)\,\d t
+\;\;=\;\; \int_{0}^{1}P_{n}\!\left(\,f > t\,\right)\,\d t,
+\;\;\textnormal{for each $n \in \N$}.
+\end{eqnarray*}
 Next, by Lemma \ref{LemmaContinuitySetCountableExceptions},
 \begin{equation*}
 \{\,f > t\,\}
 \;=\;\left\{\, s \in S \;\,\vert\;\, f(s) > t \,\right\}
 \end{equation*}
-is a $P$-continuity set, except for at most countably many $t \in [0,1]$.
+is a $P$-continuity set, except for at most countably many $t \in [0,\infty)$.
 Hence, (v) implies:
 \begin{equation*}
 P_{n}\!\left(\,f > t\,\right) \;\longrightarrow\; P\!\left(\,f > t\,\right),
-\;\;\textnormal{for almost every $t \in [0,1]$}.
+\;\;\textnormal{for almost every $t \in [0,\infty)$}.
 \end{equation*}
-On the other hand, note that \,$0 \leq f \leq 1$\, implies
-\begin{equation*}
-P_{n}\!\left(\,f > t\,\right) \;\;=\;\; 0,
-\;\;\textnormal{for each $n \in \N$ and each $t > 1$},
-\end{equation*}
-while we also trivially have:
+On the other hand, \,$0 \leq f \leq 1$\, also implies that, for each $n \in \N$,
 \begin{equation*}
 \left\vert\,P_{n}\!\left(\,f > t\,\right)\,\right\vert
-\;\;\leq\;\; 1,
-\;\;\textnormal{for each $n \in \N$ and each $t \in [0,1]$}.
+\;\;\leq\;\; I_{[0,1]}(t),
+\;\;\textnormal{for each $t \in [0,\infty)$},
 \end{equation*}
-This shows that, for each $n \in \N$, the function
-\,$[0,\infty) \longrightarrow [\,0,1\,] : t \longmapsto P_{n}\!\left(\,f > t\,\right)$\,
-is bounded by the characteristic function
+where the common dominating function $I_{[0,1]}$ is the following characteristic function:
 \begin{equation*}
 I_{[0,1]} \,:\, [0,\infty) \,\longrightarrow\, [\,0,1\,] \,:\, t \,\longmapsto\,
 \left\{\begin{array}{cl}
 1, & \textnormal{for $0 \leq t \leq 1$}
 \\
 0, & \textnormal{for $1 < t$}
-\end{array}\right.,
+\end{array}\right.
 \end{equation*}
-which of course is an integrable function defined on $[0,\infty)$.
-%and the constant function $1$ on the compact interval $[\,0,1\,]$ is (of course) integrable.
-Hence, by the Lebesgue Dominated Convergence Theorem, we have
+Since $I_{[0,1]}$ is Lebesgue-integrable on $[0,\infty)$ and
+$P_{n}\!\left(\,f > t\,\right) \longrightarrow P\!\left(\,f > t\,\right)$
+for almost every $t \in [0,\infty)$,
+the Lebesgue Dominated Convergence Theorem implies:
+\begin{equation*}
+\int_{0}^{1}\,P_{n}\!\left(\,f > t\,\right)\,\d t \;\;\longrightarrow\;\; \int_{0}^{1}\,P\!\left(\,f > t\,\right)\,\d t.
+\end{equation*}
+%\begin{equation*}
+%P_{n}\!\left(\,f > t\,\right) \;\;=\;\; 0,
+%\;\;\textnormal{for each $n \in \N$ and each $t > 1$},
+%\end{equation*}
+%while we also trivially have:
+%\begin{equation*}
+%\left\vert\,P_{n}\!\left(\,f > t\,\right)\,\right\vert
+%\;\;\leq\;\; 1,
+%\;\;\textnormal{for each $n \in \N$ and each $t \in [0,1]$}.
+%\end{equation*}
+%This shows that, for each $n \in \N$, the function
+%\,$[0,\infty) \longrightarrow [\,0,1\,] : t \longmapsto P_{n}\!\left(\,f > t\,\right)$\,
+%is bounded by the characteristic function
+%\begin{equation*}
+%I_{[0,1]} \,:\, [0,\infty) \,\longrightarrow\, [\,0,1\,] \,:\, t \,\longmapsto\,
+%\left\{\begin{array}{cl}
+%1, & \textnormal{for $0 \leq t \leq 1$}
+%\\
+%0, & \textnormal{for $1 < t$}
+%\end{array}\right.,
+%\end{equation*}
+%which of course is an integrable function defined on $[0,\infty)$.
+%Hence, by the Lebesgue Dominated Convergence Theorem, we have
+Combining all of the preceding observations, we have
 \begin{eqnarray*}
 \int_{S}\,f(s)\,\d P_{n}(s) &=& \int_{0}^{\infty}\,P_{n}\!\left(\,f > t\,\right)\,\d t
 \\
