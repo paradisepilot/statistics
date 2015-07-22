@@ -240,12 +240,12 @@ The proof of the second inequality is analogous.
 \noindent
 Suppose
 \begin{itemize}
-\item	$\left(S,\rho\right)$ is a metric space, and $\mathcal{B}(S)$ is its Borel $\sigma$-algebra.
-\item	$S = \underset{\gamma\in\Gamma}{\bigsqcup}\,F_{\gamma}$ is a partition of $S$ into
-		pairwise disjoint $\mathcal{B}(S)$-measurable subsets $F_{\gamma} \in \mathcal{B}(S)$.\\
+\item	$X$ is a topological space, and $\mathcal{B}(X)$ is its Borel $\sigma$-algebra.
+\item	$X = \underset{\gamma\in\Gamma}{\bigsqcup}\,F_{\gamma}$ is a partition of $X$ into
+		pairwise disjoint $\mathcal{B}(X)$-measurable subsets $F_{\gamma} \in \mathcal{B}(X)$.\\
 		Note that here the index set $\Gamma$ may be uncountable.
 \end{itemize}
-Then, for any probability measure $\mu \in \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$, we have:
+Then, for any probability measure $\mu \in \mathcal{M}_{1}\!\left(X,\mathcal{B}(X)\right)$, we have:
 \begin{equation*}
 \mu\!\left(F_{\gamma}\right) \; = \; 0,
 \;\;\textnormal{for all but countably many $\gamma \in \Gamma$}.
@@ -281,8 +281,92 @@ Thus, the Lemma follows immediately from the following
 	\;\;>\;\; 1,
 	\end{equation*}
 	which would contradict that hypothesis that $\mu$ is a probability measure.
-	Thus, the Claim must be true. \qed
+	Thus, the Claim must be true.
 	\end{minipage}
 	\end{center}
+\qed
+
+\vskip 0.3cm
+\begin{lemma}
+\label{LemmaContinuitySetCountableExceptions}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$X$ is a topological space and $\mathcal{B}(X)$ is its Borel $\sigma$-algebra.
+\item	$f : X \longrightarrow \Re$ is a continuous $\Re$-valued function defined on $X$.
+\item	$P \in \mathcal{M}_{1}\!\left(X,\mathcal{B}(X)\right)$ is a probability measure defined on
+		the measurable space $\left(X,\mathcal{B}(X)\right)$.
+\end{itemize}
+Then,
+$f^{-1}\!\left(\,(t,\infty)\,\right) = \{\,x\in X \;\vert\; f(x) > t\,\}$ is a $P$-continuity set,
+except for at most countably many $t \in \Re$.
+\end{lemma}
+\proof
+\vskip 0.2cm
+\noindent
+First, note that the continuity of $f$ implies that
+\begin{equation*}
+\partial\left\{\,x \in X \;\vert\; f(x) > t\,\right\} \;\subset\; \left\{\,x \in X \;\vert\; f(x) = t\,\right\},
+\;\;\textnormal{for each $t \in \Re$}.
+\end{equation*}
+Indeed, for each $t \in \Re$, we have
+\begin{eqnarray*}
+&&
+	x_{0} \in \partial\left\{\,x \in X \;\vert\; f(x) > t\,\right\}
+\\	
+&\Longleftrightarrow&
+	\textnormal{every neighbourhood of $x_{0}$ non-trivially intersects each of
+	$\left\{\,x \in X \;\vert\; f(x) > t\,\right\}$ and $\left\{\,x \in X \;\vert\; f(x) \leq t\,\right\}$}
+\\
+&\Longrightarrow&
+	\textnormal{for each}\;\,\varepsilon > 0,\;\textnormal{we have}\;
+	\left\{\begin{array}{l}
+	f^{-1}\!\left(\,(f(x_{0})-\varepsilon,f(x_{0})+\varepsilon)\,\right) \cap \{\,x\in X\;\vert\;f(x) > t \,\} \neq \varemptyset,\;\textnormal{and}
+	\\
+	f^{-1}\!\left(\,(f(x_{0})-\varepsilon,f(x_{0})+\varepsilon)\,\right) \cap \{\,x\in X\;\vert\;f(x) \leq t \,\} \neq \varemptyset
+	\end{array}\right.
+\\
+&\Longrightarrow&
+	\textnormal{for each}\;\,\varepsilon > 0,\;\textnormal{we have}\;
+	\left\{\begin{array}{l}
+		\exists\;\,x_{\varepsilon} \in X
+		\;\;\textnormal{with}\; -\varepsilon < f(x_{0})-f(x_{\varepsilon}) < \varepsilon
+		\;\;\textnormal{and}\;\; t < f(x_{\varepsilon}),\;\textnormal{and}
+		\\
+		\exists\;\,x'_{\varepsilon} \in X
+		\;\;\textnormal{with}\; -\varepsilon < f(x_{0})-f(x'_{\varepsilon}) < \varepsilon
+		\;\;\textnormal{and}\;\;f(x'_{\varepsilon}) \leq t
+	\end{array}\right.
+\\
+&\Longrightarrow&
+	\textnormal{for each}\;\,\varepsilon > 0,\;\textnormal{we have}\;\;
+	t -\varepsilon < f(x_{0})\;\;\textnormal{and}\;\;f(x_{0}) \leq t + \varepsilon,
+	\;\,\textnormal{or equivalently}\;\,\vert\, f(x_{0}) - t \,\vert \,\leq\, \varepsilon
+\\
+&\Longrightarrow&
+	f(x_{0}) \;=\; t
+\end{eqnarray*}
+Next, note that, since $f$ is continuous,
+$f^{-1}\!\left(\left\{\,t\,\right\}\right)$ is $\mathcal{B}(X)$-measurable for each $t \in \Re$.
+Thus,
+\begin{equation*}
+X \;\; = \;\; \bigsqcup_{t \in \Re}\,\left\{\,x\in X \;\vert\; f(x) = t\,\right\}
+\;\; = \;\; \bigsqcup_{t \in \Re}\, f^{-1}\!\left(\left\{\,t\,\right\}\right)
+\end{equation*}
+is a partition of $X$ into uncountably many pairwise disjoint $\mathcal{B}(X)$-measurable subsets.
+By Lemma \ref{LemmaUncountablePartition},
+\begin{equation*}
+P\!\left(\,f^{-1}\!\left(\left\{\,t\,\right\}\right)\,\right) \; = \; 0,
+\;\;\textnormal{for all but countably many $t \in \Re$},
+\end{equation*}
+which in turn implies
+\begin{equation*}
+P\!\left(\,\partial\left\{\,x\in X\;\vert\;f(x) > t\,\right\}\,\right) \; = \; 0,
+\;\;\textnormal{for all but countably many $t \in \Re$}.
+\end{equation*}
+This completes the proof of the Lemma.
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

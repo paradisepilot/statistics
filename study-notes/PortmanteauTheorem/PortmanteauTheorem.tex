@@ -169,91 +169,13 @@ in which case, (v) follows immediately from (iv).
 Let $f : S \longrightarrow \Re$ be a bounded continuous $\Re$-valued function on $S$.
 We need to show $\int_{S}\,f(s)\,\d P_{n}(s) \longrightarrow \int_{S}\,f(s)\,\d P(s)$.
 By linearity, we may assume $0 \leq f \leq 1$.
-
-	\begin{center}
-	\vskip 0.3cm
-	\begin{minipage}{6.5in}
-	\noindent
-	\textbf{Claim:}
-	\vskip 0.1cm
-	\noindent
-	$f^{-1}\!\left(\,(t,\infty)\,\right) = \{\,s\in S \;\vert\; f(s) > t\,\}$ is a $P$-continuity set,
-	except for at most countably many $t \in [0,1]$.
-	\vskip 0.2cm
-	\noindent
-	Proof of Claim:\;\;
-	First, note that the continuity of $f$ implies that
-	\begin{equation*}
-	\partial\left\{\,s \in S \;\vert\; f(s) > t\,\right\} \;\subset\; \left\{\,s \in S \;\vert\; f(s) = t\,\right\},
-	\;\;\textnormal{for each $t \in [0,1]$}.
-	\end{equation*}
-	Indeed,
-	\begin{eqnarray*}
-	&&
-		s_{0} \in \partial\left\{\,s \in S \;\vert\; f(s) > t\,\right\}
-	\\	
-	&\Longleftrightarrow&
-		\textnormal{every neighbourhood of $s_{0}$ non-trivially intersects each of
-		$\left\{\,s \in S \;\vert\; f(s) > t\,\right\}$ and $\left\{\,s \in S \;\vert\; f(s) \leq t\,\right\}$}
-	\\
-	&\Longrightarrow&
-		\textnormal{for each}\;\,\varepsilon > 0,\;\textnormal{we have}\;
-		\left\{\begin{array}{l}
-			f^{-1}\!\left(\,(f(s_{0})-\varepsilon,f(s_{0})+\varepsilon)\,\right) \cap \{\,s\in S\;\vert\;f(s) > t \,\} \neq \varemptyset,\;\textnormal{and}
-			\\
-			f^{-1}\!\left(\,(f(s_{0})-\varepsilon,f(s_{0})+\varepsilon)\,\right) \cap \{\,s\in S\;\vert\;f(s) \leq t \,\} \neq \varemptyset
-		\end{array}\right.
-	\\
-	&\Longrightarrow&
-		\textnormal{for each}\;\,\varepsilon > 0,\;\textnormal{we have}\;
-		\left\{\begin{array}{l}
-			\exists\;\,s_{\varepsilon} \in S
-			\;\;\textnormal{with}\; -\varepsilon < f(s_{0})-f(s_{\varepsilon}) < \varepsilon
-			\;\;\textnormal{and}\;\; t < f(s_{\varepsilon}),\;\textnormal{and}
-			\\
-			\exists\;\,s'_{\varepsilon} \in S
-			\;\;\textnormal{with}\; -\varepsilon < f(s_{0})-f(s'_{\varepsilon}) < \varepsilon
-			\;\;\textnormal{and}\;\;f(s'_{\varepsilon}) \leq t
-		\end{array}\right.
-	\\
-	&\Longrightarrow&
-		\textnormal{for each}\;\,\varepsilon > 0,\;\textnormal{we have}\;\;
-		t -\varepsilon < f(s_{0})\;\;\textnormal{and}\;\;f(s_{0}) \leq t + \varepsilon,
-		\;\,\textnormal{or equivalently}\;\,\vert\, f(s_{0}) - t \,\vert \,\leq\, \varepsilon
-	\\
-	&\Longrightarrow&
-		f(s_{0}) \;=\; t
-	\end{eqnarray*}
-	\end{minipage}
-	\end{center}
-	\begin{center}
-	\begin{minipage}{6.5in}
-	\noindent
-	Next, note that, since $f$ is continuous,
-	$f^{-1}\!\left(\left\{\,t\,\right\}\right)$ is $\mathcal{B}(S)$-measurable for each $t \in [0,1]$.
-	Thus,
-	\begin{equation*}
-	S \;\; = \;\; \bigsqcup_{t \in [0,1]}\,\left\{\,s\in S \;\vert\; f(s) = t\,\right\}
-	\;\; = \;\; \bigsqcup_{t \in [0,1]}\, f^{-1}\!\left(\left\{\,t\,\right\}\right)
-	\end{equation*}
-	is a partition of $S$ into uncountably many pairwise disjoint $\mathcal{B}(S)$-measurable subsets.
-	By Lemma \ref{LemmaUncountablePartition},
-	\begin{equation*}
-	P\!\left(\,f^{-1}\!\left(\left\{\,t\,\right\}\right)\,\right) \; = \; 0,
-	\;\;\textnormal{for all but countably many $t \in [0,1]$},
-	\end{equation*}
-	which in turn implies
-	\begin{equation*}
-	P\!\left(\,\partial\left\{\,s\in S\;\vert\;f(s) > t\,\right\}\,\right) \; = \; 0,
-	\;\;\textnormal{for all but countably many $t \in [0,1]$}.
-	\end{equation*}
-	This completes the proof of the Claim.
-	\end{minipage}
-	\end{center}
-
-\vskip 0.3cm
-\noindent
-The above Claim and (v) together imply:
+Now, by Lemma \ref{LemmaContinuitySetCountableExceptions},
+\begin{equation*}
+\{\,f > t\,\}
+\;=\;\left\{\, s \in S \;\,\vert\;\, f(s) > t \,\right\}
+\end{equation*}
+is a $P$-continuity set, except for countably many $t \in [0,1]$.
+Hence, (v) implies:
 \begin{equation*}
 P_{n}\!\left(\,f > t\,\right) \;\longrightarrow\; P\!\left(\,f > t\,\right),
 \;\;\textnormal{for almost every $t \in [0,1]$}.
@@ -319,7 +241,7 @@ In Theorem \ref{PortmanteauTheorem} (the Portmanteau Theorem):
 		open $\varepsilon$-neighbourhood $F^{\varepsilon}$ of $F$, and additionally by a bounded continuous
 		$\Re$-valued function bounded between these two aforementioned characteristic functions.
 		This metric space property allows us to deduce the statement (ii) about closed subsets
-		from the statement (i) about bound continuous $\Re$-valued functions.
+		from the statement (i) about bounded continuous $\Re$-valued functions.
 \end{itemize}
 \end{remark}
 
