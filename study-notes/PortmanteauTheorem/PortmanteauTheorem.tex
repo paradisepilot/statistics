@@ -195,7 +195,31 @@ Hence, (v) implies:
 P_{n}\!\left(\,f > t\,\right) \;\longrightarrow\; P\!\left(\,f > t\,\right),
 \;\;\textnormal{for almost every $t \in [0,1]$}.
 \end{equation*}
-Lastly, by the Lebesgue Dominated Convergence Theorem, we have
+On the other hand, note that \,$0 \leq f \leq 1$\, implies
+\begin{equation*}
+P_{n}\!\left(\,f > t\,\right) \;\;=\;\; 0,
+\;\;\textnormal{for each $n \in \N$ and each $t > 1$},
+\end{equation*}
+while we also trivially have:
+\begin{equation*}
+\left\vert\,P_{n}\!\left(\,f > t\,\right)\,\right\vert
+\;\;\leq\;\; 1,
+\;\;\textnormal{for each $n \in \N$ and each $t \in [0,1]$}.
+\end{equation*}
+This shows that, for each $n \in \N$, the function
+\,$[0,\infty) \longrightarrow [\,0,1\,] : t \longmapsto P_{n}\!\left(\,f > t\,\right)$\,
+is bounded by the characteristic function
+\begin{equation*}
+I_{[0,1]} \,:\, [0,\infty) \,\longrightarrow\, [\,0,1\,] \,:\, t \,\longmapsto\,
+\left\{\begin{array}{cl}
+1, & \textnormal{for $0 \leq t \leq 1$}
+\\
+0, & \textnormal{for $1 < t$}
+\end{array}\right.,
+\end{equation*}
+which of course is an integrable function defined on $[0,\infty)$.
+%and the constant function $1$ on the compact interval $[\,0,1\,]$ is (of course) integrable.
+Hence, by the Lebesgue Dominated Convergence Theorem, we have
 \begin{eqnarray*}
 \int_{S}\,f(s)\,\d P_{n}(s) &=& \int_{0}^{\infty}\,P_{n}\!\left(\,f > t\,\right)\,\d t
 \\
