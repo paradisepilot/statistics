@@ -1,0 +1,76 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical Lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{lemma}\label{LemmaPhi}
+Define
+\begin{equation*}
+\phi \, : \; [\,0,\infty\,) \, \longrightarrow \, [\,0,1\,] \, : \, t \, \longmapsto \,\min\{\,1\,,t\,\}. 
+\end{equation*}
+Then, $\phi$ satisfies:
+\begin{equation*}
+\phi(s + t) \; \leq \; \phi(s) \,+\, \phi(t),
+\;\;\textnormal{for each $s, t \in [0,\infty)$}.
+\end{equation*}
+\end{lemma}
+\proof
+For any $s, t \in [0,\infty)$, either $s + t \geq 1$ or $s + t <1$. 
+If $s + t \geq 1$, then
+\begin{equation*}
+\phi(s+t)
+\;=\; \min\{1,s + t\}
+\;=\; 1
+\;<\; 2
+\;=\; 1 + 1
+\;\leq\; \min\{1,s\} + \min\{1,t\}
+\;=\; \phi(s) + \phi(t),
+\end{equation*}
+hence, the required inequality holds.
+On the other hand, if $s + t < 1$, then we must also have $s < 1$ and $t < 1$ (since $s, t \geq 0$).
+Hence,
+\begin{equation*}
+\phi(s+t)
+\;=\; \min\{1,s + t\}
+\;=\; s+t
+\;=\; \min\{1,s\} + \min\{1,t\}
+\;=\; \phi(s) + \phi(t),
+\end{equation*}
+thus, the required inequality also holds.
+\qed
+
+\begin{lemma}\label{LemmaMin}
+For any $x, y, z \in \Re$, we have:
+\begin{equation*}
+\min\{1,\vert\,x-y\,\vert\}
+\;\leq\;
+\min\{1,\vert\,x-z\,\vert\}
+\;+\;
+\min\{1,\vert\,z-y\,\vert\}.
+\end{equation*}
+\end{lemma}
+\proof
+Observe that $\vert\,x - y\,\vert \;\leq\; \vert\,x-z\,\vert+\vert\,z-y\,\vert$ implies
+\begin{equation*}
+\min\{\,1\,,\vert\,x - y\,\vert\,\} \;\leq\; \vert\,x-z\,\vert+\vert\,z-y\,\vert.
+\end{equation*}
+The above inequality, together with $\min\{\,1\,,\vert\,x - y\,\vert\,\} \;\leq\; 1$,
+thus in turn imply:
+\begin{equation*}
+\min\{\,1\,,\vert\,x - y\,\vert\,\} \;\leq\; \min\{\,1\,,\vert\,x-z\,\vert+\vert\,z-y\,\vert\,\}.
+\end{equation*}
+By Lemma \ref{LemmaPhi}, we therefore have:
+\begin{equation*}
+\min\{\,1\,,\vert\,x - y\,\vert\,\}
+\;\leq\; \min\{\,1\,,\vert\,x-z\,\vert+\vert\,z-y\,\vert\,\}.
+\;\leq\; \min\{\,1\,,\vert\,x-z\,\vert\,\} \;+\; \min\{\,1\,,\vert\,z-y\,\vert\,\},
+\end{equation*}
+which proves the present Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

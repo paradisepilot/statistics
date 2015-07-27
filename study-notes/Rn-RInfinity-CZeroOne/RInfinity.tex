@@ -1,0 +1,142 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The probability space $\Re^{\infty}$}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{definition}[The metric space $\Re^{\infty}$, Example 1.2, \cite{Billingsley1999}]
+\label{RInfinityMetricSpace}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\Re^{\infty}$ denotes the set of all infinite sequences of real numbers, i.e.
+\begin{equation*}
+\Re^{\infty}
+\; := \;
+\left\{\;
+(x_{1},x_{2},\ldots\,)
+\;\left\vert\;
+x_{i} \in \Re,\;\textnormal{for each $i \in \N$}
+\right.
+\;\right\}.
+\end{equation*}
+Define $\rho : \Re^{\infty} \times \Re^{\infty} \longrightarrow [\,0,1\,]$ as follows:
+\begin{equation*}
+\rho(x,y)
+\; := \;
+\sum_{n=1}^{\infty}\,\dfrac{\min\{\,1\,,\vert\,x_{n}-y_{n}\,\vert\,\}}{2^{n}}.
+\end{equation*}
+\end{definition}
+
+\begin{remark}
+Recall that
+\begin{equation*}
+\sum_{n=1}^{\infty}\,\dfrac{1}{2^{n}}
+\;=\; \dfrac{1}{2} \sum_{n=1}^{\infty}\,\dfrac{1}{2^{n-1}}
+\;=\; \dfrac{1}{2}\cdot\left(\dfrac{1}{1 - \frac{1}{2}}\right)
+\;=\; 1,
+\end{equation*}
+which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\infty}$.
+\end{remark}
+
+\begin{theorem}\mbox{}
+\begin{enumerate}
+\item	$\left(\,\Re^{\infty},\rho\,\right)$ is a metric space.
+		Let $\Re^{\infty}$ denote also this metric space in the remainder of this Theorem.
+\item	For $x, x^{(1)}, x^{(2)}, x^{(3)}, \ldots, \in \Re^{\infty}$, we have:
+		\begin{equation*}
+		\rho\!\left(\,x^{(n)},\,x\,\right) \; \longrightarrow \; 0
+		\quad\Longleftrightarrow\quad
+		\textnormal{for each $i \in \N$},\;\;
+		\lim_{n\rightarrow\infty}\,\left\vert\,x^{(n)}_{i} - x_{i}\,\right\vert \; = \; 0
+		\end{equation*}
+\item	For each $n \in \N$, the ``natural projection to the initial segment of length $n$"
+		\begin{equation*}
+		\pi_{n} \; : \, \Re^{\infty} \,\longrightarrow\, \Re^{n} \, : \, x \,\longmapsto\, (x_{1},x_{2},\ldots,x_{n})
+		\end{equation*}
+		is continuous, where $\Re^{n}$ has the usual Euclidean topology.
+\item	For each $x \in \Re^{\infty}$, $n \in \N$, and $\varepsilon > 0$,
+		let $C_{\Re^{n}}(\pi_{n}(x),\varepsilon)$ denote the open hypercube in $\Re^{n}$
+		of side length $2\varepsilon$ centred at $\pi_{n}(x) \in \Re^{n}$, i.e.
+		\begin{equation*}
+		C_{\Re^{n}}(\pi_{n}(x),\varepsilon)
+		\;\; := \;\;
+		\left\{\;
+		y \in \Re^{n}
+		\,\left\vert\;
+		\begin{array}{c} \vert\,y_{i} - x_{i}\,\vert\,<\,\varepsilon,\\ i = 1, 2, \ldots, n\end{array}
+		\right.		
+		\;\right\}
+		\end{equation*}
+		Then, its pre-image in $\Re^{\infty}$ under $\pi_{n}$
+		\begin{equation*}
+		\pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\varepsilon)\,\right)
+		\;\; = \;\;
+		\left\{\;\,
+		y \in \Re^{\infty}
+		\,\left\vert\;
+		\begin{array}{c} \vert\,y_{i} - x_{i}\,\vert\,<\,\varepsilon,\\ i = 1, 2, \ldots, n\end{array}
+		\right.
+		\;\right\}
+		\end{equation*}
+		is an open subset of $\Re^{\infty}$.
+\item	The collection
+		\begin{equation*}
+		\left\{\;\,
+		\pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\varepsilon)\,\right) \subset \Re^{\infty}
+		\;\left\vert
+		{\color{white}\overset{1}{1}}
+		n \in \N, x \in \Re^{\infty}, \varepsilon > 0
+		\right.
+		\;\right\}
+		\end{equation*}
+		of all pre-images under $\pi^{n}$ of open hypercubes in $\Re^{n}$, for all $n \in \N$,
+		forms a basis for the topology of $\Re^{\infty}$.
+\item	$\Re^{\infty}$ is a separable and complete metric space.
+		Hence, every probability measure on $\Re^{\infty}$ is tight.
+\end{enumerate}
+\end{theorem}
+
+\proof
+\begin{enumerate}
+\item
+	Clearly, $\rho$ is non-negative and symmetric.
+	We now show that, for any $x, y \in \Re^{\infty}$, we have $\rho(x,y) = 0$ implies $x=y$.
+	Indeed,
+	\begin{eqnarray*}
+	\rho(x,y) \,=\, 0
+	&\Longleftrightarrow& \sum_{i=1}^{\infty}\,\dfrac{\min\{\,1\,,\vert\,x_{i}-y_{i}\,\vert\,\}}{2^{i}} \;=\; 0
+	\\
+	&\Longleftrightarrow& \min\{\,1\,,\vert\,x_{i}-y_{i}\,\vert\,\} \;=\; 0,\;\;\textnormal{for each $i \in \N$}
+	\\
+	&\Longleftrightarrow& \vert\,x_{i}-y_{i}\,\vert \;=\; 0,\;\;\textnormal{for each $i \in \N$}
+	\\
+	&\Longleftrightarrow& x \,=\, y.
+	\end{eqnarray*}
+	In order to show that $\rho$ is a metric, it remains only to establish the Triangle Inequality.
+	By Lemma \ref{LemmaMin}, for any $x, y, z \in \Re^{\infty}$, we have 
+	\begin{eqnarray*}
+	\rho(x,y)
+	&=& \sum_{i=1}^{\infty}\,\dfrac{\min\{\,1\,,\vert\,x_{i}-y_{i}\,\vert\,\}}{2^{i}}
+	\\
+	&\leq& \sum_{i=1}^{\infty}\,\dfrac{\min\{\,1\,,\vert\,x_{i}-z_{i}\,\vert\,\} \,+\,\min\{\,1\,,\vert\,z_{i}-y_{i}\,\vert\,\}}{2^{i}}
+	\\
+	&=&
+	\sum_{i=1}^{\infty}\,\dfrac{\min\{\,1\,,\vert\,x_{i}-z_{i}\,\vert\,\}\,\}}{2^{i}}
+	\;+\;
+	\sum_{i=1}^{\infty}\,\dfrac{\min\{\,1\,,\vert\,z_{i}-y_{i}\,\vert\,\}}{2^{i}}
+	\\
+	&=& \rho(x,z) + \rho(z,y),
+	\end{eqnarray*}
+	where we have used the fact that $0 \leq \rho \leq 1$ to split the infinite sum into two terms in
+	second-to-last equality. This proves that $\rho$ satisfies the Triangle Inequality, and it is thus a metric
+	on $\Re^{\infty}$.
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
