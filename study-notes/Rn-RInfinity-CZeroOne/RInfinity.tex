@@ -91,7 +91,7 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 		\pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\varepsilon)\,\right) \subset \Re^{\infty}
 		\;\left\vert
 		{\color{white}\overset{1}{1}}
-		n \in \N, x \in \Re^{\infty}, \varepsilon > 0
+		n \in \N,\,x \in \Re^{\infty},\,\varepsilon > 0
 		\right.
 		\;\right\}
 		\end{equation*}
@@ -136,6 +136,58 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 	where we have used the fact that $0 \leq \rho \leq 1$ to split the infinite sum into two terms in
 	second-to-last equality. This proves that $\rho$ satisfies the Triangle Inequality, and it is thus a metric
 	on $\Re^{\infty}$.
+\item
+	\underline{$\underset{n\rightarrow\infty}{\lim}\,\rho\!\left(x^{(n)},x\right) = 0
+	\;\;\Longrightarrow\;\;
+	\underset{n\rightarrow\infty}{\lim}\left\vert\,x^{(n)}_{i} - x_{i}\,\right\vert = 0$, for each $i \in \N$\;\mbox{}}
+	\begin{eqnarray*}
+	\underset{n\rightarrow\infty}{\lim}\,\rho\!\left(x^{(n)},x\right) = 0
+	&\Longrightarrow&
+		\underset{n\rightarrow\infty}{\lim}\,\sum^{\infty}_{i=1}\dfrac{\min\{\,1\,,\vert\,x^{(n)}_{i} - x_{i}\,\vert\,\}}{2^{i}} = 0
+	\\
+	&\Longrightarrow& \underset{n\rightarrow\infty}{\lim}\,\min\{\,1\,,\vert\,x^{(n)}_{i} - x_{i}\,\vert\,\} = 0,
+		\;\;\textnormal{for each $i \in \N$}
+	\\
+	&\Longrightarrow& \underset{n\rightarrow\infty}{\lim}\,\left\vert\,x^{(n)}_{i} - x_{i}\,\right\vert = 0,
+		\;\;\textnormal{for each $i \in \N$}
+	\end{eqnarray*}
+	\underline{$\underset{n\rightarrow\infty}{\lim}\left\vert\,x^{(n)}_{i} - x_{i}\,\right\vert = 0,\;
+	\textnormal{for each $i \in \N$}
+	\;\;\Longrightarrow\;\;
+	\underset{n\rightarrow\infty}{\lim}\,\rho\!\left(x^{(n)},x\right) = 0$
+	\;\mbox{}}
+	\vskip 0.1cm
+	\noindent
+	This follows from the Weierstrass $M$-test.
+	Suppose $\underset{n\rightarrow\infty}{\lim}\left\vert\,x^{(n)}_{i}\,-\,x_{i}\,\right\vert = 0$, for each $i \in \N$.
+	Then,
+	\begin{equation*}
+	\lim_{n\rightarrow\infty}\dfrac{\min\{\,1\,,\vert\,x^{(n)}_{i} - x_{i}\,\vert\,\}}{2^{i}} \; = \; 0 \; =: \; y_{i},
+	\;\;\textnormal{for each $i \in \N$}.
+	\end{equation*}
+	For each $i \in \N$, let $M_{i} \; := \; \dfrac{1}{2^{i}}$.
+	Then,
+	\begin{equation*}
+	\dfrac{\min\{1\,,\vert\,x^{(n)}_{i} - x_{i}\,\vert\}}{2^{i}}\;\leq\;M_{i}
+	\quad\textnormal{and}\quad
+	\overset{\infty}{\underset{i=1}{\sum}}\,M_{i}\,<\,\infty.
+	\end{equation*}
+	Hence, by the Weierstrass $M$-test (Lemma \ref{WeierstrassMTest}), we have
+	\begin{equation*}
+ 	\lim_{n\rightarrow\infty}\,\rho\!\left(x^{(n)},x\right)
+	\;\; = \;\;
+	\lim_{n\rightarrow\infty}\,\sum^{\infty}_{i=1}\,\dfrac{\min\{\,1\,,\vert\,x^{(n)}_{i} - x_{i}\,\vert\,\}}{2^{i}}
+	\;\;=\;\; \sum^{\infty}_{i=1}\,y_{i} \;\; = \;\; 0.
+	\end{equation*}
+\item
+	Immediate by (ii).	
+\item
+	Since $C_{\Re^{n}}(\pi_{n}(x),\varepsilon) \subset \Re^{n}$ is an open subset of $\Re^{n}$,
+	its pre-image under the continuous (by (ii)) map
+	$\pi_{n} \, : \, \Re^{\infty} \, \longrightarrow \, \Re^{n}$ is an open subset of $\Re^{\infty}$.
+\item
+	It suffices to show that every open ball in $B\!\left(x,\varepsilon\right) \subset \Re^{\infty}$
+	contains the pre-image of an open hypercube in $\Re^{n}$ under $\pi_{n}$.
 \end{enumerate}
 \qed
 

@@ -73,4 +73,71 @@ By Lemma \ref{LemmaPhi}, we therefore have:
 which proves the present Lemma.
 \qed
 
+\begin{lemma}[The Weierstrass $M$-test, Theorem A.28, \cite{Billingsley2012}]\label{WeierstrassMTest}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose that $\underset{n\rightarrow\infty}{\lim}\,x^{(n)}_{i} \,=\, x_{i}$,\; for each $i \in \N$,
+and that $\left\vert\,x^{(n)}_{i}\,\right\vert \,\leq\, M_{i}$,
+where $\overset{\infty}{\underset{i=1}{\sum}}\,M_{i} < \infty$.
+Then,
+\begin{enumerate}
+\item
+	$\overset{\infty}{\underset{i=1}{\sum}}\, x_{i}$ exists, \;and\;\;
+	$\overset{\infty}{\underset{i=1}{\sum}}\, x^{(n)}_{i}$ exists for each $n \in \N$.
+\item	Furthermore,
+	\begin{equation*}
+	\underset{n\rightarrow\infty}{\lim}\;\overset{\infty}{\underset{i=1}{\sum}}\, x^{(n)}_{i}
+	\; = \;\;
+	\overset{\infty}{\underset{i=1}{\sum}}\, x_{i}.
+	\end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+	$\overset{\infty}{\underset{i=1}{\sum}}\,M_{i} < \infty$ \;\;and\;\; $\left\vert\,x^{(n)}_{i}\,\right\vert \leq M_{i}$
+	\quad$\Longrightarrow$\quad the series \;$\overset{\infty}{\underset{i=1}{\sum}}\, x_{i}$ \;and\;
+	$\overset{\infty}{\underset{i=1}{\sum}}\, x^{(n)}_{i}$, $n \in \N$, \;converge absolutely.
+\item
+	Let $\varepsilon > 0$ be given. Choose $K \in \N$ sufficiently large such that
+	$\overset{\infty}{\underset{j = K + 1}{\sum}}\,M_{i} < \dfrac{\varepsilon}{3}$.
+	Next, choose $N \in \N$ sufficiently large such that
+	\begin{equation*}
+	\left\vert\;x^{(n)}_{i} \,-\, x_{i}\;\right\vert
+	\; < \; \dfrac{\varepsilon}{3K},
+	\;\;\textnormal{for any $n > N$ and $i = 1, 2, \ldots, K$}.
+	\end{equation*}
+	Then, we have, for each $n > N$,
+	\begin{eqnarray*}
+	\left\vert\;\;
+	\sum^{\infty}_{i=1}\,x^{(n)}_{i} \, - \, \sum^{\infty}_{i=1}x_{i}
+	\;\right\vert
+	&=&
+	\left\vert\;\;
+	\sum^{K}_{i=1}\left(\,x^{(n)}_{i} \, - \, x_{i}\,\right) \, + \, \sum_{i=K+1}^{\infty}x^{(n)}_{i} \, - \, \sum^{\infty}_{i=K+1}x_{i}
+	\;\right\vert
+	\\
+	&\leq&
+	\sum^{K}_{i=1}
+	\left\vert\; x^{(n)}_{i} \, - \, x_{i}\;\right\vert
+	\;+\; \sum^{\infty}_{i=K+1}\left\vert\, x^{(n)}_{i} \,\right\vert
+	\;+\; \sum^{\infty}_{i=K+1}\left\vert\, x_{i} \,\right\vert
+	\\
+	&\leq&
+	K \cdot \dfrac{\varepsilon}{3K}
+	\;+\; \sum^{\infty}_{i=K+1}M_{i}
+	\;+\; \sum^{\infty}_{i=K+1}M_{i}
+	\;\;\leq\;\;
+	\dfrac{\varepsilon}{3} + 2\cdot\dfrac{\varepsilon}{3}
+	\;\;=\;\; \varepsilon.
+	\end{eqnarray*}
+	Since $\varepsilon$ is arbitrary, this proves:
+	\begin{equation*}
+	\underset{n\rightarrow\infty}{\lim}\;\overset{\infty}{\underset{i=1}{\sum}}\, x^{(n)}_{i}
+	\; = \;\;
+	\overset{\infty}{\underset{i=1}{\sum}}\, x_{i}.
+	\end{equation*}
+\end{enumerate}
+\qed
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
