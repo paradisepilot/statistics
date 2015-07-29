@@ -10,7 +10,7 @@
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
-\begin{definition}[The metric space $\Re^{\infty}$, Example 1.2, \cite{Billingsley1999}]
+\begin{definition}[The metric on $\Re^{\infty}$, Example 1.2, \cite{Billingsley1999}]
 \label{RInfinityMetricSpace}
 \mbox{}\vskip 0.1cm
 \noindent
@@ -85,6 +85,24 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 		\;\right\}
 		\end{equation*}
 		is an open subset of $\Re^{\infty}$.
+\item	For each $x \in \Re^{\infty}$, $n \in \N$, and $\varepsilon > 0$, we have:
+		\begin{equation*}
+		\pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\varepsilon)\,\right)
+		\;\;\subset\;\;
+		B_{\mbox{}\,\Re^{\infty}}\!\left(x\,,\,\varepsilon + \frac{1}{2^{n}}\right),
+		\end{equation*}
+		where $B_{\mbox{}\,\Re^{\infty}}\!\left(x\,,\,\varepsilon + \dfrac{1}{2^{n}}\right)$
+		is the open ball in $\Re^{\infty}$ centred at $x$ of radius $\varepsilon + \dfrac{1}{2^{n}}$, i.e.
+		\begin{equation*}
+		B_{\mbox{}\,\Re^{\infty}}\!\left(\,x\,,\,\varepsilon + \frac{1}{2^{n}}\,\right)
+		\;\; := \;\;
+		\left\{\;
+		y \in \Re^{\infty}
+		\;\left\vert\;
+		\rho(y,x) \,<\, \varepsilon + \frac{1}{2^{n}}
+		\right.
+		\;\right\}
+		\end{equation*}
 \item	The collection
 		\begin{equation*}
 		\left\{\;\,
@@ -95,7 +113,7 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 		\right.
 		\;\right\}
 		\end{equation*}
-		of all pre-images under $\pi^{n}$ of open hypercubes in $\Re^{n}$, for all $n \in \N$,
+		of all pre-images under $\pi_{n}$ of open hypercubes in $\Re^{n}$, for all $n \in \N$,
 		forms a basis for the topology of $\Re^{\infty}$.
 \item	$\Re^{\infty}$ is a separable and complete metric space.
 		Hence, every probability measure on $\Re^{\infty}$ is tight.
@@ -183,11 +201,41 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 	Immediate by (ii).	
 \item
 	Since $C_{\Re^{n}}(\pi_{n}(x),\varepsilon) \subset \Re^{n}$ is an open subset of $\Re^{n}$,
-	its pre-image under the continuous (by (ii)) map
+	its pre-image under the continuous (by (iii)) map
 	$\pi_{n} \, : \, \Re^{\infty} \, \longrightarrow \, \Re^{n}$ is an open subset of $\Re^{\infty}$.
 \item
-	It suffices to show that every open ball in $B\!\left(x,\varepsilon\right) \subset \Re^{\infty}$
-	contains the pre-image of an open hypercube in $\Re^{n}$ under $\pi_{n}$.
+	For $y \in \Re^{\infty}$, we have
+	\begin{eqnarray*}
+	y \in \pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\varepsilon)\,\right)
+	&\Longrightarrow& \vert\,y_{i} - x_{i}\,\vert < \varepsilon, \;\textnormal{for each $i = 1, 2, \ldots, n$}
+	\\
+	&\Longrightarrow&
+		\rho(x,y)
+		\;\;:=\;\; \sum^{\infty}_{i=1}\,\dfrac{\min\{\,1\,,\vert\,x_{i} - y_{i}\,\vert\,\}}{2^{i}}
+		\;\;\leq\;\; \sum^{n}_{i=1}\,\dfrac{\varepsilon}{2^{i}} \;+\; \sum^{\infty}_{i=n+1}\dfrac{1}{2^{i}}
+		\;\;=\;\; \varepsilon + \dfrac{1}{2^{n}}.
+	\end{eqnarray*}
+	This proves:
+	\begin{equation*}
+	\pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\varepsilon)\,\right)
+	\;\;\subset\;\; B_{\mbox{}\,\Re^{\infty}}\!\left(\,x\,,\,\varepsilon + \dfrac{1}{2^{n}}\,\right).
+	\end{equation*}
+\item
+	It suffices to show that every open ball in
+	$B_{\mbox{}\,\Re^{\infty}}\!\left(x,r\right) \subset \Re^{\infty}$, $r > 0$,
+	contains the pre-image of an open hypercube centred at $\pi_{n}(x) \in \Re^{n}$
+	under $\pi_{n}$.
+	To this end, for $r > 0$,
+	choose $\varepsilon > 0$ sufficiently small and $n \in \N$ sufficiently large
+	such that $\varepsilon + \dfrac{1}{2^{n}} \, < \, r$.
+	Then, for any $x \in \Re^{\infty}$, by (v), we have:
+	\begin{equation*}
+	x
+	\;\;\in\;\; \pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\varepsilon)\,\right)
+	\;\;\subset\;\; B_{\mbox{}\,\Re^{\infty}}\!\left(\,x\,,\,\varepsilon + \dfrac{1}{2^{n}}\,\right)
+	\;\;\subset\;\; B_{\mbox{}\,\Re^{\infty}}\!\left(\,x\,,r\,\right),
+	\end{equation*}
+	as required.
 \end{enumerate}
 \qed
 
