@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{The metric space structure on $\Re^{\infty}$}
+\section{Examples of separating and convergence-determining classes of $\Re^{\infty}$}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -37,14 +37,15 @@ Define $\rho : \Re^{\infty} \times \Re^{\infty} \longrightarrow [\,0,1\,]$ as fo
 Recall that
 \begin{equation*}
 \sum_{n=1}^{\infty}\,\dfrac{1}{2^{n}}
-\;=\; \dfrac{1}{2} \sum_{n=1}^{\infty}\,\dfrac{1}{2^{n-1}}
-\;=\; \dfrac{1}{2}\cdot\left(\dfrac{1}{1 - \frac{1}{2}}\right)
-\;=\; 1,
+\;\;=\;\; \dfrac{1}{2} \sum_{n=1}^{\infty}\,\dfrac{1}{2^{n-1}}
+\;\;=\;\; \dfrac{1}{2}\cdot\left(\dfrac{1}{1 - \frac{1}{2}}\right)
+\;\;=\;\; 1,
 \end{equation*}
 which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\infty}$.
 \end{remark}
 
-\begin{theorem}\mbox{}
+\begin{theorem}[The metric space properties of $\Re^{\infty}$]
+\mbox{}
 \begin{enumerate}
 \item	$\left(\,\Re^{\infty},\rho\,\right)$ is a metric space.
 		Let $\Re^{\infty}$ denote also this metric space in the remainder of this Theorem.
@@ -115,8 +116,9 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 		\end{equation*}
 		of all pre-images under $\pi_{n}$ of open hypercubes in $\Re^{n}$, for all $n \in \N$,
 		forms a basis for the topology of $\Re^{\infty}$.
-\item	$\Re^{\infty}$ is a separable and complete metric space.
-		Hence, every probability measure on $\Re^{\infty}$ is tight.
+\item	$\Re^{\infty}$ is a separable metric space.
+\item	$\Re^{\infty}$ is a complete metric space.
+%\item	Every probability measure on $\Re^{\infty}$ is tight.
 \end{enumerate}
 \end{theorem}
 
@@ -236,6 +238,80 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 	\;\;\subset\;\; B_{\mbox{}\,\Re^{\infty}}\!\left(\,x\,,r\,\right),
 	\end{equation*}
 	as required.
+\item
+	It suffices to exhibit a countable subset of $\Re^{\infty}$ that intersects every open ball in $\Re^{\infty}$.
+	To this end, let
+	\begin{equation*}
+	D \; := \;
+	\bigcup_{n=1}^{\infty}\,
+	\left\{\;
+	x = (x_{1},x_{2},\ldots\;) \in \Re^{\infty}
+	\;\left\vert\;
+	\begin{array}{l}
+	x_{i} \in \Q,\;\textnormal{for each}\;i \in \N
+	\\
+	x_{i} = 0,\;\textnormal{for all $i \geq n$}
+	\end{array}
+	\right.
+	\;\right\}.
+	\end{equation*}
+	Clearly, $D$ is a countable subset of $\Re^{\infty}$.
+	Now let $B_{\mbox{}\,\Re^{\infty}}\!\left(x,\varepsilon\right)$ be an arbitrary open ball in $\Re^{\infty}$.
+	Choose $\delta > 0$ small enough and $n \in \N$ large enough such that
+	$\delta + \dfrac{1}{2^{n}} \, < \, \varepsilon$.
+	Then,	
+	\begin{equation*}
+	\pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\delta)\,\right)
+	\;\;\subset\;\;
+	B_{\mbox{}\,\Re^{\infty}}\!\left(x\,,\,\delta + \frac{1}{2^{n}}\right)
+	\;\;\subset\;\;
+	B_{\mbox{}\,\Re^{\infty}}\!\left(x\,,\varepsilon\,\right),
+	\end{equation*}
+	Now, for each $i = 1, 2, \ldots, n$, choose $z_{i} \in \Q\,\cap\,(x_{i}-\delta,x_{i}+\delta)$.
+	Let $z = (z_{1},z_{2},\ldots,z_{n},\,0,\,0,\,\ldots\,) \in \Re^{\infty}$.
+	Then, we have
+	\begin{equation*}
+	z \;\; \in \;\;
+	D\;\bigcap\;
+	\left\{\;
+	y \in \Re^{\infty}
+	\,\left\vert\;
+	\begin{array}{c} y_{i} \in (x_{i}-\delta,x_{i}+\delta),\\ \textnormal{for each}\;i = 1, 2, \ldots, n\end{array}
+	\right.
+	\right\}
+	\;\; = \;\;
+	D\;\bigcap\;
+	\pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\delta)\,\right)
+	\;\; \subset \;\;
+	D \;\bigcap\; B_{\mbox{}\,\Re^{\infty}}\!\left(x\,,\varepsilon\,\right).
+	\end{equation*}
+	This proves the the countable subset $D \subset \Re^{\infty}$ has non-empty intersection with every open
+	ball in $\Re^{\infty}$, i.e. $D$ is dense in $\Re^{\infty}$. Hence, $\Re^{\infty}$ is separable.
+\item
+	We need to show that every Cauchy sequence in $\Re^{\infty}$ converges to any element in $\Re^{\infty}$.
+	\begin{eqnarray*}
+	&& \left\{\,x^{(n)}\,\right\}_{n\in\N} \subset \Re^{\infty}\;\textnormal{is a Cauchy sequence in}\;\Re^{\infty}
+	\\
+	&\Longleftrightarrow& \textnormal{for each $\varepsilon > 0$, there exists $N_{\varepsilon} \in \N$ such that}
+		\;\rho\!\left(x^{(m)},x^{(n)}\right) \; < \; \varepsilon,\;\textnormal{for any $m, n > N_{\varepsilon}$}
+	\\
+	&\Longrightarrow& \textnormal{for each $i \in \N$, we have:}
+	\\
+	&&
+		\textnormal{for each $\varepsilon > 0$, there exists $N_{\varepsilon} \in \N$ such that}
+		\;\left\vert\,x^{(m)}_{i} - x^{(n)}_{i}\,\right\vert \; < \; \varepsilon,\;\textnormal{for any $m, n > N_{\varepsilon}$}
+	\\
+	&\Longrightarrow&
+		\textnormal{for each $i \in \N$},\;\left\{\,x^{(n)}_{i}\,\right\}_{n\in\N}\subset\Re
+		\;\textnormal{is a Cauchy sequence in $\Re$;\;\;hence}\;\,
+		x_{i}\,:=\,\lim_{n\rightarrow\infty}x^{(n)}_{i} \in \Re\;\,\textnormal{exists}
+	\\
+	&\Longrightarrow&
+		\lim_{n\rightarrow\infty}\,\rho\!\left(x^{(n)},x\right) \;=\; 0,
+		\;\;\textnormal{where}\;\; x := (x_{1},x_{2},\ldots\,) \in \Re^{\infty}
+		\quad\textnormal{(by (ii))}
+	\end{eqnarray*}
+	This proves that $\Re^{\infty}$ indeed is a complete metric space.
 \end{enumerate}
 \qed
 
