@@ -45,6 +45,7 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 \end{remark}
 
 \begin{theorem}[The metric space properties of $\Re^{\infty}$]
+\label{MetricSpacePropertiesRInfinity}
 \mbox{}
 \begin{enumerate}
 \item	$\left(\,\Re^{\infty},\rho\,\right)$ is a metric space.
@@ -86,7 +87,8 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 		\;\right\}
 		\end{equation*}
 		is an open subset of $\Re^{\infty}$.
-\item	For each $x \in \Re^{\infty}$, $n \in \N$, and $\varepsilon > 0$, we have:
+\item	\label{OpenBallsContainPreimagesOfOpenHypercubes}For each $x \in \Re^{\infty}$,
+		$n \in \N$, and $\varepsilon > 0$, we have:
 		\begin{equation*}
 		\pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\varepsilon)\,\right)
 		\;\;\subset\;\;
@@ -104,7 +106,7 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 		\right.
 		\;\right\}
 		\end{equation*}
-\item	The collection
+\item	\label{FiniteDimensionalSetsFormBasisInRInfinity}The collection
 		\begin{equation*}
 		\left\{\;\,
 		\pi_{n}^{-1}\!\left(\,C_{\Re^{n}}(\pi_{n}(x),\varepsilon)\,\right) \subset \Re^{\infty}
@@ -116,8 +118,8 @@ which proves indeed that $0 \leq \rho(x,y) \leq 1$, for any $x, y \in \Re^{\inft
 		\end{equation*}
 		of all pre-images under $\pi_{n}$ of open hypercubes in $\Re^{n}$, for all $n \in \N$,
 		forms a basis for the topology of $\Re^{\infty}$.
-\item	$\Re^{\infty}$ is a separable metric space.
-\item	$\Re^{\infty}$ is a complete metric space.
+\item	\label{RInfinitySeparable}$\Re^{\infty}$ is a separable metric space.
+\item	\label{RInfinityComplete}$\Re^{\infty}$ is a complete metric space.
 %\item	Every probability measure on $\Re^{\infty}$ is tight.
 \end{enumerate}
 \end{theorem}
@@ -371,7 +373,51 @@ is the projection of $\Re^{\infty}$ onto $\Re^{k}$.
 	Borel measurable.
 	But each $\pi_{k}$ is continuous, hence Borel measurable (Corollary \ref{ContinuousMapsAreBorelMeasurable}).
 	This proves (i).
+\item
+	We apply
+	Theorem \ref{ClosedUnderFiniteIntersectionsImpliesSeparatingClasses}
+	to $\mathcal{B}_{f}\!\left(\Re^{\infty}\right)$.
 
+	\vskip 0.3cm
+	\noindent
+	\underline{$\mathcal{B}_{f}\!\left(\Re^{\infty}\right)$ is closed under finite intersections}\quad
+
+	\vskip 0.3cm
+	\noindent
+	\underline{$\mathcal{B}_{f}\!\left(\Re^{\infty}\right)$ generates $\mathcal{B}(\Re^{\infty})$}
+	\vskip 0.0cm
+	\noindent
+	Let $\mathcal{O}(\Re^{\infty})$ denote the collection of open sets of $\Re^{\infty}$.
+	Hence $\mathcal{B}(\Re^{\infty}) := \sigma(\mathcal{O}(\Re^{\infty}))$.
+	By (i), we have
+	$\mathcal{B}_{f}(\Re^{\infty}) \subset \mathcal{B}(\Re^{\infty}) = \sigma(\mathcal{O}(\Re^{\infty}))$,
+	which implies $\sigma(\mathcal{B}_{f}(\Re^{\infty})) \subset \sigma(\mathcal{O}(\Re^{\infty}))$.
+	We need to establish the reverse inclusion, which will immediately follows from:
+	\begin{center}
+	\begin{minipage}{6.25in}
+	\textbf{Claim:}\quad$\mathcal{O}(\Re^{\infty}) \subset \sigma(\mathcal{B}_{f}(\Re^{\infty}))$.
+	\vskip 0.1cm
+	\noindent
+	Proof of Claim:\quad
+	By Theorem \ref{MetricSpacePropertiesRInfinity}\eqref{OpenBallsContainPreimagesOfOpenHypercubes},
+	every open ball $B_{\mbox{}\,\Re^{\infty}}\!\left(x,\varepsilon\right)$ in $\Re^{\infty}$ contains
+	the pre-image of an open hypercube from some finite-dimensional Euclidean space, where that pre-image
+	itself contains $x$.
+	We therefore see that every open set in $\Re^{\infty}$ can be expressed as a union
+	of pre-images of open hypercubes from finite-dimensional Euclidean spaces.
+	%By Theorem \ref{MetricSpacePropertiesRInfinity}\eqref{FiniteDimensionalSetsFormBasisInRInfinity},
+	%$\mathcal{B}_{f}\!\left(\Re^{\infty}\right)$ contains a basis for the topology of $\Re^{\infty}$.
+	By Theorem \ref{MetricSpacePropertiesRInfinity}\eqref{RInfinitySeparable},
+	$\Re^{\infty}$ is separable.
+	Hence, by Theorem \ref{CharacterizationOfSeparabilityOfMetricSpaces}, we see that every
+	open set in $\Re^{\infty}$ can be expressed as a countable union of pre-images of open
+	hypercubes from finite-dimensional Euclidean spaces.
+	Since pre-images of open hypercubes from finite-dimensional Euclidean spaces belong
+	to $\mathcal{B}_{f}(\Re^{\infty})$, we see that
+	$\mathcal{O}(\Re^{\infty}) \subset \sigma(\mathcal{B}_{f}(\Re^{\infty}))$.
+	This completes the proof of the Claim.
+	\end{minipage}
+	\end{center}
 \end{enumerate}
 
 \qed
