@@ -1,0 +1,418 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{$\sigma$-algebras and $\lambda$-systems}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{definition}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $\Omega$ is a non-empty set.
+A $\sigma$-algebra of subsets of $\Omega$ is a collection $\mathcal{A}$ of subsets of $\Omega$
+which satisfies the following conditions:
+\begin{itemize}
+\item	$\Omega \in \mathcal{A}$.
+\item	$\Omega\,\backslash\,A \in \mathcal{A}$, for every $A \in \mathcal{A}$.
+\item	$\underset{i=1}{\overset{\infty}{\textnormal{\large$\bigcup$}}}\,A_{i} \in \mathcal{A}$, whenever $A_{1}, A_{2},\,\ldots \in \mathcal{A}$
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $\Omega$ is a non-empty set.
+A $\lambda$-system of subsets of $\Omega$ is a collection $\mathcal{L}$ of subsets of $\Omega$
+which satisfies the following conditions:
+\begin{itemize}
+\item	$\Omega \in \mathcal{L}$.
+\item	$\Omega\,\backslash\,A \in \mathcal{L}$, for every $A \in \mathcal{L}$.
+\item	$\underset{i=1}{\overset{\infty}{\textnormal{\large$\bigsqcup$}}}\,A_{i} \in \mathcal{L}$,
+		whenever $A_{1}, A_{2},\,\ldots \in \mathcal{L}$ and $A_{i} \cap A_{j} = \varemptyset$, for any $i, j \in \N$ with $i \neq j$.
+\end{itemize}
+\end{definition}
+
+\begin{remark}\quad
+Clearly, every $\sigma$-algebra is also a $\lambda$-system.
+\end{remark}
+
+\begin{theorem}\label{LambdaSystemProperties}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $\Omega$ is a non-empty set and $\mathcal{L}$ is a $\lambda$-system of subsets of $\Omega$.
+\begin{enumerate}
+\item
+	$\mathcal{L}$ is closed under proper set-theoretic differences, i.e.
+	$A, B \in \mathcal{L}$ and $A \subset B$ together imply $B\,\backslash\,A \in \mathcal{L}$.
+\item
+	If $\mathcal{L}$ is closed under finite intersections,
+	then $\mathcal{L}$ is a $\sigma$-algebra of subsets of $\Omega$.
+\end{enumerate}
+\end{theorem}
+\proof
+For each $X \subset \Omega$, write $\Omega\,\backslash\,X$ as $X^{c}$.
+\begin{enumerate}
+\item
+	Suppose $A, B \in \mathcal{L}$ with $A \subset B$.
+	Then, $B^{c} \cap A = \varemptyset$.
+	Hence, $B\,\backslash\,A = B \cap A^{c} = \left(B^{c} \cup A\right)^{c} = \left(B^{c} \sqcup A\right)^{c} \in \mathcal{L}$,
+	since $\mathcal{L}$ is closed under complementations and finite disjoint unions.
+\item
+Since $\mathcal{L}$ is a $\lambda$-system, we immediately have $\Omega \in \mathcal{L}$,
+and hence $\Omega\,\backslash\,A \in \mathcal{L}$, for every $A \in \mathcal{L}$.
+It remains to show that $\mathcal{L}$ closed under countable unions, i.e.
+for $A_{1}, A_{2}, \, \ldots \, \in \mathcal{L}$, we need to show $\bigcup_{i=1}^{\infty}A_{i} \in \mathcal{L}$.
+To this end, define:
+\begin{eqnarray*}
+B_{1} & := & A_{1} \\
+B_{2} & := & A_{2} \, \cap \, A_{1}^{c} \\
+B_{3} & := & A_{3} \, \cap \, A_{1}^{c} \, \cap \, A_{2}^{c} \\
+&\vdots&\\
+B_{n} & := & A_{n} \, \cap \, A_{1}^{c} \, \cap \, A_{2}^{c} \, \cap \, \cdots \, \cap A_{n}^{c}
+\end{eqnarray*}
+Being a $\lambda$-system, $\mathcal{L}$ is closed under complementations.
+By hypothesis, $\mathcal{L}$ is furthermore closed under finite intersections.
+We thus see that $B_{n} \in \mathcal{L}$, for each $n \in \N$.
+Note also that the $B_{n}$'s are pairwise disjoint, and
+\begin{equation*}
+\bigcup_{i=1}^{n}\,A_{i} \;\; = \;\; \bigsqcup_{i=1}^{n}\,B_{i},
+\quad\textnormal{for each $n \in \N$}.
+\end{equation*}
+Hence,
+\begin{equation*}
+\bigcup_{i=1}^{\infty}\,A_{i} \;\; = \;\; \bigsqcup_{i=1}^{\infty}\,B_{i} \;\; \in \;\; \mathcal{L},
+\end{equation*}
+since $\mathcal{L}$ is closed under countable pairwise disjoint unions ($\mathcal{L}$ being a $\lambda$-system).
+This proves that $\mathcal{L}$ is a $\sigma$-algebra of subsets of $\Omega$.
+\end{enumerate}
+\qed
+
+\begin{theorem}\label{IntersectionSigmaAlgebras}
+\quad
+Let $\Omega$ be a non-empty set.
+\begin{enumerate}
+\item	The intersection of a non-empty collection of $\sigma$-algebras of subsets
+		of $\Omega$ is itself a $\sigma$-algebra of subsets of $\Omega$.
+\item	The intersection of a non-empty collection of $\lambda$-systems of subsets
+		of $\Omega$ is itself a $\lambda$-system of subsets of $\Omega$.
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	Suppose $\Gamma$ is an (arbitrary) non-empty set, and,
+	for each $\gamma \in \Gamma$, $\mathcal{A}_{\gamma}$ is a $\sigma$-algebra of subsets of $\Omega$.
+	We need to prove that $\mathcal{A} \, := \, \bigcap_{\gamma\in\Gamma}\,\mathcal{A}_{\gamma}$
+	is itself a $\sigma$-algebra of subsets of $\Omega$.
+
+	\vskip 0.8cm
+	\noindent
+	\underline{$\Omega \;\in\; \mathcal{A} \,:=\, \underset{\gamma\in\Gamma}{\bigcap}\,\mathcal{A}_{\gamma}$}
+	\vskip 0.1cm
+	\noindent
+	Since, for each $\gamma\in\Gamma$, $\mathcal{A}_{\gamma}$ is a $\sigma$-algebra of subsets
+	of $\Omega$, we have $\Omega \in \mathcal{A}_{\gamma}$.
+	Thus, $\Omega \in \underset{\gamma\in\Gamma}{\bigcap}\,\mathcal{A}_{\gamma}$.
+
+	\vskip 0.8cm
+	\noindent
+	\underline{$A \in \mathcal{A} \;\Longrightarrow\; \Omega\,\backslash\,A \in \mathcal{A}$}
+	\begin{equation*}
+	A \,\in\, \mathcal{A} \, := \, \bigcap_{\gamma\in\Gamma}\mathcal{A}_{\gamma}
+	\quad\Longleftrightarrow\quad A \, \in \, \mathcal{A}_{\gamma},\;\forall\;\gamma \in \Gamma
+	\quad\Longrightarrow\quad \Omega\,\backslash\,A \, \in \, \mathcal{A}_{\gamma},\;\forall\;\gamma \in \Gamma
+	\quad\Longrightarrow\quad \Omega\,\backslash\,A \, \in \, \bigcap_{\gamma\in\Gamma}\mathcal{A}_{\gamma} \, =: \, \mathcal{A}
+	\end{equation*}
+
+	\vskip 0.1cm
+	\noindent
+	\underline{$A_{1}, A_{2},\,\ldots\, \in \mathcal{A} \;\Longrightarrow\; \overset{\infty}{\underset{i=1}{\bigcup}}\,A_{i} \in \mathcal{A}$}
+	\begin{eqnarray*}
+	A_{1},A_{2},\,\ldots \,\in\, \mathcal{A} \, := \, \bigcap_{\gamma\in\Gamma}\mathcal{A}_{\gamma}
+	&\Longrightarrow& A_{1},A_{2},\,\ldots \, \in \, \mathcal{A}_{\gamma},\;\forall\;\gamma \in \Gamma
+	\;\;\Longrightarrow\;\; \overset{\infty}{\underset{i=1}{\bigcup}}\,A_{i} \, \in \, \mathcal{A}_{\gamma},\;\forall\;\gamma \in \Gamma
+	\\
+	&\Longrightarrow& \overset{\infty}{\underset{i=1}{\bigcup}}\,A_{i} \, \in \, \bigcap_{\gamma\in\Gamma}\mathcal{A}_{\gamma} \, =: \, \mathcal{A}
+	\end{eqnarray*}
+\item
+	Suppose $\Gamma$ is an (arbitrary) non-empty set, and,
+	for each $\gamma \in \Gamma$, $\mathcal{L}_{\gamma}$ is a $\lambda$-system of subsets of $\Omega$.
+	We need to prove that $\mathcal{L} \, := \, \bigcap_{\gamma\in\Gamma}\,\mathcal{L}_{\gamma}$
+	is itself a $\lambda$-system of subsets of $\Omega$.
+
+	\vskip 0.8cm
+	\noindent
+	\underline{$\Omega \;\in\; \mathcal{L} \,:=\, \underset{\gamma\in\Gamma}{\bigcap}\,\mathcal{L}_{\gamma}$}
+	\vskip 0.1cm
+	\noindent
+	Since, for each $\gamma\in\Gamma$, $\mathcal{L}_{\gamma}$ is a $\lambda$-system of subsets
+	of $\Omega$, we have $\Omega \in \mathcal{L}_{\gamma}$.
+	Thus, $\Omega \in \underset{\gamma\in\Gamma}{\bigcap}\,\mathcal{L}_{\gamma}$.
+
+	\vskip 0.8cm
+	\noindent
+	\underline{$A \in \mathcal{L} \;\Longrightarrow\; \Omega\,\backslash\,L \in \mathcal{L}$}
+	\begin{equation*}
+	A \,\in\, \mathcal{L} \, := \, \bigcap_{\gamma\in\Gamma}\mathcal{L}_{\gamma}
+	\quad\Longleftrightarrow\quad A \, \in \, \mathcal{L}_{\gamma},\;\forall\;\gamma \in \Gamma
+	\quad\Longrightarrow\quad \Omega\,\backslash\,A \, \in \, \mathcal{L}_{\gamma},\;\forall\;\gamma \in \Gamma
+	\quad\Longrightarrow\quad \Omega\,\backslash\,A \, \in \, \bigcap_{\gamma\in\Gamma}\mathcal{L}_{\gamma} \, =: \, \mathcal{L}
+	\end{equation*}
+
+	\vskip 0.1cm
+	\noindent
+	\underline{$A_{1}, A_{2},\,\ldots\, \in \mathcal{L}$
+	\;and\; $A_{i} \cap A_{j}$ whenever $i \neq j$
+	\;\;$\Longrightarrow$\;\;
+	$\overset{\infty}{\underset{i=1}{\textnormal{\large$\bigsqcup$}}}\,A_{i} \in \mathcal{L}$}
+	\begin{eqnarray*}
+	&& A_{1},A_{2},\,\ldots \,\in\, \mathcal{L} \, := \, \bigcap_{\gamma\in\Gamma}\mathcal{L}_{\gamma}\,,
+	\;\;\textnormal{and}\;\;A_{i} \cap A_{j} \;\textnormal{whenever}\; i \neq j
+	\\
+	&\Longrightarrow&
+		A_{1},A_{2},\,\ldots \, \in \, \mathcal{L}_{\gamma},\;\forall\;\gamma \in \Gamma\,,
+		\;\;\textnormal{and}\;\;A_{i} \cap A_{j} \;\textnormal{whenever}\; i \neq j
+	\\
+	&\Longrightarrow& \overset{\infty}{\underset{i=1}{\bigsqcup}}\,A_{i} \, \in \, \mathcal{L}_{\gamma},\;\forall\;\gamma \in \Gamma
+	\\
+	&\Longrightarrow& \overset{\infty}{\underset{i=1}{\bigsqcup}}\,A_{i} \, \in \, \bigcap_{\gamma\in\Gamma}\mathcal{L}_{\gamma} \, =: \, \mathcal{L}
+	\end{eqnarray*}	
+\end{enumerate}
+\qed
+
+\begin{theorem}\label{GeneratedSigmaAlgebraLambdaSystem}
+\quad
+Suppose $\Omega$ is a non-empty set, $\mathcal{S}$ is non-empty collection of subsets of $\Omega$.
+Denote the power set of $\Omega$ by $\mathcal{P}(\Omega)$.
+Define
+\begin{eqnarray*}
+\sigma\!\left(\mathcal{S}\right)
+& := &
+\bigcap_{\mathcal{A}\,\in\,\Sigma(\mathcal{S})}\mathcal{A}\,,
+\quad\textnormal{where}\quad
+\Sigma(\mathcal{S})
+\; := \;
+\left\{\;
+\mathcal{A} \subset \mathcal{P}(\Omega)
+\;\left\vert\;
+\begin{array}{c}
+	\textnormal{$\mathcal{A}$ is a $\sigma$-algebra of subsets of $\Omega$,}
+	\\
+	\textnormal{and}\;\;\mathcal{S} \; \subset \; \mathcal{A}
+\end{array}
+\right.
+\;\right\}, \;\;\textnormal{and}
+\\
+\lambda\!\left(\mathcal{S}\right)
+& := &
+\bigcap_{\mathcal{L}\,\in\,\Lambda(\mathcal{S})}\mathcal{L}\,,
+\quad\;\textnormal{where}\quad
+\Lambda(\mathcal{S})
+\; := \;
+\left\{\;
+\mathcal{L} \subset \mathcal{P}(\Omega)
+\;\left\vert\;
+\begin{array}{c}
+	\textnormal{$\mathcal{L}$ is a $\lambda$-system of subsets of $\Omega$,}
+	\\
+	\textnormal{and}\;\;\mathcal{S} \; \subset \; \mathcal{L}
+\end{array}
+\right.
+\;\right\}.
+\end{eqnarray*}
+Then,
+$\sigma\!\left(\mathcal{S}\right)$ is the unique smallest $\sigma$-algebra of subsets of $\Omega$
+that contains $\mathcal{S} \subset \mathcal{P}(\Omega)$, and 
+$\lambda\!\left(\mathcal{S}\right)$ is the unique smallest $\lambda$-system of subsets of $\Omega$
+that contains $\mathcal{S} \subset \mathcal{P}(\Omega)$.
+More precisely, we have
+\begin{itemize}
+\item	$\mathcal{S} \subset \sigma\!\left(\mathcal{S}\right)$, $\mathcal{S} \subset \lambda\!\left(\mathcal{S}\right)$, and
+\item	$\sigma\!\left(\mathcal{S}\right)$ is a $\sigma$-algebra of subsets of $\Omega$, and
+		$\lambda\!\left(\mathcal{S}\right)$ is a $\lambda$-system of subsets of $\Omega$, and
+\item	if $\mathcal{A} \subset \mathcal{P}(\Omega)$ is a $\sigma$-algebra and $\mathcal{S} \subset \mathcal{A}$,
+		then $\sigma\!\left(\mathcal{S}\right) \subset \mathcal{A}$.
+\item	if $\mathcal{L} \subset \mathcal{P}(\Omega)$ is a $\lambda$-system and $\mathcal{S} \subset \mathcal{L}$,
+		then $\lambda\!\left(\mathcal{S}\right) \subset \mathcal{L}$.
+\end{itemize}
+\end{theorem}
+\proof
+First, note that $\Sigma\!\left(\mathcal{S}\right) \neq \varemptyset$
+since $\mathcal{P}(\Omega) \in \Sigma\!\left(\mathcal{S}\right)$.
+Similarly, $\Lambda\!\left(\mathcal{S}\right) \neq \varemptyset$
+since $\mathcal{P}(\Omega) \in \Lambda\!\left(\mathcal{S}\right)$.
+It is immediate that $\mathcal{S} \subset \sigma\!\left(\mathcal{S}\right)$, and
+$\sigma\!\left(\mathcal{S}\right)$ is contained in every $\sigma$-algebra which contains $\mathcal{S}$.
+Similarly, $\mathcal{S} \subset \lambda\!\left(\mathcal{S}\right)$, and
+$\lambda\!\left(\mathcal{S}\right)$ is contained in every $\lambda$-system which contains $\mathcal{S}$.
+Since $\sigma\!\left(\mathcal{S}\right)$ is, by definition, an intersection of $\sigma$-algebras,
+it itself is a $\sigma$-algebra of subsets of $\Omega$ by Theorem \ref{IntersectionSigmaAlgebras}.
+Similarly, since $\lambda\!\left(\mathcal{S}\right)$ is, by definition, an intersection of $\lambda$-systems,
+it itself is a $\lambda$-system of subsets of $\Omega$ by Theorem \ref{IntersectionSigmaAlgebras}.
+\qed
+
+\begin{theorem}\label{PiIsSigmaAlgebra}
+\quad
+Suppose $\Omega$ is a non-empty set and $\mathcal{S}$ is a non-empty collection of subsets of $\Omega$.
+Then,
+\begin{equation*}
+	\mathcal{S} \;\textnormal{is closed under finite intersections}
+	\quad\Longrightarrow\quad
+	\lambda\!\left(\mathcal{S}\right) \;\textnormal{is a $\sigma$-algebra of subsets of $\Omega$},
+\end{equation*}
+where $\lambda\!\left(\mathcal{S}\right)$ is $\lambda$-system of subsets of $\Omega$ generated by $\mathcal{S}$.
+\end{theorem}
+\proof
+By Theorem \ref{LambdaSystemProperties}(ii), it suffices to show that $\lambda\!\left(\mathcal{S}\right)$
+is closed under finite intersections. We establish the proof in the following series of claims:
+
+	\vskip 0.5cm
+	\begin{center}
+	\begin{minipage}{6.5in}
+	\textbf{Claim 1:}\quad
+	For each $A \in \lambda\!\left(\mathcal{S}\right)$,
+	$$\mathcal{L}(A) \; := \; \left\{\;B \subset \Omega\;\;\vert\; A \cap B \in \lambda(\mathcal{S})\;\right\}$$
+	is a $\lambda$-system of subsets of $\Omega$.
+	\vskip 0.1cm
+	\noindent
+	\underline{Proof of Claim 1:}\quad
+	Clearly, $\Omega \in \mathcal{L}(A)$, since $A \cap \Omega = A \in \lambda(\mathcal{S})$.
+	Next, we prove that $\mathcal{L}(A)$ is closed under complementations.
+	Let $B \in \mathcal{L}(A)$. Then, $A \cap B \in \lambda(\mathcal{S})$.
+	Note that $A = (A \cap B) \,\bigsqcup\; (A \cap B^{c})$, hence
+	$A \cap B^{c} = A \,\backslash\,(A \cap B) \in \lambda(\mathcal{S})$,
+	since $A, A \cap B \in \lambda(\mathcal{S})$ and $\lambda(\mathcal{S})$ is closed under proper set-theoretic
+	differences by Theorem \ref{LambdaSystemProperties}(i).
+	This proves that $\mathcal{L}(A)$ is indeed closed under complementations.
+	We now prove that $\mathcal{L}(A)$ is closed under countable disjoint unions.
+	Let $B_{1}, B_{2}, \,\ldots\, \in \mathcal{L}(A)$ be pairwise disjoint.
+	Then, $A \cap B_{1}, A \cap B_{2}, \,\ldots\, \subset \lambda\!\left(\mathcal{S}\right)$ are pairwise disjoint.
+	Hence,
+	\begin{equation*}
+	A\;\,\bigcap\,\left(\,\bigsqcup_{i=1}^{\infty}\,B_{i}\,\right)
+	\; = \;\; \bigsqcup_{i=1}^{\infty} \left(\,A\,\cap\,B_{i}\,\right)
+	\; \in \; \lambda\!\left(\mathcal{S}\right),
+	\end{equation*}
+	since $\lambda\!\left(\mathcal{S}\right)$ is closed under countable disjoint unions.
+	This proves that $\mathcal{L}(A)$ is a $\lambda$-system and
+	thus completes the proof of the Claim 1.
+	\end{minipage}
+	\end{center}
+
+	\vskip 0.5cm
+	\begin{center}
+	\begin{minipage}{6.5in}
+	\textbf{Claim 2:}\quad
+	$\mathcal{S} \subset \mathcal{L}(A)$, for each $A \in \mathcal{S}$.
+	Consequently, $\lambda\!\left(\mathcal{S}\right) \subset \mathcal{L}(A)$, for each $A \in \mathcal{S}$.
+	\vskip 0.1cm
+	\noindent
+	\underline{Proof of Claim 2:}\quad
+	Suppose $A \in \mathcal{S}$.
+	Then, $A \cap B \in \mathcal{S}$ for each $B \in \mathcal{S}$,
+	{\color{red}by the hypothesis that $\mathcal{S}$ is closed under finite intersections}.
+	Thus, $A \cap B \in \lambda(\mathcal{S})$,
+	since $\mathcal{S} \subset \lambda(\mathcal{S})$.
+	Hence, $B \in \mathcal{L}(A)$, for any $A, B \in \mathcal{S}$.
+	This proves that $\mathcal{S} \subset \mathcal{L}(A)$, for each $A \in \mathcal{S}$.
+	By Claim 1, $\mathcal{L}(A)$ is a $\lambda$-system.
+	Hence, $\mathcal{L}(A) \supset \lambda(\mathcal{S})$, the smallest $\lambda$-system containing $\mathcal{S}$.
+	This proves Claim 2.
+	\end{minipage}
+	\end{center}
+
+	\vskip 0.5cm
+	\begin{center}
+	\begin{minipage}{6.5in}
+	\textbf{Claim 3:}\quad
+	$A \cap B \in \lambda(\mathcal{S})$, for each $A \in \mathcal{S}$ and $B \in \lambda(\mathcal{S})$.
+	\vskip 0.1cm
+	\noindent
+	\underline{Proof of Claim 3:}\quad
+	Let $A \in \mathcal{S}$ and $B \in \lambda(\mathcal{S})$.
+	By Claim 2, we have $\lambda(\mathcal{S}) \subset \mathcal{L}(A)$.
+	Thus we have $B \in \mathcal{L}(A)$, which is equivalent to $A \cap B \in \lambda(S)$.
+	This proves Claim 3.
+	\end{minipage}
+	\end{center}
+
+	\vskip 0.5cm
+	\begin{center}
+	\begin{minipage}{6.5in}
+	\textbf{Claim 4:}\quad
+	$\mathcal{S} \subset \mathcal{L}(B)$, for each $B \in \lambda(\mathcal{S})$.
+	Consequently, $\lambda(\mathcal{S}) \subset \mathcal{L}(B)$, for each $B \in \lambda(\mathcal{S})$.
+	\vskip 0.1cm
+	\noindent
+	\underline{Proof of Claim 4:}\quad
+	Suppose $B \in \lambda(\mathcal{S})$.
+	Then, $A \cap B \in \lambda(\mathcal{S})$ for each $A \in \mathcal{S}$, by Claim 3.
+	This proves that $\mathcal{S} \subset \mathcal{L}(B)$.
+	By Claim 1, $\mathcal{L}(B)$ is a $\lambda$-system.
+	Hence, $\mathcal{L}(B) \supset \lambda(\mathcal{S})$, the smallest $\lambda$-system containing $\mathcal{S}$.
+	This proves Claim 4.
+	\end{minipage}
+	\end{center}
+
+	\vskip 0.5cm
+	\begin{center}
+	\begin{minipage}{6.5in}
+	\textbf{Claim 5:}\quad
+	$A \cap B \in \lambda(\mathcal{S})$, for each $A, B \in \lambda(\mathcal{S})$.
+	\vskip 0.1cm
+	\noindent
+	\underline{Proof of Claim 5:}\quad
+	Let $A, B \in \lambda(\mathcal{S})$.
+	By Claim 4, we have $\lambda(\mathcal{S}) \subset \mathcal{L}(B)$.
+	Thus we have $A \in \mathcal{L}(B)$, which is equivalent to $A \cap B \in \lambda(S)$.
+	This proves Claim 5.
+	\end{minipage}
+	\end{center}
+
+\vskip 0.5cm
+\noindent
+Claim 5 states precisely that $\lambda(\mathcal{S})$ is closed under finite intersections,
+and completes the proof.
+\qed
+
+\begin{corollary}\label{SigmaAlgebraContainedInPiSystem}
+\quad
+Suppose $\Omega$ is a non-empty set and $\mathcal{S}$ is a non-empty collection of subsets of $\Omega$.
+\vskip 0.1cm
+\noindent
+If $\mathcal{S}$ is closed under finite intersections, then
+\begin{enumerate}
+\item	$\sigma\!\left(S\right)\,\subset\,\lambda\!\left(\mathcal{S}\right)$, and
+\item	$\sigma\!\left(S\right)\,\subset\,\mathcal{L}$, \;for any $\lambda$-system $\mathcal{L}$ of subsets of $\Omega$
+		such that $\mathcal{S}\subset\mathcal{L}$,
+\end{enumerate}
+where $\sigma\!\left(\mathcal{S}\right)$ and $\lambda\!\left(\mathcal{S}\right)$
+are, respectively, the $\sigma$-algebra and $\lambda$-system of subsets of $\Omega$ generated by $\mathcal{S}$.
+\end{corollary}
+\proof
+\begin{enumerate}
+\item
+	By Theorem \ref{GeneratedSigmaAlgebraLambdaSystem}, $\lambda(\mathcal{S})$ is the
+	smallest $\lambda$-system containing $\mathcal{S}$.
+	Since $\mathcal{S}$ is, by hypothesis, closed under finite intersections,
+	$\lambda(\mathcal{S})$ is furthermore a $\sigma$-algebra, by Theorem \ref{PiIsSigmaAlgebra}.
+	Thus, by Theorem \ref{GeneratedSigmaAlgebraLambdaSystem} again, we have
+	$\sigma\!\left(S\right)\,\subset\,\lambda\!\left(\mathcal{S}\right)$.
+\item
+	This is now immediate since
+	\begin{equation*}
+	\sigma\!\left(S\right)
+	\; \subset \; \lambda\!\left(\mathcal{S}\right)
+	\; \subset \; \mathcal{L},
+	\end{equation*}
+	where the first inclusion follows by (i), and the second inclusion follows by
+	Theorem \ref{GeneratedSigmaAlgebraLambdaSystem}.
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
