@@ -380,7 +380,48 @@ is the projection of $\Re^{\infty}$ onto $\Re^{k}$.
 
 	\vskip 0.1cm
 	\noindent
-	\underline{$\mathcal{B}_{f}\!\left(\Re^{\infty}\right)$ is closed under finite intersections}\quad
+	\underline{$\mathcal{B}_{f}\!\left(\Re^{\infty}\right)$ is closed under finite intersections}
+	\vskip 0.0cm
+	\noindent
+	Let $\pi^{-1}_{k}(A)$ and $\pi^{-1}_{l}(B)$ \,$\in$\, $\mathcal{B}_{f}(\Re^{\infty})$.
+	Note that this implies $A \in \mathcal{B}(\Re^{k})$ and $B \in \mathcal{B}(\Re^{l})$.
+	We need to show that
+	$\pi^{-1}_{k}(A) \,\cap\, \pi^{-1}_{l}(B) \,\in\, \mathcal{B}_{f}(\Re^{\infty})$.
+	Now, if $k = l$, this is immediately, since then $A \cap B \in \mathcal{B}(\Re^{k})$, and
+	\begin{equation*}
+	\pi^{-1}_{k}(A) \,\cap\, \pi^{-1}_{l}(B)
+	\;\; = \;\; \pi^{-1}_{k}(A) \,\cap\, \pi^{-1}_{k}(B)
+	\;\; = \;\; \pi^{-1}_{k}(A\,\cap\,B)
+	\;\; \in \;\; \mathcal{B}_{f}(\Re^{\infty}).
+	\end{equation*}
+	For the case $k \neq l$, without loss of generality, assume $k < l$.
+	Then, note that
+	\begin{eqnarray*}
+	\pi_{k}^{-1}(A)
+	&=& \left\{\;
+		y=(y_{1},y_{2},\,\ldots\,)\in\Re^{\infty}
+		\;\,\left\vert\;\;
+		\begin{array}{c} \mbox{} \\ (y_{1},\ldots,y_{k})\in A \\ \mbox{} \end{array}
+		\right.\right\}
+	\\
+	&=& \left\{\;
+		y=(y_{1},y_{2},\,\ldots\,)\in\Re^{\infty}
+		\;\,\left\vert\;\;
+		(y_{1},\ldots,y_{k},y_{k+1},\ldots,y_{l})
+		\in A\times \underset{\textnormal{$k$ factors}}{\underbrace{\Re\times\cdots\times\Re}}
+		\right.\;\right\}
+	\\ \\
+	&=& \pi^{-1}_{l}\!\left(\,A\times\Re\times\cdots\times\Re\,\right).
+	\end{eqnarray*}
+	Since $(A \times \Re \cdots \times \Re) \cap B \in \mathcal{B}(\Re^{l})$,
+	we now see that
+	\begin{equation*}
+	\pi^{-1}_{k}(A) \,\cap\, \pi^{-1}_{l}(B)
+	\;\;=\;\; \pi^{-1}_{l}(A \times \Re \cdots \times \Re) \,\cap\, \pi^{-1}_{l}(B)
+	\;\;=\;\; \pi^{-1}_{l}(\,(A \times \Re \cdots \times \Re) \cap B\,)
+	\;\,\in\;\, \mathcal{B}_{f}(\Re^{\infty}).
+	\end{equation*}
+	This proves that $\mathcal{B}_{f}(\Re^{\infty})$ is indeed closed under finite intersections.
 
 	\vskip 0.3cm
 	\noindent
@@ -392,7 +433,7 @@ is the projection of $\Re^{\infty}$ onto $\Re^{k}$.
 	By (i), we have
 	$\mathcal{B}_{f}(\Re^{\infty}) \subset \mathcal{B}(\Re^{\infty}) = \sigma(\mathcal{O}(\Re^{\infty}))$,
 	which implies $\sigma(\mathcal{B}_{f}(\Re^{\infty})) \subset \sigma(\mathcal{O}(\Re^{\infty}))$.
-	We need to establish the reverse inclusion, which will immediately follows from:
+	We need to establish the reverse inclusion, which will immediately follow from:
 	\begin{center}
 	\begin{minipage}{6.25in}
 	\textbf{Claim:}\quad$\mathcal{O}(\Re^{\infty}) \subset \sigma(\mathcal{B}_{f}(\Re^{\infty}))$.
@@ -416,8 +457,13 @@ is the projection of $\Re^{\infty}$ onto $\Re^{k}$.
 	This completes the proof of the Claim.
 	\end{minipage}
 	\end{center}
+	We have established that $\mathcal{B}_{f}(\Re^{\infty})$ is contained in $\mathcal{B}(\Re^{\infty})$,
+	is closed under finite intersections, and
+	$\sigma(\mathcal{B}_{f}(\Re^{\infty}))\,=\,\mathcal{B}_{f}(\Re^{\infty})$.
+	Therefore, by Theorem \ref{ClosedUnderFiniteIntersectionsImpliesSeparatingClasses},
+	$\mathcal{B}_{f}(\Re^{\infty})$ is a separating class for the measurable space
+	$\left(\Re^{\infty},\mathcal{B}_{f}(\Re^{\infty})\right)$.
 \end{enumerate}
-
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
