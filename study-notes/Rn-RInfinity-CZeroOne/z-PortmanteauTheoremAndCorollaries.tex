@@ -1,143 +1,245 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Technical Lemmas}
+\section{The Portmanteau Theorem and its corollaries (criteria for weak convergence of measures)}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
-\begin{lemma}\label{LemmaPhi}
-Define
-\begin{equation*}
-\phi \, : \; [\,0,\infty\,) \, \longrightarrow \, [\,0,1\,] \, : \, t \, \longmapsto \,\min\{\,1\,,t\,\}. 
-\end{equation*}
-Then, $\phi$ satisfies:
-\begin{equation*}
-\phi(s + t) \; \leq \; \phi(s) \,+\, \phi(t),
-\;\;\textnormal{for each $s, t \in [0,\infty)$}.
-\end{equation*}
-\end{lemma}
-\proof
-For any $s, t \in [0,\infty)$, either $s + t \geq 1$ or $s + t <1$. 
-If $s + t \geq 1$, then
-\begin{equation*}
-\phi(s+t)
-\;=\; \min\{1,s + t\}
-\;=\; 1
-\;<\; 2
-\;=\; 1 + 1
-\;\leq\; \min\{1,s\} + \min\{1,t\}
-\;=\; \phi(s) + \phi(t),
-\end{equation*}
-hence, the required inequality holds.
-On the other hand, if $s + t < 1$, then we must also have $s < 1$ and $t < 1$ (since $s, t \geq 0$).
-Hence,
-\begin{equation*}
-\phi(s+t)
-\;=\; \min\{1,s + t\}
-\;=\; s+t
-\;=\; \min\{1,s\} + \min\{1,t\}
-\;=\; \phi(s) + \phi(t),
-\end{equation*}
-thus, the required inequality also holds.
-\qed
-
-\begin{lemma}\label{LemmaMin}
-For any $x, y, z \in \Re$, we have:
-\begin{equation*}
-\min\{1,\vert\,x-y\,\vert\}
-\;\leq\;
-\min\{1,\vert\,x-z\,\vert\}
-\;+\;
-\min\{1,\vert\,z-y\,\vert\}.
-\end{equation*}
-\end{lemma}
-\proof
-Observe that $\vert\,x - y\,\vert \;\leq\; \vert\,x-z\,\vert+\vert\,z-y\,\vert$ implies
-\begin{equation*}
-\min\{\,1\,,\vert\,x - y\,\vert\,\} \;\leq\; \vert\,x-z\,\vert+\vert\,z-y\,\vert.
-\end{equation*}
-The above inequality, together with $\min\{\,1\,,\vert\,x - y\,\vert\,\} \;\leq\; 1$,
-thus in turn imply:
-\begin{equation*}
-\min\{\,1\,,\vert\,x - y\,\vert\,\} \;\leq\; \min\{\,1\,,\vert\,x-z\,\vert+\vert\,z-y\,\vert\,\}.
-\end{equation*}
-By Lemma \ref{LemmaPhi}, we therefore have:
-\begin{equation*}
-\min\{\,1\,,\vert\,x - y\,\vert\,\}
-\;\leq\; \min\{\,1\,,\vert\,x-z\,\vert+\vert\,z-y\,\vert\,\}.
-\;\leq\; \min\{\,1\,,\vert\,x-z\,\vert\,\} \;+\; \min\{\,1\,,\vert\,z-y\,\vert\,\},
-\end{equation*}
-which proves the present Lemma.
-\qed
-
-\begin{lemma}[The Weierstrass $M$-test, Theorem A.28, \cite{Billingsley2012}]\label{WeierstrassMTest}
-\mbox{}\vskip 0.1cm
+\begin{theorem}[The Portmanteau Theorem, Theorem 2.1, \cite{Billingsley1999}]
+\label{PortmanteauTheorem}
+\mbox{}\vskip 0.2cm
 \noindent
-Suppose that $\underset{n\rightarrow\infty}{\lim}\,x^{(n)}_{i} \,=\, x_{i}$,\; for each $i \in \N$,
-and that $\left\vert\,x^{(n)}_{i}\,\right\vert \,\leq\, M_{i}$,
-where $\overset{\infty}{\underset{i=1}{\sum}}\,M_{i} < \infty$.
-Then,
+Suppose:
+\begin{itemize}
+\item	$\left(S,\rho\right)$ is a metric space, $\mathcal{B}(S)$ its the Borel $\sigma$-algebra,
+		$\left(S,\mathcal{B}(S)\right)$ is the corresponding measurable space.
+\item	$P, P_{1}, P_{2}, \ldots \in \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$
+		are probability measures on $\left(S,\mathcal{B}(S)\right)$.
+\end{itemize}
+Then, the following are equivalent:
 \begin{enumerate}
-\item
-	$\overset{\infty}{\underset{i=1}{\sum}}\, x_{i}$ exists, \;and\;\;
-	$\overset{\infty}{\underset{i=1}{\sum}}\, x^{(n)}_{i}$ exists for each $n \in \N$.
-\item	Furthermore,
-	\begin{equation*}
-	\underset{n\rightarrow\infty}{\lim}\;\overset{\infty}{\underset{i=1}{\sum}}\, x^{(n)}_{i}
-	\; = \;\;
-	\overset{\infty}{\underset{i=1}{\sum}}\, x_{i}.
-	\end{equation*}
+\item	$P_{n}$ converges weakly to $P$,
+		i.e. for each bounded continuous $\Re$-valued function $f : S \longrightarrow \Re$, we have
+		\begin{equation*}
+		\lim_{n\rightarrow\infty}\,\int_{S}\,f(s)\,\d P_{n}(s) \;=\; \int_{S}\,f(s)\,\d P(s).
+		\end{equation*}
+\item	For each closed set $F \subset S$, we have
+		\begin{equation*}
+		\limsup_{n\rightarrow\infty}P_{n}(F) \;\leq\; P(F).
+		\end{equation*}
+\item	For each open set $G \subset S$, we have
+		\begin{equation*}
+		\liminf_{n\rightarrow\infty}P_{n}(G) \;\geq\; P(G).
+		\end{equation*}
+\item	For each $A \in \mathcal{B}(S)$, we have
+		\begin{equation*}
+		P\!\left(A^{\circ}\right)
+		\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A^{\circ}\right)
+		\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+		\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+		\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(\,\overline{A}\,\right)
+		\;\;\leq\;\; P\!\left(\,\overline{A}\,\right).
+		\end{equation*}
+\item	For each $P$-continuity set $A \in \mathcal{B}(S)$, i.e. $P(\partial A) = 0$, we have
+		\begin{equation*}
+		\lim_{n\rightarrow\infty}P_{n}(A) \;=\; P(A).
+		\end{equation*}
 \end{enumerate}
-\end{lemma}
+\end{theorem}
+
+\begin{theorem}[Theorem 2.2, \cite{Billingsley1999}]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $\left(S,\rho\right)$ is a metric space, and
+$P, P_{1}, P_{2}, \,\ldots\,\mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$
+are probability measures on the measurable space $\left(S,\mathcal{B}(S)\right)$.
+Then, $P_{n} \overset{w}{\longrightarrow} P$ if there exists a sub-collection
+$\mathcal{A} \subset \mathcal{B}(S)$ satisfying the following conditions:
+\begin{enumerate}
+\item	$\mathcal{A}$ is closed under finite intersections,
+\item	$\underset{n\rightarrow\infty}{\lim}\,P_{n}(A) = P(A)$, for each $A \in \mathcal{A}$, and
+\item	each open subset of $S$ is a countable union of sets in $\mathcal{A}$.
+\end{enumerate}
+\end{theorem}
 \proof
-\begin{enumerate}
-\item
-	$\overset{\infty}{\underset{i=1}{\sum}}\,M_{i} < \infty$ \;\;and\;\; $\left\vert\,x^{(n)}_{i}\,\right\vert \leq M_{i}$
-	\quad$\Longrightarrow$\quad the series \;$\overset{\infty}{\underset{i=1}{\sum}}\, x_{i}$ \;and\;
-	$\overset{\infty}{\underset{i=1}{\sum}}\, x^{(n)}_{i}$, $n \in \N$, \;converge absolutely.
-\item
-	Let $\varepsilon > 0$ be given. Choose $K \in \N$ sufficiently large such that
-	$\overset{\infty}{\underset{j = K + 1}{\sum}}\,M_{i} < \dfrac{\varepsilon}{3}$.
-	Next, choose $N \in \N$ sufficiently large such that
-	\begin{equation*}
-	\left\vert\;x^{(n)}_{i} \,-\, x_{i}\;\right\vert
-	\; < \; \dfrac{\varepsilon}{3K},
-	\;\;\textnormal{for any $n > N$ and $i = 1, 2, \ldots, K$}.
-	\end{equation*}
-	Then, we have, for each $n > N$,
-	\begin{eqnarray*}
-	\left\vert\;\;
-	\sum^{\infty}_{i=1}\,x^{(n)}_{i} \, - \, \sum^{\infty}_{i=1}x_{i}
-	\;\right\vert
-	&=&
-	\left\vert\;\;
-	\sum^{K}_{i=1}\left(\,x^{(n)}_{i} \, - \, x_{i}\,\right) \, + \, \sum_{i=K+1}^{\infty}x^{(n)}_{i} \, - \, \sum^{\infty}_{i=K+1}x_{i}
-	\;\right\vert
-	\\
-	&\leq&
-	\sum^{K}_{i=1}
-	\left\vert\; x^{(n)}_{i} \, - \, x_{i}\;\right\vert
-	\;+\; \sum^{\infty}_{i=K+1}\left\vert\, x^{(n)}_{i} \,\right\vert
-	\;+\; \sum^{\infty}_{i=K+1}\left\vert\, x_{i} \,\right\vert
-	\\
-	&\leq&
-	K \cdot \dfrac{\varepsilon}{3K}
-	\;+\; \sum^{\infty}_{i=K+1}M_{i}
-	\;+\; \sum^{\infty}_{i=K+1}M_{i}
-	\;\;\leq\;\;
-	\dfrac{\varepsilon}{3} + 2\cdot\dfrac{\varepsilon}{3}
-	\;\;=\;\; \varepsilon.
-	\end{eqnarray*}
-	Since $\varepsilon$ is arbitrary, this proves:
-	\begin{equation*}
-	\underset{n\rightarrow\infty}{\lim}\;\overset{\infty}{\underset{i=1}{\sum}}\, x^{(n)}_{i}
-	\; = \;\;
-	\overset{\infty}{\underset{i=1}{\sum}}\, x_{i}.
-	\end{equation*}
-\end{enumerate}
+\vskip 0.1cm
+\noindent
+By the Portmanteau Theorem (Theorem \ref{PortmanteauTheorem}), it suffices to
+establish the following:
+\begin{equation*}
+P(G) \;\; \leq \;\; \liminf_{n\rightarrow\infty}\,P_{n}(G),
+\;\;\textnormal{for each open subset $G \subset S$}.
+\end{equation*}
+By hypothesis, $G = \bigcup_{i=1}^{\infty}A_{i}$, where $A_{i} \in \mathcal{A}$ for each $i \in \N$.
+For each $\varepsilon > 0$, choose $r \in \N$ sufficiently large such that
+\begin{equation*}
+P(G) - \varepsilon \;\; < \;\; P\!\left(\bigcup_{i=1}^{r}A_{i}\right) \;\; \leq \;\; P(G).
+\end{equation*}
+Now, observe that:
+\begin{eqnarray*}
+P_{n}\!\left(\,\bigcup_{i=1}^{r}A_{i}\,\right)
+&=& \sum_{i=1}^{r}P_{n}\!\left(A_{i}\right) \,-\, \sum_{i=1}^{r}\sum_{j=i+1}^{r}P_{n}\!\left(A_{i}\cap A_{j}\right)
+	\,+\, \sum_{i=1}^{r}\sum_{j=i+1}^{r}\sum_{k=j+1}^{r}P_{n}\!\left(A_{i}\cap A_{j}\cap A_{k}\right)
+	\,-\, \cdots
+\\
+&\longrightarrow&
+ \sum_{i=1}^{r}P\!\left(A_{i}\right) \;\;-\, \sum_{i=1}^{r}\sum_{j=i+1}^{r}P\!\left(A_{i}\cap A_{j}\right)
+	\;\;+\, \sum_{i=1}^{r}\sum_{j=i+1}^{r}\sum_{k=j+1}^{r}P\!\left(A_{i}\cap A_{j}\cap A_{k}\right)
+	\;\;-\, \cdots
+\\
+&=& P\!\left(\,\bigcup_{i=1}^{r}A_{i}\,\right),
+\end{eqnarray*}
+where we have used the hypotheses (i) and (ii) and the fact the ellipses above represent sums of finitely many terms.
+Thus we have:
+\begin{equation*}
+P(G) - \varepsilon
+\;\; \leq \;\; P\!\left(\,\bigcup_{i=1}^{r}A_{i}\,\right)
+\;\; = \;\; \lim_{n\rightarrow\infty}P_{n}\!\left(\,\bigcup_{i=1}^{r}A_{i}\,\right)
+\;\; \leq \;\; \liminf_{n\rightarrow\infty}\,P_{n}(G).
+\end{equation*}
+Since $\varepsilon > 0$ is arbitrary, it follows that:
+\begin{equation*}
+P(G) \;\; \leq \;\; \liminf_{n\rightarrow\infty}\,P_{n}(G),
+\end{equation*}
+which completes the proof the present Theorem.
 \qed
 
+\begin{theorem}[Theorem 2.3, \cite{Billingsley1999}]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $\left(S,\rho\right)$ is a {\color{red}separable} metric space, and
+$P, P_{1}, P_{2}, \,\ldots\,\mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$
+are probability measures on the measurable space $\left(S,\mathcal{B}(S)\right)$.
+Then, $P_{n} \overset{w}{\longrightarrow} P$ if there exists a sub-collection
+$\mathcal{A} \subset \mathcal{B}(S)$ satisfying the following conditions:
+\begin{enumerate}
+\item	$\mathcal{A}$ is closed under finite intersections,
+\item	$\underset{n\rightarrow\infty}{\lim}\,P_{n}(A) = P(A)$, for each $A \in \mathcal{A}$, and
+\item	for each $x \in S$ and $\varepsilon > 0$, the set
+		\begin{equation*}
+		\mathcal{A}(x,\varepsilon)
+		\;\; := \;\;
+		\left\{\;\,
+		A \in \mathcal{A}
+		\;\;\left\vert\;
+		\begin{array}{c}
+			\\
+			x \,\in\, A^{\circ} \,\subset\, A \,\subset\, B(x,\varepsilon)
+			\\ \\
+		\end{array}
+		\right.
+		\right\}
+		\;\; \neq \;\; \varemptyset.
+		\end{equation*}
+\end{enumerate}
+\end{theorem}
+\proof
+\vskip 0.1cm
+\noindent
+By the preceding Theorem, it suffices to establish that
+each open subset $G \subset S$ can be expressed as a countable union of sets in $\mathcal{A}$.
+But this follows from the separability of $S$ and hypothesis (iii).
+Indeed, let $G \subset S$ be an open subset of $S$.
+For each $x \in G$, choose $\epsilon_{x} > 0$ such that $B(x,\varepsilon_{x}) \subset G$.
+Next, by hypothesis (iii), we may choose $A_{x} \in \mathcal{A}$ such that
+\begin{equation*}
+	x \;\in\; A_{x}^{\circ} \;\subset\; A_{x} \;\subset\; B(x,\varepsilon_{x}) \;\subset\; G.
+\end{equation*}
+Thus,
+\begin{equation*}
+G \;\; = \;\; \bigcup_{x \in G} A_{x}^{\circ}.
+\end{equation*}
+Since $S$ is separable, by Theorem \ref{CharacterizationOfSeparabilityOfMetricSpaces},
+there exists $x_{1}, x_{2}, \,\ldots\, \in G$ such that
+$G \; = \; \overset{\infty}{\underset{i=1}{\textnormal{\large$\bigcup$}}}\,A_{x_{i}}^{\circ}$.
+But then
+\begin{equation*}
+G
+\;\; = \;\; \bigcup_{i=1}^{\infty} A_{x_{i}}^{\circ}
+\;\; \subset \;\; \bigcup_{i=1}^{\infty} A_{x_{i}}
+\;\; \subset \;\; \bigcup_{i=1}^{\infty} B(x_{i},\varepsilon_{x_{i}})
+\;\; \subset \;\; G,
+\end{equation*}
+which implies
+\begin{equation*}
+G \;\; = \;\; \bigcup_{i=1}^{\infty} A_{x_{i}}.
+\end{equation*}
+This completes the proof of the present Theorem.
+\qed
+
+\begin{theorem}[Theorem 2.4, \cite{Billingsley1999}]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $\left(S,\rho\right)$ is a {\color{red}separable} metric space.
+Then, a sub-collection $\mathcal{A} \subset \mathcal{B}(S)$ is a
+convergence-determining class of Borel subsets of
+$\left(S,\mathcal{B}(S)\right)$ if $\mathcal{A}$ satisfies the following conditions:
+\begin{enumerate}
+\item	$\mathcal{A}$ is closed under finite intersections, and
+\item	for each $x \in S$ and $\varepsilon > 0$, the set
+		\begin{equation*}
+		\partial\mathcal{A}(x,\varepsilon)
+		\;\; := \;\;
+		\left\{\;\;
+		\partial A \,\subset\, S
+		\;\;\left\vert\;
+		\begin{array}{c}
+			\\
+			A \,\in\, \mathcal{A}(x,\varepsilon)
+			\\ \\
+		\end{array}
+		\right.
+		\right\}
+		\end{equation*}
+		either contains $\varemptyset$ or contains uncountably many disjoint sets,
+		where
+		\begin{equation*}
+		\mathcal{A}(x,\varepsilon)
+		\;\; := \;\;
+		\left\{\;\,
+		A \in \mathcal{A}
+		\;\;\left\vert\;
+		\begin{array}{c}
+			\\
+			x \,\in\, A^{\circ} \,\subset\, A \,\subset\, B(x,\varepsilon)
+			\\ \\
+		\end{array}
+		\right.
+		\right\}.
+		\end{equation*}		
+\end{enumerate}
+\end{theorem}
+\proof
+We need to prove that the following implication holds:
+\begin{equation*}
+\left.
+\begin{array}{c}
+	P,\,P_{1},\,P_{2},\,\ldots\,\in\,\mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right),\;\;\textnormal{and}
+	\\ \\
+	\underset{n\rightarrow\infty}{\lim}\,P_{n}(A) \,=\, P(A),\;\;\textnormal{for each $A \in \mathcal{A}$}
+\end{array}
+\right\}
+\quad\Longrightarrow\quad
+P_{n} \,\overset{w}{\longrightarrow}\, P.
+\end{equation*}
+By the preceding Theorem, it suffices to establish that
+$\mathcal{A}(x,\varepsilon) \neq \varemptyset$, for each $x \in S$ and $\varepsilon > 0$,
+which in turn will follow immediately from the statement that
+$\partial\mathcal{A}(x,\varepsilon) \neq \varemptyset$, for each $x \in S$ and $\varepsilon > 0$.
+But this last statement follows trivially by hypothesis (ii): For any probability measure
+$P \in \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$, hypothesis (ii) implies that
+$\partial\mathcal{A}(x,\varepsilon)$ contains a subset of $P$-measure zero
+(recall that, for an arbitrary finite measure space $\left(\Omega,\mathcal{F},\mu\right)$,
+$\mu(\varemptyset) = 0$, and in every uncountable collection of disjoint
+$\mathcal{F}$-measurable sets, at most countably many of these sets can have positive $\mu$-measures);
+in particular, (ii) implies $\partial\mathcal{A}(x,\varepsilon) \neq \varemptyset$,
+hence $\mathcal{A}(x,\varepsilon) \neq \varemptyset$.
+This completes the proof of the present Theorem.
+\qed
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
