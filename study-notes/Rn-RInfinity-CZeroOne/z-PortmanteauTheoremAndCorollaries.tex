@@ -222,24 +222,151 @@ We need to prove that the following implication holds:
 \begin{array}{c}
 	P,\,P_{1},\,P_{2},\,\ldots\,\in\,\mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right),\;\;\textnormal{and}
 	\\ \\
-	\underset{n\rightarrow\infty}{\lim}\,P_{n}(A) \,=\, P(A),\;\;\textnormal{for each $A \in \mathcal{A}$}
+	\underset{n\rightarrow\infty}{\lim}\,P_{n}(A) \,=\, P(A),\;\;\textnormal{for each $A \in \mathcal{A}_{P}$}
 \end{array}
 \right\}
 \quad\Longrightarrow\quad
-P_{n} \,\overset{w}{\longrightarrow}\, P.
+P_{n} \,\overset{w}{\longrightarrow}\, P,
 \end{equation*}
+where \;$\mathcal{A}_{P} \,:=\, \left\{\;A \in \mathcal{A}\;\,\vert\; P(\partial A) \,=\,0 \;\right\}$\;
+is the collection of $P$-continuity sets in $\mathcal{A}$.
+\vskip0.2cm
+\noindent
 By the preceding Theorem, it suffices to establish that
-$\mathcal{A}(x,\varepsilon) \neq \varemptyset$, for each $x \in S$ and $\varepsilon > 0$,
-which in turn will follow immediately from the statement that
-$\partial\mathcal{A}(x,\varepsilon) \neq \varemptyset$, for each $x \in S$ and $\varepsilon > 0$.
-But this last statement follows trivially by hypothesis (ii): For any probability measure
-$P \in \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$, hypothesis (ii) implies that
-$\partial\mathcal{A}(x,\varepsilon)$ contains a subset of $P$-measure zero
-(recall that, for an arbitrary finite measure space $\left(\Omega,\mathcal{F},\mu\right)$,
+$\mathcal{A}_{P}$ is closed under finite intersections and that
+\begin{equation*}
+\mathcal{A}_{P}(x,\varepsilon)
+\; := \;
+	\left\{\;\,
+	A \in \mathcal{A}_{P}
+	\;\;\left\vert\;
+	\begin{array}{c}
+		\\
+		x \,\in\, A^{\circ} \,\subset\, A \,\subset\, B(x,\varepsilon)
+		\\ \\
+	\end{array}
+	\right.
+	\right\}
+\;\; = \;\; \mathcal{A}_{P}\,\cap\mathcal{A}(x,\varepsilon)
+\;\;\neq\;\; \varemptyset, 
+\;\;\textnormal{for each $x \in S$ and $\varepsilon > 0$}.
+\end{equation*}
+
+\vskip 0.2cm
+\noindent
+\underline{$\mathcal{A}_{P}$ is closed under finite intersections}
+\vskip 0.1cm
+\noindent
+For any $A, B \subset S$, note that
+\begin{eqnarray*}
+\partial(A\,\cap\,B)
+& := &
+	\left\{\;\;
+	x \in S
+	\;\;\left\vert\;\;
+	\begin{array}{l}
+		\textnormal{for each $\varepsilon > 0$\,:}
+		\\
+		B(x,\varepsilon) \,\cap\,(A\,\cap\,B) \;\,\neq \varemptyset,\;\;\textnormal{and}
+		\\
+		B(x,\varepsilon) \,\cap\,(A\,\cap\,B)^{c} \neq \varemptyset
+		\\
+	\end{array}
+	\right.
+	\,\right\}
+\\
+& = &
+	\left\{\;\;
+	x \in S
+	\;\;\left\vert\;\;
+	\begin{array}{l}
+		\textnormal{for each $\varepsilon > 0$\,:}
+		\\
+		B(x,\varepsilon) \,\cap\,(A\,\cap\,B) \;\;\;\neq \varemptyset,\;\;\textnormal{and}
+		\\
+		B(x,\varepsilon) \,\cap\,(A^{c}\,\cup\,B^{c}) \neq \varemptyset
+		\\
+	\end{array}
+	\right.
+	\,\right\}
+\\
+& = &
+	\left\{\;\;
+	x \in S
+	\;\;\left\vert\;\;
+	\begin{array}{l}
+		\textnormal{for each $\varepsilon > 0$\,:}
+		\\
+		B(x,\varepsilon) \,\cap\,(A\,\cap\,B) \neq \varemptyset,\;\;\textnormal{and}
+		\\
+		(B(x,\varepsilon) \,\cap\,A^{c})\,\cup\,(B(x,\varepsilon)\,\cap\,B^{c}) \neq \varemptyset
+		\\
+	\end{array}
+	\right.
+	\,\right\}
+\\
+& \subset &
+	\left\{\;\;
+	x \in S
+	\;\;\left\vert\;\;
+	\begin{array}{l}
+		\textnormal{for each $\varepsilon > 0$\,:}
+		\\
+		B(x,\varepsilon) \,\cap\,A  \;\,\neq \varemptyset,\;\;\textnormal{and}
+		\\
+		B(x,\varepsilon) \,\cap\,A^{c}\neq \varemptyset
+		\\
+	\end{array}
+	\right.
+	\,\right\}
+	\;\bigcup\;
+	\left\{\;\;
+	x \in S
+	\;\;\left\vert\;\;
+	\begin{array}{l}
+		\textnormal{for each $\varepsilon > 0$\,:}
+		\\
+		B(x,\varepsilon) \,\cap\,B  \;\,\neq \varemptyset,\;\;\textnormal{and}
+		\\
+		B(x,\varepsilon) \,\cap\,B^{c}\neq \varemptyset
+		\\
+	\end{array}
+	\right.
+	\,\right\}
+\\
+\\
+&=& (\partial A) \,\cup\, (\partial B),
+\end{eqnarray*}
+which immediately implies that $A \,\cap\, B \in \mathcal{A}_{P}$ whenever $A, B \in \mathcal{A}_{P}$.
+Thus, $\mathcal{A}_{P}$ is closed under finite intersections.
+
+\vskip 0.5cm
+\noindent
+\underline{$\mathcal{A}_{P}(x,\varepsilon) \neq \varemptyset$, for each $x \in S$ and $\varepsilon > 0$}
+\begin{eqnarray*}
+\textnormal{(ii)}
+&\Longrightarrow&
+	\textnormal{$\partial\mathcal{A}(x,\varepsilon)$ contains a set of $P$-measure zero}
+\\
+&\Longrightarrow&
+	\textnormal{there exists $B \in \partial\mathcal{A}(x,\varepsilon)$ such that $P(B) = 0$}
+\\
+&\Longrightarrow&
+	\textnormal{there exists $A \in \mathcal{A}(x,\varepsilon)$ such that $P(\partial A) = 0$}
+\\
+&\Longrightarrow&
+	\textnormal{there exists $A \in \mathcal{A}(x,\varepsilon) \,\cap\, \mathcal{A}_{P} \, = \, \mathcal{A}_{P}(x,\varepsilon)$}
+\\
+&\Longrightarrow&
+	\mathcal{A}_{P}(x,\varepsilon) \,\neq\, \varemptyset,
+\end{eqnarray*}
+where the first implication follows from the general fact that,
+for an arbitrary finite measure space $\left(\Omega,\mathcal{F},\mu\right)$,
 $\mu(\varemptyset) = 0$, and in every uncountable collection of disjoint
-$\mathcal{F}$-measurable sets, at most countably many of these sets can have positive $\mu$-measures);
-in particular, (ii) implies $\partial\mathcal{A}(x,\varepsilon) \neq \varemptyset$,
-hence $\mathcal{A}(x,\varepsilon) \neq \varemptyset$.
-This completes the proof of the present Theorem.
+$\mathcal{F}$-measurable sets, at most countably many of these sets can have positive $\mu$-measures.
+
+\vskip 0.5cm
+\noindent
+The proof of the present Theorem is now complete.
 \qed
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
