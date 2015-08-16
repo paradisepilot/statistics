@@ -140,4 +140,135 @@ Then,
 \end{enumerate}
 \qed
 
+\begin{theorem}[Uniform Limit Theorem]
+\label{UniformLimitsOfContinuousFunctionsAreContinuous}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$X$ is a topological space, and $(\,Y,d\,)$ is a metric space.
+\item	$f : X \longrightarrow Y$ is a function from $X$ into $Y$.
+\end{itemize}
+If there exists a sequence \,$\left\{\,f_{n} : X \longrightarrow Y \,\right\}_{n \in \N}$\,
+of continuous functions from $X$ into $Y$ which converges uniformly to $f$,
+then $f$ is itself a continuous functions from $X$ into $Y$.
+\end{theorem}
+
+\begin{remark}
+\mbox{}\vskip 0.1cm
+\noindent
+Recall: Let $S$ be a non-empty set, and $\left(\,Y,d\,\right)$ a metric space. 
+A sequence $\left\{\, g_{n} : S \longrightarrow Y \,\right\}_{n\in\N}$ of functions
+converges uniformly to a function $g : S \longrightarrow Y$
+if, for each $\varepsilon > 0$, there exists $N \in \N$ such that
+\begin{equation*}
+d\!\left(\,g_{n}(x),\,g(x)\,\right) \; < \; \varepsilon,
+\quad\textnormal{for every $n \geq N$ and every $x \in S$}.
+\end{equation*}
+\end{remark}
+
+\proof
+Let $x_{0} \in X$ be an arbitrary point of $X$.
+We need to establish that $f$ is continuous at $x_{0} \in X$.
+Thus, let $\varepsilon > 0$ be given.
+We need to find an open subset $U$ of $X$ such that
+\begin{equation*}
+x_{0}\,\in\,U\,,
+\quad\textnormal{and}\quad
+d\!\left(\,f(x_{0}),\,f(x)\,\right) \; < \; \varepsilon,
+\;\;
+\textnormal{for each $x \in U$}.
+\end{equation*}
+Since $f_{n}$ converges to $f$ uniformly, there exists $n \in \N$ such that
+\begin{equation*}
+d\!\left(\,f_{n}(x),\,f(x)\,\right) \; < \; \dfrac{\varepsilon}{3},
+\quad\textnormal{for each $x \in X$}.
+\end{equation*}
+Since $f_{n}$ is continuous, there exists an open subset $U \subset X$ such that
+\begin{equation*}
+x_{0}\,\in\,U\,,
+\quad\textnormal{and}\quad
+d\!\left(\,f_{n}(x_{0}),\,f_{n}(x)\,\right) \; < \; \dfrac{\varepsilon}{3},
+\;\;
+\textnormal{for each $x \in U$}.
+\end{equation*}
+Thus, for every $x \in U$, we have:
+\begin{equation*}
+d\!\left(\,f(x_{0}),\,f(x)\,\right)
+\;\leq\; d\!\left(\,f(x_{0}),\,f_{n}(x_{0})\,\right) + d\!\left(\,f_{n}(x_{0}),\,f_{n}(x)\,\right) + d\!\left(\,f_{n}(x),\,f(x)\,\right)
+\; < \; \dfrac{\varepsilon}{3} + \dfrac{\varepsilon}{3} + \dfrac{\varepsilon}{3}
+\; = \; \varepsilon.
+\end{equation*}
+This proves the continuity of $f : X \longrightarrow Y$.
+\qed
+
+\begin{lemma}[Characterization of weak convergence of point-mass Borel measures on metric spaces]
+\label{WeakConvergenceOfPointMassMeasuresOnMetricSpaces}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $\left(\,S,\rho\,\right)$ is a metric space.
+For each $x \in S$, let $\delta_{x} \in \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$
+be the point-mass measure concentrated at $x \in S$;
+in other words, for each $A \in \mathcal{B}(S)$, we have
+\begin{equation*}
+\delta_{x}\!\left(A\right)
+\;\; := \;\;
+\left\{
+\begin{array}{cl}
+1, & \textnormal{if \,$x \in A$} \\
+0, & \textnormal{if \,$x \notin A$}
+\end{array}
+\right..
+\end{equation*}
+Then, for $x_{0}, x_{1}, x_{2}, \,\ldots\, \in S$, we have
+\begin{equation*}
+\delta_{x_{n}}\overset{w}{\longrightarrow}\, \delta_{x_{0}},
+\;\textnormal{as $n\longrightarrow\infty$}
+\quad\Longleftrightarrow\quad
+\lim_{n\rightarrow\infty}\rho\!\left( x_{n},x_{0} \right) \,=\, 0.
+\end{equation*}
+\end{lemma}
+\proof
+\vskip 0.1cm
+\noindent
+\underline{($\Longleftarrow$)}\quad
+Suppose $x_{n} \longrightarrow x_{0}$.
+Then, for each bounded continuous $f : S \longrightarrow \Re$, we have
+\begin{equation*}
+\delta_{x_{n}}(f) \,=\, f(x_{n}) \;\longrightarrow\; f(x_{0}) \,=\, \delta_{x_{0}}(f),
+\end{equation*}
+which proves that $\delta_{x_{n}}\overset{w}{\longrightarrow}\,\delta_{x_{0}}$,
+as $n \longrightarrow \infty$. 
+\vskip 0.3cm
+\noindent
+\underline{($\Longrightarrow$)}\quad
+Conversely, suppose $x_{n}$ does NOT converge to $x_{0}$.
+Then, there exists $\varepsilon > 0$ such that
+\begin{equation*}
+\rho(x_{n},x_{0}) \,>\, \varepsilon,
+\quad\textnormal{for infinitely many $n$}. 
+\end{equation*}
+Now, define $f : S \longrightarrow \Re$ by
+\begin{equation*}
+f(x) \;\; := \;\; \max\!\left\{\,0\,,\,1 - \dfrac{\rho(x,x_{0})}{\varepsilon}\,\right\}.
+\end{equation*}
+Then, $f$ is bounded and continuous, and
+\begin{equation*}
+\delta_{x_{0}}(f)
+\,=\, f(x_{0})
+\,=\, \max\!\left\{\,0\,,\,1 - \dfrac{\rho(x_{0},x_{0})}{\varepsilon}\,\right\}
+\,=\, \max\!\left\{\,0\,,\,1 - \dfrac{0}{\varepsilon}\,\right\}
+\,=\, 1,
+\end{equation*}
+while, for infinitely many $n \in \N$, we have $\rho(x_{n},x_{0}) > \varepsilon$, and hence
+\begin{equation*}
+\delta_{x_{n}}(f)
+\,=\, f(x_{n})
+\,=\, \max\!\left\{\,0\,,\,1 - \dfrac{\rho(x_{n},x_{0})}{\varepsilon}\,\right\}
+\,=\, 0.
+\end{equation*}
+Hence, $\delta_{x_{n}}(f)$ does NOT converge to $\delta_{x_{0}}(f)$.
+This proves $\delta_{x_{n}}$ does NOT converge weakly to $\delta_{x_{0}}$.
+\qed
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

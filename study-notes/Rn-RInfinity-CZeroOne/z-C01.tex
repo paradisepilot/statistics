@@ -1,0 +1,351 @@
+
+\newcommand{\Czo}{C([0,1],\Re)}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{On the separating and convergence-determining classes of $\Czo$}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{definition}[The supremum norm on $\Czo$, Example 1.3, \cite{Billingsley1999}]
+\label{CZeroOneMetricSpace}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\Czo$ denotes the set of all continuous $\Re$-valued functions defined
+on the closed bounded interval $[0,1]$.
+Define $\Vert\,\cdot\,\Vert_{\infty} : \Czo \longrightarrow [0,\infty)$ as follows:
+\begin{equation*}
+\Vert\; x \;\Vert_{\infty}
+\; := \;
+\left.\left.\sup_{t \in [0,1]}\right\{\,\left\vert \, x(t) \, \right\vert\,\right\}.
+\end{equation*}
+\end{definition}
+
+\begin{remark}
+\mbox{}
+\vskip 0.1cm
+\noindent
+It is well known that $\left(\,\Czo,\Vert\,\cdot\,\Vert_{\infty}\,\right)$ is a
+separable Banach space (i.e. complete normed vector space).
+\begin{itemize}
+\item	The completeness of $\left(\,\Czo,\Vert\,\cdot\,\Vert_{\infty}\,\right)$
+		follows from the general fact that uniform limits of continuous functions
+		are themselves continuous functions
+		(see Theorem \ref{UniformLimitsOfContinuousFunctionsAreContinuous}).
+\item	Its separability follows from the Stone-Weierstrass Theorem.
+\end{itemize}
+\end{remark}
+
+\begin{lemma}
+\label{CZeroOneContinuityBorealMearuabilityOfPi}
+\mbox{}\vskip 0.1cm
+\noindent
+For $0 \leq t_{1} < t_{2} < \cdots < t_{k} \leq 1$, define
+\begin{equation*}
+\pi_{t_{1}t_{2}\cdots t_{k}} \, : \, \Czo \, \longrightarrow\, \Re^{k}
+\, : \, x \, \longmapsto \, \left(\,x(t_{1}),x(t_{2}),\ldots,x(t_{k})\,\right).
+\end{equation*}
+Then, each \,$\pi_{t_{1}t_{2}\cdots t_{k}}$\, is continuous, hence Borel measurable.
+\end{lemma}
+\proof
+Suppose $\left\{\,x^{(n)}\,\right\}_{n\in\N} \,\subset\,\Czo$ is a sequence in $\Czo$
+such that $x^{(n)}$ converges to $x \in \Czo$, as $n \longrightarrow \infty$.
+Then,
+\begin{eqnarray*}
+\left\Vert\; \pi_{t_{1}\cdots\,t_{k}}(x^{(n)}) \,-\, \pi_{t_{1}\cdots\,t_{k}}(x^{(n)}) \;\right\Vert_{\Re^{k}}
+&=& \left\Vert\; \left(x^{(n)}(t_{1}),\ldots,x^{(n)}(t_{k})\right) \,-\, \left(x(t_{1}),\ldots,x(t_{k})\right) \;\right\Vert_{\Re^{k}}
+\\
+&=& \left\Vert\; \left(x^{(n)}(t_{1}) - x(t_{1}) \;,\;\ldots\;,\; x^{(n)}(t_{k}) - x(t_{k})\right) \;\right\Vert_{\Re^{k}}
+\\
+&=& \sqrt{\sum^{k}_{i=1}\,\left(x^{(n)}(t_{i}) - x(t_{i})\right)^{2}}
+\\
+&\leq& \sqrt{\sum^{k}_{i=1}\,\left\Vert\,x^{(n)} - x\,\right\Vert_{\infty}^{2}}
+\;\;=\;\; \sqrt{k}\cdot\left\Vert\,x^{(n)} - x\,\right\Vert_{\infty}
+\;\longrightarrow\;\; 0,
+\;\;\textnormal{as $n \longrightarrow \infty$},
+\end{eqnarray*}
+which proves the continuity of $\pi_{t_{1}\cdots\,t_{k}}$.
+The Borel measurability of $\pi_{t_{1}\cdots\,t_{k}}$
+follows immediately from
+Corollary \ref{ContinuousMapsAreBorelMeasurable}.
+\qed
+
+\begin{definition}
+\label{CZeroOneFiniteDimensionalClass}
+\mbox{}\vskip 0.1cm
+\noindent
+The \textbf{finite-dimensional class} of subsets
+of $\Czo$ is, by definition, the following:
+\begin{equation*}
+\mathcal{B}_{f}(\Czo)
+\;\; := \;\;
+\left\{\;
+\pi_{t_{1}t_{2}\cdots t_{k}}^{-1}\!\left(B\right) \,\subset\, \Czo
+\;\left\vert\;
+\begin{array}{c}
+0 \leq t_{1} < t_{2} < \cdots < t_{k} \leq 1
+\\
+B \in \mathcal{B}\!\left(\Re^{k}\right)
+\end{array}
+\right.
+\;\right\},
+\end{equation*}
+where, for any $0 \leq t_{1} < t_{2} < \cdots < t_{k} \leq 1$,
+the map $\pi_{t_{1}t_{2}\cdots t_{k}}$ is defined as follows:
+\begin{equation*}
+\pi_{t_{1}t_{2}\cdots t_{k}} \, : \, \Czo \, \longrightarrow\, \Re^{k}
+\, : \, x \, \longmapsto \, \left(\,x(t_{1}),x(t_{2}),\ldots,x(t_{k})\,\right).
+\end{equation*}
+\end{definition}
+
+\begin{theorem}
+\mbox{}
+\begin{enumerate}
+\item	$\mathcal{B}_{f}\!\left(\Czo\right) \subset \mathcal{B}\!\left(\Czo\right)$.
+\item	$\mathcal{B}_{f}\!\left(\Czo\right)$ is a separating class of Borel subsets of $\Czo$.
+\item	$\mathcal{B}_{f}\!\left(\Czo\right)$ is \textbf{\color{red}NOT}
+		a convergence-determining class of Borel subsets of $\Czo$.
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	This follows immediately from the Borel measurability of $\pi_{t_{1}t_{2}\cdots t_{k}}$,
+	for each $0 \leq t_{1} < t_{2} < \cdots < t_{k} \leq 1$.
+	See Lemma \ref{CZeroOneContinuityBorealMearuabilityOfPi}.
+\item
+	We apply
+	Theorem \ref{ClosedUnderFiniteIntersectionsImpliesSeparatingClasses}
+	to $\mathcal{B}_{f}\!\left(\Czo\right)$.
+
+	\vskip 0.1cm
+	\noindent
+	\underline{$\mathcal{B}_{f}\!\left(\Czo\right)$ is closed under finite intersections}
+	\vskip 0.0cm
+	\noindent
+	Let $\pi^{-1}_{t_{1}\cdots\,t_{k}}(A)$ and $\pi^{-1}_{s_{1}\cdots\,s_{l}}(B)$ \,$\in$\, $\mathcal{B}_{f}(\Czo)$.
+	Note that this implies $A \in \mathcal{B}(\Re^{k})$ and $B \in \mathcal{B}(\Re^{l})$.
+	We need to show that
+	$\pi^{-1}_{t_{1}\cdots\,t_{k}}(A) \,\cap\, \pi^{-1}_{s_{1}\cdots\,s_{l}}(B) \,\in\, \mathcal{B}_{f}(\Czo)$.
+	Now, if $k = l$, and $(t_{1},\ldots,t_{k}) \,=\, (s_{1},\ldots,s_{k})$, then the above inclusion is immediate,
+	since then $A \cap B \in \mathcal{B}(\Re^{k})$, and
+	\begin{equation*}
+	\pi^{-1}_{t_{1}\cdots\,t_{k}}(A) \,\cap\, \pi^{-1}_{s_{1}\cdots\,s_{l}}(B)
+	\;\; = \;\; \pi^{-1}_{t_{1}\cdots\,t_{k}}(A) \,\cap\, \pi^{-1}_{t_{1}\cdots\,t_{k}}(B)
+	\;\; = \;\; \pi^{-1}_{t_{1}\cdots\,t_{k}}(A\,\cap\,B)
+	\;\; \in \;\; \mathcal{B}_{f}(\Czo).
+	\end{equation*}
+	For the case $(t_{1},\ldots,t_{k}) \,\neq\, (s_{1},\ldots,s_{l})$, write
+	\begin{equation*}
+	\{\,t_{1},t_{2},\ldots,t_{k}\,\}
+	\,\cup\,
+	\{\,s_{1},s_{2},\ldots,s_{l}\,\}
+	\;\; = \;\;
+	\{\,r_{1},r_{2},\ldots,r_{m}\,\},
+	\end{equation*}
+	with $0 \leq r_{1} < r_{2} < \cdots < r_{m} \leq 1$.
+	Then, by the Claim below, we have
+	\begin{equation*}
+	\pi_{t_{1}\cdots\,t_{k}}^{-1}\!\left(\,A\,\right)
+	\;=\;
+	\pi_{r_{1}\cdots\,r_{m}}^{-1}\!\left(\,A^{\prime}\,\right)
+	\quad\textnormal{and}\quad
+	\pi_{s_{1}\cdots\,s_{l}}^{-1}\!\left(\,B\,\right)
+	\;=\;
+	\pi_{r_{1}\cdots\,r_{m}}^{-1}\!\left(\,B^{\prime}\,\right),
+	\quad\textnormal{for some $A^{\prime}, B^{\prime} \in \mathcal{B}(\Re^{m})$}.
+	\end{equation*}
+	Hence,
+	\begin{equation*}
+	\pi_{t_{1}\cdots\,t_{k}}^{-1}\!\left(\,A\,\right)
+	\,\cap\,
+	\pi_{s_{1}\cdots\,s_{l}}^{-1}\!\left(\,B\,\right)
+	\;\; = \;\;
+	\pi_{r_{1}\cdots\,r_{m}}^{-1}\!\left(\,A^{\prime}\,\right)
+	\,\cap\,
+	\pi_{r_{1}\cdots\,r_{m}}^{-1}\!\left(\,B^{\prime}\,\right)
+	\;\; = \;\;	
+	\pi_{r_{1}\cdots\,r_{m}}^{-1}\!\left(\,A^{\prime}\,\cap\,B^{\prime}\,\right)
+	\;\; \in \;\; \mathcal{B}_{f}\!\left(\Czo\right),
+	\end{equation*}
+	which proves that $\mathcal{B}_{f}(\Czo)$ is indeed closed under finite intersections.
+	We now state and prove the following
+		\begin{center}
+		\begin{minipage}{6.0in}
+		\noindent
+		\textbf{Claim:}\quad Suppose
+		\begin{itemize}
+		\item	$0 \leq t_{1} < t_{2} < \cdots < t_{k} \leq 1$, and $A \in \mathcal{B}(\Re^{k})$.
+				Hence, \,$\pi_{t_{1}\cdots\,t_{k}}^{-1}(A) \,\in\, \mathcal{B}_{f}\!\left(\Czo\right)$.
+		\item	$0 \leq r_{1} < r_{2} < \cdots < r_{m} \leq 1$ and
+				$(t_{1},\ldots,t_{k})$ is a ``subsequence" of $(r_{1},\ldots,r_{m})$
+				in the sense that $t_{i} \in \{r_{1},r_{2},\ldots,r_{m}\}$, for each $i = 1,2,\ldots,k$.
+		\end{itemize}
+		Then, there exists \,$A^{\prime} \,\in\, \mathcal{B}(\Re^{m})$ such that
+		\begin{equation*}
+		\pi_{t_{1}\cdots\,t_{k}}^{-1}(A) \;\; = \;\; \pi_{r_{1}\cdots\,r_{m}}^{-1}(A^{\prime}).
+		\end{equation*}
+		\end{minipage}
+		\end{center}
+		\begin{center}
+		\begin{minipage}{6.0in}
+		\noindent
+		Proof of Claim: \quad Define
+		\begin{equation*}
+		\psi \,:\, \Re^{m} \,\longrightarrow\, \Re^{k} \,:\, (z_{1},\ldots,z_{m}) \,\longmapsto\, \left(\,z_{j}\,\right)_{j \in I(t)},
+		\end{equation*}
+		where
+		\begin{equation*}
+			I(t) \;\; := \;\;
+			\left\{\;
+			j \in \{1,2,\ldots,m\}
+			\;\;\left\vert\;\;
+			r_{j} \overset{{\color{white}\cdot}}{\in} \{t_{1},\ldots,t_{k}\}
+			\right.
+			\;\right\}.
+		\end{equation*}
+		In other words, $\psi$ projects $\Re^{m}$ onto $\Re^{k}$ by retaining only the dimensions
+		of $\Re^{m}$ whose corresponding indices belongs to $I(t)$.
+		It is now clear that
+		\begin{equation*}
+		\pi_{t_{1}\cdots\,t_{k}}^{-1}(A)
+		\;\; = \;\; \pi_{r_{1}\cdots\,r_{m}}^{-1}\!\left(\,\psi^{-1}(A)\,\right).
+		\end{equation*}
+		Indeed, for each $x \in \Czo$, we have:
+		\begin{eqnarray*}
+		x \in \pi_{r_{1}\cdots\,r_{m}}^{-1}\!\left(\,\psi^{-1}(A)\,\right)
+		&\Longleftrightarrow& x \in \left(\,\psi \circ \pi_{r_{1}\cdots\,r_{m}}\,\right)^{-1}\!(A)
+		\;\;\;\Longleftrightarrow\;\;\; \psi\!\left(\,\pi_{r_{1}\cdots\,r_{m}}(x)\,\right) \,\in\, A
+		\\
+		&\Longleftrightarrow& \psi\!\left(\,x(r_{1}),\ldots,x(r_{m})\,\right) \,=\, \left(\,x(t_{1}),\ldots,x(t_{k})\,\right) \,\in\, A
+		\\
+		&\Longleftrightarrow& x \in \pi_{t_{1}\cdots\,t_{k}}^{-1}\!\left(\,A\,\right).
+		\end{eqnarray*}
+		Since $\psi$ is continuous, it is Borel measurable (by Corollary \ref{ContinuousMapsAreBorelMeasurable}).
+		Hence, $\psi^{-1}\!\left(A\right) \in \mathcal{B}(\Re^{m})$, since $A \in \mathcal{B}(\Re^{k})$ by hypothesis.
+		This completes the proof of the Claim.
+		\end{minipage}
+		\end{center}
+
+	\vskip 0.3cm
+	\noindent
+	\underline{$\mathcal{B}_{f}\!\left(\Czo\right)$ generates $\mathcal{B}(\Czo)$}
+	\vskip 0.0cm
+	\noindent
+	We already know that $\mathcal{B}_{f}\!\left(\Czo\right) \subset \mathcal{B}\!\left(\Czo\right)$;
+	hence, $\sigma\!\left(\mathcal{B}_{f}\!\left(\Czo\right)\right) \subset \mathcal{B}\!\left(\Czo\right)$,
+	where $\sigma\!\left(\mathcal{B}_{f}\!\left(\Czo\right)\right)$ is the $\sigma$-algebra 
+	generated by $\mathcal{B}_{f}\!\left(\Czo\right)$.
+	It remains to establish the reverse inclusion.
+	To this end, first observe that, for each $x \in \Czo$ and each $\varepsilon > 0$, we have
+	\begin{equation*}
+	\overline{B(x,\varepsilon)}
+	\;\; = \left.\left.\left.\bigcap_{r\,\in\,\Q\,\cap\,[0,1]} \right\{\; y \in \Czo \;\;\right\vert\;\; \vert\,y(r) - x(r)\,\vert \leq \varepsilon \;\right\}
+	\;\; = \;\; \bigcap_{r\,\in\,\Q\,\cap\,[0,1]} \pi_{r}^{-1}\!\left(\,[x(r)-\varepsilon,x(r)+\varepsilon]\,\right),
+	\end{equation*}
+	which shows that $\sigma\!\left(\mathcal{B}_{f}\!\left(\Czo\right)\right)$ contains all the closed balls in $\Czo$.
+	On the other hand, recall that, in any metric space, every open ball can be expressed
+	as a countable union of closed balls;
+	indeed, for any $y$ in the given metric space, and any $\delta > 0$, we have:
+	\begin{equation*}
+	B(y,\delta) \;\; = \;\; \bigcup_{n\in\N}\;\overline{B\!\left(y,\delta-\dfrac{1}{n}\right)}.
+	\end{equation*}
+	We thus see that $\sigma\!\left(\mathcal{B}_{f}\!\left(\Czo\right)\right)$
+	contains all the open balls in $\Czo$.
+	By the separability of $\Czo$ and Theorem \ref{CharacterizationOfSeparabilityOfMetricSpaces},
+	we see that every open subset of $\Czo$ can be expressed as a countable
+	union of open balls.
+	Hence, $\sigma\!\left(\mathcal{B}_{f}\!\left(\Czo\right)\right)$ in fact contains
+	all the open subsets of $\Czo$, which immediately yields
+	$\mathcal{B}(\Czo) \,\subset\, \sigma\!\left(\mathcal{B}_{f}\!\left(\Czo\right)\right)$.
+	This proves $\sigma\!\left(\mathcal{B}_{f}\!\left(\Czo\right)\right) \,=\, \mathcal{B}(\Czo)$.
+\item
+	We prove this by exhibiting $P, P_{1}, P_{2},\,\ldots,\,\mathcal{M}_{1}\!\left(\,\Czo\,\right)$
+	such that $P_{n}$ does NOT converge weakly to $P$ as $n \longrightarrow \infty$, but
+	\begin{equation*}
+	\lim_{n\rightarrow\infty} P_{n}\!\left(A\right) \,=\, P(A),
+	\quad\textnormal{for each $A \in \mathcal{B}_{f}(\Czo)$},
+	\end{equation*}
+	in particular, for each $P$-continuity set in $\mathcal{B}_{f}(\Czo)$.
+	
+	Now, let $z_{0} \in \Czo$ be the identically zero function on $[0,1]$, and
+	for each $n \in \N$, define $z_{n} \in \Czo$ as follows:
+	\begin{equation*}
+	z_{n}(t)
+	\;\; := \;\;
+	\left\{
+	\begin{array}{cl}
+	n\cdot t, & \textnormal{for}\;\; t \in \left[\,0,\frac{1}{n}\,\right] \\
+	\\
+	2 - n\cdot t, & \textnormal{for}\;\; t \in \left(\,\frac{1}{n},\frac{2}{n}\,\right] \\
+	\\
+	0, & \textnormal{for}\;\; t \in \left(\,\frac{2}{n},1\,\right] \\
+	\end{array}
+	\right.
+	\end{equation*}
+	Note that $\Vert\,z_{n} - z_{0}\,\Vert_{\infty} = \underset{t\in[0,1]}{\sup}\!\left\{\,\vert\,z_{n}(t) - 0\,\vert\,\right\} = 1$,
+	for each $n \in \N$. In particular, $z_{n}$ does NOT converge to $z_{0}$ in $\Czo$.
+	Therefore, by Lemma \ref{WeakConvergenceOfPointMassMeasuresOnMetricSpaces}, we see that
+	$P_{n} \,:=\, \delta_{z_{n}}$ does NOT converge weakly to $P \,:=\, \delta_{z_{0}}$.
+	On the other hand, let $0 \leq t_{1} < t_{2} < \cdots < t_{k} \leq 1$ be given.
+	Then, for each $n \in \N$ (sufficiently large) such that
+	\begin{equation*}
+	\dfrac{2}{n} \;<\; \min\!\left\{\;\{\,t_{i}\,\}_{i=1}^{k}\,\backslash\,\{\,\overset{{\color{white}1}}{0}\,\}\;\right\},
+	\end{equation*}
+	we have
+	\begin{equation*}
+	\pi_{t_{1}\cdots\,t_{k}}(z_{n})
+	\;=\; \left(\,z_{n}(t_{1}),\ldots,z_{n}(t_{k})\,\right)
+	\;=\; \left(\,0,\ldots,0\,\right)
+	\;=\; \left(\,z_{0}(t_{1}),\ldots,z_{0}(t_{k})\,\right)
+	\;=\; \pi_{t_{1}\cdots\,t_{k}}(z_{0}).
+	\end{equation*}
+	Consequently,
+	\begin{equation*}
+	\pi_{t_{1}\cdots\,t_{k}}(z_{n}) \in B
+	\;\;\Longleftrightarrow\;\;
+	\pi_{t_{1}\cdots\,t_{k}}(z_{0}) \in B,
+	\quad\textnormal{for each $B \in \mathcal{B}(\Re^{k})$ and each $n\in\N$ with
+	$\dfrac{2}{n} \;<\; \min\!\left\{\;\{\,t_{i}\,\}_{i=1}^{k}\,\backslash\,\{\,\overset{{\color{white}1}}{0}\,\}\;\right\}$}.
+	\end{equation*}
+	Equivalently,
+	\begin{equation*}
+	z_{n} \in \pi_{t_{1}\cdots\,t_{k}}^{-1}(B)
+	\;\;\Longleftrightarrow\;\;
+	z_{0} \in \pi_{t_{1}\cdots\,t_{k}}^{-1}(B),
+	\quad\textnormal{for each $B \in \mathcal{B}(\Re^{k})$ and each $n \in \N$ with
+	$\dfrac{2}{n} \;<\; \min\!\left\{\;\{\,t_{i}\,\}_{i=1}^{k}\,\backslash\,\{\,\overset{{\color{white}1}}{0}\,\}\;\right\}$},
+	\end{equation*}
+	which in turn implies
+	\begin{equation*}
+	P_{n}\!\left(\, \pi_{t_{1}\cdots\,t_{k}}^{-1}(B)\,\right)
+	\;=\; \delta_{z_{n}}\!\left(\,\pi_{t_{1}\cdots\,t_{k}}^{-1}(B)\,\right)
+	\;=\; \delta_{z_{0}}\!\left(\,\pi_{t_{1}\cdots\,t_{k}}^{-1}(B)\,\right)
+	\;=\; P_{0}\!\left(\, \pi_{t_{1}\cdots\,t_{k}}^{-1}(B)\,\right)
+	\end{equation*}
+	for each $B \in \mathcal{B}(\Re^{k})$ and each $n \in \N$ with
+	$\dfrac{2}{n} \;<\; \min\!\left\{\;\{\,t_{i}\,\}_{i=1}^{k}\,\backslash\,\{\,\overset{{\color{white}1}}{0}\,\}\;\right\}$.
+	In particular, we can now infer that
+	\begin{equation*}
+	\lim_{n\rightarrow\infty}\,P_{n}\!\left(\, \pi_{t_{1}\cdots\,t_{k}}^{-1}(B)\,\right)
+	\;=\; P_{0}\!\left(\, \pi_{t_{1}\cdots\,t_{k}}^{-1}(B)\,\right),
+	\quad\textnormal{for each $B \in \mathcal{B}(\Re^{k})$}.
+	\end{equation*}
+	Since $0 \leq t_{1} < t_{2} < \cdots < t_{k} \leq 1$ and $B \in \mathcal{B}(\Re^{k})$ are arbitrary,
+	we may now conclude that
+	\begin{equation*}
+	\lim_{n\rightarrow\infty}\,P_{n}\!\left(\,A\,\right)
+	\;=\; P_{0}\!\left(\,A\,\right),
+	\quad\textnormal{for each $A \in \mathcal{B}_{f}(\Czo)$}.
+	\end{equation*}
+	This completes the proof that $\mathcal{B}_{f}(\Czo)$ is NOT a convergence-determining class of
+	Borel subsets of $\Czo$.
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
