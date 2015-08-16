@@ -265,15 +265,15 @@ the map $\pi_{t_{1}t_{2}\cdots t_{k}}$ is defined as follows:
 	$\mathcal{B}(\Czo) \,\subset\, \sigma\!\left(\mathcal{B}_{f}\!\left(\Czo\right)\right)$.
 	This proves $\sigma\!\left(\mathcal{B}_{f}\!\left(\Czo\right)\right) \,=\, \mathcal{B}(\Czo)$.
 \item
-	We prove this by exhibiting $P, P_{1}, P_{2},\,\ldots,\,\mathcal{M}_{1}\!\left(\,\Czo\,\right)$
-	such that $P_{n}$ does NOT converge weakly to $P$ as $n \longrightarrow \infty$, but
+	We prove (iii) by exhibiting $P_{0}, P_{1}, P_{2},\,\ldots \, \in \mathcal{M}_{1}\!\left(\,\Czo\,\right)$
+	such that $P_{n}$ does NOT converge weakly to $P_{0}$ as $n \longrightarrow \infty$, but
 	\begin{equation*}
-	\lim_{n\rightarrow\infty} P_{n}\!\left(A\right) \,=\, P(A),
+	\lim_{n\rightarrow\infty} P_{n}\!\left(A\right) \,=\, P_{0}(A),
 	\quad\textnormal{for each $A \in \mathcal{B}_{f}(\Czo)$},
 	\end{equation*}
-	in particular, for each $P$-continuity set in $\mathcal{B}_{f}(\Czo)$.
+	in particular, for each $P_{0}$-continuity set in $\mathcal{B}_{f}(\Czo)$.
 	
-	Now, let $z_{0} \in \Czo$ be the identically zero function on $[0,1]$, and
+	To this end, let $z_{0} \in \Czo$ be the identically zero function on $[0,1]$, and
 	for each $n \in \N$, define $z_{n} \in \Czo$ as follows:
 	\begin{equation*}
 	z_{n}(t)
@@ -288,12 +288,37 @@ the map $\pi_{t_{1}t_{2}\cdots t_{k}}$ is defined as follows:
 	\end{array}
 	\right.
 	\end{equation*}
+	Now, let $P_{0} \,:=\, \delta_{z_{0}}$ be the point-mass measure on $\Czo$ concentrated at
+	the identically zero function $z_{0} \in \Czo$ and, for each $n \in \N$,
+	let $P_{n} \,:=\, \delta_{z_{n}}$ be the point-mass measure on $\Czo$ concentrated at $z_{n} \in \Czo$.
+	(See the statement of Lemma \ref{WeakConvergenceOfPointMassMeasuresOnMetricSpaces}
+	for the definition of point-mass measures.)
+	Then, (iii) follows immediately from the following two Claims:
+		\begin{center}
+		\begin{minipage}{6.0in}
+		\vskip 0.5cm
+		\textbf{Claim 1:}\quad $P_{n} \,:=\, \delta_{z_{n}}$ does NOT converge weakly to $P \,:=\, \delta_{z_{0}}$.
+		\vskip 0.3cm
+		\textbf{Claim 2:}\quad
+		$\underset{n\rightarrow\infty}{\lim}\,P_{n}\!\left(A\right) \;=\; P_{0}\!\left(A\right)$,
+		for each $A \in \mathcal{B}_{f}(\Czo)$.
+		\end{minipage}
+		\end{center}
+
+	\vskip 0.5cm
+	\noindent
+	\underline{Proof of Claim 1:} \;
 	Note that $\Vert\,z_{n} - z_{0}\,\Vert_{\infty} = \underset{t\in[0,1]}{\sup}\!\left\{\,\vert\,z_{n}(t) - 0\,\vert\,\right\} = 1$,
 	for each $n \in \N$. In particular, $z_{n}$ does NOT converge to $z_{0}$ in $\Czo$.
 	Therefore, by Lemma \ref{WeakConvergenceOfPointMassMeasuresOnMetricSpaces}, we see that
 	$P_{n} \,:=\, \delta_{z_{n}}$ does NOT converge weakly to $P \,:=\, \delta_{z_{0}}$.
-	On the other hand, let $0 \leq t_{1} < t_{2} < \cdots < t_{k} \leq 1$ be given.
-	Then, for each $n \in \N$ (sufficiently large) such that
+	This proves Claim 1.
+	
+	\vskip 0.5cm
+	\noindent
+	\underline{Proof of Claim 2:} \;
+	Let $0 \leq t_{1} < t_{2} < \cdots < t_{k} \leq 1$ be given.
+	For each $n \in \N$ (sufficiently large) such that
 	\begin{equation*}
 	\dfrac{2}{n} \;<\; \min\!\left\{\;\{\,t_{i}\,\}_{i=1}^{k}\,\backslash\,\{\,\overset{{\color{white}1}}{0}\,\}\;\right\},
 	\end{equation*}
@@ -343,8 +368,7 @@ the map $\pi_{t_{1}t_{2}\cdots t_{k}}$ is defined as follows:
 	\;=\; P_{0}\!\left(\,A\,\right),
 	\quad\textnormal{for each $A \in \mathcal{B}_{f}(\Czo)$}.
 	\end{equation*}
-	This completes the proof that $\mathcal{B}_{f}(\Czo)$ is NOT a convergence-determining class of
-	Borel subsets of $\Czo$.
+	This completes the proof of Claim 2.
 \end{enumerate}
 \qed
 
