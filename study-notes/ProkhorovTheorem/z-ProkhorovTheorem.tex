@@ -1,0 +1,182 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The Prokhorov Theorem}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{definition}[Tightness and weak sequential compactness]
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$\left(S,\rho\right)$ is a metric space, $\mathcal{B}(S)$ its the Borel $\sigma$-algebra,
+		$\left(S,\mathcal{B}(S)\right)$ is the corresponding measurable space.
+\item	$\Pi \subset \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$
+		is a family of probability measures on $\left(S,\mathcal{B}(S)\right)$.
+\end{itemize}
+The family \,$\Pi$ is said to be:
+\begin{enumerate}
+\item
+	\textbf{tight} if, for each $\varepsilon > 0$,
+	there exists a compact subset $K_{\varepsilon} \subset S$ such that
+	\begin{equation*}
+	1 - \epsilon \; < \; P\!\left(\,K_{\varepsilon}\,\right) \;\leq\; 1,
+	\quad\textnormal{for each $P \in \Pi$}.
+	\end{equation*}
+\item
+	\textbf{weakly sequentially compact} if, for every sequence $\{\,P_{n}\,\}_{n\in\N} \,\subset\, \Pi$,
+	there exists a probability measure $P \in \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$
+	and subsequence $\{\,P_{n(i)}\,\}_{i\in\N}$ such that
+	\begin{equation*}
+	P_{n(i)} \; \overset{w}{\longrightarrow} \; P,
+	\quad\textnormal{as $i \longrightarrow\infty$}.
+	\end{equation*}
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[The Prokhorov Theorem, Theorems 5.1 \& 5.2, \cite{Billingsley1999}]
+\label{ProkhorovTheorem}
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$\left(S,\rho\right)$ is a metric space, $\mathcal{B}(S)$ its the Borel $\sigma$-algebra,
+		$\left(S,\mathcal{B}(S)\right)$ is the corresponding measurable space.
+\item	$\Pi \subset \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$
+		is a collection of probability measures on $\left(S,\mathcal{B}(S)\right)$.
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item	Tightness of \;$\Pi$ implies weak sequential compactness of \;$\Pi$.
+\item	Suppose further that $\left(S,\rho\right)$ is complete and separable.\\
+		Then, weak sequential compactness of \,$\Pi$ implies tightness of \,$\Pi$.
+\end{enumerate}
+\end{theorem}
+
+\proof We first prove statement (ii), then statement (i).
+\vskip 0.3cm
+\noindent
+\underline{Proof of (ii)}
+\vskip 0.2cm
+\noindent
+Suppose $S$ is complete and separable.
+Let $\varepsilon > 0$ be fixed.
+We need to find a compact subset $K \subset S$ such that
+\begin{equation*}
+1 - \varepsilon \;\; < \;\; P\!\left(\,K\,\right) \;\; \leq \;\; 1,
+\quad\textnormal{for each $P \in \Pi$}.
+\end{equation*}
+Now, separability of $S$ implies that every open cover of every subset of $S$
+admits a countable subcover (Appendix M3, \cite{Billingsley1999}).
+Denote by $B(x,r) \subset S$ the open ball in $S$ centred at $x \in S$ of radius $r > 0$.
+For each $k \in \N$, the open cover
+\begin{equation*}
+\left\{\;B\!\left(x,\dfrac{1}{k}\right)\;\right\}_{x \in S}
+\end{equation*}
+of $S$ admits a countable subcover, say,
+\begin{equation*}
+\left\{\;A_{ki}\;\right\}_{i\in\N}
+\;\;\subset\;\;
+\left\{\;B\!\left(x,\dfrac{1}{k}\right)\;\right\}_{x \in S}.
+\end{equation*}
+Let $G_{kn} \,:=\, \bigcup_{i=1}^{n}A_{ki}$.
+Then, each $G_{kn}$ is an open subset of $S$ and
+$G_{kn}\,\uparrow\,S$, as $n\longrightarrow\infty$.
+Hence, by the Claim below, there exists $n_{k} \in \N$ such that
+\begin{equation*}
+1 - \dfrac{\varepsilon}{2^{k}} \;\; < \;\; P\!\left(\;\bigcup_{i=1}^{n_{k}} A_{ki}\;\right)\;\; \leq \;\; 1,
+\quad\textnormal{for each $P \in \Pi$}.
+\end{equation*}
+Now, let
+\begin{equation*}
+K \;\; := \;\;
+\overline{\bigcap_{k=1}^{\infty}\,\bigcup_{i=1}^{n_{k}}\,A_{ki}}
+\end{equation*}
+Note that $K$, being a closed subset of the complete metric space $S$, is itself complete.
+Note also that the set $\bigcap_{k=1}^{\infty}\,\bigcup_{i=1}^{n_{k}}\,A_{ki}$ is totally bounded;
+hence so is its closure $K$.
+Being complete and totally bounded, $K$ is therefore compact (Appendix M5, \cite{Billingsley1999}).
+It now remains only to show that $1 - \varepsilon < P(K) \leq 1$, for each $P \in \Pi$;
+or equivalently, that $P(K^{c}) \leq \varepsilon$, for each $P \in \Pi$.
+To this end, write $B_{k} := \bigcup_{i=1}^{n_{k}}\,A_{ki}$.
+Then,
+\begin{equation*}
+1 - \dfrac{\varepsilon}{2^{k}} \;<\; P\!\left(\,B_{k}\,\right) \;\leq\; 1\,;
+\quad\textnormal{equivalently},\;\;
+P\!\left(\,B_{k}^{c}\,\right) \;\leq\; \dfrac{\varepsilon}{2^{k}}.
+\end{equation*}
+Also,
+\begin{equation*}
+K
+\;\; := \;\; \overline{\bigcap_{k=1}^{\infty}\,\bigcup_{i=1}^{n_{k}}\,A_{ki}}
+\;\; := \;\; \overline{\bigcap_{k=1}^{\infty}\,B_{k}}
+\;\; \supset \;\; \bigcap_{k=1}^{\infty}\,B_{k}.
+\end{equation*}
+Hence,
+\begin{equation*}
+K^{c}
+\;\; \subset \;\; \left(\,\bigcap_{k=1}^{\infty}\,B_{k}\,\right)^{c}
+\;\; = \;\; \bigcup_{k=1}^{\infty}\,B_{k}^{c},
+\end{equation*}
+which implies:
+\begin{equation*}
+P\!\left(\,K^{c}\,\right)
+\;\; \leq \;\; \sum_{k=1}^{\infty}\,P(B_{k}^{c})
+\;\; \leq \;\; \sum_{k=1}^{\infty}\,\dfrac{\varepsilon}{2^{k}}
+\;\; = \;\; \varepsilon.
+\end{equation*}
+Thus, the proof of (ii) will be complete once we prove the following:
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.0in}
+\noindent
+\textbf{Claim:}\;\;
+Let $\{\,G_{n}\,\}_{n\in\N}$ be a sequence of open subsets of $S$ with $G_{n}\,\uparrow\,S$.
+Then, for each $\varepsilon > 0$, there exists $n_{\varepsilon} \in \N$ such that
+\begin{equation*}
+1 - \varepsilon \;\;<\;\; P\!\left(\,G_{n_{\varepsilon}}\,\right) \;\;\leq\;\; 1,
+\quad\textnormal{for each $P \in \Pi$}.
+\end{equation*}
+\end{minipage}
+\end{center}
+\vskip 0.2cm
+\noindent
+Proof of Claim: Suppose the Claim is false, and we derive a contradiction.
+The failure of the Claim implies that there exists some $0 < \varepsilon < 1$
+such that for each $n \in \N$, there exists $P_{n} \in \Pi$ such that
+\begin{equation*}
+P_{n}\!\left(\,G_{n}\,\right) \;\;\leq\;\; 1 - \varepsilon.
+\end{equation*}
+By the hypothesis of weak sequential compactness of $\Pi$,
+there exists some probability measure $Q \in \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$
+and the subsequence $\{\,P_{n(i)}\,\}$ of $\{\,P_{n}\,\}$ such that
+$P_{n(i)}\overset{w}{\longrightarrow} Q$, as $i \longrightarrow \infty$.
+Now, for each fixed $n \in \N$, we have:
+\begin{eqnarray*}
+Q\!\left(\,G_{n}\,\right)
+&\leq& \liminf_{i\rightarrow\infty}\,P_{n(i)}\!\left(\,G_{n}\,\right), \quad\textnormal{by the Portmanteau Theorem} \\
+&\leq& \liminf_{i\rightarrow\infty}\,P_{n(i)}\!\left(\,G_{n(i)}\,\right), \quad\textnormal{since $\{\,G_{n}\,\}$ is increasing} \\
+&\leq& 1 - \varepsilon, \quad\textnormal{by choice of $P_{n}$}
+\end{eqnarray*}
+But, by hypothesis, we also have $G_{n}\,\uparrow\,S$.
+Hence, we therefore have:
+\begin{equation*}
+1 \;=\; Q(S) \;=\; \lim_{n\rightarrow\infty}Q(G_{n}) \;\leq\; 1 - \varepsilon,
+\end{equation*}
+which is the desired contradiction. This completes the proof of the Claim, hence that of (ii).
+
+\vskip 0.3cm
+\noindent
+\underline{Proof of (i)}
+\vskip 0.2cm
+\noindent
+
+\qed
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

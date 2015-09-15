@@ -1,0 +1,320 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The escape-of-mass phenomenon}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{example}
+
+\end{example}
+
+\begin{theorem}[The Portmanteau Theorem, Theorem 2.1, \cite{Billingsley1999}]
+\label{PortmanteauTheorem}
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$\left(S,\rho\right)$ is a metric space, $\mathcal{B}(S)$ its the Borel $\sigma$-algebra,
+		$\left(S,\mathcal{B}(S)\right)$ is the corresponding measurable space.
+\item	$P, P_{1}, P_{2}, \ldots \in \mathcal{M}_{1}\!\left(S,\mathcal{B}(S)\right)$
+		are probability measures on $\left(S,\mathcal{B}(S)\right)$.
+\end{itemize}
+Then, the following are equivalent:
+\begin{enumerate}
+\item	$P_{n}$ converges weakly to $P$,
+		i.e. for each bounded continuous $\Re$-valued function $f : S \longrightarrow \Re$, we have
+		\begin{equation*}
+		\lim_{n\rightarrow\infty}\,\int_{S}\,f(s)\,\d P_{n}(s) \;=\; \int_{S}\,f(s)\,\d P(s).
+		\end{equation*}
+\item	For each closed set $F \subset S$, we have
+		\begin{equation*}
+		\limsup_{n\rightarrow\infty}P_{n}(F) \;\leq\; P(F).
+		\end{equation*}
+\item	For each open set $G \subset S$, we have
+		\begin{equation*}
+		\liminf_{n\rightarrow\infty}P_{n}(G) \;\geq\; P(G).
+		\end{equation*}
+\item	For each $A \in \mathcal{B}(S)$, we have
+		\begin{equation*}
+		P\!\left(A^{\circ}\right)
+		\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A^{\circ}\right)
+		\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+		\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+		\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(\,\overline{A}\,\right)
+		\;\;\leq\;\; P\!\left(\,\overline{A}\,\right).
+		\end{equation*}
+\item	For each $P$-continuity set $A \in \mathcal{B}(S)$, i.e. $P(\partial A) = 0$, we have
+		\begin{equation*}
+		\lim_{n\rightarrow\infty}P_{n}(A) \;=\; P(A).
+		\end{equation*}
+\end{enumerate}
+\end{theorem}
+
+\proof
+\vskip 0.3cm
+\noindent
+\underline{(i) $\Longrightarrow$ (ii)}
+\vskip 0.2cm
+\noindent
+For each $\varepsilon > 0$, by Lemma \ref{LemmaAEpsilon}, choose
+a bounded continuous function $f_{\varepsilon} : S \longrightarrow [0,1]$ such that
+\begin{equation*}
+I_{F} \; \leq \; f_{\varepsilon} \; \leq \; I_{F^{\varepsilon}}.
+\end{equation*}
+This implies that, for each $\varepsilon > 0$, we have
+\begin{equation*}
+P_{n}(F)
+\;\; = \;\; \int_{S}\,I_{F}(x)\,\d P_{n}(x)
+\;\; \leq \;\; \int_{S}\,f_{\varepsilon}(x)\,\d P_{n}(x).
+\end{equation*}
+By (i), we thus have
+\begin{equation*}
+\limsup_{n\rightarrow\infty}\,P_{n}(F)
+\;\;\leq\;\; \lim_{n\rightarrow\infty}\,\int_{S}\,f_{\varepsilon}(x)\,\d P_{n}(x)
+\;\;=\;\; \int_{S}\,f_{\varepsilon}(x)\,\d P(x)
+\;\;\leq\;\; \int_{S}\,I_{F^{\varepsilon}}(x)\,\d P(x)
+\;\;=\;\; P\!\left(F^{\varepsilon}\right).
+\end{equation*}
+By Lemma \ref{LemmaAEpsilon}, we have $F^{\varepsilon}\downarrow F$ as $\varepsilon\downarrow 0$.
+Hence, $P\!\left(F^{\varepsilon}\right)\downarrow P(F)$ as $\varepsilon\downarrow 0$ (by Theorem 2.3, \cite{JacodProtter}).
+We may now conclude:
+\begin{equation*}
+\limsup_{n\rightarrow\infty}\,P_{n}(F)
+\;\;\leq\;\; \lim_{\varepsilon\rightarrow 0^{+}}P\!\left(F^{\varepsilon}\right)
+\;\;=\;\; P\!\left(F\right).
+\end{equation*}
+
+\vskip 0.3cm
+\noindent
+\underline{(ii) $\Longrightarrow$ (iii)}
+\vskip 0.2cm
+\noindent
+Assume (ii) holds. Let $G \subset S$ be a open subset.
+Then, $F := S\,\backslash\,G$ is closed. By (ii), we have:
+\begin{eqnarray*}
+1 - \liminf_{n\rightarrow\infty}\,P_{n}\!\left(G\right)
+&=& \limsup_{n\rightarrow\infty}\,\left\{\,1 - P_{n}\!\left(G\right)\,\right\}
+\;\;=\;\;\limsup_{n\rightarrow\infty}\,P_{n}\!\left(\,S\,\backslash\,G\,\right)
+\;\;=\;\;\limsup_{n\rightarrow\infty}\,P_{n}(F)
+\\
+&\leq& P\!\left(F\right)
+\;\;=\;\; P\!\left(\,S\,\backslash\,G\,\right)
+\;\;=\;\; 1 - P\!\left(G\right),
+\end{eqnarray*}
+which yields
+\begin{equation}
+\liminf_{n\rightarrow\infty}\,P_{n}\!\left(G\right)
+\;\;\geq\;\; P\!\left(G\right).
+\end{equation}
+
+\vskip 0.3cm
+\noindent
+\underline{(iii) $\Longrightarrow$ (ii)}
+\vskip 0.2cm
+\noindent
+Assume (iii) holds. Let $F \subset S$ be an closed subset.
+Then, $G := S\,\backslash\,F$ is open. By (iii), we have:
+\begin{eqnarray*}
+1 - \limsup_{n\rightarrow\infty}\,P_{n}\!\left(F\right)
+&=& \liminf_{n\rightarrow\infty}\,\left\{\,1 - P_{n}\!\left(F\right)\,\right\}
+\;\;=\;\;\liminf_{n\rightarrow\infty}\,P_{n}\!\left(\,S\,\backslash\,F\,\right)
+\;\;=\;\;\liminf_{n\rightarrow\infty}\,P_{n}(G)
+\\
+&\geq& P\!\left(G\right)
+\;\;=\;\; P\!\left(\,S\,\backslash\,F\,\right)
+\;\;=\;\; 1 - P\!\left(F\right),
+\end{eqnarray*}
+which yields
+\begin{equation}
+\limsup_{n\rightarrow\infty}\,P_{n}\!\left(F\right)
+\;\;\leq\;\; P\!\left(F\right).
+\end{equation}
+
+\vskip 0.3cm
+\noindent
+\underline{(ii) and (iii) $\Longrightarrow$ (iv)}
+\vskip 0.2cm
+\noindent
+Note first that the middle three inequalities in (iv) are trivially true.
+On the other hand, the leftmost inequality in (iv) follows immediately from (iii),
+while the rightmost follows immediately from (ii).
+%Let $A \in \mathcal{B}(S)$. Then, by (ii) and (iii), we have:
+%\begin{equation*}
+%P\!\left(A^{\circ}\right)
+%\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A^{\circ}\right)
+%\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+%\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(A\right)
+%\;\;\leq\;\; \limsup_{n\rightarrow\infty}\,P_{n}\!\left(\,\overline{A}\,\right)
+%\;\;\leq\;\; P\!\left(\,\overline{A}\,\right).
+%\end{equation*}
+
+\mbox{}
+\vskip 0.3cm
+\noindent
+\underline{(iv) $\Longrightarrow$ (v)}
+\vskip 0.2cm
+\noindent
+If $\partial A := \overline{A}\,\backslash\,A^{\circ}$ is a $P$-continuity set,
+i.e. $P\!\left(\partial A\right) = 0$, then
+$P\!\left(A^{\circ}\right) = P\!\left(\,A\,\right) = P\!\left(\,\overline{A}\,\right)$,
+in which case, (v) follows immediately from (iv).
+
+\vskip 0.8cm
+\noindent
+\underline{(v) $\Longrightarrow$ (i)}
+\vskip 0.2cm
+\noindent
+Let $f : S \longrightarrow \Re$ be a bounded continuous $\Re$-valued function on $S$.
+We need to show $\int_{S}\,f(s)\,\d P_{n}(s) \longrightarrow \int_{S}\,f(s)\,\d P(s)$.
+Since $f$ is assumed bounded, there exists some $c > 0$ such that $\vert\,f\,\vert < c$.
+Observe that
+\begin{equation*}
+\int_{S}\,f(s)\,\d P_{n}(s) \;\longrightarrow\; \int_{S}\,f(s)\,\d P(s)
+\quad\Longleftrightarrow\quad
+\int_{S}\left(\dfrac{f(s)+c}{2 c}\right)\d P_{n}(s) \;\longrightarrow\; \int_{S}\left(\dfrac{f(s)+c}{2 c}\right)\d P(s).
+\end{equation*}
+Thus, by replacing $f$ with $(f + c)\,/\,2c$ if necessary, we may assume, without loss of generality, that $0 \leq f \leq 1$.
+We make this assumption for the remainder of the proof.
+\vskip 0.2cm
+\noindent
+Now, the fact that $0 \leq f \leq 1$ and Lemma \ref{LemmaMomentsAndTails}
+together imply:
+\begin{eqnarray*}
+\int_{S}\,f(s)\,\d P(s)
+&=& \int_{0}^{\infty}\;P\!\left(\,f > t\,\right)\,\d t\;\mbox{}
+\;\;=\;\; \int_{0}^{1}\;P\!\left(\,f > t\,\right)\,\d t,
+\;\;\textnormal{and}
+\\
+\int_{S}\,f(s)\,\d P_{n}(s)
+&=& \int_{0}^{\infty}P_{n}\!\left(\,f > t\,\right)\,\d t
+\;\;=\;\; \int_{0}^{1}P_{n}\!\left(\,f > t\,\right)\,\d t,
+\;\;\textnormal{for each $n \in \N$}.
+\end{eqnarray*}
+Next, by Lemma \ref{LemmaContinuitySetCountableExceptions},
+\begin{equation*}
+\{\,f > t\,\}
+\;=\;\left\{\, s \in S \;\,\vert\;\, f(s) > t \,\right\}
+\end{equation*}
+is a $P$-continuity set, except for at most countably many $t \in [0,\infty)$.
+Hence, (v) implies:
+\begin{equation*}
+P_{n}\!\left(\,f > t\,\right) \;\longrightarrow\; P\!\left(\,f > t\,\right),
+\;\;\textnormal{for almost every $t \in [0,\infty)$}.
+\end{equation*}
+On the other hand, \,$0 \leq f \leq 1$\, also implies that, for each $n \in \N$,
+\begin{equation*}
+\left\vert\,P_{n}\!\left(\,f > t\,\right)\,\right\vert
+\;\;\leq\;\; I_{[0,1]}(t),
+\;\;\textnormal{for each $t \in [0,\infty)$},
+\end{equation*}
+where the common dominating function $I_{[0,1]}$ is the following characteristic function:
+\begin{equation*}
+I_{[0,1]} \,:\, [0,\infty) \,\longrightarrow\, [\,0,1\,] \,:\, t \,\longmapsto\,
+\left\{\begin{array}{cl}
+1, & \textnormal{for $0 \leq t \leq 1$}
+\\
+0, & \textnormal{for $1 < t$}
+\end{array}\right.
+\end{equation*}
+Since $I_{[0,1]}$ is Lebesgue-integrable on $[0,\infty)$ and
+$P_{n}\!\left(\,f > t\,\right) \longrightarrow P\!\left(\,f > t\,\right)$
+for almost every $t \in [0,\infty)$,
+the Lebesgue Dominated Convergence Theorem implies:
+\begin{equation*}
+\int_{0}^{1}\,P_{n}\!\left(\,f > t\,\right)\,\d t \;\;\longrightarrow\;\; \int_{0}^{1}\,P\!\left(\,f > t\,\right)\,\d t.
+\end{equation*}
+%\begin{equation*}
+%P_{n}\!\left(\,f > t\,\right) \;\;=\;\; 0,
+%\;\;\textnormal{for each $n \in \N$ and each $t > 1$},
+%\end{equation*}
+%while we also trivially have:
+%\begin{equation*}
+%\left\vert\,P_{n}\!\left(\,f > t\,\right)\,\right\vert
+%\;\;\leq\;\; 1,
+%\;\;\textnormal{for each $n \in \N$ and each $t \in [0,1]$}.
+%\end{equation*}
+%This shows that, for each $n \in \N$, the function
+%\,$[0,\infty) \longrightarrow [\,0,1\,] : t \longmapsto P_{n}\!\left(\,f > t\,\right)$\,
+%is bounded by the characteristic function
+%\begin{equation*}
+%I_{[0,1]} \,:\, [0,\infty) \,\longrightarrow\, [\,0,1\,] \,:\, t \,\longmapsto\,
+%\left\{\begin{array}{cl}
+%1, & \textnormal{for $0 \leq t \leq 1$}
+%\\
+%0, & \textnormal{for $1 < t$}
+%\end{array}\right.,
+%\end{equation*}
+%which of course is an integrable function defined on $[0,\infty)$.
+%Hence, by the Lebesgue Dominated Convergence Theorem, we have
+Combining all of the preceding observations, we have
+\begin{eqnarray*}
+\int_{S}\,f(s)\,\d P_{n}(s) &=& \int_{0}^{\infty}\,P_{n}\!\left(\,f > t\,\right)\,\d t
+\\
+&=& \int_{0}^{1}\,P_{n}\!\left(\,f > t\,\right)\,\d t \;\;\longrightarrow\;\; \int_{0}^{1}\,P\!\left(\,f > t\,\right)\,\d t
+\\
+&=& \int_{0}^{\infty}\,P\!\left(\,f > t\,\right)\,\d t
+\;\;=\;\; \int_{S}\,f(s)\,\d P(s),
+\end{eqnarray*}
+which proves that (v) $\Longrightarrow$ (i).
+%\vskip 0.8cm
+%\noindent
+%\underline{(iii) $\Longrightarrow$ (i)}
+%\vskip 0.2cm
+%\noindent
+%Let $g : S \longrightarrow [0,\infty)$ be continuous $\Re$-valued function on $S$.
+%Then, for each $t \in (0,\infty)$, the set
+%$g^{-1}\!\left(\,(t,\infty)\,\right) = \left\{\,s \in S \;\vert\; g(s) > t \,\right\}$
+%is an open subset of $S$. 
+%Hence, by (iii), Lemma \ref{LemmaMomentsAndTails}, and Fatou's Lemma, we have
+%\begin{eqnarray*}
+%\int_{S}\,g(s)\,\d P(s)
+%&=& \int_{0}^{\infty}\,P(g > t)\,\d t
+%\;\;\leq\;\; \int_{0}^{\infty}\,\liminf_{n\rightarrow\infty}\,P_{n}(g > t)\,\d t
+%\\
+%&\leq& \liminf_{n\rightarrow\infty}\,\int_{0}^{\infty} P_{n}(g > t)\,\d t
+%\;\;\leq\;\; \liminf_{n\rightarrow\infty}\,\int_{S}\,g(s)\,\d P_{n}(s).
+%\end{eqnarray*}
+%Now, let $f : S \longrightarrow \Re$ be continuous and bounded with $|\,f\,| \leq c < \infty$.
+%Then, $c \pm f : S \longrightarrow [0,\infty)$ are continuous and non-negative $\Re$-valued functions on $S$.
+%Applying the preceding inequality to each yields:
+%\begin{eqnarray*}
+%\int_{S}\,c + f(s)\,\d P(s) &\leq& \liminf_{n\rightarrow\infty}\,\int_{S}\,c + f(s)\,\d P_{n}(s)
+%\\
+%\int_{S}\,c - f(s)\,\d P(s) &\leq& \liminf_{n\rightarrow\infty}\,\int_{S}\,c - f(s)\,\d P_{n}(s).
+%\end{eqnarray*}
+%These respectively imply:
+%\begin{eqnarray*}
+%\int_{S}\,f(s)\,\d P(s) &\leq& \liminf_{n\rightarrow\infty}\,\int_{S}\,f(s)\,\d P_{n}(s)
+%\\
+%\limsup_{n\rightarrow\infty}\,\int_{S}\,f(s)\,\d P_{n}(s) &\leq& \int_{S}\,f(s)\,\d P(s),
+%\end{eqnarray*}
+%which proves that (iii) $\Longrightarrow$ (i).
+\qed
+
+\begin{remark}\mbox{}\;
+In Theorem \ref{PortmanteauTheorem} (the Portmanteau Theorem):
+\begin{itemize}
+\item	The statements (ii), (iii), and (iv) are essentially restatements of each other.
+		(ii) and (iii) are ``complemented" versions of each other.
+		And, the middle three inequalities in (iv) hold trivially, while the leftmost is equivalent to (iii) and the rightmost to (ii).
+\item	(v) is an immediate consequence of (iv).
+\item	All the implications in the Theorem, except (i) $\Longrightarrow$ (ii), require only the fact that $S$ is a topological space;
+		in other words, their validity does NOT explicitly require the metric space structure of $S$.
+		This is evident in our proof.
+\item	On the other hand, our proof of the implication (i) $\Longrightarrow$ (ii) explicitly uses the metric space properties of $S$.
+		More precisely, the proof invokes the fact that in a metric space, the characteristic function
+		of a closed subset $F$ can be ``doubly enveloped" arbitrarily tightly, by the characteristic function of the
+		open $\varepsilon$-neighbourhood $F^{\varepsilon}$ of $F$, and additionally by a bounded continuous
+		$\Re$-valued function bounded between these two aforementioned characteristic functions.
+		This metric space property allows us to deduce the statement (ii) about closed subsets
+		from the statement (i) about bounded continuous $\Re$-valued functions.
+\end{itemize}
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
