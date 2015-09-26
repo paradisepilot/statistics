@@ -8,7 +8,7 @@
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
-\begin{lemma}
+\begin{lemma}\label{lemma:CompactImpliesSeparable}
 \mbox{}
 \vskip 0.3cm
 \noindent
@@ -76,7 +76,7 @@ This completes the proof of the Lemma.
 \qed
 
 \vskip 0.6cm
-\begin{lemma}
+\begin{lemma}\label{lemma:CountableUnionsOfSeparablesAreSeparable}
 \mbox{}
 \vskip 0.3cm
 \noindent
@@ -95,6 +95,60 @@ Then, $x \in S_{i}$ for some $i \in \N$.
 Since $D_{i}$ is dense in $S_{i}$, there exists a sequence
 $\{\,y_{k}\,\} \subset D_{i} \subset D$ such that $y_{k} \longrightarrow x$, as $k \longrightarrow \infty$.
 This proves that $D$ is indeed dense in $S$, and completes the proof of the Lemma.
+\qed
+
+\vskip 0.6cm
+\begin{lemma}[second theorem in Appendix M3, \cite{Billingsley1999}]
+\label{lemma:ExistenceOfScriptA}
+\mbox{}
+\vskip 0.3cm
+\noindent
+Let $(S,\rho)$ be a metric space and $\Sigma \subset S$ a separable subset of $S$.
+Then, there exists a countable collection $\mathcal{A}$ of open subsets of $S$ satisfying the following property:
+For each $x \in S$ and each open subset $G$ of $S$,
+\begin{equation*}
+x \; \in \; G\,\bigcap\,\Sigma
+\quad
+\Longrightarrow
+\quad
+x \,\in\, A \,\subset\, \overline{A} \,\subset\, G,
+\;\;\textnormal{for some $A \in \mathcal{A}$}.
+\end{equation*} 
+\end{lemma}
+\proof
+Let $D \subset \Sigma$ be a countable dense subset of $\Sigma$.
+Let
+\begin{equation*}
+\mathcal{A}
+\;\; := \;\;
+\left\{\;\;
+B(d,r) \;\subset\; S
+\;\;\left\vert\;
+\begin{array}{c} d \in D, \\ r \in \Q, \; r > 0 \end{array}
+\right.
+\right\}.
+\end{equation*}
+Then, $\mathcal{A}$ is a countable collection of open balls in $S$.
+Now, let $G \subset S$ be an arbitrary open subset of $S$ and $x \in G \,\bigcap\, \Sigma$.
+First, choose $\varepsilon > 0$ such that $B(x,\varepsilon) \subset G$.
+Next, since $x \in \Sigma$ and $D$ is dense in $\Sigma$,
+we may choose $d \in D$ such that $d \in B(x,\varepsilon/2)$, or equivalently $\rho(x,d) < \varepsilon / 2$.
+Finally choose positive rational $r > 0$ such that $\rho(x,d) < r < \varepsilon / 2$.
+
+\vskip 0.3cm
+\noindent
+Now, note that $\overline{B(d,r)} \subset B(x,\varepsilon)$; indeed,
+\begin{equation*}
+y \in \overline{B(d,r)}
+\quad\Longleftrightarrow\quad \rho(y,d) \leq r
+\quad\Longrightarrow\quad \rho(x,y) \;\leq\; \rho(x,d) + \rho(d,y) \;<\; \varepsilon/2 + r \;<\; \varepsilon/2 + \varepsilon/2
+\quad\Longrightarrow\quad y \in B(x,\varepsilon).
+\end{equation*}
+Thus, we have
+\begin{equation*}
+x \;\; \in \;\; B(d,r) \;\; \subset \;\; \overline{B(d,r)} \;\; \subset \;\; B(x,\varepsilon) \;\; \subset \;\; G.
+\end{equation*}
+This completes the proof of the Lemma.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
