@@ -10,18 +10,75 @@
 
 \begin{lemma}
 \mbox{}
-\vskip 0.0cm
+\vskip 0.3cm
 \noindent
 Every compact subset of a metric space is also a separable subset of that metric space.
 \end{lemma}
 \proof
-
+Let $(X,\rho)$ be a metric space and $K \subset X$ be a compact subset of $X$.
+For each $x \in X$ and positive $r > 0$, let
+\begin{equation*}
+B(x,r)
+\;\; := \;\; \left\{\;y \in X \;\vert\; \rho(x,y) < r \;\right\}
+\;\;\subset\;\; X,
+\end{equation*}
+i.e. $B(x,r)$ is the open ball in $X$ centred at $x$ with radius $r > 0$.
+For each $n \in \N$, the following forms an open cover of $K$:
+\begin{equation*}
+\mathcal{C}_{n}
+\;\; := \;\;
+\left\{\;
+\left.
+B\!\left(x,\dfrac{1}{n}\right) \;\subset\; X
+\;\;\right\vert\;\;
+x \in K
+\,\;\right\}.
+\end{equation*}
+Since $K$ is compact, each $\mathcal{C}_{n}$ admits a finite subcover:
+\begin{equation*}
+\mathcal{F}_{n}
+\;\; := \;\;
+\left\{\;
+\left.
+B\!\left(\,x^{(n)}_{i},\dfrac{1}{n}\,\right) \;\subset\; X
+\;\;\right\vert\;\;
+x^{(n)}_{i} \in K,\;\;
+i = 1, 2, \ldots, J_{n}
+\,\;\right\}.
+\end{equation*}
+Let
+\begin{equation*}
+\mathcal{D}_{n}
+\;\; := \;\;
+\left\{\;
+\left.
+x^{(n)}_{i} \in\; K
+\;\;\right\vert\;\;
+i = 1, 2, \ldots, J_{n}
+\,\;\right\}
+\;\; \subset \;\; K,
+\end{equation*}
+and let $\mathcal{D} \,:=\, \overset{\infty}{\underset{n=1}{\bigcup}}\,\mathcal{D}_{n} \,\subset\, K$.
+We claim that $\mathcal{D}$ is dense in $K$.
+Indeed, let $y \in K$. Since each $\mathcal{F}_{n}$ is a (finite) open cover of $K$, we have:
+\begin{equation*}
+y \;\; \in \;\; K \;\; \subset \;\; \bigcup_{i=1}^{J_{n}}\,B\!\left(\,x^{(n)}_{i},\dfrac{1}{n}\,\right),
+\quad
+\textnormal{for each $n \in \N$}.
+\end{equation*}
+Since $x^{(n)}_{i} \in \mathcal{D}$, for each $i = 1, 2, \ldots, J_{n}$ and for each $n \in \N$,
+the above inclusion shows that, for each $n \in \N$, there exists some $x \in \mathcal{D}$ such that $\rho(y,x) < \dfrac{1}{n}$.
+In particular, $\mathcal{D}$ contains a sequence that converges to $y \in K$.
+Since $y \in K$ is an arbitrary element of $K$, we see that $\overline{D} \supset K$.
+Since $\mathcal{D} \subset K$ and $K$ is compact, hence closed, we trivially have $\overline{D} \subset K$.
+We may now conclude that $\overline{D} = K$.
+This completes the proof of the Lemma.
 \qed
 
-\vskip 0.5cm
+\vskip 0.6cm
 \begin{lemma}
 \mbox{}
-\vskip 0.0cm
+\vskip 0.3cm
 \noindent
 Every countable union of separable subsets of a metric space is itself a separable subset of that metric space.
 \end{lemma}
