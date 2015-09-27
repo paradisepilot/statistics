@@ -259,8 +259,13 @@ Then, there exists a subsequence $\{\,P_{n(i)}\,\} \subset \{\,P_{n}\,\}$ such t
 There exists a Borel probability measure $P \in \mathcal{M}_{1}(S,\mathcal{B}(S))$ such that
 \begin{equation*}
 P(G)
-\;\; := \;\;
-\sup_{H\subset G}\,\alpha(H),
+\;\; = \;\;
+\sup\left\{\;
+\alpha(H) \,\in\, [0,1]
+\,\;\left\vert\;
+\begin{array}{l} H \in \mathcal{H}, \;\textnormal{and} \\ H \subset G \end{array}
+\right.
+\right\},
 \quad
 \textnormal{for each open subset $G \subset S$}.
 \end{equation*}
@@ -351,9 +356,31 @@ This completes the proof of Claim 3.
 \vskip 0.5cm
 \noindent
 \underline{Proof of Claim 5:}\quad
-
-
-
-
+Let $G \subset S$ be an arbitrary open subset of $S$.
+Then, for each $H \in \mathcal{H}$ with $H \subset G$, we have
+\begin{equation*}
+\alpha(H)
+\;\; := \;\; \lim_{i\rightarrow\infty}P_{n(i)}(H)
+\;\; \leq \;\; \liminf_{i\rightarrow\infty}\,P_{n(i)}(G).
+\end{equation*}
+This implies:
+\begin{equation*}
+P(G)
+\; = \;
+\sup\left\{\;
+\alpha(H) \,\in\, [0,1]
+\,\;\left\vert\;
+\begin{array}{l} H \in \mathcal{H}, \;\textnormal{and} \\ H \subset G \end{array}
+\right.
+\right\}
+\;\;\leq\;\;
+\liminf_{i\rightarrow\infty}\,P_{n(i)}(G),
+\;\;
+\textnormal{for each open subset $G \subset S$},
+\end{equation*}
+which is equivalent to the weak convergence
+$P_{n(i)} \overset{w}{\longrightarrow} P$, as $i \longrightarrow \infty$,
+by the Portmanteau Theorem (Theorem 2.1, \cite{Billingsley1999}).
+This completes the proof of Claim 5.
 \qed
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
