@@ -209,18 +209,34 @@ $K_{1} \subset K_{2} \subset K_{3} \subset \cdots \subset S$ such that
 \begin{minipage}{6.5in}
 \textbf{Claim 2:}\quad Let  $K_{1} \subset K_{2} \subset K_{3} \subset \cdots \subset S$
 be one such sequence of compact subsets of $S$ as in Claim 1.
-Then, $\overset{\infty}{\underset{m=1}{\bigcup}}K_{m}$ is a separable subset of $S$, and
-there exists a countable collection $\mathcal{A}$ of open subsets of $S$ satisfying the
-following property:
-For each $x \in S$ and for each open subset $G$ of $S$,
-\begin{equation*}
-x \; \in \; G\,\bigcap\,\left(\,\overset{\infty}{\underset{m=1}{\bigcup}}K_{m}\,\right)
-\quad
-\Longrightarrow
-\quad
-x \,\in\, A \,\subset\, \overline{A} \,\subset\, G,
-\;\;\textnormal{for some $A \in \mathcal{A}$}.
-\end{equation*} 
+Then, the following statements are true:
+\begin{enumerate}
+\item	$\Sigma \,:= \overset{\infty}{\underset{m=1}{\bigcup}}K_{m}$\, is a separable subset of $S$.
+\item	There exists a countable collection $\mathcal{A}$ of open subsets of $S$ satisfying
+		the following property: \\
+		For each $x \in S$ and for each open subset $G$ of $S$,
+		\begin{equation*}
+		x \; \in \; G\,\bigcap\,\left(\,\overset{\infty}{\underset{m=1}{\bigcup}}K_{m}\,\right)
+		\quad
+		\Longrightarrow
+		\quad
+		x \,\in\, A \,\subset\, \overline{A} \,\subset\, G,
+		\;\;\textnormal{for some $A \in \mathcal{A}$}.
+		\end{equation*}
+\item	The collection $\mathcal{A}$ is an open cover of $\Sigma$.
+\end{enumerate}
+%$\overset{\infty}{\underset{m=1}{\bigcup}}K_{m}$ is a separable subset of $S$, and
+%there exists a countable collection $\mathcal{A}$ of open subsets of $S$ satisfying the
+%following property:
+%For each $x \in S$ and for each open subset $G$ of $S$,
+%\begin{equation*}
+%x \; \in \; G\,\bigcap\,\left(\,\overset{\infty}{\underset{m=1}{\bigcup}}K_{m}\,\right)
+%\quad
+%\Longrightarrow
+%\quad
+%x \,\in\, A \,\subset\, \overline{A} \,\subset\, G,
+%\;\;\textnormal{for some $A \in \mathcal{A}$}.
+%\end{equation*} 
 \end{minipage}
 \end{center}
 
@@ -314,13 +330,37 @@ In particular, the above inequality holds for each $P_{n}$. This proves Claim 1.
 \vskip 0.5cm
 \noindent
 \underline{Proof of Claim 2:}\quad
-Separability of $\overset{\infty}{\underset{m=1}{\bigcup}}K_{m}$ is an immediate consequence of
+Separability of $\Sigma \,:= \overset{\infty}{\underset{m=1}{\bigcup}}K_{m}$
+is an immediate consequence of
 Lemma \ref{lemma:CompactImpliesSeparable} and
 Lemma \ref{lemma:CountableUnionsOfSeparablesAreSeparable}.
 Then, the existence of $\mathcal{A}$ follows immediately
-from the separability of $\overset{\infty}{\underset{m=1}{\bigcup}}K_{m}$
+from the separability of $\Sigma$
+%$\overset{\infty}{\underset{m=1}{\bigcup}}K_{m}$
 and Lemma \ref{lemma:ExistenceOfScriptA}.
-This proves Claim 2.
+
+\vskip 0.3cm
+\noindent
+It remains to show that $\mathcal{A}$ is an open cover of $\Sigma$.
+To this end, first note that the collection $\mathcal{O}_{S}$ of open subsets of $S$
+forms an open cover of $S$, hence $\mathcal{O}_{S}$ is also an open cover of $\Sigma$.
+Therefore, for each $x \in \Sigma$, we may choose $G_{x} \in \mathcal{O}_{S}$
+such that $x \in G_{x}$.
+Thus, $x \in \Sigma\,\cap\,G_{x}$, and by properties of $\mathcal{A}$,
+we may furthermore choose $A_{x} \in \mathcal{A}$ such that
+$x \in A_{x} \subset \overline{A_{x}} \subset G_{x}$.
+We thus see that the collection
+\begin{equation*}
+\left\{\;
+\left.
+A_{x} \in \overset{{\color{white}1}}{\mathcal{A}}
+\;\;\right\vert\;\;
+x \in \Sigma
+\;\;\right\}
+\;\; \subset \;\; \mathcal{A}
+\end{equation*}
+is an open cover of $\Sigma$ consisting of subsets in $\mathcal{A}$.
+This completes the proof of Claim 2.
 
 \vskip 0.5cm
 \noindent
