@@ -172,6 +172,11 @@ Hence, we therefore have:
 \end{equation*}
 which is the desired contradiction. This completes the proof of the Claim, hence that of (ii).
 
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+%\renewcommand{\theenumi}{\roman{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
 \vskip 0.3cm
 \noindent
 \underline{Proof of (i)}
@@ -258,13 +263,17 @@ Define:
 \end{array}
 \,\right\}.
 \end{equation*}
-Then, there exists a subsequence $\{\,P_{n(i)}\,\} \subset \{\,P_{n}\,\}$ such that the limit
-\begin{equation*}
-\alpha(H) \; := \;
-\lim_{i\,\rightarrow\,\infty}\,P_{n(i)}(H) \;\;\,\textnormal{exists},
-\;\;
-\textnormal{for each $H \in \mathcal{H}$}.
-\end{equation*}
+Then, the following statements are true:
+\begin{enumerate}
+\item	$K_{m} \in \mathcal{H}$, for each $m \in \N$.
+\item	There exists a subsequence $\{\,P_{n(i)}\,\} \subset \{\,P_{n}\,\}$ such that the limit
+		\begin{equation*}
+		\alpha(H) \; := \;
+		\lim_{i\,\rightarrow\,\infty}\,P_{n(i)}(H) \;\;\,\textnormal{exists},
+		\;\;
+		\textnormal{for each $H \in \mathcal{H}$}.
+		\end{equation*}
+\end{enumerate}
 \end{minipage}
 \end{center}
 
@@ -364,7 +373,29 @@ This completes the proof of Claim 2.
 
 \vskip 0.5cm
 \noindent
-\underline{Proof of Claim 3:}\quad
+\underline{Proof of Claim 3:}
+\begin{enumerate}
+\item
+By Claim 2, $\mathcal{A}$ is an open cover of
+$\Sigma \, := \overset{\infty}{\underset{m=1}{\bigcup}}K_{m}$.
+In particular, $\mathcal{A}$ is an open cover of $K_{m}$ for each $m \in \N$.
+Compactness of $K_{m}$ implies that $\mathcal{A}$ admits a finite subcover of $K_{m}$.
+Thus we have
+\begin{equation*}
+K_{m}
+\;\; \subset \;\; \bigcup^{J_{m}}_{i\,=\,1}A^{(m)}_{i}
+\;\; \subset \;\; \bigcup^{J_{m}}_{i\,=\,1}\,\overline{A^{(m)}_{i}},
+\quad
+\textnormal{for some $A^{(m)}_{1},\;A^{(m)}_{2},\;\ldots\,,\;A^{(m)}_{J_{m}}\,\in\,\mathcal{A}$},
+\end{equation*}
+which implies
+\begin{equation*}
+K_{m}
+\quad = \quad K_{m} \;\bigcap\; \left(\;\bigcup^{J_{m}}_{i\,=\,1}\,\overline{A^{(m)}_{i}} \;\right)
+\quad = \quad \bigcup^{J_{m}}_{i\,=\,1} \left(\, K_{m} \;\bigcap\; \overline{A^{(m)}_{i}} \,\right)
+\;\;\; \in \;\;\; \mathcal{H}.
+\end{equation*}
+\item
 Note that $\mathcal{H}$ is a countable collection of subsets of $S$.
 Let $\mathcal{H} = \left\{\,H_{1}, H_{2}, H_{3}, \ldots \,\right\}$ be an enumeration of $\mathcal{H}$.
 Consider the following array of real numbers:
@@ -389,6 +420,7 @@ of natural numbers such that the limit
 \lim_{k\rightarrow\infty} P_{n(k)}(H_{r}),
 \;\;\textnormal{exists for each $r \in \N$}.
 \end{equation*}
+\end{enumerate}
 This completes the proof of Claim 3.
 
 \vskip 0.5cm
@@ -425,4 +457,10 @@ $P_{n(i)} \overset{w}{\longrightarrow} P$, as $i \longrightarrow \infty$,
 by the Portmanteau Theorem (Theorem 2.1, \cite{Billingsley1999}).
 This completes the proof of Claim 5.
 \qed
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
