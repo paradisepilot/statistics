@@ -172,6 +172,7 @@ Hence, we therefore have:
 \end{equation*}
 which is the desired contradiction. This completes the proof of the Claim, hence that of (ii).
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 %\renewcommand{\theenumi}{\roman{enumi}}
@@ -194,7 +195,7 @@ such that $P_{n(i)}\,\overset{w}{\longrightarrow}\,P$, as $i \longrightarrow \in
 \noindent
 So, let $\{\,P_{n}\,\} \subset \Pi$.
 We prove the Theorem by establishing the following series of Claims.
-Note that the proof of the Theorem is complete once we establish Claim 5.
+Note that the proof of the Theorem is complete once we establish Claim 7.
 
 \vskip 0.5cm
 \begin{center}
@@ -268,11 +269,29 @@ Then, the following statements are true:
 \item	$K_{m} \,\in\, \mathcal{H}$,\, for each $m \in \N$.
 \item	There exists a subsequence $\{\,P_{n(i)}\,\} \subset \{\,P_{n}\,\}$ such that the limit
 		\begin{equation*}
-		\alpha(H) \; := \;
+		%\alpha(H) \; := \;
 		\lim_{i\,\rightarrow\,\infty}\,P_{n(i)}(H) \;\;\,\textnormal{exists},
 		\;\;
 		\textnormal{for each $H \in \mathcal{H}$}.
 		\end{equation*}
+		We may therefore define the following function:
+		\begin{equation*}
+		\alpha \; : \; \mathcal{H} \;\longrightarrow\; [\,0,1\,] \; : \; H \;\longmapsto\; \lim_{i\,\rightarrow\,\infty}\,P_{n(i)}(H).
+		\end{equation*}
+%\item	The function $\alpha : \mathcal{H} \longrightarrow [\,0,1\,]$ satisfies the following properties:
+%		\begin{itemize}
+%		\item	$\alpha(\,\varemptyset\,) = 0$.
+%		\item	monotonicity:
+%				$\alpha(H_{1}) \; \leq \; \alpha(H_{2})$,
+%				for any $H_{1}, H_{2} \in \mathcal{H}$ with $H_{1} \subset H_{2}$.
+%		\item	finite additivity for disjoint sets:
+%				\vskip 0.1cm
+%				$\alpha(\,H_{1}\,\cup\,H_{2}\,)$ $=$ $\alpha(H_{1})$ $+$ $\alpha(H_{2})$,
+%				for any $H_{1}, H_{2} \in \mathcal{H}$ with $H_{1} \,\cap\, H_{2} = \varemptyset$.
+%		\item	finite sub-additivity:
+%				$\alpha(H_{1}\,\cup\,H_{2})$ $\leq$ $\alpha(H_{1})$ $+$ $\alpha(H_{2})$,
+%				for any $H_{1}, H_{2} \in \mathcal{H}$.
+%		\end{itemize}
 \end{enumerate}
 \end{minipage}
 \end{center}
@@ -281,21 +300,20 @@ Then, the following statements are true:
 \begin{center}
 \begin{minipage}{6.5in}
 \textbf{Claim 4:}\quad
-There exists a Borel probability measure $P \in \mathcal{M}_{1}(S,\mathcal{B}(S))$ such that
-\begin{equation*}
-P(G)
-\;\; = \;\;
-\sup\left\{\;
-\alpha(H) \,\in\, [0,1]
-\,\;\left\vert\;
-\begin{array}{l} H \in \mathcal{H}, \;\textnormal{and} \\ H \subset G \end{array}
-\right.
-\right\},
-\quad
-\textnormal{for each open subset $G \subset S$}.
-\end{equation*}
-\textit{\small(Note that the supremum above is always taken over a non-empty set: For each open $G \subset S$,
-the set $\left\{\,H \in \mathcal{H}\;\vert\;H \subset G\,\right\}$ is non-empty, since $\varemptyset \in \mathcal{H}$.)}
+The function $\alpha : \mathcal{H} \longrightarrow [\,0,1\,]$ satisfies the following properties:
+\begin{enumerate}
+\item	$\alpha(\,\varemptyset\,) = 0$.
+\item	monotonicity:
+		$\alpha(H_{1}) \; \leq \; \alpha(H_{2})$,
+		for any $H_{1}, H_{2} \in \mathcal{H}$ with $H_{1} \subset H_{2}$.
+\item	finite additivity for disjoint sets:
+		\vskip 0.1cm
+		$\alpha(\,H_{1}\,\cup\,H_{2}\,)$ $=$ $\alpha(H_{1})$ $+$ $\alpha(H_{2})$,
+		for any $H_{1}, H_{2} \in \mathcal{H}$ with $H_{1} \,\cap\, H_{2} = \varemptyset$.
+\item	finite sub-additivity:
+		$\alpha(H_{1}\,\cup\,H_{2})$ $\leq$ $\alpha(H_{1})$ $+$ $\alpha(H_{2})$,
+		for any $H_{1}, H_{2} \in \mathcal{H}$.
+\end{enumerate}
 \end{minipage}
 \end{center}
 
@@ -303,6 +321,71 @@ the set $\left\{\,H \in \mathcal{H}\;\vert\;H \subset G\,\right\}$ is non-empty,
 \begin{center}
 \begin{minipage}{6.5in}
 \textbf{Claim 5:}\quad
+Let $\mathcal{O}(S)$ denote the collection of all open subsets of $S$.
+Define the following function:
+\begin{equation*}
+\beta \; : \; \mathcal{O}(S) \;\longrightarrow\; [\,0,1\,] \; : \; G \;\longmapsto\; 
+\sup\left\{\;
+	\alpha(H) \,\in\, [\,0,1\,]
+	\,\;\left\vert\;
+		\begin{array}{l} H \in \mathcal{H}, \;\textnormal{and}\\ H \subset G \end{array}
+	\right.
+\right\}.
+\end{equation*}
+\textit{\small(Note that the supremum above is always taken over a non-empty set: For each open $G \subset S$,
+the set $\left\{\,H \in \mathcal{H}\;\vert\;H \subset G\,\right\}$ is non-empty, since $\varemptyset \in \mathcal{H}$.)}
+\vskip 0.2cm
+\noindent
+Next, let $\mathcal{P}(S)$ be the power set of $S$, i.e. the collection of all subsets of $S$.
+Define the following function:
+\begin{equation*}
+\gamma \; : \; \mathcal{P}(S) \;\longrightarrow\; [\,0,1\,] \; : \; W \;\longmapsto\; 
+\inf\left\{\;
+	\beta(G) \,\in\, [\,0,1\,]
+	\,\;\left\vert\;
+		\begin{array}{l} G \in \mathcal{O}(S), \;\textnormal{and}\\ W \subset G \end{array}
+	\right.
+\right\}.
+\end{equation*}
+Then, the function $\gamma : \mathcal{P}(S) \longrightarrow [\,0,1\,]$ is an outer measure defined on $S$.
+\end{minipage}
+\end{center}
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 6:}\quad
+The $\sigma$-algebra $\mathcal{A}(\gamma)$ of $\gamma$-measurable subsets of $S$ contains
+the Borel $\sigma$-algebra $\mathcal{B}(S)$ of $S$.
+\end{minipage}
+\end{center}
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 7:}\quad
+The restriction \,$P \, := \, \gamma\;\vert_{\mathcal{B}(S)}$\, of $\gamma$ to $\mathcal{B}(S)$
+is a Borel probability measure which statisfies:
+\begin{equation*}
+P(G)
+\;\; = \;\; \beta(G)
+\;\; := \;\;
+\sup\left\{\;
+\alpha(H) \,\in\, [0,1]
+\,\;\left\vert\;
+\begin{array}{l} H \in \mathcal{H}, \;\textnormal{and} \\ H \subset G \end{array}
+\right.
+\right\},
+\;\;
+\textnormal{for each open subset $G \subset S$}.
+\end{equation*}
+\end{minipage}
+\end{center}
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 8:}\quad
 $P_{n(i)} \;\overset{w}{\longrightarrow}\; P$,\,
 as \,$i\,\longrightarrow\,\infty$.
 \end{minipage}
@@ -430,6 +513,18 @@ This completes the proof of Claim 3.
 \vskip 0.5cm
 \noindent
 \underline{Proof of Claim 5:}\quad
+
+\vskip 0.5cm
+\noindent
+\underline{Proof of Claim 6:}\quad
+
+\vskip 0.5cm
+\noindent
+\underline{Proof of Claim 7:}\quad
+
+\vskip 0.5cm
+\noindent
+\underline{Proof of Claim 8:}\quad
 Let $G \subset S$ be an arbitrary open subset of $S$.
 Then, for each $H \in \mathcal{H}$ with $H \subset G$, we have
 \begin{equation*}
@@ -437,7 +532,7 @@ Then, for each $H \in \mathcal{H}$ with $H \subset G$, we have
 \;\; := \;\; \lim_{i\rightarrow\infty}P_{n(i)}(H)
 \;\; \leq \;\; \liminf_{i\rightarrow\infty}\,P_{n(i)}(G).
 \end{equation*}
-The preceding inequality and Claim 4 together imply:
+The preceding inequality and Claim 7 together imply:
 \begin{equation*}
 P(G)
 \; = \;
@@ -455,7 +550,7 @@ P(G)
 which is equivalent to the weak convergence
 $P_{n(i)} \overset{w}{\longrightarrow} P$, as $i \longrightarrow \infty$,
 by the Portmanteau Theorem (Theorem 2.1, \cite{Billingsley1999}).
-This completes the proof of Claim 5.
+This completes the proof of Claim 8.
 \qed
 
 %\renewcommand{\theenumi}{\alph{enumi}}
