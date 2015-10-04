@@ -8,6 +8,62 @@
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
+\begin{definition}\label{definition:OuterMeasure}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $\Omega$ be a non-empty set and $\mathcal{P}(\Omega)$ denote the power set of $\Omega$.
+An \textbf{outer measure} on $\Omega$ is a function
+$\varphi : \mathcal{P}(\Omega) \longrightarrow [0,\infty]$
+satisfying the following conditions:
+\begin{itemize}
+\item	$\varphi(\,\varemptyset\,) = 0$.
+\item	monotonicity: $\varphi(A) \;\leq\; \varphi(B)$, for every $A, B \in \mathcal{P}(\Omega)$ with $A \subset B$.
+\item	countable sub-additivity:
+		\begin{equation*}
+		\varphi\!\left(\;\bigcap_{i=1}^{\infty}\,A_{i}\right)
+		\;\; \leq \;\; \sum_{i=1}^{\infty}\,\varphi\!\left(\,A_{i}\,\right),
+		\quad
+		\textnormal{for any $A_{1}, A_{2}, \,\ldots\, \in \mathcal{P}(\Omega)$}.
+		\end{equation*}
+\end{itemize}
+\end{definition}
+
+\begin{definition}\label{definition:Measurability}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $\Omega$ be a non-empty set and $\mathcal{P}(\Omega)$ denote the power set of $\Omega$.
+Let $\varphi : \mathcal{P}(\Omega) \longrightarrow [0,\infty]$ be an outer measure on $\Omega$.
+A subset $A \subset \Omega$ is said to be $\varphi$-measurable if
+\begin{equation*}
+\varphi(E) \;=\; \varphi(\,A \,\cap\, E\,) \;+\; \varphi(\,A^{c}\,\cap\, E\,),
+\quad
+\textnormal{for every $E \in \mathcal{P}(\Omega)$}.
+\end{equation*}
+\end{definition}
+
+\begin{theorem}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $\Omega$ be a non-empty set and $\mathcal{P}(\Omega)$ denote the power set of $\Omega$.
+Let $\varphi : \mathcal{P}(\Omega) \longrightarrow [0,\infty]$ be an outer measure on $\Omega$.
+\begin{enumerate}
+\item	A subset $A \subset \Omega$ is $\varphi$-measurable if and only if
+		\begin{equation*}
+		\varphi(E) \;\;\geq\;\; \varphi(\,A \,\cap\, E\,) \;+\; \varphi(\,A^{c}\,\cap\, E\,),
+		\quad
+		\textnormal{for every $E \in \mathcal{P}(\Omega)$}.
+		\end{equation*}
+\item	The collection $\mathcal{A}(\varphi)$ of \,$\varphi$-measurable subsets of \,$\Omega$
+		forms a $\sigma$-algebra of subsets of $\Omega$.
+\item	The restriction $\varphi\,\vert_{\mathcal{A}(\varphi)}$ of the outer measure $\varphi$ to the
+		$\sigma$-algebra $\mathcal{A}(\varphi)$ is a (countably additive) complete measure on
+		the measurable space $\left(\,\Omega,\mathcal{A}(\varphi)\,\right)$.
+\end{enumerate}
+\end{theorem}
+
 \begin{lemma}\label{lemma:CompactImpliesSeparable}
 \mbox{}
 \vskip 0.3cm

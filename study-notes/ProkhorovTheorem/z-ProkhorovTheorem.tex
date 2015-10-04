@@ -368,12 +368,13 @@ The restriction \,$P \, := \, \gamma\;\vert_{\mathcal{B}(S)}$\, of $\gamma$ to $
 is a Borel probability measure which statisfies:
 \begin{equation*}
 P(G)
-\;\; = \;\; \beta(G)
-\;\; := \;\;
+\; = \; \gamma(G)
+\; = \; \beta(G)
+\; := \;
 \sup\left\{\;
 \alpha(H) \,\in\, [0,1]
 \,\;\left\vert\;
-\begin{array}{l} H \in \mathcal{H}, \;\textnormal{and} \\ H \subset G \end{array}
+\begin{array}{l} H \in \mathcal{H}, \\ H \subset G \end{array}
 \right.
 \right\},
 \;\;
@@ -434,9 +435,9 @@ and Lemma \ref{lemma:ExistenceOfScriptA}.
 \vskip 0.3cm
 \noindent
 It remains to show that $\mathcal{A}$ is an open cover of $\Sigma$.
-To this end, first note that the collection $\mathcal{O}_{S}$ of open subsets of $S$
-forms an open cover of $S$, hence $\mathcal{O}_{S}$ is also an open cover of $\Sigma$.
-Therefore, for each $x \in \Sigma$, we may choose $G_{x} \in \mathcal{O}_{S}$
+To this end, first note that the collection $\mathcal{O}(S)$ of open subsets of $S$
+forms an open cover of $S$, hence $\mathcal{O}(S)$ is also an open cover of $\Sigma$.
+Therefore, for each $x \in \Sigma$, we may choose $G_{x} \in \mathcal{O}(S)$
 such that $x \in G_{x}$.
 Thus, $x \in \Sigma\,\cap\,G_{x}$, and by properties of $\mathcal{A}$,
 we may furthermore choose $A_{x} \in \mathcal{A}$ such that
@@ -555,7 +556,145 @@ This completes the proof of Claim 3.
 
 \vskip 0.5cm
 \noindent
-\underline{Proof of Claim 5:}\quad
+\underline{Proof of Claim 5:}
+\vskip 0.2cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 5A:} \, For any subsets $F, \,G \,\subset\, S$, where $F$ is closed and $G$ is open, we have
+\begin{equation*}
+\left.
+\begin{array}{c}
+F \; \subset \;G, \;\;\textnormal{and} \\
+\textnormal{there exists}\;\; H \in \mathcal{H} \;\;\textnormal{such that}\;\; F \subset H
+\end{array}
+\right\}
+\quad\Longrightarrow\quad
+\textnormal{there exists}\;\; H_{0} \in \mathcal{H} \;\;\textnormal{such that}\;\; F \;\subset\; H_{0} \;\subset\; G
+\end{equation*}
+\end{minipage}
+\end{center}
+Proof of Claim 5A: \,
+For each $x \in F$, choose $A_{x} \in \mathcal{A}$ such that
+$x \in A_{x} \subset \overline{A_{x}} \subset G$.
+Recall that $H \in \mathcal{H}$ is compact, hence $F$ is also compact
+(being a closed subset of the compact set $H$).
+Therefore, the open cover $\left\{\,A_{x}\,\right\}_{x \in F}$ of $F$ admits a finite sub-cover,
+say $\left\{\,A_{x_{1}},\,A_{x_{2}},\, \ldots\,, A_{x_{k}}\,\right\}$.
+Secondly, note that $F \subset K_{m}$, for some $m \in \N$.
+Let $H_{0} \,:=\, \overset{k}{\underset{i=1}{\bigcup}}\left(\,\overline{A}_{x_{i}} \cap K_{m}\,\right)$.
+It is clear that $H_{0} \in \mathcal{H}$. Furthermore,
+\begin{equation*}
+F
+\;\;\subset\;\; \left(\;\overset{k}{\underset{i=1}{\bigcup}}\;\overline{A}_{x_{i}}\right)\,\bigcap\;K_{m}
+\;\;=\;\; \underset{H_{0}}{\underbrace{\overset{k}{\underset{i=1}{\bigcup}}\left(\,\overline{A}_{x_{i}} \cap K_{m}\,\right)}}
+\;\;\subset\;\; \left(\;\overset{k}{\underset{i=1}{\bigcup}}\;\overline{A}_{x_{i}}\right)
+\;\;\subset\;\; G
+\end{equation*}
+This proves Claim 5A.
+
+\vskip 0.2cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 5B:} \,
+$\beta \,:\, \mathcal{O}(S) \,\longrightarrow\, [\,0,1\,]$\, is finitely subadditive.
+\end{minipage}
+\end{center}
+Proof of Claim 5B: \,
+Suppose $G_{1}, \, G_{2} \,\subset\, S$ are two arbitrary open subsets of $S$.
+We need to show:
+\begin{equation*}
+\beta\!\left(\,G_{1}\,\cup\,G_{2}\,\right) \;\; \leq \;\; \beta\!\left(G_{1}\right) \;+\; \beta\!\left(G_{2}\right).
+\end{equation*}
+Recall that
+\begin{equation*}
+\beta\!\left(\,G_{1}\,\cup\,G_{2}\,\right)
+\;\; := \;\;
+\sup\left\{\;
+	\alpha(H) \,\in\, [\,0,1\,]
+	\,\;\left\vert\;
+		\begin{array}{l} H \in \mathcal{H}, \;\,\textnormal{and} \\ H \subset G_{1} \cup G_{2} \end{array}
+	\right.
+\right\}.
+\end{equation*}
+Now, for each $H \in \mathcal{H}$ with $H \subset G_{1} \cup G_{2}$, define
+\begin{equation*}
+F_{1}
+\;\;:=\;\; \left\{\;x \in H \;\,\left\vert\;\; \rho(x,G_{1}^{c}) \,\overset{{\color{white}-}}{\geq}\, \rho(x,G_{2}^{c}) \right.\;\right\},
+\quad\textnormal{and}\quad
+F_{2}
+\;\;:=\;\; \left\{\;x \in H \;\,\left\vert\;\; \rho(x,G_{1}^{c}) \,\overset{{\color{white}-}}{\leq}\, \rho(x,G_{2}^{c}) \right.\;\right\}.
+\end{equation*}
+We immediately have $H = F_{1} \cup F_{2}$.
+Note that $F_{1} \subset G_{1}$.
+Indeed,
+\begin{equation*}
+x \in F_{1} \cap G_{1}^{c}
+\quad\Longrightarrow\quad
+\left\{
+	\begin{array}{c}
+	x \,\in\, H \cap G_{1}^{c} \,\subset\, G_{2}, \;\,\textnormal{and}
+	\\
+	\rho(x,G_{2}^{c}) \,\leq\, \rho(x,G_{1}^{c}) \,=\, 0	
+	\end{array}
+\right.
+\quad\Longrightarrow\quad
+0 \,<\, \rho(x,G_{2}^{c}) \,\leq\, \rho(x,G_{1}^{c}) \,=\, 0,
+\;\;\textnormal{a contradiction}.
+\end{equation*}
+This proves indeed that $F_{1} \subset G_{1}$.
+Similarly, we have $F_{2} \subset G_{2}$.
+Now,
+\begin{equation*}
+\left.
+	\begin{array}{c}
+	F_{1} \subset H,\; H \in \mathcal{H}
+	\\
+	\textnormal{Claim 5A}
+	\end{array}
+\right\}
+\quad\Longrightarrow\quad
+F_{1} \;\subset\; H_{1} \;\subset\; G_{1},
+\;\;\textnormal{for some $H_{1} \in \mathcal{H}$}.
+\end{equation*}
+Similarly, $F_{2} \,\subset\, H_{2} \,\subset\, G_{2}$, for some $H_{2} \in \mathcal{H}$.
+We thus have $H \,=\, F_{1} \cup F_{2} \,\subset\, H_{1} \cup H_{2}$.
+By Claim 4, definition of $\beta \,:\, \mathcal{O}(S) \longrightarrow [\,0,1\,]$, we therefore have
+\begin{equation*}
+\alpha(H)
+\;\; \leq \;\; \alpha\!\left(\,H_{1}\,\cup\,H_{2}\,\right)
+\;\; \leq \;\; \alpha\!\left(\,H_{1}\,\right) \; + \; \alpha\!\left(\,H_{2}\,\right)
+\;\; \leq \;\; \beta\!\left(\,G_{1}\,\right) \; + \; \beta\!\left(\,G_{2}\,\right).
+\end{equation*}
+Recall that $H \subset G_{1} \cup G_{2}$ and $H \in \mathcal{H}$, but otherwise $H$ is arbitrary;
+hence, we have
+\begin{equation*}
+\beta\!\left(\,G_{1}\,\cup\,G_{2}\,\right)
+\;\; := \;\;
+\sup\left\{\;
+	\alpha(H) \,\in\, [\,0,1\,]
+	\,\;\left\vert\;
+		\begin{array}{l} H \in \mathcal{H}, \;\,\textnormal{and} \\ H \subset G_{1} \cup G_{2} \end{array}
+	\right.
+\right\}
+\;\;\leq\;\; \beta\!\left(\,G_{1}\,\right) \; + \; \beta\!\left(\,G_{2}\,\right).
+\end{equation*}
+This proves the finite sub-additivity of $\beta \,: \,\longrightarrow\, [\,0,1\,]$.
+
+\vskip 0.2cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 5C:} \,
+$\beta \,:\, \mathcal{O}(S) \,\longrightarrow\, [\,0,1\,]$\, is countably subadditive.
+\end{minipage}
+\end{center}
+
+\vskip 0.2cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 5D:} \,
+$\gamma \,:\, \mathcal{P}(S) \,\longrightarrow\, [\,0,1\,]$\, is outer measure on $S$.
+\end{minipage}
+\end{center}
 
 \vskip 0.5cm
 \noindent
@@ -568,7 +707,7 @@ First, note that
 \textnormal{for each closed $F \subset S$ and each open $G \subset S$}.
 \end{equation}
 Indeed, let $\varepsilon > 0$ be given.
-Since $F^{c}\cap G \in \mathcal{O}_{S}$, by definition of $\beta$ as a supremum,
+Since $F^{c}\cap G \in \mathcal{O}(S)$, by definition of $\beta$ as a supremum,
 we may choose $H_{1} \in \mathcal{H}$ such that
 \begin{equation*}
 H_{1}\;\subset\;F^{c}\cap G
@@ -614,18 +753,18 @@ Hence,
 \inf\left\{\;
 \beta(G)
 \;\;\left\vert\,
-\begin{array}{c} G \in \mathcal{O}_{S} \\ A \subset G \end{array}
+\begin{array}{c} G \in \mathcal{O}(S) \\ A \subset G \end{array}
 \right.
 \right\}
 \;\; =: \;\; \gamma(A).
 \end{equation*}
 This proves the $\gamma$-measurability of each closed subset $F \subset S$,
 and hence the $\gamma$-measurability of each open subset of $S$,
-i.e. $\mathcal{O}_{S} \subset \mathcal{A}(\gamma)$.
+i.e. $\mathcal{O}(S) \subset \mathcal{A}(\gamma)$.
 It now follows immediately that
 \begin{equation*}
 \mathcal{B}(S)
-\;\; = \;\; \sigma\!\left(\,\mathcal{O}_{S}\,\right)
+\;\; = \;\; \sigma\!\left(\,\mathcal{O}(S)\,\right)
 \;\; \subset \;\; \mathcal{A}(\gamma).
 \end{equation*}
 This completes the proof of Claim 6.
@@ -633,16 +772,19 @@ This completes the proof of Claim 6.
 \vskip 0.5cm
 \noindent
 \underline{Proof of Claim 7:}\quad
+Immediate by definition of $P : \mathcal{B}(S) \,\longrightarrow\, [0,1]$.
 
 \vskip 0.5cm
 \noindent
 \underline{Proof of Claim 8:}\quad
 Let $G \subset S$ be an arbitrary open subset of $S$.
-Then, for each $H \in \mathcal{H}$ with $H \subset G$, we have
+Then, we have
 \begin{equation*}
 \alpha(H)
-\;\; := \;\; \lim_{i\rightarrow\infty}P_{n(i)}(H)
-\;\; \leq \;\; \liminf_{i\rightarrow\infty}\,P_{n(i)}(G).
+\; := \; \lim_{i\rightarrow\infty}P_{n(i)}(H)
+\;\leq\; \liminf_{i\rightarrow\infty}\,P_{n(i)}(G),
+\quad
+\textnormal{for each $H \in \mathcal{H}$ with $H \subset G$}.
 \end{equation*}
 The preceding inequality and Claim 7 together imply:
 \begin{equation*}
@@ -651,7 +793,7 @@ P(G)
 \sup\left\{\;
 \alpha(H) \,\in\, [0,1]
 \,\;\left\vert\;
-\begin{array}{l} H \in \mathcal{H}, \;\textnormal{and} \\ H \subset G \end{array}
+\begin{array}{l} H \in \mathcal{H} \\ H \subset G \end{array}
 \right.
 \right\}
 \;\;\leq\;\;
