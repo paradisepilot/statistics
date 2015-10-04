@@ -678,7 +678,7 @@ hence, we have
 \right\}
 \;\;\leq\;\; \beta\!\left(\,G_{1}\,\right) \; + \; \beta\!\left(\,G_{2}\,\right).
 \end{equation*}
-This proves the finite sub-additivity of $\beta \,: \,\longrightarrow\, [\,0,1\,]$.
+This proves Claim 5B. %the finite sub-additivity of $\beta : \mathcal{O}(S) \,\longrightarrow\, [\,0,1\,]$.
 
 \vskip 0.2cm
 \begin{center}
@@ -687,6 +687,53 @@ This proves the finite sub-additivity of $\beta \,: \,\longrightarrow\, [\,0,1\,
 $\beta \,:\, \mathcal{O}(S) \,\longrightarrow\, [\,0,1\,]$\, is countably subadditive.
 \end{minipage}
 \end{center}
+Proof of Claim 5C: \,
+Let $G_{1}, G_{2}, \,\ldots\, \subset S$ be open subsets of $S$.
+We need to show:
+\begin{equation*}
+\beta\!\left(\;\bigcup_{i=1}^{\infty}\,G_{i}\right)
+\;\; \leq \;\; \sum_{i=1}^{\infty}\,\beta\!\left(G_{i}\right).
+\end{equation*}
+Recall that
+\begin{equation*}
+\beta\!\left(\;\bigcup_{i=1}^{\infty}\,G_{i}\right)
+\;\; := \;\;
+\sup\left\{\;
+	\alpha(H) \,\in\, [\,0,1\,]
+	\,\;\left\vert\;
+		\begin{array}{l} H \in \mathcal{H}, \;\,\textnormal{and} \\ H \subset \bigcup_{i=1}^{\infty}\,G_{i} \end{array}
+	\right.
+\right\}.
+\end{equation*}
+Now, for any $H \in \mathcal{H}$ with $H \subset \overset{\infty}{\underset{i=1}{\bigcup}}\,G_{i}$,
+compactness of $H$ implies $H \subset \overset{k}{\underset{i=1}{\bigcup}}\,G_{i}$, for some $k \in \N$.
+Therefore,
+\begin{equation*}
+\alpha(H)
+\;\; \leq \;\;
+\sup\left\{\;
+	\alpha(H^{\prime}) \,\in\, [\,0,1\,]
+	\,\;\left\vert\;
+		\begin{array}{l} H^{\prime} \in \mathcal{H}, \;\,\textnormal{and} \\ H^{\prime} \subset \bigcup_{i=1}^{k}\,G_{i} \end{array}
+	\right.
+\right\}
+\;\; =: \;\; \beta\!\left(\;\overset{k}{\underset{i=1}{\bigcup}}\,G_{i}\right)
+\;\;\leq\;\; \overset{k}{\underset{i=1}{\sum}}\,\beta\!\left(\,G_{i}\,\right)
+\;\;\leq\;\; \overset{\infty}{\underset{i=1}{\sum}}\;\beta\!\left(\,G_{i}\,\right),
+\end{equation*}
+which in turn immediately implies
+\begin{equation*}
+\beta\!\left(\;\bigcup_{i=1}^{\infty}\,G_{i}\right)
+\;\; := \;\;
+\sup\left\{\;
+	\alpha(H) \,\in\, [\,0,1\,]
+	\,\;\left\vert\;
+		\begin{array}{l} H \in \mathcal{H}, \;\,\textnormal{and} \\ H \subset \bigcup_{i=1}^{\infty}\,G_{i} \end{array}
+	\right.
+\right\}
+\;\;\leq\;\; \overset{\infty}{\underset{i=1}{\sum}}\;\beta\!\left(\,G_{i}\,\right).
+\end{equation*}
+This proves Claim 5C.
 
 \vskip 0.2cm
 \begin{center}
