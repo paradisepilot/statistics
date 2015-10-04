@@ -742,6 +742,57 @@ This proves Claim 5C.
 $\gamma \,:\, \mathcal{P}(S) \,\longrightarrow\, [\,0,1\,]$\, is outer measure on $S$.
 \end{minipage}
 \end{center}
+It is trivial to see that $\gamma(\,\varemptyset\,) = 0$.
+We next establish the monotonicity of $\gamma$.
+Let $W_{1}$ and $W_{2}$ be arbitrary subsets of $S$ with $W_{1} \subset W_{2} \subset S$.
+Then,
+\begin{equation*}
+\left\{\;G \in \mathcal{O}(S) \,\;\vert\,\; W_{1} \subset G\;\right\}
+\;\; \supset \;\;
+\left\{\;G \in \mathcal{O}(S) \,\;\vert\,\; W_{2} \subset G\;\right\},
+\end{equation*}
+which implies
+\begin{equation*}
+\gamma(W_{1}) \;\; := \;\;
+\inf\left\{\;\beta(G) \in [\,0,1\,] \,\;\left\vert\, \begin{array}{c} G \in \mathcal{O}(S) \\ W_{1} \subset G \end{array}\right.\right\}
+\;\; \leq \;\;
+\inf\left\{\;\beta(G) \in [\,0,1\,] \,\;\left\vert\, \begin{array}{c} G \in \mathcal{O}(S) \\ W_{2} \subset G \end{array}\right.\right\}
+\;\; =: \;\; \gamma(W_{2}).
+\end{equation*}
+This proves the monotonicity of $\gamma$.
+It remains only to show that $\gamma$ is countably subadditive.
+To this end, let $W_{1}, W_{2}, \,\ldots\, \subset S$ be arbitrary subsets of $S$.
+We need to show that
+\begin{equation*}
+\gamma\!\left(\;\bigcup_{i=1}^{\infty}\,W_{i}\right)
+\;\;\leq\;\; \overset{\infty}{\underset{i=1}{\sum}}\;\gamma\!\left(\,W_{i}\,\right).
+\end{equation*}
+Now, let $\varepsilon > 0$ be given.
+By definition $\gamma$, we may choose, for each $i \in \N$, an open subset $G_{i} \subset S$ such that
+\begin{equation*}
+W_{i} \;\subset\; G_{i}
+\quad\textnormal{and}\quad
+\gamma(W_{i}) \; \leq \; \beta(G_{i}) \;<\; \gamma(W_{i}) \,+\, \dfrac{\varepsilon}{2^{i}}.
+\end{equation*}
+The fact that \,$\bigcup_{i=1}^{\infty}W_{i} \,\subset\, \bigcup_{i=1}^{\infty}G_{i}$\,
+and the countable subadditivity of $\beta$ (Claim 5C) together imply
+\begin{eqnarray*}
+\gamma\!\left(\;\bigcup_{i=1}^{\infty}\,W_{i}\right)
+& := &
+\inf\left\{\;
+	\beta(G) \,\in\, [\,0,1\,]
+	\,\;\left\vert\;
+		\begin{array}{l} G \in \mathcal{O}(S), \;\,\textnormal{and} \\ \bigcup_{i=1}^{\infty}W_{i} \;\subset\; G \end{array}
+	\right.
+\right\}
+\;\;\leq\;\; \beta\!\left(\;\bigcup_{i=1}^{\infty}\,G_{i}\right)
+\\
+&\leq& \overset{\infty}{\underset{i=1}{\sum}}\;\beta\!\left(\,G_{i}\,\right)
+\;\;\leq\;\; \overset{\infty}{\underset{i=1}{\sum}}\left(\;\gamma\!\left(\,W_{i}\,\right) \;+\; \dfrac{\varepsilon}{2^{i}}\;\right)
+\;\;\leq\;\; \left(\;\overset{\infty}{\underset{i=1}{\sum}}\,\gamma\!\left(\,W_{i}\,\right)\right) \;+\; \varepsilon.
+\end{eqnarray*}
+Since $\varepsilon > 0$ is arbitrary, countable subadditivity of $\gamma$ now follows.
+This completes the proof of Claim 5D.
 
 \vskip 0.5cm
 \noindent
@@ -784,26 +835,26 @@ which implies $\beta(G) \;\geq\; \gamma\!\left(\,F\cap G\,\right) \;+\; \gamma\!
 since $\varepsilon > 0$ is arbitrary.
 \vskip 0.3cm
 \noindent
-Now, let $F \subset S$ be an arbitrary closed subset of $S$, and $A \subset S$ be an arbitrary subset of $S$.
+Now, let $F \subset S$ be an arbitrary closed subset of $S$, and $W \subset S$ be an arbitrary subset of $S$.
 Then, by \eqref{eqnClaim6}, we have
 \begin{equation*}
-\gamma(\,F\,\cap\,A\,) \;+\; \gamma(\,F^{c}\,\cap\,A\,)
+\gamma(\,F\,\cap\,W\,) \;+\; \gamma(\,F^{c}\,\cap\,W\,)
 \;\;\leq\;\; \gamma(\,F\,\cap\,G\,) \;+\; \gamma(\,F^{c}\,\cap\,G\,)
 \;\;\leq\;\; \beta(G),
 \quad
-\textnormal{for each open $G \subset S$ with $A \subset G$}.
+\textnormal{for each open $G \subset S$ with $W \subset G$}.
 \end{equation*}
 Hence,
 \begin{equation*}
-\gamma(\,F\,\cap\,A\,) \;+\; \gamma(\,F^{c}\,\cap\,A\,)
+\gamma(\,F\,\cap\,W\,) \;+\; \gamma(\,F^{c}\,\cap\,W\,)
 \quad\leq\quad
 \inf\left\{\;
 \beta(G)
 \;\;\left\vert\,
-\begin{array}{c} G \in \mathcal{O}(S) \\ A \subset G \end{array}
+\begin{array}{c} G \in \mathcal{O}(S) \\ W \subset G \end{array}
 \right.
 \right\}
-\;\; =: \;\; \gamma(A).
+\;\; =: \;\; \gamma(W).
 \end{equation*}
 This proves the $\gamma$-measurability of each closed subset $F \subset S$,
 and hence the $\gamma$-measurability of each open subset of $S$,
