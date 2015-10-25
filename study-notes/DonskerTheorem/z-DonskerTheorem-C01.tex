@@ -1,0 +1,165 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Donsker's Theorem for $\left(\,C[0,1]\,,\,\Vert\cdot\Vert_{\infty}\,\right)$}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{proposition}
+\mbox{}\vskip 0cm
+\begin{itemize}
+\item	Let $\xi_{1}, \xi_{2}, \ldots\, : \Omega \longrightarrow \Re$ be a sequence of
+		independent and identically distributed $\Re$-valued random variables
+		defined on the probability space $(\Omega,\mathcal{A},\mu)$,
+		with expectation value zero and common finite variance $\sigma^{2} > 0$.
+\item	Define the random variables:
+		\begin{equation*}
+		\left\{\begin{array}{ccccll}
+		S_{0}
+		&:&\overset{{\color{white}1}}{\Omega} \longrightarrow \Re
+		&:& \omega \;\longmapsto\; 0,
+		& \textnormal{and}
+		\\ \\
+		S_{n}
+		&:&	\Omega \longrightarrow \Re
+		&:&	\omega \;\longmapsto\; \overset{n}{\underset{i=1}{\textnormal{\Large$\sum$}}}\;\xi_{i}(\omega),
+		& \textnormal{for each $n \in \N$}.
+		\end{array}\right.
+		\end{equation*}
+\item	For each $n \in \N$, define \,$X^{(n)} \,:\, \Omega \;\longrightarrow\;C[0,1]$\, as follows:
+		\begin{equation*}
+		X^{(n)}(\omega)(t)
+		\;\; := \;\;
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
+		\left\{\;
+		S_{i-1}(\omega) \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}(\omega)
+		\,\right\},
+		\;\;
+		\textnormal{for each $\omega \in \Omega$, \;$t \in \left[\frac{i-1}{n},\frac{i}{n}\right]$, \;$i = 1,2,3,\ldots,n$}.
+		\end{equation*}
+\item	For each $n \in \N$ and each $t \in [0,1]$, define
+		\;$X^{(n)}_{t} : \,\Omega \, \longrightarrow \, \Re$\;
+		as follows:
+		\begin{equation*}
+		X^{(n)}_{t}(\omega) \;\; := \;\; X^{(n)}(\omega)(t),
+		\quad
+		\textnormal{for each $\omega \in \Omega$}.
+		\end{equation*}
+\end{itemize}
+Then, the following statements are true:
+\begin{enumerate}
+\item	For each $\omega \in \Omega$ and each $n \in \N$,
+		\begin{equation*}
+		X^{(n)}(\omega)\left(\dfrac{i}{n}\right) \;\; = \;\; \dfrac{1}{\sigma\cdot\sqrt{n}}\cdot S_{i}(\omega),
+		\quad
+		\textnormal{for $i = 0, 1, 2, \ldots, n$}.
+		\end{equation*}
+\item	For each $\omega \in \Omega$ and each $n \in \N$, 
+		\begin{center}
+		$X^{(n)}(\omega)(t)$\; is the linear interpolation
+		from \;$\dfrac{1}{\sigma\cdot\sqrt{n}}\,S_{i-1}(\omega)$\;
+		to \;$\dfrac{1}{\sigma\cdot\sqrt{n}}\,S_{i}(\omega)$\;
+		over \;$t \in \left[\dfrac{i-1}{n},\dfrac{i}{n}\right]$,
+		\end{center}
+		where $i = 1, 2, \ldots, n$.
+\item	For each $t \in [0,1]$,
+		\begin{equation*}
+		X^{(n)}_{t} \;\; \overset{d}{\longrightarrow} \;\; \sqrt{t}\cdot N(0,1),
+		\;\;\textnormal{as \;$n \longrightarrow \infty$}.
+		\end{equation*}
+\item	For any \;$0 \leq t_{0} \leq t_{1} \leq t_{2} \leq \cdots \leq t_{k} \leq 1$,
+		\begin{equation*}
+		\left(\;X^{(n)}_{t_{1}} - X^{(n)}_{t_{0}}, \;\ldots\;,\; X^{(n)}_{t_{k}} - X^{(n)}_{t_{k-1}}\;\right)
+		\;\; \overset{d}{\longrightarrow} \;\;
+		N\!\left(\;
+		\mathbf{\mu} = \mathbf{0}\,,\,
+		\overset{{\color{white}1}}{\Sigma} = \diag\!\left(\,t_{1}-t_{0},\; \ldots\; ,\; t_{k}-t_{k-1}\,\right)
+		\;\right),
+		\;\;
+		\textnormal{as \;$n \longrightarrow \infty$}.
+		\end{equation*}
+\item	For any \;$0 \;\leq\; t_{1},\; t_{2}, \;\cdots\;,\; t_{k} \leq 1$,
+		\begin{equation*}
+		\left(\;X^{(n)}_{t_{1}},\; X^{(n)}_{t_{2}}, \;\ldots\;,\; X^{(n)}_{t_{k}}\;\right)
+		\;\; \overset{d}{\longrightarrow} \;\;
+		N\!\left(\;
+		\mathbf{\mu} = \mathbf{0}\,,\,
+		\Sigma = \left[\;\min\{\overset{{\color{white}1}}{t}_{i},t_{j}\}\;\right]_{1\leq i,j\leq k}
+		\;\right),
+		\;\;\textnormal{as \;$n \longrightarrow \infty$}.
+		\end{equation*}
+\end{enumerate}
+\end{proposition}
+\proof
+
+		\begin{eqnarray*}
+		E\!\left[\,X^{(n)}_{t}\,\right]
+		&=&
+		E\!\left[\;\,
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
+		\left\{\;
+		S_{i-1} \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}
+		\,\right\}
+		\;\right]
+		\\
+		& = &
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
+		\left\{\;
+		E\!\left[\, S_{i-1}\,\right] \;+\; n\left(t - \dfrac{i-1}{n}\right)\cdot E\!\left[\;\xi_{i}\;\right]
+		\;\right\}
+		\;\; = \;\; 0.
+		\end{eqnarray*}
+		And, for each $n \in \N$, and each $t \in \left[\dfrac{i-1}{n},\dfrac{i}{n}\right]$, $i = 1,2,\ldots,n$, 
+		\begin{eqnarray*}
+		\Var\!\left[\,X^{(n)}_{t}\,\right]
+		&=&
+		\Var\!\left[\;\,
+		\dfrac{1}{\sigma^{2}\cdot\sqrt{n}}
+		\left\{\;
+		S_{i-1} \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}
+		\,\right\}
+		\;\right]
+		\\
+		& = &
+		\dfrac{1}{n\,\sigma^{2}}
+		\left\{\;
+		\Var\!\left[\, S_{i-1}\,\right] \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}\cdot \Var\!\left[\;\xi_{i}\;\right]
+		\;\right\}
+		\\
+		& = &
+		\dfrac{1}{n\,\sigma^{2}}
+		\left\{\;
+		(i-1)\cdot\sigma^{2} \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}\cdot\sigma^{2}
+		\;\right\}
+		\\
+		& = &
+		\dfrac{1}{n}\cdot
+		\left\{\;
+		(i-1) \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}
+		\;\right\}.
+		\end{eqnarray*}
+
+\qed
+
+\vskip 0.5cm
+\begin{remark}
+\mbox{}
+\vskip 0.0cm
+\noindent
+By the Central Limit Theorem,
+\begin{equation*}
+X^{(n)}_{t}
+\end{equation*}
+\end{remark}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

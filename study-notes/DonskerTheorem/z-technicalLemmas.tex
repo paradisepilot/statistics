@@ -1,0 +1,311 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical Lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{definition}\label{definition:OuterMeasure}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $\Omega$ be a non-empty set and $\mathcal{P}(\Omega)$ denote the power set of $\Omega$.
+An \textbf{outer measure} on $\Omega$ is a function
+$\varphi : \mathcal{P}(\Omega) \longrightarrow [0,\infty]$
+satisfying the following conditions:
+\begin{itemize}
+\item	$\varphi(\,\varemptyset\,) = 0$.
+\item	monotonicity: $\varphi(A) \;\leq\; \varphi(B)$, for every $A, B \in \mathcal{P}(\Omega)$ with $A \subset B$.
+\item	countable sub-additivity:
+		\begin{equation*}
+		\varphi\!\left(\;\bigcap_{i=1}^{\infty}\,A_{i}\right)
+		\;\; \leq \;\; \sum_{i=1}^{\infty}\,\varphi\!\left(\,A_{i}\,\right),
+		\quad
+		\textnormal{for any $A_{1}, A_{2}, \,\ldots\, \in \mathcal{P}(\Omega)$}.
+		\end{equation*}
+\end{itemize}
+\end{definition}
+
+\begin{definition}\label{definition:Measurability}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $\Omega$ be a non-empty set and $\mathcal{P}(\Omega)$ denote the power set of $\Omega$.
+Let $\varphi : \mathcal{P}(\Omega) \longrightarrow [0,\infty]$ be an outer measure on $\Omega$.
+A subset $A \subset \Omega$ is said to be $\varphi$-measurable if
+\begin{equation*}
+\varphi(E) \;=\; \varphi(\,A \,\cap\, E\,) \;+\; \varphi(\,A^{c}\,\cap\, E\,),
+\quad
+\textnormal{for every $E \in \mathcal{P}(\Omega)$}.
+\end{equation*}
+\end{definition}
+
+\begin{theorem}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $\Omega$ be a non-empty set and $\mathcal{P}(\Omega)$ denote the power set of $\Omega$.
+Let $\varphi : \mathcal{P}(\Omega) \longrightarrow [0,\infty]$ be an outer measure on $\Omega$.
+\begin{enumerate}
+\item	A subset $A \subset \Omega$ is $\varphi$-measurable if and only if
+		\begin{equation*}
+		\varphi(E) \;\;\geq\;\; \varphi(\,A \,\cap\, E\,) \;+\; \varphi(\,A^{c}\,\cap\, E\,),
+		\quad
+		\textnormal{for every $E \in \mathcal{P}(\Omega)$}.
+		\end{equation*}
+\item	The collection $\mathcal{A}(\varphi)$ of \,$\varphi$-measurable subsets of \,$\Omega$
+		forms a $\sigma$-algebra of subsets of $\Omega$.
+\item	The restriction $\varphi\,\vert_{\mathcal{A}(\varphi)}$ of the outer measure $\varphi$ to the
+		$\sigma$-algebra $\mathcal{A}(\varphi)$ is a (countably additive) complete measure on
+		the measurable space $\left(\,\Omega,\mathcal{A}(\varphi)\,\right)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}\label{lemma:CompactImpliesSeparable}
+\mbox{}
+\vskip 0.3cm
+\noindent
+Every compact subset of a metric space is also a separable subset of that metric space.
+\end{lemma}
+\proof
+Let $(X,\rho)$ be a metric space and $K \subset X$ be a compact subset of $X$.
+For each $x \in X$ and positive $r > 0$, let
+\begin{equation*}
+B(x,r)
+\;\; := \;\; \left\{\;y \in X \;\vert\; \rho(x,y) < r \;\right\}
+\;\;\subset\;\; X,
+\end{equation*}
+i.e. $B(x,r)$ is the open ball in $X$ centred at $x$ with radius $r > 0$.
+For each $n \in \N$, the following forms an open cover of $K$:
+\begin{equation*}
+\mathcal{C}_{n}
+\;\; := \;\;
+\left\{\;
+\left.
+B\!\left(x,\dfrac{1}{n}\right) \;\subset\; X
+\;\;\right\vert\;\;
+x \in K
+\,\;\right\}.
+\end{equation*}
+Since $K$ is compact, each $\mathcal{C}_{n}$ admits a finite subcover:
+\begin{equation*}
+\mathcal{F}_{n}
+\;\; := \;\;
+\left\{\;
+\left.
+B\!\left(\,x^{(n)}_{i},\dfrac{1}{n}\,\right) \;\subset\; X
+\;\;\right\vert\;\;
+x^{(n)}_{i} \in K,\;\;
+i = 1, 2, \ldots, J_{n}
+\,\;\right\}.
+\end{equation*}
+Let
+\begin{equation*}
+\mathcal{D}_{n}
+\;\; := \;\;
+\left\{\;
+\left.
+x^{(n)}_{i} \in\; K
+\;\;\right\vert\;\;
+i = 1, 2, \ldots, J_{n}
+\,\;\right\}
+\;\; \subset \;\; K,
+\end{equation*}
+and let $\mathcal{D} \,:=\, \overset{\infty}{\underset{n=1}{\bigcup}}\,\mathcal{D}_{n} \,\subset\, K$.
+We claim that $\mathcal{D}$ is dense in $K$.
+Indeed, let $y \in K$. Since each $\mathcal{F}_{n}$ is a (finite) open cover of $K$, we have:
+\begin{equation*}
+y \;\; \in \;\; K \;\; \subset \;\; \bigcup_{i=1}^{J_{n}}\,B\!\left(\,x^{(n)}_{i},\dfrac{1}{n}\,\right),
+\quad
+\textnormal{for each $n \in \N$}.
+\end{equation*}
+Since $x^{(n)}_{i} \in \mathcal{D}$, for each $i = 1, 2, \ldots, J_{n}$ and for each $n \in \N$,
+the above inclusion shows that, for each $n \in \N$, there exists some $x \in \mathcal{D}$ such that $\rho(y,x) < \dfrac{1}{n}$.
+In particular, $\mathcal{D}$ contains a sequence that converges to $y \in K$.
+Since $y \in K$ is an arbitrary element of $K$, we see that $\overline{D} \supset K$.
+Since $\mathcal{D} \subset K$ and $K$ is compact, hence closed, we trivially have $\overline{D} \subset K$.
+We may now conclude that $\overline{D} = K$.
+This completes the proof of the Lemma.
+\qed
+
+\vskip 0.6cm
+\begin{lemma}\label{lemma:CountableUnionsOfSeparablesAreSeparable}
+\mbox{}
+\vskip 0.3cm
+\noindent
+Every countable union of separable subsets of a metric space is itself a separable subset of that metric space.
+\end{lemma}
+\proof
+Let $S := \overset{\infty}{\underset{i=1}{\bigcup}}S_{i} \subset X$ be a countable union
+of separable subsets $S_{i}$ of a metric space $X$.
+For each fixed $i \in \N$,
+since $S_{i}$ is separable, there exists countable $D_{i} \subset S_{i}$ which is dense in $S_{i}$.
+Let $D := \overset{\infty}{\underset{i=1}{\bigcup}}D_{i}$.
+Then, $D$ is a countable subset of $S$.
+The Lemma is proved once we establish that $D$ is dense in $S$.
+To this end, let $x \in S = \overset{\infty}{\underset{i=1}{\bigcup}}S_{i}$.
+Then, $x \in S_{i}$ for some $i \in \N$.
+Since $D_{i}$ is dense in $S_{i}$, there exists a sequence
+$\{\,y_{k}\,\} \subset D_{i} \subset D$ such that $y_{k} \longrightarrow x$, as $k \longrightarrow \infty$.
+This proves that $D$ is indeed dense in $S$, and completes the proof of the Lemma.
+\qed
+
+\vskip 0.6cm
+\begin{lemma}[second theorem in Appendix M3, \cite{Billingsley1999}]
+\label{lemma:ExistenceOfScriptA}
+\mbox{}
+\vskip 0.3cm
+\noindent
+Let $(S,\rho)$ be a metric space and $\Sigma \subset S$ a separable subset of $S$.
+Then, there exists a countable collection $\mathcal{A}$ of open subsets of $S$ satisfying the following property:
+For each $x \in S$ and each open subset $G$ of $S$,
+\begin{equation*}
+x \; \in \; G\,\bigcap\,\Sigma
+\quad
+\Longrightarrow
+\quad
+x \,\in\, A \,\subset\, \overline{A} \,\subset\, G,
+\;\;\textnormal{for some $A \in \mathcal{A}$}.
+\end{equation*} 
+\end{lemma}
+\proof
+Let $D \subset \Sigma$ be a countable dense subset of $\Sigma$.
+Let
+\begin{equation*}
+\mathcal{A}
+\;\; := \;\;
+\left\{\;\;
+B(d,r) \;\subset\; S
+\;\;\left\vert\;
+\begin{array}{c} d \in D, \\ r \in \Q, \; r > 0 \end{array}
+\right.
+\right\}.
+\end{equation*}
+Then, $\mathcal{A}$ is a countable collection of open balls in $S$.
+Now, let $G \subset S$ be an arbitrary open subset of $S$ and $x \in G \,\bigcap\, \Sigma$.
+First, choose $\varepsilon > 0$ such that $B(x,\varepsilon) \subset G$.
+Next, since $x \in \Sigma$ and $D$ is dense in $\Sigma$,
+we may choose $d \in D$ such that $d \in B(x,\varepsilon/2)$, or equivalently $\rho(x,d) < \varepsilon / 2$.
+Finally choose positive rational $r > 0$ such that $\rho(x,d) < r < \varepsilon / 2$.
+
+\vskip 0.3cm
+\noindent
+Now, note that $\overline{B(d,r)} \subset B(x,\varepsilon)$; indeed,
+\begin{equation*}
+y \in \overline{B(d,r)}
+\quad\Longleftrightarrow\quad \rho(y,d) \leq r
+\quad\Longrightarrow\quad \rho(x,y) \;\leq\; \rho(x,d) + \rho(d,y) \;<\; \varepsilon/2 + r \;<\; \varepsilon/2 + \varepsilon/2
+\quad\Longrightarrow\quad y \in B(x,\varepsilon).
+\end{equation*}
+Thus, we have
+\begin{equation*}
+x \;\; \in \;\; B(d,r) \;\; \subset \;\; \overline{B(d,r)} \;\; \subset \;\; B(x,\varepsilon) \;\; \subset \;\; G.
+\end{equation*}
+This completes the proof of the Lemma.
+\qed
+
+\vskip 0.6cm
+\begin{theorem}[The Diagonal Method, Appendix A.14, \cite{Billingsley1995}]
+\label{theorem:DiagonalMethod}
+\mbox{}
+\vskip 0.3cm
+\noindent
+Suppose that each row of the array
+\begin{equation*}
+\begin{array}{cccc}
+x_{1,1} & x_{1,2} & x_{1,3} & \cdots \\
+x_{2,1} & x_{2,2} & x_{2,3} & \cdots \\
+\vdots & \vdots & \vdots & \vdots  
+\end{array}
+\end{equation*}
+is a bounded sequence of real numbers.
+Then, there exists an increasing sequence
+\begin{equation*}
+n_{1} \; < \; n_{2} \; < \; n_{3} \; < \cdots \; \in \; \N
+\end{equation*}
+of positive integers such that the limit
+\begin{equation*}
+\lim_{k\rightarrow\infty}\,x_{r,n_{k}}
+\;\;\textnormal{exists, \;\;for each $r = 1, 2, 3, \ldots$}
+\end{equation*}
+\end{theorem}
+\proof
+From the first row, select a convergent subsequence
+\begin{equation*}
+x_{1,n(1,1)},\;\;
+x_{1,n(1,2)},\;\; 
+x_{1,n(1,3)},\;\;
+\cdots\cdots 
+\end{equation*}
+Here, we have $n(1,1) < n(1,2) < n(1,3) < \cdots \;\in\;\N$, and
+$\underset{k\rightarrow\infty}{\lim}\,x_{1,n(1,k)} \in \Re$ exists.
+Next, note that the following subsequence of the second row:
+\begin{equation*}
+x_{2,n(1,1)},\;\;
+x_{2,n(1,2)},\;\; 
+x_{2,n(1,3)},\;\;
+\cdots\cdots 
+\end{equation*}
+is still a bounded sequence of real numbers, and we may thus
+select a convergent subsequence:
+\begin{equation*}
+x_{2,n(2,1)},\;\;
+x_{2,n(2,2)},\;\; 
+x_{2,n(2,3)},\;\;
+\cdots\cdots 
+\end{equation*}
+Here, we have $n(2,1) < n(2,2) < n(2,3) < \cdots \;\in\;\{\,n(1,k)\,\}_{k\in\N}$, and
+$\underset{k\rightarrow\infty}{\lim}\,x_{2,n(2,k)} \in \Re$ exists.
+Continuing inductively, we obtain an array of positive integers
+\begin{equation*}
+\begin{array}{cccc}
+n(1,1) & n(1,2) & n(1,3) & \cdots \\
+n(2,1) & n(2,2) & n(2,3) & \cdots \\
+\vdots & \vdots & \vdots & \vdots  
+\end{array}
+\end{equation*}
+which satisfies: For each $r \in \N$, we have
+\begin{itemize}
+\item	each row is an increasing sequence of positive integers, i.e. $n(r,1) \,<\, n(r,2) \,<\, n(r,3) \,<\, \cdots$,
+\item	the $(r+1)^{\textnormal{th}}$ row is a subsequence of the $r^{\textnormal{th}}$ row, i.e.
+		$\{\,n(r+1,k)\,\}_{k\in\N} \;\subset\; \{\,n(r,k)\,\}_{k\in\N}$,
+		%which in turn implies $n(k,k+1) < n(k+1,k+1)$, for each $k \in \N$,
+		and
+\item	$\underset{k\rightarrow\infty}{\lim}\,x_{r,n(r,k)} \,\in\, \Re$ exists.
+\end{itemize}
+Note that the first two properties together imply:
+\begin{equation*}
+n(k,k) \;\;<\;\; n(k,k+1) \;\;\leq\;\; n(k+1,k+1),
+\quad
+\textnormal{for each $k \in \N$}.
+\end{equation*} 
+Now, define $n_{k} \,:=\, n(k,k)$, for $k \in \N$.
+We then see that
+\begin{equation*}
+n_{k} \;\; := \;\; n(k,k) \;\; < n(k+1,k+1) \;\; =: \;\; n_{k+1},
+\end{equation*}
+i.e., $\{\,n_{k}\,\}_{k\in\N}$ is a strictly increasing sequence of positive integers.
+Lastly, for each $r \in \N$, consider the sequence
+\begin{equation*}
+x_{r,n_{1}}\,,\;\;
+x_{r,n_{2}}\,,\;\;
+x_{r,n_{3}}\,,\;\;
+\cdots
+\end{equation*}
+Note that, for each $r \in \N$,
+\begin{equation*}
+x_{r,n_{r}}\,,\;\;
+x_{r,n_{r+1}}\,,\;\;
+x_{r,n_{r+2}}\,,\;\;
+\cdots
+\end{equation*}
+is a subsequence of $\{\,x_{r,n(r,k)}\,\}_{k\in\N}$.
+We saw above that $\underset{k\rightarrow\infty}{\lim}\,x_{r,n(r,k)}$ exists,
+which in turn implies that $\underset{k\rightarrow\infty}{\lim}\,x_{r,n_{k}}$ exists.
+Since $r \in \N$ is arbitrary, the proof of the Theorem is now complete.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
