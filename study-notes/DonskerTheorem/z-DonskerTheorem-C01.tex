@@ -96,6 +96,171 @@ Then, the following statements are true:
 \end{enumerate}
 \end{proposition}
 \proof
+\begin{enumerate}
+\item	Obvious.
+\item	Obvious.
+\item	The statement holds trivially for $t = 0$.
+		We prove the statement for $t \in (0,1]$.
+		Now, for each $t \in (0,1]$, note that
+		\begin{equation*}
+		X^{(n)}_{t}(\omega)
+		\;\; = \;\;
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
+		\left\{\;
+		S_{\lfloor nt \rfloor}(\omega) \;+\; \left(\overset{{\color{white}1}}{nt} - \lfloor nt \rfloor\right)\cdot\xi_{\lfloor nt \rfloor+1}(\omega)
+		\,\right\},
+		\end{equation*}
+		where $\lfloor\,\cdot\,\rfloor\,:\,\Re\;\longrightarrow\;\Z$, defined by
+		\begin{equation*}
+		\lfloor\,x\,\rfloor
+		\;\;:=\;\;
+		\max\left\{
+		\left. k \in \overset{{\color{white}1}}{\Z} \,\;\right\vert\; k \leq x
+		\,\right\},
+		\quad
+		\textnormal{for each $x \in \Re$},
+		\end{equation*}
+		is the round-down function.
+
+		\vskip 0.5cm
+		\begin{center}
+		\begin{minipage}{6.0in}
+		\noindent
+		\textbf{Claim 1:}
+		\begin{equation*}
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
+		\cdot
+		S_{\lfloor nt \rfloor}
+		\;\; \overset{d}{\longrightarrow} \;\;
+		\sqrt{t}\cdot Z,
+		\quad
+		\textnormal{where $Z\,\sim\,N(0,1)$}.
+		\end{equation*}
+		\end{minipage}
+		\end{center}
+		
+		\vskip 0.5cm
+		\begin{center}
+		\begin{minipage}{6.0in}
+		\noindent
+		\textbf{Claim 2:}
+		\begin{equation*}
+		B_{n} \;\; := \;\;
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
+		\cdot
+		\left(\overset{{\color{white}1}}{nt} - \lfloor nt \rfloor\right)
+		\cdot
+		\xi_{\lfloor nt \rfloor + 1}
+		\;\; \overset{d}{\longrightarrow} \;\;
+		0.
+		\end{equation*}
+		\end{minipage}
+		\end{center}
+		The desired statement now follows by Slutsky's Theorem (Corollary, p.40, \cite{Ferguson1996}).
+		
+		\vskip 0.5cm
+		\noindent
+		\underline{Proof of Claim 1:}\quad
+		Note that
+		\begin{equation*}
+		\dfrac{1}{\sigma\cdot\sqrt{n}} \cdot S_{\lfloor nt \rfloor}
+		\;\; = \;\;
+		\dfrac{\sqrt{\lfloor nt \rfloor}}{\sqrt{n}} \left(\;\dfrac{1}{\sigma\cdot\sqrt{\lfloor nt \rfloor}} \cdot S_{\lfloor nt \rfloor}\;\right),
+		\end{equation*}
+		and
+		\begin{equation*}
+		\dfrac{\sqrt{\lfloor nt \rfloor}}{\sqrt{n}}
+		\;\; \longrightarrow \;\; \sqrt{t},
+		\quad
+		\textnormal{as $n \longrightarrow \infty$}.
+		\end{equation*}
+		Hence, Claim 1 follows by Slutsky's Theorem (Example 6, p.40, \cite{Ferguson1996}),
+		once we establish the following:
+		\begin{equation*}
+		\;\dfrac{1}{\sigma\cdot\sqrt{\lfloor nt \rfloor}} \cdot S_{\lfloor nt \rfloor}
+		\;\; \overset{d}{\longrightarrow} \;\; N(0,1),
+		\quad
+		\textnormal{as $n \longrightarrow \infty$}.
+		\end{equation*}
+		Note that, for each fixed $t \in (0,1]$, $\left\{\,\lfloor \overset{{\color{white}~}}{nt} \rfloor\,\right\}_{n\in\N}$ is a sequence of positive integers
+		non-decreasing in $n \in \N$ and satisfying $\underset{n\rightarrow\infty}{\lim}\lfloor nt \rfloor = \infty$.
+		
+
+		\vskip 0.5cm
+		\noindent
+		\underline{Proof of Claim 2:}\quad
+		First, note that $E\!\left[\;B_{n}\;\right] = 0$.
+		We now argue that $B_{n} \overset{p}{\longrightarrow} 0$.
+		To this end, let $\varepsilon > 0$ be given.
+		Then,
+		\begin{eqnarray*}
+		\varepsilon^{2} \cdot P\!\left(\,\vert\,B_{n}\,\vert\,\geq\,\varepsilon\,\right)
+		&\leq& E\!\left[\;B^{2}_{n} \cdot I_{\{\,\vert\,B_{n}\,\vert\,\geq\,\varepsilon\,\}}\;\right]
+		\\
+		&\leq& E\!\left[\;B_{n}^{2}\;\right]
+		\;\;=\;\; \Var\!\left(\;B_{n}\;\right)
+		\;\;=\;\;
+			\Var\!\left[\;
+				\dfrac{1}{\sigma\cdot\sqrt{n}}
+				\cdot
+				\left(\overset{{\color{white}1}}{nt} - \lfloor nt \rfloor\right)
+				\cdot
+				\xi_{\lfloor nt \rfloor + 1}
+			\;\right]
+		\\
+		&=&
+			\dfrac{1}{n\cdot\sigma^{2}}
+			\cdot
+			\left(\overset{{\color{white}1}}{nt} - \lfloor\,nt\,\rfloor\right)^{2}
+			\cdot
+			\Var\!\left(\;\xi_{\lfloor nt \rfloor + 1}\;\right)
+		\;\;=\;\;
+			\dfrac{1}{n\cdot\sigma^{2}}
+			\cdot
+			\left(\overset{{\color{white}1}}{nt} - \lfloor\,nt\,\rfloor\right)^{2}
+			\cdot
+			\sigma^{2}
+		\\
+		&\leq& \dfrac{1}{n},
+		\end{eqnarray*}
+		which implies
+		\begin{equation*}
+		\lim_{n\rightarrow\infty}\,P\!\left(\;\vert\,B_{n}\,\vert\,\geq\,\varepsilon\;\right) \; = \; 0,
+		\;\;
+		\textnormal{for each $\varepsilon > 0$},
+		\end{equation*}
+		i.e. $B_{n}\overset{p}{\longrightarrow}0$, as $n\longrightarrow\infty$
+		(Definition 2, Chapter 1, \cite{Ferguson1996}),
+		which is equivalent to $B_{n}\overset{d}{\longrightarrow}0$, as $n\longrightarrow\infty$
+		(by Theorem 1, Chapter 1 and Theorem 2, Chapter 2, \cite{Ferguson1996}).
+		This proves Claim 2.
+		
+		First, recall that, by the Central Limit Theorem, we have:
+		\begin{equation*}
+		\dfrac{1}{\sigma\sqrt{n}} \cdot S_{n}
+		\;\; \overset{d}{\longrightarrow} \;\;
+		N(0,1),
+		\quad
+		\textnormal{as $n \longrightarrow \infty$}.
+		\end{equation*}
+		By Theorem 2.6, \cite{Billingsley1999}, the above convergence is equivalent to:
+		\begin{center}
+		For each subsequence $\left\{\,n_{i}\right\}_{i\in\N}$ of $\{\,1,2,\ldots\,\}$, there exists a further subsequence
+		$\left\{\,n_{i(k)}\right\}_{k\in\N}$ such that
+		\begin{equation*}
+		\dfrac{1}{\sigma\sqrt{n_{i(k)}}} \cdot S_{n_{i(k)}}
+		\;\; \overset{d}{\longrightarrow} \;\;
+		N(0,1),
+		\quad
+		\textnormal{as $k \longrightarrow \infty$}.
+		\end{equation*}		
+		\end{center}
+		Note that $\lfloor\,\cdot\,\rfloor$ is non-decreasing over all of $\Re$.
+		Hence, for each fixed $t \in (0,1]$, $\left\{\,\lfloor\,nt\,\rfloor\,\right\}_{n\in\N}$
+		is a non-decreasing sequence of non-negative integers satisfying
+		$\lfloor\,nt\,\rfloor \longrightarrow \infty$ as $n \longrightarrow \infty$.
+
+\end{enumerate}
 
 		\begin{eqnarray*}
 		E\!\left[\,X^{(n)}_{t}\,\right]
@@ -119,7 +284,7 @@ Then, the following statements are true:
 		\Var\!\left[\,X^{(n)}_{t}\,\right]
 		&=&
 		\Var\!\left[\;\,
-		\dfrac{1}{\sigma^{2}\cdot\sqrt{n}}
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
 		\left\{\;
 		S_{i-1} \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}
 		\,\right\}
