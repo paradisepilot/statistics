@@ -127,6 +127,7 @@ Then, the following statements are true:
 		\begin{minipage}{6.0in}
 		\noindent
 		\textbf{Claim 1:}
+		\quad For each fixed $t \in (0,1]$,
 		\begin{equation*}
 		\dfrac{1}{\sigma\cdot\sqrt{n}}
 		\cdot
@@ -144,6 +145,7 @@ Then, the following statements are true:
 		\begin{minipage}{6.0in}
 		\noindent
 		\textbf{Claim 2:}
+		\quad For each fixed $t \in (0,1]$,
 		\begin{equation*}
 		B_{n} \;\; := \;\;
 		\dfrac{1}{\sigma\cdot\sqrt{n}}
@@ -182,10 +184,59 @@ Then, the following statements are true:
 		\quad
 		\textnormal{as $n \longrightarrow \infty$}.
 		\end{equation*}
-		Note that, for each fixed $t \in (0,1]$, $\left\{\,\lfloor \overset{{\color{white}~}}{nt} \rfloor\,\right\}_{n\in\N}$ is a sequence of positive integers
-		non-decreasing in $n \in \N$ and satisfying $\underset{n\rightarrow\infty}{\lim}\lfloor nt \rfloor = \infty$.
+		By Theorem 2.6, p.20, \cite{Billingsley1999}, it suffices to show that:
+		\begin{equation}\label{ClaimOneSubsequence}
+		\begin{array}{l}
+		\textnormal{Every subsequence \;$\{\,A_{n_{i}}\,\}_{i\in\N}$\; of
+		\;$\left\{\,A_{n} \;\; := \;\; \dfrac{1}{\sigma\cdot\sqrt{\lfloor nt \rfloor}} \cdot S_{\lfloor nt \rfloor}\,\right\}_{n \in \N}$\;
+		contains a further}
+		\\
+		\textnormal{subsequence \;$\left\{\,A_{n_{i_{k}}}\,\right\}_{j\in\N}$\;
+		that converges in distribution to \,$N(0,1)$,\, as \,$k \longrightarrow \infty$.}
+		\end{array}
+		\end{equation}
+		To this end, first recall that by the Central Limit Theorem,
+		\begin{equation*}
+		\dfrac{1}{\sigma\cdot\sqrt{m}}\cdot S_{m}
+		\;\overset{d}{\longrightarrow}\;
+		N(0,1),
+		\quad
+		\textnormal{as $m \longrightarrow \infty$}.
+		\end{equation*}
+		By Theorem 2.6, p.20, \cite{Billingsley1999}, this is equivalent to:
+		\begin{equation}\label{CLTsubsequence}
+		\begin{array}{l}
+		\textnormal{Every
+			subsequence of \;$\left\{\,\dfrac{1}{\sigma\cdot\sqrt{m}}\cdot S_{m}\,\right\}_{m\in\N}$\;
+			contains a further subsequence which converges
+			}
+			\\
+		\textnormal{in distribution to $N(0,1)$.}
+		\end{array}
+		\end{equation}
+		Next, note that, for each fixed
+		$t \in (0,1]$, $\left\{\,\lfloor \overset{{\color{white}~}}{nt} \rfloor\,\right\}_{n\in\N}$
+		is a sequence of positive integers non-decreasing in $n \in \N$ and
+		satisfying $\underset{n\rightarrow\infty}{\lim}\lfloor nt \rfloor = \infty$.
+		Thus, $\left\{\,\lfloor \overset{{\color{white}~}}{nt} \rfloor\,\right\}_{n\in\N}$ is a
+		subsequence of $\N \,=\, \left\{\,1,2,3,\ldots\,\right\}$.
+		Hence, for every subsequence $\{\,n_{i}\,\}_{i\in\N}$ of $\N = \{\,1,2,3,\ldots\,\}$,
+		$\left\{\,\lfloor \overset{{\color{white}~}}{n_{i}\cdot t} \rfloor\,\right\}_{i\in\N}$
+		is itself a subsequence of $\N = \{\,1,2,3,\ldots\,\}$.
+		Therefore, by \eqref{CLTsubsequence},
+		$
+		\left\{\,
+		A_{n_{i}}
+		\;\; := \;\;
+		\dfrac{1}{\sigma\cdot\sqrt{\lfloor n_{i}\cdot t \rfloor}}
+		\cdot
+		S_{\lfloor n_{i}\cdot t \rfloor}
+		\,\right\}_{i \in \N}
+		$
+		contains a further subsequence which converges in distribution to $N(0,1)$;
+		in other words, \eqref{ClaimOneSubsequence} holds.
+		This proves Claim 1.
 		
-
 		\vskip 0.5cm
 		\noindent
 		\underline{Proof of Claim 2:}\quad
@@ -262,52 +313,52 @@ Then, the following statements are true:
 
 \end{enumerate}
 
-		\begin{eqnarray*}
-		E\!\left[\,X^{(n)}_{t}\,\right]
-		&=&
-		E\!\left[\;\,
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\left\{\;
-		S_{i-1} \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}
-		\,\right\}
-		\;\right]
-		\\
-		& = &
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\left\{\;
-		E\!\left[\, S_{i-1}\,\right] \;+\; n\left(t - \dfrac{i-1}{n}\right)\cdot E\!\left[\;\xi_{i}\;\right]
-		\;\right\}
-		\;\; = \;\; 0.
-		\end{eqnarray*}
-		And, for each $n \in \N$, and each $t \in \left[\dfrac{i-1}{n},\dfrac{i}{n}\right]$, $i = 1,2,\ldots,n$, 
-		\begin{eqnarray*}
-		\Var\!\left[\,X^{(n)}_{t}\,\right]
-		&=&
-		\Var\!\left[\;\,
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\left\{\;
-		S_{i-1} \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}
-		\,\right\}
-		\;\right]
-		\\
-		& = &
-		\dfrac{1}{n\,\sigma^{2}}
-		\left\{\;
-		\Var\!\left[\, S_{i-1}\,\right] \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}\cdot \Var\!\left[\;\xi_{i}\;\right]
-		\;\right\}
-		\\
-		& = &
-		\dfrac{1}{n\,\sigma^{2}}
-		\left\{\;
-		(i-1)\cdot\sigma^{2} \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}\cdot\sigma^{2}
-		\;\right\}
-		\\
-		& = &
-		\dfrac{1}{n}\cdot
-		\left\{\;
-		(i-1) \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}
-		\;\right\}.
-		\end{eqnarray*}
+%		\begin{eqnarray*}
+%		E\!\left[\,X^{(n)}_{t}\,\right]
+%		&=&
+%		E\!\left[\;\,
+%		\dfrac{1}{\sigma\cdot\sqrt{n}}
+%		\left\{\;
+%		S_{i-1} \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}
+%		\,\right\}
+%		\;\right]
+%		\\
+%		& = &
+%		\dfrac{1}{\sigma\cdot\sqrt{n}}
+%		\left\{\;
+%		E\!\left[\, S_{i-1}\,\right] \;+\; n\left(t - \dfrac{i-1}{n}\right)\cdot E\!\left[\;\xi_{i}\;\right]
+%		\;\right\}
+%		\;\; = \;\; 0.
+%		\end{eqnarray*}
+%		And, for each $n \in \N$, and each $t \in \left[\dfrac{i-1}{n},\dfrac{i}{n}\right]$, $i = 1,2,\ldots,n$, 
+%		\begin{eqnarray*}
+%		\Var\!\left[\,X^{(n)}_{t}\,\right]
+%		&=&
+%		\Var\!\left[\;\,
+%		\dfrac{1}{\sigma\cdot\sqrt{n}}
+%		\left\{\;
+%		S_{i-1} \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}
+%		\,\right\}
+%		\;\right]
+%		\\
+%		& = &
+%		\dfrac{1}{n\,\sigma^{2}}
+%		\left\{\;
+%		\Var\!\left[\, S_{i-1}\,\right] \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}\cdot \Var\!\left[\;\xi_{i}\;\right]
+%		\;\right\}
+%		\\
+%		& = &
+%		\dfrac{1}{n\,\sigma^{2}}
+%		\left\{\;
+%		(i-1)\cdot\sigma^{2} \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}\cdot\sigma^{2}
+%		\;\right\}
+%		\\
+%		& = &
+%		\dfrac{1}{n}\cdot
+%		\left\{\;
+%		(i-1) \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}
+%		\;\right\}.
+%		\end{eqnarray*}
 
 \qed
 
