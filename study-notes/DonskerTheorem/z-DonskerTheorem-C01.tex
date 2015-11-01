@@ -67,11 +67,6 @@ Then, the following statements are true:
 		over \;$t \in \left[\dfrac{i-1}{n},\dfrac{i}{n}\right]$,
 		\end{center}
 		where $i = 1, 2, \ldots, n$.
-\item	For each $t \in [0,1]$,
-		\begin{equation*}
-		X^{(n)}_{t} \;\; \overset{d}{\longrightarrow} \;\; \sqrt{t}\cdot N(0,1),
-		\;\;\textnormal{as \;$n \longrightarrow \infty$}.
-		\end{equation*}
 \item	For any \;$0 \,\leq\, t_{0} \,<\, t_{1} \,<\, t_{2} \,<\, \cdots \,<\, t_{k} \,\leq\, 1$,
 		\begin{equation*}
 		\left(\;X^{(n)}_{t_{1}} - X^{(n)}_{t_{0}}, \;\ldots\;,\; X^{(n)}_{t_{k}} - X^{(n)}_{t_{k-1}}\;\right)
@@ -99,192 +94,6 @@ Then, the following statements are true:
 \begin{enumerate}
 \item	Obvious.
 \item	Obvious.
-\item	The statement holds trivially for $t = 0$.
-		We prove the statement for $t \in (0,1]$.
-		Now, for each $t \in (0,1]$, note that
-		\begin{equation*}
-		X^{(n)}_{t}(\omega)
-		\;\; = \;\;
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\left\{\;
-		S_{\lfloor nt \rfloor}(\omega) \;+\; \left(\overset{{\color{white}1}}{nt} - \lfloor nt \rfloor\right)\cdot\xi_{\lfloor nt \rfloor+1}(\omega)
-		\,\right\},
-		\end{equation*}
-		where $\lfloor\,\cdot\,\rfloor\,:\,\Re\;\longrightarrow\;\Z$, defined by
-		\begin{equation*}
-		\lfloor\,x\,\rfloor
-		\;\;:=\;\;
-		\max\left\{
-		\left. k \in \overset{{\color{white}1}}{\Z} \,\;\right\vert\; k \leq x
-		\,\right\},
-		\quad
-		\textnormal{for each $x \in \Re$},
-		\end{equation*}
-		is the round-down function.
-
-		\vskip 0.5cm
-		\begin{center}
-		\begin{minipage}{6.0in}
-		\noindent
-		\textbf{Claim 1:}
-		\quad For each fixed $t \in (0,1]$,
-		\begin{equation*}
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\cdot
-		S_{\lfloor nt \rfloor}
-		\;\; \overset{d}{\longrightarrow} \;\;
-		\sqrt{t}\cdot Z,
-		\quad
-		\textnormal{where $Z\,\sim\,N(0,1)$}.
-		\end{equation*}
-		\end{minipage}
-		\end{center}
-		
-		\vskip 0.5cm
-		\begin{center}
-		\begin{minipage}{6.0in}
-		\noindent
-		\textbf{Claim 2:}
-		\quad For each fixed $t \in (0,1]$,
-		\begin{equation*}
-		B_{n} \;\; := \;\;
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\cdot
-		\left(\overset{{\color{white}1}}{nt} - \lfloor nt \rfloor\right)
-		\cdot
-		\xi_{\lfloor nt \rfloor + 1}
-		\;\; \overset{d}{\longrightarrow} \;\;
-		0.
-		\end{equation*}
-		\end{minipage}
-		\end{center}
-		The desired statement now follows by Slutsky's Theorem (Corollary, p.40, \cite{Ferguson1996}).
-		
-		\vskip 0.5cm
-		\noindent
-		\underline{Proof of Claim 1:}\quad
-		Note that
-		\begin{equation*}
-		\dfrac{1}{\sigma\cdot\sqrt{n}} \cdot S_{\lfloor nt \rfloor}
-		\;\; = \;\;
-		\dfrac{\sqrt{\lfloor nt \rfloor}}{\sqrt{n}} \left(\;\dfrac{1}{\sigma\cdot\sqrt{\lfloor nt \rfloor}} \cdot S_{\lfloor nt \rfloor}\;\right),
-		\end{equation*}
-		and
-		\begin{equation*}
-		\dfrac{\sqrt{\lfloor nt \rfloor}}{\sqrt{n}}
-		\;\; \longrightarrow \;\; \sqrt{t},
-		\quad
-		\textnormal{as $n \longrightarrow \infty$}.
-		\end{equation*}
-		Hence, Claim 1 follows by Slutsky's Theorem (Example 6, p.40, \cite{Ferguson1996}),
-		once we establish the following:
-		\begin{equation*}
-		\;\dfrac{1}{\sigma\cdot\sqrt{\lfloor nt \rfloor}} \cdot S_{\lfloor nt \rfloor}
-		\;\; \overset{d}{\longrightarrow} \;\; N(0,1),
-		\quad
-		\textnormal{as $n \longrightarrow \infty$}.
-		\end{equation*}
-		By Theorem 2.6, p.20, \cite{Billingsley1999}, it suffices to show that:
-		\begin{equation}\label{ClaimOneSubsequence}
-		\begin{array}{l}
-		\textnormal{Every subsequence \;$\{\,A_{n_{i}}\,\}_{i\in\N}$\; of
-		\;$\left\{\,A_{n} \;\; := \;\; \dfrac{1}{\sigma\cdot\sqrt{\lfloor nt \rfloor}} \cdot S_{\lfloor nt \rfloor}\,\right\}_{n \in \N}$\;
-		contains a further}
-		\\
-		\textnormal{subsequence that converges in distribution to \,$N(0,1)$.}
-		\end{array}
-		\end{equation}
-		To this end, first recall that by the Central Limit Theorem,
-		\begin{equation*}
-		\dfrac{1}{\sigma\cdot\sqrt{m}}\cdot S_{m}
-		\;\overset{d}{\longrightarrow}\;
-		N(0,1),
-		\quad
-		\textnormal{as $m \longrightarrow \infty$}.
-		\end{equation*}
-		By Theorem 2.6, p.20, \cite{Billingsley1999}, this is equivalent to:
-		\begin{equation}\label{CLTsubsequence}
-		\begin{array}{l}
-		\textnormal{Every
-			subsequence of \;$\left\{\,\dfrac{1}{\sigma\cdot\sqrt{m}}\cdot S_{m}\,\right\}_{m\in\N}$\;
-			contains a further subsequence which converges
-			}
-			\\
-		\textnormal{in distribution to $N(0,1)$.}
-		\end{array}
-		\end{equation}
-		Next, note that, for each fixed
-		$t \in (0,1]$, $\left\{\,\lfloor \overset{{\color{white}~}}{nt} \rfloor\,\right\}_{n\in\N}$
-		is a sequence of positive integers non-decreasing in $n \in \N$ and
-		satisfying $\underset{n\rightarrow\infty}{\lim}\lfloor nt \rfloor = \infty$.
-		Thus, $\left\{\,\lfloor \overset{{\color{white}~}}{nt} \rfloor\,\right\}_{n\in\N}$ is a
-		subsequence of $\N \,=\, \left\{\,1,2,3,\ldots\,\right\}$.
-		Hence, for every subsequence $\{\,n_{i}\,\}_{i\in\N}$ of $\N = \{\,1,2,3,\ldots\,\}$,
-		$\left\{\,\lfloor \overset{{\color{white}~}}{n_{i}\cdot t} \rfloor\,\right\}_{i\in\N}$
-		is itself a subsequence of $\N = \{\,1,2,3,\ldots\,\}$.
-		Therefore, by \eqref{CLTsubsequence},
-		$
-		\left\{\,
-		A_{n_{i}}
-		\;\; := \;\;
-		\dfrac{1}{\sigma\cdot\sqrt{\lfloor n_{i}\cdot t \rfloor}}
-		\cdot
-		S_{\lfloor n_{i}\cdot t \rfloor}
-		\,\right\}_{i \in \N}
-		$
-		contains a further subsequence which converges in distribution to $N(0,1)$;
-		in other words, \eqref{ClaimOneSubsequence} holds.
-		This proves Claim 1.
-		
-		\vskip 0.5cm
-		\noindent
-		\underline{Proof of Claim 2:}\quad
-		First, note that $E\!\left[\;B_{n}\;\right] = 0$.
-		We now argue that $B_{n} \overset{p}{\longrightarrow} 0$.
-		To this end, let $\varepsilon > 0$ be given.
-		Then,
-		\begin{eqnarray*}
-		\varepsilon^{2} \cdot P\!\left(\,\vert\,B_{n}\,\vert\,\geq\,\varepsilon\,\right)
-		&\leq& E\!\left[\;B^{2}_{n} \cdot I_{\{\,\vert\,B_{n}\,\vert\,\geq\,\varepsilon\,\}}\;\right]
-		\\
-		&\leq& E\!\left[\;B_{n}^{2}\;\right]
-		\;\;=\;\; \Var\!\left(\;B_{n}\;\right)
-		\;\;=\;\;
-			\Var\!\left[\;
-				\dfrac{1}{\sigma\cdot\sqrt{n}}
-				\cdot
-				\left(\overset{{\color{white}1}}{nt} - \lfloor nt \rfloor\right)
-				\cdot
-				\xi_{\lfloor nt \rfloor + 1}
-			\;\right]
-		\\
-		&=&
-			\dfrac{1}{n\cdot\sigma^{2}}
-			\cdot
-			\left(\overset{{\color{white}1}}{nt} - \lfloor\,nt\,\rfloor\right)^{2}
-			\cdot
-			\Var\!\left(\;\xi_{\lfloor nt \rfloor + 1}\;\right)
-		\;\;=\;\;
-			\dfrac{1}{n\cdot\sigma^{2}}
-			\cdot
-			\left(\overset{{\color{white}1}}{nt} - \lfloor\,nt\,\rfloor\right)^{2}
-			\cdot
-			\sigma^{2}
-		\\
-		&\leq& \dfrac{1}{n},
-		\end{eqnarray*}
-		which implies
-		\begin{equation*}
-		\lim_{n\rightarrow\infty}\,P\!\left(\;\vert\,B_{n}\,\vert\,\geq\,\varepsilon\;\right) \; = \; 0,
-		\;\;
-		\textnormal{for each $\varepsilon > 0$},
-		\end{equation*}
-		i.e. $B_{n}\overset{p}{\longrightarrow}0$, as $n\longrightarrow\infty$
-		(Definition 2, Chapter 1, \cite{Ferguson1996}),
-		which is equivalent to $B_{n}\overset{d}{\longrightarrow}0$, as $n\longrightarrow\infty$
-		(by Theorem 1, Chapter 1 and Theorem 2, Chapter 2, \cite{Ferguson1996}).
-		This proves Claim 2.
-
 \item	First, note that, for each $\omega \in \Omega$, $n \in\N$, and $t \in [0,1]$, we have
 		\begin{equation*}
 		X^{(n)}_{t}(\omega)
@@ -305,6 +114,11 @@ Then, the following statements are true:
 		\textnormal{for each $x \in \Re$},
 		\end{equation*}
 		is the round-down function.
+		We next state three Claims, whose proofs will be given below.
+		We note that the desired conclusion follows readily from Claim 3 and
+		the Cram\'{e}r-Wold Theorem (Theorem 1.9, p.56, \cite{Shao2003});
+		hence the present proof is complete once we establish the three
+		Claims below.
 
 		\vskip 0.5cm
 		\begin{center}
@@ -337,27 +151,9 @@ Then, the following statements are true:
 		\begin{minipage}{6.0in}
 		\noindent
 		\textbf{Claim 2:}
-		\quad For fixed $0 \,\leq\, s \,<\, t \,\leq\, 1$,
-		\begin{equation*}
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\cdot
-		\left(\,\overset{{\color{white}1}}{S}_{\lfloor nt \rfloor} - S_{\lfloor ns \rfloor}\,\right)
-		\;\; \overset{d}{\longrightarrow} \;\;
-		\sqrt{t - s}\cdot Z,
-		\quad
-		\textnormal{where $Z\,\sim\,N(0,1)$}.
-		\end{equation*}
-		\end{minipage}
-		\end{center}
-
-		\vskip 0.5cm
-		\begin{center}
-		\begin{minipage}{6.0in}
-		\noindent
-		\textbf{Claim 3:}
 		\quad For each fixed $t \in [0,1]$,
 		\begin{equation*}
-		B(t)_{n} \;\; := \;\;
+		W(t)_{n} \;\; := \;\;
 		\dfrac{1}{\sigma\cdot\sqrt{n}}
 		\cdot
 		\left(\overset{{\color{white}1}}{nt} - \lfloor nt \rfloor\right)
@@ -373,36 +169,16 @@ Then, the following statements are true:
 		\begin{center}
 		\begin{minipage}{6.0in}
 		\noindent
-		\textbf{Claim 4:}\quad
-		For $0 \,\leq\, s \,<\, t \,\leq\, 1$,
-		\begin{equation*}
-		X^{(n)}_{t} \,-\, X^{(n)}_{s}
-		\;\; \overset{d}{\longrightarrow} \;\;
-		\sqrt{t - s}\;N(0,1),
-		\quad
-		\textnormal{as \;$n \longrightarrow\infty$}.
-		\end{equation*}
-		\end{minipage}
-		\end{center}
-
-		\vskip 0.5cm
-		\begin{center}
-		\begin{minipage}{6.0in}
-		\noindent
-		\textbf{Claim 5:}\quad
+		\textbf{Claim 3:}\quad
 		For $0 \,\leq\, t_{0} \,<\, t_{1} \,<\, t_{2} \,<\, \cdots \,<\, t_{k} \,\leq\, 1$,
 		and arbitrary $c_{1}, c_{2}, \ldots, c_{k} \in \Re$,
 		\begin{equation*}
 		\sum_{i\,=\,1}^{k}\,c_{i}\left(\,X^{(n)}_{t_{i}} - X^{(n)}_{t_{i-1}}\,\right)
 		\;\; \overset{d}{\longrightarrow} \;\;
-		\sum_{i\,=\,1}^{k}\,c_{i} \,\cdot\, \sqrt{t_{i} - t_{i-1}} \,\cdot\, Z_{i}
-		\;\; \sim \;\;
-		N\!\left(\;0\,,\;\sum_{i\,=\,1}^{k}\,c_{i}^{2}\,(t_{i} - t_{i-1})\;\right),
-		\;\;
-		\textnormal{as \;$n \longrightarrow\infty$},
+		N\!\left(\,0\;,\;\sum_{i\,=\,1}^{k}\,c_{i}^{2}\,(t_{i} - t_{i-1})\;\right),
+		\quad
+		\textnormal{as \;$n \longrightarrow\infty$}.
 		\end{equation*}
-		where $Z_{1}, Z_{2}, \ldots, Z_{k}$ are independent
-		standard Gaussian $\Re$-valued random variables.
 		\end{minipage}
 		\end{center}
 
@@ -489,70 +265,16 @@ Then, the following statements are true:
 		\vskip 0.5cm
 		\noindent
 		\underline{Proof of Claim 2:}\quad
-		Let \,$a_{n} \,:=\, \lfloor ns \rfloor$\, and \,$b_{n} \,:=\, \lfloor nt \rfloor$.
-		Since $0 \leq s < t \leq 1$, it follows that $a_{n} < b_{n}$ for sufficiently large $n \in \N$.
-		In addition,
-		\begin{eqnarray*}
-		\dfrac{b_{n} - a_{n}}{n}
-		&=& \dfrac{\lfloor nt \rfloor - \lfloor ns \rfloor}{n}
-		\;\; = \;\; \dfrac{\lfloor nt \rfloor}{n} - \dfrac{\lfloor ns \rfloor}{n}
-		\;\; = \;\; \left(\dfrac{nt}{n} + \dfrac{\lfloor nt \rfloor - nt}{n}\right)
-			\;-\; \left(\dfrac{ns}{n} + \dfrac{\lfloor ns \rfloor - ns}{n}\right)
-		\\
-		&=& t \;-\; s \;+\;  \dfrac{\lfloor nt \rfloor - nt}{n} - \dfrac{\lfloor ns \rfloor - ns}{n},
-		\end{eqnarray*}
-		which implies
-		\begin{equation*}
-		\left\vert\; \dfrac{b_{n} - a_{n}}{n} \;-\; (t-s) \;\right\vert
-		\;\;=\;\;
-		\left\vert\; \dfrac{\lfloor nt \rfloor - nt}{n} - \dfrac{\lfloor ns \rfloor - ns}{n} \;\right\vert
-		\;\; \leq \;\;
-		\dfrac{2}{n}
-		\;\; \longrightarrow \;\; 0,
-		\quad
-		\textnormal{as \;$n \longrightarrow \infty$}.
-		\end{equation*}
-		Thus,
-		\begin{equation*}
-		\lim_{n\rightarrow\infty}\,\dfrac{b_{n} - a_{n}}{n} \;\;=\;\; t \,-\, s \;\;>\;\; 0.
-		\end{equation*}
-		Next,
-		\begin{eqnarray*}
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\cdot
-		\left(\,\overset{{\color{white}1}}{S}_{\lfloor nt \rfloor} - S_{\lfloor ns \rfloor}\,\right)
-		&=&
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\cdot
-		\left(\;\sum_{i\,=\,1}^{\lfloor nt \rfloor}\xi_{i} \;-\; \sum_{i\,=\,1}^{\lfloor ns \rfloor}\xi_{i} \;\right)
-		\;\;=\;\;
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\cdot
-		\left(\;\sum_{i\,=\,1+\lfloor ns \rfloor}^{\lfloor nt \rfloor}\xi_{i}\;\right)
-		\\
-		&=&
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\cdot
-		\left(\;\sum_{i\,=\,1+a_{n}}^{b_{n}}\xi_{i}\;\right)
-		\;\; \overset{d}{\longrightarrow} \;\;
-		\sqrt{t - s}\;N(0,1),
-		\end{eqnarray*}
-		where the last convergence follows by Claim 1.
-		This completes the proof of Claim 2.
-
-		\vskip 0.5cm
-		\noindent
-		\underline{Proof of Claim 3:}\quad
-		First, note that $E\!\left[\;B(t)_{n}\;\right] = 0$.
-		We now argue that $B(t)_{n} \overset{p}{\longrightarrow} 0$.
+		First, note that $E\!\left[\;W(t)_{n}\;\right] = 0$.
+		We now argue that $W(t)_{n} \overset{p}{\longrightarrow} 0$.
 		To this end, let $\varepsilon > 0$ be given.
 		Then,
 		\begin{eqnarray*}
-		\varepsilon^{2} \cdot P\!\left(\,\vert\,B(t)_{n}\,\vert\,\geq\,\varepsilon\,\right)
-		&\leq& E\!\left[\;B(t)^{2}_{n} \cdot I_{\{\,\vert\,B(t)_{n}\,\vert\,\geq\,\varepsilon\,\}}\;\right]
+		\varepsilon^{2} \cdot P\!\left(\,\vert\,W(t)_{n}\,\vert\,\geq\,\varepsilon\,\right)
+		&\leq& E\!\left[\;W(t)_{n}^{2} \cdot I_{\{\,\vert\,W(t)_{n}\,\vert\,\geq\,\varepsilon\,\}}\;\right]
 		\\
-		&\leq& E\!\left[\;B(t)_{n}^{2}\;\right]
-		\;\;=\;\; \Var\!\left(\;B(t)_{n}\;\right)
+		&\leq& E\!\left[\;W(t)_{n}^{2}\;\right]
+		\;\;=\;\; \Var\!\left(\;W(t)_{n}\;\right)
 		\;\;=\;\;
 			\Var\!\left[\;
 				\dfrac{1}{\sigma\cdot\sqrt{n}}
@@ -579,49 +301,22 @@ Then, the following statements are true:
 		\end{eqnarray*}
 		which implies
 		\begin{equation*}
-		\lim_{n\rightarrow\infty}\,P\!\left(\;\vert\,B(t)_{n}\,\vert\,\geq\,\varepsilon\;\right) \; = \; 0,
+		\lim_{n\rightarrow\infty}\,P\!\left(\;\vert\,W(t)_{n}\,\vert\,\geq\,\varepsilon\;\right) \; = \; 0,
 		\;\;
 		\textnormal{for each $\varepsilon > 0$},
 		\end{equation*}
-		i.e. $B(t)_{n}\overset{p}{\longrightarrow}0$, as $n\longrightarrow\infty$
+		i.e. $W(t)_{n}\overset{p}{\longrightarrow}0$, as $n\longrightarrow\infty$
 		(Definition 2, Chapter 1, \cite{Ferguson1996}),
-		which is equivalent to $B(t)_{n}\overset{d}{\longrightarrow}0$, as $n\longrightarrow\infty$
+		which is equivalent to $W(t)_{n}\overset{d}{\longrightarrow}0$, as $n\longrightarrow\infty$
 		(by Theorem 1, Chapter 1 and Theorem 2, Chapter 2, \cite{Ferguson1996}).
-		This proves Claim 3.
+		This proves Claim 2.
 
 		\vskip 0.5cm
 		\noindent
-		\underline{Proof of Claim 4:}\quad
-		For $0 \,\leq\, s \,<\, t \,\leq\, 1$,
-		\begin{equation*}
-		X^{(n)}_{t} \,-\, X^{(n)}_{s}
-		\;\; = \;\;
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\left\{\,
-			\overset{{\color{white}1}}{S}_{\lfloor nt \rfloor} \,-\, S_{\lfloor ns \rfloor}
-		\,\right\}
-		\;+\;
-		\dfrac{1}{\sigma\cdot\sqrt{n}}
-		\left\{\,
-			\left(\overset{{\color{white}1}}{n}t - \lfloor nt \rfloor\right)\cdot\overset{{\color{white}1}}{\xi}_{\lfloor nt \rfloor+1}
-			\;-\; \left(\overset{{\color{white}1}}{n}s - \lfloor ns \rfloor\right)\cdot\xi_{\lfloor ns \rfloor+1}
-		\,\right\}.
-		\end{equation*}
-		Hence, by Slutsky's Theorem (Corollary, p.40, \cite{Ferguson1996}), and Claim 2 and Claim 3, we have:
-		\begin{equation*}
-		X^{(n)}_{t} \,-\, X^{(n)}_{s}
-		\;\; \overset{d}{\longrightarrow} \;\;
-		\sqrt{t - s}\;N(0,1),
-		\quad
-		\textnormal{as \;$n \longrightarrow\infty$}.
-		\end{equation*}
-		This proves Claim 4.
-
-		\vskip 0.5cm
-		\noindent
-		\underline{Proof of Claim 5:}\quad
-		For $0 \,\leq\, t_{0} \,<\, t_{1} \,<\, t_{2} \,<\, \cdots \,<\, t_{k} \,\leq\, 1$,
-		and arbitrary $c_{1}, c_{2}, \ldots, c_{k} \in \Re$,
+		\underline{Proof of Claim 3:}\quad
+		Let $0 \,\leq\, t_{0} \,<\, t_{1} \,<\, t_{2} \,<\, \cdots \,<\, t_{k} \,\leq\, 1$,
+		and $c_{1}, c_{2}, \ldots, c_{k} \in \Re$ be arbitrary.
+		Observe that:
 		\begin{eqnarray*}
 		&& \overset{k}{\underset{i\,=\,1}{\sum}} \; c_{i}\left(\,X^{(n)}_{t_{i}} - X^{(n)}_{t_{i-1}}\,\right)
 		\\
@@ -643,20 +338,88 @@ Then, the following statements are true:
 			\overset{\lfloor nt_{i} \rfloor}{\underset{j\,=\,1+\lfloor nt_{i-1} \rfloor}{\sum}}\,\xi_{j}
 		\,\right\}
 		\;+\;
-		\overset{k}{\underset{i\,=\,1}{\sum}} \; \dfrac{c_{i}}{\sigma\cdot\sqrt{n}}
-		\left\{\,
-			\left(\overset{{\color{white}1}}{n}t_{i} - \lfloor nt_{i} \rfloor\right)\cdot\overset{{\color{white}1}}{\xi}_{\lfloor nt_{i} \rfloor+1}
-			\;-\; \left(\overset{{\color{white}1}}{n}t_{i-1} - \lfloor nt_{i-1} \rfloor\right)\cdot\xi_{\lfloor nt_{i-1} \rfloor+1}
-		\,\right\}
+		\overset{k}{\underset{i\,=\,1}{\sum}} \; c_{i} \left\{\,\overset{{\color{white}.}}{W}(t_{i})_{n} \;-\; W(t_{i-1})_{n}\,\right\}
 		\\
-		&\overset{d}{\longrightarrow}&
-		\overset{k}{\underset{i\,=\,1}{\sum}} \; c_{i} \,\cdot\, \sqrt{t_{i} - t_{i-1}} \,\cdot\, Z_{i},
-		\;\;\textnormal{as \;$n \,\longrightarrow\, \infty$},
+		&=&
+		\overset{k}{\underset{i\,=\,1}{\sum}} \; c_{i}\,Y^{(n)}_{i}
+		\;+\;
+		\overset{k}{\underset{i\,=\,1}{\sum}} \; c_{i} \left\{\,\overset{{\color{white}.}}{W}(t_{i})_{n} \;-\; W(t_{i-1})_{n}\,\right\}
+		%\\
+		%&\overset{d}{\longrightarrow}&
+		%N\!\left(\;0\;,\;\overset{k}{\underset{i\,=\,1}{\sum}} \; c_{i}^{2}\,(t_{i} - t_{i-1})\;\right),
+		%\;\;\textnormal{as \;$n \,\longrightarrow\, \infty$},
 		\end{eqnarray*}
-		where $Z_{1}, Z_{2}, \ldots, Z_{k}$ are independent standard Gaussian $\Re$-valued random variables,
-		and the convergence in distribution above follows by
-		Slutsky's Theorem (Corollary, p.40, \cite{Ferguson1996}), Claim 2 and Claim 3.
-		This completes the proof of Claim 5.
+		By Claim 2 and Slutsky's Theorem (Corollary, p.40, \cite{Ferguson1996}),
+		\begin{equation}\label{cBconvergesToZeroInProbability}
+		\overset{k}{\underset{i\,=\,1}{\sum}} \; c_{i} \left\{\,\overset{{\color{white}.}}{W}(t_{i})_{n} \;-\; W(t_{i-1})_{n}\,\right\}
+		\;\;\overset{d}{\longrightarrow}\;\; 0,
+		\;\;\textnormal{as \;$n \,\longrightarrow\, \infty$}.				
+		\end{equation}
+		Next, note that since \,$\xi_{1},\, \xi_{2},\, \xi_{3},\, \ldots$\, are independent,
+		we see that, for each fixed $n \in \N$,
+		\begin{equation*}
+		Y^{(n)}_{i}
+		\;\; := \;\;
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
+		\cdot
+		\overset{\lfloor nt_{i} \rfloor}{\underset{j\,=\,1+\lfloor nt_{i-1} \rfloor}{\sum}}\,\xi_{j},
+		\quad
+		i \,=\, 1,\, 2,\, 3,\, \ldots,\, k,
+		\end{equation*}
+		are independent.
+		Now, since $0 \leq t_{i-1} < t_{i} \leq 1$, it follows that
+		\,$\lfloor nt_{i-1} \rfloor \,<\, \lfloor nt_{i} \rfloor$\,
+		for sufficiently large $n \in \N$.
+		In addition,
+		\begin{eqnarray*}
+		\dfrac{\lfloor n t_{i} \rfloor - \lfloor n t_{i-1} \rfloor}{n}
+		& = & \dfrac{\lfloor n t_{i} \rfloor}{n} - \dfrac{\lfloor n t_{i-1} \rfloor}{n}
+		\;\; = \;\; \left(\dfrac{n t_{i}}{n} + \dfrac{\lfloor n t_{i} \rfloor - n t_{i}}{n}\right)
+			\;-\; \left(\dfrac{n t_{i-1}}{n} + \dfrac{\lfloor n t_{i-1} \rfloor - n t_{i-1}}{n}\right)
+		\\
+		&=& t_{i} \;-\; t_{i-1} \;+\;  \dfrac{\lfloor nt_{i} \rfloor - nt_{i}}{n} - \dfrac{\lfloor nt_{i-1} \rfloor - nt_{i-1}}{n},
+		\end{eqnarray*}
+		which implies
+		\begin{equation*}
+		\left\vert\; \dfrac{\lfloor n t_{i} \rfloor - \lfloor n t_{i-1} \rfloor}{n} \;-\; (t_{i}-t_{i-1}) \;\right\vert
+		\;\;=\;\;
+		\left\vert\; \dfrac{\lfloor nt_{i} \rfloor - nt_{i}}{n} - \dfrac{\lfloor nt_{i-1} \rfloor - nt_{i-1}}{n} \;\right\vert
+		\;\; \leq \;\;
+		\dfrac{2}{n}
+		\;\; \longrightarrow \;\; 0,
+		\quad
+		\textnormal{as \;$n \longrightarrow \infty$}.
+		\end{equation*}
+		Thus,
+		\begin{equation*}
+		\lim_{n\rightarrow\infty}\,\dfrac{\lfloor n t_{i} \rfloor - \lfloor n t_{i-1} \rfloor}{n} \;\;=\;\; t_{i} \,-\, t_{i-1} \;\;>\;\; 0.
+		\end{equation*}
+		Thus, by Claim 1, we see that, for each \,$i \,=\, 1,\, 2,\, \ldots,\, k$,
+		\begin{equation}\label{YniGaussianDistributionalLimit}
+		Y^{(n)}_{i}
+		\;\; := \;\;
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
+		\cdot
+		\overset{\lfloor nt_{i} \rfloor}{\underset{j\,=\,1+\lfloor nt_{i-1} \rfloor}{\sum}}\,\xi_{j}
+		\;\; \overset{d}{\longrightarrow} \;\; \sqrt{t_{i}-t_{i-1}} \cdot N(0,1)
+		\;\; = \;\; N\!\left(\,\overset{{\color{white}.}}{0}\,,\,t_{i}-t_{i-1}\,\right),
+		\quad
+		\textnormal{as \;$n \longrightarrow \infty$}.
+		\end{equation}
+		By \eqref{cBconvergesToZeroInProbability},
+		\eqref{YniGaussianDistributionalLimit},
+		Proposition \ref{GaussianDistributionLimit},
+		and Slutsky's Theorem (Corollary, p.40, \cite{Ferguson1996}), we now see that
+		\begin{equation*}
+		\overset{k}{\underset{i\,=\,1}{\sum}} \; c_{i}\left(\,X^{(n)}_{t_{i}} - X^{(n)}_{t_{i-1}}\,\right)
+		\;\;=\;\;
+		\overset{k}{\underset{i\,=\,1}{\sum}} \; c_{i}\,Y^{(n)}_{i}
+		\;+\;
+		\overset{k}{\underset{i\,=\,1}{\sum}} \; c_{i} \left\{\,\overset{{\color{white}.}}{W}(t_{i})_{n} \;-\; W(t_{i-1})_{n}\,\right\}
+		\;\;\overset{d}{\longrightarrow}\;\;
+		N\!\left(\,0\;,\;\sum_{i\,=\,1}^{k}c_{i}^{2}(t_{i}-t_{i-1})\;\right).
+		\end{equation*}		
+		This completes the proof of Claim 3.
 
 \end{enumerate}
 \qed
