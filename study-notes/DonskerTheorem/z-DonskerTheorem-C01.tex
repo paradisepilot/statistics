@@ -116,7 +116,7 @@ Then, the following statements are true:
 		is the round-down function.
 		We next state three Claims, whose proofs will be given below.
 		We note that the desired conclusion follows readily from Claim 3 and
-		the Cram\'{e}r-Wold Theorem (Theorem 1.9, p.56, \cite{Shao2003});
+		the Cram\'{e}r-Wold Theorem (Theorem 1.9(iii), p.56, \cite{Shao2003});
 		hence the present proof is complete once we establish the three
 		Claims below.
 
@@ -421,91 +421,124 @@ Then, the following statements are true:
 		\end{equation*}		
 		This completes the proof of Claim 3.
 
+\item	Let $t_{0} \,:= \, 0$, hence, $X^{(n)}_{t_{0}} \,\equiv\, 0$ for each $n \in \N$.
+		We thus have, for each $n \in \N$,
+		\begin{equation*}
+		\left(\!
+		\begin{array}{c}
+		X^{(n)}_{t_{1}} \\ \\ X^{(n)}_{t_{2}} \\ \\ \vdots \\ \\ X^{(n)}_{t_{k}} 
+		\end{array}
+		\!\right)
+		\;\; = \;\;
+		\underset{\textnormal{\large$T$}}{\underbrace{
+		\left[
+		\begin{array}{ccccccc}
+		1 & 0 & 0 & \cdots & \cdots & 0 & 0 \\
+		1 & 1 & 0 & \cdots & \cdots & 0 & 0 \\
+		1 & 1 & 1 & \cdots & \cdots & 0 & 0 \\
+		\vdots & \vdots & \vdots & \ddots & \ddots & 0 & 0 \\
+		\vdots & \vdots & \vdots & \ddots & \ddots & 0 & 0 \\
+		1 & 1 & 1 & \cdots & \cdots & 1 & 0 \\
+		1 & 1 & 1 & \cdots & \cdots & 1 & 1 \\
+		\end{array}
+		\right]
+		}}
+		\cdot
+		\left(\!
+		\begin{array}{c}
+		X^{(n)}_{t_{1}} \\ \\ X^{(n)}_{t_{2}} - X^{(n)}_{t_{1}} \\ \\ \vdots \\ \\ X^{(n)}_{t_{k}} - X^{(n)}_{t_{k-1}}
+		\end{array}
+		\!\right).
+		\end{equation*}
+		By (iii), we know that
+		\begin{equation*}
+		\left(\!
+		\begin{array}{c}
+		X^{(n)}_{t_{1}} \\ \\ X^{(n)}_{t_{2}} - X^{(n)}_{t_{1}} \\ \\ \vdots \\ \\ X^{(n)}_{t_{k}} - X^{(n)}_{t_{k-1}}
+		\end{array}
+		\!\right)	
+		\;\;\overset{d}{\longrightarrow}\;\;
+		\left(\!
+		\begin{array}{c}
+		Z_{t_{1}} \\ \\ Z_{t_{2} - t_{1}} \\ \\ \vdots \\ \\ Z_{t_{k} - t_{k-1}}
+		\end{array}
+		\!\right)	
+		\;\; \sim \;\;
+		N\!\left(\;\mu = \mathbf{0}\;,\; \overset{{\color{white}1}}{\Sigma} = \diag(t_{1},t_{2}-t_{1},\ldots,t_{k}-t_{k-1})\;\right),
+		\;\;\textnormal{as \;$n \longrightarrow\infty$}.
+		\end{equation*}
+		Since the map \,$\Re^{k} \longrightarrow \Re^{k} : x \longmapsto T\cdot x$\, is continuous,
+		we see immediately by Slutsky's Theorem (Theorem 6(a), p.39, \cite{Ferguson1996}) that
+		\begin{equation*}
+		\left(\!
+		\begin{array}{c}
+		X^{(n)}_{t_{1}} \\ \\ X^{(n)}_{t_{2}} \\ \\ \vdots \\ \\ X^{(n)}_{t_{k}} 
+		\end{array}
+		\!\right)
+		\;\;\overset{d}{\longrightarrow}\;\;
+		T\cdot		
+		\left(\!
+		\begin{array}{c}
+		Z_{t_{1}} \\ \\ Z_{t_{2} - t_{1}} \\ \\ \vdots \\ \\ Z_{t_{k} - t_{k-1}}
+		\end{array}
+		\!\right)	,
+		\quad\textnormal{as \;$n \longrightarrow\infty$}.
+		\end{equation*}
+		Since the map \,$\Re^{k} \longrightarrow \Re^{k} : x \longmapsto T\cdot x$\,
+		is an invertible linear automorphism on $\Re^{k}$, we see that
+		\begin{equation*}
+		L
+		\;\; = \;\;
+		\left(\!
+		\begin{array}{c}
+		L_{t_{1}} \\ \\ L_{t_{2}} \\ \\ \vdots \\ \\ L_{t_{k}}
+		\end{array}
+		\!\right)	
+		\;\; := \;\;
+		T\cdot		
+		\left(\!
+		\begin{array}{c}
+		Z_{t_{1}} \\ \\ Z_{t_{2} - t_{1}} \\ \\ \vdots \\ \\ Z_{t_{k} - t_{k-1}}
+		\end{array}
+		\!\right)	
+		\end{equation*}
+		is still an $\Re^{k}$-valued Gaussian random variable, and
+		it clearly has expectation value \,$\mathbf{0}\,\in\,\Re^{k}$,\,
+		since each of
+		$Z_{t_{1}}$,\, $Z_{t_{2} - t_{1}}$,\, $\ldots$,\, $Z_{t_{k}-t_{k-1}}$
+		has expectation value \,$0 \,\in\, \Re$.
+		It remains only to compute the covariance matrix of the 
+		$\Re^{k}$-valued Gaussian random variable $L$.
+		To this end, consider \,$1 \,\leq\, i \,\leq\, j \,\leq\,k$,\, i.e. \,$t_{i} \,\leq\, t_{j}$.
+		Then, using the alternative notation $Z_{t_{1} -\,t_{0}} := Z_{t_{1}}$,
+		we have
+		\begin{eqnarray*}
+		\Cov\!\left(\,L_{t_{i}}\,,\,L_{t_{j}}\,\right)
+		& = & \Cov\!\left(\,
+			Z_{t_{1}} + Z_{t_{2}-t_{1}} + \cdots + Z_{t_{i} - t_{i-1}}\,,\,
+			Z_{t_{1}} + Z_{t_{2}-t_{1}} + \cdots + Z_{t_{j} - t_{j-1}}
+			\,\right)
+		\\
+		& = & \Cov\!\left(\,
+			\sum_{a\,=\,1}^{i}\,Z_{t_{a}-\,t_{a-1}} \,,\,
+			\sum_{b\,=\,1}^{j}\,Z_{t_{b}-\,t_{b-1}}
+			\,\right)
+		\;\; = \;\; \sum_{a\,=\,1}^{i}\,\sum_{b\,=\,1}^{j}\Cov\!\left(\,Z_{t_{a}-\,t_{a-1}}\,,\,Z_{t_{b}-\,t_{b-1}}\,\right)
+		\\
+		& = & \sum_{a\,=\,1}^{i}\Cov\!\left(\,Z_{t_{a}-\,t_{a-1}}\,,\,Z_{t_{a}-\,t_{a-1}}\,\right)
+		\;\;=\;\; \sum_{a\,=\,1}^{i}\Var\!\left(\,Z_{t_{a}-\,t_{a-1}}\,\right)
+		\;\;=\;\; \sum_{a\,=\,1}^{i}\left(\,t_{a}-\,t_{a-1}\,\right)
+		\\
+		& = & \left(\,t_{1}-\,t_{0}\,\right) \;+\; \left(\,t_{2}-\,t_{1}\,\right)
+			\;+\; \cdots 
+			\;+\; \left(\,t_{i-1}-\,t_{i-2}\,\right) \;+\; \left(\,t_{i}-\,t_{i-1}\,\right)
+		\\
+		& = & t_{i} \;\; = \;\; \min\!\left\{\,t_{i}\,,t_{j}\,\right\},
+		\end{eqnarray*}
+		as required.
+
 \end{enumerate}
 \qed
-
-%		First, recall that, by the Central Limit Theorem, we have:
-%		\begin{equation*}
-%		\dfrac{1}{\sigma\sqrt{n}} \cdot S_{n}
-%		\;\; \overset{d}{\longrightarrow} \;\;
-%		N(0,1),
-%		\quad
-%		\textnormal{as $n \longrightarrow \infty$}.
-%		\end{equation*}
-%		By Theorem 2.6, \cite{Billingsley1999}, the above convergence is equivalent to:
-%		\begin{center}
-%		For each subsequence $\left\{\,n_{i}\right\}_{i\in\N}$ of $\{\,1,2,\ldots\,\}$, there exists a further subsequence
-%		$\left\{\,n_{i(k)}\right\}_{k\in\N}$ such that
-%		\begin{equation*}
-%		\dfrac{1}{\sigma\sqrt{n_{i(k)}}} \cdot S_{n_{i(k)}}
-%		\;\; \overset{d}{\longrightarrow} \;\;
-%		N(0,1),
-%		\quad
-%		\textnormal{as $k \longrightarrow \infty$}.
-%		\end{equation*}		
-%		\end{center}
-%		Note that $\lfloor\,\cdot\,\rfloor$ is non-decreasing over all of $\Re$.
-%		Hence, for each fixed $t \in (0,1]$, $\left\{\,\lfloor\,nt\,\rfloor\,\right\}_{n\in\N}$
-%		is a non-decreasing sequence of non-negative integers satisfying
-%		$\lfloor\,nt\,\rfloor \longrightarrow \infty$ as $n \longrightarrow \infty$.
-
-%		\begin{eqnarray*}
-%		E\!\left[\,X^{(n)}_{t}\,\right]
-%		&=&
-%		E\!\left[\;\,
-%		\dfrac{1}{\sigma\cdot\sqrt{n}}
-%		\left\{\;
-%		S_{i-1} \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}
-%		\,\right\}
-%		\;\right]
-%		\\
-%		& = &
-%		\dfrac{1}{\sigma\cdot\sqrt{n}}
-%		\left\{\;
-%		E\!\left[\, S_{i-1}\,\right] \;+\; n\left(t - \dfrac{i-1}{n}\right)\cdot E\!\left[\;\xi_{i}\;\right]
-%		\;\right\}
-%		\;\; = \;\; 0.
-%		\end{eqnarray*}
-%		And, for each $n \in \N$, and each $t \in \left[\dfrac{i-1}{n},\dfrac{i}{n}\right]$, $i = 1,2,\ldots,n$, 
-%		\begin{eqnarray*}
-%		\Var\!\left[\,X^{(n)}_{t}\,\right]
-%		&=&
-%		\Var\!\left[\;\,
-%		\dfrac{1}{\sigma\cdot\sqrt{n}}
-%		\left\{\;
-%		S_{i-1} \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}
-%		\,\right\}
-%		\;\right]
-%		\\
-%		& = &
-%		\dfrac{1}{n\,\sigma^{2}}
-%		\left\{\;
-%		\Var\!\left[\, S_{i-1}\,\right] \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}\cdot \Var\!\left[\;\xi_{i}\;\right]
-%		\;\right\}
-%		\\
-%		& = &
-%		\dfrac{1}{n\,\sigma^{2}}
-%		\left\{\;
-%		(i-1)\cdot\sigma^{2} \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}\cdot\sigma^{2}
-%		\;\right\}
-%		\\
-%		& = &
-%		\dfrac{1}{n}\cdot
-%		\left\{\;
-%		(i-1) \;+\; n^{2}\left(t - \dfrac{i-1}{n}\right)^{2}
-%		\;\right\}.
-%		\end{eqnarray*}
-
-%\vskip 0.5cm
-%\begin{remark}
-%\mbox{}
-%\vskip 0.0cm
-%\noindent
-%By the Central Limit Theorem,
-%\begin{equation*}
-%X^{(n)}_{t}
-%\end{equation*}
-%\end{remark}
 
 %\renewcommand{\theenumi}{\alph{enumi}}
 %\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
