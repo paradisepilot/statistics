@@ -80,14 +80,12 @@ This proves $\sigma\!\left(\,\mathcal{S}\,\right) \,=\, \mathcal{B}$.
 \noindent
 Suppose:
 \begin{itemize}
-\item	$\left(\Omega,\mathcal{A}\right)$ is a measurable space.
-\item	Let \,$(\Czo\,,\Vert\cdot\Vert_{\infty})$\, denote the metric space
+\item	$\left(\Omega,\mathcal{A}\right)$ is a measurable space, and
+		$\mathcal{O}$ is the Borel $\sigma$-algebra of $\Re$ (equipped with usual Euclidean metric).
+\item	$(\Czo\,,\Vert\cdot\Vert_{\infty})$\, is the metric space
 		of continuous $\Re$-valued functions defined on the compact unit interval
-		equipped with the supremum norm.
-		\vskip 0.1cm
-		Let \,$\mathcal{B} \,:=\, \mathcal{B}(\Czo,\Vert\cdot\Vert_{\infty})$ denote the Borel $\sigma$-algebra
-		of the metric space $(\Czo,\Vert\cdot\Vert_{\infty})$.
-\item	Let \,$\mathcal{O}$ denote the Borel $\sigma$-algebra of $\Re$ (equipped with usual Euclidean metric).
+		equipped with the supremum norm, and 
+		\,$\mathcal{B} \,:=\, \mathcal{B}(\Czo\,,\Vert\cdot\Vert_{\infty})$ is its Borel $\sigma$-algebra.
 \item	$X : \Omega \longrightarrow \Czo$ is a function with domain $\Omega$
 		and codomain $\Czo$, but otherwise arbitrary.
 \item	For each $t \in [0,1]$, let \,$\ev_{t} : \Czo \longrightarrow \Re : x \longmapsto x(t)$.
@@ -107,7 +105,7 @@ It is trivial to see that, for each $t \in [0,1]$,
 Recall that continuous maps are necessarily Borel measurable; see Corollary \ref{ContinuousMapsAreBorelMeasurable}.
 Hence,
 $\ev_{t} : \left(\,\Czo\,,\Vert\,\cdot\,\Vert_{\infty}\,\right) \longrightarrow \left(\,\Re\,,\vert\,\cdot\,\vert\,\right)$
-is $(\mathcal{B},\mathcal{O})$-measurable, for each $t \in [0,1]$.
+is $(\mathcal{B}\,,\mathcal{O})$-measurable, for each $t \in [0,1]$.
 Now, suppose $X : \Omega \longrightarrow \Czo$ is $(\mathcal{A},\mathcal{B})$-measurable.
 Then, for each $t \in [0,1]$, the composition
 $X_{t} := \ev_{t} \circ X$ is $(\mathcal{A}\,,\mathcal{O})$-measurable, as required.
@@ -170,10 +168,12 @@ The proof of the Theorem is now complete.
 \noindent
 Suppose:
 \begin{itemize}
-\item	$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space.
-\item	Let \,$(\Czo\,,\Vert\cdot\Vert_{\infty})$\, denote the metric space
+\item	$\left(\Omega,\mathcal{A}\right)$ is a measurable space, and
+		$\mathcal{O}$ is the Borel $\sigma$-algebra of $\Re$ (equipped with usual Euclidean metric).
+\item	$(\Czo\,,\Vert\cdot\Vert_{\infty})$\, is the metric space
 		of continuous $\Re$-valued functions defined on the closed unit interval
-		equipped with the supremum norm.
+		equipped with the supremum norm, and
+		\,$\mathcal{B} \,:=\, \mathcal{B}(\Czo\,,\Vert\cdot\Vert_{\infty})$\, is its Borel $\sigma$-algebra.
 \item	$X : \Omega \longrightarrow \Czo$ is a function with domain $\Omega$
 		and codomain $\Czo$, but otherwise arbitrary.
 \item	For each $t \in [0,1]$, let \,$\ev_{t} : \Czo \longrightarrow \Re : x \longmapsto x(t)$.
@@ -182,15 +182,20 @@ Suppose:
 \end{itemize}
 Then, the following are equivalent:
 \begin{enumerate}
-\item	$X$ is a $(\Czo\,,\Vert\cdot\Vert_{\infty})$-valued random variable.
-\item	For each $t \in [0,1]$, $X_{t}$ is an $\Re$-valued random variable.
+\item	$X$ is a $(\Czo\,,\Vert\cdot\Vert_{\infty})$-valued random variable
+		(in other words, $X$ is $(\mathcal{A}\,,\mathcal{B})$-measurable).
+\item	For each $t \in [0,1]$, $X_{t}$ is an $\Re$-valued random variable
+		(in other words, each $X_{t}$ is $(\mathcal{A}\,,\mathcal{O})$-measurable).
 \item	$\left\{\,X_{t}:\Omega\longrightarrow\Re\,\right\}_{t\in[0,1]}$ is a stochastic process
 		indexed by the closed unit interval
 		defined on the probability space $\left(\Omega,\mathcal{A},\mu\right)$
 		with state space $\Re$ and continuous sample paths.
 \end{enumerate}
 \end{theorem}
-
+\proof
+The equivalence of (i) and (ii) is immediate by the preceding Theorem.
+The equivalence of (ii) and (iii) is immediate by the definition of stochastic processes.
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
