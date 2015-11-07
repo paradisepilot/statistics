@@ -1,0 +1,186 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Continuous maps are Borel measurable}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{lemma}[The pre-image of a $\sigma$-algebra is itself a $\sigma$-algebra.]
+\label{PreimagePreservesSigmaAlgebra}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $\Omega$ is a non-empty set, $(X,\mathcal{X})$
+is a measurable space, and $f : \Omega \longrightarrow X$
+is a map from $\Omega$ into $X$. Then,
+\begin{equation*}
+f^{-1}\!\left(\mathcal{X}\right)
+\;\; := \;\;
+\left\{\;
+f^{-1}\!\left(V\right) \subset \Omega
+\;\left\vert\;\;
+V \in \mathcal{X}
+\right.
+\;\right\}
+\end{equation*}
+is a $\sigma$-algebra of subsets of $\Omega$.
+\end{lemma}
+\proof
+\vskip 0.2cm
+\noindent
+\underline{$\Omega \in f^{-1}\!\left(\mathcal{X}\right)$}\quad
+$f(\Omega) \subset X$ \;$\Longrightarrow$\; $\Omega = f^{-1}(X) \in f^{-1}\!\left(\mathcal{X}\right)$.
+
+\vskip 0.5cm
+\noindent
+\underline{$f^{-1}\!\left(\mathcal{X}\right)$ is closed under complementations}\quad
+Let $V \in \mathcal{X}$. Then, $X\,\backslash\,V \in \mathcal{X}$, and
+\begin{equation*}
+\Omega\,\backslash\,f^{-1}(V)
+\;\; = \;\;
+\left\{\;
+\omega \in \Omega
+\;\left\vert\;\,
+f(\omega) \notin V
+\right.
+\;\right\}
+\;\; = \;\;
+\left\{\;
+\omega \in \Omega
+\;\left\vert\;\,
+f(\omega) \in X\,\backslash\,V
+\right.
+\;\right\}
+\;\; = \;\;
+f^{-1}\!\left(X\,\backslash\,V\right)
+\;\; \in \;\; f^{-1}\!\left(\mathcal{X}\right),
+\end{equation*}
+which shows that $f^{-1}\!\left(\mathcal{X}\right)$ is indeed closed under complementations.
+
+\vskip 0.5cm
+\noindent
+\underline{$f^{-1}\!\left(\mathcal{X}\right)$ is closed countable unions}\quad
+Let $V_{1}, V_{2}, \,\ldots\, \in \mathcal{X}$. Then,
+\,$\overset{\infty}{\underset{i=1}{\textnormal{\large$\bigcup$}}}\;V_{i} \in \mathcal{X}$,\, and
+\begin{equation*}
+\bigcup_{i=1}^{\infty}\,f^{-1}\!\left(V_{i}\right)
+\;\; = \;\;
+\left\{\;
+\omega \in \Omega
+\;\left\vert\;\,
+\begin{array}{c}
+	f(\omega) \in V_{i} \\
+	\textnormal{for some $i \in \N$}
+\end{array}
+\right.
+\;\right\}
+\;\; = \;\;
+f^{-1}\!\left(\,\bigcup_{i=1}^{\infty}\,V_{i}\,\right)
+\;\; \in \;\; f^{-1}\!\left(\mathcal{X}\right),
+\end{equation*}
+which proves that $f^{-1}\!\left(\mathcal{X}\right)$ is indeed closed under countable unions.
+
+\vskip 0.3cm
+\noindent
+This concludes the proof that that $f^{-1}\!\left(\mathcal{X}\right)$ is a $\sigma$-algebra of
+subsets of $\Omega$.
+\qed
+
+\begin{lemma}[The push-forward of a $\sigma$-algebra is itself a $\sigma$-algebra.]
+\label{PushforwardsPreserveSigmaAlgebras}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $\left(\Omega,\mathcal{A}\right)$ is a measurable space,
+$X$ is a non-empty set, and $f : \Omega \longrightarrow X$
+is a map from $\Omega$ into $X$. Then,
+\begin{equation*}
+\mathcal{F}
+\;\; := \;\;
+\left\{\;
+V \subset X
+\;\left\vert\;\;
+f^{-1}\left(V\right) \in \mathcal{A}
+\right.
+\;\right\}
+\end{equation*}
+is a $\sigma$-algebra of subsets of $X$.
+\end{lemma}
+\proof
+\vskip 0.1cm
+\noindent
+\underline{$X \in \mathcal{F}$}\quad
+$f^{-1}(X) = \Omega \in \mathcal{A}$ \;$\Longrightarrow$\; $X \in \mathcal{F}$.
+
+\vskip 0.5cm
+\noindent
+\underline{$\mathcal{F}$ is closed under complementations}\quad
+$V \in \mathcal{F}$
+\;$\Longrightarrow$\; $f^{-1}(V)\in\mathcal{A}$
+\;$\Longrightarrow$\; $f^{-1}(X\,\backslash\,V) = \Omega\,\backslash\,f^{-1}(V) \in \mathcal{A}$
+\;$\Longrightarrow$\; $X\,\backslash\,V \in \mathcal{F}$,
+which proves that $\mathcal{F}$ is indeed closed under complementations. 
+
+\vskip 0.5cm
+\noindent
+\underline{$\mathcal{F}$ is closed under countable unions}\quad
+\begin{eqnarray*}
+V_{1}, V_{2}, \,\ldots\, \;\in\; \mathcal{F}
+&\Longrightarrow&
+	f^{-1}(V_{1}), f^{-1}(V_{2}), \,\ldots\, \;\in\; \mathcal{A}
+\\
+&\Longrightarrow&
+	f^{-1}\!\left(\,\bigcup_{i=1}^{\infty}V_{i}\,\right) \;=\; \bigcup_{i=1}^{\infty}f^{-1}\!\left(V_{i}\right) \;\in\; \mathcal{A}
+\\
+&\Longrightarrow&
+	\bigcup_{i=1}^{\infty}V_{i} \;\in\; \mathcal{F},
+\end{eqnarray*}
+which proves that $\mathcal{F}$ is indeed closed under countable unions.
+\qed
+
+\begin{theorem}
+\label{preimageOfGeneratingSetMeasurable}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $(\Omega,\mathcal{A})$ and $(X,\mathcal{X})$
+are measurable spaces, and $f : \Omega \longrightarrow X$
+is a map from $\Omega$ into $X$. Then,
+$f$ is $(\mathcal{A},\mathcal{X})$-measurable
+if there exists $\mathcal{S} \subset \mathcal{X}$
+satisfying the following conditions:
+\begin{itemize}
+\item	$\mathcal{S}$ generates $\mathcal{X}$, i.e. $\sigma(\mathcal{S}) = \mathcal{X}$, and
+\item	$f^{-1}\!\left(\mathcal{S}\right) \subset \mathcal{A}$.
+\end{itemize}
+\end{theorem}
+\proof
+By Lemma \ref{PushforwardsPreserveSigmaAlgebras},
+\begin{equation*}
+\mathcal{F}
+\;\; := \;\;
+\left\{\;
+V \subset X
+\;\left\vert\;\;
+f^{-1}\left(V\right) \in \mathcal{A}
+\right.
+\;\right\}
+\end{equation*}
+is a $\sigma$-algebra of subsets of $X$.
+By hypothesis, $\mathcal{S} \,\subset\, \mathcal{F}$;
+hence, $\mathcal{X} \,=\, \sigma(\mathcal{S}) \,\subset\, \mathcal{F}$.
+Thus, $f^{-1}(\mathcal{X}) \,\subset\, \mathcal{A}$;
+equivalently, $f$ is $\left(\mathcal{A},\mathcal{X}\right)$-measurable.
+\qed
+
+\begin{corollary}[Continuous maps are Borel measurable.]
+\label{ContinuousMapsAreBorelMeasurable}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $X_{1}$, $X_{2}$ are topological spaces, and
+$\mathcal{B}_{1}$, $\mathcal{B}_{2}$ are their respective Borel $\sigma$-algebras.
+Then, every continuous map $f : X_{1} \longrightarrow X_{2}$ is
+$\left(\mathcal{B}_{1},\mathcal{B}_{2}\right)$-measurable.
+\end{corollary}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
