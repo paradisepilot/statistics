@@ -1,0 +1,296 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The Arzel\`{a}-Ascoli Theorem}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+Recall that the space $C(X)$ of continuous $\Re$-valued functions defined
+on a compact topological space $X$ equipped with the supremum norm
+is a complete metric space (see Theorem 9.3, \cite{Aliprantis1998}).
+The Arzel\`{a}-Ascoli Theorem characterizes compactness of subsets of $C(X)$.
+
+\begin{definition}[Equicontinuity]
+\mbox{}\vskip 0.1cm
+\noindent
+Let $X$ be a topological space and $(Y,d)$ a metric space.
+Let $Y^{X}$ denote the set of arbitrary functions from $X$ into $Y$.
+\begin{itemize}
+\item	A subset $S \subset Y^{X}$ is said to be \textbf{equicontinuous at $x_{0} \in X$} if,
+		for each $\varepsilon > 0$, there exists an open subset $V \subset X$ satisfying:
+		\begin{equation*}
+		x_{0} \,\in\, V\,,
+		\quad\textnormal{and}\quad
+		\sup_{(x,f) \,\in\, V \times S}\left\{\;d\!\left(\overset{{\color{white}.}}{f}(x),f(x_{0})\right)\;\right\}
+		\;\leq\; \varepsilon.
+		\end{equation*}
+\item	A subset $S \subset Y^{X}$ is said to be \textbf{equicontinuous} if it is equicontinuous at each $x_{0} \in X$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Uniform equicontinuity]
+\mbox{}\vskip 0.1cm
+\noindent
+Let $(X,\rho)$ and $(Y,d)$ two metric spaces.
+Let $Y^{X}$ denote the set of arbitrary functions from $X$ into $Y$.
+A subset $S \subset Y^{X}$ is said to be \textbf{uniformly equicontinuous} if,
+for each $\varepsilon > 0$, there exists $\delta > 0$ such that:
+\begin{equation*}
+\sup\left\{\;
+d\!\left(\overset{{\color{white}.}}{f}(x_{1}),f(x_{2})\right)
+\;\left\vert\;
+\begin{array}{c} f \in S, \; x_{1},x_{2} \in X, \\ \rho(x_{1},x_{2}) < \delta \end{array}
+\right.
+\right\}
+\;\leq\; \varepsilon.
+\end{equation*}
+\end{definition}
+
+\begin{proposition}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $(X,\rho)$ and $(Y,d)$ two metric spaces and suppose that $(X,\rho)$ is compact.
+Let $Y^{X}$ denote the set of arbitrary functions from $X$ into $Y$.
+Then, a subset $S \subset Y^{X}$ is uniformly equicontinuous if and only if it is equicontinuous.
+\end{proposition}
+
+\begin{theorem}[Arzel\`{a}-Ascoli, Theorem 9.10, \cite{Aliprantis1998}]
+\label{ArzelaAscoliTheorem}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $X$ is a compact topological space and
+$C(X)$ is the space of continuous $\Re$-valued functions defined on $X$ equipped with the supremum norm.
+Then, for each $S \subset C(X)$, the following conditions are equivalent:
+\begin{enumerate}
+\item	$S$ is a compact subset of $C(X)$.
+\item	$S$ is closed, bounded, and equicontinuous subset of $C(X)$.
+\end{enumerate}
+\end{theorem}
+\proof
+\vskip 0.1cm
+\noindent
+\underline{(i)\,\;$\Longrightarrow$\;(ii)}
+\vskip 0.1cm
+\noindent
+Recall that every compact subset in a metric space is closed and bounded.
+Thus, it remains only to show that $S \subset C(X)$ is equicontinuous.
+To this end, let $\varepsilon > 0$ be given.
+Recall that a metric space is compact if and only if it is complete and totally bounded (Theorem 7.8, \cite{Aliprantis1998}).
+Thus, the compactness hypothesis on $S$ implies $S$ is totally bounded;
+in particular, there exist $f_{1}, \ldots, f_{n} \in S$ such that
+\begin{equation*}
+S \;\; \subset \;\; \bigcup_{i\,=\,1}^{n}\,B\!\left(f_{i}\,,\,\dfrac{\varepsilon}{3}\right).
+\end{equation*}
+Hence, for each $x_{0} \in X$, we may define
+\begin{equation*}
+V(x_{0}) \;\; := \;\;
+\bigcap_{i\,=\,1}^{n}\,
+f_{i}^{-1}\!\left(\,
+	\left(\overset{{\color{white}.}}{f}_{i}(x_{0})-\dfrac{\varepsilon}{3}\,,f_{i}(x_{0})+\dfrac{\varepsilon}{3}\right)
+\,\right).
+\end{equation*}
+Note that $V(x_{0})$ is open and $x_{0} \in V(x_{0})$.
+Now, let $f \in S$ and $x \in V(x_{0})$ be given.
+We may choose $i \in \{\,1,2,\ldots,n\,\}$ such that $f \in B\!\left(f_{i}\,,\,\dfrac{\varepsilon}{3}\right)$,
+i.e. $\Vert\,f-f_{i}\,\Vert_{\infty}\,\leq\,\dfrac{\varepsilon}{3}$.
+Hence,
+\begin{equation*}
+\left\vert\,\overset{{\color{white}.}}{f}(x) \,-\, f(x_{0})\,\right\vert
+\;\;\leq\;\; \left\vert\,\overset{{\color{white}.}}{f}(x) \,-\, f_{i}(x)\,\right\vert
+		\;+\;\left\vert\,\overset{{\color{white}.}}{f}_{i}(x) \,-\, f_{i}(x_{0})\,\right\vert
+		\;+\;\left\vert\,\overset{{\color{white}.}}{f}_{i}(x_{0}) \,-\, f(x_{0})\,\right\vert
+\;\;\leq\;\; \dfrac{\varepsilon}{3} \,+\, \dfrac{\varepsilon}{3} \,+\, \dfrac{\varepsilon}{3}
+\;\; = \;\; \varepsilon.
+\end{equation*}
+Thus,
+\begin{equation*}
+\underset{(x,f)\,\in\,V(x_{0}) \times S}{\sup}
+\left\{\;
+\left\vert\,\overset{{\color{white}.}}{f}(x) \,-\, f(x_{0})\,\right\vert
+\;\right\}
+\;\; \leq \;\; \varepsilon.
+\end{equation*}
+This shows equicontinuity of $S$ at $x_{0} \in X$.
+Since $x_{0} \in X$ is arbitrary, we may conclude that $S$ is equicontinuous.
+
+\vskip 0.3cm
+\noindent
+\underline{(ii)\,\;$\Longrightarrow$\;(i)}
+\vskip 0.1cm
+\noindent
+Suppose $S \in C(X)$ is closed, bounded, and equicontinuous.
+We need to show that $S$ is a compact subset of $C(X)$.
+Recall that every subset of a metric space is compact if and only if
+it is sequentially compact (Theorem 7.3, \cite{Aliprantis1998}).
+Thus, it suffices to show that every sequence
+\,$\left\{\,f_{n}\,\right\}_{n\in\N} \subset S$\,
+has a convergent subsequence with limit in $S$.
+We start by stating and proving the following:
+
+\vskip 0.3cm
+\begin{center}
+\begin{minipage}{6.0in}
+\noindent
+\underline{Claim 1:}
+\vskip 0.1cm
+\noindent
+For each $k \in \N$, there exists a finite subset $F_{k} \subset X$ and
+open neighbourhoods \,$\left\{\,V_{y}\,\right\}_{y \in F_{k}}$\, such that
+\begin{equation*}
+X \;=\; \bigcup_{y\,\in\,F_{k}}V_{y},,
+\quad\textnormal{and}\quad
+\sup\left\{\;
+\left\vert\,\overset{{\color{white}.}}{f}(x) - f(y)\,\right\vert
+\;\left\vert\;
+\begin{array}{c} x \in V_{y}, \; y \in F_{k} \\ f \in S \end{array}
+\right.\right\}
+\;\; \leq \;\; \dfrac{1}{3k}.
+\end{equation*}
+\end{minipage}
+\end{center}
+Proof of Claim 1:\; By equicontinuity of $S$, for each $y \in X$,
+there exists an open neighbourhood $V_{y} \subset X$ of $y \in X$
+such that
+\begin{equation*}
+\sup\left\{\;
+\left\vert\,\overset{{\color{white}.}}{f}(x) - f(y)\,\right\vert
+\;\left\vert\;
+\begin{array}{c} x \in V_{y} \\ f \in S \end{array}
+\right.\right\}
+\;\; \leq \;\; \dfrac{1}{3k}.
+\end{equation*}
+Thus, $X = \underset{y\,\in\,X}{\bigcup}V_{y}$ is an open cover of $X$.
+Compactness of $X$ now implies that this open cover of $X$ admits a finite subcover, i.e.
+\begin{equation*}
+X \; = \; \bigcup_{y\,\in\,F_{k}}V_{y},
+\quad
+\textnormal{for some finite subset $F_{k} \subset X$}.
+\end{equation*}
+Lastly, note that
+\begin{equation*}
+\sup\left\{\;
+\left\vert\,\overset{{\color{white}.}}{f}(x) - f(y)\,\right\vert
+\;\left\vert\;
+\begin{array}{c} x \in V_{y}, \; y \in F_{k} \\ f \in S \end{array}
+\right.\right\}
+\;\; = \;\;
+\sup_{y\,\in\,F_{k}}
+\left\{\;
+\sup\left\{\;
+\left\vert\,\overset{{\color{white}.}}{f}(x) - f(y)\,\right\vert
+\;\left\vert\;
+\begin{array}{c} x \in V_{y} \\ f \in S \end{array}
+\right.\right\}
+\;\right\}
+\;\; \leq \;\; \dfrac{1}{3k}.
+\end{equation*}
+This completes the proof of Claim 1.
+
+\vskip 0.3cm
+\noindent
+Next, let $F := \overset{\infty}{\underset{k\,=\,1}{\bigcup}}F_{k}$.
+Note that $F$ is a countably infinite set.
+Let $F \,=\, \left\{\,x_{1},x_{2},\ldots\,\right\}$ be an enumeration of $F$.
+Recall that we wish to prove that every sequence
+$\left\{\,f_{n}\,\right\}_{n\in\N} \subset S$ contains a convergent subsequence
+with limit in $S$.
+Now, consider the array of real numbers:
+\begin{equation*}
+\begin{array}{cccc}
+f_{1}(x_{1}) & f_{2}(x_{1}) & f_{3}(x_{1}) & \cdots \\
+f_{1}(x_{2}) & f_{2}(x_{2}) & f_{3}(x_{2}) & \cdots \\
+\vdots & \vdots & \vdots & \\
+\end{array}
+\end{equation*}
+Since $S \subset C(X)$ is bounded (with respect to the $\Vert\,\cdot\,\Vert_{\infty}$ norm on $C(X)$),
+there exists $M > 0$ such that
+$\underset{f\,\in\,S}{\sup}\,\left\Vert\;\overset{{\color{white}.}}{f}\;\right\Vert_{\infty} \,\leq\, M$.
+In particular, every row in the above array is bounded.
+By Theorem A.14, p.538, \cite{Billingsley1995}, there exists an increasing sequence
+of positive integers \,$n(1), n(2), n(3), \ldots$\, such that the limit
+\begin{equation*}
+\lim_{i\,\rightarrow\,\infty}\,f_{n(i)}(x_{k})
+\;\;\textnormal{exists,\, for each $k = 1, 2, \ldots$\,}.
+\end{equation*}
+
+\vskip 0.3cm
+\begin{center}
+\begin{minipage}{6.0in}
+\noindent
+\underline{Claim 2:}\quad
+$\left\{\,f_{n(i)}\,\right\}_{i\in\N}$ is a Cauchy sequence in $\left(\,C(X)\,,\,\Vert\,\cdot\,\Vert_{\infty}\,\right)$.
+\end{minipage}
+\end{center}
+Proof of Claim 2:\; For each $k \in \N$, the convergence of $\left\{\,f_{n(i)}(x_{k})\,\right\}_{i\in\N}$ in $\Re$
+implies that each $\left\{\,f_{n(i)}(x_{k})\,\right\}_{i\in\N}$ is a Cauchy sequence in $\Re$.
+Since the set $F_{k}$ is finite, we see that there exists $m_{k} \in \N$ such that
+\begin{equation*}
+\left\vert\; f_{n(i)}(y) \,-\, f_{n(j)}(y) \;\right\vert \;\; < \;\; \dfrac{1}{3k}\,,
+\quad
+\textnormal{for any $i, j \,\geq\, m_{k}$, and each $y \in F_{k}$}.
+\end{equation*}
+Now, for each $x \in X$, there exists $y \in F_{k}$ such that $x \in V_{y}$.
+Hence, for any $i, j \geq m_{k}$ and any $x \in X$, we have
+\begin{eqnarray*}
+\left\vert\; f_{n(i)}(x) \,-\, f_{n(j)}(x) \;\right\vert
+&\leq& \left\vert\; f_{n(i)}(x) \,-\, f_{n(i)}(y) \;\right\vert
+	\;+\; \left\vert\; f_{n(i)}(y) \,-\, f_{n(j)}(y) \;\right\vert
+	\;+\; \left\vert\; f_{n(j)}(y) \,-\, f_{n(j)}(x) \;\right\vert
+\\
+&\leq& \dfrac{1}{3k} \;+\; \dfrac{1}{3k} \;+\; \dfrac{1}{3k} \;\; = \;\; \dfrac{1}{k}.
+\end{eqnarray*}
+In other words,
+\begin{equation*}
+\left\Vert\; f_{n(i)} \,-\, f_{n(j)}\;\right\Vert_{\infty} \;\; \leq \;\; \dfrac{1}{k},
+\quad\textnormal{for any \,$i, j \,\geq\, m_{k}$}.
+\end{equation*}
+This shows that
+$\left\{\,f_{n(i)}\,\right\}_{i\in\N}$ is indeed a Cauchy sequence in $\left(\,C(X)\,,\,\Vert\,\cdot\,\Vert_{\infty}\,\right)$
+and completes the proof of Claim 2.
+
+\vskip 0.3cm
+\noindent
+Lastly, by Theorem 9.3, \cite{Aliprantis1998}, $\left(\,C(X)\,,\,\Vert\,\cdot\,\Vert_{\infty}\,\right)$ is a complete metric space.
+Thus, the Cauchy sequence
+$\left\{\,f_{n(i)}\,\right\}_{i\in\N}$ $\subset$ $C(X)$ converges to some element $f_{0} \in C(X)$.
+Since $S \subset C(X)$ is, by hypothesis, a closed subset of $C(X)$, we see furthermore that $f_{0} \in S$.
+This proves the sequential compactness of $S$ and completes the proof of the Arzel\`{a}-Ascoli Theorem.
+\qed
+
+\begin{theorem}[Theorem 7.2, p.81, \cite{Billingsley1999}]
+\label{ArzelaAscoliTheorem}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\Czo$ denote the space of continuous $\Re$-valued functions
+defined on the closed unit interval $[0,1]$ equipped with the supremum norm.
+Then, for each subset $S \,\subset\, C[0,1]$, the following are equivalent:
+\begin{enumerate}
+\item	$S$ is a relatively compact subset of $\Czo$ (i.e. the closure of $S$ is a compact subset of $\Czo$).
+\item	$S$ satisfies:\;\;
+		$\underset{f\,\in\,S}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} \;<\; \infty$, and
+		for each $\varepsilon > 0$, there exists $\delta > 0$ such that
+		\begin{equation*}
+		\sup\left\{\;
+		\left\vert\,\overset{{\color{white}.}}{f}(t_{1}) - f(t_{2})\,\right\vert
+		\;\left\vert\;
+		\begin{array}{c} f \in S, \; t_{1},t_{2} \in [0,1], \\ \vert\,t_{1} - t_{2}\,\vert < \delta \end{array}
+		\right.
+		\right\}
+		\;\;\leq\;\; \varepsilon.
+		\end{equation*}
+\item	$S$ satisfies:\;\;
+		$\underset{f\,\in\,S}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} \;<\; \infty$, and
+		\begin{equation*}
+		\lim_{\delta\,\rightarrow\,0}\,
+			\sup_{f\,\in\,S}\left(\,
+				\sup_{\vert\,s\,-\,t\,\vert\,<\,\delta} \left\{\,\vert\,\overset{{\color{white}.}}{f}(s) - f(t)\,\vert\,\right\}
+			\,\right)
+		\;\;=\;\; 0.
+		\end{equation*}
+\end{enumerate}
+\end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
