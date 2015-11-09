@@ -260,8 +260,71 @@ Since $S \subset C(X)$ is, by hypothesis, a closed subset of $C(X)$, we see furt
 This proves the sequential compactness of $S$ and completes the proof of the Arzel\`{a}-Ascoli Theorem.
 \qed
 
+\begin{proposition}
+\label{ClosurePreservesEquicontinuity}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $X$ is a compact topological space and
+$C(X)$ is the space of continuous $\Re$-valued functions defined on $X$ equipped with the supremum norm.
+Let $S \subset C(X)$.
+\begin{enumerate}
+\item	If $S$ is equicontinuous at $x_{0} \in X$, then its closure $\overline{S}$ in $C(X)$ is equicontinuous at $x_{0}$.
+\item	If a subset $S \subset C(X)$ is equicontinuous, then its closure $\overline{S}$ in $C(X)$ is equicontinuous.
+\end{enumerate}
+\end{proposition}
+\proof
+It is obvious that (ii) is an immediate consequence of (i).
+Thus, it suffices to establish (i).
+%; in other words, we need to show that,
+%for each $\varepsilon > 0$, there exists open subset $V \subset X$ satisfying:
+%\begin{equation*}
+%x_{0} \,\in\, V\,,
+%\quad\textnormal{and}\quad
+%\sup_{(x,f) \,\in\, V \times \overline{S}}\left\{\;\left\vert\,\overset{{\color{white}.}}{f}(x)\,-\,f(x_{0})\right\vert\;\right\}
+%\;\leq\; \varepsilon.
+%\end{equation*}
+Since, by hypothesis, $S \subset C(X)$ is equicontinuous at $x_{0} \in X$,
+we have:
+for each $\varepsilon > 0$, there exists an open subset $V \subset X$ satisfying:
+\begin{equation*}
+x_{0} \,\in\, V\,,
+\quad\textnormal{and}\quad
+\sup_{(x,f) \,\in\, V \times S}\left\{\;\left\vert\,\overset{{\color{white}.}}{f}(x)\,-\,f(x_{0})\right\vert\;\right\}
+\;\leq\; \varepsilon.
+\end{equation*}
+Observe that, in order to show the equicontinuity of $\overline{S}$ at $x_{0}$, it suffices to show that
+the following inequality is also valid:
+\begin{equation*}
+\sup_{(x,g) \,\in\, V \times \overline{S}}\left\{\;\left\vert\,\overset{{\color{white}1}}{g}(x)\,-\,g(x_{0})\,\right\vert\;\right\}
+\;\leq\; \varepsilon.
+\end{equation*}
+To this end, let $g \in \overline{S} \subset C(X)$.
+Then, there exist a sequence $f_{1}, f_{2},\,\ldots\,\in S$ such that
+\begin{equation*}
+\underset{n\,\rightarrow\,\infty}{\lim}\Vert\,f_{n} - g\,\Vert_{\infty}
+\;\; = \;\; \underset{n\,\rightarrow\,\infty}{\lim}\,\sup_{x\,\in\,X}\left\{\; \left\vert\, \overset{{\color{white}.}}{f}_{n}(x) - g(x)\,\right\vert \;\right\}
+\;\; = \;\; 0.
+\end{equation*}
+Consequently, for any $x \in V$ and $n \in \N$, we have:
+\begin{eqnarray*}
+\left\vert\; \overset{{\color{white}1}}{g}(x) - g(x_{0})\;\right\vert
+&\leq& \left\vert\; \overset{{\color{white}1}}{g}(x) - f_{n}(x)\;\right\vert
+		\;+\; \left\vert\; \overset{{\color{white}1}}{f}_{n}(x) - f_{n}(x_{0})\;\right\vert
+		\;+\; \left\vert\; \overset{{\color{white}1}}{f}_{n}(x_{0}) - g(x_{0})\;\right\vert
+\\ \\
+&\leq& \Vert\,g - f_{n}\,\Vert_{\infty} \;+\; \varepsilon \;+\; \Vert\,f_{n} - g\,\Vert_{\infty}
+\;\; \longrightarrow \;\; 0 \;+\; \varepsilon \;+\; 0 \;\;=\;\; \varepsilon.  
+\end{eqnarray*}
+This implies:
+\begin{equation*}
+\sup_{(x,g) \,\in\, V \times \overline{S}}\left\{\;\left\vert\,\overset{{\color{white}1}}{g}(x)\,-\,g(x_{0})\,\right\vert\;\right\}
+\;\leq\; \varepsilon,
+\end{equation*}
+as desired. This completes the proof of the Proposition.
+\qed
+
 \begin{theorem}[Theorem 7.2, p.81, \cite{Billingsley1999}]
-\label{ArzelaAscoliTheorem}
+%\label{ArzelaAscoliTheorem}
 \mbox{}\vskip 0.1cm
 \noindent
 Let $\Czo$ denote the space of continuous $\Re$-valued functions
