@@ -50,6 +50,7 @@ d\!\left(\overset{{\color{white}.}}{f}(x_{1}),f(x_{2})\right)
 \end{definition}
 
 \begin{proposition}
+\label{CompactnessUniformEquicontinuity}
 \mbox{}\vskip 0.2cm
 \noindent
 Let $(X,\rho)$ and $(Y,d)$ two metric spaces.
@@ -150,7 +151,6 @@ Then, the following are true:
 	This completes the proof of the Claim and the uniform equicontinuity of $S$.
 	\qed
 \end{enumerate}
-
 
 \begin{theorem}[Arzel\`{a}-Ascoli, Theorem 9.10, \cite{Aliprantis1998}]
 \label{ArzelaAscoliTheorem}
@@ -419,16 +419,17 @@ as desired. This completes the proof of the Proposition.
 \qed
 
 \begin{theorem}[Theorem 7.2, p.81, \cite{Billingsley1999}]
-%\label{ArzelaAscoliTheorem}
+\label{BillingsleyArzelaAscoli}
 \mbox{}\vskip 0.1cm
 \noindent
 Let $\Czo$ denote the space of continuous $\Re$-valued functions
 defined on the closed unit interval $[0,1]$ equipped with the supremum norm.
 Then, for each subset $S \,\subset\, C[0,1]$, the following are equivalent:
 \begin{enumerate}
-\item	$S$ is a relatively compact subset of $\Czo$ (i.e. the closure of $S$ is a compact subset of $\Czo$).
-\item	$S$ satisfies:\;\;
-		$\underset{f\,\in\,S}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} \;<\; \infty$, and
+\item	$S$ is a relatively compact subset of $\Czo$, i.e. the closure of $S$ is a compact subset of $\Czo$.
+\item	$\underset{f\,\in\,S}{\sup}\left\{\,\Vert\,\overset{{\color{white}.}}{f}\,\Vert_{\infty}\,\right\} < \infty$,\,
+		and \,$S$\, is uniformly equicontinuous.
+\item	$\underset{f\,\in\,S}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} < \infty$, and
 		for each $\varepsilon > 0$, there exists $\delta > 0$ such that
 		\begin{equation*}
 		\sup\left\{\;
@@ -439,10 +440,9 @@ Then, for each subset $S \,\subset\, C[0,1]$, the following are equivalent:
 		\right\}
 		\;\;\leq\;\; \varepsilon.
 		\end{equation*}
-\item	$S$ satisfies:\;\;
-		$\underset{f\,\in\,S}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} \;<\; \infty$, and
+\item	$\underset{f\,\in\,S}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} < \infty$, and
 		\begin{equation*}
-		\lim_{\delta\,\rightarrow\,0}\,
+		\lim_{\delta\,\rightarrow\,0^{+}}\,
 			\sup_{f\,\in\,S}\left\{\,
 				\sup\left\{\;
 				\left\vert\,\overset{{\color{white}.}}{f}(t_{1}) - f(t_{2})\,\right\vert
@@ -456,6 +456,96 @@ Then, for each subset $S \,\subset\, C[0,1]$, the following are equivalent:
 \end{enumerate}
 \end{theorem}
 \proof
-The equivalence of (ii) and (iii) is trivial (it follows directly from the definition of limits).
+\vskip 0.2cm
+\noindent
+\underline{(i)\,$\Longleftrightarrow$\,(ii)}
+\vskip 0.1cm
+\begin{equation*}
+\begin{array}{ccll}
+\textnormal{(i)}
+&\Longleftrightarrow& \textnormal{$\overline{S}$ is compact} &
+\\
+&\Longleftrightarrow& \textnormal{$\overline{S}$ is bounded and equicontinuous}, & \textnormal{(by the Arzel\`{a}-Ascoli Theorem)}
+\\
+&\Longleftrightarrow& \textnormal{$S$ is bounded and equicontinuous}, & \textnormal{(by Proposition \ref{ClosurePreservesEquicontinuity})}
+\\
+&\Longleftrightarrow& \textnormal{$S$ is bounded and uniformly equicontinuous}, & \textnormal{(by Proposition \ref{CompactnessUniformEquicontinuity})}
+\\
+&\Longleftrightarrow& \textnormal{(ii)}.
+\end{array}
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\underline{(ii)\,$\Longleftrightarrow$\,(iii)}
+\vskip 0.1cm
+\noindent
+Noting that the second condition in (iii) is precisely uniform equicontinuity of $S$,
+we see immediately that (ii) $\Longrightarrow$ (iii).
+Conversely, we may conclude that (iii) $\Longrightarrow$ (ii) once we prove that
+(iii) implies
+$\underset{f\,\in\,S}{\sup}\left\{\,\Vert\,\overset{{\color{white}.}}{f}\,\Vert_{\infty}\,\right\} < \infty$.
+To this end, let $\varepsilon = 1$.
+Then, by the second condition in (iii) (uniform equicontinuity of $S$),
+there exists $\delta > 0$ such that
+\begin{equation*}
+\sup\left\{\;
+\left\vert\,\overset{{\color{white}.}}{f}(t_{1}) - f(t_{2})\,\right\vert
+\;\left\vert\;
+\begin{array}{c} f \in S, \; t_{1},t_{2} \in [0,1], \\ \vert\,t_{1} - t_{2}\,\vert < \delta \end{array}
+\right.
+\right\}
+\;\;\leq\;\; \varepsilon \;\; := \;\; 1.
+\end{equation*}
+Next, choose $k \in \N$ sufficiently large such that $\dfrac{1}{k} < \delta$.
+Hence, for any $f \in S$ and any $t \in [0,1]$, we have
+\begin{eqnarray*}
+\left\vert\,\overset{{\color{white}.}}{f}(t)\,\right\vert
+&=&
+	\left\vert\;
+	f(t)
+	- f\!\left(\frac{k-1}{k}\cdot t\right) + f\!\left(\frac{k-1}{k}\cdot t\right)
+	%- f\!\left(\frac{k-2}{k}\cdot t\right) + f\!\left(\frac{k-2}{k}\cdot t\right)
+	- \;\;\cdots\;\;
+	- f\!\left(\frac{1}{k}\cdot t\right) + f\!\left(\frac{1}{k}\cdot t\right)
+	- f\!\left(0\right) + f\!\left(0\right)
+	\;\right\vert
+\\
+&\leq&
+	\left\vert\,\overset{{\color{white}.}}{f}(0)\,\right\vert
+	\;+\; \sum_{i=1}^{k}\;\left\vert\, f\!\left(\frac{i}{k}\cdot t\right) + f\!\left(\frac{i-1}{k}\cdot t\right) \,\right\vert
+	\;\;\leq\;\; \left\vert\,\overset{{\color{white}.}}{f}(0)\,\right\vert \;+\; k\cdot 1
+\\
+&\leq&
+	\underset{f\,\in\,S}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} \;+\; 1,
+	%\;\;<\;\; \infty
+\end{eqnarray*}
+where the last inequality follows from the first condition in (iii).
+Consequently, we see that, for each $f \in S$,
+\begin{equation*}
+\Vert\,\overset{{\color{white}.}}{f}\,\Vert_{\infty}
+\;\; := \;\;
+\underset{t\,\in\,[0,1]}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(t)\,\vert\,\right\}
+\;\;\leq\;\;
+\underset{f\,\in\,S}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} \;+\; 1
+\;\;<\;\; \infty,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+\underset{f\,\in\,S}{\sup}\left\{\,\Vert\,\overset{{\color{white}.}}{f}\,\Vert_{\infty}\,\right\}
+\;\;\leq\;\;
+\underset{f\,\in\,S}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} \;+\; 1
+\;\;<\;\; \infty.
+\end{equation*}
+This completes the proof that (ii) $\Longleftrightarrow$ (iii).
+
+\vskip 0.5cm
+\noindent
+\underline{(iii)\,$\Longleftrightarrow$\,(iv)}
+\vskip 0.1cm
+\noindent
+This follows trivially from the definition of the right-limit at zero of a $\Re$-valued function defined
+on an interval $[0,\delta_{0})$, for some $\delta_{0} > 0$.
+
 \qed
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
