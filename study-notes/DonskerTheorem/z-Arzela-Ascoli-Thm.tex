@@ -50,12 +50,107 @@ d\!\left(\overset{{\color{white}.}}{f}(x_{1}),f(x_{2})\right)
 \end{definition}
 
 \begin{proposition}
-\mbox{}\vskip 0.1cm
+\mbox{}\vskip 0.2cm
 \noindent
-Let $(X,\rho)$ and $(Y,d)$ two metric spaces and suppose that $(X,\rho)$ is compact.
+Let $(X,\rho)$ and $(Y,d)$ two metric spaces.
 Let $Y^{X}$ denote the set of arbitrary functions from $X$ into $Y$.
-Then, a subset $S \subset Y^{X}$ is uniformly equicontinuous if and only if it is equicontinuous.
+Then, the following are true:
+\begin{enumerate}
+\item	Uniform equicontinuity of a subset $S \subset Y^{X}$ implies equicontinuity of $S$.
+\item	Suppose furthermore that $(X,\rho)$ is compact.
+		Then, equicontinuity of a subset $S \subset Y^{X}$ implies uniform equicontinuity of $S$.
+\end{enumerate}
 \end{proposition}
+\proof
+\begin{enumerate}
+\item
+	Suppose $S \subset Y^{X}$ is uniformly equicontinuous;
+	we seek to prove that $S$ is also equicontinuous.
+	Let $x_{0} \in X$ and $\varepsilon > 0$.
+	By uniform equicontinuity of $S$, there exists $\delta > 0$ such that:
+	\begin{equation*}
+	\sup\left\{\;
+	d\!\left(\overset{{\color{white}.}}{f}(x_{1}),f(x_{2})\right)
+	\;\left\vert\;
+	\begin{array}{c} f \in S, \; x_{1},x_{2} \in X, \\ \rho(x_{1},x_{2}) < \delta \end{array}
+	\right.
+	\right\}
+	\;\leq\; \varepsilon.
+	\end{equation*}
+	Let $V(x_{0}) \,:=\, \left\{\,x \in X \;\left\vert\;\, \rho(x,x_{0}) \overset{{\color{white}.}}{<} \delta \right.\,\right\}$.
+	Then, $V(x_{0})$ is an open subset of $X$, with $x_{0} \,\in\, V(x_{0})$, and
+	\begin{equation*}
+	\sup_{(x,f) \,\in\, V(x_{0}) \times S}\left\{\;d\!\left(\overset{{\color{white}.}}{f}(x),f(x_{0})\right)\;\right\}
+	\;\; \leq \;\; 
+	\sup\left\{\;
+	d\!\left(\overset{{\color{white}.}}{f}(x_{1}),f(x_{2})\right)
+	\;\left\vert\;
+	\begin{array}{c} f \in S, \; x_{1},x_{2} \in X, \\ \rho(x_{1},x_{2}) < \delta \end{array}
+	\right.
+	\right\}
+	\;\leq\; \varepsilon.
+	\end{equation*}
+	This proves the equicontinuity of $S$.
+\item
+	Suppose $(X,\rho)$ is compact and $S \subset Y^{X}$ is equicontinuous.
+	Let $\varepsilon > 0$ be given.
+	By equicontinuity of $S$, for each $x \in X$, there exists an open ball
+	$B(x,\delta_{x}) \subset X$ such that
+	\begin{equation*}
+	\sup_{(\xi,f) \,\in\, B(x,\delta_{x}) \times S}\left\{\;d\!\left(\overset{{\color{white}.}}{f}(\xi),f(x)\right)\;\right\}
+	\;\;\leq\;\;
+	\dfrac{\varepsilon}{2}.
+	\end{equation*}
+	Thus, $X \, = \underset{x\,\in\,X}{\bigcup}B\!\left(x,\delta_{x}\overset{{\color{white}.}}{/}\,2\right)$ is an open cover of $X$.
+	By compactness of $X$, this open cover admits a finite subcover:
+	\begin{equation*}
+	X \; = \; \overset{n}{\underset{i\,=\,1}{\bigcup}}\,B\!\left(x_{i},\delta_{x_{i}}\overset{{\color{white}.}}{/}\,2\right).
+	\end{equation*}
+	Define \,$\delta \,:= \underset{1\leq i \leq n}{\min}\left\{\,\delta_{x_{i}}\overset{{\color{white}.}}{/}\,2\,\right\} \,>\, 0$.
+	Now note the uniform equicontinuity of $S$ will be established once we
+	prove the validity of the following:
+	\begin{center}
+	\begin{minipage}{5.5in}
+	\noindent
+	\underline{Claim:} \quad For any $\xi_{1}, \xi_{2} \in X$, and any $f \in S$, we have:
+	\begin{equation*}
+	\rho(\xi_{1},\xi_{2}) \,<\, \delta
+	\quad\Longrightarrow\quad
+	d\!\left(\overset{{\color{white}.}}{f}(\xi_{1}),f(\xi_{2})\right) \;\leq\; \varepsilon.
+	\end{equation*}
+	\end{minipage}
+	\end{center}
+	Proof of Claim: \quad Suppose $\rho(\xi_{1},\xi_{2}) < \delta$.
+	Note that $\xi_{1} \in B\!\left(x_{i},\delta_{x_{i}}\overset{{\color{white}.}}{/}\,2\right)$,
+	for some $i = 1, 2, \ldots, n$.
+	Next, observe that
+	\begin{equation*}
+	\rho(x_{i},\xi_{2})
+	\;\leq\; \rho(x_{i},\xi_{1}) \,+\, \rho(\xi_{1},\xi_{2})
+	\;\leq\; \dfrac{\delta_{x_{i}}}{2} \,+\, \delta
+	\;\leq\; \dfrac{\delta_{x_{i}}}{2} \,+\, \dfrac{\delta_{x_{i}}}{2}
+	\;=\; \delta_{x_{i}}.
+	\end{equation*}
+	This shows that both $\xi_{1}, \xi_{2} \in B(x_{i},\delta_{x_{i}})$, which implies
+	\begin{equation*}
+	d\!\left(\overset{{\color{white}.}}{f}(\xi_{1}),f(x_{i})\right) \;\leq\; \dfrac{\varepsilon}{2}\,,
+	\quad\textnormal{and}\quad
+	d\!\left(\overset{{\color{white}.}}{f}(\xi_{2}),f(x_{i})\right) \;\leq\; \dfrac{\varepsilon}{2}\,,
+	\quad\textnormal{for each $f \in S$},
+	\end{equation*}
+	which in turn implies:
+	\begin{equation*}
+	d\!\left(\overset{{\color{white}.}}{f}(\xi_{1}),f(\xi_{2})\right)
+	\;\leq\; d\!\left(\overset{{\color{white}.}}{f}(\xi_{1}),f(x_{i})\right)
+		\,+\, d\!\left(\overset{{\color{white}.}}{f}(f(x_{i}),\xi_{2})\right)
+	\;\leq\; \dfrac{\varepsilon}{2} \,+\, \dfrac{\varepsilon}{2}
+	\;=\; \varepsilon,
+	\quad\textnormal{for each $f \in S$}.
+	\end{equation*}
+	This completes the proof of the Claim and the uniform equicontinuity of $S$.
+	\qed
+\end{enumerate}
+
 
 \begin{theorem}[Arzel\`{a}-Ascoli, Theorem 9.10, \cite{Aliprantis1998}]
 \label{ArzelaAscoliTheorem}
