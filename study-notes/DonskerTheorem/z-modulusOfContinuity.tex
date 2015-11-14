@@ -1,0 +1,231 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Modulus of continuity}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Modulus of continuity]
+\mbox{}\vskip 0.2cm
+\noindent
+Let $\Re^{[0,1]}$ denote the set of all arbitrary $\Re$-valued functions defined on the closed unit interval $[0,1]$.
+The \textbf{modulus of continuity} is, by definition, the following function:
+\begin{equation*}
+w \;:\; \Re^{[0,1]} \times (0,1] \;\longrightarrow\; [0,\infty] \;:\;
+(f,\delta) \;\longmapsto\;
+\sup\left\{\;
+	\left\vert\,f(s) - f(t)\,\right\vert
+	\;\left\vert\;
+	\begin{array}{c} (s,t) \in [0,1] \times [0,1] \\ \vert s - t \vert\,\leq\,\delta \end{array}
+	\right.
+\right\}.
+\end{equation*}
+\end{definition}
+
+\begin{proposition}
+\mbox{}\vskip 0cm
+\begin{enumerate}
+\item	The restriction of $w$ to $\Czo \times (0,1]$ takes values in $[0,\infty)$.
+\item	For each $\delta \in (0,1]$ and each $f, g \in \Czo$, we have
+		\begin{equation*}
+		\left\vert\;\overset{{\color{white}:}}{w}(f,\delta) \,-\, w(g,\delta)\;\right\vert
+		\;\; \leq \;\;
+		2\,\left\Vert\; f \,-\, g \;\right\Vert_{\infty}.
+		\end{equation*}
+\item	For each $\delta \in (0,1]$, the map
+		\,$w(\,\cdot\,,\delta) : \left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right) \longrightarrow \Re :  f \longmapsto w(f,\delta)$\,
+		is continuous.
+\end{enumerate}
+\end{proposition}
+\proof
+\vskip 0.1cm
+\noindent
+For each $\delta \in (0,1]$, the set
+\begin{equation*}
+	D(\delta)
+	\; := \;
+	\left\{\;
+		(s,t) \in [0,1] \times [0,1]
+		\;\left\vert\;\;
+		\vert\,s - t\,\vert \leq \overset{{\color{white}.}}{\delta}
+	\right.
+\;\right\}
+\end{equation*}
+is a subset of the compact set $[0,1] \times [0,1]$.		
+\begin{enumerate}
+\item	For each $f \in \Czo$, the map
+		\begin{equation*}
+		[0,1] \times [0,1] \;\longrightarrow\; \Re \;:\; (s,t) \;\longmapsto\; \vert\,f(s) - f(t) \,\vert
+		\end{equation*}
+		is continuous on the compact set $[0,1] \times [0,1]$;
+		hence, it is bounded and attains its supremum on $[0,1] \times [0,1]$;
+		in particular, its supremum on $[0,1] \times [0,1]$ is a (finite non-negative) real number.
+		Hence,
+		\begin{eqnarray*}
+		w(f,\delta)
+		&:=&
+		\sup\left\{\;
+			\left\vert\,f(s) - f(t)\,\right\vert
+			\;\left\vert\;
+			\begin{array}{c} (s,t) \in [0,1] \times [0,1] \\ \vert s - t \vert\,\leq\,\delta \end{array}
+			\right.
+		\right\}
+		\;\; = \;\;
+		\underset{(s,t)\,\in\,D(\delta)}{\sup}\left\{\;\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t)\,\right\vert\;\right\}
+		\\
+		& \leq &
+		\underset{(s,t)\,\in\,[0,1]\times[0,1]}{\sup}\left\{\;\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t)\,\right\vert\;\right\}
+		\;\; < \;\; \infty.
+		\end{eqnarray*}
+		This proves (i).
+\item	Recall that for any $a, b \in \Re$, we have
+		\begin{equation*}
+		\vert\,a\,\vert
+		\;\;=\;\; \vert\,a - b + b\,\vert
+		\;\;\leq\;\; \vert\,a - b\,\vert \;+\; \vert\,b\,\vert,
+		\end{equation*}
+		which in turn implies:
+		\begin{equation*}
+		\vert\,a\,\vert \;-\; \vert\,b\,\vert \;\;\leq\;\; \vert\,a - b\,\vert.
+		\end{equation*}
+		Consequently, for each $f,g \in \Czo$ and each $s,t \in [0,1]$, we have:
+		\begin{eqnarray*}
+		\left\vert\, f(s) \overset{{\color{white}.}}{-} f(t)\,\right\vert
+			\;-\; \left\vert\, g(s) \overset{{\color{white}.}}{-} g(t) \,\right\vert
+		&\leq&
+			\left\vert\,f(s)-f(t) \overset{{\color{white}.}}{-} g(s)+g(t)\,\right\vert	
+		\\
+		&\leq&
+			\left\vert\,f(s) \overset{{\color{white}.}}{-} g(s)\,\right\vert
+			\;+\;
+			\left\vert\,f(t) \overset{{\color{white}.}}{-} g(t)\,\right\vert
+		\;\;\leq\;\;
+			2\,\left\Vert\,f \overset{{\color{white}.}}{-} g\,\right\Vert_{\infty}.
+		\end{eqnarray*}
+		On the other hand, note that for any $g \in \Czo$ and
+		any $(s,t) \in [0,1] \times [0,1]$ with $\vert\,s-t\,\vert\,\leq\,\delta$, i.e. $(s,t) \in D(\delta)$,
+		we have
+		\begin{equation*}
+		\left\vert\,g(s) \overset{{\color{white}.}}{-} g(t)\,\right\vert
+		\;\; \leq \;\;
+		\underset{(\xi,\zeta)\,\in\,D(\delta)}{\sup}\left\{\;\left\vert\,\overset{{\color{white}.}}{g}(\xi) - g(\zeta)\,\right\vert\;\right\}
+		\;\; =: \;\; w(g,\delta),
+		\end{equation*}
+		hence,
+		\begin{equation*}
+		- \; w(g,\delta)
+		\;\; \leq \;\;
+		-\;\left\vert\,g(s) \overset{{\color{white}.}}{-} g(t)\,\right\vert,
+		\quad
+		\textnormal{for any $g \in \Czo$ and any $(s,t)\in D(\delta)$}.
+		\end{equation*}
+		Thus, we see that, for any $f,g \in \Czo$ and any $(s,t) \in D(\delta)$, we have
+		\begin{equation*}
+		\left\vert\, f(s) \overset{{\color{white}.}}{-} f(t)\,\right\vert
+			\;-\; w(g,\delta)
+		\;\; \leq \;\;
+		\left\vert\, f(s) \overset{{\color{white}.}}{-} f(t)\,\right\vert
+			\;-\; \left\vert\, g(s) \overset{{\color{white}.}}{-} g(t) \,\right\vert
+		\;\; \leq \;\;
+			2\,\left\Vert\,f \overset{{\color{white}.}}{-} g\,\right\Vert_{\infty}.
+		\end{equation*}
+		Taking supremum of the left-hand side of the preceding inequality over $(s,t) \in D(\delta)$ now yields:
+		\begin{eqnarray*}
+		w(f,\delta) \;-\; w(g,\delta)
+		& = &
+		\underset{(\xi,\zeta)\,\in\,D(\delta)}{\sup}
+			\left\{\; \left\vert\,\overset{{\color{white}.}}{f}(\xi) - f(\zeta)\,\right\vert \;\right\}
+			\;-\; w(g,\delta)
+		\\
+		& = &
+		\underset{(\xi,\zeta)\,\in\,D(\delta)}{\sup}
+			\left\{\;
+				\left\vert\,\overset{{\color{white}.}}{f}(\xi) - f(\zeta)\,\right\vert \;-\; w(g,\delta)
+			\;\right\}
+		\\
+		& \leq &
+			2\,\left\Vert\,f \overset{{\color{white}.}}{-} g\,\right\Vert_{\infty}.
+		\end{eqnarray*}
+		Interchanging $f$ and $g$ in the preceding inequality now yields:
+		\begin{equation*}
+		\left\vert\; w(f,\delta) \,\overset{{\color{white}.}}{-}\, w(g,\delta) \;\right\vert
+		\;\; \leq \;\;
+			2\,\left\Vert\,f \overset{{\color{white}.}}{-} g\,\right\Vert_{\infty}.
+		\end{equation*}
+		This completes the proof of (ii).
+\item	This is an immediate consequence of (ii).
+\end{enumerate}
+\qed
+
+\begin{corollary}
+\mbox{}\vskip 0.1cm
+\noindent
+For any $\delta \in (0,1]$ and any $\Czo$-valued random variable
+$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Czo,\Vert\,\cdot\,\Vert_{\infty})$,
+the map
+$w(X(\,\cdot\,),\delta) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$
+is an $\Re$-valued random variable (i.e. an $\Re$-valued Borel measurable function).
+\end{corollary}
+\proof
+The map $w(X(\,\cdot\,),\delta)$ is the following composition of maps:
+\begin{equation*}
+w(X(\,\cdot\,),\delta)
+\;:\; (\Omega,\mathcal{A},\mu) \;\overset{X}{\longrightarrow}\; (\Czo,\Vert\,\cdot\,\Vert_{\infty})
+\;\overset{w(\,\cdot\,,\delta)}{\longrightarrow}\; \Re.
+\end{equation*}
+Now, $X$ is Borel measurable by hypothesis ($X$ is a $\Czo$-valued random variable).
+Secondly, $w(\,\cdot\,,\delta)$ is continuous by the preceding Theorem, and hence,
+Borel measurable, by Corollary \ref{ContinuousMapsAreBorelMeasurable}.
+Thus, $w(X(\,\cdot\,),\delta)$ is a composition of two Borel measurable maps, hence,
+it is itself Borel measurable.
+\qed
+
+\begin{proposition}[Theorem 7.4, \cite{Billingsley1999}]
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$\delta > 0$\, and \,$0 \,=\, t_{0} \,<\, t_{1} \,<\, \cdots \,<\, t_{n} = 1$\, satisfy:
+		\begin{equation*}
+		\min_{1\,\leq\,i\,\leq\,n}\left\{\;\overset{{\color{white}.}}{t}_{i} - t_{i-1}\;\right\}
+		\;\; \geq \;\; \delta.
+		\end{equation*}
+\item	$\Czo$ is the Banach space of continuous $\Re$-valued functions defined on $[0,1]$
+		equipped with the supremum norm.
+\end{itemize}
+Then, the following statements are true:
+\begin{enumerate}
+\item	For each $f \in \Czo$, we have:
+		\begin{equation*}
+		w(f,\delta) \;\; \leq \;\; 3 \cdot
+			\max_{1\,\leq\,i\,\leq\,n}\left\{\;
+				\sup_{t_{i-1}\,\leq\,s\,\leq\,t_{i}}\,\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t_{i-1})\,\right\vert
+			\;\right\}.
+		\end{equation*}
+\item	For each $\varepsilon > 0$ and each $\Czo$-valued random variable
+		$X : \left(\,\Omega,\mathcal{A},\overset{{\color{white}.}}{\mu}\,\right) \longrightarrow \left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$,
+		we have:
+		\begin{eqnarray*}
+		P\!\left(\;\overset{{\color{white}1}}{w}(X,\delta)\,\geq\,3\,\epsilon\;\right)
+		&\leq& \overset{n}{\underset{i\,=\,1}{\sum}}\;
+			P\!\left(\;
+				\underset{t_{i-1}\leq s \leq t_{i}}{\sup}\left\vert\,\overset{{\color{white}.}}{X}(s)-X(t_{i-1})\,\right\vert\,\geq\,\epsilon
+				\;\right),
+		\end{eqnarray*}
+		or equivalently but more precisely,
+		\begin{eqnarray*}
+		\mu\!\left(\left\{\;\omega\in\Omega\;\left\vert\;\overset{{\color{white}1}}{w}(X(\omega),\delta)\,\geq\,3\,\epsilon\right.\;\right\}\right)
+		&\leq& \overset{n}{\underset{i\,=\,1}{\sum}}\;
+			\mu\!\left(\left\{\; \omega\in\Omega \;\left\vert\;
+				\underset{t_{i-1}\leq s \leq t_{i}}{\sup}\left\vert\,\overset{{\color{white}.}}{X}(\omega)(s)-X(\omega)(t_{i-1})\,\right\vert\,\geq\,\epsilon
+				\right.\;\right\}\right).
+		\end{eqnarray*}
+\end{enumerate}
+\end{proposition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
