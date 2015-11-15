@@ -165,24 +165,16 @@ is a subset of the compact set $[0,1] \times [0,1]$.
 \begin{corollary}
 \mbox{}\vskip 0.1cm
 \noindent
-For any $\delta \in (0,1]$ and any $\Czo$-valued random variable
-$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Czo,\Vert\,\cdot\,\Vert_{\infty})$,
+For any $\delta \in (0,1]$,
+%and any $\Czo$-valued random variable
+%$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Czo,\Vert\,\cdot\,\Vert_{\infty})$,
 the map
-$w(X(\,\cdot\,),\delta) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$
+$w(\,\cdot\,,\delta) : \Czo \longrightarrow \Re$
 is an $\Re$-valued random variable (i.e. an $\Re$-valued Borel measurable function).
 \end{corollary}
 \proof
-The map $w(X(\,\cdot\,),\delta)$ is the following composition of maps:
-\begin{equation*}
-w(X(\,\cdot\,),\delta)
-\;:\; (\Omega,\mathcal{A},\mu) \;\overset{X}{\longrightarrow}\; (\Czo,\Vert\,\cdot\,\Vert_{\infty})
-\;\overset{w(\,\cdot\,,\delta)}{\longrightarrow}\; \Re.
-\end{equation*}
-Now, $X$ is Borel measurable by hypothesis ($X$ is a $\Czo$-valued random variable).
-Secondly, $w(\,\cdot\,,\delta)$ is continuous by the preceding Theorem, and hence,
+$w(\,\cdot\,,\delta)$ is continuous by the preceding Theorem, and hence,
 Borel measurable, by Corollary \ref{ContinuousMapsAreBorelMeasurable}.
-Thus, $w(X(\,\cdot\,),\delta)$ is a composition of two Borel measurable maps, hence,
-it is itself Borel measurable.
 \qed
 
 \begin{proposition}[Theorem 7.4, \cite{Billingsley1999}]
@@ -207,23 +199,15 @@ Then, the following statements are true:
 				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t_{i-1})\,\right\vert
 			\;\right\}.
 		\end{equation*}
-\item	For each $\varepsilon > 0$ and each $\Czo$-valued random variable
-		$X : \left(\,\Omega,\mathcal{A},\overset{{\color{white}.}}{\mu}\,\right) \longrightarrow \left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$,
+\item	For each $\varepsilon > 0$ and each Borel probability measure $P$ on
+		the (separable) Banach space $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$,
 		we have:
 		\begin{eqnarray*}
-		P\!\left(\;\overset{{\color{white}1}}{w}(X,\delta)\,\geq\,3\,\epsilon\;\right)
+		P\!\left(\left\{\;f\in\Czo\;\left\vert\;\overset{{\color{white}1}}{w}(f,\delta)\,\geq\,3\,\epsilon\right.\;\right\}\right)
 		&\leq& \overset{n}{\underset{i\,=\,1}{\sum}}\;
-			P\!\left(\;
-				\underset{s\,\in\,[t_{i-1},t_{i}]}{\sup}\left\vert\,\overset{{\color{white}.}}{X}(s)-X(t_{i-1})\,\right\vert\,\geq\,\epsilon
-				\;\right),
-		\end{eqnarray*}
-		or equivalently but more precisely,
-		\begin{eqnarray*}
-		\mu\!\left(\left\{\;\omega\in\Omega\;\left\vert\;\overset{{\color{white}1}}{w}(X(\omega),\delta)\,\geq\,3\,\epsilon\right.\;\right\}\right)
-		&\leq& \overset{n}{\underset{i\,=\,1}{\sum}}\;
-			\mu\!\left(\left\{\; \omega\in\Omega \;\left\vert\;
+			P\!\left(\left\{\; f\in\Czo \;\left\vert\;
 				\underset{s\,\in\,[t_{i-1},t_{i}]}{\sup}
-				\left\vert\,\overset{{\color{white}.}}{X}(\omega)(s)-X(\omega)(t_{i-1})\,\right\vert\,\geq\,\epsilon
+				\left\vert\,f(s) \overset{{\color{white}.}}{-} f(t_{i-1})\,\right\vert\,\geq\,\epsilon
 				\right.\;\right\}\right).
 		\end{eqnarray*}
 \end{enumerate}
@@ -313,18 +297,18 @@ Then, the following statements are true:
 		we have:
 		\begin{eqnarray*}
 		\left\{\;
-			\omega \in \Omega
+			f \in \Czo
 			\;\left\vert\;\,
-			3\,\varepsilon\,\overset{{\color{white}.}}{\leq}\,w(X(\omega),\delta)
+			3\,\varepsilon\,\overset{{\color{white}.}}{\leq}\,w(f,\delta)
 			\right.
 		\;\right\}
 		&\subset&
 		\left\{\;
-			\omega \in \Omega
-			\,\;\left\vert\;\,
+			f \in \Czo
+			\;\left\vert\;\,
 			\varepsilon\,\overset{{\color{white}.}}{\leq}\,
 			\underset{1\,\leq\,i\,\leq\,n}{\max}\left\{\;
-				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{X}(\omega)(s) - X(\omega)(t_{i-1})\,\right\vert
+				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,f(s) \overset{{\color{white}.}}{-} f(t_{i-1})\,\right\vert
 			\;\right\}
 			\right.
 		\;\right\}
@@ -332,10 +316,10 @@ Then, the following statements are true:
 		&=&
 		\overset{n}{\underset{i=1}{\bigcup}}\;
 		\left\{\;
-			\omega \in \Omega
-			\,\;\left\vert\;\,
+			f \in \Czo
+			\;\left\vert\;\,
 			\varepsilon\;\overset{{\color{white}.}}{\leq}
-				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{X}(\omega)(s) - X(\omega)(t_{i-1})\,\right\vert
+				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,f(s) \overset{{\color{white}.}}{-} f(t_{i-1})\,\right\vert
 			\right.
 		\;\right\},
 		\end{eqnarray*}
