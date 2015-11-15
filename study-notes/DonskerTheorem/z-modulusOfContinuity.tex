@@ -203,11 +203,11 @@ Then, the following statements are true:
 		the (separable) Banach space $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$,
 		we have:
 		\begin{eqnarray*}
-		P\!\left(\left\{\;f\in\Czo\;\left\vert\;\overset{{\color{white}1}}{w}(f,\delta)\,\geq\,3\,\epsilon\right.\;\right\}\right)
+		P\!\left(\left\{\;f\in\Czo\;\left\vert\;\overset{{\color{white}1}}{w}(f,\delta)\,\geq\,3\,\varepsilon\right.\;\right\}\right)
 		&\leq& \overset{n}{\underset{i\,=\,1}{\sum}}\;
 			P\!\left(\left\{\; f\in\Czo \;\left\vert\;
 				\underset{s\,\in\,[t_{i-1},t_{i}]}{\sup}
-				\left\vert\,f(s) \overset{{\color{white}.}}{-} f(t_{i-1})\,\right\vert\,\geq\,\epsilon
+				\left\vert\,f(s) \overset{{\color{white}.}}{-} f(t_{i-1})\,\right\vert\,\geq\,\varepsilon
 				\right.\;\right\}\right).
 		\end{eqnarray*}
 \end{enumerate}
@@ -325,6 +325,78 @@ Then, the following statements are true:
 		\end{eqnarray*}
 		and (ii) now follows by sub-additivity of measures.
 \end{enumerate}
+\qed
+
+\begin{corollary}[Corollary of Theorem 7.4, \cite{Billingsley1999}]
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose $\{\,P_{n}\,\}_{n\in\N}$\, is a sequence of Borel probability measures on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
+\vskip 0.1cm
+\noindent
+Then, (i) implies (ii):
+\begin{enumerate}
+\item	For each $\varepsilon, \eta > 0$, there exist $\delta \in (0,1)$ and $n_{0} \in \N$ such that
+		\begin{equation*}
+		\dfrac{1}{\delta}\cdot
+		P_{n}\!\left(\left\{\;
+			f \in \Czo
+			\;\left\vert\;\,
+				\varepsilon\;\leq\;\underset{s\,\in\,\left[\,t\,\overset{{\color{white}1}}{,}\,\min\{1,t+\delta\}\right]}{\sup}
+				\,\left\vert\,f(s) \overset{{\color{white}.}}{-} f(t)\,\right\vert
+			\right.
+		\;\right\}\right)
+		\;\;\leq\;\; \eta,
+		\;\;\;
+		\textnormal{for each $t \in [0,1]$ and each $n \geq n_{0}$}.
+		\end{equation*}
+\item	For each $\varepsilon, \eta > 0$, there exist $\delta \in (0,1)$ and $n_{0} \in \N$ such that
+		\begin{equation*}
+		P_{n}\!\left(\left\{\;f\in\Czo\;\left\vert\;\, \varepsilon \,\leq\, \overset{{\color{white}1}}{w}(f,\delta)\right.\;\right\}\right)
+		\;\;\leq\;\; \eta,
+		\;\;\;
+		\textnormal{for each $n \geq n_{0}$}.
+		\end{equation*}
+\end{enumerate}
+\end{corollary}
+\proof
+Suppose (i) holds and let $\varepsilon, \eta > 0$ be given.
+By (i), there exists $\delta \in (0,1)$ and $n_{0} \in \N$ such that
+\begin{equation*}
+\dfrac{1}{\delta}\cdot
+P_{n}\!\left(\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+		{\color{red}\dfrac{\varepsilon}{3}}
+		\;\leq\;
+		\underset{s\,\in\,\left[\,t\,\overset{{\color{white}1}}{,}\,\min\{1,t+\delta\}\right]}{\sup}
+		\,\left\vert\,f(s) \overset{{\color{white}.}}{-} f(t)\,\right\vert
+	\right.
+\;\right\}\right)
+\;\;\leq\;\; \eta,
+\;\;\;
+\textnormal{for each $t \in [0,1]$ and each $n \geq n_{0}$}.
+\end{equation*}
+Now, let $t_{0} = 0$, and $t_{i} = i\delta$, for $i = 1, 2, 3, \ldots, k := \lfloor\,1/\delta\,\rfloor$.
+Then, the preceding inequality and the preceding Theorem together imply:
+\begin{eqnarray*}
+P_{n}\!\left(\left\{\;f\in\Czo\;\left\vert\;\,\varepsilon\,\leq\,\overset{{\color{white}1}}{w}(f,\delta)\right.\;\right\}\right)
+&\leq&
+	\overset{k}{\underset{i\,=\,1}{\sum}}\;
+	P_{n}\!\left(\left\{\; f\in\Czo \;\left\vert\;\;
+		\dfrac{\varepsilon}{3}
+		\,\leq\,
+		\underset{s\,\in\,[t_{i-1},t_{i}]}{\sup}
+		\left\vert\,f(s) \overset{{\color{white}.}}{-} f(t_{i-1})\,\right\vert
+		\right.\;\right\}\right)
+\\ \\
+&\leq&
+	k\cdot\delta\cdot\eta
+	\;\; = \;\; \lfloor\,1/\delta\,\rfloor \cdot \delta \cdot \eta
+	\;\; \leq \;\; 1 \cdot \eta
+	\;\; = \;\; \eta,
+	\;\;\;\textnormal{for each $n \geq n_{0}$}.
+\end{eqnarray*}
+This completes the proof of the Corollary.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
