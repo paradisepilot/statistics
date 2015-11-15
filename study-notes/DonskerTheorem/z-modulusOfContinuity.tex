@@ -204,7 +204,7 @@ Then, the following statements are true:
 		\begin{equation*}
 		w(f,\delta) \;\; \leq \;\; 3 \cdot
 			\max_{1\,\leq\,i\,\leq\,n}\left\{\;
-				\sup_{t_{i-1}\,\leq\,s\,\leq\,t_{i}}\,\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t_{i-1})\,\right\vert
+				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t_{i-1})\,\right\vert
 			\;\right\}.
 		\end{equation*}
 \item	For each $\varepsilon > 0$ and each $\Czo$-valued random variable
@@ -214,7 +214,7 @@ Then, the following statements are true:
 		P\!\left(\;\overset{{\color{white}1}}{w}(X,\delta)\,\geq\,3\,\epsilon\;\right)
 		&\leq& \overset{n}{\underset{i\,=\,1}{\sum}}\;
 			P\!\left(\;
-				\underset{t_{i-1}\leq s \leq t_{i}}{\sup}\left\vert\,\overset{{\color{white}.}}{X}(s)-X(t_{i-1})\,\right\vert\,\geq\,\epsilon
+				\underset{s\,\in\,[t_{i-1},t_{i}]}{\sup}\left\vert\,\overset{{\color{white}.}}{X}(s)-X(t_{i-1})\,\right\vert\,\geq\,\epsilon
 				\;\right),
 		\end{eqnarray*}
 		or equivalently but more precisely,
@@ -222,10 +222,125 @@ Then, the following statements are true:
 		\mu\!\left(\left\{\;\omega\in\Omega\;\left\vert\;\overset{{\color{white}1}}{w}(X(\omega),\delta)\,\geq\,3\,\epsilon\right.\;\right\}\right)
 		&\leq& \overset{n}{\underset{i\,=\,1}{\sum}}\;
 			\mu\!\left(\left\{\; \omega\in\Omega \;\left\vert\;
-				\underset{t_{i-1}\leq s \leq t_{i}}{\sup}\left\vert\,\overset{{\color{white}.}}{X}(\omega)(s)-X(\omega)(t_{i-1})\,\right\vert\,\geq\,\epsilon
+				\underset{s\,\in\,[t_{i-1},t_{i}]}{\sup}
+				\left\vert\,\overset{{\color{white}.}}{X}(\omega)(s)-X(\omega)(t_{i-1})\,\right\vert\,\geq\,\epsilon
 				\right.\;\right\}\right).
 		\end{eqnarray*}
 \end{enumerate}
 \end{proposition}
+\proof
+\begin{enumerate}
+\item	First, note that
+		\begin{equation*}
+		\left.
+		\begin{array}{ccc}
+			\vert\,s - t\,\vert &\leq& \delta
+			\\
+			\underset{1\,\leq\,i\,\leq\,n}{\min}\left\{\,\overset{{\color{white}.}}{t}_{i} - t_{i-1}\,\right\} &\geq& \delta
+		\end{array}
+		\;\right\}
+		\quad\Longrightarrow\quad
+		\left\{\begin{array}{cll}
+			\textnormal{either} & s,t\,\in\,[t_{i-1},t_{i}], & \textnormal{for some $i\in\{1,2,\ldots,n\}$}
+			\\
+			\textnormal{or} & s,t\,\overset{{\color{white}1}}{\in}\,[t_{i-1},t_{i}]\cup[t_{i-1}-t_{i-2}], & \textnormal{for some $i\in\{2,\ldots,n\}$}
+		\end{array}\right.
+		\end{equation*}
+		For the case in which both $s$ and $t$ lie in the same subinterval $[t_{i-1},t_{i}]$,
+		for some $i\in\{1,2,\ldots,n\}$, we have
+		\begin{equation*}
+		\left\vert\;f(s)\overset{{\color{white}.}}{-}f(t)\;\right\vert
+		\;\;\leq\;\;
+			\left\vert\;f(s)\overset{{\color{white}.}}{-}f(t_{i-1})\;\right\vert
+			\;+\;\left\vert\;f(t_{i-1})\overset{{\color{white}.}}{-}f(t)\;\right\vert
+		\;\;\leq\;\;
+			2\cdot\underset{1\,\leq\,i\,\leq\,n}{\max}\left\{\;
+				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t_{i-1})\,\right\vert
+			\;\right\}.
+		\end{equation*}
+		For the case in which $s$ and $t$ lie in adjacent subintervals,
+		say $s \in [t_{i-2},t_{i-1}]$ and $t \in [t_{i-1},t_{i}]$,
+		for some $i\in\{2,\ldots,n\}$, we have
+		\begin{eqnarray*}
+		\left\vert\;f(s)\overset{{\color{white}.}}{-}f(t)\;\right\vert
+		&\leq&
+			\left\vert\;f(s)\overset{{\color{white}.}}{-}f(t_{i-2})\;\right\vert
+			\;+\;\left\vert\;f(t_{i-2})\overset{{\color{white}.}}{-}f(t_{i-1})\;\right\vert
+			\;+\;\left\vert\;f(t_{i-1})\overset{{\color{white}.}}{-}f(t)\;\right\vert
+		\\
+		&\leq&
+			3\cdot\underset{1\,\leq\,i\,\leq\,n}{\max}\left\{\;
+				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t_{i-1})\,\right\vert
+			\;\right\}.
+		\end{eqnarray*}
+		Thus we see that,
+		for any $f \in \Czo$ and any $(s,t)\in[0,1]\times[0,1]$ with $\vert\,s-t\,\vert\leq\delta$, we have
+		\begin{equation*}
+		\left\vert\;f(s)\overset{{\color{white}.}}{-}f(t)\;\right\vert
+		\;\;\leq\;\;
+			3\cdot\underset{1\,\leq\,i\,\leq\,n}{\max}\left\{\;
+				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t_{i-1})\,\right\vert
+			\;\right\},
+		\end{equation*}
+		which implies, for each $f \in \Czo$,
+		\begin{equation*}
+		w(f,\delta)
+		\;\;:=\;\;
+		\sup\left\{\;
+			\left\vert\,f(s) - f(t)\,\right\vert
+			\;\left\vert
+			\begin{array}{c} (s,t) \in [0,1] \times [0,1] \\ \vert s - t \vert\,\leq\,\delta \end{array}
+			\right.
+		\right\}
+		\;\;\leq\;\;
+			3\cdot\underset{1\,\leq\,i\,\leq\,n}{\max}\left\{\;
+				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t_{i-1})\,\right\vert
+			\;\right\}.
+		\end{equation*}
+		This proves (i).
+\item	By (i), we see that, for any $\varepsilon, \delta > 0$ and any $f \in \Czo$, we have:
+		\begin{equation*}
+		3\,\varepsilon \;\leq\; w(f,\delta) 
+		\quad\Longrightarrow\quad
+		\varepsilon
+		\;\leq\;
+		\underset{1\,\leq\,i\,\leq\,n}{\max}\left\{\;
+			\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t_{i-1})\,\right\vert
+		\;\right\}.
+		\end{equation*}
+		For any $\varepsilon, \delta > 0$ and any $\Czo$-valued random variable
+		$X : \left(\,\Omega,\mathcal{A},\overset{{\color{white}.}}{\mu}\,\right) \longrightarrow \left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$,
+		we have:
+		\begin{eqnarray*}
+		\left\{\;
+			\omega \in \Omega
+			\;\left\vert\;\,
+			3\,\varepsilon\,\overset{{\color{white}.}}{\leq}\,w(X(\omega),\delta)
+			\right.
+		\;\right\}
+		&\subset&
+		\left\{\;
+			\omega \in \Omega
+			\,\;\left\vert\;\,
+			\varepsilon\,\overset{{\color{white}.}}{\leq}\,
+			\underset{1\,\leq\,i\,\leq\,n}{\max}\left\{\;
+				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{X}(\omega)(s) - X(\omega)(t_{i-1})\,\right\vert
+			\;\right\}
+			\right.
+		\;\right\}
+		\\
+		&=&
+		\overset{n}{\underset{i=1}{\bigcup}}\;
+		\left\{\;
+			\omega \in \Omega
+			\,\;\left\vert\;\,
+			\varepsilon\;\overset{{\color{white}.}}{\leq}
+				\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{X}(\omega)(s) - X(\omega)(t_{i-1})\,\right\vert
+			\right.
+		\;\right\},
+		\end{eqnarray*}
+		and (ii) now follows by sub-additivity of measures.
+\end{enumerate}
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
