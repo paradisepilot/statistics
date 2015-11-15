@@ -10,7 +10,107 @@
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
-\begin{proposition}
+\begin{definition}
+\label{randomWalksOnR}
+\mbox{}\vskip 0cm
+\begin{itemize}
+\item	A \textbf{random walk on $\Re$} is a sequence $\{\;S_{n} : \Omega \longrightarrow \Re\;\}_{n\in\N}$
+		of \,$\Re$-valued random variables defined on a probability space $\Omega$ of the following form:
+		There exists a sequence $\xi_{1}, \xi_{2}, \ldots \, : \Omega \longrightarrow \Re$ of
+		\underline{independent and identically distributed} \,$\Re$-valued random variables such that
+		\begin{equation*}
+		S_{n} \; = \; \overset{n}{\underset{i\,=\,1}{\sum}}\;\xi_{i},
+		\quad
+		\textnormal{for each $n \in \N$}.
+		\end{equation*}
+\item	Let
+		\,$\left\{\;S_{n} \,=\, \overset{n}{\underset{i\,=\,1}{\sum}}\;\xi_{i} \,:\, \Omega \,\longrightarrow\, \Re\;\right\}_{n\in\N}$
+		be a random walk on $\Re$.
+		Let $S_{0} : \Omega \longrightarrow \Re : \omega \longmapsto 0$ be the (constant) random variable
+		defined on $\Omega$ with constant value $0 \in \Re$. 
+		\vskip 0.1cm
+		For each $n \in \N$, the \textbf{piecewise linear equi-spaced lattice interpolation
+		of $\left\{\;S_{0},S_{1},S_{2},\ldots,S_{n}\;\right\}$ over the unit interval $[0,1]$}
+		is the function
+		\,$\overline{S}^{(n)} \,:\, \Omega \;\longrightarrow\;C[0,1]$\,
+		defined as follows:
+		\begin{equation*}
+		\overline{S}^{(n)}(\omega)(t)
+		\; := \;
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
+		\left\{\;
+		S_{i-1}(\omega) \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}(\omega)
+		\,\right\},
+		\;\;
+		\textnormal{for each $\omega \in \Omega$, \;$t \in \left[\frac{i-1}{n},\frac{i}{n}\right]$, \;$i = 1,2,3,\ldots,n$}.
+		\end{equation*}
+\item	For each $n \in \N$ and each $t \in [0,1]$, define
+		\;$\overline{S}^{(n)}_{t} : \,\Omega \, \longrightarrow \, \Re$\;
+		as follows:
+		\begin{equation*}
+		\overline{S}^{(n)}_{t}(\omega) \;\; := \;\; \overline{S}^{(n)}(\omega)(t),
+		\quad
+		\textnormal{for each $\omega \in \Omega$}.
+		\end{equation*}
+\end{itemize}
+\end{definition}
+
+\begin{theorem}
+\label{LinearInterpolationOfRandomWalkIsCzoValuedRandomVariable}
+\mbox{}\vskip 0.2cm
+\noindent
+Let \,$\left\{\;S_{n} \,=\, \overset{n}{\underset{i\,=\,1}{\sum}}\;\xi_{i} \,:\, \Omega \,\longrightarrow\, \Re\;\right\}_{n\in\N}$
+be a random walk on $\Re$, and let
+$\overline{S}^{(n)} \,:\, \Omega \;\longrightarrow\;C[0,1]$ and
+$\overline{S}^{(n)}_{t} : \,\Omega \, \longrightarrow \, \Re$
+be the associated functions as defined in Definition \ref{randomWalksOnR}.
+Let $S_{0} : \Omega \longrightarrow \Re : \omega \longmapsto 0$ be the (constant) $\Re$-valued random
+variable defined on $\Omega$ with constant value $0 \in \Re$. 
+Then, the following statements are true:
+\begin{enumerate}
+\item	For each $\omega \in \Omega$ and each $n \in \N$,
+		\begin{equation*}
+		\overline{S}^{(n)}(\omega)\left(\dfrac{i}{n}\right) \;\; = \;\; \dfrac{1}{\sigma\cdot\sqrt{n}}\cdot S_{i}(\omega),
+		\quad
+		\textnormal{for $i = 0, 1, 2, \ldots, n$}.
+		\end{equation*}
+\item	For each $\omega \in \Omega$ and each $n \in \N$, 
+		\begin{center}
+		$\overline{S}^{(n)}(\omega)(t)$\; is the linear interpolation
+		from \;$\dfrac{1}{\sigma\cdot\sqrt{n}}\,S_{i-1}(\omega)$\;
+		to \;$\dfrac{1}{\sigma\cdot\sqrt{n}}\,S_{i}(\omega)$\;
+		over \;$t \in \left[\dfrac{i-1}{n},\dfrac{i}{n}\right]$,
+		\end{center}
+		where $i = 1, 2, \ldots, n$.
+		In particular, for each $\omega \in \Omega$,
+		$\overline{S}^{(n)}(\omega)$ is a continuous $\Re$-valued function defined on $[0,1]$.
+\item	For each $n \in \N$ and each $t \in [0,1]$, the function
+		\;$\overline{S}^{(n)}_{t} : \,\Omega \, \longrightarrow \, \Re$\;
+		is an $\Re$-valued random variable defined on the probability space $\Omega$.
+		Hence, for each $n \in \N$, \,$\left\{\;\overline{S}^{(n)}_{t}\;\right\}_{t\in[0,1]}$\,
+		is a stochastic process indexed by $[0,1]$ with state space $\Re$
+		and continuous sample paths.
+\item	For each $n \in \N$, the function
+		\;$\overline{S}^{(n)} : \,\Omega \, \longrightarrow \, \Czo$\;
+		is a $\Czo$-valued random variable defined on the probability space $\Omega$.
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item	Obvious.
+\item	Obvious.
+\item	For each $n \in \N$ and each $t \in [0,1]$, the function $\overline{S}^{(n)}_{t}$ is
+		an $\Re$-valued random variable defined on $\Omega$ because it is a linear
+		combination, with coefficients in $\Re$, of the $\Re$-valued random variables
+		$\xi_{1}, \xi_{2}, \ldots, \xi_{n}$.
+		Thus, \,$\left\{\;\overline{S}^{(n)}_{t}\;\right\}_{t\in[0,1]}$\,
+		is a stochastic process indexed by $[0,1]$ with state space $\Re$.
+		By (ii), this stochastic process has continuous sample paths.
+\item	Immediate by (iii) and Theorem \ref{CzoRVStochasticProcessEquivalence}.
+\end{enumerate}
+\qed
+
+\begin{theorem}
 \mbox{}\vskip 0cm
 \begin{itemize}
 \item	Let $\xi_{1}, \xi_{2}, \ldots\, : \Omega \longrightarrow \Re$ be a sequence of
@@ -53,20 +153,6 @@
 \end{itemize}
 Then, the following statements are true:
 \begin{enumerate}
-\item	For each $\omega \in \Omega$ and each $n \in \N$,
-		\begin{equation*}
-		X^{(n)}(\omega)\left(\dfrac{i}{n}\right) \;\; = \;\; \dfrac{1}{\sigma\cdot\sqrt{n}}\cdot S_{i}(\omega),
-		\quad
-		\textnormal{for $i = 0, 1, 2, \ldots, n$}.
-		\end{equation*}
-\item	For each $\omega \in \Omega$ and each $n \in \N$, 
-		\begin{center}
-		$X^{(n)}(\omega)(t)$\; is the linear interpolation
-		from \;$\dfrac{1}{\sigma\cdot\sqrt{n}}\,S_{i-1}(\omega)$\;
-		to \;$\dfrac{1}{\sigma\cdot\sqrt{n}}\,S_{i}(\omega)$\;
-		over \;$t \in \left[\dfrac{i-1}{n},\dfrac{i}{n}\right]$,
-		\end{center}
-		where $i = 1, 2, \ldots, n$.
 \item	For any \;$0 \,\leq\, t_{0} \,<\, t_{1} \,<\, t_{2} \,<\, \cdots \,<\, t_{k} \,\leq\, 1$,
 		\begin{equation*}
 		\left(\;X^{(n)}_{t_{1}} - X^{(n)}_{t_{0}}, \;\ldots\;,\; X^{(n)}_{t_{k}} - X^{(n)}_{t_{k-1}}\;\right)
@@ -89,12 +175,15 @@ Then, the following statements are true:
 		\;\;\textnormal{as \;$n \longrightarrow \infty$}.
 		\end{equation*}
 \end{enumerate}
-\end{proposition}
+\end{theorem}
 \proof
+First, note that, by
+Theorem \ref{LinearInterpolationOfRandomWalkIsCzoValuedRandomVariable},
+for each $n \in \N$,
+\,$X^{(n)} : \Omega \longrightarrow C[0,1]$\,
+is a $\Czo$-valued random variable defined on $\Omega$.
 \begin{enumerate}
-\item	Obvious.
-\item	Obvious.
-\item	First, note that, for each $\omega \in \Omega$, $n \in\N$, and $t \in [0,1]$, we have
+\item	For each $\omega \in \Omega$, $n \in\N$, and $t \in [0,1]$, we have
 		\begin{equation*}
 		X^{(n)}_{t}(\omega)
 		\;\; = \;\;
@@ -450,7 +539,7 @@ Then, the following statements are true:
 		\end{array}
 		\!\right).
 		\end{equation*}
-		By (iii), we know that
+		By (i), we know that
 		\begin{equation*}
 		\left(\!
 		\begin{array}{c}
