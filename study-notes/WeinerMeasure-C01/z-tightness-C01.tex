@@ -1,0 +1,286 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Tightness of subsets of $\Czo$}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{theorem}[Theorem 7.3, \cite{Billingsley1999}]
+\label{NecessarySufficientTightnessCzo}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose \,$\left\{\,P_{n}\,\right\}_{n\in\N}$\, is a sequence of Borel probability measures on
+$\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
+\vskip0.1cm
+\noindent
+Consider the following three conditions on \,$\left\{\,P_{n}\,\right\}_{n\in\N}$\,:
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\begin{enumerate}
+\item	For each $\eta > 0$, there exist $a > 0$ and $n_{0} \in \N$ such that
+		\begin{equation*}
+		P_{n}\!\left(\left\{\;
+			f \in \Czo
+			\;\left\vert\;\,
+			\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+			\right.
+		\;\right\}\right)
+		\;\leq\; \eta,
+		\quad
+		\textnormal{for each $n \geq n_{0}$}.
+		\end{equation*}
+\item	For each $\varepsilon,\,\eta > 0$, there exist $\delta \in (0,1)$ and $n_{0} \in \N$ such that
+		\begin{equation*}
+		P_{n}\!\left(\left\{\;
+			f \in \Czo
+			\;\left\vert\;\,
+			w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+			\right.
+		\;\right\}\right)
+		\;\leq\; \eta,
+		\quad
+		\textnormal{for each $n \geq n_{0}$}.
+		\end{equation*}
+\item
+	\begin{equation*}
+	\lim_{\delta\rightarrow 0^{+}}
+	\limsup_{n\rightarrow\infty}\,
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\;\; = \;\; 0.
+	\end{equation*}
+\end{enumerate}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+Then, the following are equivalent:
+\begin{enumerate}
+\item	\,$\left\{\,P_{n}\,\right\}_{n\in\N}$\, is tight.
+\item	Conditions (i) and (ii) hold.
+\item	Conditions (i) and (iii) hold.
+\end{enumerate}
+\end{theorem}
+
+\proof
+\vskip 0.2cm
+\noindent
+\underline{(i)\;$\Longrightarrow$\;(ii)}
+\vskip 0.2cm
+\noindent
+Suppose \,$\left\{\,P_{n}\,\right\}_{n\in\N}$\, is tight and let $\eta > 0$ be given.
+By tightness of $\left\{\,P_{n}\,\right\}_{n\in\N}$, there exists a compact subset $K \subset \Czo$
+such that \,$1 - \eta \,\leq\, P_{n}\!\left(K\right) \,\leq\, 1$, for every $n \in \N$.
+By Theorem \ref{BillingsleyArzelaAscoli},
+\begin{eqnarray*}
+&&
+	\textnormal{compactness of $K \subset \Czo$}
+\\
+&\Longleftrightarrow&
+	\underset{f\,\in\,K}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} < \infty,
+	\quad\textnormal{and}\quad
+	\underset{\delta\rightarrow 0^{+}}{\lim}\,\underset{f\,\in\,K}{\sup}\left\{\;\overset{{\color{white}:}}{w}(f,\delta)\;\right\}\;=\;0.
+\\
+&\Longleftrightarrow&
+	K\,\subset\,
+	\left\{\,
+		f \in \Czo
+		\,\left\vert\,\, \vert\,f(0)\,\vert\,\overset{{\color{white}.}}{<}\,a\right.
+	\,\right\},
+	\;\textnormal{for some $a > 0$, and}
+\\
+&&
+	\textnormal{for each $\varepsilon > 0$, \,$\exists$\;$\delta > 0$\;\,such that}\;
+	\underset{f\,\in\,K}{\sup}\left\{\;\overset{{\color{white}:}}{w}(f,\delta)\;\right\}
+	\;<\;\varepsilon
+\\
+&\Longleftrightarrow&
+	K\,\subset\,
+	\left\{\,
+		f \in \Czo
+		\,\left\vert\,\, \vert\,f(0)\,\vert\,\overset{{\color{white}.}}{<}\,a\right.
+	\,\right\},
+	\;\textnormal{for some $a > 0$, and}
+\\
+&&
+	\textnormal{for each $\varepsilon > 0$, \,$\exists$\;$\delta > 0$\;\,such that}\;
+	K\,\subset\,
+	\left\{\,
+		f \in \Czo
+		\,\left\vert\,\, w(f,\delta)\,\overset{{\color{white}.}}{<}\,\varepsilon\right.
+	\,\right\}.
+\end{eqnarray*}
+But then,
+\begin{equation*}
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+		\right.
+	\;\right\}\right)
+	\;\;\leq\;\; P_{n}\!\left(\,\Czo\,\backslash\,K\,\right)
+	\;\; = \;\; 1 - P_{n}\!\left(\,K\,\right)
+	\;\;\leq\;\; \eta,
+	\quad
+	\textnormal{for each $n \;\geq\; 1 \;=:\; n_{0}$},
+\end{equation*}
+and
+\begin{equation*}
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\;\;\leq\;\; P_{n}\!\left(\,\Czo\,\backslash\,K\,\right)
+	\;\; = \;\; 1 - P_{n}\!\left(\,K\,\right)
+	\;\;\leq\;\; \eta,
+	\quad
+	\textnormal{for each $n \;\geq\; 1 \;=:\; n_{0}$}.
+\end{equation*}
+This completes the proof that (i)\;$\Longrightarrow$\;(ii).
+
+\vskip 0.5cm
+\noindent
+\underline{(ii)\;$\Longrightarrow$\;(i)}\quad
+
+
+\vskip 0.5cm
+\noindent
+\underline{(ii)\;$\Longleftrightarrow$\;(iii)}\quad
+It suffices to show that (b)\,$\Longleftrightarrow$\,(c).
+First, we state and prove the following:
+\begin{center}
+\begin{minipage}{6.0in}
+\noindent
+\textbf{Claim:}\quad The map
+\begin{equation*}
+(0,1) \;\; \longrightarrow \;\; [0,\infty)
+\;\;:\;\;
+\delta
+\;\; \longmapsto \;\;
+\limsup_{n\rightarrow\infty}\,
+P_{n}\!\left(\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+	\right.
+\;\right\}\right)
+\end{equation*}
+is non-decreasing in $\delta \in (0,1)$.
+\end{minipage}
+\end{center}
+Proof of Claim:\quad For $\delta_{1}, \delta_{2} \in (0,1)$ with $\delta_{1} \leq \delta_{2}$, we have
+\begin{equation*}
+	D(\delta_{1})
+	\; := \;
+	\left\{\;
+		(s,t) \in [0,1] \times [0,1]
+		\;\left\vert\;\;
+		\vert\,s - t\,\vert \overset{{\color{white}.}}{\leq} \delta_{1}
+		\right.
+	\;\right\}
+	\;\;\subset\;\;
+	\left\{\;
+		(s,t) \in [0,1] \times [0,1]
+		\;\left\vert\;\;
+		\vert\,s - t\,\vert \overset{{\color{white}.}}{\leq} \delta_{2}
+		\right.
+	\;\right\}
+	\; =: \;
+	D(\delta_{2}).
+\end{equation*}
+Hence, for each $f \in \Czo$ and each $\delta_{1}, \delta_{2} \in (0,1)$ with $\delta_{1} \leq \delta_{2}$, we have
+\begin{equation*}
+w(f,\delta_{1})
+\;\;:=\; \sup_{(s,t)\,\in\,D(\delta_{1})}\left\{\;\vert\,f(s)\overset{{\color{white}.}}{-}f(t)\,\vert\;\right\}
+\;\;\leq\; \sup_{(s,t)\,\in\,D(\delta_{2})}\left\{\;\vert\,f(s)\overset{{\color{white}.}}{-}f(t)\,\vert\;\right\}
+\;\; =: \;\; w(f,\delta_{2}).
+\end{equation*}
+This implies that, for any $\varepsilon > 0$ and
+any $\delta_{1}, \delta_{2} \in (0,1)$ with $\delta_{1} \leq \delta_{2}$, we have
+\begin{equation*}
+\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	w(f,\delta_{1}) \overset{{\color{white}.}}{\geq} \varepsilon
+	\right.
+\;\right\}
+\;\;\subset\;\;
+\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	w(f,\delta_{1}) \overset{{\color{white}.}}{\geq} \varepsilon
+	\right.
+\;\right\},
+\end{equation*}
+which in turn implies that, for any $n \in \N$, $\varepsilon > 0$ and
+any $\delta_{1}, \delta_{2} \in (0,1)$ with $\delta_{1} \leq \delta_{2}$, we have
+\begin{equation*}
+P_{n}\!\left(\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	w(f,\delta_{1}) \overset{{\color{white}.}}{\geq} \varepsilon
+	\right.
+\;\right\}\right)
+\;\;\leq\;\;
+P_{n}\!\left(\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	w(f,\delta_{1}) \overset{{\color{white}.}}{\geq} \varepsilon
+	\right.
+\;\right\}\right),
+\end{equation*}
+from which the Claim follows immediately.
+This completes the proof of the Claim.
+\vskip 0.3cm
+\noindent
+Now, note that
+\begin{eqnarray*}
+\textnormal{(c)}
+&\Longleftrightarrow&
+	\lim_{\delta\rightarrow 0^{+}}
+	\limsup_{n\rightarrow\infty}\,
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\; = \; 0
+\\
+&\Longleftrightarrow&
+	\textnormal{for each $\eta > 0$, \;$\exists$\;\;$\delta \in (0,1)$ such that}\;
+	\limsup_{n\rightarrow\infty}\,
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\;\leq\; \eta
+\\
+&\Longleftrightarrow&
+	\textnormal{for each $\eta > 0$, \;$\exists$\;\;$\delta \in (0,1)$, $n_{0}\in\N$ such that}\;
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\;\leq\; \eta,
+	\;\,\forall\;\,n \geq n_{0}
+\\
+&\Longleftrightarrow& \textnormal{(b)},
+\end{eqnarray*}
+where the validity of the second equivalence follows from the Claim above.
+This proves the equivalence of (ii) and (iii).
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

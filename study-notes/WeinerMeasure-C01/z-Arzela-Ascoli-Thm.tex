@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{The Arzel\`{a}-Ascoli Theorem}
+\section{The Arzel\`{a}-Ascoli Theorem: compactness of subsets of $C(X)$}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -30,6 +30,51 @@ Let $Y^{X}$ denote the set of arbitrary functions from $X$ into $Y$.
 \item	A subset $S \subset Y^{X}$ is said to be \textbf{equicontinuous} if it is equicontinuous at each $x_{0} \in X$.
 \end{itemize}
 \end{definition}
+
+\begin{proposition}
+\label{SubsetPreservesEquicontinuity}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $X$ be a topological space and $(Y,d)$ a metric space.
+Let $Y^{X}$ denote the set of arbitrary functions from $X$ into $Y$.
+Suppose $x_{0} \in X$ and $S_{1}, S_{2} \subset Y^{X}$.
+Then,
+\begin{equation*}
+\left.
+	\begin{array}{c}
+	S_{1} \subset S_{2},\;\;\textnormal{and} \\
+	\textnormal{$S_{2}$ is equicontinuous at $x_{0}$}
+	\end{array}
+\right\}
+\quad\Longrightarrow\quad
+\textnormal{$S_{1}$ is equicontinuous at $x_{0}$}
+\end{equation*}
+\end{proposition}
+\proof
+Let $\varepsilon > 0$ be given.
+By the equicontinuity of $S_{2}$ at $x_{0}$,
+there exists open $V \subset X$ such that
+\begin{equation*}
+	x_{0} \,\in\, V
+	\quad\textnormal{and}\quad
+	\sup_{(x,f) \,\in\, V \times S_{2}}\left\{\;d\!\left(\overset{{\color{white}.}}{f}(x),f(x_{0})\right)\;\right\}
+	\;\leq\; \varepsilon.
+\end{equation*}
+However, the hypothesis $S_{1} \subset S_{2}$ implies that
+\begin{equation*}
+	\sup_{(x,f) \,\in\, V \times S_{1}}\left\{\;d\!\left(\overset{{\color{white}.}}{f}(x),f(x_{0})\right)\;\right\}
+	\;\;\leq\;\;
+	\sup_{(x,f) \,\in\, V \times S_{2}}\left\{\;d\!\left(\overset{{\color{white}.}}{f}(x),f(x_{0})\right)\;\right\}
+\end{equation*}
+which immediately implies the following conditions hold:
+\begin{equation*}
+	x_{0} \,\in\, V
+	\quad\textnormal{and}\quad
+	\sup_{(x,f) \,\in\, V \times S_{1}}\left\{\;d\!\left(\overset{{\color{white}.}}{f}(x),f(x_{0})\right)\;\right\}
+	\;\leq\; \varepsilon.
+\end{equation*}
+This proves the equicontinuity of $S_{1}$ at $x_{0}$, as required.
+\qed
 
 \begin{definition}[Uniform equicontinuity]
 \mbox{}\vskip 0.1cm
@@ -363,13 +408,16 @@ Suppose $X$ is a compact topological space and
 $C(X)$ is the space of continuous $\Re$-valued functions defined on $X$ equipped with the supremum norm.
 Let $S \subset C(X)$.
 \begin{enumerate}
-\item	If $S$ is equicontinuous at $x_{0} \in X$, then its closure $\overline{S}$ in $C(X)$ is equicontinuous at $x_{0}$.
-\item	If a subset $S \subset C(X)$ is equicontinuous, then its closure $\overline{S}$ in $C(X)$ is equicontinuous.
+\item	$S$ is equicontinuous at $x_{0} \in X$ if and only if its closure $\overline{S}$ in $C(X)$ is equicontinuous at $x_{0}$.
+\item	$S$ is equicontinuous if and only if its closure $\overline{S}$ in $C(X)$ is equicontinuous.
 \end{enumerate}
 \end{proposition}
 \proof
 It is obvious that (ii) is an immediate consequence of (i).
 Thus, it suffices to establish (i).
+First, by Proposition \ref{SubsetPreservesEquicontinuity}, we immediately see that
+the equicontinuity of $\overline{S}$ at $x_{0}$ implies the equicontinuity of $S$ at $x_{0}$.
+It remains to prove the converse.
 %; in other words, we need to show that,
 %for each $\varepsilon > 0$, there exists open subset $V \subset X$ satisfying:
 %\begin{equation*}
@@ -378,9 +426,8 @@ Thus, it suffices to establish (i).
 %\sup_{(x,f) \,\in\, V \times \overline{S}}\left\{\;\left\vert\,\overset{{\color{white}.}}{f}(x)\,-\,f(x_{0})\right\vert\;\right\}
 %\;\leq\; \varepsilon.
 %\end{equation*}
-Since, by hypothesis, $S \subset C(X)$ is equicontinuous at $x_{0} \in X$,
-we have:
-for each $\varepsilon > 0$, there exists an open subset $V \subset X$ satisfying:
+So, suppose that $S \subset C(X)$ is equicontinuous at $x_{0} \in X$.
+Thus, for each $\varepsilon > 0$, there exists an open subset $V \subset X$ satisfying:
 \begin{equation*}
 x_{0} \,\in\, V\,,
 \quad\textnormal{and}\quad
