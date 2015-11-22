@@ -8,6 +8,51 @@
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
+\begin{theorem}
+\label{FiniteDimensionalDistributionsDetermineLimit}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $P, P_{1}, P_{2}, \ldots $ are Borel probability measures on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
+If
+\begin{equation*}
+	P_{n}\circ\pi_{t_{1}t_{2}\cdots t_{k}}^{-1}
+	\;\;\overset{d}{\longrightarrow}\;\;
+	P\circ\pi_{t_{1}t_{2}\cdots t_{k}}^{-1},
+	\;\;\;
+	\textnormal{as \;$n \longrightarrow \infty$, \;\; for any \;$t_{1}, t_{2}, \ldots, t_{k} \in [0,1]$}\,,
+\end{equation*}
+then the limit of every weakly convergent subsequence of $\left\{\,P_{n}\,\right\}$ must be $P$.
+\end{theorem}
+\proof
+Suppose $P_{n(i)} \overset{d}{\longrightarrow} Q$, as $i \longrightarrow \infty$, where $Q$ is some
+Borel probability measure on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
+We need to show that $Q$ in fact must be $P$.
+Since, for any $t_{1}, t_{2}, \ldots, t_{k} \in [0,1]$, the map
+$\pi_{t_{1}t_{2}\cdots t_{k}} : \Czo \longrightarrow \Re^{k} : f \longmapsto \left(f(t_{1}),\overset{{\color{white}1}}{\ldots},f(t_{k})\right)$ is continuous, it follows that
+$P_{n(i)}\circ\pi_{t_{1}t_{2}\cdots t_{k}}^{-1} \overset{d}{\longrightarrow} Q\circ\pi_{t_{1}t_{2}\cdots t_{k}}^{-1}$,
+as $i \longrightarrow \infty$, for any $t_{1}, t_{2}, \ldots, t_{k} \in [0,1]$, by the Continuous Mapping Theorem
+(Theorem 2.7, \cite{Billingsley1999}, or simply see remark on p.20, \cite{Billingsley1999}).
+Then, for each bounded continuous function $\varphi : \Re^{k} \longrightarrow \Re$, we have
+\begin{equation*}
+\int_{\Re^{k}}\varphi\;\d(Q\circ\pi_{t_{1}\cdots t_{k}}^{-1})
+\;=\; \underset{i\rightarrow\infty}{\lim}\;\int_{\Re^{k}}\varphi\;\d(P_{n(i)}\circ\pi_{t_{1}\cdots t_{k}}^{-1})
+\;=\; \underset{n\rightarrow\infty}{\lim}\;\int_{\Re^{k}}\varphi\;\d(P_{n}\circ\pi_{t_{1}\cdots t_{k}}^{-1})
+\;=\; \int_{\Re^{k}}\varphi\;\d(P\circ\pi_{t_{1}\cdots t_{k}}^{-1}),
+\end{equation*}
+where the first and third equalities follow directly from the definition of weak convergence of probability
+measures, while the second equality follows from the elementary fact that every subsequence of a
+convergent sequence of real numbers converges to the same limit as the full sequence.
+By Theorem 1.2, p.8, \cite{Billingsley1999}, we see that
+$Q\circ\pi_{t_{1}\cdots t_{k}}^{-1} = P\circ\pi_{t_{1}\cdots t_{k}}^{-1}$,
+as Borel measures on $\Re^{k}$, for any $t_{1}, t_{2}, \ldots, t_{k} \in [0,1]$.
+This in turn implies that $Q\circ\pi_{t_{1}\cdots t_{k}}^{-1}(B) = P\circ\pi_{t_{1}\cdots t_{k}}^{-1}(B)$,
+for every Borel subset $B \subset \Re^{k}$.
+In other words, $Q$ and $P$ agree on the collection of finite-dimensional subsets of $\Czo$.
+Since the finite-dimensional subsets of $\Czo$ form a separating class
+(Example 1.3, p.11, \cite{Billingsley1999}), we may now conclude that $Q = P$.
+This completes the proof of the Theorem.
+\qed
+
 \begin{theorem}[Example 5.1, p.57, \cite{Billingsley1999}]
 \mbox{}\vskip 0.1cm
 \noindent
@@ -28,7 +73,20 @@ If
 then \,$P_{n} \overset{d}{\longrightarrow} P$, as \,$n \longrightarrow \infty$.
 \end{theorem}
 \proof
-
+Recall that, by Theorem 2.6, p.20, \cite{Billingsley1999}, $P_{n} \overset{d}{\longrightarrow} P$ if and only if
+every subsequence of $\left\{\,P_{n}\,\right\}$ contains a further subsequence that weakly converges to $P$.
+So, let $\left\{\,P_{n(i)}\,\right\}_{i\in\N}$ be a subsequence of $\{\,P_{n}\,\}_{n\in\N}$.
+By the relative compactness hypothesis on $\{\,P_{n}\,\}_{n\in\N}$, the subsequence
+$\left\{\,P_{n(i)}\,\right\}_{i\in\N}$ contains a weakly convergent further subsequence
+$\left\{\,P_{n(i_{m})}\,\right\}_{m\in\N}$,
+say $P_{n(i_{m})} \overset{d}{\longrightarrow} Q$, as $m \longrightarrow \infty$,
+where $Q$ is some Borel probability measure on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
+By Theorem \ref{FiniteDimensionalDistributionsDetermineLimit}, we see that in fact $Q = P$.
+Thus, we have shown that every subsequence $\left\{\,P_{n(i)}\,\right\}_{i\in\N}$ of
+$\left\{\,P_{n}\,\right\}_{n\in\N}$ contains a further subsequence $P_{n(i_{m})}$
+which weakly converges to $P$.
+By Theorem 2.6, p.20, \cite{Billingsley1999}, we may now conclude that the full original
+sequence $P_{n}$ converges weakly to $P$. This completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
