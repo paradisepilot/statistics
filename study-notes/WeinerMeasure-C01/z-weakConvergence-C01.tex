@@ -54,6 +54,7 @@ This completes the proof of the Theorem.
 \qed
 
 \begin{theorem}[Example 5.1, p.57, \cite{Billingsley1999}]
+\label{relativeCompactnessFiniteDimensionConvergenceImpliesWeakConvergence}
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose $P, P_{1}, P_{2}, \ldots $ are Borel probability measures on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
@@ -138,5 +139,101 @@ X^{(n)} \overset{d}{\longrightarrow} X,
 \end{equation*}
 \end{theorem}
 \proof
+Note that, in order to prove the Theorem, it suffices to establish tightness of $\left\{\,X^{(n)}\,\right\}_{n\in\N}$.
+This is because tightness implies relative compactness (Prokhorov's Theorem, Theorem 5.1, p.59, \cite{Billingsley1999}),
+which, together with hypothesis (i) and
+Theorem \ref{relativeCompactnessFiniteDimensionConvergenceImpliesWeakConvergence},
+will imply the desired weak convergence $X^{(n)} \overset{d}{\longrightarrow} X$.
+We use Theorem \ref{NecessarySufficientTightnessCzo}(iv)
+to establish the tightness of $\left\{\,X^{(n)}\,\right\}_{n\in\N}$.
+Thus, the proof the present Theorem will be complete once we prove the following two claims:
+
+\vskip 0.2cm
+\noindent
+\begin{center}
+\begin{minipage}{6.0in}
+\noindent
+	\textbf{Claim 1:}\quad
+	$\left\{\,X^{(n)}\,\right\}_{n\in\N}$ satisfies the first condition in Theorem \ref{NecessarySufficientTightnessCzo}(iv).
+	\vskip 0.1cm
+	\noindent
+	In other words, for each $\eta > 0$, there exist $a > 0$ and $n_{0} \in \N$ such that
+	\begin{equation*}
+	P_{X^{(n)}}\!\left(\left\{\,f \in \Czo \;\left\vert\;\, \vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a \right.\,\right\}\right)
+	\;\;\leq\;\; \eta,
+	\;\;\;\textnormal{for each $n \,\geq\, n_{0}$}.
+	\end{equation*}
+
+	\vskip 0.3cm
+	\noindent
+	\textbf{Claim 2:}\quad
+	$\left\{\,X^{(n)}\,\right\}_{n\in\N}$ satisfies the second condition in Theorem \ref{NecessarySufficientTightnessCzo}(iv).
+	\vskip 0.1cm
+	\noindent
+	In other words, for each $\varepsilon > 0$,
+	\begin{equation*}
+	\lim_{\delta\rightarrow 0^{+}}
+	\limsup_{n\rightarrow\infty}\,
+	P_{X^{(n)}}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\;=\; 0.		
+	\end{equation*}
+\end{minipage}
+\end{center}
+
+\vskip 0.3cm
+\noindent
+Proof of Claim 1:\quad
+By hypothesis (i), $X^{(n)}_{0} \overset{d}{\longrightarrow} X_{0}$, which is equivalent to
+the statement that every subsequence of $\left\{\,X^{(n)}_{0}\,\right\}_{n\in\N}$ admits a further
+subsequence which weakly converges to $X_{0}$ (Theorem 2.6, p.20, \cite{Billingsley1999}).
+In particular, weak convergence of $\left\{\,X^{(n)}_{0}\,\right\}_{n\in\N}$ implies relative
+compactness of $\left\{\,X^{(n)}_{0}\,\right\}_{n\in\N}$.
+Since each $X^{(n)}_{0}$ induces a Borel probability measure on $\Re$, and $\Re$ is separable and complete,
+Prokhorov's Theorem (Theorem 5.2, p.60, \cite{Billingsley1999}) implies that $\left\{\,X^{(n)}_{0}\,\right\}_{n\in\N}$
+is tight (as a sequence of Borel probability measures on $\Re$).
+Thus, for any $\eta > 0$, there exists a compact set $K \subset \Re$ such that
+\begin{equation*}
+1 - \eta \;<\; P_{X^{(n)}_{0}}\!\left(\,K\,\right) \;=\; P\!\left(\,X^{(n)}_{0} \in K\,\right) \;\leq\; 1,
+\quad\textnormal{for each $n \in \N$}.
+\end{equation*}
+Since $K \subset \Re$ is compact, it is bounded, and thus there exists $a > 0$ such that
+$K \subset (-a,a)$. Thus, we see that:
+\begin{equation*}
+1 - \eta
+\;\;\leq\;\; P\!\left(\,X^{(n)}_{0} \in K\,\right)
+\;\;\leq\;\; P\!\left(\, \left\vert\,X^{(n)}_{0}\,\right\vert \overset{{\color{white}.}}{<} a \,\right)
+\;\; = \;\; 1 - P\!\left(\, \left\vert\,X^{(n)}_{0}\,\right\vert \overset{{\color{white}.}}{\geq} a \,\right),
+\;\;\;\textnormal{for each $n \in \N$},
+\end{equation*}
+which implies that
+\begin{equation*}
+P_{X^{(n)}}\!\left(\left\{\,f \in \Czo \;\left\vert\;\, \vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a \right.\,\right\}\right)
+\;\; = \;\; P\!\left(\, \left\vert\,X^{(n)}_{0}\,\right\vert \overset{{\color{white}.}}{\geq} a \,\right)
+\;\;\leq\;\; \eta,
+\;\;\;\textnormal{for each $n \in \N$}.
+\end{equation*}
+This completes the proof of Claim 1.
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 2:\quad
+Claim 2 holds precisely by hypothesis (ii), since
+\begin{equation*}
+	P_{X^{(n)}}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\;\; = \;\;
+	P\!\left(\, w(X^{(n)},\delta) \,\geq\, \varepsilon \,\right).
+\end{equation*}
+This completes the proof of Claim 2, as well as that of the present Theorem.
 \qed
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
