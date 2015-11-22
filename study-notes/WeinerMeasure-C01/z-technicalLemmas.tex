@@ -19,7 +19,8 @@ are independent for each $n \in \N$, and
 both $X$ and $Y$ are Gaussian random variables,
 as the following Proposition shows.
 
-\begin{proposition}\label{GaussianDistributionLimit}
+\begin{proposition}
+\label{GaussianDistributionLimit}
 \quad
 Let $k \in \N$ be fixed.
 Suppose:
@@ -79,6 +80,82 @@ $N\!\left(\,\mu,\,\sigma^{2}\,\right)$ is
 \end{equation*}
 The Proposition now follows immediately from
 the L\'{e}vy-Cram\'{e}r Continuity Theorem (Theorem 1.9(ii), p.56, \cite{Shao2003}).
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{proposition}
+\label{FiniteExtensionPreservesTightness}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$k \in \N$ and $Q_{1},\,Q_{2},\,\ldots\,Q_{k}$ are Borel probability measures on
+		$\left(\Czo\Vert\,\cdot\,\Vert_{\infty}\right)$.
+\item	$\left\{\,P_{n}\,\right\}_{n\in\N}$\, is a sequence of Borel probability measures on
+		$\left(\Czo\Vert\,\cdot\,\Vert_{\infty}\right)$.
+\end{itemize}
+Then, the following are equivalent:
+\begin{enumerate}
+\item	$\left\{\,P_{n}\,\right\}_{n\in\N}$\, is tight. 
+\item	$\left\{\,Q_{1},\ldots,Q_{k}\,\right\}\cup\left\{\,P_{n}\,\right\}_{n\in\N}$\, is tight.
+\end{enumerate}
+\end{proposition}
+\proof
+Note that once we prove the Proposition for $k = 1$, the cases $k \geq 2$ will follow immediately by finite induction.
+We now proceed to prove the Proposition for $k =1$, and we write $Q$ for $Q_{1}$.
+
+\vskip 0.3cm
+\noindent
+\underline{(ii)\;$\Longrightarrow$\;(i)}\quad
+This is trivial. Indeed,
+\begin{eqnarray*}
+&&
+	\textnormal{$\left\{\;Q\;\right\}\cup\left\{\,P_{n}\,\right\}_{n\in\N}$ is tight}
+\\
+&\Longleftrightarrow&
+	\textnormal{for each $\varepsilon > 0$},\;
+	\exists\;\textnormal{compact $K\subset\Czo$ such that $1 - \varepsilon < Q(K) \leq 1$
+	and $1 - \varepsilon < P_{n}(K) \leq 1$, for all $n \in \N$}
+\\
+&\Longrightarrow&
+	\textnormal{for each $\varepsilon > 0$},\;
+	\exists\;\textnormal{compact $K\subset\Czo$ such that $1 - \varepsilon < P_{n}(K) \leq 1$, for all $n \in \N$}
+\\
+&\Longleftrightarrow&
+	\textnormal{$\left\{\,P_{n}\,\right\}_{n\in\N}$ is tight}
+\end{eqnarray*}
+This proves that (ii)\;$\Longrightarrow$\;(i).
+
+\vskip 0.3cm
+\noindent
+\underline{(i)\;$\Longrightarrow$\;(ii)}
+\vskip 0.2cm
+\noindent
+Let $\varepsilon > 0$ be given.
+Since $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$ is separable and complete,
+the single Borel probability measure $Q$ on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$ is tight
+(Theorem 1.3, \cite{Billingsley1999}).
+Thus, there exists a compact subset $K_{1} \subset \Czo$ such that $1 - \varepsilon < Q(K_{1}) \leq 1$.
+On the other hand, the tightness hypothesis on $\left\{\,P_{n}\,\right\}_{n\in\N}$ implies there exists
+a compact subset $K_{2} \subset \Czo$ such that
+$1 - \varepsilon < P_{n}(K_{2}) \leq 1$, for each $n \in \N$.
+Let $K := K_{1} \cup K_{2}$. Then, $K$ is itself a compact subset of $\Czo$, and
+\begin{equation*}
+Q\!\left(\,K\,\right)
+\;=\; Q\!\left(\,K_{1} \cup K_{2}\,\right)
+\;\geq\; Q\!\left(\,K_{1}\,\right)
+\;>\;1 - \varepsilon,
+\quad\textnormal{and}\quad
+P_{n}\!\left(\,K\,\right)
+\;=\; P_{n}\!\left(\,K_{1} \cup K_{2}\,\right)
+\;\geq\; P_{n}\!\left(\,K_{2}\,\right)
+\;>\;1 - \varepsilon.
+\end{equation*}
+This proves the tightness of
+$\left\{\,Q\,\right\}\cup\left\{\,P_{n}\,\right\}_{n\in\N}$,
+as required.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

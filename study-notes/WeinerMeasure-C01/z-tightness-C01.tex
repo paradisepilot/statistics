@@ -16,10 +16,49 @@ Suppose \,$\left\{\,P_{n}\,\right\}_{n\in\N}$\, is a sequence of Borel probabili
 $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
 \vskip0.1cm
 \noindent
-Consider the following three conditions on \,$\left\{\,P_{n}\,\right\}_{n\in\N}$\,:
-\renewcommand{\theenumi}{\alph{enumi}}
-\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+Then, the following are equivalent:
 \begin{enumerate}
+\item	\,$\left\{\,P_{n}\,\right\}_{n\in\N}$\, is tight.
+\item	For each $\varepsilon,\,\eta > 0$, there exist $a > 0$ and $\delta \in (0,1)$ such that
+		\begin{equation*}
+		P_{n}\!\left(\left\{\;
+			f \in \Czo
+			\;\left\vert\;\,
+			\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+			\right.
+		\;\right\}\right)
+		\,\leq\, \eta,
+		\;\;\textnormal{and}\;\;
+		P_{n}\!\left(\left\{\;
+			f \in \Czo
+			\;\left\vert\;\,
+			w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+			\right.
+		\;\right\}\right)
+		\,\leq\, \eta,
+		\;\;
+		\textnormal{for each $n \in \N$}.
+		\end{equation*}
+\item	For each $\varepsilon,\,\eta > 0$, there exist $a > 0$, $\delta \in (0,1)$ and $n_{0} \in \N$ such that
+		\begin{equation*}
+		P_{n}\!\left(\left\{\;
+			f \in \Czo
+			\;\left\vert\;\,
+			\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+			\right.
+		\;\right\}\right)
+		\,\leq\, \eta,
+		\;\;\textnormal{and}\;\;
+		P_{n}\!\left(\left\{\;
+			f \in \Czo
+			\;\left\vert\;\,
+			w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+			\right.
+		\;\right\}\right)
+		\,\leq\, \eta,
+		\;\;
+		\textnormal{for each $n \geq n_{0}$}.
+		\end{equation*}
 \item	For each $\eta > 0$, there exist $a > 0$ and $n_{0} \in \N$ such that
 		\begin{equation*}
 		P_{n}\!\left(\left\{\;
@@ -29,93 +68,78 @@ Consider the following three conditions on \,$\left\{\,P_{n}\,\right\}_{n\in\N}$
 			\right.
 		\;\right\}\right)
 		\;\leq\; \eta,
-		\quad
-		\textnormal{for each $n \geq n_{0}$}.
+		\;\;\textnormal{for each $n \geq n_{0}$},
 		\end{equation*}
-\item	For each $\varepsilon,\,\eta > 0$, there exist $\delta \in (0,1)$ and $n_{0} \in \N$ such that
+		and, for each $\varepsilon > 0$,
 		\begin{equation*}
+		\lim_{\delta\rightarrow 0^{+}}
+		\limsup_{n\rightarrow\infty}\,
 		P_{n}\!\left(\left\{\;
 			f \in \Czo
 			\;\left\vert\;\,
 			w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
 			\right.
 		\;\right\}\right)
-		\;\leq\; \eta,
-		\quad
-		\textnormal{for each $n \geq n_{0}$}.
+		\;=\; 0.		
 		\end{equation*}
-\item
-	\begin{equation*}
-	\lim_{\delta\rightarrow 0^{+}}
-	\limsup_{n\rightarrow\infty}\,
-	P_{n}\!\left(\left\{\;
-		f \in \Czo
-		\;\left\vert\;\,
-		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
-		\right.
-	\;\right\}\right)
-	\;\; = \;\; 0.
-	\end{equation*}
-\end{enumerate}
-\renewcommand{\theenumi}{\roman{enumi}}
-\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
-Then, the following are equivalent:
-\begin{enumerate}
-\item	\,$\left\{\,P_{n}\,\right\}_{n\in\N}$\, is tight.
-\item	Conditions (i) and (ii) hold.
-\item	Conditions (i) and (iii) hold.
 \end{enumerate}
 \end{theorem}
-
 \proof
 \vskip 0.2cm
 \noindent
 \underline{(i)\;$\Longrightarrow$\;(ii)}
 \vskip 0.2cm
 \noindent
-Suppose \,$\left\{\,P_{n}\,\right\}_{n\in\N}$\, is tight and let $\eta > 0$ be given.
+Suppose \,$\left\{\,P_{n}\,\right\}_{n\in\N}$\, is tight and let $\varepsilon, \eta > 0$ be given.
 By tightness of $\left\{\,P_{n}\,\right\}_{n\in\N}$, there exists a compact subset $K \subset \Czo$
 such that \,$1 - \eta \,\leq\, P_{n}\!\left(K\right) \,\leq\, 1$, for every $n \in \N$.
-By Theorem \ref{BillingsleyArzelaAscoli},
+By Theorem \ref{BillingsleyArzelaAscoli}(iii),
 \begin{eqnarray*}
 &&
 	\textnormal{compactness of $K \subset \Czo$}
+%\\
+%&\Longleftrightarrow&
+%	\underset{f\,\in\,K}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} < \infty,
+%	\quad\textnormal{and}\quad
+%	\underset{\delta\rightarrow 0^{+}}{\lim}\,\underset{f\,\in\,K}{\sup}\left\{\;\overset{{\color{white}:}}{w}(f,\delta)\;\right\}\;=\;0
 \\
-&\Longleftrightarrow&
-	\underset{f\,\in\,K}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} < \infty,
+&\Longrightarrow&
+	\textnormal{$\exists\;a > 0$\;\,such that}\;
+	\underset{f\,\in\,K}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} \,<\, a < \infty,
 	\quad\textnormal{and}\quad
-	\underset{\delta\rightarrow 0^{+}}{\lim}\,\underset{f\,\in\,K}{\sup}\left\{\;\overset{{\color{white}:}}{w}(f,\delta)\;\right\}\;=\;0.
-\\
-&\Longleftrightarrow&
-	K\,\subset\,
-	\left\{\,
-		f \in \Czo
-		\,\left\vert\,\, \vert\,f(0)\,\vert\,\overset{{\color{white}.}}{<}\,a\right.
-	\,\right\},
-	\;\textnormal{for some $a > 0$, and}
-\\
-&&
-	\textnormal{for each $\varepsilon > 0$, \,$\exists$\;$\delta > 0$\;\,such that}\;
+	\textnormal{$\exists$\;$\delta > 0$\;\,such that}\;
 	\underset{f\,\in\,K}{\sup}\left\{\;\overset{{\color{white}:}}{w}(f,\delta)\;\right\}
 	\;<\;\varepsilon
+%\\
+%&\Longrightarrow&
+%	\textnormal{$\exists\;a > 0$\;\,such that}\;
+%	K\,\subset\,
+%	\left\{\,
+%		f \in \Czo
+%		\,\left\vert\,\, \vert\,f(0)\,\vert\,\overset{{\color{white}.}}{<}\,a\right.
+%	\,\right\},
+%	\;\textnormal{and}\;\;
+%	\textnormal{$\exists$\;$\delta > 0$\;\,such that}\;
+%	\underset{f\,\in\,K}{\sup}\left\{\;\overset{{\color{white}:}}{w}(f,\delta)\;\right\}
+%	\;<\;\varepsilon
 \\
-&\Longleftrightarrow&
+&\Longrightarrow&
+	\textnormal{$\exists\;a > 0$\;\,such that}\;
 	K\,\subset\,
 	\left\{\,
 		f \in \Czo
 		\,\left\vert\,\, \vert\,f(0)\,\vert\,\overset{{\color{white}.}}{<}\,a\right.
 	\,\right\},
-	\;\textnormal{for some $a > 0$, and}
-\\
-&&
-	\textnormal{for each $\varepsilon > 0$, \,$\exists$\;$\delta > 0$\;\,such that}\;
+	\;\textnormal{and}\;\;
+	\textnormal{$\exists$\;$\delta > 0$\;\,such that}\;
 	K\,\subset\,
 	\left\{\,
 		f \in \Czo
 		\,\left\vert\,\, w(f,\delta)\,\overset{{\color{white}.}}{<}\,\varepsilon\right.
-	\,\right\}.
+	\,\right\}
 \end{eqnarray*}
-But then,
+Hence, with $a > 0$ and $\delta \in (0,1)$ as chosen above, we see that,
+for each $n \in \N$, we have:
 \begin{equation*}
 	P_{n}\!\left(\left\{\;
 		f \in \Czo
@@ -126,8 +150,6 @@ But then,
 	\;\;\leq\;\; P_{n}\!\left(\,\Czo\,\backslash\,K\,\right)
 	\;\; = \;\; 1 - P_{n}\!\left(\,K\,\right)
 	\;\;\leq\;\; \eta,
-	\quad
-	\textnormal{for each $n \;\geq\; 1 \;=:\; n_{0}$},
 \end{equation*}
 and
 \begin{equation*}
@@ -139,148 +161,359 @@ and
 	\;\right\}\right)
 	\;\;\leq\;\; P_{n}\!\left(\,\Czo\,\backslash\,K\,\right)
 	\;\; = \;\; 1 - P_{n}\!\left(\,K\,\right)
-	\;\;\leq\;\; \eta,
-	\quad
-	\textnormal{for each $n \;\geq\; 1 \;=:\; n_{0}$}.
+	\;\;\leq\;\; \eta.
 \end{equation*}
 This completes the proof that (i)\;$\Longrightarrow$\;(ii).
 
 \vskip 0.5cm
 \noindent
-\underline{(ii)\;$\Longrightarrow$\;(i)}\quad
+\underline{(ii)\;$\Longrightarrow$\;(i)}
+\vskip 0.2cm
+\noindent
+Let $\eta > 0$ be given.
+We need to show that $\left\{\,P_{n}\,\right\}_{n\in\N}$ is tight;
+equivalently, we need to find a compact subset $K \subset \Czo$ such that
+\,$1 - \eta < P_{n}\!\left(\,K\,\right) \leq 1$,\, for each $n \in \N$.
 
+\vskip 0.2cm
+\noindent
+By (ii), we may choose $a > 0$ such that
+\begin{equation*}
+P_{n}\!\left(\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+	\right.
+\;\right\}\right)
+\,\leq\, \dfrac{\eta}{2},
+\quad
+\textnormal{for each $n \in \N$}.
+\end{equation*}
+Let $B_{0} := \left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	\vert\,f(0)\,\vert \overset{{\color{white}.}}{<} a
+	\right.
+\;\right\}$.
+Note that $P(B_{0}^{c}) \leq \dfrac{\eta}{2}$.
+
+\vskip 0.2cm
+\noindent
+Next, applying (ii) again, for each $k \in \N$, we may choose $\delta_{k} > 0$ such that
+\begin{equation*}
+P_{n}\!\left(\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	w(f,\delta_{k}) \overset{{\color{white}.}}{\geq} \dfrac{1}{k}
+	\right.
+\;\right\}\right)
+\,\leq\, \dfrac{\eta}{2^{k+1}},
+\quad
+\textnormal{for each $n \in \N$}.
+\end{equation*}
+Let $B_{k} := \left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	w(f,\delta_{k}) \overset{{\color{white}.}}{<} \dfrac{1}{k}
+	\right.
+\;\right\}$, for $k \in \N$.
+Note that $P(B_{k}^{c}) \leq \dfrac{\eta}{2^{k+1}}$, for each $k \in \N$.
+
+\vskip 0.2cm
+\noindent
+Now, let $A \,:= \overset{\infty}{\underset{k=0}{\bigcap}}\,B_{k} \subset \Czo$,\,
+and \,$K := \overline{A} \subset \Czo$.
+Note that the desired implication (ii)\;$\Longrightarrow$\;(i) follows from the following two Claims:
+
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim 1:}\quad $1 - \eta \,\leq\, P_{n}\!\left(\,K\,\right) \,\leq\, 1$,\, for every $n \in \N$.
+In particular, $K$ is non-empty.
+\vskip 0.2cm
+\textbf{Claim 2:}\quad $A$\; is a relatively compact subset of $\Czo$,
+hence its closure $K$ is a compact subset of $\Czo$.
+\end{minipage}
+\end{center}
+
+\noindent
+Proof of Claim 1:\quad Note that
+\begin{equation*}
+A^{c}
+\;\; = \;\; \left(\,\bigcap_{k\,=\,0}^{\infty}B_{k}\,\right)^{c}
+\;\; = \;\; \bigcup_{k\,=\,0}^{\infty}\,B_{k}^{c},
+\end{equation*}
+which implies, for each $n \in \N$,
+\begin{eqnarray*}
+P_{n}\!\left(\,A^{c}\,\right)
+&=& P_{n}\!\left(\,\bigcup_{k\,=\,0}^{\infty}\,B_{k}^{c}\,\right)
+	\;\;\leq\;\; \sum_{k\,=\,0}^{\infty}P_{n}\!\left(\,B_{k}^{c}\,\right)
+	\;\;=\;\; P_{n}\!\left(\,B_{0}^{c}\,\right) \;+\; \sum_{k\,=\,1}^{\infty}P_{n}\!\left(\,B_{k}^{c}\,\right)
+\\
+&\leq& \dfrac{\eta}{2} \;+\; \sum_{k\,=\,1}^{\infty}\dfrac{\eta}{2^{k+1}}
+	%\;\;=\;\; \dfrac{\eta}{2} \;+\; \dfrac{\eta}{2^{2}}\sum_{k\,=\,1}^{\infty}\dfrac{1}{2^{k-1}}
+	%\;\;=\;\; \dfrac{\eta}{2} \;+\; \dfrac{\eta}{2^{2}}\cdot\dfrac{1}{1 - 1/2}
+	%\;\;=\;\; \dfrac{\eta}{2} \;+\; \dfrac{\eta}{2^{2}}\cdot 2
+	%\;\;=\;\; \dfrac{\eta}{2} \;+\; \dfrac{\eta}{2}
+	\;\;=\;\; \cdots \;\;=\;\; \eta,
+\end{eqnarray*}
+which in turn implies
+\begin{equation*}
+1 - \eta 
+\;\;\leq\;\; 1 - P_{n}\!\left(\,A^{c}\,\right)
+\;\;=\;\; P_{n}\!\left(\,A\,\right)
+\;\;\leq\;\; P_{n}\!\left(\,\overline{A}\,\right) 
+\;\;=\;\; P_{n}\!\left(\,K\,\right),
+\quad\textnormal{for each $n \in \N$}.
+\end{equation*}
+This proves Claim 1.
+
+\vskip 0.3cm
+\noindent
+Proof of Claim 2:\quad
+Note that $f \in A$ $\Longrightarrow$ $f \in B_{0}$ $\Longrightarrow$ $\vert\,f(0)\,\vert < a < \infty$.
+Hence, $\underset{f\,\in\,A}{\sup}\left\{\,\vert\,\overset{{\color{white}.}}{f}(0)\,\vert\,\right\} \leq a < \infty$.
+Secondly, let $\nu > 0$ be given. Choose $k \in \N$ such that $\dfrac{1}{k} < \nu$.
+Then, $f \in A$ $\Longrightarrow$ $f \in B_{k}$ $\Longrightarrow$ $w(f,\delta_{k}) < \dfrac{1}{k}$,
+which in turn implies:
+\begin{equation*}
+\underset{f\,\in\,A}{\sup}\left\{\,w(\overset{{\color{white}.}}{f},\delta_{k})\,\right\} \;\leq\; \dfrac{1}{k} \;<\; \nu.
+\end{equation*}
+By Theorem \ref{BillingsleyArzelaAscoli}(iii) (or, essentially, the Arzel\`{a}-Ascoli Theorem),
+$A$ is a relatively compact subset of $\Czo$. Its closure $K := \overline{A}$ is therefore
+a compact subset of $\Czo$.
+This proves Claim 2, and completes of the proof of (ii)\;$\Longrightarrow$\;(i).
 
 \vskip 0.5cm
 \noindent
-\underline{(ii)\;$\Longleftrightarrow$\;(iii)}\quad
-It suffices to show that (b)\,$\Longleftrightarrow$\,(c).
-First, we state and prove the following:
-\begin{center}
-\begin{minipage}{6.0in}
+\underline{(ii)\;$\Longleftrightarrow$\;(iii)}
+\vskip 0.2cm
 \noindent
-\textbf{Claim:}\quad The map
+It is obvious that (ii)\;$\Longrightarrow$\;(iii).
+It remains to prove the reverse implication (iii)\;$\Longrightarrow$\;(ii).
+So, suppose (iii) holds. Let $\varepsilon, \eta > 0$ be given.
+By (iii), there exists $a^{\prime} > 0$, $\delta^{\prime} \in (0,1)$, and $n_{0} \in \N$ such that
 \begin{equation*}
-(0,1) \;\; \longrightarrow \;\; [0,\infty)
-\;\;:\;\;
-\delta
-\;\; \longmapsto \;\;
-\limsup_{n\rightarrow\infty}\,
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a^{\prime}
+		\right.
+	\;\right\}\right)
+	\,\leq\, \eta,
+	\;\;\textnormal{and}\;\;
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta^{\prime}) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\,\leq\, \eta,
+	\;\;
+	\textnormal{for each $n \geq n_{0}$}.
+\end{equation*}
+On the other hand, since $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$ is separable and complete,
+every Borel probability measure on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$ is tight, by
+Theorem 1.3, p.8, \cite{Billingsley1999}.
+Thus, by the tightness of each $P_{1}, P_{2}, \ldots, P_{n_{0}-1}$, and
+the equivalence (i)\;$\Longleftrightarrow$\;(ii), which we have already established, there exist
+$a_{1}, a_{2}, \ldots, a_{n_{0}-1} > 0$ and $\delta_{1}, \delta_{2}, \ldots, \delta_{n_{0}-1} \in (0,1)$
+such that
+\begin{equation*}
+	P_{i}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a_{i}
+		\right.
+	\;\right\}\right)
+	\,\leq\, \eta,
+	\;\;\textnormal{and}\;\;
+	P_{i}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta_{i}) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\,\leq\, \eta,
+	\;\;
+	\textnormal{for $i = 1, 2, \ldots, n_{0}-1$}.
+\end{equation*}
+Now, let $a := \max\left\{\,a^{\prime},a_{1},a_{2},\ldots,a_{n_{0}-1}\,\right\}$ and
+$\delta := \min\left\{\,\delta^{\prime},\delta_{1},\delta_{2},\ldots,\delta_{n_{0}-1}\,\right\}$.
+Then,
+\begin{eqnarray*}
+P_{n}\!\left(\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+	\right.
+\;\right\}\right)
+&\leq&
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a^{\prime}
+		\right.
+	\,\;\right\}\right)
+	\,\leq\, \eta,
+	\quad\textnormal{for $n \,\geq\, n_{0}$,\quad and}
+\\
+P_{n}\!\left(\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+	\right.
+\;\right\}\right)
+&\leq&
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a_{n}
+		\,\right.
+	\right\}\right)
+	\,\leq\, \eta,
+	\quad\textnormal{for $n = 1, 2, \ldots, n_{0}-1$},
+\end{eqnarray*}
+which together imply
+\begin{equation*}
+P_{n}\!\left(\left\{\;
+	f \in \Czo
+	\;\left\vert\;\,
+	\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+	\right.
+\;\right\}\right)
+\;\;\leq\;\; \eta,
+\quad\textnormal{for each $n \in \N$}.
+\end{equation*}
+Next, recall that for each fixed $f \in \Czo$,
+the map $\delta \longmapsto w(f,\delta)$ is non-decreasing in $\delta$,
+by Proposition \ref{wNonDecreasingInDelta}.
+We thus see that:
+\begin{eqnarray*}
 P_{n}\!\left(\left\{\;
 	f \in \Czo
 	\;\left\vert\;\,
 	w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
 	\right.
 \;\right\}\right)
-\end{equation*}
-is non-decreasing in $\delta \in (0,1)$.
-\end{minipage}
-\end{center}
-Proof of Claim:\quad For $\delta_{1}, \delta_{2} \in (0,1)$ with $\delta_{1} \leq \delta_{2}$, we have
-\begin{equation*}
-	D(\delta_{1})
-	\; := \;
-	\left\{\;
-		(s,t) \in [0,1] \times [0,1]
-		\;\left\vert\;\;
-		\vert\,s - t\,\vert \overset{{\color{white}.}}{\leq} \delta_{1}
+&\leq&
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta^{\prime}) \overset{{\color{white}.}}{\geq} \varepsilon
 		\right.
-	\;\right\}
-	\;\;\subset\;\;
-	\left\{\;
-		(s,t) \in [0,1] \times [0,1]
-		\;\left\vert\;\;
-		\vert\,s - t\,\vert \overset{{\color{white}.}}{\leq} \delta_{2}
-		\right.
-	\;\right\}
-	\; =: \;
-	D(\delta_{2}).
-\end{equation*}
-Hence, for each $f \in \Czo$ and each $\delta_{1}, \delta_{2} \in (0,1)$ with $\delta_{1} \leq \delta_{2}$, we have
-\begin{equation*}
-w(f,\delta_{1})
-\;\;:=\; \sup_{(s,t)\,\in\,D(\delta_{1})}\left\{\;\vert\,f(s)\overset{{\color{white}.}}{-}f(t)\,\vert\;\right\}
-\;\;\leq\; \sup_{(s,t)\,\in\,D(\delta_{2})}\left\{\;\vert\,f(s)\overset{{\color{white}.}}{-}f(t)\,\vert\;\right\}
-\;\; =: \;\; w(f,\delta_{2}).
-\end{equation*}
-This implies that, for any $\varepsilon > 0$ and
-any $\delta_{1}, \delta_{2} \in (0,1)$ with $\delta_{1} \leq \delta_{2}$, we have
-\begin{equation*}
-\left\{\;
-	f \in \Czo
-	\;\left\vert\;\,
-	w(f,\delta_{1}) \overset{{\color{white}.}}{\geq} \varepsilon
-	\right.
-\;\right\}
-\;\;\subset\;\;
-\left\{\;
-	f \in \Czo
-	\;\left\vert\;\,
-	w(f,\delta_{1}) \overset{{\color{white}.}}{\geq} \varepsilon
-	\right.
-\;\right\},
-\end{equation*}
-which in turn implies that, for any $n \in \N$, $\varepsilon > 0$ and
-any $\delta_{1}, \delta_{2} \in (0,1)$ with $\delta_{1} \leq \delta_{2}$, we have
-\begin{equation*}
+	\,\;\right\}\right)
+	\,\leq\, \eta,
+	\quad\textnormal{for $n \,\geq\, n_{0}$,\quad and}
+\\
 P_{n}\!\left(\left\{\;
 	f \in \Czo
 	\;\left\vert\;\,
-	w(f,\delta_{1}) \overset{{\color{white}.}}{\geq} \varepsilon
+	w(f,\delta) \overset{{\color{white}.}}{\geq}  \varepsilon
 	\right.
 \;\right\}\right)
-\;\;\leq\;\;
+&\leq&
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta_{n}) \overset{{\color{white}.}}{\geq} \varepsilon
+		\,\right.
+	\right\}\right)
+	\,\leq\, \eta,
+	\quad\textnormal{for $n = 1, 2, \ldots, n_{0}-1$},
+\end{eqnarray*}
+which together imply
+\begin{equation*}
 P_{n}\!\left(\left\{\;
 	f \in \Czo
 	\;\left\vert\;\,
-	w(f,\delta_{1}) \overset{{\color{white}.}}{\geq} \varepsilon
+	w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
 	\right.
-\;\right\}\right),
+\;\right\}\right)
+\;\;\leq\;\; \eta,
+\quad\textnormal{for each $n \in \N$}.
 \end{equation*}
-from which the Claim follows immediately.
-This completes the proof of the Claim.
-\vskip 0.3cm
-\noindent
-Now, note that
-\begin{eqnarray*}
-\textnormal{(c)}
-&\Longleftrightarrow&
-	\lim_{\delta\rightarrow 0^{+}}
-	\limsup_{n\rightarrow\infty}\,
-	P_{n}\!\left(\left\{\;
-		f \in \Czo
-		\;\left\vert\;\,
-		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
-		\right.
-	\;\right\}\right)
-	\; = \; 0
-\\
-&\Longleftrightarrow&
-	\textnormal{for each $\eta > 0$, \;$\exists$\;\;$\delta \in (0,1)$ such that}\;
-	\limsup_{n\rightarrow\infty}\,
-	P_{n}\!\left(\left\{\;
-		f \in \Czo
-		\;\left\vert\;\,
-		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
-		\right.
-	\;\right\}\right)
-	\;\leq\; \eta
-\\
-&\Longleftrightarrow&
-	\textnormal{for each $\eta > 0$, \;$\exists$\;\;$\delta \in (0,1)$, $n_{0}\in\N$ such that}\;
-	P_{n}\!\left(\left\{\;
-		f \in \Czo
-		\;\left\vert\;\,
-		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
-		\right.
-	\;\right\}\right)
-	\;\leq\; \eta,
-	\;\,\forall\;\,n \geq n_{0}
-\\
-&\Longleftrightarrow& \textnormal{(b)},
-\end{eqnarray*}
-where the validity of the second equivalence follows from the Claim above.
-This proves the equivalence of (ii) and (iii).
+This proves (iii)\;$\Longrightarrow$\;(ii), and completes the proof of the equivalence
+(ii)\;$\Longleftrightarrow$\;(iii).
 
+\vskip 0.5cm
+\noindent
+\underline{(iii)\;$\Longrightarrow$\;(iv)}
+\vskip 0.2cm
+\noindent
+\begin{eqnarray*}
+\textnormal{(iii)}
+&\Longleftrightarrow&
+	\textnormal{for each $\varepsilon,\,\eta > 0$, there exist $a > 0$, $\delta \in (0,1)$ and $n_{0} \in \N$ such that}
+\\
+&&
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+		\right.
+	\;\right\}\right)
+	\,\leq\, \eta,
+	\;\textnormal{and}\;
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\,\leq\, \eta,
+	\;\textnormal{for each $n \geq n_{0}$}
+\\ \\
+&\Longleftrightarrow&
+	\textnormal{for each $\eta > 0$, $\exists$ $a > 0$ and $n_{0} \in \N$ such that}\;
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+		\right.
+	\;\right\}\right)
+	\leq \eta,
+	\;\textnormal{for each $n \geq n_{0}$, and}
+\\
+&&
+	\textnormal{for each $\varepsilon,\,\eta > 0$, $\exists$ $\delta \in (0,1)$ such that}\;\,
+	\limsup_{n\rightarrow\infty}\,
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\,\leq\, \eta
+\\ \\
+&\Longleftrightarrow&
+	\textnormal{for each $\eta > 0$, $\exists$ $a > 0$ and $n_{0} \in \N$ such that}\;
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+		\right.
+	\;\right\}\right)
+	\leq \eta,
+	\;\textnormal{for each $n \geq n_{0}$, and}
+\\
+&&
+	\textnormal{for each $\varepsilon > 0$,}\;\,
+	\lim_{\delta\rightarrow 0^{+}}\,\limsup_{n\rightarrow\infty}\,
+	P_{n}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\,=\, 0
+\\ \\
+&\Longleftrightarrow& \textnormal{(iv)}
+\end{eqnarray*}
+
+\vskip 0.5cm
+\noindent
+The proof of the Theorem is now complete.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
