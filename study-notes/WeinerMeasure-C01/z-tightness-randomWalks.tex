@@ -1,0 +1,182 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Tightness of sequences of linearly interpolated random walks}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{lemma}[Lemma, p.88, \cite{Billingsley1999}]
+\mbox{}\vskip 0.1cm
+\begin{itemize}
+\item	Let $\xi_{1}, \xi_{2}, \ldots\, : \Omega \longrightarrow \Re$ be a sequence of
+		independent and identically distributed $\Re$-valued random variables
+		defined on the probability space $(\Omega,\mathcal{A},\mu)$,
+		with expectation value zero and common finite variance $\sigma^{2} > 0$.
+\item	Define the random variables:
+		\begin{equation*}
+		\left\{\begin{array}{ccccll}
+		S_{0}
+		&:&\overset{{\color{white}1}}{\Omega} \longrightarrow \Re
+		&:& \omega \;\longmapsto\; 0,
+		& \textnormal{and}
+		\\ \\
+		S_{n}
+		&:&	\Omega \longrightarrow \Re
+		&:&	\omega \;\longmapsto\; \overset{n}{\underset{i=1}{\textnormal{\Large$\sum$}}}\;\xi_{i}(\omega),
+		& \textnormal{for each $n \in \N$}.
+		\end{array}\right.
+		\end{equation*}
+\item	For each $n \in \N$, define \,$X^{(n)} \,:\, \Omega \;\longrightarrow\;C[0,1]$\, as follows:
+		\begin{equation*}
+		X^{(n)}(\omega)(t)
+		\;\; := \;\;
+		\dfrac{1}{\sigma\cdot\sqrt{n}}
+		\left\{\;
+		S_{i-1}(\omega) \;+\; n\left(t - \dfrac{i-1}{n}\right)\xi_{i}(\omega)
+		\,\right\},
+		\;\;
+		\textnormal{for each $\omega \in \Omega$, \;$t \in \left[\frac{i-1}{n},\frac{i}{n}\right]$, \;$i = 1,2,3,\ldots,n$}.
+		\end{equation*}
+%\item	For each $n \in \N$ and each $t \in [0,1]$, define
+%		\;$X^{(n)}_{t} : \,\Omega \, \longrightarrow \, \Re$\;
+%		as follows:
+%		\begin{equation*}
+%		X^{(n)}_{t}(\omega) \;\; := \;\; X^{(n)}(\omega)(t),
+%		\quad
+%		\textnormal{for each $\omega \in \Omega$}.
+%		\end{equation*}
+\end{itemize}
+If
+\begin{enumerate}
+\item	the sequence \,$\left\{\,\xi_{n}\,\right\}_{n\in\N}$\, is stationary
+		\vskip 0.1cm
+		(i.e. for each fixed $j = 0, 1, 2, \ldots$,
+		the distribution of $\left(\,\xi_{k},\xi_{k+1},\ldots,\xi_{k+j}\,\right)$ is the same of all $k\in\N$), and
+\item	\begin{equation*}
+		\underset{\lambda\rightarrow\infty}{\lim}\;\;
+		\underset{n\rightarrow\infty}{\limsup}\;\;
+		\lambda^{2}\cdot
+		P\!\left(\;\underset{1\,\leq\,k\,\leq\,n}{\max}\,\vert\,S_{k}\,\vert\,\geq\,\lambda\,\sigma\sqrt{n}\;\right)
+		\;\;=\;\; 0,
+		\end{equation*}
+\end{enumerate}
+then \,$\left\{\,X^{(n)}\,\right\}_{n\in\N}$\, is tight.
+\end{lemma}
+\proof
+We apply the necessary and sufficient condition for tightness in Theorem \ref{NecessarySufficientTightnessCzo}(iv).
+Thus, we need to prove the following two claims:
+
+\vskip 0.3cm
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim 1:}\quad
+For each $\eta > 0$, there exist $a > 0$ and $n_{0} \in \N$ such that
+\begin{equation*}
+	P_{X^{(n)}}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+		\right.
+	\;\right\}\right)
+	\;=\;
+	P\!\left(\; \left\vert\,X^{(n)}_{0}\,\right\vert \overset{{\color{white}.}}{\geq} a \;\right)
+	\;\leq\; \eta,
+	\;\;\textnormal{for each $n \geq n_{0}$},
+\end{equation*}
+\vskip 0.3cm
+\noindent
+\textbf{Claim 2:}\quad
+For each $\varepsilon > 0$,
+\begin{equation*}
+	\lim_{\delta\rightarrow 0^{+}}
+	\limsup_{n\rightarrow\infty}\,
+	P_{X^{(n)}}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		w(f,\delta) \overset{{\color{white}.}}{\geq} \varepsilon
+		\right.
+	\;\right\}\right)
+	\;=\;
+	\lim_{\delta\rightarrow 0^{+}}
+	\limsup_{n\rightarrow\infty}\,
+	P\!\left(\; w(X^{(n)},\delta) \,\overset{{\color{white}.}}{\geq}\, \varepsilon \;\right)
+	\;=\; 0.		
+\end{equation*}
+\end{minipage}
+\end{center}
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 1:\quad Since, for each $n \in \N$, $X^{(n)}_{0}$ is identically zero, we may
+choose $a = 1$ and $n_{0} = 1$. We then have, for any $\eta > 0$,
+\begin{equation*}
+	P_{X^{(n)}}\!\left(\left\{\;
+		f \in \Czo
+		\;\left\vert\;\,
+		\vert\,f(0)\,\vert \overset{{\color{white}.}}{\geq} a
+		\right.
+	\;\right\}\right)
+	\;=\;
+	P\!\left(\; \left\vert\,X^{(n)}_{0}\,\right\vert \overset{{\color{white}.}}{\geq} a \;\right)
+	\;=\;
+	P\!\left(\; \left\vert\,X^{(n)}_{0}\,\right\vert \overset{{\color{white}.}}{\geq} 1 \;\right)
+	\;=\; 0 \;\leq\; \eta,
+	\;\;\textnormal{for each $n \geq n_{0} := 1$}.
+\end{equation*}
+This proves Claim 1.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim 3:}\quad
+For each $\varepsilon, \delta > 0$,
+\begin{equation*}
+P\!\left(\; w(X^{(n)},\delta) \,\overset{{\color{white}.}}{\geq}\, 3\,\varepsilon \;\right)
+\;\; \leq \;\;	\dfrac{2}{\delta}\cdot
+	P\!\left(\;
+		\underset{1 \leq k\leq\lceil n\delta \rceil}{\max}\,\vert\,S_{k}\,\vert
+		\,\overset{{\color{white}.}}{\geq}\,
+		\dfrac{\varepsilon}{\sqrt{2\delta}}\,\sigma\sqrt{\lceil\,n\delta\,\rceil} 
+	\;\right),
+	\quad\textnormal{for all sufficiently large $n \in \N$}.
+\end{equation*}
+\end{minipage}
+\end{center}
+Proof of Claim 3:\quad
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim 4:}\quad
+For each $\varepsilon, \delta > 0$,
+\begin{eqnarray*}
+	\underset{n\rightarrow\infty}{\limsup}\;
+	P\!\left(\; w(X^{(n)},\delta) \,\overset{{\color{white}.}}{\geq}\, 3\,\varepsilon \;\right)
+&\leq& \dfrac{2}{\delta}\cdot
+	\underset{n\rightarrow\infty}{\limsup}\;
+	P\!\left(\;
+	\underset{1 \leq k\leq\lceil n\delta \rceil}{\max}\,\vert\,S_{k}\,\vert
+	\,\overset{{\color{white}.}}{\geq}\,
+	\dfrac{\varepsilon}{\sqrt{2\delta}}\,\sigma\sqrt{\lceil\,n\delta\,\rceil} 
+	\;\right)
+\\
+&\leq& \dfrac{2}{\delta}\cdot
+	\underset{m\rightarrow\infty}{\limsup}\;
+	P\!\left(\;\;\;
+	\underset{1 \leq k\leq m}{\max}\;\;\vert\,S_{k}\,\vert
+	\,\overset{{\color{white}.}}{\geq}\,
+	\dfrac{\varepsilon}{\sqrt{2\delta}}\,\sigma\sqrt{m} 
+	\quad\;\;\;\right).
+\end{eqnarray*}
+\end{minipage}
+\end{center}
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
