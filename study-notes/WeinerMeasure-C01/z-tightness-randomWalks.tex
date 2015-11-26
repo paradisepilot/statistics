@@ -148,6 +148,65 @@ P\!\left(\; w(X^{(n)},\delta) \,\overset{{\color{white}.}}{\geq}\, 3\,\varepsilo
 \end{minipage}
 \end{center}
 Proof of Claim 3:\quad
+For each $\delta > 0$ and $n \in \N$,
+let $m := \lceil\,n\,\delta\,\rceil$ be the round-up (``smallest integer greater than or equal to") of $n\,\delta$
+and $v = \lceil n/m \rceil$ be that of $n / m$. Let
+\begin{equation*}
+t_{0} = 0,
+\;\;\; t_{1} = \dfrac{m}{n},
+\;\;\; t_{2} = \dfrac{2\cdot m}{n},
+\;\;\ldots,
+\;\;\; t_{v-1} = \dfrac{(v-1)\cdot m}{n},
+\;\;\; t_{v} = 1.
+\end{equation*}
+Then,
+\begin{equation*}
+t_{i} - t_{i-1}
+\;=\; \dfrac{i\cdot m}{n} - \dfrac{(i-1)\cdot m}{n}
+\;=\; \dfrac{m}{n}
+\;=\; \dfrac{\lceil n\,\delta \rceil}{n}
+\;\geq\; \dfrac{n\,\delta}{n}
+\;=\; \delta,
+\quad
+\textnormal{for $i = 1, 2, \ldots, v-1$,}
+\end{equation*}
+which implies, by Proposition \ref{modulusContinuityBoundedBySupremum}(i),
+that for any $\varepsilon > 0$, any Borel probability measure $P$ on
+$\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$, and any $f \in \Czo$, we have
+\begin{equation*}
+	w(f,\delta) \;\; \leq \;\; 3 \cdot
+	\max_{1\,\leq\,i\,\leq\,n}\left\{\;
+	\sup_{s\,\in\,[t_{i-1},t_{i}]}\,\left\vert\,\overset{{\color{white}.}}{f}(s) - f(t_{i-1})\,\right\vert
+	\;\right\}.
+\end{equation*}
+%\begin{eqnarray*}
+%P\!\left(\left\{\;f\in\Czo\;\left\vert\;\overset{{\color{white}1}}{w}(f,\delta)\,\geq\,3\,\varepsilon\right.\;\right\}\right)
+%&\leq& \overset{n}{\underset{i\,=\,1}{\sum}}\;
+%	P\!\left(\left\{\; f\in\Czo \;\left\vert\;
+%		\underset{s\,\in\,[t_{i-1},t_{i}]}{\sup}
+%		\left\vert\,f(s) \overset{{\color{white}.}}{-} f(t_{i-1})\,\right\vert\,\geq\,\varepsilon
+%		\right.\;\right\}\right).
+%\end{eqnarray*}
+
+note that
+\begin{eqnarray*}
+n\cdot\delta \;\leq\; m \;:=\; \lceil\,n\,\delta\,\rceil \;\leq\; n\cdot\delta + 1
+&\Longrightarrow&
+	\dfrac{1}{n\cdot\delta} \;\geq\; \dfrac{1}{m} \;\geq\; \dfrac{1}{n\cdot\delta + 1}
+\;\;\Longrightarrow\;\;
+	\dfrac{n}{n\cdot\delta} \;\geq\; \dfrac{n}{m} \;\geq\; \dfrac{n}{n\cdot\delta + 1}
+	\;\;=\;\; \dfrac{1}{\delta + 1/n}
+\\
+&\Longrightarrow&
+	\dfrac{1}{\delta} \;\geq\; \dfrac{n}{m} \;\geq\; \dfrac{1}{\delta + 1/n}
+\;\;\Longrightarrow\;\;
+	\underset{n\rightarrow\infty}{\lim}\;\dfrac{n}{m} \;=\; \dfrac{1}{\delta} \;>\; \dfrac{1}{2\delta}.
+\end{eqnarray*}
+%Similarly,
+%\begin{equation*}
+%
+%\end{equation*}
+
 
 \vskip 0.5cm
 \begin{center}
