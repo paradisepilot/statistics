@@ -67,7 +67,7 @@ then \,$\left\{\,X^{(n)}\,\right\}_{n\in\N}$\, is tight.
 \end{lemma}
 \proof
 We apply the necessary and sufficient condition for tightness in Theorem \ref{NecessarySufficientTightnessCzo}(iv).
-Thus, we need to prove the following two claims:
+Thus, it suffices to prove the following two claims:
 
 \vskip 0.3cm
 \begin{center}
@@ -128,6 +128,10 @@ choose $a = 1$ and $n_{0} = 1$. We then have, for any $\eta > 0$,
 	\;\;\textnormal{for each $n \geq n_{0} := 1$}.
 \end{equation*}
 This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+In order to simplify the proof of Claim 2, before presenting it, we first prove instead the following:
 
 \vskip 0.5cm
 \begin{center}
@@ -247,15 +251,6 @@ P\!\left(\left\{\;
 		\,\geq\,\varepsilon\,\sigma\sqrt{n}
 		\right.\;\right\}
 		\;\right)
-%\\
-%&=&
-%	v\cdot
-%	P\!\left(\;\left\{\; \omega\in\Omega \;\left\vert\;
-%		\underset{1\,\leq\,k\,\leq\,m}{\max}
-%			\left\vert\, S_{k}(\overset{{\color{white}.}}{\omega})  \,\right\vert
-%		\,\geq\,\varepsilon\,\sigma\sqrt{n}
-%		\right.\;\right\}
-%		\;\right)
 \end{eqnarray*}
 Next, note that
 \begin{eqnarray*}
@@ -332,7 +327,7 @@ P\!\left(\left\{\;
 	\dfrac{2}{\delta} \cdot
 	P\!\left(\;\left\{\; \omega\in\Omega \;\left\vert\;
 		\underset{1\,\leq\,k\,\leq\,m}{\max}
-			\left\vert\, S_{k}(\omega) \overset{{\color{white}.}}{-} S_{0}(\omega) \,\right\vert
+			\left\vert\, S_{k}(\omega) \,\right\vert
 		\,\geq\,\dfrac{\varepsilon}{\sqrt{2\,\delta}}\,\sigma\,\sqrt{m}
 		\right.\;\right\}
 		\;\right).
@@ -340,33 +335,110 @@ P\!\left(\left\{\;
 This completes the proof of Claim 3.
 
 \vskip 0.5cm
-\begin{center}
-\begin{minipage}{6.5in}
 \noindent
-\textbf{Claim 4:}\quad
-For each $\varepsilon, \delta > 0$,
+Proof of Claim 2:\quad
+By Claim 3, we have,
+for each $\varepsilon > 0$, each $\delta \in (0,1)$ and each sufficiently large $n \in \N$,
 \begin{eqnarray*}
-	\underset{n\rightarrow\infty}{\limsup}\;
-	P\!\left(\; w(X^{(n)},\delta) \,\overset{{\color{white}.}}{\geq}\, 3\,\varepsilon \;\right)
-&\leq& \dfrac{2}{\delta}\cdot
-	\underset{n\rightarrow\infty}{\limsup}\;
-	P\!\left(\;
-	\underset{1 \leq k\leq\lceil n\delta \rceil}{\max}\,\vert\,S_{k}\,\vert
-	\,\overset{{\color{white}.}}{\geq}\,
-	\dfrac{\varepsilon}{\sqrt{2\delta}}\,\sigma\sqrt{\lceil\,n\delta\,\rceil} 
-	\;\right)
-\\
-&\leq& \dfrac{2}{\delta}\cdot
-	\underset{m\rightarrow\infty}{\limsup}\;
-	P\!\left(\;\;\;
-	\underset{1 \leq k\leq m}{\max}\;\;\vert\,S_{k}\,\vert
-	\,\overset{{\color{white}.}}{\geq}\,
-	\dfrac{\varepsilon}{\sqrt{2\delta}}\,\sigma\sqrt{m} 
-	\quad\;\;\;\right).
+P\!\left(\left\{\;
+	\omega\in\Omega
+	\;\left\vert\;
+		\overset{{\color{white}1}}{w}(X^{(n)}(\omega),\delta)\,\geq\,3\,\varepsilon
+	\right.
+\;\right\}\right)
+&\leq&
+	\dfrac{2}{\delta} \cdot
+	P\!\left(\;\left\{\; \omega\in\Omega \;\left\vert\;
+		\underset{1\,\leq\,k\,\leq\,\lceil n\delta \rceil}{\max}
+			\left\vert\, S_{k}(\omega) \,\right\vert
+		\,\geq\,\dfrac{\varepsilon}{\sqrt{2\,\delta}}\,\sigma\,\sqrt{\lceil n\delta \rceil}
+		\right.\;\right\}
+		\;\right).
 \end{eqnarray*}
-\end{minipage}
-\end{center}
-
+This implies:
+\begin{eqnarray*}
+&&
+	\underset{n\rightarrow\infty}{\limsup}\;\;
+	P\!\left(\left\{\;
+	\omega\in\Omega
+	\;\left\vert\;
+		\overset{{\color{white}1}}{w}(X^{(n)}(\omega),\delta)\,\geq\,3\,\varepsilon
+	\right.
+	\;\right\}\right)
+\\
+&\leq&
+	\underset{n\rightarrow\infty}{\limsup}\;\;
+	\dfrac{2}{\delta} \cdot
+	P\!\left(\;\left\{\; \omega\in\Omega \;\left\vert\;
+		\underset{1\,\leq\,k\,\leq\,\lceil n\delta \rceil}{\max}
+			\left\vert\, S_{k}(\omega) \,\right\vert
+		\,\geq\,\dfrac{\varepsilon}{\sqrt{2\,\delta}}\,\sigma\,\sqrt{\lceil n\delta \rceil}
+		\right.\;\right\}
+		\;\right)
+\\
+&\leq&
+	\underset{n\rightarrow\infty}{\limsup}\;\;
+	\dfrac{2}{\delta} \cdot
+	P\!\left(\;\left\{\; \omega\in\Omega \;\left\vert\;
+		\underset{1\,\leq\,k\,\leq\,n}{\max}
+			\left\vert\, S_{k}(\omega) \,\right\vert
+		\,\geq\,\dfrac{\varepsilon}{\sqrt{2\,\delta}}\,\sigma\,\sqrt{n}
+		\right.\;\right\}
+		\;\right)
+\\
+&=&
+	\dfrac{4}{\varepsilon^{2}} \,\cdot\,
+	\underset{n\rightarrow\infty}{\limsup}\;
+	\left(\dfrac{\varepsilon}{\sqrt{2\delta}}\right)^{2}\cdot
+	P\!\left(\;\left\{\; \omega\in\Omega \;\left\vert\;
+		\underset{1\,\leq\,k\,\leq\,n}{\max}
+			\left\vert\, S_{k}(\omega) \,\right\vert
+		\,\geq\,\dfrac{\varepsilon}{\sqrt{2\,\delta}}\,\sigma\,\sqrt{n}
+		\right.\;\right\}
+		\;\right),
+\end{eqnarray*}
+where the second inequality follows from the fact that, for each fixed $\delta \in (0,1)$,
+$\left\{\,\lceil\,n\delta\,\rceil\,\right\}_{n\in\N}$ is a sequence of non-decreasing
+natural numbers but which may contain repeated entries.
+The preceding inequality and hypothesis (ii) together imply:
+\begin{eqnarray*}
+&&
+	\underset{\delta\rightarrow0^{+}}{\lim}\;
+	\underset{n\rightarrow\infty}{\limsup}\;\;
+	P\!\left(\left\{\;
+	\omega\in\Omega
+	\;\left\vert\;
+		\overset{{\color{white}1}}{w}(X^{(n)}(\omega),\delta)\,\geq\,3\,\varepsilon
+	\right.
+	\;\right\}\right)
+\\
+&\leq&
+	\dfrac{4}{\varepsilon^{2}} \,\cdot\,
+	\underset{\delta\rightarrow0^{+}}{\lim}\;\,
+	\underset{n\rightarrow\infty}{\limsup}\;
+	\left(\dfrac{\varepsilon}{\sqrt{2\delta}}\right)^{2}\cdot
+	P\!\left(\;\left\{\; \omega\in\Omega \;\left\vert\;
+		\underset{1\,\leq\,k\,\leq\,n}{\max}
+			\left\vert\, S_{k}(\omega) \,\right\vert
+		\,\geq\,\dfrac{\varepsilon}{\sqrt{2\,\delta}}\,\sigma\,\sqrt{n}
+		\right.\;\right\}
+		\;\right)
+\\
+&=&
+	\dfrac{4}{\varepsilon^{2}} \,\cdot\,
+	\underset{\lambda\rightarrow\infty}{\lim}\;\,
+	\underset{n\rightarrow\infty}{\limsup}\;
+	\left(\,\overset{{\color{white}.}}{\lambda}\,\right)^{2}\cdot
+	P\!\left(\;\left\{\; \omega\in\Omega \;\left\vert\;
+		\underset{1\,\leq\,k\,\leq\,n}{\max}
+			\left\vert\, S_{k}(\omega) \,\right\vert
+		\,\geq\,\lambda\,\sigma\,\sqrt{n}
+		\right.\;\right\}
+		\;\right)
+\\
+&=& \dfrac{4}{\varepsilon^{2}} \,\cdot\, 0 \;\; = \;\; 0.
+\end{eqnarray*}
+This completes the proof of Claim 2, as well as that of the present Lemma.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
