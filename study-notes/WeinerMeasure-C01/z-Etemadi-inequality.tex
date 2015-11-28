@@ -1,0 +1,204 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Etemadi's inequality}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{theorem}[Appendix M19, \cite{Billingsley1999}]
+\label{EtemadiInequality}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $X_{1}, \ldots , X_{n} : \Omega \longrightarrow \Re$ are independent
+$\Re$-valued random variables defined on the common probability space $\Omega$.
+Let $S_{k} \,:=\, \overset{k}{\underset{i=1}{\textnormal{\large$\sum$}}}\,X_{i}$, for $k = 1, 2, \ldots, n$.
+Then, for any $x > 0$,
+\begin{equation*}
+P\!\left(\left\{\;
+	\omega \in \Omega
+	\;\left\vert\;
+	\underset{1\leq k \leq n}{\max}\,\vert\,S_{k}(\omega)\,\vert \,\overset{{\color{white}:}}{\geq}\, 3x
+	\right.
+\;\right\}\right)
+\;\; \leq \;\;
+3 \cdot \underset{1\leq k \leq n}{\max}\;
+P\!\left(\left\{\;
+	\omega \in \Omega
+	\;\left\vert\;\,
+	\vert\,S_{k}(\omega)\,\vert \,\overset{{\color{white}1}}{\geq}\, x
+	\right.
+\;\right\}\right).
+\end{equation*}
+\end{theorem}
+\proof
+Define:
+\begin{eqnarray*}
+A_{{\color{white}0}} & := &
+\left\{\;
+	\omega \in \Omega
+	\;\left\vert\;\,
+	\underset{1\leq k \leq n}{\max}\,\vert\,S_{k}(\omega)\,\vert \,\overset{{\color{white}:}}{\geq}\, 3x
+	\right.
+\;\right\},
+\\
+A_{1} & := &
+\left\{\;
+	\omega \in \Omega
+	\;\left\vert\;\,
+	\vert\,S_{1}(\omega)\,\vert \overset{{\color{white}:}}{\geq} 3x
+	\right.
+\;\right\},
+\\
+A_{k} & := &
+\left\{\;
+	\omega \in \Omega
+	\;\left\vert\;\,
+	\underset{1\leq i \leq k-1}{\max}\,\vert\,S_{i}(\omega)\,\vert \overset{{\color{white}:}}{<} 3x
+	\;\;\textnormal{and}\;\;
+	\vert\,S_{k}(\omega)\,\vert\,\geq\,3x
+	\right.
+\;\right\},
+\quad\textnormal{for $k = 2, 3, \ldots, n$}.
+\end{eqnarray*}
+Note that $A$ can be expressed as the following disjoint union:\;
+$A \; = \; \overset{n}{\underset{k=1}{\bigsqcup}}\;A_{k}$.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim 1:}\quad
+$A_{k}\overset{{\color{white}:}}{\cap}\left\{\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{<} x\,\right\}
+\,\subset\,
+A_{k}\overset{{\color{white}:}}{\cap}\left\{\,\vert\,S_{n}-S_{k}\,\vert \overset{{\color{white}.}}{>} 2x\,\right\}$,\;
+for each $k = 1, 2, \ldots, n$.
+
+\vskip 0.3cm
+\noindent
+\textbf{Claim 2:}\quad
+$\left\{\,\vert\,S_{n} - S_{k}\,\vert \overset{{\color{white}.}}{>} 2x\,\right\}
+\;\subset\;
+\left\{\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{>} x\,\right\}
+\,\bigcup\,
+\left\{\,\vert\,S_{k}\,\vert \overset{{\color{white}.}}{>} x\,\right\}$,\;
+for each $k = 1, 2, \ldots, n$.
+\end{minipage}
+\end{center}
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 1:\quad
+\begin{eqnarray*}
+&&
+	\omega \in A_{k}\overset{{\color{white}:}}{\cap}\left\{\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{<} x\,\right\}
+\\
+&\Longleftrightarrow&
+	\underset{1\leq i \leq k-1}{\max} \left\vert\,S_{i}(\overset{{\color{white}.}}{\omega})\,\right\vert< 3x
+	\;\;\textnormal{and}\;\;
+	\left\vert\,S_{k}(\overset{{\color{white}.}}{\omega})\,\right\vert\,\geq\,3x
+	\;\;\textnormal{and}\;\;
+	\left\vert\,S_{n}(\overset{{\color{white}.}}{\omega})\,\right\vert\,<\,x
+\\
+&\Longrightarrow&
+	\underset{1\leq i \leq k-1}{\max} \left\vert\,S_{i}(\overset{{\color{white}.}}{\omega})\,\right\vert< 3x
+	\;\;\textnormal{and}\;\;
+	\left\vert\,S_{k}(\overset{{\color{white}.}}{\omega})\,\right\vert\,\geq\,3x
+	\;\;\textnormal{and}\;\;
+	\left\vert\;S_{k}(\omega) \overset{{\color{white}.}}{-} S_{n}(\omega)\;\right\vert
+	\;\geq\; \left\vert\,S_{k}(\overset{{\color{white}.}}{\omega})\,\right\vert \,-\, \left\vert\,S_{n}(\overset{{\color{white}.}}{\omega})\,\right\vert
+	\;>\; 3x - x \; = \; 2x
+\\
+&\Longrightarrow&
+	\omega \in A_{k}\overset{{\color{white}:}}{\cap}\left\{\,\vert\,S_{n}-S_{k}\,\vert \overset{{\color{white}.}}{>} 2x\,\right\}
+\end{eqnarray*}
+This proves Claim 1.
+
+\vskip 0.8cm
+\noindent
+Proof of Claim 2:\quad
+Simply note that for any two real numbers $a, b \in \Re$, we have:
+\begin{equation*}
+\vert\,a\,\vert \;\leq\; x
+\;\;\textnormal{and}\;\;
+\vert\,b\,\vert \;\leq\; x
+\quad\Longrightarrow\quad
+\vert\,a - b\,\vert \;\leq\; \vert\,a\,\vert \;+\; \vert\,b\,\vert \;\leq\; x \;+\; x \;=\; 2x,
+\end{equation*}
+whose contrapositive is:
+\begin{equation*}
+\vert\,a - b\,\vert \;>\; 2x,
+\quad\Longrightarrow\quad
+\vert\,a\,\vert \;>\; x
+\;\;\textnormal{or}\;\;
+\vert\,b\,\vert \;>\; x.
+\end{equation*}
+This proves Claim 2.
+
+\vskip 0.8cm
+\noindent
+Using the above two Claims, we now see that:
+\begin{eqnarray*}
+P(A)
+&=&
+	P\!\left(\,A\overset{{\color{white}.}}{\cap}\{\,\vert\,S_{n}\,\vert\geq x\,\}\,\right)
+	\;+\; P\!\left(\,A\overset{{\color{white}.}}{\cap}\{\,\vert\,S_{n}\,\vert < x\,\}\,\right)
+\\
+&\leq&
+	P\!\left(\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{\geq} x\,\right)
+	\;+\; P\!\left(\,A\overset{{\color{white}:}}{\cap}\{\,\vert\,S_{n}\,\vert < x\,\}\,\right)
+\\
+&=&
+	P\!\left(\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{\geq} x\,\right)
+	\;+\; \overset{n}{\underset{k=1}{\sum}}\; P\!\left(\,A_{k}\overset{{\color{white}:}}{\cap}\{\,\vert\,S_{n}\,\vert < x\,\}\,\right)
+\\
+&\leq&
+	P\!\left(\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{\geq} x\,\right)
+	\;+\; \overset{n}{\underset{k=1}{\sum}}\; P\!\left(\,A_{k}\overset{{\color{white}:}}{\cap}\{\,\vert\,S_{n}-S_{k}\,\vert > 2x\,\}\,\right),
+	\quad\quad\textnormal{by Claim 1}
+\\
+&=&
+	P\!\left(\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{\geq} x\,\right)
+	\;+\;
+		\overset{n}{\underset{k=1}{\sum}}\;
+		P\!\left(\,A_{k}\,\right)\cdot P\!\left(\;\vert\,S_{n}-S_{k}\,\vert \overset{{\color{white}.}}{>} 2x\;\right),
+	\quad\quad\textnormal{by independence of summands}
+\\
+&\leq&
+	P\!\left(\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{\geq} x\,\right)
+	\;+\;
+		\left(\underset{1\leq k \leq n}{\max}\;P\!\left(\,\vert\,S_{n}-S_{k}\,\vert \overset{{\color{white}.}}{>} 2x\,\right)\right)
+		\cdot
+		\overset{n}{\underset{k=1}{\sum}}\; P\!\left(\,A_{k}\,\right)
+\\
+&=&
+	P\!\left(\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{\geq} x\,\right)
+	\;+\;
+		P\!\left(\,A\,\right) \cdot
+		\underset{1\leq k \leq n}{\max}\;P\!\left(\,\vert\,S_{n}-S_{k}\,\vert \overset{{\color{white}.}}{>} 2x\,\right)
+\\
+&=&
+	P\!\left(\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{\geq} x\,\right)
+	\;+\; \underset{1\leq k \leq n}{\max}\;P\!\left(\,\vert\,S_{n}-S_{k}\,\vert \overset{{\color{white}.}}{>} 2x\,\right)
+\\
+&\leq&
+	P\!\left(\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{\geq} x\,\right)
+	\;+\;
+	\underset{1\leq k \leq n}{\max}\;\left\{\;
+		P\!\left(\,\vert\,S_{n}\,\vert \overset{{\color{white}.}}{>} x\,\right)
+		\;+\;
+		P\!\left(\,\vert\,S_{k}\,\vert \overset{{\color{white}.}}{>} x\,\right)
+	\;\right\},
+	\quad\quad\textnormal{by Claim 2}
+\\
+&\leq&
+	3\,\cdot\,\underset{1\leq k \leq n}{\max}\left\{\;
+		P\!\left(\,\vert\,S_{k}\,\vert \overset{{\color{white}.}}{\geq} x\,\right)
+	\;\right\}.
+\end{eqnarray*}
+This completes the proof of Etemadi's inequality.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
