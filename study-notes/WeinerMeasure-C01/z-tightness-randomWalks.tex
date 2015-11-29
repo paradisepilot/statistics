@@ -9,10 +9,12 @@
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
 \begin{lemma}[Lemma, p.88, \cite{Billingsley1999}]
+\label{tightnessRandomWalk}
 \mbox{}\vskip 0.1cm
 \begin{itemize}
 \item	Let $\xi_{1}, \xi_{2}, \ldots\, : \Omega \longrightarrow \Re$ be a sequence of
-		independent and identically distributed $\Re$-valued random variables
+		%independent and identically distributed
+		$\Re$-valued random variables
 		defined on the probability space $(\Omega,\mathcal{A},\mu)$,
 		with expectation value zero and common finite variance $\sigma^{2} > 0$.
 \item	Define the random variables:
@@ -175,8 +177,7 @@ t_{i} - t_{i-1}
 \textnormal{for $i = 1, 2, \ldots, v-1$,}
 \end{equation*}
 which implies, by Proposition \ref{modulusContinuityBoundedBySupremum}(i),
-that for any $\varepsilon > 0$, any Borel probability measure $P$ on
-$\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$, and any $f \in \Czo$, we have
+that for any $\varepsilon > 0$ and any $f \in \Czo$, we have
 \begin{equation*}
 	w(f,\delta) \;\; \leq \;\; 3 \cdot
 	\max_{1\,\leq\,i\,\leq\,v}\left\{\;
@@ -318,7 +319,7 @@ P\!\left(\left\{\;
 	v \cdot
 	P\!\left(\;\left\{\; \omega\in\Omega \;\left\vert\;
 		\underset{1\,\leq\,k\,\leq\,m}{\max}
-			\left\vert\, S_{k}(\omega) \overset{{\color{white}.}}{-} S_{0}(\omega) \,\right\vert
+			\left\vert\, S_{k}(\omega) \,\right\vert
 		\,\geq\,\dfrac{\varepsilon}{\sqrt{2\,\delta}}\,\sigma\,\sqrt{m}
 		\right.\;\right\}
 		\;\right)
@@ -330,8 +331,9 @@ P\!\left(\left\{\;
 			\left\vert\, S_{k}(\omega) \,\right\vert
 		\,\geq\,\dfrac{\varepsilon}{\sqrt{2\,\delta}}\,\sigma\,\sqrt{m}
 		\right.\;\right\}
-		\;\right).
+		\;\right),
 \end{eqnarray*}
+where the second inequality uses the stationarity hypothesis (i).
 This completes the proof of Claim 3.
 
 \vskip 0.5cm

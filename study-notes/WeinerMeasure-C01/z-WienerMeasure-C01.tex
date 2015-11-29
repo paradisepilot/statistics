@@ -55,21 +55,21 @@ A Borel probability measure $W$ on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\righ
 \label{WienerFiniteDimensionalDistributions}
 \mbox{}\vskip 0.2cm
 \noindent
-Let $W$ be a Wiener measure defined on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
+Suppose $W$ is a Wiener measure defined on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
 Then, for any pairwise distinct \;$0 \;\leq\; t_{1},\; t_{2}, \;\ldots\;,\; t_{k} \leq 1$,
-\begin{equation*}
-W \circ \pitok^{-1}
-\;\; = \;\;
-N\!\left(\;
-\mathbf{\mu} = \mathbf{0}\,,\,
-\Sigma = \left[\;\min\{\overset{{\color{white}1}}{t}_{i},t_{j}\}\;\right]_{1\leq i,j\leq k}
-\;\right),
-\end{equation*}
-where the map \;$\pitok : \Czo \longrightarrow \Re^{k}$\; is defined as follows:
-\begin{equation*}
-\pitok \;:\; \Czo \longrightarrow \Re^{k} \;:\;
-f \;\longmapsto\; \left(\,\overset{{\color{white}.}}{f}(t_{1}),\,f(t_{2}),\,\ldots,\,f(t_{k})\,\right).
-\end{equation*}
+		\begin{equation*}
+		W \circ \pitok^{-1}
+		\;\; = \;\;
+		N\!\left(\;
+		\mathbf{\mu} = \mathbf{0}\,,\,
+		\Sigma = \left[\;\min\{\overset{{\color{white}1}}{t}_{i},t_{j}\}\;\right]_{1\leq i,j\leq k}
+		\;\right),
+		\end{equation*}
+		where the map \;$\pitok : \Czo \longrightarrow \Re^{k}$\; is defined as follows:
+		\begin{equation*}
+		\pitok \;:\; \Czo \longrightarrow \Re^{k} \;:\;
+		f \;\longmapsto\; \left(\,\overset{{\color{white}.}}{f}(t_{1}),\,f(t_{2}),\,\ldots,\,f(t_{k})\,\right).
+		\end{equation*}
 \end{theorem}
 \proof
 Let $t_{0} \,:= \, 0$.
@@ -271,28 +271,206 @@ For each $n \in \N$, define \,$X^{(n)} \,:\, \Omega \;\longrightarrow\;C[0,1]$\,
 	\textnormal{for each $\omega \in \Omega$, \;$t \in \left[\frac{i-1}{n},\frac{i}{n}\right]$, \;$i = 1,2,3,\ldots,n$}.
 \end{equation*}
 
-\vskip 0.2cm
-\noindent
-For each $n \in \N$ and each $t \in [0,1]$, define
-\;$X^{(n)}_{t} : \,\Omega \, \longrightarrow \, \Re$\;
-as follows:
-\begin{equation*}
-	X^{(n)}_{t}(\omega) \;\; := \;\; X^{(n)}(\omega)(t),
-	\quad
-	\textnormal{for each $\omega \in \Omega$}.
-\end{equation*}
-
 \begin{center}
-\begin{minipage}{6.5in}
+\begin{minipage}{6.0in}
 \noindent
 \textbf{Claim 1:}
 \vskip 0.1cm
 \noindent
-The sequence $\left\{\,P_{X^{(n)}}\right\}_{n\in\N}$ of Borel probability measures on
+The sequence
+\;$\left\{\,P_{n} \overset{{\color{white}-}}{:=} P_{X^{(n)}}\right\}_{n\in\N}$\;
+of Borel probability measures on
 $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$ induced by the $X^{(n)}$'s is tight.
 \end{minipage}
 \end{center}
 
+\vskip 0.3cm
+\noindent
+We defer the proof of Claim 1 below.
+Granting the validity of Claim 1, we see that
+$\left\{\,P_{n} \overset{{\color{white}-}}{:=} P_{X^{(n)}}\,\right\}_{n\in\N}$\;
+admits a weakly convergent subsequence $\left\{\,P_{n(i)}\,\right\}_{i\in\N}$,
+say $P_{n(i)} \overset{d}{\longrightarrow} W$, as $i \longrightarrow \infty$,
+where $W$ is some Borel probability measure
+on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.0in}
+\noindent
+\textbf{Claim 2:}\quad
+$W$ is a Wiener measure on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
+\end{minipage}
+\end{center}
+
+\vskip 0.5cm
+\noindent
+Of course, Claim 2 is the desired conclusion of the present Theorem.
+Thus, the proof of the Theorem will be complete once we prove
+Claim 1 and Claim 2, which we now do.
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 1:\quad
+We will use Lemma \ref{tightnessRandomWalk}.
+Since $\xi_{1}, \xi_{2}, \ldots\,$ are independent and identically distributed,
+they satisfy trivially the stationarity hypothesis in Lemma \ref{tightnessRandomWalk}.
+Thus, Claim 1 will follow once we establish the following:
+\begin{equation*}
+	\underset{\lambda\rightarrow\infty}{\lim}\;\;
+	\underset{n\rightarrow\infty}{\limsup}\;\;
+	\lambda^{2}\cdot
+	P\!\left(\;\underset{1\,\leq\,k\,\leq\,n}{\max}\,\vert\,S_{k}\,\vert\,\geq\,\lambda\,\sqrt{n}\;\right)
+	\;\;=\;\; 0.
+\end{equation*}
+Since, for each $k \in \N$, $S_{k} \,=\, \xi_{1} + \xi_{2} + \cdots + \xi_{k}$
+is a sum of $k$ independent standard Gaussian $\Re$-valued random variables,
+$S_{k}/\sqrt{k}$ itself is a standard Gaussian $\Re$-valued random variable.
+Now, observe that:
+\begin{eqnarray*}
+P\!\left(\;
+	\underset{1\leq k \leq n}{\max}\,\vert\,S_{k}\,\vert \,\overset{{\color{white}:}}{\geq}\,\lambda\,\sqrt{n}
+\;\right)
+&\leq&
+	3 \cdot \underset{1\leq k \leq n}{\max}\;
+	P\!\left(\;
+		\vert\,S_{k}\,\vert \,\overset{{\color{white}1}}{\geq}\,\dfrac{\lambda\,\sqrt{n}}{3}
+	\;\right),
+	\quad
+	\textnormal{by Etemadi's inequality (Theorem \ref{EtemadiInequality})}
+\\
+&=&
+	3 \cdot \underset{1\leq k \leq n}{\max}\;
+	P\!\left(\;
+		\left\vert\,\dfrac{S_{k}}{\sqrt{k}}\,\right\vert \,\overset{{\color{white}1}}{\geq}\,\dfrac{\lambda\,\sqrt{n}}{3\sqrt{k}}
+	\;\right)
+\\
+&=&
+	3 \cdot \underset{1\leq k \leq n}{\max}\;
+	P\!\left(\;
+		\left\vert\,Z\,\right\vert \,\overset{{\color{white}1}}{\geq}\,\dfrac{\lambda\,\sqrt{n}}{3\sqrt{k}}
+	\;\right),
+	\quad
+	\textnormal{where $Z \sim N(0,1)$}
+\\
+&\leq&
+	3 \cdot \underset{1\leq k \leq n}{\max}\;
+	\left(\dfrac{3\sqrt{k}}{\lambda\,\sqrt{n}}\right)^{4}
+	\cdot
+	E\!\left(\, \left\vert\,Z\,\right\vert^{4} \,\right),
+	\quad
+	\textnormal{by Chebyshev's inequality}
+\\
+&=&
+	3 \cdot \dfrac{3^{4}}{\lambda^{4}} \cdot 3,
+	\quad
+	\textnormal{since $E\!\left(\, \left\vert\,Z\,\right\vert^{4} \,\right) = 3$}
+\\
+&\leq&
+	\dfrac{3^{6}}{\lambda^{4}},
+\end{eqnarray*}
+which implies
+\begin{equation*}
+	\underset{\lambda\rightarrow\infty}{\lim}\;
+	\underset{n\rightarrow\infty}{\limsup}\;\;
+	\lambda^{2}\cdot
+	P\!\left(\;\underset{1\,\leq\,k\,\leq\,n}{\max}\,\vert\,S_{k}\,\vert\,\geq\,\lambda\,\sqrt{n}\;\right)
+\;\;\leq\;\;
+	\underset{\lambda\rightarrow\infty}{\lim}\;
+	\underset{n\rightarrow\infty}{\limsup}\;\;
+	\lambda^{2}\cdot\dfrac{3^{6}}{\lambda^{4}}
+\;\;=\;\;
+	\underset{\lambda\rightarrow\infty}{\lim}\;
+	\dfrac{3^{6}}{\lambda^{2}}
+\;\;=\;\; 0\,.
+\end{equation*}
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 2:\quad
+First of all, $W$ above was chosen to be the weak limit of the subsequence $P_{n(i)}$,
+so we have $P_{n(i)} \overset{d}{\longrightarrow} W$.
+Now, recall that $\ev_{0} : \Czo \longrightarrow \Re : f \longmapsto f(0)$ is continuous.
+Hence,
+\begin{eqnarray*}
+&&
+	P_{n(i)} \;\overset{d}{\longrightarrow}\; W
+\\
+&\Longrightarrow&
+	\underset{{\color{white}i}}{P_{n(i)}}\circ\ev_{0}^{-1} \;\overset{d}{\longrightarrow}\; W\circ\ev_{0}^{-1},
+	\quad
+	\textnormal{by the Continuous Mapping Theorem (Theorem 2.7, p.21, \cite{Billingsley1999})}
+\\
+&\Longrightarrow&
+	\underset{i\rightarrow\infty}{\lim\sup}\;P_{n(i)}\circ\ev_{0}^{-1}\!\left(\left\{\,0\,\right\}\right)
+	\;\leq\; W\circ\ev_{0}^{-1}\!\left(\left\{\,0\,\right\}\right),
+	\quad
+	\textnormal{by the Portmanteau Theorem (Theorem 2.1, p.16, \cite{Billingsley1999})}
+\\
+&\Longrightarrow&
+	\underset{i\rightarrow\infty}{\lim\sup}\;P\!\left(\,X^{(n(i))}(0) = 0\,\right)
+	\;\leq\; W\circ\ev_{0}^{-1}\!\left(\left\{\,0\,\right\}\right)
+\\
+&\Longrightarrow&
+	1 \;=\; \underset{i\rightarrow\infty}{\lim\sup}\;P\!\left(\,S_{0} = 0\,\right)
+	\;\leq\; W\circ\ev_{0}^{-1}\!\left(\left\{\,0\,\right\}\right),
+\end{eqnarray*}
+which implies
+\begin{equation*}
+W\circ\ev_{0}^{-1}\!\left(\left\{\,0\,\right\}\right) \;\; = \;\; 1.
+\end{equation*}
+Secondly, since, for each $0 \,\leq\, t_{0} \,<\, t_{1} \,<\, t_{2} \,<\, \ldots \,<\, t_{k} \,\leq\, 1$,
+the map
+\begin{equation*}
+	\Pitzk \;:\; \Czo \longrightarrow \Re^{k} \;:\;
+	f \;\longmapsto\; \left(\,\overset{{\color{white}.}}{f}(t_{1}) - f(t_{0}),\,f(t_{2}) - f(t_{1}),\,\ldots,\,f(t_{k}) - f(t_{k-1})\,\right)
+\end{equation*}
+is continuous (proof is routine, hence omitted),
+by the Continuous Mapping Theorem (Theorem 2.7, p.21, \cite{Billingsley1999}),
+we have
+$P_{n(i)}\circ\Pitzk^{-1} \overset{d}{\longrightarrow} W\circ\Pitzk^{-1}$.
+By Theorem \ref{multivariateGaussianScalingLimit}, we have also
+\begin{equation*}
+	P_{n}\circ\Pitzk^{-1}
+	\;\; \overset{d}{\longrightarrow} \;\;
+	N\!\left(\;
+	\mathbf{\mu} = \mathbf{0}\,,\,
+	\overset{{\color{white}1}}{\Sigma} = \diag\!\left(\,t_{1}-t_{0},\; \ldots\; ,\; t_{k}-t_{k-1}\,\right)
+	\;\right),
+	\;\;
+	\textnormal{as \;$n \longrightarrow \infty$},
+\end{equation*}
+in particular,
+\begin{equation*}
+	P_{n(i)}\circ\Pitzk^{-1}
+	\;\; \overset{d}{\longrightarrow} \;\;
+	N\!\left(\;
+	\mathbf{\mu} = \mathbf{0}\,,\,
+	\overset{{\color{white}1}}{\Sigma} = \diag\!\left(\,t_{1}-t_{0},\; \ldots\; ,\; t_{k}-t_{k-1}\,\right)
+	\;\right),
+	\;\;
+	\textnormal{as \;$i \longrightarrow \infty$}.
+\end{equation*}
+Thus, both \;$W\circ\Pitzk^{-1}$\; and 
+\;$
+N\!\left(\;
+	\mathbf{\mu} = \mathbf{0}\,,\,
+	\overset{{\color{white}1}}{\Sigma} = \diag\!\left(\,t_{1}-t_{0},\; \ldots\; ,\; t_{k}-t_{k-1}\,\right)
+\;\right)
+$\;
+are weak limits of \;$P_{n(i)}\circ\Pitzk^{-1}$, as $i \longrightarrow \infty$.
+By Theorem \ref{weakLimitUniqueness}, it follows that
+\begin{equation*}
+	W\circ\Pitzk^{-1}
+	\;\; = \;\;
+	N\!\left(\;
+	\mathbf{\mu} = \mathbf{0}\,,\,
+	\overset{{\color{white}1}}{\Sigma} = \diag\!\left(\,t_{1}-t_{0},\; \ldots\; ,\; t_{k}-t_{k-1}\,\right)
+	\;\right).
+\end{equation*}
+This proves that $W$ is indeed a Wiener measure on $\left(\Czo,\Vert\,\cdot\,\Vert_{\infty}\right)$.
+This completes the proof of Claim 2, as well as that of the present Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
