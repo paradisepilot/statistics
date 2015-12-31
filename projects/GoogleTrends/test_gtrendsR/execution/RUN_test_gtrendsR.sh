@@ -12,7 +12,7 @@ if [ ! -d ${tmpDIR} ]; then
         mkdir ${tmpDIR}
 fi
 
-myRscript=../../code/test_GTrendsR.R
+myRscript=../../code/test_gtrendsR.R
 stdoutFile=stdout.R.`basename ${myRscript} .R`
 R --no-save --args ${codeDIR} ${outputDIR} ${tmpDIR} < ${myRscript} 2>&1 > ${stdoutFile}
 
