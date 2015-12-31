@@ -22,18 +22,21 @@ myCurlHandle <- gconnect(
 	psw = gCredentials[['password']]
 	);
 
+mySearchTerms <- c('Canada','Toronto','Vancouver');
+
 data("countries");
 gtrends.results <- gtrends(
 	ch    = myCurlHandle,
-	query = c('free shipping','christmas tree')
+	query = mySearchTerms,
+	cat   = "Hotels & Accommodations"
 	);
 str(gtrends.results);
 
 ############################################################
 DF.temp <- melt(
-	data         = gtrends.results[['trend']][,c('start','free.shipping','christmas.tree')],
+	data         = gtrends.results[['trend']],
 	id.vars      = c('start'), 
-	measure.vars = c('free.shipping','christmas.tree')
+	measure.vars = tolower(mySearchTerms)
 	);
 
 summary(DF.temp);
