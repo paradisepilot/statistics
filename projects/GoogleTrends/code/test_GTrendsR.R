@@ -35,8 +35,8 @@ DF.temp <- melt(
 	id.vars      = c('start'), 
 	measure.vars = c('free.shipping','christmas.tree')
 	);
-summary(DF.temp);
 
+summary(DF.temp);
 print(DF.temp);
 
 ############################################################
