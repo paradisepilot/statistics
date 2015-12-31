@@ -1,7 +1,7 @@
 
   codeDIR=../../code
 outputDIR=../output
-   tmpDIR=${outputDir}/tmp
+   tmpDIR=${outputDIR}/tmp
 
 ##################################################
 if [ ! -d ${outputDIR} ]; then
