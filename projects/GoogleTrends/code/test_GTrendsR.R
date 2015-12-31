@@ -28,7 +28,8 @@ data("countries");
 gtrends.results <- gtrends(
 	ch    = myCurlHandle,
 	query = mySearchTerms,
-	cat   = "Hotels & Accommodations"
+	cat   = "Arcade & Coin-Op Games"
+	#cat   = "Hotels & Accommodations"
 	);
 str(gtrends.results);
 
