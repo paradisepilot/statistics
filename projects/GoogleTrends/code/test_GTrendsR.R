@@ -53,11 +53,3 @@ ggsave(file = temp.filename, plot = my.ggplot, dpi = 150, height = 6, width = 12
 ############################################################
 q();
 
-png(file = "myplot.png", width = 2 * 480, height = 480);
-plot(
-	x    = gtrends.results[['trend']][['start']],
-	y    = gtrends.results[['trend']][['free.shipping']],
-	type = "l"
-	);
-dev.off();
-
