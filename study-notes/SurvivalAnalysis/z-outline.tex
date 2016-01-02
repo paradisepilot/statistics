@@ -1,0 +1,140 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Outline}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+Suppose:
+\begin{itemize}
+\item	$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space.
+\item	$n \in \N$ is an natural number (positive integer).
+\item	$T_{1},T_{2},\ldots,T_{n} : \Omega \longrightarrow [0,\infty]$ are
+		independent identically distributed
+		extended $\Re$-valued random variables.
+\item	$U_{1},U_{2},\ldots,U_{n} : \Omega \longrightarrow [0,\infty]$ are
+		independent identically distributed
+		extended $\Re$-valued random variables.
+\item	For each $i = 1,2,\ldots, n$,
+		let $X_{i} := \min\!\left\{T_{i},U_{i}\right\}$, and $C_{i} := I_{\{T_{i}\,\leq\,U_{i}\}}$.
+\end{itemize}
+For each subject $i = 1, 2, \ldots, n$,
+the random variable $T_{i}$ is interpreted to be the ``survival time" of subject $i$,
+while $U_{i}$ is interpreted to be the ``censoring time" of subject $i$.
+
+\vskip 0.5cm
+\noindent
+We wish to make inference about the (common) \textit{survival function}
+\begin{equation*}
+S(t)
+\;\; := \;\; P\!\left(\,T > t\,\right)
+\;\; = \;\; \mu\!\left(\left\{\,\omega\in\Omega\;\left\vert\;T(\omega) \overset{{\color{white}.}}{>} t\,\right.\right\}\right)
+\end{equation*}
+of $T_{1}, T_{2}, \ldots, T_{n}$.
+However, in survival analysis, the inference about $S(t)$ is made
+based on the \textit{right-censored survival time data}
+$\left\{\,X_{i},\,C_{i}\,\right\}$, $i = 1, 2, \ldots, n$
+(rather than on the $T_{i}$'s directly).
+
+\vskip 0.5cm
+\noindent
+The \textit{hazard function}:
+\begin{equation*}
+\lambda(t)
+\;\; := \;\;
+	\underset{\mbox{}\;\;h\rightarrow0^{+}}{\lim}\,
+	\dfrac{1}{h}\cdot P\!\left(\,t \leq T < t + h\,\left\vert\;t\overset{{\color{white}.}}{\leq}T\right.\right)
+\end{equation*}
+
+\noindent
+The \textit{cumulative hazard function}:
+\begin{equation*}
+\Lambda(t) \;\; := \;\; \int_{0}^{t}\,\lambda(t)\,\d t
+\end{equation*}
+
+\noindent
+The \textit{Nelson-Aalen estimator} for the cumulative hazard function $\Lambda(t)$:
+\begin{equation*}
+\widehat{\Lambda}(\omega,t)
+\;\; := \;\;
+\underset{C_{i}(\omega)\,=\,1}{\underset{T_{i}(\omega)\,\leq\,t}{\sum}}\,
+\dfrac{1}{Y(\omega,T_{i}(\omega))}\,,
+\end{equation*}
+where
+\begin{equation*}
+Y_{i}(\omega,t)
+\;\; := \;\;
+\left\{\begin{array}{cl}
+1, & t - h < T_{i}(\omega) \leq U_{i}(\omega), \;\textnormal{for each $h > 0$} \\
+0, & \textnormal{otherwise}
+\end{array}\right.
+\end{equation*}
+and
+\begin{equation*}
+Y(\omega,t) \;\; := \;\; \overset{n}{\underset{i\,=\,1}{\sum}}\; Y_{i}(\omega,t)
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+The aggregated counting process for subject $i$:
+\begin{equation*}
+N_{i}(\omega,t) \;\;:=\;\; I_{\{X_{i}(\omega)\,\leq\,t\}}
+\end{equation*}
+
+\noindent
+The aggregated counting process:
+\begin{equation*}
+N(\omega,t)
+\;\;:=\;\; \overset{n}{\underset{i\,=\,1}{\sum}}\,N_{i}(\omega,t)
+\;\;=\;\;  \overset{n}{\underset{i\,=\,1}{\sum}}\,I_{\{X_{i}(\omega)\,\leq\,t\}}
+\end{equation*}
+
+\noindent
+The aggregated intensity process:
+\begin{equation*}
+\alpha(\omega,t)
+\;\; := \;\; \underset{\mbox{}\;\;h\rightarrow 0^{+}}{\lim} \;
+	\dfrac{1}{h} \cdot P\!\left(\left.
+	N(\omega,t+h) \overset{{\color{white}1}}{-} N(\omega,t) = 1
+	\;\right\vert\;\mathcal{F}_{t}\,\right)
+\;\; = \;\; \underset{\mbox{}\;\;h\rightarrow 0^{+}}{\lim} \;
+	\dfrac{1}{h} \cdot E\!\left[\left.
+	N(\omega,t+h) \overset{{\color{white}1}}{-} N(\omega,t)
+	\;\right\vert\,\mathcal{F}_{t}\,\right]
+\end{equation*}
+
+\noindent
+The aggregated cumulative intensity process:
+\begin{equation*}
+A(\omega,t) \;\; := \;\; \int^{t}_{0}\,\alpha(\omega,t)\,\d t
+\end{equation*}
+
+\noindent
+Then, the process
+\begin{equation*}
+M(\omega,t)
+\;\; := \;\; N(\omega,t) - A(\omega,t)
+\;\;  = \;\; N(\omega,t) - \int^{t}_{0}\,\alpha(\omega,t)\,\d t
+\end{equation*}
+is a martingale process.
+In particular, $M(\,\cdot\,,t)$ satisfies
+\begin{equation*}
+E\!\left[\,\left.M(\,\cdot\,,t+h) \overset{{\color{white}.}}{-} M(\,\cdot\,,t)\;\right\vert\,\mathcal{F}_{t}\,\right]\!(\omega)
+\;\; = \;\; M(\omega,t)
+\end{equation*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
