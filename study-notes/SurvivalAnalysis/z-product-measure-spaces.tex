@@ -240,6 +240,42 @@ Then,
 	\qed
 \end{enumerate}
 
+\begin{theorem}[Well-definition of the product measure of two $\sigma$-finite measures]
+\mbox{}\vskip0.1cm\noindent
+Suppose
+$\left(\Omega_{1},\mathcal{A}_{1},\mu_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2},\mu_{2}\right)$
+are two $\sigma$-finite measure spaces.
+Let $\left(\Re,\mathcal{B}\right)$ be $\Re$ equipped with its Borel $\sigma$-algebra
+$\mathcal{B} = \sigma\!\left(\mathcal{O}(\Re)\right)$.
+Then,
+\begin{enumerate}
+\item	the map\;
+		$\Omega_{1} \longrightarrow \Re$ $:$
+		$x \longmapsto \mu_{2}\!\left(V_{(x,\,\cdot\,)}\right) = \int_{\Omega_{2}}1_{V}(x,y)\,\d\mu_{2}(y)$
+		\;is $(\mathcal{A}_{1},\mathcal{B})$-measurable.
+\item	the map\;
+		$\Omega_{2} \longrightarrow \Re$ $:$
+		$y \longmapsto \mu_{1}\!\left(V_{(\,\cdot\,,y)}\right) = \int_{\Omega_{1}}1_{V}(x,y)\,\d\mu_{1}(x)$
+		\;is $(\mathcal{A}_{2},\mathcal{B})$-measurable.
+\item	the following equality of Lebesgue integrals (of measurable $\Re$-valued functions) holds:
+		\begin{equation*}
+		\int_{\Omega_{1}}\, \mu_{2}\!\left(V_{(x,\,\cdot\,)}\right) \,\d\mu_{1}(x)
+		\;\; = \;\;
+		\int_{\Omega_{2}}\, \mu_{1}\!\left(V_{(\,\cdot\,,y)}\right) \,\d\mu_{2}(y),
+		\quad
+		\textnormal{for each $V \in \mathcal{A}_{1} \otimes \mathcal{A}_{2}$},
+		\end{equation*}
+		or equivalently,
+		\begin{equation*}
+		\int_{\Omega_{1}} \left(\, \int_{\Omega_{2}} 1_{V}(x,y) \,\d\mu_{2}(y) \right) \d\mu_{1}(x)
+		\;\; = \;\;
+		\int_{\Omega_{2}} \left(\, \int_{\Omega_{1}} 1_{V}(x,y) \,\d\mu_{1}(x) \right) \d\mu_{2}(y),
+		\quad
+		\textnormal{for each $V \in \mathcal{A}_{1} \otimes \mathcal{A}_{2}$}.
+		\end{equation*}
+\end{enumerate}
+\end{theorem}
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 %\renewcommand{\theenumi}{\alph{enumi}}
