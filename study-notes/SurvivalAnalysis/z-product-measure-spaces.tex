@@ -1,0 +1,205 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Integration on product measure spaces}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Product $\sigma$-algebra]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $\left(\Omega_{1},\mathcal{A}_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2}\right)$
+are two measurable spaces.
+The \underline{product $\sigma$-algebra} $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$
+of $\mathcal{A}_{1}$ and $\mathcal{A}_{2}$ is, by definition, the following:
+\begin{equation*}
+\mathcal{A}_{1}\otimes\mathcal{A}_{2}
+\;\; := \;\;
+\sigma\!\left(\left\{\;
+\left.
+A_{1} \times A_{2} \overset{{\color{white}.}}{\in} \Omega_{1} \times \Omega_{2}
+\;\;\right\vert\;\;
+A_{1} \in \mathcal{A}_{1},\;
+A_{2} \in \mathcal{A}_{2}
+\;\right\}\right).
+\end{equation*}
+In other words, $\mathcal{A}_{1} \otimes \mathcal{A}_{2}$ is the $\sigma$-algebra of subsets of $\Omega_{1} \times \Omega_{2}$
+containing all Cartesian products $A_{1} \times A_{2}$, where $A_{1} \in \mathcal{A}_{1}$ and $A_{2} \in \mathcal{A}_{2}$.
+\end{definition}
+
+\begin{definition}[Horizontal and vertical sections in a set-theoretic Cartesian product]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $X$ and $Y$ are two non-empty sets.
+For each $x \in X$, $y \in Y$, and $V \subset X \times Y$, we define:
+\begin{eqnarray*}
+V_{(x,\,\cdot\,)} &:=& \left\{\;\left. y \overset{{\color{white}.}}{\in} Y \;\;\right\vert\;\, (x,y) \in V \;\right\}
+\\
+V_{(\,\cdot\,,y)} &:=& \left\{\;\left. x \overset{{\color{white}.}}{\in} X \,\;\right\vert\;\, (x,y) \in V \;\right\}
+\end{eqnarray*}
+\end{definition}
+
+\begin{theorem}[Sections of measurable subsets in a product measurable space are themselves measurable.]
+\mbox{}\vskip-0.3cm\noindent
+Suppose
+$\left(\Omega_{1},\mathcal{A}_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2}\right)$
+are two measurable spaces. Then,
+\begin{enumerate}
+\item	$V_{(x,\,\cdot\,)} \in \mathcal{A}_{2}$,
+		\,for each\, $x\,\in\,\Omega_{1}$ and each\, $V \in \mathcal{A}_{1}\otimes\mathcal{A}_{2}$, and
+\item	$V_{(\,\cdot\,,y)} \in \mathcal{A}_{1}$,
+		\,for each\, $y\,\in\,\Omega_{2}$ and each\, $V \in \mathcal{A}_{1}\otimes\mathcal{A}_{2}$.
+\end{enumerate}
+\end{theorem}
+\proof
+We give only the proof of (i); that of (ii) is similar.
+Define $\mathcal{F} \subset \mathcal{P}\!\left(\Omega_{1}\times\Omega_{2}\right)$ as follows:
+\begin{equation*}
+\mathcal{F}
+\;\; := \;\;
+\left\{\;\left.
+V \overset{{\color{white}.}}{\in} \Omega_{1}\times\Omega_{2}
+\,\;\right\vert\;
+V_{(x,\,\cdot\,)} \in \mathcal{A}_{2},\;\,\textnormal{for each $x\in\Omega_{1}$}
+\;\right\}.
+\end{equation*}
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim 1:}\quad
+	$\left\{\;
+	\left.
+	A_{1} \times A_{2} \overset{{\color{white}.}}{\in} \Omega_{1} \times \Omega_{2}
+	\;\;\right\vert\;\;
+	A_{1} \in \mathcal{A}_{1},\;
+	A_{2} \in \mathcal{A}_{2}
+	\;\right\}
+	\;\;\subset\;\; \mathcal{F}$
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad $\mathcal{F}$ is a $\sigma$-algebra of subsets of $\Omega_{1}\times\Omega_{2}$.
+\end{minipage}
+\end{center}
+\vskip 0.5cm
+Proof of Claim 1:\quad
+Suppose $x \in \Omega_{1}$ and
+$V = A_{1} \times A_{2}$, where $A_{1} \in \mathcal{A}_{1}$ and $A_{2} \in \mathcal{A}_{2}$.
+Then,
+\begin{equation*}
+V_{(x,\,\cdot\,)}
+\;\; = \;\;
+\left\{\begin{array}{cl}
+A_{2}, & \textnormal{if $x \in A_{1}$} \\
+\varemptyset, & \textnormal{otherwise}
+\end{array}\right.
+\end{equation*}
+This proves that $V_{(x,\,\cdot\,)} = (A_{1}\times A_{2})_{(x,\,\cdot\,)} \subset \mathcal{F}$.
+Since $x \in \Omega_{1}$, $A_{1} \in \mathcal{A}_{1}$, and $A_{2} \in \mathcal{A}_{2}$ are arbitrary,
+Claim 1 follows.
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 2:\quad
+First, note that, for each $x \in \Omega_{1}$, we have
+$(\Omega_{1}\times\Omega_{2})_{(x,\,\cdot\,)}$ $:=$
+$\left\{\;\left. y\overset{{\color{white}.}}{\in}\Omega \;\,\right\vert\; (x,y)\in\Omega_{1}\times\Omega_{2}\;\right\}$
+$=$ $\Omega_{2}$ $\in$ $\mathcal{A}_{2}$.
+Hence, $\Omega_{1}\times\Omega_{2} \in \mathcal{F}$.
+Next, suppose $V \in \mathcal{F}$ and $V^{c} := (\Omega_{1}\times\Omega_{2})\,\backslash\,V$.
+Then, for each $x \in \Omega_{1}$,
+\begin{eqnarray*}
+\left(\,V^{c}\,\right)_{(x,\,\cdot\,)}
+& = &
+	\left\{\;\left.
+	y \overset{{\color{white}.}}{\in} \Omega_{2}
+	\,\;\right\vert\,\;
+	(x,y) \in V^{c}
+	\;\right\}
+\;\; = \;\;
+	\left\{\;\left.
+	y \overset{{\color{white}.}}{\in} \Omega_{2}
+	\,\;\right\vert\,\;
+	(x,y) \notin V
+	\;\right\}
+\\
+& = &
+	\Omega_{2}
+	\,\left\backslash\,
+	\left\{\;\left.
+	y \overset{{\color{white}.}}{\in} \Omega_{2}
+	\,\;\right\vert\,\;
+	(x,y) \in V
+	\;\right\}
+	\right.
+\;\; = \;\;
+	\left(\,V_{(x,\,\cdot\,)}\,\right)^{c}
+\;\; \in \;\; \mathcal{A}_{2},
+\end{eqnarray*}
+where the last containment follows from the fact that $\mathcal{A}_{2}$ is a $\sigma$-algebra (hence closed under complementation) and that $V \in \mathcal{F}$ (hence $V_{(x,\,\cdot\,)} \in \mathcal{A}_{2}$). This proves that $\mathcal{F}$ is closed under complementation. Lastly, suppose $V_{1}, V_{2}, \ldots, \in \mathcal{F}$. Then,
+\begin{eqnarray*}
+\left(\;\overset{\infty}{\underset{i\,=\,1}{\bigcup}}\;V_{i}\;\right)_{(x,\,\cdot\,)}
+=\;\;
+	\left\{\;
+	y \overset{{\color{white}.}}{\in} \Omega_{2}
+	\,\;\left\vert\,\;
+	(x,y) \,\in\, \overset{\infty}{\underset{i\,=\,1}{\bigcup}}\;V_{i}
+	\right.
+	\;\right\}
+\;\; = \;\;
+	\overset{\infty}{\underset{i\,=\,1}{\bigcup}}
+	\left\{\;\left.
+	y \overset{{\color{white}.}}{\in} \Omega_{2}
+	\,\;\right\vert\;
+	(x,y) \,\in\, V_{i}
+	\;\right\}
+\;\; = \;\;
+	\overset{\infty}{\underset{i\,=\,1}{\bigcup}}
+	\left(\,V_{i}\,\right)_{(x,\,\cdot\,)}
+\;\, \in \;\, \mathcal{A}_{2},
+\end{eqnarray*}
+where the last containment follows from the fact that $\mathcal{A}_{2}$ is a $\sigma$-algebra (hence closed under countable union) and that each $V_{i} \in \mathcal{F}$ (hence $\left(\,V_{i}\,\right)_{(x,\,\cdot\,)} \in \mathcal{A}_{2}$).
+This proves that $\mathcal{F}$ is closed under countable union. This completes the proof of Claim 2.
+
+\vskip 0.5cm
+\noindent
+Claim 1 and Claim 2 together immediately imply that
+\begin{equation*}
+\mathcal{A}_{1} \otimes \mathcal{A}_{2}
+\; := \;
+\sigma\left(
+\left\{\;
+	\left.
+	A_{1} \times A_{2} \overset{{\color{white}.}}{\in} \Omega_{1} \times \Omega_{2}
+	\;\;\right\vert\,
+	A_{1} \in \mathcal{A}_{1},\;
+	A_{2} \in \mathcal{A}_{2}
+	\;\right\}
+\right)
+\;\subset\;
+	\mathcal{F}
+\; := \;
+	\left\{\;\left.
+	V \overset{{\color{white}.}}{\in} \Omega_{1}\times\Omega_{2}
+	\,\;\right\vert
+	\begin{array}{c} V_{(x,\,\cdot\,)} \in \mathcal{A}_{2}\,,\\ \textnormal{for each $x\in\Omega_{1}$} \end{array}
+	\right\}.
+\end{equation*}
+This completes the proof of statement (i) in the present Theorem.
+\qed
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
