@@ -49,6 +49,7 @@ V_{(\,\cdot\,,y)} &:=& \left\{\;\left. x \overset{{\color{white}.}}{\in} X \,\;\
 \end{definition}
 
 \begin{theorem}[Sections of measurable subsets in a product measurable space are themselves measurable.]
+\label{SectionsOfMeasurableSetsAreMeasurable}
 \mbox{}\vskip-0.3cm\noindent
 Suppose
 $\left(\Omega_{1},\mathcal{A}_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2}\right)$
@@ -195,6 +196,50 @@ Claim 1 and Claim 2 together immediately imply that
 \end{equation*}
 This completes the proof of statement (i) in the present Theorem.
 \qed
+
+\begin{theorem}[Sections of measurable maps are themselves measurable.]
+\mbox{}\vskip0.1cm\noindent
+Suppose
+$\left(\Omega_{1},\mathcal{A}_{1}\right)$, $\left(\Omega_{2},\mathcal{A}_{2}\right)$, $\left(S,\mathcal{S}\right)$
+are measurable spaces, and
+$f : \left(\Omega_{1}\times\Omega_{2},\mathcal{A}_{1}\otimes\mathcal{A}_{2}\right) \longrightarrow \left(S,\mathcal{S}\right)$
+is an $\left(\mathcal{A}_{1}\otimes\mathcal{A}_{2},\mathcal{S}\right)$-measurable map.
+Then,
+\begin{enumerate}
+\item	$f{(x,\,\cdot\,)} : \Omega_{2} \longrightarrow S : y \longmapsto f(x,y)$
+		is an $\left(\mathcal{A}_{2},\mathcal{S}\right)$-measurable map
+		for each\, $x\,\in\,\Omega_{1}$.
+\item	$f{(\,\cdot\,,y)} : \Omega_{1} \longrightarrow S : x \longmapsto f(x,y)$
+		is an $\left(\mathcal{A}_{1},\mathcal{S}\right)$-measurable map
+		for each\, $y\,\in\,\Omega_{2}$.
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	We need to show that $f(x,\,\cdot\,)^{-1}\!\left(V\right) \in \mathcal{A}_{2}$,
+	for each $x \in \Omega_{1}$, and each $V \in \mathcal{S}$.
+	To this end, note that
+	\begin{equation*}
+	f(x,\,\cdot\,)^{-1}\!\left(V\right)
+	\;\; = \;\;
+		\left\{\;
+		\left. y \overset{{\color{white}.}}{\in} \Omega_{2} \;\right\vert\; f(x,y) \in V
+		\;\right\}
+	\;\; = \;\;
+		\left\{\;
+		\left. y \overset{{\color{white}.}}{\in} \Omega_{2} \;\right\vert\; (x,y) \in f^{-1}(V)
+		\;\right\}
+	\;\; = \;\; f^{-1}(V)_{(x,\,\cdot\,)} \;\, \in \;\, \mathcal{A}_{2}\,,
+	\end{equation*}
+	where the last containment follows, by Theorem \ref{SectionsOfMeasurableSetsAreMeasurable},
+	from the fact that $f^{-1}(V) \in \mathcal{A}_{1}\otimes\mathcal{A}_{2}$
+	(since $V \in \mathcal{S}$ and $f$ is $(\mathcal{A}_{1}\otimes\mathcal{A}_{2},\mathcal{S})$-measurable).
+\item
+	The proof here is similar to that of (i).
+	\qed
+\end{enumerate}
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 %\renewcommand{\theenumi}{\alph{enumi}}
