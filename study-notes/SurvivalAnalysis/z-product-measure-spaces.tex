@@ -247,7 +247,7 @@ $\left(\Omega_{1},\mathcal{A}_{1},\mu_{1}\right)$ and $\left(\Omega_{2},\mathcal
 are two $\sigma$-finite measure spaces.
 Let $\left(\Re,\mathcal{B}\right)$ be $\Re$ equipped with its Borel $\sigma$-algebra
 $\mathcal{B} = \sigma\!\left(\mathcal{O}(\Re)\right)$.
-Then,
+Then, for each $V \in \mathcal{A}_{1} \otimes \mathcal{A}_{2}$, the following statements hold:
 \begin{enumerate}
 \item	the map\;
 		$\Omega_{1} \longrightarrow \Re$ $:$
@@ -262,19 +262,179 @@ Then,
 		\int_{\Omega_{1}}\, \mu_{2}\!\left(V_{(x,\,\cdot\,)}\right) \,\d\mu_{1}(x)
 		\;\; = \;\;
 		\int_{\Omega_{2}}\, \mu_{1}\!\left(V_{(\,\cdot\,,y)}\right) \,\d\mu_{2}(y),
-		\quad
-		\textnormal{for each $V \in \mathcal{A}_{1} \otimes \mathcal{A}_{2}$},
 		\end{equation*}
 		or equivalently,
 		\begin{equation*}
 		\int_{\Omega_{1}} \left(\, \int_{\Omega_{2}} 1_{V}(x,y) \,\d\mu_{2}(y) \right) \d\mu_{1}(x)
 		\;\; = \;\;
-		\int_{\Omega_{2}} \left(\, \int_{\Omega_{1}} 1_{V}(x,y) \,\d\mu_{1}(x) \right) \d\mu_{2}(y),
-		\quad
-		\textnormal{for each $V \in \mathcal{A}_{1} \otimes \mathcal{A}_{2}$}.
+		\int_{\Omega_{2}} \left(\, \int_{\Omega_{1}} 1_{V}(x,y) \,\d\mu_{1}(x) \right) \d\mu_{2}(y).
 		\end{equation*}
 \end{enumerate}
 \end{theorem}
+\proof
+Define $\mathcal{C} \subset \mathcal{A}_{1}\otimes\mathcal{A}_{2}$ as follows:
+\begin{equation*}
+\mathcal{C}
+\;\; := \;\;
+	\left\{\;
+	V \in \mathcal{A}_{1}\otimes\mathcal{A}_{2}
+	\;\;\left\vert\;\;
+		\int_{\Omega_{1}}\, \mu_{2}\!\left(V_{(x,\,\cdot\,)}\right) \,\d\mu_{1}(x)
+		\, = \,
+		\int_{\Omega_{2}}\, \mu_{1}\!\left(V_{(\,\cdot\,,y)}\right) \,\d\mu_{2}(y)
+	\right.
+	\;\right\}.
+\end{equation*}
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim 1:}\quad
+$A_{1} \times A_{2} \in \mathcal{C}$, for each $A_{1}\in\mathcal{A}_{1}$ and each $A_{2}\in\mathcal{A}_{2}$.
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+$V \,:= \overset{\infty}{\underset{i\,=\,1}{\bigcup}}\,V_{i}\,\in\,\mathcal{C}$,\,
+whenever
+\,$\left\{\,V_{i}\,\right\}_{i\in\N} \subset \mathcal{C}$\, and \,$V_{i} \subset V_{i+1}$,\, for each $i\in\N$.
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}\quad
+$V \,:= \overset{\infty}{\underset{i\,=\,1}{\bigsqcup}}\,V_{i}\,\in\,\mathcal{C}$,\,
+whenever
+\,$\left\{\,V_{i}\,\right\}_{i\in\N} \subset \mathcal{C}$\,
+is a disjoint countable collection of members in $\mathcal{C}$.
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4:}\quad
+Suppose $A_{1}\in\mathcal{A}_{1}$, $A_{2}\in\mathcal{A}_{2}$, with $\mu_{1}(A_{1}), \mu_{2}(A_{2}) < \infty$.
+Suppose also that
+$\left\{\,V_{i}\,\right\}_{i\in\N} \subset \mathcal{C}$ satisfies
+$A_{1}\times A_{2} \supset V_{1} \supset V_{2} \supset V_{3} \supset \cdots$.
+Then, $V \,:= \overset{\infty}{\underset{i\,=\,1}{\bigcap}}\,V_{i}\,\in\,\mathcal{C}$.
+\end{minipage}
+\end{center}
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 1:\quad
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 2:\quad
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 3:\quad
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 4:\quad
+
+\vskip 0.5cm
+\noindent
+Next, note that, since $\left(\Omega_{1},\mathcal{A}_{1},\mu_{1}\right)$
+is a $\sigma$-finite measure space, there exist mutually disjoint
+$\Omega_{1}^{(1)}, \Omega_{1}^{(2)}, \ldots \in \mathcal{A}_{1}$ such that
+\begin{equation*}
+\Omega_{1} \; = \, \overset{\infty}{\underset{n\,=\,1}{\bigsqcup}}\;\Omega_{1}^{(n)},
+\quad\textnormal{and}\quad
+\mu_{1}\!\left(\Omega_{1}^{(n)}\right) \,<\, \infty,
+\;\;\textnormal{for each $n\in\N$}.
+\end{equation*}
+Similarly, there exist mutually disjoint 
+$\Omega_{2}^{(1)}, \Omega_{2}^{(2)}, \ldots \in \mathcal{A}_{2}$ such that
+\begin{equation*}
+\Omega_{2} \; = \, \overset{\infty}{\underset{n\,=\,1}{\bigsqcup}}\;\Omega_{2}^{(n)},
+\quad\textnormal{and}\quad
+\mu_{2}\!\left(\Omega_{2}^{(n)}\right) \,<\, \infty,
+\;\;\textnormal{for each $n\in\N$}.
+\end{equation*}
+We now define
+\begin{equation*}
+\mathcal{M}
+\;\; := \;\;
+	\left\{\;
+	V \in \mathcal{A}_{1}\otimes\mathcal{A}_{2}
+	\;\,\left\vert\;\;
+		V\cap\left(\Omega_{1}^{(m)}\times\Omega_{2}^{(n)}\right)
+		\,\in\, \mathcal{C},
+		\;\textnormal{for each $m, n \in \N$}
+	\right.
+	\;\right\}.
+\end{equation*}
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim 5:}\quad
+$\mathcal{M}$ is a monotone class.
+\vskip 0.5cm
+\noindent
+\textbf{Claim 6:}\quad
+\end{minipage}
+\end{center}
+
+\vskip 0.5cm
+\noindent
+Proof of Claim 5:\quad
+Suppose $V_{1}, V_{2}, \ldots \in \mathcal{M}$, with $V_{1} \subset V_{2} \subset V_{3} \subset \cdots$.
+We need to show $V\,:=\overset{\infty}{\underset{i\,=\,1}{\bigcup}}\;V_{i} \,\in\, \mathcal{M}$.
+To this end, note that, for each $m, n \in \N$, we have
+\begin{equation*}
+V\cap\left(\Omega_{1}^{(m)}\times\Omega_{2}^{(n)}\right)
+\;\;=\;\;
+	\left(\,\overset{\infty}{\underset{i\,=\,1}{\bigcup}}\;V_{i}\,\right)\bigcap\left(\Omega_{1}^{(m)}\times\Omega_{2}^{(n)}\right)
+\;\;=\;\;
+	\overset{\infty}{\underset{i\,=\,1}{\bigcup}}\;\,
+	\underset{\in\,\mathcal{C}}{\underbrace{\left(\,V_{i}\cap(\Omega_{1}^{(m)}\times\Omega_{2}^{(n)})\,\right)}}
+\;\;\in\;\; \mathcal{C},
+\end{equation*}
+where the last containment follows from Claim 3.
+Thus, we see that we indeed have $V \in \mathcal{M}$.
+Next, suppose that
+$W_{1}, W_{2}, \ldots \in \mathcal{M}$, with $W_{1} \supset W_{2} \supset W_{3} \supset \cdots$.
+We need to show $W\,:=\overset{\infty}{\underset{i\,=\,1}{\bigcap}}\;W_{i} \,\in\, \mathcal{M}$.
+Now, for each $m, n \in \N$, we have:
+\begin{equation*}
+W\cap\left(\Omega_{1}^{(m)}\times\Omega_{2}^{(n)}\right)
+\;\;=\;\;
+	\left(\,\overset{\infty}{\underset{i\,=\,1}{\bigcap}}\;W_{i}\,\right)\bigcap\left(\Omega_{1}^{(m)}\times\Omega_{2}^{(n)}\right)
+\;\;=\;\;
+	\overset{\infty}{\underset{i\,=\,1}{\bigcap}}\;\,
+	\underset{\in\,\mathcal{C}}{\underbrace{\left(\,W_{i}\cap(\Omega_{1}^{(m)}\times\Omega_{2}^{(n)})\,\right)}}
+\;\;\in\;\; \mathcal{C}.
+\end{equation*}
+where the last containment follows from Claim 4.
+This proves that $\mathcal{M}$ is indeed a monotone class and completes the proof of Claim 5.
+
+\vskip 0.5cm
+\noindent
+It follows from Claim 5, Claim 6 and Theorem \ref{ProductSigmaAlgebraMonotoneClass}
+that $\mathcal{M} \,=\, \mathcal{A}_{1}\otimes\mathcal{A}_{2}$, which in turn implies that
+$V\cap\left(\Omega_{1}^{(m)}\times\Omega_{2}^{(n)}\right) \in \mathcal{C}$, for each
+$V \in \mathcal{A}_{1}\otimes\mathcal{A}_{2}$ and each $m, n \in \N$.
+But,
+\begin{equation*}
+V
+\;\; = \;\;
+	V \,\cap\, \left(\,\Omega_{1}\times\Omega_{2}\right)
+\;\; = \;\;
+	V \,\bigcap\, \left(\,\underset{m,n\,\in\,\N}{\bigsqcup}\Omega_{1}^{(m)}\times\Omega_{2}^{(n)}\right)
+\;\; = \;\;
+	\underset{m,n\,\in\,\N}{\bigsqcup}\;\;
+	\underset{\in\,\mathcal{C}}{\underbrace{V\cap\left(\Omega_{1}^{(m)}\times\Omega_{2}^{(n)}\right)}}
+\;\; \in \;\;
+	\mathcal{C},
+\end{equation*}
+or equivalently,
+\begin{equation*}
+\int_{\Omega_{1}}\, \mu_{2}\!\left(V_{(x,\,\cdot\,)}\right) \,\d\mu_{1}(x)
+\;\; = \;\;
+\int_{\Omega_{2}}\, \mu_{1}\!\left(V_{(\,\cdot\,,y)}\right) \,\d\mu_{2}(y).
+\end{equation*}
+This completes the proof of the present Theorem.
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
