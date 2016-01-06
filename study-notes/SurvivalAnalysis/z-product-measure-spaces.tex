@@ -240,6 +240,179 @@ Then,
 	\qed
 \end{enumerate}
 
+\begin{definition}[Elementary subsets of the set-theoretic Cartesian product of two measurable spaces]
+\mbox{}\vskip0.1cm\noindent
+Suppose
+$\left(\Omega_{1},\mathcal{A}_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2}\right)$
+are two measurable spaces.
+The collection of \underline{elementary subsets} of $\Omega_{1}\times\Omega_{2}$ with respect
+to their respective $\sigma$-algebras $\mathcal{A}_{1}$ and $\mathcal{A}_{2}$ is, by definition,
+the following: 
+\begin{equation*}
+\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)
+\;\; := \;\;
+	\left\{\;\;
+	\overset{n}{\underset{i\,=\,1}{\bigsqcup}}\, A_{1}^{(i)} \times A_{2}^{(i)} \,\in\, \Omega_{1}\times\Omega_{2}
+	\;\;\left\vert\,\;
+	\begin{array}{l}
+	A_{k}^{(i)}\in\mathcal{A}_{k}, \;\;\textnormal{for $k = 1, 2$}, \\
+	\textnormal{for each $i = 1,2,\ldots,n$}, \\
+	\textnormal{for each $n \in \N$}
+	\end{array}
+	\right.
+	\right\}
+\end{equation*}
+\end{definition}
+
+\begin{definition}[Monotone class]
+\mbox{}\vskip0.1cm\noindent
+Suppose $X$ is a non-empty set.
+Then, a collection $\mathcal{M}$ of subsets of $X$ is called a \underline{monotone{{\color{white}j}}class}
+if $\mathcal{M}$ satisfies both of the following two conditions:
+\begin{enumerate}
+\item
+	\begin{equation*}
+	A \;:=\; \overset{\infty}{\underset{i\,=\,1}{\bigcup}}\, A_{i} \,\in\, \mathcal{M},
+	\quad
+	\textnormal{whenever \,$\{\,A_{i}\,\}_{i\in\N}$\, satistfies \,$A_{i} \in \mathcal{M}$\,
+	and \,$A_{i}\subset A_{i+1}$,\, for each $i \in \N$}.
+	\end{equation*}
+\item
+	\begin{equation*}
+	B \;:=\; \overset{\infty}{\underset{i\,=\,1}{\bigcap}}\, B_{i} \,\in\, \mathcal{M},
+	\quad
+	\textnormal{whenever \,$\{\,B_{i}\,\}_{i\in\N}$\, satistfies \,$B_{i} \in \mathcal{M}$\,
+	and \,$B_{i}\supset B_{i+1}$,\, for each $i \in \N$}.
+	\end{equation*}
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[An arbitrary intersection of monotone classes is itself a monotone class]
+\label{ArbitraryIntersectionOfMonotoneClassesIsMonotoneClass}
+\mbox{}\vskip0.1cm\noindent
+Suppose $X$ is a non-empty set and $\{\,\mathcal{M}_{t}\,\}_{t\in T}$
+is a family of monotone classes of subsets of $X$ indexed by the non-empty set $T$.
+Then, 
+\begin{equation*}
+\mathcal{M} \;\; := \;\; \underset{t\,\in\,T}{\bigcap}\;\mathcal{M}_{t} \;\; \subset \;\; \mathcal{P}\!\left(\,X\,\right)
+\end{equation*}
+is itself a monotone class of subsets of $X$.
+\end{theorem}
+\proof
+Suppose \,$\{\,A_{i}\,\}_{i\in\N}$\, satisfies \,$A_{i}\subset A_{i+1}$,\, for each $i \in \N$.
+Then, note the following implications:
+\begin{eqnarray*}
+&&
+	A_{i} \,\in\, \mathcal{M}\,=\,\underset{t\in T}{\bigcap}\;M_{t},\;\textnormal{for each $i \in \N$}
+\\
+&\Longleftrightarrow&
+	A_{i} \in \mathcal{M}_{t},\;\;\textnormal{for each $i \in \N$, each $t \in T$}
+\\
+&\Longrightarrow&
+	A \;:=\; \overset{\infty}{\underset{i\,=\,1}{\bigcup}}\, A_{i} \,\in\, \mathcal{M}_{t},
+	\;\;\textnormal{for each $t \in T$ \;\;(since each $\mathcal{M}_{t}$ is a monotone class)}
+\\
+&\Longrightarrow&
+	A \;:=\; \overset{\infty}{\underset{i\,=\,1}{\bigcup}}\, A_{i} \;\;\in\;\; \mathcal{M}\,:=\,\underset{t\in T}{\bigcap}\;M_{t}
+\end{eqnarray*}
+Similarly, suppose \,$\{\,B_{i}\,\}_{i\in\N}$\, satisfies \,$B_{i}\supset B_{i+1}$,\, for each $i \in \N$.
+Then, note the following implications:
+\begin{eqnarray*}
+&&
+	B_{i} \,\in\, \mathcal{M}\,=\,\underset{t\in T}{\bigcap}\;M_{t},\;\textnormal{for each $i \in \N$}
+\\
+&\Longleftrightarrow&
+	B_{i} \in \mathcal{M}_{t},\;\;\textnormal{for each $i \in \N$, each $t \in T$}
+\\
+&\Longrightarrow&
+	B \;:=\; \overset{\infty}{\underset{i\,=\,1}{\bigcap}}\, B_{i} \,\in\, \mathcal{M}_{t},
+	\;\;\textnormal{for each $t \in T$ \;\;(since each $\mathcal{M}_{t}$ is a monotone class)}
+\\
+&\Longrightarrow&
+	B \;:=\; \overset{\infty}{\underset{i\,=\,1}{\bigcap}}\, B_{i} \;\;\in\;\; \mathcal{M}\,:=\,\underset{t\in T}{\bigcap}\;M_{t}
+\end{eqnarray*}
+This shows that \,$\mathcal{M} \; := \underset{t\,\in\,T}{\bigcap}\;\mathcal{M}_{t}$\,
+is indeed a monotone class, and completes the proof of the Theorem.
+\qed
+
+\begin{theorem}
+\mbox{}\vskip0.1cm\noindent
+Suppose
+$\left(\Omega_{1},\mathcal{A}_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2}\right)$
+are two measurable spaces.\;
+Then, $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$ is the smallest monotone class which satistifes
+$\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)$
+$\subset$
+$\mathcal{A}_{1}\otimes\mathcal{A}_{2}$.
+\end{theorem}
+\proof
+First note that, since $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$ is a $\sigma$-algebra,
+it is closed under countable intersections and countable unions.
+Hence, $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$ is in particular a monotone class.
+It is also immediate that
+$\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)$
+$\subset$
+$\mathcal{A}_{1}\otimes\mathcal{A}_{2}$,
+since 
+$\mathcal{A}_{1}\otimes\mathcal{A}_{2}$ is closed under finite disjoint unions
+(being closed under countable unions) and
+it contains all subsets of $\Omega_{1}\times\Omega_{2}$ of the form
+$A_{1}\times A_{2}$ with $A_{1} \in \mathcal{A}_{1}$ and $A_{2}\in\mathcal{A}_{2}$.
+So, $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$ is a monotone class of subsets
+of $\Omega_{1}\times\Omega_{2}$ which contains
+$\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)$.
+
+\vskip 0.3cm
+\noindent
+Let $\mathcal{M}$ be the smallest monotone class containing
+$\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)$.
+By Theorem \ref{ArbitraryIntersectionOfMonotoneClassesIsMonotoneClass},
+$\mathcal{M}$ exists and equals the intersection of all monotone classes of subsets
+of $\Omega_{1}\times\Omega_{2}$ which contain
+$\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)$.
+Thus, we have $\mathcal{M} \subset \mathcal{A}_{1}\otimes\mathcal{A}_{2}$.
+Letting
+$
+\mathcal{A}_{1} \times \mathcal{A}_{2} \; := \;
+	\left\{\;
+	\left.
+	A_{1} \times A_{2} \overset{{\color{white}.}}{\in} \Omega_{1} \times \Omega_{2}
+	\;\;\right\vert\;
+	A_{1} \in \mathcal{A}_{1},\;
+	A_{2} \in \mathcal{A}_{2}
+	\;\right\}
+$,
+we have the following series of containment:
+\begin{eqnarray*}
+\mathcal{A}_{1} \times \mathcal{A}_{2}
+\;\; \subset \;\; \mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)
+\;\; \subset \;\; \mathcal{M}
+\;\; \subset \;\; \mathcal{A}_{1}\otimes\mathcal{A}_{2}
+\;\; := \;\; \sigma\!\left(\, \mathcal{A}_{1} \times \mathcal{A}_{2} \,\right)
+\;\; \subset \;\; \mathcal{P}\!\left(\,\Omega_{1}\times\Omega_{2}\,\right).
+\end{eqnarray*}
+
+\vskip 0.1cm
+\noindent
+Thus, the present Theorem is equivalent to the equality
+$\mathcal{M} \,=\, \mathcal{A}_{1}\otimes\mathcal{A}_{2}$,
+which will follow immediately from the following:
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim:}\quad
+$\mathcal{M}$ is a $\sigma$-algebra of subsets of $\Omega_{1}\times\Omega_{2}$.
+\end{minipage}
+\end{center}
+
+\vskip 0.3cm
+\noindent
+Proof of Claim:\quad
+
+\qed
+
 \begin{theorem}[Well-definition of the product measure of two $\sigma$-finite measures]
 \mbox{}\vskip0.1cm\noindent
 Suppose
@@ -372,6 +545,10 @@ $\mathcal{M}$ is a monotone class.
 \vskip 0.5cm
 \noindent
 \textbf{Claim 6:}\quad
+\begin{equation*}
+\mathcal{E}
+\;\; \subset \;\;\mathcal{M}
+\end{equation*}
 \end{minipage}
 \end{center}
 
