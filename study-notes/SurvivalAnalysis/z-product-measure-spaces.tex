@@ -10,6 +10,8 @@
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
+\newcommand{\EAoneAtwo}{\mathcal{E}\!\left(\mathcal{A}_{1}\times\mathcal{A}_{2}\right)}
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \begin{definition}[Product $\sigma$-algebra]
@@ -18,18 +20,26 @@
 \noindent
 Suppose $\left(\Omega_{1},\mathcal{A}_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2}\right)$
 are two measurable spaces.
-The \underline{product $\sigma$-algebra} $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$
-of $\mathcal{A}_{1}$ and $\mathcal{A}_{2}$ is, by definition, the following:
+Define
 \begin{equation*}
-\mathcal{A}_{1}\otimes\mathcal{A}_{2}
+\mathcal{A}_{1}\times\mathcal{A}_{2}
 \;\; := \;\;
-\sigma\!\left(\left\{\;
+\left\{\;
 \left.
 A_{1} \times A_{2} \overset{{\color{white}.}}{\in} \Omega_{1} \times \Omega_{2}
 \;\;\right\vert\;\;
 A_{1} \in \mathcal{A}_{1},\;
 A_{2} \in \mathcal{A}_{2}
-\;\right\}\right).
+\;\right\}.
+\end{equation*}
+We refer to $\mathcal{A}_{1}\times\mathcal{A}_{2}$ as the collection of all measurable rectangles in
+$\Omega_{1}\times\Omega_{2}$.
+The \underline{product $\sigma$-algebra} $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$
+of $\mathcal{A}_{1}$ and $\mathcal{A}_{2}$ is, by definition, the following:
+\begin{equation*}
+\mathcal{A}_{1}\otimes\mathcal{A}_{2}
+\;\; := \;\;
+\sigma\!\left(\, \mathcal{A}_{1}\times\mathcal{A}_{2} \,\right).
 \end{equation*}
 In other words, $\mathcal{A}_{1} \otimes \mathcal{A}_{2}$ is the $\sigma$-algebra of subsets of $\Omega_{1} \times \Omega_{2}$
 containing all Cartesian products $A_{1} \times A_{2}$, where $A_{1} \in \mathcal{A}_{1}$ and $A_{2} \in \mathcal{A}_{2}$.
@@ -77,14 +87,7 @@ V_{(x,\,\cdot\,)} \in \mathcal{A}_{2},\;\,\textnormal{for each $x\in\Omega_{1}$}
 \begin{minipage}{6.5in}
 \noindent
 \textbf{Claim 1:}\quad
-	$\left\{\;
-	\left.
-	A_{1} \times A_{2} \overset{{\color{white}.}}{\in} \Omega_{1} \times \Omega_{2}
-	\;\;\right\vert\;\;
-	A_{1} \in \mathcal{A}_{1},\;
-	A_{2} \in \mathcal{A}_{2}
-	\;\right\}
-	\;\;\subset\;\; \mathcal{F}$
+	$\mathcal{A}_{1}\times\mathcal{A}_{2} \;\;\subset\;\; \mathcal{F}$
 \vskip 0.5cm
 \noindent
 \textbf{Claim 2:}\quad $\mathcal{F}$ is a $\sigma$-algebra of subsets of $\Omega_{1}\times\Omega_{2}$.
@@ -175,19 +178,11 @@ This proves that $\mathcal{F}$ is closed under countable union. This completes t
 Claim 1 and Claim 2 together immediately imply that
 \begin{equation*}
 \mathcal{A}_{1} \otimes \mathcal{A}_{2}
-\; := \;
-\sigma\left(
-\left\{\;
-	\left.
-	A_{1} \times A_{2} \overset{{\color{white}.}}{\in} \Omega_{1} \times \Omega_{2}
-	\;\;\right\vert\,
-	A_{1} \in \mathcal{A}_{1},\;
-	A_{2} \in \mathcal{A}_{2}
-	\;\right\}
-\right)
-\;\subset\;
+\;\; := \;\;
+	\sigma\left(\,\mathcal{A}_{1}\times\mathcal{A}_{2}\,\right)
+\;\;\subset\;\;
 	\mathcal{F}
-\; := \;
+\;\; := \;\;
 	\left\{\;\left.
 	V \overset{{\color{white}.}}{\in} \Omega_{1}\times\Omega_{2}
 	\,\;\right\vert
@@ -245,11 +240,11 @@ Then,
 Suppose
 $\left(\Omega_{1},\mathcal{A}_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2}\right)$
 are two measurable spaces.
-The collection of \underline{elementary subsets} of $\Omega_{1}\times\Omega_{2}$ with respect
+The collection of \underline{elementary subsets} of \,$\Omega_{1}\times\Omega_{2}$ with respect
 to their respective $\sigma$-algebras $\mathcal{A}_{1}$ and $\mathcal{A}_{2}$ is, by definition,
 the following: 
 \begin{equation*}
-\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)
+\EAoneAtwo
 \;\; := \;\;
 	\left\{\;\;
 	\overset{n}{\underset{i\,=\,1}{\bigsqcup}}\, A_{1}^{(i)} \times A_{2}^{(i)} \,\in\, \Omega_{1}\times\Omega_{2}
@@ -287,7 +282,7 @@ if $\mathcal{M}$ satisfies both of the following two conditions:
 \end{enumerate}
 \end{definition}
 
-\begin{theorem}[An arbitrary intersection of monotone classes is itself a monotone class]
+\begin{lemma}[An arbitrary intersection of monotone classes is itself a monotone class]
 \label{ArbitraryIntersectionOfMonotoneClassesIsMonotoneClass}
 \mbox{}\vskip0.1cm\noindent
 Suppose $X$ is a non-empty set and $\{\,\mathcal{M}_{t}\,\}_{t\in T}$
@@ -297,7 +292,7 @@ Then,
 \mathcal{M} \;\; := \;\; \underset{t\,\in\,T}{\bigcap}\;\mathcal{M}_{t} \;\; \subset \;\; \mathcal{P}\!\left(\,X\,\right)
 \end{equation*}
 is itself a monotone class of subsets of $X$.
-\end{theorem}
+\end{lemma}
 \proof
 Suppose \,$\{\,A_{i}\,\}_{i\in\N}$\, satisfies \,$A_{i}\subset A_{i+1}$,\, for each $i \in \N$.
 Then, note the following implications:
@@ -335,13 +330,515 @@ This shows that \,$\mathcal{M} \; := \underset{t\,\in\,T}{\bigcap}\;\mathcal{M}_
 is indeed a monotone class, and completes the proof of the Theorem.
 \qed
 
+\begin{lemma}
+\label{EAoneAtwo}
+\mbox{}\vskip0.1cm\noindent
+Suppose
+$\left(\Omega_{1},\mathcal{A}_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2}\right)$
+are two measurable spaces.
+\vskip 0.1cm
+\noindent
+Then, $\EAoneAtwo$
+is closed under taking intersections, unions, and set-theoretic subtractions.
+\end{lemma}
+\proof
+We prove this Lemma by proving the following series of claims:
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 1:}\quad
+$\mathcal{A}_{1} \times \mathcal{A}_{2}$ is closed under finite intersections.
+\end{minipage}
+\end{center}
+Proof of Claim 1:\quad
+This claim follows immediately from the following set-theoretic identity
+\begin{eqnarray*}
+\overset{n}{\underset{i=1}{\bigcap}} \left(A_{1}^{(i)} \times A_{2}^{(i)}\right)
+& = &
+	\left(\;\overset{n}{\underset{i=1}{\bigcap}}\,A_{1}^{(i)} \right)
+	\overset{{\color{white}.}}{\times}
+	\left(\;\overset{n}{\underset{i=1}{\bigcap}}\,A_{2}^{(i)} \right),
+\end{eqnarray*}
+and the fact that $\mathcal{A}_{1}$ and $\mathcal{A}_{2}$ are $\sigma$-algebras;
+hence, in particular they are closed under countable (hence finite) intersections.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 2:}\quad
+For every $P, Q \in \mathcal{A}_{1}\times\mathcal{A}_{2}$,
+there exist disjoint $R, S \in \mathcal{A}_{1}\times\mathcal{A}_{2}$ such that
+$P\,\backslash Q \; = \; R \,\sqcup\, S$.
+\end{minipage}
+\end{center}
+Proof of Claim 2:\quad
+This claim follows immediately from the following set-theoretic identity
+\begin{eqnarray*}
+\left.\left(A_{1} \times A_{2}\right)\;\,\right\backslash\;\left(B_{1}\times B_{2}\right)
+& = &
+	\left(\,\left(A_{1} \backslash B_{1}\right) \overset{{\color{white}.}}{\times} A_{2}\,\right)
+	\;\sqcup\;
+	\left(\,\left(A_{1}\cap B_{1}\right) \overset{{\color{white}.}}{\times} \left(A_{2}\backslash B_{2}\right)\,\right),
+\end{eqnarray*}
+and that fact that $\mathcal{A}_{1}$ and $\mathcal{A}_{2}$ are $\sigma$-algebras.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 3:}
+\vskip 0.1cm
+For every $P, Q \in \mathcal{A}_{1}\times\mathcal{A}_{2}$,
+there exist pairwise disjoint $R, S, T \in \mathcal{A}_{1}\times\mathcal{A}_{2}$ such that
+$P\,\cup\,Q \; = \; R \,\sqcup\, S \,\sqcup\, T$.
+\end{minipage}
+\end{center}
+Proof of Claim 3:\quad
+This claim follows immediately from the following set-theoretic identity
+\begin{eqnarray*}
+\left(A_{1} \times A_{2}\right)\,\cup\,\left(B_{1}\times B_{2}\right)
+	&=&
+		\left({\color{white}\overset{.}{!}}\!\!
+			\left.\left(A_{1} \times A_{2}\right)\,\right\backslash\left(B_{1}\times B_{2}\right)
+		{\color{white}\overset{.}{!}}\!\right)
+		\,\sqcup\,
+		\left( {\color{white}\overset{.}{!}} B_{1}\times B_{2} {\color{white}\overset{.}{!}} \right)
+\\
+& = &
+	\left(\,\left(A_{1} \backslash B_{1}\right) \overset{{\color{white}.}}{\times} A_{2}\,\right)
+	\;\sqcup\;
+	\left(\,\left(A_{1}\cap B_{1}\right) \overset{{\color{white}.}}{\times} \left(A_{2}\backslash B_{2}\right)\,\right)
+	\;\sqcup\;
+	\left(\,B_{1} \overset{{\color{white}.}}{\times} B_{2}\,\right),
+\end{eqnarray*}
+and the fact that $\mathcal{A}_{1}$ and $\mathcal{A}_{2}$ are are $\sigma$-algebras.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 4:}
+\vskip 0.1cm
+For every $P,Q,R,S \in \mathcal{A}_{1}\times\mathcal{A}_{2}$ with
+$P\,\cap\,Q\,=\,\varemptyset$ and $R\,\cap\,S\,=\,\varemptyset$,
+there exist pairwise disjoint $T_{1}, T_{2}, T_{3}, T_{4} \in \mathcal{A}_{1}\times\mathcal{A}_{2}$ such that
+\begin{equation*}
+\left(\,P\,\sqcup\,Q\,\right)\,\bigcap\,\left(\,R\,\sqcup\,S\,\right)
+\;\; = \;\;
+	T_{1} \,\sqcup\, T_{2} \,\sqcup\, T_{3} \,\sqcup\, T_{4}.
+\end{equation*}
+\end{minipage}
+\end{center}
+Proof of Claim 4:\quad
+This claim follows from Claim 1 and the following set-theoretic identity
+\begin{eqnarray*}
+\left(\,P\,\sqcup\,Q\,\right)\,\bigcap\,\left(\,R\,\sqcup\,S\,\right)
+& = &
+	\left(\,P\,\overset{{\color{white}.}}{\cap}\,\left(\,R\,\sqcup\,S\,\right)\,\right)
+	\,\bigsqcup\,
+	\left(\,Q\,\overset{{\color{white}.}}{\cap}\,\left(\,R\,\sqcup\,S\,\right)\,\right)
+\\
+& = &
+	\left(\,P\,\cap\,R\,\right) \,\overset{{\color{white}.}}{\sqcup}\, \left(\,P\,\cap\,S\,\right)
+	\;\bigsqcup\;
+	\left(\,Q\,\cap\,R\,\right) \,\overset{{\color{white}.}}{\sqcup}\, \left(\,Q\,\cap\,S\,\right).
+\end{eqnarray*}
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 5:}
+\vskip 0.1cm
+For every $P_{1},\ldots,P_{n},Q_{1},\ldots,Q_{n} \in \mathcal{A}_{1}\times\mathcal{A}_{2}$ with
+$P_{i}\,\cap\,Q_{i}\,=\,\varemptyset$, for each $i = 1, 2, \ldots, n$,
+there exist pairwise disjoint $T_{1}, T_{2}, T_{3}, \ldots, T_{2^{n}} \in \mathcal{A}_{1}\times\mathcal{A}_{2}$
+such that
+\begin{equation*}
+\overset{n}{\underset{i=1}{\bigcap}} \, \left(\,P_{i}\,\sqcup\,Q_{i}\,\right)
+\;\; = \;\;
+	\overset{2^{n}}{\underset{k=1}{\bigsqcup}} \; T_{k}
+\end{equation*}
+\end{minipage}
+\end{center}
+Proof of Claim 5:\quad
+This claim follows from Claim 4 and finite induction.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 6:}\quad
+$\EAoneAtwo$ is closed under intersections.
+\end{minipage}
+\end{center}
+Proof of Claim 6:\quad
+This claim follows from the following set-theoretic identity:
+\begin{eqnarray*}
+\left(\;\overset{n}{\underset{i=1}{\bigsqcup}}\,A_{1}^{(i)} \times A_{2}^{(i)}\,\right)
+\,\bigcap\,
+\left(\;\overset{m}{\underset{k=1}{\bigsqcup}}\,B_{1}^{(k)} \times B_{2}^{(k)}\,\right)
+& = &
+	\overset{n}{\underset{i=1}{\bigsqcup}} \;\; \overset{m}{\underset{k=1}{\bigsqcup}} \;
+	\left(A_{1}^{(i)} \cap B_{1}^{(k)}\right)\,\times\,\left(A_{2}^{(i)} \cap B_{2}^{(k)}\right),
+\end{eqnarray*}
+and the fact that $\mathcal{A}_{1}$ and $\mathcal{A}_{2}$ are $\sigma$-algebras.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 7:}\quad
+$\EAoneAtwo$ is closed under unions.
+\end{minipage}
+\end{center}
+Proof of Claim 7:\quad
+Let \,$\overset{n}{\underset{i=1}{\bigsqcup}}\,A_{1}^{(i)} \times A_{2}^{(i)}$\,
+and 
+\,$\overset{m}{\underset{k=1}{\bigsqcup}}\,B_{1}^{(k)} \times B_{2}^{(k)}$\,
+be two elements of $\EAoneAtwo$.
+Then,
+\begin{eqnarray*}
+\left(\;\overset{n}{\underset{i=1}{\bigsqcup}}\,A_{1}^{(i)} \times A_{2}^{(i)}\,\right)
+\;\bigcap\;
+\left(\;\overset{m}{\underset{k=1}{\bigsqcup}}\,B_{1}^{(k)} \times B_{2}^{(k)}\,\right)
+&=&
+	\overset{n}{\underset{i=1}{\bigsqcup}}
+	\left(\;
+		\left(\,A_{1}^{(i)} \times A_{2}^{(i)}\,\right)
+		\,\bigcap\,
+		\left(\;\overset{m}{\underset{k=1}{\bigsqcup}}\,B_{1}^{(k)} \times B_{2}^{(k)}\,\right)
+	\right)
+\\
+&=&
+	\overset{n}{\underset{i=1}{\bigsqcup}}
+	\left(\;
+		\overset{m}{\underset{k=1}{\bigsqcup}}\,
+		\left(\,A_{1}^{(i)} \times A_{2}^{(i)}\,\right)
+		\,\bigcap\,
+		\left(\,B_{1}^{(k)} \times B_{2}^{(k)}\,\right)
+	\right)
+\\
+&=&
+	\overset{n}{\underset{i=1}{\bigsqcup}}
+	\left(\;
+		\overset{m}{\underset{k=1}{\bigsqcup}}\,
+		\left(\,A_{1}^{(i)} \cap B_{1}^{(k)}\,\right)
+		\,\times
+		\left(\,A_{2}^{(i)} \cap B_{2}^{(k)}\,\right)
+	\right).
+\end{eqnarray*}
+This completes the proof of Claim 7.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 8:}\quad
+$\EAoneAtwo$ is closed under set-theoretic subtractions.
+\end{minipage}
+\end{center}
+Proof of Claim 8:\quad
+Let \,$\overset{n}{\underset{i=1}{\bigsqcup}}\,A_{1}^{(i)} \times A_{2}^{(i)}$\,
+and 
+\,$\overset{m}{\underset{k=1}{\bigsqcup}}\,B_{1}^{(k)} \times B_{2}^{(k)}$\,
+be two elements of $\EAoneAtwo$.
+Then,
+\begin{eqnarray*}
+\left.
+\left(\;\overset{n}{\underset{i=1}{\bigsqcup}}\,A_{1}^{(i)} \times A_{2}^{(i)}\,\right)
+\,\right\backslash\;
+\left(\;\overset{m}{\underset{k=1}{\bigsqcup}}\,B_{1}^{(k)} \times B_{2}^{(k)}\,\right)
+&=&
+	\overset{n}{\underset{i=1}{\bigsqcup}}
+	\left(\;
+		\left(\,A_{1}^{(i)} \times A_{2}^{(i)}\,\right)
+		\left\backslash\,
+		\left(\;\overset{m}{\underset{k=1}{\bigsqcup}}\,B_{1}^{(k)} \times B_{2}^{(k)}\,\right)
+		\right.
+	\right)
+\\
+&=&
+	\overset{n}{\underset{i=1}{\bigsqcup}}
+	\left(\;
+		\left(\,A_{1}^{(i)} \times A_{2}^{(i)}\,\right)
+		\,\bigcap\,
+		\left(\;\overset{m}{\underset{k=1}{\bigsqcup}}\,B_{1}^{(k)} \times B_{2}^{(k)}\,\right)^{c}
+	\,\right)
+\\
+&=&
+	\overset{n}{\underset{i=1}{\bigsqcup}}
+	\left(\;
+		\left(\,A_{1}^{(i)} \times A_{2}^{(i)}\,\right)
+		\,\bigcap\,
+		\left(\;\overset{m}{\underset{k=1}{\bigcap}}\left(B_{1}^{(k)} \times B_{2}^{(k)}\right)^{c}\,\right)
+	\,\right)
+\\
+& = &
+	\overset{n}{\underset{i=1}{\bigsqcup}} \,
+	\left(\;
+		\overset{m}{\underset{k=1}{\bigcap}} \,
+		\left.\left(A_{1}^{(i)} \times A_{2}^{(i)}\right)\,\right\backslash\,\left(B_{1}^{(k)} \times B_{2}^{(k)}\right)
+	\right)
+\\
+&=&
+	\overset{n}{\underset{i=1}{\bigsqcup}} \,
+	\left(\;
+		\overset{m}{\underset{k=1}{\bigcap}} \,
+		\left(\,R^{(i,k)} \,\sqcup\, S^{(i,k)} \,\right)
+	\right),
+	\quad\textnormal{by Claim 5}
+\\
+&=&
+	\overset{n}{\underset{i=1}{\bigsqcup}} \,
+	\left(\; \overset{2^{m}}{\underset{j=1}{\bigsqcup}} \; T^{(i,j)} \;\right),
+	\quad\textnormal{by Claim 2}
+\end{eqnarray*}
+where the existence of $R^{(i,k)}, S^{(i,k)} \in \mathcal{A}_{1}\times\mathcal{A}_{2}$
+follows from Claim 2, while that of
+$T^{(i,j)} \in \mathcal{A}_{1}\times\mathcal{A}_{2}$
+from Claim 5. This completes the proof of Claim 8, as well as that of the present Lemma.
+\qed
+
+\begin{lemma}\label{MIsASigmaAlgebra}
+\mbox{}\vskip0.1cm\noindent
+Suppose
+$\left(\Omega_{1},\mathcal{A}_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2}\right)$
+are two measurable spaces.
+\vskip 0.1cm
+\noindent
+Then, the smallest monotone class $\mathcal{M}$ containing
+$\EAoneAtwo$
+is a $\sigma$-algebra of subsets of \,$\Omega_{1} \times \Omega_{2}$.
+\end{lemma}
+\proof
+First, by Lemma \ref{ArbitraryIntersectionOfMonotoneClassesIsMonotoneClass},
+$\mathcal{M}$ exists and equals the intersection of all monotone classes of subsets
+of $\Omega_{1}\times\Omega_{2}$ which contain
+$\EAoneAtwo$.
+For every $P \subset \Omega_{1}\times\Omega_{2}$, define:
+\begin{equation*}
+\mathcal{M}\!\left\langle\,P\,\right\rangle
+	\;\; := \;\;
+	\left\{\;
+		\left.
+		Q \overset{{\color{white}.}}{\in} \Omega_{1}\times\Omega_{2}
+		\,\;\right\vert\;
+		P\,\backslash Q,\; Q\,\backslash P,\; P\cup Q \,\in\, \mathcal{M}
+	\;\right\}
+\end{equation*}
+Clearly, we have
+\begin{equation*}
+P \in \mathcal{M}\!\left\langle\,Q\,\right\rangle
+\;\Longleftrightarrow\;
+Q \in \mathcal{M}\!\left\langle\,P\,\right\rangle,
+\quad
+\textnormal{for every $P,\, Q \in \Omega_{1}\times\Omega_{2}$}.
+\end{equation*}
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 1:}\quad
+For each $P \subset \Omega_{1}\times\Omega_{2}$,
+\,$\mathcal{M}\!\left\langle\,P\,\right\rangle$\, is a monotone class.
+\end{minipage}
+\end{center}
+Proof of Claim 1:\quad
+First, let $Q_{1}, Q_{2}, \ldots \in \mathcal{M}\!\left\langle\,P\,\right\rangle$
+with $Q_{1} \subset Q_{2} \subset \cdots$.
+We need to show that
+$Q \,:=\, \overset{\infty}{\underset{i=1}{\bigcup}}\,Q_{i} \,\in\, \mathcal{M}\!\left\langle\,P\,\right\rangle$.
+In other words, we need to show that
+\,$P\,\backslash Q$,\, $Q\,\backslash P$,\, $P\,\cup\,Q$ \,$\in$\, $\mathcal{M}$.
+To this end, observe that:
+\begin{eqnarray*}
+P\,\backslash Q
+&=&
+	P\left\backslash\left(\,\overset{\infty}{\underset{i=1}{\bigcup}}\;Q_{i}\,\right)\right.
+	\;\;=\;\;
+	P\;\bigcap\left(\,\overset{\infty}{\underset{i=1}{\bigcup}}\;Q_{i}\,\right)^{c}
+	\;\;=\;\;
+	P\;\bigcap\left(\,\overset{\infty}{\underset{i=1}{\bigcap}}\;Q_{i}^{c}\,\right)
+	\;\;=\;\;
+	\overset{\infty}{\underset{i=1}{\bigcap}}\,\;\underset{\in\,\mathcal{M}}{\underbrace{\left(\,P\,\backslash Q_{i}\,\right)}}
+	\;\; \in \;\; \mathcal{M},
+\\
+Q\,\backslash P
+&=&
+	\left. \left(\,\overset{\infty}{\underset{i=1}{\bigcup}}\;Q_{i}\,\right) \right\backslash P
+	\;\;=\;\;
+	\left(\,\overset{\infty}{\underset{i=1}{\bigcup}}\;Q_{i}\,\right) \,\bigcap\, P^{c}
+	\;\;=\;\;
+	\overset{\infty}{\underset{i=1}{\bigcup}}\,\left(\,Q_{i} \cap P^{c}\,\right)
+	\;\;=\;\;
+	\overset{\infty}{\underset{i=1}{\bigcup}}\,\;\underset{\in\,\mathcal{M}}{\underbrace{\left(\,Q_{i}\,\backslash P\,\right)}}
+	\;\; \in \;\; \mathcal{M},
+\\
+P\cup Q
+&=&
+	P\;\bigcup\,\left(\,\overset{\infty}{\underset{i=1}{\bigcup}}\;Q_{i}\,\right)
+	\;\;=\;\;
+	\overset{\infty}{\underset{i=1}{\bigcup}}\,\;\underset{\in\,\mathcal{M}}{\underbrace{\left(\,P \cup Q_{i}\,\right)}}
+	\;\; \in \;\; \mathcal{M},
+\end{eqnarray*}
+where we have used the fact that
+\,$P\,\backslash Q_{i} \supset P\,\backslash Q_{i+1}$,
+\,$Q_{i}\,\backslash P \subset Q_{i+1}\,\backslash P$,
+\,$P \cup Q_{i} \subset P \cup Q_{i+1}$, and
+that $\mathcal{M}$ is a monotone class.
+This proves that we indeed have
+$Q \,:=\, \overset{\infty}{\underset{i=1}{\bigcup}}\,Q_{i} \,\in\, \mathcal{M}\!\left\langle\,P\,\right\rangle$.
+
+\vskip0.1cm
+\noindent
+Next, let $R_{1}, R_{2}, \ldots \in \mathcal{M}\!\left\langle\,P\,\right\rangle$
+with $R_{1} \supset R_{2} \supset \cdots$.
+We need to show that $R \,:=\, \overset{\infty}{\underset{i=1}{\bigcap}}\,R_{i} \,\in\, \mathcal{M}\!\left\langle\,P\,\right\rangle$.
+Observe that:
+\begin{eqnarray*}
+P\,\backslash R
+&=&
+	P\left\backslash\left(\,\overset{\infty}{\underset{i=1}{\bigcap}}\;R_{i}\,\right)\right.
+	\;\;=\;\;
+	P\;\bigcap\left(\,\overset{\infty}{\underset{i=1}{\bigcap}}\;R_{i}\,\right)^{c}
+	\;\;=\;\;
+	P\;\bigcap\left(\,\overset{\infty}{\underset{i=1}{\bigcup}}\;R_{i}^{c}\,\right)
+	\;\;=\;\;
+	\overset{\infty}{\underset{i=1}{\bigcup}}\,\;\underset{\in\,\mathcal{M}}{\underbrace{\left(\,P\,\backslash R_{i}\,\right)}}
+	\;\; \in \;\; \mathcal{M},
+\\
+R\,\backslash P
+&=&
+	\left. \left(\,\overset{\infty}{\underset{i=1}{\bigcap}}\;R_{i}\,\right) \right\backslash P
+	\;\;=\;\;
+	\left(\,\overset{\infty}{\underset{i=1}{\bigcap}}\;R_{i}\,\right) \,\bigcap\, P^{c}
+	\;\;=\;\;
+	\overset{\infty}{\underset{i=1}{\bigcap}}\,\left(\,R_{i} \cap P^{c}\,\right)
+	\;\;=\;\;
+	\overset{\infty}{\underset{i=1}{\bigcap}}\,\;\underset{\in\,\mathcal{M}}{\underbrace{\left(\,R_{i}\,\backslash P\,\right)}}
+	\;\; \in \;\; \mathcal{M},
+\\
+P\cup R
+&=&
+	P\;\bigcup\,\left(\,\overset{\infty}{\underset{i=1}{\bigcap}}\;R_{i}\,\right)
+	\;\;=\;\;
+	\overset{\infty}{\underset{i=1}{\bigcap}}\,\;\underset{\in\,\mathcal{M}}{\underbrace{\left(\,P \cup R_{i}\,\right)}}
+	\;\; \in \;\; \mathcal{M},
+\end{eqnarray*}
+where we have used the fact that
+\,$P\,\backslash R_{i} \subset P\,\backslash R_{i+1}$,
+\,$R_{i}\,\backslash P \supset R_{i+1}\,\backslash P$,
+\,$P \cup R_{i} \supset P \cup R_{i+1}$, and
+that $\mathcal{M}$ is a monotone class.
+This proves that we indeed have
+$R \,:=\, \overset{\infty}{\underset{i=1}{\bigcap}}\,R_{i} \,\in\, \mathcal{M}\!\left\langle\,P\,\right\rangle$.
+This completes the proof of Claim 1.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 2:}\quad
+For each $P \in \EAoneAtwo$, we have
+\,$\mathcal{M} \,\subset\, \mathcal{M}\!\left\langle\,P\,\right\rangle$.
+\end{minipage}
+\end{center}
+Proof of Claim 2:\quad
+Let $P,\,Q \in \EAoneAtwo$ be arbitrary.
+By Lemma \ref{EAoneAtwo}, we have
+$P\,\backslash Q,\; Q\,\backslash P,\; P\,\cup\,Q$ \,$\in$\,
+$\EAoneAtwo$ \,$\subset$\, $\mathcal{M}$.
+Hence, $\EAoneAtwo \subset \mathcal{M}\!\left\langle\,P\,\right\rangle$,
+for every $P \in \EAoneAtwo$.
+Claim 1 and Lemma \ref{ArbitraryIntersectionOfMonotoneClassesIsMonotoneClass} together imply that,
+for every $P \in \EAoneAtwo$, we have
+$\EAoneAtwo \subset \mathcal{M} \subset \mathcal{M}\!\left\langle\,P\,\right\rangle$.
+This proves Claim 2.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 3:}\quad
+For each $P \in \mathcal{M}$, we have \,$\mathcal{M} \,\subset\, \mathcal{M}\!\left\langle\,P\,\right\rangle$.
+\end{minipage}
+\end{center}
+Proof of Claim 3:\quad
+By Claim 2, $P \subset \mathcal{M}\!\left\langle\,Q\,\right\rangle$, for every $P\in\mathcal{M}$ and
+every $Q \in \EAoneAtwo$.
+But, recall that
+\,$U\in\mathcal{M}\!\left\langle\,V\,\right\rangle$ $\Longleftrightarrow$ $V\in\mathcal{M}\!\left\langle\,U\,\right\rangle$,\,
+for any $U,\,V\,\in\,\Omega_{1}\times\Omega_{2}$.
+We thus see that
+$Q \subset \mathcal{M}\!\left\langle\,P\,\right\rangle$, for every $P\in\mathcal{M}$ and
+every $Q \in \EAoneAtwo$,
+which in turn implies that
+\,$\EAoneAtwo \subset \mathcal{M}\!\left\langle\,P\,\right\rangle$,\,
+for every $P \in \mathcal{M}$.
+Claim 1 and Lemma \ref{ArbitraryIntersectionOfMonotoneClassesIsMonotoneClass} together imply that,
+for every $P \in \mathcal{M}$, we have
+\,$\EAoneAtwo \subset \mathcal{M} \subset \mathcal{M}\!\left\langle\,P\,\right\rangle$.
+This proves Claim 3.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 4:}\quad
+For each $P,\, Q \in \mathcal{M}$, we have \,$P\,\backslash Q,\, P\,\cup\,Q \,\in\, \mathcal{M}$.
+\end{minipage}
+\end{center}
+Proof of Claim 4:\quad
+For any $P,\, Q \in \mathcal{M}$, we have, by Claim 3, that
+$Q \,\in\, \mathcal{M} \,\subset\, \mathcal{M}\!\left\langle\,P\,\right\rangle$,
+which immediately Claim 4.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 5:}\quad
+$\Omega_{1} \times \Omega_{2} \in \mathcal{M}$.
+\end{minipage}
+\end{center}
+Proof of Claim 5:\quad
+This Claim follows immediately from the observation that:
+$\Omega_{1} \times \Omega_{2} \in \EAoneAtwo \subset \mathcal{M}$.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 6:}\quad
+$\mathcal{M}$ is closed under complementation.
+\end{minipage}
+\end{center}
+Proof of Claim 6:\quad
+$W \in \mathcal{M}\;\Longrightarrow\;\left(\Omega_{1}\times\Omega_{2}\right)\backslash W \in \mathcal{M}$,
+by Claim 4 and Claim 5. This proves Claim 6.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\textbf{Claim 7:}\quad
+$\mathcal{M}$ is closed under countable unions.
+\end{minipage}
+\end{center}
+Proof of Claim 7:\quad
+Let $W_{1}, W_{2}, \,\ldots\,\in\mathcal{M}$.
+We need to show
+\,$W \,:=\, \overset{\infty}{\underset{i=1}{\bigcup}}\,W_{i}$ $\in$ $\mathcal{M}$.
+To this end, define
+$Q_{n} \,:=\, \overset{n}{\underset{i=1}{\bigcup}}\,W_{i}$, for each $n\in\N$.
+Note that $W \,=\, \overset{\infty}{\underset{n=1}{\bigcup}}\,Q_{n}$.
+Note also that $Q_{n} \subset Q_{n+1}$, for each $n\in\N$.
+By Claim 4 and finite induction, we see that $Q_{n} \in \mathcal{M}$, for each $n\in\N$.
+Since $\mathcal{M}$ is a monotone class, we have that $W \in \mathcal{M}$.
+This proves Claim 7.
+
+\vskip 0.5cm
+\noindent
+Claim 5, Claim 6, and Claim 7 together means precisely that $\mathcal{M}$ is a $\sigma$-algebra
+of subsets of $\Omega_{1}\times\Omega_{2}$.
+This completes the proof of the present Lemma.
+\qed
+
 \begin{theorem}
 \mbox{}\vskip0.1cm\noindent
 Suppose
 $\left(\Omega_{1},\mathcal{A}_{1}\right)$ and $\left(\Omega_{2},\mathcal{A}_{2}\right)$
 are two measurable spaces.\;
 Then, $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$ is the smallest monotone class which satistifes
-$\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)$
+$\EAoneAtwo$
 $\subset$
 $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$.
 \end{theorem}
@@ -350,67 +847,42 @@ First note that, since $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$ is a $\sigma$-alg
 it is closed under countable intersections and countable unions.
 Hence, $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$ is in particular a monotone class.
 It is also immediate that
-$\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)$
+$\EAoneAtwo$
 $\subset$
 $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$,
 since 
 $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$ is closed under finite disjoint unions
 (being closed under countable unions) and
-it contains all subsets of $\Omega_{1}\times\Omega_{2}$ of the form
+it contains $\mathcal{A}_{1}\times\mathcal{A}_{2}$,
+i.e. the collection of all subsets of $\Omega_{1}\times\Omega_{2}$ of the form
 $A_{1}\times A_{2}$ with $A_{1} \in \mathcal{A}_{1}$ and $A_{2}\in\mathcal{A}_{2}$.
 So, $\mathcal{A}_{1}\otimes\mathcal{A}_{2}$ is a monotone class of subsets
 of $\Omega_{1}\times\Omega_{2}$ which contains
-$\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)$.
+$\EAoneAtwo$.
 
 \vskip 0.3cm
 \noindent
 Let $\mathcal{M}$ be the smallest monotone class containing
-$\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)$.
-By Theorem \ref{ArbitraryIntersectionOfMonotoneClassesIsMonotoneClass},
+$\EAoneAtwo$.
+By Lemma \ref{ArbitraryIntersectionOfMonotoneClassesIsMonotoneClass},
 $\mathcal{M}$ exists and equals the intersection of all monotone classes of subsets
 of $\Omega_{1}\times\Omega_{2}$ which contain
-$\mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)$.
-Thus, we have $\mathcal{M} \subset \mathcal{A}_{1}\otimes\mathcal{A}_{2}$.
-Letting
-$
-\mathcal{A}_{1} \times \mathcal{A}_{2} \; := \;
-	\left\{\;
-	\left.
-	A_{1} \times A_{2} \overset{{\color{white}.}}{\in} \Omega_{1} \times \Omega_{2}
-	\;\;\right\vert\;
-	A_{1} \in \mathcal{A}_{1},\;
-	A_{2} \in \mathcal{A}_{2}
-	\;\right\}
-$,
-we have the following series of containment:
+$\EAoneAtwo$.
+By the preceding paragraph, we therefore have
+$\mathcal{M} \subset \mathcal{A}_{1}\otimes\mathcal{A}_{2}$,
+and hence the following series of containment:
 \begin{eqnarray*}
 \mathcal{A}_{1} \times \mathcal{A}_{2}
-\;\; \subset \;\; \mathcal{E}\!\left(\mathcal{A}_{1},\mathcal{A}_{2}\right)
+\;\; \subset \;\; \EAoneAtwo
 \;\; \subset \;\; \mathcal{M}
 \;\; \subset \;\; \mathcal{A}_{1}\otimes\mathcal{A}_{2}
 \;\; := \;\; \sigma\!\left(\, \mathcal{A}_{1} \times \mathcal{A}_{2} \,\right)
 \;\; \subset \;\; \mathcal{P}\!\left(\,\Omega_{1}\times\Omega_{2}\,\right).
 \end{eqnarray*}
-
-\vskip 0.1cm
-\noindent
-Thus, the present Theorem is equivalent to the equality
-$\mathcal{M} \,=\, \mathcal{A}_{1}\otimes\mathcal{A}_{2}$,
-which will follow immediately from the following:
-
-\vskip 0.5cm
-\begin{center}
-\begin{minipage}{6.5in}
-\noindent
-\textbf{Claim:}\quad
-$\mathcal{M}$ is a $\sigma$-algebra of subsets of $\Omega_{1}\times\Omega_{2}$.
-\end{minipage}
-\end{center}
-
-\vskip 0.3cm
-\noindent
-Proof of Claim:\quad
-
+But by Lemma \ref{MIsASigmaAlgebra}, $\mathcal{M}$ is itself a $\sigma$-algebra.
+Thus, we may now conclude
+$\mathcal{M} = \mathcal{A}_{1}\otimes\mathcal{A}_{2}$.
+This completes the proof of the present Theorem.
 \qed
 
 \begin{theorem}[Well-definition of the product measure of two $\sigma$-finite measures]
