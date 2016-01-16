@@ -18,6 +18,7 @@ denormalized.data <- denormalizeData(
 
 str(denormalized.data[['depositItems']]);
 str(denormalized.data[['contacts']]);
+denormalized.data[['contacts']][1:100,];
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 

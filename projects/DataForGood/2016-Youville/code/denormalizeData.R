@@ -5,8 +5,11 @@ denormalizeData <- function(
 
 	require(dplyr);
 
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	depositItems <- read.csv(file=paste0(table.directory,"/DepositItems.txt"),sep='|');
+
 	contacts     <- read.csv(file=paste0(table.directory,"/Contacts.txt"),    sep='|');
+	contacts[['PostalCode']] <- as.character(contacts[['PostalCode']]);
 
 	temp <- left_join(
 		x  = depositItems,
