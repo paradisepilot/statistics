@@ -15,7 +15,11 @@ get.geocodes <- function(
 	### geocodes if it exists into a data frame,
 	### otherwise initialize the data frame.
 	if (file.exists(FILE.geocodes)) {
-		DF.geocodes <- read.csv(file=FILE.geocodes,sep="\t");
+		DF.geocodes <- read.csv(
+			file = FILE.geocodes,
+			sep  = "\t",
+			stringsAsFactors = FALSE
+			);
 		} else {
 		DF.geocodes <- data.frame(
 			location = character(length=0),

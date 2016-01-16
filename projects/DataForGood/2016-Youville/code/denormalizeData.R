@@ -11,35 +11,52 @@ denormalizeData <- function(
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	contacts <- read.csv(file=paste0(table.directory,"/Contacts.txt"),sep='|');
-	contacts[['PostalCode']] <- as.character(contacts[['PostalCode']]);
 
-	postal.codes <- cleanPostalCodes( postal.codes = unique(contacts[['PostalCode']]) );
+	contacts[['DoNotContact']]    <- as.logical( contacts[['DoNotContact']]    );
+	contacts[['DoNotMail']]       <- as.logical( contacts[['DoNotMail']]       );
+	contacts[['BadEmailAddress']] <- as.logical( contacts[['BadEmailAddress']] );
+	contacts[['BadAddress']]      <- as.logical( contacts[['BadAddress']]      );
 
+	contacts[['DateOriginallyCreated']] <- cleanDates(
+		dates = as.character(contacts[['DateOriginallyCreated']])
+		);
+
+	contacts[['PostalCode']] <- cleanPostalCodes(
+		postal.codes = as.character(contacts[['PostalCode']])
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	### get (longitude,latitude) for postal/zip codes
+	postal.codes <- unique(contacts[['PostalCode']]);
 	DF.geocodes <- get.geocodes(
 		locations     = postal.codes[1101:1200],
 		tmp.directory = tmp.directory
 		);
-	print('DF.geocodes');
-	print( DF.geocodes );
-
-	temp <- cleanPostalCodes(postal.codes = postal.codes);
-	temp <- data.frame(x=temp,y=rep(".",length(temp)),stringsAsFactors=FALSE);
-	print('temp[1101:1200,]');
-	print( temp[1101:1200,] );
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	temp <- left_join(
+	colnames(DF.geocodes) <- gsub(
+		x           = colnames(DF.geocodes), 
+		pattern     = "location",
+		replacement = "PostalCode"
+		);
+
+	denormalized.contacts <- left_join(
+		x  = contacts,
+		y  = DF.geocodes,
+		by = "PostalCode"
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	denormalized.depositItems <- left_join(
 		x  = depositItems,
-		y  = contacts,
+		y  = denormalized.contacts,
 		by = "ContactID"
 		);
 
-	print('str(temp)');
-	str(temp);
-
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	LIST.output <- list(
-		depositItems = depositItems,
-		contacts     = contacts
+		depositItems = denormalized.depositItems,
+		contacts     = denormalized.contacts
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
