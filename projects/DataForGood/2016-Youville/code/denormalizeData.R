@@ -1,6 +1,7 @@
 
 denormalizeData <- function(
-	table.directory = NULL
+	table.directory = NULL,
+	 tmp.directory  = NULL
 	) {
 
 	require(dplyr);
@@ -13,8 +14,14 @@ denormalizeData <- function(
 	contacts[['PostalCode']] <- as.character(contacts[['PostalCode']]);
 	postal.codes <- unique(contacts[['PostalCode']]);
 	print('postal.codes');
-	print( postal.codes );
+	print( postal.codes[1:10] );
 
+	DF.geocodes <- get.geocodes(
+		locations     = postal.codes[1:10],
+		tmp.directory = tmp.directory
+		);
+	print('DF.geocodes');
+	print( DF.geocodes );
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	temp <- left_join(

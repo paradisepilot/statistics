@@ -4,7 +4,7 @@ tableDIR=~/Work/data/DataForGood/2016-Youville/
 
   codeDIR=${dataForGoodDIR}/2016-Youville/code;
 outputDIR=../output
-   tmpDIR=${output_dir}/tmp
+   tmpDIR=${outputDIR}/tmp
 
 ##################################################
 if [ ! -d ${outputDIR} ]; then
