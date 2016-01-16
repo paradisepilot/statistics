@@ -10,18 +10,22 @@ denormalizeData <- function(
 	depositItems <- read.csv(file=paste0(table.directory,"/DepositItems.txt"),sep='|');
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	contacts     <- read.csv(file=paste0(table.directory,"/Contacts.txt"),    sep='|');
+	contacts <- read.csv(file=paste0(table.directory,"/Contacts.txt"),sep='|');
 	contacts[['PostalCode']] <- as.character(contacts[['PostalCode']]);
-	postal.codes <- unique(contacts[['PostalCode']]);
-	print('postal.codes');
-	print( postal.codes[1:10] );
+
+	postal.codes <- cleanPostalCodes( postal.codes = unique(contacts[['PostalCode']]) );
 
 	DF.geocodes <- get.geocodes(
-		locations     = postal.codes[1:10],
+		locations     = postal.codes[1101:1200],
 		tmp.directory = tmp.directory
 		);
 	print('DF.geocodes');
 	print( DF.geocodes );
+
+	temp <- cleanPostalCodes(postal.codes = postal.codes);
+	temp <- data.frame(x=temp,y=rep(".",length(temp)),stringsAsFactors=FALSE);
+	print('temp[1101:1200,]');
+	print( temp[1101:1200,] );
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	temp <- left_join(
@@ -38,6 +42,7 @@ denormalizeData <- function(
 		contacts     = contacts
 		);
 
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	return(LIST.output);
 
 	}

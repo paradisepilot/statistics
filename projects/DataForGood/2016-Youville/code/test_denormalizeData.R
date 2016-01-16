@@ -8,6 +8,7 @@ tmp.directory     <- normalizePath(command.arguments[4]);
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 library(dplyr);
 
+source(paste0(code.directory,'/cleanPostalCodes.R'));
 source(paste0(code.directory,'/denormalizeData.R'));
 source(paste0(code.directory,'/getGeocodes.R'));
 

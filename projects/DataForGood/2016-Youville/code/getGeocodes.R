@@ -27,7 +27,7 @@ get.geocodes <- function(
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	new.locations <- setdiff(
-		setdiff(unique(locations),c("")),
+		setdiff(unique(locations),c("",NA)),
 		DF.geocodes[,'location']
 		);
 
@@ -41,15 +41,14 @@ get.geocodes <- function(
 			DF.geocodes,
 			new.geocodes
 			);
+		write.table(
+			file      = FILE.geocodes,
+			x         = DF.geocodes,
+			row.names = FALSE,
+			sep       = '\t',
+			quote     = FALSE
+			);
 		}
-
-	write.table(
-		file      = FILE.geocodes,
-		x         = DF.geocodes,
-		row.names = FALSE,
-		sep       = '\t',
-		quote     = FALSE
-		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	return(DF.geocodes);
