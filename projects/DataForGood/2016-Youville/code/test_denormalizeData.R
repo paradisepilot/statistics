@@ -28,9 +28,17 @@ denormalized.data <- denormalizeData(
 	tmp.directory   = tmp.directory
 	);
 
-temp <- denormalized.data[['depositItems']];
+write.table(
+	x         = denormalized.data[['depositItems']],
+	file      = "denormalized-depositItems.csv",
+	sep       = ",",
+	quote     = FALSE,
+	row.names = FALSE
+	);
+
+#temp <- denormalized.data[['depositItems']];
 #temp[temp[,'DepositItem'] %in% c(8326,8327,8328,8329),];
-temp[temp[,'DepositItem'] %in% c(8326),];
+#temp[temp[,'DepositItem'] %in% c(8326),];
 
 ###################################################
 
