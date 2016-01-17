@@ -10,10 +10,19 @@ library(dplyr);
 
 source(paste0(code.directory,'/cleanThings.R'));
 source(paste0(code.directory,'/denormalizeData.R'));
+source(paste0(code.directory,'/doPrimaryForeignKeyDiagnostics.R'));
 source(paste0(code.directory,'/getGeocodes.R'));
+source(paste0(code.directory,'/getYouvilleData.R'));
 
 ###################################################
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+doPrimaryForeignKeyDiagnostics(
+	table.directory = table.directory,
+	tmp.directory   = tmp.directory
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 denormalized.data <- denormalizeData(
 	table.directory = table.directory,
 	tmp.directory   = tmp.directory
@@ -21,9 +30,14 @@ denormalized.data <- denormalizeData(
 
 str(denormalized.data);
 
-unique( denormalized.data[['depositItems']][,c('AccountID','AccountCode','AccountName')] );
+#unique( denormalized.data[['depositItems']][,c('AccountID','AccountCode','AccountName')] );
 
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+denormalized.data[['depositItems']][,c(
+	'DonationReceiptID',
+	'DonationReceiptDonationAmount'
+	)];
+
+###################################################
 
 q();
 
