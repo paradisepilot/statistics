@@ -21,6 +21,8 @@ denormalized.data <- denormalizeData(
 
 str(denormalized.data);
 
+unique( denormalized.data[['depositItems']][,c('AccountID','AccountCode','AccountName')] );
+
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
 q();
