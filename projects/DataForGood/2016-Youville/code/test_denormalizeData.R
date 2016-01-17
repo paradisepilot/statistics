@@ -14,6 +14,8 @@ source(paste0(code.directory,'/doPrimaryForeignKeyDiagnostics.R'));
 source(paste0(code.directory,'/getGeocodes.R'));
 source(paste0(code.directory,'/getYouvilleData.R'));
 
+setwd(output.directory);
+
 ###################################################
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
