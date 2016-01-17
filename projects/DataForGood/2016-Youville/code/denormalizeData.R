@@ -15,13 +15,23 @@ denormalizeData <- function(
 		table.directory = table.directory
 		);
 
-	print('summary(deposits)');
-	print( summary(deposits) );
+	accounts <- get.accounts(
+		table.directory = table.directory
+		);
+
+	print('str(accounts)');
+	print( str(accounts) );
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	denormalized.depositItems <- read.csv(
 		file = paste0(table.directory,"/DepositItems.txt"),
 		sep  = '|'
+		);
+
+	colnames(denormalized.depositItems) <- gsub(
+		x           = colnames(denormalized.depositItems),
+		pattern     = "AccountNum",
+		replacement = "AccountCode"
 		);
 
 	denormalized.depositItems[['estate_donation']] <- as.logical(
@@ -32,6 +42,12 @@ denormalizeData <- function(
 		x  = denormalized.depositItems,
 		y  = denormalized.contacts,
 		by = "ContactID"
+		);
+
+	denormalized.depositItems <- left_join(
+		x  = denormalized.depositItems,
+		y  = accounts,
+		by = "AccountCode"
 		);
 
 	print('setdiff(deposits$DepositNum,denormalized.depositItems$DepositNum)');
@@ -56,6 +72,27 @@ denormalizeData <- function(
 	}
 
 ##################################################
+get.accounts <- function(table.directory = NULL) {
+
+	accounts <- read.table(
+		file             = paste0(table.directory,"/ACCPAC_Accounts.txt"),
+		quote            = "",
+		comment.char     = "",
+		header           = TRUE,
+		sep              = '|',
+		stringsAsFactors = FALSE
+		);
+
+	colnames(accounts) <- gsub(
+		x           = colnames(accounts),
+		pattern     = "AccountNumber",
+		replacement = "AccountCode"
+		);
+
+	return(accounts);
+
+	}
+
 get.deposits <- function(table.directory = NULL) {
 
 	deposits <- read.table(
@@ -100,7 +137,7 @@ get.denormalized.contacts <- function(table.directory = NULL) {
 	### get (longitude,latitude) for postal/zip codes
 	postal.codes <- unique(contacts[['PostalCode']]);
 	DF.geocodes <- get.geocodes(
-		locations     = postal.codes[1:1100],
+		locations     = postal.codes[1:2000],
 		tmp.directory = tmp.directory
 		);
 
