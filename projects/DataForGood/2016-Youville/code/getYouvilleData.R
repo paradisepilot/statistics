@@ -29,10 +29,6 @@ get.donationReceipts <- function(table.directory = NULL) {
 		replacement = "DonationReceiptDate"
 		);
 
-	donation.receipts[['DonationReceiptID']] <- as.character(
-		x = as.character(donation.receipts[['DonationReceiptID']])
-		);
-
 	return(donation.receipts);
 
 	}
@@ -143,6 +139,9 @@ get.accounts <- function(table.directory = NULL) {
 		pattern     = "AccountNumber",
 		replacement = "AccountCode"
 		);
+
+	retained.columns <- setdiff(colnames(accounts),"AccountID");
+	accounts <- accounts[,retained.columns];
 
 	return(accounts);
 

@@ -28,14 +28,9 @@ denormalized.data <- denormalizeData(
 	tmp.directory   = tmp.directory
 	);
 
-str(denormalized.data);
-
-#unique( denormalized.data[['depositItems']][,c('AccountID','AccountCode','AccountName')] );
-
-denormalized.data[['depositItems']][,c(
-	'DonationReceiptID',
-	'DonationReceiptDonationAmount'
-	)];
+temp <- denormalized.data[['depositItems']];
+#temp[temp[,'DepositItem'] %in% c(8326,8327,8328,8329),];
+temp[temp[,'DepositItem'] %in% c(8326),];
 
 ###################################################
 

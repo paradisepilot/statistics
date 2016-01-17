@@ -51,12 +51,8 @@ denormalizeData <- function(
 
 	colnames(denormalized.depositItems) <- gsub(
 		x           = colnames(denormalized.depositItems),
-		pattern     = "ReceiptID",
+		pattern     = "D4G__DonationReceiptNum",
 		replacement = "DonationReceiptID"
-		);
-
-	denormalized.depositItems[['DonationReceiptID']] <- as.character(
-		denormalized.depositItems[['DonationReceiptID']]
 		);
 
 	denormalized.depositItems[['estate_donation']] <- as.logical(
@@ -66,14 +62,14 @@ denormalizeData <- function(
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	denormalized.depositItems <- left_join(
 		x  = denormalized.depositItems,
-		y  = denormalized.contacts,
-		by = "ContactID"
+		y  = accounts,
+		by = "AccountCode"
 		);
 
 	denormalized.depositItems <- left_join(
 		x  = denormalized.depositItems,
-		y  = accounts,
-		by = "AccountCode"
+		y  = denormalized.contacts,
+		by = "ContactID"
 		);
 
 	print('setdiff(deposits$DepositNum,denormalized.depositItems$DepositNum)');
@@ -123,6 +119,14 @@ denormalizeData <- function(
 		y  = donation.receipts,
 		by = "DonationReceiptID"
 		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	retained.columns <- setdiff(
+		colnames(denormalized.depositItems),
+		c("ReceiptID")
+		);
+
+	denormalized.depositItems <- denormalized.depositItems[,retained.columns];
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	LIST.output <- list(

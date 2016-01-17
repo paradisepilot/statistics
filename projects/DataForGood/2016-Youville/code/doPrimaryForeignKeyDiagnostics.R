@@ -30,11 +30,6 @@ doPrimaryForeignKeyDiagnostics <- function(
 	print("Checking for presence duplications in deposit.items[['DepositItem']]:");
 	print( length(deposit.items[['DepositItem']]) - length(unique(deposit.items[['DepositItem']])) );
 
-	#print("deposit.items[duplicated(deposit.items[['DepositItem']]),]");
-	#print( deposit.items[duplicated(deposit.items[['DepositItem']]),] );
-	#print("deposit.items[['DepositItem']][duplicated(deposit.items[['DepositItem']])]");
-	#print( deposit.items[['DepositItem']][duplicated(deposit.items[['DepositItem']])] );
-
 	temp <- sort(deposit.items[,'DepositItem']);
 	temp <- temp[duplicated(temp)];
 	print("temp");
@@ -45,10 +40,10 @@ doPrimaryForeignKeyDiagnostics <- function(
 	print( filter(deposit.items, 8325 < DepositItem & DepositItem < 8339) );
 
 	symmetric.diff(
-		x.label = "deposit.items[['ReceiptID']]",
-		x       =  deposit.items[['ReceiptID']],
+		x.label = "deposit.items[['D4G__DonationReceiptNum']]",
+		x       =  deposit.items[['D4G__DonationReceiptNum']],
 		y.label = "donation.receipts[['DonationReceiptID']]",
-		y       =  as.character(donation.receipts[['DonationReceiptID']])
+		y       =  donation.receipts[['DonationReceiptID']]
 		);
 
 	}
