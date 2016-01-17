@@ -7,7 +7,32 @@ denormalizeData <- function(
 	require(dplyr);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	denormalized.contacts <- get.denormalized.contacts(
+		table.directory = table.directory
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	depositItems <- read.csv(file=paste0(table.directory,"/DepositItems.txt"),sep='|');
+
+	denormalized.depositItems <- left_join(
+		x  = depositItems,
+		y  = denormalized.contacts,
+		by = "ContactID"
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	LIST.output <- list(
+		depositItems = denormalized.depositItems,
+		contacts     = denormalized.contacts
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	return(LIST.output);
+
+	}
+
+##################################################
+get.denormalized.contacts <- function(table.directory = NULL) {
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	contacts <- read.csv(file=paste0(table.directory,"/Contacts.txt"),sep='|');
@@ -47,20 +72,43 @@ denormalizeData <- function(
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	denormalized.depositItems <- left_join(
-		x  = depositItems,
-		y  = denormalized.contacts,
-		by = "ContactID"
+	cities <- read.csv(
+		file = paste0(table.directory,"/Cities.txt"),
+		sep  = '|',
+		stringsAsFactors = FALSE
+		);
+
+	denormalized.contacts <- left_join(
+		x  = denormalized.contacts,
+		y  = cities,
+		by = "CityID"
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	LIST.output <- list(
-		depositItems = denormalized.depositItems,
-		contacts     = denormalized.contacts
+	provinces <- read.csv(
+		file = paste0(table.directory,"/Provinces.txt"),
+		sep  = '|',
+		stringsAsFactors = FALSE
 		);
 
+	colnames(provinces) <- gsub(
+		x           = colnames(provinces), 
+		pattern     = "Country",
+		replacement = "Country(Province)"
+		);
+
+
+	denormalized.contacts <- left_join(
+		x  = denormalized.contacts,
+		y  = provinces,
+		by = "ProvID"
+		);
+
+	print('str(denormalized.contacts)');
+	print( str(denormalized.contacts) );
+
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	return(LIST.output);
+	return(denormalized.contacts);
 
 	}
 
