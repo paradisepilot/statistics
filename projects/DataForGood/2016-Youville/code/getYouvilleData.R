@@ -1,4 +1,38 @@
 
+get.depositItems <- function(table.directory = NULL) {
+
+	deposit.items <- read.csv(
+		file = paste0(table.directory,"/DepositItems.txt"),
+		sep  = '|'
+		);
+
+	colnames(deposit.items) <- gsub(
+		x           = colnames(deposit.items),
+		pattern     = "AccountNum",
+		replacement = "AccountCode"
+		);
+
+	colnames(deposit.items) <- gsub(
+		x           = colnames(deposit.items),
+		pattern     = "DeptNum",
+		replacement = "DeptID"
+		);
+
+	colnames(deposit.items) <- gsub(
+		x           = colnames(deposit.items),
+		pattern     = "D4G__DonationReceiptNum",
+		replacement = "DonationReceiptID"
+		);
+
+	deposit.items[['estate_donation']] <- as.logical(
+		deposit.items[['estate_donation']]
+		);
+
+	return(deposit.items);
+
+	}
+
+
 get.donationReceipts <- function(table.directory = NULL) {
 
 	donation.receipts <- read.table(

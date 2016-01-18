@@ -1,5 +1,5 @@
 
-denormalizeData <- function(
+denormalizeDepositItems <- function(
 	table.directory = NULL,
 	 tmp.directory  = NULL
 	) {
@@ -32,31 +32,8 @@ denormalizeData <- function(
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	denormalized.depositItems <- read.csv(
-		file = paste0(table.directory,"/DepositItems.txt"),
-		sep  = '|'
-		);
-
-	colnames(denormalized.depositItems) <- gsub(
-		x           = colnames(denormalized.depositItems),
-		pattern     = "AccountNum",
-		replacement = "AccountCode"
-		);
-
-	colnames(denormalized.depositItems) <- gsub(
-		x           = colnames(denormalized.depositItems),
-		pattern     = "DeptNum",
-		replacement = "DeptID"
-		);
-
-	colnames(denormalized.depositItems) <- gsub(
-		x           = colnames(denormalized.depositItems),
-		pattern     = "D4G__DonationReceiptNum",
-		replacement = "DonationReceiptID"
-		);
-
-	denormalized.depositItems[['estate_donation']] <- as.logical(
-		denormalized.depositItems[['estate_donation']]
+	denormalized.depositItems <- get.depositItems(
+		table.directory = table.directory
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -130,10 +107,10 @@ denormalizeData <- function(
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	LIST.output <- list(
-		depositItems = denormalized.depositItems,
-		deposits     = deposits,
-		contacts     = denormalized.contacts,
-		accounts     = accounts
+		denormalized.depositItems = denormalized.depositItems,
+		deposits                  = deposits,
+		contacts                  = denormalized.contacts,
+		accounts                  = accounts
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###

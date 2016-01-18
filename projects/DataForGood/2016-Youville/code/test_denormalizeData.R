@@ -9,7 +9,8 @@ tmp.directory     <- normalizePath(command.arguments[4]);
 library(dplyr);
 
 source(paste0(code.directory,'/cleanThings.R'));
-source(paste0(code.directory,'/denormalizeData.R'));
+source(paste0(code.directory,'/denormalizeDepositItems.R'));
+source(paste0(code.directory,'/denormalizeDonationReceipts.R'));
 source(paste0(code.directory,'/doPrimaryForeignKeyDiagnostics.R'));
 source(paste0(code.directory,'/getGeocodes.R'));
 source(paste0(code.directory,'/getYouvilleData.R'));
@@ -19,32 +20,40 @@ setwd(output.directory);
 ###################################################
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-doPrimaryForeignKeyDiagnostics(
-	table.directory = table.directory,
-	tmp.directory   = tmp.directory
-	);
+#doPrimaryForeignKeyDiagnostics(
+#	table.directory = table.directory,
+#	tmp.directory   = tmp.directory
+#	);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-denormalized.data <- denormalizeData(
+denormalized.donationReceipts <- denormalizeDonationReceipts(
 	table.directory = table.directory,
 	tmp.directory   = tmp.directory
 	);
 
 write.table(
-	x         = denormalized.data[['depositItems']],
+	x         = denormalized.donationReceipts[['denormalized.donationReceipts']],
+	file      = "denormalized-donationReceipts.csv",
+	sep       = "|",
+	quote     = TRUE,
+	row.names = FALSE
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+denormalized.depositItems <- denormalizeDepositItems(
+	table.directory = table.directory,
+	tmp.directory   = tmp.directory
+	);
+
+write.table(
+	x         = denormalized.depositItems[['denormalized.depositItems']],
 	file      = "denormalized-depositItems.csv",
 	sep       = "|",
 	quote     = TRUE,
 	row.names = FALSE
 	);
 
-#temp <- denormalized.data[['depositItems']];
-#temp[temp[,'DepositItem'] %in% c(8326,8327,8328,8329),];
-#temp[temp[,'DepositItem'] %in% c(8326),];
-
 ###################################################
 
 q();
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
