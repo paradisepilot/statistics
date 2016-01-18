@@ -33,8 +33,8 @@ denormalized.data <- denormalizeData(
 write.table(
 	x         = denormalized.data[['depositItems']],
 	file      = "denormalized-depositItems.csv",
-	sep       = ",",
-	quote     = FALSE,
+	sep       = "|",
+	quote     = TRUE,
 	row.names = FALSE
 	);
 
