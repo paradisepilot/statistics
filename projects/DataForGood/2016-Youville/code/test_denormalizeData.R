@@ -7,6 +7,7 @@ tmp.directory     <- normalizePath(command.arguments[4]);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 library(dplyr);
+library(ggmap);
 
 source(paste0(code.directory,'/cleanThings.R'));
 source(paste0(code.directory,'/denormalizeDepositItems.R'));
@@ -18,6 +19,19 @@ source(paste0(code.directory,'/getYouvilleData.R'));
 setwd(output.directory);
 
 ###################################################
+
+ggmap.ottawa <- get_map("ottawa", zoom = 14);
+str(ggmap.ottawa);
+
+my.ggmap <- ggmap(ggmap = ggmap.ottawa, extent="device");
+
+resolution <- 300;
+temp.filename <- 'ggmap-ottawa.png';
+ggsave(file = temp.filename, plot = my.ggmap, dpi = resolution, height = 8, width = 8, units = 'in');
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+
+q();
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #doPrimaryForeignKeyDiagnostics(
