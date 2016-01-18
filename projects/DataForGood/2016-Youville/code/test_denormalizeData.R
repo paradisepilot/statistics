@@ -20,13 +20,13 @@ setwd(output.directory);
 
 ###################################################
 
-ggmap.ottawa <- get_map("ottawa", zoom = 14);
+ggmap.ottawa <- get_map("ottawa", zoom = 12, source = "stamen", maptype = "terrain");
 str(ggmap.ottawa);
 
 my.ggmap <- ggmap(ggmap = ggmap.ottawa, extent="device");
 
 resolution <- 300;
-temp.filename <- 'ggmap-ottawa.png';
+temp.filename <- 'ottawa-stamen-terrain.png';
 ggsave(file = temp.filename, plot = my.ggmap, dpi = resolution, height = 8, width = 8, units = 'in');
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
