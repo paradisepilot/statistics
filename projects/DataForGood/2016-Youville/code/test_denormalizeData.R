@@ -20,18 +20,18 @@ setwd(output.directory);
 
 ###################################################
 
-ggmap.ottawa <- get_map("ottawa", zoom = 12, source = "google", maptype = "roadmap");
-str(ggmap.ottawa);
+#ggmap.ottawa <- get_map("ottawa", zoom = 12, source = "google", maptype = "roadmap");
+#str(ggmap.ottawa);
 
-my.ggmap <- ggmap(ggmap = ggmap.ottawa, extent="device");
+#my.ggmap <- ggmap(ggmap = ggmap.ottawa, extent="device");
 
-resolution <- 600;
-temp.filename <- 'ottawa-google-roodmap.png';
-ggsave(file = temp.filename, plot = my.ggmap, dpi = resolution, height = 8, width = 8, units = 'in');
+#resolution <- 600;
+#temp.filename <- 'ottawa-google-roodmap.png';
+#ggsave(file = temp.filename, plot = my.ggmap, dpi = resolution, height = 8, width = 8, units = 'in');
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
-q();
+#q();
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #doPrimaryForeignKeyDiagnostics(
@@ -40,9 +40,17 @@ q();
 #	);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+FILE.geocodes <- paste0(table.directory,'/geocodes.txt');
+DF.geocodes <- read.csv(
+	file = FILE.geocodes,
+	sep  = "\t",
+	stringsAsFactors = FALSE
+	);
+
 denormalized.donationReceipts <- denormalizeDonationReceipts(
 	table.directory = table.directory,
-	tmp.directory   = tmp.directory
+	  tmp.directory =   tmp.directory,
+	DF.geocodes     = DF.geocodes
 	);
 
 write.table(
@@ -56,7 +64,8 @@ write.table(
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 denormalized.depositItems <- denormalizeDepositItems(
 	table.directory = table.directory,
-	tmp.directory   = tmp.directory
+	  tmp.directory =   tmp.directory,
+	DF.geocodes     = DF.geocodes
 	);
 
 write.table(

@@ -1,14 +1,16 @@
 
 denormalizeDonationReceipts <- function(
 	table.directory = NULL,
-	 tmp.directory  = NULL
+	 tmp.directory  = NULL,
+	DF.geocodes     = NULL
 	) {
 
 	require(dplyr);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	denormalized.contacts <- get.denormalized.contacts(
-		table.directory = table.directory
+		table.directory = table.directory,
+		DF.geocodes     = DF.geocodes
 		);
 
 	deposits <- get.deposits(

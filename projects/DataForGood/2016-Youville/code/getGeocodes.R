@@ -1,14 +1,10 @@
 
 get.geocodes <- function(
 	locations     = NULL,
-	tmp.directory = "tmp"
+	FILE.geocodes = "geocodes.txt"
 	) {
 
 	require(ggmap);
-
-	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	### define location of file of geocodes
-	FILE.geocodes <- paste0(tmp.directory,"/geocodes.txt");
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	### read in file of previously downloaded
@@ -30,8 +26,11 @@ get.geocodes <- function(
 		}
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	DF.geocodes[,'location'] <- toupper(DF.geocodes[,'location']);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	new.locations <- setdiff(
-		setdiff(unique(locations),c("",NA)),
+		setdiff(unique(toupper(locations)),c("",NA)),
 		DF.geocodes[,'location']
 		);
 

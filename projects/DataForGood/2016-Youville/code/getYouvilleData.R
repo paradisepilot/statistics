@@ -231,7 +231,10 @@ get.deposits <- function(table.directory = NULL) {
 
 	}
 
-get.denormalized.contacts <- function(table.directory = NULL) {
+get.denormalized.contacts <- function(
+	table.directory = NULL,
+	DF.geocodes     = NULL
+	) {
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	contacts <- read.table(
@@ -315,13 +318,8 @@ get.denormalized.contacts <- function(table.directory = NULL) {
 	#	);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	### get (longitude,latitude) for postal/zip codes
-	postal.codes <- unique(contacts[['PostalCode']]);
-	DF.geocodes <- get.geocodes(
-		locations     = postal.codes[1:2653],
-		tmp.directory = tmp.directory
-		);
-
+	### rename columns of DF.geocodes, in preparation
+	### of left-joining to contacts.
 	colnames(DF.geocodes) <- gsub(
 		x           = colnames(DF.geocodes), 
 		pattern     = "location",

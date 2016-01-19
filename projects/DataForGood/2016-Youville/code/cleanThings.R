@@ -1,7 +1,7 @@
 
 cleanPostalCodes <- function(postal.codes = NULL) {
 	cleaned.postal.codes <- as.character(sapply(
-		X   = postal.codes,
+		X   = toupper(postal.codes),
 		FUN = clean.single.postal.code
 		));
 	return(cleaned.postal.codes);
