@@ -1,19 +1,28 @@
 
 doPrimaryForeignKeyDiagnostics <- function(
 	table.directory = NULL,
-	 tmp.directory  = NULL
+	 tmp.directory  = NULL,
+	DF.geocodes     = NULL
 	) {
 
 	require(dplyr);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	denormalized.contacts <- get.denormalized.contacts(table.directory = table.directory);
+	denormalized.contacts <- get.contacts(
+		table.directory = table.directory,
+		DF.geocodes     = DF.geocodes
+		);
+
+	donation.receipts <- get.donationReceipts(
+		table.directory = table.directory,
+		DF.geocodes     = DF.geocodes
+		);
+
 	deposits              <- get.deposits(table.directory = table.directory);
 	accounts              <- get.accounts(table.directory = table.directory);
 	payment.type.CDs      <- get.paymentTypeCDs(table.directory = table.directory);
 	depts                 <- get.depts(table.directory = table.directory);
-	donation.receipts     <- get.donationReceipts(table.directory = table.directory);
-	contact.types         <- get.contact.types(table.directory = table.directory);
+	contact.types         <- get.contactTypes(table.directory = table.directory);
 
 	deposit.items <- read.csv(
 		file = paste0(table.directory,"/DepositItems.txt"),

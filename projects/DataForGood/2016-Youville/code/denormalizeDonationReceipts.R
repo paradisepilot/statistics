@@ -8,7 +8,7 @@ denormalizeDonationReceipts <- function(
 	require(dplyr);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	denormalized.contacts <- get.denormalized.contacts(
+	denormalized.contacts <- get.contacts(
 		table.directory = table.directory,
 		DF.geocodes     = DF.geocodes
 		);
@@ -23,7 +23,8 @@ denormalizeDonationReceipts <- function(
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	denormalized.donationReceipts <- get.donationReceipts(
-		table.directory = table.directory
+		table.directory = table.directory,
+		DF.geocodes     = DF.geocodes
 		);
 
 	colnames(denormalized.donationReceipts) <- gsub(
@@ -55,6 +56,31 @@ denormalizeDonationReceipts <- function(
 		x  = denormalized.donationReceipts,
 		y  = deposits,
 		by = "DepositNum"
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	colnames(DF.geocodes) <- gsub(
+		x           = colnames(DF.geocodes), 
+		pattern     = "location",
+		replacement = "DonationReceiptPostalCode"
+		);
+
+	colnames(DF.geocodes) <- gsub(
+		x           = colnames(DF.geocodes), 
+		pattern     = "lon",
+		replacement = "DonationReceiptLongitude"
+		);
+
+	colnames(DF.geocodes) <- gsub(
+		x           = colnames(DF.geocodes), 
+		pattern     = "lat",
+		replacement = "DonationReceiptLatitude"
+		);
+
+	denormalized.donationReceipts <- left_join(
+		x  = denormalized.donationReceipts,
+		y  = DF.geocodes,
+		by = "DonationReceiptPostalCode"
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###

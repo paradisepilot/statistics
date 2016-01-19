@@ -34,12 +34,6 @@ setwd(output.directory);
 #q();
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#doPrimaryForeignKeyDiagnostics(
-#	table.directory = table.directory,
-#	tmp.directory   = tmp.directory
-#	);
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 FILE.geocodes <- paste0(table.directory,'/geocodes.txt');
 DF.geocodes <- read.csv(
 	file = FILE.geocodes,
@@ -47,6 +41,13 @@ DF.geocodes <- read.csv(
 	stringsAsFactors = FALSE
 	);
 
+doPrimaryForeignKeyDiagnostics(
+	table.directory = table.directory,
+	tmp.directory   = tmp.directory,
+	DF.geocodes     = DF.geocodes
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 denormalized.donationReceipts <- denormalizeDonationReceipts(
 	table.directory = table.directory,
 	  tmp.directory =   tmp.directory,

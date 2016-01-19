@@ -33,7 +33,10 @@ get.depositItems <- function(table.directory = NULL) {
 	}
 
 
-get.donationReceipts <- function(table.directory = NULL) {
+get.donationReceipts <- function(
+	table.directory = NULL,
+	DF.geocodes     = NULL
+	) {
 
 	donation.receipts <- read.table(
 		file             = paste0(table.directory,"/DonationReceipts.txt"),
@@ -46,6 +49,9 @@ get.donationReceipts <- function(table.directory = NULL) {
 		dates = as.character(donation.receipts[['ReceiptDate']])
 		);
 
+	donation.receipts[['PostalCode']] <- toupper(donation.receipts[['PostalCode']]);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	colnames(donation.receipts) <- paste0("DonationReceipt",colnames(donation.receipts));
 	colnames(donation.receipts) <- gsub(
 		x           = colnames(donation.receipts),
@@ -63,6 +69,32 @@ get.donationReceipts <- function(table.directory = NULL) {
 		replacement = "DonationReceiptDate"
 		);
 
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	colnames(DF.geocodes) <- gsub(
+		x           = colnames(DF.geocodes), 
+		pattern     = "location",
+		replacement = "DonationReceiptPostalCode"
+		);
+
+	colnames(DF.geocodes) <- gsub(
+		x           = colnames(DF.geocodes), 
+		pattern     = "lon",
+		replacement = "DonationReceiptLongitude"
+		);
+
+	colnames(DF.geocodes) <- gsub(
+		x           = colnames(DF.geocodes), 
+		pattern     = "lat",
+		replacement = "DonationReceiptLatitude"
+		);
+
+	donation.receipts <- left_join(
+		x  = donation.receipts,
+		y  = DF.geocodes,
+		by = "DonationReceiptPostalCode"
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	return(donation.receipts);
 
 	}
@@ -122,7 +154,7 @@ get.paymentTypeCDs <- function(table.directory = NULL) {
 	return(payment.type.cds);
 	}
 
-get.contact.types <- function(table.directory = NULL) {
+get.contactTypes <- function(table.directory = NULL) {
 
 	contact.type.ID <- read.table(
 		file   = paste0(table.directory,"/ContactTypeID.txt"),
@@ -231,7 +263,7 @@ get.deposits <- function(table.directory = NULL) {
 
 	}
 
-get.denormalized.contacts <- function(
+get.contacts <- function(
 	table.directory = NULL,
 	DF.geocodes     = NULL
 	) {
@@ -298,8 +330,6 @@ get.denormalized.contacts <- function(
 		pattern     = "DateOriginallyCreated",
 		replacement = "ContactDateOriginallyCreated"
 		);
-
-	print(paste0("AAA: nrow(contacts) = ",nrow(contacts)));
 
 	denormalized.contacts <- contacts;
 
@@ -410,7 +440,6 @@ get.denormalized.contacts <- function(
 		);
 
 	denormalized.contacts <- denormalized.contacts[,retained.columns];
-	print(paste0("BBB: nrow(denormalized.contacts) = ",nrow(denormalized.contacts)));
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	return(denormalized.contacts);

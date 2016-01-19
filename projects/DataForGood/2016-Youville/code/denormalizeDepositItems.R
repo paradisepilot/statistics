@@ -8,7 +8,7 @@ denormalizeDepositItems <- function(
 	require(dplyr);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	denormalized.contacts <- get.denormalized.contacts(
+	denormalized.contacts <- get.contacts(
 		table.directory = table.directory,
 		DF.geocodes     = DF.geocodes
 		);
@@ -30,7 +30,8 @@ denormalizeDepositItems <- function(
 		);
 
 	donation.receipts <- get.donationReceipts(
-		table.directory = table.directory
+		table.directory = table.directory,
+		DF.geocodes     = DF.geocodes
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -50,9 +51,6 @@ denormalizeDepositItems <- function(
 		y  = denormalized.contacts,
 		by = "ContactID"
 		);
-
-	print('setdiff(deposits$DepositNum,denormalized.depositItems$DepositNum)');
-	print( setdiff(deposits$DepositNum,denormalized.depositItems$DepositNum) );
 
 	denormalized.depositItems <- left_join(
 		x  = denormalized.depositItems,
@@ -88,11 +86,6 @@ denormalizeDepositItems <- function(
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	print("str(denormalized.depositItems)");
-	print( str(denormalized.depositItems) );
-	print("str(donation.receipts)");
-	print( str(donation.receipts) );
-
 	denormalized.depositItems <- left_join(
 		x  = denormalized.depositItems,
 		y  = donation.receipts,
