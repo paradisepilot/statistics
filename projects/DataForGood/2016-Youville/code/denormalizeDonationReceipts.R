@@ -59,31 +59,6 @@ denormalizeDonationReceipts <- function(
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-	colnames(DF.geocodes) <- gsub(
-		x           = colnames(DF.geocodes), 
-		pattern     = "location",
-		replacement = "DonationReceiptPostalCode"
-		);
-
-	colnames(DF.geocodes) <- gsub(
-		x           = colnames(DF.geocodes), 
-		pattern     = "lon",
-		replacement = "DonationReceiptLongitude"
-		);
-
-	colnames(DF.geocodes) <- gsub(
-		x           = colnames(DF.geocodes), 
-		pattern     = "lat",
-		replacement = "DonationReceiptLatitude"
-		);
-
-	denormalized.donationReceipts <- left_join(
-		x  = denormalized.donationReceipts,
-		y  = DF.geocodes,
-		by = "DonationReceiptPostalCode"
-		);
-
-	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	denormalized.donationReceipts[['PaymentTypeCD']] <- as.character(
 		x = denormalized.donationReceipts[['PaymentTypeCD']]
 		);
