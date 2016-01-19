@@ -29,11 +29,14 @@ get.geocodes <- function(
 	DF.geocodes[,'location'] <- toupper(DF.geocodes[,'location']);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	locations <- cleanPostalCodes(postal.codes = locations);
+
 	new.locations <- setdiff(
 		setdiff(unique(toupper(locations)),c("",NA)),
 		DF.geocodes[,'location']
 		);
 
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	if (length(new.locations) > 0) {
 		new.geocodes <- data.frame(
 			location = as.character(new.locations),
