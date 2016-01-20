@@ -44,7 +44,7 @@ str(postal.codes);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 DF.geocodes <- get.geocodes(
-	locations     = postal.codes[1:4000],
+	locations     = postal.codes,
 	FILE.geocodes = "geocodes.txt"
 	);
 str(DF.geocodes);
