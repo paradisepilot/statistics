@@ -27,7 +27,7 @@ for (z in c(5:20)) {
 
 	ggmap.ottawa <- get_map("ottawa", zoom = z);
 
-	temp.filename <- paste0("gmap-ottawa-zoom",z,".RData");
+	temp.filename <- paste0("ggmap-ottawa-zoom",z,".RData");
 	save(list = c("ggmap.ottawa"), file = temp.filename);
 
 	temp.filename <- paste0("gmap-ottawa-zoom",z,".png");
