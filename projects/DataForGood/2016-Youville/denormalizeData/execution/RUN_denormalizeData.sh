@@ -15,7 +15,7 @@ if [ ! -d ${tmpDIR} ]; then
 	mkdir ${tmpDIR}
 fi
 
-myRscript=../../code/test_denormalizeData.R
+myRscript=../../code/run_denormalizeData.R
 stdoutFile=stdout.R.`basename ${myRscript} .R`
 R --no-save --args ${tableDIR} ${codeDIR} ${outputDIR} ${tmpDIR} < ${myRscript} 2>&1 > ${stdoutFile}
 
