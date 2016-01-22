@@ -49,7 +49,12 @@ get.donationReceipts <- function(
 		dates = as.character(donation.receipts[['ReceiptDate']])
 		);
 
-	donation.receipts[['PostalCode']] <- toupper(donation.receipts[['PostalCode']]);
+	#donation.receipts[['PostalCode']] <- toupper(donation.receipts[['PostalCode']]);
+
+	donation.receipts[['PostalCode']] <- cleanPostalCodes(
+		postal.codes = as.character(donation.receipts[['PostalCode']])
+		);
+
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	colnames(donation.receipts) <- paste0("DonationReceipt",colnames(donation.receipts));
