@@ -9,6 +9,7 @@ tmp.directory     <- normalizePath(command.arguments[4]);
 library(dplyr);
 library(ggmap);
 library(RColorBrewer);
+library(VennDiagram);
 
 source(paste0(code.directory,'/denormalizeDepositItems.R'));
 source(paste0(code.directory,'/denormalizeDonationReceipts.R'));
@@ -72,6 +73,17 @@ write.table(
 	sep       = "|",
 	quote     = TRUE,
 	row.names = FALSE
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+venn.diagram(
+	filename = "plot-vennDiagram-DonationReceiptID.png",
+	x = list(
+		depositItemsDonationReceiptID     = unique(DF.depositItems[['DonationReceiptID']]),
+		donationReceiptsDonationReceiptID = unique(DF.donationReceipts[['DonationReceiptID']])
+		),
+	height = 3000,
+	width  = 6000
 	);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
