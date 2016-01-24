@@ -400,7 +400,8 @@ plotAmountByDate(
 	DF.input      = DF.depositItems,
 	column.Date   = 'DepositDate',
 	column.Amount = 'Amount',
-	input.palette = palette.Youville
+	input.palette = palette.Youville,
+	input.alpha   = 0.2
 	);
 
 plotAmountByDate(
@@ -430,7 +431,8 @@ plotAmountByDate(
 	contact.types = c("Government"),
 	column.Date   = 'DepositDate',
 	column.Amount = 'Amount',
-	input.palette = palette.Youville
+	input.palette = brewer.pal(5,"Set1")[1],
+	input.alpha   = 0.2
 	);
 
 plotAmountByDate(
