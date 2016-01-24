@@ -8,13 +8,15 @@ tmp.directory     <- normalizePath(command.arguments[4]);
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 library(dplyr);
 library(ggmap);
+library(RColorBrewer);
 
-source(paste0(code.directory,'/cleanThings.R'));
 source(paste0(code.directory,'/denormalizeDepositItems.R'));
 source(paste0(code.directory,'/denormalizeDonationReceipts.R'));
 source(paste0(code.directory,'/doPrimaryForeignKeyDiagnostics.R'));
 source(paste0(code.directory,'/getGeocodes.R'));
 source(paste0(code.directory,'/getYouvilleData.R'));
+source(paste0(code.directory,'/plottingFunctions.R'));
+source(paste0(code.directory,'/utils.R'));
 
 setwd(output.directory);
 
@@ -38,23 +40,34 @@ denormalized.donationReceipts <- denormalizeDonationReceipts(
 	DF.geocodes     = DF.geocodes
 	);
 
-write.table(
-	x         = denormalized.donationReceipts[['denormalized.donationReceipts']],
-	file      = "denormalized-donationReceipts.csv",
-	sep       = "|",
-	quote     = TRUE,
-	row.names = FALSE
-	);
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 denormalized.depositItems <- denormalizeDepositItems(
 	table.directory = table.directory,
 	  tmp.directory =   tmp.directory,
 	DF.geocodes     = DF.geocodes
 	);
 
+str(denormalized.donationReceipts);
+str(denormalized.depositItems);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+palette.Youville <- getContactTypePalette();
+
+DF.donationReceipts <- denormalized.donationReceipts[['denormalized.donationReceipts']];
+DF.depositItems     <- denormalized.depositItems[['denormalized.depositItems']];
+
+summary(DF.donationReceipts);
+summary(DF.depositItems);
+
 write.table(
-	x         = denormalized.depositItems[['denormalized.depositItems']],
+	x         = DF.donationReceipts,
+	file      = "denormalized-donationReceipts.csv",
+	sep       = "|",
+	quote     = TRUE,
+	row.names = FALSE
+	);
+
+write.table(
+	x         = DF.depositItems,
 	file      = "denormalized-depositItems.csv",
 	sep       = "|",
 	quote     = TRUE,
@@ -62,196 +75,376 @@ write.table(
 	);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-str(denormalized.depositItems);
-str(denormalized.donationReceipts);
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-DF.temp <- denormalized.donationReceipts[['denormalized.donationReceipts']];
-DF.temp <- DF.temp[,c('ContactID','DonationReceiptDate','DonationReceiptDonationAmount','ContactTypeMain')];
-
-DF.temp[,'ContactTypeMain'] <- as.character(DF.temp[,'ContactTypeMain']);
-DF.temp[is.na(DF.temp[,'ContactTypeMain']),'ContactTypeMain'] <- "unknown";
-DF.temp[,'ContactTypeMain'] <- as.factor(DF.temp[,'ContactTypeMain']);
-
-by.ContactID <- group_by(DF.temp,ContactID,ContactTypeMain);
-DF.temp <- mutate(by.ContactID,
-	minDate     = min(DonationReceiptDate),
-	maxDate     = max(DonationReceiptDate),
-	totalAmount = sum(DonationReceiptDonationAmount)
-	);
-DF.temp <- unique(select(DF.temp,-DonationReceiptDate,-DonationReceiptDonationAmount));
-DF.temp <- na.omit(DF.temp);
-
-is.onetimer <- as.logical(DF.temp[,'minDate'] == DF.temp[,'maxDate']);
-DF.temp[is.onetimer,'maxDate'] <- DF.temp[is.onetimer,'maxDate'] - sample(
-	x=500:2000,size=sum(is.onetimer),replace=TRUE
-	);
-
-str(DF.temp);
-
-write.table(
-	x         = DF.temp,
-	file      = "Youville-donorRetention.csv",
-	sep       = "|",
-	quote     = TRUE,
-	row.names = FALSE
-	);
-
-my.ggplot <- ggplot(data = NULL) + theme_bw() + scale_color_brewer(name = "Method", palette = "Set1");
-my.ggplot <- my.ggplot + geom_point(
-	data    = DF.temp,
-	mapping = aes(
-		x     = minDate,
-		y     = maxDate,
-		size  = totalAmount,
-		color = ContactTypeMain
-		),
-	alpha = 0.2
-	);
-
-my.ggplot <- my.ggplot + geom_abline(intercept = 0, slope = 1, size = 1, linetype = 2, colour = "gray");
-
-my.ggplot <- my.ggplot + scale_x_date(
-	date_labels        = "%b %Y",
-	limits             = c(as.Date("1996-07-01"),as.Date("2015-12-31")),
-	date_breaks        = "1 year"
-	);
-my.ggplot <- my.ggplot + scale_y_date(
-	date_labels        = "%b %Y",
-	limits             = c(as.Date("1996-07-01"),as.Date("2015-12-31")),
-	date_breaks        = "1 year"
-	);
-
-my.ggplot <- my.ggplot + xlab(      "First Donation Date");
-my.ggplot <- my.ggplot + ylab("Most Recent Donation Date");
-
-my.ggplot <- my.ggplot + theme(
-	title            = element_text(size = 20, face = "bold"),
-	axis.title       = element_text(size = 22, face = "bold"),
-	axis.text.x      = element_text(size = 10, angle = 90),
-	axis.text.y      = element_text(size = 10),
-	panel.grid.major = element_line(size = 0.5),
-	panel.grid.minor = element_line(size = 1.0),
-	legend.position  = "right",
-	legend.title     = element_blank(),
-	legend.text      = element_text(size = 16, face = "bold")
-	);
-
-temp.filename <- 'Youville-donorRetention.png';
-ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 8, width = 14, units = 'in');
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-DF.temp <- denormalized.donationReceipts[['denormalized.donationReceipts']];
-DF.temp <- DF.temp[,c('DonationReceiptDate','DonationReceiptDonationAmount','ContactTypeMain')];
-
-DF.temp[,'ContactTypeMain'] <- as.character(DF.temp[,'ContactTypeMain']);
-DF.temp[is.na(DF.temp[,'ContactTypeMain']),'ContactTypeMain'] <- "unknown";
-DF.temp[,'ContactTypeMain'] <- as.factor(DF.temp[,'ContactTypeMain']);
-DF.temp <- arrange(DF.temp,ContactTypeMain,DonationReceiptDate);
-
-by.ContactTypeMain <- group_by(DF.temp,ContactTypeMain);
-DF.temp <- mutate(by.ContactTypeMain, cumulAmount = cumsum(DonationReceiptDonationAmount));
-str(DF.temp);
-
-my.ggplot <- ggplot(data = NULL) + theme_bw() + scale_color_brewer(name = "Method", palette = "Set1");
-my.ggplot <- my.ggplot + geom_step(
-	data    = DF.temp,
-	mapping = aes(
-		x        = DonationReceiptDate,
-		y        = cumulAmount,
-		color    = ContactTypeMain
-		),
-	size = 1
-	);
-
-my.ggplot <- my.ggplot + scale_x_date(
-	date_labels        = "%b %Y",
-	limits             = c(as.Date("1996-07-01"),as.Date("2015-12-31")),
-	date_breaks        = "1 year"
-	);
-my.ggplot <- my.ggplot + xlab("");
-my.ggplot <- my.ggplot + scale_y_continuous(limits=c(0,2e6));
-my.ggplot <- my.ggplot + ylab("cumulative (Donation Amount)");
-
-my.ggplot <- my.ggplot + theme(
-	title            = element_text(size = 20,  face = "bold"),
-	axis.title       = element_text(size = 22,  face = "bold"),
-	axis.text.x      = element_text(size = 15, angle = 90),
-	axis.text.y      = element_text(size = 13),
-	panel.grid.major = element_line(size = 0.5),
-	panel.grid.minor = element_line(size = 1.0),
-	legend.position  = "bottom",
-	legend.title     = element_blank(),
-	legend.text      = element_text(size = 16, face = "bold")
-	);
-
-temp.filename <- 'Youville-cumulDonationAmount.png';
-ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 8, width = 16, units = 'in');
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-DF.temp <- denormalized.donationReceipts[['denormalized.donationReceipts']];
-DF.temp <- DF.temp[,c('DonationReceiptDate','DonationReceiptDonationAmount','ContactTypeMain')];
-
-DF.temp[,'ContactTypeMain'] <- as.character(DF.temp[,'ContactTypeMain']);
-DF.temp[is.na(DF.temp[,'ContactTypeMain']),'ContactTypeMain'] <- "unknown";
-DF.temp[,'ContactTypeMain'] <- as.factor(DF.temp[,'ContactTypeMain']);
-
-summary(DF.temp);
-
-my.ggplot <- ggplot(data = NULL) + theme_bw() + scale_color_brewer(name = "Method", palette = "Set1");
-my.ggplot <- my.ggplot + geom_point(
-	data    = DF.temp,
-	mapping = aes(
-		x     = DonationReceiptDate,
-		y     = log10(DonationReceiptDonationAmount),
-		color = ContactTypeMain
-		),
-	alpha   = 0.2
-	);
-my.ggplot <- my.ggplot + scale_x_date(
-	date_labels        = "%b %Y",
-	limits             = c(as.Date("1996-07-01"),as.Date("2015-12-31")),
-	date_breaks        = "1 year"
-	);
-my.ggplot <- my.ggplot + scale_y_continuous(limits=c(0,5.5));
-my.ggplot <- my.ggplot + xlab("");
-my.ggplot <- my.ggplot + ylab("log10(Donation Receipt : Donation Amount)");
-my.ggplot <- my.ggplot + theme(
-	title            = element_text(size = 20,  face = "bold"),
-	axis.title       = element_text(size = 20,  face = "bold"),
-	axis.text.x      = element_text(size = 15, angle = 90),
-	axis.text.y      = element_text(size = 25),
-	panel.grid.major = element_line(size = 0.5),
-	panel.grid.minor = element_line(size = 1.0),
-	legend.position  = "bottom",
-	legend.title     = element_blank(),
-	legend.text      = element_text(size = 15, face = "bold")
-	);
-
-temp.filename <- 'Youville-donation-amount-by-time.png';
-ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 8, width = 16, units = 'in');
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 zoom <- 12;
-
 load(paste0(table.directory,"/ggmap-ottawa-zoom",zoom,".RData"));
 str(ggmap.ottawa);
 
-my.ggmap <- ggmap(ggmap = ggmap.ottawa, extent="device");
-my.ggmap <- my.ggmap + geom_point(
-	data   = denormalized.donationReceipts[['denormalized.donationReceipts']],
-	colour = "red",
-	alpha  = 0.1,
-	mapping = aes(
-		x     = DonationReceiptLongitude,
-		y     = DonationReceiptLatitude,
-		size  = DonationReceiptDonationAmount,
-		color = ContactTypeMain
-		)
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+plotDonationMap(
+	FILE.ggplot      = "plot-donationReceipts-map-ALL.png",
+	plot.title       = "Donation Receipts",
+	background.ggmap = ggmap.ottawa,
+	DF.input         = DF.donationReceipts,
+	column.Longitude = 'DonationReceiptLongitude',
+	column.Latitude  = 'DonationReceiptLatitude',
+	column.Amount    = 'DonationReceiptDonationAmount',
+	input.palette    = palette.Youville,
+	input.alpha      = 0.2
 	);
 
-temp.filename <- 'Youville-donor-map.png';
-ggsave(file = temp.filename, plot = my.ggmap, dpi = resolution, height = 8, width = 12, units = 'in');
+plotDonationMap(
+	FILE.ggplot      = "plot-donationReceipts-map-individual.png",
+	plot.title       = "Donation Receipts",
+	background.ggmap = ggmap.ottawa,
+	DF.input         = DF.donationReceipts,
+	contact.types    = c("Personal/Individual"),
+	column.Longitude = 'DonationReceiptLongitude',
+	column.Latitude  = 'DonationReceiptLatitude',
+	column.Amount    = 'DonationReceiptDonationAmount',
+	input.palette    = palette.Youville,
+	input.alpha      = 0.2
+	);
+
+plotDonationMap(
+	FILE.ggplot      = "plot-donationReceipts-map-businessCharity.png",
+	plot.title       = "Donation Receipts",
+	background.ggmap = ggmap.ottawa,
+	DF.input         = DF.donationReceipts,
+	contact.types    = c("Corporate/Small Business","Registered Charity"),
+	column.Longitude = 'DonationReceiptLongitude',
+	column.Latitude  = 'DonationReceiptLatitude',
+	column.Amount    = 'DonationReceiptDonationAmount',
+	input.palette    = palette.Youville,
+	input.alpha      = 0.3
+	);
+
+plotDonationMap(
+	FILE.ggplot      = "plot-donationReceipts-map-unmatchedContactID.png",
+	plot.title       = "Donation Receipts",
+	background.ggmap = ggmap.ottawa,
+	DF.input         = DF.donationReceipts,
+	contact.types    = c("Unmatched ContactID"),
+	column.Longitude = 'DonationReceiptLongitude',
+	column.Latitude  = 'DonationReceiptLatitude',
+	column.Amount    = 'DonationReceiptDonationAmount',
+	input.palette    = brewer.pal(5,"Set1")[1],
+	input.alpha      = 0.5
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+plotDonationMap(
+	FILE.ggplot      = "plot-depositItems-map-ALL.png",
+	plot.title       = "Deposit Items",
+	background.ggmap = ggmap.ottawa,
+	DF.input         = DF.depositItems,
+	column.Longitude = "ContactLongitude",
+	column.Latitude  = "ContactLatitude",
+	column.Amount    = "Amount",
+	input.palette    = palette.Youville,
+	input.alpha      = 0.1
+	);
+
+plotDonationMap(
+	FILE.ggplot      = "plot-depositItems-map-government.png",
+	plot.title       = "Deposit Items",
+	background.ggmap = ggmap.ottawa,
+	DF.input         = DF.depositItems,
+	contact.types    = c("Government"),
+	column.Longitude = "ContactLongitude",
+	column.Latitude  = "ContactLatitude",
+	column.Amount    = "Amount",
+	input.palette    = brewer.pal(5,"Set1")[1],
+	input.alpha      = 1.0
+	);
+
+plotDonationMap(
+	FILE.ggplot      = "plot-depositItems-map-individual.png",
+	plot.title       = "Deposit Items",
+	background.ggmap = ggmap.ottawa,
+	DF.input         = DF.depositItems,
+	contact.types    = c("Personal/Individual"),
+	column.Longitude = "ContactLongitude",
+	column.Latitude  = "ContactLatitude",
+	column.Amount    = "Amount",
+	input.palette    = palette.Youville,
+	input.alpha      = 0.1
+	);
+
+plotDonationMap(
+	FILE.ggplot      = "plot-depositItems-map-nonGovernmentIndividual.png",
+	plot.title       = "Deposit Items",
+	background.ggmap = ggmap.ottawa,
+	DF.input         = DF.depositItems,
+	contact.types    = setdiff(
+		levels(DF.depositItems[['ContactTypeMain']]),
+		c("Personal/Individual","Government")
+		),
+	column.Longitude = "ContactLongitude",
+	column.Latitude  = "ContactLatitude",
+	column.Amount    = "Amount",
+	input.palette    = palette.Youville,
+	input.alpha      = 0.2
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+plotRetention(
+	FILE.ggplot   = 'plot-donationReceipts-retention-ALL.png',
+	plot.title    = "Contacts (Donation Receipts)",
+	DF.input      = DF.donationReceipts,
+	column.Date   = "DonationReceiptDate",
+	column.Amount = "DonationReceiptDonationAmount",
+	xlab.label    = "First Donation Receipt Date",
+	ylab.label    = "Most Recent Donation Receipt Date",
+	input.palette = palette.Youville
+	);
+
+plotRetention(
+	FILE.ggplot   = 'plot-donationReceipts-retention-unmatchedContactID.png',
+	plot.title    = "Contacts (Donation Receipts)",
+	DF.input      = DF.donationReceipts,
+	contact.types = c("Unmatched ContactID"),
+	column.Date   = "DonationReceiptDate",
+	column.Amount = "DonationReceiptDonationAmount",
+	xlab.label    = "First Donation Receipt Date",
+	ylab.label    = "Most Recent Donation Receipt Date",
+	input.palette = palette.Youville,
+	input.alpha   = 1.0
+	);
+
+plotRetention(
+	FILE.ggplot   = 'plot-donationReceipts-retention-individual.png',
+	plot.title    = "Contacts (Donation Receipts)",
+	DF.input      = DF.donationReceipts,
+	contact.types = c("Personal/Individual"),
+	column.Date   = "DonationReceiptDate",
+	column.Amount = "DonationReceiptDonationAmount",
+	xlab.label    = "First Donation Receipt Date",
+	ylab.label    = "Most Recent Donation Receipt Date",
+	input.palette = palette.Youville,
+	input.alpha   = 0.2
+	);
+
+plotRetention(
+	FILE.ggplot   = 'plot-donationReceipts-retention-businessCharity.png',
+	plot.title    = "Contacts (Donation Receipts)",
+	DF.input      = DF.donationReceipts,
+	contact.types = c("Corporate/Small Business","Registered Charity"),
+	column.Date   = "DonationReceiptDate",
+	column.Amount = "DonationReceiptDonationAmount",
+	xlab.label    = "First Donation Receipt Date",
+	ylab.label    = "Most Recent Donation Receipt Date",
+	input.palette = palette.Youville
+	);
+
+plotRetention(
+	FILE.ggplot   = 'plot-donationReceipts-retention-others.png',
+	plot.title    = "Contacts (Donation Receipts)",
+	DF.input      = DF.donationReceipts,
+	contact.types = setdiff(
+		levels(DF.donationReceipts[,'ContactTypeMain']),
+		c("Unmatched ContactID","Personal/Individual","Corporate/Small Business","Registered Charity")
+		),
+	column.Date   = "DonationReceiptDate",
+	column.Amount = "DonationReceiptDonationAmount",
+	xlab.label    = "First Donation Receipt Date",
+	ylab.label    = "Most Recent Donation Receipt Date",
+	input.palette = palette.Youville,
+	input.alpha   = 0.5
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+plotRetention(
+	FILE.ggplot   = 'plot-depositItems-retention-ALL.png',
+	plot.title    = "Contacts (Deposit Items)",
+	DF.input      = DF.depositItems,
+	column.Date   = "DepositDate",
+	column.Amount = "Amount",
+	xlab.label    = "First Deposit Date",
+	ylab.label    = "Most Recent Deposit Date",
+	input.palette = palette.Youville
+	);
+
+plotRetention(
+	FILE.ggplot   = 'plot-depositItems-retention-nonGovernmentIndividual.png',
+	plot.title    = "Contacts (Deposit Items)",
+	DF.input      = DF.depositItems,
+	column.Date   = "DepositDate",
+	column.Amount = "Amount",
+	contact.types = setdiff(
+		levels(DF.depositItems[,'ContactTypeMain']),
+		c("Personal/Individual","Government")
+		),
+	xlab.label    = "First Deposit Date",
+	ylab.label    = "Most Recent Deposit Date",
+	input.palette = palette.Youville
+	);
+
+plotRetention(
+	FILE.ggplot   = 'plot-depositItems-retention-individual.png',
+	plot.title    = "Contacts (Deposit Items)",
+	DF.input      = DF.depositItems,
+	column.Date   = "DepositDate",
+	column.Amount = "Amount",
+	contact.types = c("Personal/Individual"),
+	xlab.label    = "First Deposit Date",
+	ylab.label    = "Most Recent Deposit Date",
+	input.palette = palette.Youville
+	);
+
+plotRetention(
+	FILE.ggplot   = 'plot-depositItems-retention-government.png',
+	plot.title    = "Contacts (Deposit Items)",
+	DF.input      = DF.depositItems,
+	column.Date   = "DepositDate",
+	column.Amount = "Amount",
+	contact.types = c("Government"),
+	xlab.label    = "First Deposit Date",
+	ylab.label    = "Most Recent Deposit Date",
+	input.palette = brewer.pal(5,"Set1")[1],
+	input.alpha   = 1.0
+	);
+
+plotRetention(
+	FILE.ggplot   = 'plot-depositItems-retention-businessCharity.png',
+	plot.title    = "Contacts (Deposit Items)",
+	DF.input      = DF.depositItems,
+	column.Date   = "DepositDate",
+	column.Amount = "Amount",
+	contact.types = c("Corporate/Small Business","Registered Charity"),
+	xlab.label    = "First Deposit Date",
+	ylab.label    = "Most Recent Deposit Date",
+	input.palette = palette.Youville
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+plotCumulativeDonations(
+	FILE.ggplot   = 'plot-donationReceipts-cumulativeDontations.png',
+	plot.title    = "Donation Receipts",
+	DF.input      = DF.donationReceipts,
+	column.Date   = 'DonationReceiptDate',
+	column.Amount = 'DonationReceiptDonationAmount',
+	input.palette = palette.Youville
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+plotCumulativeDonations(
+	FILE.ggplot   = 'plot-depositItems-cumulativeDontations.png',
+	plot.title    = "Deposit Items",
+	DF.input      = DF.depositItems,
+	column.Date   = 'DepositDate',
+	column.Amount = 'Amount',
+	input.palette = palette.Youville
+	);
+
+plotCumulativeDonations(
+	FILE.ggplot   = 'plot-depositItems-cumulativeDontations-nonGov.png',
+	plot.title    = "Deposit Items",
+	DF.input      = DF.depositItems,
+	contact.types = setdiff(
+		levels(DF.depositItems[,'ContactTypeMain']),
+		c("Government")
+		),
+	column.Date   = 'DepositDate',
+	column.Amount = 'Amount',
+	input.palette = palette.Youville
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+plotAmountByDate(
+	FILE.ggplot   = "plot-donationReceipts-amountByDate-ALL.png",
+	plot.title    = "Donation Receipts",
+	DF.input      = DF.donationReceipts,
+	column.Date   = 'DonationReceiptDate',
+	column.Amount = 'DonationReceiptDonationAmount',
+	input.palette = palette.Youville
+	);
+
+plotAmountByDate(
+	FILE.ggplot   = "plot-donationReceipts-amountByDate-individual.png",
+	plot.title    = "Donation Receipts",
+	DF.input      = DF.donationReceipts,
+	contact.types = c("Unmatched ContactID","Personal/Individual"),
+	column.Date   = 'DonationReceiptDate',
+	column.Amount = 'DonationReceiptDonationAmount',
+	input.palette = palette.Youville
+	);
+
+plotAmountByDate(
+	FILE.ggplot   = "plot-donationReceipts-amountByDate-businessCharity.png",
+	plot.title    = "Donation Receipts",
+	DF.input      = DF.donationReceipts,
+	contact.types = c("Corporate/Small Business","Registered Charity"),
+	column.Date   = 'DonationReceiptDate',
+	column.Amount = 'DonationReceiptDonationAmount',
+	input.palette = palette.Youville
+	);
+
+plotAmountByDate(
+	FILE.ggplot   = "plot-donationReceipts-amountByDate-others.png",
+	plot.title    = "Donation Receipts",
+	DF.input      = DF.donationReceipts,
+	contact.types = setdiff(
+		levels(DF.donationReceipts[,'ContactTypeMain']),
+		c("Unmatched ContactID","Personal/Individual","Corporate/Small Business","Registered Charity")
+		),
+	column.Date   = 'DonationReceiptDate',
+	column.Amount = 'DonationReceiptDonationAmount',
+	input.palette = palette.Youville,
+	input.alpha   = 0.5
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+plotAmountByDate(
+	FILE.ggplot   = "plot-depositItems-amountByDate-ALL.png",
+	plot.title    = "Deposit Items",
+	DF.input      = DF.depositItems,
+	column.Date   = 'DepositDate',
+	column.Amount = 'Amount',
+	input.palette = palette.Youville
+	);
+
+plotAmountByDate(
+	FILE.ggplot   = "plot-depositItems-amountByDate-individual.png",
+	plot.title    = "Deposit Items",
+	DF.input      = DF.depositItems,
+	contact.types = c("Personal/Individual"),
+	column.Date   = 'DepositDate',
+	column.Amount = 'Amount',
+	input.palette = palette.Youville
+	);
+
+plotAmountByDate(
+	FILE.ggplot   = "plot-depositItems-amountByDate-businessCharity.png",
+	plot.title    = "Deposit Items",
+	DF.input      = DF.depositItems,
+	contact.types = c("Corporate/Small Business","Registered Charity"),
+	column.Date   = 'DepositDate',
+	column.Amount = 'Amount',
+	input.palette = palette.Youville
+	);
+
+plotAmountByDate(
+	FILE.ggplot   = "plot-depositItems-amountByDate-government.png",
+	plot.title    = "Deposit Items",
+	DF.input      = DF.depositItems,
+	contact.types = c("Government"),
+	column.Date   = 'DepositDate',
+	column.Amount = 'Amount',
+	input.palette = palette.Youville
+	);
+
+plotAmountByDate(
+	FILE.ggplot   = "plot-depositItems-amountByDate-others.png",
+	plot.title    = "Deposit Items",
+	DF.input      = DF.depositItems,
+	contact.types = setdiff(
+		levels(DF.depositItems[['ContactTypeMain']]),
+		c("Personal/Individual","Government","Corporate/Small Business","Registered Charity")
+		),
+	column.Date   = 'DepositDate',
+	column.Amount = 'Amount',
+	input.palette = palette.Youville
+	);
 
 ###################################################
 

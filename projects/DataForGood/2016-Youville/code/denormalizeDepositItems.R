@@ -48,12 +48,6 @@ denormalizeDepositItems <- function(
 
 	denormalized.depositItems <- left_join(
 		x  = denormalized.depositItems,
-		y  = denormalized.contacts,
-		by = "ContactID"
-		);
-
-	denormalized.depositItems <- left_join(
-		x  = denormalized.depositItems,
 		y  = deposits,
 		by = "DepositNum"
 		);
@@ -62,6 +56,24 @@ denormalizeDepositItems <- function(
 		x  = denormalized.depositItems,
 		y  = depts,
 		by = "DeptID"
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	denormalized.depositItems <- left_join(
+		x  = denormalized.depositItems,
+		y  = denormalized.contacts,
+		by = "ContactID"
+		);
+
+	is.unmatched.ContactID <- is.na(denormalized.depositItems[['ContactTypeMain']]);
+	denormalized.depositItems[is.unmatched.ContactID,'ContactTypeMain'] <- "Unmatched ContactID";
+
+	write.table(
+		file      = "depositItems-unmatchedContactID.csv",
+		x         = denormalized.depositItems[is.unmatched.ContactID,],
+		row.names = FALSE,
+		sep       = '|',
+		quote     = FALSE
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###

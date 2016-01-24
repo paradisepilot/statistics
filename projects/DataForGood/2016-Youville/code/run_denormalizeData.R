@@ -9,12 +9,12 @@ tmp.directory     <- normalizePath(command.arguments[4]);
 library(dplyr);
 library(ggmap);
 
-source(paste0(code.directory,'/cleanThings.R'));
 source(paste0(code.directory,'/denormalizeDepositItems.R'));
 source(paste0(code.directory,'/denormalizeDonationReceipts.R'));
 source(paste0(code.directory,'/doPrimaryForeignKeyDiagnostics.R'));
 source(paste0(code.directory,'/getGeocodes.R'));
 source(paste0(code.directory,'/getYouvilleData.R'));
+source(paste0(code.directory,'/utils.R'));
 
 setwd(output.directory);
 

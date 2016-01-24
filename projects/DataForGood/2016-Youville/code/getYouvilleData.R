@@ -432,10 +432,25 @@ get.contacts <- function(
 		sep  = '|'
 		);
 
+	contact.type.mains[['ContactTypeMain']] <- cleanContactTypeLabels(
+		input.factor = contact.type.mains[['ContactTypeMain']]
+		);
+
 	denormalized.contacts <- left_join(
 		x  = denormalized.contacts,
 		y  = contact.type.mains,
 		by = "ContactTypeMainID"
+		);
+
+	is.unknown.contactType <- is.na(denormalized.contacts[,'ContactTypeMain']);
+	denormalized.contacts[is.unknown.contactType,'ContactTypeMain'] <- "Unknown Contact Type";
+
+	write.table(
+		file      = "contacts-unknownContactTypes.csv",
+		x         = denormalized.contacts[is.unknown.contactType,],
+		row.names = FALSE,
+		sep       = '|',
+		quote     = FALSE
 		);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###

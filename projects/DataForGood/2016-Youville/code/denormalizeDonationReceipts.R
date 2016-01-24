@@ -52,6 +52,18 @@ denormalizeDonationReceipts <- function(
 		by = "ContactID"
 		);
 
+	is.unmatched.ContactID <- is.na(denormalized.donationReceipts[['ContactTypeMain']]);
+	denormalized.donationReceipts[is.unmatched.ContactID,'ContactTypeMain'] <- "Unmatched ContactID";
+
+	write.table(
+		file      = "donationReceipts-unmatchedContactID.csv",
+		x         = denormalized.donationReceipts[is.unmatched.ContactID,],
+		row.names = FALSE,
+		sep       = '|',
+		quote     = FALSE
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	denormalized.donationReceipts <- left_join(
 		x  = denormalized.donationReceipts,
 		y  = deposits,
