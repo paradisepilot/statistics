@@ -1,0 +1,62 @@
+\documentclass{beamer}
+%\documentclass[handout]{beamer}
+
+\usepackage[latin1]{inputenc} %see! It's sort of like R! 
+%\usepackage{subfig}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{comment} %\begin{comment} and \end{comment} are useful for debugging.
+\usepackage{tikz}
+\usepackage{soul}
+\usepackage{multicol}
+\usetikzlibrary{shapes,arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usetheme{Boadilla}
+
+%Alternative Themes: default Boadilla Madrid Pittsburgh Rochester [ works best as \usetheme[height=7mm]{Rochester} ] Copenhagen Warsaw Singapore Malmoe
+%It's possible to build your own themes. Maybe that's an option for BL consistency?
+
+%\definecolor{oicr}{RGB}{255,153,0}
+%\definecolor{oicr}{RGB}{255,153,25}
+\definecolor{oicr}{RGB}{60,125,60}
+\usecolortheme[named=oicr]{structure}
+\setbeamersize{text margin left=10mm} 
+
+%Header Info
+\title[Data for Good 2016-01-24]{
+\mbox{}\vskip 2.0cm
+\Huge\bf Youville Centre
+\vskip 0.1cm
+\huge Exploratory Data Analysis
+\\ \vskip 0.3cm
+\Large Data For Good Ottawa
+}
+% In general [SHORT TITLE]{LONG TITLE}
+\author{Kenneth Chu}
+\institute[D4GO]{
+%\inst{1}Statistics Without Borders
+}
+%%\date{\today} %This is the date the pdf is built. If presentation is for a specific date, it's better to specify!
+\date{January 24, 2016} %This is the date the pdf is built. If presentation is for a specific date, it's better to specify!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\newcommand{\graphicsDir}{../../visualizeData/output.SNAPSHOT.2016-01-24.01}
+\newcommand{\bigHeight}{7.0cm}
+\newcommand{\bigWidth}{11.5cm}
+
+\begin{frame}
+\titlepage
+%\vskip -1.5cm
+%\includegraphics[width=50mm]{\graphicsDir/Kopernik-logo.png}
+%\hfill
+%\includegraphics[height=22.5mm,width=35mm]{\graphicsDir/SWB-logo.png}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{deposits-or-donations.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document} %if this is not the last thing in the .tex file you'll have problems!

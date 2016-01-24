@@ -1,0 +1,373 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\bf\texttt{DepositItems} or \texttt{DonationReceipts}?}
+\normalsize
+\vskip 0.5cm
+
+\begin{itemize}
+\item	Thanks to the great discussion between Hasan and Robert, I was switching my analysis
+	between \texttt{DepositItems} and \texttt{DonationReceipts}.
+
+\vskip 0.5cm
+\item	I will refrain from making any conclusions at this point.
+
+\vskip 0.5cm
+\item	Please consider the following slides as exploratory and comparative analysis of
+	the Youville Centre data, in particular, a comparison between the data contents
+	of \texttt{DepositItems} and \texttt{DonationReceipts}.
+
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\bf\texttt{DepositItems} or \texttt{DonationReceipts}?}
+\tiny
+
+\vskip 0.8cm
+\begin{center}
+\includegraphics[height=5.5cm,width=11.0cm]{\graphicsDir/plot-depositItems-amountByDate-businessCharity.png}
+\end{center}
+
+\begin{flushleft}
+Scatter plot based on rows from the table \texttt{DepositItems} with {\color{red}\texttt{Amount} $> 0$}
+and \texttt{ContactTypeMain} being corporate/small business or registered charity.
+The dates are \texttt{DepositDate} obtained from left-joining the tables \texttt{DepositItems} and \texttt{Deposits} by \texttt{DepositNum}.
+\texttt{ContactTypeMain} was obtained by first joining \texttt{Contacts} and \texttt{ContactTypeMain}, and then left-joining \texttt{DepositItems}
+with the resulting table by \texttt{ContactID}.
+\end{flushleft}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\bf\texttt{DepositItems} or \texttt{DonationReceipts}?}
+\tiny
+
+\vskip 0.8cm
+
+\begin{center}
+\includegraphics[height=5.5cm,width=11.0cm]{\graphicsDir/plot-donationReceipts-amountByDate-businessCharity.png}
+\end{center}
+
+\begin{flushleft}
+The sister plot of the preceding scatter plot based on data from the table \texttt{DonationReceipts}.
+The ``thinning out" of receipts to registered charities,
+{\color{red}explicitly mentioned in Robert's documentation of the data},
+appears visible in this plot.
+\vskip 0.1cm
+\textbf{Q:}\;\;Does this mean we should {\color{red}NOT} use \texttt{DonationReceipts} data to analyze trends
+of donations from registered charities?
+%\vskip 0.05cm
+%\mbox{}
+\end{flushleft}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\large\bf \texttt{DepositItems} cumulative donation by \texttt{ContactTypeMain}}
+\small
+\vskip 0.5cm
+
+\begin{itemize}
+\item	Next, we look at plots of cumulative donation grouped by \texttt{ContactTypeMain}.
+
+\vskip 0.5cm
+\item	These presumably should give some impression of how much donation Youville Centre has been receiving,
+	and whether donations from the various contact types have been slowing down or speeding up.
+
+\vskip 0.5cm
+\item	Comparing the plots based on \texttt{DepositItems} against those based on \texttt{DonationReceipts}
+	also seems to indicate that the former does contain a lot more ``stuff" than the latter (but, obviously,
+	the extra stuff may or may not be relevant to the data analysis requested by Youville).
+
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\large\bf \texttt{DepositItems} cumulative donation by \texttt{ContactTypeMain}}
+\tiny
+\vskip 0.8cm
+\begin{center}
+\includegraphics[height=5.5cm,width=11.0cm]{\graphicsDir/plot-depositItems-cumulativeDontations.png}
+\end{center}
+
+\begin{flushleft}
+\textbf{\color{red}Warning:}\;\;
+Many rows in the table \texttt{DepositItems} have negative values under \texttt{Amount}.
+The plot above is based on rows in the \texttt{DepositItems} with \texttt{Amount} $> 0$.
+In other words, I am tacitly assuming that all rows with \texttt{Amount} $>0$ correspond to donations, and all
+rows with negative values under \texttt{Amount} are non-donations.
+Please let me know if I am mistaken, or perhaps we could verify with clients.
+\end{flushleft}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\large\bf \texttt{DepositItems} cumulative donation by \texttt{ContactTypeMain}}
+\tiny
+
+\vskip 0.8cm
+\begin{center}
+\includegraphics[height=5.5cm,width=11.0cm]{\graphicsDir/plot-depositItems-cumulativeDontations-nonGov.png}
+\end{center}
+
+\begin{flushleft}
+Same as preceding plot but the \;\texttt{ContactTypeMain = Government}\; suppressed,
+in order to better visualize the cumulative donation profiles of the other contact types.
+\vskip 0.5cm
+\mbox{}
+\end{flushleft}
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\large\bf \texttt{DonationReceipts} cumulative donation by \texttt{ContactTypeMain}}
+\tiny
+
+\vskip 0.5cm
+\begin{center}
+\includegraphics[height=5.5cm,width=11.0cm]{\graphicsDir/plot-donationReceipts-cumulativeDontations.png}
+\end{center}
+
+\begin{flushleft}
+Cumulative donation plot based on \texttt{DonationReceipts}.
+Notable differences from \texttt{DepositItems} counterparts:
+\begin{itemize}
+\item	significantly reduced vertical scale
+\item	minute contribution of Government (among donation receipts)
+\item	plateauing of Charity, Foundation and Government roughly after 2003
+\item	presence of a small group of donations (pink line, labeled "Unmatched ContactID") apparently not
+	captured in \texttt{DepositItems} (note the dates).
+	The vast majority of the \texttt{ContactID}'s of these rows on the \texttt{DonationReceipts} table are missing;
+	those of the small remaining minority do NOT appear on the \texttt{Contacts} table.
+\end{itemize}
+\vskip 0.5cm
+\mbox{}
+\end{flushleft}
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\bf To impute or not to impute?}
+\tiny
+
+\vskip 0.4cm
+
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-depositItems-scatterDates.png}
+\end{center}
+
+\begin{flushleft}
+\vskip -0.2cm
+I guess this is a moot question by now, right? But since I have generated the plot already, let's have a look anyway:
+The above plot shows that \texttt{DepositDate} and \texttt{DonationReceiptDate} are very similar
+for those rows on \texttt{DepositItems} for which both dates are deducible (by joining tables).
+The large rectanglar patch corresponds to rows on \texttt{DepositItems} whose \texttt{DonationReceiptDate}'s
+are NOT deducible, and random dates were generated for them for visualization purposes.
+\textit{Mini-conclusion: if we had to use \texttt{DepositItems} after all, using the \texttt{DepositDate} from \texttt{Deposits}
+is probably simpler and more reliable than imputing dates based on data from \texttt{DonationReceipts}.}
+\end{flushleft}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\bf Some retention plots \`{a} la Peter ...}
+\tiny
+
+\vskip 0.4cm
+
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-donationReceipts-retention-ALL.png}
+\end{center}
+
+\begin{flushleft}
+\vskip -0.2cm
+Each point corresponds to a unique \texttt{ContactID} on \texttt{DonationReceipts} and
+shows the first donation receipt date against the most recently receipt date of that \texttt{ContactID}.
+Colouring is based on \texttt{ContactTypeMain} while the bubble size indicates (not too reliably)
+the total amount of donation of that \texttt{ContactID} over time.
+All points should show appear on or above the straight line of slope one.
+Those points now appearing below that line are the one-time donors with fake (random)
+most-recent donation dates for easy visualization
+(so, without tinkering, they would have lied perfectly on the slope-one line).
+\end{flushleft}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\bf Some retention plots \`{a} la Peter ...}
+\tiny
+
+\vskip 0.4cm
+
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-donationReceipts-retention-businessCharity.png}
+\end{center}
+
+\begin{flushleft}
+\vskip -0.2cm
+Same as preceding plot, but showing only rows with \texttt{ContactTypeMain} being Corporate/Small Business
+or Registered Charity, for easier visualization.
+\end{flushleft}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\bf Some retention plots \`{a} la Peter ...}
+\tiny
+
+\vskip 0.4cm
+
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-donationReceipts-retention-individual.png}
+\end{center}
+
+\begin{flushleft}
+\vskip -0.2cm
+Same as preceding plots, but showing only rows with \texttt{ContactTypeMain} being Personal/Individual.
+\end{flushleft}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\bf Some retention plots \`{a} la Peter ...}
+\tiny
+
+\vskip 0.4cm
+
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-donationReceipts-retention-unmatchedContactID.png}
+\end{center}
+
+\begin{flushleft}
+\vskip -0.2cm
+Same as preceding plots, but showing only data from rows on \texttt{DonationReceipts}
+whose \texttt{ContactID} are missing or do NOT appear on the \texttt{Contacts} table
+(hence, their \texttt{ContactTypeMain} cannot be deduced).
+The big bubble corresponds to the 932 rows on \texttt{DonationReceipts} with missing \texttt{ContactID}.
+\end{flushleft}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\bf Some retention plots \`{a} la Peter ...}
+\tiny
+
+\vskip 0.4cm
+
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-donationReceipts-retention-others.png}
+\end{center}
+
+\begin{flushleft}
+\vskip -0.2cm
+Same as preceding plots, but showing only rows with \texttt{ContactTypeMain} excluded in the preceding three plots.
+\end{flushleft}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\bf Retention plots based on \texttt{DepositItems}}
+\tiny
+\vskip 0.4cm
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-depositItems-retention-ALL.png}
+\end{center}
+\end{frame}
+
+%%% ~~~~~~~~~~~~~~~~~~~~~~~ %%%
+\begin{frame}{\bf Retention plots based on \texttt{DepositItems}}
+\tiny
+\vskip 0.4cm
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-depositItems-retention-businessCharity.png}
+\end{center}
+\end{frame}
+
+%%% ~~~~~~~~~~~~~~~~~~~~~~~ %%%
+\begin{frame}{\bf Retention plots based on \texttt{DepositItems}}
+\tiny
+\vskip 0.4cm
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-depositItems-retention-individual.png}
+\end{center}
+\end{frame}
+
+%%% ~~~~~~~~~~~~~~~~~~~~~~~ %%%
+\begin{frame}{\bf Retention plots based on \texttt{DepositItems}}
+\tiny
+\vskip 0.4cm
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-depositItems-retention-government.png}
+\end{center}
+\end{frame}
+
+%%% ~~~~~~~~~~~~~~~~~~~~~~~ %%%
+\begin{frame}{\bf Retention plots based on \texttt{DepositItems}}
+\tiny
+\vskip 0.4cm
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-depositItems-retention-nonGovernmentIndividual.png}
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf Mapping \texttt{DonationReceipts} data ...}\;\tiny probably useless but definitely fun $\ddot\smile$}
+\tiny
+\vskip 0.4cm
+
+\begin{center}
+\includegraphics[height=6.5cm,width=9.3cm]{\graphicsDir/plot-donationReceipts-map-ALL.png}
+\end{center}
+
+\begin{flushleft}
+\vskip -0.2cm
+Longitude and latitude were obtained using the R command \texttt{ggmap::geocode()}
+based on the field \texttt{PostalCode} on the \texttt{DonationReceipts} table.
+\end{flushleft}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf Mapping \texttt{DonationReceipts} data ...}\;\tiny probably useless but definitely fun $\ddot\smile$}
+\tiny
+
+\vskip 0.4cm
+\begin{center}
+\includegraphics[height=6.5cm,width=9.5cm]{\graphicsDir/plot-donationReceipts-map-businessCharity.png}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf Mapping \texttt{DonationReceipts} data ...}\;\tiny probably useless but definitely fun $\ddot\smile$}
+\tiny
+
+\vskip 0.4cm
+\begin{center}
+\includegraphics[height=6.5cm,width=9.5cm]{\graphicsDir/plot-donationReceipts-map-individual.png}
+\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf Mapping \texttt{DonationReceipts} data ...}\;\tiny probably useless but definitely fun $\ddot\smile$}
+\tiny
+
+\vskip 0.4cm
+\begin{center}
+\includegraphics[height=6.5cm,width=9.5cm]{\graphicsDir/plot-donationReceipts-map-unmatchedContactID.png}
+\end{center}
+
+\begin{flushleft}
+Well, those rows on \texttt{DonationReceipts} with non-matchable \texttt{ContactID}'s
+(either missing, or non-missing but not present on the \texttt{Contacts} table) probably didn't originate
+from the same physical real-world individual, in case there were ever any doubts $\ddot\smile$.
+\end{flushleft}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
