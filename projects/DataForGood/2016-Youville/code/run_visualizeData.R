@@ -445,7 +445,8 @@ plotAmountByDate(
 		),
 	column.Date   = 'DepositDate',
 	column.Amount = 'Amount',
-	input.palette = palette.Youville
+	input.palette = palette.Youville,
+	input.alpha   = 0.4
 	);
 
 ###################################################
