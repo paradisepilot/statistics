@@ -75,6 +75,18 @@ write.table(
 	);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+plotScatterDates(
+	FILE.ggplot   = "plot-depositItems-scatterDates.png",
+	plot.title    = "Deposit Items",
+	DF.input      = DF.depositItems,
+	start.date    = "1985-01-01",
+	end.date      = "2015-12-31",
+	input.palette = palette.Youville,
+	input.alpha   = 0.1,
+	resolution    = 300
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 zoom <- 12;
 load(paste0(table.directory,"/ggmap-ottawa-zoom",zoom,".RData"));
 str(ggmap.ottawa);

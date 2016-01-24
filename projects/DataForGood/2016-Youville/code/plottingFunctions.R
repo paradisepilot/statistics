@@ -86,6 +86,99 @@ plotDonationMap <- function(
 	}
 
 ############################################################
+plotScatterDates <- function(
+	FILE.ggplot   = NULL,
+	plot.title    = NULL,
+	DF.input      = NULL,
+	contact.types = levels(DF.input[['ContactTypeMain']]),
+	start.date    = "1975-01-01",
+	end.date      = "2015-12-31",
+	input.palette = NULL,
+	input.alpha   = 0.2,
+	resolution    = 300
+	) {
+
+	require(dplyr);
+	require(ggmap);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	DF.temp <- DF.input[,c('ContactTypeMain','DepositDate','DonationReceiptDate','Amount')];
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	DF.temp <- filter(DF.temp,Amount > 0);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	isNA.depositeDate <- is.na(DF.temp[,'DepositDate']);
+	DF.temp[isNA.depositeDate,'DepositDate'] <- as.Date("1990-01-01") + sample(
+		x=seq(-6*365,7*365,1),size=sum(isNA.depositeDate),replace=TRUE
+		);
+
+	isNA.donationReceiptDate <- is.na(DF.temp[,'DonationReceiptDate']);
+	DF.temp[isNA.donationReceiptDate,'DonationReceiptDate'] <- as.Date("1990-01-01") + sample(
+		x=seq(-6*365,7*365,1),size=sum(isNA.donationReceiptDate),replace=TRUE
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	my.ggplot <- ggplot(data = NULL) + theme_bw() + coord_fixed(ratio=1);
+	my.ggplot <- my.ggplot + ggtitle(plot.title);
+	my.ggplot <- my.ggplot + scale_colour_manual(
+		name   = "Contact Type (Main)",
+		values = input.palette
+		);
+
+	my.ggplot <- my.ggplot + scale_size(
+		name   = "Contact\nDonation Amount\n(summed over time)"
+		#, breaks = (1e6) * seq(0,20,10), range  = c(0,6)
+		);
+
+	is.selected <- DF.temp[['ContactTypeMain']] %in% contact.types;
+	DF.temp     <- na.omit(DF.temp[is.selected,]);
+
+	my.ggplot <- my.ggplot + geom_point(
+		data    = DF.temp,
+		mapping = aes(
+			x     = DepositDate,
+			y     = DonationReceiptDate,
+			size  = Amount,
+			color = ContactTypeMain
+			),
+		alpha = input.alpha
+		);
+
+	my.ggplot <- my.ggplot + xlab("Deposit Date");
+	my.ggplot <- my.ggplot + ylab("Donation Receipt Date");
+
+	#my.ggplot <- my.ggplot + geom_abline(intercept = 0, slope = 1, size = 1, linetype = 2, colour = "gray");
+
+	my.ggplot <- my.ggplot + scale_x_date(
+		date_labels        = "%b %Y",
+		limits             = c(as.Date(start.date),as.Date(end.date)),
+		date_breaks        = "1 year"
+		);
+
+	my.ggplot <- my.ggplot + scale_y_date(
+		date_labels        = "%b %Y",
+		limits             = c(as.Date(start.date),as.Date(end.date)),
+		date_breaks        = "1 year"
+		);
+
+	my.ggplot <- my.ggplot + theme(
+		title             = element_text(size = 25, face = "bold"),
+		axis.title        = element_text(size = 22, face = "bold"),
+		axis.text.x       = element_text(size = 10, angle = 90),
+		axis.text.y       = element_text(size = 10),
+		panel.grid.major  = element_line(size = 0.5),
+		panel.grid.minor  = element_line(size = 1.0),
+		legend.position   = "right",
+		legend.title      = element_text(size = 16, face = "bold"),
+		legend.text       = element_text(size = 16, face = "bold")
+		);
+
+	ggsave(file = FILE.ggplot, plot = my.ggplot, dpi = resolution, height = 8, width = 12, units = 'in');
+
+	}
+
+############################################################
 plotRetention <- function(
 	FILE.ggplot   = NULL,
 	plot.title    = NULL,
