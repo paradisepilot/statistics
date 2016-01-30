@@ -25,6 +25,7 @@ DF.titanic <- getDataTitanic(data.directory = data.directory);
 str(DF.titanic);
 
 titanic.byClassSex <- group_by(DF.titanic,Sex,Pclass,AgeGroup);
+#titanic.byClassSex <- group_by(DF.titanic,Sex,Pclass);
 temp <- as.data.frame(summarise(
 	titanic.byClassSex,
 	count    = n(),
@@ -34,6 +35,35 @@ temp <- as.data.frame(summarise(
 
 str  ( temp );
 print( temp );
+
+model.poisson <- glm(
+	data    = temp,
+	formula = survived ~ Sex + Pclass,
+	family  = poisson,
+	offset  = count
+	);
+
+str(model.poisson);
+
+cbind(temp,fitted=model.poisson[['fitted.values']]);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+DF.temp <- titanic.byClassSex[,c('Survived','Sex','Pclass','AgeGroup')];
+str(DF.temp);
+DF.temp <- na.omit(DF.temp);
+str(DF.temp);
+
+model.logistic <- glm(
+	data    = DF.temp,
+	formula = Survived ~ Sex + Pclass + AgeGroup,
+	family  = binomial(link = logit)
+	);
+
+temp <- unique(cbind(
+	DF.temp[,c('Sex','Pclass','AgeGroup')],
+	fitted = model.logistic[['fitted.values']]
+	));
+arrange(temp,Sex,Pclass,AgeGroup);
 
 ###################################################
 

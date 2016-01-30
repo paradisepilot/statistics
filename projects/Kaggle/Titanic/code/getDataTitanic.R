@@ -32,11 +32,13 @@ getDataTitanic <- function(data.directory = NULL) {
 		);
 	DF.titanic[is.na(DF.titanic[['Embarked']]),'Embarked'] <- "unknown";
 
-	DF.titanic[,'AgeGroup'] <- cut(
-		x = DF.titanic[['Age']],
+	DF.titanic[,'AgeGroup'] <- as.character(cut(
+		x      = DF.titanic[['Age']],
 		breaks = c(0,16,50,Inf),
 		right  = FALSE
-		);
+		));
+	DF.titanic[is.na(DF.titanic[['AgeGroup']]),'AgeGroup'] <- "Unknown";
+	DF.titanic[['AgeGroup']] <- as.factor(DF.titanic[['AgeGroup']]);
 
 	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 	return(DF.titanic);
