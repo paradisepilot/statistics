@@ -15,6 +15,18 @@ library(ggplot2);
 #source(paste(code.directory, "which-bugs.R",  sep = "/"));
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+get.performance.metrics <- function(x = NULL) {
+	output.list <- list(
+		accuracy            = (x[1,1]+x[2,2]) / (x[1,1]+x[1,2]+x[2,1]+x[2,2]),
+		sensitivity         = x[2,2] / (x[2,1]+x[2,2]),
+		specificity         = x[1,1] / (x[1,1]+x[1,2]),
+		false.negative.rate = x[2,1] / (x[1,1]+x[2,1]),
+		false.positive.rate = x[1,2] / (x[1,2]+x[2,2])
+		);
+	return(output.list);
+	}
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 setwd(output.directory);
 
 resolution <- 100;
@@ -121,13 +133,12 @@ ggsave(file = temp.filename, plot = my.ggplot, dpi = resolution, height = 8, wid
 ### (b) ###
 
 FIT.logistic <- glm(
-	data    = Weekly,
 	formula = direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume,
+	data    = Weekly,
 	family  = binomial(link = logit)
 	);
 
 summary(FIT.logistic);
-str(FIT.logistic);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### (c) ###
@@ -139,18 +150,21 @@ temp <- as.data.frame(cbind(
 	));
 str(temp);
 summary(temp);
-temp[1:20,];
 
-sum(temp[,'direction']);
-table(temp[,'direction'],temp[,'predicted']);
+temp <- xtabs(data = temp, formula = ~ direction + predicted);
+temp;
+get.performance.metrics(x = temp);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### (d) ###
 
+is.training <- (Weekly[['Year']] <= 2008);
+
 FIT.logistic <- glm(
-	data    = Weekly[Weekly[['Year']] <= 2007,],
 	formula = direction ~ Lag2,
-	family  = binomial(link = logit)
+	data    = Weekly,
+	family  = binomial(link = logit),
+	subset  = is.training
 	);
 
 summary(FIT.logistic);
@@ -160,12 +174,77 @@ temp <- as.data.frame(cbind(
 	fitted    = FIT.logistic[['fitted.values']],
 	predicted = ceiling(FIT.logistic[['fitted.values']] - 0.5)
 	));
-str(temp);
-summary(temp);
-temp[1:20,];
+temp <- xtabs(data = temp, formula = ~ direction + predicted);
+temp;
+get.performance.metrics(x = temp);
 
-sum(temp[,'direction']);
-table(temp[,'direction'],temp[,'predicted']);
+temp <- Weekly[!is.training,];
+temp <- as.data.frame(cbind(
+	temp,
+	fitted.values = predict(object=FIT.logistic, newdata=data.frame(Lag2=temp[,"Lag2"]), type="response")
+	));
+temp <- as.data.frame(cbind(
+	temp,
+	predicted = ceiling(temp[,'fitted.values'] - 0.5)
+	));
+temp <- xtabs(data = temp[,c('direction','predicted')], formula = ~ direction + predicted);
+temp;
+get.performance.metrics(x = temp);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### (e) ###
+
+FIT.lda <- lda(
+	formula = direction ~ Lag2,
+	data    = Weekly,
+	subset  = is.training
+	);
+
+temp <- Weekly[!is.training,];
+temp <- as.data.frame(cbind(
+	temp,
+	predicted = predict(object=FIT.lda, newdata=data.frame(Lag2=temp[,"Lag2"]), type="response")[['class']]
+	));
+str(temp);
+temp <- xtabs(data = temp[,c('direction','predicted')], formula = ~ direction + predicted);
+temp;
+get.performance.metrics(x = temp);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### (f) ###
+
+FIT.qda <- qda(
+	formula = direction ~ Lag2,
+	data    = Weekly,
+	subset  = is.training
+	);
+
+temp <- Weekly[!is.training,];
+temp <- as.data.frame(cbind(
+	temp,
+	predicted = predict(object=FIT.qda, newdata=data.frame(Lag2=temp[,"Lag2"]), type="response")[['class']]
+	));
+str(temp);
+temp <- xtabs(data = temp[,c('direction','predicted')], formula = ~ direction + predicted);
+temp;
+get.performance.metrics(x = temp);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### (g) ###
+
+FIT.knn <- knn(
+	train = data.frame(Lag2 = Weekly[ is.training,"Lag2"]),
+	test  = data.frame(Lag2 = Weekly[!is.training,"Lag2"]),
+	cl    = Weekly[ is.training,"direction"],
+	k     = 1
+	);
+
+temp <- Weekly[!is.training,];
+temp <- as.data.frame(cbind(temp, predicted = FIT.knn));
+str(temp);
+temp <- xtabs(data = temp[,c('direction','predicted')], formula = ~ direction + predicted);
+temp;
+get.performance.metrics(x = temp);
 
 ###################################################
 
