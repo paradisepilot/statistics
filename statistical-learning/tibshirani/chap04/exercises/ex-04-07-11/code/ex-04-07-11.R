@@ -12,7 +12,10 @@ library(class);
 library(ggplot2);
 
 source(paste(code.directory, "ex-04-07-11-b.R", sep = "/"));
-source(paste(code.directory, "ex-04-07-11-c.R", sep = "/"));
+source(paste(code.directory, "ex-04-07-11-d.R", sep = "/"));
+source(paste(code.directory, "ex-04-07-11-e.R", sep = "/"));
+source(paste(code.directory, "ex-04-07-11-f.R", sep = "/"));
+source(paste(code.directory, "ex-04-07-11-g.R", sep = "/"));
 source(paste(code.directory, "getDFauto.R",     sep = "/"));
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -49,7 +52,30 @@ ex.04.07.11.b(DF.auto = DF.auto);
 ### (c) ###
 is.training <- sample(x = c(TRUE,FALSE), size=nrow(DF.auto), replace=TRUE);
 
-ex.04.07.11.c(
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### (d) ###
+ex.04.07.11.d(
+	DF.training = DF.auto[ is.training,],
+	DF.testing  = DF.auto[!is.training,]
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### (e) ###
+ex.04.07.11.e(
+	DF.training = DF.auto[ is.training,],
+	DF.testing  = DF.auto[!is.training,]
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### (f) ###
+ex.04.07.11.f(
+	DF.training = DF.auto[ is.training,],
+	DF.testing  = DF.auto[!is.training,]
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### (g) ###
+ex.04.07.11.g(
 	DF.training = DF.auto[ is.training,],
 	DF.testing  = DF.auto[!is.training,]
 	);
