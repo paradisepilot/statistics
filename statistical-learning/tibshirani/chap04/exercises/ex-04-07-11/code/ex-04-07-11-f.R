@@ -51,9 +51,6 @@ run.logistic <- function(
 		predicted = as.numeric( predict(object=FIT, newdata=DF.testing, type="response") > 0.5 )
 		));
 
-	print("str(temp)");
-	print( str(temp) );
-
 	temp <- xtabs(data = temp[,c('mpg01','predicted')], formula = ~ mpg01 + predicted);
 
 	return( as.data.frame(get.performance.metrics(x = temp)) );
