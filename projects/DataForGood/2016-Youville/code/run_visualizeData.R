@@ -14,6 +14,7 @@ library(VennDiagram);
 source(paste0(code.directory,'/denormalizeDepositItems.R'));
 source(paste0(code.directory,'/denormalizeDonationReceipts.R'));
 source(paste0(code.directory,'/doPrimaryForeignKeyDiagnostics.R'));
+source(paste0(code.directory,'/filterRegroup.R'));
 source(paste0(code.directory,'/getGeocodes.R'));
 source(paste0(code.directory,'/getYouvilleData.R'));
 source(paste0(code.directory,'/plottingFunctions.R'));
@@ -51,7 +52,8 @@ str(denormalized.donationReceipts);
 str(denormalized.depositItems);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-palette.Youville <- getContactTypePalette();
+palette.Youville    <- getPalette.contactType();
+palette.depositItem <- getPalette.depositItemGroup();
 
 DF.donationReceipts <- denormalized.donationReceipts[['denormalized.donationReceipts']];
 DF.depositItems     <- denormalized.depositItems[['denormalized.depositItems']];
@@ -74,6 +76,37 @@ write.table(
 	quote     = TRUE,
 	row.names = FALSE
 	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+DF.temp <- filterRegroup(DF.input = DF.depositItems);
+
+levels(DF.temp[,'depositItem.group']);
+
+new.plotCumulativeDonations(
+	FILE.ggplot   = 'plot-depositItems-cumulativeDontations.png',
+	plot.title    = "Deposit Items (Amount > 0, 4000 <= AccountCode <= 4999)",
+	DF.input      = DF.temp,
+	column.Date   = 'DepositDate',
+	column.Amount = 'Amount',
+	input.palette = palette.depositItem
+	);
+
+new.plotCumulativeDonations(
+	FILE.ggplot = 'plot-depositItems-cumulativeDontations-nonGov.png',
+	plot.title  = "Deposit Items (Amount > 0, 4000 <= AccountCode <= 4999)",
+	DF.input    = DF.temp,
+	depositItem.groups = setdiff(
+		levels(DF.temp[,'depositItem.group']),
+		c("Subsidies - City Of Ottawa")
+		),
+	column.Date   = 'DepositDate',
+	column.Amount = 'Amount',
+	input.palette = palette.depositItem
+	);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+
+q();
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 venn.diagram(

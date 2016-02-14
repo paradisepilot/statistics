@@ -294,6 +294,94 @@ plotRetention <- function(
 	}
 
 ############################################################
+new.plotCumulativeDonations <- function(
+	FILE.ggplot        = NULL,
+	plot.title         = NULL,
+	DF.input           = NULL,
+	depositItem.groups = levels(DF.input[['depositItem.group']]),
+	column.Date        = NULL,
+	column.Amount      = NULL,
+	start.date         = "1996-07-01",
+	end.date           = "2015-12-31",
+	input.palette      = NULL,
+	resolution         = 300
+	) {
+
+	require(dplyr);
+	require(ggmap);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	DF.temp <- DF.input[,c(column.Date,column.Amount,'depositItem.group')];
+
+	colnames(DF.temp) <- gsub(
+		x           = colnames(DF.temp),
+		pattern     = column.Date,
+		replacement = "Date"
+		);
+	
+	colnames(DF.temp) <- gsub(
+		x           = colnames(DF.temp),
+		pattern     = column.Amount,
+		replacement = "Amount"
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	DF.temp <- na.omit(DF.temp);
+	DF.temp <- filter(DF.temp,Amount > 0);
+
+	DF.temp <- arrange(DF.temp,depositItem.group,Date);
+	by.vars <- group_by(DF.temp,depositItem.group);
+	DF.temp <- mutate(by.vars, cumulAmount = cumsum(Amount));
+	DF.temp <- as.data.frame(DF.temp);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	my.ggplot <- ggplot(data = NULL);
+	my.ggplot <- my.ggplot + ggtitle(plot.title);
+	my.ggplot <- my.ggplot + theme_bw();
+	my.ggplot <- my.ggplot + scale_colour_manual(
+		name   = "Deposit Item groups",
+		values = input.palette
+		);
+
+	is.selected <- DF.temp[['depositItem.group']] %in% depositItem.groups;
+	DF.temp     <- na.omit(DF.temp[is.selected,]);
+
+	my.ggplot <- my.ggplot + geom_line(
+		data    = DF.temp,
+		mapping = aes(
+			x     = Date,
+			y     = cumulAmount,
+			color = depositItem.group
+			),
+		size = 0.75
+		);
+
+	my.ggplot <- my.ggplot + scale_x_date(
+		date_labels        = "%b %Y",
+		limits             = c(as.Date(start.date),as.Date(end.date)),
+		date_breaks        = "1 year"
+		);
+	my.ggplot <- my.ggplot + xlab("");
+	#my.ggplot <- my.ggplot + scale_y_continuous(limits=c(0,2e6));
+	my.ggplot <- my.ggplot + ylab("cumulative Amount");
+
+	my.ggplot <- my.ggplot + theme(
+		title            = element_text(size = 25,  face = "bold"),
+		axis.title       = element_text(size = 25,  face = "bold"),
+		axis.text.x      = element_text(size = 15, angle = 90),
+		axis.text.y      = element_text(size = 15),
+		panel.grid.major = element_line(size = 0.5),
+		panel.grid.minor = element_line(size = 1.0),
+		legend.position  = "bottom",
+		legend.title     = element_blank(),
+		legend.text      = element_text(size = 18, face = "bold")
+		);
+
+	ggsave(file = FILE.ggplot, plot = my.ggplot, dpi = resolution, height = 8, width = 16, units = 'in');
+
+	}
+
+############################################################
 plotCumulativeDonations <- function(
 	FILE.ggplot   = NULL,
 	plot.title    = NULL,

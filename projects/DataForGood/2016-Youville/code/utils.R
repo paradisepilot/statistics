@@ -64,7 +64,64 @@ cleanContactTypeLabels <- function(input.factor = NULL) {
 
 	}
 
-getContactTypePalette <- function() {
+getPalette.depositItemGroup <- function() {
+
+	require(RColorBrewer);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	depositItem.groups <- c(
+		'Subsidies - City Of Ottawa',
+		'Subsidies - MCSS/MCYS',
+		'Donations Capital Campaign',
+		'Wage Subsidy - City of Ottawa',
+		'Personal/Individual',
+		'Government',
+		'Corporate/Small Business',
+		'Registered Charity',
+		'Foundation',
+		'Unknown Contact Type',
+		'NPO'
+		);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	depositItem.colours <- c(
+		'pink',      # 'Subsidies - City Of Ottawa',
+		'pink',      # 'Subsidies - MCSS/MCYS',
+		'darkgreen', # 'Donations Capital Campaign',
+		'cyan',      # 'Wage Subsidy - City of Ottawa',
+		'black',     # 'Personal/Individual',
+		'green',     # 'Government',
+		'red',       # 'Corporate/Small Business',
+		'blue',      # 'Registered Charity',
+		'brown',     # 'Foundation',
+		'gold',      # 'Unknown Contact Type',
+		'purple'     # 'NPO'
+		);
+
+	#temp.colours <- brewer.pal(9,"Set1")[c(9,1:8)];
+	#contact.colours <- c(
+	#	temp.colours[1:4],
+	#	"white",
+	#	temp.colours[5:9]
+	#	);
+
+	### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+	DF.colourScheme <- data.frame(
+		depositItem.group  = depositItem.groups,
+		depositItem.colour = depositItem.colours,
+		stringsAsFactors   = FALSE
+		);
+	
+	DF.colourScheme[['depositItem.colour']] <- as.character(DF.colourScheme[['depositItem.colour']]);
+
+	output.palette <- as.character(DF.colourScheme[['depositItem.colour']]);
+	names(output.palette) <- as.character(DF.colourScheme[['depositItem.group']]);
+
+	return(output.palette);
+
+	}
+
+getPalette.contactType <- function() {
 
 	require(RColorBrewer);
 
