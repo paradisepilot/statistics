@@ -125,6 +125,74 @@ error.rate <- ex.05.04.05.d(DF.input = Default); error.rate;
 error.rate <- ex.05.04.05.d(DF.input = Default); error.rate;
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### (d) ###
+
+ex.05.04.05.d <- function(
+	DF.input = NULL
+	){
+	is.training   <- sample(x = c(TRUE,FALSE), size = nrow(DF.input), replace = TRUE);
+	DF.training   <- DF.input[ is.training,];
+	DF.validation <- DF.input[!is.training,];
+	FIT.training <- glm(
+		formula = default.numeric ~ income + balance + student,
+		data    = DF.training,
+		family  = binomial
+		);
+	posterior.probabilities <- predict(
+		object  = FIT.training,
+		newdata = DF.validation[,c('income','balance','student')],
+		type    = "response"
+		);
+	DF.validation <- cbind(
+		DF.validation,
+		prediction = ceiling(posterior.probabilities - 0.5)
+		);
+	#print("str(DF.validation)");
+	#print( str(DF.validation) );
+	is.correct <- (DF.validation[["default.numeric"]] == DF.validation[["prediction"]]);
+	error.rate <- 1 - sum(is.correct)/nrow(DF.validation);
+	return(error.rate);
+	}
+
+error.rate <- ex.05.04.05.d(DF.input = Default); error.rate;
+error.rate <- ex.05.04.05.d(DF.input = Default); error.rate;
+error.rate <- ex.05.04.05.d(DF.input = Default); error.rate;
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### extra stuff ###
+
+ex.05.04.05.e <- function(
+	DF.input = NULL
+	){
+	is.training   <- sample(x = c(TRUE,FALSE), size = nrow(DF.input), replace = TRUE);
+	DF.training   <- DF.input[ is.training,];
+	DF.validation <- DF.input[!is.training,];
+	FIT.training <- glm(
+		formula = default.numeric ~ student,
+		data    = DF.training,
+		family  = binomial
+		);
+	posterior.probabilities <- predict(
+		object  = FIT.training,
+		newdata = DF.validation[,c('default','student')],
+		type    = "response"
+		);
+	DF.validation <- cbind(
+		DF.validation,
+		prediction = ceiling(posterior.probabilities - 0.5)
+		);
+	#print("str(DF.validation)");
+	#print( str(DF.validation) );
+	is.correct <- (DF.validation[["default.numeric"]] == DF.validation[["prediction"]]);
+	error.rate <- 1 - sum(is.correct)/nrow(DF.validation);
+	return(error.rate);
+	}
+
+error.rate <- ex.05.04.05.e(DF.input = Default); error.rate;
+error.rate <- ex.05.04.05.e(DF.input = Default); error.rate;
+error.rate <- ex.05.04.05.e(DF.input = Default); error.rate;
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
 q();
 
