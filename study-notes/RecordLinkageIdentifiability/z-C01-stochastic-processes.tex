@@ -1,0 +1,205 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Equivalence of $\left(\Czo\,,\Vert\cdot\Vert_{\infty}\right)$-valued random variables
+and $\Re$-valued stochastic processes indexed by $[0,1]$ with continuous sample paths}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{proposition}[The ``one-dimensional subsets" of $\Czo$ generate its Borel $\sigma$-algebra]
+\label{OneDSetsGeneratesBCzo}
+\mbox{}\vskip 0.1cm
+\noindent
+Let \,$(\Czo\,,\Vert\cdot\Vert_{\infty})$\, be the metric space
+of continuous $\Re$-valued functions defined on the closed unit interval
+equipped with the supremum norm.
+For each $t \in [0,1]$, let \,$\ev_{t} : \Czo \longrightarrow \Re : x \longmapsto x(t)$.
+Define:
+\begin{equation*}
+\mathcal{S}
+\;\; := \;\;
+\left\{\;\,
+\ev_{t}^{-1}(H) \,\subset\, \Czo
+\;\;\left\vert\;
+\begin{array}{c} t \in [0,1] \\ H \in \mathcal{O} \end{array}
+\right.
+\right\}
+\;\; \subset \;\; \mathcal{P}\!\left(\,\Czo\,\right).
+\end{equation*}
+Then, $\mathcal{S}$ generates the Borel $\sigma$-algebra
+\,$\mathcal{B} \,:=\, \mathcal{B}(\Czo,\Vert\cdot\Vert_{\infty})$
+of the metric space $(\Czo,\Vert\cdot\Vert_{\infty})$;
+in other words,
+\begin{equation*}
+\sigma\!\left(\,\mathcal{S}\,\right) \;=\; \mathcal{B}.
+\end{equation*}
+\end{proposition}
+\proof
+First, note that $\sigma\!\left(\,\mathcal{S}\,\right) \subset \mathcal{B}$.
+Indeed, recall that, for each $t \in [0,1]$, $\ev_{t} : \Czo\longrightarrow\Re$ is continuous,
+hence $(\mathcal{B},\mathcal{O})$-measurable, by Corollary \ref{ContinuousMapsAreBorelMeasurable}.
+In particular, $\ev_{t}^{-1}(H) \in \mathcal{B}$, for each $t \in [0,1]$ and $H \in \mathcal{O}$.
+Thus, $\mathcal{S} \subset \mathcal{B}$; hence, $\sigma\!\left(\,\mathcal{S}\,\right) \subset \mathcal{B}$.
+
+It remains to establish the reverse inclusion.
+To this end, first observe that, for each $x \in \Czo$ and each $\varepsilon > 0$, we have
+\begin{equation*}
+\overline{B(x,\varepsilon)}
+\;\; = \left.\left.\left.\bigcap_{r\,\in\,\Q\,\cap\,[0,1]} \right\{\; y \in \Czo \;\;\right\vert\;\; \vert\,y(r) - x(r)\,\vert \leq \varepsilon \;\right\}
+\;\; = \;\; \bigcap_{r\,\in\,\Q\,\cap\,[0,1]} \ev_{r}^{-1}\!\left(\,[x(r)-\varepsilon,x(r)\overset{{\color{white}1}}{+}\varepsilon]\,\right),
+\end{equation*}
+which shows that $\sigma\!\left(\,\mathcal{S}\,\right)$ contains all the closed balls in $\Czo$.
+On the other hand, recall that, in any metric space, every open ball can be expressed
+as a countable union of closed balls;
+indeed, for any $y$ in the given metric space, and any $\delta > 0$, we have:
+\begin{equation*}
+B(y,\delta) \;\; = \;\; \bigcup_{n\in\N}\;\overline{B\!\left(y,\delta-\dfrac{1}{n}\right)}.
+\end{equation*}
+We thus see that $\sigma\!\left(\,\mathcal{S}\,\right)$
+contains all the open balls in $\Czo$.
+By the separability of $\Czo$ and Theorem \ref{CharacterizationOfSeparabilityOfMetricSpaces},
+we see that every open subset of $\Czo$ can be expressed as a countable
+union of open balls.
+Hence, $\sigma\!\left(\,\mathcal{S}\,\right)$ in fact contains
+all the open subsets of $\Czo$, which immediately yields
+$\mathcal{B} \,\subset\, \sigma\!\left(\,\mathcal{S}\,\right)$.
+This proves $\sigma\!\left(\,\mathcal{S}\,\right) \,=\, \mathcal{B}$.
+\qed
+
+\vskip 0.8cm
+\begin{theorem}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$\left(\Omega,\mathcal{A}\right)$ is a measurable space, and
+		$\mathcal{O}$ is the Borel $\sigma$-algebra of $\Re$ (equipped with usual Euclidean metric).
+\item	$(\Czo\,,\Vert\cdot\Vert_{\infty})$\, is the metric space
+		of continuous $\Re$-valued functions defined on the compact unit interval
+		equipped with the supremum norm, and 
+		\,$\mathcal{B} \,:=\, \mathcal{B}(\Czo\,,\Vert\cdot\Vert_{\infty})$ is its Borel $\sigma$-algebra.
+\item	$X : \Omega \longrightarrow \Czo$ is a function with domain $\Omega$
+		and codomain $\Czo$, but otherwise arbitrary.
+\item	For each $t \in [0,1]$, let \,$\ev_{t} : \Czo \longrightarrow \Re : x \longmapsto x(t)$.
+\item 	For each $t \in [0,1]$, let \,$X_{t} \,:=\, \ev_{t} \circ X$.
+		In other words, $X_{t} : \Omega \longrightarrow \Re : \omega \longmapsto \ev_{t}(X(\omega)) = X(\omega)(t)$.
+\end{itemize}
+Then, $X$ is $\left(\mathcal{A},\mathcal{B}\right)$-measurable if and only if,
+for each $t \in [0,1]$, $X_{t}$ is $\left(\mathcal{A},\mathcal{O}\right)$-measurable.
+\end{theorem}
+\proof
+\vskip 0.3cm
+\noindent
+\underline{(\,$\Longrightarrow$\,)}\vskip 0.2cm
+\noindent
+It is trivial to see that, for each $t \in [0,1]$,
+\,$\ev_{t} : \left(\,\Czo\,,\Vert\,\cdot\,\Vert_{\infty}\,\right) \longrightarrow \left(\,\Re\,,\vert\,\cdot\,\vert\,\right) : x \longmapsto x(t)$\, is continuous.
+Recall that continuous maps are necessarily Borel measurable; see Corollary \ref{ContinuousMapsAreBorelMeasurable}.
+Hence,
+$\ev_{t} : \left(\,\Czo\,,\Vert\,\cdot\,\Vert_{\infty}\,\right) \longrightarrow \left(\,\Re\,,\vert\,\cdot\,\vert\,\right)$
+is $(\mathcal{B}\,,\mathcal{O})$-measurable, for each $t \in [0,1]$.
+Now, suppose $X : \Omega \longrightarrow \Czo$ is $(\mathcal{A},\mathcal{B})$-measurable.
+Then, for each $t \in [0,1]$, the composition
+$X_{t} := \ev_{t} \circ X$ is $(\mathcal{A}\,,\mathcal{O})$-measurable, as required.
+
+\vskip 0.5cm
+\noindent
+\underline{(\,$\Longleftarrow$\,)}\vskip 0.2cm
+\noindent
+Suppose that, for each $t \in [0,1]$, \,$X_{t} := \ev_{t} \circ X$\, is $(\mathcal{A}\,,\mathcal{O})$-measurable.
+We seek to establish that \,$X : (\Omega,\mathcal{A}) \longrightarrow (\Czo,\mathcal{B})$\, is $(\mathcal{A},\mathcal{B})$-measurable.
+To this end, let
+\begin{equation*}
+\mathcal{S}
+\;\; := \;\;
+\left\{\;\,
+\ev_{t}^{-1}(H) \,\subset\, \Czo
+\;\;\left\vert\;
+\begin{array}{c} t \in [0,1] \\ H \in \mathcal{O} \end{array}
+\right.
+\right\}
+\;\; \subset \;\; \mathcal{P}\!\left(\,\Czo\,\right).
+\end{equation*}
+Then, note that the $(\mathcal{A}\,,\mathcal{B})$-measurable of $X$ follows immediately from
+Theorem \ref{preimageOfGeneratingSetMeasurable},
+Proposition \ref{OneDSetsGeneratesBCzo}, and
+the following
+
+\vskip 0.3cm
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\textbf{Claim:}\quad $X^{-1}\!\left(\,\mathcal{S}\,\right) \;\subset\; \mathcal{A}$.
+\end{minipage}
+\end{center}
+
+\vskip 0.1cm
+\noindent
+Proof of Claim:\quad
+Every set in $\mathcal{S}$ has the form $\ev_{t}^{-1}(H)$, for some $t \in [0,1]$ and some $H \in \mathcal{O}$.
+Note that
+\begin{equation*}
+X^{-1}\!\left(\,\ev_{t}^{-1}(H)\,\right)
+\;\; = \;\; \left(\ev_{t} \circ X\right)^{-1}\!\left(\,\overset{{\color{white}.}}{H}\,\right)
+\;\; = \;\; X_{t}^{-1}\!\left(\,\overset{{\color{white}.}}{H}\,\right)
+\;\; \in \;\; \mathcal{A},
+\end{equation*}
+where the last containment follows immediately from
+the $(\mathcal{A}\,,\mathcal{O})$-measurability hypothesis on $X_{t}$, for each $t \in [0,1]$.
+This shows that $X^{-1}\!\left(\,\mathcal{S}\,\right) \subset \mathcal{A}$ and
+completes the proof of the Claim.
+
+\vskip 0.3cm
+\noindent
+The proof of the Theorem is now complete.
+\qed
+
+\vskip 0.8cm
+\begin{theorem}
+\label{CzoRVStochasticProcessEquivalence}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item	$\left(\Omega,\mathcal{A}\right)$ is a measurable space, and
+		$\mathcal{O}$ is the Borel $\sigma$-algebra of $\Re$ (equipped with usual Euclidean metric).
+\item	$(\Czo\,,\Vert\cdot\Vert_{\infty})$\, is the metric space
+		of continuous $\Re$-valued functions defined on the closed unit interval
+		equipped with the supremum norm, and
+		\,$\mathcal{B} \,:=\, \mathcal{B}(\Czo\,,\Vert\cdot\Vert_{\infty})$\, is its Borel $\sigma$-algebra.
+\item	$X : \Omega \longrightarrow \Czo$ is a function with domain $\Omega$
+		and codomain $\Czo$, but otherwise arbitrary.
+\item	For each $t \in [0,1]$, let \,$\ev_{t} : \Czo \longrightarrow \Re : x \longmapsto x(t)$.
+\item 	For each $t \in [0,1]$, let \,$X_{t} \,:=\, \ev_{t} \circ X$.
+		In other words, $X_{t} : \Omega \longrightarrow \Re : \omega \longmapsto \ev_{t}(X(\omega)) = X(\omega)(t)$.
+\end{itemize}
+Then, the following are equivalent:
+\begin{enumerate}
+\item	$X$ is a $(\Czo\,,\Vert\cdot\Vert_{\infty})$-valued random variable
+		(in other words, $X$ is $(\mathcal{A}\,,\mathcal{B})$-measurable).
+\item	For each $t \in [0,1]$, $X_{t}$ is an $\Re$-valued random variable
+		(in other words, each $X_{t}$ is $(\mathcal{A}\,,\mathcal{O})$-measurable).
+\item	$\left\{\,X_{t}:\Omega\longrightarrow\Re\,\right\}_{t\in[0,1]}$ is a stochastic process
+		indexed by the closed unit interval
+		defined on the probability space $\left(\Omega,\mathcal{A},\mu\right)$
+		with state space $\Re$ and continuous sample paths.
+\end{enumerate}
+\end{theorem}
+\proof
+The equivalence of (i) and (ii) is immediate by the preceding Theorem.
+The equivalence of (ii) and (iii) is immediate by the definition of stochastic processes.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

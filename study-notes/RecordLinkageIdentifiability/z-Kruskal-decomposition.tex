@@ -1,0 +1,290 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Kruskal's sufficient condition for uniqueness of decomposition of third-order arrays as matrix triple products}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{definition}[$n^{\textnormal{th}}$-order array]
+\label{nThOrderArray}
+\mbox{}\vskip 0.05cm
+\noindent
+Let $\F$ be a field. Let $n \in \N$, and $d_{1}, d_{2}, \ldots, d_{n} \in \N$.
+An \emph{$n^{\textnormal{th}}$-order array with entries in $\F$} is a function
+\begin{equation*}
+T : \left[\,d_{1}\,\right] \times \left[\,d_{2}\,\right] \times \cdots \times \left[\,d_{n}\,\right] \longrightarrow \F\,,
+\end{equation*}
+where $\left[\,d_{i}\,\right] := \left\{\,1,2,\ldots,d_{i}\,\right\}$, for each $i = 1,2,\ldots, n$.
+\end{definition}
+
+\begin{remark}
+\mbox{}\vskip 0.05cm
+\noindent
+A first-order array is simply a vector and a second-order array is simply a matrix.
+Thus, $n^{\textnormal{th}}$-order arrays are simply ``higher-order'' generalizations of vectors and matrices. 
+\end{remark}
+
+\begin{definition}[Matrix triple product]
+\label{MatrixTripleProduct}
+\mbox{}\vskip 0.05cm
+\noindent
+Let $\F$ be a field.
+Let $r, d_{1}, d_{2}, d_{3} \in \N$.
+Let $M^{(1)} \in \F^{d_{1} \times r}$, $M^{(2)} \in \F^{d_{2} \times r}$, $M^{(3)} \in \F^{d_{3} \times r}$.
+be second-order arrays (i.e. matrices) with entries in $\F$.
+The \emph{matrix triple product} $\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$ of $M^{(1)}, M^{(2)}, M^{(3)}$
+is, by definition, the third-order array given by:
+\begin{equation*}
+\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right](i,j,k)
+\;\; := \;\;
+\sum_{h = 1}^{r}\, M^{(1)}_{ih} M^{(2)}_{jh} M^{(3)}_{kh}
+\end{equation*}
+\end{definition}
+
+\begin{theorem}[Kruskal's sufficient condition for uniqueness of decomposition of third-order arrays]
+\label{KruskalTheorem}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\F$ be a field. Suppose
+\begin{itemize}
+\item
+	$M^{(1)}, N^{(1)} \in \F^{m_{1} \times r}$,\;
+	$M^{(2)}, N^{(2)} \in \F^{m_{2} \times r}$,\;
+	$M^{(3)}, N^{(3)} \in \F^{m_{3} \times r}$.
+\item
+	$\left(\,M^{(1)},M^{(2)},M^{(3)}\,\right)$ is of type $\left(\,r\,;\,a_{1},a_{2},a_{3}\,\right)$,
+	with $a_{1} + a_{2} + a_{3} \leq r - 2$.
+\item
+	$\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$
+	\,$=$\,
+	$\left[\,N^{(1)},N^{(2)},N^{(3)}\,\right]$.
+\end{itemize}
+Then, there exists a permutation matrix $P \in \F^{r \times r}$ and diagonal matrices
+$D^{(1)}, D^{(2)}, D^{(3)} \in \F^{r \times r}$ with $D^{(1)}\cdot D^{(2)}\cdot D^{(3)} = I_{r}$
+such that
+\begin{equation*}
+N^{(i)} \; = \; M^{(i)} \cdot D^{(i)} \cdot P\,,
+\quad
+\textnormal{for each \,$i = 1,2,3$}.
+\end{equation*}
+\end{theorem}
+
+\begin{corollary}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\left(\Omega,\mathcal{A},\mu\right)$ be a probability space.
+Let $X_{1}$, $X_{2}$, $X_{3}$ and $Z$ be categorical random variables defined on $\Omega$ such that:
+\begin{itemize}
+\item
+	for each $n \in \left\{\,1, 2, 3\,\right\}$, we have
+	$X_{n} : \left(\Omega,\mathcal{A},\mu\right) \longrightarrow \left[\,m_{n}\,\right]$,
+	where $m_{n} \in \N$ and $\left[\,m_{n}\,\right] := \left\{\,1,2,\ldots,m_{n}\,\right\}$, and
+\item
+	$Z : \left(\Omega,\mathcal{A},\mu\right) \longrightarrow \left[\,r\,\right]$,
+	where $r \in \N$ and $\left[\,r\,\right] := \left\{\,1,2,\ldots,r\,\right\}$.
+\end{itemize}
+Let \,$\pi_{h} := P\!\left(\,Z = h\,\right)$, \,for $h = \left\{\,1,2,\ldots,r\,\right\}$.
+Define the matrices
+$M^{(1)} \in \Re^{m_{1}\times r}$, 
+$M^{(2)} \in \Re^{m_{2}\times r}$, 
+$M^{(3)} \in \Re^{m_{3}\times r}$
+as follows: For \,$n \,\in\, \left\{\,1,2,3\,\right\}$,
+\begin{equation*}
+M^{(n)}_{ih} \; := \; P\!\left(\,X_{n} = i \;\vert\, Z = h\,\right)\,,
+\quad
+\textnormal{for \,$i \in \left\{\,1,2,\ldots,m_{n}\,\right\}$, \,$h \in \left\{\,1,2,\ldots,r\,\right\}$}.
+\end{equation*}
+Define also the third-order array (of joint probability distribution of $X_{1}$, $X_{2}$ and $X_{3}$):
+\begin{equation*}
+T(i,j,k) \;\; := \;\; P\!\left(\,X_{1} = i, X_{2} = j, X_{3} = k \,\right).
+\end{equation*}
+Suppose:
+\begin{itemize}
+\item
+	$X_{1}$, $X_{2}$ and $X_{3}$ are conditionally independent given $Z$.
+\item
+	The matrix triple product
+	$\left(\,\widetilde{M}^{(1)},M^{(2)},M^{(3)}\,\right)$ is of type $\left(\,r\,;\,a_{1},a_{2},a_{3}\,\right)$,
+	with $a_{1} + a_{2} + a_{3} \leq r - 2$, where
+	\begin{equation*}
+	\widetilde{M}^{(1)} \;\; := \;\; M^{(1)}\cdot\diag\!\left(\,\pi_{1},\pi_{2},\ldots,\pi_{r}\,\right).
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{enumerate}
+\item
+	the following equality holds:
+	\begin{equation*}
+	T \;\; = \;\; \left[\,\widetilde{M}^{(1)},M^{(2)},M^{(3)}\,\right],
+	\quad
+	\textnormal{and}
+	\end{equation*}
+\item
+	the third-order array $T$ (i.e. joint probability distribution of $X_{1}$, $X_{2}$, $X_{3}$),
+	up to a relabeling of the levels of $Z$, \textbf{uniquely determines} the (marginal)
+	probability distribution of $Z$ as well as the conditional distributions of
+	$X_{1}$, $X_{2}$ and $X_{3}$, given $Z$;
+	in order words, $T$ uniquely determines all of the following quantities:
+	\begin{equation*}
+	\pi_{h} \,:=\, P\!\left(\,Z = h\,\right)
+	\quad\textnormal{and}\quad
+	M^{(n)}
+	\end{equation*}
+	for all \,$h \in \left\{\,1,2,\ldots,r\,\right\}$, \,$n \in \left\{\,1,2,3\,\right\}$.
+\end{enumerate}
+\end{corollary}
+\proof
+\begin{enumerate}
+\item
+	This follows immediately from the hypothesis of conditional independence of $X_{1}$, $X_{2}$, $X_{3}$ given $Z$.
+	Indeed, for each $i \in \left[\,m_{1}\,\right]$, \,$j \in \left[\,m_{2}\,\right]$, \,$k \in \left[\,m_{3}\,\right]$, we have
+	\begin{eqnarray*}
+	T(i,j,k)
+	&:=&
+		P\!\left(\,X_{1}=i, X_{2}=j, X_{3}=k\,\right)
+	\;\; = \;\;
+		\overset{r}{\underset{h=1}{\sum}}\;P\!\left(\,X_{1}=i, X_{2}=j, X_{3}=k, Z=h\,\right)
+	\\
+	&=&
+		\overset{r}{\underset{h=1}{\sum}}\;P\!\left(\,X_{1}=i, X_{2}=j, X_{3}=k \;\vert\; Z=h\,\right)\cdot P\!\left(\,Z=h\,\right)
+	\\
+	&=&
+		\overset{r}{\underset{h=1}{\sum}}\;
+		P\!\left(\,X_{1}=i \;\vert\; Z=h\,\right)
+		P\!\left(\,X_{2}=j \;\vert\; Z=h\,\right)
+		P\!\left(\,X_{3}=k \;\vert\; Z=h\,\right)
+		\cdot P\!\left(\,Z=h\,\right)
+	\\
+	&=&
+		\overset{r}{\underset{h=1}{\sum}}\;
+		M^{(1)}_{ih} \, M^{(2)}_{jh} \, M^{(3)}_{kh} \cdot \pi_{h}
+	\;\;=\;\;
+		\overset{r}{\underset{h=1}{\sum}}\;
+		\left(M^{(1)}_{ih}\pi_{h}\right) \, M^{(2)}_{jh} \, M^{(3)}_{kh}
+	\;\;=\;\;
+		\overset{r}{\underset{h=1}{\sum}}\;
+		\widetilde{M}^{(1)}_{ih} \, M^{(2)}_{jh} \, M^{(3)}_{kh}
+	\\
+	&=&
+		\left[\,\widetilde{M}^{(1)},M^{(2)},M^{(3)}\,\right](i,j,k),
+	\end{eqnarray*}
+	as required.
+\item
+	Suppose there exists another set of marginal probabilities $\rho_{h} = Q\!\left(\,Z=h\,\right)$
+	and conditional probabilities $N^{(n)}_{ih}\,=\,Q\!\left(\,X_{n}=i\;\vert\;Z=h\,\right)$ that also
+	gives rise to the same third-order array $T$ of joint probability distribution of $X_{1}$, $X_{2}$, $X_{3}$.
+	Then, the hypothesis of conditional independence of $X_{1}$, $X_{2}$, $X_{3}$ given $Z$
+	implies
+	\begin{equation*}
+	\left[\,\widetilde{N}^{(1)},N^{(2)},N^{(3)}\,\right] \;\; = \;\; T \;\; = \;\; \left[\,\widetilde{M}^{(1)},M^{(2)},M^{(3)}\,\right],
+	\end{equation*}
+	where
+	\begin{equation*}
+	\widetilde{N}^{(1)} \;\; := \;\; N^{(1)}\cdot\diag\!\left(\,\rho_{1},\rho_{2},\ldots,\rho_{r}\,\right).
+	\end{equation*}
+	Since, by hypothesis, the matrix triple product $\left(\,\widetilde{M}^{(1)},M^{(2)},M^{(3)}\,\right)$
+	is of type $\left(\,r\,;\,a_{1},a_{2},a_{3}\,\right)$, with $a_{1} + a_{2} + a_{3} \leq r - 2$,
+	Theorem \ref{KruskalTheorem} (Kruskal's sufficient condition) implies that
+	there exist a permutation matrix $P \in \Re^{r \times r}$ and diagonal matrices
+	$D^{(1)}, D^{(2)}, D^{(3)} \in \Re^{r \times r}$ satisfying $D^{(1)} \cdot D^{(2)} \cdot D^{(3)} = I_{r}$
+	such that
+	\begin{equation*}
+	\widetilde{N}^{(1)} \;=\; \widetilde{M}^{(1)} \cdot D^{(1)} \cdot P\,,
+	\quad\mbox{}\quad
+	N^{(2)} \;=\; M^{(2)} \cdot D^{(2)} \cdot P\,,
+	\quad\mbox{}\quad
+	N^{(3)} \;=\; M^{(3)} \cdot D^{(3)} \cdot P\,,
+	\end{equation*}
+	which immediately implies
+	\begin{equation*}
+	\widetilde{N}^{(1)} \cdot P^{-1} \;=\; \widetilde{M}^{(1)} \cdot D^{(1)}\,,
+	\quad\mbox{}\quad
+	N^{(2)} \cdot P^{-1} \;=\; M^{(2)} \cdot D^{(2)}\,,
+	\quad\mbox{}\quad
+	N^{(3)} \cdot P^{-1} \;=\; M^{(3)} \cdot D^{(3)}\,.
+	\end{equation*}
+	Note that right-multiplication by $P^{-1}$ of $\widetilde{N}^{(1)}$, $N^{(2)}$, $N^{(3)}$
+	applies the same re-ordering to the columns of $\widetilde{N}^{(1)}$, $N^{(2)}$, $N^{(3)}$,
+	which in turn corresponds to a relabeling of the levels of $Z$ between the two sets of marginal
+	probabilities $P\!\left(\,Z=\cdot\,\right)$ and $Q\!\left(\,Z=\cdot\,\right)$.
+	Since our desired conclusion holds up to such a relabeling, we may thus without loss of generality
+	assume hereinafter that the permutation matrix $P \in \Re^{r \times r}$ is the identity matrix
+	$I_{r} \in \Re^{r \times r}$.
+	Thus, we now have
+	\begin{equation*}
+	\widetilde{N}^{(1)} \;=\; \widetilde{M}^{(1)} \cdot D^{(1)}\,,
+	\quad\mbox{}\quad
+	N^{(2)} \;=\; M^{(2)} \cdot D^{(2)}\,,
+	\quad\mbox{}\quad
+	N^{(3)} \;=\; M^{(3)} \cdot D^{(3)}\,.
+	\end{equation*}
+	Write $D^{(n)}\,=\,\diag\!\left(\,d^{(n)}_{1},d^{(n)}_{2},\ldots,d^{(n)}_{r}\,\right)$, for $n = 1,2,3$.
+	Next, observe that, for each $h \in \left\{\,1,2,\ldots,r\,\right\}$,
+	\begin{eqnarray*}
+	Q\!\left(\,X_{2} = j \;\vert\; Z = h\,\right)
+	& = & N^{(2)}_{jh}
+	\;\;=\;\; \left(\,M^{(2)}\,D^{(2)}\,\right)_{jh}
+	\;\;=\;\; \overset{r}{\underset{l=1}{\sum}}\;M^{(2)}_{jl}\;\delta_{lh}\,d^{(2)}_{l}
+	\;\;=\;\; M^{(2)}_{jh}\,d^{(2)}_{h}
+	\\
+	& = & d^{(2)}_{h} \cdot P\!\left(\,X_{2} = j \;\vert\; Z = h\,\right),
+	\end{eqnarray*}
+	and summing both sides over $j$ yields:
+	\begin{eqnarray*}
+	1 &=& \overset{m_{2}}{\underset{j=1}{\sum}}\;\, Q\!\left(\,X_{2} = j \;\vert\; Z = h\,\right)
+	\;\;=\;\; \overset{m_{2}}{\underset{j=1}{\sum}}\;\, d^{(2)}_{h} \cdot P\!\left(\,X_{2} = j \;\vert\; Z = h\,\right)
+	\;\;=\;\; d^{(2)}_{h} \cdot \overset{m_{2}}{\underset{j=1}{\sum}}\; P\!\left(\,X_{2} = j \;\vert\; Z = h\,\right)
+	\;\;=\;\; d^{(2)}_{h}
+	\end{eqnarray*}
+	This shows that $D^{(2)} = I_{r} \in \Re^{r \times r}$.
+	An analogous argument shows that $D^{(3)} = I_{r} \in \Re^{r \times r}$.
+	Hence, we may now conclude $N^{(2)} = M^{(2)}$ and $N^{(3)} = M^{(3)}$.
+	Recalling that $D^{(1)}\,D^{(2)}\,D^{(3)} \;=\; I_{r}$, we see also that $D^{(1)} = I_{r}$,
+	and thus $\widetilde{N}^{(1)} = \widetilde{M}^{(1)}$.
+	Thus, for each $i \in \left[\,m_{1}\,\right]$ and $h \in \left[\,r\,\right]$, we have
+	\begin{eqnarray*}
+	Q\!\left(\,Z = h\,\right) \cdot Q\!\left(\,X_{1} = i \;\vert\; Z = h\,\right)
+	&=& \rho_{h}\,N^{(1)}_{ih}
+	\;\;=\;\; \widetilde{N}^{(1)}_{ih}
+	\;\;=\;\; \widetilde{M}^{(1)}_{ih}
+	\;\;=\;\; \pi_{h}\,M^{(1)}_{ih}
+	\\
+	&=& P\!\left(\,Z = h\,\right) \cdot P\!\left(\,X_{1} = i \;\vert\; Z = h\,\right),
+	\end{eqnarray*}
+	and summing both sides over $i$ yields: For each $h \in \left[\,r\,\right]$,
+	\begin{eqnarray*}
+	Q\!\left(\,Z = h\,\right)
+	&=& Q\!\left(\,Z = h\,\right) \cdot 1
+	\;\;=\;\; Q\!\left(\,Z = h\,\right) \cdot \overset{m_{1}}{\underset{j=1}{\sum}}\;\, Q\!\left(\,X_{1} = i \;\vert\; Z = h\,\right)
+	\\
+	&=& \overset{m_{1}}{\underset{j=1}{\sum}}\;\, Q\!\left(\,Z = h\,\right) \cdot Q\!\left(\,X_{1} = i \;\vert\; Z = h\,\right)
+	\\
+	&=& \overset{m_{1}}{\underset{j=1}{\sum}}\;\, P\!\left(\,Z = h\,\right) \cdot P\!\left(\,X_{1} = i \;\vert\; Z = h\,\right)
+	\\
+	&=& P\!\left(\,Z = h\,\right) \cdot \overset{m_{1}}{\underset{j=1}{\sum}}\;\, P\!\left(\,X_{1} = i \;\vert\; Z = h\,\right)
+	\;\;=\;\; P\!\left(\,Z = h\,\right) \cdot 1
+	\\
+	&=& P\!\left(\,Z = h\,\right),
+	\end{eqnarray*}
+	which in turns implies
+	\begin{equation*}
+	Q\!\left(\,X_{1} = i \;\vert\; Z = h\,\right) \;\;=\;\; P\!\left(\,X_{1} = i \;\vert\; Z = h\,\right),
+	\end{equation*}
+	for each $i \in \left[\,m_{1}\,\right]$ and $h \in \left[\,r\,\right]$;
+	in other words, $N^{(1)} \,=\, M^{(1)}$.
+	This completes the proof of the Corollary. \qed
+\end{enumerate}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

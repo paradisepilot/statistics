@@ -1,0 +1,60 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical Lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{lemma}[Maximal simultaneous eigenspaces of diagonal matrices]
+\label{simultaneousESpace}
+\mbox{}\vskip 0.05cm
+\noindent
+Let $\F$ be a field and
+let $\mathbf{e}_{1}, \mathbf{e}_{2}, \ldots, \mathbf{e}_{n} \in \F^{n}$ be the standard basis for $\F^{n}$.
+Suppose, for each $k \in \left\{\,1,2,\ldots,m\,\right\}$,
+\begin{equation*}
+D_{k} \; = \; \diag\left(\,d^{(k)}_{1},d^{(k)}_{2},\ldots,d^{(k)}_{n}\,\right) \;\in\; \F^{n \times n}
+\end{equation*}
+is a diagonal matrix with entries in $\F$.
+Then, the following statements are true:
+\begin{enumerate}
+\item
+	For each $k \in\{\,1, 2, \ldots, m\,\}$ and for each $i \in \{\,1,2,\ldots,n\,\}$,
+	the vector $\mathbf{e}_{i} \in \F^{n}$ is an eigenvector of $D_{k}$
+	corresponding to the eigenvalue $d^{(k)}_{i}$.
+\item
+	For each $k \in\{\,1, 2, \ldots, m\,\}$ and each $i,j \in \{\,1,2,\ldots,n\,\}$,
+	the vectors $\mathbf{e}_{i}, \mathbf{e}_{j} \in \F^{n}$ belong to the same eigenspace
+	of $D_{k}$ if and only if $d^{(k)}_{i} = d^{(k)}_{j}$.
+\item
+	For each $k \in\{\,1, 2, \ldots, m\,\}$ and each $i,j \in \{\,1,2,\ldots,n\,\}$,
+	$\span\!\left\{\,\mathbf{e}_{i}, \mathbf{e}_{j}\,\right\} \subset \F^{n}$
+	is a (not necessarily maximal) eigenspace of $D_{k}$ if and only if $d^{(k)}_{i} = d^{(k)}_{j}$.
+\item
+	For each $i,j \in \{\,1,2,\ldots,n\,\}$, 
+	$\span\!\left\{\,\mathbf{e}_{i}, \mathbf{e}_{j}\,\right\} \subset \F^{n}$
+	is contained in the same maximal simultaneous eigenspace of
+	$D_{1}, D_{2}, \ldots, D_{m}$
+	if and only if $d^{(k)}_{i} = d^{(k)}_{j}$, for each $k \in \{\,1,2,\ldots,m\,\}$.
+\item
+	Every maximal simultaneous eigenspace of $D_{1}, D_{2}, \ldots, D_{m}$
+	can be expressed as
+	\begin{equation*}
+	\underset{i\,\in\,\mathcal{I}}{\span}\left\{\,\overset{{\color{white}.}}{\mathbf{e}}_{i}\,\right\}
+	\;\subset\;\F^{n},
+	\end{equation*}
+	where $\mathcal{I} \subset \left\{\,1,2,\ldots,n\,\right\}$ is a maximal subset of indices
+	with respect to the following properties:
+	\begin{equation*}
+	d^{(k)}_{i} \,=\, d^{(k)}_{j},
+	\;\;
+	\textnormal{for each $k \in \left\{\,1,2,\ldots,m\,\right\}$ and each $i,j \in \mathcal{I}$}.
+	\end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof Obvious. \qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
