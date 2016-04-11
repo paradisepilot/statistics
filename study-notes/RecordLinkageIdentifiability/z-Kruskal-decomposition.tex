@@ -1,6 +1,8 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\cite{Allman2009} \cite{Rhodes2010} \cite{Fienberg2010}
+
 \section{Kruskal's sufficient condition for uniqueness of decomposition of third-order arrays as matrix triple products}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
@@ -46,11 +48,67 @@ is, by definition, the third-order array given by:
 \end{equation*}
 \end{definition}
 
+\begin{definition}[Kruskal rank of a matrix]
+\label{KruskalRank}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\F$ be a field and let $A \in \F^{m \times n}$ be a matrix.
+The \textbf{Kruskal rank} \,$\rank_{K}\!\left(A\right)$\, of $A$
+is the largest number $k \in \left\{\,1,2,\ldots,n\,\right\}$ such that
+every set of $k$ columns of $A$ is linearly independent.
+\end{definition}
+
+\begin{definition}
+\label{MatrixTripleProductType}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\F$ be a field and let $r, m_{1}, m_{2}, m_{3} \in \N$.
+Let $M^{(n)} \in \F^{m_{n} \times r}$, for $n = 1,2,3$.
+The matrix triple product $\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$
+is said to be of type $\left(\,r\,;\,a_{1},a_{2},a_{3}\,\right)$ if
+$\rank_{K}\!\left(M^{(n)}\right) \,\geq\, r - a_{n}$, for each $n = 1,2,3$.
+\end{definition}
+
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\F$ be a field. Suppose:
+\begin{itemize}
+\item
+	$M^{(1)}, N^{(1)} \in \F^{m_{1} \times r}$,\;
+	$M^{(2)}, N^{(2)} \in \F^{m_{2} \times r}$,\;
+	$M^{(3)}, N^{(3)} \in \F^{m_{3} \times r}$.
+\item
+	$\left(\,M^{(1)},M^{(2)},M^{(3)}\,\right)$ is of type $\left(\,r\,;\,0,0,r-1\,\right)$.
+\item
+	$\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$
+	\,$=$\,
+	$\left[\,N^{(1)},N^{(2)},N^{(3)}\,\right]$.
+\end{itemize}
+Then, there exists a permutation $\sigma \in \mathfrak{S}_{r}$ such that the following holds:
+For each maximal (with respect to inclusion) subset $\mathcal{I} \subset \left\{\,1,2,\ldots,r\,\right\}$
+of indices satisfying the property that
+\;$\underset{i\in\mathcal{I}}{\span}\!\left\{\,M^{(3)}_{\bullet,k}\,\right\}$\, is one-dimensional,
+we have
+\begin{enumerate}
+\item
+	$\underset{i\in\mathcal{I}}{\span}\!\left\{\,M^{(n)}_{\bullet,k}\,\right\}$ \,$=$\,
+	$\underset{i\in\mathcal{I}}{\span}\!\left\{\,N^{(n)}_{\bullet,\sigma(k)}\,\right\}$,\;
+	for each $n = 1,2,3$, and
+\item
+	$\mathcal{I}$ is also maximal with respect to the property that
+	\;$\underset{i\in\mathcal{I}}{\span}\!\left\{\,N^{(3)}_{\bullet,\sigma(k)}\,\right\}$\, is one-dimensional.
+\end{enumerate}
+\end{lemma}
+\proof
+
+\qed
+
 \begin{theorem}[Kruskal's sufficient condition for uniqueness of decomposition of third-order arrays]
 \label{KruskalTheorem}
 \mbox{}\vskip 0.1cm
 \noindent
-Let $\F$ be a field. Suppose
+Let $\F$ be a field. Suppose:
 \begin{itemize}
 \item
 	$M^{(1)}, N^{(1)} \in \F^{m_{1} \times r}$,\;
