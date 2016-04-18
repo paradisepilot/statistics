@@ -173,7 +173,23 @@ The Fellegi-Sunter inference method makes the following \textbf{two assumptions}
 	\,$\gamma^{(k)} = \left(\,\gamma^{(k)}_{1},\ldots,\gamma^{(k)}_{p}\,\right)$
 	is the representation of $\gamma^{(k)} \in \{0,1\}^{p}$ in terms of its components.
 \end{enumerate}
-Next, define:
+Under the I.I.D. assumption on $X^{(k)} = \left(\,M^{(k)},\Gamma^{(k)}\,\right)$,
+the likelihood of the observed data \,$\left\{\,\Gamma^{(k)} = \gamma^{(k)}\,\right\}_{k=1}^{n}$\,
+can be written as:
+\begin{eqnarray*}
+P\!\left(\;\bigcap_{k=1}^{n} \left\{\,\Gamma^{(k)} = \gamma^{(k)}\right\}\,\right)
+& = & \prod_{k=1}^{n} \, P\!\left(\,\Gamma^{(k)} = \gamma^{(k)}\,\right)
+\;\; = \;\;
+	\prod_{\gamma\in\mathcal{G}} \left(
+		\overset{{\color{white}-}}{P}\!\left(\,\Gamma = \gamma\,\right)
+	\,\right)^{\color{red}\overset{n}{\underset{k=1}{\textnormal{\normalsize$\sum$}}}\,I\left\{\,\Gamma^{(k)}\,=\,\gamma\,\right\}},
+\\
+& = &
+	\prod_{\gamma\in\mathcal{G}} \left(\;
+		\sum_{m=0}^{1}\,P\!\left(\,\Gamma = \gamma\;\vert\,M = m\,\right)\cdot P\!\left(\,M=m\,\right)
+	\,\right)^{\overset{n}{\underset{k=1}{\textnormal{\normalsize$\sum$}}}\,I\left\{\,\Gamma^{(k)}\,=\,\gamma\,\right\}},
+\end{eqnarray*}
+from which we observe that a \textbf{minimal sufficient statistic} is given by:
 \begin{equation*}
 Y : \Omega \longrightarrow \{0,1,\ldots,n\}^{\mathcal{G}},
 \quad\textnormal{where}\;\;\,
@@ -190,7 +206,7 @@ Recall:
 	in other words, $\{0,1,\ldots,n\}^{\mathcal{G}}$ denotes the collection of all $n^{\textnormal{th}}$-order arrays
 	with entries in $\{0,1,2,\ldots,n\}$ and each of whose factors has dimension $2$.
 \end{itemize}
-Then, the I.I.D. assumption on $X^{(k)} \,=\, \left(\,M^{(k)},\Gamma^{(k)}\,\right)$ implies that
+The I.I.D. assumption on $X^{(k)} \,=\, \left(\,M^{(k)},\Gamma^{(k)}\,\right)$ furthermore implies that
 \,$Y \sim \textnormal{Multinomial}\!\left(\,n\,;\,\left\{\pi_{\gamma}\right\}_{\gamma\in\mathcal{G}}\,\right)$,
 where
 \begin{equation*}
