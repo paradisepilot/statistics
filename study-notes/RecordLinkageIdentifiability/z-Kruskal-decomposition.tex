@@ -104,6 +104,13 @@ we have
 
 \qed
 
+\begin{corollary}\label{zeroZeroRminusTwo}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\F$ be a field. Suppose:
+\end{corollary}
+
+
 \begin{theorem}[Kruskal's sufficient condition for uniqueness of decomposition of third-order arrays]
 \label{KruskalTheorem}
 \mbox{}\vskip 0.1cm
@@ -131,6 +138,106 @@ N^{(i)} \; = \; M^{(i)} \cdot D^{(i)} \cdot P\,,
 \textnormal{for each \,$i = 1,2,3$}.
 \end{equation*}
 \end{theorem}
+\proof
+Without loss of generality, we may assume that $a_{1} \leq a_{2} \leq a_{3}$.
+We will establish the Theorem in a series of claims. First,
+
+\begin{center}
+\begin{minipage}{6.0in}
+\textbf{Claim 1:}\; It suffices to prove the Theorem for the case $a_{1} + a_{2} + a_{3} = r - 2$.
+\end{minipage}
+\end{center}
+Proof of Claim 1:\; Suppose the Theorem holds whenever $a_{1} + a_{2} + a_{3} \,=\, r - 2$.
+We need to show that it remains valid for $a_{1} + a_{2} + a_{3} \,<\, r - 2$.
+Now, $a_{1} + a_{2} + a_{3} \,<\, r - 2$ $\Longleftrightarrow$
+$a_{1} + a_{0} + a_{2} + a_{3} \,=\, r - 2$, for some $a_{0} \in \N = \{1,2,\ldots\,\}$.
+Now let $a^{\prime}_{1} = a_{1} + a_{0}$, $a^{\prime}_{2} = a_{2}$, and
+$a^{\prime}_{2} = a_{2}$.
+Then, we have $a^{\prime}_{1}+a^{\prime}_{2}+a^{\prime}_{3}\,=\,r-2$.
+Since $a^{\prime}_{i} \geq a_{i}$, for $i = 1,2,3$, we see that
+$\left(\,M^{(1)},M^{(2)},M^{(3)}\,\right)$ is also of type
+$\left(\,r\,;\,a^{\prime}_{1},a^{\prime}_{2},a^{\prime}_{3}\,\right)$.
+Applying the Theorem under the special case
+$a^{\prime}_{1}+a^{\prime}_{2}+a^{\prime}_{3}\,=\,r-2$
+yields the desired result that,
+for some permutation matrix $P \in \F^{r \times r}$
+and diagonal matrix $D^{(1)}, D^{(2)}, D^{(3)} \in \F^{r \times r}$,
+we have:
+\begin{equation*}
+N^{(i)} \; = \; M^{(i)} \cdot D^{(i)} \cdot P\,,
+\quad
+\textnormal{for each \,$i = 1,2,3$}.
+\end{equation*}
+This completes the proof of Claim 1.
+
+\vskip 0.5cm
+\noindent
+Next, we proceed by induction of $r$.
+Note that the case $r = 2$ follows immediately from Corollary \ref{zeroZeroRminusTwo},
+since in that case $r - 2 = 0$, which in turn implies $a_{1} = a_{2} = 0$ and $a_{3} = 0 = r - 2$.
+Similiarly, the case $r = 3$ also follows immediately from Corollary \ref{zeroZeroRminusTwo},
+since in that case $r - 2 = 1$, which in turn implies $a_{1} = a_{2} = 0$ and $a_{3} = 1 = r - 2$.
+In the remainder of the proof, we also assume that $a_{2} \geq 1$, since the case
+$a_{1} = a_{2} = 0$ has been established in Corollary \ref{zeroZeroRminusTwo}.
+
+\vskip 0.5cm
+\noindent
+We now state the
+\begin{center}
+\begin{minipage}{6.0in}
+\textbf{Induction Hypothesis:}
+\vskip 0.03cm
+\noindent
+For an arbitrary $r \in \left\{\,3,4,\ldots\,\right\}$, the Theorem holds for matrices having strictly less than $r$ columns.
+\end{minipage}
+\end{center}
+We need to prove that the Theorem remains valid for matrices with $r$ columns.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.0in}
+\textbf{Claim 2:}
+\vskip 0.03cm
+\noindent
+Suppose, for some $i_{0} \in \{1,2,3\}$, there exist a permutation $\sigma \in \mathcal{S}_{r}$
+and a set $\mathcal{I} \subset \left[\,r\,\right]$ of indices with
+\,$1 \,\leq\, \left\vert\,\mathcal{I}\,\right\vert \,\leq\, r - a_{i} - 2$\, such that
+\begin{equation*}
+\span\!\left\{\,M^{(i_{0})}_{\bullet,k}\,\right\}_{k\in\mathcal{I}}
+\;\; = \;\;
+\span\!\left\{\,N^{(i_{0})}_{\bullet,\sigma(k)}\,\right\}_{k\in\mathcal{I}}.
+\end{equation*}
+Then, after permuting and individually scaling, if necessary, the columns of $M^{(i)}$,
+for $i \in \left[\,3\,\right] \backslash \{\,i_{0}\,\}$, we have
+\begin{equation*}
+M^{(i)}_{\bullet,k} \;=\; N^{(i)}_{\bullet,k}\,,
+\quad
+\textnormal{for each \,$i \in \left[\,3\,\right]\backslash\{\,i_{0}\}$\, and each \,$k \in \left[\,r\,\right] \backslash\,\mathcal{I}$}.
+\end{equation*}
+\end{minipage}
+\end{center}
+Proof of Claim 2:\; 
+\qed
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.0in}
+\textbf{Claim 3:}
+\vskip 0.025cm
+\noindent
+Suppose, for some $i_{0} \in \{1,2,3\}$, there exist a permutation $\sigma \in \mathcal{S}_{r}$
+and a set $\mathcal{I} \subset \left[\,r\,\right]$ of indices with
+\,$1 \,\leq\, \left\vert\,\mathcal{I}\,\right\vert \,\leq\, r - a_{i} - 2$\, such that
+\begin{equation*}
+\span\!\left\{\,M^{(i_{0})}_{\bullet,k}\,\right\}_{k\in\mathcal{I}}
+\;\; = \;\;
+\span\!\left\{\,N^{(i_{0})}_{\bullet,\sigma(k)}\,\right\}_{k\in\mathcal{I}}.
+\end{equation*}
+Then, the Theorem follows.
+\end{minipage}
+\end{center}
+Proof of Claim 3:\; Note that the hypothesis of Claim 3 is identical to that of Claim 2.
+\qed
 
 \begin{corollary}
 \mbox{}\vskip 0.1cm
