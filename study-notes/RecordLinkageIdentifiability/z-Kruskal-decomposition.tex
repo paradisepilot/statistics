@@ -216,8 +216,76 @@ M^{(i)}_{\bullet,k} \;=\; N^{(i)}_{\bullet,k}\,,
 \end{equation*}
 \end{minipage}
 \end{center}
-Proof of Claim 2:\; 
-\qed
+Proof of Claim 2:\; Suppose that such a set $\mathcal{I}$ exists.
+We first treat the case where $i_{0} = 1$.
+Without loss of generality, we may assume the columns of $M^{(i_{0})} = M^{(1)}$ and $N^{(i_{0})} = N^{(1)}$
+have been reordered so that $\sigma = \textnormal{id}$ and $\mathcal{I} = \left[\,s\,\right]$.
+Next, fix any matrix $\Pi \in \F^{m_{1} \times m_{1}}$ such that
+\begin{equation*}
+\ker\!\left(\,\Pi\,\right)
+\;\; = \;\; \span\!\left\{\,M^{(i_{0})}_{\bullet,k}\,\right\}_{k\in\mathcal{I}}
+\;\; = \;\; \span\!\left\{\,M^{(1)}_{\bullet,k}\,\right\}_{k=1}^{s}.
+\end{equation*}
+Then,
+\begin{equation*}
+\left[\;\Pi\,M^{(1)},M^{(2)},M^{(3)}\,\right]
+\;\; = \;\; \Pi \,*_{1} \left[\,M^{(1)},M^{(2)},M^{(3)}\right]
+\;\; = \;\; \Pi \,*_{1} \left[\,N^{(1)},N^{(2)},N^{(3)}\right]
+\;\; = \;\; \left[\;\Pi\,N^{(1)},N^{(2)},N^{(3)}\,\right].
+\end{equation*}
+Since the first $s$ columns of $\Pi\,M^{(1)}$ and $\Pi\,N^{(1)}$ are zero, these triple products
+can be expressed as triple products of matrices with only $r - s$ columns.
+Thus, we see that
+\begin{equation*}
+\left[\;\Pi\,\widetilde{M}^{(1)},\widetilde{M}^{(2)},\widetilde{M}^{(3)}\,\right]
+\;\; = \;\; \left[\;\Pi\,\widetilde{N}^{(1)},\widetilde{N}^{(2)},\widetilde{N}^{(3)}\,\right],
+\end{equation*}
+where $\widetilde{{\color{white}\cdot}\cdot{\color{white}\cdot}}$ denotes deletion of the leftmost $s$ columns.
+By Lemma \ref{LemmaKruskalRankOfDeletionMatrix}, we have
+\begin{equation*}
+\rank_{K}(\,\widetilde{M}^{(2)}\,) \;\; \geq \;\; \min\!\left\{\,r-a_{2},\,r-s\,\right\}
+\quad\textnormal{and}\quad
+\rank_{K}(\,\widetilde{M}^{(3)}\,) \;\; \geq \;\; \min\!\left\{\,r-a_{3},\,r-s\,\right\}.
+\end{equation*}
+Next, we claim that $\rank_{K}(\,\Pi\,\widetilde{M}^{(1)}\,) \geq r - s - a_{1}$.
+Indeed, let $\widetilde{\mathcal{C}}$ be any collection of $r - s - a_{1}$ columns of $\widetilde{M}^{(1)}$,
+and $\mathcal{C} := \widetilde{\mathcal{C}} \sqcup \{\,\textnormal{leftmost $s$ columns of $M^{(1)}$}\,\}$.
+Then, $\left\vert\,\mathcal{C}\,\right\vert = r - a_{1}$, and we see that $\mathcal{C}$ is a linearly independent
+set, since $\rank_{K}(\,M^{(1)}\,) \geq r - a_{1}$ by hypothesis.
+Since $\dim\!\left(\ker\!\left(\,\Pi\,\right)\right) \leq s$, we see that,
+by the Dimension Theorem for finite-dimensional vector spaces, we have
+\begin{equation*}
+\dim\!\left(\,\ker\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right)
+\; + \;
+\dim\!\left(\,\image\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right)
+\;\; = \;\;
+\dim\!\left(\,\domain\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right)
+\;\; = \;\; r - a_{1}.
+\end{equation*}
+Hence,
+\begin{equation*}
+r - s - a_{1}
+\;\; = \;\; \vert\;\widetilde{\mathcal{C}}\;\vert
+\;\; \geq \;\; \dim\!\left(\,\image\!\left(\,\left.\Pi\,\right\vert_{\widetilde{\mathcal{C}}}\,\right)\,\right)
+\;\; = \;\; \dim\!\left(\,\image\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right)
+\;\; = \;\; r - \dim\!\left(\,\ker\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right) - a_{1}
+\;\; \geq \;\; r - s - a_{1},
+\end{equation*}
+which implies
+\begin{equation*}
+\dim\!\left(\,\image\!\left(\,\left.\Pi\,\right\vert_{\widetilde{\mathcal{C}}}\,\right)\,\right)
+\;\; = \;\; r - s - a_{1}
+\;\; = \;\; \vert\;\widetilde{\mathcal{C}}\;\vert,
+\end{equation*}
+which in turn implies that the (arbitrary) collection $\Pi\,\widetilde{\mathcal{C}}$ of $r - s - a_{1}$ columns of
+$\Pi\,\widetilde{M}^{(1)}$ is a linearly independent set.
+This shows that indeed we have $\rank_{K}\!\left(\,\Pi\,\widetilde{M}^{(1)}\,\right) \geq r - s - a_{1}$.
+
+for any collection $\widetilde{\mathcal{C}}$ of $r - s - a_{1}$ columns of $\Pi\,\widetilde{M}^{(1)}$,
+consider the corresponding columns of $M^{(1)}$ together with the leftmost $s$ columns of $M^{(1)}$.
+The resulting collection $\mathcal{C}$ of $r-a_{1}$ columns of $M^{(1)}$ is thus a linearly independent set, since
+$\rank_{K}(\,M^{(1)}\,) \geq r - a_{1}$.
+This completes the proof of Claim 2.
 
 \vskip 0.5cm
 \begin{center}
@@ -237,6 +305,9 @@ Then, the Theorem follows.
 \end{minipage}
 \end{center}
 Proof of Claim 3:\; Note that the hypothesis of Claim 3 is identical to that of Claim 2.
+
+This completes the proof of Claim 3.
+
 \qed
 
 \begin{corollary}

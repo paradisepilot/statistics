@@ -95,4 +95,26 @@ Then, the following statements are true:
 \end{lemma}
 \proof Obvious. \qed
 
+\begin{lemma}\label{LemmaKruskalRankOfDeletionMatrix}
+\mbox{}\vskip 0.05cm
+\noindent
+Let $\F$ be a field, $m, r, s, a \in \N$, with $r > s$ and $r > a$.
+Let $M \in \F^{m \times r}$ with $\rank_{K}\!\left(M\right) \geq r - a$.
+Let $\widetilde{M} \in \F^{m \times (r-s)}$ denotes the matrix
+obtained from $M$ by deleting the leftmost $s$ columns.
+Then,
+\begin{equation*}
+\rank_{K}(\,\widetilde{M}\,)
+\;\; \geq \;\; \min\!\left\{\,r-a,\,r-s\,\right\}.
+\end{equation*}
+\end{lemma}
+\proof
+Let $c := \min\!\left\{\,r-a,\,r-s\,\right\} \in \N$.
+Then, every collection of $c$ columns of $\widetilde{M}$ is also
+a collection of $c \leq r-a$ columns of $M$, and hence is a linearly independent set,
+since $\rank_{K}\left(M\right) \geq r - a$. This shows that
+$$\rank_{K}(\,\widetilde{M}\,) \;\; \geq \;\; \min\!\left\{\,r-a,\,r-s\,\right\}$$
+and completes the proof of the Lemma.
+\qed
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
