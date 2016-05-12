@@ -242,18 +242,28 @@ Thus, we see that
 \end{equation*}
 where $\widetilde{{\color{white}\cdot}\cdot{\color{white}\cdot}}$ denotes deletion of the leftmost $s$ columns.
 By Lemma \ref{LemmaKruskalRankOfDeletionMatrix}, we have
-\begin{equation*}
-\rank_{K}(\,\widetilde{M}^{(2)}\,) \;\; \geq \;\; \min\!\left\{\,r-a_{2},\,r-s\,\right\}
-\quad\textnormal{and}\quad
-\rank_{K}(\,\widetilde{M}^{(3)}\,) \;\; \geq \;\; \min\!\left\{\,r-a_{3},\,r-s\,\right\}.
-\end{equation*}
+\begin{eqnarray*}
+\rank_{K}(\,\widetilde{M}^{(2)}\,)
+& \geq & \min\!\left\{\,r-a_{2},\,r-s\,\right\}
+\;\;\geq\;\; \min\!\left\{\,r-s+s-a_{2},\,r-s\,\right\}
+\;\;\geq\;\; r-s\,+\,\min\!\left\{\,s-a_{2},\,0\,\right\}
+\\
+&\geq& r-s\,-\,\max\!\left\{\,a_{2}-s,\,0\,\right\},
+\quad\textnormal{and}
+\\
+\rank_{K}(\,\widetilde{M}^{(3)}\,)
+& \overset{{\color{white}\vert}}{\geq} & \min\!\left\{\,r-a_{3},\,r-s\,\right\}
+\;\;\geq\;\; \min\!\left\{\,r-s+s-a_{3},\,r-s\,\right\}
+\;\;\geq\;\; r-s \,+\, \min\!\left\{\,s-a_{3},\,0\,\right\}
+\\
+&\geq& r-s\,-\,\max\!\left\{\,a_{3}-s,\,0\,\right\}.
+\end{eqnarray*}
 Next, we claim that $\rank_{K}(\,\Pi\,\widetilde{M}^{(1)}\,) \geq r - s - a_{1}$.
 Indeed, let $\widetilde{\mathcal{C}}$ be any collection of $r - s - a_{1}$ columns of $\widetilde{M}^{(1)}$,
 and $\mathcal{C} := \widetilde{\mathcal{C}} \sqcup \{\,\textnormal{leftmost $s$ columns of $M^{(1)}$}\,\}$.
 Then, $\left\vert\,\mathcal{C}\,\right\vert = r - a_{1}$, and we see that $\mathcal{C}$ is a linearly independent
 set, since $\rank_{K}(\,M^{(1)}\,) \geq r - a_{1}$ by hypothesis.
-Since $\dim\!\left(\ker\!\left(\,\Pi\,\right)\right) \leq s$, we see that,
-by the Dimension Theorem for finite-dimensional vector spaces, we have
+By the Dimension Theorem for finite-dimensional vector spaces, we have
 \begin{equation*}
 \dim\!\left(\,\ker\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right)
 \; + \;
@@ -262,7 +272,7 @@ by the Dimension Theorem for finite-dimensional vector spaces, we have
 \dim\!\left(\,\domain\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right)
 \;\; = \;\; r - a_{1}.
 \end{equation*}
-Hence,
+Furthermore, since $\dim\!\left(\,\ker\!\left(\,\Pi\,\right)\,\right) \leq s$, we see that
 \begin{equation*}
 r - s - a_{1}
 \;\; = \;\; \vert\;\widetilde{\mathcal{C}}\;\vert
@@ -280,12 +290,24 @@ which implies
 which in turn implies that the (arbitrary) collection $\Pi\,\widetilde{\mathcal{C}}$ of $r - s - a_{1}$ columns of
 $\Pi\,\widetilde{M}^{(1)}$ is a linearly independent set.
 This shows that indeed we have $\rank_{K}\!\left(\,\Pi\,\widetilde{M}^{(1)}\,\right) \geq r - s - a_{1}$.
+Thus, we see that $\left(\;\Pi\,\widetilde{M}^{(1)},\widetilde{M}^{(2)},\widetilde{M}^{(3)}\,\right)$
+is of type $\left(\,r-s\,;\,a_{1},b_{2},b_{3}\,\right)$, where
+\,$b_{i} \,:=\, \max\!\left\{\,a_{i}-s,\,0\,\right\}$, for $i = 2,3$.
+By the Induction Hypothesis applied to
+$\left[\;\Pi\,\widetilde{M}^{(1)},\widetilde{M}^{(2)},\widetilde{M}^{(3)}\,\right]
+\; = \; \left[\;\Pi\,\widetilde{N}^{(1)},\widetilde{N}^{(2)},\widetilde{N}^{(3)}\,\right]$,
+we have that, up to permutation and individual scaling of columns,
+\begin{equation*}
+\widetilde{M}^{(i)} \;\; = \;\; \widetilde{N}^{(i)}\,,
+\quad\textnormal{for $i = 2,3$}.
+\end{equation*}
+This completes the proof of Claim 2.
+
 
 for any collection $\widetilde{\mathcal{C}}$ of $r - s - a_{1}$ columns of $\Pi\,\widetilde{M}^{(1)}$,
 consider the corresponding columns of $M^{(1)}$ together with the leftmost $s$ columns of $M^{(1)}$.
 The resulting collection $\mathcal{C}$ of $r-a_{1}$ columns of $M^{(1)}$ is thus a linearly independent set, since
 $\rank_{K}(\,M^{(1)}\,) \geq r - a_{1}$.
-This completes the proof of Claim 2.
 
 \vskip 0.5cm
 \begin{center}
