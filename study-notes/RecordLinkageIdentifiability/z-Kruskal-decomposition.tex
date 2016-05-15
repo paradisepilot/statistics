@@ -248,7 +248,8 @@ By Lemma \ref{LemmaKruskalRankOfDeletionMatrix}, we have
 \;\;\geq\;\; \min\!\left\{\,r-s+s-a_{2},\,r-s\,\right\}
 \;\;\geq\;\; r-s\,+\,\min\!\left\{\,s-a_{2},\,0\,\right\}
 \\
-&\geq& r-s\,-\,\max\!\left\{\,a_{2}-s,\,0\,\right\},
+&\geq& r-s\,-\,\max\!\left\{\,a_{2}-s,\,0\,\right\}
+\;\; = \;\; r-s \,-\, b_{2},
 \quad\textnormal{and}
 \\
 \rank_{K}(\,\widetilde{M}^{(3)}\,)
@@ -256,8 +257,10 @@ By Lemma \ref{LemmaKruskalRankOfDeletionMatrix}, we have
 \;\;\geq\;\; \min\!\left\{\,r-s+s-a_{3},\,r-s\,\right\}
 \;\;\geq\;\; r-s \,+\, \min\!\left\{\,s-a_{3},\,0\,\right\}
 \\
-&\geq& r-s\,-\,\max\!\left\{\,a_{3}-s,\,0\,\right\}.
+&\geq& r-s\,-\,\max\!\left\{\,a_{3}-s,\,0\,\right\}
+\;\; = \;\; r-s \,-\, b_{3},
 \end{eqnarray*}
+where $b_{2} := \max\!\left\{\,a_{2}-s,\,0\,\right\}$ and $b_{3} := \max\!\left\{\,a_{3}-s,\,0\,\right\}$.
 Next, we claim that $\rank_{K}(\,\Pi\,\widetilde{M}^{(1)}\,) \geq r - s - a_{1}$.
 Indeed, let $\widetilde{\mathcal{C}}$ be any collection of $r - s - a_{1}$ columns of $\widetilde{M}^{(1)}$,
 and $\mathcal{C} := \widetilde{\mathcal{C}} \sqcup \{\,\textnormal{leftmost $s$ columns of $M^{(1)}$}\,\}$.
@@ -291,8 +294,7 @@ which in turn implies that the (arbitrary) collection $\Pi\,\widetilde{\mathcal{
 $\Pi\,\widetilde{M}^{(1)}$ is a linearly independent set.
 This shows that indeed we have $\rank_{K}\!\left(\,\Pi\,\widetilde{M}^{(1)}\,\right) \geq r - s - a_{1}$.
 Thus, we see that $\left(\;\Pi\,\widetilde{M}^{(1)},\widetilde{M}^{(2)},\widetilde{M}^{(3)}\,\right)$
-is of type $\left(\,r-s\,;\,a_{1},b_{2},b_{3}\,\right)$, where
-\,$b_{i} \,:=\, \max\!\left\{\,a_{i}-s,\,0\,\right\}$, for $i = 2,3$.
+is of type $\left(\,r-s\,;\,a_{1},b_{2},b_{3}\,\right)$.
 By the Induction Hypothesis applied to
 $\left[\;\Pi\,\widetilde{M}^{(1)},\widetilde{M}^{(2)},\widetilde{M}^{(3)}\,\right]
 \; = \; \left[\;\Pi\,\widetilde{N}^{(1)},\widetilde{N}^{(2)},\widetilde{N}^{(3)}\,\right]$,
@@ -301,13 +303,17 @@ we have that, up to permutation and individual scaling of columns,
 \widetilde{M}^{(i)} \;\; = \;\; \widetilde{N}^{(i)}\,,
 \quad\textnormal{for $i = 2,3$}.
 \end{equation*}
+This proves the Claim for the case $i_{0} = 1$.
+For the cases $i_{0} \in \{2,3\}$, note that the preceding proof for $i_{0} = 1$ does not rely
+on the fact that $a_{1} \leq a_{2} \leq a_{3}$.
+We thus see that the proofs for the cases $i_{0} = 2,3$
+are essentially the same as the preceding one, after obvious modifications.
 This completes the proof of Claim 2.
 
-
-for any collection $\widetilde{\mathcal{C}}$ of $r - s - a_{1}$ columns of $\Pi\,\widetilde{M}^{(1)}$,
-consider the corresponding columns of $M^{(1)}$ together with the leftmost $s$ columns of $M^{(1)}$.
-The resulting collection $\mathcal{C}$ of $r-a_{1}$ columns of $M^{(1)}$ is thus a linearly independent set, since
-$\rank_{K}(\,M^{(1)}\,) \geq r - a_{1}$.
+%for any collection $\widetilde{\mathcal{C}}$ of $r - s - a_{1}$ columns of $\Pi\,\widetilde{M}^{(1)}$,
+%consider the corresponding columns of $M^{(1)}$ together with the leftmost $s$ columns of $M^{(1)}$.
+%The resulting collection $\mathcal{C}$ of $r-a_{1}$ columns of $M^{(1)}$ is thus a linearly independent set, since
+%$\rank_{K}(\,M^{(1)}\,) \geq r - a_{1}$.
 
 \vskip 0.5cm
 \begin{center}
