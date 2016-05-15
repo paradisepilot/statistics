@@ -86,18 +86,18 @@ Let $\F$ be a field. Suppose:
 	$\left[\,N^{(1)},N^{(2)},N^{(3)}\,\right]$.
 \end{itemize}
 Then, there exists a permutation $\sigma \in \mathfrak{S}_{r}$ such that the following holds:
-For each maximal (with respect to inclusion) subset $\mathcal{I} \subset \left\{\,1,2,\ldots,r\,\right\}$
+For each maximal (with respect to inclusion) subset $\mathcal{J} \subset \left\{\,1,2,\ldots,r\,\right\}$
 of indices satisfying the property that
-\;$\underset{i\in\mathcal{I}}{\span}\!\left\{\,M^{(3)}_{\bullet,k}\,\right\}$\, is one-dimensional,
+\;$\underset{i\in\mathcal{J}}{\span}\!\left\{\,M^{(3)}_{\bullet,k}\,\right\}$\, is one-dimensional,
 we have
 \begin{enumerate}
 \item
-	$\underset{i\in\mathcal{I}}{\span}\!\left\{\,M^{(n)}_{\bullet,k}\,\right\}$ \,$=$\,
-	$\underset{i\in\mathcal{I}}{\span}\!\left\{\,N^{(n)}_{\bullet,\sigma(k)}\,\right\}$,\;
+	$\underset{i\in\mathcal{J}}{\span}\!\left\{\,M^{(n)}_{\bullet,k}\,\right\}$ \,$=$\,
+	$\underset{i\in\mathcal{J}}{\span}\!\left\{\,N^{(n)}_{\bullet,\sigma(k)}\,\right\}$,\;
 	for each $n = 1,2,3$, and
 \item
-	$\mathcal{I}$ is also maximal with respect to the property that
-	\;$\underset{i\in\mathcal{I}}{\span}\!\left\{\,N^{(3)}_{\bullet,\sigma(k)}\,\right\}$\, is one-dimensional.
+	$\mathcal{J}$ is also maximal with respect to the property that
+	\;$\underset{i\in\mathcal{J}}{\span}\!\left\{\,N^{(3)}_{\bullet,\sigma(k)}\,\right\}$\, is one-dimensional.
 \end{enumerate}
 \end{lemma}
 \proof
@@ -199,31 +199,34 @@ We need to prove that the Theorem remains valid for matrices with $r$ columns.
 \textbf{Claim 2:}
 \vskip 0.03cm
 \noindent
-Suppose, for some $i_{0} \in \{1,2,3\}$, there exist a permutation $\sigma \in \mathcal{S}_{r}$
-and a set $\mathcal{I} \subset \left[\,r\,\right]$ of indices with
-\,$1 \,\leq\, \left\vert\,\mathcal{I}\,\right\vert \,\leq\, r - a_{i} - 2$\, such that
+Suppose, for some $i \in \{1,2,3\}$, there exist a permutation $\sigma \in \mathcal{S}_{r}$
+and a set $\mathcal{J} \subset \left[\,r\,\right]$ of indices with
+\,$1 \,\leq\, \left\vert\,\mathcal{J}\,\right\vert \,\leq\, r - a_{i} - 2$\, such that
 \begin{equation*}
-\span\!\left\{\,M^{(i_{0})}_{\bullet,k}\,\right\}_{k\in\mathcal{I}}
+\span\!\left\{\,M^{(i)}_{\bullet,k}\,\right\}_{k\in\mathcal{J}}
 \;\; = \;\;
-\span\!\left\{\,N^{(i_{0})}_{\bullet,\sigma(k)}\,\right\}_{k\in\mathcal{I}}.
+\span\!\left\{\,N^{(i)}_{\bullet,\sigma(k)}\,\right\}_{k\in\mathcal{J}}.
 \end{equation*}
-Then, after permuting and individually scaling, if necessary, the columns of $M^{(i)}$,
-for $i \in \left[\,3\,\right] \backslash \{\,i_{0}\,\}$, we have
+Then, if necessary,
+after permuting the columns with indexes in $\left[\,r\,\right]\backslash\mathcal{J}$
+simultaneously across $M^{(1)},M^{(2)},M^{(3)}$ and
+individually scaling the columns of $M^{(i^{\prime})}$, for $i^{\prime} \in \left[\,3\,\right] \backslash \{\,i\,\}$, we have
 \begin{equation*}
-M^{(i)}_{\bullet,k} \;=\; N^{(i)}_{\bullet,k}\,,
+M^{(i^{\prime})}_{\bullet,k} \;=\; N^{(i^{\prime})}_{\bullet,k}\,,
 \quad
-\textnormal{for each \,$i \in \left[\,3\,\right]\backslash\{\,i_{0}\}$\, and each \,$k \in \left[\,r\,\right] \backslash\,\mathcal{I}$}.
+\textnormal{for each \,$i^{\prime} \in \left[\,3\,\right]\backslash\{\,i\,\}$\, and each \,$k \in \left[\,r\,\right] \backslash\,\mathcal{J}$}.
 \end{equation*}
 \end{minipage}
 \end{center}
-Proof of Claim 2:\; Suppose that such a set $\mathcal{I}$ exists.
-We first treat the case where $i_{0} = 1$.
-Without loss of generality, we may assume the columns of $M^{(i_{0})} = M^{(1)}$ and $N^{(i_{0})} = N^{(1)}$
-have been reordered so that $\sigma = \textnormal{id}$ and $\mathcal{I} = \left[\,s\,\right]$.
+Proof of Claim 2:\; Suppose that such a set $\mathcal{J}$ exists.
+We first treat the case where $i = 1$.
+Without loss of generality and purely for clarity of presentation,
+we may assume the columns of $M^{(i)} = M^{(1)}$ and $N^{(i)} = N^{(1)}$
+have been reordered so that $\sigma = \textnormal{id}$ and $\mathcal{J} = \left[\,s\,\right]$.
 Next, fix any matrix $\Pi \in \F^{m_{1} \times m_{1}}$ such that
 \begin{equation*}
 \ker\!\left(\,\Pi\,\right)
-\;\; = \;\; \span\!\left\{\,M^{(i_{0})}_{\bullet,k}\,\right\}_{k\in\mathcal{I}}
+\;\; = \;\; \span\!\left\{\,M^{(i)}_{\bullet,k}\,\right\}_{k\in\mathcal{J}}
 \;\; = \;\; \span\!\left\{\,M^{(1)}_{\bullet,k}\,\right\}_{k=1}^{s}.
 \end{equation*}
 Then,
@@ -303,10 +306,10 @@ we have that, up to permutation and individual scaling of columns,
 \widetilde{M}^{(i)} \;\; = \;\; \widetilde{N}^{(i)}\,,
 \quad\textnormal{for $i = 2,3$}.
 \end{equation*}
-This proves the Claim for the case $i_{0} = 1$.
-For the cases $i_{0} \in \{2,3\}$, note that the preceding proof for $i_{0} = 1$ does not rely
+This proves the Claim for the case $i = 1$.
+For the cases $i \in \{2,3\}$, note that the preceding proof for $i = 1$ does not rely
 on the fact that $a_{1} \leq a_{2} \leq a_{3}$.
-We thus see that the proofs for the cases $i_{0} = 2,3$
+We thus see that the proofs for the cases $i = 2,3$
 are essentially the same as the preceding one, after obvious modifications.
 This completes the proof of Claim 2.
 
@@ -322,18 +325,50 @@ This completes the proof of Claim 2.
 \vskip 0.025cm
 \noindent
 Suppose, for some $i_{0} \in \{1,2,3\}$, there exist a permutation $\sigma \in \mathcal{S}_{r}$
-and a set $\mathcal{I} \subset \left[\,r\,\right]$ of indices with
-\,$1 \,\leq\, \left\vert\,\mathcal{I}\,\right\vert \,\leq\, r - a_{i} - 2$\, such that
+and a set $\mathcal{J}_{0} \subset \left[\,r\,\right]$ of indices with
+\,$1 \,\leq\, \left\vert\,\mathcal{J}_{0}\,\right\vert \,\leq\, r - a_{i} - 2$\, such that
 \begin{equation*}
-\span\!\left\{\,M^{(i_{0})}_{\bullet,k}\,\right\}_{k\in\mathcal{I}}
+\span\!\left\{\,M^{(i_{0})}_{\bullet,k}\,\right\}_{k\in\mathcal{J}_{0}}
 \;\; = \;\;
-\span\!\left\{\,N^{(i_{0})}_{\bullet,\sigma(k)}\,\right\}_{k\in\mathcal{I}}.
+\span\!\left\{\,N^{(i_{0})}_{\bullet,\sigma(k)}\,\right\}_{k\in\mathcal{J}_{0}}.
 \end{equation*}
 Then, the Theorem follows.
 \end{minipage}
 \end{center}
-Proof of Claim 3:\; Note that the hypothesis of Claim 3 is identical to that of Claim 2.
-
+Proof of Claim 3:\; First, note that the hypothesis of Claim 3 is identical to that of Claim 2.
+By Claim 2, if necessary,
+after permuting the columns with indexes in $\left[\,r\,\right]\backslash\mathcal{J}_{0}$
+simultaneously across $M^{(1)},M^{(2)},M^{(3)}$ and
+individually scaling the columns of $M^{(i)}$, for $i \in [\,3\,]\backslash\{i_{0}\}$, we have
+\begin{equation*}
+M^{(i)}_{\bullet,k} \;=\; N^{(i)}_{\bullet,k}\,,
+\quad
+\textnormal{for each \,$i \in \left[\,3\,\right]\backslash\{\,i_{0}\}$\, and each \,$k \in \left[\,r\,\right] \backslash\,\mathcal{J}_{0}$}.
+\end{equation*}
+Now, fix some $i_{1} \in \left[\,3\,\right]\backslash\{\,i_{0}\}$ and
+fix some $j_{1} \in \left[\,r\,\right] \backslash\,\mathcal{J}_{0}$.
+Let $i_{2}$ be the index uniquely determined by $i_{2} \in \left[\,3\,\right] \backslash \left\{\,i_{0},i_{1}\right\}$.
+Then, we see that we have in particular
+\begin{equation*}
+M^{(i_{2})}_{\bullet,j_{1}} \;=\; N^{(i_{2})}_{\bullet,j_{1}}\,.
+\end{equation*}
+Next, an application of Claim 2 again (with $i = i_{1}$ and $\mathcal{J} = \left\{\,j_{1}\right\}$),
+implies that, if necessary,
+after permuting the columns with indexes in $\left[\,r\,\right]\backslash\{\,j_{1}\}$
+simultaneously across $M^{(1)},M^{(2)},M^{(3)}$ and individually scaling columns of $M^{(i_{2})}$,
+we also have
+\begin{equation*}
+M^{(i_{2})}_{\bullet,k} \;=\; N^{(i_{2})}_{\bullet,k}\,,
+\quad
+\textnormal{for each \,$k \in \left[\,r\,\right] \backslash\left\{\,j_{1}\right\}$}.
+\end{equation*}
+Hence, by the preceding two equations, we in fact have
+(after permuting the columns with indexes in $\left[\,r\,\right]\backslash\{\,j_{1}\}$
+simultaneously across $M^{(1)},M^{(2)},M^{(3)}$ and
+individually scaling columns of $M^{(i_{1})},\,M^{(i_{2})}$ if necessary):
+\begin{equation*}
+M^{(i_{2})} \;=\; N^{(i_{2})}\,.
+\end{equation*}
 This completes the proof of Claim 3.
 
 \qed
