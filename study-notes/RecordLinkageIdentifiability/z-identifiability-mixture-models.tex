@@ -1,0 +1,114 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Identifiability of Finite Mixture Models}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{definition}[Identifiability in the usual statistical context]
+\mbox{}\vskip 0.05cm
+\noindent
+Suppose a statistical model is defined by the parametrization map
+$f : \Theta \longrightarrow \mathcal{P}$,
+where $\Theta$ is the parameter space of the model and
+$\mathcal{P}$ is a collection of probability measures
+defined on a common measurable space $\left(\Omega,\mathcal{A}\right)$.
+Then, the statistical model is said to be \textbf{\emph{identifiable}} if
+the parametrization map $f$ is injective.
+\end{definition}
+
+\begin{definition}[Finite Mixture Models with unknown number of mixture components]
+\mbox{}\vskip 0.05cm
+\noindent
+Suppose a statistical model is defined by the parametrization map
+$f : \Theta \longrightarrow \mathcal{P}$,
+where $\Theta$ is the parameter space of the model and
+$\mathcal{P}$ is a collection of probability measures
+defined on a common measurable space $\left(\Omega,\mathcal{A}\right)$.
+Then, the statistical model is called a \textbf{\emph{finite mixture model}} if
+$\mathcal{P}$ has the form:
+\begin{equation*}
+\mathcal{P}
+\;\; = \;\;
+\mathcal{F}\!\left(\,\mathcal{Q}\,\right)
+\;\; := \;\;
+\left\{\;\;
+	\overset{c}{\underset{i=1}{\sum}}\pi_{i}\,q_{i}
+	\,\;\left\vert\,\;
+	\begin{array}{c}
+		c \in \N, \; \sum_{i}^{c}\pi_{i} = 1, \\
+		0 \leq \pi_{i} \leq 1, \; q_{i} \in \mathcal{Q}, \\
+		\forall\;i = 1,2,\ldots,c,
+	\end{array}
+	\right.
+\;\right\},
+\end{equation*}
+where $\mathcal{Q}$ is a collection of probability measures defined on
+$\left(\Omega,\mathcal{A}\right)$.
+\end{definition}
+
+\begin{definition}[Identifiability for Finite Mixture Models]
+\mbox{}\vskip 0.05cm
+\noindent
+Suppose a finite mixture model is defined by the parametrization map
+$f : \Theta \longrightarrow \mathcal{F}\!\left(\,\mathcal{Q}\,\right)$,
+where $\mathcal{Q}$ is a collection of probability measures
+defined on a common measurable space $\left(\Omega,\mathcal{A}\right)$.
+Then, the finite mixture model is said to be \textbf{\emph{identifiable}} if
+$f$ is ``injective up to permutations of mixture components'',
+i.e., for any $\theta_{1}, \theta_{2} \in \Theta$, with
+\begin{equation*}
+f(\theta_{1}) \;=\; \overset{c_{1}}{\underset{i=1}{\sum}}\pi^{(1)}_{i}\,q^{(1)}_{i},
+\quad
+f(\theta_{2}) \;=\; \overset{c_{2}}{\underset{i=1}{\sum}}\pi^{(2)}_{i}\,q^{(2)}_{i}
+\quad
+\in \mathcal{F}\!\left(\,\mathcal{Q}\,\right),
+\end{equation*}
+we have, for any $\theta_{1}, \theta_{2} \in \Theta$,
+\begin{equation*}
+f(\theta_{1}) \; = \; f(\theta_{2})
+\quad\Longrightarrow\quad
+\left\{\begin{array}{c}
+	c_{1} = c_{2} =: c\,, \;\textnormal{and there exists a permutation $\rho \in \mathcal{S}_{c}$ such that,} \\
+	\textnormal{for each $i = 1,2,\ldots,c$, \;we have}\;\;
+	\pi^{(1)}_{i} = \pi^{(2)}_{\rho(i)}
+	\;\;\textnormal{and}\;\,
+	q^{(1)}_{i} = q^{(2)}_{\rho(i)}
+\end{array}\right..
+\end{equation*}
+\end{definition}
+
+\begin{example}[A mixture model with two Bernoulli components is not identifiable.]
+\mbox{}\vskip 0.05cm
+\noindent
+Let $\left(\Omega,\mathcal{A}\right)$ be a measurable space
+and $\mathcal{Q}$ be the collection of all probability measures
+defined on $\left(\Omega,\mathcal{A}\right)$ induced by Bernoulli random variables.
+%Then, note that $\mathcal{F}\!\left(\,\mathcal{Q}\,\right) = \mathcal{Q}$.
+Let $X_{1}, X_{2}, \ldots, X_{n} : \Omega \longrightarrow \{0,1\}$
+be a finite sequence of i.i.d. (Bernoulli) random variables,
+each of which has a mixture distribution of two Bernoulli variables.
+In other words,
+\begin{equation*}
+P_{\pi,q_{1},q_{2}}(X = 1)
+\;=\; \pi \cdot P(X=1\,\vert\,q_{1}) + (1-\pi)\cdot P(X=1\,\vert\,q_{2})
+\;=\; \pi \cdot q_{1} + (1-\pi)\cdot q_{2},
+\end{equation*}
+for some $q_{1}, q_{2},\pi \in [0,1]$.
+The corresponding parametrization map is thus:
+\begin{equation*}
+f \;:\; [0,1] \times [0,1] \times [0,1] \;\longrightarrow\; [0,1]
+\;:\; (q_{1},q_{2},\pi) \;\longmapsto\; \pi \cdot q_{1} + (1-\pi)\cdot q_{2}.
+\end{equation*}
+Then, a ``generic'' $p \in [0,1]$, the pre-image
+$f^{-1}(p) \subset [0,1] \times [0,1] \times [0,1]$
+is a $2$-dimensional subset of $[0,1] \times [0,1] \times [0,1]$.
+In particular, $f$ cannot be injective.
+We may thus conclude that any mixture model with two
+Bernoulli mixture components is not identifiable.
+\end{example}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
