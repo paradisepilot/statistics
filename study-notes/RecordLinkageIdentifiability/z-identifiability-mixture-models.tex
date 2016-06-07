@@ -91,13 +91,37 @@ defined on $\left(\Omega,\mathcal{A}\right)$ induced by Bernoulli random variabl
 Let $X_{1}, X_{2}, \ldots, X_{n} : \Omega \longrightarrow \{0,1\}$
 be a finite sequence of i.i.d. (Bernoulli) random variables,
 each of which has a mixture distribution of two Bernoulli variables.
-In other words,
+In other words, each the probability distribution of each $X_{i}$ can be described by:
 \begin{equation*}
 P_{\pi,q_{1},q_{2}}(X = 1)
 \;=\; \pi \cdot P(X=1\,\vert\,q_{1}) + (1-\pi)\cdot P(X=1\,\vert\,q_{2})
 \;=\; \pi \cdot q_{1} + (1-\pi)\cdot q_{2},
 \end{equation*}
 for some $q_{1}, q_{2},\pi \in [0,1]$.
+The probability of the full data set is thus given by:
+\begin{eqnarray*}
+P\!\left(\,X_{1} = x_{1},\ldots,X_{n}=x_{n}\,\right)
+& = & \overset{n}{\underset{i=1}{\prod}}\;P(X_{i}=x_{i})
+\;\; = \;\; \overset{n}{\underset{i=1}{\prod}}\;
+	\left\{\,
+		\pi \cdot P(X_{i}=x_{i}\,\vert\,q_{1})
+		\overset{{\color{white}.}}{+}
+		(1-\pi)\cdot P(X_{i}=x_{i}\,\vert\,q_{2})
+	\,\right\}
+\\
+&=&
+	\left(\,
+		\pi \cdot q_{1}
+		\overset{{\color{white}|}}{+}
+		(1-\pi)\cdot q_{2}
+	\,\right)^{\overset{n}{\underset{\mbox{}\,i=1}{\sum}}I\{X_{i}=1\}}
+	\cdot
+	\left(\,
+		\pi \cdot (1-q_{1})
+		\overset{{\color{white}|}}{+}
+		(1-\pi)\cdot (1-q_{2})
+	\,\right)^{\overset{n}{\underset{\mbox{}\,i=1}{\sum}}I\{X_{i}=0\}}
+\end{eqnarray*}
 The corresponding parametrization map is thus:
 \begin{equation*}
 f \;:\; [0,1] \times [0,1] \times [0,1] \;\longrightarrow\; [0,1]
