@@ -1,0 +1,120 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical Lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{lemma}
+\mbox{}\vskip 0.05cm
+\noindent
+If $M \in \F^{m \times n}$ has one (or more) zero columns, then $\rank_{K}\!\left(M\right) \,=\, 0$.
+\end{lemma}
+\proof
+Since $M$ has a zero column, for each $k \in \left\{\,1,2,\ldots,n\,\right\}$, we can find subset of $k$
+columns of $M$ which is NOT linear independent: by first selecting the zero column, followed by
+picking arbitrarily $k-1$ of the remaining columns.
+This shows that $\rank_{K}\!\left(M\right) \,<\, k$, for each $k \in \left\{\,1,2,\ldots,n\,\right\}$, and
+we may now conclude that $\rank_{K}\!\left(M\right) \,=\, 0$.
+\qed
+
+\begin{lemma}
+\mbox{}\vskip 0.05cm
+\noindent
+Let $\F$ be a field, and $M^{(n)} \in \F^{m_{n} \times r}$, for $n = 1,2,3$.
+Suppose the matrix triple product $\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$
+is of type $\left(\,r\,;\,a_{1},a_{2},a_{3}\,\right)$. Then,
+\begin{equation*}
+a_{n} \,\leq\, b_{n}, \;\textnormal{for each \,$n = 1,2,3$}
+\quad\Longrightarrow\quad
+\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right] \;\textnormal{is also of type}\; \left(\,r\,;\,b_{1},b_{2},b_{3}\,\right).
+\end{equation*}
+\end{lemma}
+\proof
+Note that\;
+$a_{n} \leq b_{n}$ \;$\Longrightarrow$\; $-\,a_{n} \geq -\,b_{n}$ \;$\Longrightarrow$\; $r-a_{n} \geq r-b_{n}$.\;
+Hence,
+\begin{eqnarray*}
+&& \textnormal{$\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$\; being of type \;$\left(\,r\,;\,a_{1},a_{2},a_{3}\,\right)$}
+\;\;\;\Longrightarrow\;\;\; \rank_{K}\!\left(M^{(n)}\right) \,\geq\, r - a_{n}\,, \;\,\textnormal{for each $n = 1,2,3$}
+\\
+&\Longrightarrow& \rank_{K}\!\left(M^{(n)}\right) \,\geq\, r - b_{n}\,, \;\,\textnormal{for each $n = 1,2,3$}
+\;\;\;\Longrightarrow\;\;\; \textnormal{$\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$\; being of type \;$\left(\,r\,;\,b_{1},b_{2},b_{3}\,\right)$}
+\end{eqnarray*}
+\qed
+
+\begin{lemma}[Maximal simultaneous eigenspaces of diagonal matrices]
+\label{simultaneousESpace}
+\mbox{}\vskip 0.05cm
+\noindent
+Let $\F$ be a field and
+let $\mathbf{e}_{1}, \mathbf{e}_{2}, \ldots, \mathbf{e}_{n} \in \F^{n}$ be the standard basis for $\F^{n}$.
+Suppose, for each $k \in \left\{\,1,2,\ldots,m\,\right\}$,
+\begin{equation*}
+D_{k} \; = \; \diag\left(\,d^{(k)}_{1},d^{(k)}_{2},\ldots,d^{(k)}_{n}\,\right) \;\in\; \F^{n \times n}
+\end{equation*}
+is a diagonal matrix with entries in $\F$.
+Then, the following statements are true:
+\begin{enumerate}
+\item
+	For each $k \in\{\,1, 2, \ldots, m\,\}$ and for each $i \in \{\,1,2,\ldots,n\,\}$,
+	the vector $\mathbf{e}_{i} \in \F^{n}$ is an eigenvector of $D_{k}$
+	corresponding to the eigenvalue $d^{(k)}_{i}$.
+\item
+	For each $k \in\{\,1, 2, \ldots, m\,\}$ and each $i,j \in \{\,1,2,\ldots,n\,\}$,
+	the vectors $\mathbf{e}_{i}, \mathbf{e}_{j} \in \F^{n}$ belong to the same eigenspace
+	of $D_{k}$ if and only if $d^{(k)}_{i} = d^{(k)}_{j}$.
+\item
+	For each $k \in\{\,1, 2, \ldots, m\,\}$ and each $i,j \in \{\,1,2,\ldots,n\,\}$,
+	$\span\!\left\{\,\mathbf{e}_{i}, \mathbf{e}_{j}\,\right\} \subset \F^{n}$
+	is a (not necessarily maximal) eigenspace of $D_{k}$ if and only if $d^{(k)}_{i} = d^{(k)}_{j}$.
+\item
+	For each $i,j \in \{\,1,2,\ldots,n\,\}$, 
+	$\span\!\left\{\,\mathbf{e}_{i}, \mathbf{e}_{j}\,\right\} \subset \F^{n}$
+	is contained in the same maximal simultaneous eigenspace of
+	$D_{1}, D_{2}, \ldots, D_{m}$
+	if and only if $d^{(k)}_{i} = d^{(k)}_{j}$, for each $k \in \{\,1,2,\ldots,m\,\}$.
+\item
+	Every maximal simultaneous eigenspace of $D_{1}, D_{2}, \ldots, D_{m}$
+	can be expressed as
+	\begin{equation*}
+	\underset{i\,\in\,\mathcal{I}}{\span}\left\{\,\overset{{\color{white}.}}{\mathbf{e}}_{i}\,\right\}
+	\;\subset\;\F^{n},
+	\end{equation*}
+	where $\mathcal{I} \subset \left\{\,1,2,\ldots,n\,\right\}$ is a maximal subset of indices
+	with respect to the following properties:
+	\begin{equation*}
+	d^{(k)}_{i} \,=\, d^{(k)}_{j},
+	\;\;
+	\textnormal{for each $k \in \left\{\,1,2,\ldots,m\,\right\}$ and each $i,j \in \mathcal{I}$}.
+	\end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof Obvious. \qed
+
+\begin{lemma}\label{LemmaKruskalRankOfDeletionMatrix}
+\mbox{}\vskip 0.05cm
+\noindent
+Let $\F$ be a field, $m, r, s, a \in \N$, with $r > s$ and $r > a$.
+Let $M \in \F^{m \times r}$ with $\rank_{K}\!\left(M\right) \geq r - a$.
+Let $\widetilde{M} \in \F^{m \times (r-s)}$ denotes the matrix
+obtained from $M$ by deleting the leftmost $s$ columns.
+Then,
+\begin{equation*}
+\rank_{K}(\,\widetilde{M}\,)
+\;\; \geq \;\; \min\!\left\{\,r-a,\,r-s\,\right\}.
+\end{equation*}
+\end{lemma}
+\proof
+Let $c := \min\!\left\{\,r-a,\,r-s\,\right\} \in \N$.
+Then, every collection of $c$ columns of $\widetilde{M}$ is also
+a collection of $c \leq r-a$ columns of $M$, and hence is a linearly independent set,
+since $\rank_{K}\left(M\right) \geq r - a$. This shows that
+$$\rank_{K}(\,\widetilde{M}\,) \;\; \geq \;\; \min\!\left\{\,r-a,\,r-s\,\right\}$$
+and completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

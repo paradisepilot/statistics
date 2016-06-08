@@ -1,0 +1,587 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Kruskal's sufficient condition for uniqueness of decomposition of third-order arrays as matrix triple products}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{definition}[$n^{\textnormal{th}}$-order array]
+\label{nThOrderArray}
+\mbox{}\vskip 0.05cm
+\noindent
+Let $\F$ be a field. Let $n \in \N$, and $d_{1}, d_{2}, \ldots, d_{n} \in \N$.
+An \emph{$n^{\textnormal{th}}$-order array with entries in $\F$} is a function
+\begin{equation*}
+T : \left[\,d_{1}\,\right] \times \left[\,d_{2}\,\right] \times \cdots \times \left[\,d_{n}\,\right] \longrightarrow \F\,,
+\end{equation*}
+where $\left[\,d_{i}\,\right] := \left\{\,1,2,\ldots,d_{i}\,\right\}$, for each $i = 1,2,\ldots, n$.
+\end{definition}
+
+\begin{remark}
+\mbox{}\vskip 0.05cm
+\noindent
+A first-order array is simply a vector and a second-order array is simply a matrix.
+Thus, $n^{\textnormal{th}}$-order arrays are simply ``higher-order'' generalizations of vectors and matrices. 
+\end{remark}
+
+\begin{definition}[Matrix triple product]
+\label{MatrixTripleProduct}
+\mbox{}\vskip 0.05cm
+\noindent
+Let $\F$ be a field.
+Let $r, d_{1}, d_{2}, d_{3} \in \N$.
+Let $M^{(1)} \in \F^{d_{1} \times r}$, $M^{(2)} \in \F^{d_{2} \times r}$, $M^{(3)} \in \F^{d_{3} \times r}$.
+be second-order arrays (i.e. matrices) with entries in $\F$.
+The \emph{matrix triple product} $\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$ of $M^{(1)}, M^{(2)}, M^{(3)}$
+is, by definition, the third-order array given by:
+\begin{equation*}
+\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right](i,j,k)
+\;\; := \;\;
+\sum_{h = 1}^{r}\, M^{(1)}_{ih} M^{(2)}_{jh} M^{(3)}_{kh}
+\end{equation*}
+\end{definition}
+
+\begin{definition}[Kruskal rank of a matrix]
+\label{KruskalRank}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\F$ be a field and let $A \in \F^{m \times n}$ be a matrix.
+The \textbf{Kruskal rank} \,$\rank_{K}\!\left(A\right)$\, of $A$
+is the largest number $k \in \left\{\,1,2,\ldots,n\,\right\}$ such that
+every set of $k$ columns of $A$ is linearly independent.
+\end{definition}
+
+\begin{definition}
+\label{MatrixTripleProductType}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\F$ be a field and let $r, m_{1}, m_{2}, m_{3} \in \N$.
+Let $M^{(n)} \in \F^{m_{n} \times r}$, for $n = 1,2,3$.
+The matrix triple product $\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$
+is said to be of type $\left(\,r\,;\,a_{1},a_{2},a_{3}\,\right)$ if
+$\rank_{K}\!\left(M^{(n)}\right) \,\geq\, r - a_{n}$, for each $n = 1,2,3$.
+\end{definition}
+
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\F$ be a field. Suppose:
+\begin{itemize}
+\item
+	$M^{(1)}, N^{(1)} \in \F^{m_{1} \times r}$,\;
+	$M^{(2)}, N^{(2)} \in \F^{m_{2} \times r}$,\;
+	$M^{(3)}, N^{(3)} \in \F^{m_{3} \times r}$.
+\item
+	$\left(\,M^{(1)},M^{(2)},M^{(3)}\,\right)$ is of type $\left(\,r\,;\,0,0,r-1\,\right)$.
+\item
+	$\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$
+	\,$=$\,
+	$\left[\,N^{(1)},N^{(2)},N^{(3)}\,\right]$.
+\end{itemize}
+Then, there exists a permutation $\sigma \in \mathfrak{S}_{r}$ such that the following holds:
+For each maximal (with respect to inclusion) subset $\mathcal{J} \subset \left\{\,1,2,\ldots,r\,\right\}$
+of indices satisfying the property that
+\;$\underset{i\in\mathcal{J}}{\span}\!\left\{\,M^{(3)}_{\bullet,k}\,\right\}$\, is one-dimensional,
+we have
+\begin{enumerate}
+\item
+	$\underset{i\in\mathcal{J}}{\span}\!\left\{\,M^{(n)}_{\bullet,k}\,\right\}$ \,$=$\,
+	$\underset{i\in\mathcal{J}}{\span}\!\left\{\,N^{(n)}_{\bullet,\sigma(k)}\,\right\}$,\;
+	for each $n = 1,2,3$, and
+\item
+	$\mathcal{J}$ is also maximal with respect to the property that
+	\;$\underset{i\in\mathcal{J}}{\span}\!\left\{\,N^{(3)}_{\bullet,\sigma(k)}\,\right\}$\, is one-dimensional.
+\end{enumerate}
+\end{lemma}
+\proof
+
+\qed
+
+\begin{corollary}\label{zeroZeroRminusTwo}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\F$ be a field. Suppose:
+\end{corollary}
+
+
+\begin{theorem}[Kruskal's sufficient condition for uniqueness of decomposition of third-order arrays]
+\label{KruskalTheorem}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\F$ be a field. Suppose:
+\begin{itemize}
+\item
+	$M^{(1)}, N^{(1)} \in \F^{m_{1} \times r}$,\;
+	$M^{(2)}, N^{(2)} \in \F^{m_{2} \times r}$,\;
+	$M^{(3)}, N^{(3)} \in \F^{m_{3} \times r}$.
+\item
+	$\left(\,M^{(1)},M^{(2)},M^{(3)}\,\right)$ is of type $\left(\,r\,;\,a_{1},a_{2},a_{3}\,\right)$,
+	with $a_{1} + a_{2} + a_{3} \leq r - 2$.
+\item
+	$\left[\,M^{(1)},M^{(2)},M^{(3)}\,\right]$
+	\,$=$\,
+	$\left[\,N^{(1)},N^{(2)},N^{(3)}\,\right]$.
+\end{itemize}
+Then, there exists a permutation matrix $P \in \F^{r \times r}$ and diagonal matrices
+$D^{(1)}, D^{(2)}, D^{(3)} \in \F^{r \times r}$ with $D^{(1)}\cdot D^{(2)}\cdot D^{(3)} = I_{r}$
+such that
+\begin{equation*}
+N^{(i)} \; = \; M^{(i)} \cdot D^{(i)} \cdot P\,,
+\quad
+\textnormal{for each \,$i = 1,2,3$}.
+\end{equation*}
+\end{theorem}
+\proof
+Without loss of generality, we may assume that $a_{1} \leq a_{2} \leq a_{3}$.
+We will establish the Theorem in a series of claims. First,
+
+\begin{center}
+\begin{minipage}{6.0in}
+\textbf{Claim 1:}\; It suffices to prove the Theorem for the case $a_{1} + a_{2} + a_{3} = r - 2$.
+\end{minipage}
+\end{center}
+Proof of Claim 1:\; Suppose the Theorem holds whenever $a_{1} + a_{2} + a_{3} \,=\, r - 2$.
+We need to show that it remains valid for $a_{1} + a_{2} + a_{3} \,<\, r - 2$.
+Now, $a_{1} + a_{2} + a_{3} \,<\, r - 2$ $\Longleftrightarrow$
+$a_{1} + a_{0} + a_{2} + a_{3} \,=\, r - 2$, for some $a_{0} \in \N = \{1,2,\ldots\,\}$.
+Now let $a^{\prime}_{1} = a_{1} + a_{0}$, $a^{\prime}_{2} = a_{2}$, and
+$a^{\prime}_{2} = a_{2}$.
+Then, we have $a^{\prime}_{1}+a^{\prime}_{2}+a^{\prime}_{3}\,=\,r-2$.
+Since $a^{\prime}_{i} \geq a_{i}$, for $i = 1,2,3$, we see that
+$\left(\,M^{(1)},M^{(2)},M^{(3)}\,\right)$ is also of type
+$\left(\,r\,;\,a^{\prime}_{1},a^{\prime}_{2},a^{\prime}_{3}\,\right)$.
+Applying the Theorem under the special case
+$a^{\prime}_{1}+a^{\prime}_{2}+a^{\prime}_{3}\,=\,r-2$
+yields the desired result that,
+for some permutation matrix $P \in \F^{r \times r}$
+and diagonal matrix $D^{(1)}, D^{(2)}, D^{(3)} \in \F^{r \times r}$,
+we have:
+\begin{equation*}
+N^{(i)} \; = \; M^{(i)} \cdot D^{(i)} \cdot P\,,
+\quad
+\textnormal{for each \,$i = 1,2,3$}.
+\end{equation*}
+This completes the proof of Claim 1.
+
+\vskip 0.5cm
+\noindent
+Next, we proceed by induction of $r$.
+Note that the case $r = 2$ follows immediately from Corollary \ref{zeroZeroRminusTwo},
+since in that case $r - 2 = 0$, which in turn implies $a_{1} = a_{2} = 0$ and $a_{3} = 0 = r - 2$.
+Similiarly, the case $r = 3$ also follows immediately from Corollary \ref{zeroZeroRminusTwo},
+since in that case $r - 2 = 1$, which in turn implies $a_{1} = a_{2} = 0$ and $a_{3} = 1 = r - 2$.
+In the remainder of the proof, we also assume that $a_{2} \geq 1$, since the case
+$a_{1} = a_{2} = 0$ has been established in Corollary \ref{zeroZeroRminusTwo}.
+
+\vskip 0.5cm
+\noindent
+We now state the
+\begin{center}
+\begin{minipage}{6.0in}
+\textbf{Induction Hypothesis:}
+\vskip 0.03cm
+\noindent
+For an arbitrary $r \in \left\{\,3,4,\ldots\,\right\}$, the Theorem holds for matrices having strictly less than $r$ columns.
+\end{minipage}
+\end{center}
+We need to prove that the Theorem remains valid for matrices with $r$ columns.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.0in}
+\textbf{Claim 2:}
+\vskip 0.03cm
+\noindent
+Suppose, for some $i \in \{1,2,3\}$, there exist a permutation $\sigma \in \mathcal{S}_{r}$
+and a set $\mathcal{J} \subset \left[\,r\,\right]$ of indices with
+\,$1 \,\leq\, \left\vert\,\mathcal{J}\,\right\vert \,\leq\, r - a_{i} - 2$\, such that
+\begin{equation*}
+\span\!\left\{\,M^{(i)}_{\bullet,k}\,\right\}_{k\in\mathcal{J}}
+\;\; = \;\;
+\span\!\left\{\,N^{(i)}_{\bullet,\sigma(k)}\,\right\}_{k\in\mathcal{J}}.
+\end{equation*}
+Then, if necessary,
+after permuting the columns with indexes in $\left[\,r\,\right]\backslash\mathcal{J}$
+simultaneously across $M^{(1)},M^{(2)},M^{(3)}$ and
+individually scaling the columns of $M^{(i^{\prime})}$, for $i^{\prime} \in \left[\,3\,\right] \backslash \{\,i\,\}$, we have
+\begin{equation*}
+M^{(i^{\prime})}_{\bullet,k} \;=\; N^{(i^{\prime})}_{\bullet,k}\,,
+\quad
+\textnormal{for each \,$i^{\prime} \in \left[\,3\,\right]\backslash\{\,i\,\}$\, and each \,$k \in \left[\,r\,\right] \backslash\,\mathcal{J}$}.
+\end{equation*}
+\end{minipage}
+\end{center}
+Proof of Claim 2:\; Suppose that such a set $\mathcal{J}$ exists.
+We first treat the case where $i = 1$.
+Without loss of generality and purely for clarity of presentation,
+we may assume the columns of $M^{(i)} = M^{(1)}$ and $N^{(i)} = N^{(1)}$
+have been reordered so that $\sigma = \textnormal{id}$ and $\mathcal{J} = \left[\,s\,\right]$.
+Next, fix any matrix $\Pi \in \F^{m_{1} \times m_{1}}$ such that
+\begin{equation*}
+\ker\!\left(\,\Pi\,\right)
+\;\; = \;\; \span\!\left\{\,M^{(i)}_{\bullet,k}\,\right\}_{k\in\mathcal{J}}
+\;\; = \;\; \span\!\left\{\,M^{(1)}_{\bullet,k}\,\right\}_{k=1}^{s}.
+\end{equation*}
+Then,
+\begin{equation*}
+\left[\;\Pi\,M^{(1)},M^{(2)},M^{(3)}\,\right]
+\;\; = \;\; \Pi \,*_{1} \left[\,M^{(1)},M^{(2)},M^{(3)}\right]
+\;\; = \;\; \Pi \,*_{1} \left[\,N^{(1)},N^{(2)},N^{(3)}\right]
+\;\; = \;\; \left[\;\Pi\,N^{(1)},N^{(2)},N^{(3)}\,\right].
+\end{equation*}
+Since the first $s$ columns of $\Pi\,M^{(1)}$ and $\Pi\,N^{(1)}$ are zero, these triple products
+can be expressed as triple products of matrices with only $r - s$ columns.
+Thus, we see that
+\begin{equation*}
+\left[\;\Pi\,\widetilde{M}^{(1)},\widetilde{M}^{(2)},\widetilde{M}^{(3)}\,\right]
+\;\; = \;\; \left[\;\Pi\,\widetilde{N}^{(1)},\widetilde{N}^{(2)},\widetilde{N}^{(3)}\,\right],
+\end{equation*}
+where $\widetilde{{\color{white}\cdot}\cdot{\color{white}\cdot}}$ denotes deletion of the leftmost $s$ columns.
+By Lemma \ref{LemmaKruskalRankOfDeletionMatrix}, we have
+\begin{eqnarray*}
+\rank_{K}(\,\widetilde{M}^{(2)}\,)
+& \geq & \min\!\left\{\,r-a_{2},\,r-s\,\right\}
+\;\;\geq\;\; \min\!\left\{\,r-s+s-a_{2},\,r-s\,\right\}
+\;\;\geq\;\; r-s\,+\,\min\!\left\{\,s-a_{2},\,0\,\right\}
+\\
+&\geq& r-s\,-\,\max\!\left\{\,a_{2}-s,\,0\,\right\}
+\;\; = \;\; r-s \,-\, b_{2},
+\quad\textnormal{and}
+\\
+\rank_{K}(\,\widetilde{M}^{(3)}\,)
+& \overset{{\color{white}\vert}}{\geq} & \min\!\left\{\,r-a_{3},\,r-s\,\right\}
+\;\;\geq\;\; \min\!\left\{\,r-s+s-a_{3},\,r-s\,\right\}
+\;\;\geq\;\; r-s \,+\, \min\!\left\{\,s-a_{3},\,0\,\right\}
+\\
+&\geq& r-s\,-\,\max\!\left\{\,a_{3}-s,\,0\,\right\}
+\;\; = \;\; r-s \,-\, b_{3},
+\end{eqnarray*}
+where $b_{2} := \max\!\left\{\,a_{2}-s,\,0\,\right\}$ and $b_{3} := \max\!\left\{\,a_{3}-s,\,0\,\right\}$.
+Next, we claim that $\rank_{K}(\,\Pi\,\widetilde{M}^{(1)}\,) \geq r - s - a_{1}$.
+Indeed, let $\widetilde{\mathcal{C}}$ be any collection of $r - s - a_{1}$ columns of $\widetilde{M}^{(1)}$,
+and $\mathcal{C} := \widetilde{\mathcal{C}} \sqcup \{\,\textnormal{leftmost $s$ columns of $M^{(1)}$}\,\}$.
+Then, $\left\vert\,\mathcal{C}\,\right\vert = r - a_{1}$, and we see that $\mathcal{C}$ is a linearly independent
+set, since $\rank_{K}(\,M^{(1)}\,) \geq r - a_{1}$ by hypothesis.
+By the Dimension Theorem for finite-dimensional vector spaces, we have
+\begin{equation*}
+\dim\!\left(\,\ker\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right)
+\; + \;
+\dim\!\left(\,\image\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right)
+\;\; = \;\;
+\dim\!\left(\,\domain\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right)
+\;\; = \;\; r - a_{1}.
+\end{equation*}
+Furthermore, since $\dim\!\left(\,\ker\!\left(\,\Pi\,\right)\,\right) \leq s$, we see that
+\begin{equation*}
+r - s - a_{1}
+\;\; = \;\; \vert\;\widetilde{\mathcal{C}}\;\vert
+\;\; \geq \;\; \dim\!\left(\,\image\!\left(\,\left.\Pi\,\right\vert_{\widetilde{\mathcal{C}}}\,\right)\,\right)
+\;\; = \;\; \dim\!\left(\,\image\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right)
+\;\; = \;\; r - \dim\!\left(\,\ker\!\left(\,\left.\Pi\,\right\vert_{\mathcal{C}}\,\right)\,\right) - a_{1}
+\;\; \geq \;\; r - s - a_{1},
+\end{equation*}
+which implies
+\begin{equation*}
+\dim\!\left(\,\image\!\left(\,\left.\Pi\,\right\vert_{\widetilde{\mathcal{C}}}\,\right)\,\right)
+\;\; = \;\; r - s - a_{1}
+\;\; = \;\; \vert\;\widetilde{\mathcal{C}}\;\vert,
+\end{equation*}
+which in turn implies that the (arbitrary) collection $\Pi\,\widetilde{\mathcal{C}}$ of $r - s - a_{1}$ columns of
+$\Pi\,\widetilde{M}^{(1)}$ is a linearly independent set.
+This shows that indeed we have $\rank_{K}\!\left(\,\Pi\,\widetilde{M}^{(1)}\,\right) \geq r - s - a_{1}$.
+Thus, we see that $\left(\;\Pi\,\widetilde{M}^{(1)},\widetilde{M}^{(2)},\widetilde{M}^{(3)}\,\right)$
+is of type $\left(\,r-s\,;\,a_{1},b_{2},b_{3}\,\right)$.
+By the Induction Hypothesis applied to
+$\left[\;\Pi\,\widetilde{M}^{(1)},\widetilde{M}^{(2)},\widetilde{M}^{(3)}\,\right]
+\; = \; \left[\;\Pi\,\widetilde{N}^{(1)},\widetilde{N}^{(2)},\widetilde{N}^{(3)}\,\right]$,
+we have that, up to permutation and individual scaling of columns,
+\begin{equation*}
+\widetilde{M}^{(i)} \;\; = \;\; \widetilde{N}^{(i)}\,,
+\quad\textnormal{for $i = 2,3$}.
+\end{equation*}
+This proves the Claim for the case $i = 1$.
+For the cases $i \in \{2,3\}$, note that the preceding proof for $i = 1$ does not rely
+on the fact that $a_{1} \leq a_{2} \leq a_{3}$.
+We thus see that the proofs for the cases $i = 2,3$
+are essentially the same as the preceding one, after obvious modifications.
+This completes the proof of Claim 2.
+
+%for any collection $\widetilde{\mathcal{C}}$ of $r - s - a_{1}$ columns of $\Pi\,\widetilde{M}^{(1)}$,
+%consider the corresponding columns of $M^{(1)}$ together with the leftmost $s$ columns of $M^{(1)}$.
+%The resulting collection $\mathcal{C}$ of $r-a_{1}$ columns of $M^{(1)}$ is thus a linearly independent set, since
+%$\rank_{K}(\,M^{(1)}\,) \geq r - a_{1}$.
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.0in}
+\textbf{Claim 3:}
+\vskip 0.025cm
+\noindent
+Suppose, for some $i_{0} \in \{1,2,3\}$, there exist a permutation $\sigma \in \mathcal{S}_{r}$
+and a set $\mathcal{J}_{0} \subset \left[\,r\,\right]$ of indices with
+\,$1 \,\leq\, \left\vert\,\mathcal{J}_{0}\,\right\vert \,\leq\, r - a_{i} - 2$\, such that
+\begin{equation*}
+\span\!\left\{\,M^{(i_{0})}_{\bullet,k}\,\right\}_{k\in\mathcal{J}_{0}}
+\;\; = \;\;
+\span\!\left\{\,N^{(i_{0})}_{\bullet,\sigma(k)}\,\right\}_{k\in\mathcal{J}_{0}}.
+\end{equation*}
+Then, the Theorem follows.
+\end{minipage}
+\end{center}
+Proof of Claim 3:\; First, note that the hypothesis of Claim 3 is identical to that of Claim 2.
+By Claim 2, if necessary,
+after permuting the columns with indexes in $\left[\,r\,\right]\backslash\mathcal{J}_{0}$
+simultaneously across $M^{(1)},M^{(2)},M^{(3)}$ and
+individually scaling the columns of $M^{(i)}$, for $i \in [\,3\,]\backslash\{i_{0}\}$, we have
+\begin{equation*}
+M^{(i)}_{\bullet,k} \;=\; N^{(i)}_{\bullet,k}\,,
+\quad
+\textnormal{for each \,$i \in \left[\,3\,\right]\backslash\{\,i_{0}\}$\, and each \,$k \in \left[\,r\,\right] \backslash\,\mathcal{J}_{0}$}.
+\end{equation*}
+Now, fix some $i_{1} \in \left[\,3\,\right]\backslash\{\,i_{0}\}$ and
+fix some $j_{1} \in \left[\,r\,\right] \backslash\,\mathcal{J}_{0}$.
+Let $i_{2}$ be the index uniquely determined by $i_{2} \in \left[\,3\,\right] \backslash \left\{\,i_{0},i_{1}\right\}$.
+Then, we see that we have in particular
+\begin{equation*}
+M^{(i_{2})}_{\bullet,j_{1}} \;=\; N^{(i_{2})}_{\bullet,j_{1}}\,.
+\end{equation*}
+Next, an application of Claim 2 again (with $i = i_{1}$ and $\mathcal{J} = \left\{\,j_{1}\right\}$),
+implies that, if necessary,
+after permuting the columns with indexes in $\left[\,r\,\right]\backslash\{\,j_{1}\}$
+simultaneously across $M^{(1)},M^{(2)},M^{(3)}$ and individually scaling columns of $M^{(i_{2})}$,
+we also have
+\begin{equation*}
+M^{(i_{2})}_{\bullet,k} \;=\; N^{(i_{2})}_{\bullet,k}\,,
+\quad
+\textnormal{for each \,$k \in \left[\,r\,\right] \backslash\left\{\,j_{1}\right\}$}.
+\end{equation*}
+Hence, by the preceding two equations, we in fact have
+(after permuting columns simultaneously across $M^{(1)},M^{(2)},M^{(3)}$ and
+individually scaling columns of $M^{(1)}, M^{(2)}, M^{(3)}$, if necessary):
+\begin{equation*}
+M^{(i_{2})} \;=\; N^{(i_{2})}\,.
+\end{equation*}
+Now, apply Claim 2 again (with $i = i_{2}$)
+This completes the proof of Claim 3.
+
+\qed
+
+\begin{corollary}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $\left(\Omega,\mathcal{A},\mu\right)$ be a probability space.
+Let $X_{1}$, $X_{2}$, $X_{3}$ and $Z$ be categorical random variables defined on $\Omega$ such that:
+\begin{itemize}
+\item
+	for each $n \in \left\{\,1, 2, 3\,\right\}$, we have
+	$X_{n} : \left(\Omega,\mathcal{A},\mu\right) \longrightarrow \left[\,m_{n}\,\right]$,
+	where $m_{n} \in \N$ and $\left[\,m_{n}\,\right] := \left\{\,1,2,\ldots,m_{n}\,\right\}$, and
+\item
+	$Z : \left(\Omega,\mathcal{A},\mu\right) \longrightarrow \left[\,r\,\right]$,
+	where $r \in \N$ and $\left[\,r\,\right] := \left\{\,1,2,\ldots,r\,\right\}$.
+\end{itemize}
+Let \,$\pi_{h} := P\!\left(\,Z = h\,\right)$, \,for $h = \left\{\,1,2,\ldots,r\,\right\}$.
+Define the matrices
+$M^{(1)} \in \Re^{m_{1}\times r}$, 
+$M^{(2)} \in \Re^{m_{2}\times r}$, 
+$M^{(3)} \in \Re^{m_{3}\times r}$
+as follows: For \,$n \,\in\, \left\{\,1,2,3\,\right\}$,
+\begin{equation*}
+M^{(n)}_{ih} \; := \; P\!\left(\,X_{n} = i \;\vert\, Z = h\,\right)\,,
+\quad
+\textnormal{for \,$i \in \left\{\,1,2,\ldots,m_{n}\,\right\}$, \,$h \in \left\{\,1,2,\ldots,r\,\right\}$}.
+\end{equation*}
+Define also the third-order array (of joint probability distribution of $X_{1}$, $X_{2}$ and $X_{3}$):
+\begin{equation*}
+T(i,j,k) \;\; := \;\; P\!\left(\,X_{1} = i, X_{2} = j, X_{3} = k \,\right).
+\end{equation*}
+Suppose:
+\begin{itemize}
+\item
+	$X_{1}$, $X_{2}$ and $X_{3}$ are conditionally independent given $Z$.
+\item
+	The matrix triple product
+	$\left(\,\widetilde{M}^{(1)},M^{(2)},M^{(3)}\,\right)$ is of type $\left(\,r\,;\,a_{1},a_{2},a_{3}\,\right)$,
+	with $a_{1} + a_{2} + a_{3} \leq r - 2$, where
+	\begin{equation*}
+	\widetilde{M}^{(1)} \;\; := \;\; M^{(1)}\cdot\diag\!\left(\,\pi_{1},\pi_{2},\ldots,\pi_{r}\,\right).
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{enumerate}
+\item
+	the following equality holds:
+	\begin{equation*}
+	T \;\; = \;\; \left[\,\widetilde{M}^{(1)},M^{(2)},M^{(3)}\,\right],
+	\quad
+	\textnormal{and}
+	\end{equation*}
+\item
+	the third-order array $T$ (i.e. joint probability distribution of $X_{1}$, $X_{2}$, $X_{3}$),
+	up to a relabeling of the levels of $Z$, \textbf{uniquely determines} the (marginal)
+	probability distribution of $Z$ as well as the conditional distributions of
+	$X_{1}$, $X_{2}$ and $X_{3}$, given $Z$;
+	in order words, $T$ uniquely determines all of the following quantities:
+	\begin{equation*}
+	\pi_{h} \,:=\, P\!\left(\,Z = h\,\right)
+	\quad\textnormal{and}\quad
+	M^{(n)}
+	\end{equation*}
+	for all \,$h \in \left\{\,1,2,\ldots,r\,\right\}$, \,$n \in \left\{\,1,2,3\,\right\}$.
+\end{enumerate}
+\end{corollary}
+\proof
+\begin{enumerate}
+\item
+	This follows immediately from the hypothesis of conditional independence of $X_{1}$, $X_{2}$, $X_{3}$ given $Z$.
+	Indeed, for each $i \in \left[\,m_{1}\,\right]$, \,$j \in \left[\,m_{2}\,\right]$, \,$k \in \left[\,m_{3}\,\right]$, we have
+	\begin{eqnarray*}
+	T(i,j,k)
+	&:=&
+		P\!\left(\,X_{1}=i, X_{2}=j, X_{3}=k\,\right)
+	\;\; = \;\;
+		\overset{r}{\underset{h=1}{\sum}}\;P\!\left(\,X_{1}=i, X_{2}=j, X_{3}=k, Z=h\,\right)
+	\\
+	&=&
+		\overset{r}{\underset{h=1}{\sum}}\;P\!\left(\,X_{1}=i, X_{2}=j, X_{3}=k \;\vert\; Z=h\,\right)\cdot P\!\left(\,Z=h\,\right)
+	\\
+	&=&
+		\overset{r}{\underset{h=1}{\sum}}\;
+		P\!\left(\,X_{1}=i \;\vert\; Z=h\,\right)
+		P\!\left(\,X_{2}=j \;\vert\; Z=h\,\right)
+		P\!\left(\,X_{3}=k \;\vert\; Z=h\,\right)
+		\cdot P\!\left(\,Z=h\,\right)
+	\\
+	&=&
+		\overset{r}{\underset{h=1}{\sum}}\;
+		M^{(1)}_{ih} \, M^{(2)}_{jh} \, M^{(3)}_{kh} \cdot \pi_{h}
+	\;\;=\;\;
+		\overset{r}{\underset{h=1}{\sum}}\;
+		\left(M^{(1)}_{ih}\pi_{h}\right) \, M^{(2)}_{jh} \, M^{(3)}_{kh}
+	\;\;=\;\;
+		\overset{r}{\underset{h=1}{\sum}}\;
+		\widetilde{M}^{(1)}_{ih} \, M^{(2)}_{jh} \, M^{(3)}_{kh}
+	\\
+	&=&
+		\left[\,\widetilde{M}^{(1)},M^{(2)},M^{(3)}\,\right](i,j,k),
+	\end{eqnarray*}
+	as required.
+\item
+	Suppose there exists another set of marginal probabilities $\rho_{h} = Q\!\left(\,Z=h\,\right)$
+	and conditional probabilities $N^{(n)}_{ih}\,=\,Q\!\left(\,X_{n}=i\;\vert\;Z=h\,\right)$ that also
+	gives rise to the same third-order array $T$ of joint probability distribution of $X_{1}$, $X_{2}$, $X_{3}$.
+	Then, the hypothesis of conditional independence of $X_{1}$, $X_{2}$, $X_{3}$ given $Z$
+	implies
+	\begin{equation*}
+	\left[\,\widetilde{N}^{(1)},N^{(2)},N^{(3)}\,\right] \;\; = \;\; T \;\; = \;\; \left[\,\widetilde{M}^{(1)},M^{(2)},M^{(3)}\,\right],
+	\end{equation*}
+	where
+	\begin{equation*}
+	\widetilde{N}^{(1)} \;\; := \;\; N^{(1)}\cdot\diag\!\left(\,\rho_{1},\rho_{2},\ldots,\rho_{r}\,\right).
+	\end{equation*}
+	Since, by hypothesis, the matrix triple product $\left(\,\widetilde{M}^{(1)},M^{(2)},M^{(3)}\,\right)$
+	is of type $\left(\,r\,;\,a_{1},a_{2},a_{3}\,\right)$, with $a_{1} + a_{2} + a_{3} \leq r - 2$,
+	Theorem \ref{KruskalTheorem} (Kruskal's sufficient condition) implies that
+	there exist a permutation matrix $P \in \Re^{r \times r}$ and diagonal matrices
+	$D^{(1)}, D^{(2)}, D^{(3)} \in \Re^{r \times r}$ satisfying $D^{(1)} \cdot D^{(2)} \cdot D^{(3)} = I_{r}$
+	such that
+	\begin{equation*}
+	\widetilde{N}^{(1)} \;=\; \widetilde{M}^{(1)} \cdot D^{(1)} \cdot P\,,
+	\quad\mbox{}\quad
+	N^{(2)} \;=\; M^{(2)} \cdot D^{(2)} \cdot P\,,
+	\quad\mbox{}\quad
+	N^{(3)} \;=\; M^{(3)} \cdot D^{(3)} \cdot P\,,
+	\end{equation*}
+	which immediately implies
+	\begin{equation*}
+	\widetilde{N}^{(1)} \cdot P^{-1} \;=\; \widetilde{M}^{(1)} \cdot D^{(1)}\,,
+	\quad\mbox{}\quad
+	N^{(2)} \cdot P^{-1} \;=\; M^{(2)} \cdot D^{(2)}\,,
+	\quad\mbox{}\quad
+	N^{(3)} \cdot P^{-1} \;=\; M^{(3)} \cdot D^{(3)}\,.
+	\end{equation*}
+	Note that right-multiplication by $P^{-1}$ of $\widetilde{N}^{(1)}$, $N^{(2)}$, $N^{(3)}$
+	applies the same re-ordering to the columns of $\widetilde{N}^{(1)}$, $N^{(2)}$, $N^{(3)}$,
+	which in turn corresponds to a relabeling of the levels of $Z$ between the two sets of marginal
+	probabilities $P\!\left(\,Z=\cdot\,\right)$ and $Q\!\left(\,Z=\cdot\,\right)$.
+	Since our desired conclusion holds up to such a relabeling, we may thus without loss of generality
+	assume hereinafter that the permutation matrix $P \in \Re^{r \times r}$ is the identity matrix
+	$I_{r} \in \Re^{r \times r}$.
+	Thus, we now have
+	\begin{equation*}
+	\widetilde{N}^{(1)} \;=\; \widetilde{M}^{(1)} \cdot D^{(1)}\,,
+	\quad\mbox{}\quad
+	N^{(2)} \;=\; M^{(2)} \cdot D^{(2)}\,,
+	\quad\mbox{}\quad
+	N^{(3)} \;=\; M^{(3)} \cdot D^{(3)}\,.
+	\end{equation*}
+	Write $D^{(n)}\,=\,\diag\!\left(\,d^{(n)}_{1},d^{(n)}_{2},\ldots,d^{(n)}_{r}\,\right)$, for $n = 1,2,3$.
+	Next, observe that, for each $h \in \left\{\,1,2,\ldots,r\,\right\}$,
+	\begin{eqnarray*}
+	Q\!\left(\,X_{2} = j \;\vert\; Z = h\,\right)
+	& = & N^{(2)}_{jh}
+	\;\;=\;\; \left(\,M^{(2)}\,D^{(2)}\,\right)_{jh}
+	\;\;=\;\; \overset{r}{\underset{l=1}{\sum}}\;M^{(2)}_{jl}\;\delta_{lh}\,d^{(2)}_{l}
+	\;\;=\;\; M^{(2)}_{jh}\,d^{(2)}_{h}
+	\\
+	& = & d^{(2)}_{h} \cdot P\!\left(\,X_{2} = j \;\vert\; Z = h\,\right),
+	\end{eqnarray*}
+	and summing both sides over $j$ yields:
+	\begin{eqnarray*}
+	1 &=& \overset{m_{2}}{\underset{j=1}{\sum}}\;\, Q\!\left(\,X_{2} = j \;\vert\; Z = h\,\right)
+	\;\;=\;\; \overset{m_{2}}{\underset{j=1}{\sum}}\;\, d^{(2)}_{h} \cdot P\!\left(\,X_{2} = j \;\vert\; Z = h\,\right)
+	\;\;=\;\; d^{(2)}_{h} \cdot \overset{m_{2}}{\underset{j=1}{\sum}}\; P\!\left(\,X_{2} = j \;\vert\; Z = h\,\right)
+	\;\;=\;\; d^{(2)}_{h}
+	\end{eqnarray*}
+	This shows that $D^{(2)} = I_{r} \in \Re^{r \times r}$.
+	An analogous argument shows that $D^{(3)} = I_{r} \in \Re^{r \times r}$.
+	Hence, we may now conclude $N^{(2)} = M^{(2)}$ and $N^{(3)} = M^{(3)}$.
+	Recalling that $D^{(1)}\,D^{(2)}\,D^{(3)} \;=\; I_{r}$, we see also that $D^{(1)} = I_{r}$,
+	and thus $\widetilde{N}^{(1)} = \widetilde{M}^{(1)}$.
+	Thus, for each $i \in \left[\,m_{1}\,\right]$ and $h \in \left[\,r\,\right]$, we have
+	\begin{eqnarray*}
+	Q\!\left(\,Z = h\,\right) \cdot Q\!\left(\,X_{1} = i \;\vert\; Z = h\,\right)
+	&=& \rho_{h}\,N^{(1)}_{ih}
+	\;\;=\;\; \widetilde{N}^{(1)}_{ih}
+	\;\;=\;\; \widetilde{M}^{(1)}_{ih}
+	\;\;=\;\; \pi_{h}\,M^{(1)}_{ih}
+	\\
+	&=& P\!\left(\,Z = h\,\right) \cdot P\!\left(\,X_{1} = i \;\vert\; Z = h\,\right),
+	\end{eqnarray*}
+	and summing both sides over $i$ yields: For each $h \in \left[\,r\,\right]$,
+	\begin{eqnarray*}
+	Q\!\left(\,Z = h\,\right)
+	&=& Q\!\left(\,Z = h\,\right) \cdot 1
+	\;\;=\;\; Q\!\left(\,Z = h\,\right) \cdot \overset{m_{1}}{\underset{j=1}{\sum}}\;\, Q\!\left(\,X_{1} = i \;\vert\; Z = h\,\right)
+	\\
+	&=& \overset{m_{1}}{\underset{j=1}{\sum}}\;\, Q\!\left(\,Z = h\,\right) \cdot Q\!\left(\,X_{1} = i \;\vert\; Z = h\,\right)
+	\\
+	&=& \overset{m_{1}}{\underset{j=1}{\sum}}\;\, P\!\left(\,Z = h\,\right) \cdot P\!\left(\,X_{1} = i \;\vert\; Z = h\,\right)
+	\\
+	&=& P\!\left(\,Z = h\,\right) \cdot \overset{m_{1}}{\underset{j=1}{\sum}}\;\, P\!\left(\,X_{1} = i \;\vert\; Z = h\,\right)
+	\;\;=\;\; P\!\left(\,Z = h\,\right) \cdot 1
+	\\
+	&=& P\!\left(\,Z = h\,\right),
+	\end{eqnarray*}
+	which in turns implies
+	\begin{equation*}
+	Q\!\left(\,X_{1} = i \;\vert\; Z = h\,\right) \;\;=\;\; P\!\left(\,X_{1} = i \;\vert\; Z = h\,\right),
+	\end{equation*}
+	for each $i \in \left[\,m_{1}\,\right]$ and $h \in \left[\,r\,\right]$;
+	in other words, $N^{(1)} \,=\, M^{(1)}$.
+	This completes the proof of the Corollary. \qed
+\end{enumerate}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
