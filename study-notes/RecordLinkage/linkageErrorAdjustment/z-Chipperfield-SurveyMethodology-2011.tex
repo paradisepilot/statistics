@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{The Fellegi-Sunter framework for Probabilistic Record Linkage}
+\section{Chipperfield \textit{et al.}, 2011, \cite{Chipperfield2011}}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -11,6 +11,280 @@
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Contingency tables}
+Suppose
+$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space and
+$n, p, G, C \in \N$ are natural numbers.
+Suppose
+\begin{itemize}
+\item
+	$X^{(1)}, \ldots, X^{(n)} : \Omega \longrightarrow \left[\,G\,\right] := \left\{1,2,\ldots,G\right\}$
+	are categorical random variables,
+\item
+	$Y^{(1)}, \ldots, Y^{(n)} : \Omega \longrightarrow \left[\,C\,\right] := \left\{1,2,\ldots,C\right\}$
+	are categorical random variables, and
+\item
+	the $\left(\,\left[\,G\,\right] \times \left[\,C\,\right]\,\right)$-valued random variables
+	$Z^{(i)} := \left(\,Y^{(i)},X^{(i)}\,\right)$, $i = 1, 2, \ldots, n$, are independent and identically distributed.
+\end{itemize}
+%Then, the joint probability distribution of $X,Y$ can be expressed as follows:
+%\begin{equation*}
+%P\!\left(X = x,Y=y\right) \;\;=\;\; P_{Y \vert X}\!\left(\,Y = y \,\vert X = x\right) \cdot P_{X}\!\left(X = x\right).
+%\end{equation*}
+%We seek to estimate $P_{Y \vert X}\!\left(\,Y = y \,\vert X = x\right)$,
+%for each $(x,y) \in \left[\,G\,\right] \times \left[\,C\,\right]$,
+%based on the observed data
+%$\left(X^{(1)},Y^{(1)}\right)$, $\left(X^{(2)},Y^{(2)}\right)$, $\ldots$\,, $(X^{(n)},Y^{(n)})$.
+Then, the joint probability distribution of
+$\left(X^{(1)},Y^{(1)}\right)$, $\left(X^{(2)},Y^{(2)}\right)$, $\ldots$\,, $(X^{(n)},Y^{(n)})$
+can be expressed as follows:
+\begin{eqnarray*}
+&&
+	P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
+\\
+&=&
+	P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}\right) \times \cdots \times P\!\left(X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
+\\
+&=&
+	P_{Y \vert X}\!\left(\left.Y^{(1)} = y_{1} \,\right\vert X^{(1)} = x_{1}\right) \cdot P_{X}\!\left(X^{(1)} = x_{1}\right)
+	\times \cdots \times
+	P_{Y \vert X}\!\left(\left.Y^{(n)} = y_{n} \,\right\vert X^{(n)} = x_{n}\right) \cdot P_{X}\!\left(X^{(n)} = x_{n}\right)
+\\
+&=&
+	\overset{G}{\underset{g=1}{\prod}} \;\;\; \overset{C}{\underset{c=1}{\prod}} \;
+	\left(\,\pi_{c\,\vert\,g} \overset{{\color{white}\vert}}{\cdot} p_{g}\,\right)
+	^{\overset{n}{\underset{i=1}{\sum}}\,I\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}}
+%\;\; = \;\;
+%	\overset{G}{\underset{g=1}{\prod}}
+%		\left(\,\overset{{\color{white}-}}{p}_{g}\,\right)^{\overset{n}{\underset{i=1}{\sum}}\,I\left\{X^{(i)}=g\right\}}
+%	\,\cdot\,
+%	\overset{C}{\underset{c=1}{\prod}}
+%	\left(\,\overset{{\color{white}\vert}}{\pi}_{c\,\vert\,g}\,\right)
+%	^{\overset{n}{\underset{i=1}{\sum}}\,I\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}},
+\end{eqnarray*}
+where
+$\pi_{c\,\vert\,g} \,:=\, P_{Y \vert X}\!\left(\left.Y = c \,\right\vert X = g\right)$
+and
+$p_{g} \,:=\, P_{X}\!\left(X = g\right)$.
+First, note that we have the identity:
+\begin{equation*}
+\overset{C}{\underset{c=1}{\sum}}\;\pi_{c\vert g} \;\; = \;\; 1.
+\end{equation*}
+We seek to estimate $\pi_{c\,\vert\,g}$\,,
+%$P_{Y \vert X}\!\left(\,Y = c \,\vert X = g\right)$,
+for each $(g,c) \in \left[\,G\,\right] \times \left[\,C\,\right]$,
+based on the observed data.
+Now, the logarithm of the above joint probability is:
+\begin{eqnarray*}
+&&
+	\log\,P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
+\\
+&=&
+	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
+	\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}\right)
+	\cdot
+	\left(\,\log\,\pi_{c\,\vert\,g} \,\overset{{\color{white}\vert}}{+}\, \log\,p_{g}\,\right)
+\\
+&=&
+	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
+	\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}\right)
+	\cdot
+	\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
+	\;\; + \;\;
+	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
+	\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}\right)
+	\cdot
+	\left(\,\log\,p_{g}\,\right)
+\\
+&=&
+	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
+	\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}\right)
+	\cdot
+	\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
+	\;\; + \;\;
+	\overset{G}{\underset{g=1}{\sum}} \, \left(\,\log\,p_{g}\,\right)
+	\cdot
+	\left(\,
+		\overset{n}{\underset{i=1}{\sum}} \;
+		\overset{C}{\underset{c=1}{\sum}} \,
+		I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}
+	\right)
+\\
+&=&
+	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
+	\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}\right)
+	\cdot
+	\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
+	\;\; + \;\;
+	\overset{G}{\underset{g=1}{\sum}} \, \left(\,\log\,p_{g}\,\right)
+	\cdot
+	\left(\, \overset{n}{\underset{i=1}{\sum}} \; I\!\left\{X^{(i)}=g\right\} \right)
+\\
+&=&
+	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;\,
+	n_{gc} \cdot \left(\,\log\,\pi_{c\,\vert\,g}\,\right)
+	\;\; + \;\;
+	\overset{G}{\underset{g=1}{\sum}} \;\, n_{g} \cdot \left(\,\log\,p_{g}\,\right)
+\\
+&=&
+	\overset{G}{\underset{g=1}{\sum}} \;
+	\left\{\,
+		n_{gC}
+		\cdot
+		\log\left(\,1 - \overset{C-1}{\underset{c=1}{\sum}}\pi_{c\,\vert\,g}\,\right)
+		\; + \;
+		\overset{C-1}{\underset{c=1}{\sum}} \; n_{gc}
+		\cdot
+		\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
+	\,\right\}
+	\; + \;
+	\left\{\,
+		n_{G}
+		\cdot
+		\log\left(\,1 - \overset{G-1}{\underset{g=1}{\sum}}\;p_{g}\,\right)
+		\, + \,
+		\overset{G-1}{\underset{g=1}{\sum}} \; n_{g}
+		\cdot
+		\left(\,\log\,p_{g}\,\right)
+	\,\right\}
+\end{eqnarray*}
+%Similarly, the joint probability distribution of $X^{(1)}$, $X^{(2)}$, $\ldots$\,, $X^{(n)}$
+%can be expressed as:
+%\begin{eqnarray*}
+%P\!\left(X^{(1)} = x_{1}, X^{(2)} = x_{2}, \;\ldots\; ,X^{(n)} = x_{n}\right)
+%&=&
+%	P\!\left(X^{(1)} = x_{1}\right) \times P\!\left(X^{(2)} = x_{2}\right) \times \cdots \times P\!\left(X^{(n)} = x_{n}\right)
+%\\
+%&=&
+%	\overset{G}{\underset{g=1}{\prod}}
+%	\left(\,\overset{{\color{white}\vert}}{p}_{g}\,\right)
+%	^{\overset{n}{\underset{i=1}{\sum}}\,I\left\{X^{(i)}=g\right\}},
+%\end{eqnarray*}
+%with logarithm:
+%\begin{eqnarray*}
+%\log\, P\!\left(X^{(1)} = x_{1}, X^{(2)} = x_{2}, \;\ldots\; ,X^{(n)} = x_{n}\right)
+%&=&
+%	\overset{G}{\underset{g=1}{\sum}}
+%	\left(\overset{n}{\underset{i=1}{\sum}}\,I\left\{X^{(i)}=g\right\}\right)
+%	\cdot
+%	\left(\,\log\,\overset{{\color{white}\vert}}{p}_{g}\,\right)
+%\end{eqnarray*}
+%We therefore obtain this expression for the following logarithm of conditional probability:
+%\begin{eqnarray*}
+%&&
+%	\log\,P\!\left(\,\left.Y^{(1)}=y_{1},Y^{(2)}=y_{2},\,\ldots\,,Y^{(n)}=y_{n}\;\right\vert\,X^{(1)}=x_{1},X^{(2)}=x_{2},\ldots,X^{(n)}=x_{n}\right)
+%\\
+%&=&
+%	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
+%	\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}\right)
+%	\cdot
+%	\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
+%\\
+%&=&
+%	\overset{G}{\underset{g=1}{\sum}} \;
+%	\left\{\,
+%		\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=C\right\}\right)
+%		\cdot
+%		\log\left(\,1 - \overset{C-1}{\underset{c=1}{\sum}}\pi_{c\,\vert\,g}\,\right)
+%		\; + \;
+%		\overset{C-1}{\underset{c=1}{\sum}} \;
+%		\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}\right)
+%		\cdot
+%		\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
+%	\,\right\}
+%\\
+%&=&
+%	\overset{G}{\underset{g=1}{\sum}} \;
+%	\left\{\,
+%		n_{gC}
+%		\cdot
+%		\log\left(\,1 - \overset{C-1}{\underset{c=1}{\sum}}\pi_{c\,\vert\,g}\,\right)
+%		\; + \;
+%		\overset{C-1}{\underset{c=1}{\sum}} \; n_{gc}
+%		\cdot
+%		\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
+%	\,\right\}
+%\end{eqnarray*}
+For each $g \in \{1,2,\ldots,G\}$ and $c \in \{1,2,\ldots,C-1\}$, differentiating with respect to \,$\pi_{c \vert g}$\, yields:
+\begin{eqnarray*}
+\dfrac{\partial}{\partial\,\pi_{c \vert g}}\,
+\log\,P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
+&=&
+	\dfrac{n_{gC}\cdot(\,-1\,)}{1 - \overset{C-1}{\underset{y=1}{\sum}}\pi_{y\,\vert\,g}}
+	\; + \;
+	\dfrac{n_{gc}}{\pi_{c\,\vert\,g}}
+\\
+&=&
+	\dfrac{n_{gc}}{\pi_{c\,\vert\,g}}
+	\; - \;
+	\dfrac{n_{gC}}{\pi_{C\,\vert\,g}}
+\end{eqnarray*}
+For each $g \in \{1,2,\ldots,G-1\}$, differentiating with respect to \,$p_{g}$\, yields:
+\begin{eqnarray*}
+\dfrac{\partial}{\partial\,p_{g}}\,
+\log\,P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
+&=&
+	\dfrac{n_{G}\cdot(\,-1\,)}{1 - \overset{G-1}{\underset{x=1}{\sum}}\,p_{x}}
+	\; + \;
+	\dfrac{n_{g}}{p_{g}}
+\\
+&=&
+	\dfrac{n_{g}}{p_{g}}
+	\; - \;
+	\dfrac{n_{G}}{p_{G}}
+\end{eqnarray*}
+Setting the L.H.S.'s of the above two equations to zero yields:
+There exists $\beta \in \Re$ and, 
+for each $g \in \{1,2,\ldots,G\}$, there exists $\alpha_{g} \in \Re$ such that
+\begin{equation*}
+	\begin{array}{ccl}
+	\left(\,\pi_{1\vert g},\,\pi_{2\vert g}, \,\ldots\,, \,\pi_{C\vert g}\,\right)
+	& = & \alpha_{g} \cdot \left(\,n_{g1},\,n_{g2}, \,\ldots\,,\, n_{gC}\,\right)
+	\\
+	\left(\,p_{1},\,p_{2}, \,\ldots\,, \,p_{G}\,\right)
+	& \overset{{\color{white}\vert}}{=} & \beta \cdot \left(\,n_{1},\,n_{2}, \,\ldots\,,\, n_{G}\,\right)
+	\end{array}
+\end{equation*}
+Recall now that we also have
+\,$\overset{G}{\underset{g=1}{\sum}}\,p_{g} = 1$\, and
+\,$\overset{C}{\underset{c=1}{\sum}}\,\pi_{c\vert g} = 1$.
+Hence,
+\begin{equation*}
+\alpha_{g} \cdot \overset{C}{\underset{c=1}{\sum}}\;n_{gc}
+\;\; = \;\; \overset{C}{\underset{c=1}{\sum}}\;\pi_{c\vert g}
+\;\; = \;\; 1
+\quad\Longrightarrow\quad
+\alpha_{g} \;\;=\;\; \dfrac{1}{\overset{C}{\underset{c=1}{\sum}}\;n_{gc}}.
+\end{equation*}
+And,
+\begin{equation*}
+\beta \cdot \overset{G}{\underset{g=1}{\sum}}\;n_{g}
+\;\; = \;\; \overset{G}{\underset{g=1}{\sum}}\;p_{g}
+\;\; = \;\; 1
+\quad\Longrightarrow\quad
+\beta \;\;=\;\; \dfrac{1}{\overset{G}{\underset{g=1}{\sum}}\;n_{g}}.
+\end{equation*}
+We may now conclude that the MLE's of the parameters
+\,$\left(\,\pi_{1\vert g},\,\pi_{2\vert g}, \,\ldots\,, \,\pi_{C\vert g}\,\right)$\,
+and
+\,$\left(\,p_{1},\,p_{2}, \,\ldots\,, \,p_{G}\,\right)$\,
+are given by:
+\begin{equation*}
+	\begin{array}{cclcl}
+	\left(\,\widehat{\pi}_{1\vert g}\,,\,\widehat{\pi}_{2\vert g}\,, \,\ldots\,, \,\widehat{\pi}_{C\vert g}\,\right)
+	& = & \dfrac{1}{\sum^{C}_{c=1}n_{gc}} \cdot \left(\,n_{g1},\,n_{g2}, \,\ldots\,,\, n_{gC}\,\right)
+	& = & \dfrac{1}{n_{g}} \cdot \left(\,n_{g1},\,n_{g2}, \,\ldots\,,\, n_{gC}\,\right),
+	\\ \\
+	\left(\,\widehat{p}_{1}\,,\,\widehat{p}_{2}\,, \,\ldots\,, \,\widehat{p}_{G}\,\right)
+	& = & \dfrac{1}{\sum^{G}_{g=1}n_{g}} \cdot \left(\,n_{1},\,n_{2}, \,\ldots\,,\, n_{G}\,\right)
+	& = & \dfrac{1}{n} \cdot \left(\,n_{1},\,n_{2}, \,\ldots\,,\, n_{G}\,\right).
+	\end{array}
+\end{equation*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{DELETEME}
 
 Suppose $n, p \in \N$ are natural numbers and
 $\left(\Omega,\mathcal{A},\mu\right)$ is a probability space.
