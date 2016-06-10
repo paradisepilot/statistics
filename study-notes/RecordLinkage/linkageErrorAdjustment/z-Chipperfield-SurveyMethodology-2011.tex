@@ -67,9 +67,11 @@ where
 $\pi_{c\,\vert\,g} \,:=\, P_{Y \vert X}\!\left(\left.Y = c \,\right\vert X = g\right)$
 and
 $p_{g} \,:=\, P_{X}\!\left(X = g\right)$.
-First, note that we have the identity:
+First, note that we have the identities:
 \begin{equation*}
-\overset{C}{\underset{c=1}{\sum}}\;\pi_{c\vert g} \;\; = \;\; 1.
+\overset{C}{\underset{c=1}{\sum}}\;\pi_{c\vert g} \; = \; 1
+\;\;\quad\textnormal{and}\quad\quad
+\overset{G}{\underset{g=1}{\sum}}\;p_{g} \; = \; 1.
 \end{equation*}
 We seek to estimate $\pi_{c\,\vert\,g}$\,,
 %$P_{Y \vert X}\!\left(\,Y = c \,\vert X = g\right)$,
@@ -284,305 +286,122 @@ are given by:
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\subsection{DELETEME}
+\subsection{MLE's for contingency tables under imperfect linkage}
 
-Suppose $n, p \in \N$ are natural numbers and
-$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space.
-Suppose $M^{(1)}, \ldots, M^{(n)} : \Omega \longrightarrow \left\{0,1\right\}$
-are Bernoulli random variables defined on $\Omega$, and
-$\Gamma^{(1)}, \ldots, \Gamma^{(n)} : \Omega \longrightarrow \left\{0,1\right\}^{p}$
-are $\left\{0,1\right\}^{p}$-valued random variables defined on $\Omega$.
+Suppose
+$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space and
+$n, p, G, C \in \N$ are natural numbers.
 
-\vskip 0.5cm
+\vskip 0.3cm
 \noindent
-\textbf{The Record Linkage Problem}
-\vskip 0.05cm
-\noindent
-Suppose the values of $\Gamma^{(k)} \in \{0,1\}^{p}$ are known (have been observed) for each $k \in \{1,2,\ldots,n\}$,
-but those of the $M^{(k)}$'s are not known.
-We would like to ``predict'' accurately $M^{(k)} \in \{0,1\}$, for each $k \in \{1,2,\ldots,n\}$,
-based on the known values of the $\Gamma^{(k)}$'s.
-
-\vskip 0.5cm
-\begin{remark}[The Fellegi-Sunter decision rule via the log odds]
-\mbox{}\vskip 0.05cm
-\noindent
-In order to ``predict'' $M^{(k)}$ based on the observations of $\Gamma^{(k)}$,
-we must tacitly assume that the $M^{(k)}$'s and the $\Gamma^{(k)}$'s must be
-``suitably'' dependent.
-For example, one such assumption of ``suitable'' dependence among
-the $M^{(k)}$'s and the $\Gamma^{(k)}$'s might be:\,
-For each $k = 1,2,\ldots,n$,
-\begin{equation}\label{suitableDependence}
-\rho\!\left(\,\gamma^{(k)}\,\right) \;\,\textnormal{tends to be}
-\;\;
-\left\{\begin{array}{cl}
-\textnormal{large}\,, & \textnormal{if \;$M^{(k)} = 1$}
-\\
-\textnormal{small}\,, & \textnormal{if \;$\overset{{\color{white}.}}{M^{(k)}} = 0$}
-\end{array}\right.\,,
-\end{equation}
-where
-\begin{equation*}
-\rho\!\left(\,\gamma^{(k)}\,\right)
-\;\; := \;\;
-\log\,
-\dfrac{P\!\left(\,\Gamma^{(k)}=\gamma^{(k)}\,\left\vert\;M^{(k)} = \overset{{\color{white}.}}{1}\,\right.\right)}
-{P\!\left(\,\Gamma^{(k)}=\gamma^{(k)}\,\left\vert\;M^{(k)} = \overset{{\color{white}.}}{0}\right.\,\right)}\,,
-\end{equation*}
-and $\gamma^{(k)} \in \{0,1\}^{p}$ denotes the observed value of \,$\Gamma^{(k)}$.
-Thus, under assumption \eqref{suitableDependence},
-%for $\omega \in \Omega$ with $M(\omega) = 1$, it is probable that
-%$\Gamma_{i}(\omega) = 1$, for most $i=1,\ldots,p$, and consequently
-%$\rho(\omega)$ will probably be large.
-%Conversely, $\rho(\omega)$ will probably be small if $M(\omega) = 0$.
-%Thus,
-one is led to the following intuitive approach for predicting $M^{(k)}$:
-for each $k\in\{1,\ldots,n\}$,
-if we ``observe'' that $\rho(\gamma^{(k)})$ is sufficiently large, then we will ``predict'' that $M^{(k)} = 1$,
-and conversely,
-if we ``observe'' that $\rho(\gamma^{(k)})$ is sufficiently small, then we will predict that $M^{(k)} = 0$.
-However, note that
-{\color{red}the logarithm of odd ratios in the definition for $\rho(\gamma^{(k)})$ is unknown},
-%\begin{equation*}
-%\log\,\dfrac{P(\,\Gamma_{i}=1\,\vert\,M = 1)}{P(\,\Gamma_{i}=1\,\vert\,M = 0)}
-%\quad\textnormal{and}\quad
-%\log\,\dfrac{P(\,\Gamma_{i}=0\,\vert\,M = 1)}{P(\,\Gamma_{i}=0\,\vert\,M = 0)},
-%\end{equation*}
-and $\rho(\gamma^{(k)})$ must therefore be estimated based on the observations of $\Gamma^{(k)}$'s somehow.
-The Fellegi-Sunter framework for record linkage is roughly the following:
-\begin{enumerate}
-\item
-	Choose ``prediction thresholds'': \;$-\,\infty < \rho_{0} < \rho_{1} < \infty$.
-\item
-	{\color{red}Estimate} the values of
-	\begin{equation*}
-	P\!\left(\,
-		\Gamma^{(k)}=\gamma^{(k)}\,
-		\left\vert\;M^{(k)} = \overset{{\color{white}.}}{1}\right.
-		\,\right)
-	\quad\textnormal{and}\quad
-	P\!\left(\,
-		\Gamma^{(k)}=\gamma^{(k)}\,
-		\left\vert\;M^{(k)} = \overset{{\color{white}.}}{0}\right.
-		\,\right)
-	\end{equation*}
-	based on the observed values $\gamma^{(k)} \in \{0,1\}^{p}$, for $k = 1,\ldots,n$.
-\item
-	Subsequently, compute the estimates $\widehat{\rho}\left(\,\gamma^{(k)}\,\right)$
-	of $\rho\!\left(\,\gamma^{(k)}\,\right)$, for $k = 1,\ldots,n$.
-\item
-	For each $k = 1,\ldots, n$, we predict $M^{(k)}$ as follows:
-	\begin{equation*}
-	\widehat{M}^{(k)}
-	\;\;=\;\;
-	\left\{\begin{array}{cl}
-	0\,, & \textnormal{if \;$\widehat{\rho}\left(\,\gamma^{(k)}\,\right) \;<\; \rho_{0}$},
-	\\
-	\overset{{\color{white}|}}{1}\,, & \textnormal{if \;$\rho_{1} \;<\; \widehat{\rho}\left(\,\gamma^{(k)}\,\right)$}
-	\\
-	\overset{{\color{white}|}}{\textnormal{undecided}}\,, & \textnormal{otherwise.}
-	\end{array}\right.
-	\end{equation*}
-\end{enumerate}
-The core operational component of the Fellegi-Sunter framework is therefore the estimation of
-	\begin{equation*}
-	P\!\left(\,
-		\Gamma^{(k)}=\gamma^{(k)}\,
-		\left\vert\;M^{(k)} = \overset{{\color{white}.}}{1}\right.
-		\,\right)
-	\quad\textnormal{and}\quad
-	P\!\left(\,
-		\Gamma^{(k)}=\gamma^{(k)}\,
-		\left\vert\;M^{(k)} = \overset{{\color{white}.}}{0}\right.
-		\,\right),
-	\end{equation*}
-based on the observed values $\gamma^{(k)}$'s.
-\end{remark}
-
-\vskip 0.5cm
-\begin{remark}[The Fellegi-Sunter inference method for $P\!\left(\,\Gamma^{(k)}\,\vert\,M^{(k)}\,\right)$]
-\mbox{}\vskip 0.05cm
-\noindent
-Recall that the observations at hand are the $n \in \N$ vectors $\gamma^{(k)} \in \, \mathcal{G} := \{0,1\}^{p}$, and
-we need to estimate the following set of conditional probabilities:
-\begin{equation*}
-P\!\left(\,
-	\Gamma^{(k)}=\gamma^{(k)}\,
-	\left\vert\;M^{(k)} = \overset{{\color{white}.}}{1}\right.
-	\,\right)
-\quad\textnormal{and}\quad
-P\!\left(\,
-	\Gamma^{(k)}=\gamma^{(k)}\,
-	\left\vert\;M^{(k)} = \overset{{\color{white}.}}{0}\right.
-	\,\right),
-\quad
-\textnormal{for $k = 1,2,\ldots,n$}.
-\end{equation*}
-The Fellegi-Sunter inference method makes the following \textbf{two assumptions}:
-\begin{enumerate}
-\item
-	Independence and identical distribution of sampled pairs:\,
-	The collection \,$\left\{\,X^{(k)}\,\right\}_{k=1}^{n}$\, is an
-	independent and identically distributed set of $\{0,1\}^{p+1}$-valued
-	random variables defined on $\Omega$, where $X^{(k)}$ is defined as follows:
-	\begin{equation*}
-	X^{(k)} \;=\; \left(\,M^{(k)},\Gamma^{(k)}\,\right) \;:\; \Omega \;\longrightarrow \; \{0,1\}^{p+1}\,,
-	\quad
-	\textnormal{for \;$k = 1,2,\ldots,n$}.
-	\end{equation*}
-\item
-	Conditional independence of the components of \,$\Gamma^{(k)}$ given $M$:\,
-	For each $m = 0,1$ and $k = 1,2,\ldots,n$, we have
-	\begin{equation*}
-	P\!\left(\,\left.\Gamma^{(k)} = \gamma^{(k)} \,\right\vert\, M = m\,\right)
-	\;\; = \;\;
-	P\!\left(\,\left.\Gamma^{(k)}_{1} = \gamma^{(k)}_{1} \,\right\vert\, M = m\,\right)
-	\times \cdots \times
-	P\!\left(\,\left.\Gamma^{(k)}_{p} = \gamma^{(k)}_{p} \,\right\vert\, M = m\,\right),
-	\end{equation*}
-	where \,$\Gamma^{(k)} = \left(\,\Gamma^{(k)}_{1},\ldots,\Gamma^{(k)}_{p}\,\right)$
-	is the representation of \,$\Gamma^{(k)} : \Omega \longrightarrow \{0,1\}^{p}$
-	in terms of its component $\{0,1\}$-valued random variables, and
-	\,$\gamma^{(k)} = \left(\,\gamma^{(k)}_{1},\ldots,\gamma^{(k)}_{p}\,\right)$
-	is the representation of $\gamma^{(k)} \in \{0,1\}^{p}$ in terms of its components.
-\end{enumerate}
-Under the I.I.D. assumption on $X^{(k)} = \left(\,M^{(k)},\Gamma^{(k)}\,\right)$,
-the likelihood of the observed data \,$\left\{\,\Gamma^{(k)} = \gamma^{(k)}\,\right\}_{k=1}^{n}$\,
-can be written as:
-\begin{eqnarray*}
-P\!\left(\;\bigcap_{k=1}^{n} \left\{\,\Gamma^{(k)} = \gamma^{(k)}\right\}\,\right)
-& = & \prod_{k=1}^{n} \, P\!\left(\,\Gamma^{(k)} = \gamma^{(k)}\,\right)
-\;\; = \;\;
-	\prod_{\gamma\in\mathcal{G}} \left(
-		\overset{{\color{white}-}}{P}\!\left(\,\Gamma = \gamma\,\right)
-	\,\right)^{\color{red}\overset{n}{\underset{k=1}{\textnormal{\normalsize$\sum$}}}\,I\left\{\,\Gamma^{(k)}\,=\,\gamma\,\right\}}
-\\
-& = &
-	\prod_{\gamma\in\mathcal{G}} \left(\;
-		\sum_{m=0}^{1}\,P\!\left(\,\Gamma = \gamma\;\vert\,M = m\,\right)\cdot P\!\left(\,M=m\,\right)
-	\,\right)^{\overset{n}{\underset{k=1}{\textnormal{\normalsize$\sum$}}}\,I\left\{\,\Gamma^{(k)}\,=\,\gamma\,\right\}},
-\end{eqnarray*}
-from which we observe that a \textbf{minimal sufficient statistic} is given by:
-\begin{equation*}
-Y : \Omega \longrightarrow \{0,1,\ldots,n\}^{\mathcal{G}},
-\quad\textnormal{where}\;\;\,
-Y_{\gamma}(\omega) \; := \; \overset{n}{\underset{k=1}{\sum}}\;I_{\left\{\,\Gamma^{(k)}(\omega) \,=\, \gamma\,\right\}},
-\;\;\,\textnormal{for each \,$\gamma\in\mathcal{G} \,:=\, \{0,1\}^{p}$}.
-\end{equation*}
-Recall:
+Suppose:
 \begin{itemize}
 \item
-	$\mathcal{G} \,:=\, \{0,1\}^{p}$\, is the collection of all finite sequences of zeros or ones of length $p$,
-	and $\textnormal{Card}\!\left(\mathcal{G}\right) = 2^{p}$.
+	$X^{(1)}, \,\ldots\,,\, X^{(n)} : \Omega \longrightarrow \left[\,G\,\right] := \left\{1,2,\ldots,G\right\}$
+	are categorical random variables,
 \item
-	$\{0,1,\ldots,n\}^{\mathcal{G}}$ denotes the set of all functions from $\mathcal{G} \longrightarrow \{0,1,\ldots,n\}$;
-	in other words, $\{0,1,\ldots,n\}^{\mathcal{G}}$ denotes the collection of all $n^{\textnormal{th}}$-order arrays
-	with entries in $\{0,1,2,\ldots,n\}$ and each of whose factors has dimension $2$.
+	$Y^{(1)}, \,\ldots\,,\, Y^{(n)} : \Omega \longrightarrow \left[\,C\,\right] := \left\{1,2,\ldots,C\right\}$
+	are categorical random variables,
+\item
+	$\widetilde{Y}^{(1)}, \,\ldots\,,\, \widetilde{Y}^{(n)} : \Omega \longrightarrow \left[\,C\,\right] := \left\{1,2,\ldots,C\right\}$
+	are categorical random variables, and
+\item
+	$J^{(1)}, \,\ldots\,,\, J^{(n)} : \Omega \longrightarrow \left\{0,1\right\}$
+	are Bernoulli random variables.
+%\item
+%	$W^{(1)}_{c \vert g}, \ldots, W^{(n)}_{c \vert g} : \Omega \longrightarrow \left\{\,0,1\,\right\}$
+%	are Bernoulli random variables,
+%\item
+%	$\widetilde{W}^{(1)}_{c \vert g}, \ldots, \widetilde{W}^{(n)}_{c \vert g} : \Omega \longrightarrow \left\{\,0,1\,\right\}$
+%	are Bernoulli random variables,
 \end{itemize}
-The I.I.D. assumption on $X^{(k)} \,=\, \left(\,M^{(k)},\Gamma^{(k)}\,\right)$ furthermore implies that
-\,$Y \sim \textnormal{Multinomial}\!\left(\,n\,;\,\left\{\pi_{\gamma}\right\}_{\gamma\in\mathcal{G}}\,\right)$,
-where
+
+\vskip 0.3cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	the $\left(\,\left[\,G\,\right] \times \left[\,C\,\right]\,\right)$-valued random variables
+	$Z^{(i)} := \left(\,X^{(i)},Y^{(i)}\,\right)$, $i = 1, 2, \ldots, n$, are independent and identically distributed,
+\item
+	\begin{equation*}
+	P\!\left(\,X^{(i)},Y^{(i)},M^{(i)}\right)
+	\;\; = \;\;
+	P\!\left(\,Y^{(i)}\;\vert\;X^{(i)}\right) \cdot
+	P\!\left(\,M^{(i)}\;\vert\;X^{(i)}\right) \cdot
+	P\!\left(\,X^{(i)}\right)
+	\end{equation*}
+\end{itemize}
+Define
 \begin{equation*}
-\pi_{\gamma} \;\; := \;\; P\!\left(\,\Gamma = \gamma\,\right),
-\quad\textnormal{for each \,$\gamma\in\mathcal{G}\,:=\,\{0,1\}^{p}$}.
+\begin{array}{ccccl}
+	W^{(i)}_{c \vert g} &:& \Omega \longrightarrow \{0,1\} &:& \omega\;\longmapsto\,
+	\left\{
+		\begin{array}{cl}
+		1, & \textnormal{if}\;\; X^{(i)}(\omega) = g \,\;\textnormal{and}\;\, Y^{(i)}(\omega) = c,
+		\\
+		\overset{{\color{white}-}}{0}, & \textnormal{otherwise}
+		\end{array}
+	\right.
+\\ \\
+	\widetilde{W}^{(i)}_{c \vert g} &:& \Omega \longrightarrow \{0,1\} &:& \omega\;\longmapsto\,
+	\left\{
+		\begin{array}{cl}
+		1, & \textnormal{if}\;\; X^{(i)}(\omega) = g \,\;\textnormal{and}\;\, \widetilde{Y}^{(i)}(\omega) = c,
+		\\
+		\overset{{\color{white}-}}{0}, & \textnormal{otherwise}
+		\end{array}
+	\right.
+\\ \\
+	M^{(i)} &:& \Omega \longrightarrow \{0,1\} &:& \omega\;\longmapsto\,
+	\left\{
+		\begin{array}{cl}
+		1, & \textnormal{if}\;\; Y^{(i)}(\omega) \,=\, \widetilde{Y}^{(i)}(\omega),
+		\\
+		\overset{{\color{white}-}}{0}, & \textnormal{otherwise}
+		\end{array}
+	\right.
+\end{array}
 \end{equation*}
-In other words, we have
+
+$\rho_{gc} \;:=\; P\!\left(M=1\;\vert\;X=g,\widetilde{Y}=c\right)$
+
 \begin{equation*}
-\sum_{\gamma\,\in\,\mathcal{G}}\,Y_{\gamma}(\omega) \; = \; n\,,
-\;\,\textnormal{for each \;$\omega\in\Omega$},
-\quad\textnormal{and}\quad
-\sum_{\gamma\,\in\,\mathcal{G}}\,\pi_{\gamma} \; = \; 1\,,
+\begin{array}{lcl}
+E\!\left[\;\left.W^{(i)}_{c \vert g}\,\;\right\vert\;X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\;\right]
+&=& 
+\\ \\
+E\!\left[\;\left.W^{(i)}_{c \vert g}\,\;\right\vert\;X^{(i)}=g,\widetilde{Y}^{(i)}=c,J^{(i)}=1,M^{(i)}=1\;\right]
+&=& \widetilde{W}^{(i)}_{c \vert g}
+\\ \\
+E\!\left[\;\left.W^{(i)}_{c \vert g}\,\;\right\vert\;X^{(i)}=g,\widetilde{Y}^{(i)}=c,J^{(i)}=1,M^{(i)}=0\;\right]
+&=& \pi_{c \vert g}
+\end{array}
 \end{equation*}
-and, for $y = \left\{\,y_{\gamma}\,\right\}_{\gamma\in\mathcal{G}} \in \left\{0,1,\ldots,n\right\}^{\mathcal{G}}$,
-\begin{equation*}
-P\!\left(\,Y = y\,\right)
-\;\; = \;\;
-\dfrac{n!}{\overset{{\color{white}.}}{\underset{\gamma\,\in\,\mathcal{G}}{\prod}}\,y_{\gamma}!}
-\cdot
-\underset{\gamma\,\in\,\mathcal{G}}{\prod}\, \pi_{\gamma}^{y_{\gamma}}
-\end{equation*}
-Taking natural logarithm of both sides yields:
-\begin{equation*}
-\log P\!\left(\,Y = y\,\right)
-\;\; = \;\;
-\underset{\gamma\,\in\,\mathcal{G}}{\textnormal{\large$\sum$}}\;\, y_{\gamma}\cdot\log\!\left(\pi_{\gamma}\right)
-\; + \;
-\log\!\left(n!\left/\overset{{\color{white}.}}{\underset{\gamma\,\in\,\mathcal{G}}{\prod}}\,y_{\gamma}!\right.\right)
-\end{equation*}
-On the other hand, the assumption of conditional independence of the component functions of $\Gamma$ given $M$ implies
+
 \begin{eqnarray*}
-\pi_{\gamma}
-& = & P\!\left(\,\Gamma = \gamma\,\right)
-\;\; = \;\;
-	P\!\left(\,\Gamma = \gamma\;\vert\;M=1\,\right)\cdot P\!\left(\,M=1\,\right)
-	\; + \;
-	P\!\left(\,\Gamma = \gamma\;\vert\;M=0\,\right)\cdot P\!\left(\,M=0\,\right)
+&&
+	E\!\left[\;\left.W^{(i)}_{c \vert g}\,\;\right\vert\;X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\;\right]
 \\
-& = &
-	\overset{1}{\underset{m=0}{\sum}}\;
-	P\!\left(\,M=m\,\right) \cdot
-	\overset{p}{\underset{i=1}{\prod}}\;P\!\left(\,\Gamma_{i} = \gamma_{i}\;\vert\,M=m\,\right)
+&=&
+	1 \cdot P\!\left(\left.W^{(i)}_{c \vert g} = 1\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+	\;\;+\;\;
+	0 \cdot P\!\left(\left.W^{(i)}_{c \vert g} = 0\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+\\
+&=&
+	P\!\left(\left.W^{(i)}_{c \vert g} = 1\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+\\
+&=&
+	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+\\
+&=&
+	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,,\,M^{(i)}=0\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+\\
+&&
+	+ \;\; P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,,\,M^{(i)}=1\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
 \end{eqnarray*}
-Thus, the full likelihood function given the observed data
-\,$y = \left\{\,y_{\gamma}\,\right\}_{\gamma\in\mathcal{G}} \in \{0,1,\ldots,n\}^{\mathcal{G}}$\,
-is
-\begin{equation*}
-\log P\!\left(\,Y = y\,\right)
-\;\; = \;\;
-\underset{\gamma\,\in\,\mathcal{G}}{\textnormal{\large$\sum$}}\;\, y_{\gamma}\cdot
-	\log\!\left[\;
-		\overset{1}{\underset{m=0}{\sum}}\;
-		{\color{red}P\!\left(\,M=m\,\right)} \cdot
-		\overset{p}{\underset{i=1}{\prod}}\,{\color{red}P\!\left(\,\Gamma_{i} = \gamma_{i}\;\vert\,M=m\,\right)}
-	\;\right]
-\; + \;
-\log\!\left(n!\left/\overset{{\color{white}.}}{\underset{\gamma\,\in\,\mathcal{G}}{\prod}}\,y_{\gamma}!\right.\right),
-\end{equation*}
-where \,$P\!\left(\,M=m\,\right)$\, and \,$P\!\left(\,\Gamma_{i} = \gamma_{i}\;\vert\,M=m\,\right)$,\,
-$m \in \{0,1\}$, $\gamma_{i} \in \{0,1\}$, $i\in\{1,\ldots,p\}$,
-are model parameters to be estimated.
-\end{remark}
 
-%\begin{equation*}
-%\rho(\omega)
-%\;\; = \;\;
-%\rho\!\left(\,\Gamma_{1}(\omega),\ldots,\Gamma_{p}(\omega)\,\right)
-%\;\; := \;\;
-%\overset{p}{\underset{i=1}{\sum}}\;
-%\left(\log\,\dfrac{P(\,\Gamma_{i}=1\,\vert\,M = 1)}{P(\,\Gamma_{i}=1\,\vert\,M = 0)}\,\right)^{\Gamma_{i}(\omega)}
-%\cdot
-%\left(\log\,\dfrac{P(\,\Gamma_{i}=0\,\vert\,M = 1)}{P(\,\Gamma_{i}=0\,\vert\,M = 0)}\,\right)^{1\,-\,\Gamma_{i}(\omega)}
-%\end{equation*}
-
-\begin{equation}
-\textnormal{For each $i \in\left\{\,1,\ldots,p\,\right\}$}\,,
-\quad
-P(\,\Gamma_{i}=1\,\vert\,M = 1)\;\;\,\textnormal{and}\;\;\,P(\,\Gamma_{i}=0\,\vert\,M = 0)\;\;\textnormal{are large}.
-\end{equation}
-Under the assumption \eqref{suitableDependence}, we would have:
-\begin{equation*}
-P(\,\Gamma_{i}=1\,\vert\,M = 0)\;\;\,\textnormal{and}\;\;\,P(\,\Gamma_{i}=0\,\vert\,M = 1)\;\;\textnormal{are small},
-\quad
-\textnormal{for $i \in\left\{\,1,\ldots,p\,\right\}$},
-\end{equation*}
-hence, we would also have:
-\begin{equation*}
-\textnormal{for each $i \in\left\{\,1,\ldots,p\,\right\}$},
-\quad
-\dfrac{P(\,\Gamma_{i}=1\,\vert\,M = 1)}{P(\,\Gamma_{i}=1\,\vert\,M = 0)}\;\;\textnormal{is large}
-\quad\textnormal{and}\quad
-\dfrac{P(\,\Gamma_{i}=0\,\vert\,M = 1)}{P(\,\Gamma_{i}=0\,\vert\,M = 0)}\;\;\textnormal{is small}.
-\end{equation*}
-
-\begin{equation*}
-P\!\left(\Gamma_{i}=1\,\vert\,M=1\right)
-\;\; := \;\;
-	\dfrac{P\!\left(\Gamma_{i}=1,\,M=1\right)}{P\!\left(\,M=1\,\right)}
-\;\; = \;\;
-	\dfrac{\mu\!\left(\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\,\;\right\vert\;\Gamma_{i}(\omega)=1,\,M(\omega)=1\,\right\}\right)}
-	{\mu\!\left(\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;M(\omega)=1\,\right\}\right)}
-\end{equation*}
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
