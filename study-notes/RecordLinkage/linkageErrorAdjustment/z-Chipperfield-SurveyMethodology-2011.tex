@@ -306,6 +306,9 @@ Suppose:
 	$\widetilde{Y}^{(1)}, \,\ldots\,,\, \widetilde{Y}^{(n)} : \Omega \longrightarrow \left[\,C\,\right] := \left\{1,2,\ldots,C\right\}$
 	are categorical random variables, and
 \item
+	$M^{(1)}, \,\ldots\,,\, M^{(n)} : \Omega \longrightarrow \left\{0,1\right\}$
+	are Bernoulli random variables.
+\item
 	$J^{(1)}, \,\ldots\,,\, J^{(n)} : \Omega \longrightarrow \left\{0,1\right\}$
 	are Bernoulli random variables.
 %\item
@@ -331,6 +334,12 @@ Suppose:
 	P\!\left(\,M^{(i)}\;\vert\;X^{(i)}\right) \cdot
 	P\!\left(\,X^{(i)}\right)
 	\end{equation*}
+\item
+	\begin{equation*}
+	M^{(i)} \; = \; 1
+	\quad\Longrightarrow\quad
+	Y^{(i)} \; = \; \widetilde{Y}^{(i)}
+	\end{equation*}
 \end{itemize}
 Define
 \begin{equation*}
@@ -352,15 +361,15 @@ Define
 		\overset{{\color{white}-}}{0}, & \textnormal{otherwise}
 		\end{array}
 	\right.
-\\ \\
-	M^{(i)} &:& \Omega \longrightarrow \{0,1\} &:& \omega\;\longmapsto\,
-	\left\{
-		\begin{array}{cl}
-		1, & \textnormal{if}\;\; Y^{(i)}(\omega) \,=\, \widetilde{Y}^{(i)}(\omega),
-		\\
-		\overset{{\color{white}-}}{0}, & \textnormal{otherwise}
-		\end{array}
-	\right.
+%\\ \\
+%	M^{(i)} &:& \Omega \longrightarrow \{0,1\} &:& \omega\;\longmapsto\,
+%	\left\{
+%		\begin{array}{cl}
+%		1, & \textnormal{if}\;\; Y^{(i)}(\omega) \,=\, \widetilde{Y}^{(i)}(\omega),
+%		\\
+%		\overset{{\color{white}-}}{0}, & \textnormal{otherwise}
+%		\end{array}
+%	\right.
 \end{array}
 \end{equation*}
 
@@ -382,46 +391,48 @@ E\!\left[\;\left.W^{(i)}_{c \vert g}\,\;\right\vert\;X^{(i)}=g,\widetilde{Y}^{(i
 \begin{eqnarray*}
 &&
 	E\!\left[\;\left.W^{(i)}_{c \vert g}\,\;\right\vert\;X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\;\right]
+\;\;=\;\;
+	E\!\left[\;\left.W^{(i)}_{c \vert g}\,\;\right\vert\;X^{(i)}=g,\widetilde{Y}^{(i)}=y\;\right]
 \\
 &=&
-	1 \cdot P\!\left(\left.W^{(i)}_{c \vert g} = 1\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+	1 \cdot P\!\left(\left.W^{(i)}_{c \vert g} = 1\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
 	\;\;+\;\;
-	0 \cdot P\!\left(\left.W^{(i)}_{c \vert g} = 0\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+	0 \cdot P\!\left(\left.W^{(i)}_{c \vert g} = 0\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
 \\
 &=&
-	P\!\left(\left.W^{(i)}_{c \vert g} = 1\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+	P\!\left(\left.W^{(i)}_{c \vert g} = 1\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
 \\
 &=&
-	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
 \\
 &=&
-	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,,\,M^{(i)}=0\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,,\,M^{(i)}=0\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
 \\
 &&
-	+ \;\; P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,,\,M^{(i)}=1\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+	+ \;\; P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,,\,M^{(i)}=1\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
 \\
 &=&
-	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,M^{(i)}=0,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
-	\,\cdot\,
-	P\!\left(\left.M^{(i)}=0\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
-\\
-&&
-	+ \;\;
-	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,M^{(i)}=1,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
-	\,\cdot\,
-	P\!\left(\left.M^{(i)}=1\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
-\\
-&=&
-	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,M^{(i)}=0,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,M^{(i)}=0,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
 	\,\cdot\,
 	P\!\left(\left.M^{(i)}=0\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
 \\
 &&
 	+ \;\;
-	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,M^{(i)}=1,X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\,\right)
+	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,M^{(i)}=1,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
 	\,\cdot\,
 	P\!\left(\left.M^{(i)}=1\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
 \\
+%&=&
+%	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,M^{(i)}=0,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
+%	\,\cdot\,
+%	P\!\left(\left.M^{(i)}=0\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
+%\\
+%&&
+%	+ \;\;
+%	P\!\left(\left.X^{(i)} = g\,,\,Y^{(i)} = c\,\;\right\vert\,M^{(i)}=1,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
+%	\,\cdot\,
+%	P\!\left(\left.M^{(i)}=1\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y\,\right)
+%\\
 &=&
 	\left(1 - \delta_{cy}\right)
 	\,\cdot\,
