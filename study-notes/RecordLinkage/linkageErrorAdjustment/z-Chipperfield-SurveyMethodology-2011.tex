@@ -298,13 +298,13 @@ Suppose:
 \begin{itemize}
 \item
 	$X^{(1)}, \,\ldots\,,\, X^{(n)} : \Omega \longrightarrow \left[\,G\,\right] := \left\{1,2,\ldots,G\right\}$
-	are categorical random variables,
+	are categorical random variables.
 \item
 	$Y^{(1)}, \,\ldots\,,\, Y^{(n)} : \Omega \longrightarrow \left[\,C\,\right] := \left\{1,2,\ldots,C\right\}$
-	are categorical random variables,
+	are categorical random variables.
 \item
 	$\widetilde{Y}^{(1)}, \,\ldots\,,\, \widetilde{Y}^{(n)} : \Omega \longrightarrow \left[\,C\,\right] := \left\{1,2,\ldots,C\right\}$
-	are categorical random variables, and
+	are categorical random variables.
 \item
 	$M^{(1)}, \,\ldots\,,\, M^{(n)} : \Omega \longrightarrow \left\{0,1\right\}$
 	are Bernoulli random variables.
@@ -346,16 +346,16 @@ Suppose the following are true:
 		\cdot
 		P\!\left(\,J^{(1)}=j_{1},\,\ldots\,,J^{(n)}=j_{n}\,\right)
 	\end{eqnarray*}
-\item
-	For each $i \in \{1,2,\ldots,n\}$, the random variables $Y^{(i)}$ and $M^{(i)}$
-	are conditionally independent given $X^{(i)}$, i.e.
-	\begin{equation*}
-	P\!\left(\,X^{(i)},Y^{(i)},M^{(i)}\right)
-	\;\; = \;\;
-	P\!\left(\,Y^{(i)}\;\vert\;X^{(i)}\right) \cdot
-	P\!\left(\,M^{(i)}\;\vert\;X^{(i)}\right) \cdot
-	P\!\left(\,X^{(i)}\right)
-	\end{equation*}
+%\item
+%	For each $i \in \{1,2,\ldots,n\}$, the random variables $Y^{(i)}$ and $M^{(i)}$
+%	are conditionally independent given $X^{(i)}$, i.e.
+%	\begin{equation*}
+%	P\!\left(\,X^{(i)},Y^{(i)},M^{(i)}\right)
+%	\;\; = \;\;
+%	P\!\left(\,Y^{(i)}\;\vert\;X^{(i)}\right) \cdot
+%	P\!\left(\,M^{(i)}\;\vert\;X^{(i)}\right) \cdot
+%	P\!\left(\,X^{(i)}\right)
+%	\end{equation*}
 \item
 	For each $i\in\{1,2,\ldots,n\}$, we have:
 	\begin{equation*}
@@ -372,7 +372,12 @@ Suppose the following are true:
 	\end{equation*}
 	which, in particular, implies $P\!\left(\,\left.Y^{(i)} = \widetilde{Y}^{(i)}\;\right\vert\;M^{(i)}=1\,\right)\,=\,1$.
 \end{itemize}
-Define
+
+$\rho_{gc} \;:=\; P\!\left(M=1\;\vert\;X=g,\widetilde{Y}=c\right)$
+
+\vskip 0.3cm
+\noindent
+Define the following Bernoulli random variables (indicator variables):
 \begin{equation*}
 \begin{array}{ccccl}
 	W^{(i)}_{c \vert g} &:& \Omega \longrightarrow \{0,1\} &:& \omega\;\longmapsto\,
@@ -392,20 +397,11 @@ Define
 		\overset{{\color{white}-}}{0}, & \textnormal{otherwise}
 		\end{array}
 	\right.
-%\\ \\
-%	M^{(i)} &:& \Omega \longrightarrow \{0,1\} &:& \omega\;\longmapsto\,
-%	\left\{
-%		\begin{array}{cl}
-%		1, & \textnormal{if}\;\; Y^{(i)}(\omega) \,=\, \widetilde{Y}^{(i)}(\omega),
-%		\\
-%		\overset{{\color{white}-}}{0}, & \textnormal{otherwise}
-%		\end{array}
-%	\right.
 \end{array}
 \end{equation*}
 
-$\rho_{gc} \;:=\; P\!\left(M=1\;\vert\;X=g,\widetilde{Y}=c\right)$
-
+\vskip 0.3cm
+\noindent
 \begin{equation*}
 \begin{array}{lcl}
 E\!\left[\;\left.W^{(i)}_{c \vert g}\,\;\right\vert\;X^{(i)}=g,\widetilde{Y}^{(i)}=y,J^{(i)}=0\;\right]
