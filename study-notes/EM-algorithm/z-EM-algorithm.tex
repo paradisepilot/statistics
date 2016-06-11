@@ -2,7 +2,7 @@
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The Expectation-Maximization (EM) Algorithm is an algorithm that solves the optimization
 (maximization) problem for a marginal likelihood (or probability):
@@ -39,9 +39,9 @@ two-step procedure:
 		\label{EM:ExpectationStep}
 		Q(\theta\,|\,\theta_{t})
 		\; := \;
-		E_{Z|X,\theta_{t}}\left\{\,\log L(\theta\,;\,X,Z)\,\right\}
+		E_{Z|X,\theta_{t}}\!\left\{\,\overset{{\color{white}.}}{\log}\,L(\theta\,;\,X,Z)\,\right\}
 		\; = \;
-		\int \left[\log L(\theta\,;\,X,Z)\right] p(Z\,|\,X,\theta_{t}) \textnormal{d}Z
+		\int \left[\,\overset{{\color{white}.}}{\log}\,L(\theta\,;\,X,Z)\,\right] p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
 		\end{equation}
 \item	\textbf{Maximization Step:}\quad Solve the following optimization (maximization) problem to obtain
 		$\theta_{t+1}$:
@@ -54,7 +54,7 @@ two-step procedure:
 Terminate the EM Algorithm when
 \begin{equation}
 \label{EM:terminationCriterion}
-\left\vert\,\dfrac{\log p(X\,|\,\theta_{t+1})-\log p(X\,|\,\theta_{t})}{\log p(X\,|\,\theta_{t})}\,\right\vert
+\left\vert\,\dfrac{\log\,p(X\,|\,\theta_{t+1})\,-\,\log\,p(X\,|\,\theta_{t})}{\log\,p(X\,|\,\theta_{t})}\,\right\vert
 \;\; \leq \;\; \tau
 \end{equation}
 \vskip 1.0cm
@@ -70,34 +70,44 @@ $Q(\theta\,|\,\theta_{t})$.
 The sequence $\theta_{1}$, $\theta_{2}$, $\theta_{3}$, $\ldots$ produced by the EM Algorithm
 satisfies the following:
 \begin{equation*}
-\log p(X\,|\,\theta_{t+1}) \;\; \geq \;\; \log p(X\,|\,\theta_{t}),
+\log\,p(X\,|\,\theta_{t+1}) \;\; \geq \;\; \log\,p(X\,|\,\theta_{t}),
 \quad
 \textnormal{for each}\;\;t = 1, 2, 3, \ldots
 \end{equation*}
 \end{theorem}
 \proof First, observe that:
 \begin{eqnarray*}
-\log p(X\,|\,\theta)
-& = & \log\left(\dfrac{p(X,\theta)}{p(\theta)}\right)
-\;\; = \;\; \log\left(\dfrac{p(X,Z,\theta)}{p(\theta)}\dfrac{p(X,\theta)}{p(X,Z,\theta)}\right) \\
-&& \\
-& = & \log\left(p(X,Z\,|\,\theta)\right) - \log\left(p(Z\,|\,X,\theta)\right)
+\log\,p(X\,|\,\theta)
+& = &
+	\log\left(\,\dfrac{p(X\,\vert\,\theta)}{p(X,Z\,\vert\,\theta)} \cdot P(X,Z\,\vert\,\theta)\,\right)
+\;\;=\;\;
+	\log\left(\,P(X,Z\,\vert\,\theta) \cdot \left(\dfrac{p(X,Z\,\vert\,\theta)}{p(X\,\vert\,\theta)}\right)^{-1} \,\right)
+\\
+&=&
+	\log\left(\,P(X,Z\,\vert\,\theta) \cdot \left(\overset{{\color{white}.}}{p}(Z\,\vert\,X,\theta)\right)^{-1} \,\right)
+\;\;=\;\;
+	\log\left(\,\dfrac{P(X,Z\,\vert\,\theta)}{p(Z\,\vert\,X,\theta)}\,\right)
+\\
+&&
+\\
+& = &
+	\log\left(p(X,Z\,|\,\theta)\right) - \log\left(p(Z\,|\,X,\theta)\right)
 \end{eqnarray*}
 Taking expectation on both sides with respect to $p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z$ yields:
 \begin{eqnarray*}
-E_{Z|X,\theta_{t}}\left\{\log p(X\,|\,\theta)\right\}
+E_{Z|X,\theta_{t}}\!\left\{\,\overset{{\color{white}.}}{\log}\,p(X\,|\,\theta)\,\right\}
 & = &
-E_{Z|X,\theta_{t}}\left\{\log\left(p(X,Z\,|\,\theta)\right)\right\}
--
-E_{Z|X,\theta_{t}}\left\{\log\left(p(Z\,|\,X,\theta)\right)\right\}
+E_{Z|X,\theta_{t}}\!\left\{\,\overset{{\color{white}.}}{\log}\left(p(X,Z\,|\,\theta)\right)\,\right\}
+\;-\;
+E_{Z|X,\theta_{t}}\!\left\{\,\overset{{\color{white}.}}{\log}\left(p(Z\,|\,X,\theta)\right)\,\right\}
 \\
-\int\left\{\log p(X\,|\,\theta)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
+\int\left\{\overset{{\color{white}.}}{\log}\;p(X\,|\,\theta)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
 & = &
-\int\left\{\log\left(p(X,Z\,|\,\theta)\right)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
--
-\int\left\{\log\left(p(Z\,|\,X,\theta)\right)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
+\int\left\{\overset{{\color{white}.}}{\log}\;p(X,Z\,|\,\theta)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
+\;-\;
+\int\left\{\overset{{\color{white}.}}{\log}\;p(Z\,|\,X,\theta)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
 \\
-\log p(X\,|\,\theta)
+\log\,p(X\,|\,\theta)
 & = &
 Q(\theta\,|\,\theta_{t}) + H(\theta\,|\,\theta_{t})
 \end{eqnarray*}
@@ -105,55 +115,55 @@ where $H(\theta\,|\,\theta_{t})$ is defined as follows:
 \begin{equation*}
 H(\theta\,|\,\theta_{t})
 \;\; := \;\;
-- \int\left\{\log\left(p(Z\,|\,X,\theta)\right)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
+- \int\left\{\overset{{\color{white}.}}{\log}\;p(Z\,|\,X,\theta)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
 \end{equation*}
 
 \vskip 0.5cm
 \noindent
-\textbf{CLAIM 1}:\;\; $H(\theta\,|\,\theta_{t}) \geq H(\theta_{t}\,|\,\theta_{t})$,\;\; for any $\theta$.
-\vskip 0.1cm
+\textbf{CLAIM 1}:\;\; $H(\theta\,|\,\theta_{t}) \;\geq\; H(\theta_{t}\,|\,\theta_{t})$,\;\; for any $\theta$.
+\vskip 0.3cm
 \noindent
 Note that \textbf{CLAIM 1} is an immediate consequence of Gibbs' Inequality (see Appendix).
 
 \vskip 0.3cm
+\noindent
 Now, the following equation
 \begin{equation}
 \label{EM:pf:theta}
-\log p(X\,|\,\theta)
+\log\,p(X\,|\,\theta)
 \;\; = \;\;
 Q(\theta\,|\,\theta_{t}) + H(\theta\,|\,\theta_{t})
 \end{equation}
 holds for any value of $\theta$; in particular, it holds for $\theta_{t}$:
 \begin{equation}
 \label{EM:pf:thetat}
-\log p(X\,|\,\theta_{t})
+\log\,p(X\,|\,\theta_{t})
 \;\; = \;\;
 Q(\theta_{t}\,|\,\theta_{t}) + H(\theta_{t}\,|\,\theta_{t})
 \end{equation}
 Subtracting Equation \eqref{EM:pf:thetat} from Equation \eqref{EM:pf:theta} yields:
 \begin{equation}
-\log p(X\,|\,\theta) - \log p(X\,|\,\theta_{t})
+\log\,p(X\,|\,\theta) \,-\, \log\,p(X\,|\,\theta_{t})
 \;\; = \;\;
-\left(\,Q(\theta\,|\,\theta_{t}) - Q(\theta_{t}\,|\,\theta_{t})\,\right)
-+
-\left(\,H(\theta\,|\,\theta_{t}) - H(\theta_{t}\,|\,\theta_{t})\,\right)
+\left(\,Q(\theta\,|\,\theta_{t}) \overset{{\color{white}\vert}}{-} Q(\theta_{t}\,|\,\theta_{t})\,\right)
+\;+\;
+\left(\,H(\theta\,|\,\theta_{t}) \overset{{\color{white}\vert}}{-} H(\theta_{t}\,|\,\theta_{t})\,\right)
 \end{equation}
 Thus, \textbf{CLAIM 1} implies:
 \begin{equation}
-\log p(X\,|\,\theta) - \log p(X\,|\,\theta_{t})
+\log\,p(X\,|\,\theta) \,-\, \log\,p(X\,|\,\theta_{t})
 \;\; \geq \;\;
-Q(\theta\,|\,\theta_{t}) - Q(\theta_{t}\,|\,\theta_{t})
+Q(\theta\,|\,\theta_{t}) \,-\, Q(\theta_{t}\,|\,\theta_{t})
 \end{equation}
 Since, by definition, $\theta_{t+1} := \underset{\theta}{\textnormal{argmax}}\left\{\,Q(\theta\,|\,\theta_{t})\,\right\}$,
 we therefore have:
 \begin{equation}
-\log p(X\,|\,\theta_{t+1}) - \log p(X\,|\,\theta_{t})
+\log\,p(X\,|\,\theta_{t+1}) \,-\, \log\,p(X\,|\,\theta_{t})
 \;\; \geq \;\;
-Q(\theta_{t+1}\,|\,\theta_{t}) - Q(\theta_{t}\,|\,\theta_{t})
+Q(\theta_{t+1}\,|\,\theta_{t}) \,-\, Q(\theta_{t}\,|\,\theta_{t})
 \;\; \geq \;\;
 0
 \end{equation}
 This proves the Theorem.  \qed
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
