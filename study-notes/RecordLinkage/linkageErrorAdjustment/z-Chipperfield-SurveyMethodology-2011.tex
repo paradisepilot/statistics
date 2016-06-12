@@ -387,156 +387,7 @@ Suppose the following are true:
 	which, in particular, implies $P\!\left(\,\left.Y^{(i)} = \widetilde{Y}^{(i)}\;\right\vert\;M^{(i)}=1\,\right)\,=\,1$.
 \end{itemize}
 
-\begin{eqnarray*}
-L &=&
-	P\!\left(\;
-		\left[\;\overset{n}{\underset{i=1}{\bigcap}}\;
-		\left\{
-		X^{(i)}=x_{i},Y^{(i)}=c_{i},\widetilde{Y}^{(i)}=y_{i},M^{(i)}=m_{i}
-		\right\}\;\right]
-		\;\bigcap\;
-		\left[\;\overset{n}{\underset{i=1}{\bigcap}}\;
-		\left\{
-		J^{(i)}=j_{i}
-		\right\}\;\right]
-	\;\right)
-\\
-&=&
-	\overset{n}{\underset{i=1}{\prod}} \;
-	P\!\left(\,X^{(i)}=x_{i},Y^{(i)}=c_{i},\widetilde{Y}^{(i)}=y_{i},M^{(i)}=m_{i}\,\right)
-	\;\times\;
-	\overset{n}{\underset{i=1}{\prod}} \;
-	P\!\left(\,J^{(i)}=j_{i}\,\right)
-\\
-&=&
-	\overset{n}{\underset{i=1}{\prod}} \;\;
-	P\!\left(\,X^{(i)}=x_{i},Y^{(i)}=c_{i},\widetilde{Y}^{(i)}=y_{i},M^{(i)}=m_{i}\,\right)
-	\cdot
-	P\!\left(\,J^{(i)}=j_{i}\,\right)
-\\
-&=&
-	\overset{n}{\underset{i=1}{\prod}} \;\;
-	\left\{\;
-		\overset{G}{\underset{g=1}{\prod}}\;\;
-		\overset{C}{\underset{c=1}{\prod}}\;\;
-		\overset{C}{\underset{y=1}{\prod}}\;\;
-		\overset{1}{\underset{m=0}{\prod}}\;\;
-		\overset{1}{\underset{j=0}{\prod}}\;
-		\left(P\!\left(\,X=g,Y=c,\widetilde{Y}=y,M=m\,\right) \cdot P\!\left(\,J=j\,\right)\right)
-		^{W^{(i)}_{c \vert gymj}}
-	\;\right\}
-\\
-&=&
-	\overset{G}{\underset{g=1}{\prod}}\;\;
-	\overset{C}{\underset{c=1}{\prod}}\;\;
-	\overset{C}{\underset{y=1}{\prod}}\;\;
-	\overset{1}{\underset{m=0}{\prod}}\;\;
-	\overset{1}{\underset{j=0}{\prod}}\;
-	\left\{\;
-		\overset{n}{\underset{i=1}{\prod}} \;
-		\left(P\!\left(\,X=g,Y=c,\widetilde{Y}=y,M=m\,\right) \cdot P\!\left(\,J=j\,\right)\right)
-		^{W^{(i)}_{c \vert gymj}}
-	\;\right\}
-\\
-&=&
-	\overset{G}{\underset{g=1}{\prod}}\;\;
-	\overset{C}{\underset{c=1}{\prod}}\;\;
-	\overset{C}{\underset{y=1}{\prod}}\;\;
-	\overset{1}{\underset{m=0}{\prod}}\;\;
-	\overset{1}{\underset{j=0}{\prod}}\;
-	\left[\;
-		P\!\left(\,X=g,Y=c,\widetilde{Y}=y,M=m\,\right) \cdot P\!\left(\,J=j\,\right)
-	\;\right]
-	^{\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert gymj}}
-\end{eqnarray*}
-
-\begin{eqnarray*}
-\log\,L &=&
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{1}{\underset{m=0}{\sum}}\;\;
-	\overset{1}{\underset{j=0}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gymj}\right)
-	\cdot
-	\log\left[\,
-		P\!\left(\,X=g,Y=c,\widetilde{Y}=y,M=m\,\right) \cdot P\!\left(\,J=j\,\right)
-	\,\right]
-\\
-&=&
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{1}{\underset{m=0}{\sum}}\;\;
-	\overset{1}{\underset{j=0}{\sum}}\;
-\\
-&&
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gymj}\right)
-	\cdot
-	\log\left[\,
-		P\!\left(\,Y=c\;\left\vert\;X=g,\widetilde{Y}=y,M=m\right.\,\right)
-		P\!\left(\,X=g,\widetilde{Y}=y,M=m\,\right)
-		\cdot
-		P\!\left(\,J=j\,\right)
-	\,\right]
-\\
-&=&
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{1}{\underset{m=0}{\sum}}\;\;
-	\overset{1}{\underset{j=0}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gymj}\right)
-	\cdot
-	\log\left[\,
-		\pi_{c \vert gym} \cdot \mu_{gym} \cdot \nu_{j}
-	\,\right]
-%\\
-%&=&
-%	\overset{G}{\underset{g=1}{\sum}}\;\;
-%	\overset{C}{\underset{c=1}{\sum}}\;\;
-%	\overset{C}{\underset{y=1}{\sum}}\;\;
-%	\overset{1}{\underset{m=0}{\sum}}\;\;
-%	\overset{1}{\underset{j=0}{\sum}}\;
-%	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gymj}\right)
-%	\cdot
-%	\left(\,
-%		\overset{{\color{white}.}}{\log}\,\pi_{c \vert gym} + \log\,\mu_{gym} + \log\,\nu_{j}
-%	\,\right)
-\\
-&=&
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{1}{\underset{m=0}{\sum}}\;\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gym{\color{blue}0}}\right)
-	\cdot
-	\log\left[\,
-		\pi_{c \vert gym} \cdot \mu_{gym} \cdot \nu_{\color{blue}0}
-	\,\right]
-\\
-&&
-	+ \;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;
-	\left[\;
-		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy\color{red}0{\color{blue}1}}\right)
-		\cdot
-		\log\left[\,
-			\pi_{c \vert gy{\color{red}0}} \cdot \mu_{gy{\color{red}0}} \cdot \nu_{\color{blue}1}
-		\,\right]
-		\;+\;
-		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy\color{red}1\color{blue}1}\right)
-		\cdot
-		\log\left[\,
-			\pi_{c \vert gy\color{red}1} \cdot \mu_{gy\color{red}1} \cdot \nu_{\color{blue}1}
-		\,\right]
-	\;\right]
-\end{eqnarray*}
-
 \vskip 0.3cm
-\noindent
 \begin{equation*}
 K \;\;=\;\;
 	\left\{\begin{array}{cl}
@@ -550,9 +401,53 @@ K \;\;=\;\;
 
 \vskip 0.3cm
 \begin{eqnarray*}
+L &=&
+	P\!\left(\;
+		\overset{n}{\underset{i=1}{\bigcap}}\;
+		\left\{
+			Y^{(i)}=c_{i},X^{(i)}=x_{i},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}
+		\right\}
+	\;\right)
+\;\;=\;\;
+	\overset{n}{\underset{i=1}{\prod}} \;
+	P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x_{i},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}\,\right)
+\\
+&=&
+	\overset{n}{\underset{i=1}{\prod}} \;
+	\left\{\;
+		\overset{C}{\underset{c=1}{\prod}}\;\;
+		\overset{G}{\underset{g=1}{\prod}}\;\;
+		\overset{C}{\underset{y=1}{\prod}}\;\;
+		\overset{2}{\underset{k=0}{\prod}}\;
+		P\!\left(\,Y=c,X=g,\widetilde{Y}=y,K=k\,\right)^{W^{(i)}_{c \vert gyk}}
+	\;\right\}
+\\
+&=&
+	\overset{C}{\underset{c=1}{\prod}}\;\;
+	\overset{G}{\underset{g=1}{\prod}}\;\;
+	\overset{C}{\underset{y=1}{\prod}}\;\;
+	\overset{2}{\underset{k=0}{\prod}}\;
+	\left\{\;
+		\overset{n}{\underset{i=1}{\prod}} \;
+		P\!\left(\,Y=c,X=g,\widetilde{Y}=y,K=k\,\right)^{W^{(i)}_{c \vert gyk}}
+	\;\right\}
+\\
+&=&
+	\overset{C}{\underset{c=1}{\prod}}\;\;
+	\overset{G}{\underset{g=1}{\prod}}\;\;
+	\overset{C}{\underset{y=1}{\prod}}\;\;
+	\overset{2}{\underset{k=0}{\prod}}\;
+	\left\{\;
+		P\!\left(\,Y=c,X=g,\widetilde{Y}=y,K=k\,\right)
+		^{\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert gyk}}
+	\;\right\}
+\end{eqnarray*}
+
+\vskip 0.3cm
+\begin{eqnarray*}
 \log\,L &=&
-	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{y=1}{\sum}}\;\;
 	\overset{2}{\underset{k=0}{\sum}}\;\;
 	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gyk}\right)
@@ -560,8 +455,8 @@ K \;\;=\;\;
 	\log\,P\!\left(\,Y=c,X=g,\widetilde{Y}=y,K=k\,\right)
 \\
 &=&
-	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{y=1}{\sum}}\;\;
 	\overset{2}{\underset{k=0}{\sum}}\;
 	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gyk}\right)
@@ -572,8 +467,20 @@ K \;\;=\;\;
 	\,\right]
 \\
 &=&
-	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	\overset{2}{\underset{k=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gyk}\right)
+	\cdot
+	\log\left[\,
+		P\!\left(\,Y=c\;\left\vert\;X=g,\widetilde{Y}=y,K=k\right.\,\right)
+		P\!\left(\,X=g,\widetilde{Y}=y,K=k\,\right)
+	\,\right]
+\\
+&=&
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{y=1}{\sum}}\;\;
 	\overset{2}{\underset{k=0}{\sum}}\;
 	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gyk}\right)
@@ -583,8 +490,8 @@ K \;\;=\;\;
 	\,\right]
 \\
 &=&
-	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{y=1}{\sum}}\;
 	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
 	\cdot
@@ -594,8 +501,8 @@ K \;\;=\;\;
 \\
 &&
 	+ \;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{y=1}{\sum}}\;
 	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
 	\cdot
@@ -603,8 +510,8 @@ K \;\;=\;\;
 		\pi_{c \vert gy\color{red}1} \cdot p_{gy\color{red}1}
 	\,\right]
 	\;\; + \;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{y=1}{\sum}}\;
 	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}2}}\right)
 	\cdot
