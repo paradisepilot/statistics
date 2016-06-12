@@ -535,53 +535,61 @@ L &=&
 	\;\right]
 \end{eqnarray*}
 
+\vskip 0.3cm
+\noindent
+\begin{equation*}
+K \;\;=\;\;
+	\left\{\begin{array}{cl}
+	0, & \textnormal{if}\;\, J = 0,
+	\\
+	1, & \textnormal{if}\;\, J = 1 \;\textnormal{and}\; M = 0,
+	\\
+	2, & \textnormal{if}\;\, J = 1 \;\textnormal{and}\; M = 1
+	\end{array}\right.
+\end{equation*}
+
+\vskip 0.3cm
 \begin{eqnarray*}
 \log\,L &=&
 	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
 	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{1}{\underset{m=0}{\sum}}\;\;
-	\overset{1}{\underset{j=0}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gymj}\right)
+	\overset{2}{\underset{k=0}{\sum}}\;\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gyk}\right)
 	\cdot
-	\log\,P\!\left(\,X=g,Y=c,\widetilde{Y}=y,M=m,J=j\,\right)
+	\log\,P\!\left(\,Y=c,X=g,\widetilde{Y}=y,K=k\,\right)
 \\
 &=&
 	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
 	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{1}{\underset{m=0}{\sum}}\;\;
-	\overset{1}{\underset{j=0}{\sum}}\;
-\\
-&&
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gymj}\right)
+	\overset{2}{\underset{k=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gyk}\right)
 	\cdot
 	\log\left[\,
-		P\!\left(\,Y=c\;\left\vert\;X=g,\widetilde{Y}=y,M=m,J=j\right.\,\right)
-		P\!\left(\,X=g,\widetilde{Y}=y,M=m,J=j\,\right)
+		P\!\left(\,Y=c\;\left\vert\;X=g,\widetilde{Y}=y,K=k\right.\,\right)
+		P\!\left(\,X=g,\widetilde{Y}=y,K=k\,\right)
 	\,\right]
 \\
 &=&
 	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
 	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{1}{\underset{m=0}{\sum}}\;\;
-	\overset{1}{\underset{j=0}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gymj}\right)
+	\overset{2}{\underset{k=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gyk}\right)
 	\cdot
 	\log\left[\,
-		\pi_{c \vert gymj} \overset{{\color{white}\vert}}{\cdot} p_{gymj}
+		\pi_{c \vert gyk} \overset{{\color{white}\vert}}{\cdot} p_{gyk}
 	\,\right]
 \\
 &=&
 	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{1}{\underset{m=0}{\sum}}\;\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gym{\color{blue}0}}\right)
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
 	\cdot
 	\log\left[\,
-		\pi_{c \vert gym\color{blue}0} \cdot p_{gym\color{blue}0}
+		\pi_{c \vert gy\color{red}0} \cdot p_{gy\color{red}0}
 	\,\right]
 \\
 &&
@@ -589,19 +597,20 @@ L &=&
 	\overset{G}{\underset{g=1}{\sum}}\;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
 	\overset{C}{\underset{y=1}{\sum}}\;
-	\left\{\;
-		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy\color{red}0{\color{blue}1}}\right)
-		\cdot
-		\log\left[\,
-			\pi_{c \vert gy{\color{red}0}\color{blue}1} \overset{{\color{white}\vert}}{\cdot} p_{gy{\color{red}0}\color{blue}1}
-		\,\right]
-		\;+\;
-		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy\color{red}1\color{blue}1}\right)
-		\cdot
-		\log\left[\,
-			\pi_{c \vert gy\color{red}1\color{blue}1} \overset{{\color{white}\vert}}{\cdot} p_{gy\color{red}1\color{blue}1}
-		\,\right]
-	\;\right\}
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
+	\cdot
+	\log\left[\,
+		\pi_{c \vert gy\color{red}1} \cdot p_{gy\color{red}1}
+	\,\right]
+	\;\; + \;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}2}}\right)
+	\cdot
+	\log\left[\,
+		\pi_{c \vert gy\color{red}2} \cdot p_{gy\color{red}2}
+	\,\right]
 \end{eqnarray*}
 
 $\rho_{gc} \;:=\; P\!\left(M=1\;\vert\;X=g,\widetilde{Y}=c\right)$
