@@ -12,291 +12,299 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\subsection{MLE's for contingency tables under perfect linkage}
-Suppose
-$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space and
-$n, p, G, C \in \N$ are natural numbers.
-Suppose
+\subsection{MLE for regression with categorical response and predictor variables}
+
+The precise mathematical formulation of the discussion in
+Section 2.1 (entitled ``Contingency tables'') in \cite{Chipperfield2011}
+is the following proposition.
+
+\begin{proposition}
+\mbox{}\vskip 0.1cm\noindent
+Suppose:
 \begin{itemize}
 \item
-	$X^{(1)}, \ldots, X^{(n)} : \Omega \longrightarrow \left[\,G\,\right] := \left\{1,2,\ldots,G\right\}$
-	are categorical random variables,
+	$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space,
+\item
+	$n, C, G \in \N$ are natural numbers,
 \item
 	$Y^{(1)}, \ldots, Y^{(n)} : \Omega \longrightarrow \left[\,C\,\right] := \left\{1,2,\ldots,C\right\}$
 	are categorical random variables, and
 \item
-	the $\left(\,\left[\,G\,\right] \times \left[\,C\,\right]\,\right)$-valued random variables
-	$Z^{(i)} := \left(\,X^{(i)},Y^{(i)}\,\right)$, $i = 1, 2, \ldots, n$, are independent and identically distributed.
+	$X^{(1)}, \ldots, X^{(n)} : \Omega \longrightarrow \left[\,G\,\right] := \left\{1,2,\ldots,G\right\}$
+	are categorical random variables.
 \end{itemize}
-Then, the joint probability distribution of
-$\left(X^{(1)},Y^{(1)}\right)$, $\left(X^{(2)},Y^{(2)}\right)$, $\ldots$\,, $(X^{(n)},Y^{(n)})$
-can be expressed as follows:
-\begin{eqnarray*}
-&&
-	P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
-\\
-&=&
-	P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}\right) \times \cdots \times P\!\left(X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
-\;\;=\;\;
-	\overset{n}{\underset{i=1}{\prod}} \; P\!\left(X^{(i)} = x_{i},Y^{(i)}=y_{i}\right)
-\\
-&=&
-	\overset{n}{\underset{i=1}{\prod}} \;
-	\left\{\;
-		\overset{G}{\underset{g=1}{\prod}} \;\;
-		\overset{C}{\underset{c=1}{\prod}} \;
-		P\!\left(X = g,Y=c\right)^{W^{(i)}_{c \vert g}}
-	\;\right\}
-\;\;=\;\;
-	\overset{G}{\underset{g=1}{\prod}} \;\;
-	\overset{C}{\underset{c=1}{\prod}} \;
-	\left\{\;
-		\overset{n}{\underset{i=1}{\prod}} \;
-		P\!\left(X = g,Y=c\right)^{W^{(i)}_{c \vert g}}
-	\;\right\}
-\\
-&=&
-	\overset{G}{\underset{g=1}{\prod}} \;\;
-	\overset{C}{\underset{c=1}{\prod}} \;
-	\left\{\,
-		P\!\left(X = g,Y=c\right)^{\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert g}}
-	\;\right\}
-\;\;=\;\;
-	\overset{G}{\underset{g=1}{\prod}} \;\;
-	\overset{C}{\underset{c=1}{\prod}} \;
-	\left\{\;
-		\left[\,P\!\left(\left.Y=c\;\right\vert X = g\right) \overset{{\color{white}\vert}}{\cdot} P\!\left(X=g\right)\,\right]
-		^{\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert g}}
-	\;\right\}
-%\\
-%&=&
-%	P_{Y \vert X}\!\left(\left.Y^{(1)} = y_{1} \,\right\vert X^{(1)} = x_{1}\right) \cdot P_{X}\!\left(X^{(1)} = x_{1}\right)
-%	\times \cdots \times
-%	P_{Y \vert X}\!\left(\left.Y^{(n)} = y_{n} \,\right\vert X^{(n)} = x_{n}\right) \cdot P_{X}\!\left(X^{(n)} = x_{n}\right)
-\\
-&=&
-	\overset{G}{\underset{g=1}{\prod}} \;\;
-	\overset{C}{\underset{c=1}{\prod}} \;
-	\left(\,\pi_{c\,\vert\,g} \overset{{\color{white}\vert}}{\cdot} p_{g}\,\right)
-	^{\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert g}}
-%\;\; = \;\;
-%	\overset{G}{\underset{g=1}{\prod}}
-%		\left(\,\overset{{\color{white}-}}{p}_{g}\,\right)^{\overset{n}{\underset{i=1}{\sum}}\,I\left\{X^{(i)}=g\right\}}
-%	\,\cdot\,
-%	\overset{C}{\underset{c=1}{\prod}}
-%	\left(\,\overset{{\color{white}\vert}}{\pi}_{c\,\vert\,g}\,\right)
-%	^{\overset{n}{\underset{i=1}{\sum}}\,I\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}},
-\end{eqnarray*}
-where
-\,$W^{(i)}_{c \vert g} \,:=\, I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}$,\,
-\,$\pi_{c\,\vert\,g} \,:=\, P_{Y \vert X}\!\left(\left.Y = c \,\right\vert X = g\right)$\,
-and
-\,$p_{g} \,:=\, P_{X}\!\left(X = g\right)$.\,
-First, note that we have the identities:
-\begin{equation*}
-\overset{C}{\underset{c=1}{\sum}}\;\pi_{c\vert g} \; = \; 1
-\;\;\quad\textnormal{and}\quad\quad
-\overset{G}{\underset{g=1}{\sum}}\;p_{g} \; = \; 1.
-\end{equation*}
-We seek to estimate $\pi_{c\,\vert\,g}$\,,
-%$P_{Y \vert X}\!\left(\,Y = c \,\vert X = g\right)$,
-for each $(g,c) \in \left[\,G\,\right] \times \left[\,C\,\right]$,
-based on the observed data.
-Now, the logarithm of the above joint probability is:
-\begin{eqnarray*}
-&&
-	{\color{red}\log\,P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)}
-\;\;=\;\;
-	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
-	\left(\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert g}\right)
-	\cdot
-	\left(\,\log\,\pi_{c\,\vert\,g} \,\overset{{\color{white}\vert}}{+}\, \log\,p_{g}\,\right)
-%\\
-%&=&
-%	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
-%	\left(\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert g}\right)
-%	\cdot
-%	\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
-%	\;\; + \;\;
-%	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
-%	\left(\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert g}\right)
-%	\cdot
-%	\left(\,\log\,p_{g}\,\right)
-\\
-&=&
-	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;{\color{red}W^{(i)}_{c \vert g}}\right)
-	\cdot
-	\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
-	\;\; + \;\;
-	\overset{G}{\underset{g=1}{\sum}} \, \left(\,\log\,p_{g}\,\right)
-	\cdot
-	\left(\,
+Suppose:
+\begin{itemize}
+\item
+	the $\left(\,\left[\,C\,\right] \times \left[\,G\,\right]\,\right)$-valued random variables
+	$Z^{(i)} := \left(\,Y^{(i)},X^{(i)}\,\right)$, $i = 1, 2, \ldots, n$,
+	are independent and identically distributed.
+\end{itemize}
+Then, the following statements are valid:
+\begin{enumerate}
+\item
+	\label{independenceOfI}
+	For each $(c,g) \in \left[\,C\,\right] \times \left[\,G\,\right]$, the probability
+	\begin{equation*}
+	\pi_{c \vert g} \;\;:=\;\; P\!\left(\left.Y^{(i)} = c \;\right\vert X^{(i)} = g\right)
+	\end{equation*}
+	is independent of $i \in \{1,2,\ldots,n\}$.
+	Similary, for each given $g \in \left[\,G\,\right]$, the probability
+	\begin{equation*}
+	p_{g} \;\; := \;\; P\!\left(X^{(i)} = g\right)
+	\end{equation*}
+	is independent of $i \in \{1,2,\ldots,n\}$.
+\item
+	For each $(c,g) \in \left[\,C\,\right] \times \left[\,G\,\right]$,
+	the maximum likelihood estimator (MLE)
+	\,$\widehat{\pi}_{c\vert g}$\,
+	of the parameter
+	\,$\pi_{c\vert g}$\,
+	is given by
+	\begin{equation*}
+	\widehat{\pi}_{c\vert g}
+	\;\; = \;\;
+		\dfrac{N_{cg}}{\overset{C}{\underset{c=1}{\sum}}\,N_{cg}}
+	\;\; = \;\;
+		\dfrac{N_{cg}}{N_{g}}\,,
+	\end{equation*}	
+	and, for each $g \in \left[\,G\,\right]$,
+	the MLE
+	\,$\widehat{p}_{g}$\,
+	of the parameter
+	\,$p_{g}$\,
+	is given by:
+	\begin{equation*}
+	\widehat{p}_{g}
+	\;\; = \;\;
+		\dfrac{N_{g}}{\overset{G}{\underset{g=1}{\sum}}\,N_{g}}
+	\;\; = \;\;
+		\dfrac{N_{g}}{n}\,,
+	\end{equation*}
+	where
+	\begin{equation*}
+	N_{cg}
+		\; := \;
+		\overset{n}{\underset{i=1}{\sum}}\;
+		W^{(i)}_{c \vert g}\,,
+	\quad\quad
+	N_{g}
+		\; := \;
 		\overset{n}{\underset{i=1}{\sum}} \;
 		\overset{C}{\underset{c=1}{\sum}} \;
-		{\color{red}W^{(i)}_{c \vert g}}
-	\right)
-\\
-&=&
-	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;\,
-	N_{gc} \cdot \left(\,\log\,\pi_{c\,\vert\,g}\,\right)
-	\;\; + \;\;
-	\overset{G}{\underset{g=1}{\sum}} \;\, N_{g} \cdot \left(\,\log\,p_{g}\,\right)
-\\
-&=&
-	\overset{G}{\underset{g=1}{\sum}} \;
-	\left\{\,
-		N_{gC}
+		W^{(i)}_{c \vert g}\,,
+	\quad\quad
+	\textnormal{and}
+	\quad\quad
+	W^{(i)}_{c \vert g}
+		\; := \;
+		I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}.
+	\end{equation*}
+\end{enumerate}
+\end{proposition}
+
+\proof
+\begin{enumerate}
+\item
+	This follows trivially from the hypothesis that
+	\,$Z^{(i)} \,:=\, \left(\,Y^{(i)},X^{(i)}\,\right)$,\,
+	$i \in \{1,2,\ldots,n\}$,\,
+	are IID.
+\item
+	In this proof, for ease of presentation, we will use the following notations:
+	\begin{equation*}
+	P\!\left(\left.Y = c \;\right\vert X = g\right)
+		\; := \;
+		\pi_{c\,\vert\,g}
+	\quad\quad
+	\textnormal{and}
+	\quad\quad
+	P\!\left(X = g\right)
+		\; := \;
+		p_{g}
+	\end{equation*}
+	which are valid because of \eqref{independenceOfI}.
+	Now, the joint probability distribution of
+	$\left(X^{(1)},Y^{(1)}\right)$, $\left(X^{(2)},Y^{(2)}\right)$, $\ldots$\,, $\left(X^{(n)},Y^{(n)}\right)$
+	can be expressed as follows:
+	\begin{eqnarray*}
+	&&
+		P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
+	\\
+	&=&
+		P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}\right) \times \cdots \times P\!\left(X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
+	\;\;=\;\;
+		\overset{n}{\underset{i=1}{\prod}} \; P\!\left(X^{(i)} = x_{i},Y^{(i)}=y_{i}\right)
+	\\
+	&=&
+		\overset{n}{\underset{i=1}{\prod}} \;
+		\left\{\;
+			\overset{G}{\underset{g=1}{\prod}} \;\;
+			\overset{C}{\underset{c=1}{\prod}} \;
+			P\!\left(X = g,Y=c\right)^{W^{(i)}_{c \vert g}}
+		\;\right\}
+	\;\;=\;\;
+		\overset{G}{\underset{g=1}{\prod}} \;\;
+		\overset{C}{\underset{c=1}{\prod}} \;
+		\left\{\;
+			\overset{n}{\underset{i=1}{\prod}} \;
+			P\!\left(X = g,Y=c\right)^{W^{(i)}_{c \vert g}}
+		\;\right\}
+	\\
+	&=&
+		\overset{G}{\underset{g=1}{\prod}} \;\;
+		\overset{C}{\underset{c=1}{\prod}} \;
+		\left\{\,
+			P\!\left(X = g,Y=c\right)^{\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert g}}
+		\;\right\}
+	\;\;=\;\;
+		\overset{G}{\underset{g=1}{\prod}} \;\;
+		\overset{C}{\underset{c=1}{\prod}} \;
+		\left\{\;
+			\left[\,P\!\left(\left.Y=c\;\right\vert X = g\right) \overset{{\color{white}\vert}}{\cdot} P\!\left(X=g\right)\,\right]
+			^{\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert g}}
+		\;\right\}
+	\\
+	&=&
+		\overset{G}{\underset{g=1}{\prod}} \;\;
+		\overset{C}{\underset{c=1}{\prod}} \;
+		\left(\,\pi_{c\,\vert\,g} \overset{{\color{white}\vert}}{\cdot} p_{g}\,\right)
+		^{\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert g}}
+	\end{eqnarray*}
+	where
+	\,$W^{(i)}_{c \vert g} \,:=\, I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}$.\,
+	The logarithm of this joint probability is thus:
+	\begin{eqnarray*}
+	&&
+		\log\,P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
+	\;\;=\;\;
+		\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
+		\left(\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert g}\right)
 		\cdot
-		\log\left(\,1 - \overset{C-1}{\underset{c=1}{\sum}}\pi_{c\,\vert\,g}\,\right)
-		\; + \;
-		\overset{C-1}{\underset{c=1}{\sum}} \; N_{gc}
+		\left(\,\log\,\pi_{c\,\vert\,g} \,\overset{{\color{white}\vert}}{+}\, \log\,p_{g}\,\right)
+	\\
+	&=&
+		\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;{\color{red}W^{(i)}_{c \vert g}}\right)
 		\cdot
 		\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
-	\,\right\}
-	\; + \;
-	\left\{\,
-		N_{G}
+		\;\; + \;\;
+		\overset{G}{\underset{g=1}{\sum}} \, \left(\,\log\,p_{g}\,\right)
 		\cdot
-		\log\left(\,1 - \overset{G-1}{\underset{g=1}{\sum}}\;p_{g}\,\right)
-		\, + \,
-		\overset{G-1}{\underset{g=1}{\sum}} \; N_{g}
-		\cdot
-		\left(\,\log\,p_{g}\,\right)
-	\,\right\}
-\end{eqnarray*}
-%Similarly, the joint probability distribution of $X^{(1)}$, $X^{(2)}$, $\ldots$\,, $X^{(n)}$
-%can be expressed as:
-%\begin{eqnarray*}
-%P\!\left(X^{(1)} = x_{1}, X^{(2)} = x_{2}, \;\ldots\; ,X^{(n)} = x_{n}\right)
-%&=&
-%	P\!\left(X^{(1)} = x_{1}\right) \times P\!\left(X^{(2)} = x_{2}\right) \times \cdots \times P\!\left(X^{(n)} = x_{n}\right)
-%\\
-%&=&
-%	\overset{G}{\underset{g=1}{\prod}}
-%	\left(\,\overset{{\color{white}\vert}}{p}_{g}\,\right)
-%	^{\overset{n}{\underset{i=1}{\sum}}\,I\left\{X^{(i)}=g\right\}},
-%\end{eqnarray*}
-%with logarithm:
-%\begin{eqnarray*}
-%\log\, P\!\left(X^{(1)} = x_{1}, X^{(2)} = x_{2}, \;\ldots\; ,X^{(n)} = x_{n}\right)
-%&=&
-%	\overset{G}{\underset{g=1}{\sum}}
-%	\left(\overset{n}{\underset{i=1}{\sum}}\,I\left\{X^{(i)}=g\right\}\right)
-%	\cdot
-%	\left(\,\log\,\overset{{\color{white}\vert}}{p}_{g}\,\right)
-%\end{eqnarray*}
-%We therefore obtain this expression for the following logarithm of conditional probability:
-%\begin{eqnarray*}
-%&&
-%	\log\,P\!\left(\,\left.Y^{(1)}=y_{1},Y^{(2)}=y_{2},\,\ldots\,,Y^{(n)}=y_{n}\;\right\vert\,X^{(1)}=x_{1},X^{(2)}=x_{2},\ldots,X^{(n)}=x_{n}\right)
-%\\
-%&=&
-%	\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;
-%	\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}\right)
-%	\cdot
-%	\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
-%\\
-%&=&
-%	\overset{G}{\underset{g=1}{\sum}} \;
-%	\left\{\,
-%		\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=C\right\}\right)
-%		\cdot
-%		\log\left(\,1 - \overset{C-1}{\underset{c=1}{\sum}}\pi_{c\,\vert\,g}\,\right)
-%		\; + \;
-%		\overset{C-1}{\underset{c=1}{\sum}} \;
-%		\left(\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{X^{(i)}=g,\,Y^{(i)}=c\right\}\right)
-%		\cdot
-%		\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
-%	\,\right\}
-%\\
-%&=&
-%	\overset{G}{\underset{g=1}{\sum}} \;
-%	\left\{\,
-%		n_{gC}
-%		\cdot
-%		\log\left(\,1 - \overset{C-1}{\underset{c=1}{\sum}}\pi_{c\,\vert\,g}\,\right)
-%		\; + \;
-%		\overset{C-1}{\underset{c=1}{\sum}} \; n_{gc}
-%		\cdot
-%		\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
-%	\,\right\}
-%\end{eqnarray*}
-For each $g \in \{1,2,\ldots,G\}$ and $c \in \{1,2,\ldots,C-1\}$, differentiating with respect to \,$\pi_{c \vert g}$\, yields:
-\begin{eqnarray*}
-\dfrac{\partial}{\partial\,\pi_{c \vert g}}\,
-\log\,P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
-&=&
-	\dfrac{N_{gC}\cdot(\,-1\,)}{1 - \overset{C-1}{\underset{y=1}{\sum}}\pi_{y\,\vert\,g}}
-	\; + \;
-	\dfrac{N_{gc}}{\pi_{c\,\vert\,g}}
-\\
-&=&
-	\dfrac{N_{gc}}{\pi_{c\,\vert\,g}}
-	\; - \;
-	\dfrac{N_{gC}}{\pi_{C\,\vert\,g}}
-\end{eqnarray*}
-For each $g \in \{1,2,\ldots,G-1\}$, differentiating with respect to \,$p_{g}$\, yields:
-\begin{eqnarray*}
-\dfrac{\partial}{\partial\,p_{g}}\,
-\log\,P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
-&=&
-	\dfrac{N_{G}\cdot(\,-1\,)}{1 - \overset{G-1}{\underset{x=1}{\sum}}\,p_{x}}
-	\; + \;
-	\dfrac{N_{g}}{p_{g}}
-\\
-&=&
-	\dfrac{N_{g}}{p_{g}}
-	\; - \;
-	\dfrac{N_{G}}{p_{G}}
-\end{eqnarray*}
-Setting the L.H.S.'s of the above two equations to zero yields:
-There exists $\beta \in \Re$ and, 
-for each $g \in \{1,2,\ldots,G\}$, there exists $\alpha_{g} \in \Re$ such that
-\begin{equation*}
-	\begin{array}{ccl}
-	\left(\,\pi_{1\vert g},\,\pi_{2\vert g}, \,\ldots\,, \,\pi_{C\vert g}\,\right)
-	& = & \alpha_{g} \cdot \left(\,N_{g1},\,N_{g2}, \,\ldots\,,\, N_{gC}\,\right)
+		\left(\,
+			\overset{n}{\underset{i=1}{\sum}} \;
+			\overset{C}{\underset{c=1}{\sum}} \;
+			{\color{red}W^{(i)}_{c \vert g}}
+		\right)
 	\\
-	\left(\,p_{1},\,p_{2}, \,\ldots\,, \,p_{G}\,\right)
-	& \overset{{\color{white}\vert}}{=} & \beta \cdot \left(\,N_{1},\, N_{2}, \,\ldots\,,\, N_{G}\,\right)
-	\end{array}
-\end{equation*}
-Recall now that we also have
-\,$\overset{G}{\underset{g=1}{\sum}}\,p_{g} = 1$\, and
-\,$\overset{C}{\underset{c=1}{\sum}}\,\pi_{c\vert g} = 1$.
-Hence,
-\begin{equation*}
-\alpha_{g} \cdot \overset{C}{\underset{c=1}{\sum}}\;N_{gc}
-\;\; = \;\; \overset{C}{\underset{c=1}{\sum}}\;\pi_{c\vert g}
-\;\; = \;\; 1
-\quad\Longrightarrow\quad
-\alpha_{g} \;\;=\;\; \dfrac{1}{\overset{C}{\underset{c=1}{\sum}}\;N_{gc}}.
-\end{equation*}
-And,
-\begin{equation*}
-\beta \cdot \overset{G}{\underset{g=1}{\sum}}\;N_{g}
-\;\; = \;\; \overset{G}{\underset{g=1}{\sum}}\;N_{g}
-\;\; = \;\; 1
-\quad\Longrightarrow\quad
-\beta \;\;=\;\; \dfrac{1}{\overset{G}{\underset{g=1}{\sum}}\;N_{g}}.
-\end{equation*}
-We may now conclude that the maximum likelihood estimators of the parameters
-\,$\left(\,\pi_{1\vert g},\,\pi_{2\vert g}, \,\ldots\,, \,\pi_{C\vert g}\,\right)$\,
-and\\
-$\left(\,p_{1},\,p_{2}, \,\ldots\,, \,p_{G}\,\right)$\,
-are given by:
-\begin{equation*}
-	\begin{array}{ccccc}
-	\left(\,\widehat{\pi}_{1\vert g}\,,\,\widehat{\pi}_{2\vert g}\,, \,\ldots\,, \,\widehat{\pi}_{C\vert g}\,\right)
-	& = & \dfrac{1}{\sum^{C}_{c=1}N_{gc}} \cdot \left(\,N_{g1},\,N_{g2}, \,\ldots\,,\, N_{gC}\,\right)
-	& = & \dfrac{1}{N_{g}} \cdot \left(\,N_{g1},\,N_{g2}, \,\ldots\,,\, N_{gC}\,\right),
-	\\ \\
-	\left(\,\widehat{p}_{1}\,,\,\widehat{p}_{2}\,, \,\ldots\,, \,\widehat{p}_{G}\,\right)
-	& = & \dfrac{1}{\sum^{G}_{g=1}N_{g}} \cdot \left(\,N_{1},\,N_{2}, \,\ldots\,,\, N_{G}\,\right)
-	& = & \dfrac{1}{n} \cdot \left(\,N_{1},\,N_{2}, \,\ldots\,,\, N_{G}\,\right).
-	\end{array}
-\end{equation*}
+	&=&
+		\overset{G}{\underset{g=1}{\sum}} \;\; \overset{C}{\underset{c=1}{\sum}} \;\,
+		N_{cg} \cdot \left(\,\log\,\pi_{c\,\vert\,g}\,\right)
+		\;\; + \;\;
+		\overset{G}{\underset{g=1}{\sum}} \;\, N_{g} \cdot \left(\,\log\,p_{g}\,\right)
+	\\
+	&=&
+		\overset{G}{\underset{g=1}{\sum}} \;
+		\left\{\,
+			N_{Cg}
+			\cdot
+			\log\left(\,1 - \overset{C-1}{\underset{c=1}{\sum}}\pi_{c\,\vert\,g}\,\right)
+			\; + \;
+			\overset{C-1}{\underset{c=1}{\sum}} \; N_{cg}
+			\cdot
+			\left(\,\log\,\pi_{c\,\vert\,g}\,\right)
+		\,\right\}
+	\\
+	&&
+		+ \;
+		\left\{\,
+			N_{G}
+			\cdot
+			\log\left(\,1 - \overset{G-1}{\underset{g=1}{\sum}}\;p_{g}\,\right)
+			\, + \,
+			\overset{G-1}{\underset{g=1}{\sum}} \; N_{g}
+			\cdot
+			\left(\,\log\,p_{g}\,\right)
+		\,\right\}.
+	\end{eqnarray*}
+	For each $c \in \{1,2,\ldots,C-1\}$ and $g \in \{1,2,\ldots,G\}$,
+	differentiating with respect to \,$\pi_{c \vert g}$\, yields:
+	\begin{eqnarray*}
+	\dfrac{\partial}{\partial\,\pi_{c \vert g}}\,
+	\log\,P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
+	&=&
+		\dfrac{N_{cg}\cdot(\,-1\,)}{1 - \overset{C-1}{\underset{y=1}{\sum}}\pi_{y\,\vert\,g}}
+		\; + \;
+		\dfrac{N_{cg}}{\pi_{c\,\vert\,g}}
+	\\
+	&=&
+		\dfrac{N_{cg}}{\pi_{c\,\vert\,g}}
+		\; - \;
+		\dfrac{N_{cg}}{\pi_{C\,\vert\,g}}
+	\end{eqnarray*}
+	For each $g \in \{1,2,\ldots,G-1\}$, differentiating with respect to \,$p_{g}$\, yields:
+	\begin{eqnarray*}
+	\dfrac{\partial}{\partial\,p_{g}}\,
+	\log\,P\!\left(X^{(1)} = x_{1},Y^{(1)}=y_{1}, \;\ldots\; ,X^{(n)} = x_{n},Y^{(n)}=y_{n}\right)
+	&=&
+		\dfrac{N_{G}\cdot(\,-1\,)}{1 - \overset{G-1}{\underset{x=1}{\sum}}\,p_{x}}
+		\; + \;
+		\dfrac{N_{g}}{p_{g}}
+	\\
+	&=&
+		\dfrac{N_{g}}{p_{g}}
+		\; - \;
+		\dfrac{N_{G}}{p_{G}}
+	\end{eqnarray*}
+	Setting the left-hand-sides of the above two equations to zero yields:
+	There exists $\beta \in \Re$ and, 
+	for each $g \in \{1,2,\ldots,G\}$, there exists $\alpha_{g} \in \Re$ such that
+	\begin{equation*}
+		\begin{array}{ccl}
+		\left(\,\pi_{1\vert g},\,\pi_{2\vert g}, \,\ldots\,, \,\pi_{C\vert g}\,\right)
+		& = & \alpha_{g} \cdot \left(\,N_{1g},\,N_{2g}, \,\ldots\,,\, N_{Cg}\,\right)
+		\\
+		\left(\,p_{1},\,p_{2}, \,\ldots\,, \,p_{G}\,\right)
+		& \overset{{\color{white}\vert}}{=} & \beta \cdot \left(\,N_{1},\, N_{2}, \,\ldots\,,\, N_{G}\,\right)
+		\end{array}
+	\end{equation*}
+	Recall now that we also have
+	\,$\overset{G}{\underset{g=1}{\sum}}\,p_{g} = 1$\, and
+	\,$\overset{C}{\underset{c=1}{\sum}}\,\pi_{c\vert g} = 1$.
+	Hence,
+	\begin{equation*}
+	\alpha_{g} \cdot \overset{C}{\underset{c=1}{\sum}}\;N_{cg}
+	\;\; = \;\; \overset{C}{\underset{c=1}{\sum}}\;\pi_{c\vert g}
+	\;\; = \;\; 1
+	\quad\Longrightarrow\quad
+	\alpha_{g} \;\;=\;\; \dfrac{1}{\overset{C}{\underset{c=1}{\sum}}\;N_{cg}}.
+	\end{equation*}
+	And,
+	\begin{equation*}
+	\beta \cdot \overset{G}{\underset{g=1}{\sum}}\;N_{g}
+	\;\; = \;\; \overset{G}{\underset{g=1}{\sum}}\;N_{g}
+	\;\; = \;\; 1
+	\quad\Longrightarrow\quad
+	\beta \;\;=\;\; \dfrac{1}{\overset{G}{\underset{g=1}{\sum}}\;N_{g}}.
+	\end{equation*}
+	We may now conclude that the maximum likelihood estimators of the parameters
+	\,$\left(\,\pi_{1\vert g},\,\pi_{2\vert g}, \,\ldots\,, \,\pi_{C\vert g}\,\right)$\,
+	and\\
+	$\left(\,p_{1},\,p_{2}, \,\ldots\,, \,p_{G}\,\right)$\,
+	are respectively given by:
+	\begin{equation*}
+		\begin{array}{ccccc}
+		\left(\,\widehat{\pi}_{1\vert g}\,,\,\widehat{\pi}_{2\vert g}\,, \,\ldots\,, \,\widehat{\pi}_{C\vert g}\,\right)
+		& = & \dfrac{1}{\overset{C}{\underset{c=1}{\sum}}\,N_{cg}} \cdot \left(\,N_{1g},\,N_{2g}, \,\ldots\,,\, N_{Cg}\,\right)
+		& = & \dfrac{1}{N_{g}} \cdot \left(\,N_{1g},\,N_{2g}, \,\ldots\,,\, N_{Cg}\,\right),
+		\\ \\
+		\left(\,\widehat{p}_{1}\,,\,\widehat{p}_{2}\,, \,\ldots\,, \,\widehat{p}_{G}\,\right)
+		& = & \dfrac{1}{\overset{G}{\underset{g=1}{\sum}}\,N_{g}} \cdot \left(\,N_{1},\,N_{2}, \,\ldots\,,\, N_{G}\,\right)
+		& = & \dfrac{1}{n} \cdot \left(\,N_{1},\,N_{2}, \,\ldots\,,\, N_{G}\,\right).
+		\end{array}
+	\end{equation*}
+\end{enumerate}
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
