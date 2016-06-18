@@ -407,12 +407,12 @@ is given by:
 			Y^{(i)}=c_{i},X^{(i)}=x_{i},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}
 		\right\}
 	\;\right)
-\\
-&=&
-	\log\left(\,
-		\overset{n}{\underset{i=1}{\prod}} \,
-		P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x_{i},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}\,\right)
-	\right)
+%\\
+%&=&
+%	\log\left(\,
+%		\overset{n}{\underset{i=1}{\prod}} \,
+%		P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x_{i},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}\,\right)
+%	\right)
 \\
 &=&
 	{\color{white}+} \;\;
@@ -639,6 +639,23 @@ W^{(i)}_{c \vert gy{\color{red}2}}
 \end{eqnarray*}
 which in turn follows from the definition of $K^{(i)}$ and
 the hypothesis \eqref{MoneImpliesCEqualsY}.
+Next, in order to establish the desired expression for the log likelihood,
+we derive expressions for
+\,$\pi_{c \vert gy0}$,
+\,$\pi_{c \vert gy1}$,
+\,$\pi_{c \vert gy2}$,
+\,$p_{gy0}$,
+\,$p_{gy1}$,
+\,and
+\,$p_{gy2}$,
+in terms of
+\,$\pi_{c \vert g}$,
+\,$\mu_{0 \vert gy}$,
+\,$\mu_{1 \vert gy}$,
+\,$\nu_{gy}$,
+\,$\omega_{0}$,
+\,and
+\,$\omega_{1}$.
 \begin{eqnarray*}
 \pi_{c \vert gy0}
 &=&
@@ -725,6 +742,96 @@ the hypothesis \eqref{MoneImpliesCEqualsY}.
 	\quad\quad
 	\textnormal{by \eqref{MoneImpliesCEqualsY}.}
 \end{eqnarray*}
+\begin{eqnarray*}
+p_{gy0}
+&=&
+	P\!\left(\,X=g,\widetilde{Y}=y,K=0\,\right)
+\;\;=\;\;
+	P\!\left(\,X=g,\widetilde{Y}=y,J=0\,\right)
+\\
+&=&
+	P\!\left(\,X=g,\widetilde{Y}=y\,\right)
+	\cdot
+	P\!\left(\,J=0\,\right)\,,
+	\quad\quad
+	\textnormal{by \eqref{Jindependence}}
+\\
+&=&
+	\nu_{gy}
+	\cdot
+	\omega_{0}\,,
+	\quad\quad
+	\textnormal{by definition of \,$\nu_{gy}$\, and \,$\omega_{0}$}
+\end{eqnarray*}
+\begin{eqnarray*}
+p_{gy1}
+&=&
+	P\!\left(\,X=g,\widetilde{Y}=y,K=1\,\right)
+\;\;=\;\;
+	P\!\left(\,X=g,\widetilde{Y}=y,J=1,M=0\,\right)
+\\
+&=&
+	P\!\left(\,X=g,\widetilde{Y}=y,M=0\,\right)
+	\cdot
+	P\!\left(\,J=1\,\right)\,,
+	\quad\quad
+	\textnormal{by \eqref{Jindependence}}
+\\
+&=&
+	P\!\left(\,M=0\;\left\vert\;X=g,\widetilde{Y}=y\right.\,\right)
+	\cdot
+	P\!\left(\,X=g,\widetilde{Y}=y\,\right)
+	\cdot
+	P\!\left(\,J=1\,\right)\,,
+\\
+&=&
+	\mu_{0 \vert gy}
+	\cdot
+	\nu_{gy}
+	\cdot
+	\omega_{1}\,,
+	\quad\quad
+	\textnormal{by definition of \,$\mu_{0 \vert gy}$, \,$\nu_{gy}$\, and \,$\omega_{1}$}
+\end{eqnarray*}
+\begin{eqnarray*}
+p_{gy2}
+&=&
+	P\!\left(\,X=g,\widetilde{Y}=y,K=2\,\right)
+\;\;=\;\;
+	P\!\left(\,X=g,\widetilde{Y}=y,J=1,M=1\,\right)
+\\
+&=&
+	P\!\left(\,X=g,\widetilde{Y}=y,M=1\,\right)
+	\cdot
+	P\!\left(\,J=1\,\right)\,,
+	\quad\quad
+	\textnormal{by \eqref{Jindependence}}
+\\
+&=&
+	P\!\left(\,M=1\;\left\vert\;X=g,\widetilde{Y}=y\right.\,\right)
+	\cdot
+	P\!\left(\,X=g,\widetilde{Y}=y\,\right)
+	\cdot
+	P\!\left(\,J=1\,\right)\,,
+\\
+&=&
+	\mu_{1 \vert gy}
+	\cdot
+	\nu_{gy}
+	\cdot
+	\omega_{1}\,,
+	\quad\quad
+	\textnormal{by definition of \,$\mu_{1 \vert gy}$, \,$\nu_{gy}$\, and \,$\omega_{1}$}
+\end{eqnarray*}
+Substituting the above expressions for
+\,$\pi_{c \vert gy0}$,
+\,$\pi_{c \vert gy1}$,
+\,$\pi_{c \vert gy2}$,
+\,$p_{gy0}$,
+\,$p_{gy1}$,
+\,and
+\,$p_{gy2}$
+\,into that of the log likelihood yields
 \begin{eqnarray*}
 \log\,L
 %&=&
@@ -875,6 +982,8 @@ the hypothesis \eqref{MoneImpliesCEqualsY}.
 		\log\,\omega_{1}
 	\,\right)
 \end{eqnarray*}
+This completes the proof of the Proposition.
+\qed
 
 $\rho_{gc} \;:=\; P\!\left(M=1\;\vert\;X=g,\widetilde{Y}=c\right)$
 
