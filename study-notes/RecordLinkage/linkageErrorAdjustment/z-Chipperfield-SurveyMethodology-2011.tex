@@ -309,9 +309,89 @@ Then, the following statements are true:
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \subsection{MLE for regression with categorical response and predictor variables,
-with adjustments for observation errors via clerical review on a subsample of observations}
+in the presence of measurement errors,
+with adjustments for measurement errors via clerical review on a subsample of collected data}
 
-\begin{theorem}
+\vskip 0.3cm
+In this subsection, we attempt to give the probability framework underlying the discussion
+in Section 3.1, \cite{Chipperfield2011}.
+In particular, we attempt to give expressions for 
+\begin{itemize}
+\item
+	the complete-data log likelihood involved in the application
+	of the Expection-Maximization (EM) algorithm discussed in
+	Section 3.1, \cite{Chipperfield2011}, as well as
+\item
+	the conditional expectations that need to be computed during the Expectation step therein.
+\end{itemize}
+Note that \cite{Chipperfield2011} does NOT give an explicit
+expression for the likelihood function being maximized, and simply
+asserts that the solution to the Maximization step can be given by
+Equation (7) in \cite{Chipperfield2011}.
+We remark, however, that the expression for the complete-data log likelihood
+contained in Theorem \ref{ThmCategoricalRegressionWithIncorrectData} (i) below
+suggests that the solution to the Maximization step of the EM algorithm
+in Section 3.1, \cite{Chipperfield2011} might be significantly more complicated than
+Equation (7) in \cite{Chipperfield2011}.
+
+\vskip 0.3cm
+\noindent
+In Theorem \ref{ThmCategoricalRegressionWithIncorrectData} below,
+$n \in \N$ denotes the sample size.
+For $i \in \{1,2,\ldots,n\}$, the interpretations of the random variables
+$X^{(i)}$, $Y^{(i)}$, $\widetilde{Y}^{(i)}$, $M^{(i)}$ and $J^{(i)}$
+are explained in the following table:
+\begin{center}
+\begin{tabular}{|c|c|l|}
+\hline
+$\overset{{\color{white}.}}{X^{(i)}}$ & observed & categorical predictor variable
+\\ \hline
+$\overset{{\color{white}.}}{Y^{(i)}}$ & unobserved & (true) categorical response variable
+\\ \hline
+$\overset{{\color{white}.}}{\widetilde{Y}^{(i)}}$ & observed & observed categorical response variable (may contain measurement errors)
+\\ \hline
+$M^{(i)}$ & & binary variable indicating whether clerical review confirms correctness of $\overset{{\color{white}.}}{\widetilde{Y}^{(i)}}$
+\\ \hline
+$\overset{{\color{white}.}}{J^{(i)}}$ & & binary variable indicating whether observation $i$ is selected for clerical review
+\\ \hline
+&& \\
+$K^{(i)}$ & observed & $K^{(i)} \;:=\;
+	\left\{\begin{array}{cl}
+		0, & \textnormal{if}\;\; J^{(i)} = 0,
+		\\
+		1, & \textnormal{if}\;\; J^{(i)} = 1, \;\;\textnormal{and}\;\; M^{(i)} = 0,
+		\\
+		2, & \textnormal{if}\;\; J^{(i)} = 1, \;\;\textnormal{and}\;\; M^{(i)} = 1
+	\end{array}\right.$
+\\
+&& \\
+\hline
+\end{tabular}
+\end{center}
+
+\vskip0.5cm
+\begin{remark}
+\mbox{}\vskip 0.1cm\noindent
+In Theorem \ref{ThmCategoricalRegressionWithIncorrectData} below,
+we assume that the observations are independent, and
+we make certain independence assumptions on the random variables.
+Apart from these, the main non-trivial assumption we make is the following:
+\begin{equation*}
+P\!\left(\left.Y^{(i)} = c\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,M^{(i)}=0\,\right)
+\;\; = \;\;
+P\!\left(\left.Y^{(i)} = c\,\;\right\vert\,X^{(i)}=g\,\right)\,,
+\;\;
+\textnormal{for each \,$i\in\{1,\ldots,n\}$}\,,
+\end{equation*}
+which amounts to the assumption that,
+if clerical review fails to confirm correctness of $\widetilde{Y}^{(i)}$,
+then the conditional distribution of $Y^{(i)}$ (given $X^{(i)}$, $\widetilde{Y}^{(i)}$ and $M^{(i)}=0$)
+simply reverts back to that of the no-measurement-error scenario,
+namely $P\!\left(\,\left.Y^{(i)}=c\,\right\vert\,X^{(i)}=g\,\right)$. 
+\end{remark}
+
+\vskip 0.5cm
+\begin{theorem}\label{ThmCategoricalRegressionWithIncorrectData}
 \mbox{}\vskip 0.1cm\noindent
 Suppose:
 \begin{itemize}
