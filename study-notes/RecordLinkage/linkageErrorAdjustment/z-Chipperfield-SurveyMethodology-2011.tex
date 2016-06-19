@@ -518,19 +518,6 @@ Then, the following statements are true:
 		\,\right)
 	\end{eqnarray*}
 \item
-	\newcommand{\EMConditions}{
-		\begin{array}{c}
-			X^{(a)},\,\widetilde{Y}^{(a)},\,K^{(a)}
-			\\
-			\textnormal{\scriptsize$a\in\{1,\ldots,n\}$}
-		\end{array}
-		\textnormal{\large;}
-		\begin{array}{c}
-			\pi_{c \vert g}\,, \; \mu_{m \vert gy}\,, \; \nu_{gy}\,, \; \omega_{j}
-			\\
-			\textnormal{\scriptsize$c,y\in[\,C\,], \; g\in[\,G\,], \; m,j\in\{0,1\}$}
-		\end{array}
-	}
 	The conditional expectation values of
 	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert gy{\color{red}0}}$\,,
 	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert gy{\color{red}1}}$\,,
@@ -911,38 +898,38 @@ Substituting the above expressions for
 \,into that of the log likelihood yields
 \begin{eqnarray*}
 \log\,L
-&=&
-	{\color{white}+} \;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
-	\cdot
-	\left(\,
-		\log\,\pi_{c \vert gy\color{red}0} \,\overset{{\color{white}.}}{+}\, \log\,p_{gy\color{red}0}
-	\,\right)
-\\
-&&
-	+ \;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
-	\cdot
-	\left(\,
-		\log\,\pi_{c \vert gy\color{red}1} \,\overset{{\color{white}.}}{+}\, \log\,p_{gy\color{red}1}
-	\,\right)
-\\
-&&
-	+ \;\;
-	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert gy{\color{red}2}}\right)
-	\cdot
-	\left(\,
-		\log\,\pi_{y \vert gy\color{red}2} \,\overset{{\color{white}.}}{+}\, \log\,p_{gy\color{red}2}
-	\,\right)
-\\
+%&=&
+%	{\color{white}+} \;\;
+%	\overset{C}{\underset{c=1}{\sum}}\;\;
+%	\overset{G}{\underset{g=1}{\sum}}\;\;
+%	\overset{C}{\underset{y=1}{\sum}}\;
+%	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
+%	\cdot
+%	\left(\,
+%		\log\,\pi_{c \vert gy\color{red}0} \,\overset{{\color{white}.}}{+}\, \log\,p_{gy\color{red}0}
+%	\,\right)
+%\\
+%&&
+%	+ \;\;
+%	\overset{C}{\underset{c=1}{\sum}}\;\;
+%	\overset{G}{\underset{g=1}{\sum}}\;\;
+%	\overset{C}{\underset{y=1}{\sum}}\;
+%	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
+%	\cdot
+%	\left(\,
+%		\log\,\pi_{c \vert gy\color{red}1} \,\overset{{\color{white}.}}{+}\, \log\,p_{gy\color{red}1}
+%	\,\right)
+%\\
+%&&
+%	+ \;\;
+%	\overset{C}{\underset{y=1}{\sum}}\;\;
+%	\overset{G}{\underset{g=1}{\sum}}\;
+%	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert gy{\color{red}2}}\right)
+%	\cdot
+%	\left(\,
+%		\log\,\pi_{y \vert gy\color{red}2} \,\overset{{\color{white}.}}{+}\, \log\,p_{gy\color{red}2}
+%	\,\right)
+%\\
 &=&
 	{\color{white}+} \;\;
 	\overset{C}{\underset{c=1}{\sum}}\;\;
@@ -1026,9 +1013,170 @@ Substituting the above expressions for
 		\,\overset{{\color{white}.}}{+}\,
 		\log\,\omega_{1}
 	\,\right)\,,
+	\quad
+	\textnormal{as desired.}
 \end{eqnarray*}
-as desired.
 \item
+	First, note that
+	\begin{eqnarray*}
+	&&
+		E\!\left[\;
+			\left.
+			W^{(i)}_{c \vert gy{\color{red}0}}
+			\,\;\right\vert
+			\EMConditionsWithValues
+		\right]
+	\\
+	&=&
+		E\!\left[\;
+			\left.
+			W^{(i)}_{c \vert gy{\color{red}0}}
+			\,\;\right\vert
+			\ithEMConditionsWithValues
+		\right]\,,
+		\quad
+		\textnormal{by \; \eqref{iIndependence}, \eqref{Jindependence} and \eqref{ZJindependence}.}
+	\\
+	&=&
+		P\!\left(\,
+			\left.
+			W^{(i)}_{c \vert gy{\color{red}0}} = 1
+			\,\;\right\vert
+			\ithEMConditionsWithValues
+		\right)
+	\\
+	&=&
+		P\!\left(\,
+			\left.
+			Y^{(i)} = c, X^{(i)} = g, \widetilde{Y}^{(i)} = y, K^{(i)} = 0
+			\,\;\right\vert
+			\!\!
+			\ithEMConditionsWithValues
+		\!\!\right)
+	\\
+	&=&
+		I\!\left\{\,X^{(i)}\,=g , \widetilde{Y}^{(i)}=y , K^{(i)}\,=0\,\right\}
+		\cdot
+		P\!\left(
+			\left.
+			Y^{(i)} = c
+			\,\;\right\vert
+			\!\!
+			\ithGYZeroEMConditionsWithValues
+		\!\!\right)
+%	\\
+%	&=&
+%		I^{(i)}_{gy0}
+%		\cdot
+%		P\!\left(
+%			\left.
+%			Y^{(i)} = c
+%			\,\;\right\vert
+%			\!\!
+%			\ithGYZeroEMConditionsWithValues
+%		\!\!\right)
+	\\
+	&=&
+		I^{(i)}_{gy0}
+		\cdot
+		P\!\left(
+			\left.
+			Y^{(i)} = c
+			\,\;\right\vert
+			\!\!
+			\begin{array}{c}
+				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y,\, J^{(i)} = 0
+			\end{array}
+			\textnormal{\large;}
+			\modelParameters
+		\!\!\right)
+	\\
+	&=&
+		I^{(i)}_{gy0}
+		\cdot
+		P\!\left(
+			\left.
+			Y^{(i)} = c
+			\,\;\right\vert
+			\!\!
+			\begin{array}{c}
+				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+			\end{array}
+			\textnormal{\large;}
+			\;\;\cdots\;\;
+		\right)\,,
+		\quad
+		\textnormal{by \eqref{ZJindependence} and suppressing parameters}
+	\\
+	&=&
+		I^{(i)}_{gy0}
+		\cdot
+		\left\{\;
+			P\!\left(\,
+				\left.
+				Y^{(i)} = c,\,M^{(i)}=0
+				\;\right\vert
+				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+			\;+\;
+			P\!\left(\,
+				\left.
+				Y^{(i)} = c,\,M^{(i)}=1
+				\;\right\vert
+				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+		\;\right\}
+	\\
+	&=&
+		I^{(i)}_{gy0}
+		\cdot
+		\left\{\;
+		\begin{array}{cc}
+			&
+			P\!\left(\,
+				\left.
+				Y^{(i)} = c
+				\;\right\vert
+				M^{(i)}=0,\,X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+			\cdot
+			P\!\left(\,
+				\left.
+				M^{(i)}=0
+				\;\right\vert
+				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+		\\
+			\overset{\textnormal{\large{\color{white}1}}}{+}&
+			P\!\left(\,
+				\left.
+				Y^{(i)} = c
+				\;\right\vert
+				M^{(i)}=1,\, X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+			\cdot
+			P\!\left(\,
+				\left.
+				M^{(i)}=1
+				\;\right\vert
+				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+		\end{array}
+		\;\right\}
+	\\
+	&=&
+		I^{(i)}_{gy0}
+		\cdot
+		\left(\;
+			\pi_{c \vert gy}
+			\cdot
+			\mu_{0 \vert gy}
+			\;\overset{{\color{white}.}}{+}\;
+			\delta_{cy}
+			\cdot
+			\mu_{1 \vert gy}
+		\;\right)
+	\end{eqnarray*}
 	\qed
 \end{enumerate}
 
