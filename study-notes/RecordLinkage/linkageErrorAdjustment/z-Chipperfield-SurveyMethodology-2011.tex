@@ -1064,17 +1064,6 @@ Substituting the above expressions for
 			\!\!
 			\ithGYZeroEMConditionsWithValues
 		\!\!\right)
-%	\\
-%	&=&
-%		I^{(i)}_{gy0}
-%		\cdot
-%		P\!\left(
-%			\left.
-%			Y^{(i)} = c
-%			\,\;\right\vert
-%			\!\!
-%			\ithGYZeroEMConditionsWithValues
-%		\!\!\right)
 	\\
 	&=&
 		I^{(i)}_{gy0}
@@ -1106,7 +1095,7 @@ Substituting the above expressions for
 			\;\;\cdots\;\;
 		\right)\,,
 		\quad
-		\textnormal{by \eqref{ZJindependence} and suppressing parameters}
+		\textnormal{by \eqref{ZJindependence} and suppressing parameters for brevity}
 	\\
 	&=&
 		I^{(i)}_{gy0}
@@ -1175,8 +1164,74 @@ Substituting the above expressions for
 			\delta_{cy}
 			\cdot
 			\mu_{1 \vert gy}
-		\;\right)
+		\;\right)\,,
+		\quad
+		\textnormal{by \,\eqref{MzeroImplies}, \,\eqref{MoneImpliesCEqualsY}, and definition of \,$\mu_{m \vert gy}$}
 	\end{eqnarray*}
+	where \,$I^{(i)}_{gy0} \,:=\, I\!\left\{\,X^{(i)}\,=g , \widetilde{Y}^{(i)}=y , K^{(i)}\,=0\,\right\}$.
+	Thus, we have:
+	\begin{eqnarray*}
+	&&
+		E\!\left[\;\;
+			\left.
+			\overset{n}{\underset{i=1}{\sum}} \; W^{(i)}_{c \vert gy{\color{red}0}}
+			\,\;\right\vert
+			\!\!
+			\EMConditionsWithValues
+		\right]
+	\\
+	&=&
+		\overset{n}{\underset{i=1}{\sum}} \;\,
+		E\!\left[\;
+			\left.
+			W^{(i)}_{c \vert gy{\color{red}0}}
+			\,\;\right\vert
+			\!\!
+			\EMConditionsWithValues
+		\right]
+	\\
+	&=&
+		\overset{n}{\underset{i=1}{\sum}} \;\,
+		I^{(i)}_{gy0}
+		\cdot
+		\left(\;
+			\pi_{c \vert gy}
+			\cdot
+			\mu_{0 \vert gy}
+			\;\overset{{\color{white}.}}{+}\;
+			\delta_{cy}
+			\cdot
+			\mu_{1 \vert gy}
+		\;\right)
+	\\
+	&=&
+		\left(\;
+			\pi_{c \vert gy}
+			\cdot
+			\mu_{0 \vert gy}
+			\;\overset{{\color{white}.}}{+}\;
+			\delta_{cy}
+			\cdot
+			\mu_{1 \vert gy}
+		\;\right)
+		\cdot
+		\left(\; \overset{n}{\underset{i=1}{\sum}} \; I^{(i)}_{gy0} \;\right)
+	\\
+	&=&
+		N_{gy0}
+		\cdot
+		\left(\;
+			\pi_{c \vert gy}
+			\cdot
+			\mu_{0 \vert gy}
+			\;\overset{{\color{white}.}}{+}\;
+			\delta_{cy}
+			\cdot
+			\mu_{1 \vert gy}
+		\;\right)\,,
+	\end{eqnarray*}
+	where \,$N_{gy0} \,:=\, \overset{n}{\underset{i=1}{\sum}} \, I^{(i)}_{gy0}$.
+	This establishes the desired expression for the first conditional expectations in question.
 	\qed
 \end{enumerate}
 
