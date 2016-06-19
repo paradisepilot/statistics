@@ -40,7 +40,7 @@ Suppose:
 	$Z^{(i)} := \left(\,Y^{(i)},X^{(i)}\,\right)$, $i = 1, 2, \ldots, n$,
 	are independent and identically distributed.
 \end{itemize}
-Then, the following statements are valid:
+Then, the following statements are true:
 \begin{enumerate}
 \item
 	\label{independenceOfI}
@@ -311,7 +311,7 @@ Then, the following statements are valid:
 \subsection{MLE for regression with categorical response and predictor variables,
 with adjustments for observation errors via clerical review on a subsample of observations}
 
-\begin{proposition}
+\begin{theorem}
 \mbox{}\vskip 0.1cm\noindent
 Suppose:
 \begin{itemize}
@@ -336,16 +336,18 @@ Suppose:
 	are Bernoulli random variables.
 \end{itemize}
 Assume:
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 \begin{enumerate}
-\item
+\item\label{iIndependence}
 	The $\left(\,\left[\,C\,\right] \times \left[\,G\,\right] \times \left[\,C\,\right] \times \left[\,1\,\right]\,\right)$-valued
 	random variables
 	\,$Z^{(i)} := \left(\,Y^{(i)},X^{(i)},\widetilde{Y}^{(i)},M^{(i)}\,\right)$,
 	\,$i \in \{1, \ldots, n\}$,
 	\,are independent and identically distributed.
-\item
-	The Bernoulli random variables \,$J^{(i)}$, \,$i \in \{1, \ldots, n\}$, \,are independent and identically distributed.
 \item\label{Jindependence}
+	The Bernoulli random variables \,$J^{(i)}$, \,$i \in \{1, \ldots, n\}$, \,are independent and identically distributed.
+\item\label{ZJindependence}
 	The collections of random variables
 	\,$\left\{\,Z^{(i)} := \left(\,Y^{(i)},X^{(i)},\widetilde{Y}^{(i)},M^{(i)}\right)\,\right\}_{i=1}^{n}$\,
 	and
@@ -379,99 +381,42 @@ Assume:
 	\end{equation*}
 	which, in particular, implies $P\!\left(\,\left.Y^{(i)} = \widetilde{Y}^{(i)}\;\right\vert\;M^{(i)}=1\,\right)\,=\,1$.
 \end{enumerate}
-Define, for each $i \in \{1,2,\ldots,n\}$, the random variable
-\;$K^{(i)} \;:\; \Omega \; \longrightarrow \; \{0,1,2\}$\; by
-\begin{equation*}
-K^{(i)} \;\;=\;\;
-	\left\{\begin{array}{cl}
-	0, & \textnormal{if}\;\; J^{(i)} = 0,
-	\\
-	1, & \textnormal{if}\;\; J^{(i)} = 1 \;\;\textnormal{and}\;\; M^{(i)} = 0,
-	\\
-	2, & \textnormal{if}\;\; J^{(i)} = 1 \;\;\textnormal{and}\;\; M^{(i)} = 1
-	\end{array}\right.
-\end{equation*}
-Then, the logarithm of the joint probability distribution of
-\;$Y^{(i)}$,\,
-$X^{(i)}$,\,
-$\widetilde{Y}^{(i)}$,\,
-$K^{(i)}$,\,
-for \;$i \in \{1,2,\ldots,n\}$,\;
-is given by:
-\begin{eqnarray*}
-\log\,L
-	&=&
-	\log\,P\!\left(\;
-		\overset{n}{\underset{i=1}{\bigcap}}\;
-		\left\{
-			Y^{(i)}=c_{i},X^{(i)}=x_{i},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}
-		\right\}
-	\;\right)
-%\\
-%&=&
-%	\log\left(\,
-%		\overset{n}{\underset{i=1}{\prod}} \,
-%		P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x_{i},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}\,\right)
-%	\right)
-\\
-&=&
-	{\color{white}+} \;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
-	\cdot
-	\left(\,
-		\log\left(\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}\right)
-		\,\overset{{\color{white}.}}{+}\,
-		\log\,\nu_{gy}
-		\,\overset{{\color{white}.}}{+}\,
-		\log\,\omega_{0}
-	\,\right)
-\\
-&&
-	+ \;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
-	\cdot
-	\left(\,
-		\log\,\pi_{c \vert g}
-		\,\overset{{\color{white}.}}{+}\,
-		\log\,\mu_{0\vert gy}
-		\,\overset{{\color{white}.}}{+}\,
-		\log\,\nu_{gy}
-		\,\overset{{\color{white}.}}{+}\,
-		\log\,\omega_{1}
-	\,\right)
-\\
-&&
-	+ \;\;
-	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert gy{\color{red}2}}\right)
-	\cdot
-	\left(\,
-		\log\,\mu_{1 \vert gy}
-		\,\overset{{\color{white}.}}{+}\,
-		\log\,\nu_{gy}
-		\,\overset{{\color{white}.}}{+}\,
-		\log\,\omega_{1}
-	\,\right),
-\end{eqnarray*}
-where, \, for
-\;$c \in \{1,\ldots,C\}$,
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+%Define, for each $i \in \{1,2,\ldots,n\}$, the random variable
+%\;$K^{(i)} \;:\; \Omega \; \longrightarrow \; \{0,1,2\}$\; by
+%\begin{equation*}
+%K^{(i)} \;\;=\;\;
+%	\left\{\begin{array}{cl}
+%	0, & \textnormal{if}\;\; J^{(i)} = 0,
+%	\\
+%	1, & \textnormal{if}\;\; J^{(i)} = 1 \;\;\textnormal{and}\;\; M^{(i)} = 0,
+%	\\
+%	2, & \textnormal{if}\;\; J^{(i)} = 1 \;\;\textnormal{and}\;\; M^{(i)} = 1
+%	\end{array}\right.
+%\end{equation*}
+Define, for each
+\;$i \in \{1,2,\ldots,n\}$,
+\;$c,y \in \{1,\ldots,C\}$,
 \;$g \in \{1,\ldots,G\}$,
-\;$y \in \{1,\ldots,C\}$,
-\;$m \in \{0,1\}$,
-\;$j \in \{0,1\}$, \;and
-\;$k \in \{0,1\}$,
+\;and
+\;$m,j,k \in \{0,1\}$,
+\;the following:
 \begin{equation*}
 \begin{array}{ccll}
+	K^{(i)}
+		&:=&
+		\left\{\begin{array}{cl}
+		0, & \textnormal{if}\;\; J^{(i)} = 0,
+		\\
+		1, & \textnormal{if}\;\; J^{(i)} = 1 \;\;\textnormal{and}\;\; M^{(i)} = 0,
+		\\
+		2, & \textnormal{if}\;\; J^{(i)} = 1 \;\;\textnormal{and}\;\; M^{(i)} = 1
+		\end{array}\right.
+	\\
 	W^{(i)}_{c \vert gyk}
 		&:=&
-		I\!\left\{\,Y^{(i)}=c,X^{(i)}=g,\widetilde{Y}^{(i)}=y,K^{(i)}=k\,\right\}\,,
+		\overset{\textnormal{\large\color{white}1}}{I}\!\left\{\,Y^{(i)}=c,X^{(i)}=g,\widetilde{Y}^{(i)}=y,K^{(i)}=k\,\right\}\,,
 	\\
 	\pi_{c \vert g}
 		&\overset{{\color{white}\vert}}{:=}&
@@ -490,7 +435,7 @@ where, \, for
 		&\overset{{\color{white}\vert}}{:=}&
 		P\!\left(\,\overset{{\color{white}.}}{J}=j\,\right)\,,
 	\\
-	\overset{\textnormal{\large\color{white}1}}{\delta}_{cy}
+	\overset{\textnormal{\Large\color{white}1}}{\delta}_{cy}
 		&\overset{{\color{white}\vert}}{:=}&
 		\left\{\begin{array}{cl}
 			1, & \textnormal{if}\;\; c = y\,,
@@ -499,8 +444,140 @@ where, \, for
 		\end{array}\right.
 \end{array}
 \end{equation*}
-\end{proposition}
+Note that the $K^{(i)}$'s and the $W^{(i)}_{c \vert gyk}$'s
+are categorical random variables defined on the underlying probability space $\Omega$,
+while $\pi_{c \vert g}$, $\mu_{m \vert gy}$, $\nu_{gy}$, $\omega_{j}$ are parameters,
+whose well-definition follows from the independence hypotheses
+\eqref{iIndependence}, \eqref{Jindependence} and \eqref{ZJindependence}.
+\vskip 0.3cm
+\noindent
+Then, the following statements are true:
+\begin{enumerate}
+\item
+	The logarithm of the joint probability distribution of
+	\;$Y^{(i)}$,\,
+	$X^{(i)}$,\,
+	$\widetilde{Y}^{(i)}$,\,
+	$K^{(i)}$,\,
+	for \;$i \in \{1,2,\ldots,n\}$,\;
+	is given by:
+	\begin{eqnarray*}
+	\log\,L
+		&=&
+		\log\,P\!\left(\;
+			\overset{n}{\underset{i=1}{\bigcap}}\;
+			\left\{
+				Y^{(i)}=c_{i},X^{(i)}=x_{i},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}
+			\right\}
+		\;\right)
+	\\
+	&=&
+		{\color{white}+} \;\;
+		\overset{C}{\underset{c=1}{\sum}}\;\;
+		\overset{G}{\underset{g=1}{\sum}}\;\;
+		\overset{C}{\underset{y=1}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
+		\cdot
+		\left(\,
+			\log\left(\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}\right)
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{gy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{0}
+		\,\right)
+	\\
+	&&
+		+ \;\;
+		\overset{C}{\underset{c=1}{\sum}}\;\;
+		\overset{G}{\underset{g=1}{\sum}}\;\;
+		\overset{C}{\underset{y=1}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
+		\cdot
+		\left(\,
+			\log\,\pi_{c \vert g}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\mu_{0\vert gy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{gy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{1}
+		\,\right)
+	\\
+	&&
+		+ \;\;
+		\overset{C}{\underset{y=1}{\sum}}\;\;
+		\overset{G}{\underset{g=1}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert gy{\color{red}2}}\right)
+		\cdot
+		\left(\,
+			\log\,\mu_{1 \vert gy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{gy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{1}
+		\,\right)
+	\end{eqnarray*}
+\item
+	\newcommand{\EMConditions}{
+		\begin{array}{c}
+			X^{(a)},\,\widetilde{Y}^{(a)},\,K^{(a)}
+			\\
+			\textnormal{\scriptsize$a\in\{1,\ldots,n\}$}
+		\end{array}
+		\textnormal{\large;}
+		\begin{array}{c}
+			\pi_{c \vert g}, \,\mu_{m \vert gy}, \,\nu_{gy}, \,\omega_{j}
+			\\
+			\textnormal{\scriptsize$c,y\in[\,C\,], \; g\in[\,G\,], \; m,j\in\{0,1\}$}
+		\end{array}
+	}
+	The conditional expectation values of
+	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert gy{\color{red}0}}$\,,
+	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert gy{\color{red}1}}$\,,
+	\;and
+	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert gy{\color{red}2}}$\,,
+	given $X^{(a)}$, $\widetilde{Y}^{(a)}$, $K^{(a)}$, for $a \in \{1,\ldots,n\}$,
+	with respect to the parameters
+	\;$\pi_{c \vert g}$\,, \,$\mu_{m \vert gy}$\,, \,$\nu_{gy}$\,, \,$\omega_{j}$\,,
+	\;for
+	\;$c,y\in[\,C\,], \; g\in[\,G\,], \; m,j\in\{0,1\}$\,,
+	\;can be expressed as follows:
+	\begin{eqnarray*}
+	E\!\left[\;
+		\left.
+		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}
+		\;\right\vert
+		\EMConditions
+	\;\right]
+		&=&
+		N_{gy{\color{red}0}}\cdot\left(\,\pi_{c \vert g}\,\mu_{0 \vert gy} \,+\, \delta_{cy}\,\mu_{1 \vert gy}\,\right)\,,
+	\\ \\
+	E\!\left[\;
+		\left.
+		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}
+		\;\right\vert
+		\EMConditions
+	\;\right]
+		&=&
+		N_{gy{\color{red}1}}\cdot\pi_{c \vert g}\,,
+	\\ \\
+	E\!\left[\;
+		\left.
+		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}2}}
+		\;\right\vert
+		\EMConditions
+	\;\right]
+		&=&
+		N_{gy{\color{red}2}}
+	\end{eqnarray*}
+	where \;$N_{gy{\color{red}k}}$ $:=$
+	$\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{\,X^{(i)}=g,\,\widetilde{Y}^{(i)}=y,\,K^{(i)}={\color{red}k}\,\right\}$,
+	for $k \in \{0,1,2\}$.
+\end{enumerate}
+\end{theorem}
 \proof
+\begin{enumerate}
+\item
 The joint probability distribution function of
 \,$Y^{(i)}$, $X^{(i)}$, $\widetilde{Y}^{(i)}$, $K^{(i)}$,
 \,for \,$i \in \{1,\ldots,n\}$,
@@ -667,7 +744,7 @@ in terms of
 &=&
 	P\!\left(\;Y=c\;\left\vert\;X=g,\widetilde{Y}=y\right.\,\right),
 	\quad\quad
-	\textnormal{by \eqref{Jindependence}}
+	\textnormal{by \eqref{ZJindependence}}
 \\
 &=&
 	P\!\left(\;Y=c,M=0\;\left\vert\;X=g,\widetilde{Y}=y\right.\,\right)
@@ -718,7 +795,7 @@ in terms of
 &=&
 	P\!\left(\;Y=c\;\left\vert\;X=g,\widetilde{Y}=y,M=0\right.\,\right),
 	\quad\quad
-	\textnormal{by \eqref{Jindependence}}
+	\textnormal{by \eqref{ZJindependence}}
 \\
 &=&
 	P\!\left(\;Y=c\;\left\vert\;X\overset{{\color{white}-}}{=}g\right.\,\right),
@@ -754,7 +831,7 @@ p_{gy0}
 	\cdot
 	P\!\left(\,J=0\,\right)\,,
 	\quad\quad
-	\textnormal{by \eqref{Jindependence}}
+	\textnormal{by \eqref{ZJindependence}}
 \\
 &=&
 	\nu_{gy}
@@ -775,7 +852,7 @@ p_{gy1}
 	\cdot
 	P\!\left(\,J=1\,\right)\,,
 	\quad\quad
-	\textnormal{by \eqref{Jindependence}}
+	\textnormal{by \eqref{ZJindependence}}
 \\
 &=&
 	P\!\left(\,M=0\;\left\vert\;X=g,\widetilde{Y}=y\right.\,\right)
@@ -805,7 +882,7 @@ p_{gy2}
 	\cdot
 	P\!\left(\,J=1\,\right)\,,
 	\quad\quad
-	\textnormal{by \eqref{Jindependence}}
+	\textnormal{by \eqref{ZJindependence}}
 \\
 &=&
 	P\!\left(\,M=1\;\left\vert\;X=g,\widetilde{Y}=y\right.\,\right)
@@ -948,10 +1025,12 @@ Substituting the above expressions for
 		\log\,\nu_{gy}
 		\,\overset{{\color{white}.}}{+}\,
 		\log\,\omega_{1}
-	\,\right)
+	\,\right)\,,
 \end{eqnarray*}
-This completes the proof of the Proposition.
-\qed
+as desired.
+\item
+	\qed
+\end{enumerate}
 
 $\rho_{gc} \;:=\; P\!\left(M=1\;\vert\;X=g,\widetilde{Y}=c\right)$
 
