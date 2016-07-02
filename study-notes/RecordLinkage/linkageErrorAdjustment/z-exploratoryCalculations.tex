@@ -1,0 +1,441 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Exploratory calculations}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{eqnarray*}
+\log\,L
+	&=&
+	\log\,P\!\left(\;
+		\overset{n}{\underset{i=1}{\bigcap}}\;
+		\left\{
+			Y^{(i)}=c_{i},X^{(i)}=x_{i},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}
+		\right\}
+	\;\right)
+\\
+&=&
+	{\color{white}+} \;\;
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
+	\cdot
+	\left(\,
+		\log\left(\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}\right)
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{0}
+	\,\right)
+\\
+&&
+	+ \;\;
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
+	\cdot
+	\left(\,
+		\log\,\pi_{c \vert g}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\mu_{0\vert gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{1}
+	\,\right)
+\\
+&&
+	+ \;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert gy{\color{red}2}}\right)
+	\cdot
+	\left(\,
+		\log\,\mu_{1 \vert gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{1}
+	\,\right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+E\!\left[\,\left.\log\,L\;\right\vert\;\mathcal{D}\,\right]
+&=& T_{1} \;+\; T_{2} \;+\; T_{3}
+\\
+T_{1}
+&:=&
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	E_{c \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\log\left(\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}\right)
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{0}
+	\,\right)
+\\
+T_{2}
+&:=&
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	E_{c \vert gy{\color{red}1}}
+	\cdot
+	\left(\,
+		\log\,\pi_{c \vert g}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\mu_{0\vert gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{1}
+	\,\right)
+\\
+T_{3}
+&:=&
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	E_{y \vert gy{\color{red}2}}
+	\cdot
+	\left(\,
+		\log\,\mu_{1 \vert gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{1}
+	\,\right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+T_{1}
+&:=&
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	E_{c \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\log\left(\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}\right)
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{0}
+	\,\right)
+\\
+&=&
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	E_{c \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\overset{{\color{white}.}}{\log}\left(\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}\right)
+	\,\right)
+	\;\; + \;\;
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	E_{c \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{0}
+	\,\right)	
+\\
+&=&
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	E_{c \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\overset{{\color{white}.}}{\log}\left(\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}\right)
+	\,\right)
+	\;\; + \;\;
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	E_{c \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{0}
+	\,\right)	
+\\
+&=&
+	{\color{white}+} \;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left\{
+	E_{C \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\overset{{\color{white}.}}{\log}\left(
+			\left(1-\overset{C-1}{\underset{a=1}{\sum}}\pi_{a \vert g}\right)\,\mu_{0 \vert gy}
+			+
+			\delta_{Cy}\,\mu_{1\vert gy}
+			\right)
+	\,\right)
+	\;+\;
+	\overset{C-1}{\underset{a=1}{\sum}}\;\;
+	E_{a \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\overset{{\color{white}.}}{\log}\left(\pi_{a \vert g}\,\mu_{0 \vert gy}
+		+
+		\delta_{ay}\,\mu_{1\vert gy}\right)
+	\,\right)
+	\right\}
+\\
+&&
+	+ \;\;
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	E_{c \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{0}
+	\,\right)	
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\dfrac{\partial\,T_{1}}{\partial\,\pi_{c \vert g}}
+&=&
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left\{
+	E_{C \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\overset{{\color{white}.}}{\log}\left(
+			\left(1-\overset{C-1}{\underset{a=1}{\sum}}\pi_{a \vert g}\right)\,\mu_{0 \vert gy}
+			+
+			\delta_{Cy}\,\mu_{1\vert gy}
+			\right)
+	\,\right)
+	\;+\;
+	\overset{C-1}{\underset{a=1}{\sum}}\;\;
+	E_{a \vert gy{\color{red}0}}
+	\cdot
+	\left(\,
+		\overset{{\color{white}.}}{\log}\left(\pi_{a \vert g}\,\mu_{0 \vert gy} + \delta_{ay}\,\mu_{1\vert gy}\right)
+	\,\right)
+	\right\}
+\\
+&=&
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left\{\;
+	E_{C \vert gy{\color{red}0}}
+	\cdot
+	\dfrac{(-\,\mu_{0 \vert gy})}{
+		\left(1-\overset{C-1}{\underset{a=1}{\sum}}\pi_{a \vert g}\right)\,\mu_{0 \vert gy}+\delta_{Cy}\,\mu_{1\vert gy}
+		}
+	\;+\;
+	E_{c \vert gy{\color{red}0}}
+	\cdot
+	\dfrac{\mu_{0 \vert gy}}{\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}}
+	\;\right\}
+\\
+&=&
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	\mu_{0 \vert gy}
+	\cdot
+	\left\{\;
+		\dfrac{E_{c \vert gy{\color{red}0}}}{\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}}
+		\;-\;
+		\dfrac{E_{C \vert gy{\color{red}0}}}{
+			\pi_{C \vert g}\,\mu_{0 \vert gy}+\delta_{Cy}\,\mu_{1\vert gy}
+			%\left(1-\overset{C-1}{\underset{a=1}{\sum}}\pi_{a \vert g}\right)\,\mu_{0 \vert gy}+\delta_{Cy}\,\mu_{1\vert gy}
+			}
+	\;\right\}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+T_{2}
+&:=&
+	\overset{C}{\underset{a=1}{\sum}}\;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	E_{a \vert gy{\color{red}1}}
+	\cdot
+	\left(\,
+		\log\,\pi_{a \vert g}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\mu_{0\vert gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{1}
+	\,\right)
+\\
+&=&
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	\overset{C}{\underset{a=1}{\sum}}\;\;
+	E_{a \vert gy{\color{red}1}} \cdot \log\,\pi_{a \vert g}
+	\; + \;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	\overset{C}{\underset{c=1}{\sum}}\;\;
+	E_{a \vert gy{\color{red}1}}
+	\cdot
+	\left(\,
+		\log\,\mu_{0\vert gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{1}
+	\,\right)
+\\
+&=&
+	{\color{white}+} \;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left\{\;
+		E_{C \vert gy{\color{red}1}} \cdot \log\left(1 - \overset{C-1}{\underset{a=1}{\sum}}\,\pi_{a \vert g}\right)
+		\; + \;
+		\overset{C-1}{\underset{a=1}{\sum}}\;
+		E_{a \vert gy{\color{red}1}} \cdot \log\,\pi_{a \vert g}
+	\;\right\}
+\\
+&&
+	+ \;\;
+	\overset{G}{\underset{g=1}{\sum}}\;\;
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left(\,\overset{C}{\underset{a=1}{\sum}}\; E_{a \vert gy{\color{red}1}}\,\right)
+	\cdot
+	\left(\,
+		\log\,\mu_{0\vert gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{gy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{1}
+	\,\right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\dfrac{\partial\,T_{2}}{\partial\,\pi_{c \vert g}}
+&=&
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left\{\;
+		\dfrac{-\,E_{C \vert gy{\color{red}1}}}{1 - \overset{C-1}{\underset{a=1}{\sum}}\,\pi_{a \vert g}}
+		\; + \;
+		\dfrac{E_{c \vert gy{\color{red}1}}}{\pi_{c \vert g}}
+	\,\right\}
+	\;\; = \;\;
+	\overset{C}{\underset{y=1}{\sum}}\;
+	\left\{\;
+		\dfrac{E_{c \vert gy{\color{red}1}}}{\pi_{c \vert g}}
+		\; - \;
+		\dfrac{\,E_{C \vert gy{\color{red}1}}}{\pi_{C \vert g}}
+	\,\right\}
+\\
+&=&
+	\dfrac{1}{\pi_{c \vert g}}
+	\cdot
+	\left\{\;
+		\overset{C}{\underset{y=1}{\sum}}\;
+		E_{c \vert gy{\color{red}1}}
+	\,\right\}
+	\;\; - \;\;
+	\dfrac{1}{\pi_{C \vert g}}
+	\cdot
+	\left\{\;
+		\overset{C}{\underset{y=1}{\sum}}\;
+		E_{C \vert gy{\color{red}1}}
+	\,\right\}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\dfrac{\partial\;E\!\left[\,\left.\log\,L\;\right\vert\;\mathcal{D}\,\right]}{\partial\;\pi_{c \vert g}}
+&=& \dfrac{\partial\;T_{1}}{\partial\;\pi_{c \vert g}} \;+\; \dfrac{\partial\;T_{2}}{\partial\;\pi_{c \vert g}}
+\\
+&=&
+	{\color{white}+} \;\;
+	\overset{C}{\underset{y=1}{\sum}}\;\;
+	\mu_{0 \vert gy}
+	\cdot
+	\left\{\;
+		\dfrac{E_{c \vert gy{\color{red}0}}}{\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}}
+		\;-\;
+		\dfrac{E_{C \vert gy{\color{red}0}}}{
+			\pi_{C \vert g}\,\mu_{0 \vert gy}+\delta_{Cy}\,\mu_{1\vert gy}
+			}
+	\;\right\}
+\\
+&&
+	+ \;\;
+	\dfrac{1}{\pi_{c \vert g}}
+	\cdot
+	\left\{\;
+		\overset{C}{\underset{y=1}{\sum}}\;
+		E_{c \vert gy{\color{red}1}}
+	\,\right\}
+	\;\; - \;\;
+	\dfrac{1}{\pi_{C \vert g}}
+	\cdot
+	\left\{\;
+		\overset{C}{\underset{y=1}{\sum}}\;
+		E_{C \vert gy{\color{red}1}}
+	\,\right\}
+\\
+&=&
+	{\color{white}-} \;\;
+	\left\{\;
+		\overset{C}{\underset{y=1}{\sum}}\;\;
+		\mu_{0 \vert gy}
+		\cdot
+		\left(\;
+		\dfrac{E_{c \vert gy{\color{red}0}}}{
+			{\color{white}.}
+			\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}
+			{\color{white}.}
+			}
+		\;\right)
+		\; + \;
+		\dfrac{1}{
+			{\color{white}\vert}\!
+			\pi_{c \vert g}
+			\!{\color{white}\vert}
+			}
+		\cdot
+		\left(\;
+			\overset{C}{\underset{y=1}{\sum}}\;
+			\,E_{c \vert gy{\color{red}1}}\,
+		\,\right)	
+	\right\}
+\\
+&&
+	- \;\;
+	\left\{\;
+		\overset{C}{\underset{y=1}{\sum}}\;\;
+		\mu_{0 \vert gy}
+		\cdot
+		\left(\;
+		\dfrac{E_{C \vert gy{\color{red}0}}}{\pi_{C \vert g}\,\mu_{0 \vert gy} + \delta_{Cy}\,\mu_{1\vert gy}}
+		\;\right)
+		\; + \;
+		\dfrac{1}{\pi_{C \vert g}}
+		\cdot
+		\left(\;
+			\overset{C}{\underset{y=1}{\sum}}\;
+			E_{C \vert gy{\color{red}1}}
+		\,\right)
+	\right\}\;
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
