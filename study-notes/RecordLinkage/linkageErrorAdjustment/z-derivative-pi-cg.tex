@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Derivatives of $E\!\left[\,\left.\log\,L\,\right\vert\,\mathcal{D}\,\right]$ with respect to $\pi_{c \vert g}$}
+\section{First-order derivatives of $E\!\left[\,\left.\log\,L\,\right\vert\,\mathcal{D}\,\right]$ with respect to $\pi_{c \vert g}$}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -238,8 +238,79 @@ T_{0}
 		\;-\;
 		\dfrac{E_{C \vert gy{\color{red}0}}}{
 			\pi_{C \vert g}\,\mu_{0 \vert gy}+\delta_{Cy}\,\mu_{1\vert gy}
-			%\left(1-\overset{C-1}{\underset{a=1}{\sum}}\pi_{a \vert g}\right)\,\mu_{0 \vert gy}+\delta_{Cy}\,\mu_{1\vert gy}
 			}
+	\;\right\}
+\\
+&=&
+	\left\{\;\,
+		\overset{C}{\underset{y=1}{\sum}}\;
+		\dfrac{\mu_{0 \vert gy}\cdot E_{c \vert gy{\color{red}0}}}{\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}}
+	\;\right\}
+	\;\; - \;\;
+	\left\{\;\,
+		\overset{C}{\underset{y=1}{\sum}}\;
+		\dfrac{\mu_{0 \vert gy} \cdot E_{C \vert gy{\color{red}0}}}{
+			\pi_{C \vert g}\,\mu_{0 \vert gy}+\delta_{Cy}\,\mu_{1\vert gy}
+			}
+	\;\right\}
+\\
+&=&
+	{\color{white}-} \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gc}\cdot E_{c \vert gc{\color{red}0}}}{\mbox{}\;\pi_{c \vert g}\,\mu_{0 \vert gc} \,+\, 1\cdot\mu_{1\vert gc}\;\mbox{}}
+		\;+\;
+		\underset{y \neq c}{\overset{C}{\underset{y=1}{\sum}}}\;
+		\dfrac{\mu_{0 \vert gy}\cdot E_{c \vert gy{\color{red}0}}}{\mbox{}\;\pi_{c \vert g}\,\mu_{0 \vert gy} +0\cdot\mu_{1\vert gy}\;\mbox{}}
+	\;\right\}
+\\
+&&
+	- \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gC} \cdot E_{C \vert gC{\color{red}0}}}{\pi_{C \vert g}\,\mu_{0 \vert gC}+1\cdot\mu_{1\vert gC}}
+		\;+\;
+		\underset{y \neq C}{\overset{C}{\underset{y=1}{\sum}}}\;
+		\dfrac{\mu_{0 \vert gy} \cdot E_{C \vert gy{\color{red}0}}}{\pi_{C \vert g}\,\mu_{0 \vert gy}+0\cdot\mu_{1\vert gy}}
+	\;\right\}
+\\
+&=&
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gc}\cdot E_{c \vert gc{\color{red}0}}}{\mbox{}\;\pi_{c \vert g}\,\mu_{0 \vert gc} \,+\, 1\cdot\mu_{1\vert gc}\;\mbox{}}
+		\;+\;
+		\dfrac{1}{\mbox{}\;\pi_{c \vert g}\;\mbox{}}
+		\cdot
+		\underset{y \neq c}{\overset{C}{\underset{y=1}{\sum}}}\; E_{c \vert gy{\color{red}0}}
+	\;\right\}
+	\;\; - \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gC} \cdot E_{C \vert gC{\color{red}0}}}{\pi_{C \vert g}\,\mu_{0 \vert gC}+1\cdot\mu_{1\vert gC}}
+		\;+\;
+		\dfrac{1}{\pi_{C \vert g}}
+		\cdot
+		\underset{y \neq C}{\overset{C}{\underset{y=1}{\sum}}}\; E_{C \vert gy{\color{red}0}}
+	\;\right\}
+\\
+&=&
+	{\color{white}-} \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gc}\cdot E_{c \vert gc{\color{red}0}}}{\mbox{}\,\pi_{c \vert g}\,\mu_{0 \vert gc} \,+\, 1\cdot\mu_{1\vert gc}\,\mbox{}}
+		\;-\;
+		\dfrac{\mbox{}\;E_{c \vert gc{\color{red}0}}\;\mbox{}}{\mbox{}\;\pi_{c \vert g}\;\mbox{}}
+		\;+\;
+		\dfrac{1}{\mbox{}\;\pi_{c \vert g}\;\mbox{}}
+		\cdot
+		\overset{C}{\underset{y=1}{\sum}}\; E_{c \vert gy{\color{red}0}}
+	\;\right\}
+\\
+&&
+	- \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gC} \cdot E_{C \vert gC{\color{red}0}}}{\pi_{C \vert g}\,\mu_{0 \vert gC}+1\cdot\mu_{1\vert gC}}
+		\;-\;
+		\dfrac{E_{C \vert gC{\color{red}0}}}{\pi_{C \vert g}}
+		\;+\;
+		\dfrac{1}{\pi_{C \vert g}}
+		\cdot
+		\overset{C}{\underset{y=1}{\sum}}\; E_{C \vert gy{\color{red}0}}
 	\;\right\}
 \end{eqnarray*}
 
@@ -344,16 +415,27 @@ T_{1}
 &=& \dfrac{\partial\;T_{0}}{\partial\;\pi_{c \vert g}} \;+\; \dfrac{\partial\;T_{1}}{\partial\;\pi_{c \vert g}}
 \\
 &=&
-	{\color{white}+} \;\;
-	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\mu_{0 \vert gy}
-	\cdot
-	\left\{\;
-		\dfrac{E_{c \vert gy{\color{red}0}}}{\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}}
+	{\color{white}-} \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gc}\cdot E_{c \vert gc{\color{red}0}}}{\mbox{}\,\pi_{c \vert g}\,\mu_{0 \vert gc} \,+\, 1\cdot\mu_{1\vert gc}\,\mbox{}}
 		\;-\;
-		\dfrac{E_{C \vert gy{\color{red}0}}}{
-			\pi_{C \vert g}\,\mu_{0 \vert gy}+\delta_{Cy}\,\mu_{1\vert gy}
-			}
+		\dfrac{\mbox{}\;E_{c \vert gc{\color{red}0}}\;\mbox{}}{\mbox{}\;\pi_{c \vert g}\;\mbox{}}
+		\;+\;
+		\dfrac{1}{\mbox{}\;\pi_{c \vert g}\;\mbox{}}
+		\cdot
+		\overset{C}{\underset{y=1}{\sum}}\; E_{c \vert gy{\color{red}0}}
+	\;\right\}
+\\
+&&
+	- \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gC} \cdot E_{C \vert gC{\color{red}0}}}{\pi_{C \vert g}\,\mu_{0 \vert gC}+1\cdot\mu_{1\vert gC}}
+		\;-\;
+		\dfrac{E_{C \vert gC{\color{red}0}}}{\pi_{C \vert g}}
+		\;+\;
+		\dfrac{1}{\pi_{C \vert g}}
+		\cdot
+		\overset{C}{\underset{y=1}{\sum}}\; E_{C \vert gy{\color{red}0}}
 	\;\right\}
 \\
 &&
@@ -375,35 +457,52 @@ T_{1}
 &=&
 	{\color{white}-} \;\;
 	\left\{\;\,
-		\overset{C}{\underset{y=1}{\sum}}\;
-		\dfrac{\mu_{0 \vert gy} \cdot E_{c \vert gy{\color{red}0}}}{
-			{\color{white}.}
-			\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}
-			{\color{white}.}
-			}
-		\; + \;
-		\dfrac{1}{
-			{\color{white}\vert}\!
-			\pi_{c \vert g}
-			\!{\color{white}\vert}
-			}
+		\dfrac{\mu_{0 \vert gc}\cdot E_{c \vert gc{\color{red}0}}}{\mbox{}\,\pi_{c \vert g}\,\mu_{0 \vert gc} \,+\, 1\cdot\mu_{1\vert gc}\,\mbox{}}
+		\;-\;
+		\dfrac{\mbox{}\;E_{c \vert gc{\color{red}0}}\;\mbox{}}{\mbox{}\;\pi_{c \vert g}\;\mbox{}}
+		\;+\;
+		\dfrac{1}{\mbox{}\;\pi_{c \vert g}\;\mbox{}}
 		\cdot
-			\overset{C}{\underset{y=1}{\sum}}\;
-			\,E_{c \vert gy{\color{red}1}}\,
-	\right\}
+		\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{c \vert gyk}
+	\;\right\}
 \\
 &&
 	- \;\;
 	\left\{\;\,
-		\overset{C}{\underset{y=1}{\sum}}\;
-		\dfrac{\mu_{0 \vert gy} \cdot E_{C \vert gy{\color{red}0}}}
-			{\pi_{C \vert g}\,\mu_{0 \vert gy} + \delta_{Cy}\,\mu_{1\vert gy}}
-		\; + \;
+		\dfrac{\mu_{0 \vert gC} \cdot E_{C \vert gC{\color{red}0}}}{\pi_{C \vert g}\,\mu_{0 \vert gC}+1\cdot\mu_{1\vert gC}}
+		\;-\;
+		\dfrac{E_{C \vert gC{\color{red}0}}}{\pi_{C \vert g}}
+		\;+\;
 		\dfrac{1}{\pi_{C \vert g}}
 		\cdot
-			\overset{C}{\underset{y=1}{\sum}}\;
-			E_{C \vert gy{\color{red}1}}
-	\right\}
+		\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{C \vert gyk}
+	\;\right\}
+\\
+&=&
+	{\color{white}-} \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gc}\cdot E_{c \vert gc0}}{\mbox{}\,{\color{red}\pi_{c \vert g}}\,\mu_{0 \vert gc} \,+\, 1\cdot\mu_{1\vert gc}\;\mbox{}}
+		\;+\;
+		\dfrac{1}{\mbox{}\,{\color{red}\pi_{c \vert g}}\,\mbox{}}
+		\left(
+			\;-\;E_{c \vert gc0}
+			\,\;+\;\,
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{c \vert gyk}
+		\right)
+	\;\right\}
+\\
+&&
+	- \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gC} \cdot E_{C \vert gC0}}{{\color{red}\pi_{C \vert g}}\,\mu_{0 \vert gC}+1\cdot\mu_{1\vert gC}}
+		\;+\;
+		\dfrac{1}{{\color{red}\pi_{C \vert g}}}
+		\left(
+			-\,E_{C \vert gC0}
+			\;+\;
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{C \vert gyk}
+		\right)
+	\;\right\}
 \end{eqnarray*}
 
 \begin{eqnarray*}
@@ -413,117 +512,26 @@ T_{1}
 \\
 &\Longrightarrow&
 	\;{\color{white}=} \;\;
-		\overset{C}{\underset{y=1}{\sum}}\;\;
-		\dfrac{\mu_{0 \vert gy} \cdot E_{c \vert gy0}}{
-			{\color{white}.}
-			\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}
-			{\color{white}.}
-			}
-		\; + \;
-		\dfrac{1}{
-			{\color{white}\vert}\!
-			\pi_{c \vert g}
-			\!{\color{white}\vert}
-			}
-		\cdot
-			\overset{C}{\underset{y=1}{\sum}}\;
-			\,E_{c \vert gy1}\,
+		\dfrac{\mu_{0 \vert gc}\cdot E_{c \vert gc0}}{\mbox{}\,{\color{red}\pi_{c \vert g}}\,\mu_{0 \vert gc} \,+\, 1\cdot\mu_{1\vert gc}\;\mbox{}}
+		\;+\;
+		\dfrac{1}{\mbox{}\,{\color{red}\pi_{c \vert g}}\,\mbox{}}
+		\left(
+			\;-\;E_{c \vert gc0}
+			\,\;+\;\,
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{c \vert gyk}
+		\right)
 \\
 &&
 	= \;\;
-		\overset{C}{\underset{y=1}{\sum}}\;\;
-		\dfrac{\mu_{0 \vert gy} \cdot E_{C \vert gy0}}{\pi_{C \vert g}\,\mu_{0 \vert gy} + \delta_{Cy}\,\mu_{1\vert gy}}
-		\; + \;
-		\dfrac{1}{\pi_{C \vert g}}
-		\cdot
-			\overset{C}{\underset{y=1}{\sum}}\;
-			E_{C \vert gy1}\,,
-		\quad\forall\;\,c\;\in\,\{1,\ldots,C-1\}
-\\
-&\Longrightarrow&
-		\overset{C}{\underset{y=1}{\sum}}\;\;
-		\dfrac{\mu_{0 \vert gy} \cdot E_{c \vert gy0}}{
-			\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}
-			}
-		\; + \;
-		\dfrac{1}{\pi_{c \vert g}}
-		\cdot
-			\overset{C}{\underset{y=1}{\sum}}\;
-			\,E_{c \vert gy1}\,
-		\;\; = \;\;
-		A_{g}\,,
-		\quad\forall\;\,c\;\in\,\{1,\ldots,C\}
-\\
-&\Longrightarrow&
-		\dfrac{\mu_{0 \vert gc} \cdot E_{c \vert gc0}}{
-			\pi_{c \vert g}\,\mu_{0 \vert gc} + 1\cdot\mu_{1\vert gc}
-			}
-		\; + \;
-		\overset{C}{\underset{y=1,y\neq c}{\sum}}\;
-		\dfrac{\mu_{0 \vert gy} \cdot E_{c \vert gy0}}{
-			\pi_{c \vert g}\,\mu_{0 \vert gy} + 0\cdot\mu_{1\vert gy}
-			}
-		\; + \;
-		\dfrac{1}{\pi_{c \vert g}}
-		\cdot
-			\overset{C}{\underset{y=1}{\sum}}\;
-			\,E_{c \vert gy1}\,
-		\;\; = \;\;
-		A_{g}\,,
-		\quad\forall\;\,c\;\in\,\{1,\ldots,C\}
-\\
-&\Longrightarrow&
-		\dfrac{\mu_{0 \vert gc} \cdot E_{c \vert gc0}}{
-			\pi_{c \vert g}\,\mu_{0 \vert gc} + \mu_{1\vert gc}
-			}
-		\; + \;
-		\overset{C}{\underset{y=1,y\neq c}{\sum}}\;
-		\dfrac{E_{c \vert gy0}}{\pi_{c \vert g}}
-		\; + \;
-		\dfrac{1}{\pi_{c \vert g}}
-		\cdot
-			\overset{C}{\underset{y=1}{\sum}}\;
-			\,E_{c \vert gy1}\,
-		\;\; = \;\;
-		A_{g}\,,
-		\quad\forall\;\,c\;\in\,\{1,\ldots,C\}
-\\
-&\Longrightarrow&
-		\dfrac{\mu_{0 \vert gc} \cdot E_{c \vert gc0}}{
-			\pi_{c \vert g}\,\mu_{0 \vert gc} + \mu_{1\vert gc}
-			}
-		\; - \;
-		\dfrac{E_{c \vert gc0}}{\pi_{c \vert g}}
-		\; + \;
-		\overset{C}{\underset{y=1}{\sum}}\;
-		\dfrac{E_{c \vert gy0}}{\pi_{c \vert g}}
-		\; + \;
-		\dfrac{1}{\pi_{c \vert g}}
-		\cdot
-			\overset{C}{\underset{y=1}{\sum}}\;
-			\,E_{c \vert gy1}\,
-		\;\; = \;\;
-		A_{g}\,,
-		\quad\forall\;\,c\;\in\,\{1,\ldots,C\}
-%\\
-%&\Longrightarrow&
-%		\left(\;
-%			\dfrac{\mu_{0 \vert gc} \cdot E_{c \vert gc0}}{
-%				\pi_{c \vert g}\,\mu_{0 \vert gc} + \mu_{1\vert gc}
-%				}
-%			\; - \;
-%			\dfrac{E_{c \vert gc0}}{\pi_{c \vert g}}
-%		\;\right)
-%		\; + \;
-%		\dfrac{1}{\pi_{c \vert g}}
-%		\left(\;
-%			\overset{C}{\underset{y=1}{\sum}}\;\;
-%			\overset{1}{\underset{k=0}{\sum}}\;
-%			E_{c \vert gyk}
-%		\,\right)
-%		\;\; = \;\;
-%		A_{g}\,,
-%		\quad\forall\;\,c\;\in\,\{1,\ldots,C\}
+		\dfrac{\mu_{0 \vert gC} \cdot E_{C \vert gC0}}{{\color{red}\pi_{C \vert g}}\,\mu_{0 \vert gC}+1\cdot\mu_{1\vert gC}}
+		\;+\;
+		\dfrac{1}{{\color{red}\pi_{C \vert g}}}
+		\left(
+			-\,E_{C \vert gC0}
+			\;+\;
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{C \vert gyk}
+		\right)\,,	
+	\quad\forall\;\,c\;\in\,\{1,\ldots,C-1\}
 \\
 &\Longrightarrow&
 		\left(\;
