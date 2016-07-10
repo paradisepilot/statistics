@@ -1,0 +1,262 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{How to use the ECM algorithm to find the MLE of $E\!\left[\,\left.\log\,L\,\right\vert\,\mathcal{D}\,\right]$}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+We describe how the ECM algorithm \cite{Meng1993} may be used to find the
+maximum likelihood estimates of the parameters in
+$E\!\left[\,\left.\log\,L\,\right\vert\,\mathcal{D}\,\right]$.
+
+\begin{equation*}
+\left\{\;
+	\left(\;
+		\left(\,\pi_{1\vert g},\pi_{2\vert g},\ldots,\pi_{C\vert g}\,\right)
+		\,,\,
+		\left(\,\mu_{0 \vert g1},\mu_{1 \vert g1}\,\right)
+		\;,\;
+		\overset{{\color{white}\vert}}{\ldots}
+		\;,\;
+		\left(\,\mu_{0 \vert gC},\mu_{1 \vert gC}\,\right)
+	\;\right)
+\;\right\}_{g \in \left[\,G\,\right]}
+\;\; \in \;\;
+\Theta
+\;\; := \;\;
+\overset{G}{\underset{g = 1}{\prod}}\;
+\left(\;
+	\Delta_{C-1}^{(g)} \,\times\, \overset{C}{\underset{y = 1}{\prod}}\;\Delta_{1}^{(gy)}
+\;\right)
+\end{equation*}
+Clearly, we have
+$\dim\!\left(\,\Theta\,\right) \,=\, G\cdot(C - 1 + C) \,=\, G\cdot(2\,C-1)$.
+
+\subsection{The constrained case $\overset{C}{\underset{c=1}{\sum}}\,\pi_{c \vert g} = 1$}
+
+First, note that
+\begin{equation*}
+\overset{C}{\underset{c=1}{\sum}}\,\pi_{c \vert g} \;=\; 1
+\quad\Longrightarrow\quad
+\pi_{C \vert g} \;=\; 1 - \overset{C-1}{\underset{c=1}{\sum}}\,\pi_{c \vert g}
+\quad\Longrightarrow\quad
+\dfrac{\partial\,\pi_{C \vert g}}{\partial\,\pi_{c \vert g}} \;=\; -1\,,
+\;\;\forall\;\; c \in \{1,2,\ldots,C-1\}\,.
+\end{equation*}
+For \,$c_{1} \in \{1,2,\ldots,C-1\}$,\, we have
+\begin{eqnarray*}
+\dfrac{\partial\;E\!\left[\,\left.\log\,L\;\right\vert\,\mathcal{D}\,\right]}{\partial\;\pi_{c \vert g}}
+&=& \dfrac{\partial\;T_{0}}{\partial\;\pi_{c \vert g}} \;+\; \dfrac{\partial\;T_{1}}{\partial\;\pi_{c \vert g}}
+\\
+&=&
+	{\color{white}-} \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gc}\cdot E_{c \vert gc0}}{\mbox{}\;{\color{red}\pi_{c \vert g}}\,\mu_{0 \vert gc} \,+\, \mu_{1\vert gc}\;\mbox{}}
+		\;+\;
+		\dfrac{1}{{\color{red}\pi_{c \vert g}}}
+		\left(
+			\,\;-\;E_{c \vert gc0}
+			\,\;+\;\,
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{c \vert gyk}
+		\right)
+	\;\right\}
+\\
+&&
+	- \;\;
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gC} \cdot E_{C \vert gC0}}{{\color{red}\pi_{C \vert g}}\,\mu_{0 \vert gC}+\mu_{1\vert gC}}
+		\;+\;
+		\dfrac{1}{{\color{red}\pi_{C \vert g}}}
+		\left(
+			-\,E_{C \vert gC0}
+			\;+\;
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{C \vert gyk}
+		\right)
+	\;\right\}
+\end{eqnarray*}
+For \,$c_{1}, c_{2} \in \{1,2,\ldots,C-1\}$,\, we have
+\begin{eqnarray*}
+\dfrac{\partial^{2}\,E\!\left[\,\left.\log\,L\;\right\vert\,\mathcal{D}\,\right]}{\partial\,\pi_{c_{1} \vert g}\;\partial\,\pi_{c_{2} \vert g}}
+&=&
+	{\color{white}-} \;\;
+	\delta_{c_{1}c_{2}}
+	\cdot
+	\left\{\;\,
+		\dfrac{
+			(-1) \cdot \mu_{0 \vert gc_{1}}^{2} \cdot E_{c_{1} \vert gc_{1}0}
+			}{
+			\left(\,{\color{red}\pi_{c_{1} \vert g}}\,\mu_{0 \vert gc_{1}} + \mu_{1\vert gc_{1}}\right)^{2}
+			}
+		\;+\;
+		\dfrac{(-1)}{{\color{red}\pi_{c_{1} \vert g}}^{2}}
+		\left(
+			-\,E_{c_{1} \vert gc_{1}0}
+			\;+\;
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{c_{1} \vert gyk}
+		\right)
+	\;\right\}
+\\
+&&
+	- \;\;
+	\left\{\;\,
+		\dfrac{
+			(-1) \cdot \mu_{0 \vert gC}^{2} \cdot E_{C \vert gC0}
+			}{
+			\left(\,{\color{red}\pi_{C \vert g}}\,\mu_{0 \vert gC}+\mu_{1\vert gC}\right)^{2}
+			}
+		\cdot
+		\dfrac{\partial\,\pi_{C \vert g}}{\partial\,\pi_{c_{1} \vert g}}
+		\;+\;
+		\dfrac{(-1)}{{\color{red}\pi_{C \vert g}}^{2}}
+		\cdot
+		\dfrac{\partial\,\pi_{C \vert g}}{\partial\,\pi_{c_{1} \vert g}}
+		\left(
+			-\,E_{C \vert gC0}
+			\;+\;
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{C \vert gyk}
+		\right)
+	\;\right\}
+\\
+&=&
+	- \; \delta_{c_{1}c_{2}}
+	\cdot
+	\left\{\;\,
+		\dfrac{
+			\mu_{0 \vert gc_{1}}^{2} \cdot E_{c_{1} \vert gc_{1}0}
+			}{
+			\left(\,{\color{red}\pi_{c_{1} \vert g}}\,\mu_{0 \vert gc_{1}} + \mu_{1\vert gc_{1}}\right)^{2}
+			}
+		\;+\;
+		\dfrac{1}{{\color{red}\pi_{c_{1} \vert g}}^{2}}
+		\left(
+			-\,E_{c_{1} \vert gc_{1}0}
+			\;+\;
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{c_{1} \vert gyk}
+		\right)
+	\;\right\}
+\\
+&&
+	- \;
+	\left\{\;\,
+		\dfrac{
+			(-1) \cdot \mu_{0 \vert gC}^{2} \cdot E_{C \vert gC0}
+			}{
+			\left(\,{\color{red}\pi_{C \vert g}}\,\mu_{0 \vert gC}+\mu_{1\vert gC}\right)^{2}
+			}
+		\cdot
+		\left(\,\overset{{\color{white}.}}{-1}\,\right)
+		\;+\;
+		\dfrac{(-1)}{{\color{red}\pi_{C \vert g}}^{2}}
+		\cdot
+		\left(\,\overset{{\color{white}.}}{-1}\,\right)
+		\cdot
+		\left(
+			-\,E_{C \vert gC0}
+			\;+\;
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{C \vert gyk}
+		\right)
+	\;\right\}
+\\
+&=&
+	- \; \delta_{c_{1}c_{2}}
+	\cdot
+	\left\{\;\,
+		\dfrac{
+			\mu_{0 \vert gc_{1}}^{2} \cdot E_{c_{1} \vert gc_{1}0}
+			}{
+			\left(\,{\color{red}\pi_{c_{1} \vert g}}\,\mu_{0 \vert gc_{1}} + \mu_{1\vert gc_{1}}\right)^{2}
+			}
+		\;+\;
+		\dfrac{1}{{\color{red}\pi_{c_{1} \vert g}}^{2}}
+		\left(
+			-\,E_{c_{1} \vert gc_{1}0}
+			\;+\;
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{c_{1} \vert gyk}
+		\right)
+	\;\right\}
+\\
+&&
+	- \;
+	\left\{\;\,
+		\dfrac{
+			\mu_{0 \vert gC}^{2} \cdot E_{C \vert gC0}
+			}{
+			\left(\,{\color{red}\pi_{C \vert g}}\,\mu_{0 \vert gC}+\mu_{1\vert gC}\right)^{2}
+			}
+		\;+\;
+		\dfrac{1}{{\color{red}\pi_{C \vert g}}^{2}}
+		\cdot
+		\left(
+			-\,E_{C \vert gC0}
+			\;+\;
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{C \vert gyk}
+		\right)
+	\;\right\}
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\subsection{The unconstrained case}
+For \,$c_{1}, c_{2} \in \{1,2,\ldots,C\}$,\, we have
+\begin{eqnarray*}
+\dfrac{\partial\;E\!\left[\,\left.\log\,L\;\right\vert\,\mathcal{D}\,\right]}{\partial\;\pi_{c_{2} \vert g}}
+&=& \dfrac{\partial\;T_{0}}{\partial\;\pi_{c_{2} \vert g}} \;+\; \dfrac{\partial\;T_{1}}{\partial\;\pi_{c_{2} \vert g}}
+\\
+&=&
+	\left\{\;\,
+		\dfrac{\mu_{0 \vert gc_{2}}\cdot E_{c_{2} \vert gc_{2}0}}{{\color{red}\pi_{c_{2} \vert g}}\,\mu_{0 \vert gc_{2}} + \mu_{1\vert gc_{2}}}
+		\;+\;
+		\dfrac{1}{{\color{red}\pi_{c_{2} \vert g}}}
+		\left(
+			\;-\;E_{c_{2} \vert gc_{2}0}
+			\,\;+\;\,
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{c_{2} \vert gyk}
+		\right)
+	\;\right\}
+\end{eqnarray*}
+\begin{eqnarray*}
+\dfrac{\partial^{2}\,E\!\left[\,\left.\log\,L\;\right\vert\,\mathcal{D}\,\right]}{\partial\,\pi_{c_{1} \vert g}\;\partial\,\pi_{c_{2} \vert g}}
+&=&
+	\delta_{c_{1}c_{2}}
+	\cdot
+	\left\{\;\,
+		\dfrac{
+			-\,\mu_{0 \vert gc_{1}}^{2}\cdot E_{c_{1} \vert gc_{1}0}
+			}{
+			\left(\,{\color{red}\pi_{c_{1} \vert g}}\,\mu_{0 \vert gc_{1}} + \mu_{1\vert gc_{1}}\right)^{2}
+			}
+		\;+\;
+		\dfrac{(-1)}{{\color{red}\pi_{c_{1} \vert g}}^{2}}
+		\left(
+			\;-\;E_{c_{1} \vert gc_{1}0}
+			\,\;+\;\,
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{c_{1} \vert gyk}
+		\right)
+	\;\right\}
+\\
+&=&
+	-\,\delta_{c_{1}c_{2}}
+	\cdot
+	\left\{\;\,
+		\dfrac{
+			\mu_{0 \vert gc_{1}}^{2}\cdot E_{c_{1} \vert gc_{1}0}
+			}{
+			\left(\,{\color{red}\pi_{c_{1} \vert g}}\,\mu_{0 \vert gc_{1}} + \mu_{1\vert gc_{1}}\right)^{2}
+			}
+		\;+\;
+		\dfrac{1}{{\color{red}\pi_{c_{1} \vert g}}^{2}}
+		\left(
+			\;-\;E_{c_{1} \vert gc_{1}0}
+			\,\;+\;\,
+			\overset{C}{\underset{y=1}{\sum}} \; \overset{1}{\underset{k=0}{\sum}} \; E_{c_{1} \vert gyk}
+		\right)
+	\;\right\}
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
