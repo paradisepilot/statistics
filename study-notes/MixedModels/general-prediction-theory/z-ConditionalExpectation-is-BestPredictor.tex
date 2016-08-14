@@ -38,6 +38,74 @@ E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} E(\;Y\,\vert\,X\,)\,\right)^{
 E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]\,.
 \end{equation*}
 \end{theorem}
+\proof
+\begin{eqnarray*}
+E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
+&=&
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,) + E(\,Y\,\vert\,X\,) - f(X)\,\right)^{2}\,\right]
+\\
+&=&
+	{\color{white}+}\;\;
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)^{2}\,\right]
+	\;+\;
+	E\!\left[\;\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
+\\
+&&
+	+\;
+	2 \cdot E\!\left[\,
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+		\cdot
+		\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+		\,\right]
+\end{eqnarray*}
+It is now clear that the Theorem follows once we show
+$E\!\left[\,
+	\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+	\cdot
+	\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+	\,\right] \,=\, 0$.
+To this end,
+\begin{eqnarray*}
+&&
+	E\!\left\{\,
+	{\color{white}E\;\;\,}
+	\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+	\cdot
+	\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+	{\color{white}E\quad\;\;\;}
+	\,\right\}
+\\
+&=&
+	E\!\left\{\,
+	E\!\left[\;
+		\left.
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+		\cdot
+		{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
+		\;\,\right\vert\;X
+	\;\right]
+	\,\right\}
+\\
+&=&
+	E\!\left\{\,
+	{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
+	\cdot
+	E\!\left[\;
+		\left.
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)		
+		\;\,\right\vert\;X
+	\;\right]
+	\,\right\}
+\\
+&=&
+	E\!\left\{\,
+	{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
+	\cdot 0
+	\,\right\}
+	\;\; = \;\; 0\,,
+\end{eqnarray*}
+as desired.
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
