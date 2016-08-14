@@ -1,0 +1,63 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The Radon-Nikodym Theorem implies existence and uniqueness of conditional expectations of integrable random variables.}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Kolmogorov's Theorem, Theorem 9.2, p.84, \cite{Williams1991}]
+\label{Thm:ExistenceConditionalExpectation}
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$\mathcal{G} \subset \mathcal{A}$ is a sub-$\sigma$-algebra of $\mathcal{A}$.
+\item
+	$Y : \Omega \longrightarrow \Re$ is an \textbf{\color{red}integrable} random variable defined on $\Omega$,
+	i.e. $E\!\left(\,\vert\,Y\,\vert\,\right) \,:=\, \int_{\Omega}\, \vert\, Y\,\vert \,\d\mu \,<\, \infty$.
+\end{itemize}
+Then, there exists an $\Re$-valued random variable (i.e. $\mathcal{A}$-measurable)
+$W : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$ such that the following statements hold:
+\begin{enumerate}
+\item
+	$W$ is (in fact) $\mathcal{G}$-measurable.
+\item
+	$W$ is integrable, i.e.
+	\begin{equation*}
+	E\!\left(\,\vert\,W\,\vert\,\right)
+	\;\; := \;\;
+	\int_{\Omega}\,\vert\,W\,\vert\,\d\mu
+	\;\; < \;\;
+	\infty\,,
+	\end{equation*}
+\item
+	For every subset $G \in \mathcal{G}$, we have:
+	\begin{equation*}
+	\int_{G}\, W \,\d\mu
+	\;\; = \;\;
+	\int_{G}\, Y \,\d\mu\,.
+	\end{equation*}
+\item
+	If \,$W^{\prime} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\, is another
+	random variable satisfying the above three properties, then
+	$P\!\left(\,W = W^{\prime}\,\right) \,=\, 1$. 
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}\mbox{}\vskip 0.1cm\noindent
+The random variable $W$ almost-surely uniquely determined
+by the sub-$\sigma$-algebra $\mathcal{G}$ and the integrable $Y$
+in the preceding Theorem is called the
+\textbf{conditional expectation of $Y$ with respect to $\mathcal{G}$}, and is denoted
+by $E\!\left[\,Y\,\vert\,\mathcal{G}\,\right]$.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
