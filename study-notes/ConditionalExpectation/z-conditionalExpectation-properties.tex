@@ -1,0 +1,266 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Properties of conditional expectations}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}
+\label{Thm:PropertiesConditionalExpectation}
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$L^{1}\!\left(\Omega,\mathcal{A},\mu\right)$ denotes the space of $\mu$-integrable $(\Re,\mathcal{O})$-valued functions.
+\item
+	$\mathcal{G} \subset \mathcal{A}$ is a sub-$\sigma$-algebra of $\mathcal{A}$,
+	and $\mu\vert_{\mathcal{G}}$ is the restriction of $\mu$ to $\mathcal{G}$.
+\item
+	$L^{1}\!\left(\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}\right)$ denotes the space of
+	$(\mu\vert_{\mathcal{G}})$-integrable $(\Re,\mathcal{O})$-valued functions.
+\end{itemize}
+Then, the map
+\begin{equation*}
+E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]
+\;\; :\;\;
+L^{1}\!\left(\Omega,\mathcal{A},\mu\right) \;\longrightarrow\; L^{1}\!\left(\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}\right)
+\;\; : \;\;
+Y \;\longmapsto\; E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+\end{equation*}
+satisfies the following properties:
+\begin{enumerate}
+\item
+	\begin{equation*}
+	E\!\left(\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,\right)
+	\;\; = \;\;
+	E\!\left(\;Y\;\right)	
+	\end{equation*}
+\item
+	If \,$Y \in L^{1}\!\left(\Omega,\mathcal{A},\mu\right)$
+	is in fact $(\mathcal{G},\mathcal{O})$-measurable,
+	then $E\!\left[\;Y\,\vert\,\mathcal{G}\,\right] \,=\, Y$,
+	$\mu$-almost-everywhere.
+\item\label{ConditionalExpectationRLinearity}
+	The map $E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]$ is $\Re$-linear, i.e.
+	\begin{equation*}
+	E\!\left[\;c_{1}\cdot Y_{1} + c_{2}\cdot Y_{2}\;\vert\;\mathcal{G}\,\right]
+	\;\; = \;\;
+	c_{1}\cdot E\!\left[\;Y_{1}\,\vert\,\mathcal{G}\,\right]
+	\; + \;
+	c_{2}\cdot E\!\left[\;Y_{2}\,\vert\,\mathcal{G}\,\right]
+	\;\; \in \;\; L^{1}\!\left(\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}\right)
+	\,,
+	\end{equation*}
+	for each \,$c_{1}, c_{2} \in \Re$\, and \,$Y_{1}, \, Y_{2} \in L^{1}\!\left(\Omega,\mathcal{A},\mu\right)$.
+\item\label{ConditionalExpectationPreservesNonnegativity}
+	\textbf{The map \,$E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]$\, preserves non-negativity\,:}
+	\vskip 0.0cm
+	If \,$Y \in L^{1}\!\left(\Omega,\mathcal{A},\mu\right)$\,
+	is non-negative $\mu$-almost-everywhere, then
+	\,$E\!\left[\;Y\,\vert\,\mathcal{G}\,\right] \in L^{1}\!\left(\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}\right)$\,
+	is non-negative \,$(\mu\vert_{\mathcal{G}})$-almost-everywhere.
+\item\label{ConditionalMonotoneConvergence}
+	\textbf{The map \,$E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]$\, preserves monotone convergence\,:}
+	\vskip 0.0cm
+	Suppose \,$Y, Y_{1}, Y_{2}, \ldots \in L^{1}(\Omega,\mathcal{A},\mu)$\,
+	are non-negative and
+	\;$Y_{i} \uparrow Y$\,
+	$\mu$-almost-everywhere.
+	\vskip 0.0cm
+	Then, \,$E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right] \,\uparrow\, E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$,\,
+	$(\mu\vert_{\mathcal{G}})$-almost-everywhere.	
+\item\label{ConditionalFatouLemma}
+	\textbf{Conditional Fatou's Lemma\,:}
+\item\label{ConditionalDominatedConvergence}
+	\textbf{Conditional Dominated Convergence Theorem\,:}
+\item\label{FactorOutWhatIsKnown}
+	Let \,$Y \in L^{1}(\Omega,\mathcal{A},\mu)$\, and \,$Z : \Omega \longrightarrow \Re$ be
+	$(\mathcal{G},\mathcal{O})$-measurable, such that
+	\,$Y \cdot Z \in L^{1}(\Omega,\mathcal{A},\mu)$.
+	\begin{equation*}
+	E\!\left[\;Y \cdot Z\,\vert\,\mathcal{G}\,\right]
+	\;\; = \;\;
+	Z \cdot E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,,
+	\quad
+	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost-everywhere}\,.
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+
+\proof
+
+\begin{enumerate}
+\item
+\item
+\item
+\item
+	Suppose, on the contrary that,
+	\,$\mu\vert_{\mathcal{G}}\!\left(\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,<\,0\,\right) >\,0$.\,
+	Then, it follows that, for some $n \in \N$, we have:
+	\begin{equation*}
+	\mu\vert_{\mathcal{G}}\!\left(\,\overset{{\color{white}.}}{G}_{n}\,\right) >\,0\,,
+	\quad\textnormal{where}\;\;
+	G_{n} \; :=\; \left\{\,
+		\omega\in\Omega
+		\;\left\vert\;
+		\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right](\omega)\,<\,-\,\dfrac{1}{n}
+		\right.\,\right\}
+		\;\in\;\mathcal{G}\,.
+	\end{equation*}
+	Thus, we obtain the following contradiction:
+	\begin{equation*}
+	0 \;\;\leq\;\; \int_{G_{n}} Y\,\d\mu
+	\;\;=\;\; \int_{G_{n}} E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,\d(\mu\vert_{\mathcal{G}})
+	\;\;\leq\;\; -\,\dfrac{1}{n} \cdot \int_{G_{n}} 1\,\d(\mu\vert_{\mathcal{G}})
+	\;\;=\;\; -\,\dfrac{1}{n} \cdot \mu\vert_{\mathcal{G}}\!\left(\,\overset{{\color{white}.}}{G}_{n}\,\right)
+	\;\; < \;\; 0\,,
+	\end{equation*}
+	which proves that we in fact must have
+	$\mu\vert_{\mathcal{G}}\!\left(\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,<\,0\,\right) =\,0$.
+	In other words, \,$E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$\, is non-negative
+	$(\mu\vert_{\mathcal{G}})$-almost-everywhere, as desired.
+\item
+	By \eqref{ConditionalExpectationPreservesNonnegativity}, we see that the
+	\,$E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right]$'s\,
+	are $(\mu\vert_{\mathcal{G}})$-almost-everywhere non-negative and non-decreasing as $i \in \N$ increases.
+	Define \,$X := \underset{i\rightarrow\infty}{\limsup}\,E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right]$.\,
+	Then, \,$0\,\leq\,E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right] \,\uparrow\, X$.
+	Thus, the proof is complete once we show $X = E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$.
+	To this end, note that, for each $G \in \mathcal{G}$, we have
+	\begin{equation*}
+	\int_{G}\,Y\,\d\mu
+	\;\;=\;\;
+	\underset{i\rightarrow\infty}{\lim}\,\int_{G}\,Y_{i}\;\d\mu
+	\;\;=\;\;
+	\underset{i\rightarrow\infty}{\lim}\,\int_{G}E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right]\,\d(\mu\vert_{\mathcal{G}})
+	\;\;=\;\;
+	\int_{G}\,X\,\d(\mu\vert_{\mathcal{G}})
+	\;\;=\;\;
+	\int_{G}\,\underset{i\rightarrow\infty}{\limsup}\,E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right]\,\d(\mu\vert_{\mathcal{G}})\,,
+	\end{equation*}
+	where the first and third equalities follow from the Lebesgue Monotone Convergence Theorem,
+	whereas the second equality follows from the defining properties of conditional expectations.
+	The uniqueness of conditional expectations now implies
+	\,$\underset{i\rightarrow\infty}{\limsup}\,E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right]$
+	\,$=:$ $X$ $=$ $E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$\,,
+	$(\mu\vert_{\mathcal{G}})$-almost-everywhere, as desired.
+\item
+\item
+\item
+	\textbf{Claim 1:}\;\;\eqref{FactorOutWhatIsKnown} holds for $Z = 1_{H}$, where $H \in \mathcal{G}$.
+	\vskip 0.0cm
+	Proof of Claim 1: For each $G \in \mathcal{G}$, we have:
+	\begin{equation*}
+	\int_{G}\;1_{H} \cdot E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;
+	\int_{\,G\,\cap\,H}E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;
+	\int_{\,G\,\cap\,H} Y\;\d\mu
+	\;\; = \;\;
+	\int_{G}\,1_{H} \cdot Y\,\d\mu\,,
+	\end{equation*}
+	which implies \,$E\!\left[\;1_{H}\cdot Y\,\vert\,\mathcal{G}\,\right]$
+	$=$ $1_{H}\cdot E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$,\,
+	for each $H \in \mathcal{G}$.
+	This proves Claim 1.
+	\vskip 0.4cm
+	\textbf{Claim 2:}\;\;\eqref{FactorOutWhatIsKnown} holds, if $Z$ is a $\mathcal{G}$-simple function,
+	i.e. $Z$ is a finite sum of indicator functions of sets in $\mathcal{G}$.
+	\vskip 0.0cm
+	Proof of Claim 2: This follows immediately from Claim 1 and
+	the $\Re$-linearity \eqref{ConditionalExpectationRLinearity} of \,$E\!\left[\;\,\cdot\;\vert\,\mathcal{G}\,\right]$.
+	\vskip 0.4cm
+	\textbf{Claim 3:}\;\;\eqref{FactorOutWhatIsKnown} holds, if \,$Y$ and $Z$ are non-negative.
+	\vskip 0.0cm
+	Proof of Claim 3: First, recall that each non-negative measurable function is the pointwise limit
+	of a pointwise non-decreasing sequence of non-negative simple functions (Theorem 17.7, p.131, \cite{Aliprantis1998}).
+	Thus, there exists a pointwise non-decreasing sequence $\zeta_{n}$, $n \in \N$, of non-negative
+	$\mathcal{G}$-simple functions such that $0 \leq \zeta_{n}(\omega) \uparrow Z(\omega)$, for each $\omega \in \Omega$.
+	This in turn implies
+	\,$0 \leq Y(\omega) \cdot \zeta_{n}(\omega) \,\uparrow\, Y(\omega) \cdot Z(\omega)$,\,
+	and
+	\,$0 \leq E\!\left[\;Y\,\vert\,\mathcal{G}\,\right](\omega) \cdot \zeta_{n}(\omega) \,\uparrow\, E\!\left[\;Y\,\vert\,\mathcal{G}\,\right](\omega) \cdot Z(\omega)$,\,
+	for each $\omega \in \Omega$.
+	Now, for each $G \in \mathcal{G}$, we therefore have:
+	\begin{eqnarray*}
+	\int_{G}\;Z \cdot E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,\d(\mu\vert_{\mathcal{G}})
+	&=&
+		\int_{G}
+			\left(\,\underset{n\rightarrow\infty}{\lim}\,\zeta_{n}\,\right)
+			\cdot
+			E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+			\,\d(\mu\vert_{\mathcal{G}})
+			\,,\quad\textnormal{by choice of \,$\zeta_{n}\uparrow Z$\, pointwise}
+	\\
+	&=&
+		\int_{G}\;
+			\underset{n\rightarrow\infty}{\lim}\left(\,
+				\overset{{\color{white}.}}{\zeta}_{n} \cdot E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+				\,\right)
+			\,\d(\mu\vert_{\mathcal{G}})
+	\\
+	&=&
+		\underset{n\rightarrow\infty}{\lim}\,
+			\int_{G}\left(\,
+				\overset{{\color{white}.}}{\zeta}_{n} \cdot E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+				\,\right)
+			\,\d(\mu\vert_{\mathcal{G}})
+			\,,\quad\textnormal{by the Monotone Convergence Theorem}
+	\\
+	&=&
+		\underset{n\rightarrow\infty}{\lim}\,
+			\int_{G}\,
+				E\!\left[\;\left.\overset{{\color{white}.}}{\zeta}_{n} \cdot Y\;\right\vert\,\mathcal{G}\,\right]
+			\,\d(\mu\vert_{\mathcal{G}})
+			\,,\quad\textnormal{by Claim 2}
+	\\
+	&=&
+		\underset{n\rightarrow\infty}{\lim}\,
+			\int_{G}\,
+				\overset{{\color{white}.}}{\zeta}_{n} \cdot Y
+			\,\d\mu
+			\,,\quad\textnormal{by defining properties of conditional expectations}
+	\\
+	&=&
+		\int_{G}\;
+			\underset{n\rightarrow\infty}{\lim}\left(\,\overset{{\color{white}.}}{\zeta}_{n} \cdot Y\,\right)
+			\d\mu
+			\,,\quad\textnormal{by the Monotone Convergence Theorem}
+	\\
+	&=&
+		\int_{G}\;
+			\left(\,\underset{n\rightarrow\infty}{\lim}\,\overset{{\color{white}.}}{\zeta}_{n}\,\right) \cdot Y
+			\;\d\mu
+	\\
+	&=&
+		\int_{G}\; Z \cdot Y \;\d\mu
+			\,,\quad\textnormal{by choice of \,$\zeta_{n}$}
+	\end{eqnarray*}
+	This proves \,$E\!\left[\;Y \cdot Z\,\vert\,\mathcal{G}\,\right]$ $=$ $Z \cdot E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$,
+	as desired, and completes the proof of Claim 3.
+	\vskip 0.4cm
+	\textbf{Claim 4:}\;\;\eqref{FactorOutWhatIsKnown} holds.
+	\vskip 0.0cm
+	Proof of Claim 4: First, recall that each non-negative measurable function is the pointwise limit
+	Let \,$Y^{+},\,Y^{-} \geq 0$\, be the positive and negative parts of $Y$ respectively.
+	Similarly, let \,$Z^{+},\,Z^{-} \geq 0$\, be the positive and negative parts of $Z$ respectively.
+	Then, \,$Y = Y^{+} - Y^{-}$\, and \,$Z = Z^{+} - Z^{-}$.\,
+	Hence,
+	\begin{equation*}
+	Y \cdot Z
+	\;\; = \;\; (Y^{+} - Y^{-}) \cdot (Z^{+} - Z^{-})
+	\;\; = \;\; Y^{+}Z^{+} \,-\, Y^{+}Z^{-} \,-\, Y^{-}Z^{+} \,+\, Y^{-}Z^{-}\,.
+	\end{equation*}
+	Thus, Claim 4 now follows by Claim (iii) and the $\Re$-linearity of \,$E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]$.
+\end{enumerate}
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
