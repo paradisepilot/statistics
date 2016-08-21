@@ -90,6 +90,20 @@ satisfies the following properties:
 	$(\mu\vert_{\mathcal{G}})$-almost-everywhere.	
 \item\label{ConditionalFatouLemma}
 	\textbf{Conditional Fatou's Lemma\,:}
+	\vskip 0.0cm
+	Suppose \,$Y_{1}, Y_{2}, \ldots \in L^{1}(\Omega,\mathcal{A},\mu)$\,	and
+	\,$Y_{n} \geq 0$, $\mu$-almost-everywhere, for each $n \in \N$.
+	Suppose furthermore that
+	\,$\underset{n\rightarrow\infty}{\liminf}\,\int_{\Omega}\, Y_{n} \,\d\mu \,<\, \infty$.\,
+	Then,
+	\,$\underset{n\rightarrow\infty}{\liminf}\;Y_{n}$\, is $\mu$-integrable, and
+	\begin{equation*}
+	E\!\left[\;\left.\underset{n\rightarrow\infty}{\liminf}\;Y_{n}\;\right\vert\;\mathcal{G}\;\right]
+	\;\;\leq\;\;
+	\underset{n\rightarrow\infty}{\liminf}\; E\!\left[\;\left.\overset{{\color{white}.}}{Y}_{n}\;\right\vert\;\mathcal{G}\;\right]\,,
+	\quad
+	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost-everywhere}.
+	\end{equation*}
 \item\label{ConditionalDominatedConvergence}
 	\textbf{Conditional Dominated Convergence Theorem\,:}
 \item\label{FactorOutWhatIsKnown}
@@ -244,6 +258,58 @@ satisfies the following properties:
 	\,$=:$ $X$ $=$ $E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$\,,
 	$(\mu\vert_{\mathcal{G}})$-almost-everywhere, as desired.
 \item
+	The $\mu$-integrability of \,$\underset{n\rightarrow\infty}{\liminf}\;Y_{n}$\, follows from (the usual)
+	Fatou's Lemma; see, for example, Theorem 22.10, p.171, \cite{Aliprantis1998}.
+	Next, recall that for an sequence $\{\,a_{n}\,\}_{n\in\N} \subset \Re$ of real numbers, its limit inferior is by definition:
+	\begin{equation*}
+	\underset{n\rightarrow\infty}{\liminf}\;a_{n}
+	\;\; := \;\;
+		\underset{n\rightarrow\infty}{\lim}\left(\;\underset{i\,\geq\,n}{\inf}\;a_{i}\;\right)
+	\end{equation*}
+	Similarly, we have, for $\mu$-almost every $\omega \in \Omega$:
+	\begin{equation*}
+	\left(\,\underset{n\rightarrow\infty}{\liminf}\;Y_{n}\,\right)(\omega)
+	\;\; := \;\;
+	\underset{n\rightarrow\infty}{\liminf}\left(\,\overset{{\color{white}.}}{Y}_{n}(\omega)\,\right)
+	\;\; := \;\;
+		\underset{n\rightarrow\infty}{\lim}\left(\;\underset{i\,\geq\,n}{\inf}\;Y_{i}(\omega)\;\right)
+	\;\; =: \;\;
+	Z(\omega)
+	\;\; = \;\;
+		\underset{n\rightarrow\infty}{\lim}\left(\;\overset{{\color{white}.}}{Z}_{n}(\omega)\;\right)\,,
+	\end{equation*}
+	where \,$Z_{n} \,:= \underset{i\,\geq\,n}{\inf}\;Y_{i}$, for each $n \in \N$.
+	Note that the $Z_{n}$'s are non-negative and non-decreasing in $n$,
+	and $Z_{n} \uparrow Z$ $\mu$-almost everywhere.
+	By \eqref{ConditionalMonotoneConvergence}, we therefore have
+	\begin{equation*}
+	E\!\left[\,Z_{n}\,\vert\,\mathcal{G}\,\right] \;\uparrow\; E\!\left[\,Z\,\vert\,\mathcal{G}\,\right]\,,
+	\quad
+	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost everywhere.}
+	\end{equation*}
+	Furthermore, by \eqref{ConditionalExpectationPreservesNonnegativity}, we also have
+	\begin{equation*}
+	Z_{n} \;:=\, \underset{i\,\geq\,n}{\inf}\;Y_{i}
+	\quad\Longrightarrow\quad
+		Z_{n} \;\leq\; Y_{n}
+	\quad\Longrightarrow\quad
+		E\!\left[\;Z_{n}\,\vert\,\mathcal{G}\,\right] \;\leq\; E\!\left[\;Y_{n}\,\vert\,\mathcal{G}\,\right]\,,
+	\quad\textnormal{$(\mu\vert_{\mathcal{G}})$-almost everywhere}
+	\end{equation*}
+	Thus, we now see that:
+	\begin{eqnarray*}
+	E\!\left[\;\left.\underset{n\rightarrow\infty}{\liminf}\;Y_{n}\;\right\vert\,\mathcal{G}\,\right]
+	\;\; = \;\;
+		E\!\left[\,\left.\overset{{\color{white}.}}{Z}\;\right\vert\,\mathcal{G}\,\right]		
+	\;\; = \;\;
+		E\!\left[\,\left.\underset{n\rightarrow\infty}{\lim}\;Z_{n}\;\right\vert\,\mathcal{G}\,\right]
+	\;\; = \;\;
+		\underset{n\rightarrow\infty}{\lim}\,E\!\left[\;Z_{n}\,\left\vert\,\overset{{\color{white}.}}{\mathcal{G}}\right.\,\right]
+	\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\liminf}\;E\!\left[\;Y_{n}\,\left\vert\,\overset{{\color{white}.}}{\mathcal{G}}\right.\,\right]\,,
+	\end{eqnarray*}
+	$(\mu\vert_{\mathcal{G}})$-almost everywhere.
+	This completes the proof of the Conditional Fatou's Lemma.
 \item
 \item
 	\textbf{Claim 1:}\;\;\eqref{FactorOutWhatIsKnown} holds for $Z = 1_{H}$, where $H \in \mathcal{G}$.
