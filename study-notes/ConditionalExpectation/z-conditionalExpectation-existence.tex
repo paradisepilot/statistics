@@ -100,48 +100,73 @@ Suppose:
 \begin{itemize}
 \item
 	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$\mathcal{G} \subset \mathcal{A}$ is a sub-$\sigma$-algebra of $\mathcal{A}$.
+	$\mu\vert_{\mathcal{G}}$ is the restriction of $\mu$ to $\mathcal{G}$.
 \item
-	$\mathcal{G} \subset \mathcal{A}$ is a sub-$\sigma$-algebra of $\mathcal{A}$,
-	and $\mu\vert_{\mathcal{G}}$ is the restriction of $\mu$ to $\mathcal{G}$.
+	$L^{1}(\Omega,\mathcal{A},\mu)$ is the space of
+	($\mu$-almost-everywhere equality equivalence classes of)
+	$\mu$-integrable $(\Re,\mathcal{O})$-valued functions
+	defined on $(\Omega,\mathcal{A},\mu)$.
 \item
-	$Y : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O})$ is a \textbf{\color{red}$\mu$-integrable} random variable,
-	i.e. $E\!\left(\,\vert\,Y\,\vert\,\right) \,:=\, \int_{\Omega}\, \vert\, Y\,\vert \,\d\mu \,<\, \infty$.
+	$L^{1}(\Omega,\mathcal{G},\mu\vert_{\mathcal{G}})$ is the space of
+	($(\mu\vert_{\mathcal{G}})$-almost-everywhere equality equivalence classes of)	
+	$(\mu\vert_{\mathcal{G}})$-integrable $(\Re,\mathcal{O})$-valued functions
+	defined on $(\Omega,\mathcal{G},\mu\vert_{\mathcal{G}})$.
+%\item
+%	$Y : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O})$ is a \textbf{\color{red}$\mu$-integrable} random variable,
+%	i.e. $E\!\left(\,\vert\,Y\,\vert\,\right) \,:=\, \int_{\Omega}\, \vert\, Y\,\vert \,\d\mu \,<\, \infty$.
 \end{itemize}
-Then, there exists a $(\mathcal{G},\mathcal{O})$-measurable $\Re$-valued function
-$W : (\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}) \longrightarrow (\Re,\mathcal{O})$
-such that the following statements hold:
-\begin{enumerate}
-\item
-	$W$ is $\mu\vert_{\mathcal{G}}$-integrable, i.e.
-	\begin{equation*}
-	E\!\left(\,\vert\,W\,\vert\,\right)
-	\;\; := \;\;
-	\int_{\Omega}\,\vert\,W\,\vert\,\d(\mu\vert_{\mathcal{G}})
-	\;\; < \;\;
-	\infty\,.
-	\end{equation*}
-\item
-	For every subset $G \in \mathcal{G}$, we have:
-	\begin{equation*}
-	\int_{G}\, W \,\d(\mu\vert_{\mathcal{G}})
-	\;\; = \;\;
-	\int_{G}\, Y \,\d\mu\,.
-	\end{equation*}
-\item
-	If \,$W^{\prime} : (\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}) \longrightarrow (\Re,\mathcal{O})$\, is
-	another $(\mathcal{G},\mathcal{O})$-measurable $\Re$-valued function
-	satisfying the above two properties, then
-	$W = W^{\prime}$, $(\mu\vert_{\mathcal{G}})$-almost-everywhere,
-	i.e. $\mu\vert_{\mathcal{G}}\!\left(\,W = W^{\prime}\,\right) \,=\, 1$. 
-\end{enumerate}
+Then, there exists a unique map
+\begin{equation*}
+E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]
+\;\; : \;\; L^{1}(\Omega,\mathcal{A},\mu)
+\;\;\longrightarrow\;\; L^{1}(\Omega,\mathcal{G},\mu\vert_{\mathcal{G}})
+\;\; : \;\; Y \;\; \longmapsto \;\; E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+\end{equation*}
+satisfying
+\begin{equation*}
+\int_{G}\, E\!\left[\;Y\,\vert\,\mathcal{G}\,\right] \,\d(\mu\vert_{\mathcal{G}})
+\;\; = \;\;
+\int_{G}\, Y \,\d\mu\,,
+\quad
+\textnormal{for every \,$Y \in L^{1}(\Omega,\mathcal{A},\mu)$,\, and for every \,$G \in \mathcal{G}$}\,.
+\end{equation*}
+%Then, there exists a $(\mathcal{G},\mathcal{O})$-measurable $\Re$-valued function
+%$W : (\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}) \longrightarrow (\Re,\mathcal{O})$
+%such that the following statements hold:
+%\begin{enumerate}
+%\item
+%	$W$ is $\mu\vert_{\mathcal{G}}$-integrable, i.e.
+%	\begin{equation*}
+%	E\!\left(\,\vert\,W\,\vert\,\right)
+%	\;\; := \;\;
+%	\int_{\Omega}\,\vert\,W\,\vert\,\d(\mu\vert_{\mathcal{G}})
+%	\;\; < \;\;
+%	\infty\,.
+%	\end{equation*}
+%\item
+%	For every subset $G \in \mathcal{G}$, we have:
+%	\begin{equation*}
+%	\int_{G}\, W \,\d(\mu\vert_{\mathcal{G}})
+%	\;\; = \;\;
+%	\int_{G}\, Y \,\d\mu\,.
+%	\end{equation*}
+%\item
+%	If \,$W^{\prime} : (\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}) \longrightarrow (\Re,\mathcal{O})$\, is
+%	another $(\mathcal{G},\mathcal{O})$-measurable $\Re$-valued function
+%	satisfying the above two properties, then
+%	$W = W^{\prime}$, $(\mu\vert_{\mathcal{G}})$-almost-everywhere,
+%	i.e. $\mu\vert_{\mathcal{G}}\!\left(\,W = W^{\prime}\,\right) \,=\, 1$. 
+%\end{enumerate}
 \end{theorem}
 
 \begin{remark}\mbox{}\vskip 0.1cm\noindent
-The random variable $W$ almost-surely uniquely determined
-by the sub-$\sigma$-algebra $\mathcal{G}$ and the integrable $Y$
-in the preceding Theorem is called the
-\textbf{\color{red}conditional expectation of $Y$ with respect to $\mathcal{G}$},
-and is denoted by $E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$.
+The random variable $E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$,
+$(\mu\vert_{\mathcal{G}})$-almost-surely uniquely determined by
+the sub-$\sigma$-algebra $\mathcal{G}$ and the integrable $Y$
+in the preceding Theorem,
+is called the
+\textbf{\color{red}conditional expectation of \,$Y$ with respect to $\mathcal{G}$}.
 \end{remark}
 
 \proof
@@ -232,6 +257,8 @@ Furthermore,
 	By Corollary \ref{Corollary:AlmostEverywhereZero}, we may now conclude
 	$W = W^{\prime}$, $(\mu\vert_{\mathcal{G}})$-almost-everywhere.
 \end{enumerate}
+We may now choose $E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$ to be $W$ as above, and
+this completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

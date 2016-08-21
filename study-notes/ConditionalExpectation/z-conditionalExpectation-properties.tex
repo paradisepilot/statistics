@@ -37,16 +37,17 @@ Y \;\longmapsto\; E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
 satisfies the following properties:
 \begin{enumerate}
 \item
+	For each \,$Y \in L^{1}\!\left(\Omega,\mathcal{A},\mu\right)$, we have:
 	\begin{equation*}
 	E\!\left(\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,\right)
 	\;\; = \;\;
-	E\!\left(\;Y\;\right)	
+	E\!\left(\;Y\;\right).
 	\end{equation*}
 \item
 	If \,$Y \in L^{1}\!\left(\Omega,\mathcal{A},\mu\right)$
 	is in fact $(\mathcal{G},\mathcal{O})$-measurable,
 	then $E\!\left[\;Y\,\vert\,\mathcal{G}\,\right] \,=\, Y$,
-	$\mu$-almost-everywhere.
+	$(\mu\vert_{\mathcal{G}})$-almost-everywhere.
 \item\label{ConditionalExpectationRLinearity}
 	The map $E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]$ is $\Re$-linear, i.e.
 	\begin{equation*}
@@ -59,6 +60,17 @@ satisfies the following properties:
 	\,,
 	\end{equation*}
 	for each \,$c_{1}, c_{2} \in \Re$\, and \,$Y_{1}, \, Y_{2} \in L^{1}\!\left(\Omega,\mathcal{A},\mu\right)$.
+\item\label{ConditionalExpectationTowerProperty}
+	\textbf{The Tower Property\,:}
+	\vskip 0.0cm
+	If \,$Y \in L^{1}\!\left(\Omega,\mathcal{A},\mu\right)$
+	and \,$\mathcal{G}, \mathcal{H} \subset \mathcal{A}$ are sub-$\sigma$-algebras of $\mathcal{A}$
+	such that $\mathcal{H} \subset \mathcal{G}$, then
+	\begin{equation*}
+	E\!\left(\,\left.\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\;\,\right\vert\;\mathcal{H}\;\right)
+	\;\; = \;\;
+	E\!\left(\,\left.\overset{{\color{white}.}}{Y}\;\right\vert\;\mathcal{H}\;\right).
+	\end{equation*}	
 \item\label{ConditionalExpectationPreservesNonnegativity}
 	\textbf{The map \,$E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]$\, preserves non-negativity\,:}
 	\vskip 0.0cm
@@ -98,10 +110,90 @@ satisfies the following properties:
 
 \begin{enumerate}
 \item
+	\begin{equation*}
+	E\!\left(\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,\right)
+	\;\; = \;\;
+		\int_{\Omega}\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;
+		\int_{\Omega}\;Y\;\d\mu
+	\;\; = \;\;
+		E\!\left[\;Y\,\right]
+	\end{equation*}
 \item
+	Since $Y$ is by hypothesis $(\mathcal{G},\mathcal{O})$-measurable, we see that
+	\,$Y \in L^{1}(\Omega,\mathcal{G},\mu\vert_{\mathcal{G}})$.
+	Hence, for each \,$G \in \mathcal{G}$, we have:
+	\begin{equation*}
+	\int_{G}\;Y\;\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;
+		\int_{G}\;Y\;\d\mu
+	\;\; = \;\;
+		\int_{G}\;E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,\d(\mu\vert_{\mathcal{G}})\,,
+	\end{equation*}
+	which proves, by Corollary \ref{Corollary:AlmostEverywhereZero}, that
+	\,$Y = E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$,\,
+	$(\mu\vert_{\mathcal{G}})$-almost-everywhere.
 \item
+	For each \,$G \in \mathcal{G}$, we have:
+	\begin{eqnarray*}
+	\int_{G}\,\left(\;
+		c_{1}\cdot E\!\left[\;Y_{1}\,\vert\,\mathcal{G}\,\right]
+		\; \overset{{\color{white}.}}{+} \;
+		c_{2}\cdot E\!\left[\;Y_{2}\,\vert\,\mathcal{G}\,\right]	
+		\;\right)\,\d(\mu\vert_{\mathcal{G}})
+	&=&
+		c_{1} \cdot \int_{G}\;
+			E\!\left[\;Y_{1}\,\vert\,\mathcal{G}\,\right]
+			\,\d(\mu\vert_{\mathcal{G}})
+		\; \overset{{\color{white}.}}{+} \;
+		c_{2} \cdot \int_{G}\;
+			E\!\left[\;Y_{2}\,\vert\,\mathcal{G}\,\right]	
+			\,\d(\mu\vert_{\mathcal{G}})
+	\\
+	&=&
+		c_{1} \cdot \int_{G}\;
+			Y_{1}
+			\;\d\mu
+		\; \overset{{\color{white}.}}{+} \;
+		c_{2} \cdot \int_{G}\;
+			Y_{2}
+			\;\d\mu
+	\\
+	&=&
+		 \int_{G}\,\left(\;
+			c_{1} \cdot Y_{1}
+			\; \overset{{\color{white}.}}{+} \;
+			c_{2} \cdot Y_{2}
+			\;\right)\,\d\mu\,,
+	\end{eqnarray*}
+	which shows that
+	\,$c_{1}\cdot E\!\left[\;Y_{1}\,\vert\,\mathcal{G}\,\right] \,+\, c_{2}\cdot E\!\left[\;Y_{2}\,\vert\,\mathcal{G}\,\right]$\,
+	satisfies the defining property of 
+	\,$E\!\left[\;\left.c_{1}\cdot Y_{1}\;\overset{{\color{white}.}}{+}\;c_{2}\cdot Y_{2}\,\;\right\vert\,\mathcal{G}\;\right]$\,.
+	We may thus conclude that
+	\,$E\!\left[\;\left.c_{1}\cdot Y_{1}\;\overset{{\color{white}.}}{+}\;c_{2}\cdot Y_{2}\,\;\right\vert\,\mathcal{G}\;\right]$
+	\;$=$\;
+	$c_{1}\cdot E\!\left[\;Y_{1}\,\vert\,\mathcal{G}\,\right] \,+\, c_{2}\cdot E\!\left[\;Y_{2}\,\vert\,\mathcal{G}\,\right]$\,.
 \item
-	Suppose, on the contrary that,
+	Observe that, for each \,$H \in \mathcal{H}$, we have:
+	\begin{eqnarray*}
+	\int_{H}\;E\!\left(\,
+		\left.\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\;\right\vert\,\mathcal{H}
+		\;\right)
+		\,\d(\mu\vert_{\mathcal{H}})
+	\;\; = \;\;	
+		\int_{H}\;E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;	
+		\int_{H}\,Y\,\d\mu
+	\end{eqnarray*}
+	This shows that
+	\,$E\!\left(\,\left.\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\;\right\vert\,\mathcal{H}\;\right)$\,
+	satisfies the defining property of $E\!\left[\;Y\,\vert\,\mathcal{H}\,\right]$.
+	We may thus conclude that
+	\,$E\!\left(\,\left.\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\;\right\vert\,\mathcal{H}\;\right)$\,
+	$=$ $E\!\left[\;Y\,\vert\,\mathcal{H}\,\right]$.
+\item
+	Suppose, on the contrary, that
 	\,$\mu\vert_{\mathcal{G}}\!\left(\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,<\,0\,\right) >\,0$.\,
 	Then, it follows that, for some $n \in \N$, we have:
 	\begin{equation*}
