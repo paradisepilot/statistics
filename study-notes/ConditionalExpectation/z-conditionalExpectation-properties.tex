@@ -47,7 +47,7 @@ satisfies the following properties:
 	If \,$Y \in L^{1}\!\left(\Omega,\mathcal{A},\mu\right)$
 	is in fact $(\mathcal{G},\mathcal{O})$-measurable,
 	then $E\!\left[\;Y\,\vert\,\mathcal{G}\,\right] \,=\, Y$,
-	$(\mu\vert_{\mathcal{G}})$-almost-everywhere.
+	$(\mu\vert_{\mathcal{G}})$-almost everywhere.
 \item\label{ConditionalExpectationRLinearity}
 	The map $E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]$ is $\Re$-linear, i.e.
 	\begin{equation*}
@@ -75,24 +75,24 @@ satisfies the following properties:
 	\textbf{The map \,$E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]$\, preserves non-negativity\,:}
 	\vskip 0.0cm
 	If \,$Y \in L^{1}\!\left(\Omega,\mathcal{A},\mu\right)$\,
-	is non-negative $\mu$-almost-everywhere, then
+	is non-negative $\mu$-almost everywhere, then
 	\,$E\!\left[\;Y\,\vert\,\mathcal{G}\,\right] \in L^{1}\!\left(\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}\right)$\,
-	is non-negative \,$(\mu\vert_{\mathcal{G}})$-almost-everywhere.
+	is non-negative \,$(\mu\vert_{\mathcal{G}})$-almost everywhere.
 \item\label{ConditionalMonotoneConvergence}
 	\textbf{The map \,$E\!\left[\;\cdot\;\vert\,\mathcal{G}\,\right]$\, preserves monotone convergence\,:}
 	\vskip 0.0cm
 	Suppose \,$Y, Y_{1}, Y_{2}, \ldots \in L^{1}(\Omega,\mathcal{A},\mu)$\,
 	are non-negative and
 	\;$Y_{i} \uparrow Y$\,
-	$\mu$-almost-everywhere.
+	$\mu$-almost everywhere.
 	\vskip 0.0cm
 	Then, \,$E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right] \,\uparrow\, E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$,\,
-	$(\mu\vert_{\mathcal{G}})$-almost-everywhere.	
-\item\label{ConditionalFatouLemma}
+	$(\mu\vert_{\mathcal{G}})$-almost everywhere.	
+\item\label{ConditionalFatousLemma}
 	\textbf{Conditional Fatou's Lemma\,:}
 	\vskip 0.0cm
-	Suppose \,$Y_{1}, Y_{2}, \ldots \in L^{1}(\Omega,\mathcal{A},\mu)$\,	and
-	\,$Y_{n} \geq 0$, $\mu$-almost-everywhere, for each $n \in \N$.
+	Suppose \,$Y_{1}, Y_{2}, \ldots \in L^{1}(\Omega,\mathcal{A},\mu)$\, and
+	\,$Y_{n} \geq 0$, $\mu$-almost everywhere, for each $n \in \N$.
 	Suppose furthermore that
 	\,$\underset{n\rightarrow\infty}{\liminf}\,\int_{\Omega}\, Y_{n} \,\d\mu \,<\, \infty$.\,
 	Then,
@@ -102,10 +102,30 @@ satisfies the following properties:
 	\;\;\leq\;\;
 	\underset{n\rightarrow\infty}{\liminf}\; E\!\left[\;\left.\overset{{\color{white}.}}{Y}_{n}\;\right\vert\;\mathcal{G}\;\right]\,,
 	\quad
-	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost-everywhere}.
+	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost everywhere}.
 	\end{equation*}
 \item\label{ConditionalDominatedConvergence}
 	\textbf{Conditional Dominated Convergence Theorem\,:}
+	\vskip 0.0cm
+	Suppose:
+	\begin{itemize}
+	\item
+		For each $n\in\N$,
+		\,$Y_{n} : (\Omega,\mathcal{A},\mu)\longrightarrow(\Re,\mathcal{O})$\,
+		is $(\mathcal{A},\mathcal{O})$-measurable.
+	\item
+		There exists non-negative $Z \in L^{1}(\Omega,\mathcal{A},\mu)$ such that
+		$\vert \, Y_{n} \, \vert \,\leq\, Z$\, $\mu$-almost everywhere, for each $n\in\N$.
+	\item
+		$Y \,:= \underset{n\rightarrow\infty}{\lim}\,Y_{n}$\, exists, $\mu$-almost everywhere.
+	\end{itemize}
+	Then, $Y$ is $\mu$-integrable, $Y_{n}$ is $\mu$-integrable, for each $n\in\N$, and
+	\begin{equation*}
+	E\!\left[\;Y_{n}\,\vert\,\mathcal{G}\,\right]
+	\;\longrightarrow\;
+	E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+	\;\;\textnormal{$(\mu\vert_{\mathcal{G}})$-almost everywhere}.
+	\end{equation*}
 \item\label{FactorOutWhatIsKnown}
 	Let \,$Y \in L^{1}(\Omega,\mathcal{A},\mu)$\, and \,$Z : \Omega \longrightarrow \Re$ be
 	$(\mathcal{G},\mathcal{O})$-measurable, such that
@@ -115,7 +135,7 @@ satisfies the following properties:
 	\;\; = \;\;
 	Z \cdot E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,,
 	\quad
-	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost-everywhere}\,.
+	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost everywhere}\,.
 	\end{equation*}
 \end{enumerate}
 \end{theorem}
@@ -146,7 +166,7 @@ satisfies the following properties:
 	\end{equation*}
 	which proves, by Corollary \ref{Corollary:AlmostEverywhereZero}, that
 	\,$Y = E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$,\,
-	$(\mu\vert_{\mathcal{G}})$-almost-everywhere.
+	$(\mu\vert_{\mathcal{G}})$-almost everywhere.
 \item
 	For each \,$G \in \mathcal{G}$, we have:
 	\begin{eqnarray*}
@@ -231,11 +251,11 @@ satisfies the following properties:
 	which proves that we in fact must have
 	$\mu\vert_{\mathcal{G}}\!\left(\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,<\,0\,\right) =\,0$.
 	In other words, \,$E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$\, is non-negative
-	$(\mu\vert_{\mathcal{G}})$-almost-everywhere, as desired.
+	$(\mu\vert_{\mathcal{G}})$-almost everywhere, as desired.
 \item
 	By \eqref{ConditionalExpectationPreservesNonnegativity}, we see that the
 	\,$E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right]$'s\,
-	are $(\mu\vert_{\mathcal{G}})$-almost-everywhere non-negative and non-decreasing as $i \in \N$ increases.
+	are $(\mu\vert_{\mathcal{G}})$-almost everywhere non-negative and non-decreasing as $i \in \N$ increases.
 	Define \,$X := \underset{i\rightarrow\infty}{\limsup}\,E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right]$.\,
 	Then, \,$0\,\leq\,E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right] \,\uparrow\, X$.
 	Thus, the proof is complete once we show $X = E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$.
@@ -256,7 +276,7 @@ satisfies the following properties:
 	The uniqueness of conditional expectations now implies
 	\,$\underset{i\rightarrow\infty}{\limsup}\,E\!\left[\;Y_{i}\,\vert\,\mathcal{G}\,\right]$
 	\,$=:$ $X$ $=$ $E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]$\,,
-	$(\mu\vert_{\mathcal{G}})$-almost-everywhere, as desired.
+	$(\mu\vert_{\mathcal{G}})$-almost everywhere, as desired.
 \item
 	The $\mu$-integrability of \,$\underset{n\rightarrow\infty}{\liminf}\;Y_{n}$\, follows from (the usual)
 	Fatou's Lemma; see, for example, Theorem 22.10, p.171, \cite{Aliprantis1998}.
@@ -311,6 +331,106 @@ satisfies the following properties:
 	$(\mu\vert_{\mathcal{G}})$-almost everywhere.
 	This completes the proof of the Conditional Fatou's Lemma.
 \item
+	The $\mu$-integrability of $Y_{n}$ follows from Theorem 22.6, p.169, \cite{Aliprantis1998},
+	whereas the $\mu$-integrability of $Y$ follows from the (usual)
+	Lebesgue Dominated Convergence Theorem (Theorem 22.11, p.172, \cite{Aliprantis1998}).
+	Now, observe that we have, $(\mu\vert_{\mathcal{G}})$-almost everywhere,
+	\begin{eqnarray*}
+	E\!\left[\,Z\,\vert\,\mathcal{G}\,\right] \;-\; E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+	&=&
+		E\!\left[\;Z\,-\,Y\;\vert\,\mathcal{G}\,\right]
+	\;\; = \;\;
+		E\!\left[\;\left.Z\,- \underset{n\rightarrow\infty}{\lim}\,Y_{n}\;\right\vert\,\mathcal{G}\,\right]
+	\;\; = \;\;
+		E\!\left[\;\left.\underset{n\rightarrow\infty}{\lim}\left(\,Z\,-\,Y_{n}\,\right)\;\right\vert\,\mathcal{G}\,\right]
+	\\
+	&=&
+		E\!\left[\;\left.\underset{n\rightarrow\infty}{\liminf}\left(\,Z\,-\,Y_{n}\,\right)\;\right\vert\,\mathcal{G}\,\right]
+	\\
+	&\leq&
+		\underset{n\rightarrow\infty}{\liminf}\;E\!\left[\;
+			\left(\,Z\,-\,Y_{n}\,\right)\,\left\vert\;\overset{{\color{white}.}}{\mathcal{G}}\right.
+			\,\right]
+	\;\;=\;\;
+		E\!\left[\,Z\,\vert\,\mathcal{G}\,\right] \;-\; 
+		\underset{n\rightarrow\infty}{\limsup}\;E\!\left[\;
+			Y_{n}\,\left\vert\;\overset{{\color{white}.}}{\mathcal{G}}\right.
+			\,\right]\,,
+	\end{eqnarray*}
+	where the inequality above follows from the Conditional Fatou's Lemma \eqref{ConditionalFatousLemma}.
+	Hence,
+	\begin{equation*}
+	E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+	\;\; \geq \;\;
+		\underset{n\rightarrow\infty}{\limsup}\;E\!\left[\;
+			Y_{n}\,\left\vert\;\overset{{\color{white}.}}{\mathcal{G}}\right.
+			\,\right]\,,
+	\quad
+	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost everywhere}.
+	\end{equation*}
+	Similarly, we also have, $(\mu\vert_{\mathcal{G}})$-almost everywhere,
+	\begin{eqnarray*}
+	E\!\left[\,Z\,\vert\,\mathcal{G}\,\right] \;+\; E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+	&=&
+		E\!\left[\;Z\,+\,Y\;\vert\,\mathcal{G}\,\right]
+	\;\; = \;\;
+		E\!\left[\;\left.Z\,+ \underset{n\rightarrow\infty}{\lim}\,Y_{n}\;\right\vert\,\mathcal{G}\,\right]
+	\;\; = \;\;
+		E\!\left[\;\left.\underset{n\rightarrow\infty}{\lim}\left(\,Z\,+\,Y_{n}\,\right)\;\right\vert\,\mathcal{G}\,\right]
+	\\
+	&=&
+		E\!\left[\;\left.\underset{n\rightarrow\infty}{\liminf}\left(\,Z\,+\,Y_{n}\,\right)\;\right\vert\,\mathcal{G}\,\right]
+	\\
+	&\leq&
+		\underset{n\rightarrow\infty}{\liminf}\;E\!\left[\;
+			\left(\,Z\,+\,Y_{n}\,\right)\,\left\vert\;\overset{{\color{white}.}}{\mathcal{G}}\right.
+			\,\right]
+	\;\;=\;\;
+		E\!\left[\,Z\,\vert\,\mathcal{G}\,\right] \;+\; 
+		\underset{n\rightarrow\infty}{\liminf}\;E\!\left[\;
+			Y_{n}\,\left\vert\;\overset{{\color{white}.}}{\mathcal{G}}\right.
+			\,\right]\,,
+	\end{eqnarray*}
+	where the inequality above follows from the Conditional Fatou's Lemma \eqref{ConditionalFatousLemma}.
+	Hence,
+	\begin{equation*}
+	E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+	\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\liminf}\;E\!\left[\;
+			Y_{n}\,\left\vert\;\overset{{\color{white}.}}{\mathcal{G}}\right.
+			\,\right]\,,
+	\quad
+	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost everywhere}.
+	\end{equation*}
+	Therefore,
+	\begin{equation*}
+	E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+	\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\liminf}\;E\!\left[\;
+			Y_{n}\,\left\vert\;\overset{{\color{white}.}}{\mathcal{G}}\right.
+			\,\right]
+	\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\limsup}\;E\!\left[\;
+			Y_{n}\,\left\vert\;\overset{{\color{white}.}}{\mathcal{G}}\right.
+			\,\right]
+	\;\; \leq \;\;
+	E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]\,,
+	\quad
+	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost everywhere}\,,
+	\end{equation*}
+	which implies
+	\,$\underset{n\rightarrow\infty}{\lim}\;E\!\left[\;Y_{n}\,\left\vert\;\overset{{\color{white}.}}{\mathcal{G}}\right.\,\right]$\,
+	$(\mu\vert_{\mathcal{G}})$-almost everywhere, and
+	\begin{equation*}
+	E\!\left[\;Y\,\vert\,\mathcal{G}\,\right]
+	\;\; = \;\;
+		\underset{n\rightarrow\infty}{\lim}\;E\!\left[\;
+			Y_{n}\,\left\vert\;\overset{{\color{white}.}}{\mathcal{G}}\right.
+			\,\right]\,,
+	\quad
+	\textnormal{$(\mu\vert_{\mathcal{G}})$-almost everywhere}.
+	\end{equation*}
+	This completes the proof of the Conditional Dominated Convergence Theorem.
 \item
 	\textbf{Claim 1:}\;\;\eqref{FactorOutWhatIsKnown} holds for $Z = 1_{H}$, where $H \in \mathcal{G}$.
 	\vskip 0.0cm
