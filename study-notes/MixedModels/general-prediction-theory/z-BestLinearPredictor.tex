@@ -1,0 +1,368 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Best Linear Predictor}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Best Linear Predictor, Theorem 6.3.4, \cite{Christensen2011}]
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X = (X_{1}, X_{2}, \ldots, X_{p}) : \Omega \longrightarrow \Re^{p}$ an $\Re^{p}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$Y : \Omega \longrightarrow \Re$ is an $\Re$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+%	i.e. $E(\,\vert\,\overset{{\color{white}.}}{Y}\,\vert\,)\,<\,\infty$.
+%	\vskip 0.01cm
+%	(Recall that the integrability of $Y$ implies the existence and uniqueness of $E\!\left(\;Y\,\vert\,X\,\right)$;
+%	see Theorem \ref{Thm:ExistenceConditionalExpectation}.)
+\item
+	The following expectation vectors and covariance matrices all exist:
+	\begin{equation*}
+	\mu_{Y} := E\!\left(\,Y\,\right) \in \Re,
+	\quad\;\;
+	\mu_{X} := E\!\left(\,X\,\right) \in \Re^{p \times 1},
+	\quad\;\;
+	\Cov(X,Y) = \Cov(Y,X)^{T} \in \Re^{p \times 1},
+	\quad\;\;
+	\Cov(X,X) \in \Re^{p \times p}.
+	\end{equation*}
+\item
+	Define
+	\begin{equation*}
+	\blp(\,Y\,\vert\,X\,)
+	\;\; := \;\;
+		\mu_{Y} - \left(X - \mu_{X}\right)^{T}\cdot\beta\,,
+	\end{equation*}
+	where $\beta \in \Re^{p\times 1}$ is any element of $\Re^{p\times 1}$ which satisfies:
+	\begin{equation*}
+	\Cov(X,X)\cdot\beta
+	\;\; = \;\;
+		\Cov(X,Y)
+	\end{equation*}
+\end{itemize}
+Then, 
+\begin{enumerate}
+\item
+	$\blp(\,Y\vert X)$ in fact does not depend on the particular choice of $\beta$.
+\item
+	$\blp(\,Y\vert X)$ is the ``best linear predictor of \,$Y$ in terms of $X$,'' in the following sense:
+	\begin{equation*}
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\vert X)\,\right)^{2}\;\right]
+	\;\;\leq\;\;
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\;\right]\,,
+	\quad
+	\textnormal{for every affine function $f:\Re^{p}\longrightarrow\Re$}.
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{eqnarray*}
+E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
+&=&
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,) + E(\,Y\,\vert\,X\,) - f(X)\,\right)^{2}\,\right]
+\\
+&=&
+	{\color{white}+}\;\;
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)^{2}\,\right]
+	\;+\;
+	E\!\left[\;\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
+\\
+&&
+	+\;
+	2 \cdot E\!\left[\,
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+		\cdot
+		\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+		\,\right]
+\end{eqnarray*}
+It is now clear that the Theorem follows once we show
+$E\!\left[\,
+	\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+	\cdot
+	\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+	\,\right] \,=\, 0$.
+To this end,
+\begin{eqnarray*}
+&&
+	E\!\left\{\,
+	{\color{white}E\;\;\,}
+	\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+	\cdot
+	\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+	{\color{white}E\quad\;\;\;}
+	\,\right\}
+\\
+&=&
+	E\!\left\{\,
+	E\!\left[\;
+		\left.
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+		\cdot
+		{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
+		\;\,\right\vert\;X
+	\;\right]
+	\,\right\}
+\\
+&=&
+	E\!\left\{\,
+	{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
+	\cdot
+	E\!\left[\;
+		\left.
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)		
+		\;\,\right\vert\;X
+	\;\right]
+	\,\right\}
+\\
+&=&
+	E\!\left\{\,
+	{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
+	\cdot 0
+	\,\right\}
+	\;\; = \;\; 0\,,
+\end{eqnarray*}
+as desired.
+\qed
+
+\begin{proposition}[Proposition 6.3.2, \cite{Christensen2011}]
+\label{Propn:CovarianceYFX}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X = (X_{1}, X_{2}, \ldots, X_{p}) : \Omega \longrightarrow \Re^{p}$ an $\Re^{p}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$Y : \Omega \longrightarrow \Re$ is an \textbf{\color{red}integrable} $\Re$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$,
+	i.e. $E(\,\vert\,\overset{{\color{white}.}}{Y}\,\vert\,)\,<\,\infty$.
+	\vskip 0.01cm
+	(Recall that the integrability of $Y$ implies the existence and uniqueness of $E\!\left(\;Y\,\vert\,X\,\right)$;
+	see Theorem \ref{Thm:ExistenceConditionalExpectation}.)
+\item
+	$f : (\Re^{p},\mathcal{O}(\Re^{p})) \longrightarrow (\Re,\mathcal{O})$ is an $\Re$-valued Borel function
+	defined on $\Re^{p}$ such that $f(X) := f\circ X$ is integrable, i.e. $E\!\left(\,\vert\,f(X)\,\vert\,\right) \,<\, \infty$.
+\end{itemize}
+Then,
+\begin{equation*}
+\Cov\!\left(\,\overset{{\color{white}.}}{Y}\,,\,f(X)\,\right)
+\;\; = \;\;
+\Cov\!\left(\,\overset{{\color{white}.}}{E}(\,Y\,\vert\,X\,)\,,\,f(X)\,\right)\,.
+\end{equation*}
+In particular, we have:
+\begin{equation*}
+\Cov\!\left(\;\overset{{\color{white}.}}{Y}\,,\,E[\;Y\,\vert\,X\,]\;\right)
+	\; = \; \Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]
+	\; = \; \sigma^{2}_{E[Y\vert X]}\,,
+\quad\textnormal{and}\quad
+\end{equation*}
+\begin{equation*}
+\Corr\!\left(\;\overset{{\color{white}.}}{Y}\,,\,E[\;Y\,\vert\,X\,]\;\right)
+	\; := \;
+		\dfrac{
+			\Cov\!\left(\;\overset{{\color{white}.}}{Y}\,,\,E[\;Y\,\vert\,X\,]\;\right)
+			}{
+			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{Y}\,\right]} \cdot \sqrt{\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]}
+			}
+	\; = \;
+		\dfrac{
+			\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]
+			}{
+			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{Y}\,\right]} \cdot \sqrt{\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]}
+			}
+	\; = \;
+		\dfrac{
+			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]}
+			}{
+			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{Y}\,\right]}
+			}\,.
+\end{equation*}
+\end{proposition}
+\proof
+Write $\mu_{Y} \,:=\, E\!\left[\;Y\,\right]$.
+\begin{eqnarray*}
+\Cov\!\left(\,\overset{{\color{white}.}}{Y}\,,\,f(X)\,\right)
+&:=&
+	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot \left(\,\overset{{\color{white}.}}{f}(X) - E[\,f(X)\,]\,\right)\;\right]
+\\
+&=&
+	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\right]
+	\; - \;
+	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot E[\,f(X)\,]\;\right]
+\\
+&=&
+	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\right]
+	\; - \;
+	E[\,f(X)\,] \cdot E\!\left[\;\overset{{\color{white}.}}{Y} - \mu_{Y}\;\right]
+\\
+&=&
+	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\right]
+\\
+&=&
+	E\!\left\{\;
+		E\!\left[\;\left.\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\,\right\vert\;X\;\right]
+	\;\right\}
+\\
+&=&
+	E\!\left\{\;
+		E\!\left[\,\left.\,\overset{{\color{white}.}}{Y} - \mu_{Y}\;\right\vert\,X\,\right]
+		\cdot
+		f(X)
+	\;\right\}
+\\
+&=&
+	E\!\left\{\;
+		\left(\;\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,X\;\right] \,-\, \mu_{Y}\;\right)
+		\cdot
+		f(X)
+	\;\right\}
+	\; - \;
+	E[\,f(X)\,] \cdot E\!\left\{\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,] - \mu_{Y}\;\right\}
+\\
+&=&
+	E\!\left\{\;
+		\left(\;\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,X\;\right] \,-\, \mu_{Y}\;\right)
+		\cdot
+		f(X)
+	\;\right\}
+	\; - \;
+	E\!\left\{\,\left(\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,] - \mu_{Y}\right) \cdot E[\,f(X)\,]\;\right\}
+\\
+&=&
+	E\!\left\{\;
+		\left(\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,X\;\right] \,-\, \mu_{Y}\,\right)
+		\cdot
+		\left(\;\overset{{\color{white}.}}{f}(X)\,-\,E[\,f(X)\,]\;\right)
+	\;\right\}
+\\
+&=:&
+	\Cov\!\left(\,\overset{{\color{white}.}}{E}(\,Y\,\vert\,X\,)\,,\,f(X)\,\right)
+\end{eqnarray*}
+\qed
+
+\begin{theorem}[Theorem 6.3.3, \cite{Christensen2011}]
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X = (X_{1}, X_{2}, \ldots, X_{p}) : \Omega \longrightarrow \Re^{p}$ an $\Re^{p}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$Y : \Omega \longrightarrow \Re$ is an \textbf{\color{red}integrable} $\Re$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$,
+	i.e. $E(\,\vert\,\overset{{\color{white}.}}{Y}\,\vert\,)\,<\,\infty$.
+	\vskip 0.01cm
+	(Recall that the integrability of $Y$ implies the existence and uniqueness of $E\!\left(\;Y\,\vert\,X\,\right)$;
+	see Theorem \ref{Thm:ExistenceConditionalExpectation}.)
+\item
+	$f : (\Re^{p},\mathcal{O}(\Re^{p})) \longrightarrow (\Re,\mathcal{O})$ is an $\Re$-valued Borel function
+	defined on $\Re^{p}$ such that $f(X) := f\circ X$ is integrable, and $E\!\left[\,f(X)\,\right] \,=\, E\!\left[\,Y\,\right]$.
+\end{itemize}
+Then,
+\begin{equation*}
+	\begin{array}{c}
+	\Cov\!\left(\,Y-f(X)\,,\,\overset{{\color{white}\vert}}{g}(X)\,\right) \,=\, 0\,,
+	\\
+	\overset{{\color{white}-}}{\textnormal{for each}\;\, g : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})}
+	\\
+	\overset{{\color{white}-}}{\textnormal{such that \,$g(X)$ is $\mu$-integrable}}
+	\,,
+%	\overset{{\color{white}-}}{\textnormal{for each integrable}}
+%	\\
+%	\overset{{\color{white}\vert}}{g} : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})\,,
+	\end{array}
+	\quad\quad\textnormal{if and only if}\quad\quad
+	f(X) \,=\, E\!\left(\;Y\,\vert\,X\;\right)\,.
+\end{equation*}
+\end{theorem}
+\proof
+\vskip 0.1cm
+\noindent
+\underline{(\,$\Longleftarrow$\,)}\quad
+Suppose $f(X) \,=\, E\!\left(\,Y\,\vert\,X\,\right)$ and
+$g : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})$
+is $\mu$-integrable.
+Then,
+\begin{eqnarray*}
+\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,Y-f(X)\,\right)
+&=&
+	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,Y-E\!\left(\,Y\,\vert\,X\,\right)\,\right)
+\;\;=\;\;
+	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,Y\,\right)
+	\; - \;
+	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,E\!\left(\,Y\,\vert\,X\,\right)\,\right)
+\\
+&=&
+	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,E\!\left(\,Y\,\vert\,X\,\right)\,\right)
+	\; - \;
+	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,E\!\left(\,Y\,\vert\,X\,\right)\,\right)
+\;\;=\;\;
+	0\,,
+\end{eqnarray*}
+where the third equality follows from Proposition \ref{Propn:CovarianceYFX}.
+\vskip 0.3cm
+\noindent
+\underline{(\,$\Longrightarrow$\,)}\quad
+\begin{eqnarray*}
+\Var\!\left(\,f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+&=&
+	\Cov\!\left(\,f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,,\,f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+\\
+&=&
+	\Cov\!\left\{\,
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right) - \left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)
+		\,,\,
+		f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+		\,\right\}
+\\
+&=&
+	\Cov\!\left\{\,
+		Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+		\,,\,
+		f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+		\,\right\}
+	\;-\;
+	\Cov\!\left\{\,
+		Y \overset{{\color{white}.}}{-} f(X)
+		\,,\,
+		f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+		\,\right\}
+\\
+&=&
+	0 \,-\, 0
+	\;\; = \;\;
+	0
+\end{eqnarray*}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
