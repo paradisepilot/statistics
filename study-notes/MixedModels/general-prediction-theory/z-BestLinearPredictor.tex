@@ -46,316 +46,147 @@ Suppose:
 	\begin{equation*}
 	\blp(\,Y\,\vert\,X\,)
 	\;\; := \;\;
-		\mu_{Y} - \left(X - \mu_{X}\right)^{T}\cdot\beta\,,
+		\mu_{Y} + \left(X - \mu_{X}\right)^{T}\cdot\beta\,,
 	\end{equation*}
 	where $\beta \in \Re^{p\times 1}$ is any element of $\Re^{p\times 1}$ which satisfies:
-	\begin{equation*}
-	\Cov(X,X)\cdot\beta
-	\;\; = \;\;
-		\Cov(X,Y)
-	\end{equation*}
+	\begin{equation}\label{betaDefiningEquation}
+	\Cov(X,X)\cdot\beta \;\; = \;\; \Cov(X,Y)
+	\end{equation}
 \end{itemize}
 Then, 
 \begin{enumerate}
 \item
-	$\blp(\,Y\vert X)$ in fact does not depend on the particular choice of $\beta$.
+	$\blp(\,Y\vert X)$ is well-defined, i.e. there exist (not necessarily non-unique)
+	$\beta \in \Re^{p}$ satisfying \eqref{betaDefiningEquation} but
+	the $\Re^{p}$-valued random variable $\blp(\,Y\vert X)$ itself
+	in fact does not depend on the particular choice of $\beta$.
 \item
-	$\blp(\,Y\vert X)$ is the ``best linear predictor of \,$Y$ in terms of $X$,'' in the following sense:
+	For every affine function $f:\Re^{p}\longrightarrow\Re$, we have:
 	\begin{equation*}
 	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\vert X)\,\right)^{2}\;\right]
 	\;\;\leq\;\;
-	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\;\right]\,,
-	\quad
-	\textnormal{for every affine function $f:\Re^{p}\longrightarrow\Re$}.
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\;\right]\,.
 	\end{equation*}
 \end{enumerate}
 \end{theorem}
 \proof
-\begin{eqnarray*}
-E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
-&=&
-	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,) + E(\,Y\,\vert\,X\,) - f(X)\,\right)^{2}\,\right]
-\\
-&=&
-	{\color{white}+}\;\;
-	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)^{2}\,\right]
-	\;+\;
-	E\!\left[\;\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
-\\
-&&
-	+\;
-	2 \cdot E\!\left[\,
-		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+\begin{enumerate}
+\item
+\item
+	First, observe that:
+	\begin{eqnarray*}
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
+	&=&
+		E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\,\vert\,X\,) + \blp(\,Y\,\vert\,X\,) - f(X)\,\right)^{2}\,\right]
+	\\
+	&=&
+		{\color{white}+}\;\;
+		E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\,\vert\,X\,)\,\right)^{2}\,\right]
+		\;+\;
+		E\!\left[\;\left(\,\blp(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
+	\\
+	&&
+		+\;
+		2 \cdot E\!\left[\,
+			\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\,\vert\,X\,)\,\right)
+			\cdot
+			\left(\,\blp(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+			\,\right]
+	\end{eqnarray*}
+	Thus, we see that it suffices to show
+	$E\!\left[\,
+		\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\,\vert\,X\,)\,\right)
 		\cdot
 		\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
-		\,\right]
-\end{eqnarray*}
-It is now clear that the Theorem follows once we show
-$E\!\left[\,
-	\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
-	\cdot
-	\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
-	\,\right] \,=\, 0$.
-To this end,
-\begin{eqnarray*}
-&&
-	E\!\left\{\,
-	{\color{white}E\;\;\,}
-	\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
-	\cdot
-	\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
-	{\color{white}E\quad\;\;\;}
-	\,\right\}
-\\
-&=&
-	E\!\left\{\,
-	E\!\left[\;
-		\left.
-		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+		\,\right] \,=\, 0$.
+	Now, since $f : \Re^{p}\longrightarrow\Re$ is an affine function, $f$ has the form
+	$f(x)$ $=$ $\nu + (x - \mu_{X})^{T}\cdot\eta$,
+	for some $\nu \in \Re$ and some $\eta \in \Re^{p}$.
+	Hence,
+	\begin{eqnarray*}
+	&&
+		E\!\left[\;
+		\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\,\vert\,X\,)\,\right)
 		\cdot
-		{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
-		\;\,\right\vert\;X
-	\;\right]
-	\,\right\}
-\\
-&=&
-	E\!\left\{\,
-	{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
-	\cdot
-	E\!\left[\;
-		\left.
-		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)		
-		\;\,\right\vert\;X
-	\;\right]
-	\,\right\}
-\\
-&=&
-	E\!\left\{\,
-	{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
-	\cdot 0
-	\,\right\}
-	\;\; = \;\; 0\,,
-\end{eqnarray*}
-as desired.
-\qed
-
-\begin{proposition}[Proposition 6.3.2, \cite{Christensen2011}]
-\label{Propn:CovarianceYFX}
-\mbox{}
-\vskip 0.2cm
-\noindent
-Suppose:
-\begin{itemize}
-\item
-	$(\Omega,\mathcal{A},\mu)$ is a probability space.
-\item
-	$X = (X_{1}, X_{2}, \ldots, X_{p}) : \Omega \longrightarrow \Re^{p}$ an $\Re^{p}$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$.
-\item
-	$Y : \Omega \longrightarrow \Re$ is an \textbf{\color{red}integrable} $\Re$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$,
-	i.e. $E(\,\vert\,\overset{{\color{white}.}}{Y}\,\vert\,)\,<\,\infty$.
-	\vskip 0.01cm
-	(Recall that the integrability of $Y$ implies the existence and uniqueness of $E\!\left(\;Y\,\vert\,X\,\right)$;
-	see Theorem \ref{Thm:ExistenceConditionalExpectation}.)
-\item
-	$f : (\Re^{p},\mathcal{O}(\Re^{p})) \longrightarrow (\Re,\mathcal{O})$ is an $\Re$-valued Borel function
-	defined on $\Re^{p}$ such that $f(X) := f\circ X$ is integrable, i.e. $E\!\left(\,\vert\,f(X)\,\vert\,\right) \,<\, \infty$.
-\end{itemize}
-Then,
-\begin{equation*}
-\Cov\!\left(\,\overset{{\color{white}.}}{Y}\,,\,f(X)\,\right)
-\;\; = \;\;
-\Cov\!\left(\,\overset{{\color{white}.}}{E}(\,Y\,\vert\,X\,)\,,\,f(X)\,\right)\,.
-\end{equation*}
-In particular, we have:
-\begin{equation*}
-\Cov\!\left(\;\overset{{\color{white}.}}{Y}\,,\,E[\;Y\,\vert\,X\,]\;\right)
-	\; = \; \Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]
-	\; = \; \sigma^{2}_{E[Y\vert X]}\,,
-\quad\textnormal{and}\quad
-\end{equation*}
-\begin{equation*}
-\Corr\!\left(\;\overset{{\color{white}.}}{Y}\,,\,E[\;Y\,\vert\,X\,]\;\right)
-	\; := \;
-		\dfrac{
-			\Cov\!\left(\;\overset{{\color{white}.}}{Y}\,,\,E[\;Y\,\vert\,X\,]\;\right)
-			}{
-			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{Y}\,\right]} \cdot \sqrt{\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]}
-			}
-	\; = \;
-		\dfrac{
-			\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]
-			}{
-			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{Y}\,\right]} \cdot \sqrt{\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]}
-			}
-	\; = \;
-		\dfrac{
-			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]}
-			}{
-			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{Y}\,\right]}
-			}\,.
-\end{equation*}
-\end{proposition}
-\proof
-Write $\mu_{Y} \,:=\, E\!\left[\;Y\,\right]$.
-\begin{eqnarray*}
-\Cov\!\left(\,\overset{{\color{white}.}}{Y}\,,\,f(X)\,\right)
-&:=&
-	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot \left(\,\overset{{\color{white}.}}{f}(X) - E[\,f(X)\,]\,\right)\;\right]
-\\
-&=&
-	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\right]
-	\; - \;
-	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot E[\,f(X)\,]\;\right]
-\\
-&=&
-	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\right]
-	\; - \;
-	E[\,f(X)\,] \cdot E\!\left[\;\overset{{\color{white}.}}{Y} - \mu_{Y}\;\right]
-\\
-&=&
-	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\right]
-\\
-&=&
-	E\!\left\{\;
-		E\!\left[\;\left.\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\,\right\vert\;X\;\right]
-	\;\right\}
-\\
-&=&
-	E\!\left\{\;
-		E\!\left[\,\left.\,\overset{{\color{white}.}}{Y} - \mu_{Y}\;\right\vert\,X\,\right]
-		\cdot
-		f(X)
-	\;\right\}
-\\
-&=&
-	E\!\left\{\;
-		\left(\;\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,X\;\right] \,-\, \mu_{Y}\;\right)
-		\cdot
-		f(X)
-	\;\right\}
-	\; - \;
-	E[\,f(X)\,] \cdot E\!\left\{\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,] - \mu_{Y}\;\right\}
-\\
-&=&
-	E\!\left\{\;
-		\left(\;\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,X\;\right] \,-\, \mu_{Y}\;\right)
-		\cdot
-		f(X)
-	\;\right\}
-	\; - \;
-	E\!\left\{\,\left(\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,] - \mu_{Y}\right) \cdot E[\,f(X)\,]\;\right\}
-\\
-&=&
-	E\!\left\{\;
-		\left(\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,X\;\right] \,-\, \mu_{Y}\,\right)
-		\cdot
-		\left(\;\overset{{\color{white}.}}{f}(X)\,-\,E[\,f(X)\,]\;\right)
-	\;\right\}
-\\
-&=:&
-	\Cov\!\left(\,\overset{{\color{white}.}}{E}(\,Y\,\vert\,X\,)\,,\,f(X)\,\right)
-\end{eqnarray*}
-\qed
-
-\begin{theorem}[Theorem 6.3.3, \cite{Christensen2011}]
-\mbox{}
-\vskip 0.2cm
-\noindent
-Suppose:
-\begin{itemize}
-\item
-	$(\Omega,\mathcal{A},\mu)$ is a probability space.
-\item
-	$X = (X_{1}, X_{2}, \ldots, X_{p}) : \Omega \longrightarrow \Re^{p}$ an $\Re^{p}$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$.
-\item
-	$Y : \Omega \longrightarrow \Re$ is an \textbf{\color{red}integrable} $\Re$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$,
-	i.e. $E(\,\vert\,\overset{{\color{white}.}}{Y}\,\vert\,)\,<\,\infty$.
-	\vskip 0.01cm
-	(Recall that the integrability of $Y$ implies the existence and uniqueness of $E\!\left(\;Y\,\vert\,X\,\right)$;
-	see Theorem \ref{Thm:ExistenceConditionalExpectation}.)
-\item
-	$f : (\Re^{p},\mathcal{O}(\Re^{p})) \longrightarrow (\Re,\mathcal{O})$ is an $\Re$-valued Borel function
-	defined on $\Re^{p}$ such that $f(X) := f\circ X$ is integrable, and $E\!\left[\,f(X)\,\right] \,=\, E\!\left[\,Y\,\right]$.
-\end{itemize}
-Then,
-\begin{equation*}
-	\begin{array}{c}
-	\Cov\!\left(\,Y-f(X)\,,\,\overset{{\color{white}\vert}}{g}(X)\,\right) \,=\, 0\,,
+		\left(\,\blp(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+		\;\right]
 	\\
-	\overset{{\color{white}-}}{\textnormal{for each}\;\, g : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})}
+	&=&
+		E\!\left[\;
+			\left(\,Y \overset{{\color{white}.}}{-} \mu_{Y} - (X-\mu_{X})^{T}\cdot\beta\,\right)
+			\cdot
+			\left(\,\mu_{Y} + (X-\mu_{X})^{T}\cdot\beta \overset{{\color{white}.}}{-} \nu - (X-\mu_{X})^{T}\cdot\eta\,\right)
+		\;\right]
 	\\
-	\overset{{\color{white}-}}{\textnormal{such that \,$g(X)$ is $\mu$-integrable}}
-	\,,
-%	\overset{{\color{white}-}}{\textnormal{for each integrable}}
-%	\\
-%	\overset{{\color{white}\vert}}{g} : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})\,,
-	\end{array}
-	\quad\quad\textnormal{if and only if}\quad\quad
-	f(X) \,=\, E\!\left(\;Y\,\vert\,X\;\right)\,.
-\end{equation*}
-\end{theorem}
-\proof
-\vskip 0.1cm
-\noindent
-\underline{(\,$\Longleftarrow$\,)}\quad
-Suppose $f(X) \,=\, E\!\left(\,Y\,\vert\,X\,\right)$ and
-$g : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})$
-is $\mu$-integrable.
-Then,
-\begin{eqnarray*}
-\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,Y-f(X)\,\right)
-&=&
-	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,Y-E\!\left(\,Y\,\vert\,X\,\right)\,\right)
-\;\;=\;\;
-	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,Y\,\right)
-	\; - \;
-	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,E\!\left(\,Y\,\vert\,X\,\right)\,\right)
-\\
-&=&
-	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,E\!\left(\,Y\,\vert\,X\,\right)\,\right)
-	\; - \;
-	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,E\!\left(\,Y\,\vert\,X\,\right)\,\right)
-\;\;=\;\;
-	0\,,
-\end{eqnarray*}
-where the third equality follows from Proposition \ref{Propn:CovarianceYFX}.
-\vskip 0.3cm
-\noindent
-\underline{(\,$\Longrightarrow$\,)}\quad
-\begin{eqnarray*}
-\Var\!\left(\,f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
-&=&
-	\Cov\!\left(\,f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,,\,f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
-\\
-&=&
-	\Cov\!\left\{\,
-		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right) - \left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)
-		\,,\,
-		f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
-		\,\right\}
-\\
-&=&
-	\Cov\!\left\{\,
-		Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
-		\,,\,
-		f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
-		\,\right\}
-	\;-\;
-	\Cov\!\left\{\,
-		Y \overset{{\color{white}.}}{-} f(X)
-		\,,\,
-		f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
-		\,\right\}
-\\
-&=&
-	0 \,-\, 0
+	&=&
+		E\!\left[\;
+			\left(\,Y \overset{{\color{white}.}}{-} \mu_{Y} - \beta^{T}\cdot(X-\mu_{X})\,\right)
+			\cdot
+			\left(\,\mu_{Y} \overset{{\color{white}.}}{-} \nu + (X-\mu_{X})^{T}\cdot(\,\beta-\eta\,)\,\right)
+		\;\right]
+	\\
+	&=&
+		E\!\left[\;
+		\begin{array}{lcl}
+			{\color{white}+}\left(\,Y - \mu_{Y} \,\right)\cdot\left(\,\mu_{Y} - \nu\,\right)
+			&-&
+			\beta^{T}\cdot(X-\mu_{X})\cdot\left(\,\mu_{Y} - \nu\,\right)
+			\\
+			+\left(\,Y - \mu_{Y} \,\right)\cdot(X-\mu_{X})^{T}\cdot(\,\beta-\eta\,)
+			&-&
+			\beta^{T}\cdot(X-\mu_{X})\cdot(X-\mu_{X})^{T}\cdot(\,\beta-\eta\,)
+		\end{array}
+		\;\right]
+	\\
+	&=&
+		{\color{white}+}
+		{\color{red}E\!\left[\;Y - \mu_{Y}\;\right]} \cdot \left(\,\mu_{Y} - \nu\,\right)
+		-
+		\beta^{T} \cdot {\color{red}E\!\left[\;X-\mu_{X}\;\right]} \cdot \left(\,\mu_{Y} - \nu\,\right)
+	\\
+	&&
+		+
+		E\!\left[\;\left(\,Y - \mu_{Y} \,\right)\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]\cdot(\,\beta-\eta\,)
+		-
+		\beta^{T} \cdot E\!\left[\;(X-\mu_{X})\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]\cdot(\,\beta-\eta\,)
+	\\
+	&=&
+		{\color{white}+}
+		{\color{red}0} - {\color{red}0}
+	\\
+	&&
+		+
+		\left(\;
+			E\!\left[\;\left(\,Y - \mu_{Y} \,\right)\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]
+			-
+			\beta^{T} \cdot E\!\left[\;(X-\mu_{X})\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]
+			\;\right)\cdot(\,\beta-\eta\,)
+	\\
+	&=&
+		\left(\;
+			E\!\left[\;\left(\,Y - \mu_{Y} \,\right)\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]
+			-
+			\beta^{T} \cdot E\!\left[\;(X-\mu_{X})\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]
+			\;\right)\cdot(\,\beta-\eta\,)
+	\\
+	&=&
+		0\,,
+	\end{eqnarray*}
+	where the last equality follows by choice of $\beta$ that it satisfies
+	\begin{equation*}
+	\Cov(X,X)\cdot\beta
 	\;\; = \;\;
-	0
-\end{eqnarray*}
+		\Cov(X,Y)\,,
+	\end{equation*}
+	equivalently,
+	\begin{equation*}
+	E\!\left[\;(X-\mu_{X})\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right] \cdot \beta 
+	\; - \;
+	E\!\left[\;(X-\mu_{X})\overset{{\color{white}\vert}}{\cdot}\left(\,Y - \mu_{Y} \,\right)\;\right]
+	\;\; = \;\; 0
+	\end{equation*}
+\end{enumerate}
+
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
