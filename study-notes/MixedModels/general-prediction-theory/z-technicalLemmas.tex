@@ -9,11 +9,11 @@
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
 \begin{lemma}[Exercise 1.6, p.9, \cite{Christensen2011}]
-\mbox{}\vskip 0.2cm
+\mbox{}\vskip 0.1cm
 \noindent
 Suppose $(\Omega,\mathcal{A},\mu)$ is a probability space, and
 $Y : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$
-is an $\Re^{p}$-valued random variable.
+is an $\Re^{p}$-valued random variable defined on $(\Omega,\mathcal{A},\mu)$.
 Then,
 \begin{equation*}
 E\!\left[\,Y\,\right] \,=\, 0 \in \Re^{p}
@@ -132,5 +132,47 @@ P\!\left(\, \overset{{\color{white}.}}{Y} \,=\, 0\,\right)
 \end{equation*}
 This completes the proof of the Lemma.
 \qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space, and
+\item
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re,\mathcal{O}(\Re)$
+	and
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$
+	are respectively $\Re$-valued and $\Re^{p}$-valued random variables
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	The following expectation vectors and covariance matrices exist:
+	\begin{equation*}
+	\mu_{Y} \;:=\; E\!\left[\,Y\,\right] \;\in\; \Re\,,
+	\quad\quad
+	\mu_{X} \;:=\; E\!\left[\,X\,\right] \;\in\; \Re^{p}
+	\end{equation*}
+	\begin{equation*}
+	\begin{array}{lclclcl}
+	V_{X}
+		&=& \Var\!\left(X\right)
+		&:=& E\!\left[\,(X-\mu_{X}) \cdot (X-\mu_{X})^{T}\,\right]
+		&\in& \Re^{p \times p}
+	\\
+	V_{XY}
+		&=& \Cov\!\left(X,Y\right)
+		&:=& E\!\left[\,(X-\mu_{X}) \cdot (Y-\mu_{Y})\,\right]
+		&\in& \Re^{p}
+	\end{array}
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{equation*}
+\Cov(X,Y) \;\; \in \;\; \Col(\Var(X))
+\end{equation*}
+\end{lemma}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
