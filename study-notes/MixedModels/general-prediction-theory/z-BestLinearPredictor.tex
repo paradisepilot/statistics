@@ -39,7 +39,20 @@ Suppose:
 	\quad\;\;
 	\Cov(X,Y) = \Cov(Y,X)^{T} \in \Re^{p \times 1},
 	\quad\;\;
-	\Cov(X,X) \in \Re^{p \times p}.
+	\Cov(X,X) \in \Re^{p \times p}\,,
+	\end{equation*}
+	where
+	\begin{equation*}
+	\begin{array}{ccccccc}
+	&& \Cov(X,Y)
+	&:=& E\!\left[\;\left(X-\mu_{X}\right)\overset{{\color{white}+}}{\cdot}\left(Y-\mu_{Y}\right)^{\color{white}T}\;\right]
+	&\in& \Re^{p \times 1}
+	\\ \\
+	\Var(X)
+	& = & \Cov(X,X)
+	&:=& E\!\left[\;\left(X-\mu_{X}\right)\overset{{\color{white}.}}{\cdot}\left(X-\mu_{X}\right)^{T}\;\right]
+	&\in& \Re^{p \times p}
+	\end{array}
 	\end{equation*}
 \item
 	Define
@@ -56,7 +69,8 @@ Suppose:
 Then, 
 \begin{enumerate}
 \item
-	$\blp(\,Y\vert X)$ is well-defined, i.e. there exist (not necessarily non-unique)
+	$\blp(\,Y\vert X)$ is well-defined;
+	more precisely, there exist (not necessarily unique)
 	$\beta \in \Re^{p}$ satisfying \eqref{betaDefiningEquation} but
 	the $\Re^{p}$-valued random variable $\blp(\,Y\vert X)$ itself
 	in fact does not depend on the particular choice of $\beta$.
@@ -72,6 +86,30 @@ Then,
 \proof
 \begin{enumerate}
 \item
+	The existence of \,$\beta \in \Re^{p}$\, follows immediately from Lemma \ref{CovXYinColVarX}.
+	Next, we prove that \,$\blp(\,Y\vert X)$\, does not depend on the particular choice of $\beta$
+	satisfying Equation \eqref{betaDefiningEquation}.
+	To this end, suppose $\beta_{1}, \beta_{2} \in \Re^{p}$ both satisfy
+	Equation \eqref{betaDefiningEquation}.
+	By Lemma \ref{XminusMuXLiesInColVarX}, we have
+	\begin{equation*}
+	X \,-\, \mu_{X} \; = \; \Cov(X,X) \cdot Z\,,
+	\quad\;\;
+	\textnormal{for some $\Re^{p}$-valued random variable $Z$ defined on $(\Omega,\mathcal{A},\mu)$}.
+	\end{equation*}
+	Hence,
+	\begin{eqnarray*}
+	(X-\mu_{X})^{T} \cdot \beta_{1}
+	&=& Z^{T} \cdot \Cov(X,X) \cdot \beta_{1}
+	\\
+	&=& Z^{T} \cdot \Cov(X,Y)
+	\\
+	&=& Z^{T} \cdot \Cov(X,X) \cdot \beta_{2}
+		\;\; = \;\; (X-\mu_{X})^{T} \cdot \beta_{2}\,,
+	\end{eqnarray*}
+	from which it follows immediately that \,$\blp(\,Y\vert X)$\, is indeed independent of the particular choice of
+	\,$\beta$\, satisfying Equation \eqref{betaDefiningEquation}.
+	This completes the well-definition of \,$\blp(\,Y\vert X)$.
 \item
 	First, observe that:
 	\begin{eqnarray*}
