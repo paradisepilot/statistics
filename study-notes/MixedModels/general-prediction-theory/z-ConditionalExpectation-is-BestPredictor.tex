@@ -107,6 +107,8 @@ To this end,
 as desired.
 \qed
 
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \begin{proposition}[Proposition 6.3.2, \cite{Christensen2011}]
 \label{Propn:CovarianceYFX}
 \mbox{}
@@ -227,7 +229,10 @@ Write $\mu_{Y} \,:=\, E\!\left[\;Y\,\right]$.
 \end{eqnarray*}
 \qed
 
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \begin{theorem}[Theorem 6.3.3, \cite{Christensen2011}]
+\label{definingEYXByOrthogonality}
 \mbox{}
 \vskip 0.2cm
 \noindent
@@ -251,28 +256,67 @@ Suppose:
 \end{itemize}
 Then,
 \begin{equation*}
+	f(X) \,=\, E\!\left(\;Y\,\vert\,X\;\right)
+	\quad\quad\textnormal{if and only if}\quad\quad
 	\begin{array}{c}
 	\Cov\!\left(\,Y-f(X)\,,\,\overset{{\color{white}\vert}}{g}(X)\,\right) \,=\, 0\,,
 	\\
 	\overset{{\color{white}-}}{\textnormal{for each}\;\, g : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})}
 	\\
-	\overset{{\color{white}-}}{\textnormal{such that \,$g(X)$ is $\mu$-integrable}}
-	\,,
-%	\overset{{\color{white}-}}{\textnormal{for each integrable}}
-%	\\
-%	\overset{{\color{white}\vert}}{g} : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})\,,
+	\overset{{\color{white}-}}{\textnormal{such that \,$g(X)$ is $\mu$-integrable}}\,.
 	\end{array}
-	\quad\quad\textnormal{if and only if}\quad\quad
-	f(X) \,=\, E\!\left(\;Y\,\vert\,X\;\right)\,.
 \end{equation*}
 \end{theorem}
-\proof
+\begin{remark}\quad
+Suppose $Y$ and $X$ are respectively $\Re$-valued and $\Re^{p}$-valued random variables
+defined on a common probability space $(\Omega,\mathcal{A},\mu)$.
+Recall that \,$E\!\left[\;Y\,\vert\,X\,\right]$\, possesses the following two properties:
+\begin{itemize}
+\item
+	$E\!\left[\;Y \overset{{\color{white}.}}{-} E\!\left(\,Y\vert X\right)\;\right] \,=\, 0$,\, and
+\item
+	for each Borel function $g$ such that $g(X)$ is integrable,
+	the following holds (by Proposition \ref{Propn:CovarianceYFX}):
+	\begin{equation*}
+	\Cov\!\left(\,\overset{{\color{white}.}}{Y} - E(\,Y\,\vert\,X\,)\,,\,g(X)\,\right)
+	\;\; = \;\; 0 \,.
+	\end{equation*}
+\end{itemize}
+Theorem \ref{definingEYXByOrthogonality} asserts that these two properties
+in fact uniquely determines $E\!\left[\;Y\,\vert\,X\,\right]$.
+Another intuitive/geometric interpretation of Theorem \ref{definingEYXByOrthogonality}
+is the following:
+\vskip 0.3cm
+\noindent
+If $f \in W_{X}$ satisfies the following ``orthogonality'' condition:
+\begin{equation*}
+\Cov\!\left(\,\overset{{\color{white}.}}{Y} - f(X)\,,\,g(X)\,\right)
+\;\; = \;\; 0 \,,
+\quad
+\textnormal{for each \,$g \in W_{X}$.}
+\end{equation*}
+then \,$f(X) = E\!\left(\,Y\vert X\right) + \textnormal{constant}$,\,
+where \,$W_{X}$ is the vector space of all $\Re$-valued Borel functions $g$ defined on
+$\Re^{p}$ such that \,$g(X) = g \circ X$ is $\mu$-integrable.
+Thus, one may think of $E\!\left(\,Y\vert X\right)$, up to an additive constant, as the
+orthogonal projection of \,$Y$ into the space $W_{X}$.
+\,$Y - E\!\left(\,Y\vert X\right)$ is thus the orthogonal residual of this projection and
+this residual lies in the orthogonal complement of $W_{X}$.
+\vskip 0.3cm
+\noindent
+Note that this geometric intuition can be stated precisely, and more elegantly, in
+terms of $E\!\left[\,\cdot\,\right]$-equivalence classes of random variables
+(identifying two $\Re$-valued random variables defined on $(\Omega,\mathcal{A},\mu)$
+whenever they have the same expectation value), but we shall
+refrain from giving the precise statement to avoid the added complexity.
+\end{remark}
+\proofof(of Theorem \ref{definingEYXByOrthogonality})
 \vskip 0.1cm
 \noindent
 \underline{(\,$\Longleftarrow$\,)}\quad
 Suppose $f(X) \,=\, E\!\left(\,Y\,\vert\,X\,\right)$ and
 $g : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})$
-is $\mu$-integrable.
+is Borel such that $g(X) := g \circ X$ is $\mu$-integrable.
 Then,
 \begin{eqnarray*}
 \Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,Y-f(X)\,\right)
