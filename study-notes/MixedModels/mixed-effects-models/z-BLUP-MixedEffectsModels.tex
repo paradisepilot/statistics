@@ -158,23 +158,60 @@ This proves Claim 2.
 
 \vskip 0.5cm
 \noindent
-\textbf{Claim 3:}\quad
+\textbf{Claim 3:}
+\begin{equation*}
+E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} f(Y;0,b)\right)^{2}\,\right]
+\;\; = \;\;
+	\Var\!\left[\;(b \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y\;\right]
+\end{equation*}
+Proof of Claim 3:\quad Observe that
+\begin{eqnarray*}
+\blp(\,Y_{0}\vert Y) - f(Y;0,b)
+&=&
+	x_{0}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - \,X\cdot\beta\,) \; - \; b^{T} \cdot Y
+\;\; = \;\;
+	(x_{0} \; - \; \delta^{T} \cdot X) \cdot \beta \; - \; (b - \delta)^{T} \cdot Y
+\\
+&=&
+	- \left\{\;
+		(b - \delta)^{T} \cdot Y \; - \; E\!\left[\,(b \overset{{\color{white}.}}{-} \delta)^{T} \cdot Y\,\right]
+		 \;\right\}\,,
+\end{eqnarray*}
+from which Claim 3 immediately follows.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4:}\quad
 $f(Y;0,b)$ is a best linear unbiased predictor of \,$Y_{0}$ if
 \begin{equation*}
 b \;\; = \;\;
 	\underset{c\,\in\,\Re^{n}}{\textnormal{argmin}}
-	\left\{\;E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} c^{T} \cdot Y\right)^{2}\,\right]\;\right\}
+	\left\{\;
+		%E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} f(Y;0,c)\right)^{2}\,\right]
+		\Var\!\left[\;(c \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y\;\right]
+		\;\right\}
 \end{equation*}
-Proof of Claim 3:\quad Recall that
-\begin{equation*}
-E\!\left[\,\left(Y_{0} \overset{{\color{white}.}}{-} b^{T}\cdot Y\right)^{2}\,\right]
-\;\; = \;\;
+Proof of Claim 4:\quad Recall that
+\begin{eqnarray*}
+E\!\left[\,\left(Y_{0} \overset{{\color{white}.}}{-} f(Y;0,b)\right)^{2}\,\right]
+& = &
 	E\!\left[\,\left(Y_{0} \overset{{\color{white}.}}{-} \blp(\,Y_{0}\vert Y)\right)^{2}\,\right]
 	\; + \;
-	E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} b^{T}\cdot Y\right)^{2}\,\right]
-\end{equation*}
-Claim 3 now follows immediately.
+	E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} f(Y;0,b)\right)^{2}\,\right]
+\\
+& = &
+	E\!\left[\,\left(Y_{0} \overset{{\color{white}.}}{-} \blp(\,Y_{0}\vert Y)\right)^{2}\,\right]
+	\; + \;
+	\Var\!\left[\;(b \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y\;\right]
+\end{eqnarray*}
+Claim 4 now follows immediately.
 
+\vskip 0.5cm
+\noindent
+Claim 2 and Claim 4 together imply that if
+$(b-\delta)^{T} \cdot Y$ is a best linear unbiased estimator of $(x_{0} - \delta^{T}\cdot X) \cdot \beta$,
+then
+\,$f(Y;0,b) = b^{T} \cdot Y$\, is a best linear unbiased predictor of \,$Y_{0}$.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
