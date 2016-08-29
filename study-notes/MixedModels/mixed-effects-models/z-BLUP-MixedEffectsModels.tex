@@ -28,40 +28,45 @@ Suppose:
 	$Y = (Y_{1}, Y_{2}, \ldots, Y_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
 	defined on $(\Omega,\mathcal{A},\mu)$.
 \item
-	$x_{0} \in \Re^{1 \times p}$, $X \in \Re^{n \times p}$, and $\beta \in \Re^{p \times 1}$.
-\item
 	$e = (e_{1}, e_{2}, \ldots, e_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
 	defined on $(\Omega,\mathcal{A},\mu)$.
 \item
-	The quantities $Y$, $X$, $\beta$, $Z$, $\gamma$, and $e$ satisfy the following three properties:
+	$x_{0} \in \Re^{1 \times p}$, $X \in \Re^{n \times p}$, and $\beta \in \Re^{p \times 1}$.
+	\vskip 0.0cm
+	The vector $x_{0}$ and the matrix $X$ are known,
+	but the parameter $\beta$ is unknown.
+\item
+	The quantities $Y_{0}$, $Y$, $X$, $\beta$, and $e$ satisfy the following four properties:
 	\begin{equation*}
 	\begin{array}{ccll}
 	Y & = & X \cdot \beta + e, & \textnormal{$\mu$-almost everywhere}
 	\\
-	E\!\left[\,e\,\right] &\overset{{\color{white}\vert}}{=}& 0
-	\\
 	E\!\left[\,Y_{0}\,\right] &\overset{{\color{white}\vert}}{=}& x_{0} \cdot \beta
 	\\
 	x_{0} &\overset{{\color{white}\vert}}{=}& \rho^{T} \cdot X, & \textnormal{for some \,$\rho \in \Re^{n \times 1}$}
+	\\
+	E\!\left[\,e\,\right] &\overset{{\color{white}\vert}}{=}& 0
 	\end{array}
 	\end{equation*}
 \item
-	The following covariance matrix exist:
+	The following covariance matrices exist and \textbf{\color{red}are known}\footnote{Recall
+		that the best linear unbiased predictor of \,$Y_{0}$ in terms of \,$Y$ is given by:
+		\begin{eqnarray*}
+		\blp(\,Y_{0}\vert Y)
+		& = &
+			E\!\left[\;Y_{0}\,\right] \; + \; \delta^{T}\cdot(\;Y - E\!\left[\;Y\,\right]\,)
+		\\
+		& = &
+			x_{0}^{T}\cdot\beta\; \; + \; \delta^{T}\cdot(\;Y - X\cdot\beta\;\;)\,,
+		\end{eqnarray*}
+		where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
+		$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
+		}:
 	\begin{equation*}
-	V \;:=\; \Cov(Y) \;=\; \Cov(e) \;\in\; \Re^{n \times n}
+	V \;:=\; \Cov(Y) \;=\; \Cov(e) \;\in\; \Re^{n \times n}\,,
+	\quad\textnormal{and}\quad
+	\Cov(Y,Y_{0}) \;\in\; \Re^{n \times 1}\,.
 	\end{equation*}
-\item
-	Recall that the best linear unbiased predictor of \,$Y_{0}$ in terms of \,$Y$ is given by:
-	\begin{eqnarray*}
-	\blp(\,Y_{0}\vert Y)
-	& = &
-		E\!\left[\;Y_{0}\,\right] \; + \; \delta^{T}\cdot(\;Y - E\!\left[\;Y\,\right]\,)
-	\\
-	& = &
-		x_{0}^{T}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - X\cdot\beta\,)\,,
-	\end{eqnarray*}
-	where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
-	$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
 \item
 	Define:
 	\begin{eqnarray*}
