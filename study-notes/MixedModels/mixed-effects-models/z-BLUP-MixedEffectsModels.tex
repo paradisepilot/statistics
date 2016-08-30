@@ -34,7 +34,7 @@ Suppose:
 	$x_{0} \in \Re^{1 \times p}$, $X \in \Re^{n \times p}$, and $\beta \in \Re^{p \times 1}$.
 	\vskip 0.0cm
 	The vector $x_{0}$ and the matrix $X$ are known,
-	but the parameter $\beta$ is unknown.
+	but the parameter \textbf{\color{red}$\beta$ is unknown}.
 \item
 	The quantities $Y_{0}$, $Y$, $X$, $\beta$, and $e$ satisfy the following four properties:
 	\begin{equation*}
@@ -50,18 +50,25 @@ Suppose:
 	\end{equation*}
 \item
 	The following covariance matrices exist and \textbf{\color{red}are known}\footnote{Recall
-		that the best linear unbiased predictor of \,$Y_{0}$ in terms of \,$Y$ is given by:
-		\begin{eqnarray*}
+		that the best linear predictor of \,$Y_{0}$ in terms of \,$Y$ is given by:
+		\begin{equation*}
 		\blp(\,Y_{0}\vert Y)
-		& = &
+		\;\; = \;\;
 			E\!\left[\;Y_{0}\,\right] \; + \; \delta^{T}\cdot(\;Y - E\!\left[\;Y\,\right]\,)
-		\\
-		& = &
-			x_{0}^{T}\cdot\beta\; \; + \; \delta^{T}\cdot(\;Y - X\cdot\beta\;\;)\,,
-		\end{eqnarray*}
+		\;\; = \;\;
+			x_{0}^{T}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - X\cdot\beta\,)\,,
+		\end{equation*}
 		where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
 		$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
-		}:
+		Hence, knowledge of $\beta$, $\Cov(Y)$ and $\Cov(Y,Y_{0})$ would allow one
+		to compute $\blp(\,Y_{0}\vert Y)$.
+		However, in Theorem \ref{AMixedModelEquivalentFixedModel}, we assume
+		only knowledge of $\Cov(Y)$ and $\Cov(Y,Y_{0})$, but not that of $\beta$.
+		Thus, in the setting of Theorem \ref{AMixedModelEquivalentFixedModel},
+		one cannot compute $\blp(\,Y_{0}\vert Y)$.
+		The significance of Theorem \ref{AMixedModelEquivalentFixedModel} is that
+		one can, in the setting of the Theorem, compute instead a BLUP of $Y_{0}$,
+		which involves the BLUE of $X\cdot\beta$.}:
 	\begin{equation*}
 	V \;:=\; \Cov(Y) \;=\; \Cov(e) \;\in\; \Re^{n \times n}\,,
 	\quad\textnormal{and}\quad
