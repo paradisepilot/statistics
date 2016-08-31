@@ -33,8 +33,8 @@ Suppose:
 \item
 	$x_{0} \in \Re^{1 \times p}$, $X \in \Re^{n \times p}$, and $\beta \in \Re^{p \times 1}$.
 	\vskip 0.0cm
-	The vector $x_{0}$ and the matrix $X$ are known,
-	but the parameter \textbf{\color{red}$\beta$ is unknown}.
+	%The vector $x_{0}$ and the matrix $X$ are known,
+	%but the parameter \textbf{\color{red}$\beta$ is unknown}.
 \item
 	The quantities $Y_{0}$, $Y$, $X$, $\beta$, and $e$ satisfy the following four properties:
 	\begin{equation*}
@@ -49,26 +49,7 @@ Suppose:
 	\end{array}
 	\end{equation*}
 \item
-	The following covariance matrices exist and \textbf{\color{red}are known}\footnote{Recall
-		that the best linear predictor of \,$Y_{0}$ in terms of \,$Y$ is given by:
-		\begin{equation*}
-		\blp(\,Y_{0}\vert Y)
-		\;\; = \;\;
-			E\!\left[\;Y_{0}\,\right] \; + \; \delta^{T}\cdot(\;Y - E\!\left[\;Y\,\right]\,)
-		\;\; = \;\;
-			x_{0}^{T}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - X\cdot\beta\,)\,,
-		\end{equation*}
-		where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
-		$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
-		Hence, knowledge of $\beta$, $\Cov(Y)$ and $\Cov(Y,Y_{0})$ would allow one
-		to compute $\blp(\,Y_{0}\vert Y)$.
-		However, in Theorem \ref{AMixedModelEquivalentFixedModel}, we assume
-		only knowledge of $\Cov(Y)$ and $\Cov(Y,Y_{0})$, but not that of $\beta$.
-		Thus, in the setting of Theorem \ref{AMixedModelEquivalentFixedModel},
-		one cannot compute $\blp(\,Y_{0}\vert Y)$.
-		The significance of Theorem \ref{AMixedModelEquivalentFixedModel} is that
-		one can, in the setting of the Theorem, compute instead a BLUP of $Y_{0}$,
-		which involves the BLUE of $X\cdot\beta$.}:
+	The following covariance matrices exist:
 	\begin{equation*}
 	V \;:=\; \Cov(Y) \;=\; \Cov(e) \;\in\; \Re^{n \times n}\,,
 	\quad\textnormal{and}\quad
@@ -93,7 +74,41 @@ Then, the quantities $Y$, $X$, $\beta$, $\xi$ and $V$ together satisfy:
 	\end{array}
 	\end{equation*}
 \end{theorem}
-\proof
+
+\begin{remark}
+\mbox{}
+\vskip 0.05cm
+\noindent
+Theorem \ref{AMixedModelEquivalentFixedModel} is applicable to the scenario in which
+the quantities $x_{0}$, $X$, $\Cov(Y)$ and $\Cov(Y,Y_{0})$ are {\color{red}known}, while
+{\color{red}$\beta$ is unknown}.
+In this scenario, Theorem \ref{AMixedModelEquivalentFixedModel} gives the BLUP of
+\,$Y_{0}$ in terms of the BLUE of $X\cdot\beta$.
+Both the BLUP and BLUE here are affine functions of \,$Y$.
+
+Next, recall that, if one knows all of $\beta$, $\Cov(Y)$ and $\Cov(Y,Y_{0})$, then one can compute
+the best linear predictor of \,$Y_{0}$ in terms of \,$Y$:
+\begin{equation*}
+\blp(\,Y_{0}\vert Y)
+\;\; = \;\;
+	E\!\left[\;Y_{0}\,\right] \; + \; \delta^{T}\cdot(\;Y - E\!\left[\;Y\,\right]\,)
+\;\; = \;\;
+	x_{0}^{T}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - X\cdot\beta\,)\,,
+\end{equation*}
+where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
+$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
+
+Thus the key point of Theorem \ref{AMixedModelEquivalentFixedModel} is that,
+if we know only $\Cov(Y)$ and $\Cov(Y,Y_{0})$ but not $\beta$, then we cannot
+compute $\blp(\,Y_{0}\vert Y)$, but we can instead compute arguably the next best thing:
+the BLUP of \,$Y_{0}$ in terms of \,$Y$, and that this BLUP happens to involves
+the BLUE of the unknown parameter $\beta$.
+\end{remark}
+
+\proofof Theorem \ref{AMixedModelEquivalentFixedModel}
+
+\vskip 0.3cm
+\noindent
 Let $f(Y;b_{0},b) \,:=\, b_{0} + b^{T}\cdot Y$, where $b_{0} \in \Re$ and $b \in \Re^{n}$, be a linear unbiased predictor of $Y_{0}$.
 
 \vskip 0.3cm
