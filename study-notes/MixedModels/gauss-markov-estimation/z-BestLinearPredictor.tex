@@ -1,0 +1,237 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Best Linear Predictor}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Best Linear Predictor, Theorem 6.3.4, \cite{Christensen2011}]
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X = (X_{1}, X_{2}, \ldots, X_{p}) : \Omega \longrightarrow \Re^{p}$ an $\Re^{p}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$Y : \Omega \longrightarrow \Re$ is an $\Re$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+%	i.e. $E(\,\vert\,\overset{{\color{white}.}}{Y}\,\vert\,)\,<\,\infty$.
+%	\vskip 0.01cm
+%	(Recall that the integrability of $Y$ implies the existence and uniqueness of $E\!\left(\;Y\,\vert\,X\,\right)$;
+%	see Theorem \ref{Thm:ExistenceConditionalExpectation}.)
+\item
+	The following expectation vectors and covariance matrices all exist:
+	\begin{equation*}
+	\mu_{Y} := E\!\left(\,Y\,\right) \in \Re,
+	\quad\;\;
+	\mu_{X} := E\!\left(\,X\,\right) \in \Re^{p \times 1},
+	\quad\;\;
+	\Cov(X,Y) = \Cov(Y,X)^{T} \in \Re^{p \times 1},
+	\quad\;\;
+	\Cov(X,X) \in \Re^{p \times p}\,,
+	\end{equation*}
+	where
+	\begin{equation*}
+	\begin{array}{ccccccc}
+	&& \Cov(X,Y)
+	&:=& E\!\left[\;\left(X-\mu_{X}\right)\overset{{\color{white}+}}{\cdot}\left(Y-\mu_{Y}\right)^{\color{white}T}\;\right]
+	&\in& \Re^{p \times 1}
+	\\ \\
+	\Var(X)
+	& = & \Cov(X,X)
+	&:=& E\!\left[\;\left(X-\mu_{X}\right)\overset{{\color{white}.}}{\cdot}\left(X-\mu_{X}\right)^{T}\;\right]
+	&\in& \Re^{p \times p}
+	\end{array}
+	\end{equation*}
+\item
+	Define
+	\begin{equation*}
+	\blp(\,Y\,\vert\,X\,)
+	\;\; := \;\;
+		\mu_{Y} + \left(X - \mu_{X}\right)^{T}\cdot\beta\,,
+	\end{equation*}
+	where $\beta \in \Re^{p\times 1}$ is any element of $\Re^{p\times 1}$ which satisfies:
+	\begin{equation}\label{betaDefiningEquation}
+	\Cov(X,X)\cdot\beta \;\; = \;\; \Cov(X,Y)
+	\end{equation}
+\end{itemize}
+Then, 
+\begin{enumerate}
+\item
+	$\blp(\,Y\vert X)$ is well-defined;
+	more precisely, there exist (not necessarily unique)
+	$\beta \in \Re^{p}$ satisfying \eqref{betaDefiningEquation} but
+	the $\Re^{p}$-valued random variable $\blp(\,Y\vert X)$ itself
+	in fact does not depend on the particular choice of $\beta$.
+\item
+	For every affine function $f:\Re^{p}\longrightarrow\Re$, we have:
+	\begin{equation*}
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\vert X)\,\right)^{2}\;\right]
+	\;\;\leq\;\;
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\;\right]\,.
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	The existence of \,$\beta \in \Re^{p}$\, follows immediately from Lemma \ref{CovXYinColVarX}.
+	Next, we prove that \,$\blp(\,Y\vert X)$\, does not depend on the particular choice of $\beta$
+	satisfying Equation \eqref{betaDefiningEquation}.
+	To this end, suppose $\beta_{1}, \beta_{2} \in \Re^{p}$ both satisfy
+	Equation \eqref{betaDefiningEquation}.
+	By Lemma \ref{XminusMuXLiesInColVarX}, we have
+	\begin{equation*}
+	X \,-\, \mu_{X} \; = \; \Cov(X,X) \cdot Z\,,
+	\quad\;\;
+	\textnormal{for some $\Re^{p}$-valued random variable $Z$ defined on $(\Omega,\mathcal{A},\mu)$}.
+	\end{equation*}
+	Hence,
+	\begin{eqnarray*}
+	(X-\mu_{X})^{T} \cdot \beta_{1}
+	&=& Z^{T} \cdot \Cov(X,X) \cdot \beta_{1}
+	\\
+	&=& Z^{T} \cdot \Cov(X,Y)
+	\\
+	&=& Z^{T} \cdot \Cov(X,X) \cdot \beta_{2}
+		\;\; = \;\; (X-\mu_{X})^{T} \cdot \beta_{2}\,,
+	\end{eqnarray*}
+	from which it follows immediately that \,$\blp(\,Y\vert X)$\, is indeed independent of the particular choice of
+	\,$\beta$\, satisfying Equation \eqref{betaDefiningEquation}.
+	This completes the well-definition of \,$\blp(\,Y\vert X)$.
+\item
+	First, observe that:
+	\begin{eqnarray*}
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
+	&=&
+		E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\,\vert\,X\,) + \blp(\,Y\,\vert\,X\,) - f(X)\,\right)^{2}\,\right]
+	\\
+	&=&
+		{\color{white}+}\;\;
+		E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\,\vert\,X\,)\,\right)^{2}\,\right]
+		\;+\;
+		E\!\left[\;\left(\,\blp(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
+	\\
+	&&
+		+\;
+		2 \cdot E\!\left[\,
+			\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\,\vert\,X\,)\,\right)
+			\cdot
+			\left(\,\blp(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+			\,\right]
+	\end{eqnarray*}
+	Thus, we see that it suffices to show
+	$E\!\left[\,
+		\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\,\vert\,X\,)\,\right)
+		\cdot
+		\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+		\,\right] \,=\, 0$.
+	Now, since $f : \Re^{p}\longrightarrow\Re$ is an affine function, $f$ has the form
+	$f(x)$ $=$ $\nu + (x - \mu_{X})^{T}\cdot\eta$,
+	for some $\nu \in \Re$ and some $\eta \in \Re^{p}$.
+	Hence,
+	\begin{eqnarray*}
+	&&
+		E\!\left[\;
+		\left(\,Y \overset{{\color{white}.}}{-} \blp(\,Y\,\vert\,X\,)\,\right)
+		\cdot
+		\left(\,\blp(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+		\;\right]
+	\\
+	&=&
+		E\!\left[\;
+			\left(\,Y \overset{{\color{white}.}}{-} \mu_{Y} - (X-\mu_{X})^{T}\cdot\beta\,\right)
+			\cdot
+			\left(\,\mu_{Y} + (X-\mu_{X})^{T}\cdot\beta \overset{{\color{white}.}}{-} \nu - (X-\mu_{X})^{T}\cdot\eta\,\right)
+		\;\right]
+	\\
+	&=&
+		E\!\left[\;
+			\left(\,Y \overset{{\color{white}.}}{-} \mu_{Y} - \beta^{T}\cdot(X-\mu_{X})\,\right)
+			\cdot
+			\left(\,\mu_{Y} \overset{{\color{white}.}}{-} \nu + (X-\mu_{X})^{T}\cdot(\,\beta-\eta\,)\,\right)
+		\;\right]
+	\\
+	&=&
+		E\!\left[\;
+		\begin{array}{lcl}
+			{\color{white}+}\left(\,Y - \mu_{Y} \,\right)\cdot\left(\,\mu_{Y} - \nu\,\right)
+			&-&
+			\beta^{T}\cdot(X-\mu_{X})\cdot\left(\,\mu_{Y} - \nu\,\right)
+			\\
+			+\left(\,Y - \mu_{Y} \,\right)\cdot(X-\mu_{X})^{T}\cdot(\,\beta-\eta\,)
+			&-&
+			\beta^{T}\cdot(X-\mu_{X})\cdot(X-\mu_{X})^{T}\cdot(\,\beta-\eta\,)
+		\end{array}
+		\;\right]
+	\\
+	&=&
+		{\color{white}+}
+		{\color{red}E\!\left[\;Y - \mu_{Y}\;\right]} \cdot \left(\,\mu_{Y} - \nu\,\right)
+		-
+		\beta^{T} \cdot {\color{red}E\!\left[\;X-\mu_{X}\;\right]} \cdot \left(\,\mu_{Y} - \nu\,\right)
+	\\
+	&&
+		+
+		E\!\left[\;\left(\,Y - \mu_{Y} \,\right)\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]\cdot(\,\beta-\eta\,)
+		-
+		\beta^{T} \cdot E\!\left[\;(X-\mu_{X})\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]\cdot(\,\beta-\eta\,)
+	\\
+	&=&
+		{\color{white}+}
+		{\color{red}0} - {\color{red}0}
+	\\
+	&&
+		+
+		\left(\;
+			E\!\left[\;\left(\,Y - \mu_{Y} \,\right)\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]
+			-
+			\beta^{T} \cdot E\!\left[\;(X-\mu_{X})\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]
+			\;\right)\cdot(\,\beta-\eta\,)
+	\\
+	&=&
+		\left(\;
+			E\!\left[\;\left(\,Y - \mu_{Y} \,\right)\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]
+			-
+			\beta^{T} \cdot E\!\left[\;(X-\mu_{X})\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right]
+			\;\right)\cdot(\,\beta-\eta\,)
+	\\
+	&=&
+		0\,,
+	\end{eqnarray*}
+	where the last equality follows by choice of $\beta$ that it satisfies
+	\begin{equation*}
+	\Cov(X,X)\cdot\beta
+	\;\; = \;\;
+		\Cov(X,Y)\,,
+	\end{equation*}
+	equivalently,
+	\begin{equation*}
+	E\!\left[\;(X-\mu_{X})\overset{{\color{white}\vert}}{\cdot}(X-\mu_{X})^{T}\;\right] \cdot \beta 
+	\; - \;
+	E\!\left[\;(X-\mu_{X})\overset{{\color{white}\vert}}{\cdot}\left(\,Y - \mu_{Y} \,\right)\;\right]
+	\;\; = \;\; 0
+	\end{equation*}
+\end{enumerate}
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

@@ -1,0 +1,236 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The Radon-Nikodym Theorem implies existence and uniqueness of conditional expectations of integrable random variables.}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Radon-Nikodym, Theorem 1.4, \S 1.2.2, p.15, \cite{Shao2003}]
+\label{Thm:RadonNikodym}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Let $\nu$ and $\lambda$ be two measures on the measurable space
+$(\Omega,\mathcal{A})$ and $\nu$ be $\sigma$-finite.
+If $\lambda \ll \nu$, then
+\begin{enumerate}
+\item
+	there exists a non-negative Borel function
+	$f : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O})$
+	such that
+	\begin{equation*}
+	\lambda(\,A\,)
+	\;\; = \;\;
+		\int_{A}\, f \,\d\nu\,,
+	\quad
+	\textnormal{for every \,$A\in\mathcal{A}$\, and},
+	\end{equation*}
+\item
+	$f$ is $\nu$-almost-surely unique in the sense that if
+	$g : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O})$
+	is another non-negative Borel function satisfying
+	\begin{equation*}
+	\lambda(\,A\,)
+	\;\; = \;\;
+		\int_{A}\, g \,\d\nu\,,
+	\quad
+	\textnormal{for every \,$A\in\mathcal{A}$}\,,
+	\end{equation*}
+	then we in fact have
+	\begin{equation*}
+	\nu\!\left(\,\left\{\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\,f(\omega) = g(\omega)\right\}\,\right) \;\;=\;\; 1\,.
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+\label{Corollary:AlmostEverywhereZero}
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose $(\Omega,\mathcal{A},\mu)$ is a measure space and
+$f : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O})$
+is an $(\mathcal{A},\mathcal{O})$-measurable $\Re$-valued function.
+If
+\begin{equation*}
+\int_{A}\,f\,\d\mu \;\;=\;\; 0\,,
+\quad
+\textnormal{for every $A \in \mathcal{A}$},
+\end{equation*}
+then $f$ equals zero $\mu$-almost-everywhere, i.e.
+\begin{equation*}
+\mu\!\left(\,\left\{\,\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\,f(\omega)=0\,\right\}\,\right)
+\;\; = \;\; 1.
+\end{equation*}
+\end{corollary}
+\proof
+Let \,$f^{+} \,:=\, \max\{\,f,\,0\,\}$\, and \,$f^{-} \,:=\, \max\{\,-f,\,0\,\}$\, be the positive and negative parts of $f$ respectively.
+Note that $f = f^{+} - f^{-}$ $\mu$-almost-everywhere.
+Hence, for each $A \in \mathcal{A}$,
+\begin{equation*}
+\int_{A}\,f\,\d\mu \;\;=\;\; 0
+\quad\Longrightarrow\quad
+\int_{A}\,(\,f^{+}-f^{-}\,)\,\d\mu \;\;=\;\; 0
+\quad\Longrightarrow\quad
+\int_{A}\,f^{+}\,\d\mu \;\;=\;\; \int_{A}\,f^{-}\,\d\mu\,,
+\end{equation*}
+which implies that $f^{+}$ and $f^{-}$ define the same measure $\lambda$ on $(\Omega,\mathcal{A})$:
+\begin{equation*}
+\lambda(\,A\,)
+	\;\; := \;\; \int_{A}\,f^{+}\,\d\mu \;\; = \;\; \int_{A}\,f^{-}\,\d\mu\,,
+\quad
+\textnormal{for each \,$A \in \mathcal{A}$}.
+\end{equation*}
+Note that $\lambda$ is absolutely continuous with respect to $\mu$, and
+both $f^{+}$ and $f^{-}$ are then Radon-Nikodym derivatives of $\lambda$ with respect to $\mu$.
+By uniqueness of the Radon-Nikodym derivative, it follows that $f^{+} = f^{-}$, $\mu$-almost-everywhere.
+Thus, $f = f^{+} - f^{-} = f^{+} - f^{+} = 0$, $\mu$-almost-everywhere.
+\qed
+
+\begin{theorem}[Kolmogorov's Theorem, Theorem 9.2, p.84, \cite{Williams1991}]
+\label{Thm:ExistenceConditionalExpectation}
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$\mathcal{G} \subset \mathcal{A}$ is a sub-$\sigma$-algebra of $\mathcal{A}$,
+	and $\mu\vert_{\mathcal{G}}$ is the restriction of $\mu$ to $\mathcal{G}$.
+\item
+	$Y : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O})$ is a \textbf{\color{red}$\mu$-integrable} random variable,
+	i.e. $E\!\left(\,\vert\,Y\,\vert\,\right) \,:=\, \int_{\Omega}\, \vert\, Y\,\vert \,\d\mu \,<\, \infty$.
+\end{itemize}
+Then, there exists a $(\mathcal{G},\mathcal{O})$-measurable $\Re$-valued function
+$W : (\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}) \longrightarrow (\Re,\mathcal{O})$
+such that the following statements hold:
+\begin{enumerate}
+\item
+	$W$ is $\mu\vert_{\mathcal{G}}$-integrable, i.e.
+	\begin{equation*}
+	E\!\left(\,\vert\,W\,\vert\,\right)
+	\;\; := \;\;
+	\int_{\Omega}\,\vert\,W\,\vert\,\d(\mu\vert_{\mathcal{G}})
+	\;\; < \;\;
+	\infty\,.
+	\end{equation*}
+\item
+	For every subset $G \in \mathcal{G}$, we have:
+	\begin{equation*}
+	\int_{G}\, W \,\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;
+	\int_{G}\, Y \,\d\mu\,.
+	\end{equation*}
+\item
+	If \,$W^{\prime} : (\Omega,\mathcal{G},\mu\vert_{\mathcal{G}}) \longrightarrow (\Re,\mathcal{O})$\, is
+	another $(\mathcal{G},\mathcal{O})$-measurable $\Re$-valued function
+	satisfying the above two properties, then
+	$W = W^{\prime}$, $(\mu\vert_{\mathcal{G}})$-almost-everywhere,
+	i.e. $\mu\vert_{\mathcal{G}}\!\left(\,W = W^{\prime}\,\right) \,=\, 1$. 
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}\mbox{}\vskip 0.1cm\noindent
+The random variable $W$ almost-surely uniquely determined
+by the sub-$\sigma$-algebra $\mathcal{G}$ and the integrable $Y$
+in the preceding Theorem is called the
+\textbf{conditional expectation of $Y$ with respect to $\mathcal{G}$}, and is denoted
+by $E\!\left[\,Y\,\vert\,\mathcal{G}\,\right]$.
+\end{remark}
+
+\proof
+Let $Y^{+} := \max\left\{\,Y,\,0\,\right\}$ and $Y^{-} := \max\left\{\,-Y,\,0\,\right\}$
+be the positive and negative parts of $Y$ respectively.
+Define $\lambda_{Y^{+}} : (\Omega,\mathcal{G}) \longrightarrow [0,\infty]$ by
+\begin{equation*}
+\lambda_{Y^{+}}(\,G\,) \;\; := \;\; \int_{G}\, Y^{+} \,\d\mu\,,
+\quad
+\textnormal{for each \,$G \in \mathcal{G}$},
+\end{equation*}
+and define $\lambda_{Y^{-}} : (\Omega,\mathcal{G}) \longrightarrow [0,\infty]$ by
+\begin{equation*}
+\lambda_{Y^{-}}(\,G\,) \;\; := \;\; \int_{G}\, Y^{-} \,\d\mu\,,
+\quad
+\textnormal{for each \,$G \in \mathcal{G}$}.
+\end{equation*}
+Then, $\lambda_{Y^{+}}$ and $\lambda_{Y^{-}}$ are measures defined on
+$(\Omega,\mathcal{G})$, and they are both absolutely continuous with respective
+to the restriction $\mu\vert_{\mathcal{G}}$ of $\mu$ to $\mathcal{G}$.
+By the Radon-Nikodym Theorem (Theorem \ref{Thm:RadonNikodym}),
+there exist unique $(\mathcal{G},\mathcal{O})$-measurable non-negative
+$\Re$-valued functions
+$f^{+}, f^{-} : (\Omega,\mathcal{G}) \longrightarrow (\Re,\mathcal{O})$
+such that
+\begin{equation*}
+\lambda_{Y^{+}}(\,G\,) \;=\; \int_{G}\,f^{+}\,\d(\mu\,\vert_{\mathcal{G}})\,,
+\quad\textnormal{and}\quad
+\lambda_{Y^{-}}(\,G\,) \;=\; \int_{G}\,f^{-}\,\d(\mu\,\vert_{\mathcal{G}})\,,
+\quad\;\;
+\textnormal{for each \,$G \in \mathcal{G}$}.
+\end{equation*}
+Now, define $W := f^{+} - f^{-}$.
+Then, $W$ is $(\mathcal{G},\mathcal{O})$-measurable.
+Furthermore,
+\begin{enumerate}
+\item\begin{eqnarray*}
+	E\!\left(\,\vert\,W\,\vert\,\right)
+	&=&
+		\int_{\Omega}\,\left(f^{+} + f^{-}\right)\,\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;
+		\int_{\Omega}\,f^{+} \,\d(\mu\vert_{\mathcal{G}}) \; + \; \int_{\Omega}\,f^{-}\,\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;
+		\lambda_{Y^{+}}(\,\Omega\,) \; + \; \lambda_{Y^{-}}(\,\Omega\,)
+	\\
+	& = &
+		\int_{\Omega}\,Y^{+} \,\d\mu \; + \; \int_{\Omega}\,Y^{-}\,\d\mu
+	\;\; = \;\;
+		\int_{\Omega}\,\left(Y^{+} + Y^{-}\right)\,\d\mu
+	\\
+	& = &
+		\int_{G}\,\vert\,Y\,\vert\,\d\mu
+	\;\; = \;\;
+		E\!\left(\,\vert\,Y\,\vert\,\right)
+	\;\; < \;\;
+		\infty
+	\end{eqnarray*}
+\item
+	For each $G \in \mathcal{G}$, we have:
+	\begin{eqnarray*}
+	\int_{G}\,W\,\d(\mu\vert_{\mathcal{G}})
+	& = &
+		\int_{G}\,\left(f^{+} - f^{-}\right)\,\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;
+		\int_{G}\,f^{+} \,\d(\mu\vert_{\mathcal{G}}) \; - \; \int_{G}\,f^{-}\,\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;
+		\lambda_{Y^{+}}(\,G\,) \; - \; \lambda_{Y^{-}}(\,G\,)
+	\\
+	& = &
+		\int_{G}\,Y^{+} \,\d\mu \; - \; \int_{G}\,Y^{-}\,\d\mu
+	\;\; = \;\;
+		\int_{G}\,\left(Y^{+} - Y^{-}\right)\,\d\mu
+	\\
+	& = &
+		\int_{G}\,Y\,\d\mu
+	\end{eqnarray*}
+\item
+	Note that, for each $G \in \mathcal{G}$, we have:
+	\begin{eqnarray*}
+	\int_{G}\,\left(\,W - W^{\prime}\,\right)\,\d(\mu\vert_{\mathcal{G}})
+	&=&
+		\int_{G}\,W\,\d(\mu\vert_{\mathcal{G}}) \; - \; \int_{G}\,W^{\prime}\,\d(\mu\vert_{\mathcal{G}})
+	\;\; = \;\;
+		\int_{G}\,Y\,\d\mu \; - \; \int_{G}\,Y\,\d\mu
+	\;\; = \;\;
+		0
+	\end{eqnarray*}
+	By Corollary \ref{Corollary:AlmostEverywhereZero}, we may now conclude
+	$W = W^{\prime}$, $(\mu\vert_{\mathcal{G}})$-almost-everywhere.
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

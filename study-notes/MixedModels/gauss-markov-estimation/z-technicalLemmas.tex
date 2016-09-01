@@ -1,0 +1,356 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical Lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+\begin{lemma}[Exercise 1.6, p.9, \cite{Christensen2011}]
+\label{ZeroExpectationZeroVarImpliesZero}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $(\Omega,\mathcal{A},\mu)$ is a probability space, and
+$Y : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$
+is an $\Re^{p}$-valued random variable defined on $(\Omega,\mathcal{A},\mu)$.
+Then,
+\begin{equation*}
+E\!\left[\,Y\,\right] \,=\, 0 \in \Re^{p}
+\;\;\textnormal{and}\;\;
+\Var\!\left[\,Y\,\right] \,=\, 0 \in \Re^{p \times p}
+\quad\Longrightarrow\quad
+P\!\left(\,Y\overset{{\color{white}.}}{=}0\,\right)
+\;=\;
+	\mu\!\left(\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\,\;\right\vert\;Y(\omega) = 0\;\right\}\right)
+\;=\;
+	1\,.
+\end{equation*}
+\end{lemma}
+\proof
+\vskip 0.3cm
+\noindent
+\textnormal{Claim 1:}\quad
+$E\!\left[\,Y^{T}\cdot Y\,\right] = 0$
+\vskip 0.3cm
+\noindent
+Proof of Claim 1:\quad
+By Theorem 1.3.2, p.8, \cite{Christensen2011}, we have
+\begin{equation*}
+E\!\left[\;Y^{T} \overset{{\color{white}\vert}}{\cdot} Y\;\right]
+\;\; = \;\;
+	\trace\!\left(\Var(\overset{{\color{white}.}}{Y})\right)
+	\; + \;
+	E\!\left[\;Y\,\right]^{T} \cdot E\!\left[\;Y\,\right]\,.
+\end{equation*}
+Hence, $E\!\left[\;Y\,\right] = 0$ and $\Var(Y) = 0$ together imply $E\!\left[\,Y^{T}\cdot Y\,\right] = 0$.
+
+\vskip 0.5cm
+\noindent
+\textnormal{Claim 2:}\quad
+For every $\Re$-valued random variable $X$, we have:
+\begin{equation*}
+P(X \geq 0) \;=\; 1
+\quad\;\;\Longrightarrow\quad\;\;
+P(X \geq k) \;\leq\; \dfrac{1}{k}\cdot E\!\left[\,X\,\right]\,,
+\quad
+\textnormal{for each $k > 0$}.
+\end{equation*}
+Proof of Claim 2:\quad
+Simply note:
+\begin{equation*}
+k \cdot P(X \geq k)
+\;=\; k\cdot\int_{\{X\,\geq\,k\}}\,1\,\d\mu
+\;=\; \int_{\{X\,\geq\,k\}}\,k\;\d\mu
+\;\leq\; \int_{\{X\,\geq\,k\}}\,X\;\d\mu
+\;\leq\; \int_{\Omega}\,X\;\d\mu
+\;=\; E\!\left[\,X\,\right]\,,
+\end{equation*}
+which implies Claim 2 immediately.
+
+\vskip 0.5cm
+\noindent
+\textnormal{Claim 3:}\quad
+$P\!\left(\,Y^{T} \overset{{\color{white}.}}{\cdot} Y > 0\,\right) = 0$.
+\vskip 0.3cm
+\noindent
+Proof of Claim 3:\quad
+Since $P\!\left(\,Y^{T} \overset{{\color{white}.}}{\cdot} Y \geq 0\,\right)\,=\,1$,
+Claim 1 and Claim 2 together imply:
+\begin{equation*}
+P\!\left(\,Y^{T} \overset{{\color{white}.}}{\cdot} Y \,\geq\, \dfrac{1}{n}\,\right)
+\;\; \leq \;\; n \cdot E\!\left[\;Y^{T} \overset{{\color{white}\vert}}{\cdot} Y\;\right]
+\;\; = \;\; n \cdot 0
+\;\; = \;\; 0\,,
+\quad
+\textnormal{for each \,$n \in \N$}.
+\end{equation*}
+But
+\begin{equation*}
+\left\{\; Y^{T} \overset{{\color{white}\vert}}{\cdot} Y \,>\, 0 \;\right\}
+\;\; = \;\;
+	\overset{\infty}{\underset{n\,=\,1}{\bigcup}} \left\{\, Y^{T} \overset{{\color{white}.}}{\cdot} Y \,\geq\, \dfrac{1}{n}\,\right\}\,.
+\end{equation*}
+Hence,
+\begin{equation*}
+P\!\left(\; Y^{T} \overset{{\color{white}\vert}}{\cdot} Y \,>\, 0 \;\right)
+\;\; = \;\;
+	P\!\left(\;
+		\overset{\infty}{\underset{n\,=\,1}{\bigcup}} \left\{\, Y^{T} \overset{{\color{white}.}}{\cdot} Y \,\geq\, \dfrac{1}{n}\,\right\}
+		\;\right)
+\;\; \leq \;\;
+	\overset{\infty}{\underset{n\,=\,1}{\sum}} P\!\left(\, Y^{T} \overset{{\color{white}.}}{\cdot} Y \,\geq\, \dfrac{1}{n}\,\right)
+\;\; = \;\;
+	\overset{\infty}{\underset{n\,=\,1}{\sum}}\;0
+\;\; = \;\; 0\,.
+\end{equation*}
+This proves Claim 3.
+
+\vskip 0.5cm
+\noindent
+Claim 3 now implies:
+\begin{eqnarray*}
+1
+& = & P\!\left(\,Y^{T} \overset{{\color{white}\vert}}{\cdot} Y \,\geq\, 0\,\right)
+\;\; = \;\;
+	P\!\left(\,Y^{T} \overset{{\color{white}\vert}}{\cdot} Y \,=\, 0\,\right)
+	\; + \;
+	P\!\left(\,Y^{T} \overset{{\color{white}\vert}}{\cdot} Y \,>\, 0\,\right)
+\;\; = \;\;
+	P\!\left(\,Y^{T} \overset{{\color{white}\vert}}{\cdot} Y \,=\, 0\,\right)
+	\; + \; 0
+\\
+& = &
+	P\!\left(\,Y^{T} \overset{{\color{white}\vert}}{\cdot} Y \,=\, 0\,\right)
+\;\; = \;\;
+	P\!\left(\, \Vert\;\overset{{\color{white}.}}{Y}\;\Vert^{2} \,=\, 0\,\right)\,,
+\end{eqnarray*}
+which immediately implies
+\begin{equation*}
+P\!\left(\, \overset{{\color{white}.}}{Y} \,=\, 0\,\right)
+\;\; = \;\; 1\,.
+\end{equation*}
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{XminusMuXLiesInColVarX}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$
+	is an $\Re^{p}$-valued random variables defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	The following expectation vector and covariance matrix exist:
+	\begin{equation*}
+	\mu_{X} \;:=\; E\!\left[\,X\,\right] \;\in\; \Re^{p}
+	\quad\;\;\textnormal{and}\quad\;\;
+	\Var\!\left(X\right)
+		\;:=\; E\!\left[\;(X-\mu_{X}) \overset{{\color{white}+}}{\cdot} (X-\mu_{X})^{T}\;\right]
+		\;\in\; \Re^{p \times p}
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{equation*}
+P\!\left(\; X - \mu_{X} \,\overset{{\color{white}.}}{\in}\, \Col\!\left(\,\Var(X)\,\right)\;\right)
+\;\; = \;\;
+	\mu\!\left(\left\{\;\,
+		\omega \in \Omega
+		\;\left\vert\;
+		X(\omega) - \mu_{X} \,\overset{{\color{white}.}}{\in}\, \Col\!\left(\,\Var(X)\,\right)
+		\right.
+		\;\right\}\right)
+\;\; = \;\; 1\,.
+\end{equation*}
+\end{lemma}
+\proof
+For brevity, we write $V := \Var(X) \in \Re^{p \times p}$,
+the covariance matrix $\Var(X)$ of the $\Re^{p}$-valued random variable $X$.
+Let $\Pi_{V} : \Re^{p} \longrightarrow \Col(V)$ be the projection map from $\Re^{p}$ onto the column span $\Col(V)$,
+and $\Pi^{\perp}_{V} : \Re^{p} \longrightarrow \Col(V)^{\perp}$ be that from $\Re^{p}$ onto the orthogonal
+complement $\Col(V)^{\perp}$ of $\Col(V)$ in $\Re^{p}$.
+Then, note that
+\begin{equation*}
+X - \mu_{X}
+\;\; = \;\;
+	\Pi_{V}\!\left(\,X \overset{{\color{white}.}}{-} \mu_{X}\,\right)
+	\;+\;
+	\Pi^{\perp}_{V}\!\left(\,X \overset{{\color{white}.}}{-} \mu_{X}\,\right).
+\end{equation*}
+Since the image of \,$\Pi_{V}$ is \,$\Col(V)\,=\,\Col(\Var(X))$,\,
+in order to prove the present Lemma, it suffices to establish that
+\begin{equation*}
+P\!\left(\;\Pi^{\perp}_{V}\!\left(\,X \overset{{\color{white}.}}{-} \mu_{X}\,\right) \,=\, 0 \;\right)
+\;\;=\;\; 1 \,,
+\end{equation*}
+which in turn would follow from Lemma \ref{ZeroExpectationZeroVarImpliesZero}, once we show that
+\begin{equation*}
+E\!\left[\;\Pi^{\perp}_{V}\!\left(\,X \overset{{\color{white}.}}{-} \mu_{X}\,\right)\;\right] \; = \; 0
+\quad\;\;\textnormal{and}\quad\;\;
+\Var\!\left[\;\Pi^{\perp}_{V}\!\left(\,X \overset{{\color{white}.}}{-} \mu_{X}\,\right)\;\right] \; = \; 0\,.
+\end{equation*}
+To this end, let $\mathcal{B}$ denote the standard basis of the vector space $\Re^{p}$.
+Let $M_{V}, M^{\perp}_{V} \in \Re^{p \times p}$ be the matrix representatives with respect to $\mathcal{B}$
+of $\Pi_{V}$ and $\Pi^{\perp}_{V}$, respectively.
+Then,
+\begin{equation*}
+E\!\left[\;\Pi^{\perp}_{V}\!\left(\,X \overset{{\color{white}.}}{-} \mu_{X}\,\right)\;\right]
+\;\;=\;\; E\!\left[\;M^{\perp}_{V}\cdot\left(X\overset{{\color{white}.}}{-}\mu_{X}\right)\;\right]
+\;\;=\;\; M^{\perp}_{V} \cdot E\!\left[\;X\overset{{\color{white}.}}{-}\mu_{X}\;\right]
+\;\;=\;\; 0\,,
+\quad\textnormal{and}
+\end{equation*}
+\begin{equation*}
+\Var\!\left[\;\Pi^{\perp}_{V}\!\left(\,X \overset{{\color{white}.}}{-} \mu_{X}\,\right)\;\right]
+\;\;=\;\; \Var\!\left[\;M^{\perp}_{V}\cdot\left(X\overset{{\color{white}.}}{-}\mu_{X}\right)\;\right]
+\;\;=\;\; M^{\perp}_{V} \cdot \Var\!\left(\,X\overset{{\color{white}.}}{-}\mu_{X}\,\right) \cdot \left(\,M^{\perp}_{V}\,\right)^{T}
+\;\;=\;\; M^{\perp}_{V} \cdot V \cdot \left(\,M^{\perp}_{V}\,\right)^{T}
+\;\;=\;\; 0\,.
+\end{equation*}
+By Lemma \ref{ZeroExpectationZeroVarImpliesZero}, we see that we indeed have
+\begin{equation*}
+P\!\left(\;\Pi^{\perp}_{V}\!\left(\,X \overset{{\color{white}.}}{-} \mu_{X}\,\right) \,=\, 0 \;\right)
+\;\;=\;\; 1 \,.
+\end{equation*}
+This completes the proof of the present Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{CovXYinColVarX}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re,\mathcal{O}(\Re)$
+	and
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$
+	are respectively $\Re$-valued and $\Re^{p}$-valued random variables
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	The following expectation vectors and covariance matrices exist:
+	\begin{equation*}
+	\mu_{Y} \;:=\; E\!\left[\,Y\,\right] \;\in\; \Re\,,
+	\quad\quad
+	\mu_{X} \;:=\; E\!\left[\,X\,\right] \;\in\; \Re^{p}
+	\end{equation*}
+	\begin{equation*}
+	\begin{array}{lclcl}
+	\Var\!\left(X\right)
+		&:=& E\!\left[\,(X-\mu_{X}) \cdot (X-\mu_{X})^{T}\,\right]
+		&\in& \Re^{p \times p}
+	\\
+	\overset{{\color{white}\vert}}{\Cov}\!\left(X,Y\right)
+		&:=& E\!\left[\,(X-\mu_{X}) \cdot (Y-\mu_{Y})\,\right]
+		&\in& \Re^{p}
+	\end{array}
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{equation*}
+\Cov(X,Y) \;\; \in \;\; \Col\!\left(\,\Var(X)\,\right)
+\end{equation*}
+\end{lemma}
+\proof
+Since $\Var(X) \in \Re^{p \times p}$ is a symmetric positive semi-definite
+square matrix with entries in $\Re$, by the Real Spectral Theorem
+(Theorem 7.29, p.221, \cite{Axler2015}), there exist an
+orthogonal matrix $P \in \Re^{p \times p}$ (i.e. $P^{T} \cdot P = I_{p}$) and
+a diagonal matrix $D = \diag(d_{1},\ldots,d_{p})\in \Re^{p \times p}$,
+with $d_{i} \geq 0$, such that
+\begin{equation*}
+P^{T} \cdot \Var(X) \cdot P \;\;=\;\; D \,.
+\end{equation*}
+Equivalently, we have $\Var(X) \;=\; P \cdot D \cdot P^{T}$.
+Let \,$r \,:=\, \rank(D)$.\, Then,
+\begin{equation*}
+D \;\; = \;\; \diag(d_{1},\ldots,d_{r},0,\ldots,0)\,,
+\quad
+\textnormal{with \,$d_{1}, \ldots, d_{r} > 0$}.
+\end{equation*}
+Now, define the $\Re^{p}$-valued random variable \,$W \,:=\, P^{T} \cdot X$.
+
+\vskip 0.5cm
+\noindent
+\textnormal{Claim 1:}\quad
+$\Cov(W,Y) \; \in \; \Col\!\left(\,D\,\right)$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 1: Observe that
+\begin{eqnarray*}
+\Var(W)
+& = & \Var(P^{T} \cdot X)
+	\;\; = \;\; P^{T} \cdot \Var(X) \cdot P 
+	\;\; = \;\; P^{T} \cdot P \cdot D \cdot P^{T} \cdot P 
+	\;\; = \;\; D
+\\
+& = & \diag(d_{1},\ldots,d_{r},0,\ldots,0).
+\end{eqnarray*}
+Writing $W = (W_{1},W_{2},\ldots,W_{p})$, we have
+$\Var(W_{i}) = 0$, for each $i = r+1, \ldots, p$.
+Hence, we see that
+\begin{equation*}
+P\!\left(\,W_{i} \overset{{\color{white}+}}{=} E\!\left[\,W_{i}\,\right]\,\right) \; = \; 1\,,
+\quad
+\textnormal{for each \,$i = r+1, \ldots, p$}.
+\end{equation*}
+Consequently, for $i = r+1,\ldots,p$,
+\begin{equation*}
+\Cov(W_{i},Y)
+\;\; = \;\; E\!\left[\,
+	\left(\,W_{i} \overset{{\color{white}.}}{-} E\!\left[\,W_{i}\,\right]\,\right)
+	\cdot
+	\left(\,Y \overset{{\color{white}.}}{-} \mu_{Y}\,\right)
+	\,\right]
+\;\; = \;\; E\!\left[\,
+	\left(\,E\!\left[\,W_{i}\,\right] \overset{{\color{white}.}}{-} E\!\left[\,W_{i}\,\right]\,\right)
+	\cdot
+	\left(\,Y \overset{{\color{white}.}}{-} \mu_{Y}\,\right)
+	\,\right]
+\;\; = \;\;
+	0\,.
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+\Cov(W,Y)
+& = & \left(\,\Cov(W_{1},\overset{{\color{white}.}}{Y}),\Cov(W_{2},Y),\ldots,\Cov(W_{p},Y)\,\right)^{T}
+\\
+& = & \left(\,\Cov(W_{1},\overset{{\color{white}.}}{Y}),\ldots,\Cov(W_{r},Y),\,0,\ldots,\,0\,\right)^{T}
+\;\; \in \;\; \Col\!\left(\,D\,\right)\,.
+\end{eqnarray*}
+This proves Claim 1.
+We thus see that there exists $\gamma \in \Re^{p}$ such that
+\begin{equation*}
+D \cdot \gamma \;\; =\;\; \Cov(W,Y)\,.
+\end{equation*}
+Letting \,$\beta := P \cdot \gamma$ (equivalently, $\gamma = P^{T} \cdot \beta$),\, and
+recalling that \,$W = P^{T} \cdot X$,\, we have
+\begin{equation*}
+D \cdot P^{T} \cdot \beta
+\;\; =\;\; \Cov(\,P^{T} \cdot X,Y\,)
+\;\; =\;\; P^{T} \cdot \Cov(X,Y)\,,
+\end{equation*}
+which implies
+\begin{equation*}
+P \cdot D \cdot P^{T} \cdot \beta
+\;\; =\;\; \Cov(X,Y)\,,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+\Var(X) \cdot \beta
+\;\; =\;\; \Cov(X,Y)\,,
+\end{equation*}
+equivalently, \,$\Cov(X,Y) \in \Col(\,\Var(X)\,)$.\,
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

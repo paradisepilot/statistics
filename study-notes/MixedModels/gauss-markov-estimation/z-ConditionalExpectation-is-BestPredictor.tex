@@ -1,0 +1,423 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Conditional expectation is the best predictor}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Conditional expectation is the best predictor, Theorem 6.3.1, \cite{Christensen2011}]
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X = (X_{1}, X_{2}, \ldots, X_{p}) : \Omega \longrightarrow \Re^{p}$ an $\Re^{p}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$Y : \Omega \longrightarrow \Re$ is an \textbf{\color{red}integrable} $\Re$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$,
+	i.e. $E(\,\vert\,\overset{{\color{white}.}}{Y}\,\vert\,)\,<\,\infty$.
+	\vskip 0.01cm
+	(Recall that the integrability of $Y$ implies the existence and uniqueness of $E\!\left(\;Y\,\vert\,X\,\right)$;
+	see Definition 1.6, p.37 and Theorem 1.4, p.15, \cite{Shao2003}.)
+\end{itemize}
+Then, for any Borel measurable function $f : \Re^{p} \longrightarrow \Re$, we have:
+\begin{equation*}
+E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} E(\;Y\,\vert\,X\,)\,\right)^{2}\,\right]
+\;\; \leq \;\;
+E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]\,.
+\end{equation*}
+\end{theorem}
+\proof
+\begin{eqnarray*}
+E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
+&=&
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,) + E(\,Y\,\vert\,X\,) - f(X)\,\right)^{2}\,\right]
+\\
+&=&
+	{\color{white}+}\;\;
+	E\!\left[\;\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)^{2}\,\right]
+	\;+\;
+	E\!\left[\;\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)^{2}\,\right]
+\\
+&&
+	+\;
+	2 \cdot E\!\left[\,
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+		\cdot
+		\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+		\,\right]
+\end{eqnarray*}
+It is now clear that the Theorem follows once we show
+$E\!\left[\,
+	\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+	\cdot
+	\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+	\,\right] \,=\, 0$.
+To this end,
+\begin{eqnarray*}
+&&
+	E\!\left\{\,
+	{\color{white}E\;\;\,}
+	\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+	\cdot
+	\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)
+	{\color{white}E\quad\;\;\;}
+	\,\right\}
+\\
+&=&
+	E\!\left\{\,
+	E\!\left[\;
+		\left.
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+		\cdot
+		{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
+		\;\,\right\vert\;X
+	\;\right]
+	\,\right\}
+\\
+&=&
+	E\!\left\{\,
+	{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
+	\cdot
+	E\!\left[\;
+		\left.
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)		
+		\;\,\right\vert\;X
+	\;\right]
+	\,\right\}
+\\
+&=&
+	E\!\left\{\,
+	{\color{red}\left(\,E(\,Y\,\vert\,X\,) \overset{{\color{white}.}}{-} f(X)\,\right)}
+	\cdot 0
+	\,\right\}
+	\;\; = \;\; 0\,,
+\end{eqnarray*}
+as desired.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{proposition}[Proposition 6.3.2, \cite{Christensen2011}]
+\label{Propn:CovarianceYFX}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X = (X_{1}, X_{2}, \ldots, X_{p}) : \Omega \longrightarrow \Re^{p}$ an $\Re^{p}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$Y : \Omega \longrightarrow \Re$ is an \textbf{\color{red}integrable} $\Re$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$,
+	i.e. $E(\,\vert\,\overset{{\color{white}.}}{Y}\,\vert\,)\,<\,\infty$.
+	\vskip 0.01cm
+	(Recall that the integrability of $Y$ implies the existence and uniqueness of $E\!\left(\;Y\,\vert\,X\,\right)$;
+	see Definition 1.6, p.37 and Theorem 1.4, p.15, \cite{Shao2003}.)
+\item
+	$f : (\Re^{p},\mathcal{O}(\Re^{p})) \longrightarrow (\Re,\mathcal{O})$ is an $\Re$-valued Borel function
+	defined on $\Re^{p}$ such that $f(X) := f\circ X$ is integrable, i.e. $E\!\left(\,\vert\,f(X)\,\vert\,\right) \,<\, \infty$.
+\end{itemize}
+Then,
+\begin{equation*}
+\Cov\!\left(\,\overset{{\color{white}.}}{Y}\,,\,f(X)\,\right)
+\;\; = \;\;
+\Cov\!\left(\,\overset{{\color{white}.}}{E}(\,Y\,\vert\,X\,)\,,\,f(X)\,\right)\,.
+\end{equation*}
+In particular, we have:
+\begin{equation*}
+\Cov\!\left(\;\overset{{\color{white}.}}{Y}\,,\,E[\;Y\,\vert\,X\,]\;\right)
+	\; = \; \Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]
+	\; = \; \sigma^{2}_{E[Y\vert X]}\,,
+\quad\textnormal{and}\quad
+\end{equation*}
+\begin{equation*}
+\Corr\!\left(\;\overset{{\color{white}.}}{Y}\,,\,E[\;Y\,\vert\,X\,]\;\right)
+	\; := \;
+		\dfrac{
+			\Cov\!\left(\;\overset{{\color{white}.}}{Y}\,,\,E[\;Y\,\vert\,X\,]\;\right)
+			}{
+			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{Y}\,\right]} \cdot \sqrt{\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]}
+			}
+	\; = \;
+		\dfrac{
+			\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]
+			}{
+			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{Y}\,\right]} \cdot \sqrt{\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]}
+			}
+	\; = \;
+		\dfrac{
+			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,]\;\right]}
+			}{
+			\sqrt{\Var\!\left[\;\overset{{\color{white}.}}{Y}\,\right]}
+			}\,.
+\end{equation*}
+\end{proposition}
+\proof
+Write $\mu_{Y} \,:=\, E\!\left[\;Y\,\right]$.
+\begin{eqnarray*}
+\Cov\!\left(\,\overset{{\color{white}.}}{Y}\,,\,f(X)\,\right)
+&:=&
+	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot \left(\,\overset{{\color{white}.}}{f}(X) - E[\,f(X)\,]\,\right)\;\right]
+\\
+&=&
+	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\right]
+	\; - \;
+	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot E[\,f(X)\,]\;\right]
+\\
+&=&
+	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\right]
+	\; - \;
+	E[\,f(X)\,] \cdot E\!\left[\;\overset{{\color{white}.}}{Y} - \mu_{Y}\;\right]
+\\
+&=&
+	E\!\left[\;\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\right]
+\\
+&=&
+	E\!\left\{\;
+		E\!\left[\;\left.\left(\,\overset{{\color{white}.}}{Y} - \mu_{Y}\,\right) \cdot f(X)\;\,\right\vert\;X\;\right]
+	\;\right\}
+\\
+&=&
+	E\!\left\{\;
+		E\!\left[\,\left.\,\overset{{\color{white}.}}{Y} - \mu_{Y}\;\right\vert\,X\,\right]
+		\cdot
+		f(X)
+	\;\right\}
+\\
+&=&
+	E\!\left\{\;
+		\left(\;\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,X\;\right] \,-\, \mu_{Y}\;\right)
+		\cdot
+		f(X)
+	\;\right\}
+	\; - \;
+	E[\,f(X)\,] \cdot E\!\left\{\;\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,] - \mu_{Y}\;\right\}
+\\
+&=&
+	E\!\left\{\;
+		\left(\;\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,X\;\right] \,-\, \mu_{Y}\;\right)
+		\cdot
+		f(X)
+	\;\right\}
+	\; - \;
+	E\!\left\{\,\left(\overset{{\color{white}.}}{E}[\;Y\,\vert\,X\,] - \mu_{Y}\right) \cdot E[\,f(X)\,]\;\right\}
+\\
+&=&
+	E\!\left\{\;
+		\left(\,\overset{{\color{white}.}}{E}\!\left[\;Y\,\vert\,X\;\right] \,-\, \mu_{Y}\,\right)
+		\cdot
+		\left(\;\overset{{\color{white}.}}{f}(X)\,-\,E[\,f(X)\,]\;\right)
+	\;\right\}
+\\
+&=:&
+	\Cov\!\left(\,\overset{{\color{white}.}}{E}(\,Y\,\vert\,X\,)\,,\,f(X)\,\right)
+\end{eqnarray*}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Theorem 6.3.3, \cite{Christensen2011}]
+\label{definingEYXByOrthogonality}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X = (X_{1}, X_{2}, \ldots, X_{p}) : \Omega \longrightarrow \Re^{p}$ an $\Re^{p}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$Y : \Omega \longrightarrow \Re$ is an \textbf{\color{red}integrable} $\Re$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$,
+	i.e. $E(\,\vert\,\overset{{\color{white}.}}{Y}\,\vert\,)\,<\,\infty$.
+	\vskip 0.01cm
+	(Recall that the integrability of $Y$ implies the existence and uniqueness of $E\!\left(\;Y\,\vert\,X\,\right)$;
+	see Definition 1.6, p.37 and Theorem 1.4, p.15, \cite{Shao2003}.)
+\item
+	$f : (\Re^{p},\mathcal{O}(\Re^{p})) \longrightarrow (\Re,\mathcal{O})$ is an $\Re$-valued Borel function
+	defined on $\Re^{p}$ such that $f(X) := f\circ X$ is integrable, and $E\!\left[\,f(X)\,\right] \,=\, E\!\left[\,Y\,\right]$.
+\end{itemize}
+Then,
+\begin{equation*}
+	f(X) \,=\, E\!\left(\;Y\,\vert\,X\;\right)
+	\quad\quad\textnormal{if and only if}\quad\quad
+	\begin{array}{c}
+	\Cov\!\left(\,Y-f(X)\,,\,\overset{{\color{white}\vert}}{g}(X)\,\right) \,=\, 0\,,
+	\\
+	\overset{{\color{white}-}}{\textnormal{for each}\;\, g : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})}
+	\\
+	\overset{{\color{white}-}}{\textnormal{such that \,$g(X)$ is $\mu$-integrable}}\,.
+	\end{array}
+\end{equation*}
+\end{theorem}
+\proof
+\vskip 0.1cm
+\noindent
+\underline{(\,$\Longleftarrow$\,)}\quad
+Suppose $f(X) \,=\, E\!\left(\,Y\,\vert\,X\,\right)$ and
+$g : (\Re^{p},\mathcal{O}(\Re^{p}))\longrightarrow (\Re,\mathcal{O})$
+is Borel such that $g(X) := g \circ X$ is $\mu$-integrable.
+Then,
+\begin{eqnarray*}
+\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,Y-f(X)\,\right)
+&=&
+	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,Y-E\!\left(\,Y\,\vert\,X\,\right)\,\right)
+\;\;=\;\;
+	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,Y\,\right)
+	\; - \;
+	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,E\!\left(\,Y\,\vert\,X\,\right)\,\right)
+\\
+&=&
+	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,E\!\left(\,Y\,\vert\,X\,\right)\,\right)
+	\; - \;
+	\Cov\!\left(\,\overset{{\color{white}\vert}}{g}(X)\,,\,E\!\left(\,Y\,\vert\,X\,\right)\,\right)
+\;\;=\;\;
+	0\,,
+\end{eqnarray*}
+where the third equality follows from Proposition \ref{Propn:CovarianceYFX}.
+\vskip 0.3cm
+\noindent
+\underline{(\,$\Longrightarrow$\,)}\quad
+By Lemma \ref{ZeroExpectationZeroVarImpliesZero}, it suffices to show that
+\begin{equation*}
+E\!\left[\;f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\;\right] \;=\; 0
+\quad\;\;\textnormal{and}\quad\;\;
+\Var\!\left[\;f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\;\right] \;=\; 0\,.
+\end{equation*}
+Now,
+\begin{equation*}
+E\!\left[\;f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\;\right]
+\;\;=\;\;
+	E\!\left[\;\overset{{\color{white}.}}{f}(X)\;\right]
+	\;-\;
+	E\!\left[\;\overset{{\color{white}.}}{E}(\,Y\,\vert\,X\,)\;\right]
+\;\;=\;\;
+	E\!\left[\;Y\;\right]
+	\;-\;
+	E\!\left[\;Y\;\right]
+\;\;=\;\;
+	0\,.
+\end{equation*}
+Similarly,
+\begin{eqnarray*}
+\Var\!\left(\,f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+&=&
+	\Cov\!\left(\,f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,,\,f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right)
+\\
+&=&
+	\Cov\!\left\{\,
+		\left(\,Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)\,\right) - \left(\,Y \overset{{\color{white}.}}{-} f(X)\,\right)
+		\,,\,
+		f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+		\,\right\}
+\\
+&=&
+	\Cov\!\left\{\,
+		Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+		\,,\,
+		f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+		\,\right\}
+	\;-\;
+	\Cov\!\left\{\,
+		Y \overset{{\color{white}.}}{-} f(X)
+		\,,\,
+		f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+		\,\right\}
+\\
+&=&
+	0 \,-\, 0
+	\;\; = \;\;
+	0\,
+\end{eqnarray*}
+where the second last equality follows from
+\begin{eqnarray*}
+\Cov\!\left\{\,
+	Y \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+	\,,\,
+	f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+	\,\right\}
+&=& 0\,,
+\quad\textnormal{by the $(\Longleftarrow)$-part of the proof we just established above, and}
+\\
+\Cov\!\left\{\,
+	Y \overset{{\color{white}.}}{-} {\color{white}11} f(X) {\color{white}11}
+	\,,\,
+	f(X) \overset{{\color{white}.}}{-} E(\,Y\,\vert\,X\,)
+	\,\right\}
+&=& 0\,,
+\quad\textnormal{by hypothesis of the present $(\Longrightarrow)$-part}\,.
+\end{eqnarray*}
+This completes the proof of the Theorem.
+\qed
+
+\begin{remark}[Orthogonality interpretation of \,{$E\!\left[\,Y\vert X\right]$}\,]\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $Y$ and $X$ are respectively $\Re$-valued and $\Re^{p}$-valued random variables
+defined on a common probability space $(\Omega,\mathcal{A},\mu)$.
+Recall that \,$E\!\left[\;Y\,\vert\,X\,\right]$\, possesses the following two properties:
+\begin{itemize}
+\item
+	$E\!\left[\;Y \overset{{\color{white}.}}{-} E\!\left(\,Y\vert X\right)\;\right] \,=\, 0$,\, and
+\item
+	for each Borel function $g$ such that $g(X)$ is integrable,
+	the following holds (by Proposition \ref{Propn:CovarianceYFX}):
+	\begin{equation*}
+	\Cov\!\left(\,\overset{{\color{white}.}}{Y} - E(\,Y\,\vert\,X\,)\,,\,g(X)\,\right)
+	\;\; = \;\; 0 \,.
+	\end{equation*}
+\end{itemize}
+Theorem \ref{definingEYXByOrthogonality} asserts that these two properties
+in fact uniquely determines $E\!\left[\;Y\,\vert\,X\,\right]$.
+Another intuitive/geometric interpretation of Theorem \ref{definingEYXByOrthogonality}
+is the following:
+\vskip 0.3cm
+\noindent
+If $f \in W_{X}$ satisfies the following ``orthogonality'' condition:
+\begin{equation*}
+\Cov\!\left(\,\overset{{\color{white}.}}{Y} - f(X)\,,\,g(X)\,\right)
+\;\; = \;\; 0 \,,
+\quad
+\textnormal{for each \,$g \in W_{X}$.}
+\end{equation*}
+then \,$f(X) = E\!\left(\,Y\vert X\right) + \textnormal{constant}$,\,
+where \,$W_{X}$ is the vector space of all $\Re$-valued Borel functions $g$ defined on
+$\Re^{p}$ such that \,$g(X) = g \circ X$ is $\mu$-integrable.
+Thus, one may think of $E\!\left(\,Y\vert X\right)$, up to an additive constant, as the
+{\color{red}orthogonal projection} of \,$Y$ into the space $W_{X}$.
+\,$Y - E\!\left(\,Y\vert X\right)$ is thus the orthogonal residual of this projection and
+this residual lies in the orthogonal complement of $W_{X}$.
+\vskip 0.3cm
+\noindent
+Note that this geometric intuition can be stated precisely, and more elegantly, in
+terms of $E\!\left[\,\cdot\,\right]$-equivalence classes of random variables
+(identifying two $\Re$-valued random variables defined on $(\Omega,\mathcal{A},\mu)$
+whenever they have the same expectation value), but we shall
+refrain from giving the precise statement to avoid the added complexity.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

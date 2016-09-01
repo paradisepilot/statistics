@@ -1,0 +1,264 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{BLUP for mixed effects models}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Theorem 12.2.3, p.294, \cite{Christensen2011}]
+\label{AMixedModelEquivalentFixedModel}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$Y_{0} : \Omega \longrightarrow \Re$ is an $\Re$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$Y = (Y_{1}, Y_{2}, \ldots, Y_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$e = (e_{1}, e_{2}, \ldots, e_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$x_{0} \in \Re^{1 \times p}$, $X \in \Re^{n \times p}$, and $\beta \in \Re^{p \times 1}$.
+	\vskip 0.0cm
+	%The vector $x_{0}$ and the matrix $X$ are known,
+	%but the parameter \textbf{\color{red}$\beta$ is unknown}.
+\item
+	The quantities $Y_{0}$, $Y$, $X$, $\beta$, and $e$ satisfy the following four properties:
+	\begin{equation*}
+	\begin{array}{ccll}
+	Y & = & X \cdot \beta + e, & \textnormal{$\mu$-almost everywhere}
+	\\
+	E\!\left[\,Y_{0}\,\right] &\overset{{\color{white}\vert}}{=}& x_{0} \cdot \beta
+	\\
+	x_{0} &\overset{{\color{white}\vert}}{=}& \rho^{T} \cdot X, & \textnormal{for some \,$\rho \in \Re^{n \times 1}$}
+	\\
+	E\!\left[\,e\,\right] &\overset{{\color{white}\vert}}{=}& 0
+	\end{array}
+	\end{equation*}
+\item
+	The following covariance matrices exist:
+	\begin{equation*}
+	V \;:=\; \Cov(Y) \;=\; \Cov(e) \;\in\; \Re^{n \times n}\,,
+	\quad\textnormal{and}\quad
+	\Cov(Y,Y_{0}) \;\in\; \Re^{n \times 1}\,.
+	\end{equation*}
+\item
+	Define:
+	\begin{eqnarray*}
+	\xi & := & Z \cdot \gamma + e
+	\\
+	V & := & \Cov(Y) \;\; = \;\; \Cov\!\left(\,Z\cdot\gamma+e\,\right) \;\; = \;\; Z \cdot \Cov(\gamma) \cdot Z^{T} + \Cov(e)
+	\end{eqnarray*}
+\end{itemize}
+Then, the quantities $Y$, $X$, $\beta$, $\xi$ and $V$ together satisfy:
+	\begin{equation*}
+	\begin{array}{ccll}
+	Y & = & X \cdot \beta + \xi, & \textnormal{$\mu$-almost everywhere}
+	\\
+	E\!\left[\,\xi\,\right] &\overset{{\color{white}\vert}}{=}& 0
+	\\
+	\Cov\!\left(\xi\right) &\overset{{\color{white}\vert}}{=}& V
+	\end{array}
+	\end{equation*}
+\end{theorem}
+
+\begin{remark}
+\mbox{}
+\vskip 0.05cm
+\noindent
+Theorem \ref{AMixedModelEquivalentFixedModel} is applicable to the scenario in which
+the quantities $x_{0}$, $X$, $\Cov(Y)$ and $\Cov(Y,Y_{0})$ are {\color{red}known}, while
+{\color{red}$\beta$ is unknown}.
+In this scenario, Theorem \ref{AMixedModelEquivalentFixedModel} gives the BLUP of
+\,$Y_{0}$ in terms of the BLUE of $X\cdot\beta$.
+Both the BLUP and BLUE here are affine functions of \,$Y$.
+
+Next, recall that, if one knows all of $\beta$, $\Cov(Y)$ and $\Cov(Y,Y_{0})$, then one can compute
+the best linear predictor of \,$Y_{0}$ in terms of \,$Y$:
+\begin{equation*}
+\blp(\,Y_{0}\vert Y)
+\;\; = \;\;
+	E\!\left[\;Y_{0}\,\right] \; + \; \delta^{T}\cdot(\;Y - E\!\left[\;Y\,\right]\,)
+\;\; = \;\;
+	x_{0}^{T}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - X\cdot\beta\,)\,,
+\end{equation*}
+where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
+$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
+
+Thus the key point of Theorem \ref{AMixedModelEquivalentFixedModel} is that,
+if we know only $\Cov(Y)$ and $\Cov(Y,Y_{0})$ but not $\beta$, then we cannot
+compute $\blp(\,Y_{0}\vert Y)$, but we can instead compute arguably the next best thing:
+the BLUP of \,$Y_{0}$ in terms of \,$Y$, and that this BLUP happens to involves
+the BLUE of the unknown parameter $\beta$.
+\end{remark}
+
+\proofof Theorem \ref{AMixedModelEquivalentFixedModel}
+
+\vskip 0.3cm
+\noindent
+Let $f(Y;b_{0},b) \,:=\, b_{0} + b^{T}\cdot Y$, where $b_{0} \in \Re$ and $b \in \Re^{n}$, be a linear unbiased predictor of $Y_{0}$.
+
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\quad $E\!\left[\,f(Y;b_{0},b)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$
+\;\;$\Longrightarrow$\;\; $b_{0} = 0$\,, \;and\; $b \in \Re^{n}$ satisfies $b^{T}\cdot X = x_{0}$.
+\mbox{}\vskip 0.2cm\noindent
+Proof of Claim 1:\quad Observe that $E\!\left[\,f(Y)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$ implies:
+\begin{equation*}
+x_{0} \cdot \beta
+\;\; = \;\;
+	E\!\left[\;Y_{0}\,\right]
+\;\; = \;\;
+	E\!\left[\,f(Y)\,\right]
+\;\; = \;\;
+	E\!\left[\,b_{0} + b^{T}\cdot Y\,\right]
+\;\; = \;\;
+	b_{0} + b^{T}\cdot E\!\left[\;Y\,\right]
+\;\; = \;\;
+	b_{0} + b^{T}\cdot X \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta\in\Re^{n}$}\,,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+b_{0}
+\;\; = \;\;
+	\left(\,x_{0} - b^{T}\cdot X\,\right) \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta\in\Re^{p}$}\,.
+\end{equation*}
+Since the left-hand side of the preceding equation does not involve $\beta$
+while the right-hand side does, we see that both sides must in fact be zero for the equality to hold.
+In other words, we must have $b_{0} = 0$ and that $b \in \Re^{n}$ satisfies $b^{T} \cdot X = x_{0}$.
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+Recall that the best linear predictor of \,$Y_{0}$ in terms of \,$Y$ is given by:
+\begin{equation*}
+\blp(\,Y_{0}\vert Y)
+\;\; = \;\;
+	E\!\left[\;Y_{0}\,\right] \; + \; \delta^{T}\cdot(\;Y - E\!\left[\;Y\,\right]\,)
+\;\; = \;\;
+	x_{0}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - \,X\cdot\beta\,\;)\,,
+\end{equation*}
+where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
+$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+$E\!\left[\,f(Y;0,b)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$
+also implies that
+$(b - \delta)^{T}\cdot Y$ is a linear unbiased estimator of \,$(x_{0} - \delta^{T}\cdot X)\cdot\beta$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 2:\quad
+Simply note that
+\begin{equation*}
+E\!\left[\,(b - \delta)^{T}\cdot Y\,\right]
+\;\; = \;\;
+	(b - \delta)^{T} \cdot E\!\left[\;Y\,\right]
+\;\; = \;\;
+	(b - \delta)^{T} \cdot X \cdot \beta
+\;\; = \;\;
+	(b^{T}\cdot X - \delta^{T} \cdot X) \cdot \beta
+\;\; = \;\;
+	(x_{0} - \delta^{T} \cdot X) \cdot \beta\,,
+\end{equation*}
+where the last equality follows from Claim 1.
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}
+\begin{equation*}
+E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} f(Y;0,b)\right)^{2}\,\right]
+\;\; = \;\;
+	\Var\!\left[\;(b \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y\;\right]
+\end{equation*}
+Proof of Claim 3:\quad Observe that
+\begin{eqnarray*}
+\blp(\,Y_{0}\vert Y) - f(Y;0,b)
+&=&
+	x_{0}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - \,X\cdot\beta\,) \; - \; b^{T} \cdot Y
+\;\; = \;\;
+	(x_{0} \; - \; \delta^{T} \cdot X) \cdot \beta \; - \; (b - \delta)^{T} \cdot Y
+\\
+&=&
+	- \left\{\;
+		(b - \delta)^{T} \cdot Y \; - \; E\!\left[\,(b \overset{{\color{white}.}}{-} \delta)^{T} \cdot Y\,\right]
+		 \;\right\}\,,
+\end{eqnarray*}
+from which Claim 3 immediately follows.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4:}\quad
+$f(Y;0,b)$ is a best linear unbiased predictor of \,$Y_{0}$ if
+\begin{equation*}
+b \;\; = \;\;
+	\underset{c\,\in\,\Re^{n}}{\textnormal{argmin}}
+	\left\{\;
+		%E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} f(Y;0,c)\right)^{2}\,\right]
+		\Var\!\left[\;(c \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y\;\right]
+		\;\right\}
+\end{equation*}
+Proof of Claim 4:\quad Recall that
+\begin{eqnarray*}
+E\!\left[\,\left(Y_{0} \overset{{\color{white}.}}{-} f(Y;0,b)\right)^{2}\,\right]
+& = &
+	E\!\left[\,\left(Y_{0} \overset{{\color{white}.}}{-} \blp(\,Y_{0}\vert Y)\right)^{2}\,\right]
+	\; + \;
+	E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} f(Y;0,b)\right)^{2}\,\right]
+\\
+& = &
+	E\!\left[\,\left(Y_{0} \overset{{\color{white}.}}{-} \blp(\,Y_{0}\vert Y)\right)^{2}\,\right]
+	\; + \;
+	\Var\!\left[\;(b \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y\;\right]
+\end{eqnarray*}
+Claim 4 now follows immediately.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 5:}\quad
+$f(Y;0,b) = b^{T}\cdot Y$\, is a best linear unbiased predictor (BLUP) of \,$Y_{0}$ if
+$(b-\delta)^{T} \cdot Y$ is a best linear unbiased estimator (BLUE) of
+$(x_{0} - \delta^{T}\cdot X) \cdot \beta$.
+
+\vskip 0.2cm
+\noindent
+Proof of Claim 5: \quad Immediate by Claim 2 and Claim 4.
+%\vskip 0.5cm
+%\noindent
+%Claim 2 and Claim 4 together imply that if
+%$(b-\delta)^{T} \cdot Y$ is a best linear unbiased estimator of $(x_{0} - \delta^{T}\cdot X) \cdot \beta$,
+%then
+%\,$f(Y;0,b) = b^{T} \cdot Y$\, is a best linear unbiased predictor of \,$Y_{0}$.
+
+\vskip 0.5cm
+\noindent
+This completes the proof of the present Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

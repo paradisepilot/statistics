@@ -1,0 +1,87 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Estimation for the case of uncorrelated homoscedastic errors}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$Y = (Y_{1}, Y_{2}, \ldots, Y_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$e = (e_{1}, e_{2}, \ldots, e_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$\sigma^{2} > 0$,\, $X \in \Re^{n \times p}$\, and \,$\beta \in \Re^{p \times 1}$.
+\item
+	The quantities \,$Y$, $e$, $X$, $\beta$ and $\sigma^{2}$\, satisfy:
+	\begin{equation*}
+	\begin{array}{ccl}
+	Y & = & X \cdot \beta \; + \; e
+	\\
+	E\!\left[\;e\,\right] &  \overset{{\color{white}\vert}}{=} & 0
+	\\
+	\Cov\!\left(\,e\,\right) & \overset{{\color{white}\vert}}{=} & \sigma^{2} \cdot I_{n} \;\; \in \;\; \Re^{n \times n}
+	\end{array}
+	\end{equation*}
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	The orthogonal projection map $\proj_{\,\Col(X)} : \Re^{n} \longrightarrow \Re^{n}$
+	from $\Re^{n}$ onto the linear subspace $\Col(X) \subset \Re^{n}$ can be given by:
+	\begin{equation*}
+	\proj_{\,\Col(X)}(\,y\,) \;\; = \;\; (X^{T}\cdot X)^{\dagger} \cdot X^{T} \cdot y\,,
+	\quad
+	\textnormal{for each $y \in \Re^{n}$}\,,
+	\end{equation*}
+	where $(X^{T}\cdot X)^{\dagger} \in \Re^{n \times n}$ is any generalized inverse of
+	\,$X^{T} \cdot X \in \Re^{n \times n}$.
+\item
+	For each $\omega \in \Omega$,
+	\begin{equation*}
+	\proj_{\,\Col(X)}\!\left(\,\overset{{\color{white}.}}{Y}(\omega)\,\right)
+	\;\; = \;\;
+		\underset{\zeta \in \Re^{p}}{\argmin}\left\{\;
+			\left\Vert\,Y(\omega) - X\cdot\zeta\,\right\Vert^{2}
+			\;\right\}
+	\;\; = \;\;
+		\underset{\zeta \in \Re^{p}}{\argmin}\left\{\;
+			\left(\,Y(\omega) - X\cdot\zeta\,\right)^{T} \cdot \left(\,Y - X\cdot\zeta\,\right)
+			\;\right\}\,.
+	\end{equation*}
+	%where \,$\proj_{\,\Col(X)}\!\left(\,Y(\omega)\,\right)$\, denotes the orthogonal projection
+	%of \,$Y(\omega) \in \Re^{n}$ into the column space $\Col(X) \subset \Re^{n}$.
+\item
+	\textbf{The Gauss-Markov Theorem:}\quad %\mbox{}\vskip 0.0cm\noindent
+	The $\Re$-valued random variable
+	$\proj_{\,\Col(X)}\!\left(\,Y\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{n}$
+	is the BLUE (best linear unbiased estimator) of $X \cdot \beta \in \Re^{n}$.
+	More precisely,
+	\begin{equation*}
+	\Var\!\left(\,\proj_{\,\Col(X)}\!\left(\,Y\,\right)\,\right)
+	\;\; \leq \;\;
+		\Var\!\left(\,M \cdot Y\,\right)\,,
+	\end{equation*}
+	for every $M \in \Re^{n \times n}$ such that
+	$M \cdot Y : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{n}$
+	is a linear unbiased estimator of $X \cdot \beta$.
+\end{enumerate}
+\end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
