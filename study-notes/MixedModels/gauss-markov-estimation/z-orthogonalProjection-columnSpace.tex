@@ -23,12 +23,25 @@ Suppose:
 	be the orthogonal projection from $\Re^{n}$ onto the linear subspace $\Col(X) \subset \Re^{n}$,
 	where $\Col(X)$ denotes the column space of $X \in \Re^{n \times p}$.
 \end{itemize}
-Then, for each $y \in \Re^{n}$ and $\beta \in \Re^{p}$, we have
-\begin{equation*}
-\beta \;\;\in\;\; \underset{\zeta\,\in\,\Re^{p}}{\argmin}\left\{\;\Vert\,y - X \cdot \zeta\,\Vert^{2}\;\right\}
-\quad\;\;\textnormal{\it if and only if}\quad\;\;
-X\cdot\beta \;\; = \;\; \proj_{\,\Col(X)}\!\left(\,y\,\right)\,.
-\end{equation*}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	The orthogonal projection map $\proj_{\,\Col(X)}$ can be given by:
+	\begin{equation*}
+	\proj_{\,\Col(X)}(\,y\,) \;\; = \;\; (X^{T}\cdot X)^{\dagger} \cdot X^{T} \cdot y\,,
+	\quad
+	\textnormal{for each $y \in \Re^{n}$}\,,
+	\end{equation*}
+	where $(X^{T}\cdot X)^{\dagger} \in \Re^{n \times n}$ is any generalized inverse of
+	\,$X^{T} \cdot X \in \Re^{n \times n}$.
+\item
+	For each $y \in \Re^{n}$ and $\beta \in \Re^{p}$, we have
+	\begin{equation*}
+	\beta \;\;\in\;\; \underset{\zeta\,\in\,\Re^{p}}{\argmin}\left\{\;\Vert\,y - X \cdot \zeta\,\Vert^{2}\;\right\}
+	\quad\;\;\textnormal{\it if and only if}\quad\;\;
+	X\cdot\beta \;\; = \;\; \proj_{\,\Col(X)}\!\left(\,y\,\right)\,.
+	\end{equation*}
+\end{enumerate}
 \end{proposition}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
