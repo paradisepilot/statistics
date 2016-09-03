@@ -25,7 +25,7 @@ Suppose:
 	$e = (e_{1}, e_{2}, \ldots, e_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
 	defined on $(\Omega,\mathcal{A},\mu)$.
 \item
-	$\sigma^{2} > 0$,\, $X \in \Re^{n \times p}$\, and \,$\beta \in \Re^{p \times 1}$.
+	$\sigma^{2} > 0$,\, $X \in \Re^{n \times p}$\, and \,$\beta \in \Re^{p}$.
 \item
 	The quantities \,$Y$, $e$, $X$, $\beta$ and $\sigma^{2}$\, satisfy:
 	\begin{equation*}
@@ -41,7 +41,7 @@ Suppose:
 Then,
 for each $X$-estimable function $\lambda : \Re^{p} \longrightarrow \Re$,
 defined by $\lambda(\zeta) = \rho^{T} \cdot X \cdot \zeta$, where $\rho \in \Re^{n}$,
-the $\Re^{q}$-valued random variable defined on $(\Omega,\mathcal{A},\mu)$:
+the $\Re$-valued random variable defined on $(\Omega,\mathcal{A},\mu)$:
 \begin{equation*}
 (\Omega,\mathcal{A},\mu) \;\longrightarrow\; \Re
 \;\; : \;\;
@@ -52,132 +52,160 @@ the $\Re^{q}$-valued random variable defined on $(\Omega,\mathcal{A},\mu)$:
 \rho^{T} \cdot \Pi_{X} \cdot Y(\omega)
 \end{equation*}
 is the BLUE (best linear unbiased estimator) of
-\,$\lambda(\beta) \,=\, \rho^{T} \cdot X \cdot \beta \,\in\, \Re$.
-More precisely,
-\,$\rho^{T} \cdot \proj_{\,\Col(X)}\!\left(\,Y\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\,
-is a linear (in $Y$) unbiased estimator of
-\,$\lambda(\beta) = \rho^{T} \cdot X \cdot \beta$,\, and
-\begin{equation*}
-\Var\!\left(\,\rho^{T} \cdot \proj_{\,\Col(X)}\!\left(\,Y\,\right)\,\right)
-\;\; \leq \;\;
-	\Var\!\left(\,a^{T} \cdot Y\,\right)\,,
-\end{equation*}
-for every $a \in \Re^{n}$ such that
-$a^{T} \cdot Y : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$
-is a linear unbiased estimator of
-$\lambda(\beta) = \rho^{T} \cdot X \cdot \beta$.
+\,$\lambda(\zeta) \,=\, \rho^{T} \cdot X \cdot \zeta \,\in\, \Re$.
+More precisely, the following statements hold:
+\begin{enumerate}
+\item
+	$\rho^{T} \cdot \proj_{\,\Col(X)}\!\left(\,Y\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\,
+	is a linear (in $Y$) unbiased estimator of
+	\,$\lambda(\zeta) = \rho^{T} \cdot X \cdot \zeta$,\, and
+\item
+	for every $a \in \Re^{n}$ such that
+	$a^{T} \cdot Y : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$
+	is a linear unbiased estimator of
+	$\lambda(\zeta) = \rho^{T} \cdot X \cdot \zeta$, we have
+	\begin{equation*}
+	\Var\!\left(\,\rho^{T} \cdot \proj_{\,\Col(X)}\!\left(\,Y\,\right)\,\right)
+	\;\; \leq \;\;
+		\Var\!\left(\,a^{T} \cdot Y\,\right)\,.
+	\end{equation*}
+\end{enumerate}
 \end{theorem}
 \proof
-\begin{equation*}
-E\!\left[\;\rho^{T} \cdot \proj_{\Col(X)}(\,Y)\;\right]
-\;\; = \;\;
-	E\!\left[\;\rho^{T} \cdot \Pi_{X} \overset{{\color{white}+}}{\cdot} Y\;\right]
-\;\; = \;\;
-	\rho^{T} \cdot \Pi_{X} \cdot E\!\left[\;\overset{{\color{white}.}}{Y}\;\right]
-\;\; = \;\;
-	\rho^{T} \cdot \Pi_{X} \cdot X \cdot \beta
-\;\; = \;\;
+\begin{enumerate}
+\item
+	To prove unbiasedness of \,$\rho^{T} \cdot \proj_{\,\Col(X)}(\,Y)$,
+	simply note that, for each fixed but arbitrary $\beta \in \Re^{p}$, we have
+	\begin{equation*}
+	E\!\left[\;\rho^{T} \cdot \proj_{\Col(X)}(\,Y)\;\right]
+	\;\; = \;\;
+		E\!\left[\;\rho^{T} \cdot \Pi_{X} \overset{{\color{white}+}}{\cdot} Y\;\right]
+	\;\; = \;\;
+		\rho^{T} \cdot \Pi_{X} \cdot E\!\left[\;\overset{{\color{white}.}}{Y}\;\right]
+	\;\; = \;\;
+		\rho^{T} \cdot \Pi_{X} \cdot X \cdot \beta
+	\;\; = \;\;
+		\rho^{T} \cdot X \cdot \beta
+	\;\; =: \;\;
+		\lambda(\beta)
+	\end{equation*}
+\item
+	First, note that
+	\begin{eqnarray*}
+	\Var\!\left(\,a^{T} \cdot Y\,\right)
+	&=&
+		\Var\!\left[\;
+			a^{T} \cdot Y
+			\,\overset{{\color{white}+}}{-}\,
+			\rho^{T} \cdot \Pi_{X} \cdot Y
+			\,+\,
+			\rho^{T} \cdot \Pi_{X} \cdot Y
+			\;\right]
+	\\
+	&=&
+		\Var\!\left[\;
+			a^{T} \cdot Y
+			\overset{{\color{white}+}}{-}
+			\rho^{T} \cdot \Pi_{X} \cdot Y
+				\;\right]
+		\; + \;
+		\Var\!\left[\;
+			\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
+			\;\right]
+	\\
+	&&	+ \;
+		2\cdot\Cov\!\left(\;
+			\left(a^{T} \cdot Y
+			\overset{{\color{white}.}}{-}
+			\rho^{T} \cdot \Pi_{X} \cdot Y\right)
+			\,,\,
+			\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
+			\;\right)
+	\end{eqnarray*}
+	Hence, it suffices to show that
+	\begin{equation*}
+		\Cov\!\left(\;
+			\left(a^{T} \cdot Y
+			\overset{{\color{white}.}}{-}
+			\rho^{T} \cdot \Pi_{X} \cdot Y\right)
+			\,,\,
+			\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
+			\;\right)
+		\;\; = \;\; 0
+	\end{equation*}
+	To this end, observe that the unbiasedness assumption on
+	\,$a^{T} \cdot Y : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\.
+	as an estimator of
+	\,$\lambda(\zeta) = \rho^{T} \cdot X \cdot \zeta$\,
+	implies
+	\begin{equation*}
 	\rho^{T} \cdot X \cdot \beta
-\;\; =: \;\;
-	\lambda(\beta)
-\end{equation*}
-\begin{eqnarray*}
-\Var\!\left(\,a^{T} \cdot Y\,\right)
-&=&
-	\Var\!\left[\;
-		a^{T} \cdot Y
-		\,\overset{{\color{white}+}}{-}\,
-		\rho^{T} \cdot \Pi_{X} \cdot Y
-		\,+\,
-		\rho^{T} \cdot \Pi_{X} \cdot Y
-		\;\right]
-\\
-&=&
-	\Var\!\left[\;
-		a^{T} \cdot Y
-		\overset{{\color{white}+}}{-}
-		\rho^{T} \cdot \Pi_{X} \cdot Y
-		\;\right]
-	\; + \;
-	\Var\!\left[\;
-		\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
-		\;\right]
-	\; + \;
-	2\cdot\Cov\!\left(\;
+	\;\; = \;\;
+		\lambda(\beta)
+	\;\; = \;\;
+		E\!\left[\,a^{T} \cdot Y\,\right]
+	\;\; = \;\;
+		a^{T} \cdot E\!\left[\,Y\,\right]
+	\;\; = \;\;
+		a^{T} \cdot X \cdot \beta\,,
+	\quad
+	\textnormal{for each fixed but arbitrary \,$\beta \in \Re^{p}$}\,,
+	\end{equation*}
+	which in turn implies that
+	\begin{equation*}
+	\rho^{T} \cdot X
+	\;\; = \;\;
+		a^{T} \cdot X\,.
+	\end{equation*}
+	Thus, we now see that
+	\begin{eqnarray*}
+	\Cov\!\left(\;
 		\left(a^{T} \cdot Y
 		\overset{{\color{white}.}}{-}
 		\rho^{T} \cdot \Pi_{X} \cdot Y\right)
 		\,,\,
 		\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
-		\;\right)		
-\end{eqnarray*}
-Unbiasedness of $a^{T} \cdot Y : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$
-as an estimator of $\lambda(\beta) = \rho^{T} \cdot X \cdot \beta$ implies
-\begin{equation*}
-\rho^{T} \cdot X \cdot \beta
-\;\; = \;\;
-	\lambda(\beta)
-\;\; = \;\;
-	E\!\left[\,a^{T} \cdot Y\,\right]
-\;\; = \;\;
-	a^{T} \cdot E\!\left[\,Y\,\right]
-\;\; = \;\;
-	a^{T} \cdot X \cdot \beta\,,
-\quad
-\textnormal{for each \,$\beta \in \Re^{p}$}\,,
-\end{equation*}
-which in turn implies that
-\begin{equation*}
-\rho^{T} \cdot X
-\;\; = \;\;
-	a^{T} \cdot X\,.
-\end{equation*}
-\begin{eqnarray*}
-\Cov\!\left(\;
-	\left(a^{T} \cdot Y
-	\overset{{\color{white}.}}{-}
-	\rho^{T} \cdot \Pi_{X} \cdot Y\right)
-	\,,\,
-	\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
-	\;\right)
-&=&
-	\Cov\!\left(\;
-		\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right) \cdot Y
-		\,,\,
-		\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
 		\;\right)
-\\
-&=&
-	\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
-	\cdot \Cov\!\left(\,Y,Y\right) \cdot \Pi_{X} \cdot \rho
-\\
-&=&
-	\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
-	\cdot \sigma^{2} \cdot I_{n} \cdot \Pi_{X} \cdot \rho
-\\
-&=&
-	\sigma^{2}
-	\cdot
-	\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
-	\cdot \Pi_{X} \cdot \rho
-\\
-&=&
-	\sigma^{2}
-	\cdot
-	\left(a^{T} \cdot \Pi_{X} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
-	\cdot \rho
-\\
-&=&
-	\sigma^{2}
-	\cdot
-	\left(a^{T} \cdot X\cdot(X^{T}X)^{\dagger}\cdot X^{T}
-	\,\overset{{\color{white}.}}{-}\,
-	\rho^{T} \cdot X(X^{T}X)^{\dagger}X^{T} \right)
-	\cdot \rho
-\\
-&=&
-	0
-\end{eqnarray*}
+	&=&
+		\Cov\!\left(\,
+			\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right) \cdot Y
+			\,,\,
+			\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
+			\,\right)
+	\\
+	&=&
+		\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
+		\cdot \Cov\!\left(\,Y,Y\right) \cdot \Pi_{X} \cdot \rho
+	\\
+	&=&
+		\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
+		\cdot \sigma^{2} \cdot I_{n} \cdot \Pi_{X} \cdot \rho
+	\\
+	&=&
+		\sigma^{2}
+		\cdot
+		\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
+		\cdot \Pi_{X} \cdot \rho
+	\\
+	&=&
+		\sigma^{2}
+		\cdot
+		\left(a^{T} \cdot \Pi_{X} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
+		\cdot \rho
+	\\
+	&=&
+		\sigma^{2}
+		\cdot
+		\left(a^{T} \cdot X\cdot(X^{T}X)^{\dagger}\cdot X^{T}
+		\,\overset{{\color{white}.}}{-}\,
+		\rho^{T} \cdot X(X^{T}X)^{\dagger}X^{T} \right)
+		\cdot \rho
+	\\
+	&=&
+		0
+	\end{eqnarray*}
+\end{enumerate}
+This completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
