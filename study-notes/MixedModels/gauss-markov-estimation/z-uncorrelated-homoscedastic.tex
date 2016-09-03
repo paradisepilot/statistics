@@ -39,21 +39,83 @@ Suppose:
 	\end{equation*}
 \end{itemize}
 Then,
-	the $\Re^{n}$-valued random variable
-	\,$\proj_{\,\Col(X)}\!\left(\,Y\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{n}$\,
-	is the BLUE (best linear unbiased estimator) of $X \cdot \beta \in \Re^{n}$.
-	More precisely,
-	\,$\proj_{\,\Col(X)}\!\left(\,Y\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{n}$\,
-	is a linear (in $Y$) unbiased estimator of $X\cdot\beta$, and
-	\begin{equation*}
-	\Var\!\left(\,\proj_{\,\Col(X)}\!\left(\,Y\,\right)\,\right)
-	\;\; \leq \;\;
-		\Var\!\left(\,M \cdot Y\,\right)\,,
-	\end{equation*}
-	for every $M \in \Re^{n \times n}$ such that
-	$M \cdot Y : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{n}$
-	is a linear unbiased estimator of $X \cdot \beta$.
+for each $X$-estimable function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$,
+defined by $\Lambda(\zeta) = \Gamma \cdot X \cdot \zeta$, where $\Gamma \in \Re^{q \times n}$,
+the $\Re^{q}$-valued random variable defined on $(\Omega,\mathcal{A},\mu)$:
+\begin{equation*}
+(\Omega,\mathcal{A},\mu) \;\longrightarrow\; \Re^{q}
+\;\; : \;\;
+\omega
+\;\;\longmapsto\;\;
+\Gamma \cdot \proj_{\,\Col(X)}\!\left(\,Y(\omega)\,\right)
+\;\;=\;\;
+\Gamma \cdot \Pi_{X} \cdot Y(\omega)
+\end{equation*}
+is the BLUE (best linear unbiased estimator) of
+\,$\Lambda(\beta) \,=\, \Gamma \cdot X \cdot \beta \,\in\, \Re^{q}$.
+More precisely,
+\,$\Gamma \cdot \proj_{\,\Col(X)}\!\left(\,Y\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{q}$\,
+is a linear (in $Y$) unbiased estimator of
+\,$\Lambda(\beta) = \Gamma \cdot X \cdot \beta$,\, and
+\begin{equation*}
+\Var\!\left(\,\Gamma \cdot \proj_{\,\Col(X)}\!\left(\,Y\,\right)\,\right)
+\;\; \leq \;\;
+	\Var\!\left(\,M \cdot Y\,\right)\,,
+\end{equation*}
+for every $M \in \Re^{q \times n}$ such that
+$M \cdot Y : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{q}$
+is a linear unbiased estimator of
+$\Lambda(\beta) = \Gamma \cdot X \cdot \beta$.
 \end{theorem}
+\proof
+\begin{equation*}
+E\!\left[\;\Gamma \cdot \proj_{\Col(X)}(\,Y)\;\right]
+\;\; = \;\;
+	E\!\left[\;\Gamma \cdot \Pi_{X} \overset{{\color{white}+}}{\cdot} Y\;\right]
+\;\; = \;\;
+	\Gamma \cdot \Pi_{X} \cdot E\!\left[\;\overset{{\color{white}.}}{Y}\;\right]
+\;\; = \;\;
+	\Gamma \cdot \Pi_{X} \cdot X \cdot \beta
+\;\; = \;\;
+	\Gamma \cdot X \cdot \beta
+\;\; =: \;\;
+	\Lambda(\beta)
+\end{equation*}
+\begin{eqnarray*}
+\Var\!\left(\,M \cdot Y\,\right)
+&=&
+	E\!\left[\;
+		\left(\,M \cdot Y - \Gamma \cdot X \cdot \beta\,\right)^{T}
+		\cdot
+		\left(\,M \cdot Y - \Gamma \cdot X \cdot \beta\,\right)
+		\;\right]
+\;\;=\;\;
+	E\!\left[\;\left(\,
+		M \cdot Y
+		- \Gamma \cdot \Pi_{X} \cdot Y
+		+ \Gamma \cdot \Pi_{X} \cdot Y
+		- \Gamma \cdot X \cdot \beta
+		\,\right)^{2}\;\right]
+\\
+&=&
+	E\!\left[\;\left(\,
+		M \cdot Y - \Gamma \cdot \Pi_{X} \cdot Y
+		\,\right)^{2}\;\right]
+	\;+\;
+	E\!\left[\;\left(\,
+		\Gamma \cdot \Pi_{X} \cdot Y - \Gamma \cdot X \cdot \beta
+		\,\right)^{2}\;\right]
+\\
+&&
+	\;+\;
+	2 \cdot
+	E\!\left[\;
+		\left(\,M \cdot Y - \Gamma \cdot \Pi_{X} \cdot Y\,\right)
+		\overset{{\color{white}+}}{\cdot}
+		\left(\,\Gamma \cdot \Pi_{X} \cdot Y - \Gamma \cdot X \cdot \beta\,\right)
+		\;\right]
+\end{eqnarray*}
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
