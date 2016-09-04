@@ -10,10 +10,84 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{proposition}
-\mbox{}
+\begin{proposition}[Theorem B.33, p.427, \cite{Christensen2011}]
+\mbox{}\vskip 0.1cm\noindent
+Suppose $A \in \Re^{n \times n}$.
+Then, left multiplication by $A$, namely
+\begin{equation*}
+\Re^{n} \longrightarrow \Re^{n} : \xi \longmapsto A\cdot\xi\,,
+\end{equation*}
+defines the orthogonal projection from $\Re^{n}$ onto the column space
+$\Col(A) \subset \Re^{n}$ of $A$
+if and only if
+\begin{equation*}
+A \cdot A \; = \; A
+\quad\;\;\textnormal{and}\quad\;\;
+A^{T} \; = A\,.
+\end{equation*}
+\end{proposition}
+\proof
 \vskip 0.1cm
 \noindent
+\underline{\textbf{(\,$\Longrightarrow$\,)}}\quad
+Suppose left multiplication by $A$ defines the orthogonal projection
+from $\Re^{n}$ onto $\Col(A)$.
+Let $v, w \in \Re^{n}$ be two arbitrary elements of $\Re^{n}$.
+Write
+\begin{equation*}
+v \;=\; v_{1} \,+\, v_{2}
+\quad\;\;\textnormal{and}\quad\;\;
+w \;=\; w_{1} \,+\, w_{2}\,,
+\end{equation*}
+where $v_{1}, w_{1} \in \Col(A)$ and $v_{2}, w_{2} \in \Col(A)^{\perp}$.
+Note that
+\begin{equation*}
+(I_{n} - A) \cdot v
+\;\;=\;\;
+	(I_{n} - A) \cdot (v_{1} + v_{2})
+\;\;=\;\;
+	v_{1} + v_{2} - A \cdot v_{1} - A \cdot v_{2}
+\;\;=\;\;
+	v_{1} + v_{2} - v_{1} - 0
+\;\;=\;\;
+	v_{2}\,,
+\end{equation*}
+and
+\begin{equation*}
+A\cdot w
+\;\;=\;\;
+	A\cdot(w_{1} + w_{2})
+\;\;=\;\;
+	A \cdot w_{1} + A \cdot w_{2}
+\;\;=\;\;
+	w_{1} + 0
+\;\;=\;\;
+	w_{1}\,.
+\end{equation*}
+Hence, the matrix $A \in \Re^{n \times n}$ satisfies:
+\begin{equation*}
+w^{T} \cdot A^{T} \cdot (I_{n} - A) \cdot v
+\;\;=\;\;
+	w_{1}^{T} \cdot v_{2}
+\;\;=\;\;
+	0\,,
+\quad\textnormal{for each \,$v, w \in \Re^{n \times n}$}\,.
+\end{equation*}
+This implies \,$A^{T} \cdot (I_{n} - A) \,=\, 0 \,\in\, \Re^{n \times n}$;
+equivalently, \,$A^{T} \,=\, A^{T} \cdot A$.
+Taking the transpose on both sides, we have
+\,$A \,=\, (A^{T} \cdot A)^{T} \,=\, A^{T} \cdot (A^{T})^{T} \,=\, A^{T} \cdot A$.
+In particular, we have \,$A \,=\, A^{T} \cdot A \,=\, A^{T}$,\, i.e. $A$ is symmetric.
+Furthermore, $A \cdot A \,=\, A^{T} \cdot A \,=\, A$, as desired.
+
+\vskip 0.2cm
+\noindent
+\underline{\textbf{(\,$\Longleftarrow$\,)}}\quad
+
+\qed
+
+\begin{proposition}
+\mbox{}\vskip 0.1cm\noindent
 Suppose:
 \begin{itemize}
 \item
