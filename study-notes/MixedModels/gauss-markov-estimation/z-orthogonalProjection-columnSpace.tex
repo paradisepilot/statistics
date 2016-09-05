@@ -116,26 +116,105 @@ Suppose:
 	be the orthogonal projection from $\Re^{n}$ onto the linear subspace $\Col(X) \subset \Re^{n}$,
 	where $\Col(X)$ denotes the column space of $X \in \Re^{n \times p}$.
 \end{itemize}
-Then, the following statements hold:
-\begin{enumerate}
-\item
-	The orthogonal projection map $\proj_{\,\Col(X)}$ can be given by:
-	\begin{equation*}
-	\proj_{\,\Col(X)}(\,y\,) \;\; = \;\; (X^{T}\cdot X)^{\dagger} \cdot X^{T} \cdot y\,,
-	\quad
-	\textnormal{for each $y \in \Re^{n}$}\,,
-	\end{equation*}
-	where $(X^{T}\cdot X)^{\dagger} \in \Re^{n \times n}$ is any generalized inverse of
-	\,$X^{T} \cdot X \in \Re^{n \times n}$.
-\item
-	For each $y \in \Re^{n}$ and $\beta \in \Re^{p}$, we have
-	\begin{equation*}
-	\beta \;\;\in\;\; \underset{\zeta\,\in\,\Re^{p}}{\argmin}\left\{\;\Vert\,y - X \cdot \zeta\,\Vert^{2}\;\right\}
-	\quad\;\;\textnormal{\it if and only if}\quad\;\;
-	X\cdot\beta \;\; = \;\; \proj_{\,\Col(X)}\!\left(\,y\,\right)\,.
-	\end{equation*}
-\end{enumerate}
+Then, for each $y \in \Re^{n}$ and $\beta \in \Re^{p}$, we have
+\begin{equation*}
+\beta \;\;\in\;\; \underset{\zeta\,\in\,\Re^{p}}{\argmin}\left\{\;\Vert\;y - X \cdot \zeta\,\Vert^{2}\;\right\}
+\quad\;\;\textnormal{\it if and only if}\quad\;\;
+X\cdot\beta \;\; = \;\; \proj_{\,\Col(X)}\!\left(\,y\,\right)\,.
+\end{equation*}
 \end{proposition}
+\proof
+First, recall that $\proj_{\,\Col(X)}(\,y\,) \,=\, \Pi_{X} \cdot y \,=\, X\cdot(X^{T}\cdot X)^{\dagger}\cdot X^{T} \cdot y$,
+where $(X^{T} \cdot X)^{\dagger}$ is any generalized inverse of $X^{T} \cdot X$.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}
+\begin{equation*}
+\left(\,y \overset{{\color{white}.}}{-} X\cdot\beta\right)^{T}\cdot\left(\,y \overset{{\color{white}.}}{-} X\cdot\beta\right)
+\;\; = \;\;
+	\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y\right)^{T}\cdot\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y\right)
+	\;+\;
+	\left(\Pi_{X} \cdot y \overset{{\color{white}.}}{-} X\cdot\beta\right)^{T}\cdot\left(\Pi_{X} \cdot y \overset{{\color{white}.}}{-} X\cdot\beta\right)
+\end{equation*}
+Proof of Claim:
+\begin{eqnarray*}
+\left(\,y \overset{{\color{white}.}}{-} X\cdot\beta\right)^{T}\cdot\left(\,y \overset{{\color{white}.}}{-} X\cdot\beta\right)
+&=&
+	\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y + \Pi_{X} \cdot y - X\cdot\beta\right)^{T}
+	\cdot
+	\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y + \Pi_{X} \cdot y - X\cdot\beta\right)
+\\
+&=&
+	\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y\right)^{T}\cdot\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y\right)
+	\;+\;
+	\left(\Pi_{X} \cdot y \overset{{\color{white}.}}{-} X\cdot\beta\right)^{T}\cdot\left(\Pi_{X} \cdot y \overset{{\color{white}.}}{-} X\cdot\beta\right)
+\\
+&&
+	\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y\right)^{T}
+	\cdot
+	\left(\Pi_{X} \cdot y \overset{{\color{white}.}}{-} X\cdot\beta\right)
+	\;+\;
+	\left(\Pi_{X} \cdot y \overset{{\color{white}.}}{-} X\cdot\beta\right)^{T}
+	\cdot
+	\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y\right)
+\end{eqnarray*}
+But,
+\begin{eqnarray*}
+\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y\right)^{T}
+\cdot
+\left(\Pi_{X} \cdot y \overset{{\color{white}.}}{-} X\cdot\beta\right)
+&=&
+	y^{T} \cdot (I_{n} - \Pi_{X}^{T}) \cdot \Pi_{X} \cdot y
+	\;-\;
+	y^{T} \cdot (I_{n} - \Pi_{X}^{T}) \cdot X\cdot\beta
+\\
+&=&
+	y^{T} \cdot (I_{n} - \Pi_{X}) \cdot \Pi_{X} \cdot y
+	\;-\;
+	y^{T} \cdot (I_{n} - \Pi_{X}) \cdot X\cdot\beta
+\\
+&=&
+	y^{T} \cdot (\Pi_{X} - \Pi_{X}^{2}) \cdot y
+	\;-\;
+	y^{T} \cdot (X - \Pi_{X} \cdot X) \cdot\beta
+\\
+&=&
+	y^{T} \cdot 0 \cdot y \;-\; y^{T} \cdot 0 \cdot \beta
+\\
+&=&
+	0
+\end{eqnarray*}
+Similarly,
+\,$\left(\Pi_{X} \cdot y \overset{{\color{white}.}}{-} X\cdot\beta\right)^{T} \cdot \left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y\right)$
+\,$=$\, $0$.
+Thus, we have:
+\begin{equation*}
+\left(\,y \overset{{\color{white}.}}{-} X\cdot\beta\right)^{T}\cdot\left(\,y \overset{{\color{white}.}}{-} X\cdot\beta\right)
+\;\; = \;\;
+	\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y\right)^{T}\cdot\left(\,y \overset{{\color{white}.}}{-} \Pi_{X} \cdot y\right)
+	\;+\;
+	\left(\Pi_{X} \cdot y \overset{{\color{white}.}}{-} X\cdot\beta\right)^{T}\cdot\left(\Pi_{X} \cdot y \overset{{\color{white}.}}{-} X\cdot\beta\right)
+\end{equation*}
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+Note that Claim 1 immediately implies:
+\begin{equation*}
+\underset{\zeta\,\in\,\Re^{p}}{\argmin}\left\{\;\Vert\;y - X \cdot \zeta\,\Vert^{2}\;\right\}
+\;\; = \;\;
+\underset{\zeta\,\in\,\Re^{p}}{\argmin}\left\{\;\Vert\;\Pi_{X} \cdot y - X \cdot \zeta\,\Vert^{2}\;\right\}
+\;\; = \;\;
+\left\{\;
+	\left.
+	\zeta \overset{{\color{white}\vert}}{\in} \Re^{p}
+	\;\;\right\vert\;
+	X \cdot \zeta \,=\, \Pi_{X} \cdot y \,=\, \proj_{\,\Col(X)}(\,y\,)
+	\;\right\}
+\end{equation*}
+This completes the proof of the Proposition.
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 

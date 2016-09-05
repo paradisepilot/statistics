@@ -82,29 +82,39 @@ Suppose:
 	\end{array}
 	\end{equation*}
 \end{itemize}
-Then, a linear function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is $X$-estimable
-if and only if there exists $\Gamma \in \Re^{q \times n}$ such that
-\begin{equation*}
-E\!\left[\;\Gamma \cdot Y\;\right] \;\; = \;\; \Lambda(\beta)\,.
-\end{equation*}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	A linear function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is $X$-estimable
+	if and only if there exists $\Gamma \in \Re^{q \times n}$ such that
+	\begin{equation*}
+	E\!\left[\;\Gamma \cdot Y\;\right] \;\; = \;\; \Lambda(\beta)\,.
+	\end{equation*}
+\item
+	A linear function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ admits a unique
+	least squares estimator if and only if it is $X$-estimable.	
+\end{enumerate}
 \end{proposition}
 \proof
-Suppose the linear map $\Lambda : \Re^{p} \longrightarrow \Re^{q}$
-is $X$-estimable, i.e. there exists $\Gamma \in \Re^{q \times n}$ such that
-$\Lambda(\zeta) \,=\, \Gamma \cdot X \cdot \zeta$, for each $\zeta \in \Re^{p}$.
-Thus,
-$E\!\left[\;\Gamma \cdot Y\,\right]$
-\,$=$\, $\Gamma \cdot E\!\left[\;Y\,\right]$
-\,$=$\, $\Gamma \cdot X \cdot \beta$
-\,$=$\, $\Lambda(\beta)$.
-Conversely, suppose $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is a linear map
-and that there exists $\Gamma \in \Re^{q \times n}$ such that $E\!\left[\;\Gamma \cdot Y\,\right]$
-\,$=$\, $\Lambda(\beta)$. Then,
-$\Lambda(\beta)$
-\,$=$\, $E\!\left[\;\Gamma \cdot Y\,\right]$
-\,$=$\, $\Gamma \cdot E\!\left[\;Y\,\right]$
-\,$=$\, $\Gamma \cdot X \cdot \beta$,
-which means precisely that $\Lambda(\zeta)$ is $X$-estimable. 
+\begin{enumerate}
+\item
+	Suppose the linear map $\Lambda : \Re^{p} \longrightarrow \Re^{q}$
+	is $X$-estimable, i.e. there exists $\Gamma \in \Re^{q \times n}$ such that
+	$\Lambda(\zeta) \,=\, \Gamma \cdot X \cdot \zeta$, for each $\zeta \in \Re^{p}$.
+	Thus,
+	$E\!\left[\;\Gamma \cdot Y\,\right]$
+	\,$=$\, $\Gamma \cdot E\!\left[\;Y\,\right]$
+	\,$=$\, $\Gamma \cdot X \cdot \beta$
+	\,$=$\, $\Lambda(\beta)$.
+	Conversely, suppose $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is a linear map
+	and that there exists $\Gamma \in \Re^{q \times n}$ such that $E\!\left[\;\Gamma \cdot Y\,\right]$
+	\,$=$\, $\Lambda(\beta)$. Then,
+	$\Lambda(\beta)$
+	\,$=$\, $E\!\left[\;\Gamma \cdot Y\,\right]$
+	\,$=$\, $\Gamma \cdot E\!\left[\;Y\,\right]$
+	\,$=$\, $\Gamma \cdot X \cdot \beta$,
+	which means precisely that $\Lambda(\zeta)$ is $X$-estimable.
+\end{enumerate}
 This completes the proof of the Proposition.
 \qed
 
