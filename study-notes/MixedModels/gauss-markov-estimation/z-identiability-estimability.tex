@@ -12,50 +12,55 @@
 
 \begin{definition}
 \mbox{}\vskip 0.1cm\noindent
+Suppose \,$X \in \Re^{n \times p}$.
+A linear function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is said to be \textbf{$X$-estimable}
+if there exists $\Gamma \in \Re^{q \times n}$ such that
+\begin{equation*}
+\Lambda(\beta) \;\; =\;\; \Gamma \cdot X \cdot \beta\,,
+\quad
+\textnormal{for each \,$\beta \in \Re^{p}$}.
+\end{equation*}
+\end{definition}
+
+\begin{definition}
+\mbox{}\vskip 0.1cm\noindent
 Suppose:
 \begin{itemize}
 \item
-	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$X \in \Re^{n \times p}$.
 \item
-	$Y = (Y_{1}, Y_{2}, \ldots, Y_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$.
-\item
-	$e = (e_{1}, e_{2}, \ldots, e_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$.
-\item
-	$X \in \Re^{n \times p}$\, and \,$\beta \in \Re^{p \times 1}$.
-\item
-	The quantities \,$Y$, $e$, $X$ and $\beta$\, satisfy:
+	$\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is an $X$-estimable linear function, i.e.
+	there exists $\Gamma \in \Re^{q \times n}$ such that
 	\begin{equation*}
-	\begin{array}{ccl}
-	Y & = & X \cdot \beta \; + \; e\,, \quad\textnormal{and}
-	\\
-	E\!\left[\;e\,\right] & \overset{{\color{white}\vert}}{=} & 0
-	\end{array}
-	\end{equation*}
-\end{itemize}
-Then,
-\begin{enumerate}
-\item
-	a linear function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is said to be \textbf{$X$-estimable}
-	if there exists $\Gamma \in \Re^{q \times n}$ such that
-	\begin{equation*}
-	\Lambda(\zeta) \;\; =\;\; \Gamma \cdot X \cdot \zeta\,,
-	\quad
-	\textnormal{for each \,$\zeta \in \Re^{p}$}.
-	\end{equation*}
-\item
-	a function $f : \Re^{n} \longrightarrow \Re^{q}$ is called an \textbf{unbiased estimator}
-	of the $X$-estimable linear function $\Lambda(\zeta) = \Gamma \cdot X \cdot \zeta$,
-	if, for each $\beta \in \Re^{p}$, we have
-	\begin{equation*}
-	E\!\left[\;f(Y)\;\right] \;\; =\;\; \Lambda(\beta) \;\;=\;\; \Gamma \cdot X \cdot \beta\,,
+	\Lambda(\beta) \;\; =\;\; \Gamma \cdot X \cdot \beta\,,
 	\quad
 	\textnormal{for each \,$\beta \in \Re^{p}$}.
 	\end{equation*}
-	(Note that the left-hand side $E\!\left[\,f(Y)\,\right]$ implicitly depends on $\beta$
-	due to the hypothesis that \,$Y = X \cdot \beta + e$.)
-\end{enumerate}
+\item
+	\begin{equation*}
+	Y
+	\;\; = \;\;
+		\left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}
+	\end{equation*}
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the 
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$ 
+	such that $E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$.
+\end{itemize}
+Then,
+a function $f : \Re^{n} \longrightarrow \Re^{q}$ is called an
+\,{\color{red}\textbf{unbiased estimator of $\Lambda$ in terms of \,$Y = \left\{\;Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$}}\,
+if
+\begin{equation*}
+E\!\left[\;f(Y_{\beta})\;\right] \;\; =\;\; \Lambda(\beta) \;\;=\;\; \Gamma \cdot X \cdot \beta\,,
+\quad
+\textnormal{for each \,$\beta \in \Re^{p}$}.
+\end{equation*}
 \end{definition}
 
 \begin{proposition}
@@ -63,24 +68,22 @@ Then,
 Suppose:
 \begin{itemize}
 \item
-	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$X \in \Re^{n \times p}$.
 \item
-	$Y = (Y_{1}, Y_{2}, \ldots, Y_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$.
-\item
-	$e = (e_{1}, e_{2}, \ldots, e_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$.
-\item
-	$X \in \Re^{n \times p}$\, and \,$\beta \in \Re^{p \times 1}$.
-\item
-	The quantities \,$Y$, $e$, $X$ and $\beta$\, satisfy:
 	\begin{equation*}
-	\begin{array}{ccl}
-	Y & = & X \cdot \beta \; + \; e\,, \quad\textnormal{and}
-	\\
-	E\!\left[\;e\,\right] & \overset{{\color{white}\vert}}{=} & 0
-	\end{array}
+	Y
+	\;\; = \;\;
+		\left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}
 	\end{equation*}
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the 
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$ 
+	such that $E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$.
 \end{itemize}
 Then, the following statements hold:
 \begin{enumerate}
@@ -88,7 +91,7 @@ Then, the following statements hold:
 	A linear function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is $X$-estimable
 	if and only if there exists $\Gamma \in \Re^{q \times n}$ such that
 	\begin{equation*}
-	E\!\left[\;\Gamma \cdot Y\;\right] \;\; = \;\; \Lambda(\beta)\,.
+	E\!\left[\;\Gamma \cdot Y_{\beta}\;\right] \;\; = \;\; \Lambda(\beta)\,.
 	\end{equation*}
 \item
 	A linear function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ admits a unique
@@ -100,20 +103,21 @@ Then, the following statements hold:
 \item
 	Suppose the linear map $\Lambda : \Re^{p} \longrightarrow \Re^{q}$
 	is $X$-estimable, i.e. there exists $\Gamma \in \Re^{q \times n}$ such that
-	$\Lambda(\zeta) \,=\, \Gamma \cdot X \cdot \zeta$, for each $\zeta \in \Re^{p}$.
+	$\Lambda(\beta) \,=\, \Gamma \cdot X \cdot \beta$, for each $\beta \in \Re^{p}$.
 	Thus,
-	$E\!\left[\;\Gamma \cdot Y\,\right]$
-	\,$=$\, $\Gamma \cdot E\!\left[\;Y\,\right]$
+	$E\!\left[\;\Gamma \cdot Y_{\beta}\,\right]$
+	\,$=$\, $\Gamma \cdot E\!\left[\;Y_{\beta}\,\right]$
 	\,$=$\, $\Gamma \cdot X \cdot \beta$
 	\,$=$\, $\Lambda(\beta)$.
 	Conversely, suppose $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is a linear map
-	and that there exists $\Gamma \in \Re^{q \times n}$ such that $E\!\left[\;\Gamma \cdot Y\,\right]$
+	and that there exists $\Gamma \in \Re^{q \times n}$ such that $E\!\left[\;\Gamma \cdot Y_{\beta}\,\right]$
 	\,$=$\, $\Lambda(\beta)$. Then,
 	$\Lambda(\beta)$
-	\,$=$\, $E\!\left[\;\Gamma \cdot Y\,\right]$
-	\,$=$\, $\Gamma \cdot E\!\left[\;Y\,\right]$
+	\,$=$\, $E\!\left[\;\Gamma \cdot Y_{\beta}\,\right]$
+	\,$=$\, $\Gamma \cdot E\!\left[\;Y_{\beta}\,\right]$
 	\,$=$\, $\Gamma \cdot X \cdot \beta$,
-	which means precisely that $\Lambda(\zeta)$ is $X$-estimable.
+	which means precisely that $\Lambda(\beta)$ is $X$-estimable.
+\item
 \end{enumerate}
 This completes the proof of the Proposition.
 \qed
