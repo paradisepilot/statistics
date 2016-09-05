@@ -26,38 +26,35 @@ if there exists $\Gamma \in \Re^{q \times n}$ such that
 \mbox{}\vskip 0.1cm\noindent
 Suppose:
 \begin{itemize}
+%\item
+%	$X \in \Re^{n \times p}$.
 \item
-	$X \in \Re^{n \times p}$.
+	$\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is a function from $\Re^{p}$ into $\Re^{q}$.
+	%is an $X$-estimable linear function, i.e.
+	%there exists $\Gamma \in \Re^{q \times n}$ such that
+	%\begin{equation*}
+	%\Lambda(\beta) \;\; =\;\; \Gamma \cdot X \cdot \beta\,,
+	%\quad
+	%\textnormal{for each \,$\beta \in \Re^{p}$}.
+	%\end{equation*}
 \item
-	$\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is an $X$-estimable linear function, i.e.
-	there exists $\Gamma \in \Re^{q \times n}$ such that
-	\begin{equation*}
-	\Lambda(\beta) \;\; =\;\; \Gamma \cdot X \cdot \beta\,,
-	\quad
-	\textnormal{for each \,$\beta \in \Re^{p}$}.
-	\end{equation*}
-\item
-	\begin{equation*}
-	Y
-	\;\; = \;\;
-		\left\{\;
+	$Y = \left\{\;
 		\left.
 		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
 		\;\;\right\vert\;
 		\beta \in \Re^{p}
-		\;\right\}
-	\end{equation*}
+		\;\right\}$
 	is a family, indexed by $\beta \in \Re^{p}$,
-	of $\Re^{n}$-valued random variables defined respectively on the 
-	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$ 
-	such that $E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$.
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+	%such that $E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$.
 \end{itemize}
 Then,
 a function $f : \Re^{n} \longrightarrow \Re^{q}$ is called an
 \,{\color{red}\textbf{unbiased estimator of $\Lambda$ in terms of \,$Y = \left\{\;Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$}}\,
 if
 \begin{equation*}
-E\!\left[\;f(Y_{\beta})\;\right] \;\; =\;\; \Lambda(\beta) \;\;=\;\; \Gamma \cdot X \cdot \beta\,,
+E\!\left[\;f(Y_{\beta})\;\right] \;\; =\;\; \Lambda(\beta)\,,
 \quad
 \textnormal{for each \,$\beta \in \Re^{p}$}.
 \end{equation*}
@@ -70,32 +67,27 @@ Suppose:
 \item
 	$X \in \Re^{n \times p}$.
 \item
-	\begin{equation*}
-	Y
-	\;\; = \;\;
-		\left\{\;
+	$Y = \left\{\;
 		\left.
 		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
 		\;\;\right\vert\;
 		\beta \in \Re^{p}
-		\;\right\}
-	\end{equation*}
+		\;\right\}$
 	is a family, indexed by $\beta \in \Re^{p}$,
 	of $\Re^{n}$-valued random variables defined respectively on the 
 	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$ 
-	such that $E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$.
+	{\color{red}such that $E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$}.
 \end{itemize}
-Then, the following statements hold:
+Then, a linear function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$\,:
 \begin{enumerate}
 \item
-	A linear function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is $X$-estimable
+	is $X$-estimable
 	if and only if there exists $\Gamma \in \Re^{q \times n}$ such that
 	\begin{equation*}
 	E\!\left[\;\Gamma \cdot Y_{\beta}\;\right] \;\; = \;\; \Lambda(\beta)\,.
 	\end{equation*}
 \item
-	A linear function $\Lambda : \Re^{p} \longrightarrow \Re^{q}$ admits a unique
-	least squares estimator if and only if it is $X$-estimable.	
+	admits a unique least squares estimator in terms of \,$Y$ if and only if \,$\Lambda$ is $X$-estimable.	
 \end{enumerate}
 \end{proposition}
 \proof
