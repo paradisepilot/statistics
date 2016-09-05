@@ -260,6 +260,19 @@ for some $\beta \in \Re^{p}$.
 	\qed
 \end{enumerate}
 
+\begin{theorem}[Theorem B.55, p.434, \cite{Christensen2011}]
+\mbox{}\vskip 0.1cm\noindent
+Every matrix $X \in \Re^{n \times p}$ admits a generalized inverse.
+\end{theorem}
+\proof
+By Theorem \ref{SymmetricMatricesAdmitSymmetricReflexiveGeneralizedInverses}(i),
+we know that $X^{T} \cdot X \in \Re^{p \times p}$ admits a generalized inverse, say $G \in \Re^{p \times p}$.
+Set $H \,:=\, G \cdot X^{T} \,\in\, \Re^{p \times n}$.
+Then, $X \cdot H \cdot X \,=\, X \cdot G \cdot X^{T} \cdot X \,=\, X$, by Lemma \ref{XGXtXeqX}(i).
+This proves that $H \in \Re^{p \times n}$ is indeed a generalized inverse of $X \in \Re^{n \times p}$.
+This completes the proof of the Theorem.
+\qed
+
 \begin{theorem}
 \mbox{}\vskip 0.1cm\noindent
 Suppose $X \in \Re^{n \times p}$.
@@ -313,19 +326,6 @@ X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v
 Since $v \in \Re^{n}$ is arbitrary, we see that the left multiplication map on $\Re^{n}$
 by $X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T}$ indeed coincides with the
 orthogonal projection map from $\Re^{n}$ onto $\Col(X)$.
-This completes the proof of the Theorem.
-\qed
-
-\begin{theorem}[Theorem B.55, p.434, \cite{Christensen2011}]
-\mbox{}\vskip 0.1cm\noindent
-Every matrix $X \in \Re^{n \times p}$ admits a generalized inverse.
-\end{theorem}
-\proof
-By Theorem \ref{SymmetricMatricesAdmitSymmetricReflexiveGeneralizedInverses}(i),
-we know that $X^{T} \cdot X \in \Re^{p \times p}$ admits a generalized inverse, say $G \in \Re^{p \times p}$.
-Set $H \,:=\, G \cdot X^{T} \,\in\, \Re^{p \times n}$.
-Then, $X \cdot H \cdot X \,=\, X \cdot G \cdot X^{T} \cdot X \,=\, X$, by Lemma \ref{XGXtXeqX}(i).
-This proves that $H \in \Re^{p \times n}$ is indeed a generalized inverse of $X \in \Re^{n \times p}$.
 This completes the proof of the Theorem.
 \qed
 
