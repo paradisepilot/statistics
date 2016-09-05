@@ -1,0 +1,334 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Generalized inverses of matrices}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}
+\mbox{}\vskip 0.1cm\noindent
+Suppose $A \in \Re^{n \times p}$.
+Then, a matrix $G \in \Re^{p \times n}$ is called a
+\textbf{generalized inverse} of $A$ if
+$A\cdot G\cdot A = A$.
+We use the notation $A^{\dagger}$ is denote
+a generalized inverse of $A$.
+\end{definition}
+
+\begin{proposition}
+\mbox{}\vskip 0.1cm\noindent
+The generalized inverse $A^{\dagger}$ of a non-singular (square) matrix $A \in \Re^{n \times n}$
+is unique and $A^{\dagger} = A^{-1}$. 
+\end{proposition}
+\proof
+First note that $A \cdot A^{-1} \cdot A = (A \cdot A^{-1}) \cdot A = I_{n} \cdot A = A$,
+which shows that $A^{-1}$ is indeed a generalized inverse of $A$.
+Secondly, let $G \in \Re^{n \times n}$ be any generalized inverse of $A$, i.e.
+$G$ satisfies $A \cdot G \cdot A = A$.
+But then, multiplying both sides on the left and on the right by $A^{-1}$ gives
+\begin{equation*}
+G \;\; = \;\; A^{-1} \cdot (A \cdot G \cdot A) \cdot A^{-1}  
+	\;\; = \;\; A^{-1} \cdot (\,A\,) \cdot A^{-1}  
+	\;\; = \;\; A^{-1}\,,
+\end{equation*}
+which proves that every generalized inverse of $A$ must equal $A^{-1}$.
+\qed
+
+\begin{definition}
+\mbox{}\vskip 0.1cm\noindent
+Suppose $A \in \Re^{n \times p}$ admits a generalized inverse $A^{\dagger} \in \Re^{p \times n}$.
+The generalized inverse $A^{\dagger}$ is said to be \textbf{reflexive} if
+$A^{\dagger} \cdot A \cdot A^{\dagger} = A^{\dagger}$ (in other words,
+$A$ is itself a generalized inverse of $A^{\dagger}$).
+\end{definition}
+
+\begin{proposition}
+\label{SymmetricMatricesAdmitSymmetricReflexiveGeneralizedInverses}
+\mbox{}\vskip -0.1cm\noindent
+\begin{enumerate}
+\item
+	Every symmetric matrix $A \in \Re^{n \times n}$ admits a generalized inverse.
+\item
+	Every symmetric matrix admits a symmetric reflexive
+	generalized inverse; more precisely, for each $A \in \Re^{n \times n}$,
+	\begin{equation*}
+	A^{T} \;=\; A
+	\quad\;\;\Longrightarrow\quad\;\;
+	\exists\;\;A^{\dagger} \,\in\, \Re^{n \times n}
+	\quad\textnormal{such that}\quad
+	(A^{\dagger})^{T} = A^{\dagger}\,,\;\;
+	A \cdot A^{\dagger} \cdot A = A\,,\;\;
+	\textnormal{and}\;\;
+	A^{\dagger} \cdot A \cdot A^{\dagger} = A^{\dagger}
+	\end{equation*}
+\end{enumerate}
+\end{proposition}
+\proof
+\begin{enumerate}
+\item
+	By the Real Spectral Theorem
+	(Theorem B.19, p.423, \cite{Christensen2011} or Theorem 7.29, p.221, \cite{Axler2015}),
+	we have that, for every real symmetric matrix $A\in\Re^{n \times n}$,
+	there exists an orthogonal matrix $P$ (i.e. $P^{T} \cdot P = I_{n}$) such that
+	$P^{-1} \cdot A \cdot P = \diag(\lambda_{1},\lambda_{2},\ldots,\lambda_{n})$,
+	where the $\lambda_{i}$'s are the eigenvalues of $A$ and the columns of
+	$P$ are corresponding eigenvectors of $A$.
+	For each $i = 1, 2, \ldots, n$, let
+	\begin{equation*}
+	\gamma_{i} \;\; := \;\;
+		\left\{\begin{array}{cl}
+			1/\lambda_{i}\,, & \textnormal{if \,$\lambda_{i} \neq 0$}\,,
+			\\
+			0\,, & \textnormal{if \,$\lambda_{i} = 0$}
+		\end{array}\right.
+	\end{equation*}
+	Note that
+	\begin{equation*}
+	\lambda_{i}\gamma_{i} \;\; = \;\;
+		\left\{\begin{array}{cl}
+			1\,, & \textnormal{if \,$\lambda_{i} \neq 0$}\,,
+			\\
+			0\,, & \textnormal{if \,$\lambda_{i} = 0$}
+		\end{array}\right.
+	\end{equation*}
+	Consequently,
+	\begin{equation*}
+	\lambda_{i}\gamma_{i}\lambda_{i} 
+	\;\; = \;\;
+		\left\{\begin{array}{cl}
+			\lambda_{i}\,, & \textnormal{if \,$\lambda_{i} \neq 0$}\,,
+			\\
+			0\,, & \textnormal{if \,$\lambda_{i} = 0$}
+		\end{array}\right\}
+	\;\; = \;\;
+		\lambda_{i}	
+	\end{equation*}
+	Define $G := P^{T} \cdot \diag(\gamma_{1},\gamma_{2},\ldots,\gamma_{n}) \cdot P \in \Re^{n \times n}$.
+	We claim that $G$ is a generalized inverse of $A$.
+	Indeed,
+	\begin{eqnarray*}
+	A \cdot G \cdot A
+	&=&
+		\left(P^{T}\overset{{\color{white}-}}{\cdot}\diag(\lambda_{1},\cdots,\lambda_{n})\cdot P\right)
+		\cdot
+		\left(P^{T}\overset{{\color{white}-}}{\cdot}\diag(\gamma_{1},\cdots,\gamma_{n})\cdot P\right)
+		\cdot
+		\left(P^{T}\overset{{\color{white}-}}{\cdot}\diag(\lambda_{1},\cdots,\lambda_{n})\cdot P\right)
+	\\
+	&=&
+		\left(
+			P^{T}\overset{{\color{white}-}}{\cdot}
+			\diag(\lambda_{1}\gamma_{1},\cdots,\lambda_{n}\gamma_{n})\cdot
+			P
+			\right)
+		\cdot
+		\left(P^{T}\overset{{\color{white}-}}{\cdot}\diag(\lambda_{1},\cdots,\lambda_{n})\cdot P\right)
+	\\
+	&=&
+		P^{T}
+		\cdot
+		\diag(\lambda_{1}\gamma_{1}\lambda_{1},\cdots,\lambda_{n}\gamma_{n}\lambda_{n})
+		\cdot P
+	\;\; = \;\;
+		P^{T} \cdot \diag(\lambda_{1},\cdots,\lambda_{n}) \cdot P
+	\\
+	&=&
+		A
+	\end{eqnarray*}
+	This proves that $G$ is indeed a generalized inverse of $A$, as desired.
+\item
+	Let $A, G \in \Re^{n \times n}$ and $\lambda_{i}, \gamma_{i}$, $i = 1,\ldots,n$, be as above.
+	Then, the proof (i) establishes that $G$ is a generalized inverse of $A$, i.e. $A\cdot G\cdot A = A$.
+	It is also immediate that $G$ is symmetric, i.e. $G^{T} = G$.
+	Thus, it remains only to show that $G \cdot A \cdot G = G$.
+	To this end, first note that
+	\begin{equation*}
+	\gamma_{i}\lambda_{i}\gamma_{i} 
+	\;\; = \;\;
+		\left\{\begin{array}{cl}
+			\gamma_{i}\,, & \textnormal{if \,$\lambda_{i} \neq 0$}\,,
+			\\
+			0\,, & \textnormal{if \,$\lambda_{i} = 0$}
+		\end{array}\right\}
+	\;\; = \;\;
+		\gamma_{i}	
+	\end{equation*}
+	Hence,
+	\begin{eqnarray*}
+	G \cdot A \cdot G
+	&=&
+		\left(P^{T}\overset{{\color{white}-}}{\cdot}\diag(\gamma_{1},\cdots,\gamma_{n})\cdot P\right)
+		\cdot
+		\left(P^{T}\overset{{\color{white}-}}{\cdot}\diag(\lambda_{1},\cdots,\lambda_{n})\cdot P\right)
+		\cdot
+		\left(P^{T}\overset{{\color{white}-}}{\cdot}\diag(\gamma_{1},\cdots,\gamma_{n})\cdot P\right)
+	\\
+	&=&
+		\left(
+			P^{T}\overset{{\color{white}-}}{\cdot}
+			\diag(\gamma_{1}\lambda_{1},\cdots,\gamma_{n}\lambda_{n})\cdot
+			P
+			\right)
+		\cdot
+		\left(P^{T}\overset{{\color{white}-}}{\cdot}\diag(\gamma_{1},\cdots,\gamma_{n})\cdot P\right)
+	\\
+	&=&
+		P^{T}
+		\cdot
+		\diag(\gamma_{1}\lambda_{1}\gamma_{1},\cdots,\gamma_{n}\lambda_{n}\gamma_{n})
+		\cdot P
+	\;\; = \;\;
+		P^{T} \cdot \diag(\gamma_{1},\cdots,\gamma_{n}) \cdot P
+	\\
+	&=&
+		G\,,
+	\end{eqnarray*}
+	as desired.
+	\qed
+\end{enumerate}
+
+\begin{lemma}[Lemma B.43, p.430, \cite{Christensen2011}]
+\label{XGXtXeqX}
+\mbox{}\vskip 0.1cm\noindent
+Suppose $X \in \Re^{n \times p}$.
+\begin{enumerate}
+\item
+	For any generalized inverse $G \in \Re^{p \times p}$ of \,$X^{T} \cdot X \in \Re^{p \times p}$,
+	we have
+	\begin{equation*}
+	X \cdot G \cdot (X^{T} \cdot X) \;\; = \;\; X\,.
+	\end{equation*}
+\item
+	For any two generalized inverse $G, H \in \Re^{p \times p}$ of \,$X^{T} \cdot X \in \Re^{p \times p}$,
+	we have
+	\begin{equation*}
+	X \cdot G \cdot X^{T} \;\; = \;\; X \cdot H \cdot X^{T}\,.
+	\end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof
+Let $v \in \Re^{n}$, and write $v = v_{1} + v_{2}$, where
+$v_{1} \in \Col(X)$ and $v_{2} \in \Col(X)^{\perp}$.
+Since $v_{1} \in \Col(X)$, we have $v_{1} = X \cdot \beta$,
+for some $\beta \in \Re^{p}$.
+\begin{enumerate}
+\item
+	First, note that
+	$X^{T} \cdot v = X^{T} \cdot (v_{1} + v_{2}) = X^{T} \cdot v_{1} = X^{T} \cdot X \cdot \beta$.
+	Hence $v^{T} \cdot X = \beta^{T} \cdot X^{T} \cdot X$.
+	We thus see that:
+	\begin{equation*}
+	v^{T}\left(\,X \overset{{\color{white}\vert}}{\cdot} G \cdot (X^{T} \cdot X)\,\right)
+	\;\; = \;\;
+		\beta^{T} \cdot (X^{T} \cdot X) \cdot G \cdot (X^{T} \cdot X)
+	\;\; = \;\;
+		\beta^{T} \cdot (X^{T} \cdot X)
+	\;\; = \;\;
+		v^{T} \cdot X\,.
+	\end{equation*}
+	Since $v \in \Re^{n \times n}$ is arbitrary, we may conclude that
+	$X \cdot G \cdot (X^{T} \cdot X) \,=\, X$,
+	as desired.
+\item
+	Observe that
+	\begin{eqnarray*}
+	X \cdot G \cdot X^{T} \cdot v
+	& = &
+		X \cdot G \cdot X^{T} \cdot (v_{1} + v_{2})
+	\;\; = \;\;
+		X \cdot G \cdot X^{T} \cdot X \cdot \beta
+	\\
+	& = &
+		X \cdot \beta
+	\\
+	& = &
+		X \cdot H \cdot X^{T} \cdot X \cdot \beta
+	\;\; = \;\;
+		X \cdot H \cdot X^{T} \cdot (v_{1} + v_{2})
+	\\
+	& = &
+		X \cdot H \cdot X^{T} \cdot v
+	\end{eqnarray*}
+	Since $v \in \Re^{n}$ is arbitrary, we may conclude that
+	$X \cdot G \cdot X^{T} \,=\, X \cdot H \cdot X^{T}$,
+	as desired.
+	\qed
+\end{enumerate}
+
+\begin{theorem}
+\mbox{}\vskip 0.1cm\noindent
+Suppose $X \in \Re^{n \times p}$.
+Then, the map
+\begin{equation*}
+\Re^{n} \; \longrightarrow \; \Re^{n}
+\;\; : \;\;
+v \; \longmapsto X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v
+\end{equation*}
+is the orthogonal projection from $\Re^{n}$ onto the column space
+$\Col(X) \subset \Re^{n}$, where
+$(X^{T} \cdot X)^{\dagger} \in \Re^{n \times n}$ is any generalized inverse of the symmetric
+matrix $X^{T} \cdot X \in \Re^{n \times n}$.
+\end{theorem}
+\proof
+Let $v \in \Re^{n}$, and decompose $v$ as $v = v_{1} + v_{2}$,
+where $v_{1} \in \Col(X)$ and $v_{2} \in \Col(X)^{\perp}$.
+Since $v_{1} \in \Col(X)$, we have $v_{1} = X\cdot\beta$,
+for some $\beta \in \Re^{p}$.
+Hence,
+\begin{equation*}
+X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v_{1}
+\;\; = \;\;
+	X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot (X \cdot \beta)
+\;\; = \;\;
+	X \cdot (X^{T} \cdot X)^{\dagger} \cdot (X^{T} \cdot X) \cdot \beta
+\;\; = \;\;
+	X \cdot \beta
+\;\; = \;\;
+	v_{1}\,,
+\end{equation*}
+where the last equality follows from Lemma \ref{XGXtXeqX}(i).
+On the other hand,
+\begin{equation*}
+X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v_{2}
+\;\; = \;\;
+	0\,.
+\end{equation*}
+Hence,
+\begin{equation*}
+X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v
+\;\; = \;\;
+	X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot (v_{1} + v_{2})
+\;\; = \;\;
+	X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v_{1}
+\;\; = \;\;
+	v_{1}
+\;\; = \;\;
+	\proj_{\,\Col(X)}(\,v\,)\,.
+\end{equation*}
+Since $v \in \Re^{n}$ is arbitrary, we see that the left multiplication map on $\Re^{n}$
+by $X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T}$ indeed coincides with the
+orthogonal projection map from $\Re^{n}$ onto $\Col(X)$.
+This completes the proof of the Theorem.
+\qed
+
+\begin{theorem}[Theorem B.55, p.434, \cite{Christensen2011}]
+\mbox{}\vskip 0.1cm\noindent
+Every matrix $X \in \Re^{n \times p}$ admits a generalized inverse.
+\end{theorem}
+\proof
+By Theorem \ref{SymmetricMatricesAdmitSymmetricReflexiveGeneralizedInverses}(i),
+we know that $X^{T} \cdot X \in \Re^{p \times p}$ admits a generalized inverse, say $G \in \Re^{p \times p}$.
+Set $H \,:=\, G \cdot X^{T} \,\in\, \Re^{p \times n}$.
+Then, $X \cdot H \cdot X \,=\, X \cdot G \cdot X^{T} \cdot X \,=\, X$, by Lemma \ref{XGXtXeqX}(i).
+This proves that $H \in \Re^{p \times n}$ is indeed a generalized inverse of $X \in \Re^{n \times p}$.
+This completes the proof of the Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
