@@ -179,13 +179,19 @@ Suppose $X \in \Re^{n \times p}$.
 Then, the following statements hold:
 \begin{enumerate}
 \item
-	For each $v \in \Re^{n}$, $X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v \in \Re^{n}$
-	is independent of the choice of the generalized inverse $(X^{T} \cdot X)^{\dagger}$.
+	The matrix
+	\begin{equation*}
+		\Pi_{X} \;:=\; X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \in \Re^{n \times n}
+	\end{equation*}
+	is independent of the choice of the generalized inverse $(X^{T} \cdot X)^{\dagger}$
+	of the symmetric matrix $X^{T} \cdot X \in \Re^{p \times p}$.
+	%For each $v \in \Re^{n}$, $X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v \in \Re^{n}$
+	%is independent of the choice of the generalized inverse $(X^{T} \cdot X)^{\dagger}$.
 	Consequently, the following:
 	\begin{equation*}
 	\Re^{n} \; \longrightarrow \; \Re^{n}
 	\;\; : \;\;
-	v \; \longmapsto X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v\,,
+	v \; \longmapsto \; \Pi_{X}\cdot v \;:=\;X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v\,,
 	\end{equation*}
 	where $(X^{T} \cdot X)^{\dagger} \in \Re^{n \times n}$
 	is any generalized inverse of the symmetric matrix
@@ -413,7 +419,12 @@ is, by definition, the following:
 		\overset{{\color{white}\vert}}{X} \cdot \beta \;=\; \Pi_{X} \cdot y
 		\right.
 		\;\right\}
+\\
+&=&
+	\Lambda \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y \;\, + \;\, \Lambda \cdot \Null(X)\,,
 \end{eqnarray*}
+where $(X^{T} \cdot X)^{\dagger}$ is any fixed generalized inverse
+of the symmetric matrix \,$X^{T} \cdot X$.
 \end{definition}
 
 \begin{theorem}
@@ -431,18 +442,51 @@ Suppose:
 	i.e. $\mathcal{L}_{\Lambda}(\beta) = \Lambda \cdot \beta$.
 \end{itemize}
 Then,
-\begin{enumerate}
-\item
-	The set \,$\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$\,
-	of \textbf{$(y\,\vert X)$-least squares estimates} of
-	\,$\mathcal{L}_{\Lambda} : \Re^{p} \longrightarrow \Re^{q}$
-	can be expressed as follows:
-	\begin{equation*}
-	\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)
-	\;\; = \;\;
-	\end{equation*}
-\end{enumerate}
+%\begin{enumerate}
+%\item
+%	The set \,$\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$\,
+%	of \textbf{$(y\,\vert X)$-least squares estimates} of
+%	\,$\mathcal{L}_{\Lambda} : \Re^{p} \longrightarrow \Re^{q}$
+%	can be expressed as follows:
+%	\begin{equation*}
+%	\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)
+%	\;\; = \;\;
+%		\Lambda \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y
+%		\; + \;
+%		\Lambda \cdot \Null(X)\,,
+%	\end{equation*}
+%\item
+	$\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$\,
+	is a singleton (i.e. $\mathcal{L}_{\Lambda}$ admits a unique $(\,y\,\vert\,X)$-least square estimate)
+	if and only if $\mathcal{L}_{\Lambda}$ is $X$-estimable.
+%\end{enumerate}
 \end{theorem}
+\proof
+\vskip 0.2cm\noindent
+\underline{\textbf{(\,$\Longleftarrow$\,)}}\quad
+Suppose $\mathcal{L}_{\Lambda}$ is $X$-estimable, i.e. $\Lambda = \Gamma \cdot X$,
+for some $\Gamma \in \Re^{q \times n}$.
+Then,
+\begin{equation*}
+\Lambda\cdot\Null(X) = \Gamma\cdot X \cdot \Null(X) = \Gamma \cdot \{\,0\,\} = \{\,0\,\}.
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)
+&=&
+	\Lambda \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y \;\, + \;\, \Lambda \cdot \Null(X)
+\;\;=\;\;
+	\Gamma \cdot \left(\,\overset{{\color{white}.}}{X} \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T}\,\right) \cdot y \;\, + \;\, \{\,0\,\}
+\\
+&=&
+	\left\{\; \overset{{\color{white}.}}{\Gamma} \cdot \Pi_{X} \cdot y \;\right\}\,,
+\end{eqnarray*}
+i.e. $\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$ is indeed a singleton, as desired.
 
+\vskip 0.5cm\noindent
+\underline{\textbf{(\,$\Longrightarrow$\,)}}\quad
+Conversely, suppose $\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$ is a singleton.
+
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
