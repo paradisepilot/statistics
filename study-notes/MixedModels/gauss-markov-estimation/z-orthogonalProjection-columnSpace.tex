@@ -105,6 +105,143 @@ and it restricts to the zero map on $\Col(A)^{\perp}$. This proves that left mul
 by $A$ defines the orthogonal projection from $\Re^{n}$ onto $\Col(A)$.
 \qed
 
+\begin{lemma}[Lemma B.43, p.430, \cite{Christensen2011}]
+\label{XGXtXeqX}
+\mbox{}\vskip 0.1cm\noindent
+Suppose $X \in \Re^{n \times p}$.
+\begin{enumerate}
+\item
+	For any generalized inverse $G \in \Re^{p \times p}$ of \,$X^{T} \cdot X \in \Re^{p \times p}$,
+	we have
+	\begin{equation*}
+	X \cdot G \cdot (X^{T} \cdot X) \;\; = \;\; X\,.
+	\end{equation*}
+\item
+	For any two generalized inverse $G, H \in \Re^{p \times p}$ of \,$X^{T} \cdot X \in \Re^{p \times p}$,
+	we have
+	\begin{equation*}
+	X \cdot G \cdot X^{T} \;\; = \;\; X \cdot H \cdot X^{T}\,.
+	\end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof
+Let $v \in \Re^{n}$, and write $v = v_{1} + v_{2}$, where
+$v_{1} \in \Col(X)$ and $v_{2} \in \Col(X)^{\perp}$.
+Since $v_{1} \in \Col(X)$, we have $v_{1} = X \cdot \beta$,
+for some $\beta \in \Re^{p}$.
+\begin{enumerate}
+\item
+	First, note that
+	$X^{T} \cdot v = X^{T} \cdot (v_{1} + v_{2}) = X^{T} \cdot v_{1} = X^{T} \cdot X \cdot \beta$.
+	Hence $v^{T} \cdot X = \beta^{T} \cdot X^{T} \cdot X$.
+	We thus see that:
+	\begin{equation*}
+	v^{T}\left(\,X \overset{{\color{white}\vert}}{\cdot} G \cdot (X^{T} \cdot X)\,\right)
+	\;\; = \;\;
+		\beta^{T} \cdot (X^{T} \cdot X) \cdot G \cdot (X^{T} \cdot X)
+	\;\; = \;\;
+		\beta^{T} \cdot (X^{T} \cdot X)
+	\;\; = \;\;
+		v^{T} \cdot X\,.
+	\end{equation*}
+	Since $v \in \Re^{n \times n}$ is arbitrary, we may conclude that
+	$X \cdot G \cdot (X^{T} \cdot X) \,=\, X$,
+	as desired.
+\item
+	Observe that
+	\begin{eqnarray*}
+	X \cdot G \cdot X^{T} \cdot v
+	& = &
+		X \cdot G \cdot X^{T} \cdot (v_{1} + v_{2})
+	\;\; = \;\;
+		X \cdot G \cdot X^{T} \cdot X \cdot \beta
+	\\
+	& = &
+		X \cdot \beta
+	\\
+	& = &
+		X \cdot H \cdot X^{T} \cdot X \cdot \beta
+	\;\; = \;\;
+		X \cdot H \cdot X^{T} \cdot (v_{1} + v_{2})
+	\\
+	& = &
+		X \cdot H \cdot X^{T} \cdot v
+	\end{eqnarray*}
+	Since $v \in \Re^{n}$ is arbitrary, we may conclude that
+	$X \cdot G \cdot X^{T} \,=\, X \cdot H \cdot X^{T}$,
+	as desired.
+	\qed
+\end{enumerate}
+
+\begin{theorem}
+\mbox{}\vskip 0.1cm\noindent
+Suppose $X \in \Re^{n \times p}$.
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	For each $v \in \Re^{n}$, $X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v \in \Re^{n}$
+	is independent of the choice of the generalized inverse $(X^{T} \cdot X)^{\dagger}$.
+	Consequently, the following:
+	\begin{equation*}
+	\Re^{n} \; \longrightarrow \; \Re^{n}
+	\;\; : \;\;
+	v \; \longmapsto X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v\,,
+	\end{equation*}
+	where $(X^{T} \cdot X)^{\dagger} \in \Re^{n \times n}$
+	is any generalized inverse of the symmetric matrix
+	$X^{T} \cdot X \in \Re^{n \times n}$, defines a map from $\Re^{n}$ into itself.
+\item
+	Furthermore, the map above equals the orthogonal projection
+	from $\Re^{n}$ onto the column space $\Col(X) \subset \Re^{n}$.
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	The well-definition of indicated map follows immediately from Lemma \ref{XGXtXeqX}(ii).
+\item
+Let $v \in \Re^{n}$, and decompose $v$ as $v = v_{1} + v_{2}$,
+where $v_{1} \in \Col(X)$ and $v_{2} \in \Col(X)^{\perp}$.
+Since $v_{1} \in \Col(X)$, we have $v_{1} = X\cdot\beta$,
+for some $\beta \in \Re^{p}$.
+Hence,
+\begin{equation*}
+X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v_{1}
+\;\; = \;\;
+	X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot (X \cdot \beta)
+\;\; = \;\;
+	X \cdot (X^{T} \cdot X)^{\dagger} \cdot (X^{T} \cdot X) \cdot \beta
+\;\; = \;\;
+	X \cdot \beta
+\;\; = \;\;
+	v_{1}\,,
+\end{equation*}
+where the last equality follows from Lemma \ref{XGXtXeqX}(i).
+On the other hand,
+\begin{equation*}
+X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v_{2}
+\;\; = \;\;
+	0\,.
+\end{equation*}
+Hence,
+\begin{equation*}
+X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v
+\;\; = \;\;
+	X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot (v_{1} + v_{2})
+\;\; = \;\;
+	X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot v_{1}
+\;\; = \;\;
+	v_{1}
+\;\; = \;\;
+	\proj_{\,\Col(X)}(\,v\,)\,.
+\end{equation*}
+Since $v \in \Re^{n}$ is arbitrary, we see that the left multiplication map on $\Re^{n}$
+by $X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T}$ indeed coincides with the
+orthogonal projection map from $\Re^{n}$ onto $\Col(X)$.
+This completes the proof of the Theorem.
+\qed
+\end{enumerate}
+
 \begin{proposition}
 \mbox{}\vskip 0.1cm\noindent
 Suppose:
@@ -120,8 +257,18 @@ Then, for each $y \in \Re^{n}$ and $\beta \in \Re^{p}$, we have
 \begin{equation*}
 \beta \;\;\in\;\; \underset{\zeta\,\in\,\Re^{p}}{\argmin}\left\{\;\Vert\;y - X \cdot \zeta\,\Vert^{2}\;\right\}
 \quad\;\;\textnormal{\it if and only if}\quad\;\;
-X\cdot\beta \;\; = \;\; \proj_{\,\Col(X)}\!\left(\,y\,\right)\,.
+X\cdot\beta \;\; = \;\; \proj_{\,\Col(X)}\!\left(\,y\,\right)\,;
 \end{equation*}
+equivalently,
+\begin{equation*}
+\underset{\zeta\,\in\,\Re^{p}}{\argmin}\left\{\;\Vert\;y - X \cdot \zeta\,\Vert^{2}\;\right\}
+\;\; = \;\;
+	(X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y
+	\; + \;
+	\Null(X)\,,
+\end{equation*}
+where \,$(X^{T} \cdot X)^{\dagger}$\, is any generalized inverse of the symmetric matrix
+\,$X^{T} \cdot X$\, and $\Null(X) \subset \Re^{p}$ is the null space of $X$. 
 \end{proposition}
 \proof
 First, recall that $\proj_{\,\Col(X)}(\,y\,) \,=\, \Pi_{X} \cdot y \,=\, X\cdot(X^{T}\cdot X)^{\dagger}\cdot X^{T} \cdot y$,
@@ -216,6 +363,86 @@ Note that Claim 1 immediately implies:
 This completes the proof of the Proposition.
 \qed
 
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+\begin{definition}
+\mbox{}\vskip 0.1cm\noindent
+Suppose:
+\begin{itemize}
+\item
+	$X \in \Re^{n \times p}$.
+\item
+	$y \in \Re^{n}$.
+\item
+	$\Lambda \in \Re^{q \times p}$,\,
+	and
+	\,$\mathcal{L}_{\Lambda} : \Re^{p} \longrightarrow \Re^{q}$ is left-multiplication by $\Lambda$,
+	i.e. $\mathcal{L}_{\Lambda}(\beta) = \Lambda \cdot \beta$.
+\end{itemize}
+The set \,$\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$\,
+of \textbf{$(y\,\vert X)$-least squares estimates} of
+\,$\mathcal{L}_{\Lambda} : \Re^{p} \longrightarrow \Re^{q}$
+is, by definition, the following:
+\begin{eqnarray*}
+\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)
+&:=&
+	\mathcal{L}_{\Lambda}\!\left(\;
+		\underset{\zeta\,\in\,\Re^{p}}{\argmin}
+		\left\{\;\left\Vert\;\overset{{\color{white}.}}{y} - X\cdot\zeta\;\right\Vert^{2}\;\right\}
+		\;\right)
+\;\; = \;\;
+	\left\{\;\,
+		\Lambda\cdot\beta \overset{{\color{white}.}}{\in} \Re^{q}
+		\;\;\left\vert\;\;
+		\beta \in \underset{\zeta\,\in\,\Re^{p}}{\argmin}
+			\left\{\;\left\Vert\;\overset{{\color{white}.}}{y} - X\cdot\zeta\;\right\Vert^{2}\;\right\}
+		\right.
+		\;\right\}
+\\
+&=&
+	\mathcal{L}_{\Lambda}\!\left(\;
+		\left\{\;\,
+			\beta \overset{{\color{white}.}}{\in} \Re^{p}
+			\;\,\left\vert\;\;
+			\overset{{\color{white}.}}{X} \cdot \beta \;=\; \Pi_{X} \cdot y
+			\right.
+			\;\right\}
+		\;\right)
+\;\; = \;\;
+	\left\{\;\,
+		\Lambda\cdot\beta \overset{{\color{white}.}}{\in} \Re^{q}
+		\;\,\left\vert\;\;
+		\overset{{\color{white}\vert}}{X} \cdot \beta \;=\; \Pi_{X} \cdot y
+		\right.
+		\;\right\}
+\end{eqnarray*}
+\end{definition}
+
+\begin{theorem}
+\mbox{}\vskip 0.1cm\noindent
+Suppose:
+\begin{itemize}
+\item
+	$X \in \Re^{n \times p}$.
+\item
+	$y \in \Re^{n}$.
+\item
+	$\Lambda \in \Re^{q \times p}$,\,
+	and
+	\,$\mathcal{L}_{\Lambda} : \Re^{p} \longrightarrow \Re^{q}$ is left-multiplication by $\Lambda$,
+	i.e. $\mathcal{L}_{\Lambda}(\beta) = \Lambda \cdot \beta$.
+\end{itemize}
+Then,
+\begin{enumerate}
+\item
+	The set \,$\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$\,
+	of \textbf{$(y\,\vert X)$-least squares estimates} of
+	\,$\mathcal{L}_{\Lambda} : \Re^{p} \longrightarrow \Re^{q}$
+	can be expressed as follows:
+	\begin{equation*}
+	\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)
+	\;\; = \;\;
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
