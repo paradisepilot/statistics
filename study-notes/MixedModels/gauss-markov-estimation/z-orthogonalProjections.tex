@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Orthogonal projections onto subspaces in $\Re^{n}$}
+\section{Orthogonal projections and least squares estimates}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -437,57 +437,151 @@ Suppose:
 \item
 	$y \in \Re^{n}$.
 \item
-	$\Lambda \in \Re^{q \times p}$,\,
+	$\lambda \in \Re^{1 \times p}$,\,
 	and
-	\,$\mathcal{L}_{\Lambda} : \Re^{p} \longrightarrow \Re^{q}$ is left-multiplication by $\Lambda$,
-	i.e. $\mathcal{L}_{\Lambda}(\beta) = \Lambda \cdot \beta$.
+	\,$\mathcal{L}_{\lambda} : \Re^{p} \longrightarrow \Re^{1}$ is left-multiplication by $\Lambda$,
+	i.e. $\mathcal{L}_{\lambda}(\beta) = \lambda \cdot \beta$.
 \end{itemize}
 Then,
-%\begin{enumerate}
-%\item
-%	The set \,$\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$\,
-%	of \textbf{$(y\,\vert X)$-least squares estimates} of
-%	\,$\mathcal{L}_{\Lambda} : \Re^{p} \longrightarrow \Re^{q}$
-%	can be expressed as follows:
-%	\begin{equation*}
-%	\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)
-%	\;\; = \;\;
-%		\Lambda \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y
-%		\; + \;
-%		\Lambda \cdot \Null(X)\,,
-%	\end{equation*}
-%\item
-	$\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$\,
-	is a singleton (i.e. $\mathcal{L}_{\Lambda}$ admits a unique $(\,y\,\vert\,X)$-least square estimate)
-	if and only if $\mathcal{L}_{\Lambda}$ is $X$-estimable.
-%\end{enumerate}
+	$\lse\!\left(\,\mathcal{L}_{\lambda} \,;\, y\,\vert X\,\right)$\,
+	is a singleton (i.e. $\mathcal{L}_{\lambda}$ admits a unique $(\,y\,\vert\,X)$-least square estimate)
+	if and only if $\mathcal{L}_{\lambda}$ is $X$-estimable.
 \end{theorem}
 \proof
 \vskip 0.2cm\noindent
 \underline{\textbf{(\,$\Longleftarrow$\,)}}\quad
-Suppose $\mathcal{L}_{\Lambda}$ is $X$-estimable, i.e. $\Lambda = \Gamma \cdot X$,
-for some $\Gamma \in \Re^{q \times n}$.
+Suppose $\mathcal{L}_{\lambda}$ is $X$-estimable, i.e. $\lambda = \rho^{T} \cdot X$,
+for some $\rho \in \Re^{n \times 1}$.
 Then,
 \begin{equation*}
-\Lambda\cdot\Null(X) = \Gamma\cdot X \cdot \Null(X) = \Gamma \cdot \{\,0\,\} = \{\,0\,\}.
+\lambda\cdot\Null(X) = \rho^{T} \cdot X \cdot \Null(X) = \rho^{T} \cdot \{\,0\,\} = \{\,0\,\}.
 \end{equation*}
 Hence,
 \begin{eqnarray*}
-\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)
+\lse\!\left(\,\mathcal{L}_{\lambda} \,;\, y\,\vert X\,\right)
 &=&
-	\Lambda \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y \;\, + \;\, \Lambda \cdot \Null(X)
+	\lambda \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y \;\, + \;\, \lambda \cdot \Null(X)
 \;\;=\;\;
-	\Gamma \cdot \left(\,\overset{{\color{white}.}}{X} \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T}\,\right) \cdot y \;\, + \;\, \{\,0\,\}
+	\rho^{T} \cdot \left(\,\overset{{\color{white}.}}{X} \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T}\,\right) \cdot y \;\, + \;\, \{\,0\,\}
 \\
 &=&
-	\left\{\; \overset{{\color{white}.}}{\Gamma} \cdot \Pi_{X} \cdot y \;\right\}\,,
+	\left\{\; \overset{{\color{white}.}}{\rho}^{T} \cdot \Pi_{X} \cdot y \;\right\}\,,
 \end{eqnarray*}
-i.e. $\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$ is indeed a singleton, as desired.
+i.e. $\lse\!\left(\,\mathcal{L}_{\lambda} \,;\, y\,\vert X\,\right)$ is indeed a singleton, as desired.
 
 \vskip 0.5cm\noindent
 \underline{\textbf{(\,$\Longrightarrow$\,)}}\quad
-Conversely, suppose $\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)$ is a singleton.
+Conversely, suppose $\lse\!\left(\,\mathcal{L}_{\lambda} \,;\, y\,\vert X\,\right)$ is a singleton.
+Let \,$\Pi_{X^{T}} \in \Re^{p \times p}$\, be the orthogonal projection from $\Re^{p}$ onto
+the subspace $\Col(X^{T}) \subset \Re^{p}$.
+Note that \,$(I_{p} - \Pi_{X^{T}})$\, is the orthogonal projection from $\Re^{p}$ onto $\Col(X^{T})^{\perp}$.
+Write
+\begin{equation*}
+\lambda^{T}
+\;\;=\;\;
+	X^{T} \cdot \rho_{1} \;+\; (I_{p} - \Pi_{X^{T}}) \cdot \rho_{2}
+\;\;\in\;\;
+	\Col(X^{T}) \,\oplus\, \Col(X^{T})^{\perp}
+\;\;=\;\;
+	\Re^{p \times 1}\,,
+\end{equation*}
+where $\rho_{1} \in \Re^{n \times 1}$, $\rho_{2} \in \Re^{p \times 1}$.
+We therefore see that it suffices to establish that $(I_{p} - \Pi_{X^{T}}) \cdot \rho_{2} \,=\, 0$.
 
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\quad $\rho_{2}^{T} \cdot (I_{p} - \Pi_{X^{T}}) \cdot v \,=\, 0$,
+for each $v \in \Col(X^{T})$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 1:\quad
+Immediate since left-multiplication by \,$I_{p} - \Pi_{X^{T}}$\, is the orthogonal projection
+from $\Re^{p}$ onto $\Col(X^{T})^{\perp}$. This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+$\lambda\cdot\beta_{1} = \lambda\cdot\beta_{2}$,\,
+for each \,$\beta_{1}, \beta_{2} \in \left\{\;\left.\overset{{\color{white}.}}{\beta} \in \Re^{p} \;\,\right\vert\; X\beta=\Pi_{X}(y) \;\right\}$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 2:\quad
+Recall that \,$\lse\!\left(\,\mathcal{L}_{\lambda}\,;\,y\,\vert X\,\right)$ $=$
+$\left\{\;\left.\overset{{\color{white}.}}{\lambda}\cdot\beta\in\Re^{1}\;\right\vert\;X\cdot\beta=\Pi_{X}\cdot y\;\right\}$.
+Hence, Claim 2 is true because it is simply a restatement of the hypothesis that
+$\lse\!\left(\,\mathcal{L}_{\lambda}\,;\,y\,\vert X\,\right)$ is a singleton.
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}\quad
+$\rho_{2}^{T} \cdot (I_{p} - \Pi_{X^{T}}) \cdot w \,=\, 0$,
+for each $w \in \Col(X^{T})^{\perp}$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 3:\quad
+First, by the finite-dimensional Fredholm Alternative (see, for example, Theorem 7.7, p.207, \cite{Axler2015}),
+we have: \,$\Col(X^{T})^{\perp} = \Null(X)$.
+Next, let $w \in \Col(X^{T})^{\perp} = \Null(X)$ be an arbitrary element.
+Fix a generalized inverse $(X^{T} \cdot X)^{\dagger} \in \Re^{p \times p}$
+of the symmetric matrix $X^{T} \cdot X \in \Re^{p \times p}$.
+Observe that
+\begin{equation*}
+\lse\!\left(\,\mathcal{L}_{\lambda}\,;\,y\,\vert X\,\right)
+\;\; = \;\;
+	\lambda \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y \;\, + \;\, \lambda \cdot \Null(X)
+\;\; = \;\;
+	\lambda \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y \;\, + \;\, \lambda \cdot \Col(X^{T})^{\perp}
+\end{equation*}
+Now, let $\beta_{1} := (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y$.
+Thus, $X\cdot\beta_{1} = X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y = \Pi_{X}\cdot y$.
+Next, let $\beta_{2} := \beta_{1} + w$\,; hence, $w = \beta_{2} - \beta_{1}$.
+Then, $X\cdot\beta_{2} = X\cdot\beta_{1} + X\cdot w = X\cdot\beta_{1} + 0 = X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y = \Pi_{X}\cdot y$.
+Thus, $\beta_{1}, \beta_{2} \in \left\{\;\left.\overset{{\color{white}.}}{\beta} \in \Re^{p} \;\,\right\vert\; X\cdot\beta=\Pi_{X}(y) \;\right\}$.
+By Claim 2, we have: $\lambda\cdot\beta_{1} = \lambda\cdot\beta_{2}$.
+Now, we see that
+\begin{eqnarray*}
+\rho_{2}^{T} \cdot (I_{p} - \Pi_{X^{T}}) \cdot w
+&=&
+	\left(\, \lambda - \rho_{1}^{T} \cdot X \,\right) \cdot w
+\;\; = \;\;
+	\left(\, \lambda - \rho_{1}^{T} \cdot X \,\right) \cdot (\beta_{2} - \beta_{1})
+\\
+&=&
+	\lambda\cdot\beta_{2} - \lambda\cdot\beta_{1} - \rho_{1}^{T} \cdot (X \cdot \beta_{2} - X \cdot \beta_{1})
+\;\; = \;\;
+	\lambda\cdot\beta_{2} - \lambda\cdot\beta_{1} - \rho_{1}^{T} \cdot (\Pi_{X}\cdot y - \Pi_{X}\cdot y)
+\\
+&=&
+	\lambda\cdot\beta_{2} - \lambda\cdot\beta_{1}
+\\
+&=&
+	0
+\end{eqnarray*}
+This proves Claim 3.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4:}\quad
+$\rho_{2}^{T} \cdot (I_{p} - \Pi_{X^{T}}) \cdot u \,=\, 0$,\, for each $u \in \Re^{p}$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 4:\quad
+This follows trivially from Claim 1, Claim 3 and the fact that
+$\Col(X^{T}) \oplus \Col(X^{T})^{\perp} = \Re^{p}$.
+This proves Claim 4.
+
+\vskip 0.5cm
+\noindent
+To complete the proof, simply note now that
+\begin{equation*}
+\textnormal{Claim 4}
+\quad\Longleftrightarrow\quad
+	\rho_{2}^{T} \cdot (I_{p} - \Pi_{X^{T}}) = 0
+\quad\Longleftrightarrow\quad
+	(I_{p} - \Pi_{X^{T}}) \cdot \rho_{2} = 0
+\end{equation*}
+This completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
