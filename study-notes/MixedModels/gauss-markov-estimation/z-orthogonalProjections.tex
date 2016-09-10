@@ -630,8 +630,7 @@ Then,
 \end{corollary}
 \proof
 By Theorem \ref{EstimabilityImpliesUniqueLSE},
-if $\mathcal{L}_{\lambda}$ is $X$-estimable,
-(i.e. $\lambda = \rho^{T} \cdot X$, for some $\rho \in \Re^{	}$)
+if $\mathcal{L}_{\lambda}$ is $X$-estimable (i.e. $\lambda = \rho^{T} \cdot X$, for some $\rho \in \Re^{n}$),
 then, for each $\omega \in \Omega$,
 $\lse\!\left(\,\mathcal{L}_{\lambda},\,Y(\omega)\,\vert\,X\,\right) \subset \Re^{1}$
 is a singleton and thus can be identified with an element in $\Re^{1}$.
@@ -644,9 +643,14 @@ Thus,
 indeed defines a set-theoretic map from $\Omega$ into $\Re^{1}$.
 Secondly, note that the map
 $\lse\!\left(\,\Lambda_{\lambda},\,Y\,\vert\,X\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{1}$
-is the composition of \,$Y : (\Omega,\mathcal{A},\mu) \rightarrow \Re^{n}$ followed by the
-left multiplication by $\rho^{T} \cdot X \in \Re^{1 \times p}$ defined on $\Re^{n}$.
-
+is the composition of \,$Y : (\Omega,\mathcal{A},\mu) \rightarrow \Re^{1}$ followed by the
+left multiplication by $\rho^{T} \cdot X \in \Re^{1 \times p}$ defined on $\Re^{p}$.
+$Y$ is measurable by hypothesis, while left multiplication by $\rho^{T} \cdot \Pi_{X}$ is measurable
+since it is continuous.
+Since the composition of two measurable functions is itself measurable,
+we see that the map $\lse\!\left(\,\Lambda_{\lambda},\,Y\,\vert\,X\,\right)$ is itself measurable,
+i.e. it is a random variable.
+This completes the proof the Corollary.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
