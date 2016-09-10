@@ -441,6 +441,7 @@ if there exists $\Gamma \in \Re^{q \times n}$ such that
 \end{definition}
 
 \begin{theorem}
+\label{EstimabilityImpliesUniqueLSE}
 \mbox{}\vskip 0.1cm\noindent
 Suppose:
 \begin{itemize}
@@ -594,6 +595,58 @@ To complete the proof, simply note now that
 	(I_{p} - \Pi_{X^{T}}) \cdot \rho_{2} = 0
 \end{equation*}
 This completes the proof of the Theorem.
+\qed
+
+\begin{corollary}
+\label{LSEofEstimableFunctionsAreRandomVariables}
+\mbox{}\vskip 0.1cm\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\lambda \in \Re^{1 \times p}$,\,
+	and
+	\,$\mathcal{L}_{\lambda} : \Re^{p} \longrightarrow \Re^{1}$ is left-multiplication by $\lambda$,
+	i.e. $\mathcal{L}_{\lambda}(\beta) = \lambda \cdot \beta$.
+\item
+	$X \in \Re^{n \times p}$.
+\item
+	$Y : (\Omega,\mathcal{A},\mu) \,\longrightarrow\, \Re^{1}$ is an $\Re^{1}$-valued
+	random variable defined on the probability space $(\Omega,\mathcal{A},\mu)$.
+\end{itemize}
+Define \,$\lse\!\left(\,\mathcal{L}_{\lambda},\,Y\,\vert\,X\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{n}$
+as follows:
+\begin{equation*}
+\lse\!\left(\,\mathcal{L}_{\lambda},\,Y\,\vert\,X\,\right)(\omega)
+\;\; := \;\; \lse\!\left(\,\mathcal{L}_{\lambda},\,Y(\omega)\,\vert\,X\,\right)\,,
+\quad\;\;
+\textnormal{for each \,$\omega \in \Omega$}\,.
+\end{equation*}
+Then,
+\begin{equation*}
+\textnormal{$\mathcal{L}_{\lambda}$ is $X$-estimable}
+\quad\Longrightarrow\quad
+\textnormal{$\lse\!\left(\,\mathcal{L}_{\lambda} \,;\, Y\,\vert X\,\right)$\, is a well-defined $\Re^{1}$-valued random variable}
+\end{equation*}
+\end{corollary}
+\proof
+By Theorem \ref{EstimabilityImpliesUniqueLSE},
+if $\mathcal{L}_{\lambda}$ is $X$-estimable,
+(i.e. $\lambda = \rho^{T} \cdot X$, for some $\rho \in \Re^{	}$)
+then, for each $\omega \in \Omega$,
+$\lse\!\left(\,\mathcal{L}_{\lambda},\,Y(\omega)\,\vert\,X\,\right) \subset \Re^{1}$
+is a singleton and thus can be identified with an element in $\Re^{1}$.
+Thus,
+\begin{equation*}
+\lse\!\left(\,\Lambda_{\lambda},\,Y\,\vert\,X\,\right)
+\;:\; (\Omega,\mathcal{A},\mu) \; \longrightarrow \; \Re^{1}
+\;:\; \omega \; \longmapsto \; \lse\!\left(\,\Lambda_{\lambda},\,Y(\omega)\,\vert\,X\,\right) \;=\; \rho^{T} \cdot \Pi_{X} \cdot Y(\omega)
+\end{equation*}
+indeed defines a set-theoretic map from $\Omega$ into $\Re^{1}$.
+Secondly, note that the map
+$\lse\!\left(\,\Lambda_{\lambda},\,Y\,\vert\,X\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{1}$
+is the composition of \,$Y : (\Omega,\mathcal{A},\mu) \rightarrow \Re^{n}$ followed by the
+left multiplication by $\rho^{T} \cdot X \in \Re^{1 \times p}$ defined on $\Re^{n}$.
+
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
