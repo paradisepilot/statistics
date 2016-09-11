@@ -17,180 +17,220 @@
 Suppose:
 \begin{itemize}
 \item
-	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$\sigma^{2} > 0$.
 \item
-	$Y = (Y_{1}, Y_{2}, \ldots, Y_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$.
-\item
-	$e = (e_{1}, e_{2}, \ldots, e_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$.
-\item
-	$\sigma^{2} > 0$,\, $X \in \Re^{n \times p}$\, and \,$\beta \in \Re^{p}$.
-\item
-	The quantities \,$Y$, $e$, $X$, $\beta$ and $\sigma^{2}$\, satisfy:
+	$X \in \Re^{n \times p}$, and
+	\,$\Pi_{X} \,=\, X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \in \Re^{n \times n}$,
+	where $(X^{T} \cdot X)^{\dagger} \in \Re^{p \times p}$
+	is any generalized inverse of the symmetric matrix
+	$X^{T} \cdot X \in \Re^{p \times p}$.
+	Thus, the orthogonal projection $\proj_{\,\Col(X)} : \Re^{n} \longrightarrow \Re^{n}$
+	from $\Re^{n}$ onto the column space $\Col(X) \subset \Re^{n}$ can be expressed as
 	\begin{equation*}
-	\begin{array}{ccl}
-	Y & = & X \cdot \beta \; + \; e
+	\proj_{\,\Col(X)}(\,y\,)
+	\;\; = \;\;
+		\Pi_{X} \cdot y
+	\;\; = \;\;
+		X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y\,,
+	\quad
+	\textnormal{for each \,$y \in \Re^{n}$}\,.
+	\end{equation*}
+\item
+	$\lambda : \Re^{p} \longrightarrow \Re^{1}$ is an $X$-estimable $\Re^{1}$-valued function, i.e.
+	there exists $\gamma \in \Re^{n}$ such that
+	\begin{equation*}
+	\lambda(\beta) \; = \; \gamma^{T} \cdot X \cdot \beta\,,
+	\quad\textnormal{for each \,$\beta \in \Re^{p}$}\,.
+	\end{equation*}
+\item
+	$Y = \left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+\item
+	For each $\beta \in \Re^{p}$, the following hold:
+	\begin{equation*}
+	\begin{array}{rclcl}
+	E\!\left[\;Y_{\beta}\,\right] &  \overset{{\color{white}\vert}}{=} & X \cdot \beta & \in & \Re^{n}
 	\\
-	E\!\left[\;e\,\right] &  \overset{{\color{white}\vert}}{=} & 0
-	\\
-	\Cov\!\left(\,e\,\right) & \overset{{\color{white}\vert}}{=} & \sigma^{2} \cdot I_{n} \;\; \in \;\; \Re^{n \times n}
+	\Cov\!\left(\,Y_{\beta}\,\right) & \overset{{\color{white}\vert}}{=} & \sigma^{2} \cdot I_{n} & \in & \Re^{n \times n}
 	\end{array}
 	\end{equation*}
 \end{itemize}
-Then,
-for each $X$-estimable function $\lambda : \Re^{p} \longrightarrow \Re$,
-defined by $\lambda(\zeta) = \rho^{T} \cdot X \cdot \zeta$, where $\rho \in \Re^{n}$,
-the $\Re$-valued random variable defined on $(\Omega,\mathcal{A},\mu)$:
+Then, left multiplication by \,$\gamma^{T} \cdot \Pi_{X} \in \Re^{1 \times n}$\,, i.e.
 \begin{equation*}
-(\Omega,\mathcal{A},\mu) \;\longrightarrow\; \Re
+\mathcal{L}_{\,\gamma^{T} \cdot \Pi_{X}}
 \;\; : \;\;
-\omega
-\;\;\longmapsto\;\;
-\rho^{T} \cdot \proj_{\,\Col(X)}\!\left(\,Y(\omega)\,\right)
-\;\;=\;\;
-\rho^{T} \cdot \Pi_{X} \cdot Y(\omega)
+\Re^{n} \; \longrightarrow \; \Re^{1}
+\;\; : \;\;
+y \; \longmapsto \; \gamma^{T} \cdot \Pi_{X} \cdot y\,,
 \end{equation*}
 is the BLUE (best linear unbiased estimator) of
-\,$\lambda(\zeta) \,=\, \rho^{T} \cdot X \cdot \zeta \,\in\, \Re$.
+\,$\lambda : \Re^{p} \longrightarrow \Re^{1}$\,
+in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$.
 More precisely, the following statements hold:
 \begin{enumerate}
 \item
-	$\rho^{T} \cdot \proj_{\,\Col(X)}\!\left(\,Y\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\,
-	is a linear (in $Y$) unbiased estimator of
-	\,$\lambda(\zeta) = \rho^{T} \cdot X \cdot \zeta$,\, and
+	$\mathcal{L}_{\,\gamma^{T} \cdot \Pi_{X}} : \Re^{n} \longrightarrow \Re^{1}$\,
+	is an unbiased estimator of \,$\lambda : \Re^{p} \longrightarrow \Re^{1}$\,
+	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,.
 \item
-	for every $a \in \Re^{n}$ such that
-	$a^{T} \cdot Y : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$
-	is a linear unbiased estimator of
-	$\lambda(\zeta) = \rho^{T} \cdot X \cdot \zeta$, we have
+	For every $a \in \Re^{n}$ such that left multiplication by $a^{T} \in \Re^{1 \times n}$, i.e.
 	\begin{equation*}
-	\Var\!\left(\,\rho^{T} \cdot \proj_{\,\Col(X)}\!\left(\,Y\,\right)\,\right)
+	\mathcal{L}_{\,a^{T}}
+	\;\; : \;\;
+		\Re^{n} \; \longrightarrow \; \Re^{1}
+	\;\; : \;\;
+		y \; \longmapsto \; a^{T} \cdot y\,,
+	\end{equation*}
+	is a (linear) unbiased estimator of
+	\,$\lambda : \Re^{p} \longrightarrow \Re^{1}$
+	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,, we have
+	\begin{equation*}
+	\Var\!\left(\,\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\,\right)
 	\;\; \leq \;\;
-		\Var\!\left(\,a^{T} \cdot Y\,\right)\,.
+		\Var\!\left(\,a^{T} \cdot Y_{\beta}\,\right)\,,
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,.
 	\end{equation*}
 \end{enumerate}
 \end{theorem}
 \proof
 \begin{enumerate}
 \item
-	To prove unbiasedness of \,$\rho^{T} \cdot \proj_{\,\Col(X)}(\,Y)$,
-	simply note that, for each fixed but arbitrary $\beta \in \Re^{p}$, we have
+	To prove unbiasedness of
+	\,$\mathcal{L}_{\,\gamma^{T} \cdot \Pi_{X}} : \Re^{n} \longrightarrow \Re^{1}$\,
+	as an estimator of $\lambda : \Re^{p} \longrightarrow \Re^{1}$
+	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,,
+	simply note that, for each $\beta \in \Re^{p}$, we have
 	\begin{equation*}
-	E\!\left[\;\rho^{T} \cdot \proj_{\Col(X)}(\,Y)\;\right]
+	E\!\left[\;\gamma^{T} \cdot \overset{{\color{white}.}}{\Pi}_{X} \cdot Y_{\beta}\;\right]
 	\;\; = \;\;
-		E\!\left[\;\rho^{T} \cdot \Pi_{X} \overset{{\color{white}+}}{\cdot} Y\;\right]
+		\gamma^{T} \cdot \Pi_{X} \cdot E\!\left[\;\overset{{\color{white}.}}{Y}_{\beta}\;\right]
 	\;\; = \;\;
-		\rho^{T} \cdot \Pi_{X} \cdot E\!\left[\;\overset{{\color{white}.}}{Y}\;\right]
+		\gamma^{T} \cdot \Pi_{X} \cdot X \cdot \beta
 	\;\; = \;\;
-		\rho^{T} \cdot \Pi_{X} \cdot X \cdot \beta
+		\gamma^{T} \cdot X \cdot \beta
 	\;\; = \;\;
-		\rho^{T} \cdot X \cdot \beta
-	\;\; =: \;\;
-		\lambda(\beta)
+		\lambda(\beta)\,.
 	\end{equation*}
 \item
 	First, note that
 	\begin{eqnarray*}
-	\Var\!\left(\,a^{T} \cdot Y\,\right)
+	\Var\!\left(\,a^{T} \cdot Y_{\beta}\,\right)
 	&=&
 		\Var\!\left[\;
-			a^{T} \cdot Y
+			a^{T} \cdot Y_{\beta}
 			\,\overset{{\color{white}+}}{-}\,
-			\rho^{T} \cdot \Pi_{X} \cdot Y
+			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}
 			\,+\,
-			\rho^{T} \cdot \Pi_{X} \cdot Y
+			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}
 			\;\right]
 	\\
 	&=&
 		\Var\!\left[\;
-			a^{T} \cdot Y
+			a^{T} \cdot Y_{\beta}
 			\overset{{\color{white}+}}{-}
-			\rho^{T} \cdot \Pi_{X} \cdot Y
+			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}
 				\;\right]
 		\; + \;
 		\Var\!\left[\;
-			\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
+			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
 			\;\right]
 	\\
 	&&	+ \;
 		2\cdot\Cov\!\left(\;
-			\left(a^{T} \cdot Y
+			\left(a^{T} \cdot Y_{\beta}
 			\overset{{\color{white}.}}{-}
-			\rho^{T} \cdot \Pi_{X} \cdot Y\right)
+			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\right)
 			\,,\,
-			\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
+			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
 			\;\right)
 	\end{eqnarray*}
 	Hence, it suffices to show that
 	\begin{equation*}
 		\Cov\!\left(\;
-			\left(a^{T} \cdot Y
+			\left(a^{T} \cdot Y_{\beta}
 			\overset{{\color{white}.}}{-}
-			\rho^{T} \cdot \Pi_{X} \cdot Y\right)
+			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\right)
 			\,,\,
-			\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
+			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
 			\;\right)
 		\;\; = \;\; 0
 	\end{equation*}
 	To this end, observe that the unbiasedness assumption on
-	\,$a^{T} \cdot Y : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\.
+	\,$\mathcal{L}_{\,a^{T}} : \Re^{n} \longrightarrow \Re^{1}$\,
 	as an estimator of
-	\,$\lambda(\zeta) = \rho^{T} \cdot X \cdot \zeta$\,
+	\,$\lambda : \Re^{p} \longrightarrow \Re^{1}$\,
+	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,
 	implies
 	\begin{equation*}
-	\rho^{T} \cdot X \cdot \beta
+	\gamma^{T} \cdot X \cdot \beta
 	\;\; = \;\;
 		\lambda(\beta)
 	\;\; = \;\;
-		E\!\left[\,a^{T} \cdot Y\,\right]
+		E\!\left[\,a^{T} \cdot Y_{\beta}\,\right]
 	\;\; = \;\;
-		a^{T} \cdot E\!\left[\,Y\,\right]
+		a^{T} \cdot E\!\left[\;Y_{\beta}\;\right]
 	\;\; = \;\;
 		a^{T} \cdot X \cdot \beta\,,
 	\quad
-	\textnormal{for each fixed but arbitrary \,$\beta \in \Re^{p}$}\,,
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,,
 	\end{equation*}
-	which in turn implies that
+	which in turn implies{\color{red}\footnote{\color{red}This implication
+	requires that the preceding equality must be valid
+	for every $\beta \in \Re^{p}$.
+	On the other hand, no random variable $Y$ can satisfy the property
+	$E\!\left[\;Y\,\right] = X \cdot \beta$, for every $\beta \in \Re^{p}$.
+	Thus, the use in our formulation of the Gauss-Markov Theorem
+	of a family \,$Y = \left\{\,Y_{\beta}\,\right\}$\, of random variables
+	with $E\!\left[\;Y_{\beta}\,\right] = X \cdot \beta$, for each $\beta \in \Re^{p}$,
+	makes the statement of the Theorem more precise.}}
+	that
 	\begin{equation*}
-	\rho^{T} \cdot X
+	\gamma^{T} \cdot X
 	\;\; = \;\;
-		a^{T} \cdot X\,.
+		a^{T} \cdot X
 	\end{equation*}
 	Thus, we now see that
 	\begin{eqnarray*}
 	\Cov\!\left(\;
-		\left(a^{T} \cdot Y
+		\left(a^{T} \cdot Y_{\beta}
 		\overset{{\color{white}.}}{-}
-		\rho^{T} \cdot \Pi_{X} \cdot Y\right)
+		\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\right)
 		\,,\,
-		\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
+		\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
 		\;\right)
 	&=&
 		\Cov\!\left(\,
-			\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right) \cdot Y
+			\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right) \cdot Y_{\beta}
 			\,,\,
-			\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y
+			\rho^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
 			\,\right)
 	\\
 	&=&
-		\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
-		\cdot \Cov\!\left(\,Y,Y\right) \cdot \Pi_{X} \cdot \rho
+		\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
+		\cdot \Cov\!\left(\,Y,Y\right) \cdot \Pi_{X} \cdot \gamma
 	\\
 	&=&
-		\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
-		\cdot \sigma^{2} \cdot I_{n} \cdot \Pi_{X} \cdot \rho
-	\\
-	&=&
-		\sigma^{2}
-		\cdot
-		\left(a^{T} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
-		\cdot \Pi_{X} \cdot \rho
+		\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
+		\cdot \sigma^{2} \cdot I_{n} \cdot \Pi_{X} \cdot \gamma
 	\\
 	&=&
 		\sigma^{2}
 		\cdot
-		\left(a^{T} \cdot \Pi_{X} \overset{{\color{white}.}}{-} \rho^{T} \cdot \Pi_{X} \right)
+		\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
+		\cdot \Pi_{X} \cdot \gamma
+	\\
+	&=&
+		\sigma^{2}
+		\cdot
+		\left(a^{T} \cdot \Pi_{X} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
 		\cdot \rho
 	\\
 	&=&
@@ -198,7 +238,7 @@ More precisely, the following statements hold:
 		\cdot
 		\left(a^{T} \cdot X\cdot(X^{T}X)^{\dagger}\cdot X^{T}
 		\,\overset{{\color{white}.}}{-}\,
-		\rho^{T} \cdot X\cdot(X^{T}X)^{\dagger}\cdot X^{T} \right)
+		\gamma^{T} \cdot X\cdot(X^{T}X)^{\dagger}\cdot X^{T} \right)
 		\cdot \rho
 	\\
 	&=&
