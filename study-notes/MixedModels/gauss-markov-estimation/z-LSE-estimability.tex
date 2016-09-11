@@ -379,7 +379,7 @@ where
 \end{equation*}
 This proves Claim 3, as well as completes the proof of the Theorem. \qed
 
-\begin{corollary}
+\begin{theorem}
 \label{LSEofEstimableFunctionsAreRandomVariables}
 \mbox{}\vskip 0.1cm\noindent
 Suppose:
@@ -387,7 +387,7 @@ Suppose:
 \item
 	$\Lambda \in \Re^{q \times p}$,\,
 	and
-	\,$\mathcal{L}_{\Lambda} : \Re^{p} \longrightarrow \Re^{1}$ is left-multiplication by $\Lambda$,
+	\,$\mathcal{L}_{\Lambda} : \Re^{p} \longrightarrow \Re^{q}$ is left-multiplication by $\Lambda$,
 	i.e. $\mathcal{L}_{\Lambda}(\beta) = \Lambda \cdot \beta$.
 \item
 	$X \in \Re^{n \times p}$\, and \,$\Pi_{X} = X\cdot(X^{T}\cdot X)^{\dagger}\cdot X^{T} \in \Re^{n \times n}$,
@@ -402,136 +402,41 @@ as follows:
 \begin{equation*}
 \lse\!\left(\,\mathcal{L}_{\Lambda},\,Y\,\vert\,X\,\right)(\omega)
 \;\; := \;\; \lse\!\left(\,\mathcal{L}_{\Lambda},\,Y(\omega)\,\vert\,X\,\right)\,,
-\quad\;\;
+\quad
 \textnormal{for each \,$\omega \in \Omega$}\,.
 \end{equation*}
 Then,
 \begin{equation*}
 \textnormal{$\mathcal{L}_{\Lambda}$ is $X$-estimable}
 \quad\Longrightarrow\quad
-\textnormal{$\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, Y\,\vert X\,\right)$\, is a well-defined $\Re^{1}$-valued random variable}
+\textnormal{$\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, Y\,\vert X\,\right)$\,
+is a well-defined $\Re^{q}$-valued random variable}
 \end{equation*}
-\end{corollary}
+\end{theorem}
 \proof
-\vskip 0.2cm
-\noindent
-\textbf{Claim 1:}\quad The Corollary holds when $q = 1$.
-\vskip 0.2cm
-\noindent
-Proof of Claim 1:\quad
-By Theorem \ref{VectorEstimabilityImpliesUniqueLSE},
-if $\mathcal{L}_{\Lambda}$ is $X$-estimable (i.e. $\Lambda = \gamma^{T} \cdot X$, for some $\gamma \in \Re^{n \times 1}$),
-then, for each $\omega \in \Omega$,
-$\lse\!\left(\,\mathcal{L}_{\Lambda},\,Y(\omega)\,\vert\,X\,\right) \subset \Re^{1}$
-is a singleton and thus can be identified with an element in $\Re^{1}$.
+By Theorem \ref{MatrixEstimabilityImpliesUniqueLSE},
+if $\mathcal{L}_{\Lambda}$ is $X$-estimable (i.e. $\Lambda = \Gamma^{T} \cdot X$,
+for some $\Gamma \in \Re^{n \times q}$), then, for each $\omega \in \Omega$,
+$\lse\!\left(\,\mathcal{L}_{\Lambda},\,Y(\omega)\,\vert\,X\,\right) \subset \Re^{q}$
+is a singleton and thus can be identified with a unique element in $\Re^{q}$.
 Thus,
 \begin{equation*}
 \lse\!\left(\,\mathcal{L}_{\Lambda},\,Y\,\vert\,X\,\right)
-\;:\; (\Omega,\mathcal{A},\mu) \; \longrightarrow \; \Re^{1}
-\;:\; \omega \; \longmapsto \; \lse\!\left(\,\mathcal{L}_{\Lambda},\,Y(\omega)\,\vert\,X\,\right) \;=\; \gamma^{T} \cdot \Pi_{X} \cdot Y(\omega)
+\;:\; (\Omega,\mathcal{A},\mu) \; \longrightarrow \; \Re^{q}
+\;:\; \omega \; \longmapsto \; \lse\!\left(\,\mathcal{L}_{\Lambda},\,Y(\omega)\,\vert\,X\,\right)
+\;=\; \Gamma^{T} \cdot \Pi_{X} \cdot Y(\omega)
 \end{equation*}
-indeed defines a set-theoretic map from $\Omega$ into $\Re^{1}$.
+indeed defines a set-theoretic map from $\Omega$ into $\Re^{q}$.
 Secondly, note that the map
-$\lse\!\left(\,\mathcal{L}_{\Lambda},\,Y\,\vert\,X\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{1}$
+$\lse\!\left(\,\mathcal{L}_{\Lambda},\,Y\,\vert\,X\,\right) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{q}$
 is the composition of \,$Y : (\Omega,\mathcal{A},\mu) \rightarrow \Re^{n}$ followed by the
-left multiplication by $\gamma^{T} \cdot \Pi_{X} \in \Re^{1 \times n}$ from $\Re^{n}$ into $\Re^{1}$.
-$Y$ is measurable by hypothesis, while left multiplication by $\gamma^{T} \cdot \Pi_{X}$ is measurable
+left multiplication by $\Gamma^{T} \cdot \Pi_{X} \in \Re^{q \times n}$ from $\Re^{n}$ into $\Re^{q}$.
+$Y$ is measurable by hypothesis, while left multiplication by $\Gamma^{T} \cdot \Pi_{X}$ is measurable
 since it is continuous (being linear).
 Since the composition of two measurable functions is itself measurable,
 we see that the map $\lse\!\left(\,\mathcal{L}_{\Lambda},\,Y\,\vert\,X\,\right)$ is measurable,
-i.e. it is a random variable.
-This completes the proof of Claim 1.
-
-\vskip 0.5cm
-\noindent
-\textbf{Claim 2:}\quad The Corollary holds for every $q \geq 2$.
-\vskip 0.2cm
-\noindent
-Proof of Claim 2:\quad
-By the X-estimability of $\Lambda \in \Re^{q \times p}$, there exists
-$\Gamma \in \Re^{n \times q}$ such that $\Lambda = \Gamma^{T} \cdot X$.
-Write
-\begin{equation*}
-\Gamma
-\;\; = \;\;
-	\left[\;\begin{array}{cccc}
-	\\
-	\gamma_{1} &
-	\gamma_{2}&
-	\cdots &
-	\gamma_{q}
-	\\ \\
-	\end{array}\;\right]
-	\;\in\; \Re^{n \times q}\,,
-	\quad\;\;
-	\textnormal{where \,$\gamma_{i} \in \Re^{n \times 1}$, \,for each \,$i = 1,\ldots,q$}.
-\end{equation*}
-Thus,
-\begin{equation*}
-\Lambda
-\;\; = \;\;
-	\left[\;\;\begin{array}{c}
-	\gamma_{1}^{T} \cdot X \\
-	\gamma_{2}^{T} \cdot \overset{{\color{white}\vert}}{X} \\
-	\vdots \\
-	\gamma_{q}^{T} \cdot \overset{{\color{white}\vert}}{X}
-	\end{array}\;\;\right]
-	\;\in\;\Re^{q \times p}\,.
-\end{equation*}
-Note that
-\begin{equation*}
-\mathcal{L}_{\Lambda}(\beta)
-\;\; = \;\;
-	\Lambda\cdot\beta
-\;\; = \;\;
-	\left[\;\;\begin{array}{c}
-	\gamma_{1}^{T} \cdot X \cdot \beta \\
-	\gamma_{2}^{T} \cdot \overset{{\color{white}\vert}}{X} \cdot \beta \\
-	\vdots \\
-	\gamma_{q}^{T} \cdot \overset{{\color{white}\vert}}{X} \cdot \beta
-	\end{array}\;\;\right]
-	\;\in\;\Re^{q \times 1}\,.
-	\quad\;\;
-	\textnormal{for each \,$\beta\in\Re^{p}$}.
-\end{equation*}
-Now, for each $\omega \in \Omega$,
-\begin{eqnarray*}
-\lse\!\left(\,\mathcal{L}_{\Lambda} \,;\, y\,\vert X\,\right)
-&:=&
-	\mathcal{L}_{\Lambda}\!\left(\;
-		\underset{\zeta\,\in\,\Re^{p}}{\argmin}
-		\left\{\;\left\Vert\;\overset{{\color{white}.}}{y} - X\cdot\zeta\;\right\Vert^{2}\;\right\}
-		\;\right)
-\;\; = \;\;
-	\left\{\;\,
-		\Lambda\cdot\beta \overset{{\color{white}.}}{\in} \Re^{q}
-		\;\;\left\vert\;\;
-		\beta \in \underset{\zeta\,\in\,\Re^{p}}{\argmin}
-			\left\{\;\left\Vert\;\overset{{\color{white}.}}{y} - X\cdot\zeta\;\right\Vert^{2}\;\right\}
-		\right.
-		\;\right\}
-\\
-&=&
-	\mathcal{L}_{\Lambda}\!\left(\;
-		\left\{\;\,
-			\beta \overset{{\color{white}.}}{\in} \Re^{p}
-			\;\,\left\vert\;\;
-			\overset{{\color{white}.}}{X} \cdot \beta \;=\; \Pi_{X} \cdot y
-			\right.
-			\;\right\}
-		\;\right)
-\;\; = \;\;
-	\left\{\;\,
-		\Lambda\cdot\beta \overset{{\color{white}.}}{\in} \Re^{q}
-		\;\,\left\vert\;\;
-		\overset{{\color{white}\vert}}{X} \cdot \beta \;=\; \Pi_{X} \cdot y
-		\right.
-		\;\right\}
-\\
-&=&
-	\Lambda \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y \;\, + \;\, \Lambda \cdot \Null(X)\,,
-\end{eqnarray*}
-
+i.e. it is indeed an $\Re^{q}$-valued random variable.
+This completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
