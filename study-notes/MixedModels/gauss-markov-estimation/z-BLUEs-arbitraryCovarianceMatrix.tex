@@ -1,0 +1,165 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\newpage
+
+\section{BLUEs with arbitrary covariance matrix}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Linear unbiased estimators and BLUEs]
+\mbox{}\vskip 0.1cm\noindent
+Suppose:
+\begin{itemize}
+\item
+	$X \in \Re^{n \times p}$.
+\item
+	$\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is an $X$-estimable linear map,
+	i.e. there exists there exists $\Gamma \in \Re^{n \times q}$ such that
+	$\Lambda(\beta) \;\; =\;\; \Gamma^{T} \cdot X \cdot \beta$,
+	for each $\beta \in \Re^{p}$.
+\item
+	$Y = \left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+\end{itemize}
+Then,
+\begin{enumerate}
+\item
+	A linear map $L : \Re^{n} \longrightarrow \Re^{q}$ is called a
+	{\color{red}\textbf{linear unbiased estimator of
+	$\Lambda : \Re^{p} \longrightarrow \Re^{q}$
+	in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$}} if
+	$E\!\left[\,L(Y_{\beta})\,\right] = \Lambda(\beta)$, for each $\beta \in \Re^{p}$.
+\item
+	A linear unbiased estimator $L : \Re^{n} \longrightarrow \Re^{q}$
+	of $\Lambda : \Re^{p} \longrightarrow \Re^{q}$
+	in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$
+	is called a
+	{\color{red}\textbf{best linear unbiased estimator (BLUE) of
+	$\Lambda : \Re^{p} \longrightarrow \Re^{q}$ in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$}}
+	if, for every linear unbiased estimator $L^{\prime} : \Re^{n} \longrightarrow \Re^{q}$
+	in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$, we have:
+	\begin{equation*}
+	\Var\!\left(\,\xi^{T} \cdot L(Y_{\beta})\,\right)
+	\;\; \leq \;\;
+		\Var\!\left(\,\xi^{T} \cdot L^{\prime}(Y_{\beta})\,\right)\,,
+	\quad
+	\textnormal{for every \,$\beta \in \Re^{p}$\, and \,$\xi \in \Re^{q \times 1}$}\,.
+	\end{equation*}
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+\mbox{}\vskip 0.1cm\noindent
+Suppose:
+\begin{itemize}
+\item
+	$X \in \Re^{n \times p}$\, and 
+	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$ is left multiplication by $X \in \Re^{n \times p}$.
+\item
+	$A \in \Re^{n \times n}$\, and 
+	\,$\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n}$ is left multiplication by $A \in \Re^{n \times n}$.
+\item
+	$Y = \left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+\item
+	$E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$
+\end{itemize}
+Then, \vskip -0.5cm
+\begin{equation*}
+\begin{array}{c}
+	\textnormal{$\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n}$ is a BLUE of}
+	\\
+	\textnormal{$\overset{{\color{white}+}}{\mathcal{L}}_{X} : \Re^{p} \longrightarrow \Re^{n}$}
+	\\
+	\textnormal{in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$}
+		{\color{white}\overset{+}{\Re}}
+	\end{array}
+\quad\Longleftrightarrow\quad
+\begin{array}{c}
+	\textnormal{$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{1}$ is a BLUE of}
+	\\
+	\textnormal{$\overset{{\color{white}+}}{\mathcal{L}}_{\,\gamma^{T}} \circ \mathcal{L}_{X} :
+		\Re^{p} \longrightarrow \Re^{1}$}
+	\\
+	\textnormal{in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$\,,} %\, for every $\gamma \in \Re^{n \times 1}$\,.}
+		{\color{white}\overset{+}{\Re}}
+	\\
+	\textnormal{for every $\gamma \in \Re^{n \times 1}$\,.}
+	%	{\color{white}\overset{+}{\Re}}
+	\end{array}
+\end{equation*}
+\end{proposition}
+
+\begin{proposition}
+\mbox{}\vskip 0.1cm\noindent
+Suppose:
+\begin{itemize}
+\item
+	$X \in \Re^{n \times p}$\, and 
+	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$ is left multiplication by $X \in \Re^{n \times p}$.
+\item
+	$\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is an $X$-estimable linear map, i.e.
+	there exists $\Gamma \in \Re^{n \times q}$ such that
+	$\Lambda(\beta) = \Gamma^{T} \cdot X \cdot \beta$, for each $\beta \in \Re^{p}$.
+\item
+	$A \in \Re^{n \times n}$\, and 
+	\,$\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n}$ is left multiplication by $A \in \Re^{n \times n}$.
+\item
+	$Y = \left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+\item
+	$E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$
+\end{itemize}
+Then, \vskip -0.5cm
+\begin{equation*}
+\begin{array}{c}
+	\textnormal{$\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n}$ is a BLUE of}
+	\\
+	\textnormal{$\overset{{\color{white}+}}{\mathcal{L}}_{X} : \Re^{p} \longrightarrow \Re^{n}$}
+	\\
+	\textnormal{in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$}
+		{\color{white}\overset{+}{\Re}}
+	\end{array}
+\quad\Longrightarrow\quad
+\begin{array}{c}
+	\textnormal{$\mathcal{L}_{\,\Gamma^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{1}$ is a BLUE of}
+	\\
+	\textnormal{$\mathcal{L}_{\Lambda} = \overset{{\color{white}+}}{\mathcal{L}}_{\,\Gamma^{T}} \circ \mathcal{L}_{X} :
+		\Re^{p} \longrightarrow \Re^{1}$}
+	\\
+	\textnormal{in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$\,.}
+		{\color{white}\overset{+}{\Re}}
+	\end{array}
+\end{equation*}
+\end{proposition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
