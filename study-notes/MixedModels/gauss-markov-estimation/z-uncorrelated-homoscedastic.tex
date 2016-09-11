@@ -163,22 +163,28 @@ More precisely, the following statements hold:
 			\;\right)
 		\;\; = \;\; 0
 	\end{equation*}
-	To this end, observe that the unbiasedness assumption on
+	
+	\vskip 0.5cm
+	\noindent
+	\textbf{Claim 1:}\quad $a^{T} \cdot X \; = \; \gamma^{T} \cdot X$.
+	\vskip 0.0cm
+	\noindent
+	Proof of Claim 1:\quad The unbiasedness hypothesis on
 	\,$\mathcal{L}_{\,a^{T}} : \Re^{n} \longrightarrow \Re^{1}$\,
 	as an estimator of
 	\,$\lambda : \Re^{p} \longrightarrow \Re^{1}$\,
 	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,
-	implies
+	implies that
 	\begin{equation*}
-	\gamma^{T} \cdot X \cdot \beta
-	\;\; = \;\;
-		\lambda(\beta)
-	\;\; = \;\;
-		E\!\left[\,a^{T} \cdot Y_{\beta}\,\right]
+	a^{T} \cdot X \cdot \beta
 	\;\; = \;\;
 		a^{T} \cdot E\!\left[\;Y_{\beta}\;\right]
 	\;\; = \;\;
-		a^{T} \cdot X \cdot \beta\,,
+		E\!\left[\,a^{T} \cdot Y_{\beta}\,\right]
+	\;\; = \;\;
+		\lambda(\beta)
+	\;\; = \;\;
+		\gamma^{T} \cdot X \cdot \beta\,,
 	\quad
 	\textnormal{for each \,$\beta \in \Re^{p}$}\,,
 	\end{equation*}
@@ -193,11 +199,15 @@ More precisely, the following statements hold:
 	makes the statement of the Theorem more precise.}}
 	that
 	\begin{equation*}
-	\gamma^{T} \cdot X
+	a^{T} \cdot X
 	\;\; = \;\;
-		a^{T} \cdot X
+		\gamma^{T} \cdot X
 	\end{equation*}
-	Thus, we now see that
+	This proves Claim 1.
+	
+	\vskip 0.3cm
+	\noindent
+	Therefore,
 	\begin{eqnarray*}
 	\Cov\!\left(\;
 		\left(a^{T} \cdot Y_{\beta}
@@ -242,8 +252,9 @@ More precisely, the following statements hold:
 		\cdot \gamma
 	\\
 	&=&
-		0
+		0\,,
 	\end{eqnarray*}
+	where the last equality follows from Claim 1.
 \end{enumerate}
 This completes the proof of the Theorem.
 \qed
