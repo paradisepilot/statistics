@@ -1,8 +1,6 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\newpage
-
 \section{BLUEs with arbitrary covariance matrix}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
@@ -81,8 +79,8 @@ Suppose:
 	is a family, indexed by $\beta \in \Re^{p}$,
 	of $\Re^{n}$-valued random variables defined respectively on the
 	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
-\item
-	$E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$
+%\item
+%	$E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$
 \end{itemize}
 Then, \vskip -0.5cm
 \begin{equation*}
@@ -109,6 +107,66 @@ Then, \vskip -0.5cm
 	\end{array}
 \end{equation*}
 \end{proposition}
+\proof
+\vskip 0.1cm
+\noindent
+\textbf{\underline{(\,$\Longrightarrow$\,)}}\quad
+Suppose
+\,$\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n}$\,
+is a BLUE of
+\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$\,
+in terms of
+\,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$.
+In particular, for each $\beta\in\Re^{p}$, we have $E\!\left[\; \mathcal{L}_{A}(Y_{\beta})\;\right] = X \cdot \beta$.
+Hence,
+\begin{eqnarray*}
+E\!\left[\;\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A}(Y_{\beta})\;\right]
+&=&
+	E\!\left[\;\gamma^{T} \cdot \mathcal{L}_{A}(Y_{\beta})\;\right]
+\;\; = \;\;
+	\gamma^{T} \cdot E\!\left[\; \mathcal{L}_{A}(Y_{\beta})\;\right]
+\;\; = \;\;
+	\gamma^{T} \cdot X \cdot \beta
+\\
+&=&
+	\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X}(\,\beta\,)\,,
+\quad
+\textnormal{for each $\beta\in\Re^{p}$}.
+\end{eqnarray*}
+Thus,
+\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{1}$\,
+is a linear unbiased estimator of
+\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
+in terms of \,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$.
+Let $L^{\prime} : \Re^{n} \longrightarrow \Re^{1}$ be any linear unbiased estimator
+of
+\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
+in terms of \,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$.
+Since $L^{\prime}$ is a linear map, it has the following form:
+\begin{equation*}
+L^{\prime}(\beta) \;\;=\;\; v^{T} \cdot \beta.
+\end{equation*}
+\begin{eqnarray*}
+\Var\!\left(\; \xi^{T} \cdot \mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A}(Y_{\beta}) \;\right)
+&=&
+	\Var\!\left(\; \xi \cdot \gamma^{T} \cdot \mathcal{L}_{A}(Y_{\beta}) \;\right)
+\;\; = \;\;
+	\xi^{2} \cdot \Var\!\left(\; \gamma^{T} \cdot \mathcal{L}_{A}(Y_{\beta}) \;\right)
+\\
+&\leq&
+	\xi^{2} \cdot \Var\!\left(\; \gamma^{T} \cdot L^{\prime}(Y_{\beta}) \;\right)
+\;\; = \;\;
+	\Var\!\left(\; (\xi\cdot\gamma)^{T} \cdot L^{\prime}(Y_{\beta}) \;\right)
+\\
+&\leq&
+	\Var\!\left(\; \xi^{T} \cdot L^{\prime\prime}(Y_{\beta}) \;\right)
+\end{eqnarray*}
+
+\vskip 0.5cm
+\noindent
+\textbf{\underline{(\,$\Longleftarrow$\,)}}\quad
+
+\qed
 
 \begin{proposition}
 \mbox{}\vskip 0.1cm\noindent
