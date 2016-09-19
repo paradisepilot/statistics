@@ -79,8 +79,8 @@ Suppose:
 	is a family, indexed by $\beta \in \Re^{p}$,
 	of $\Re^{n}$-valued random variables defined respectively on the
 	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
-%\item
-%	$E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$
+\item
+	$E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$
 \end{itemize}
 Then, \vskip -0.5cm
 \begin{equation*}
@@ -99,11 +99,10 @@ Then, \vskip -0.5cm
 	\textnormal{$\overset{{\color{white}+}}{\mathcal{L}}_{\,\gamma^{T}} \circ \mathcal{L}_{X} :
 		\Re^{p} \longrightarrow \Re^{1}$}
 	\\
-	\textnormal{in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$\,,} %\, for every $\gamma \in \Re^{n \times 1}$\,.}
+	\textnormal{in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$\,,}
 		{\color{white}\overset{+}{\Re}}
 	\\
 	\textnormal{for every $\gamma \in \Re^{n \times 1}$\,.}
-	%	{\color{white}\overset{+}{\Re}}
 	\end{array}
 \end{equation*}
 \end{proposition}
@@ -117,50 +116,125 @@ is a BLUE of
 \,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$\,
 in terms of
 \,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$.
-In particular, for each $\beta\in\Re^{p}$, we have $E\!\left[\; \mathcal{L}_{A}(Y_{\beta})\;\right] = X \cdot \beta$.
-Hence,
-\begin{eqnarray*}
-E\!\left[\;\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A}(Y_{\beta})\;\right]
-&=&
-	E\!\left[\;\gamma^{T} \cdot \mathcal{L}_{A}(Y_{\beta})\;\right]
-\;\; = \;\;
-	\gamma^{T} \cdot E\!\left[\; \mathcal{L}_{A}(Y_{\beta})\;\right]
-\;\; = \;\;
-	\gamma^{T} \cdot X \cdot \beta
-\\
-&=&
-	\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X}(\,\beta\,)\,,
-\quad
-\textnormal{for each $\beta\in\Re^{p}$}.
-\end{eqnarray*}
-Thus,
-\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{1}$\,
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\quad
+$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{1}$\,
 is a linear unbiased estimator of
 \,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
 in terms of \,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$.
-Let $L^{\prime} : \Re^{n} \longrightarrow \Re^{1}$ be any linear unbiased estimator
-of
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\quad
+First, note that, for each $\beta\in\Re^{p}$, we have $E\!\left[\; \mathcal{L}_{A}(Y_{\beta})\;\right] = X \cdot \beta$.
+Hence,
+$E\!\left[\;\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A}(Y_{\beta})\;\right]$
+\,$=$\, $E\!\left[\;\gamma^{T} \cdot \mathcal{L}_{A}(Y_{\beta})\;\right]$
+\,$=$\, $\gamma^{T} \cdot E\!\left[\; \mathcal{L}_{A}(Y_{\beta})\;\right]$
+\,$=$\, $\gamma^{T} \cdot X \cdot \beta$
+\,$=$\, $\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X}(\,\beta\,)$,\,
+for each $\beta\in\Re^{p}$.
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+Next, let
+\,$L : \Re^{n} \longrightarrow \Re^{1}$\,
+be an arbitrary linear unbiased estimator of
 \,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
 in terms of \,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$.
-Since $L^{\prime}$ is a linear map, it has the following form:
+The proof of the forward implication will be complete once we show that
 \begin{equation*}
-L^{\prime}(\beta) \;\;=\;\; v^{T} \cdot \beta.
+\Var\!\left(\,\xi\cdot\mathcal{L}_{\gamma^{T}}\circ\mathcal{L}_{A}(Y_{\beta})\,\right)
+\;\; \leq \;\;
+	\Var\!\left(\,\xi \cdot L(Y_{\beta})\,\right),
+\quad
+\textnormal{for each \,$\xi \in \Re^{1}$, \,$\beta\in\Re^{p}$}\,.
 \end{equation*}
+However, the preceding inequality is equivalent to Claim 3 below, since
+\,$\Var\!\left(\,\xi\cdot\mathcal{L}_{\gamma^{T}}\circ\mathcal{L}_{A}(Y_{\beta})\,\right)$
+\,$=$\, $\xi^{2}\cdot\Var\!\left(\,\mathcal{L}_{\gamma^{T}}\circ\mathcal{L}_{A}(Y_{\beta})\,\right)$
+and
+\,$\Var\!\left(\,\xi \cdot L(Y_{\beta})\,\right)$
+\,$=$\, $\xi^{2} \cdot \Var\!\left(\,L(Y_{\beta})\,\right)$.
+
+\vskip 0.5cm
+\noindent
+Now, since \,$L : \Re^{n} \longrightarrow \Re^{1}$\,
+is a linear map, it has the following form:
+there exists $v \in \Re^{n \times 1}$ such that
+\,$L(y) \,=\, v^{T} \cdot y$,\,
+for each \,$y \in \Re^{n}$.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+$v \,=\, \gamma + w$,\, where \,$w \,\in\, \Col(X)^{\perp}$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 2:\quad
+Note that, for each $\beta \in \Re^{p}$, we have
+\,$v^{T}\cdot X \cdot \beta$
+\,$=$\, $v^{T} \cdot E\!\left[\;Y_{\beta}\,\right]$
+\,$=$\, $E\!\left[\,v^{T} \cdot Y_{\beta}\,\right]$
+\,$=$\, $E\!\left[\,L(Y_{\beta})\,\right]$
+\,$=$\, $\gamma^{T} \cdot X \cdot \beta$.
+Hence,
+\,$(v - \gamma)^{T} \cdot X \cdot \beta \,=\, 0$,\,
+for each $\beta\in\Re^{p}$\,;
+equivalently, $v - \gamma \in \Col(X)^{\perp}$.
+Claim 2 now follows immediately.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}\quad
+$\Var\!\left(\,\mathcal{L}_{\gamma^{T}}\circ\mathcal{L}_{A}(Y_{\beta})\,\right)
+\,\leq\,
+	\Var\!\left(\,L(Y_{\beta})\,\right)$,\,
+for each \,$\beta\in\Re^{p}$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 3:\quad
+First, observe that
+\,$E\!\left[\,\mathcal{L}_{I_{n}}(Y_{\beta})\,\right]$
+\,$=$\, $E\!\left[\,I_{n} \cdot Y_{\beta}\,\right]$
+\,$=$\, $E\!\left[\;Y_{\beta}\,\right]$
+\,$=$\, $X \cdot \beta$
+\,$=$\, $\mathcal{L}_{X}(\beta)$,\,
+i.e. $\mathcal{L}_{I_{n}}$ is a linear unbiased estimator of $\mathcal{L}_{X}$
+in terms of $Y = \{\,Y_{\beta}\,\}$.
+Thus, by the hypothesis that $\mathcal{L}_{A}$ is a BLUE of $\mathcal{L}_{X}$ in terms of $Y = \{\,Y_{\beta}\,\}$,
+we have
+$\Var\!\left(\,\xi^{T} \cdot A \cdot Y_{\beta}\,\right)$
+\,$\leq$\, $\Var\!\left(\,\xi^{T} \cdot I_{n} \cdot Y_{\beta}\,\right)$
+\,$=$\, $\Var\!\left(\,\xi^{T} \cdot Y_{\beta}\,\right)$,\,
+for each $\xi \in \Re^{n}$, $\beta\in\Re^{p}$.
+Consequently,
 \begin{eqnarray*}
-\Var\!\left(\; \xi^{T} \cdot \mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A}(Y_{\beta}) \;\right)
+\Var\!\left(\; \mathcal{L}_{\gamma^{T}} \circ \mathcal{L}_{A}(Y_{\beta}) \;\right)
 &=&
-	\Var\!\left(\; \xi \cdot \gamma^{T} \cdot \mathcal{L}_{A}(Y_{\beta}) \;\right)
+	\Var\!\left(\; \gamma^{T} \cdot \mathcal{L}_{A}(Y_{\beta}) \;\right)
 \;\; = \;\;
-	\xi^{2} \cdot \Var\!\left(\; \gamma^{T} \cdot \mathcal{L}_{A}(Y_{\beta}) \;\right)
+	\Var\!\left(\; \gamma^{T} \cdot A \cdot Y_{\beta} \;\right)
+\;\; \leq \;\;
+	\Var\!\left(\; \gamma^{T} \cdot Y_{\beta} \;\right)
 \\
 &\leq&
-	\xi^{2} \cdot \Var\!\left(\; \gamma^{T} \cdot L^{\prime}(Y_{\beta}) \;\right)
+	\Var\!\left(\; \gamma^{T} \cdot Y_{\beta} \;\right)
+	\; + \;
+	\Var\!\left(\; w^{T} \cdot Y_{\beta} \;\right)
+\;\;=\;\;
+	\Var\!\left(\; (\gamma + w)^{T} \cdot Y_{\beta} \;\right)
 \;\; = \;\;
-	\Var\!\left(\; (\xi\cdot\gamma)^{T} \cdot L^{\prime}(Y_{\beta}) \;\right)
+	\Var\!\left(\; v^{T} \cdot Y_{\beta} \;\right)
 \\
-&\leq&
-	\Var\!\left(\; \xi^{T} \cdot L^{\prime\prime}(Y_{\beta}) \;\right)
+&=&
+	\Var\!\left(\; L(Y_{\beta}) \;\right),
+\quad
+\textnormal{for each \,$\beta\in\Re^{p}$}\,.
 \end{eqnarray*}
+This proves Claim 3, and completes the proof of the forward implication.
 
 \vskip 0.5cm
 \noindent
