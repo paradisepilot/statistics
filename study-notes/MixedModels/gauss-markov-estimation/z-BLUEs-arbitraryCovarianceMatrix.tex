@@ -39,7 +39,11 @@ Then,
 	{\color{red}\textbf{linear unbiased estimator of
 	$\Lambda : \Re^{p} \longrightarrow \Re^{q}$
 	in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$}} if
-	$E\!\left[\,L(Y_{\beta})\,\right] = \Lambda(\beta)$, for each $\beta \in \Re^{p}$.
+	\begin{equation*}
+	E\!\left[\;L(\,Y_{\beta})\;\right] \;=\; \Lambda(\,\beta\,)\,,
+	\quad
+	\textnormal{for each \,$\beta \,\in\, \Re^{p}$}.
+	\end{equation*}
 \item
 	A linear unbiased estimator $L : \Re^{n} \longrightarrow \Re^{q}$
 	of $\Lambda : \Re^{p} \longrightarrow \Re^{q}$
@@ -127,12 +131,13 @@ in terms of \,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$.
 \vskip 0.1cm
 \noindent
 Proof of Claim 1:\quad
-First, note that, for each $\beta\in\Re^{p}$, we have $E\!\left[\; \mathcal{L}_{A}(Y_{\beta})\;\right] = X \cdot \beta$.
+First, note that, for each $\beta\in\Re^{p}$, we have
+$E\!\left[\; \mathcal{L}_{A}(Y_{\beta})\;\right] \,=\, \mathcal{L}_{X}(\,\beta\,) \,=\, X \cdot \beta$.
 Hence,
 $E\!\left[\;\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A}(Y_{\beta})\;\right]$
 \,$=$\, $E\!\left[\;\gamma^{T} \cdot \mathcal{L}_{A}(Y_{\beta})\;\right]$
 \,$=$\, $\gamma^{T} \cdot E\!\left[\; \mathcal{L}_{A}(Y_{\beta})\;\right]$
-\,$=$\, $\gamma^{T} \cdot X \cdot \beta$
+\,$=$\, $\gamma^{T} \cdot \mathcal{L}_{X}(\,\beta\,)$
 \,$=$\, $\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X}(\,\beta\,)$,\,
 for each $\beta\in\Re^{p}$.
 This proves Claim 1.
@@ -267,8 +272,129 @@ in terms of
 \,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$,\,
 for every $\gamma \in \Re^{n \times 1}$.
 
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\quad
+$\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n}$\,
+is a linear unbiased estimator of
+\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$\,
+in terms of
+\,$Y = \{\,Y_{\beta}\,\}$, i.e.
+\begin{equation*}
+E\!\left[\;\mathcal{L}_{A}(\,Y_{\beta})\;\right]
+\;=\;
+	\mathcal{L}_{X}(\,\beta\,)
+\;=\;
+	X \cdot \beta\,,
+\quad
+\textnormal{for each \,$\beta\in\Re^{p}$}.
+\end{equation*}
+Proof of Claim 1:\quad
+Since \,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{1}$\,
+is a BLUE of
+\,$\overset{{\color{white}+}}{\mathcal{L}}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
+in terms of
+\,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$,
+we have
+\begin{equation*}
+\gamma^{T} \cdot A \cdot X \cdot \beta
+\;=\;
+	\gamma^{T} \cdot A \cdot E\!\left[\;Y_{\beta}\,\right]
+\;=\;
+	E\!\left[\;\gamma^{T} \cdot A \cdot Y_{\beta}\;\right]
+\;=\;
+	E\!\left[\;\mathcal{L}_{\gamma^{T}} \circ \mathcal{L}_{A}(Y_{\beta})\;\right]
+\;=\;
+	\gamma^{T} \cdot X \cdot \beta\,,
+\end{equation*}
+for each $\gamma \in \Re^{n}$ and each $\beta \in \Re^{p}$.
+This in turn implies
+$A \cdot X \cdot \beta \;=\; X \cdot \beta$,
+for each \,$\beta \in \Re^{p}$.
+(In particular, the map
+\,$\Re^{n} \longrightarrow \Re^{n} : y \longmapsto A \cdot y$\,
+restricts to the identity map on $\Col(X)$.)
+Thus,
+\begin{equation*}
+E\!\left[\;\mathcal{L}_{A}(Y_{\beta})\;\right]
+\;\;=\;\;
+	E\!\left[\,A \cdot Y_{\beta}\;\right]
+\;\;=\;\;
+	A \cdot E\!\left[\;Y_{\beta}\,\right]
+\;\;=\;\;
+	A \cdot X \cdot \beta
+\;\;=\;\;
+	X \cdot \beta\,,
+\quad
+\textnormal{for each \,$\beta \in \Re^{p}$}.
+\end{equation*}
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+For each linear unbiased estimator
+\,$L : \Re^{n} \longrightarrow \Re^{n}$\,
+of
+\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$,\,
+we have:
+\begin{equation*}
+\Var\!\left(\,\gamma^{T}\cdot\mathcal{L}_{A}(\,Y_{\beta}\,)\,\right)
+\;\leq\;
+	\Var\!\left(\,\gamma^{T} \cdot L(\,Y_{\beta}\,)\,\right),\,
+\quad
+\textnormal{for each \,$\gamma\in\Re^{n}$, \,$\beta\in\Re^{p}$}.
+\end{equation*}
+\vskip 0.1cm
+\noindent
+Proof of Claim 2:\quad
+Since $L : \Re^{n} \longrightarrow \Re^{n}$ is a linear unbiased estimator of
+$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$ in terms of $Y = \{\,Y_{\beta}\,\}$,
+we have, for each $\gamma \in \Re^{n}$ and $\beta \in \Re^{p}$,
+\begin{equation*}
+E\!\left[\;\mathcal{L}_{\gamma^{T}} \circ L(\,Y_{\beta}\,)\;\right]
+\;\; = \;\; E\!\left[\;\gamma^{T} \cdot L(\,Y_{\beta}\,)\;\right]
+\;\; = \;\; \gamma^{T} \cdot E\!\left[\;L(\,Y_{\beta}\,)\;\right]
+\;\; = \;\; \gamma^{T} \cdot \mathcal{L}_{X}(\,\beta\,)
+\;\; = \;\; \gamma^{T} \cdot X \cdot \beta
+\;\; = \;\; \mathcal{L}_{\gamma^{T}} \circ \mathcal{L}_{X} (\,\beta\,)\,.
+\end{equation*}
+Hence, for each $\gamma \in \Re^{n}$,
+\,$\mathcal{L}_{\gamma^{T}} \circ L : \Re^{n} \longrightarrow \Re^{1}$\,
+is a linear unbiased estimator of 
+\,$\mathcal{L}_{\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
+in terms of \,$Y = \{\,Y_{\beta}\,\}$.\,
+Consequently, since
+\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{1}$\,
+is a BLUE of
+\,$\overset{{\color{white}+}}{\mathcal{L}}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
+in terms of
+\,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$, for each $\gamma\in\Re^{n}$,
+we have
+\begin{equation*}
+\Var\!\left(\;\xi\cdot\mathcal{L}_{\gamma^{T}}\circ\mathcal{L}_{A}(\,Y_{\beta}\,)\;\right)
+\;\; \leq \;\;
+	\Var\!\left(\;\xi\cdot\mathcal{L}_{\gamma^{T}}\circ L(\,Y_{\beta}\,)\;\right)\,,
+\quad
+\textnormal{for each \,$\xi \in \Re^{1},\, \gamma\in\Re^{n},\, \beta\in\Re^{p}$}.
+\end{equation*}
+In particular, the above inequality holds for $\xi = 1$, i.e.
+\begin{equation*}
+\Var\!\left(\;\mathcal{L}_{\gamma^{T}}\circ\mathcal{L}_{A}(\,Y_{\beta}\,)\;\right)
+\;\; \leq \;\;
+	\Var\!\left(\;\mathcal{L}_{\gamma^{T}}\circ L(\,Y_{\beta}\,)\;\right)\,,
+\quad
+\textnormal{for each \,$\gamma\in\Re^{n},\, \beta\in\Re^{p}$}.
+\end{equation*}
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+The reverse implication is precisely the validity of Claim 1 and Claim 2.
+This completes the proof of the present Proposition.
 \qed
 
+\vskip 0.5cm
 \begin{proposition}
 \mbox{}\vskip 0.1cm\noindent
 Suppose:
