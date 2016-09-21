@@ -64,6 +64,7 @@ Then,
 \end{definition}
 
 \begin{proposition}
+\label{BLUEoneD}
 \mbox{}\vskip 0.1cm\noindent
 Suppose:
 \begin{itemize}
@@ -271,6 +272,7 @@ is a BLUE of
 in terms of
 \,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$,\,
 for every $\gamma \in \Re^{n \times 1}$.
+The reverse implication is precisely the validity of Claim 1 and Claim 2 below.
 
 \vskip 0.5cm
 \noindent
@@ -390,11 +392,10 @@ This proves Claim 2.
 
 \vskip 0.5cm
 \noindent
-The reverse implication is precisely the validity of Claim 1 and Claim 2.
 This completes the proof of the present Proposition.
 \qed
 
-\vskip 0.5cm
+\vskip 0.8cm
 \begin{proposition}
 \mbox{}\vskip 0.1cm\noindent
 Suppose:
@@ -404,8 +405,12 @@ Suppose:
 	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$ is left multiplication by $X \in \Re^{n \times p}$.
 \item
 	$\Lambda : \Re^{p} \longrightarrow \Re^{q}$ is an $X$-estimable linear map, i.e.
-	there exists $\Gamma \in \Re^{n \times q}$ such that
-	$\Lambda(\beta) = \Gamma^{T} \cdot X \cdot \beta$, for each $\beta \in \Re^{p}$.
+	there exists \,$\Gamma \in \Re^{n \times q}$\, such that
+	\begin{equation*}
+	\Lambda(\,\beta\,) \;=\; \Gamma^{T} \cdot X \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}.
+	\end{equation*}
 \item
 	$A \in \Re^{n \times n}$\, and 
 	\,$\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n}$ is left multiplication by $A \in \Re^{n \times n}$.
@@ -434,16 +439,127 @@ Then, \vskip -0.5cm
 	\end{array}
 \quad\Longrightarrow\quad
 \begin{array}{c}
-	\textnormal{$\mathcal{L}_{\,\Gamma^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{1}$ is a BLUE of}
+	\textnormal{$\mathcal{L}_{\,\Gamma^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{q}$ is a BLUE of}
 	\\
-	\textnormal{$\mathcal{L}_{\Lambda} = \overset{{\color{white}+}}{\mathcal{L}}_{\,\Gamma^{T}} \circ \mathcal{L}_{X} :
-		\Re^{p} \longrightarrow \Re^{1}$}
+	\textnormal{$\Lambda \,=\, \overset{{\color{white}+}}{\mathcal{L}}_{\,\Gamma^{T}} \circ \mathcal{L}_{X} \, : \,
+		\Re^{p} \longrightarrow \Re^{q}$}
 	\\
 	\textnormal{in terms of $Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$\,.}
 		{\color{white}\overset{+}{\Re}}
 	\end{array}
 \end{equation*}
 \end{proposition}
+\proof
+The Proposition is equivalent to the validity of Claim 1 and Claim 2 below.
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\quad
+$\mathcal{L}_{\,\Gamma^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{q}$\,
+is a linear unbiased estimator of
+\,$\Lambda = \mathcal{L}_{\,\Gamma^{T}}\circ\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{q}$\,
+in terms of
+\,$Y = \{\,Y_{\beta}\,\}$, equivalently,
+\begin{equation*}
+E\!\left[\;\mathcal{L}_{\,\Gamma^{T}} \circ \mathcal{L}_{A}(\,Y_{\beta})\;\right]
+\;=\;
+	\mathcal{L}_{\,\Gamma^{T}}\circ\mathcal{L}_{X}(\,\beta\,)
+\;=\;
+	\Lambda(\,\beta\,)\,,
+\quad
+\textnormal{for each \,$\beta\in\Re^{p}$}.
+\end{equation*}
+Proof of Claim 1:\quad
+Since \,$\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n}$\,
+is a BLUE of
+\,$\overset{{\color{white}+}}{\mathcal{L}}_{X} : \Re^{p} \longrightarrow \Re^{n}$\,
+in terms of
+\,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$,
+we have
+\begin{equation*}
+E\!\left[\;\mathcal{L}_{\,\Gamma^{T}} \circ \mathcal{L}_{A}(\,Y_{\beta}\,)\;\right]
+\;\; = \;\;
+	\Gamma^{T} \cdot E\!\left[\;\mathcal{L}_{A}(\,Y_{\beta}\,)\,\right]
+\;\; = \;\;
+	\Gamma^{T} \cdot X \cdot \beta
+\;\; = \;\;
+	\mathcal{L}_{\,\Gamma^{T}} \circ \mathcal{L}_{X}(\,\beta\,)
+\;\; = \;\;
+	\Lambda(\,\beta\,)\,,
+\quad
+\textnormal{for each \,$\beta \in \Re^{p}$}.
+\end{equation*}
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+For each linear unbiased estimator
+\,$L : \Re^{n} \longrightarrow \Re^{q}$\,
+of
+\,$\Lambda = \mathcal{L}_{\,\Gamma^{T}}\circ\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{q}$\,
+in terms of
+\,$Y = \{\,Y_{\beta}\,\}$,\,
+we have
+\begin{equation*}
+\Var\!\left[\;\,\xi^{T} \cdot \mathcal{L}_{\,\Gamma^{T}} \circ \mathcal{L}_{A}(\,Y_{\beta}\,)\;\,\right]
+\;\leq\;
+	\Var\!\left[\;\,\xi^{T} \cdot L(\,Y_{\beta}\,)\;\,\right],
+\quad
+\textnormal{for each \,$\xi\in\Re^{q},\, \beta\in\Re^{p}$}.
+\end{equation*}
+Proof of Claim 2:\quad
+First, note that, for each $\xi \in \Re^{q}$,
+\begin{equation*}
+E\!\left[\;\mathcal{L}_{\xi^{T}} \circ L(\,Y_{\beta}\,)\;\right]
+\; = \;
+	E\!\left[\;\xi^{T} \cdot L(\,Y_{\beta}\,)\;\right]
+\; = \;
+	\xi^{T} \cdot E\!\left[\;L(\,Y_{\beta}\,)\;\right]
+\; = \;
+	\xi^{T} \cdot \Gamma^{T} \cdot X \cdot \beta
+\; = \;
+	\mathcal{L}_{\,(\Gamma\cdot\xi)^{T}} \circ \mathcal{L}_{X}(\,\beta\,)\,,
+\quad
+\textnormal{for each \,$\beta\in\Re^{p}$}.
+\end{equation*}
+Thus,
+\,$\mathcal{L}_{\xi^{T}} \circ L : \Re^{n} \longrightarrow \Re^{1}$\,
+is a linear unbiased estimator of
+\,$\mathcal{L}_{\,(\Gamma\cdot\xi)^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
+in terms of \,$Y = \{\,Y_{\beta}\,\}$.
+Next, observe that, for each $\xi \in \Re^{q \times 1}$,
+we have $\Gamma \cdot \xi \in \Re^{n \times 1}$.
+Since $\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n}$
+is a BLUE of
+$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$
+in terms of $Y = \{\,Y_{\beta}\,\}$,
+by Proposition \ref{BLUEoneD}, we have
+$\mathcal{L}_{\,(\Gamma\cdot\xi)^{T}} \circ \mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{1}$
+is a BLUE of 
+$\mathcal{L}_{\,(\Gamma\cdot\xi)^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$
+in terms of $Y = \{\,Y_{\beta}\,\}$, for each $\xi \in \Re^{q}$.
+Thus, for each $\xi\in\Re^{q}$ and $\beta\in\Re^{p}$, we have
+\begin{eqnarray*}
+\Var\!\left[\;\,\xi^{T} \cdot \mathcal{L}_{\,\Gamma^{T}} \circ \mathcal{L}_{A}(\,Y_{\beta}\,)\;\,\right]
+&=&
+	\Var\!\left[\;\,\mathcal{L}_{\,(\Gamma\cdot\xi)^{T}} \circ \mathcal{L}_{A}(\,Y_{\beta}\,)\;\,\right]
+\;\; = \;\;
+	\Var\!\left[\;\,1 \cdot \mathcal{L}_{\,(\Gamma\cdot\xi)^{T}} \circ \mathcal{L}_{A}(\,Y_{\beta}\,)\;\,\right]
+\\
+& \leq &
+	\Var\!\left[\;\,1 \cdot \mathcal{L}_{\xi^{T}} \circ L(\,Y_{\beta}\,)\;\,\right]
+\;\; = \;\;
+	\Var\!\left[\;\,\mathcal{L}_{\xi^{T}} \circ L(\,Y_{\beta}\,)\;\,\right]
+\\
+&=&
+	\Var\!\left[\;\,\xi^{T} \cdot L(\,Y_{\beta}\,)\;\,\right]
+\end{eqnarray*}
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+This completes the proof of the present Proposition.
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
