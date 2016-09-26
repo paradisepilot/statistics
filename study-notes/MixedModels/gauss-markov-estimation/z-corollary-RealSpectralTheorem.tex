@@ -1,0 +1,313 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{A corollary of the Real Spectral Theorem}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Real Spectral Theorem, Theorem 7.29, p.221, \cite{Axler2015}]
+\label{RealSpectralTheorem}
+\mbox{}\vskip 0.1cm\noindent
+Let $A \in \Re^{n \times n}$. Then, the following are equivalent:
+\begin{enumerate}
+\item
+	$A$ is a symmetric matrix, i.e. $A^{T} \,=\, A$.
+\item
+	There exists an orthonormal basis for $\Re^{n}$ consisting of eigenvectors of $A$.
+\item
+	There exists a orthogonal matrix $P \in \Re^{n \times n}$ (i.e. $P^{-1} = P^{T}$) such that
+	\begin{equation*}
+	P^{T} \cdot A \cdot P \;\; = \;\; D\,,
+	\end{equation*}
+	where $D \in \Re^{n \times n}$ is a diagonal matrix.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+\mbox{}\vskip 0.1cm\noindent
+Suppose $V \in \Re^{n \times n}$ is a symmetric positive semi-definite matrix of rank $r \in \{1,2,\ldots, n\}$.
+Then,
+\begin{enumerate}
+\item\label{VEeqED}
+	there exists a matrix $E \in \Re^{n \times r}$ and
+	a diagonal matrix $D = \diag(d_{1},\ldots,d_{r}) \in \Re^{r \times r}$
+	such that
+	\begin{equation*}
+	V \cdot E \;\; = \;\; E \cdot D \;\; \in \;\; \Re^{n \times r}\,,
+	\end{equation*}
+	where \,$E \in \Re^{n \times r}$\, has orthonormal columns, and
+	\,$d_{1}, d_{2}, \ldots, d_{r} > 0$\, are the $r$ positive eigenvalues of $V$.
+\end{enumerate}
+Define \,$D^{1/2} \in \Re^{r \times r}$\, and \,$Q$, $Q^{\dagger}$ $\in$ $\Re^{n \times r}$\, as follows:
+\begin{equation*}
+\begin{array}{lcl}
+D^{1/2} & := & \diag\!\left(\sqrt{d_{1}},\sqrt{d_{2}},\,\ldots\,,\sqrt{d_{r}}\,\right) \;\; \in \;\; \Re^{r \times r}\,,
+\\
+Q & \overset{{\color{white}\vert}}{:=} & E \cdot D^{1/2} \;\; \in \;\; \Re^{n \times r}\,,
+\\
+Q^{\dagger} & \overset{{\color{white}\vert}}{:=} & \left(D^{1/2}\right)^{-1} \cdot E^{T} \;\; \in \;\; \Re^{r \times n}\,.
+\end{array}
+\end{equation*}
+Then, the following statements hold:
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item\label{QQTeqV}
+	$Q \cdot Q^{T} \,=\, V$
+\item\label{QTQeqD}
+	$Q^{T} \cdot Q \,=\, D$
+\item\label{QdaggerQeqIr}
+	$Q^{\dagger} \cdot Q \,=\, I_{r}$
+\item
+	$Q \cdot Q^{\dagger} \cdot Q\,=\, Q$
+\item
+	$Q^{\dagger} \cdot V \cdot (Q^{\dagger})^{T} \,=\, I_{r}$
+\item
+	$(Q^{\dagger})^{T} \cdot Q^{\dagger} \,=\, V^{\dagger}$
+\item\label{ColVColQColE}
+	$\Col(V) \,=\, \Col(Q) \,=\, \Col(E) \,\subset\, \Re^{n}$
+\item
+	The projection matrix
+	\;$\Pi_{V} \, := \, V \cdot (V^{T} \cdot V)^{\dagger} \cdot V^{T}$\;
+	can be expressed as follows:
+	$$\Pi_{V} \;\; = \;\; E \cdot E^{T} \;\; = \;\; Q \cdot Q^{\dagger}\,.$$
+\end{enumerate}
+\end{corollary}
+\newpage
+\proof
+\begin{enumerate}
+\item
+	By the Real Spectral Theorem, Theorem \ref{RealSpectralTheorem},
+	there exist an orthogonal matrix $P \in \Re^{n \times n}$ and a diagonal matrix
+	$\widetilde{D} = \diag(d_{1},\ldots,d_{n}) \in \Re^{n \times n}$ (\,i.e. $P^{-1} = P^{T}$\,)
+	such that
+	\begin{equation*}
+	P^{T} \cdot V \cdot P \;\; = \;\; \widetilde{D}\,,
+	\end{equation*}
+	which is equivalent to
+	\begin{equation*}
+	V \cdot P \;\; = \;\; P \cdot \widetilde{D}\,,
+	\end{equation*}
+	which in turn is equivalent to
+	\begin{eqnarray}
+	\label{VpkEqualsdkpk}
+	V \cdot \mathbf{p}_{k}
+	& = & 
+		d_{k} \cdot \mathbf{p}_{k}\,,
+	\quad
+	\textnormal{for each \,$k = 1,2,\ldots,n$}\,,
+	\end{eqnarray}
+	where $\mathbf{p}_{k} \in \Re^{n}$ is the $k^{\textnormal{th}}$ column of $P \in \Re^{n \times n}$,
+	for $k = 1, 2, \ldots, n$.
+	Since $V$ is positive semi-definite, it follows that $d_{k} \geq 0$, for each $k = 1,2,\ldots,n$.
+	Since $\rank(V) = r$, without loss of generality, we may assume that
+	$d_{1} \geq d_{2} \geq \cdots \geq d_{r} > 0$ and $d_{r+1} = d_{r+2} = \cdots = d_{n} = 0$.
+	Now, define
+	\begin{equation*}
+	E \; := \; \left[\begin{array}{cccc} \\ \mathbf{p}_{1} & \mathbf{p}_{2} & \cdots & \mathbf{p}_{r} \\ \\ \end{array}\right]
+	\; \in \; \Re^{n \times r}
+	\quad\textnormal{and}\quad
+	D \; := \; \diag(\,d_{1},\d_{2},\ldots,d_{r}\,) \; \in \; \Re^{r \times r}\,.
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+	E \cdot D
+	\;\; := \;\;
+		\left[\begin{array}{cccc}
+			\\
+			d_{1}\mathbf{p}_{1} & d_{2}\mathbf{p}_{2} & \cdots & d_{r}\mathbf{p}_{r} \\
+			\\
+		\end{array}\right]
+	\end{equation*}
+	Trivially, \eqref{VpkEqualsdkpk} implies
+	\begin{eqnarray*}
+	V \cdot \mathbf{p}_{k}
+	& = & 
+		d_{k} \cdot \mathbf{p}_{k}\,,
+	\quad
+	\textnormal{for each \,$k = 1,2,\ldots,{\color{red}r}$}\,,
+	\end{eqnarray*}
+	which in matrix notation is precisely:
+	\begin{equation*}
+	V \cdot E \;\; = \;\; E \cdot D\,.
+	\end{equation*}
+\item
+	Let \,$P,\,\widetilde{D} \in \Re^{n \times n}$, \,$E \in \Re^{n \times r}$, \,$D \in \Re^{r \times r}$\,
+	be as in the proof of \eqref{VEeqED} above.
+	Recall that
+	\begin{equation*}
+	P^{T} \cdot V \cdot P \;\; = \;\; \widetilde{D}\,,
+	\end{equation*}
+	which is also equivalent to
+	\begin{equation*}
+	V \;\; = \;\; P \cdot \widetilde{D} \cdot P^{T}\,,
+	\end{equation*}
+	which in turn is equivalent to:\, For each \,$i,j = 1, 2, \ldots, n$,
+	\begin{eqnarray*}
+	V_{ij}
+	& = & \sum_{k=1}^{n} \left(P\cdot\widetilde{D}\,\right)_{ik}\cdot\left(P^{T}\,\right)_{kj}
+		\;\; = \;\; \sum_{k=1}^{n} \left(\,\sum_{l=1}^{n}\,P_{il}\cdot d_{l}\delta_{lk}\right)\cdot P_{jk}
+		\;\; = \;\; \sum_{l=1}^{n}\,\sum_{k=1}^{n}\,d_{l}\,\delta_{lk}P_{il}P_{jk}
+	\\
+	& = &
+		\sum_{k=1}^{n}\,d_{k}\,P_{ik}P_{jk}
+	\;\; = \;\;
+		\sum_{k=1}^{{\color{red}r}}\,d_{k}\,P_{ik}P_{jk}
+	\;\; = \;\;
+		\sum_{k=1}^{r} \left(P_{ik}\cdot\sqrt{d_{k}}\,\right)\cdot\left(P_{jk}\cdot\sqrt{d_{k}}\,\right)
+	\\
+	& = &
+		\sum_{k=1}^{r} \, Q_{ik}\cdot\left(\,Q^{T}\,\right)_{kj}\,,
+	\end{eqnarray*}
+	which can be expressed equivalently in matrix notation as:
+	\begin{equation*}
+	V \;\; = \;\; Q \cdot Q^{T}\,.
+	\end{equation*}
+\item
+	\begin{equation*}
+	Q^{T} \cdot Q
+	\;\; = \;\;
+		\left(\,E \cdot D^{1/2}\,\right)^{T} \cdot \left(\,E \cdot D^{1/2}\,\right)
+	\;\; = \;\;
+		D^{1/2} \cdot E^{T} \cdot E \cdot D^{1/2}
+	\;\; = \;\;
+		D^{1/2} \cdot I_{r} \cdot D^{1/2}
+	\;\; = \;\;
+		D
+	\end{equation*}
+\item
+	$
+	Q^{\dagger} \cdot Q
+	\;\;\,=\;\;\,
+		(D^{1/2})^{-1} \cdot E^{T} \cdot E \cdot D^{1/2}
+	\;\;\, = \;\;\,
+		(D^{1/2})^{-1} \cdot I_{r} \cdot D^{1/2}
+	\;\;\, = \;\;\,
+		(D^{1/2})^{-1} \cdot D^{1/2}
+	\;\;\, = \;\;\,
+		I_{r}
+	$,
+	where the second equality follows from the fact that $E \in \Re^{n \times r}$ has
+	orthonormal columns.
+\item
+	Immediate by \eqref{QdaggerQeqIr}:\;\;
+	$Q \cdot Q^{\dagger} \cdot Q \,=\, Q \cdot I_{r} \,=\, Q$.
+\item
+	\begin{equation*}
+	\begin{array}{ccll}
+	Q^{\dagger} \cdot V \cdot (Q^{\dagger})^{T}
+	&=&
+		Q^{\dagger} \cdot \left(\,Q \cdot Q^{T}\,\right) \cdot (Q^{\dagger})^{T}\,,
+		&\quad\quad\textnormal{by \eqref{QQTeqV}}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		\left(\,Q^{\dagger} \cdot Q\,\right) \cdot \left(\,Q^{\dagger} \cdot Q\,\right)^{T}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		\left(\,I_{r}\,\right) \cdot \left(\,I_{r}\,\right)^{T}\,,
+		&\quad\quad\textnormal{by \eqref{QdaggerQeqIr}}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		I_{r}
+	\end{array}
+	\end{equation*}
+\item
+	By the definition of generalized inverses, we need to show that
+	\,$V \cdot \left[\;(Q^{\dagger})^{T} \cdot Q^{\dagger}\;\right] \cdot V \,=\, V$.
+	To this end,
+	\begin{equation*}
+	\begin{array}{ccll}
+	V \cdot \left[\;(Q^{\dagger})^{T}\cdot Q^{\dagger}\;\right] \cdot V
+	&=&
+		\left(\,Q \cdot Q^{T}\,\right) \cdot (Q^{\dagger})^{T} \cdot Q^{\dagger} \cdot \left(\,Q \cdot Q^{T}\,\right)\,,
+		&\quad\quad\textnormal{by \eqref{QQTeqV}}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		Q \cdot \left(\,Q^{\dagger} \cdot Q\,\right)^{T} \cdot \left(\,Q^{\dagger} \cdot Q\,\right) \cdot Q^{T}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		Q \cdot \left(\,I_{r}\,\right)^{T} \cdot \left(\,I_{r}\,\right) \cdot Q^{T}\,,
+		&\quad\quad\textnormal{by \eqref{QdaggerQeqIr}}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		Q \cdot Q^{T}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		V\,,
+		&\quad\quad\textnormal{by \eqref{QQTeqV}}
+	\end{array}
+	\end{equation*}
+\item
+	First, recall that
+	$Q \,:=\, E \cdot D^{1/2} \,=\, E \cdot \diag\!\left(\,\sqrt{d_{1}},\sqrt{d_{2}},\ldots,\sqrt{d_{r}}\,\right)$;
+	in other words, one obtains the matrix $Q \in \Re^{n \times r}$ from $E \in \Re^{n \times r}$
+	by multiplying the $k^{\textnormal{th}}$ column of $E$ by the positive factor $\sqrt{d_{k}} > 0$,
+	for each $k = 1, 2, \ldots, r$.
+	This immediately implies $\Col(Q) = \Col(E)$.
+	
+	Next, recall that: For any matrix $X \in \Re^{a \times b}$, we have
+	$\Col(X \cdot X^{T}) = \Col(X) \subset \Re^{a}$; see, for example, Proposition B.51, p.434, \cite{Christensen2011}.
+	Thus, it follows from \eqref{QQTeqV} that
+	\,$\Col(V) \,=\, \Col(Q\cdot Q^{T}) \,=\, \Col(Q)$
+	
+	Hence, we may now conclude that we indeed have
+	\,$\Col(V) \,=\, \Col(Q) \,=\, \Col(E)$.
+\item
+	By \eqref{ColVColQColE}, we immediately have \,$\Pi_{V} \,=\, \Pi_{Q}$.
+	Now,
+	\begin{equation*}
+	\begin{array}{ccll}
+	\Pi_{V}
+	&=&
+		\Pi_{Q}
+		\;\; = \;\;
+		Q \cdot \left(\,Q^{T} \cdot Q\,\right)^{\dagger} \cdot Q^{T}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		Q \cdot \left(\,D\,\right)^{\dagger} \cdot Q^{T}\,,
+		&\quad\quad\textnormal{by \eqref{QTQeqD}}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		Q \cdot D^{-1} \cdot Q^{T}\,,
+		&\quad\quad\textnormal{since \,$D$\, is nonsingular}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		Q \cdot D^{-1} \cdot D^{1/2} \cdot E^{T}\,,
+		&\quad\quad\textnormal{by defintion of \,$Q \,:=\, E \cdot D^{1/2}$}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		Q \cdot (\,D^{1/2}\,)^{-1} \cdot E^{T}
+		\;\; = \;\; Q \cdot Q^{\dagger}\,,
+		&\quad\quad\textnormal{by defintion of \,$Q^{\dagger} \,:=\, (\,D^{1/2}\,)^{-1}\cdot E^{T}$}
+	\end{array}
+	\end{equation*}
+	On the other hand,
+	\begin{equation*}
+	\begin{array}{ccll}
+	\Pi_{V}
+	&=&
+		\cdots \;\; = \;\; Q \cdot D^{-1} \cdot Q^{T}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		\left(\,E \cdot D^{1/2}\,\right) \cdot D^{-1} \cdot \left(\,D^{1/2} \cdot E^{T}\,\right)\,,
+		&\quad\quad\textnormal{by defintion of \,$Q \,:=\, E \cdot D^{1/2}$}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		E \cdot \left(\, D^{1/2} \cdot D^{-1} \cdot D^{1/2} \,\right) \cdot E^{T}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		E \cdot \left(\, I_{r} \,\right) \cdot E^{T}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		E \cdot E^{T}
+	\end{array}
+	\end{equation*}
+\end{enumerate}
+This completes the proof of the Corollary.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
