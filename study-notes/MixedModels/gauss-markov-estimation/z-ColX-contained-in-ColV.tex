@@ -1,0 +1,257 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Estimation for the case $\Col(X) \subset \Col(V)$}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Theorem 10.1.2, p.239, \cite{Christensen2011}]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\sigma^{2} > 0$,
+	$X \in \Re^{n \times p}$.
+\item
+	$V \in \Re^{n \times n}$ is a symmetric positive semi-definite matrix, and
+	\,$r \,:=\, \rank(V) \,\in\, \{1,2,\ldots,n\}$.
+\item
+	{\color{red}$\Col(X) \,\subset\, \Col(V)$}.
+\item
+	$Y = \left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+\item
+	For each $\beta \in \Re^{p}$, the following hold:
+	\begin{equation*}
+	\begin{array}{rclcl}
+	E\!\left[\;Y_{\beta}\,\right] &  \overset{{\color{white}\vert}}{=} & X \cdot \beta & \in & \Re^{n}
+	\\
+	\Cov\!\left(\,Y_{\beta}\,\right) & \overset{{\color{white}\vert}}{=} & \sigma^{2} \cdot V & \in & \Re^{n \times n}
+	\end{array}
+	\end{equation*}
+\item
+	$Q \in \Re^{n \times r}$\, and \,$Q^{\dagger} \in \Re^{r \times n}$\,
+	are matrices determined (nonuniquely) by $V \in \Re^{n \times n}$
+	as described in Corollary \ref{corollaryRealSpectralTheorem}.
+\end{itemize}
+Then, for any \,$A \in \Re^{n \times n}$,\, we have:
+\begin{enumerate}
+\item
+	\begin{equation*}
+	\begin{array}{c}
+		\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n} : y \longmapsto A \cdot y
+		\\{\color{white}\overset{.}{\vert}}
+		\textnormal{is \, a \, BLUE \, of}
+		\\{\color{white}\overset{.}{\vert}}
+		\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n} : \beta \longmapsto X \cdot \beta
+		\\{\color{white}\overset{.}{\vert}}
+		\textnormal{in terms of \,$Y = \{\,Y_{\beta}\,\}$}
+		\end{array}
+	\quad\Longleftrightarrow\quad
+		\begin{array}{c}
+		\mathcal{L}_{AQ} : \Re^{\color{red}r} \longrightarrow \Re^{n} : \zeta \longmapsto A \cdot Q \cdot \zeta
+		\\{\color{white}\overset{.}{\vert}}
+		\textnormal{is \, a \, BLUE \, of}
+		\\{\color{white}\overset{.}{\vert}}
+		\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n} : \beta \longmapsto X \cdot \beta
+		\\{\color{white}\overset{.}{\vert}}
+		\textnormal{in terms of \,$Q^{\dagger}(\,Y\,) = \{\,Q^{\dagger} \cdot Y_{\beta}\;\}$}
+	\end{array}
+	\end{equation*}
+\item
+	If
+	\,$\mathcal{L}_{AQ} : \Re^{r} \longrightarrow \Re^{n}$\,
+	is a BLUE of
+	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n} $\,
+	in terms of
+	\,$Q^{\dagger}(\,Y\,) = \{\,Y_{\beta}\,\}$,\,
+	then
+	\begin{equation*}
+	E\!\left[\;Q^{\dagger} \cdot Y_{\beta}\;\right]
+	\; = \;
+		Q^{\dagger} \cdot X \cdot \beta\,,
+	\quad\textnormal{and}\quad
+	\Var\!\left(\,Q^{\dagger} \cdot Y_{\beta}\,\right)
+	\; = \;
+		\sigma^{2} \cdot I_{r}\,,
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,.
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	To prove unbiasedness of
+	\,$\mathcal{L}_{\,\gamma^{T} \cdot \Pi_{X}} : \Re^{n} \longrightarrow \Re^{1}$\,
+	as an estimator of $\lambda : \Re^{p} \longrightarrow \Re^{1}$
+	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,,
+	simply note that, for each $\beta \in \Re^{p}$, we have
+	\begin{equation*}
+	E\!\left[\;\gamma^{T} \cdot \overset{{\color{white}.}}{\Pi}_{X} \cdot Y_{\beta}\;\right]
+	\;\; = \;\;
+		\gamma^{T} \cdot \Pi_{X} \cdot E\!\left[\;\overset{{\color{white}.}}{Y}_{\beta}\;\right]
+	\;\; = \;\;
+		\gamma^{T} \cdot \Pi_{X} \cdot X \cdot \beta
+	\;\; = \;\;
+		\gamma^{T} \cdot X \cdot \beta
+	\;\; = \;\;
+		\lambda(\beta)\,.
+	\end{equation*}
+\item
+	First, note that
+	\begin{eqnarray*}
+	\Var\!\left(\,a^{T} \cdot Y_{\beta}\,\right)
+	&=&
+		\Var\!\left[\;
+			a^{T} \cdot Y_{\beta}
+			\,\overset{{\color{white}+}}{-}\,
+			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}
+			\,+\,
+			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}
+			\;\right]
+	\\
+	&=&
+		\Var\!\left[\;
+			a^{T} \cdot Y_{\beta}
+			\overset{{\color{white}+}}{-}
+			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}
+				\;\right]
+		\; + \;
+		\Var\!\left[\;
+			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
+			\;\right]
+	\\
+	&&	+ \;
+		2\cdot\Cov\!\left(\;
+			\left(a^{T} \cdot Y_{\beta}
+			\overset{{\color{white}.}}{-}
+			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\right)
+			\,,\,
+			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
+			\;\right)
+	\end{eqnarray*}
+	Hence, it suffices to show that
+	\begin{equation*}
+		\Cov\!\left(\;
+			\left(a^{T} \cdot Y_{\beta}
+			\overset{{\color{white}.}}{-}
+			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\right)
+			\,,\,
+			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
+			\;\right)
+		\;\; = \;\; 0
+	\end{equation*}
+	
+	\vskip 0.5cm
+	\noindent
+	\textbf{Claim 1:}\quad $a^{T} \cdot X \; = \; \gamma^{T} \cdot X$.
+	\vskip 0.0cm
+	\noindent
+	Proof of Claim 1:\quad The unbiasedness hypothesis on
+	\,$\mathcal{L}_{\,a^{T}} : \Re^{n} \longrightarrow \Re^{1}$\,
+	as an estimator of
+	\,$\lambda : \Re^{p} \longrightarrow \Re^{1}$\,
+	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,
+	implies that
+	\begin{equation*}
+	a^{T} \cdot X \cdot \beta
+	\;\; = \;\;
+		a^{T} \cdot E\!\left[\;Y_{\beta}\;\right]
+	\;\; = \;\;
+		E\!\left[\,a^{T} \cdot Y_{\beta}\,\right]
+	\;\; = \;\;
+		\lambda(\beta)
+	\;\; = \;\;
+		\gamma^{T} \cdot X \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,,
+	\end{equation*}
+	which in turn implies{\color{red}\footnote{\color{red}This implication
+	requires that the preceding equality must be valid
+	for every $\beta \in \Re^{p}$.
+	On the other hand, no random variable $Y$ can satisfy the property
+	$E\!\left[\;Y\,\right] = X \cdot \beta$, for every $\beta \in \Re^{p}$.
+	Thus, the use in our formulation of the Gauss-Markov Theorem
+	of a family \,$Y = \left\{\,Y_{\beta}\,\right\}$\, of random variables
+	with $E\!\left[\;Y_{\beta}\,\right] = X \cdot \beta$, for each $\beta \in \Re^{p}$,
+	makes the statement of the Theorem more precise.}}
+	that
+	\begin{equation*}
+	a^{T} \cdot X
+	\;\; = \;\;
+		\gamma^{T} \cdot X
+	\end{equation*}
+	This proves Claim 1.
+	
+	\vskip 0.3cm
+	\noindent
+	Therefore,
+	\begin{eqnarray*}
+	\Cov\!\left(\;
+		\left(a^{T} \cdot Y_{\beta}
+		\overset{{\color{white}.}}{-}
+		\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\right)
+		\,,\,
+		\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
+		\;\right)
+	&=&
+		\Cov\!\left(\,
+			\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right) \cdot Y_{\beta}
+			\,,\,
+			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
+			\,\right)
+	\\
+	&=&
+		\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
+		\cdot {\color{red}\Cov\!\left(\,Y_{\beta},Y_{\beta}\,\right)} \cdot \Pi_{X} \cdot \gamma
+	\\
+	&=&
+		\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
+		\cdot {\color{red}\sigma^{2} \cdot I_{n}} \cdot \Pi_{X} \cdot \gamma
+	\\
+	&=&
+		\sigma^{2}
+		\cdot
+		\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
+		\cdot \Pi_{X} \cdot \gamma
+	\\
+	&=&
+		\sigma^{2}
+		\cdot
+		\left(a^{T} \cdot \Pi_{X} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
+		\cdot \gamma
+	\\
+	&=&
+		\sigma^{2}
+		\cdot
+		\left(a^{T} \cdot X\cdot(X^{T}X)^{\dagger}\cdot X^{T}
+		\,\overset{{\color{white}.}}{-}\,
+		\gamma^{T} \cdot X\cdot(X^{T}X)^{\dagger}\cdot X^{T} \right)
+		\cdot \gamma
+	\\
+	&=&
+		0\,,
+	\end{eqnarray*}
+	where the last equality follows from Claim 1.
+\end{enumerate}
+This completes the proof of the Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
