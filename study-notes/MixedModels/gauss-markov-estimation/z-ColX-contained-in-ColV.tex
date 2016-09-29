@@ -43,13 +43,59 @@ Suppose:
 	\Cov\!\left(\,Y_{\beta}\,\right) & \overset{{\color{white}\vert}}{=} & \sigma^{2} \cdot V & \in & \Re^{n \times n}
 	\end{array}
 	\end{equation*}
-\item
-	$Q \in \Re^{n \times r}$\, and \,$Q^{\dagger} \in \Re^{r \times n}$\,
-	are matrices determined (nonuniquely) by $V \in \Re^{n \times n}$
-	as described in Corollary \ref{corollaryRealSpectralTheorem}.
 \end{itemize}
 Then, the following statements hold:
 \begin{enumerate}
+\item\label{XtVdaggerX}
+	For any two generalized inverses
+	\,$V^{\dagger},\, \widetilde{V}^{\dagger} \in \Re^{n \times n}$\,
+	of \,$V \in \Re^{n \times n}$,\, we have
+	\begin{equation*}
+	X^{T} \cdot V^{\dagger} \cdot X
+	\;\; = \;\;
+	X^{T} \cdot \widetilde{V}^{\dagger} \cdot X
+	\;\; \in \;\; \Re^{p \times p}
+	\end{equation*}
+\item\label{XtVdaggerY}
+	For any \,$y \in \Col(V)$,\, we have
+	\begin{equation*}
+	X^{T} \cdot V^{\dagger} \cdot y
+	\;\; = \;\;
+	X^{T} \cdot \widetilde{V}^{\dagger} \cdot y
+	\;\; \in \;\; \Re^{p \times 1}\,,
+	\quad
+	\textnormal{for any two generalized inverses
+	\,$V^{\dagger},\, \widetilde{V}^{\dagger} \in \Re^{n \times n}$\,
+	of \,$V \in \Re^{n \times n}$}.
+	\end{equation*}	
+\item\label{XXtVdaggerXXtVdaggerY}
+	For any \,$y \in \Col(V)$,\, the vector
+	\begin{equation*}
+	X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot y \;\; \in \;\; \Re^{n}
+	\end{equation*}
+	is independent of the particular choices of
+	\,$V^{\dagger} \in \Re^{n \times n}$\,
+	and
+	\,$\left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \in \Re^{p \times p}$.
+\item
+	The map
+	\begin{equation*}
+	\Re^{n} \longrightarrow \Re^{n}
+	\; : \; y \; \longmapsto \;
+	X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot y
+	\end{equation*}
+	is a BLUE of
+	\begin{equation*}
+	\mathcal{L}_{X} \; : \; \Re^{p} \longrightarrow \Re^{n} \; : \; y \; \longmapsto \; X \cdot y
+	\end{equation*}
+	in terms of
+	\,$Y = \{\,Y_{\beta}\,\}$,
+	where
+	\,$V^{\dagger} \in \Re^{n \times n}$\, is any generalized inverse of \,$V \in \Re^{n \times n}$,\,
+	and
+	\,$\left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \in \Re^{p \times p}$\,
+	is any generalized inverse of
+	\,$X^{T} \cdot V^{\dagger} \cdot X \in \Re^{p \times p}$.
 \item
 	$E\!\left[\;Q^{\dagger} \cdot Y_{\beta}\;\right] \; = \; Q^{\dagger} \cdot X \cdot \beta$\,,
 	\,and\,
@@ -75,8 +121,6 @@ Then, the following statements hold:
 	\end{equation*}
 	in terms of
 	\,$Q^{\dagger}(\,Y\,) = \{\;Q^{\dagger} \cdot Y_{\beta}\;\}$.
-\item
-
 \item
 	For any \,$A \in \Re^{n \times n}$,\, we have:
 	\begin{equation*}
@@ -105,158 +149,137 @@ Then, the following statements hold:
 \proof
 \begin{enumerate}
 \item
-	To prove unbiasedness of
-	\,$\mathcal{L}_{\,\gamma^{T} \cdot \Pi_{X}} : \Re^{n} \longrightarrow \Re^{1}$\,
-	as an estimator of $\lambda : \Re^{p} \longrightarrow \Re^{1}$
-	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,,
-	simply note that, for each $\beta \in \Re^{p}$, we have
+	By hypothesis, we have $\Col(X) \subset \Col(V)$.
+	Hence, $X = V \cdot C$, for some $C \in \Re^{n \times p}$.
+	Hence, for any generalized inverse $V^{\dagger} \in \Re^{n \times n}$,
+	we have
 	\begin{equation*}
-	E\!\left[\;\gamma^{T} \cdot \overset{{\color{white}.}}{\Pi}_{X} \cdot Y_{\beta}\;\right]
+	X^{T} \cdot V^{\dagger} \cdot X
 	\;\; = \;\;
-		\gamma^{T} \cdot \Pi_{X} \cdot E\!\left[\;\overset{{\color{white}.}}{Y}_{\beta}\;\right]
+		C^{T} \cdot V^{T} \cdot V^{\dagger} \cdot V \cdot C
 	\;\; = \;\;
-		\gamma^{T} \cdot \Pi_{X} \cdot X \cdot \beta
+		C^{T} \cdot V \cdot V^{\dagger} \cdot V \cdot C
 	\;\; = \;\;
-		\gamma^{T} \cdot X \cdot \beta
-	\;\; = \;\;
-		\lambda(\beta)\,.
+		C^{T} \cdot V \cdot C
 	\end{equation*}
 \item
-	First, note that
-	\begin{eqnarray*}
-	\Var\!\left(\,a^{T} \cdot Y_{\beta}\,\right)
-	&=&
-		\Var\!\left[\;
-			a^{T} \cdot Y_{\beta}
-			\,\overset{{\color{white}+}}{-}\,
-			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}
-			\,+\,
-			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}
-			\;\right]
-	\\
-	&=&
-		\Var\!\left[\;
-			a^{T} \cdot Y_{\beta}
-			\overset{{\color{white}+}}{-}
-			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}
-				\;\right]
-		\; + \;
-		\Var\!\left[\;
-			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
-			\;\right]
-	\\
-	&&	+ \;
-		2\cdot\Cov\!\left(\;
-			\left(a^{T} \cdot Y_{\beta}
-			\overset{{\color{white}.}}{-}
-			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\right)
-			\,,\,
-			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
-			\;\right)
-	\end{eqnarray*}
-	Hence, it suffices to show that
+	Again, since $\Col(X) \subset \Col(V)$, we may write
+	$X = V \cdot C$, for some $C \in \Re^{n \times p}$.
+	Similarly, since $y \in \Col(V)$, we have $y = V \cdot \eta$,
+	for some $\eta \in \Re^{n \times 1}$.
+	Hence, for any generalized inverse $V^{\dagger} \in \Re^{n \times n}$,
+	we have
 	\begin{equation*}
-		\Cov\!\left(\;
-			\left(a^{T} \cdot Y_{\beta}
-			\overset{{\color{white}.}}{-}
-			\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\right)
-			\,,\,
-			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
-			\;\right)
-		\;\; = \;\; 0
+	X^{T} \cdot V^{\dagger} \cdot y
+	\;\; = \;\;
+		C^{T} \cdot V^{T} \cdot V^{\dagger} \cdot V \cdot \eta
+	\;\; = \;\;
+		C^{T} \cdot V \cdot V^{\dagger} \cdot V \cdot  \eta
+	\;\; = \;\;
+		C^{T} \cdot V \cdot \eta
 	\end{equation*}
+\item
+	By \eqref{XtVdaggerX} above, we see that
+	\,$X \in \Re^{n \times p}$\, and \,$V \in \Re^{n \times n}$\,
+	unambiguously determine
+	\,$W_{X,V} \, := \, X^{T} \cdot V^{\dagger} \cdot X \, \in \, \Re^{p \times p}$\,;\,
+	in other words, \,$W_{X,V} \in \Re^{p \times p}$\, depends only on $X$ and $V$,
+	but it does not depend on the particular choice of the generalized inverse
+	\,$V^{\dagger} \in \Re^{n \times n}$\, of \,$V \in \Re^{n \times n}$.
 	
-	\vskip 0.5cm
-	\noindent
-	\textbf{Claim 1:}\quad $a^{T} \cdot X \; = \; \gamma^{T} \cdot X$.
-	\vskip 0.0cm
-	\noindent
-	Proof of Claim 1:\quad The unbiasedness hypothesis on
-	\,$\mathcal{L}_{\,a^{T}} : \Re^{n} \longrightarrow \Re^{1}$\,
-	as an estimator of
-	\,$\lambda : \Re^{p} \longrightarrow \Re^{1}$\,
-	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,
-	implies that
+	We need to show that
 	\begin{equation*}
-	a^{T} \cdot X \cdot \beta
+	X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot y
 	\;\; = \;\;
-		a^{T} \cdot E\!\left[\;Y_{\beta}\;\right]
-	\;\; = \;\;
-		E\!\left[\,a^{T} \cdot Y_{\beta}\,\right]
-	\;\; = \;\;
-		\lambda(\beta)
-	\;\; = \;\;
-		\gamma^{T} \cdot X \cdot \beta\,,
-	\quad
-	\textnormal{for each \,$\beta \in \Re^{p}$}\,,
+		X \cdot \left(\,W_{X,V}\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot y
+	\;\; \in \;\; \Re^{n \times 1}
 	\end{equation*}
-	which in turn implies{\color{red}\footnote{\color{red}This implication
-	requires that the preceding equality must be valid
-	for every $\beta \in \Re^{p}$.
-	On the other hand, no random variable $Y$ can satisfy the property
-	$E\!\left[\;Y\,\right] = X \cdot \beta$, for every $\beta \in \Re^{p}$.
-	Thus, the use in our formulation of the Gauss-Markov Theorem
-	of a family \,$Y = \left\{\,Y_{\beta}\,\right\}$\, of random variables
-	with $E\!\left[\;Y_{\beta}\,\right] = X \cdot \beta$, for each $\beta \in \Re^{p}$,
-	makes the statement of the Theorem more precise.}}
-	that
-	\begin{equation*}
-	a^{T} \cdot X
-	\;\; = \;\;
-		\gamma^{T} \cdot X
-	\end{equation*}
-	This proves Claim 1.
-	
-	\vskip 0.3cm
-	\noindent
-	Therefore,
+	is in fact independent of the particular choices of the two generalized inverses
+	\,$V^{\dagger} \in \Re^{n \times n}$\, and \,$(W_{X,V})^{\dagger} \in \Re^{p \times p}$\,
+	of \,$V \in \Re^{n \times n}$\, and \,$W_{X,V} \in \Re^{p \times p}$\, respectively.
+
+	By \eqref{XtVdaggerY} above, it follows immediately that the vector
+	\,$X \cdot \left(\,W_{X,V}\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot y \in \Re^{n \times 1}$\,
+	is independent of the particular choice of
+	\,$V^{\dagger} \in \Re^{n \times n}$\, in \,$X^{T} \cdot V^{\dagger} \cdot y$.\,
+	So, it remains only to show that the vector
+	\,$X \cdot \left(\,W_{X,V}\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot y$\,
+	is also independent of the particular choice of the generalized inverse
+	\,$\left(\,W_{X,V}\,\right)^{\dagger}  \in \Re^{p \times p}$\,
+	of \,$W_{X,V} \in \Re^{p \times p}$.
+
+	To this end, let $Q \in \Re^{n \times r}$\, and \,$Q^{\dagger} \in \Re^{r \times n}$\,
+	be the matrices determined (non-uniquely) by $V \in \Re^{n \times n}$
+	as described in Corollary \ref{corollaryRealSpectralTheorem}.
+	Then, \,$(Q^{\dagger})^{T} \cdot Q^{\dagger} \in \Re^{n \times n}$\,
+	is a generalized inverse of \,$V \in \Re^{n \times n}$.
+
+	By \eqref{XtVdaggerX} and \eqref{XtVdaggerY} above,
+	we may take both occurrences of \,$V^{\dagger}$\, in
+	\,$X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot y$\,
+	to be	 \,$(Q^{\dagger})^{T} \cdot Q^{\dagger}$.\,
+	In addition, since \,$\Col(X) \subset \Col(V)$,\, we have
+	\,$X \,=\, \Pi_{V} \cdot X \,=\, Q \cdot Q^{\dagger} \cdot X$.\,
+	Hence,
 	\begin{eqnarray*}
-	\Cov\!\left(\;
-		\left(a^{T} \cdot Y_{\beta}
-		\overset{{\color{white}.}}{-}
-		\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\right)
-		\,,\,
-		\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
-		\;\right)
+	X \cdot \left(\,W_{X,V}\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot y
 	&=&
-		\Cov\!\left(\,
-			\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right) \cdot Y_{\beta}
-			\,,\,
-			\gamma^{T} \overset{{\color{white}+}}{\cdot} \Pi_{X} \cdot Y_{\beta}
-			\,\right)
+		X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot y
 	\\
 	&=&
-		\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
-		\cdot {\color{red}\Cov\!\left(\,Y_{\beta},Y_{\beta}\,\right)} \cdot \Pi_{X} \cdot \gamma
-	\\
-	&=&
-		\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
-		\cdot {\color{red}\sigma^{2} \cdot I_{n}} \cdot \Pi_{X} \cdot \gamma
-	\\
-	&=&
-		\sigma^{2}
+		\left(\,Q \cdot Q^{\dagger} \cdot X\,\right)
 		\cdot
-		\left(a^{T} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
-		\cdot \Pi_{X} \cdot \gamma
-	\\
-	&=&
-		\sigma^{2}
+		\left(\,X^{T} \cdot (Q^{\dagger})^{T} \overset{{\color{white}\vert}}{\cdot} Q^{\dagger} \cdot X\,\right)^{\dagger}
 		\cdot
-		\left(a^{T} \cdot \Pi_{X} \overset{{\color{white}.}}{-} \gamma^{T} \cdot \Pi_{X} \right)
-		\cdot \gamma
+		X^{T} \cdot (Q^{\dagger})^{T} \cdot Q^{\dagger} \cdot y
 	\\
 	&=&
-		\sigma^{2}
+		Q \cdot
+		\left(\,Q^{\dagger} \cdot X\,\right)
 		\cdot
-		\left(a^{T} \cdot X\cdot(X^{T}X)^{\dagger}\cdot X^{T}
-		\,\overset{{\color{white}.}}{-}\,
-		\gamma^{T} \cdot X\cdot(X^{T}X)^{\dagger}\cdot X^{T} \right)
-		\cdot \gamma
+		\left(\,(\,Q^{\dagger} \cdot X\,)^{T} \overset{{\color{white}\vert}}{\cdot} (\,Q^{\dagger} \cdot X\,)\,\right)^{\dagger}
+		\cdot
+		\left(\,Q^{\dagger} \cdot X\,\right)^{T}
+		\cdot
+		Q^{\dagger} \cdot y
 	\\
 	&=&
-		0\,,
+		Q \cdot
+		\left(\,\Pi_{\,Q^{\dagger} \cdot X}\,\right)
+		\cdot
+		Q^{\dagger} \cdot y
 	\end{eqnarray*}
-	where the last equality follows from Claim 1.
+	But, observe now that
+	\begin{equation*}
+	\left(\,Q^{\dagger} \cdot X\,\right)
+	\cdot
+	\left(\,(\,Q^{\dagger} \cdot X\,)^{T} \overset{{\color{white}\vert}}{\cdot} (\,Q^{\dagger} \cdot X\,)\,\right)^{\dagger}
+	\cdot
+	\left(\,Q^{\dagger} \cdot X\,\right)^{T}
+	\;\; = \;\;
+		\Pi_{\,Q^{\dagger} \cdot X}
+	\;\; = \;\;
+		\proj_{\,\Col(Q^{\dagger} \cdot X)}
+	\end{equation*}
+	is the orthogonal projection matrix onto the column space
+	\,$\Col(\,Q^{\dagger} \cdot X\,)$\, of \,$Q^{\dagger} \cdot X$,\,
+	which is independent of the particular choice of the generalized inverse
+	\begin{equation*}
+	\left(\,(\,Q^{\dagger} \cdot X\,)^{T} \overset{{\color{white}\vert}}{\cdot} (\,Q^{\dagger} \cdot X\,)\,\right)^{\dagger}
+	\;\; = \;\;
+	\left(\,X^{T} \cdot (Q^{\dagger})^{T} \overset{{\color{white}\vert}}{\cdot} Q^{\dagger} \cdot X\,\right)^{\dagger}
+	\;\; = \;\;
+	\left(\,X^{T} \overset{{\color{white}\vert}}{\cdot} V^{\dagger} \cdot X\,\right)^{\dagger}
+	\;\; = \;\;
+	\left(\,W_{X,V}\,\right)^{\dagger}\,.
+	\end{equation*}
+	This implies that
+	\,$X \cdot \left(\,W_{X,V}\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot y \in \Re^{n \times 1}$\,
+	is indeed independent of the particular choice of the generalized inverse
+	\,$\left(\,W_{X,V}\,\right)^{\dagger} \in \Re^{p \times p}$\,
+	of \,$W_{X,V} \in \Re^{p \times p}$.\,
+	This completes the proof of \eqref{XXtVdaggerXXtVdaggerY}.
+
 \end{enumerate}
 This completes the proof of the Theorem.
 \qed
