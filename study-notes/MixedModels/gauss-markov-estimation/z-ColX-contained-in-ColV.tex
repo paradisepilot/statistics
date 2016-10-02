@@ -10,7 +10,98 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{theorem}[Theorem 10.1.2, p.239, \cite{Christensen2011}]
+\begin{proposition}\label{PYinColVEqOne}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\sigma^{2} > 0$,\,
+	\,$X \in \Re^{n \times p}$,\,
+	and
+	\,$V \in \Re^{n \times n}$\,
+	is a symmetric positive semi-definite matrix.
+\item
+	$Y = \left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+\item
+	For each $\beta \in \Re^{p}$, the following hold:
+	\begin{equation*}
+	\begin{array}{rclcl}
+	E\!\left[\;Y_{\beta}\,\right] &  \overset{{\color{white}\vert}}{=} & X \cdot \beta & \in & \Re^{n}
+	\\
+	\Cov\!\left(\,Y_{\beta}\,\right) & \overset{{\color{white}\vert}}{=} & \sigma^{2} \cdot V & \in & \Re^{n \times n}
+	\end{array}
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{equation*}
+	P\!\left(\;Y_{\beta} \, \overset{{\color{white}.}}{\in} \, \Col(X,V)\;\right) \; = \; 1\,,
+	\quad
+	\textnormal{for each \,$\beta \,\in\, \Re^{p}$}.
+\end{equation*}
+\end{proposition}
+\proof
+First, note that, since $\sigma^{2} > 0$, we have \,$\Col\!\left(\,\sigma^{2} \cdot V\,\right) \,=\, \Col\!\left(\,V\,\right)$.
+
+\vskip 0.3cm
+\noindent
+Next, recall that Lemma 1.3.5, p.9, \cite{Christensen2011}, states that:
+For any $\Re^{k}$-valued random variable $Y : \Omega \longrightarrow \Re^{k}$ defined
+on a probability space $\Omega$, we have
+\begin{equation*}
+	P\!\left(\;Y - E\!\left[\,Y\,\right] \; \overset{{\color{white}.}}{\in} \; \Col\!\left(\,\Var[\,Y\,]\,\right)\;\right) \; = \; 1\,.
+\end{equation*}
+Applying the above two observations to \,$Y_{\beta}$,\, we have
+\begin{equation*}
+	P\!\left(\;Y_{\beta} - X\cdot\beta \; \overset{{\color{white}.}}{\in} \; \Col\!\left(\,V\,\right)\;\right)
+	\; = \; P\!\left(\;Y_{\beta} - X\cdot\beta \; \overset{{\color{white}.}}{\in} \; \Col\!\left(\,\sigma^{2} \cdot V\,\right)\;\right)
+	\; = \; 1\,.
+\end{equation*}
+On the other hand,
+\begin{equation*}
+Y_{\beta} - X\cdot\beta \,\in\, \Col\!\left(\,V\,\right)
+\quad\Longrightarrow\quad
+Y_{\beta} \,\in\, \Col\!\left(\,X,V\,\right)\,,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+\left\{\;
+	\left.\omega \overset{{\color{white}.}}{\in} \Omega
+	\;\;\right\vert\;
+	Y_{\beta}(\omega) - X\cdot\beta \,\in\, \Col\!\left(\,V\,\right)
+	\;\right\}
+\;\;\subset\;\;
+\left\{\;
+	\left.\omega \overset{{\color{white}.}}{\in} \Omega
+	\;\;\right\vert\;
+	Y_{\beta}(\omega) \,\in\, \Col\!\left(\,X,V\,\right)\;\right\}.
+\end{equation*}
+Hence,
+\begin{equation*}
+1
+\;\; = \;\;
+P\!\left(\; Y_{\beta} - X\cdot\beta \,\overset{{\color{white}.}}{\in} \, \Col\!\left(\,V\,\right) \;\right)
+\;\; \leq \;\;
+P\!\left(\; Y_{\beta} \,\overset{{\color{white}.}}{\in} \, \Col\!\left(\,X,V\,\right) \;\right)
+\;\; \leq \;\;
+1\,,
+\end{equation*}
+which implies
+\,$P\!\left(\; Y_{\beta} \,\overset{{\color{white}.}}{\in} \, \Col\!\left(\,X,V\,\right) \;\right) \,=\, 1$\,, as required.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[see discussion following Theorem 10.1.2, p.239, \cite{Christensen2011}]
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -46,6 +137,9 @@ Suppose:
 \end{itemize}
 Then, the following statements hold:
 \begin{enumerate}
+\item\label{PYinColVEqOne}
+	$P\!\left(\;Y_{\beta} \,\overset{{\color{white}.}}{\in}\, \Col(V)\;\right) \; = \; 1$,\;
+	for each \,$\beta \in \Re^{p}$.
 \item\label{XtVdaggerX}
 	For any two generalized inverses
 	\,$V^{\dagger},\, \widetilde{V}^{\dagger} \in \Re^{n \times n}$\,
@@ -123,6 +217,8 @@ Then, the following statements hold:
 \end{theorem}
 \proof
 \begin{enumerate}
+\item
+	Immediate by Proposition \ref{PYinColVEqOne} and the hypothesis that $\Col(X) \subset \Col(V)$.
 \item
 	By hypothesis, we have $\Col(X) \subset \Col(V)$.
 	Hence, $X = V \cdot C$, for some $C \in \Re^{n \times p}$.
@@ -405,7 +501,7 @@ Then, the following statements hold:
 	Thus,
 	\,$\mathcal{L}_{X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger}}
 	: \Re^{n} \longrightarrow \Re^{n}$\,
-	is indeed an linear unbiased estimator of
+	is indeed a linear unbiased estimator of
 	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$\,
 	in terms of
 	\,$Y \,=\, \left\{\,Y_{\beta}\,\right\}$.
@@ -436,8 +532,9 @@ Then, the following statements hold:
 	To this end, note that, by
 	Corollary \ref{corollaryRealSpectralTheorem} \eqref{PiVEqEEtransposeEqQQdagger},
 	we have $Q \cdot Q^{\dagger} \,=\, \Pi_{V}$.
-	Since $Y_{\beta} \,\in\, \Col(X,V) \,=\, \Col(V)$, we see that
-	$Q \cdot Q^{\dagger} \cdot Y_{\beta} \, = \, Y_{\beta}$.
+	By \eqref{PYinColVEqOne}, \,$Y_{\beta} \,\in\, \Col(X,V) \,=\, \Col(V)$, almost surely.
+	Hence,
+	\,$Q \cdot Q^{\dagger} \cdot Y_{\beta} \, = \, \Pi_{V} \cdot Y_{\beta} \, = \, Y_{\beta}$, almost surely.
 	Furthermore,
 	\,$E\!\left[\;\Lambda \cdot Q \cdot \widetilde{Y}_{\beta}\;\right]$
 	\,$=$\, $E\!\left[\;\Lambda \cdot Q \cdot Q^{\dagger} \cdot Y_{\beta}\;\right]$
@@ -445,7 +542,7 @@ Then, the following statements hold:
 	\,$=$\, $E\!\left[\;\Lambda \cdot Y_{\beta}\;\right]$
 	\,$=$\, $X \cdot \beta$\,,
 	where the last equality follows from the assumption that
-	$\mathcal{L}_{\Lambda}$ is an linear unbiased estimator of
+	$\mathcal{L}_{\Lambda}$ is a linear unbiased estimator of
 	$\mathcal{L}_{X}$ in terms of $Y \,=\, \{\,Y_{\beta}\,\}$.
 	This shows that
 	\,$\mathcal{L}_{\,\Lambda \cdot Q}$\,
