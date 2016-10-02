@@ -11,6 +11,7 @@
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \begin{theorem}[The Gauss-Markov Theorem: LSE's are BLUE]
+\label{GaussMarkovTheoremScalar}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -36,10 +37,12 @@ Suppose:
 	\textnormal{for each \,$y \in \Re^{n}$}\,.
 	\end{equation*}
 \item
-	$\lambda : \Re^{p} \longrightarrow \Re^{1}$ is an $X$-estimable $\Re^{1}$-valued function, i.e.
-	there exists $\gamma \in \Re^{n}$ such that
+	$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$
+	is an $X$-estimable $\Re^{1}$-valued function,
+	where $\gamma \in \Re^{n}$;
+	in other words,
 	\begin{equation*}
-	\lambda(\beta) \; = \; \gamma^{T} \cdot X \cdot \beta\,,
+	\mathcal{L}_{\gamma^{T}} \circ \mathcal{L}_{X}(\,\beta\,) \; = \; \gamma^{T} \cdot X \cdot \beta\,,
 	\quad\textnormal{for each \,$\beta \in \Re^{p}$}\,.
 	\end{equation*}
 \item
@@ -62,9 +65,9 @@ Suppose:
 	\end{array}
 	\end{equation*}
 \end{itemize}
-Then, left multiplication by \,$\gamma^{T} \cdot \Pi_{X} \in \Re^{1 \times n}$\,, i.e.
+Then, the map
 \begin{equation*}
-\mathcal{L}_{\,\gamma^{T} \cdot \Pi_{X}}
+\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{\,\Pi_{X}}
 \;\; : \;\;
 \Re^{n} \; \longrightarrow \; \Re^{1}
 \;\; : \;\;
@@ -72,16 +75,17 @@ y \; \longmapsto \; \gamma^{T} \cdot \Pi_{X} \cdot y
 \;=\; {\color{red}\lse\!\left(\,\mathcal{L}_{\,\gamma^{T} \cdot X}\,;\,y\,\vert X\,\right)}\,,
 \end{equation*}
 is a {\color{red}BLUE} (best linear unbiased estimator) of
-\,$\lambda : \Re^{p} \longrightarrow \Re^{1}$\,
+\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
 in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$.
 More precisely, the following statements hold:
 \begin{enumerate}
 \item
-	$\mathcal{L}_{\,\gamma^{T} \cdot \Pi_{X}} : \Re^{n} \longrightarrow \Re^{1}$\,
-	is an unbiased estimator of \,$\lambda : \Re^{p} \longrightarrow \Re^{1}$\,
+	$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{\,\Pi_{X}} : \Re^{n} \longrightarrow \Re^{1}$\,
+	is a linear unbiased estimator of
+	\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
 	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,.
 \item
-	For every $a \in \Re^{n}$ such that left multiplication by $a^{T} \in \Re^{1 \times n}$, i.e.
+	For every $a \in \Re^{n}$ such that left multiplication by \,$a^{T} \in \Re^{1 \times n}$,\, i.e.
 	\begin{equation*}
 	\mathcal{L}_{\,a^{T}}
 	\;\; : \;\;
@@ -90,12 +94,12 @@ More precisely, the following statements hold:
 		y \; \longmapsto \; a^{T} \cdot y\,,
 	\end{equation*}
 	is a (linear) unbiased estimator of
-	\,$\lambda : \Re^{p} \longrightarrow \Re^{1}$
+	\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$
 	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,, we have
 	\begin{equation*}
-	\Var\!\left(\,\gamma^{T} \cdot \Pi_{X} \cdot Y_{\beta}\,\right)
+	\Var\!\left(\,\mathcal{L}_{\,\gamma^{T}} \overset{{\color{white}+}}{\circ} \mathcal{L}_{\,\Pi_{X}}(\,Y_{\beta}\,)\,\right)
 	\;\; \leq \;\;
-		\Var\!\left(\,a^{T} \cdot Y_{\beta}\,\right)\,,
+		\Var\!\left(\;a^{T} \overset{{\color{white}+}}{\cdot} Y_{\beta}\;\right)\,,
 	\quad
 	\textnormal{for each \,$\beta \in \Re^{p}$}\,.
 	\end{equation*}
@@ -104,22 +108,28 @@ More precisely, the following statements hold:
 \proof
 \begin{enumerate}
 \item
+	Clearly,
+	\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{\,\Pi_{X}}$\,
+	is a linear map.
 	To prove unbiasedness of
-	\,$\mathcal{L}_{\,\gamma^{T} \cdot \Pi_{X}} : \Re^{n} \longrightarrow \Re^{1}$\,
-	as an estimator of $\lambda : \Re^{p} \longrightarrow \Re^{1}$
+	\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{\,\Pi_{X}} : \Re^{n} \longrightarrow \Re^{1}$\,
+	as an estimator of $\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$
 	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,,
 	simply note that, for each $\beta \in \Re^{p}$, we have
-	\begin{equation*}
-	E\!\left[\;\gamma^{T} \cdot \overset{{\color{white}.}}{\Pi}_{X} \cdot Y_{\beta}\;\right]
+	\begin{eqnarray*}
+	E\!\left[\;\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{\,\Pi_{X}}(\,Y_{\beta}\,)\;\right]
+	& = &
+		E\!\left[\;\gamma^{T} \cdot \overset{{\color{white}.}}{\Pi}_{X} \cdot Y_{\beta}\;\right]
 	\;\; = \;\;
 		\gamma^{T} \cdot \Pi_{X} \cdot E\!\left[\;\overset{{\color{white}.}}{Y}_{\beta}\;\right]
 	\;\; = \;\;
 		\gamma^{T} \cdot \Pi_{X} \cdot X \cdot \beta
 	\;\; = \;\;
 		\gamma^{T} \cdot X \cdot \beta
-	\;\; = \;\;
-		\lambda(\beta)\,.
-	\end{equation*}
+	\\
+	& = &
+		\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X}(\,\beta\,)\,.
+	\end{eqnarray*}
 \item
 	First, note that
 	\begin{eqnarray*}
@@ -173,20 +183,22 @@ More precisely, the following statements hold:
 	Proof of Claim 1:\quad The unbiasedness hypothesis on
 	\,$\mathcal{L}_{\,a^{T}} : \Re^{n} \longrightarrow \Re^{1}$\,
 	as an estimator of
-	\,$\lambda : \Re^{p} \longrightarrow \Re^{1}$\,
+	\,$\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
 	in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$\,
 	implies that
 	\begin{equation*}
 	a^{T} \cdot X \cdot \beta
-	\;\; = \;\;
+	\;\, = \;\,
 		a^{T} \cdot E\!\left[\;Y_{\beta}\;\right]
-	\;\; = \;\;
+	\;\, = \;\,
 		E\!\left[\,a^{T} \cdot Y_{\beta}\,\right]
-	\;\; = \;\;
-		\lambda(\beta)
-	\;\; = \;\;
+	\;\, = \;\,
+		E\!\left[\;\mathcal{L}_{\,a^{T}}(\,Y_{\beta}\,)\;\right]
+	\;\, = \;\,
+		\mathcal{L}_{\,\gamma^{T}} \circ \mathcal{L}_{X}(\,\beta\,)
+	\;\, = \;\,
 		\gamma^{T} \cdot X \cdot \beta\,,
-	\quad
+	\;\;
 	\textnormal{for each \,$\beta \in \Re^{p}$}\,,
 	\end{equation*}
 	which in turn implies{\color{red}\footnote{\color{red}This implication
@@ -261,5 +273,69 @@ This completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\newpage
+
+\begin{corollary}[The Gauss-Markov Theorem: vector case]
+\label{GaussMarkovTheoremVector}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\sigma^{2} > 0$.
+\item
+	$X \in \Re^{n \times p}$, and
+	\,$\Pi_{X} \,=\, X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \in \Re^{n \times n}$,
+	where $(X^{T} \cdot X)^{\dagger} \in \Re^{p \times p}$
+	is any generalized inverse of the symmetric matrix
+	$X^{T} \cdot X \in \Re^{p \times p}$.
+	Thus, the orthogonal projection $\proj_{\,\Col(X)} : \Re^{n} \longrightarrow \Re^{n}$
+	from $\Re^{n}$ onto the column space $\Col(X) \subset \Re^{n}$ can be expressed as
+	\begin{equation*}
+	\proj_{\,\Col(X)}(\,y\,)
+	\;\; = \;\;
+		\Pi_{X} \cdot y
+	\;\; = \;\;
+		X \cdot (X^{T} \cdot X)^{\dagger} \cdot X^{T} \cdot y\,,
+	\quad
+	\textnormal{for each \,$y \in \Re^{n}$}\,.
+	\end{equation*}
+\item
+	$Y = \left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+\item
+	For each $\beta \in \Re^{p}$, the following hold:
+	\begin{equation*}
+	\begin{array}{rclcl}
+	E\!\left[\;Y_{\beta}\,\right] &  \overset{{\color{white}\vert}}{=} & X \cdot \beta & \in & \Re^{n}
+	\\
+	\Cov\!\left(\,Y_{\beta}\,\right) & \overset{{\color{white}\vert}}{=} & \sigma^{2} \cdot I_{n} & \in & \Re^{n \times n}
+	\end{array}
+	\end{equation*}
+\end{itemize}
+Then, {\color{red}the map
+\begin{equation*}
+\mathcal{L}_{\,\Pi_{X}}
+\;\; : \;\;
+\Re^{n} \; \longrightarrow \; \Re^{1}
+\;\; : \;\;
+y \; \longmapsto \; \Pi_{X} \cdot y
+\end{equation*}
+is a BLUE (best linear unbiased estimator) of
+\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{1}$\,
+in terms of \,$Y = \left\{\,Y_{\beta}\,\right\}_{\beta\in\Re^{p}}$.}
+\end{corollary}
+\proof
+Immediate by Proposition \ref{BLUEoneD} and the preceding Theorem \ref{GaussMarkovTheoremScalar}.
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
