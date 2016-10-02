@@ -279,7 +279,79 @@ Then, the following statements hold:
 	\,$\left(\,W_{X,V}\,\right)^{\dagger} \in \Re^{p \times p}$\,
 	of \,$W_{X,V} \in \Re^{p \times p}$.\,
 	This completes the proof of \eqref{XXtVdaggerXXtVdaggerY}.
+\item
+	As above, let $Q \in \Re^{n \times r}$\, and \,$Q^{\dagger} \in \Re^{r \times n}$\,
+	be the matrices determined (non-uniquely) by $V \in \Re^{n \times n}$
+	as described in Corollary \ref{corollaryRealSpectralTheorem}.
+	Let $\widetilde{X} \,:=\, Q^{\dagger} \cdot X \,\in\, \Re^{r \times p}$.
+	For each \,$\beta \in \Re^{p}$,\, let \,$\widetilde{Y}_{\beta} \,:=\, Q^{\dagger} \cdot Y_{\beta}$.
+	
+	\vskip 0.5cm
+	\noindent
+	\textbf{Claim 1:}\quad
+	$E\!\left[\;\widetilde{Y}_{\beta}\;\right] \; = \; \widetilde{X} \cdot \beta$\,,
+	\,and\,
+	\,$\Var\!\left(\,\widetilde{Y}_{\beta}\,\right) \; = \; \sigma^{2} \cdot I_{r}$\,,
+	for each \,$\beta \in \Re^{p}$.
+	\vskip 0.0cm
+	\noindent
+	Proof of Claim 1:\quad
+	$E\!\left[\;\widetilde{Y}_{\beta}\;\right]$
+	\,$=$\, $E\!\left[\;Q^{\dagger} \cdot Y_{\beta}\;\right]$
+	\,$=$\, $Q^{\dagger} \cdot E\!\left[\;Y_{\beta}\;\right]$
+	\,$=$\, $Q^{\dagger} \cdot X \cdot \beta$
+	\,$=$\, $\widetilde{X} \cdot \beta$.
+	On the other hand,
+	\,$\Var\!\left(\,\widetilde{Y}_{\beta}\,\right)$
+	\,$=$\, $\Var\!\left(\,Q^{\dagger} \cdot Y_{\beta}\,\right)$
+	\,$=$\, $Q^{\dagger} \cdot \Var\!\left(\,Y_{\beta}\,\right) \cdot (Q^{\dagger})^{T}$
+	\,$=$\, $Q^{\dagger} \cdot (\sigma^{2} \cdot V) \cdot (Q^{\dagger})^{T}$
+	\,$=$\, $\sigma^{2} \cdot Q^{\dagger} \cdot V \cdot (Q^{\dagger})^{T}$
+	\,$=$\, $\sigma^{2} \cdot I_{r}$,
+	where the last equality follows from
+	Corollary \ref{corollaryRealSpectralTheorem} \eqref{QdaggerVQdaggerTransposeEqIr}.
+	This proves Claim 1.
 
+	\vskip 0.5cm
+	\noindent
+	\textbf{Claim 2:}\quad
+	$\mathcal{L}_{\,\Pi_{\widetilde{X}}} : \Re^{r} \longrightarrow \Re^{r}$\,
+	is a BLUE of 
+	\,$\mathcal{L}_{\,\widetilde{X}} : \Re^{p} \longrightarrow \Re^{r}$\,
+	in terms of
+	\,$\widetilde{Y} \,:=\, \left\{\;\widetilde{Y}_{\beta}\;\right\}$,
+	where
+	\,$\Pi_{\widetilde{X}}$
+	\,$:=$\, $\widetilde{X} \cdot (\,\widetilde{X}^{T} \cdot \widetilde{X}\,)^{\dagger} \cdot \widetilde{X}^{T}$.
+	\vskip 0.0cm
+	\noindent
+	Proof of Claim 2:\quad
+	Immediate by the Gauss-Markov Theorem.
+
+	\vskip 0.5cm
+	\noindent
+	\textbf{Claim 3:}\quad
+	$\mathcal{L}_{Q} \circ \mathcal{L}_{\,\Pi_{\widetilde{X}}} : \Re^{r} \longrightarrow \Re^{n}$\,
+	is a BLUE of 
+	\,$\mathcal{L}_{Q} \circ \mathcal{L}_{\,\widetilde{X}} : \Re^{p} \longrightarrow \Re^{n}$\,
+	in terms of
+	\,$\widetilde{Y} \,:=\, \left\{\;\widetilde{Y}_{\beta}\;\right\}$.
+	\vskip 0.0cm
+	\noindent
+	Proof of Claim 3:\quad
+	Immediate by the Gauss-Markov Theorem.
+
+	\vskip 0.5cm
+	\noindent
+	$E\!\left[\;\widetilde{Y}_{\beta}\;\right] \; = \; \widetilde{X} \cdot \beta$\,,
+	\,and\,
+	\,$\Var\!\left(\,\widetilde{Y}_{\beta}\,\right) \; = \; \sigma^{2} \cdot I_{r}$\,,
+	for each \,$\beta \in \Re^{p}$.
+
+	$E\!\left[\;Q^{\dagger} \cdot Y_{\beta}\;\right] \; = \; Q^{\dagger} \cdot X \cdot \beta$\,,
+	\,and\,
+	\,$\Var\!\left(\,Q^{\dagger} \cdot Y_{\beta}\,\right) \; = \; \sigma^{2} \cdot I_{r}$\,,
+	for each \,$\beta \in \Re^{p}$.	
 \end{enumerate}
 This completes the proof of the Theorem.
 \qed
