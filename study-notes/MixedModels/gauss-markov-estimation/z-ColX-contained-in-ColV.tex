@@ -77,7 +77,7 @@ Then, the following statements hold:
 	\,$V^{\dagger} \in \Re^{n \times n}$\,
 	and
 	\,$\left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \in \Re^{p \times p}$.
-\item
+\item\label{formulaColXsubsetColV}
 	The map
 	\begin{equation*}
 	\Re^{n} \longrightarrow \Re^{n}
@@ -86,7 +86,7 @@ Then, the following statements hold:
 	\end{equation*}
 	is a BLUE of
 	\begin{equation*}
-	\mathcal{L}_{X} \; : \; \Re^{p} \longrightarrow \Re^{n} \; : \; y \; \longmapsto \; X \cdot y
+	\mathcal{L}_{X} \; : \; \Re^{p} \longrightarrow \Re^{n} \; : \; \beta \; \longmapsto \; X \cdot \beta
 	\end{equation*}
 	in terms of
 	\,$Y = \{\,Y_{\beta}\,\}$,
@@ -96,54 +96,29 @@ Then, the following statements hold:
 	\,$\left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \in \Re^{p \times p}$\,
 	is any generalized inverse of
 	\,$X^{T} \cdot V^{\dagger} \cdot X \in \Re^{p \times p}$.
-\item
-	$E\!\left[\;Q^{\dagger} \cdot Y_{\beta}\;\right] \; = \; Q^{\dagger} \cdot X \cdot \beta$\,,
-	\,and\,
-	\,$\Var\!\left(\,Q^{\dagger} \cdot Y_{\beta}\,\right) \; = \; \sigma^{2} \cdot I_{r}$\,,
-	for each \,$\beta \in \Re^{p}$.
-\item
-	The map
-	\begin{equation*}
-	\mathcal{L}_{\,\Pi_{Q^{\dagger}X}}
-	\;\; : \;\; \Re^{r} \; \longrightarrow \; \Re^{r}
-	\;\; : \;\; \zeta \; \longmapsto \;
-		(Q^{\dagger} \cdot X)
-		\cdot
-		\left[\;(Q^{\dagger} \cdot X)^{T} \cdot Q^{\dagger} \cdot X \,\right]^{\dagger}
-		\cdot
-		(Q^{\dagger} \cdot X)^{T} \cdot \zeta
-	\end{equation*}
-	is a BLUE of
-	\begin{equation*}
-	\mathcal{L}_{\,Q^{\dagger}X}
-	\;\; : \;\; \Re^{p} \; \longrightarrow \; \Re^{r}
-	\;\; : \;\; \beta \; \longmapsto \; Q^{\dagger} \cdot X \cdot \beta
-	\end{equation*}
-	in terms of
-	\,$Q^{\dagger}(\,Y\,) = \{\;Q^{\dagger} \cdot Y_{\beta}\;\}$.
-\item
-	For any \,$A \in \Re^{n \times n}$,\, we have:
-	\begin{equation*}
-	\begin{array}{c}
-		\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n} : y \longmapsto A \cdot y
-		\\{\color{white}\overset{.}{\vert}}
-		\textnormal{is \, a \, BLUE \, of}
-		\\{\color{white}\overset{.}{\vert}}
-		\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n} : \beta \longmapsto X \cdot \beta
-		\\{\color{white}\overset{.}{\vert}}
-		\textnormal{in terms of \,$Y = \{\,Y_{\beta}\,\}$}
-		\end{array}
-	\quad\Longleftrightarrow\quad
-		\begin{array}{c}
-		\mathcal{L}_{AQ} : \Re^{\color{red}r} \longrightarrow \Re^{n} : \zeta \longmapsto A \cdot Q \cdot \zeta
-		\\{\color{white}\overset{.}{\vert}}
-		\textnormal{is \, a \, BLUE \, of}
-		\\{\color{white}\overset{.}{\vert}}
-		\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n} : \beta \longmapsto X \cdot \beta
-		\\{\color{white}\overset{.}{\vert}}
-		\textnormal{in terms of \,$Q^{\dagger}(\,Y\,) = \{\,Q^{\dagger} \cdot Y_{\beta}\;\}$}
-	\end{array}
-	\end{equation*}
+%\item
+%	For any \,$A \in \Re^{n \times n}$,\, we have:
+%	\begin{equation*}
+%	\begin{array}{c}
+%		\mathcal{L}_{A} : \Re^{n} \longrightarrow \Re^{n} : y \longmapsto A \cdot y
+%		\\{\color{white}\overset{.}{\vert}}
+%		\textnormal{is \, a \, BLUE \, of}
+%		\\{\color{white}\overset{.}{\vert}}
+%		\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n} : \beta \longmapsto X \cdot \beta
+%		\\{\color{white}\overset{.}{\vert}}
+%		\textnormal{in terms of \,$Y = \{\,Y_{\beta}\,\}$}
+%		\end{array}
+%	\quad\Longleftrightarrow\quad
+%		\begin{array}{c}
+%		\mathcal{L}_{AQ} : \Re^{\color{red}r} \longrightarrow \Re^{n} : \zeta \longmapsto A \cdot Q \cdot \zeta
+%		\\{\color{white}\overset{.}{\vert}}
+%		\textnormal{is \, a \, BLUE \, of}
+%		\\{\color{white}\overset{.}{\vert}}
+%		\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n} : \beta \longmapsto X \cdot \beta
+%		\\{\color{white}\overset{.}{\vert}}
+%		\textnormal{in terms of \,$Q^{\dagger}(\,Y\,) = \{\,Q^{\dagger} \cdot Y_{\beta}\;\}$}
+%	\end{array}
+%	\end{equation*}
 \end{enumerate}
 \end{theorem}
 \proof
@@ -289,9 +264,9 @@ Then, the following statements hold:
 	\vskip 0.5cm
 	\noindent
 	\textbf{Claim 1:}\quad
-	$E\!\left[\;\widetilde{Y}_{\beta}\;\right] \; = \; \widetilde{X} \cdot \beta$\,,
+	$E\!\left[\;\widetilde{Y}_{\beta}\;\right] \; = \; \widetilde{X} \cdot \beta \; \in \; \Re^{r \times p}$,\,
 	\,and\,
-	\,$\Var\!\left(\,\widetilde{Y}_{\beta}\,\right) \; = \; \sigma^{2} \cdot I_{r}$\,,
+	\,$\Var\!\left(\,\widetilde{Y}_{\beta}\,\right) \; = \; \sigma^{2} \cdot I_{r} \; \in \; \Re^{r \times r}$,\;
 	for each \,$\beta \in \Re^{p}$.
 	\vskip 0.0cm
 	\noindent
@@ -344,19 +319,24 @@ Then, the following statements hold:
 	\vskip 0.5cm
 	\noindent
 	\textbf{Claim 4:}\quad
-	$Q \cdot \Pi_{\widetilde{X}}$
-	\,$=$\, $X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger}$
-	\;\;and\;\;
 	$Q \cdot \widetilde{X}$ \,$=$\, $X$.
 	\vskip 0.0cm
 	\noindent
 	Proof of Claim 4:\quad
+	Simply note that $Q \cdot \widetilde{X}$
+	\,$=$\, $Q \cdot Q^{\dagger} \cdot X$
+	\,$=$\, $\Pi_{V} \cdot X$
+	\,$=$\, $X$,\,
+	where the second equality follows from 
+	Corollary \ref{corollaryRealSpectralTheorem} \eqref{PiVEqEEtransposeEqQQdagger},
+	while the last equality follows by the hypothesis that {\color{red}$\Col(X) \subset \Col(V)$}.
 
 	\vskip 0.5cm
 	\noindent
 	\textbf{Claim 5:}\quad
-	$\mathcal{L}_{X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger}}
-	: \Re^{r} \longrightarrow \Re^{n}$\,
+	$\mathcal{L}_{Q} \circ \mathcal{L}_{\,\Pi_{\widetilde{X}}} : \Re^{r} \longrightarrow \Re^{n}$\,
+	%$\mathcal{L}_{X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger}}
+	%: \Re^{r} \longrightarrow \Re^{n}$\,
 	is a BLUE of 
 	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$\,
 	in terms of
@@ -370,7 +350,7 @@ Then, the following statements hold:
 	\noindent
 	\textbf{Claim 6:}\quad
 	$\mathcal{L}_{X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger}}
-	: \Re^{r} \longrightarrow \Re^{n}$\,
+	: \Re^{n} \longrightarrow \Re^{n}$\,
 	is a BLUE of 
 	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$\,
 	in terms of
@@ -378,10 +358,68 @@ Then, the following statements hold:
 	\vskip 0.0cm
 	\noindent
 	Proof of Claim 6:\quad
-	Let $\mathcal{L}_{\Lambda} : \Re^{n} \longrightarrow \Re^{n}$ be any linear unbiased estimator
-	of $\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$ in terms of $Y = \{\,Y_{\beta}\,\}$,
-	where $\Lambda \in \Re^{n \times n}$.
-	We need to show
+	By Claim 5, we have
+	\begin{equation*}
+	E\!\left[\; Q \cdot \Pi_{\widetilde{X}} \cdot \widetilde{Y}_{\beta} \;\right]
+	\;\; = \;\; X \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,.
+	\end{equation*}
+	On the other hand,
+	\begin{eqnarray*}
+	Q \cdot \Pi_{\widetilde{X}} \cdot \widetilde{Y}_{\beta}
+	& = &
+		Q \cdot \Pi_{Q^{\dagger} \cdot X} \cdot Q^{\dagger} \cdot Y_{\beta}
+	\;\; = \;\;
+		Q \cdot Q^{\dagger}
+		\cdot
+		X \cdot \left(\,X^{T} \cdot (Q^{\dagger})^{T} \cdot Q^{\dagger} \cdot X\,\right)^{\dagger}
+		\cdot
+		X^{T}
+		\cdot
+		(Q^{\dagger})^{T} \cdot Q^{\dagger}
+		\cdot
+		Y_{\beta}
+	\\
+	& = &
+		X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot Y_{\beta}\,,
+		\quad
+		\textnormal{by Corollary \ref{corollaryRealSpectralTheorem}
+			\eqref{QdaggerTransposeQdaggerEqVdagger} and \eqref{PiVEqEEtransposeEqQQdagger}.
+			}
+	\end{eqnarray*}
+	Consequently,
+	\begin{equation*}
+	E\!\left[\;
+		X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger} \cdot Y_{\beta}
+		\;\right]
+	\;\; = \;\;
+		E\!\left[\;
+			Q \cdot \Pi_{\widetilde{X}} \cdot \widetilde{Y}_{\beta}
+			\;\right]
+	\;\; = \;\;
+		X \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,.
+	\end{equation*}
+	Thus,
+	\,$\mathcal{L}_{X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger}}
+	: \Re^{n} \longrightarrow \Re^{n}$\,
+	is indeed an linear unbiased estimator of
+	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$\,
+	in terms of
+	\,$Y \,=\, \left\{\,Y_{\beta}\,\right\}$.
+	In order to show that
+	\,$\mathcal{L}_{X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger}}$\,
+	is in fact a BLUE, it remains to show that, for an arbitrary linear unbiased estimator
+	\,$\mathcal{L}_{\Lambda} : \Re^{n} \longrightarrow \Re^{n}$\,
+	of
+	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$\,
+	in terms of
+	\,$Y = \{\,Y_{\beta}\,\}$,\,
+	where
+	\,$\Lambda \in \Re^{n \times n}$\,,
+	the following holds:
 	\begin{equation*}
 	\Var\!\left[\;
 		\xi^{T}
@@ -391,22 +429,79 @@ Then, the following statements hold:
 		Y_{\beta}
 		\;\right]
 	\;\;\leq\;\;
-	\Var\!\left[\; \xi^{T} \cdot \Lambda(Y_{\beta}) \;\right]
+	\Var\!\left[\; \xi^{T} \cdot \Lambda \cdot Y_{\beta} \;\right]\,,
+	\quad
+	\textnormal{for each \,$\xi \in \Re^{n}$}\,.
 	\end{equation*}
-
-	\vskip 0.5cm
-	\noindent
-	$E\!\left[\;\widetilde{Y}_{\beta}\;\right] \; = \; \widetilde{X} \cdot \beta$\,,
-	\,and\,
-	\,$\Var\!\left(\,\widetilde{Y}_{\beta}\,\right) \; = \; \sigma^{2} \cdot I_{r}$\,,
-	for each \,$\beta \in \Re^{p}$.
-
-	$E\!\left[\;Q^{\dagger} \cdot Y_{\beta}\;\right] \; = \; Q^{\dagger} \cdot X \cdot \beta$\,,
-	\,and\,
-	\,$\Var\!\left(\,Q^{\dagger} \cdot Y_{\beta}\,\right) \; = \; \sigma^{2} \cdot I_{r}$\,,
-	for each \,$\beta \in \Re^{p}$.	
+	To this end, note that, by
+	Corollary \ref{corollaryRealSpectralTheorem} \eqref{PiVEqEEtransposeEqQQdagger},
+	we have $Q \cdot Q^{\dagger} \,=\, \Pi_{V}$.
+	Since $Y_{\beta} \,\in\, \Col(X,V) \,=\, \Col(V)$, we see that
+	$Q \cdot Q^{\dagger} \cdot Y_{\beta} \, = \, Y_{\beta}$.
+	Furthermore,
+	\,$E\!\left[\;\Lambda \cdot Q \cdot \widetilde{Y}_{\beta}\;\right]$
+	\,$=$\, $E\!\left[\;\Lambda \cdot Q \cdot Q^{\dagger} \cdot Y_{\beta}\;\right]$
+	\,$=$\, $E\!\left[\;\Lambda \cdot \Pi_{V} \cdot Y_{\beta}\;\right]$
+	\,$=$\, $E\!\left[\;\Lambda \cdot Y_{\beta}\;\right]$
+	\,$=$\, $X \cdot \beta$\,,
+	where the last equality follows from the assumption that
+	$\mathcal{L}_{\Lambda}$ is an linear unbiased estimator of
+	$\mathcal{L}_{X}$ in terms of $Y \,=\, \{\,Y_{\beta}\,\}$.
+	This shows that
+	\,$\mathcal{L}_{\,\Lambda \cdot Q}$\,
+	is a linear unbiased estimator of
+	\,$\mathcal{L}_{X}$\, in terms of
+	\,$\widetilde{Y} \,=\, \{\,\widetilde{Y}_{\beta}\,\}$.	\,
+	Therefore,
+	\begin{eqnarray*}
+	&&
+		\Var\!\left[\;
+		\xi^{T}
+		\cdot
+		X \cdot \left(\,X^{T} \cdot V^{\dagger} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{\dagger}
+		\cdot
+		Y_{\beta}
+		\;\right]
+	\;\; = \;\;
+		\Var\!\left[\;
+			\xi^{T}
+			\cdot
+			Q \cdot \Pi_{\widetilde{X}} \cdot \widetilde{Y}_{\beta}
+			\;\right]
+	\\
+	& \leq &
+		\Var\!\left[\;
+			\xi^{T}
+			\cdot
+			\Lambda \cdot Q \cdot \widetilde{Y}_{\beta}
+			\;\right]
+	\;\; = \;\;
+		\Var\!\left[\;
+			\xi^{T}
+			\cdot
+			\Lambda \cdot Q \cdot Q^{\dagger} \cdot Y_{\beta}
+			\;\right]
+	\;\; = \;\;
+		\Var\!\left[\;
+			\xi^{T}
+			\cdot
+			\Lambda \cdot \Pi_{V} \cdot Y_{\beta}
+			\;\right]
+	\\
+	& = &
+		\Var\!\left[\;
+			\xi^{T}
+			\cdot
+			\Lambda \cdot Y_{\beta}
+			\;\right],
+		\quad
+		\textnormal{for any \,$\xi \in \Re^{n}$}\,,
+	\end{eqnarray*}
+	where the inequality follows by Claim 5.
+	This completes the proof of Claim 6, or equivalently,
+	conclusion \eqref{formulaColXsubsetColV} of the present Theorem.
 \end{enumerate}
-This completes the proof of the Theorem.
+The proof of the Theorem is now complete.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
