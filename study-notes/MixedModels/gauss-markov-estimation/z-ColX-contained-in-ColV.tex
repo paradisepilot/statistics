@@ -11,6 +11,7 @@
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \begin{theorem}[see discussion following Theorem 10.1.2, p.239, \cite{Christensen2011}]
+\label{BLUEColXsubsetColV}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -509,5 +510,55 @@ The proof of the Theorem is now complete.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{corollary}[Generalized least squares estimator, \S2.7, p.33, \cite{Christensen2011}]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\sigma^{2} > 0$,
+	\,$X \in \Re^{n \times p}$,\,
+	and
+	\,$V \in \Re^{n \times n}$ is a symmetric {\color{red}positive definite} matrix.
+\item
+	$Y = \left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+\item
+	For each $\beta \in \Re^{p}$, the following hold:
+	\begin{equation*}
+	\begin{array}{rclcl}
+	E\!\left[\;Y_{\beta}\,\right] &  \overset{{\color{white}\vert}}{=} & X \cdot \beta & \in & \Re^{n}
+	\\
+	\Cov\!\left(\,Y_{\beta}\,\right) & \overset{{\color{white}\vert}}{=} & \sigma^{2} \cdot V & \in & \Re^{n \times n}
+	\end{array}
+	\end{equation*}
+\end{itemize}
+Then, {\color{red}the map
+\begin{equation*}
+\Re^{n} \longrightarrow \Re^{n}
+\; : \; y \; \longmapsto \;
+X \cdot \left(\,X^{T} \cdot V^{-1} \cdot X\,\right)^{\dagger} \cdot X^{T} \cdot V^{-1} \cdot y
+\end{equation*}
+is a BLUE of
+\begin{equation*}
+\mathcal{L}_{X} \; : \; \Re^{p} \longrightarrow \Re^{n} \; : \; \beta \; \longmapsto \; X \cdot \beta
+\end{equation*}
+in terms of
+\,$Y = \{\,Y_{\beta}\,\}$.}
+\end{corollary}
+\proof
+Immediate by Theorem \ref{BLUEColXsubsetColV} and the fact that
+the unique generalized inverse of a non-singular (square) matrix is the
+inverse of that matrix (Proposition \ref{GeneralizeInverseOfNonSingularMatrixIsUsualInverse}).
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
