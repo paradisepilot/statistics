@@ -65,7 +65,340 @@ Then,
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.35cm
+\vskip 1.0cm
+\begin{theorem}[Uniqueness of BLUEs, Theorem 10.1.5, p.242, \cite{Christensen2011}]
+\label{BLUEuniquness}
+\mbox{}\vskip 0.1cm\noindent
+Suppose:
+\begin{itemize}
+\item
+	$X \in \Re^{n \times p}$\, and 
+	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$ is left multiplication by $X \in \Re^{n \times p}$.
+\item
+	$Y = \left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+\item
+	$E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$
+\end{itemize}
+Then, for any two BLUEs 
+\,$\mathcal{L}_{A_{1}},\, \mathcal{L}_{A_{2}} : \Re^{n} \longrightarrow \Re^{n}$\,
+of
+\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$ (where $A_{1}, A_{2} \in \Re^{n \times n}$),\,
+we have:
+\begin{equation*}
+P\!\left(\, A_{1} \cdot Y_{\beta} \,\overset{{\color{white}+}}{=}\, A_{2} \cdot Y_{\beta} \;\right) \;=\; 1\,,
+\quad
+\textnormal{for each \,$\beta \in \Re^{p}$}.
+\end{equation*}
+\begin{comment}
+\begin{equation*}
+\begin{array}{c}
+	\textnormal{each of \,$\mathcal{L}_{A_{1}},\, \mathcal{L}_{A_{2}} : \Re^{n} \longrightarrow \Re^{n}$}
+	\\
+	\textnormal{is a BLUE of \,$\overset{{\color{white}+}}{\mathcal{L}}_{X} : \Re^{p} \longrightarrow \Re^{n}$}
+	\\
+	{\color{white}\overset{-}{\vert}}
+	\textnormal{in terms of \,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$}
+	{\color{white}\overset{-}{\vert}}
+	\end{array}
+\;\;\quad\Longrightarrow\quad\;\;
+\begin{array}{c}
+	P\!\left(\, A_{1} \cdot Y_{\beta} \,\overset{{\color{white}+}}{=}\, A_{2} \cdot Y_{\beta} \;\right) \;=\; 1\,,
+	\\
+	{\color{white}\overset{.}{\Re}}
+	\textnormal{for each \,$\beta \in \Re^{p}$.}
+	{\color{white}\overset{.}{\Re}}
+	\end{array}
+\end{equation*}
+\end{comment}
+\end{theorem}
+\proof
+By Exercise 6, p.9, \cite{Christensen2011}, we have that, for any $\Re^{k}$-valued
+random variable $Y : \Omega \longrightarrow \Re^{k}$,
+\begin{equation*}
+E\!\left[\,Y\,\right] \,=\, 0 \,\in\, \Re^{k}\,,
+\;\;\textnormal{and}\;\;
+\Var\!\left[\;Y\;\right] \,=\, 0 \,\in\, \Re^{k \times k}
+\quad\Longrightarrow\quad
+P\!\left(\;Y = 0\;\right) \; = \; 1.
+\end{equation*}
+Hence, in order to prove the present Theorem, it suffices to establish the following two claims:
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\quad
+$E\!\left[\;(A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right] \;=\; 0 \;\in\; \Re^{n}$\,,
+for each $\beta \in \Re^{p}$.
+
+\vskip 0.3cm
+\noindent
+\textbf{Claim 2:}\quad
+$\Var\!\left[\;(A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right] \;=\; 0 \;\in\; \Re^{n \times n}$\,,
+for each $\beta \in \Re^{p}$.
+
+%\begin{equation*}
+%E\!\left[\;(A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right] \;=\; 0 \;\in\; \Re^{n}\,,
+%\quad\textnormal{and}\quad
+%\Var\!\left[\;(A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right] \;=\; 0 \;\in\; \Re^{n \times n}\,,
+%\quad
+%\textnormal{for each \,$\beta\in\Re^{p}$}.
+%\end{equation*}
+
+\vskip 0.3cm
+\noindent
+Proof of Claim 1:\quad
+Simply note that since, by hypothesis, both
+$\mathcal{L}_{A_{1}}$ and $\mathcal{L}_{A_{2}}$ are BLUEs
+of $\mathcal{L}_{X}$ in terms of $Y = \{\,Y_{\beta}\,\}$, we have
+\begin{equation*}
+E\!\left[\;(A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+\; = \;
+	E\!\left[\;A_{1} \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+	\, - \,
+	E\!\left[\;A_{2} \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+\; = \;
+	E\!\left[\;\mathcal{L}_{\,A_{1}}(\,Y_{\beta}\,)\;\right]
+	\, - \,
+	E\!\left[\;\mathcal{L}_{\,A_{2}}(\,Y_{\beta}\,)\;\right]
+\; = \;
+	X \cdot \beta
+	\, - \,
+	X \cdot \beta
+\; = \;
+	0
+\end{equation*}
+This proves Claim 1.
+
+\vskip 0.3cm
+\noindent
+Proof of Claim 2:\quad
+Recall that for any symmetric $M \in \Re^{k \times k}$,
+\begin{equation*}
+M \,=\, 0 \,\in\, \Re^{k \times k}
+\quad\Longleftrightarrow\quad
+\zeta^{T} \cdot M \cdot \zeta \,=\, 0 \,\in\, \Re^{1}\,,
+\quad
+\textnormal{for each \,$\zeta\in\Re^{k}$}.
+\end{equation*}
+Let
+\,$V \,:=\, \Var\!\left[\;(A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right] \,=\, 0 \,\in\, \Re^{n \times n}$.\,
+Recall that, for each $\xi\in\Re^{n}$, we have
+\begin{equation*}
+\xi^{T} \cdot V \cdot \xi
+\;\;=\;\; \xi^{T} \cdot \Var\!\left[\;(A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right] \cdot \xi
+\;\;=\;\; \Var\!\left[\;\xi^{T} \cdot (A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right].
+\end{equation*}
+Thus, Claim 2 is true if and only if \,$V = 0$\, if and only if
+\,$\Var\!\left[\;\xi^{T} \cdot (A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right] \,=\, 0 \,\in\, \Re$,\,
+for each \,$\xi \in \Re^{n}$.
+
+\noindent
+Next, note that since both $\mathcal{L}_{\,A_{1}}$ and $\mathcal{L}_{\,A_{2}}$ are BLUEs, we have
+\begin{equation*}
+	\Var\!\left[\;\xi^{T} \cdot A_{1} \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+	\;\leq\;
+	\Var\!\left[\;\xi^{T} \cdot A_{2} \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+\quad\textnormal{and}\quad
+	\Var\!\left[\;\xi^{T} \cdot A_{1} \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+	\;\geq\;
+	\Var\!\left[\;\xi^{T} \cdot A_{2} \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right],
+\quad\textnormal{for each \,$\beta\in\Re^{p}$}\,;
+\end{equation*}
+equivalently,
+\begin{equation}\label{VAOneEqVATwo}
+\Var\!\left[\;\xi^{T} \cdot A_{1} \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+\;\;=\;\;
+\Var\!\left[\;\xi^{T} \cdot A_{2} \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right],
+\quad\textnormal{for each \,$\beta\in\Re^{p}$}.
+\end{equation}
+Now, note that \,$\mathcal{L}_{\,\frac{1}{2}\cdot(A_{1}+A_{2})}$\, is a linear unbiased estimator
+of $\mathcal{L}_{X}$ in terms of $Y = \{\,Y_{\beta}\,\}$.
+Indeed,
+\begin{equation*}
+E\!\left[\; \frac{1}{2}\cdot(A_{1} + A_{2})\cdot Y_{\beta}\;\right]
+\;=\; \dfrac{1}{2} \cdot \left(\;E\!\left[\;A_{1} \cdot Y_{\beta}\;\right] \;\overset{{\color{white}.}}{+}\; E\!\left[\;A_{1} \cdot Y_{\beta}\;\right]\;\right)
+\;=\; \dfrac{1}{2} \cdot \left(\;X\cdot\beta \;\overset{{\color{white}.}}{+}\; X\cdot\beta\;\right)
+\;=\; X\cdot\beta
+\end{equation*}
+Since \,$\mathcal{L}_{\,A_{1}}$\, is a BLUE of \,$\mathcal{L}_{X}$\, in terms of \,$Y = \{\,Y_{\beta}\,\}$,\,
+we therefore have, for each $\beta \in \Re^{p}$ and $\xi \in \Re^{n}$,
+\begin{eqnarray*}
+\Var\!\left[\;\xi^{T} \cdot A_{1} \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+& \leq &
+	\Var\!\left[\;\xi^{T} \cdot \dfrac{1}{2} \cdot (A_{1}+A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+\;\; = \;\;
+	\dfrac{1}{4}
+	\cdot
+	\Var\!\left[\;
+		\xi^{T} \cdot A_{1} \cdot Y_{\beta}
+		\;\overset{{\color{white}\vert}}{+}\;
+		\xi^{T} \cdot A_{2} \cdot Y_{\beta}
+		\;\right]
+\\
+& = &
+	\dfrac{1}{4}
+	\cdot
+	\left(\;
+		\Var\!\left[\; \xi^{T} \cdot A_{1} \cdot Y_{\beta} \;\right]
+		\;\overset{{\color{white}\vert}}{+}\;
+		\Var\!\left[\; \xi^{T} \cdot A_{2} \cdot Y_{\beta} \;\right]
+		\;\overset{{\color{white}\vert}}{+}\;
+		2\cdot\Cov\!\left(\,\xi^{T} \cdot A_{1} \cdot Y_{\beta}\,,\,\xi^{T} \cdot A_{1} \cdot Y_{\beta}\,\right)
+	\;\right)
+\\
+& = &
+	\dfrac{1}{2} \cdot \Var\!\left[\; \xi^{T} \cdot A_{1} \cdot Y_{\beta} \;\right]
+	\;\overset{{\color{white}\vert}}{+}\;
+	\dfrac{1}{2}\cdot\Cov\!\left(\,\xi^{T} \cdot A_{1} \cdot Y_{\beta}\,,\,\xi^{T} \cdot A_{1} \cdot Y_{\beta}\,\right),
+	\quad
+	\textnormal{by \eqref{VAOneEqVATwo}}\,,
+\end{eqnarray*}
+which in turn implies, for each $\beta \in \Re^{p}$ and $\xi \in \Re^{n}$:
+\begin{equation}\label{VarAOneEqVarATwoLeqCovAOneATwo}
+\Var\!\left[\; \xi^{T} \cdot A_{1} \cdot Y_{\beta} \;\right]
+\;\; = \;\;
+\Var\!\left[\; \xi^{T} \cdot A_{2} \cdot Y_{\beta} \;\right]
+\;\; \leq \;\;
+\Cov\!\left(\,\xi^{T} \cdot A_{1} \cdot Y_{\beta}\,,\,\xi^{T} \cdot A_{1} \cdot Y_{\beta}\,\right).
+\end{equation}
+Lastly, observe that, for each $\beta \in \Re^{p}$ and $\xi \in \Re^{n}$,
+\begin{eqnarray*}
+0
+&\leq&
+	\Var\!\left[\;\xi^{T} \cdot (A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+\;\; = \;\;
+	\Var\!\left[\;\xi^{T} \cdot A_{1} \cdot Y_{\beta} \;\overset{{\color{white}\vert}}{-}\; \xi^{T} \cdot A_{2} \cdot Y_{\beta}\;\right]
+\\
+& = &
+	\Var\!\left[\;\xi^{T} \cdot A_{1} \cdot Y_{\beta}\;\right]
+	\; + \;
+	\Var\!\left[\;\xi^{T} \cdot A_{2} \cdot Y_{\beta}\;\right]
+	\; - \;
+	2\cdot\Cov\!\left(\,\xi^{T} \cdot A_{1} \cdot Y_{\beta}\,,\,\xi^{T} \cdot A_{1} \cdot Y_{\beta}\,\right)
+\\
+&\leq&
+	0\,,
+	\quad\textnormal{by \eqref{VarAOneEqVarATwoLeqCovAOneATwo}}\,,
+\end{eqnarray*}
+from which it follows that
+\begin{equation*}
+\Var\!\left[\;\xi^{T} \cdot (A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+\;\; =\;\; 0\,,
+\quad
+\textnormal{for each \,$\beta \in \Re^{p}$\, and \,$\xi \in \Re^{n}$}.
+\end{equation*}
+We may now conclude
+\begin{equation*}
+\Var\!\left[\;(A_{1} - A_{2}) \overset{{\color{white}-}}{\cdot} Y_{\beta}\;\right]
+\;\;=\;\;
+	0 \;\; \in \;\; \Re^{n \times n}\,,
+\quad
+\textnormal{for each \,$\beta \in \Re^{p}$}.
+\end{equation*}
+This completes the proof of Claim 2, as well as that of the present Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
+\begin{proposition}\label{PYinColXVEqOne}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\sigma^{2} > 0$,\,
+	\,$X \in \Re^{n \times p}$,\,
+	and
+	\,$V \in \Re^{n \times n}$\,
+	is a symmetric positive semi-definite matrix.
+\item
+	$Y = \left\{\;
+		\left.
+		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
+		\;\;\right\vert\;
+		\beta \in \Re^{p}
+		\;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$,
+	of $\Re^{n}$-valued random variables defined respectively on the
+	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
+\item
+	For each $\beta \in \Re^{p}$, the following hold:
+	\begin{equation*}
+	\begin{array}{rclcl}
+	E\!\left[\;Y_{\beta}\,\right] &  \overset{{\color{white}\vert}}{=} & X \cdot \beta & \in & \Re^{n}
+	\\
+	\Cov\!\left(\,Y_{\beta}\,\right) & \overset{{\color{white}\vert}}{=} & \sigma^{2} \cdot V & \in & \Re^{n \times n}
+	\end{array}
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{equation*}
+	P\!\left(\;Y_{\beta} \, \overset{{\color{white}.}}{\in} \, \Col(X,V)\;\right) \; = \; 1\,,
+	\quad
+	\textnormal{for each \,$\beta \,\in\, \Re^{p}$}.
+\end{equation*}
+\end{proposition}
+\proof
+First, note that, since $\sigma^{2} > 0$, we have \,$\Col\!\left(\,\sigma^{2} \cdot V\,\right) \,=\, \Col\!\left(\,V\,\right)$.
+
+\vskip 0.3cm
+\noindent
+Next, recall that Lemma 1.3.5, p.9, \cite{Christensen2011}, states that:
+For any $\Re^{k}$-valued random variable $Y : \Omega \longrightarrow \Re^{k}$ defined
+on a probability space $\Omega$, we have
+\begin{equation*}
+	P\!\left(\;Y - E\!\left[\,Y\,\right] \; \overset{{\color{white}.}}{\in} \; \Col\!\left(\,\Var[\,Y\,]\,\right)\;\right) \; = \; 1\,.
+\end{equation*}
+Applying the above two observations to \,$Y_{\beta}$,\, we have
+\begin{equation*}
+	P\!\left(\;Y_{\beta} - X\cdot\beta \; \overset{{\color{white}.}}{\in} \; \Col\!\left(\,V\,\right)\;\right)
+	\; = \; P\!\left(\;Y_{\beta} - X\cdot\beta \; \overset{{\color{white}.}}{\in} \; \Col\!\left(\,\sigma^{2} \cdot V\,\right)\;\right)
+	\; = \; 1\,.
+\end{equation*}
+On the other hand,
+\begin{equation*}
+Y_{\beta} - X\cdot\beta \,\in\, \Col\!\left(\,V\,\right)
+\quad\Longrightarrow\quad
+Y_{\beta} \,\in\, \Col\!\left(\,X,V\,\right)\,,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+\left\{\;
+	\left.\omega \overset{{\color{white}.}}{\in} \Omega
+	\;\;\right\vert\;
+	Y_{\beta}(\omega) - X\cdot\beta \,\in\, \Col\!\left(\,V\,\right)
+	\;\right\}
+\;\;\subset\;\;
+\left\{\;
+	\left.\omega \overset{{\color{white}.}}{\in} \Omega
+	\;\;\right\vert\;
+	Y_{\beta}(\omega) \,\in\, \Col\!\left(\,X,V\,\right)\;\right\}.
+\end{equation*}
+Hence,
+\begin{equation*}
+1
+\;\; = \;\;
+P\!\left(\; Y_{\beta} - X\cdot\beta \,\overset{{\color{white}.}}{\in} \, \Col\!\left(\,V\,\right) \;\right)
+\;\; \leq \;\;
+P\!\left(\; Y_{\beta} \,\overset{{\color{white}.}}{\in} \, \Col\!\left(\,X,V\,\right) \;\right)
+\;\; \leq \;\;
+1\,,
+\end{equation*}
+which implies
+\,$P\!\left(\; Y_{\beta} \,\overset{{\color{white}.}}{\in} \, \Col\!\left(\,X,V\,\right) \;\right) \,=\, 1$\,, as required.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
 \begin{proposition}
 \label{BLUEoneD}
 \mbox{}\vskip 0.1cm\noindent
@@ -565,158 +898,6 @@ This proves Claim 2.
 \vskip 0.5cm
 \noindent
 This completes the proof of the present Proposition.
-\qed
-
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\vskip 1.0cm
-\begin{theorem}[Uniqueness of BLUEs, Theorem 10.1.5, p.242, \cite{Christensen2011}]
-\label{BLUEuniquness}
-\mbox{}\vskip 0.1cm\noindent
-Suppose:
-\begin{itemize}
-\item
-	$X \in \Re^{n \times p}$\, and 
-	\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$ is left multiplication by $X \in \Re^{n \times p}$.
-\item
-	$Y = \left\{\;
-		\left.
-		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
-		\;\;\right\vert\;
-		\beta \in \Re^{p}
-		\;\right\}$
-	is a family, indexed by $\beta \in \Re^{p}$,
-	of $\Re^{n}$-valued random variables defined respectively on the
-	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
-\item
-	$E\!\left[\;Y_{\beta}\,\right] \,=\, X \cdot \beta$, for each $\beta \in \Re^{p}$
-\end{itemize}
-Then, for any two BLUEs 
-\,$\mathcal{L}_{A_{1}},\, \mathcal{L}_{A_{2}} : \Re^{n} \longrightarrow \Re^{n}$\,
-of
-\,$\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n}$ (where $A_{1}, A_{2} \in \Re^{n \times n}$),\,
-we have:
-\begin{equation*}
-P\!\left(\, A_{1} \cdot Y_{\beta} \,\overset{{\color{white}+}}{=}\, A_{2} \cdot Y_{\beta} \;\right) \;=\; 1\,,
-\quad
-\textnormal{for each \,$\beta \in \Re^{p}$}.
-\end{equation*}
-\begin{comment}
-\begin{equation*}
-\begin{array}{c}
-	\textnormal{each of \,$\mathcal{L}_{A_{1}},\, \mathcal{L}_{A_{2}} : \Re^{n} \longrightarrow \Re^{n}$}
-	\\
-	\textnormal{is a BLUE of \,$\overset{{\color{white}+}}{\mathcal{L}}_{X} : \Re^{p} \longrightarrow \Re^{n}$}
-	\\
-	{\color{white}\overset{-}{\vert}}
-	\textnormal{in terms of \,$Y = \{\,Y_{\beta}\,\}_{\beta\in\Re^{p}}$}
-	{\color{white}\overset{-}{\vert}}
-	\end{array}
-\;\;\quad\Longrightarrow\quad\;\;
-\begin{array}{c}
-	P\!\left(\, A_{1} \cdot Y_{\beta} \,\overset{{\color{white}+}}{=}\, A_{2} \cdot Y_{\beta} \;\right) \;=\; 1\,,
-	\\
-	{\color{white}\overset{.}{\Re}}
-	\textnormal{for each \,$\beta \in \Re^{p}$.}
-	{\color{white}\overset{.}{\Re}}
-	\end{array}
-\end{equation*}
-\end{comment}
-\end{theorem}
-\proof
-
-\qed
-
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\vskip 1.0cm
-\begin{proposition}\label{PYinColXVEqOne}
-\mbox{}
-\vskip 0.1cm
-\noindent
-Suppose:
-\begin{itemize}
-\item
-	$\sigma^{2} > 0$,\,
-	\,$X \in \Re^{n \times p}$,\,
-	and
-	\,$V \in \Re^{n \times n}$\,
-	is a symmetric positive semi-definite matrix.
-\item
-	$Y = \left\{\;
-		\left.
-		\overset{{\color{white}.}}{Y}_{\beta} : (\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta}) \longrightarrow \Re^{n}
-		\;\;\right\vert\;
-		\beta \in \Re^{p}
-		\;\right\}$
-	is a family, indexed by $\beta \in \Re^{p}$,
-	of $\Re^{n}$-valued random variables defined respectively on the
-	probability spaces $(\Omega_{\beta},\mathcal{A}_{\beta},\mu_{\beta})$.
-\item
-	For each $\beta \in \Re^{p}$, the following hold:
-	\begin{equation*}
-	\begin{array}{rclcl}
-	E\!\left[\;Y_{\beta}\,\right] &  \overset{{\color{white}\vert}}{=} & X \cdot \beta & \in & \Re^{n}
-	\\
-	\Cov\!\left(\,Y_{\beta}\,\right) & \overset{{\color{white}\vert}}{=} & \sigma^{2} \cdot V & \in & \Re^{n \times n}
-	\end{array}
-	\end{equation*}
-\end{itemize}
-Then,
-\begin{equation*}
-	P\!\left(\;Y_{\beta} \, \overset{{\color{white}.}}{\in} \, \Col(X,V)\;\right) \; = \; 1\,,
-	\quad
-	\textnormal{for each \,$\beta \,\in\, \Re^{p}$}.
-\end{equation*}
-\end{proposition}
-\proof
-First, note that, since $\sigma^{2} > 0$, we have \,$\Col\!\left(\,\sigma^{2} \cdot V\,\right) \,=\, \Col\!\left(\,V\,\right)$.
-
-\vskip 0.3cm
-\noindent
-Next, recall that Lemma 1.3.5, p.9, \cite{Christensen2011}, states that:
-For any $\Re^{k}$-valued random variable $Y : \Omega \longrightarrow \Re^{k}$ defined
-on a probability space $\Omega$, we have
-\begin{equation*}
-	P\!\left(\;Y - E\!\left[\,Y\,\right] \; \overset{{\color{white}.}}{\in} \; \Col\!\left(\,\Var[\,Y\,]\,\right)\;\right) \; = \; 1\,.
-\end{equation*}
-Applying the above two observations to \,$Y_{\beta}$,\, we have
-\begin{equation*}
-	P\!\left(\;Y_{\beta} - X\cdot\beta \; \overset{{\color{white}.}}{\in} \; \Col\!\left(\,V\,\right)\;\right)
-	\; = \; P\!\left(\;Y_{\beta} - X\cdot\beta \; \overset{{\color{white}.}}{\in} \; \Col\!\left(\,\sigma^{2} \cdot V\,\right)\;\right)
-	\; = \; 1\,.
-\end{equation*}
-On the other hand,
-\begin{equation*}
-Y_{\beta} - X\cdot\beta \,\in\, \Col\!\left(\,V\,\right)
-\quad\Longrightarrow\quad
-Y_{\beta} \,\in\, \Col\!\left(\,X,V\,\right)\,,
-\end{equation*}
-which in turn implies
-\begin{equation*}
-\left\{\;
-	\left.\omega \overset{{\color{white}.}}{\in} \Omega
-	\;\;\right\vert\;
-	Y_{\beta}(\omega) - X\cdot\beta \,\in\, \Col\!\left(\,V\,\right)
-	\;\right\}
-\;\;\subset\;\;
-\left\{\;
-	\left.\omega \overset{{\color{white}.}}{\in} \Omega
-	\;\;\right\vert\;
-	Y_{\beta}(\omega) \,\in\, \Col\!\left(\,X,V\,\right)\;\right\}.
-\end{equation*}
-Hence,
-\begin{equation*}
-1
-\;\; = \;\;
-P\!\left(\; Y_{\beta} - X\cdot\beta \,\overset{{\color{white}.}}{\in} \, \Col\!\left(\,V\,\right) \;\right)
-\;\; \leq \;\;
-P\!\left(\; Y_{\beta} \,\overset{{\color{white}.}}{\in} \, \Col\!\left(\,X,V\,\right) \;\right)
-\;\; \leq \;\;
-1\,,
-\end{equation*}
-which implies
-\,$P\!\left(\; Y_{\beta} \,\overset{{\color{white}.}}{\in} \, \Col\!\left(\,X,V\,\right) \;\right) \,=\, 1$\,, as required.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
