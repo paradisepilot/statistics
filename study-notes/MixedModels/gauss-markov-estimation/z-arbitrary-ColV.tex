@@ -104,5 +104,272 @@ Then, the following statements hold:
 	\,$X^{T} \cdot W^{\dagger} \cdot X \in \Re^{p \times p}$.
 \end{enumerate}
 \end{theorem}
+\proof
+\begin{enumerate}
+\item
+	We start by stating and proving two claims:
+
+	\vskip 0.3cm
+	\noindent
+	\textbf{Claim 1:}\quad
+	For any matrix \,$M \in \Re^{n \times n}$,\,
+	\begin{equation*}
+		\begin{array}{c}
+		\mathcal{L}_{M} : \Re^{n} \longrightarrow \Re^{n} : y \longmapsto M \cdot y
+		\\{\color{white}\overset{.}{\vert}}
+		\textnormal{is a linear unbiased estimator of}
+		\\{\color{white}\overset{.}{\vert}}
+		\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n} : \beta \longmapsto X \cdot \beta
+		\\{\color{white}\overset{.}{\vert}}
+		\textnormal{in terms of \,$Y = \{\,Y_{\beta}\,\}$}
+		\end{array}
+	\quad\Longleftrightarrow\quad
+		\begin{array}{c}
+		\textnormal{$M \in \Re^{n \times n}$}
+		\\{\color{white}\overset{.}{\vert}}
+		\textnormal{satisfies}
+		\\{\color{white}\overset{.}{\vert}}
+		M \cdot X \; = \; X
+		\end{array}
+	\quad\Longleftrightarrow\quad
+		\begin{array}{c}
+		\mathcal{L}_{M} : \Re^{n} \longrightarrow \Re^{n} : z \longmapsto M \cdot z
+		\\{\color{white}\overset{.}{\vert}}
+		\textnormal{is a linear unbiased estimator of}
+		\\{\color{white}\overset{.}{\vert}}
+		\mathcal{L}_{X} : \Re^{p} \longrightarrow \Re^{n} : \beta \longmapsto X \cdot \beta
+		\\{\color{white}\overset{.}{\vert}}
+		\textnormal{in terms of \,$Z = \{\,Z_{\beta}\,\}$}
+		\end{array}
+	\end{equation*}
+	\vskip 0.0cm
+	Proof of Claim 1:
+	On the one hand,
+	\begin{eqnarray*}
+	&&
+		\textnormal{$\mathcal{L}_{M}$\, is a linear unbiased estimator of \,$\mathcal{L}_{X}$\,
+		in terms of $Y = \{\,Y_{\beta}\,\}$}
+	\\
+	&\Longleftrightarrow&
+		E\!\left[\;\mathcal{L}_{M}(\,Y_{\beta}\,)\;\right] \;\;=\;\; X \cdot \beta\,,
+		\quad\textnormal{for each \,$\beta\in\Re^{p}$}
+	\\
+	&\Longleftrightarrow&
+		E\!\left[\; M \cdot Y_{\beta} \;\right] \;\;=\;\; X \cdot \beta\,,
+		\quad\textnormal{for each \,$\beta\in\Re^{p}$}
+	\\
+	&\Longleftrightarrow&
+		M \cdot E\!\left[\; Y_{\beta} \;\right] \;\;=\;\; X \cdot \beta\,,
+		\quad\textnormal{for each \,$\beta\in\Re^{p}$}
+	\\
+	&\Longleftrightarrow&
+		M \cdot X \cdot \beta \;\;=\;\; X \cdot \beta\,,
+		\quad\textnormal{for each \,$\beta\in\Re^{p}$}
+	\\
+	&\Longleftrightarrow&
+		\left(\,M \cdot X - X\,\right) \cdot \beta \;\;=\;\; 0\,,
+		\quad\textnormal{for each \,$\beta\in\Re^{p}$}
+	\\
+	&\Longleftrightarrow&
+		M \cdot X \;\; = \;\; X
+	\end{eqnarray*}
+	On the other hand,
+	\begin{eqnarray*}
+	&&
+		\textnormal{$\mathcal{L}_{M}$\, is a linear unbiased estimator of \,$\mathcal{L}_{X}$\,
+		in terms of $Z = \{\,Z_{\beta}\,\}$}
+	\\
+	&\Longleftrightarrow&
+		E\!\left[\;\mathcal{L}_{M}(\,Z_{\beta}\,)\;\right] \;\;=\;\; X \cdot \beta\,,
+		\quad\textnormal{for each \,$\beta\in\Re^{p}$}
+	\\
+	&\Longleftrightarrow&
+		E\!\left[\; M \cdot Z_{\beta} \;\right] \;\;=\;\; X \cdot \beta\,,
+		\quad\textnormal{for each \,$\beta\in\Re^{p}$}
+	\\
+	&\Longleftrightarrow&
+		M \cdot E\!\left[\; Z_{\beta} \;\right] \;\;=\;\; X \cdot \beta\,,
+		\quad\textnormal{for each \,$\beta\in\Re^{p}$}
+	\\
+	&\Longleftrightarrow&
+		M \cdot X \cdot \beta \;\;=\;\; X \cdot \beta\,,
+		\quad\textnormal{for each \,$\beta\in\Re^{p}$}
+	\\
+	&\Longleftrightarrow&
+		\left(\,M \cdot X - X\,\right) \cdot \beta \;\;=\;\; 0\,,
+		\quad\textnormal{for each \,$\beta\in\Re^{p}$}
+	\\
+	&\Longleftrightarrow&
+		M \cdot X \;\; = \;\; X
+	\end{eqnarray*}
+	This proves Claim 1.
+		
+	\vskip 0.3cm
+	\noindent
+	\textbf{Claim 2:}\quad
+	$\Var\!\left(\,\xi^{T} \cdot M \cdot Z\,\right)$
+	\;$=$\; $\Var\!\left(\,\xi^{T} \cdot M \cdot Y\,\right)$
+		\,$+$\, $\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot M \cdot X \;\right\Vert^{2}$\,,
+	for any \,$M \in \Re^{n \times n}$, \,$\xi \in \Re^{n}$.
+	\vskip 0.0cm
+	\noindent
+	Proof of Claim 2:\quad
+	Simply note that, for any \,$M \in \Re^{n \times n}$, \,$\xi \in \Re^{n}$,\, we have
+	\begin{eqnarray*}
+	\Var\!\left(\,\xi^{T} \cdot M \cdot Z\,\right)
+	&=&
+		\xi^{T} \cdot M \cdot \Var\!\left(\,Z\,\right) \cdot M^{T} \cdot \xi
+	\;\; = \;\;
+		\xi^{T} \cdot M \cdot \sigma^{2} \cdot \left(\, V + X \cdot X^{T} \,\right) \cdot M^{T} \cdot \xi
+	\\
+	&=&
+		\xi^{T} \cdot M \cdot \left(\,\sigma^{2} \cdot V\,\right) \cdot M^{T} \cdot \xi
+		\; + \;
+		\sigma^{2} \cdot \xi^{T} \cdot M \cdot X \cdot X^{T} \cdot M^{T} \cdot \xi
+	\\
+	&=&
+		\xi^{T} \cdot M \cdot \Var\!\left(\,Y\,\right) \cdot M^{T} \cdot \xi
+		\; + \;
+		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot M \cdot X \; \right\Vert^{2}
+	\\
+	&=&
+		\Var\!\left(\,\xi^{T} \cdot M \cdot Y\,\right)
+		\; + \;
+		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot M \cdot X \; \right\Vert^{2}
+	\end{eqnarray*}
+	This proves Claim 2.
+	
+	\vskip 0.5cm
+	\noindent
+	\underline{\textbf{(\;$\Longrightarrow$\;)}}\quad
+	Suppose \,$\mathcal{L}_{A}$\, is a BLUE of \,$\mathcal{L}_{X}$\, in terms of \,$Y = \{\,Y_{\beta}\,\}$.\,
+	It follows immediately from Claim 1 that
+	\,$\mathcal{L}_{A}$\, is a linear unbiased estimator of
+	\,$\mathcal{L}_{X}$\, in terms of \,$Z = \{\,Z_{\beta}\,\}$.
+	
+	\vskip 0.1cm
+	It remains only to show that, for any \,$M \in \Re^{n \times n}$\, such that
+	\,$\mathcal{L}_{M} : \Re^{n} \longrightarrow \Re^{n} : z \longmapsto M \cdot z$\,
+	is a linear unbiased estimator of
+	\,$\mathcal{L}_{X}$\, in terms of \,$Z = \{\,Z_{\beta}\,\}$,
+	we have:
+	\begin{equation*}
+	\Var\!\left(\,\xi^{T} \cdot A \cdot Z\,\right)
+	\;\; \leq \;\;
+		\Var\!\left(\,\xi^{T} \cdot M \cdot Z\,\right)\,,
+	\quad
+	\textnormal{for each \,$\xi \in \Re^{n}$}.
+	\end{equation*}
+	To this end, observe that, for any \,$\xi \in \Re^{n}$,
+	\begin{eqnarray*}
+	\Var\!\left(\,\xi^{T} \cdot A \cdot Z\,\right)
+	& = &
+		\Var\!\left(\,\xi^{T} \cdot A \cdot Y\,\right)
+		\; + \;
+		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot A \cdot X \;\right\Vert^{2}\,,
+		\quad\textnormal{by Claim 2}
+	\\
+	& = &
+		\Var\!\left(\,\xi^{T} \cdot A \cdot Y\,\right)
+		\; + \;
+		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot X \;\right\Vert^{2}\,,
+		\quad\textnormal{by Claim 1}
+	\\
+	& \leq &
+		\Var\!\left(\,\xi^{T} \cdot M \cdot Y\,\right)
+		\; + \;
+		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot X \;\right\Vert^{2}
+	\\
+	& = &
+		\Var\!\left(\,\xi^{T} \cdot M \cdot Y\,\right)
+		\; + \;
+		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot M \cdot X \;\right\Vert^{2}\,,
+		\quad\textnormal{by Claim 1}
+	\\
+	& = &
+		\Var\!\left(\,\xi^{T} \cdot M \cdot Z\,\right)\,,
+		\quad\textnormal{by Claim 2}
+	\end{eqnarray*}
+	where the inequality follows from the fact that
+	\,$\mathcal{L}_{M}$\, is a linear unbiased estimator of
+	\,$\mathcal{L}_{X}$\, in terms of \,$Y = \{\,Y_{\beta}\,\}$\,
+	(by Claim 1 and the assumption that \,$\mathcal{L}_{M}$\,
+	is a linear unbiased estimator of \,$\mathcal{L}_{X}$\,
+	in terms of $Z = \{\,Z_{\beta}\,\}$)
+	and the hypothesis that
+	\,$\mathcal{L}_{A}$\, is a BLUE of \,$\mathcal{L}_{X}$\,
+	in terms of \,$Y = \{\,Y_{\beta}\,\}$.
+	This completes the proof that every BLUE \,$\mathcal{L}_{A}$\,
+	of \,$\mathcal{L}_{X}$\, in terms of \,$Y = \{\,Y_{\beta}\,\}$\,
+	is also a BLUE of
+	of \,$\mathcal{L}_{X}$\, in terms of \,$Z = \{\,Z_{\beta}\,\}$.
+	
+	\vskip 0.5cm
+	\noindent
+	\underline{\textbf{(\;$\Longleftarrow$\;)}}\quad
+	Conversely, suppose \,$\mathcal{L}_{A}$\, is a BLUE of \,$\mathcal{L}_{X}$\, in terms of \,$Z = \{\,Z_{\beta}\,\}$.
+	It follows immediately from\\ Claim 1 that
+	\,$\mathcal{L}_{A}$\, is a linear unbiased estimator of
+	\,$\mathcal{L}_{X}$\, in terms of \,$Y = \{\,Y_{\beta}\,\}$.
+	
+	\vskip 0.1cm
+	Thus, it remains only to show that, for any \,$M \in \Re^{n \times n}$\, such that
+	\,$\mathcal{L}_{M} : \Re^{n} \longrightarrow \Re^{n} : y \longmapsto M \cdot y$\,
+	is a linear unbiased estimator of
+	\,$\mathcal{L}_{X}$\, in terms of \,$Y = \{\,Y_{\beta}\,\}$,
+	we have:
+	\begin{equation*}
+	\Var\!\left(\,\xi^{T} \cdot A \cdot Y\,\right)
+	\;\; \leq \;\;
+		\Var\!\left(\,\xi^{T} \cdot M \cdot Y\,\right)\,,
+	\quad
+	\textnormal{for each \,$\xi \in \Re^{n}$}.
+	\end{equation*}
+	To this end, observe that, for any \,$\xi \in \Re^{n}$,
+	\begin{eqnarray*}
+	\Var\!\left(\,\xi^{T} \cdot A \cdot Y\,\right)
+	& = &
+		\Var\!\left(\,\xi^{T} \cdot A \cdot Z\,\right)
+		\; - \;
+		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot A \cdot X \;\right\Vert^{2}\,,
+		\quad\textnormal{by Claim 2}
+	\\
+	& = &
+		\Var\!\left(\,\xi^{T} \cdot A \cdot Z\,\right)
+		\; - \;
+		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot X \;\right\Vert^{2}\,,
+		\quad\textnormal{by Claim 1}
+	\\
+	& \leq &
+		\Var\!\left(\,\xi^{T} \cdot M \cdot Z\,\right)
+		\; - \;
+		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot X \;\right\Vert^{2}
+	\\
+	& = &
+		\Var\!\left(\,\xi^{T} \cdot M \cdot Z\,\right)
+		\; - \;
+		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot M \cdot X \;\right\Vert^{2}\,,
+		\quad\textnormal{by Claim 1}
+	\\
+	& = &
+		\Var\!\left(\,\xi^{T} \cdot M \cdot Y\,\right)\,,
+		\quad\textnormal{by Claim 2}
+	\end{eqnarray*}
+	where the inequality follows from the fact that
+	\,$\mathcal{L}_{M}$\, is a linear unbiased estimator of
+	\,$\mathcal{L}_{X}$\, in terms of \,$Z = \{\,Z_{\beta}\,\}$\,
+	(by Claim 1 and the assumption that \,$\mathcal{L}_{M}$\,
+	is a linear unbiased estimator of \,$\mathcal{L}_{X}$\,
+	in terms of $Y = \{\,Y_{\beta}\,\}$)
+	and the hypothesis that
+	\,$\mathcal{L}_{A}$\, is a BLUE of \,$\mathcal{L}_{X}$\,
+	in terms of \,$Z = \{\,Z_{\beta}\,\}$.
+	This completes the proof that every BLUE \,$\mathcal{L}_{A}$\,
+	of \,$\mathcal{L}_{X}$\, in terms of \,$Z = \{\,Z_{\beta}\,\}$\,
+	is also a BLUE of
+	of \,$\mathcal{L}_{X}$\, in terms of \,$Y = \{\,Y_{\beta}\,\}$.
+		
+\end{enumerate}
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
