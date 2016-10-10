@@ -86,7 +86,7 @@ Then, the following statements hold:
 		\textnormal{in terms of \,$Z = \{\,Z_{\beta}\,\}$}
 		\end{array}
 	\end{equation*}
-\item
+\item\label{formulaColXNotInColV}
 	{\color{red}The map
 	\begin{equation*}
 	\Re^{n} \longrightarrow \Re^{n}
@@ -519,7 +519,75 @@ Then, the following statements hold:
 	\vskip 0.0cm
 	\noindent
 	Proof of Claim 2:\quad
-
+	Observe that
+	\begin{eqnarray*}
+	0_{n \times n}
+	& = &
+		\left(\,W - W\,\right) \cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T}
+	\;\; = \;\;
+		\left(\,W - W \cdot W^{\dagger} \cdot W\,\right) \cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T}
+	\\
+	& = &
+		\left(\,I_{n} - W \cdot W^{\dagger} \,\right) \cdot W \cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T}
+	\;\; = \;\;
+		\left(\,I_{n} - W \cdot W^{\dagger} \,\right)
+		\cdot \left(\,V + X \cdot X^{T}\,\right)
+		\cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T}
+	\\
+	& = &
+		\left(\,I_{n} - W \cdot W^{\dagger} \,\right)
+		\cdot V \cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T}
+		\; + \;
+		\left(\,I_{n} - W \cdot W^{\dagger} \,\right)
+		\cdot X \cdot X^{T} \cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T}
+	\end{eqnarray*}
+	Thus, for each $\xi \in \Re^{n \times 1}$, we have:
+	\begin{eqnarray*}
+	0
+	&=&
+		\xi^{T} \cdot 0_{n \times n} \cdot \xi
+	\\
+	& = &
+		\xi^{T}
+		\cdot
+		\left(\,I_{n} - W \cdot W^{\dagger} \,\right) \cdot V \cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T}
+		\cdot \xi
+		\; + \;
+		\xi^{T}
+		\cdot
+		\left(\,I_{n} - W \cdot W^{\dagger} \,\right) \cdot X \cdot X^{T} \cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T}
+		\cdot \xi		
+	\\
+	& = &
+		\left(\,\left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T} \cdot \xi\;\right)^{T}
+		\cdot\;
+			V
+		\;\cdot
+			\left(\,\left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T} \cdot \xi\;\right)
+		\; + \;
+		\left\Vert\; X^{T} \cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T} \cdot \xi \;\right\Vert^{2}
+	\\
+	& \geq &
+		\left\Vert\; X^{T} \cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right)^{T} \cdot \xi \;\right\Vert^{2}
+		\;\; \geq \;\; 0\,,
+	\end{eqnarray*}
+	where the inequality follows from the hypothesis that \,$V \in \Re^{n \times n}$\, is positive semi-definite.
+	The preceding observation implies:
+	\begin{equation*}
+	\xi^{T} \cdot \left(\,I_{n} - W \cdot W^{\dagger}\,\right) \cdot X
+	\;\; = \;\; 0\,,
+	\quad
+	\textnormal{for each \,$\xi \in \Re^{n}$}\,,
+	\end{equation*}
+	which in turn implies
+	\begin{equation*}
+	\left(\,I_{n} - W \cdot W^{\dagger}\,\right) \cdot X \;\; = \;\; 0\,;
+	\end{equation*}
+	equivalently,
+	\begin{equation*}
+	W \cdot W^{\dagger} \cdot X \;\; = \;\; X\,,
+	\end{equation*}
+	as desired. This proves Claim 2 and completes the proof of \eqref{formulaColXNotInColV}.
 \end{enumerate}
 \qed
 
