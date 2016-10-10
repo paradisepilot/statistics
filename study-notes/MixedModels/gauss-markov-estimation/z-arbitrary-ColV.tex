@@ -21,7 +21,7 @@ Suppose:
 	\;
 	$X \in \Re^{n \times p}$.
 	\;
-	$V \in \Re^{n \times n}$ is a symmetric positive semi-definite matrix.
+	$V \in \Re^{n \times n}$ is a symmetric positive semi-definite matrix of rank at least 1.
 \item
 	$Y = \left\{\;
 		\left.
@@ -207,7 +207,7 @@ Then, the following statements hold:
 		M \cdot X \;\; = \;\; X
 	\end{eqnarray*}
 	This proves Claim 1.
-		
+
 	\vskip 0.3cm
 	\noindent
 	\textbf{Claim 2:}\quad
@@ -242,7 +242,7 @@ Then, the following statements hold:
 		\sigma^{2} \cdot \left\Vert\; \xi^{T} \cdot M \cdot X \; \right\Vert^{2}
 	\end{eqnarray*}
 	This proves Claim 2.
-	
+
 	\vskip 0.5cm
 	\noindent
 	\underline{\textbf{(\;$\Longrightarrow$\;)}}\quad
@@ -384,6 +384,141 @@ Then, the following statements hold:
 	\,$=$\, $\sigma^{2}\cdot\left(\,V + X \cdot X^{T}\,\right)$,\,
 	by Theorem \ref{BLUEColXsubsetColV}, it suffices to show that
 	\,$\Col(X) \,\subset\, \Col(W) \,=\, \Col\!\left(\,V + X \cdot X^{T}\,\right)$.
+
+	\vskip 0.5cm
+	\noindent
+	\textbf{Claim 1:}\quad
+	$\Col(X) \,\subset\, \Col(W)$
+	\,\;$\Longleftrightarrow$\,\; $W \cdot W^{\dagger} \cdot X \,=\,X$.
+	\vskip 0.0cm
+	\noindent
+	Proof of Claim 1:\quad
+	First, observe that
+	\begin{eqnarray*}
+	\Col(X) \,\subset\, \Col(W)
+	&\Longleftrightarrow&
+		X \,=\, W \cdot \Gamma\,,
+		\quad\textnormal{for some \,$\Gamma\in\Re^{n \times p}$}
+	\\
+	&\overset{{\color{white}\vert}}{\Longrightarrow}&
+		W \cdot W^{\dagger} \cdot X
+		\,=\, W \cdot W^{\dagger} \cdot W \cdot \Gamma
+		\,=\, W \cdot \Gamma
+		\,=\, X
+	\end{eqnarray*}
+	Conversely, suppose \,$W \cdot W^{\dagger} \cdot X \,=\, X$.
+	By Corollary \ref{RealSpectralTheorem}, there exist
+	a matrix \,$E \in \Re^{n \times r}$\, with orthonormal columns,
+	and a diagonal matrix \,$D = \diag(d_{1},\ldots,d_{r}) \in \Re^{r \times r}$,\,
+	where \,$r := \rank(\,W\,) \geq 1$\, such that
+	\begin{eqnarray*}
+	W \cdot E & = & E \cdot D\,,
+	\\
+	Q^{\dagger} & \overset{{\color{white}\textnormal{\large$-$}}}{:=} & D^{-1/2} \cdot E\,,
+	\\
+	W^{\dagger} & = & (Q^{\dagger})^{T} \cdot Q^{\dagger}
+		\;\; = \;\;
+			\left(\,D^{-1/2}\cdot E^{T}\,\right)^{T} \cdot \left(\,D^{-1/2} \cdot E^{T}\,\right)
+		\;\; = \;\;
+			E \cdot D^{-1} \cdot E^{T}\,,
+	\\
+	\Col(W) &=& \Col(E)\,.
+	\end{eqnarray*}
+	Next, write
+	\begin{equation*}
+	X \;=\; \left[\;
+		\begin{array}{ccc}
+		\\
+		\mathbf{x}_{1} & \cdots & \mathbf{x}_{p}
+		\\
+		\\
+		\end{array}
+		\;\right]\,,
+	\quad\textnormal{where \,$\mathbf{x}_{i} \,\in\, \Re^{n}$,\, for each \,$i \,=\, 1,2,\ldots,p$}\,.
+	\end{equation*}
+	Due to the orthogonal decomposition of \,$\Re^{n} \,=\, \Col(W) \,\oplus\, \Col(W)^{\perp}$,\,
+	we have, for each \,$i \in 1,2,\ldots,p$\,:
+	\begin{equation*}
+	\mathbf{x}_{i}
+	\;\; = \;\;
+		W \cdot \gamma_{i} \;+\; \delta_{i}\,,
+	\quad
+	\textnormal{for some \,$\gamma_{i} \,\in\, \Re^{n}$\, and \,$\delta_{i} \,\in\, \Col(W)^{\perp}$}
+	\end{equation*}
+	Hence,
+	\begin{equation*}
+	X
+	\;=\; \left[\;
+		\begin{array}{ccc}
+		\\
+		\mathbf{x}_{1} & \cdots & \mathbf{x}_{p}
+		\\
+		\\
+		\end{array}
+		\;\right]
+	\;=\;
+		W \cdot \left[\;
+			\begin{array}{ccc}
+			\\
+			\gamma_{1} & \cdots & \gamma_{p}
+			\\
+			\\
+			\end{array}
+			\;\right]
+		\; + \;
+			\left[\;
+			\begin{array}{ccc}
+			\\
+			\delta_{1} & \cdots & \delta_{p}
+			\\
+			\\
+			\end{array}
+			\;\right]
+	\;=\;
+		W \cdot \Gamma \; + \; \Delta\,,
+	\end{equation*}
+	and we emphasize that \,$\Col(\Delta) \,\subset\, \Col(W)^{\perp}$.\,
+	Consequently, the hypothesis \,$W \cdot W^{\dagger} \cdot X \,=\, X$\, implies
+	\begin{eqnarray*}
+	W \cdot \Gamma \;+\; \Delta
+	&=& X
+	\\
+	&=& W \cdot W^{\dagger} \cdot X
+	\;\;=\;\; W \cdot W^{\dagger} \cdot (\,W \cdot \Gamma + \Delta\,)
+	\;\;=\;\; W \cdot W^{\dagger} \cdot W \cdot \Gamma \;+\; W \cdot W^{\dagger} \cdot \Delta
+	\\
+	&=& W \cdot \Gamma \;+\; W \cdot W^{\dagger} \cdot \Delta\,,
+	\end{eqnarray*}
+	which in turn implies (by subtracting \,$W \cdot \Gamma$\, on both sides):
+	\begin{equation*}
+	\Delta
+	\;\; = \;\;
+		W \cdot W^{\dagger} \cdot \Delta 
+	\;\; = \;\;
+		W \cdot E \cdot D^{-1} \cdot E^{T} \cdot \Delta 
+	\;\; = \;\;
+		W \cdot E \cdot D^{-1} \cdot 0_{r \times p}
+	\;\; = \;\;
+		0_{n \times p}\,,
+	\end{equation*}
+	where the third equality follows from the fact that
+	\,$\Col(E) \,=\, \Col(W)$\, and \,$\Col(\Delta) \,\subset\, \Col(W)^{\perp}$.
+	Therefore, we may now conclude
+	\begin{equation*}
+	X \;\; = \;\; W \cdot \Gamma \; + \; \Delta \;\; = \;\; W \cdot \Gamma \;+\; 0 \;\; = \;\; W \cdot \Gamma\,;
+	\end{equation*}
+	equivalently, $\Col(X) \,\subset\, \Col(W)$,\, as desired.
+	This proves Claim 1.
+
+	\vskip 0.5cm
+	\noindent
+	\textbf{Claim 2:}\quad
+	$W \,=\, V + X \cdot X^{T}$
+	\,\;$\Longrightarrow$\,\; $W \cdot W^{\dagger} \cdot X \,=\,X$.
+	\vskip 0.0cm
+	\noindent
+	Proof of Claim 2:\quad
+
 \end{enumerate}
 \qed
 
