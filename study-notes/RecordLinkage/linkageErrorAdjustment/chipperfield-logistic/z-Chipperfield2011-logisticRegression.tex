@@ -23,23 +23,22 @@ is the following proposition.
 Suppose:
 \begin{itemize}
 \item
-	$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space.
-\item
-	$n, p \in \N$\, are natural numbers.
+	$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space\,,
+	\,and
+	\,$n \in \N$\, is a natural number.
 \item
 	$Y^{(1)}, \ldots, Y^{(n)} : \Omega \longrightarrow \left\{0,1\right\}$\,
 	are binary random variables, and
-\item
-	$X^{(1)}, \ldots, X^{(n)} : \Omega \longrightarrow \left\{0,1\right\}^{p} := \{0,1\} \times \{0,1\} \times \cdots \times \{0,1\}$\,
-	are $\{0,1\}^{p}$-valued random variables.
-\item
-	$x^{(1)}, \ldots, x^{(n)} \in \left\{0,1\right\}^{p}$\,.
+%\item
+%	$X^{(1)}, \ldots, X^{(n)} : \Omega \longrightarrow \left\{0,1\right\}^{p} := \{0,1\} \times \{0,1\} \times \cdots \times \{0,1\}$\,
+%	are $\{0,1\}^{p}$-valued random variables.
+%\item
+%	$x^{(1)}, \ldots, x^{(n)} \in \left\{0,1\right\}^{p}$\,.
 \end{itemize}
 Suppose:
 \begin{itemize}
 \item
-	The $\{0,1\}^{p+1}$-valued random variables
-	\,$Z^{(i)} := \left(\,Y^{(i)},X^{(i)}\,\right)$, $i = 1, 2, \ldots, n$,\,
+	The binary random variables \,$Y^{(i)}$, $i = 1, 2, \ldots, n$,\,
 	are independent (but NOT necessarily identically distributed).
 %\item
 %	The binary random variables
@@ -47,14 +46,17 @@ Suppose:
 %	are conditionally independent given the values of
 %	\,$X^{(1)}, X^{(2)}, \ldots, X^{(n)}$.
 \item
-	There exists $\beta \in \Re^{p}$ such that,
-	for each \,$i = 1,2,\ldots,n$,
+	There exists
+	\,$\beta \in \Re^{p}$\,
+	and
+	\,$x^{(1)}, x^{(2)}, \ldots, x^{(n)} \in \{0,1\}^{p} := \{0,1\} \times \{0,1\} \times \cdots \times \{0,1\}$\,,
+	such that, for each \,$i = 1,2,\ldots,n$,
 	\begin{equation*}
 	\pi_{i}
 	\;\; := \;\;
-		P\!\left(\;Y^{(i)} = 1 \,\left\vert\; X^{(i)} = x^{(i)} \right.\right)
+		P\!\left(\; Y^{(i)} = 1 \;\right)
 	\;\; = \;\;
-		E\!\left[\; Y^{(i)}  = 1 \,\left\vert\; X^{(i)} = x^{(i)} \right.\right]
+		E\!\left[\; Y^{(i)}  = 1 \;\right]
 	\;\; = \;\;
 		\dfrac{
 			\exp\!\left(\,\beta^{T} \cdot x^{(i)} \,\right)
@@ -66,17 +68,14 @@ Suppose:
 Then, the following statements are true:
 \begin{enumerate}
 \item
-	The logarithm of the joint conditional probability distribution of
+	The logarithm of the joint probability distribution of
 	\;$Y^{(i)}$,\,
-	given \,$X^{(i)} = x^{(i)}$,\,
 	for \;$i \in \{1,2,\ldots,n\}$,\;
 	is given by:
 	\begin{eqnarray*}
 	\log\,L
 		&=&
-		\log\,P\!\left(\;
-			Y^{(1)}=y_{1},\ldots,Y^{(n)}=y_{n} \;\left\vert\; X^{(1)}=x^{(1)}, \ldots, X^{(n)}=x^{(n)} \right.
-			\;\right)
+		\log\,P\!\left(\; Y^{(1)}=y_{1},\ldots,Y^{(n)}=y_{n} \;\right)
 	\\
 	&=&
 		{\color{white}+} \;\;
