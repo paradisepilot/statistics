@@ -603,6 +603,106 @@ L &=&
 	P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}\,\right)
 \\
 &=&
+	{\color{white}\times}\;
+	\underset{i\,\in\,K_{\color{red}0}}{\prod} \;
+	P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}={\color{red}0}\,\right)
+\\
+&&
+	\times\;
+	\underset{i\,\in\,K_{\color{red}1}}{\prod} \;
+	P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}={\color{red}1}\,\right)
+\\
+&&
+	\times\;
+	\underset{i\,\in\,K_{\color{red}2}}{\prod} \;
+	P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}={\color{red}2}\,\right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\log\,L
+&=&
+	{\color{white}+}\;
+	\underset{i\,\in\,K_{\color{red}0}}{\sum} \;
+	\log \;
+	P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}={\color{red}0}\,\right)
+\\
+&&
+	+\;
+	\underset{i\,\in\,K_{\color{red}1}}{\sum} \;
+	\log\;
+	P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}={\color{red}1}\,\right)
+\\
+&&
+	+\;
+	\underset{i\,\in\,K_{\color{red}2}}{\sum} \;
+	\log\;
+	P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}={\color{red}2}\,\right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+P\!\left(\,Y=c,X=x,\widetilde{Y}=y,K={\color{red}0}\,\right)
+&=&
+	P\!\left(\,Y=c \;\left\vert\; X=x,\widetilde{Y}=y,K=0\right.\,\right)
+	\cdot
+	P\!\left(\,X=x,\widetilde{Y}=y,K=0\,\right)
+\\
+&=&
+	P\!\left(\,Y=c \;\left\vert\; X=x,\widetilde{Y}=y,J=0\right.\,\right)
+	\cdot
+	P\!\left(\,X=x,\widetilde{Y}=y,J=0\,\right)
+\\
+&=&
+	P\!\left(\,Y=c \;\left\vert\; X=x,\widetilde{Y}=y\right.\,\right)
+	\cdot
+	P\!\left(\,X=x,\widetilde{Y}=y\,\right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+P\!\left(\,Y=c \;\left\vert\; X=x,\widetilde{Y}=y\right.\,\right)
+&=&
+	P\!\left(\, Y=c,M=1 \;\left\vert\; X=x,\widetilde{Y}=y\right.\,\right)
+	\;+\;
+	P\!\left(\, Y=c,M=0 \;\left\vert\; X=x,\widetilde{Y}=y\right.\,\right)
+\\
+&=&
+	{\color{white}+}\;
+	P\!\left(\, Y=c \;\left\vert\; M=1, X=x,\widetilde{Y}=y\right.\,\right)
+	\cdot
+	P\!\left(\, M=1 \;\left\vert\; X=x,\widetilde{Y}=y\right.\,\right)
+\\
+&&
+	+\;
+	P\!\left(\, Y=c \;\left\vert\; M=0,X=x,\widetilde{Y}=y\right.\,\right)
+	\cdot
+	P\!\left(\, M=0 \;\left\vert\; X=x,\widetilde{Y}=y\right.\,\right)
+\\
+&=&
+	{\color{white}+}\;
+	\delta_{cy}
+	\cdot
+	P\!\left(\, M=1 \;\left\vert\; X=x,\widetilde{Y}=y\right.\,\right)
+\\
+&&
+	+\;
+	P\!\left(\, Y=c \;\left\vert\; \overset{{\color{white}.}}{X}=x \right.\,\right)
+	\cdot
+	P\!\left(\, M=0 \;\left\vert\; X=x,\widetilde{Y}=y\right.\,\right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+L &=&
+	P\!\left(\;
+		\overset{n}{\underset{i=1}{\bigcap}}\;
+		\left\{
+			Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}
+		\right\}
+	\;\right)
+\\
+&=&
+	\overset{n}{\underset{i=1}{\prod}} \;
+	P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}\,\right)
+\\
+&=&
 	\overset{n}{\underset{i=1}{\prod}} \;
 	\left\{\;
 		\overset{1}{\underset{c=0}{\prod}}\;\;
