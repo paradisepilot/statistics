@@ -10,7 +10,8 @@
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+          %%%%%
+           ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \subsection{MLE for logistic regression with multivariate Bernoulli predictor variables}
 
@@ -239,15 +240,16 @@ Then, the following statements are true:
 in the presence of measurement errors,
 with adjustments for measurement errors via clerical review on a subsample of collected data}
 
+\begin{comment}
 \vskip 0.3cm
 In this subsection, we attempt to give the probability framework underlying the discussion
-in Section 3.1, \cite{Chipperfield2011}.
+in Section 3.2, \cite{Chipperfield2011}.
 In particular, we attempt to give expressions for 
 \begin{itemize}
 \item
 	the complete-data log likelihood involved in the application
 	of the Expection-Maximization (EM) algorithm discussed in
-	Section 3.1, \cite{Chipperfield2011}, as well as
+	Section 3.2, \cite{Chipperfield2011}, as well as
 \item
 	the conditional expectations that need to be computed during the Expectation step therein.
 \end{itemize}
@@ -260,6 +262,7 @@ contained in Theorem \ref{ThmLogisticRegressionWithIncorrectData} (i) below
 suggests that the solution to the Maximization step of the EM algorithm
 in Section 3.1, \cite{Chipperfield2011} might be significantly more complicated than
 Equation (7) in \cite{Chipperfield2011}.
+\end{comment}
 
 \vskip 0.3cm
 \noindent
@@ -304,9 +307,9 @@ we assume that the observations are independent, and
 we make certain independence assumptions on the random variables.
 Apart from these, the main non-trivial assumption we make is the following:
 \begin{equation*}
-P\!\left(\left.Y^{(i)} = c\,\;\right\vert\,X^{(i)}=g,\widetilde{Y}^{(i)}=y,M^{(i)}=0\,\right)
+P\!\left(\left.Y^{(i)} = c\,\;\right\vert\,X^{(i)}=x,\widetilde{Y}^{(i)}=y,M^{(i)}=0\,\right)
 \;\; = \;\;
-P\!\left(\left.Y^{(i)} = c\,\;\right\vert\,X^{(i)}=g\,\right)\,,
+P\!\left(\left.Y^{(i)} = c\,\;\right\vert\,X^{(i)}=x\,\right)\,,
 \;\;
 \textnormal{for each \,$i\in\{1,\ldots,n\}$}\,,
 \end{equation*}
@@ -314,7 +317,7 @@ which amounts to the assumption that,
 \textbf{\color{red}if clerical review fails to confirm correctness of $\widetilde{Y}^{(i)}$,
 then the conditional distribution of $Y^{(i)}$ (given $X^{(i)}$, $\widetilde{Y}^{(i)}$ and $M^{(i)}=0$)
 simply reverts back to that of the no-measurement-error scenario,
-namely $P\!\left(\,\left.Y^{(i)}=c\,\right\vert\,X^{(i)}=g\,\right)$}.
+namely $P\!\left(\,\left.Y^{(i)}=c\,\right\vert\,X^{(i)}=x\,\right)$}.
 \end{remark}
 
 \vskip 0.5cm
@@ -333,8 +336,8 @@ Suppose:
 	$\widetilde{Y}^{(1)}, \,\ldots\,,\, \widetilde{Y}^{(n)} : \Omega \longrightarrow \left\{0,1\right\}$
 	are binary random variables.
 \item
-	$X^{(1)}, \,\ldots\,,\, X^{(n)} : \Omega \longrightarrow \Re^{p}$
-	are $\Re^{p}$-valued random variables.
+	$X^{(1)}, \,\ldots\,,\, X^{(n)} : \Omega \longrightarrow \{0,1\}^{p}$
+	are ${\color{red}\{0,1\}^{p}}$-valued random variables.
 \item
 	$M^{(1)}, \,\ldots\,,\, M^{(n)} : \Omega \longrightarrow \left\{0,1\right\}$
 	are Bernoulli random variables.
@@ -351,32 +354,35 @@ Assume:
 	\begin{equation*}
 	%\pi_{i \vert x}
 	%\;\; := \;\;
-		P\!\left(\; Y^{(i)} = 1 \,\left\vert\, X^{(i)} = x \right.\right)
+		P\!\left(\; Y^{(i)} = 1 \,\left\vert\, X^{(i)} = x \right.\,\right)
 	\;\; = \;\;
-		E\!\left[\; Y^{(i)}  = 1 \,\left\vert\, X^{(i)} = x \right.\right]
+		E\!\left[\; Y^{(i)}  = 1 \,\left\vert\, X^{(i)} = x \right.\,\right]
 	\;\; = \;\;
 		\dfrac{
 			\exp\!\left(\,\beta^{T} \cdot x \,\right)
 			}{
 			1 \,+\, \exp\!\left(\,\beta^{T} \cdot x \,\right)
-			}\,,
+			}
+	\;\; = \;\;
+		\logisticBetaX\,,
 	\quad
 	\end{equation*}
-	for each $x \in \Re^{p}$ and for each \,$i = 1,2,\ldots,n$.
+	for each $x \in \{0,1\}^{p}$ and for each \,$i = 1,2,\ldots,n$.
 \item\label{iIndependence}
-	The $\left\{0,1\right\}^{3}$-valued random variables
-	\,$Z^{(i)} := \left(\,Y^{(i)},\widetilde{Y}^{(i)},M^{(i)}\,\right)$,
+	The $\left(\left\{0,1\right\} \overset{{\color{white}.}}{\times} \left\{0,1\right\}^{p} \times \left\{0,1\right\} \times \left\{0,1\right\}\right)$-valued
+	random variables
+	\,$Z^{(i)} := \left(\,Y^{(i)},X^{(i)},\widetilde{Y}^{(i)},M^{(i)}\,\right)$,
 	\,$i \in \{1, \ldots, n\}$,
-	\,are independent (but NOT necessarily identically distributed).
+	\,are independent and identically distributed.
 \item\label{Jindependence}
 	The Bernoulli random variables \,$J^{(i)}$, \,$i \in \{1, \ldots, n\}$, \,are independent and identically distributed.
 \item\label{ZJindependence}
-	The collections of random variables
+	The two collections of random variables
 	\,$\left\{\,Z^{(i)} := \left(\,Y^{(i)},X^{(i)},\widetilde{Y}^{(i)},M^{(i)}\right)\,\right\}_{i=1}^{n}$\,
 	and
 	\,$\left\{\,J^{(i)}\,\right\}_{i=1}^{n}$\,
 	are independent, in the sense that, for all
-	\,$z_{1}, \ldots, z_{n} \in \left\{0,1\right\}^{3}$\, and \,$j_{1}, \ldots, j_{n} \in \{0,1\}$,\,
+	\,$z_{1}, \ldots, z_{n} \in \left\{0,1\right\}^{p+3}$\, and \,$j_{1}, \ldots, j_{n} \in \{0,1\}$,\,
 	\begin{eqnarray*}
 	&&
 		P\!\left(\,Z^{(1)}=z_{1},\,\ldots\,,Z^{(n)}=z_{n},\;J^{(1)}=j_{1},\,\ldots\,,J^{(n)}=j_{n}\,\right)
@@ -387,11 +393,11 @@ Assume:
 		P\!\left(\,J^{(1)}=j_{1},\,\ldots\,,J^{(n)}=j_{n}\,\right)
 	\end{eqnarray*}
 \item\label{MzeroImplies}
-	For each $i\in\{1,2,\ldots,n\}$, we have:
+	For each \,$i\in\{1,2,\ldots,n\}$, \,$c\in\{0,1\}$, \,$x \in \{0,1\}^{p+3}$, and \,$y \in \{0,1\}$, \,we have:
 	\begin{equation*}
-	P\!\left(\left.Y^{(i)} = c\,\;\right\vert X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y,M^{(i)}=0\,\right)
+	P\!\left(\left.Y^{(i)} = c\,\;\right\vert X^{(i)}=x,\widetilde{Y}^{(i)}=y,M^{(i)}=0\,\right)
 	\;\; = \;\;
-	P\!\left(\;Y^{(i)} = c\;\left\vert\,X^{(i)}=x^{(i)}\right.\,\right)
+	P\!\left(\;Y^{(i)} = c\;\left\vert\,X^{(i)}=x\right.\,\right)\,.
 	\end{equation*}
 \item\label{MoneImpliesCEqualsY}
 	For each $i\in\{1,2,\ldots,n\}$, we have:
@@ -418,8 +424,8 @@ Assume:
 %\end{equation*}
 Define, for each
 \;$i \in \{1,2,\ldots,n\}$,
-\;$c,y \in \{1,\ldots,C\}$,
-\;$g \in \{1,\ldots,G\}$,
+\;$c,y \in \{0,1\}$,
+\;$x \in \{0,1\}^{p}$,
 \;and
 \;$m,j,k \in \{0,1\}$,
 \;the following:
@@ -435,21 +441,21 @@ Define, for each
 		2, & \textnormal{if}\;\; J^{(i)} = 1 \;\;\textnormal{and}\;\; M^{(i)} = 1
 		\end{array}\right.
 	\\
-	W^{(i)}_{c \vert yk}
+	W^{(i)}_{c \vert xyk}
 		&:=&
-		\overset{\textnormal{\large\color{white}1}}{I}\!\left\{\,Y^{(i)}=c,\widetilde{Y}^{(i)}=y,K^{(i)}=k\,\right\}\,,
+		\overset{\textnormal{\large\color{white}1}}{I}\!\left\{\,Y^{(i)}=c,X^{(i)}=x,\widetilde{Y}^{(i)}=y,K^{(i)}=k\,\right\}\,,
 	\\
-	\pi_{c \vert g}
+	\pi_{c \vert x}
 		&\overset{{\color{white}\vert}}{:=}&
-		P\!\left(\,\left.\overset{{\color{white}.}}{Y}=c\;\right\vert X=g\,\right)\,,
+		P\!\left(\,\left.\overset{{\color{white}.}}{Y}=c\;\right\vert X=x\,\right)\,,
 	\\
-	\mu_{m \vert gy}
+	\mu_{m \vert xy}
 		&\overset{{\color{white}\vert}}{:=}&
-		P\!\left(\,\left.\overset{{\color{white}.}}{M}=m\;\right\vert X=g, \widetilde{Y}=y\,\right)\,,
+		P\!\left(\,\left.\overset{{\color{white}.}}{M}=m\;\right\vert X=x, \widetilde{Y}=y\,\right)\,,
 	\\
-	\nu_{gy}
+	\nu_{xy}
 		&\overset{{\color{white}\vert}}{:=}&
-		P\!\left(\,\overset{{\color{white}.}}{X}=g, \widetilde{Y}=y\,\right)\,,
+		P\!\left(\,\overset{{\color{white}.}}{X}=x, \widetilde{Y}=y\,\right)\,,
 		\quad\textnormal{and}
 	\\
 	\omega_{j}
@@ -465,9 +471,9 @@ Define, for each
 		\end{array}\right.
 \end{array}
 \end{equation*}
-Note that the $K^{(i)}$'s and the $W^{(i)}_{c \vert gyk}$'s
+Note that the $K^{(i)}$'s and the $W^{(i)}_{c \vert xyk}$'s
 are categorical random variables defined on the underlying probability space $\Omega$,
-while $\pi_{c \vert g}$, $\mu_{m \vert gy}$, $\nu_{gy}$, $\omega_{j}$ are parameters,
+while $\pi_{c \vert x}$, $\mu_{m \vert xy}$, $\nu_{xy}$, $\omega_{j}$ are parameters,
 whose well-definition follows from the independence hypotheses
 \eqref{iIndependence}, \eqref{Jindependence} and \eqref{ZJindependence}.
 \vskip 0.3cm
@@ -477,6 +483,7 @@ Then, the following statements are true:
 \item
 	The logarithm of the joint probability distribution of
 	\;$Y^{(i)}$,\,
+	$X^{(i)}$,\,
 	$\widetilde{Y}^{(i)}$,\,
 	$K^{(i)}$,\,
 	for \;$i \in \{1,2,\ldots,n\}$,\;
@@ -487,52 +494,126 @@ Then, the following statements are true:
 		\log\,P\!\left(\;
 			\overset{n}{\underset{i=1}{\bigcap}}\;
 			\left\{
-				Y^{(i)}=c_{i},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}
+				Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}
 			\right\}
 		\;\right)
 	\\
 	&=&
 		{\color{white}+} \;\;
-		\overset{C}{\underset{c=1}{\sum}}\;\;
-		\overset{G}{\underset{g=1}{\sum}}\;\;
-		\overset{C}{\underset{y=1}{\sum}}\;
-		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
+		\overset{1}{\underset{c=0}{\sum}}\;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}\right)
 		\cdot
 		\left(\,
-			\log\left(\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}\right)
+			\log\left(\pi_{c \vert x}\,\mu_{0 \vert xy} + \delta_{cy}\,\mu_{1\vert xy}\right)
 			\,\overset{{\color{white}.}}{+}\,
-			\log\,\nu_{gy}
+			\log\,\nu_{xy}
 			\,\overset{{\color{white}.}}{+}\,
 			\log\,\omega_{0}
 		\,\right)
 	\\
 	&&
 		+ \;\;
-		\overset{C}{\underset{c=1}{\sum}}\;\;
-		\overset{G}{\underset{g=1}{\sum}}\;\;
-		\overset{C}{\underset{y=1}{\sum}}\;
-		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
+		\overset{1}{\underset{c=0}{\sum}}\;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}\right)
 		\cdot
 		\left(\,
-			\log\,\pi_{c \vert g}
+			\log\,\pi_{c \vert x}
 			\,\overset{{\color{white}.}}{+}\,
-			\log\,\mu_{0\vert gy}
+			\log\,\mu_{0\vert xy}
 			\,\overset{{\color{white}.}}{+}\,
-			\log\,\nu_{gy}
+			\log\,\nu_{xy}
 			\,\overset{{\color{white}.}}{+}\,
 			\log\,\omega_{1}
 		\,\right)
 	\\
 	&&
 		+ \;\;
-		\overset{C}{\underset{y=1}{\sum}}\;\;
-		\overset{G}{\underset{g=1}{\sum}}\;
-		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert gy{\color{red}2}}\right)
+		\overset{1}{\underset{y=0}{\sum}}\;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\,
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert xy{\color{red}2}}\right)
 		\cdot
 		\left(\,
-			\log\,\mu_{1 \vert gy}
+			\log\,\mu_{1 \vert xy}
 			\,\overset{{\color{white}.}}{+}\,
-			\log\,\nu_{gy}
+			\log\,\nu_{xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{1}
+		\,\right)
+	\\
+	&=&
+		{\color{white}+} \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}\right)
+		\cdot
+		\left(\,
+			\log\left(\logisticBetaX\cdot\mu_{0 \vert xy} + \delta_{cy}\,\mu_{1\vert xy}\right)
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{0}
+		\,\right)
+	\\
+	&&
+		+ \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}\right)
+		\cdot
+		\left(\,
+			\log\left(\oneMinusLogisticBetaX\cdot\mu_{0 \vert xy} + \delta_{cy}\,\mu_{1\vert xy}\right)
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{0}
+		\,\right)
+	\\
+	&&
+		+ \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}\right)
+		\cdot
+		\left(\,
+			\log\!\left(\logisticBetaX\right)
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\mu_{0\vert xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{1}
+		\,\right)
+	\\
+	&&
+		+ \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}\right)
+		\cdot
+		\left(\,
+			\log\!\left(\oneMinusLogisticBetaX\right)
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\mu_{0\vert xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{1}
+		\,\right)
+	\\
+	&&
+		+ \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert xy{\color{red}2}}\right)
+		\cdot
+		\left(\,
+			\log\,\mu_{1 \vert xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{xy}
 			\,\overset{{\color{white}.}}{+}\,
 			\log\,\omega_{1}
 		\,\right)
@@ -589,6 +670,7 @@ The joint probability distribution function of
 \,$Y^{(i)}$, $X^{(i)}$, $\widetilde{Y}^{(i)}$, $K^{(i)}$,
 \,for \,$i \in \{1,\ldots,n\}$,
 \,is given by:
+\begin{comment}
 \begin{eqnarray*}
 L &=&
 	P\!\left(\;
@@ -761,6 +843,7 @@ P\!\left(\,Y=y,X=x,\widetilde{Y}=y,K={\color{red}2}\,\right)
 	\cdot
 	\omega_{1} %P\!\left(\,J=1\,\right)
 \end{eqnarray*}
+\end{comment}
 
 \begin{eqnarray*}
 L &=&
@@ -778,104 +861,114 @@ L &=&
 &=&
 	\overset{n}{\underset{i=1}{\prod}} \;
 	\left\{\;
-		\overset{1}{\underset{c=0}{\prod}}\;\;
+		\overset{1}{\underset{c=0}{\prod}}
+		\,\;\underset{x\in\{0,1\}^{p}}{\prod}\;\,
 		\overset{1}{\underset{y=0}{\prod}}\;\;
 		\overset{2}{\underset{k=0}{\prod}}\;
-		P\!\left(\,Y=c,\widetilde{Y}=y,K=k\,\right)^{W^{(i)}_{c \vert yk}}
+		P\!\left(\,Y=c,X=x,\widetilde{Y}=y,K=k\,\right)^{W^{(i)}_{c \vert xyk}}
 	\;\right\}
 \\
 &=&
-	\overset{1}{\underset{c=0}{\prod}}\;\;
+	\overset{1}{\underset{c=0}{\prod}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\prod}\;\,
 	\overset{1}{\underset{y=0}{\prod}}\;\;
 	\overset{2}{\underset{k=0}{\prod}}\;
 	\left\{\;
 		\overset{n}{\underset{i=1}{\prod}} \;
-		P\!\left(\,Y=c,\widetilde{Y}=y,K=k\,\right)^{W^{(i)}_{c \vert yk}}
+		P\!\left(\,Y=c,X=x,\widetilde{Y}=y,K=k\,\right)^{W^{(i)}_{c \vert xyk}}
 	\;\right\}
 \\
 &=&
-	\overset{1}{\underset{c=0}{\prod}}\;\;
+	\overset{1}{\underset{c=0}{\prod}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\prod}\;\,
 	\overset{1}{\underset{y=0}{\prod}}\;\;
 	\overset{2}{\underset{k=0}{\prod}}\;
 	\left\{\;
-		P\!\left(\,Y=c,\widetilde{Y}=y,K=k\,\right)
-		^{\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert yk}}
+		P\!\left(\,Y=c,X=x,\widetilde{Y}=y,K=k\,\right)
+		^{\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert xyk}}
 	\;\right\}\,.
 \end{eqnarray*}
 The logarithm of this joint probability distribution function is thus:
 \begin{eqnarray*}
 \log\,L &=&
-	\overset{1}{\underset{c=0}{\sum}}\;\;
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
 	\overset{1}{\underset{y=0}{\sum}}\;\;
 	\overset{2}{\underset{k=0}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert yk}\right)
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xyk}\right)
 	\cdot
-	\log\,P\!\left(\,Y=c,\widetilde{Y}=y,K=k\,\right)
+	\log\,P\!\left(\,Y=c,X=x,\widetilde{Y}=y,K=k\,\right)
 \\
 &=&
-	\overset{1}{\underset{c=0}{\sum}}\;\;
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
 	\overset{1}{\underset{y=0}{\sum}}\;\;
 	\overset{2}{\underset{k=0}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert yk}\right)
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xyk}\right)
 	\cdot
 	\log\left[\,
-		P\!\left(\,Y=c\;\left\vert\;\widetilde{Y}=y,K=k\right.\,\right)
-		P\!\left(\,\widetilde{Y}=y,K=k\,\right)
+		P\!\left(\,Y=c\;\left\vert\;X=x,\widetilde{Y}=y,K=k\right.\,\right)
+		P\!\left(\,X=x,\widetilde{Y}=y,K=k\,\right)
 	\,\right]
 \\
 &=&
-	\overset{1}{\underset{c=0}{\sum}}\;\;
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
 	\overset{1}{\underset{y=0}{\sum}}\;\;
 	\overset{2}{\underset{k=0}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert yk}\right)
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xyk}\right)
 	\cdot
 	\log\left[\,
-		\pi_{c \vert yk} \overset{{\color{white}\vert}}{\cdot} p_{yk}
+		\pi_{c \vert xyk} \overset{{\color{white}\vert}}{\cdot} p_{xyk}
 	\,\right]
 \\
 &=&
 	{\color{white}+} \;\;
-	\overset{1}{\underset{c=0}{\sum}}\;\;
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
 	\overset{1}{\underset{y=0}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert y{\color{red}0}}\right)
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}\right)
 	\cdot
 	\log\left[\,
-		\pi_{c \vert y\color{red}0} \cdot p_{y\color{red}0}
+		\pi_{c \vert xy\color{red}0} \cdot p_{xy\color{red}0}
 	\,\right]
 \\
 &&
 	+ \;\;
-	\overset{1}{\underset{c=0}{\sum}}\;\;
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
 	\overset{1}{\underset{y=0}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert y{\color{red}1}}\right)
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}\right)
 	\cdot
 	\log\left[\,
-		\pi_{c \vert y\color{red}1} \cdot p_{y\color{red}1}
+		\pi_{c \vert xy\color{red}1} \cdot p_{xy\color{red}1}
 	\,\right]
 \\
 &&
 	+ \;\;
 	\overset{1}{\underset{y=0}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert y{\color{red}2}}\right)
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\,
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert xy{\color{red}2}}\right)
 	\cdot
 	\log\left[\,
-		\pi_{y \vert y\color{red}2} \cdot p_{y\color{red}2}
+		\pi_{y \vert xy\color{red}2} \cdot p_{xy\color{red}2}
 	\,\right]\,,
 \end{eqnarray*}
 where
-\;$\pi_{c \vert yk} \, := \, P\!\left(\,Y=c\;\left\vert\;\widetilde{Y}=y,K=k\right.\,\right)$,
-\;$p_{yk} \, := \, P\!\left(\,\widetilde{Y}=y,K=k\,\right)$,
+\;$\pi_{c \vert xyk} \, := \, P\!\left(\,Y=c\;\left\vert\;X=x,\widetilde{Y}=y,K=k\right.\,\right)$,
+\;$p_{xyk} \, := \, P\!\left(\,X=x,\widetilde{Y}=y,K=k\,\right)$,
 \;for
+\;$x \in \left\{0,1\right\}^{p}$,
 \;$y \in \left\{0,1\right\}$,
 \,$k \in \left\{0,1,2\right\}$.
 \;Note that the last equality above follows from
 \begin{eqnarray*}
-W^{(i)}_{c \vert y{\color{red}2}}
+W^{(i)}_{c \vert xy{\color{red}2}}
 &:=&
-	I\!\left\{\,Y^{(i)}=c,\widetilde{Y}^{(i)}=y,K^{(i)}={\color{red}2}\,\right\}
+	I\!\left\{\,Y^{(i)}=c,X^{(i)}=x,\widetilde{Y}^{(i)}=y,K^{(i)}={\color{red}2}\,\right\}
 \\
 &=&
-	I\!\left\{\,Y^{(i)}=c,\widetilde{Y}^{(i)}=y,J^{(i)}=1,M^{(i)}=1\,\right\}
+	I\!\left\{\,Y^{(i)}=c,X^{(i)}=x,\widetilde{Y}^{(i)}=y,J^{(i)}=1,M^{(i)}=1\,\right\}
 \\
 &=&
 	\left\{\begin{array}{cl}
@@ -888,101 +981,101 @@ which in turn follows from the definition of $K^{(i)}$ and
 the hypothesis \eqref{MoneImpliesCEqualsY}.
 Next, in order to establish the desired expression for the log likelihood,
 we derive expressions for
-\,$\pi_{c \vert y0}$,
-\,$\pi_{c \vert y1}$,
-\,$\pi_{c \vert y2}$,
-\,$p_{y0}$,
-\,$p_{y1}$,
+\,$\pi_{c \vert xy0}$,
+\,$\pi_{c \vert xy1}$,
+\,$\pi_{c \vert xy2}$,
+\,$p_{xy0}$,
+\,$p_{xy1}$,
 \,and
-\,$p_{y2}$,
+\,$p_{xy2}$,
 in terms of
-\,$\pi_{c}$,
-\,$\mu_{0 \vert y}$,
-\,$\mu_{1 \vert y}$,
-\,$\nu_{y}$,
+\,$\pi_{c \vert x}$,
+\,$\mu_{0 \vert xy}$,
+\,$\mu_{1 \vert xy}$,
+\,$\nu_{xy}$,
 \,$\omega_{0}$,
 \,and
 \,$\omega_{1}$.
 \begin{eqnarray*}
-\pi_{c \vert y0}
+\pi_{c \vert xy0}
 &=&
-	P\!\left(\;Y=c\;\left\vert\;\widetilde{Y}=y,K=0\right.\,\right)
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y,K=0\right.\,\right)
 \\
 &=&
-	P\!\left(\;Y=c\;\left\vert\;\widetilde{Y}=y,J=0\right.\,\right)
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y,J=0\right.\,\right)
 \\
 &=&
-	P\!\left(\;Y=c\;\left\vert\;\widetilde{Y}=y\right.\,\right),
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right),
 	\quad\quad
 	\textnormal{by \eqref{ZJindependence}}
 \\
 &=&
-	P\!\left(\;Y=c,M=0\;\left\vert\;\widetilde{Y}=y\right.\,\right)
+	P\!\left(\;Y=c,M=0\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right)
 	\;+\;
-	P\!\left(\;Y=c,M=1\;\left\vert\;\widetilde{Y}=y\right.\,\right)
+	P\!\left(\;Y=c,M=1\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right)
 \\
 &=&
 	{\color{white}+}\;\;
-	P\!\left(\;Y=c\;\left\vert\;M=0,\widetilde{Y}=y\right.\,\right)
+	P\!\left(\;Y=c\;\left\vert\;M=0,X=x,\widetilde{Y}=y\right.\,\right)
 	\cdot
-	P\!\left(\;M=0\;\left\vert\;\widetilde{Y}=y\right.\,\right)
+	P\!\left(\;M=0\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right)
 \\
 &&
 	+\;\;
-	P\!\left(\;Y=c\;\left\vert\;M=1,\widetilde{Y}=y\right.\,\right)
+	P\!\left(\;Y=c\;\left\vert\;M=1,X=x,\widetilde{Y}=y\right.\,\right)
 	\cdot
-	P\!\left(\;M=1\;\left\vert\;\widetilde{Y}=y\right.\,\right)
+	P\!\left(\;M=1\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right)
 \\
 &=&
-	P\!\left(\;Y\overset{{\color{white}-}}{=}c\;\right)
+	P\!\left(\;\left.Y\overset{{\color{white}-}}{=}c\;\right\vert X=x\;\right)
 	\cdot
-	\mu_{0 \vert y}
+	\mu_{0 \vert xy}
 	\;\;+\;\;
 	\delta_{cy}
 	\cdot
-	\mu_{1 \vert y}\,,
+	\mu_{1 \vert xy}\,,
 	\quad\;
-	\textnormal{by \,\eqref{MzeroImplies}, \eqref{MoneImpliesCEqualsY},\, and definition of \,$\mu_{m \vert y}$}
+	\textnormal{by \,\eqref{MzeroImplies}, \eqref{MoneImpliesCEqualsY},\, and definition of \,$\mu_{m \vert xy}$}
 \\
 &=&
-	\pi_{c \vert g}
+	\pi_{c \vert x}
 	\cdot
-	\mu_{0 \vert gy}
+	\mu_{0 \vert xy}
 	\;\;+\;\;
 	\delta_{cy}
 	\cdot
-	\mu_{1 \vert gy}\,,
+	\mu_{1 \vert xy}\,,
 	\quad\quad
-	\textnormal{by definition of \,$\pi_{c \vert g}$}
+	\textnormal{by definition of \,$\pi_{c \vert x}$}
 \end{eqnarray*}
 \begin{eqnarray*}
-\pi_{c \vert gy1}
+\pi_{c \vert xy1}
 &=&
-	P\!\left(\;Y=c\;\left\vert\;X=g,\widetilde{Y}=y,K=1\right.\,\right)
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y,K=1\right.\,\right)
 \;\;=\;\;
-	P\!\left(\;Y=c\;\left\vert\;X=g,\widetilde{Y}=y,J=1,M=0\right.\,\right)
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y,J=1,M=0\right.\,\right)
 \\
 &=&
-	P\!\left(\;Y=c\;\left\vert\;X=g,\widetilde{Y}=y,M=0\right.\,\right),
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y,M=0\right.\,\right),
 	\quad\quad
 	\textnormal{by \eqref{ZJindependence}}
 \\
 &=&
-	P\!\left(\;Y=c\;\left\vert\;X\overset{{\color{white}-}}{=}g\right.\,\right),
+	P\!\left(\;Y=c\;\left\vert\;X\overset{{\color{white}-}}{=}x\right.\,\right),
 	\quad\quad
 	\textnormal{by \,\eqref{MzeroImplies}}
 \\
 &=&
-	\pi_{c \vert g}\,,
+	\pi_{c \vert x}\,,
 	\quad\quad
-	\textnormal{by definition of \,$\pi_{c \vert g}$}
+	\textnormal{by definition of \,$\pi_{c \vert x}$}
 \end{eqnarray*}
 \begin{eqnarray*}
-\pi_{y \vert gy2}
+\pi_{y \vert xy2}
 &=&
-	P\!\left(\;Y=y\;\left\vert\;X=g,\widetilde{Y}=y,K=2\right.\,\right)
+	P\!\left(\;Y=y\;\left\vert\;X=x,\widetilde{Y}=y,K=2\right.\,\right)
 \;\;=\;\;
-	P\!\left(\;Y=y\;\left\vert\;X=g,\widetilde{Y}=y,J=1,M=1\right.\,\right)
+	P\!\left(\;Y=y\;\left\vert\;X=x,\widetilde{Y}=y,J=1,M=1\right.\,\right)
 \\
 &=&
 	1\,,
@@ -990,214 +1083,228 @@ in terms of
 	\textnormal{by \eqref{MoneImpliesCEqualsY}.}
 \end{eqnarray*}
 \begin{eqnarray*}
-p_{gy0}
+p_{xy0}
 &=&
-	P\!\left(\,X=g,\widetilde{Y}=y,K=0\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y,K=0\,\right)
 \;\;=\;\;
-	P\!\left(\,X=g,\widetilde{Y}=y,J=0\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y,J=0\,\right)
 \\
 &=&
-	P\!\left(\,X=g,\widetilde{Y}=y\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y\,\right)
 	\cdot
 	P\!\left(\,J=0\,\right)\,,
 	\quad\quad
 	\textnormal{by \eqref{ZJindependence}}
 \\
 &=&
-	\nu_{gy}
+	\nu_{xy}
 	\cdot
 	\omega_{0}\,,
 	\quad\quad
-	\textnormal{by definition of \,$\nu_{gy}$\, and \,$\omega_{0}$}
+	\textnormal{by definition of \,$\nu_{xy}$\, and \,$\omega_{0}$}
 \end{eqnarray*}
 \begin{eqnarray*}
-p_{gy1}
+p_{xy1}
 &=&
-	P\!\left(\,X=g,\widetilde{Y}=y,K=1\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y,K=1\,\right)
 \;\;=\;\;
-	P\!\left(\,X=g,\widetilde{Y}=y,J=1,M=0\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y,J=1,M=0\,\right)
 \\
 &=&
-	P\!\left(\,X=g,\widetilde{Y}=y,M=0\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y,M=0\,\right)
 	\cdot
 	P\!\left(\,J=1\,\right)\,,
 	\quad\quad
 	\textnormal{by \eqref{ZJindependence}}
 \\
 &=&
-	P\!\left(\,M=0\;\left\vert\;X=g,\widetilde{Y}=y\right.\,\right)
+	P\!\left(\,M=0\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right)
 	\cdot
-	P\!\left(\,X=g,\widetilde{Y}=y\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y\,\right)
 	\cdot
-	P\!\left(\,J=1\,\right)\,,
+	P\!\left(\,J=1\,\right)
 \\
 &=&
-	\mu_{0 \vert gy}
+	\mu_{0 \vert xy}
 	\cdot
-	\nu_{gy}
+	\nu_{xy}
 	\cdot
 	\omega_{1}\,,
 	\quad\quad
-	\textnormal{by definition of \,$\mu_{0 \vert gy}$, \,$\nu_{gy}$\, and \,$\omega_{1}$}
+	\textnormal{by definition of \,$\mu_{0 \vert xy}$, \,$\nu_{xy}$\, and \,$\omega_{1}$}
 \end{eqnarray*}
 \begin{eqnarray*}
-p_{gy2}
+p_{xy2}
 &=&
-	P\!\left(\,X=g,\widetilde{Y}=y,K=2\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y,K=2\,\right)
 \;\;=\;\;
-	P\!\left(\,X=g,\widetilde{Y}=y,J=1,M=1\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y,J=1,M=1\,\right)
 \\
 &=&
-	P\!\left(\,X=g,\widetilde{Y}=y,M=1\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y,M=1\,\right)
 	\cdot
 	P\!\left(\,J=1\,\right)\,,
 	\quad\quad
 	\textnormal{by \eqref{ZJindependence}}
 \\
 &=&
-	P\!\left(\,M=1\;\left\vert\;X=g,\widetilde{Y}=y\right.\,\right)
+	P\!\left(\,M=1\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right)
 	\cdot
-	P\!\left(\,X=g,\widetilde{Y}=y\,\right)
+	P\!\left(\,X=x,\widetilde{Y}=y\,\right)
 	\cdot
-	P\!\left(\,J=1\,\right)\,,
+	P\!\left(\,J=1\,\right)
 \\
 &=&
-	\mu_{1 \vert gy}
+	\mu_{1 \vert xy}
 	\cdot
-	\nu_{gy}
+	\nu_{xy}
 	\cdot
 	\omega_{1}\,,
 	\quad\quad
-	\textnormal{by definition of \,$\mu_{1 \vert gy}$, \,$\nu_{gy}$\, and \,$\omega_{1}$}
+	\textnormal{by definition of \,$\mu_{1 \vert xy}$, \,$\nu_{xy}$\, and \,$\omega_{1}$}
 \end{eqnarray*}
 Substituting the above expressions for
-\,$\pi_{c \vert gy0}$,
-\,$\pi_{c \vert gy1}$,
-\,$\pi_{c \vert gy2}$,
-\,$p_{gy0}$,
-\,$p_{gy1}$,
+\,$\pi_{c \vert xy0}$,
+\,$\pi_{c \vert xy1}$,
+\,$\pi_{c \vert xy2}$,
+\,$p_{xy0}$,
+\,$p_{xy1}$,
 \,and
-\,$p_{gy2}$
+\,$p_{xy2}$
 \,into that of the log likelihood yields
 \begin{eqnarray*}
 \log\,L
-%&=&
-%	{\color{white}+} \;\;
-%	\overset{C}{\underset{c=1}{\sum}}\;\;
-%	\overset{G}{\underset{g=1}{\sum}}\;\;
-%	\overset{C}{\underset{y=1}{\sum}}\;
-%	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
-%	\cdot
-%	\left(\,
-%		\log\,\pi_{c \vert gy\color{red}0} \,\overset{{\color{white}.}}{+}\, \log\,p_{gy\color{red}0}
-%	\,\right)
-%\\
-%&&
-%	+ \;\;
-%	\overset{C}{\underset{c=1}{\sum}}\;\;
-%	\overset{G}{\underset{g=1}{\sum}}\;\;
-%	\overset{C}{\underset{y=1}{\sum}}\;
-%	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
-%	\cdot
-%	\left(\,
-%		\log\,\pi_{c \vert gy\color{red}1} \,\overset{{\color{white}.}}{+}\, \log\,p_{gy\color{red}1}
-%	\,\right)
-%\\
-%&&
-%	+ \;\;
-%	\overset{C}{\underset{y=1}{\sum}}\;\;
-%	\overset{G}{\underset{g=1}{\sum}}\;
-%	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert gy{\color{red}2}}\right)
-%	\cdot
-%	\left(\,
-%		\log\,\pi_{y \vert gy\color{red}2} \,\overset{{\color{white}.}}{+}\, \log\,p_{gy\color{red}2}
-%	\,\right)
-%\\
 &=&
 	{\color{white}+} \;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
+	\overset{1}{\underset{c=0}{\sum}}
+	\;\,\underset{x\in\{0,1\}^{p}}{\sum}\;\,
+	\overset{1}{\underset{y=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}\right)
 	\cdot
 	\left(\,
-		\log\left(\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}\right)
+		\log\left(\pi_{c \vert x}\,\mu_{0 \vert xy} + \delta_{cy}\,\mu_{1\vert xy}\right)
 		\,\overset{{\color{white}.}}{+}\,
-		\log\left(\nu_{gy}\,\omega_{0}\right)
+		\log\left(\nu_{xy}\,\omega_{0}\right)
 	\,\right)
 \\
 &&
 	+ \;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
+	\overset{1}{\underset{c=0}{\sum}}
+	\;\,\underset{x\in\{0,1\}^{p}}{\sum}\;\,
+	\overset{1}{\underset{y=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}\right)
 	\cdot
 	\left(\,
-		\log\,\pi_{c \vert g}
+		\log\,\pi_{c \vert x}
 		\,\overset{{\color{white}.}}{+}\,
-		\log\left(\mu_{0\vert gy}\,\nu_{gy}\,\omega_{1}\right)
+		\log\left(\mu_{0\vert xy}\,\nu_{xy}\,\omega_{1}\right)
 	\,\right)
 \\
 &&
 	+ \;\;
-	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert gy{\color{red}2}}\right)
+	\overset{1}{\underset{y=0}{\sum}}
+	\;\,\underset{x\in\{0,1\}^{p}}{\sum}\,
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert xy{\color{red}2}}\right)
 	\cdot
 	\left(\,
 		\log\left(\,1\,\right)
 		\,\overset{{\color{white}.}}{+}\,
-		\log\left(\mu_{1 \vert gy}\,\nu_{gy}\,\omega_{1}\right)
+		\log\left(\mu_{1 \vert xy}\,\nu_{xy}\,\omega_{1}\right)
 	\,\right)
 \\
 &=&
 	{\color{white}+} \;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}\right)
+	\overset{1}{\underset{c=0}{\sum}}
+	\;\,\underset{x\in\{0,1\}^{p}}{\sum}\;\,
+	\overset{1}{\underset{y=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}\right)
 	\cdot
 	\left(\,
-		\log\left(\pi_{c \vert g}\,\mu_{0 \vert gy} + \delta_{cy}\,\mu_{1\vert gy}\right)
+		\log\left(\pi_{c \vert x}\,\mu_{0 \vert xy} + \delta_{cy}\,\mu_{1\vert xy}\right)
 		\,\overset{{\color{white}.}}{+}\,
-		\log\,\nu_{gy}
+		\log\,\nu_{xy}
 		\,\overset{{\color{white}.}}{+}\,
 		\log\,\omega_{0}
 	\,\right)
 \\
 &&
 	+ \;\;
-	\overset{C}{\underset{c=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\overset{C}{\underset{y=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}\right)
+	\overset{1}{\underset{c=0}{\sum}}
+	\;\,\underset{x\in\{0,1\}^{p}}{\sum}\;\,
+	\overset{1}{\underset{y=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}\right)
 	\cdot
 	\left(\,
-		\log\,\pi_{c \vert g}
+		\log\,\pi_{c \vert x}
 		\,\overset{{\color{white}.}}{+}\,
-		\log\,\mu_{0\vert gy}
+		\log\,\mu_{0\vert xy}
 		\,\overset{{\color{white}.}}{+}\,
-		\log\,\nu_{gy}
+		\log\,\nu_{xy}
 		\,\overset{{\color{white}.}}{+}\,
 		\log\,\omega_{1}
 	\,\right)
 \\
 &&
 	+ \;\;
-	\overset{C}{\underset{y=1}{\sum}}\;\;
-	\overset{G}{\underset{g=1}{\sum}}\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert gy{\color{red}2}}\right)
+	\overset{1}{\underset{y=0}{\sum}}
+	\;\,\underset{x\in\{0,1\}^{p}}{\sum}\,
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert xy{\color{red}2}}\right)
 	\cdot
 	\left(\,
-		\log\,\mu_{1 \vert gy}
+		\log\,\mu_{1 \vert xy}
 		\,\overset{{\color{white}.}}{+}\,
-		\log\,\nu_{gy}
+		\log\,\nu_{xy}
 		\,\overset{{\color{white}.}}{+}\,
 		\log\,\omega_{1}
-	\,\right)\,,
-	\quad
-	\textnormal{as desired.}
+	\,\right)
+\\
+&=&
+	{\color{white}+} \;\;
+	\overset{1}{\underset{c=0}{\sum}}\;\;
+	\underset{x\in\{0,1\}^{p}}{\sum}\;\;
+	\overset{1}{\underset{y=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}\right)
+	\cdot
+	\left(\,
+		\log\left(\logisticBetaX\cdot\mu_{0 \vert xy} + \delta_{cy}\,\mu_{1\vert xy}\right)
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{xy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{0}
+	\,\right)
+\\
+&&
+	+ \;\;
+	\overset{1}{\underset{c=0}{\sum}}\;\;
+	\underset{x\in\{0,1\}^{p}}{\sum}\;\;
+	\overset{1}{\underset{y=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}\right)
+	\cdot
+	\left(\,
+		\log\!\left(\logisticBetaX\right)
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\mu_{0\vert xy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{xy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{1}
+	\,\right)
+\\
+&&
+	+ \;\;
+	\overset{1}{\underset{y=0}{\sum}}\;\;
+	\underset{x\in\{0,1\}^{p}}{\sum}\,
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert xy{\color{red}2}}\right)
+	\cdot
+	\left(\,
+		\log\,\mu_{1 \vert xy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\nu_{xy}
+		\,\overset{{\color{white}.}}{+}\,
+		\log\,\omega_{1}
+	\,\right),
+\quad
+\textnormal{as desired.}
 \end{eqnarray*}
 \item
 	First, note that
