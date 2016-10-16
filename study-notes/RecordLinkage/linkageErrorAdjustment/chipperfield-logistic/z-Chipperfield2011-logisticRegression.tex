@@ -543,6 +543,81 @@ Then, the following statements are true:
 			\,\overset{{\color{white}.}}{+}\,
 			\log\,\omega_{1}
 		\,\right)
+	\\
+	&=&
+		{\color{white}+} \;\;
+		\left(\,\log\,\overset{{\color{white}+}}{\omega}_{0}\,\right)\cdot\overset{n}{\underset{i=1}{\sum}}\; I\!\left\{\,J^{(i)}=0\,\right\}
+		\;\; + \;\;
+		\left(\,\log\,\overset{{\color{white}+}}{\omega}_{1}\,\right)\cdot\overset{n}{\underset{i=1}{\sum}}\; I\!\left\{\,J^{(i)}=1\,\right\}
+	\\
+	&&
+		+ \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+			\left(\,\log\,\overset{{\color{white}+}}{\nu}_{xy}\,\right)
+			\cdot
+			\overset{n}{\underset{i=1}{\sum}}\; I\!\left\{\,X^{(i)}=,\widetilde{Y}^{(i)}=y\,\right\}
+	\\
+	&&
+		+ \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{1 \vert xy{\color{red}0}}\right)
+		\cdot
+		\log\left(\,
+			\logisticBetaX
+			\cdot
+			\mu_{0 \vert xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\delta_{1y}\,\mu_{1\vert xy}
+			\,\right)
+	\\
+	&&
+		+ \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{0 \vert xy{\color{red}0}}\right)
+		\cdot
+		\log\left(\,
+			\oneMinusLogisticBetaX
+			\cdot
+			\mu_{0 \vert xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\delta_{0y}\,\mu_{1\vert xy}
+			\,\right)
+	\\
+	&&
+		+ \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{1 \vert xy{\color{red}1}}\right)
+		\cdot
+		\log\!\left(\, \logisticBetaX \,\right)
+	\\
+	&&
+		+ \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{0 \vert xy{\color{red}1}}\right)
+		\cdot
+		\log\!\left(\, \oneMinusLogisticBetaX \,\right)
+	\\
+	&&
+		+ \;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left\{\;
+			\left(
+				\overset{1}{\underset{c=0}{\sum}}\;\;
+				\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}
+				\right)
+			\cdot
+			\left(\,\log\,\overset{{\color{white}+}}{\mu}_{0\vert xy}\,\right)
+			\;+\;
+			\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert xy{\color{red}2}}\right)
+			\cdot
+			\left(\,\log\,\overset{{\color{white}.}}{\mu}_{1 \vert xy}\,\right)
+		\;\right\}
 	\end{eqnarray*}
 \item
 	The conditional expectation values of
@@ -1283,9 +1358,7 @@ Further simplifying, we have
 	\overset{1}{\underset{y=0}{\sum}}\;\;
 	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{1 \vert xy{\color{red}1}}\right)
 	\cdot
-	\log\!\left(\,
-		\logisticBetaX %\overset{{\color{white}+}}{\pi}_{1 \vert x}
-		\,\right)
+	\log\!\left(\, \logisticBetaX \,\right)
 \\
 &&
 	+ \;\;
@@ -1293,9 +1366,7 @@ Further simplifying, we have
 	\overset{1}{\underset{y=0}{\sum}}\;\;
 	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{0 \vert xy{\color{red}1}}\right)
 	\cdot
-	\log\!\left(\,
-		\oneMinusLogisticBetaX %\overset{{\color{white}+}}{\pi}_{0 \vert x}
-		\,\right)
+	\log\!\left(\, \oneMinusLogisticBetaX \,\right)
 \\
 &&
 	+ \;\;
