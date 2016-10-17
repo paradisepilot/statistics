@@ -352,8 +352,6 @@ Assume:
 \item
 	There exists $\beta \in \Re^{p}$ such that
 	\begin{equation*}
-	%\pi_{i \vert x}
-	%\;\; := \;\;
 		P\!\left(\; Y^{(i)} = 1 \,\left\vert\, X^{(i)} = x \right.\,\right)
 	\;\; = \;\;
 		E\!\left[\; Y^{(i)}  = 1 \,\left\vert\, X^{(i)} = x \right.\,\right]
@@ -410,18 +408,6 @@ Assume:
 \end{enumerate}
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
-%Define, for each $i \in \{1,2,\ldots,n\}$, the random variable
-%\;$K^{(i)} \;:\; \Omega \; \longrightarrow \; \{0,1,2\}$\; by
-%\begin{equation*}
-%K^{(i)} \;\;=\;\;
-%	\left\{\begin{array}{cl}
-%	0, & \textnormal{if}\;\; J^{(i)} = 0,
-%	\\
-%	1, & \textnormal{if}\;\; J^{(i)} = 1 \;\;\textnormal{and}\;\; M^{(i)} = 0,
-%	\\
-%	2, & \textnormal{if}\;\; J^{(i)} = 1 \;\;\textnormal{and}\;\; M^{(i)} = 1
-%	\end{array}\right.
-%\end{equation*}
 Define, for each
 \;$i \in \{1,2,\ldots,n\}$,
 \;$c,y \in \{0,1\}$,
@@ -628,46 +614,46 @@ Then, the following statements are true:
 	\end{eqnarray*}
 \item
 	The conditional expectation values of
-	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert gy{\color{red}0}}$\,,
-	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert gy{\color{red}1}}$\,,
+	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert xy{\color{red}0}}$\,,
+	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert xy{\color{red}1}}$\,,
 	\;and
-	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert gy{\color{red}2}}$\,,
+	\;$\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert xy{\color{red}2}}$\,,
 	given $X^{(a)}$, $\widetilde{Y}^{(a)}$, $K^{(a)}$, for $a \in \{1,\ldots,n\}$,
 	with respect to the parameters
-	\;$\pi_{c \vert g}$\,, \,$\mu_{m \vert gy}$\,, \,$\nu_{gy}$\,, \,$\omega_{j}$\,,
+	\;$\pi_{c \vert x}$\,, \,$\mu_{m \vert xy}$\,, \,$\nu_{xy}$\,, \,$\omega_{j}$\,,
 	\;for
-	\;$c,y\in[\,C\,], \; g\in[\,G\,], \; m,j\in\{0,1\}$\,,
+	\;$c,y\in\{0,1\}, \; x\in\{0,1\}^{p}, \; m,j\in\{0,1\}$\,,
 	\;can be expressed as follows:
 	\begin{eqnarray*}
 	E\!\left[\;\,
 		\left.
-		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}0}}
+		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}
 		\,\;\right\vert
 		\EMConditions
 	\right]
 		&=&
-		N_{gy{\color{red}0}}\cdot\left(\,\pi_{c \vert g}\,\mu_{0 \vert gy} \,+\, \delta_{cy}\,\mu_{1 \vert gy}\,\right)\,,
+		N_{xy{\color{red}0}}\cdot\left(\,\pi_{c \vert x}\,\mu_{0 \vert xy} \,+\, \delta_{cy}\,\mu_{1 \vert xy}\,\right)\,,
 	\\ \\
 	E\!\left[\;\,
 		\left.
-		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}1}}
+		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}
 		\,\;\right\vert
 		\EMConditions
 	\right]
 		&=&
-		N_{gy{\color{red}1}}\cdot\pi_{c \vert g}\,,
+		N_{xy{\color{red}1}}\cdot\pi_{c \vert x}\,,
 	\\ \\
 	E\!\left[\;\,
 		\left.
-		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert gy{\color{red}2}}
+		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}2}}
 		\,\;\right\vert
 		\EMConditions
 	\right]
 		&=&
-		N_{gy{\color{red}2}}\,,
+		N_{xy{\color{red}2}}\,,
 	\end{eqnarray*}
-	where \;$N_{gy{\color{red}k}}$ $:=$
-	$\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{\,X^{(i)}=g,\,\widetilde{Y}^{(i)}=y,\,K^{(i)}={\color{red}k}\,\right\}$,
+	where \;$N_{xy{\color{red}k}}$ $:=$
+	$\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{\,X^{(i)}=x,\,\widetilde{Y}^{(i)}=y,\,K^{(i)}={\color{red}k}\,\right\}$,
 	for $k \in \{0,1,2\}$.
 \end{enumerate}
 \end{theorem}
@@ -1361,17 +1347,23 @@ Further simplifying, we have
 \\
 &&
 	+ \;\;
-	\underset{x\in\{0,1\}^{p}}{\sum}\;
-	\overset{1}{\underset{y=0}{\sum}}\;\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{1 \vert xy{\color{red}1}}\right)
+	\underset{x\in\{0,1\}^{p}}{\sum}
+	\left(\;
+		\overset{1}{\underset{y=0}{\sum}}\;\;
+		\overset{n}{\underset{i=1}{\sum}}\;
+		W^{(i)}_{1 \vert xy{\color{red}1}}
+		\;\right)
 	\cdot
 	\log\!\left(\, \logisticBetaX \,\right)
 \\
 &&
 	+ \;\;
-	\underset{x\in\{0,1\}^{p}}{\sum}\;
-	\overset{1}{\underset{y=0}{\sum}}\;\;
-	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{0 \vert xy{\color{red}1}}\right)
+	\underset{x\in\{0,1\}^{p}}{\sum}
+	\left(\;
+		\overset{1}{\underset{y=0}{\sum}}\;\;
+		\overset{n}{\underset{i=1}{\sum}}\;
+		W^{(i)}_{0 \vert xy{\color{red}1}}
+		\;\right)
 	\cdot
 	\log\!\left(\, \oneMinusLogisticBetaX \,\right)
 \\
@@ -1398,7 +1390,7 @@ Further simplifying, we have
 	&&
 		E\!\left[\;
 			\left.
-			W^{(i)}_{c \vert gy{\color{red}0}}
+			W^{(i)}_{c \vert xy{\color{red}0}}
 			\,\;\right\vert
 			\EMConditionsWithValues
 		\right]
@@ -1406,7 +1398,7 @@ Further simplifying, we have
 	&=&
 		E\!\left[\;
 			\left.
-			W^{(i)}_{c \vert gy{\color{red}0}}
+			W^{(i)}_{c \vert xy{\color{red}0}}
 			\,\;\right\vert
 			\ithEMConditionsWithValues
 		\right]\,,
@@ -1416,7 +1408,7 @@ Further simplifying, we have
 	&=&
 		P\!\left(\,
 			\left.
-			W^{(i)}_{c \vert gy{\color{red}0}} = 1
+			W^{(i)}_{c \vert xy{\color{red}0}} = 1
 			\,\;\right\vert
 			\ithEMConditionsWithValues
 		\right)
@@ -1424,14 +1416,14 @@ Further simplifying, we have
 	&=&
 		P\!\left(\,
 			\left.
-			Y^{(i)} = c, X^{(i)} = g, \widetilde{Y}^{(i)} = y, K^{(i)} = 0
+			Y^{(i)} = c, X^{(i)} = x, \widetilde{Y}^{(i)} = y, K^{(i)} = 0
 			\,\;\right\vert
 			\!\!
 			\ithEMConditionsWithValues
 		\!\!\right)
 	\\
 	&=&
-		I\!\left\{\,X^{(i)}\,=g , \widetilde{Y}^{(i)}=y , K^{(i)}\,=0\,\right\}
+		I\!\left\{\,X^{(i)}=x , \widetilde{Y}^{(i)}=y , K^{(i)}\,=0\,\right\}
 		\cdot
 		P\!\left(
 			\left.
@@ -1442,7 +1434,7 @@ Further simplifying, we have
 		\!\!\right)
 	\\
 	&=&
-		I^{(i)}_{gy0}
+		I^{(i)}_{xy0}
 		\cdot
 		P\!\left(
 			\left.
@@ -1450,14 +1442,14 @@ Further simplifying, we have
 			\,\;\right\vert
 			\!\!
 			\begin{array}{c}
-				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y,\, J^{(i)} = 0
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y,\, J^{(i)} = 0
 			\end{array}
 			\textnormal{\large;}
 			\modelParameters
 		\!\!\right)
 	\\
 	&=&
-		I^{(i)}_{gy0}
+		I^{(i)}_{xy0}
 		\cdot
 		P\!\left(
 			\left.
@@ -1465,7 +1457,7 @@ Further simplifying, we have
 			\,\;\right\vert
 			\!\!
 			\begin{array}{c}
-				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
 			\end{array}
 			\textnormal{\large;}
 			\;\;\cdots\;\;
@@ -1474,26 +1466,26 @@ Further simplifying, we have
 		\textnormal{by \eqref{ZJindependence} and suppressing parameters for brevity}
 	\\
 	&=&
-		I^{(i)}_{gy0}
+		I^{(i)}_{xy0}
 		\cdot
 		\left\{\;
 			P\!\left(\,
 				\left.
 				Y^{(i)} = c,\,M^{(i)}=0
 				\;\right\vert
-				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
 			\;\right)
 			\;+\;
 			P\!\left(\,
 				\left.
 				Y^{(i)} = c,\,M^{(i)}=1
 				\;\right\vert
-				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
 			\;\right)
 		\;\right\}
 	\\
 	&=&
-		I^{(i)}_{gy0}
+		I^{(i)}_{xy0}
 		\cdot
 		\left\{\;
 		\begin{array}{cc}
@@ -1502,14 +1494,14 @@ Further simplifying, we have
 				\left.
 				Y^{(i)} = c
 				\;\right\vert
-				M^{(i)}=0,\,X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+				M^{(i)}=0,\,X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
 			\;\right)
 			\cdot
 			P\!\left(\,
 				\left.
 				M^{(i)}=0
 				\;\right\vert
-				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
 			\;\right)
 		\\
 			\overset{\textnormal{\large{\color{white}1}}}{+}&
@@ -1517,40 +1509,40 @@ Further simplifying, we have
 				\left.
 				Y^{(i)} = c
 				\;\right\vert
-				M^{(i)}=1,\, X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+				M^{(i)}=1,\, X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
 			\;\right)
 			\cdot
 			P\!\left(\,
 				\left.
 				M^{(i)}=1
 				\;\right\vert
-				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
 			\;\right)
 		\end{array}
 		\;\right\}
 	\\
 	&=&
-		I^{(i)}_{gy0}
+		I^{(i)}_{xy0}
 		\cdot
 		\left(\;
-			\pi_{c \vert gy}
+			\pi_{c \vert xy}
 			\cdot
-			\mu_{0 \vert gy}
+			\mu_{0 \vert xy}
 			\;\overset{{\color{white}.}}{+}\;
 			\delta_{cy}
 			\cdot
-			\mu_{1 \vert gy}
+			\mu_{1 \vert xy}
 		\;\right)\,,
 		\quad
-		\textnormal{by \,\eqref{MzeroImplies}, \,\eqref{MoneImpliesCEqualsY}, and definition of \,$\mu_{m \vert gy}$}
+		\textnormal{by \,\eqref{MzeroImplies}, \,\eqref{MoneImpliesCEqualsY}, and definition of \,$\mu_{m \vert xy}$}
 	\end{eqnarray*}
-	where \,$I^{(i)}_{gy0} \,:=\, I\!\left\{\,X^{(i)}\,=g , \widetilde{Y}^{(i)}=y , K^{(i)}\,=0\,\right\}$.
+	where \,$I^{(i)}_{xy0} \,:=\, I\!\left\{\,X^{(i)}=x , \widetilde{Y}^{(i)}=y , K^{(i)}\,=0\,\right\}$.
 	Thus, we have:
 	\begin{eqnarray*}
 	&&
 		E\!\left[\;\;
 			\left.
-			\overset{n}{\underset{i=1}{\sum}} \; W^{(i)}_{c \vert gy{\color{red}0}}
+			\overset{n}{\underset{i=1}{\sum}} \; W^{(i)}_{c \vert xy{\color{red}0}}
 			\,\;\right\vert
 			\!\!
 			\EMConditionsWithValues
@@ -1560,7 +1552,7 @@ Further simplifying, we have
 		\overset{n}{\underset{i=1}{\sum}} \;\,
 		E\!\left[\;
 			\left.
-			W^{(i)}_{c \vert gy{\color{red}0}}
+			W^{(i)}_{c \vert xy{\color{red}0}}
 			\,\;\right\vert
 			\!\!
 			\EMConditionsWithValues
@@ -1568,52 +1560,52 @@ Further simplifying, we have
 	\\
 	&=&
 		\overset{n}{\underset{i=1}{\sum}} \;\,
-		I^{(i)}_{gy0}
+		I^{(i)}_{xy0}
 		\cdot
 		\left(\;
-			\pi_{c \vert gy}
+			\pi_{c \vert xy}
 			\cdot
-			\mu_{0 \vert gy}
+			\mu_{0 \vert xy}
 			\;\overset{{\color{white}.}}{+}\;
 			\delta_{cy}
 			\cdot
-			\mu_{1 \vert gy}
+			\mu_{1 \vert xy}
 		\;\right)
 	\\
 	&=&
 		\left(\;
-			\pi_{c \vert gy}
+			\pi_{c \vert xy}
 			\cdot
-			\mu_{0 \vert gy}
+			\mu_{0 \vert xy}
 			\;\overset{{\color{white}.}}{+}\;
 			\delta_{cy}
 			\cdot
-			\mu_{1 \vert gy}
+			\mu_{1 \vert xy}
 		\;\right)
 		\cdot
-		\left(\; \overset{n}{\underset{i=1}{\sum}} \; I^{(i)}_{gy0} \;\right)
+		\left(\; \overset{n}{\underset{i=1}{\sum}} \; I^{(i)}_{xy0} \;\right)
 	\\
 	&=&
-		N_{gy0}
+		N_{xy0}
 		\cdot
 		\left(\;
-			\pi_{c \vert gy}
+			\pi_{c \vert xy}
 			\cdot
-			\mu_{0 \vert gy}
+			\mu_{0 \vert xy}
 			\;\overset{{\color{white}.}}{+}\;
 			\delta_{cy}
 			\cdot
-			\mu_{1 \vert gy}
+			\mu_{1 \vert xy}
 		\;\right)\,,
 	\end{eqnarray*}
-	where \,$N_{gy0} \,:=\, \overset{n}{\underset{i=1}{\sum}} \, I^{(i)}_{gy0}$.
+	where \,$N_{xy0} \,:=\, \overset{n}{\underset{i=1}{\sum}} \, I^{(i)}_{xy0}$.
 	This establishes the desired expression for the first conditional expectations in question.
 	Next, note similarly that
 	\begin{eqnarray*}
 	&&
 		E\!\left[\;
 			\left.
-			W^{(i)}_{c \vert gy{\color{red}1}}
+			W^{(i)}_{c \vert xy{\color{red}1}}
 			\,\;\right\vert
 			\EMConditionsWithValues
 		\right]
@@ -1622,14 +1614,14 @@ Further simplifying, we have
 	&=&
 		P\!\left(\,
 			\left.
-			Y^{(i)} = c, X^{(i)} = g, \widetilde{Y}^{(i)} = y, K^{(i)} = {\color{red}1}
+			Y^{(i)} = c, X^{(i)} = x, \widetilde{Y}^{(i)} = y, K^{(i)} = {\color{red}1}
 			\,\;\right\vert
 			\!\!
 			\ithEMConditionsWithValues
 		\!\!\right)
 	\\
 	&=&
-		I\!\left\{\,X^{(i)}\,=g , \widetilde{Y}^{(i)}=y , K^{(i)}\,=1\,\right\}
+		I\!\left\{\,X^{(i)}=x , \widetilde{Y}^{(i)}=y , K^{(i)}\,=1\,\right\}
 		\cdot
 		P\!\left(
 			\left.
@@ -1640,7 +1632,7 @@ Further simplifying, we have
 		\!\!\right)
 	\\
 	&=&
-		I^{(i)}_{gy1}
+		I^{(i)}_{xy1}
 		\cdot
 		P\!\left(
 			\left.
@@ -1648,14 +1640,14 @@ Further simplifying, we have
 			\,\;\right\vert
 			\!\!
 			\begin{array}{c}
-				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y,\, J^{(i)} = 1,\, M^{(i)} = 0
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y,\, J^{(i)} = 1,\, M^{(i)} = 0
 			\end{array}
 			\textnormal{\large;}
 			\modelParameters
 		\!\!\right)
 	\\
 	&=&
-		I^{(i)}_{gy1}
+		I^{(i)}_{xy1}
 		\cdot
 		P\!\left(
 			\left.
@@ -1663,7 +1655,7 @@ Further simplifying, we have
 			\,\;\right\vert
 			\!\!
 			\begin{array}{c}
-				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y,\, M^{(i)} = 0
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y,\, M^{(i)} = 0
 			\end{array}
 			\textnormal{\large;}
 			\;\;\cdots\;\;
@@ -1672,26 +1664,26 @@ Further simplifying, we have
 		\textnormal{by \eqref{ZJindependence} and suppressing parameters for brevity}
 	\\
 	&=&
-		I^{(i)}_{gy1}
+		I^{(i)}_{xy1}
 		\cdot
 		P\!\left(\,
 			\left.
 			Y^{(i)} = c
 			\;\right\vert
-			X^{(i)} = g
+			X^{(i)} = x
 		\;\right)
 	\;\;=\;\;
-		I^{(i)}_{gy1} \cdot \pi_{c \vert g}\,,
+		I^{(i)}_{xy1} \cdot \pi_{c \vert x}\,,
 		\quad
-		\textnormal{by \,\eqref{MzeroImplies}, and definition of \,$\pi_{c \vert g}$}\,,
+		\textnormal{by \,\eqref{MzeroImplies}, and definition of \,$\pi_{c \vert x}$}\,,
 	\end{eqnarray*}
-	where \,$I^{(i)}_{gy1} \,:=\, I\!\left\{\,X^{(i)}\,=g , \widetilde{Y}^{(i)}=y , K^{(i)}\,=1\,\right\}$.
+	where \,$I^{(i)}_{xy1} \,:=\, I\!\left\{\,X^{(i)}=x , \widetilde{Y}^{(i)}=y , K^{(i)}\,=1\,\right\}$.
 	Thus, we have:
 	\begin{eqnarray*}
 	&&
 		E\!\left[\;\;
 			\left.
-			\overset{n}{\underset{i=1}{\sum}} \; W^{(i)}_{c \vert gy{\color{red}1}}
+			\overset{n}{\underset{i=1}{\sum}} \; W^{(i)}_{c \vert xy{\color{red}1}}
 			\,\;\right\vert
 			\!\!
 			\EMConditionsWithValues
@@ -1701,7 +1693,7 @@ Further simplifying, we have
 		\overset{n}{\underset{i=1}{\sum}} \;\,
 		E\!\left[\;
 			\left.
-			W^{(i)}_{c \vert gy{\color{red}1}}
+			W^{(i)}_{c \vert xy{\color{red}1}}
 			\,\;\right\vert
 			\!\!
 			\EMConditionsWithValues
@@ -1709,22 +1701,22 @@ Further simplifying, we have
 	\\
 	&=&
 		\overset{n}{\underset{i=1}{\sum}} \;
-		I^{(i)}_{gy1} \cdot \pi_{c \vert gy}
+		I^{(i)}_{xy1} \cdot \pi_{c \vert xy}
 	\;\; = \;\; 
-		\pi_{c \vert gy}
+		\pi_{c \vert xy}
 		\cdot
-		\left(\; \overset{n}{\underset{i=1}{\sum}} \; I^{(i)}_{gy1} \;\right)
+		\left(\; \overset{n}{\underset{i=1}{\sum}} \; I^{(i)}_{xy1} \;\right)
 	\\
 	&=&
-		N_{gy1} \cdot \pi_{c \vert gy}\,,
+		N_{xy1} \cdot \pi_{c \vert xy}\,,
 	\end{eqnarray*}
-	where \,$N_{gy1} \,:=\, \overset{n}{\underset{i=1}{\sum}} \, I^{(i)}_{gy1}$.
+	where \,$N_{xy1} \,:=\, \overset{n}{\underset{i=1}{\sum}} \, I^{(i)}_{xy1}$.
 	Lastly, note that
 	\begin{eqnarray*}
 	&&
 		E\!\left[\;
 			\left.
-			W^{(i)}_{y \vert gy{\color{red}2}}
+			W^{(i)}_{y \vert xy{\color{red}2}}
 			\,\;\right\vert
 			\EMConditionsWithValues
 		\right]
@@ -1733,14 +1725,14 @@ Further simplifying, we have
 	&=&
 		P\!\left(\,
 			\left.
-			Y^{(i)} = y, X^{(i)} = g, \widetilde{Y}^{(i)} = y, K^{(i)} = {\color{red}2}
+			Y^{(i)} = y, X^{(i)} = x, \widetilde{Y}^{(i)} = y, K^{(i)} = {\color{red}2}
 			\,\;\right\vert
 			\!\!
 			\ithEMConditionsWithValues
 		\!\!\right)
 	\\
 	&=&
-		I\!\left\{\,X^{(i)}\,=g , \widetilde{Y}^{(i)}=y , K^{(i)}\,=2\,\right\}
+		I\!\left\{\,X^{(i)}=x , \widetilde{Y}^{(i)}=y , K^{(i)}\,=2\,\right\}
 		\cdot
 		P\!\left(
 			\left.
@@ -1751,7 +1743,7 @@ Further simplifying, we have
 		\!\!\right)
 	\\
 	&=&
-		I^{(i)}_{gy2}
+		I^{(i)}_{xy2}
 		\cdot
 		P\!\left(
 			\left.
@@ -1759,14 +1751,14 @@ Further simplifying, we have
 			\,\;\right\vert
 			\!\!
 			\begin{array}{c}
-				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y,\, J^{(i)} = 1,\, M^{(i)} = 1
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y,\, J^{(i)} = 1,\, M^{(i)} = 1
 			\end{array}
 			\textnormal{\large;}
 			\modelParameters
 		\!\!\right)
 	\\
 	&=&
-		I^{(i)}_{gy2}
+		I^{(i)}_{xy2}
 		\cdot
 		P\!\left(
 			\left.
@@ -1774,7 +1766,7 @@ Further simplifying, we have
 			\,\;\right\vert
 			\!\!
 			\begin{array}{c}
-				X^{(i)} = g,\, \widetilde{Y}^{(i)} = y,\, M^{(i)} = 1
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y,\, M^{(i)} = 1
 			\end{array}
 			\textnormal{\large;}
 			\;\;\cdots\;\;
@@ -1783,19 +1775,19 @@ Further simplifying, we have
 		\textnormal{by \eqref{ZJindependence} and suppressing parameters for brevity}
 	\\
 	&=&
-		I^{(i)}_{gy2} \cdot 1
+		I^{(i)}_{xy2} \cdot 1
 		\;\; = \;\;
-		I^{(i)}_{gy2}\,,
+		I^{(i)}_{xy2}\,,
 		\quad
 		\textnormal{by \,\eqref{MoneImpliesCEqualsY}}\,,
 	\end{eqnarray*}
-	where \,$I^{(i)}_{gy2} \,:=\, I\!\left\{\,X^{(i)}\,=g , \widetilde{Y}^{(i)}=y , K^{(i)}\,=2\,\right\}$.
+	where \,$I^{(i)}_{xy2} \,:=\, I\!\left\{\,X^{(i)}=x , \widetilde{Y}^{(i)}=y , K^{(i)}\,=2\,\right\}$.
 	Thus, we have:
 	\begin{eqnarray*}
 	&&
 		E\!\left[\;\;
 			\left.
-			\overset{n}{\underset{i=1}{\sum}} \; W^{(i)}_{c \vert gy{\color{red}2}}
+			\overset{n}{\underset{i=1}{\sum}} \; W^{(i)}_{c \vert xy{\color{red}2}}
 			\,\;\right\vert
 			\!\!
 			\EMConditionsWithValues
@@ -1805,7 +1797,7 @@ Further simplifying, we have
 		\overset{n}{\underset{i=1}{\sum}} \;\,
 		E\!\left[\;
 			\left.
-			W^{(i)}_{c \vert gy{\color{red}2}}
+			W^{(i)}_{c \vert xy{\color{red}2}}
 			\,\;\right\vert
 			\!\!
 			\EMConditionsWithValues
@@ -1813,9 +1805,9 @@ Further simplifying, we have
 	\\
 	&=&
 		\overset{n}{\underset{i=1}{\sum}} \;
-		I^{(i)}_{gy2}
+		I^{(i)}_{xy2}
 	\;\; =: \;\; 
-		N_{gy2}\,.
+		N_{xy2}\,.
 	\end{eqnarray*}
 \end{enumerate}
 This completes the proof of the Theorem. \qed
