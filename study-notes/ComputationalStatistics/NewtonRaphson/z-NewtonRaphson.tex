@@ -1,0 +1,179 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The Newton-Raphson Method}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Theorem 1.4.1, p.90, \cite{Bertsekas1999}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\Omega \subset \Re^{n}$ is open subset of $\Re^{n}$, where $n \in \N$.
+\item
+	$g : \Omega \longrightarrow \Re$ is a continuously differentiable $\Re$-valued function
+	defined on $\Omega$.
+\item
+	$x^{\star} \in \Omega$ such that $g(x^{\star}) = 0$ and
+	$\nabla g(x^{\star}) \in \Re^{n \times n}$ is a non-singular matrix,
+	where $\nabla g : \Omega \longrightarrow \Re^{n \times n}$ is component-wise given by:
+	\begin{equation*}
+	(\,\nabla g\,)_{ij}
+	\;\; = \;\;
+		\dfrac{\partial\,g_{i}}{\partial\,x_{j}}
+	\end{equation*}
+\item
+	For each $y \in \Re^{n}$ and \,$\varepsilon > 0$, define
+	\begin{equation*}
+	B_{\varepsilon}(y)
+	\; := \;
+		\left\{\;\left.
+		\zeta \overset{{\color{white}+}}{\in} \Re^{n}
+		\;\;\right\vert\;\;
+		\Vert\,\zeta - y\,\Vert \,<\, \varepsilon
+		\;\right\}
+	\quad\textnormal{and}\quad
+	\overline{B}_{\varepsilon}(y)
+	\; := \;
+		\left\{\;\left.
+		\zeta \overset{{\color{white}+}}{\in} \Re^{n}
+		\;\;\right\vert\;\;
+		\Vert\,\zeta - y\,\Vert \,\leq\, \varepsilon
+		\;\right\}\,.
+	\end{equation*}
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	There exists $\delta > 0$ such that $\overline{B}_{\delta}(x^{\star}) \subset \Omega$ and,
+	for each $x^{0} \in \overline{B}_{\delta}(x^{\star})$, the sequence $\{\,x^{k}\,\}_{k=0}^{\infty}$
+	defined iteratively by
+	\begin{equation*}
+	x^{k+1}
+	\;\; := \;\;
+		x^{k} \;-\; \left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}\cdot g(x^{k})\,,
+	\quad
+	\textnormal{for \,$k = 0, 1, 2, \ldots$}
+	\end{equation*}
+	satisfies the following properties:
+	\begin{itemize}
+	\item
+		$x^{k} \in \overline{B}_{\delta}(x^{\star})$, for each $k \in \N$,
+	\item
+		$\underset{k\rightarrow\infty}{\lim} \left\Vert\,x^{k}\,-\,x^{\star}\,\right\Vert \, = \, 0$, and
+		the convergence is superlinear.
+	\end{itemize}
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	\textbf{Claim 1:}\quad
+	There exist $\delta > 0$ and $M > 0$ such that
+	\begin{equation*}
+	\underset{x\,\in\,\overline{B}_{\delta}(x^{\star})}{\sup}\,
+	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
+	\;\; \leq \;\; M\,.
+	\end{equation*}
+	Proof of Claim 1:\quad
+	By the openness of $\Omega$, the continuity of $\nabla g$ and
+	the non-singularity of $\nabla g(x^{\star}) \in \Re^{n \times n}$,
+	we may choose $\varepsilon > 0$ such that $B_{\varepsilon}(x^{\star}) \subset \Omega$
+	and $\nabla g(x)$ is non-singular for each $x \in B_{\varepsilon}(x^{\star})$.
+	Next, choose $\delta > 0$ such that $0 < \delta < \varepsilon$.
+	By compactness of $\overline{B}_{\delta}(x^{\star})$ and continuity of
+	$(\,\nabla g\,)^{-1}$ on $\overline{B}_{\delta}(x^{\star})$, we have
+	\begin{equation*}
+	\underset{x\,\in\,\overline{B}_{\delta}(x^{\star})}{\sup}\,
+	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
+	\;\; < \;\; \infty\,.
+	\end{equation*}
+	Hence, there exists $M > 0$ such that
+	\begin{equation*}
+	\underset{x\,\in\,\overline{B}_{\delta}(x^{\star})}{\sup}\,
+	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
+	\;\; \leq \;\; M\,.
+	\end{equation*}
+	This proves Claim 1.
+	
+	\vskip 0.3cm
+	\noindent
+	\textbf{Claim 2:}\quad
+	For each $x \in \overline{B}_{\delta}(x^{\star})$, we have
+	\begin{equation*}
+	g(x)
+	\;\; = \;\;
+		\left(\;
+			\int_{0}^{1}
+			\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right)
+			\,\d t
+		\;\right)
+		\cdot
+		(x - x^{\star})\,.
+	\end{equation*}	
+	Proof of Claim 2:\quad
+	Define $H : [0,1] \longrightarrow \Re^{n}$ by
+	\begin{equation*}
+	H(t) \;\; := \;\; g\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right),
+	\quad
+	\textnormal{for \,$t \in [0,1]$}\,.
+	\end{equation*}
+	Then, $H(0) = g(x^{\star}) = 0$, $H(1) = g(x)$,
+	$H(t)$ is continuously differentiable with respect to $t \in [0,1]$, and
+	\begin{equation*}
+	H^{\prime}(t) \;\; := \;\; \left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right) \cdot (x - x^{\star})\,.
+	\end{equation*}
+	By the Fundamental Theorem of Calculus, we have
+	\begin{eqnarray*}
+	g(x)
+	& = &
+		H(1) \;\; = \;\; H(1) \,-\, 0 \;\; = \;\; H(1) \,-\, H(0)
+	\;\; = \;\;
+		\int_{0}^{1} H^{\prime}(t) \,\d t
+	\\
+	& = &
+		\int_{0}^{1}\;
+			\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right) \cdot (x - x^{\star})
+			\,\d t
+	\\
+	& = &
+		\left(\;\int_{0}^{1}
+			\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right) 
+			\;\d t
+			\;\right)
+		\cdot (x - x^{\star}).
+	\end{eqnarray*}
+	This proves Claim 2.
+	
+	\vskip 0.3cm
+	\noindent
+	Now, observe that:
+	\begin{eqnarray*}
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	&=&
+		\left\Vert\;x^{k} \,-\, \left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}\cdot g(x^{k}) \,-\, x^{\star}\;\right\Vert\,,
+		\quad
+		\textnormal{by definition of $x^{k+1}$}
+	\end{eqnarray*}
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
