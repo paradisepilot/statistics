@@ -12,6 +12,55 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{definition}[Exponential family, Definition 2.2, p.96, \cite{Shao2003}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\nu)$ is a measurable space, where $\nu$ is a $\sigma$-finite measure.
+\item
+	$\left\{\,P_{\theta}\,\right\}_{\theta \in \Theta}$ is a family, indexed by the nonempty set $\Theta$,
+	of probability measures defined on $(\Omega,\mathcal{A})$ such that
+	$P_{\theta}$ is absolutely continuous with respect to $\nu$, for each $\theta \in \Theta$.
+	Hence, the probability density function
+	\begin{equation*}
+	\dfrac{\d P_{\theta}}{\d\,\nu} \; : \; \Omega \; \longrightarrow \; [0,\infty)
+	\end{equation*}
+	of $P_{\theta}$ with respect to $\nu$ exists, for each $\theta \in \Theta$.
+\end{itemize}
+Then, the family $\left\{\,P_{\theta}\,\right\}_{\theta \in \Theta}$ is called an \textbf{exponential family} if
+there exist
+\begin{itemize}
+\item
+	an $\Re^{p}$-valued function $\eta : \Theta \longrightarrow \Re^{p}$\,,
+\item
+	a measurable $\Re^{p}$-valued function $X : (\Omega,\mathcal{A}) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$\,, and
+\item
+	a non-negative Borel function $h : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O}(\Re))$
+\end{itemize}
+such that
+\begin{equation*}
+\dfrac{\d P_{\theta}}{\d\,\nu}(\omega)
+\;\; = \;\;
+	\exp\!\left\{\; \eta(\theta)^{T} \cdot X(\omega) \,\overset{{\color{white}.}}{-}\, \xi(\theta) \;\right\}
+	\cdot
+ 	h(\omega)\,,
+	\quad
+	\textnormal{for each \,$\omega\in\Omega$}\,,
+\end{equation*}
+where
+\begin{equation*}
+\xi(\theta)
+\;\; := \;\;
+	\log\left\{\;
+		\int_{\Omega}\,
+			\exp\!\left(\,\eta(\theta)^{T} \cdot X(\omega)\,\right) \cdot h(\omega)
+		\,\d\nu(\omega)
+	\;\right\}\,.
+\end{equation*}
+\end{definition}
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
