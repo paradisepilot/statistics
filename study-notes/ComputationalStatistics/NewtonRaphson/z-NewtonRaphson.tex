@@ -53,7 +53,7 @@ Suppose:
 \end{itemize}
 Then, the following statements hold:
 \begin{enumerate}
-\item
+\item\label{NewtonRaphsonGeometricConvergence}
 	Given any $\beta \in (0,1)$,
 	there exists $\delta > 0$ such that $\overline{B}_{\delta}(x^{\star}) \subset \Omega$ and,
 	for each $x^{0} \in \overline{B}_{\delta}(x^{\star})$, the sequence $\{\,x^{k}\,\}_{k=0}^{\infty}$
@@ -74,7 +74,7 @@ Then, the following statements hold:
 		for each $k = 0,1,2,\ldots$\,.
 	\end{itemize}
 \item
-	There exist $\delta > 0$ and $\beta \in (0,1)$
+	There exist $\delta > 0$ and $\gamma > 0$
 	such that $\overline{B}_{\delta}(x^{\star}) \subset \Omega$ and,
 	for each $x^{0} \in \overline{B}_{\delta}(x^{\star})$, the sequence $\{\,x^{k}\,\}_{k=0}^{\infty}$
 	defined iteratively by
@@ -90,7 +90,9 @@ Then, the following statements hold:
 	\item
 		$x^{k} \in \overline{B}_{\delta}(x^{\star})$, for each $k \in \N$,
 	\item
-		$\left\Vert\,x^{k+1}\,-\,x^{\star}\right\Vert \, \leq \, \beta \cdot \left\Vert\,x^{k}\,-\,x^{\star}\right\Vert^{2}$\,,
+		$\underset{k\rightarrow\infty}{\lim}\,\left\Vert\,x^{k} - x^{\star}\,\right\Vert \,=\, 0$\,, and
+	\item
+		$\left\Vert\,x^{k+1}\,-\,x^{\star}\right\Vert \, \leq \, \gamma \cdot \left\Vert\,x^{k}\,-\,x^{\star}\right\Vert^{2}$\,,
 		for each $k = 0,1,2,\ldots$\,.
 	\end{itemize}
 \end{enumerate}
@@ -176,24 +178,29 @@ Then, the following statements hold:
 		\cdot (x - x^{\star})\,.
 	\end{eqnarray*}
 	This proves Claim 2.
-	
+
 	\vskip 0.3cm
 	\noindent
-	Now, by the continuity of $\nabla g$, we may choose $\delta \in (0,\varepsilon)$ such that
+	\textbf{Claim 3:}\quad
+	If $x^{k} \in \overline{B}_{\varepsilon}(x^{\star})$, for each $k = 0,1,2,\ldots$\,,
+	then we have
 	\begin{equation*}
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	\;\; \leq \;\;
+		M \cdot\,
 		\left\Vert\;
 			\int_{0}^{1}
 			\left[\;
-				\overset{{\color{white}.}}{\nabla} g(\xi) \,-\, \nabla g(\zeta)
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
 			\;\right]
 			\d t
 		\;\right\Vert
-		\;\; < \;\; \dfrac{\beta}{M}\,,
-		\quad
-		\textnormal{for each \,$\xi, \, \zeta \in \overline{B}_{\delta}(x^{\star})$}\,.
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,.
 	\end{equation*}
-	With this choice of $\delta > 0$, we now see that,
-	whenever $x^{0} \in \overline{B}_{\delta}(x^{\star})$, we have, for each $k = 0, 1, 2, \ldots$\,,
+	Proof of Claim 3: \quad
 	\begin{eqnarray*}
 	&&
 		\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
@@ -263,19 +270,29 @@ Then, the following statements hold:
 		\cdot
 		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
 		\quad
-		\textnormal{by Claim 1}
-	\\
-	&\leq&
-		\beta \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
-		\quad
-		\textnormal{by choice of $\delta > 0$}\,.
+		\textnormal{by Claim 1}\,.
 	\end{eqnarray*}
-\item
-	Choose $\beta \in (0,1)$ arbitrarily.
+	This proves Claim 3.
+
+	\vskip 0.3cm
+	\noindent
+	Now, by the continuity of $\nabla g$, we may choose $\delta \in (0,\varepsilon)$ such that
+	\begin{equation*}
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(\xi) \,-\, \nabla g(\zeta)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\;\; < \;\; \dfrac{\beta}{M}\,,
+		\quad
+		\textnormal{for each \,$\xi, \, \zeta \in \overline{B}_{\delta}(x^{\star})$}\,.
+	\end{equation*}
+	With this choice of $\delta > 0$, we now see that,
+	whenever $x^{0} \in \overline{B}_{\delta}(x^{\star})$, we have, for each $k = 0, 1, 2, \ldots$\,,
 	\begin{eqnarray*}
-	&&
-		\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
-	\\
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
 	&\leq&
 		M \cdot\,
 		\left\Vert\;
@@ -290,14 +307,144 @@ Then, the following statements hold:
 		\cdot
 		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
 		\quad
-		\textnormal{by Claim 1}
+		\textnormal{by Claim 3}
 	\\
 	&\leq&
 		\beta \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
 		\quad
 		\textnormal{by choice of $\delta > 0$}\,.
 	\end{eqnarray*}
+	This completes the proof of \eqref{NewtonRaphsonGeometricConvergence}.
+\item
+	Let $\varepsilon > 0$ and $M > 0$ be as in Claim 1 and Claim 3
+	in the proof of \eqref{NewtonRaphsonGeometricConvergence},
+	i.e. $\varepsilon$ and $M$ satisfy $\overline{B}_{\varepsilon}(x^{\star}) \subset \Omega$,
+	\begin{equation*}
+	\underset{x\,\in\,\overline{B}_{\varepsilon}(x^{\star})}{\sup}\,
+	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
+	\;\; \leq \;\; M\,,
+	\end{equation*}
+	and, if $x^{k} \in \overline{B}_{\varepsilon}(x^{\star})$,
+	for each $k = 0, 1, 2, \ldots$\,, then
+	\begin{equation*}
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	\;\; \leq \;\;
+		M \cdot\,
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,.
+	\end{equation*}
+	On the other hand, by compactness of $\overline{B}_{\varepsilon}(x^{\star})$ and
+	continuity of $\nabla g$ thereon, there exists $L > 0$ such that
+	\begin{equation*}
+	\left\Vert\; \nabla g(\xi) \,\overset{{\color{white}.}}{-}\, \nabla g(\zeta)\;\right\Vert
+	\;\; \leq \;\;
+		L \cdot \left\Vert\; \xi \,-\, \zeta \;\right\Vert\,,
+	\quad
+	\textnormal{for each \,$\xi,\,\zeta \in \overline{B}_{\varepsilon}(x^{\star})$}\,.
+	\end{equation*}
+	Now, let $\gamma := LM/2$ and choose $\delta \in (0,\varepsilon)$ such that
+	\begin{equation*}
+	\gamma \cdot \delta \;\; = \;\; \dfrac{LM\cdot\delta}{2} \;\; < \;\; 1\,.
+	\end{equation*}
+	Then, whenever $x^{0} \in \overline{B}_{\delta}(x^{\star})$, we have
+	by Claim 3 above in the proof of \eqref{NewtonRaphsonGeometricConvergence},
+	\begin{eqnarray*}
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	&\leq&
+		M \cdot\,
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\quad
+		\textnormal{by Claim 3}
+	\\
+	&\leq&
+		M \cdot\,
+		\left(\;\int_{0}^{1}\,
+			\left\Vert\,
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\,\right\Vert
+		\,\d t\;\right)
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert
+	\\
+	&\leq&
+		M \cdot\,
+		\left(\;\int_{0}^{1}\,
+			L \cdot
+			\left\Vert\,
+				x^{k} \,\overset{{\color{white}.}}{-}\, x^{\star} - t\cdot(x^{k}-x^{\star})
+			\,\right\Vert
+		\,\d t\;\right)
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert
+	\\
+	&=&
+		L M \cdot
+		\left(\;\int_{0}^{1}\,	
+			(1-t)\cdot
+			\left\Vert\;
+				x^{k} \,\overset{{\color{white}.}}{-}\, x^{\star}
+			\,\right\Vert
+		\,\d t\;\right)
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert
+	\\
+	&=&
+		L M \cdot
+		\left(\;\int_{0}^{1}\,(1-t)\,\d t\;\right)
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert^{2}
+	\;\; = \;\;
+		L M \cdot
+		\left(\;\left[\;t - \dfrac{t^{2}}{2}\;\right]_{0}^{1}\;\right)
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert^{2}
+	\\
+	&=&
+		\dfrac{L M}{2}
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert^{2}
+	\;\; = \;\;
+		\gamma \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert^{2}
+	\\
+	&\leq&
+		\gamma \cdot \delta
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		{\color{white}\dfrac{LM}{2}}
+	\end{eqnarray*}
+	for each $k = 0,1,2,\ldots$
+	This in turn implies that we indeed have
+	$\underset{k\rightarrow\infty}{\lim}\,\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert \;=\; 0$\,,
+	and
+	\begin{equation*}
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert \;\; \leq \;\; \gamma \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert^{2}\,,
+	\quad
+	\textnormal{for each \,$k = 0, 1, 2, \ldots$}\,,
+	\end{equation*}
+	as desired.
 \end{enumerate}
+This completes the proof of the present Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
