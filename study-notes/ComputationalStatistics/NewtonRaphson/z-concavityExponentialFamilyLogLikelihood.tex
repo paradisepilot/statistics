@@ -40,25 +40,41 @@ there exist
 	a non-negative Borel function $h : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O}(\Re))$
 \end{itemize}
 such that
-\begin{equation*}
-\dfrac{\d P_{\theta}}{\d\,\nu}(\omega)
-\;\; = \;\;
-	\exp\!\left\{\; \eta(\theta)^{T} \cdot X(\omega) \,\overset{{\color{white}.}}{-}\, \xi(\theta) \;\right\}
-	\cdot
- 	h(\omega)\,,
-	\quad
-	\textnormal{for each \,$\omega\in\Omega$}\,,
-\end{equation*}
-where
-\begin{equation*}
-\xi(\theta)
-\;\; := \;\;
-	\log\left\{\;
+\begin{enumerate}
+\item
+	\begin{equation*}
+	0 \;\; < \;\;
 		\int_{\Omega}\,
-			\exp\!\left(\,\eta(\theta)^{T} \cdot X(\omega)\,\right) \cdot h(\omega)
-		\,\d\nu(\omega)
-	\;\right\}\,.
-\end{equation*}
+			\exp\!\left(\,\eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega)\,\right) \cdot h(\omega)
+		\;\d\nu(\omega)
+	\;\; < \;\; \infty\,,
+	\quad
+	\textnormal{for each \,$\theta \in \Theta$, and}
+	\end{equation*}
+\item
+	\begin{equation*}
+	\dfrac{\d P_{\theta}}{\d\,\nu}(\omega)
+	\;\; = \;\;
+		c(\theta)
+		\cdot
+		h(\omega)
+		\cdot
+		\exp\left\{\; \eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega) \;\right\}
+		\,,
+		\quad
+		\textnormal{for each \,$\omega\in\Omega$}\,,
+	\end{equation*}
+	where the function $c : \Theta \longrightarrow \Re$ is defined by
+	\begin{equation*}
+	c(\theta)
+	\;\; := \;\;
+		\left(\;
+			\int_{\Omega}\,
+				\exp\!\left(\,\eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega)\,\right) \cdot h(\omega)
+			\;\d\nu(\omega)
+		\;\right)^{-1}\,.
+	\end{equation*}
+\end{enumerate}
 \end{definition}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
