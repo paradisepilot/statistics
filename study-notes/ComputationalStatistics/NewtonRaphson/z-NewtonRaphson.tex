@@ -78,28 +78,29 @@ Then, the following statements hold:
 \begin{enumerate}
 \item
 	\textbf{Claim 1:}\quad
-	There exist $\delta > 0$ and $M > 0$ such that
+	There exist $\varepsilon > 0$ and $M > 0$ such that
 	\begin{equation*}
-	\underset{x\,\in\,\overline{B}_{\delta}(x^{\star})}{\sup}\,
+	\underset{x\,\in\,\overline{B}_{\varepsilon}(x^{\star})}{\sup}\,
 	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
 	\;\; \leq \;\; M\,.
 	\end{equation*}
 	Proof of Claim 1:\quad
 	By the openness of $\Omega$, the continuity of $\nabla g$ and
 	the non-singularity of $\nabla g(x^{\star}) \in \Re^{n \times n}$,
-	we may choose $\varepsilon > 0$ such that $B_{\varepsilon}(x^{\star}) \subset \Omega$
-	and $\nabla g(x)$ is non-singular for each $x \in B_{\varepsilon}(x^{\star})$.
-	Next, choose $\delta > 0$ such that $0 < \delta < \varepsilon$.
-	By compactness of $\overline{B}_{\delta}(x^{\star})$ and continuity of
-	$(\,\nabla g\,)^{-1}$ on $\overline{B}_{\delta}(x^{\star})$, we have
+	we may choose $\varepsilon_{1} > 0$ such that
+	$B_{\varepsilon_{1}}\!(x^{\star}) \subset \Omega$
+	and $\nabla g(x)$ is non-singular for each $x \in B_{\varepsilon_{1}}\!(x^{\star})$.
+	Next, choose $\varepsilon > 0$ such that $0 < \varepsilon < \varepsilon_{1}$.
+	By compactness of $\overline{B}_{\varepsilon}(x^{\star})$ and continuity of
+	$(\,\nabla g\,)^{-1}$ on $\overline{B}_{\varepsilon}(x^{\star})$, we have
 	\begin{equation*}
-	\underset{x\,\in\,\overline{B}_{\delta}(x^{\star})}{\sup}\,
+	\underset{x\,\in\,\overline{B}_{\varepsilon}(x^{\star})}{\sup}\,
 	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
 	\;\; < \;\; \infty\,.
 	\end{equation*}
 	Hence, there exists $M > 0$ such that
 	\begin{equation*}
-	\underset{x\,\in\,\overline{B}_{\delta}(x^{\star})}{\sup}\,
+	\underset{x\,\in\,\overline{B}_{\varepsilon}(x^{\star})}{\sup}\,
 	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
 	\;\; \leq \;\; M\,.
 	\end{equation*}
@@ -108,7 +109,7 @@ Then, the following statements hold:
 	\vskip 0.3cm
 	\noindent
 	\textbf{Claim 2:}\quad
-	For each $x \in \overline{B}_{\delta}(x^{\star})$, we have
+	For each $x \in \overline{B}_{\varepsilon}(x^{\star})$, we have
 	\begin{equation*}
 	g(x)
 	\;\; = \;\;
@@ -141,7 +142,7 @@ Then, the following statements hold:
 		\int_{0}^{1} H^{\prime}(t) \,\d t
 	\\
 	& = &
-		\int_{0}^{1}\;
+		\int_{0}^{1}\,
 			\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right) \cdot (x - x^{\star})
 			\,\d t
 	\\
@@ -150,19 +151,102 @@ Then, the following statements hold:
 			\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right) 
 			\;\d t
 			\;\right)
-		\cdot (x - x^{\star}).
+		\cdot (x - x^{\star})\,.
 	\end{eqnarray*}
 	This proves Claim 2.
 	
 	\vskip 0.3cm
 	\noindent
-	Now, observe that:
+	Now, by the continuity of $\nabla g$, we may choose $\delta \in (0,\varepsilon)$ such that
+	\begin{equation*}
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(\xi) \,-\, \nabla g(\zeta)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\;\; < \;\; \dfrac{1}{2M}\,,
+		\quad
+		\textnormal{for each \,$\xi, \, \zeta \in \overline{B}_{\delta}(x^{\star})$}\,.
+	\end{equation*}
+	With this choice of $\delta > 0$, we now see that,
+	whenever $x^{0} \in \overline{B}_{\delta}(x^{\star})$, we have, for each $k = 0, 1, 2, \ldots$\,,
 	\begin{eqnarray*}
-	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
-	&=&
+	&&
+		\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	\\
+	&\overset{{\color{white}\textnormal{\Large 1}}}{=}&
 		\left\Vert\;x^{k} \,-\, \left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}\cdot g(x^{k}) \,-\, x^{\star}\;\right\Vert\,,
 		\quad
 		\textnormal{by definition of $x^{k+1}$}
+	\\
+	&=&
+		\left\Vert\;
+			\left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}
+			\cdot
+			\left\{\;
+				\left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)\cdot\left(\,x^{k} \,-\, x^{\star}\,\right)
+				\;-\; g(x^{k}) 
+			\;\right\}
+		\;\right\Vert
+	\\
+	&=&
+		\left\Vert\;
+			\left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}
+			\cdot
+			\left\{\;
+				\left(\,
+					\overset{{\color{white}.}}{\nabla} g(x^{k})
+					\,-\,
+					\int_{0}^{1}
+					\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right) 
+					\;\d t
+				\,\right)
+				\cdot\left(\,x^{k} \,-\, x^{\star}\,\right)
+			\;\right\}
+		\;\right\Vert\,,
+		\quad
+		\textnormal{by Claim 2}
+	\\
+	&=&
+		\left\Vert\;
+			\left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}
+			\cdot
+			\left\{\;
+				\left(\,
+					\int_{0}^{1}
+					\left[\;
+						\overset{{\color{white}.}}{\nabla} g(x^{k})
+						\,-\,
+						\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+					\;\right]
+					\d t
+				\,\right)
+				\cdot\left(\,x^{k} \,-\, x^{\star}\,\right)
+			\;\right\}
+		\;\right\Vert
+	\\
+	&\leq&
+		M \cdot\,
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\quad
+		\textnormal{by Claim 1}
+	\\
+	&\leq&
+		\dfrac{1}{2} \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\quad
+		\textnormal{by choice of $\delta > 0$}\,.
 	\end{eqnarray*}
 \end{enumerate}
 \qed
