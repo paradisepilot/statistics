@@ -54,7 +54,8 @@ Suppose:
 Then, the following statements hold:
 \begin{enumerate}
 \item
-	There exists $\delta > 0$ such that $\overline{B}_{\delta}(x^{\star}) \subset \Omega$ and,
+	Given any $\beta \in (0,1)$,
+	there exists $\delta > 0$ such that $\overline{B}_{\delta}(x^{\star}) \subset \Omega$ and,
 	for each $x^{0} \in \overline{B}_{\delta}(x^{\star})$, the sequence $\{\,x^{k}\,\}_{k=0}^{\infty}$
 	defined iteratively by
 	\begin{equation*}
@@ -69,8 +70,28 @@ Then, the following statements hold:
 	\item
 		$x^{k} \in \overline{B}_{\delta}(x^{\star})$, for each $k \in \N$,
 	\item
-		$\underset{k\rightarrow\infty}{\lim} \left\Vert\,x^{k}\,-\,x^{\star}\,\right\Vert \, = \, 0$, and
-		the convergence is superlinear.
+		$\left\Vert\,x^{k+1}\,-\,x^{\star}\right\Vert \, \leq \, \beta\cdot\left\Vert\,x^{k}\,-\,x^{\star}\right\Vert$\,,
+		for each $k = 0,1,2,\ldots$\,.
+	\end{itemize}
+\item
+	There exist $\delta > 0$ and $\beta \in (0,1)$
+	such that $\overline{B}_{\delta}(x^{\star}) \subset \Omega$ and,
+	for each $x^{0} \in \overline{B}_{\delta}(x^{\star})$, the sequence $\{\,x^{k}\,\}_{k=0}^{\infty}$
+	defined iteratively by
+	\begin{equation*}
+	x^{k+1}
+	\;\; := \;\;
+		x^{k} \;-\; \left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}\cdot g(x^{k})\,,
+	\quad
+	\textnormal{for \,$k = 0, 1, 2, \ldots$}
+	\end{equation*}
+	satisfies the following properties:
+	\begin{itemize}
+	\item
+		$x^{k} \in \overline{B}_{\delta}(x^{\star})$, for each $k \in \N$,
+	\item
+		$\left\Vert\,x^{k+1}\,-\,x^{\star}\right\Vert \, \leq \, \beta \cdot \left\Vert\,x^{k}\,-\,x^{\star}\right\Vert^{2}$\,,
+		for each $k = 0,1,2,\ldots$\,.
 	\end{itemize}
 \end{enumerate}
 \end{theorem}
@@ -79,6 +100,7 @@ Then, the following statements hold:
 \item
 	\textbf{Claim 1:}\quad
 	There exist $\varepsilon > 0$ and $M > 0$ such that
+	$\overline{B}_{\varepsilon}(x^{\star}) \subset \Omega$ and
 	\begin{equation*}
 	\underset{x\,\in\,\overline{B}_{\varepsilon}(x^{\star})}{\sup}\,
 	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
@@ -166,7 +188,7 @@ Then, the following statements hold:
 			\;\right]
 			\d t
 		\;\right\Vert
-		\;\; < \;\; \dfrac{1}{2M}\,,
+		\;\; < \;\; \dfrac{\beta}{M}\,,
 		\quad
 		\textnormal{for each \,$\xi, \, \zeta \in \overline{B}_{\delta}(x^{\star})$}\,.
 	\end{equation*}
@@ -244,7 +266,34 @@ Then, the following statements hold:
 		\textnormal{by Claim 1}
 	\\
 	&\leq&
-		\dfrac{1}{2} \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\beta \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\quad
+		\textnormal{by choice of $\delta > 0$}\,.
+	\end{eqnarray*}
+\item
+	Choose $\beta \in (0,1)$ arbitrarily.
+	\begin{eqnarray*}
+	&&
+		\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	\\
+	&\leq&
+		M \cdot\,
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\quad
+		\textnormal{by Claim 1}
+	\\
+	&\leq&
+		\beta \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
 		\quad
 		\textnormal{by choice of $\delta > 0$}\,.
 	\end{eqnarray*}
