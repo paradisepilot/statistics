@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Concavity of the log likelihood of a canonical exponential family}
+\section{Concavity of the log likelihood of a {\color{red}canonical} exponential family}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -37,7 +37,8 @@ there exist
 \item
 	a measurable $\Re^{p}$-valued function $X : (\Omega,\mathcal{A}) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$\,, and
 \item
-	a non-negative Borel function $h : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O}(\Re))$
+	a non-negative Borel function $h : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O}(\Re))$ with
+	\,$\nu\!\left(\,\left\{\,\left.\omega\overset{{\color{white}.}}{\in}\Omega\,\;\right\vert\,h(\omega) > 0\,\right\}\,\right) > 0$
 \end{itemize}
 such that the following statements hold:
 \begin{enumerate}
@@ -55,7 +56,7 @@ such that the following statements hold:
 	\kappa(\theta)
 	\;\; := \;\;
 		\int_{\Omega}\,
-			\exp\!\left(\,\eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega)\,\right) \cdot h(\omega)
+			\exp\!\left(\,\eta(\theta)^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega)\,\right) \cdot h(\omega)
 		\;\d\nu(\omega)\,
 	\end{equation*}
 	is a well-defined positive function on $\Theta$.
@@ -70,7 +71,7 @@ such that the following statements hold:
 		\cdot
 		h(\omega)
 		\cdot
-		\exp\left\{\; \eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega) \;\right\}
+		\exp\left\{\; \eta(\theta)^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega) \;\right\}
 		\,,
 		\quad
 		\textnormal{for each \,$\omega\in\Omega$}\,.
@@ -99,13 +100,15 @@ Suppose:
 	\end{equation*}
 	of $P_{\theta}$ with respect to $\nu$ exists, for each $\theta \in \Theta$.
 \end{itemize}
-Then, the family $\left\{\,P_{\theta}\,\right\}_{\theta \in \Theta}$ is called a \textbf{canonical exponential family}
+Then, the family $\left\{\,P_{\theta}\,\right\}_{\theta \in \Theta}$ is called a
+\textbf{{\color{red}canonical} exponential family}
 if there exist
 \begin{itemize}
 \item
 	a measurable $\Re^{p}$-valued function $X : (\Omega,\mathcal{A}) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$\,, and
 \item
-	a non-negative Borel function $h : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O}(\Re))$
+	a non-negative Borel function $h : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O}(\Re))$ with
+	\,$\nu\!\left(\,\left\{\,\left.\omega\overset{{\color{white}.}}{\in}\Omega\,\;\right\vert\,h(\omega) > 0\,\right\}\,\right) > 0$
 \end{itemize}
 such that the following statements hold:
 \begin{enumerate}
@@ -118,6 +121,7 @@ such that the following statements hold:
 		\left\{\;
 			\theta \in \Re^{p}
 			\;\left\vert\;\;
+			0 \, < \,
 			\int_{\Omega}\,
 				\exp\!\left(\,\theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega)\,\right) \cdot h(\omega)
 			\;\d\nu(\omega)
@@ -136,7 +140,7 @@ such that the following statements hold:
 		\cdot
 		h(\omega)
 		\cdot
-		\exp\left\{\; \theta^{T} \overset{{\color{white}-}}{\cdot} X(\omega) \;\right\}
+		\exp\left\{\; \theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega) \;\right\}
 		\,,
 		\quad
 		\textnormal{for each \,$\omega\in\Omega$}\,,
@@ -147,7 +151,7 @@ such that the following statements hold:
 	\kappa(\theta)
 	\;\; := \;\;
 		\int_{\Omega}\,
-			\exp\!\left(\,\eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega)\,\right) \cdot h(\omega)
+			\exp\!\left(\,\theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega)\,\right) \cdot h(\omega)
 		\;\d\nu(\omega)\,.
 	\end{equation*}
 \end{enumerate}
@@ -156,7 +160,7 @@ such that the following statements hold:
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \begin{theorem}\quad
-The parameter space of a canonical exponential family is convex.
+The parameter space of a {\color{red}canonical} exponential family is convex.
 \end{theorem}
 \proof
 Suppose that $(\Omega,\mathcal{A},\nu)$ is a $\sigma$-finite measure space,
@@ -186,7 +190,7 @@ $\Re$-valued function defined on $\Theta \subset \Re^{p}$ as follows:
 \kappa(\theta)
 \;\; := \;\;
 	\int_{\Omega}\,
-		\exp\!\left(\,\eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega)\,\right) \cdot h(\omega)
+		\exp\!\left(\,\theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega)\,\right) \cdot h(\omega)
 	\;\d\nu(\omega)\,.
 \end{equation*}
 By the hypothesis that $\{\,P_{\theta}\,\}_{\theta\in\Theta}$ is a canonical exponential family, we have
@@ -203,8 +207,156 @@ By the hypothesis that $\{\,P_{\theta}\,\}_{\theta\in\Theta}$ is a canonical exp
 		\right.
 	\;\right\}.
 \end{equation*}
-Thus, in order to prove that $\Theta \subset \Re^{p}$ is convex (as a subset of $\Re^{p}$),
-it suffices to prove that the right-hand-side of the above equation is a convex subset of $\Re^{p}$.
+In order to prove that $\Theta$ is convex (as a subset of $\Re^{p}$),
+we need to prove the following:
+\begin{equation*}
+\lambda \cdot \theta_{1} + (1 - \lambda) \cdot \theta_{2} \in \Theta\,,
+\quad
+\textnormal{for each \,$\lambda \in (0,1)$, and for each \,$\theta_{1}, \theta_{2} \in \Theta$}\,.
+\end{equation*}
+To this end, first note that
+\begin{eqnarray*}
+&&
+	\int_{\Omega}\,
+		\exp\!\left(\,
+			(\lambda\cdot\theta_{1}+(1-\lambda)\cdot\theta_{2})^{T}
+			\!\overset{{\color{white}-}}{\cdot}\!
+			X(\omega)
+		\,\right)
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+\\
+&=&
+	\int_{\{h>0\}}\,
+		\exp\!\left(\,
+			(\lambda\cdot\theta_{1}+(1-\lambda)\cdot\theta_{2})^{T}
+			\!\overset{{\color{white}-}}{\cdot}\!
+			X(\omega)
+		\,\right)
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+	\;+\;
+	\int_{\{h=0\}}\,
+		\exp\!\left(\,
+			(\lambda\cdot\theta_{1}+(1-\lambda)\cdot\theta_{2})^{T}
+			\!\overset{{\color{white}-}}{\cdot}\!
+			X(\omega)
+		\,\right)
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+\\
+&=&
+	\int_{\{h>0\}}\,
+		\exp\!\left(\,
+			(\lambda\cdot\theta_{1}+(1-\lambda)\cdot\theta_{2})^{T}
+			\!\overset{{\color{white}-}}{\cdot}\!
+			X(\omega)
+		\,\right)
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+\\
+&>& 0\,,
+	\quad
+	\textnormal{since the exponential function is strictly positive and
+	$\nu\!\left(\{\,h \overset{{\color{white}.}}{>} 0\,\}\right) > 0$}\,.
+\end{eqnarray*}
+Secondly, by H\"older's inequality (Theorem 31.3, p.256, \cite{Aliprantis1998}),
+\begin{eqnarray*}
+&&
+	\int_{\Omega}\,
+		\exp\!\left(\,
+			(\lambda\cdot\theta_{1}+(1-\lambda)\cdot\theta_{2})^{T}
+			\!\overset{{\color{white}-}}{\cdot}\!
+			X(\omega)
+		\,\right)
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+\\
+&=&
+	\int_{\Omega}\,
+		\exp\!\left(\,
+			\lambda\cdot\theta_{1}^{T}
+			\!\overset{{\color{white}-}}{\cdot}\!
+			X(\omega)
+		\,\right)
+		\cdot
+		\exp\!\left(\,
+			(1-\lambda)\cdot\theta_{2}^{T}
+			\!\overset{{\color{white}-}}{\cdot}\!
+			X(\omega)
+		\,\right)
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+\\
+&\leq&
+	\left(\;
+	\int_{\Omega}\,
+		\exp\!\left(\,
+			\lambda\cdot\theta_{1}^{T}
+			\!\overset{{\color{white}-}}{\cdot}\!
+			X(\omega)
+		\,\right)^{1/\lambda}
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+	\;\right)^{\lambda}
+	\cdot
+	\left(\;
+	\int_{\Omega}\,
+		\exp\!\left(\,
+			(1-\lambda)\cdot\theta_{2}^{T}
+			\!\overset{{\color{white}-}}{\cdot}\!
+			X(\omega)
+		\,\right)^{1/(1-\lambda)}
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+	\;\right)^{1-\lambda}
+\\
+&=&
+	\left(\;
+	\int_{\Omega}\,
+		\exp\!\left(\,
+			\theta_{1}^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega)
+		\,\right)
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+	\;\right)^{\lambda}
+	\cdot
+	\left(\;
+	\int_{\Omega}\,
+		\exp\!\left(\,
+			\theta_{2}^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega)
+		\,\right)
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+	\;\right)^{1-\lambda}
+\\
+&<& \infty
+\end{eqnarray*}
+Thus, we have show that for every $\lambda \in (0,1)$ and every $\lambda_{1}, \lambda_{2} \in \Theta$, we have
+\begin{equation*}
+0 \;\; < \;\;
+	\int_{\Omega}\,
+		\exp\!\left(\,
+			(\lambda\cdot\theta_{1}+(1-\lambda)\cdot\theta_{2})^{T}
+			\!\overset{{\color{white}-}}{\cdot}\!
+			X(\omega)
+		\,\right)
+		\cdot
+	 	h(\omega)
+	\;\d\nu(\omega)
+\;\; < \;\; \infty\,;
+\end{equation*}
+equivalently, $\lambda\cdot\theta_{1}+(1-\lambda)\cdot\theta_{2} \in \Theta$, as desired.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
