@@ -39,40 +39,41 @@ there exist
 \item
 	a non-negative Borel function $h : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O}(\Re))$
 \end{itemize}
-such that
+such that the following statements hold:
 \begin{enumerate}
 \item
+	For every $\theta \in \Theta$, we have
 	\begin{equation*}
 	0 \;\; < \;\;
 		\int_{\Omega}\,
 			\exp\!\left(\,\eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega)\,\right) \cdot h(\omega)
 		\;\d\nu(\omega)
-	\;\; < \;\; \infty\,,
-	\quad
-	\textnormal{for each \,$\theta \in \Theta$, and}
+	\;\; < \;\; \infty\,.
 	\end{equation*}
+	Consequently, $\kappa : \Theta \longrightarrow \Re$ given by
+	\begin{equation*}
+	\kappa(\theta)
+	\;\; := \;\;
+		\int_{\Omega}\,
+			\exp\!\left(\,\eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega)\,\right) \cdot h(\omega)
+		\;\d\nu(\omega)\,
+	\end{equation*}
+	is a well-defined positive function on $\Theta$.
 \item
+	The probability density function
+	$\dfrac{\d P_{\theta}}{\d\,\nu} : \Omega \longrightarrow [0,\infty)$
+	of each $P_{\theta}$ with respect to $\nu$ can be expressed as:
 	\begin{equation*}
 	\dfrac{\d P_{\theta}}{\d\,\nu}(\omega)
 	\;\; = \;\;
-		c(\theta)
+		\dfrac{1}{\kappa(\theta)}
 		\cdot
 		h(\omega)
 		\cdot
 		\exp\left\{\; \eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega) \;\right\}
 		\,,
 		\quad
-		\textnormal{for each \,$\omega\in\Omega$}\,,
-	\end{equation*}
-	where the function $c : \Theta \longrightarrow \Re$ is defined by
-	\begin{equation*}
-	c(\theta)
-	\;\; := \;\;
-		\left(\;
-			\int_{\Omega}\,
-				\exp\!\left(\,\eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega)\,\right) \cdot h(\omega)
-			\;\d\nu(\omega)
-		\;\right)^{-1}\,.
+		\textnormal{for each \,$\omega\in\Omega$}\,.
 	\end{equation*}
 \end{enumerate}
 \end{definition}
