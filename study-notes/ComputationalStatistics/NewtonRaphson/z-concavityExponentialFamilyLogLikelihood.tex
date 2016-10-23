@@ -102,8 +102,6 @@ Suppose:
 Then, the family $\left\{\,P_{\theta}\,\right\}_{\theta \in \Theta}$ is called a \textbf{canonical exponential family}
 if there exist
 \begin{itemize}
-%\item
-%	an $\Re^{p}$-valued function $\eta : \Theta \longrightarrow \Re^{p}$\,,
 \item
 	a measurable $\Re^{p}$-valued function $X : (\Omega,\mathcal{A}) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$\,, and
 \item
@@ -154,6 +152,60 @@ such that the following statements hold:
 	\end{equation*}
 \end{enumerate}
 \end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}\quad
+The parameter space of a canonical exponential family is convex.
+\end{theorem}
+\proof
+Suppose that $(\Omega,\mathcal{A},\nu)$ is a $\sigma$-finite measure space,
+$\Theta \subset \Re^{p}$, $\{\,P_{\theta}\,\}_{\theta\in\Theta}$ is a canonical exponential family 
+of probability measures defined on $(\Omega,\mathcal{A})$ such that the probability
+density function $\dfrac{\d P_{\theta}}{\d\,\nu}$ of each $P_{\theta}$ is given by
+\begin{equation*}
+	\dfrac{\d P_{\theta}}{\d\,\nu}(\omega)
+	\;\; = \;\;
+		\dfrac{1}{\kappa(\theta)}
+		\cdot
+		h(\omega)
+		\cdot
+		\exp\left\{\; \theta^{T} \overset{{\color{white}-}}{\cdot} X(\omega) \;\right\}
+		\,,
+		\quad
+		\textnormal{for each \,$\omega\in\Omega$}\,,
+\end{equation*}
+where
+$X : (\Omega,\mathcal{A}) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$
+is a measurable $\Re^{p}$-valued function,
+$h : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O}(\Re))$
+is a non-negative Borel function, and
+$\kappa : \Theta \longrightarrow \Re$ is the strictly positive
+$\Re$-valued function defined on $\Theta \subset \Re^{p}$ as follows:
+\begin{equation*}
+\kappa(\theta)
+\;\; := \;\;
+	\int_{\Omega}\,
+		\exp\!\left(\,\eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega)\,\right) \cdot h(\omega)
+	\;\d\nu(\omega)\,.
+\end{equation*}
+By the hypothesis that $\{\,P_{\theta}\,\}_{\theta\in\Theta}$ is a canonical exponential family, we have
+\begin{equation*}
+\Theta
+\;\; = \;\;
+	\left\{\;
+		\theta \in \Re^{p}
+		\;\left\vert\;\;
+		\int_{\Omega}\,
+			\exp\!\left(\,\theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega)\,\right) \cdot h(\omega)
+		\;\d\nu(\omega)
+		\, < \, \infty
+		\right.
+	\;\right\}.
+\end{equation*}
+Thus, in order to prove that $\Theta \subset \Re^{p}$ is convex (as a subset of $\Re^{p}$),
+it suffices to prove that the right-hand-side of the above equation is a convex subset of $\Re^{p}$.
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
