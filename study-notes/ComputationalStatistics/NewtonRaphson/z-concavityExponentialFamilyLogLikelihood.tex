@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Concavity of the log likelihood function of an exponential family}
+\section{Concavity of the log likelihood of a canonical exponential family}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -79,6 +79,81 @@ such that the following statements hold:
 \end{definition}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Canonical exponential family]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\nu)$ is a measure space, where $\nu$ is a $\sigma$-finite measure.
+\item
+	$\Theta \subset \Re^{p}$ is a nonempty subset of $\Re^{p}$.
+\item
+	$\left\{\,P_{\theta}\,\right\}_{\theta \in \Theta}$ is a family, indexed by $\Theta$,
+	of probability measures defined on the measurable space $(\Omega,\mathcal{A})$ such that,
+	for each $\theta \in \Theta$, $P_{\theta}$ is absolutely continuous with respect to $\nu$.
+	Hence, the probability density function
+	\begin{equation*}
+	\dfrac{\d P_{\theta}}{\d\,\nu} \; : \; \Omega \; \longrightarrow \; [0,\infty)
+	\end{equation*}
+	of $P_{\theta}$ with respect to $\nu$ exists, for each $\theta \in \Theta$.
+\end{itemize}
+Then, the family $\left\{\,P_{\theta}\,\right\}_{\theta \in \Theta}$ is called a \textbf{canonical exponential family}
+if there exist
+\begin{itemize}
+%\item
+%	an $\Re^{p}$-valued function $\eta : \Theta \longrightarrow \Re^{p}$\,,
+\item
+	a measurable $\Re^{p}$-valued function $X : (\Omega,\mathcal{A}) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$\,, and
+\item
+	a non-negative Borel function $h : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O}(\Re))$
+\end{itemize}
+such that the following statements hold:
+\begin{enumerate}
+\item
+	The parameter space $\Theta \subset \Re^{p}$ is ``maximal''
+	in the sense that the following set-theoretic equality holds:
+	\begin{equation*}
+	\Theta
+	\;\; = \;\;
+		\left\{\;
+			\theta \in \Re^{p}
+			\;\left\vert\;\;
+			\int_{\Omega}\,
+				\exp\!\left(\,\theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega)\,\right) \cdot h(\omega)
+			\;\d\nu(\omega)
+			\, < \, \infty
+			\right.
+		\;\right\}.
+	\end{equation*}	
+\item
+	The probability density function
+	$\dfrac{\d P_{\theta}}{\d\,\nu} : \Omega \longrightarrow [0,\infty)$
+	of each $P_{\theta}$ with respect to $\nu$ can be expressed as:
+	\begin{equation*}
+	\dfrac{\d P_{\theta}}{\d\,\nu}(\omega)
+	\;\; = \;\;
+		\dfrac{1}{\kappa(\theta)}
+		\cdot
+		h(\omega)
+		\cdot
+		\exp\left\{\; \theta^{T} \overset{{\color{white}-}}{\cdot} X(\omega) \;\right\}
+		\,,
+		\quad
+		\textnormal{for each \,$\omega\in\Omega$}\,,
+	\end{equation*}
+	where $\kappa : \Theta \longrightarrow \Re$ is the strictly positive
+	$\Re$-valued function defined on $\Theta \subset \Re^{p}$ as follows:
+	\begin{equation*}
+	\kappa(\theta)
+	\;\; := \;\;
+		\int_{\Omega}\,
+			\exp\!\left(\,\eta(\theta)^{T} \overset{{\color{white}-}}{\cdot} X(\omega)\,\right) \cdot h(\omega)
+		\;\d\nu(\omega)\,.
+	\end{equation*}
+\end{enumerate}
+\end{definition}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
