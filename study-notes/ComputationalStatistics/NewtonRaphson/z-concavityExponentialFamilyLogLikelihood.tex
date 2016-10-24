@@ -365,6 +365,228 @@ equivalently, $\lambda\cdot\theta_{1}+(1-\lambda)\cdot\theta_{2} \in \Theta$, as
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{theorem}[Properties of the log likelihood of a canonical exponential family]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\nu)$ is a measure space, where $\nu$ is a $\sigma$-finite measure.
+\item
+	$X : (\Omega,\mathcal{A}) \longrightarrow (\Re^{p},\mathcal{O}(\Re^{p}))$
+	is a measurable $\Re^{p}$-valued function.
+\item
+	$h : (\Omega,\mathcal{A}) \longrightarrow (\Re,\mathcal{O}(\Re))$
+	is a non-negative Borel function such that
+	\,$\nu\!\left(\,\left\{\,\left.\omega\overset{{\color{white}.}}{\in}\Omega\,\;\right\vert\,h(\omega) > 0\,\right\}\,\right) > 0$.
+\item
+	\begin{equation*}
+	\Theta
+	\;\; := \;\;
+		\left\{\;
+			\theta \in \Re^{p}
+			\;\left\vert\;\;
+			0 \, < \,
+			\int_{\Omega}\,
+				\exp\!\left(\,\theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega)\,\right) \cdot h(\omega)
+			\;\d\nu(\omega)
+			\, < \, \infty
+			\right.
+		\;\right\}
+	\;\; \subset \;\; \Re^{p}
+	\end{equation*}
+	is a nonempty open subset of $\Re^{p}$.
+\item
+	$\left\{\,P_{\theta}\,\right\}_{\theta \in \Theta}$ is a canonical exponential family, indexed by $\Theta$,
+	of probability measures defined on the measurable space $(\Omega,\mathcal{A})$ such that,
+	for each $\theta \in \Theta$, $P_{\theta}$ is absolutely continuous with respect to $\nu$, and
+	the probability density function of $P_{\theta}$ with respect to $\nu$ is given by:
+	\begin{equation*}
+	f_{\theta} \; := \; \dfrac{\d P_{\theta}}{\d\,\nu}
+	\; : \; \Omega \; \longrightarrow \; [0,\infty) \; : \;
+	\omega \; \longmapsto \;
+		\dfrac{1}{\kappa(\theta)}
+		\cdot
+		h(\omega)
+		\cdot
+		\exp\left\{\; \theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega) \;\right\}\,,
+	\end{equation*}
+	where $\kappa : \Theta \longrightarrow \Re$ is the strictly positive
+	$\Re$-valued function defined on $\Theta \subset \Re^{p}$ as follows:
+	\begin{equation*}
+	\kappa(\theta)
+	\;\; := \;\;
+		\int_{\Omega}\,
+			\exp\!\left(\,\theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega)\,\right) \cdot h(\omega)
+		\;\d\nu(\omega)\,.
+	\end{equation*}
+\item
+	The functions
+	\begin{equation*}
+	\Theta \; \longrightarrow \; \Re
+	\; : \; \theta \; \longmapsto \; \int_{\Omega}\,f_{\theta}(\omega)\,\d\nu(\omega)
+	\quad\quad\textnormal{and}\quad\quad
+	\Theta \; \longrightarrow \; \Re^{p}
+	\; : \; \theta \; \longmapsto \; \int_{\Omega}\,X(\omega) \cdot f_{\theta}(\omega)\,\d\nu(\omega)
+	\end{equation*}
+	are differentiable with respect to $\theta \in \Theta$.
+	For each $\omega \in \Omega$, the function
+	\begin{equation*}
+	\Theta \; \longrightarrow \; \Re
+	\; : \; \theta \; \longmapsto \; f_{\theta}(\omega)
+	\end{equation*}
+	is differentiable with respect to $\theta \in \Theta$.
+	For each $\theta \in \Theta$, the following two equalities hold:
+	\begin{eqnarray*}
+	\dfrac{\partial}{\partial\,\theta_{i}} \left(\; \int_{\Omega}\,f_{\theta}(\omega)\,\d\nu(\omega) \;\right)
+	{\color{white}\;\cdot X(\omega)}
+	&=&
+	\int_{\Omega}\, \left(\,\dfrac{\partial}{\partial\,\theta_{i}} f_{\theta}(\omega)\right) \,\d\nu(\omega)\,,
+	\quad\textnormal{and}
+	\\
+	\dfrac{\partial}{\partial\,\theta_{i}} \left(\; \int_{\Omega}\,X(\omega) \cdot f_{\theta}(\omega)\,\d\nu(\omega) \;\right)
+	&=&
+	\int_{\Omega}\, \left(\,X(\omega) \cdot \dfrac{\partial}{\partial\,\theta_{i}} f_{\theta}(\omega)\right) \,\d\nu(\omega)\,.
+	\end{eqnarray*}
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	The gradient vector of the log-likelihood $\log(f_{\theta})$ with respect to $\theta$ is given by:
+	\begin{equation*}
+	\nabla_{\theta}\!\left[\;\overset{{\color{white}.}}{\log}\,f_{\theta}(\omega)\;\right]
+	\;\; = \;\;
+		X(\omega) \, - \, E_{\theta}\!\left[\,X\,\right]\,,
+	\quad
+	\textnormal{for each \,$\omega\in\Omega$, \,$\theta\in\Theta$}\,.
+	\end{equation*}	
+	Equivalently, in component form:
+	\begin{equation*}
+	\dfrac{\partial}{\partial \theta_{i}}\left[\;\overset{{\color{white}.}}{\log}\,f_{\theta}(\omega)\;\right]
+	\;\; = \;\;
+		X_{i}(\omega) \, - \, E_{\theta}\!\left[\,X_{i}\,\right]\,,
+	\quad
+	\textnormal{for each \,$\omega\in\Omega$, \,$\theta\in\Theta$, \,$i = 1,2,\ldots,p$}\,.
+	\end{equation*}	
+\item
+	The Hessian matrix of the log-likelihood $\log(f_{\theta})$ with respect to $\theta$ is given by:
+	\begin{equation*}
+	\Hess_{\,\theta}\!\left[\;\overset{{\color{white}.}}{\log}\,f_{\theta}(\omega)\;\right]
+	\;\; = \;\;
+		-\,\Var_{\theta}\!\left(\,X\,\right)\,,
+	\quad
+	\textnormal{for each \,$\omega\in\Omega$, \,$\theta\in\Theta$}\,.
+	\end{equation*}	
+	Equivalently, in component form:
+	\begin{equation*}
+	\dfrac{\partial^{2}}{\partial \theta_{i}\,\partial\theta_{j}}\left[\;\overset{{\color{white}.}}{\log}\,f_{\theta}(\omega)\;\right]
+	\;\; = \;\;
+		-\,\Cov_{\theta}\!\left(\,X_{i},X_{j}\,\right)\,,
+	\quad
+	\textnormal{for each \,$\omega\in\Omega$, \,$\theta\in\Theta$, \,$i = 1,2,\ldots,p$}\,.
+	\end{equation*}	
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	\textbf{Claim 1:}\quad
+	For each $i = 1, 2, \ldots, p$, we have
+	\begin{equation*}
+	\dfrac{\partial}{\partial\,\theta_{i}} \log \kappa(\theta)
+	\;\; = \;\;
+		\dfrac{1}{\kappa(\theta)} \cdot \dfrac{\partial\,\kappa(\theta)}{\partial\,\theta_{i}}
+	\;\; = \;\;
+		E_{\theta}\!\left[\,X_{i}\,\right]
+	\;\; := \;\;
+		\int_{\Omega}\, X_{i}(\omega) \cdot f_{\theta}(\omega)\,\d\nu(\omega)\,.
+	\end{equation*}
+	Proof of Claim 1:\quad
+	\begin{eqnarray*}
+	\dfrac{\partial\,\kappa(\theta)}{\partial\,\theta_{i}}
+	& = &
+		\dfrac{\partial}{\partial\,\theta_{i}}
+		\left(\;
+			\int_{\Omega}\,
+			\exp\!\left(\,\theta^{T}\cdot X(\omega)\,\right)\cdot h(\omega)
+			\;\d\nu(\omega)
+		\;\right)
+	\;\; = \;\;
+		\int_{\Omega}\,
+			\left(\;
+			h(\omega)
+			\cdot
+			\dfrac{\partial}{\partial\,\theta_{i}}\,
+			\exp\!\left(\,\theta^{T}\cdot X(\omega)\,\right)
+			\;\right)
+		\;\d\nu(\omega)
+	\\
+	&=&
+		\int_{\Omega}\,
+			\left(\;
+			\overset{{\color{white}-}}{h}(\omega)
+			\cdot
+			X_{i}(\omega)
+			\cdot
+			\exp\!\left(\,\theta^{T}\cdot X(\omega)\,\right)
+			\;\right)
+		\;\d\nu(\omega)
+	\end{eqnarray*}
+	Hence,
+	\begin{eqnarray*}
+	\dfrac{\partial}{\partial\,\theta_{i}} \log \kappa(\theta)
+	&=&
+		\dfrac{1}{\kappa(\theta)} \cdot \dfrac{\partial\,\kappa(\theta)}{\partial\,\theta_{i}}
+	\;\; = \;\;
+		\dfrac{1}{\kappa(\theta)}
+		\cdot
+		\int_{\Omega}\,
+			\left(\;
+			X_{i}(\omega)
+			\cdot
+			\overset{{\color{white}-}}{h}(\omega)
+			\cdot
+			\exp\!\left(\,\theta^{T}\cdot X(\omega)\,\right)
+			\;\right)
+		\;\d\nu(\omega)
+	\\
+	& = &
+		\int_{\Omega}\,
+			\left(\;
+			X_{i}(\omega)
+			\cdot
+			\dfrac{
+				h(\omega) \cdot \exp\!\left(\,\theta^{T}\cdot X(\omega)\,\right)
+				}{
+				\kappa(\theta)
+				}
+			\;\right)
+		\;\d\nu(\omega)
+	\\
+	& = &
+		\int_{\Omega}\,
+			X_{i}(\omega) \cdot f_{\theta}(\omega)
+		\;\d\nu(\omega)
+	\;\; =: \;\;
+		E_{\theta}\!\left[\,X_{i}\,\right]
+	\end{eqnarray*}
+	This proves Claim 1.
+	
+	\vskip 0.5cm
+	\noindent
+	\textbf{Claim 2:}\quad
+	For each $i = 1, 2, \ldots, p$, \,each $\omega\in\Omega$, and \,each $\theta\in\Theta$, we have
+	\begin{equation*}
+	\dfrac{\partial}{\partial\,\theta_{i}} \log f_{\theta}(\omega)
+	\;\; = \;\;
+		X_{i}(\omega) \, - \, E_{\theta}\!\left[\,X_{i}\,\right]
+	\end{equation*}
+	Proof of Claim 2:\quad
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 %\renewcommand{\theenumi}{\alph{enumi}}
 %\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 \renewcommand{\theenumi}{\roman{enumi}}
