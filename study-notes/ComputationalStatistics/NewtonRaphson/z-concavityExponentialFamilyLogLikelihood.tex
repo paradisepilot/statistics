@@ -365,7 +365,7 @@ equivalently, $\lambda\cdot\theta_{1}+(1-\lambda)\cdot\theta_{2} \in \Theta$, as
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{theorem}[Properties of the log likelihood of a canonical exponential family]
+\begin{theorem}[Score and Hessian of the log likelihood of a canonical exponential family]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -451,8 +451,8 @@ Suppose:
 \end{itemize}
 Then, the following statements hold:
 \begin{enumerate}
-\item
-	The gradient vector of the log-likelihood $\log(f_{\theta})$ with respect to $\theta$ is given by:
+\item\label{formulaScoreVector}
+	The score vector (i.e. gradient vector) of the log-likelihood $\log(f_{\theta})$ with respect to $\theta$ is given by:
 	\begin{equation*}
 	\nabla_{\theta}\!\left[\;\overset{{\color{white}.}}{\log}\,f_{\theta}(\omega)\;\right]
 	\;\; = \;\;
@@ -468,7 +468,7 @@ Then, the following statements hold:
 	\quad
 	\textnormal{for each \,$\omega\in\Omega$, \,$\theta\in\Theta$, \,$i = 1,2,\ldots,p$}\,.
 	\end{equation*}	
-\item
+\item\label{formulaHessianMatrix}
 	The Hessian matrix of the log-likelihood $\log(f_{\theta})$ with respect to $\theta$ is given by:
 	\begin{equation*}
 	\Hess_{\,\theta}\!\left[\;\overset{{\color{white}.}}{\log}\,f_{\theta}(\omega)\;\right]
@@ -481,7 +481,7 @@ Then, the following statements hold:
 	\begin{equation*}
 	\dfrac{\partial^{2}}{\partial \theta_{i}\,\partial\theta_{j}}\left[\;\overset{{\color{white}.}}{\log}\,f_{\theta}(\omega)\;\right]
 	\;\; = \;\;
-		-\,\Cov_{\theta}\!\left(\,X_{i},X_{j}\,\right)\,,
+		-\,\Cov_{\theta}\!\left(\,X_{i}\,,\,X_{j}\,\right)\,,
 	\quad
 	\textnormal{for each \,$\omega\in\Omega$, \,$\theta\in\Theta$, \,$i = 1,2,\ldots,p$}\,.
 	\end{equation*}	
@@ -490,6 +490,10 @@ Then, the following statements hold:
 \proof
 \begin{enumerate}
 \item
+	We proceed here by stating and proving the following two claims.
+	
+	\vskip 0.3cm
+	\noindent
 	\textbf{Claim 1:}\quad
 	For each $i = 1, 2, \ldots, p$, we have
 	\begin{equation*}
@@ -572,7 +576,7 @@ Then, the following statements hold:
 	\end{eqnarray*}
 	This proves Claim 1.
 	
-	\vskip 0.5cm
+	\vskip 0.3cm
 	\noindent
 	\textbf{Claim 2:}\quad
 	For each $i = 1, 2, \ldots, p$, \,each $\omega\in\Omega$, and \,each $\theta\in\Theta$, we have
@@ -582,7 +586,185 @@ Then, the following statements hold:
 		X_{i}(\omega) \, - \, E_{\theta}\!\left[\,X_{i}\,\right]
 	\end{equation*}
 	Proof of Claim 2:\quad
+	\begin{eqnarray*}
+	\dfrac{\partial}{\partial\,\theta_{i}}\,f_{\theta}(\omega)
+	& = &
+		\dfrac{\partial}{\partial\,\theta_{i}}
+		\left[\;
+			\dfrac{1}{\kappa(\theta)}
+			\cdot
+			h(\omega)
+			\cdot
+			\exp\left\{\; \theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega) \;\right\}
+		\;\right]
+	\\
+	&=&
+		\dfrac{-1}{\kappa(\theta)^{2}}
+		\cdot
+		\dfrac{\partial\,\kappa(\theta)}{\partial\,\theta_{i}}
+		\cdot
+		h(\omega)
+		\cdot
+		\exp\left\{\; \theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega) \;\right\}
+		\; + \;
+		\dfrac{1}{\kappa(\theta)}
+		\cdot
+		h(\omega)
+		\cdot
+		\exp\left\{\; \theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega) \;\right\}
+		\cdot
+		X_{i}(\omega)
+	\\
+	&=&
+		\left(\;
+			\dfrac{-1}{\kappa(\theta)}
+			\cdot
+			\dfrac{\partial\,\kappa(\theta)}{\partial\,\theta_{i}}
+			\; + \;
+			X_{i}(\omega)
+		\;\right)
+		\cdot
+		\dfrac{1}{\kappa(\theta)}
+		\cdot
+		h(\omega)
+		\cdot
+		\exp\left\{\; \theta^{T} \!\overset{{\color{white}-}}{\cdot}\! X(\omega) \;\right\}
+	\\
+	&=&
+		\left(\;
+			X_{i}(\omega)
+			\; - \;
+			\dfrac{\partial\,}{\partial\,\theta_{i}} \log \kappa(\theta)
+		\;\right)
+		\cdot
+		f_{\theta}(\omega)
+	\\
+	&=&
+		\left(\;
+			\overset{{\color{white}.}}{X}_{i}(\omega) \, - \, E_{\theta}\!\left[\,X_{i}\,\right]
+		\;\right)
+		\cdot
+		f_{\theta}(\omega)\,,
+		\quad
+		\textnormal{by Claim 1}
+	\end{eqnarray*}
+	Hence,
+	\begin{equation*}
+	\dfrac{\partial}{\partial\,\theta_{i}} \log f_{\theta}(\omega)
+	\;\; = \;\;
+		\dfrac{1}{f_{\theta}(\omega)}
+		\cdot
+		\dfrac{\partial}{\partial\,\theta_{i}}\,f_{\theta}(\omega)
+	\;\; = \;\;
+		X_{i}(\omega) \, - \, E_{\theta}\!\left[\,X_{i}\,\right],
+	\end{equation*}
+	as required.
+\item
+	\textbf{Claim 1:}\quad
+	For each $i,j = 1, 2, \ldots, p$, we have
+	\begin{equation*}
+	\dfrac{\partial}{\partial\,\theta_{j}}\,E_{\theta}\!\left[\,X_{i}\,\right]
+	\;\; = \;\;
+		\Cov_{\theta}\!\left(\,X_{i}\,,\,X_{j}\,\right)
+	\;\; := \;\;
+		\int_{\Omega}\,
+			\left(\,\overset{{\color{white}.}}{X}_{i}(\omega) - E_{\theta}\!\left[\,X_{i}\,\right]\,\right)
+			\cdot
+			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E_{\theta}\!\left[\,X_{j}\,\right]\,\right)
+			\cdot
+			f_{\theta}(\omega)
+		\;\d\nu(\omega)
+	\end{equation*}
+	Proof of Claim 1:\quad
+	\begin{eqnarray*}
+	\dfrac{\partial}{\partial\,\theta_{j}}\,E_{\theta}\!\left[\,X_{i}\,\right]
+	& = &
+		\dfrac{\partial}{\partial\,\theta_{j}}
+		\left(\;
+			\int_{\Omega}\,
+			X_{i}(\omega) \cdot f_{\theta}(\omega)
+			\;\d\nu(\omega)
+		\;\right)
+	\;\; = \;\;
+		\int_{\Omega}\,
+			X_{i}(\omega) \cdot
+			\dfrac{\partial}{\partial\,\theta_{j}}\,f_{\theta}(\omega)
+		\;\d\nu(\omega)
+	\\
+	& = &
+		\int_{\Omega}\,
+			X_{i}(\omega) \cdot
+			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E\!\left[\,X_{j}\,\right]\,\right)
+			\cdot
+			f_{\theta}(\omega)
+		\;\d\nu(\omega)\,,
+		\quad
+		\textnormal{see proof of \eqref{formulaScoreVector} above}
+	\\
+	& = &
+		\int_{\Omega}\,
+			\left(\,\overset{{\color{white}.}}{X}_{i}(\omega) - E\!\left[\,X_{i}\,\right] + E\!\left[\,X_{i}\,\right]\,\right)
+			\cdot
+			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E\!\left[\,X_{j}\,\right]\,\right)
+			\cdot
+			f_{\theta}(\omega)
+		\;\d\nu(\omega)
+	\\
+	& = &
+		{\color{white}+}\;
+		\int_{\Omega}\,
+			\left(\,\overset{{\color{white}.}}{X}_{i}(\omega) - E\!\left[\,X_{i}\,\right]\,\right)
+			\cdot
+			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E\!\left[\,X_{j}\,\right]\,\right)
+			\cdot
+			f_{\theta}(\omega)
+		\;\d\nu(\omega)
+	\\
+	&&
+		+\;\;
+		E\!\left[\,X_{i}\,\right]
+		\cdot
+		\int_{\Omega}\,
+			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E\!\left[\,X_{j}\,\right]\,\right)
+			\cdot
+			f_{\theta}(\omega)
+		\;\d\nu(\omega)
+	\\
+	& \overset{{\color{white}\vert}}{=} &
+		\Cov_{\theta}\!\left(\,X_{i}\,,\,X_{j}\,\right) \; + \; 0
+	\;\; = \;\;
+		\Cov_{\theta}\!\left(\,X_{i}\,,\,X_{j}\,\right),
+		\quad
+		\textnormal{as desired}.
+	\end{eqnarray*}
+	This proves Claim 1.
+	
+	\vskip 0.5cm
+	\noindent
+	Now,
+	\begin{eqnarray*}
+	\dfrac{\partial^{2}}{\partial\theta_{i}\,\partial\theta_{j}} \left[\;\overset{{\color{white}.}}{\log} \, f_{\theta}(\omega)\;\right]
+	&=&
+		\dfrac{\partial}{\partial\,\theta_{i}}\!
+		\left(\;
+			\dfrac{\partial}{\partial\,\theta_{j}}\, \log \, f_{\theta}(\omega)
+		\;\right)
+	\\
+	&=&
+		\dfrac{\partial}{\partial\,\theta_{i}}\!
+		\left(\;
+			\overset{{\color{white}-}}{X}_{j}(\omega) \, - \, E_{\theta}\!\left[\,X_{j}\,\right]
+		\;\right),
+		\quad
+		\textnormal{by \eqref{formulaScoreVector}}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		-\; \Cov_{\theta}\!\left(\,X_{i}\,,\,X_{j}\,\right),
+		\quad
+		\textnormal{by Claim 1}.
+	\end{eqnarray*}
 \end{enumerate}
+The proof of the present Theorem is now complete.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
