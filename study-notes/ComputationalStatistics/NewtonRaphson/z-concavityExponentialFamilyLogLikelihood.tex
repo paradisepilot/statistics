@@ -451,6 +451,28 @@ Suppose:
 \end{itemize}
 Then, the following statements hold:
 \begin{enumerate}
+\item\label{gradientLogKappa}
+	The gradient vector of \,$\log\kappa(\theta)$\, with respect to $\theta$ can be given by:
+	\begin{equation*}
+	\nabla_{\theta}\!\left[\;\overset{{\color{white}.}}{\log}\,\kappa(\theta)\;\right]
+	\;\; = \;\;
+		E_{\theta}\!\left[\,X\,\right]\,,
+	\quad
+	\textnormal{for each \,$\theta\in\Theta$}\,.
+	\end{equation*}
+	Equivalently, in component form:
+	\begin{eqnarray*}
+	\dfrac{\partial}{\partial\,\theta_{i}} \log \kappa(\theta)
+	& = &
+		\dfrac{1}{\kappa(\theta)} \cdot \dfrac{\partial\,\kappa(\theta)}{\partial\,\theta_{i}}
+	\\
+	& = &
+		E_{\theta}\!\left[\,X_{i}\,\right]
+	\;\; := \;\;
+		\int_{\Omega}\, X_{i}(\omega) \cdot f_{\theta}(\omega)\,\d\nu(\omega)\,,
+	\quad
+	\textnormal{for each \,$i = 1,2,\ldots,p$}\,.
+	\end{eqnarray*}
 \item\label{formulaScoreVector}
 	The score vector (i.e. gradient vector) of the log-likelihood $\log(f_{\theta})$ with respect to $\theta$ is given by:
 	\begin{equation*}
@@ -469,43 +491,43 @@ Then, the following statements hold:
 	\textnormal{for each \,$\omega\in\Omega$, \,$\theta\in\Theta$, \,$i = 1,2,\ldots,p$}\,.
 	\end{equation*}	
 \item\label{formulaHessianMatrix}
-	The Hessian matrix of the log-likelihood $\log(f_{\theta})$ with respect to $\theta$ is given by:
+	The Hessian matrices of $\log\kappa(\theta)$ and the log-likelihood $\log(f_{\theta})$
+	with respect to $\theta$ can be given by:
 	\begin{equation*}
 	\Hess_{\,\theta}\!\left[\;\overset{{\color{white}.}}{\log}\,f_{\theta}(\omega)\;\right]
+	\;\; = \;\;
+		-\,\Hess_{\,\theta}\!\left[\;\overset{{\color{white}.}}{\log}\,\kappa(\theta)\;\right]
 	\;\; = \;\;
 		-\,\Var_{\theta}\!\left(\,X\,\right)\,,
 	\quad
 	\textnormal{for each \,$\omega\in\Omega$, \,$\theta\in\Theta$}\,.
 	\end{equation*}	
 	Equivalently, in component form:
-	\begin{equation*}
+	\begin{eqnarray*}
 	\dfrac{\partial^{2}}{\partial \theta_{i}\,\partial\theta_{j}}\left[\;\overset{{\color{white}.}}{\log}\,f_{\theta}(\omega)\;\right]
-	\;\; = \;\;
-		-\,\Cov_{\theta}\!\left(\,X_{i}\,,\,X_{j}\,\right)\,,
+	& = &
+		-\,\dfrac{\partial^{2}}{\partial \theta_{i}\,\partial\theta_{j}}\left[\;\overset{{\color{white}.}}{\log}\,\kappa(\theta)\;\right]
+	\\
+	& = &
+		-\,\overset{{\color{white}.}}{\Cov}_{\theta}\!\left(\,X_{i}\,,\,X_{j}\,\right)
+	\\
+	& := &
+		\int_{\Omega}\,
+			\left(\,\overset{{\color{white}.}}{X}_{i}(\omega) - E_{\theta}\!\left[\,X_{i}\,\right]\,\right)
+			\cdot
+			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E_{\theta}\!\left[\,X_{j}\,\right]\,\right)
+			\cdot
+			f_{\theta}(\omega)
+		\;\d\nu(\omega)\,,
 	\quad
-	\textnormal{for each \,$\omega\in\Omega$, \,$\theta\in\Theta$, \,$i = 1,2,\ldots,p$}\,.
-	\end{equation*}	
+	\end{eqnarray*}	
+	for each \,$\omega\in\Omega$, \,$\theta\in\Theta$, \,$i = 1,2,\ldots,p$.
 \end{enumerate}
 \end{theorem}
 \proof
 \begin{enumerate}
 \item
-	We proceed here by stating and proving the following two claims.
-	
-	\vskip 0.3cm
-	\noindent
-	\textbf{Claim 1:}\quad
-	For each $i = 1, 2, \ldots, p$, we have
-	\begin{equation*}
-	\dfrac{\partial}{\partial\,\theta_{i}} \log \kappa(\theta)
-	\;\; = \;\;
-		\dfrac{1}{\kappa(\theta)} \cdot \dfrac{\partial\,\kappa(\theta)}{\partial\,\theta_{i}}
-	\;\; = \;\;
-		E_{\theta}\!\left[\,X_{i}\,\right]
-	\;\; := \;\;
-		\int_{\Omega}\, X_{i}(\omega) \cdot f_{\theta}(\omega)\,\d\nu(\omega)\,.
-	\end{equation*}
-	Proof of Claim 1:\quad
+	Note that
 	\begin{eqnarray*}
 	\dfrac{\partial\,\kappa(\theta)}{\partial\,\theta_{i}}
 	& = &
@@ -574,18 +596,8 @@ Then, the following statements hold:
 	\;\; =: \;\;
 		E_{\theta}\!\left[\,X_{i}\,\right]
 	\end{eqnarray*}
-	This proves Claim 1.
-	
-	\vskip 0.3cm
-	\noindent
-	\textbf{Claim 2:}\quad
-	For each $i = 1, 2, \ldots, p$, \,each $\omega\in\Omega$, and \,each $\theta\in\Theta$, we have
-	\begin{equation*}
-	\dfrac{\partial}{\partial\,\theta_{i}} \log f_{\theta}(\omega)
-	\;\; = \;\;
-		X_{i}(\omega) \, - \, E_{\theta}\!\left[\,X_{i}\,\right]
-	\end{equation*}
-	Proof of Claim 2:\quad
+\item
+	First, note that
 	\begin{eqnarray*}
 	\dfrac{\partial}{\partial\,\theta_{i}}\,f_{\theta}(\omega)
 	& = &
@@ -646,7 +658,7 @@ Then, the following statements hold:
 		\cdot
 		f_{\theta}(\omega)\,,
 		\quad
-		\textnormal{by Claim 1}
+		\textnormal{by \eqref{gradientLogKappa}}
 	\end{eqnarray*}
 	Hence,
 	\begin{equation*}
@@ -694,7 +706,7 @@ Then, the following statements hold:
 	& = &
 		\int_{\Omega}\,
 			X_{i}(\omega) \cdot
-			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E\!\left[\,X_{j}\,\right]\,\right)
+			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E_{\theta}\!\left[\,X_{j}\,\right]\,\right)
 			\cdot
 			f_{\theta}(\omega)
 		\;\d\nu(\omega)\,,
@@ -703,9 +715,9 @@ Then, the following statements hold:
 	\\
 	& = &
 		\int_{\Omega}\,
-			\left(\,\overset{{\color{white}.}}{X}_{i}(\omega) - E\!\left[\,X_{i}\,\right] + E\!\left[\,X_{i}\,\right]\,\right)
+			\left(\,\overset{{\color{white}.}}{X}_{i}(\omega) - E_{\theta}\!\left[\,X_{i}\,\right] + E_{\theta}\!\left[\,X_{i}\,\right]\,\right)
 			\cdot
-			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E\!\left[\,X_{j}\,\right]\,\right)
+			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E_{\theta}\!\left[\,X_{j}\,\right]\,\right)
 			\cdot
 			f_{\theta}(\omega)
 		\;\d\nu(\omega)
@@ -713,9 +725,9 @@ Then, the following statements hold:
 	& = &
 		{\color{white}+}\;
 		\int_{\Omega}\,
-			\left(\,\overset{{\color{white}.}}{X}_{i}(\omega) - E\!\left[\,X_{i}\,\right]\,\right)
+			\left(\,\overset{{\color{white}.}}{X}_{i}(\omega) - E_{\theta}\!\left[\,X_{i}\,\right]\,\right)
 			\cdot
-			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E\!\left[\,X_{j}\,\right]\,\right)
+			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E_{\theta}\!\left[\,X_{j}\,\right]\,\right)
 			\cdot
 			f_{\theta}(\omega)
 		\;\d\nu(\omega)
@@ -725,7 +737,7 @@ Then, the following statements hold:
 		E\!\left[\,X_{i}\,\right]
 		\cdot
 		\int_{\Omega}\,
-			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E\!\left[\,X_{j}\,\right]\,\right)
+			\left(\,\overset{{\color{white}.}}{X}_{j}(\omega) - E_{\theta}\!\left[\,X_{j}\,\right]\,\right)
 			\cdot
 			f_{\theta}(\omega)
 		\;\d\nu(\omega)
@@ -760,6 +772,29 @@ Then, the following statements hold:
 	\\
 	&\overset{{\color{white}\vert}}{=}&
 		-\; \Cov_{\theta}\!\left(\,X_{i}\,,\,X_{j}\,\right),
+		\quad
+		\textnormal{by Claim 1}.
+	\end{eqnarray*}
+	
+	\vskip 0.5cm
+	\noindent
+	Lastly,
+	\begin{eqnarray*}
+	\dfrac{\partial^{2}}{\partial\theta_{i}\,\partial\theta_{j}} \left[\;\overset{{\color{white}.}}{\log} \, \kappa(\theta)\;\right]
+	&=&
+		\dfrac{\partial}{\partial\,\theta_{i}}\!
+		\left(\;
+			\dfrac{\partial}{\partial\,\theta_{j}}\, \log \, \kappa(\theta)
+		\;\right)
+	\\
+	&=&
+		\dfrac{\partial}{\partial\,\theta_{i}}\!
+		\left(\; E_{\theta}\!\left[\,X_{j}\,\right] \;\right),
+		\quad
+		\textnormal{by \eqref{formulaScoreVector}}
+	\\
+	&\overset{{\color{white}\vert}}{=}&
+		\Cov_{\theta}\!\left(\,X_{i}\,,\,X_{j}\,\right),
 		\quad
 		\textnormal{by Claim 1}.
 	\end{eqnarray*}
