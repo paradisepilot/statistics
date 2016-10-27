@@ -69,27 +69,38 @@ Then, the following statements are true:
 			\log\!\left(\,1 + \exp(\,\beta^{T} \cdot x^{(i)}\,)\,\right)
 			\;\right\}
 	\end{eqnarray*}
-\item
+\item\label{logisticScoreEqn}
 	The (vectorial) score equation is given by:
 	\begin{equation*}
-	X \cdot \left(\, \pi \,-\, y\,\right) \;\; = \;\; 0_{p} \;\; \in \;\; \Re^{p}\,,
+	X^{T} \cdot \left(\, y \,-\, \pi(\beta) \,\right) \;\; = \;\; 0_{p} \;\; \in \;\; \Re^{p}\,,
 	\end{equation*}
-	where $X \in \Re^{p \times n}$, $\pi \in \Re^{n}$, and $y \in \Re^{n}$ are respectively defined by
+	where $X \in \Re^{n \times p}$ and $y \in \Re^{n}$ are respectively defined by
 	\begin{eqnarray*}
 	X
 	&=&
-		\left(\;\;\overset{{\color{white}.}}{X}_{ki}\;\;\right)
+		\left(\;\;\overset{{\color{white}.}}{X}_{ik}\;\;\right)
 	\;\;:=\;\;
 		\left(\;\; x^{(i)}_{k} \;\;\right)
 	\;\;=\;\;
-		\left(\;\; x^{(1)} \quad x^{(2)} \quad \cdots \quad x^{(n)} \;\;\right) \in \Re^{p \times n}\,,
+		\left(\;\;
+			\begin{array}{c} (x^{(1)})^{T} \\ (x^{(2)})^{T} \\ \underset{{\color{white}1}}{\vdots} \\ (x^{(n)})^{T} \end{array}
+			\;\;\right)
+	\; \in \; \Re^{n \times p}\,,
 	\end{eqnarray*}
 	\begin{equation*}
 	y \,:=\, \left(\;y_{1},\ldots,y_{n}\;\right)^{T} \in \Re^{n \times 1}\,, 
-	\quad\quad
-	\textnormal{and}	
-	\quad\quad
-	\pi \,:=\, \left(\;\pi_{1},\ldots,\pi_{n}\;\right)^{T} \in \Re^{n \times 1}\,.
+	\end{equation*}
+	and \,$\pi : \Re^{p} \longrightarrow \Re^{n}$\, is given by
+	\begin{equation*}
+	\pi(\beta) \;\;:=\;\; \left(\;
+		\begin{array}{c} \pi_{1}(\beta) \\ \underset{{\color{white}^{.}}}{\vdots} \\ \pi_{n}(\beta) \end{array}
+		\;\right),
+	\quad{where}\quad
+	\pi(\beta)
+	\; := \;
+		\dfrac{\exp(\,\beta^{T} \cdot x^{(i)}\,)}{1 + \exp(\,\beta^{T} \cdot x^{(i)}\,)}
+	\; = \;
+		\dfrac{1}{1 + \exp(\,-\,\beta^{T} \cdot x^{(i)}\,)}
 	\end{equation*}
 	The score equation can be given equivalently in component form by:
 	\begin{equation*}
@@ -107,6 +118,53 @@ Then, the following statements are true:
 	\quad
 	\textnormal{for each \,$k = 1, 2,\ldots,p$}\,.
 	\end{equation*}
+\item
+	The Newton-Raphson method, when applied to solve the score equation for $\beta \in \Re^{p}$
+	in \eqref{logisticScoreEqn} above, takes the following explicit form:
+	\begin{center}
+	\begin{minipage}{6in}
+	\underline{\textnormal{\bf Newton-Raphson method applied to solve the score equation from logistic regression}}
+	\vskip 0.3cm
+	\noindent
+	\textnormal{Choose $\varepsilon > 0$. ($\varepsilon > 0$ will be used as the termination threshold.)
+	\vskip 0.4cm
+	\textnormal{\bf INITIATION:}
+		\begin{itemize}
+		\item
+			Choose \,$\beta^{(0)} \in \Re^{p}$\, arbitrarily.
+		\item
+			Define \,$\beta^{(1)} \in \Re^{p}$\, as the solution of the following (vectorial) linear equation:
+			\begin{equation*}
+			X^{T} \cdot D(\beta^{(0)}) \cdot X \cdot {\color{red}\beta^{(1)}}
+				\;\; = \;\; X^{T} \cdot D(\beta^{(0)}) \cdot X \cdot \beta^{(0)} + X^{T}\cdot\!\left(\,y - \pi(\beta^{0})\,\right).
+			\end{equation*}
+		\item
+			Let \,$k \,:=\, 1$\,.
+		\end{itemize}
+	\vskip 0.2cm
+	\textnormal{\bf WHILE} \; $\left(\;\Vert\,\beta^{(k)} \,-\, \beta^{(k-1)}\,\Vert > \varepsilon\;\right)$ \; \textnormal{\bf DO}
+	\begin{itemize}
+	\item
+		Define \,$\beta^{(k+1)} \in \Re^{p}$\, as the solution of the following (vectorial) linear equation:
+		\begin{equation*}
+			X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot {\color{red}\beta^{(k+1)}}
+			\;\; = \;\;
+				X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot \beta^{(k)} + X^{T}\cdot\!\left(\,y - \pi(\beta^{0})\,\right).
+		\end{equation*}
+	\item
+		Increment \,$k$.	
+	\end{itemize}
+	\textnormal{\bf ENDWHILE}
+	\vskip 0.4cm
+	\textnormal{\bf OUTPUT}
+	\begin{itemize}
+	\item
+		Return as \,$\beta^{(k)} \in \Re^{p}$\, as approximate solution to the score equation
+		in \eqref{logisticScoreEqn}.
+	\end{itemize}
+	}
+	\end{minipage}
+	\end{center}
 \end{enumerate}
 \end{proposition}
 \proof
