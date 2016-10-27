@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Maximum likelihood estimation for logistic regression}
+\section{Maximum likelihood estimation for logistic regression via the Newton-Raphson method}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -128,7 +128,7 @@ Then, the following statements are true:
 	\noindent
 	\textnormal{Choose $\varepsilon > 0$. ($\varepsilon > 0$ will be used as the termination threshold.)
 	\vskip 0.4cm
-	\textnormal{\bf INITIATION:}
+	\textnormal{\bf INITIATION}
 		\begin{itemize}
 		\item
 			Choose \,$\beta^{(0)} \in \Re^{p}$\, arbitrarily.
@@ -136,7 +136,8 @@ Then, the following statements are true:
 			Define \,$\beta^{(1)} \in \Re^{p}$\, as the solution of the following (vectorial) linear equation:
 			\begin{equation*}
 			X^{T} \cdot D(\beta^{(0)}) \cdot X \cdot {\color{red}\beta^{(1)}}
-				\;\; = \;\; X^{T} \cdot D(\beta^{(0)}) \cdot X \cdot \beta^{(0)} + X^{T}\cdot\!\left(\,y - \pi(\beta^{0})\,\right).
+				\;\; = \;\; X^{T} \cdot D(\beta^{(0)}) \cdot X \cdot \beta^{(0)}
+				\;+\; X^{T}\cdot\!\left(\,y - \pi(\beta^{0})\,\right).
 			\end{equation*}
 		\item
 			Let \,$k \,:=\, 1$\,.
@@ -149,7 +150,8 @@ Then, the following statements are true:
 		\begin{equation*}
 			X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot {\color{red}\beta^{(k+1)}}
 			\;\; = \;\;
-				X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot \beta^{(k)} + X^{T}\cdot\!\left(\,y - \pi(\beta^{0})\,\right).
+				X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot \beta^{(k)}
+				\;+\; X^{T}\cdot\!\left(\,y - \pi(\beta^{0})\,\right).
 		\end{equation*}
 	\item
 		Increment \,$k$.	
@@ -282,7 +284,113 @@ Then, the following statements are true:
 		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot y_{i}
 	\end{eqnarray*}
 	for each $k = 1,2,\ldots,p$.
+\item
+	By \eqref{logisticScoreEqn}, the score equation is $g(\,\beta\,;\,X,y\,) = 0$,
+	where $\beta$ is the unknown to be solved, and
+	$g : \Re^{p} \longrightarrow \Re^{p}$ is defined by
+	\begin{eqnarray*}
+	g\!\left(\,\overset{{\color{white}.}}{\beta}\,;\,X,y\,\right){\color{white}.}
+	& = &
+		{\color{white}-}\, X^{T} \cdot \left(\,y \,\overset{{\color{white}.}}{-}\, \pi(\beta)\,\right)
+	\end{eqnarray*}
+	where the matrix $X$ is given by:
+	\begin{equation*}
+	X \;\in\; \Re^{n \times p}\,,
+	\quad
+	X_{ik} \; = \; x^{(i)}_{k}\,,
+	\end{equation*}
+	the component functions \,$g_{k}(\,\beta\,;\,X,y\,)$,\, \,$k = 1,2,\ldots,p$,\,
+	of \,$g : \Re^{p} \longrightarrow \Re^{p}$\, can be given by:
+	\begin{equation*}
+	g_{k}(\,\beta\,;\,X,y\,)
+	\;\; := \;\;
+		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot \left(\,y_{i} - \pi_{i}(\beta)\,\right),
+	\end{equation*}
+	and the component functions \,$\pi_{i}(\beta)$, $k = 1,2,\ldots,p$,\, can be given by:
+	\begin{equation*}
+	\pi_{i}(\beta)
+	\;\ := \;\;
+		\dfrac{\exp(\beta^{T} \cdot x^{(i)})}{1+\exp(\beta^{T}\cdot x^{(i)})}
+	\;\ = \;\;
+		\dfrac{1}{1+\exp(\,-\,\beta^{T}\cdot x^{(i)})}\,.
+	\end{equation*}
+	Now, recall that the Newton-Raphson iterations proceed as follows:
+	Given $\beta^{(m)} \in \Re^{p}$, where $m \in \N$, $\beta^{(m+1)} \in \Re^{p}$
+	is defined to be the solution of the following vectorial linear equation:
+	\begin{equation*}
+	\left[\,\overset{{\color{white}\vert}}{\nabla}_{\beta}\,g(\,\beta^{(m)}\,;\,X,y\,)\,\right] \cdot {\color{red}\beta^{(m+1)}}
+	\;\; = \;\;
+		\left[\,\overset{{\color{white}\vert}}{\nabla}_{\beta}\,g(\,\beta^{(m)}\,;\,X,y\,)\,\right] \cdot \beta^{(m)}
+		\; - \;
+		g(\,\beta^{(m)}\,;\,X,y\,)
+	\end{equation*}
+	Hence, in order to complete the proof of the present Proposition,
+	it remains only to work out an expression for
+	\,$\overset{{\color{white}\vert}}{\nabla}_{\beta}\,g(\,\beta\,;\,X,y\,)$\,.
+	To this end, first note that
+	\begin{eqnarray*}
+	\dfrac{\partial\,\pi_{i}(\beta)}{\partial\,\beta_{k}}
+	&=&
+		\left[\,1+\exp(\,-\,\beta^{T}\cdot x^{(i)})\,\right]^{-2}
+		\cdot
+		\exp(\,-\,\beta^{T}\cdot x^{(i)})
+		\cdot
+		x^{(i)}_{k}
+	\\
+	&=&
+		\dfrac{1}{1+\exp(\,-\,\beta^{T}\cdot x^{(i)})}
+		\cdot
+		\dfrac{\exp(\,-\,\beta^{T}\cdot x^{(i)})}{1+\exp(\,-\,\beta^{T}\cdot x^{(i)})}
+		\cdot
+		x^{(i)}_{k}
+	\\
+	&=&
+		\dfrac{1}{1+\exp(\,-\,\beta^{T}\cdot x^{(i)})}
+		\cdot
+		\dfrac{1}{1+\exp(\beta^{T}\cdot x^{(i)})}
+		\cdot
+		x^{(i)}_{k}
+	\\
+	&=&
+		\pi_{i}(\beta)
+		\cdot
+		\left(1\overset{{\color{white}.}}{-}\pi_{i}(\beta)\right)
+		\cdot
+		x^{(i)}_{k}
+	\end{eqnarray*}
+	Hence, we see that
+	\begin{eqnarray*}
+	\dfrac{\partial}{\partial\,\beta_{l}}\!\left(\,\overset{{\color{white}\vert}}{g}_{k}(\,\beta\,;\,X,y\,)\,\right)
+	& = &
+		-\;\overset{n}{\underset{i=1}{\sum}}\;x^{(i)}_{k}\cdot\dfrac{\partial\,\pi_{i}(\beta)}{\partial\,\beta_{l}}
+	\;\; = \;\;
+		-\;\overset{n}{\underset{i=1}{\sum}}\;x^{(i)}_{k}\cdot
+		\pi_{i}(\beta)
+		\cdot
+		\left(1\overset{{\color{white}.}}{-}\pi_{i}(\beta)\right)
+		\cdot
+		x^{(i)}_{l}
+	\end{eqnarray*}
+	In the matrix notation, the above equation becomes
+	\begin{equation*}
+	\nabla_{\beta}\,g(\,\beta\,,\,X,y\,)
+	\;\; = \;\;
+		-\,X^{T} \cdot D(\beta) \cdot X\,,
+	\end{equation*}
+	where
+	\begin{equation*}
+	D(\beta) \; := \; \diag\!\left(\;
+		\overset{{\color{white}-}}{\pi}_{1}(\beta) \cdot (\,1-\pi_{1}(\beta)\,)\,,
+		\,\ldots\,,
+		\pi_{n}(\beta) \cdot (\,1-\pi_{n}(\beta)\,)
+		\;\right)
+		\;\in\;
+		\Re^{n \times n}\,.
+	\end{equation*}
+	The desired statement now follows immediately from the preceding expression of
+	$\nabla_{\beta}\,g(\,\beta\,,\,X,y\,)$.
 \end{enumerate}
+This completes the proof of the present Proposition.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
