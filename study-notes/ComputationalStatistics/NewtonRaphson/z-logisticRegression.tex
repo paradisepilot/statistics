@@ -123,10 +123,28 @@ Then, the following statements are true:
 	\;\; = \;\;
 		X^{T} \cdot \left(\, y \,-\, \pi(\beta) \,\right),
 	\end{equation*}
-	where $X \in \Re^{n \times p}$ and $y \in \Re^{n}$ are respectively defined by
-	\begin{eqnarray*}
+	and the (vectorial) score equation is thus given by:
+	\begin{equation*}
+	\nabla_{\beta}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)
+	\;\; = \;\;
+		X^{T} \cdot \left(\, y \,-\, \pi(\beta) \,\right)
+	\;\; = \;\;
+		0_{p} \;\; \in \;\; \Re^{p}\,,
+	\end{equation*}
+	where $y \in \Re^{n}$ and $X \in \Re^{n \times p}$ are respectively defined by
+	\begin{equation*}
+	y
+	\;\; := \;\;
+		\left(\;\begin{array}{c}
+		y_{1} \\
+		\underset{{\color{white}.}}{\overset{{\color{white}.}}{\vdots}} \\
+		y_{n}
+		\end{array}\;\right)
+	\;\in\;
+		\Re^{n \times 1}\,, 
+	\quad\textnormal{and}\quad
 	X
-	&=&
+	\;\;=\;\;
 		\left(\;\;\overset{{\color{white}.}}{X}_{ik}\;\;\right)
 	\;\;:=\;\;
 		\left(\;\; x^{(i)}_{k} \;\;\right)
@@ -135,10 +153,10 @@ Then, the following statements are true:
 			\begin{array}{c} (x^{(1)})^{T} \\ (x^{(2)})^{T} \\ \underset{{\color{white}1}}{\vdots} \\ (x^{(n)})^{T} \end{array}
 			\;\;\right)
 	\; \in \; \Re^{n \times p}\,,
-	\end{eqnarray*}
-	\begin{equation*}
-	y \,:=\, \left(\;y_{1},\ldots,y_{n}\;\right)^{T} \in \Re^{n \times 1}\,, 
 	\end{equation*}
+	%\begin{equation*}
+	%y \,:=\, \left(\;y_{1},\ldots,y_{n}\;\right)^{T} \in \Re^{n \times 1}\,, 
+	%\end{equation*}
 	and \,$\pi : \Re^{p} \longrightarrow \Re^{n}$\, is given by
 	\begin{equation*}
 	\pi(\beta) \;\;:=\;\; \left(\;
@@ -150,14 +168,6 @@ Then, the following statements are true:
 		\dfrac{\exp(\,\beta^{T} \cdot x^{(i)}\,)}{1 + \exp(\,\beta^{T} \cdot x^{(i)}\,)}
 	\; = \;
 		\dfrac{1}{1 + \exp(\,{\color{red}-}\,\beta^{T} \cdot x^{(i)}\,)}
-	\end{equation*}
-	The (vectorial) score equation is thus given by:
-	\begin{equation*}
-	\nabla_{\beta}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)
-	\;\; = \;\;
-		X^{T} \cdot \left(\, y \,-\, \pi(\beta) \,\right)
-	\;\; = \;\;
-		0_{p} \;\; \in \;\; \Re^{p}\,,
 	\end{equation*}
 	The score equation can be given equivalently in component form by:
 	\begin{equation*}
@@ -175,6 +185,7 @@ Then, the following statements are true:
 	\quad
 	\textnormal{for each \,$k = 1, 2,\ldots,p$}\,.
 	\end{equation*}
+\newpage
 \item
 	The Newton-Raphson method, when applied to solve the score equation for $\beta \in \Re^{p}$
 	in \eqref{logisticScoreEqn} above, takes the following explicit form:
