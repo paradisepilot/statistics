@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\mbox{}\vskip 1.0cm
+\vskip 1.0cm
 
 \section{Maximum likelihood estimation for logistic regression via the Newton-Raphson method}
 \setcounter{theorem}{0}
@@ -66,6 +66,38 @@ Then, the following statements are true:
 			\overset{n}{\underset{i=1}{\prod}} \left(\,\overset{{\color{white}.}}{1} + \exp(\,\beta^{T}\cdot x^{(i)}\,) \,\right)
 		}\,.
 	\end{eqnarray*}
+%	Consequently, if we define:
+%	\begin{equation*}
+%	\begin{array}{ccccccccl}
+%		\kappa
+%		& : & \Re^{p} & \longrightarrow & \Re
+%		& : & \beta & \longmapsto & \overset{n}{\underset{i=1}{\prod}}
+%			\left(\,\overset{{\color{white}.}}{1} + \exp(\,\beta^{T}\cdot x^{(i)}\,) \,\right),
+%	\\
+%		\overset{{\color{white}\vert}}{Z}
+%		& : & \Omega & \longrightarrow & \Re^{p}
+%		& : & \omega & \longmapsto & \overset{n}{\underset{i=1}{\sum}}\;Y^{(i)}(\omega) \cdot x^{(i)}\,,
+%		\quad
+%		\textnormal{and}
+%	\\
+%		\overset{{\color{white}\vert}}{h}
+%		& : & \Omega & \longrightarrow & \Re
+%		& : & \omega & \longmapsto & 1\,,
+%	\end{array}
+%	\end{equation*}
+%	then \,$P\!\left(\;Y^{(1)} = y_{1},\,Y^{(2)} = y_{2},\,\ldots\,,\,Y^{(n)} = y_{n}\;\right)$\,
+%	can be expressed as:
+%	\begin{eqnarray*}
+%	P\!\left(\;Y^{(1)} = y_{1},\,Y^{(2)} = y_{2},\,\ldots\,,\,Y^{(n)} = y_{n}\;\right)
+%	\;\; = \;\;
+%		\dfrac{
+%			\exp\!\left(\; \beta^{T} \cdot \overset{n}{\underset{i=1}{\sum}}\;y_{i}\,x^{(i)} \,\right)
+%		}{
+%			\overset{n}{\underset{i=1}{\prod}} \left(\,\overset{{\color{white}.}}{1} + \exp(\,\beta^{T}\cdot x^{(i)}\,) \,\right)
+%		}
+%	\;\; = \;\;
+%		\dfrac{h(\omega)}{\kappa(\,\beta\,)} \cdot \exp\!\left(\;\beta^{T} \overset{{\color{white}\vert}}{\cdot} Z(\omega)\;\right)
+%	\end{eqnarray*}
 	In particular, the joint probability distribution of \;$Y^{(1)},Y^{(2)},\ldots,Y^{(n)}$\, belongs to
 	a canonical exponential family.
 \item
@@ -143,7 +175,6 @@ Then, the following statements are true:
 	\quad
 	\textnormal{for each \,$k = 1, 2,\ldots,p$}\,.
 	\end{equation*}
-\vskip 15.0cm
 \item
 	The Newton-Raphson method, when applied to solve the score equation for $\beta \in \Re^{p}$
 	in \eqref{logisticScoreEqn} above, takes the following explicit form:
