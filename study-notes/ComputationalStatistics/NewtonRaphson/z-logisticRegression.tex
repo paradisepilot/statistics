@@ -70,9 +70,11 @@ Then, the following statements are true:
 			\;\right\}
 	\end{eqnarray*}
 \item\label{logisticScoreEqn}
-	The (vectorial) score equation is given by:
+	The gradient vector of \,$\log L$\, with respect to $\beta$ is given by:
 	\begin{equation*}
-	X^{T} \cdot \left(\, y \,-\, \pi(\beta) \,\right) \;\; = \;\; 0_{p} \;\; \in \;\; \Re^{p}\,,
+	\nabla_{\beta}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)
+	\;\; = \;\;
+		X^{T} \cdot \left(\, y \,-\, \pi(\beta) \,\right),
 	\end{equation*}
 	where $X \in \Re^{n \times p}$ and $y \in \Re^{n}$ are respectively defined by
 	\begin{eqnarray*}
@@ -101,6 +103,14 @@ Then, the following statements are true:
 		\dfrac{\exp(\,\beta^{T} \cdot x^{(i)}\,)}{1 + \exp(\,\beta^{T} \cdot x^{(i)}\,)}
 	\; = \;
 		\dfrac{1}{1 + \exp(\,-\,\beta^{T} \cdot x^{(i)}\,)}
+	\end{equation*}
+	The (vectorial) score equation is thus given by:
+	\begin{equation*}
+	\nabla_{\beta}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)
+	\;\; = \;\;
+		X^{T} \cdot \left(\, y \,-\, \pi(\beta) \,\right)
+	\;\; = \;\;
+		0_{p} \;\; \in \;\; \Re^{p}\,,
 	\end{equation*}
 	The score equation can be given equivalently in component form by:
 	\begin{equation*}
@@ -137,7 +147,7 @@ Then, the following statements are true:
 			\begin{equation*}
 			X^{T} \cdot D(\beta^{(0)}) \cdot X \cdot {\color{red}\beta^{(1)}}
 				\;\; = \;\; X^{T} \cdot D(\beta^{(0)}) \cdot X \cdot \beta^{(0)}
-				\;+\; X^{T}\cdot\!\left(\,y - \pi(\beta^{0})\,\right).
+				\;+\; X^{T}\cdot\!\left(\,y - \pi(\beta^{(0)})\,\right).
 			\end{equation*}
 		\item
 			Let \,$k \,:=\, 1$\,.
@@ -151,7 +161,7 @@ Then, the following statements are true:
 			X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot {\color{red}\beta^{(k+1)}}
 			\;\; = \;\;
 				X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot \beta^{(k)}
-				\;+\; X^{T}\cdot\!\left(\,y - \pi(\beta^{k})\,\right).
+				\;+\; X^{T}\cdot\!\left(\,y - \pi(\beta^{(k)})\,\right).
 		\end{equation*}
 	\item
 		Increment \,$k$.	
