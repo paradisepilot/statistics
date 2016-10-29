@@ -117,16 +117,20 @@ Then, the following statements are true:
 			\;\right\}
 	\end{eqnarray*}
 \item\label{logisticScoreEqn}
-	The gradient vector of \,$\log L$\, with respect to $\beta$ is given by:
+	The gradient vector
+	\,$\nabla\!\left(\,\log L\,\right) : \Re^{p} \longrightarrow \Re^{p}$\,
+	of
+	\,$\log L$\,
+	with respect to $\beta$ is given by:
 	\begin{equation*}
-	\nabla_{\beta}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)
+	\nabla\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)(\beta)
 	\;\; = \;\;
 		X^{T} \cdot \left(\, y \,\overset{{\color{white}.}}{-}\, \pi(\beta) \right),
 	\end{equation*}
-	and the (vectorial) score equation is thus given by:
+	and the (vectorial) score equation
+	\,$\nabla\!\left(\,\log L\,\right)(\beta) \,=\, 0$\,
+	is thus given by:
 	\begin{equation*}
-	%\nabla_{\beta}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)
-	%\;\; = \;\;
 		X^{T} \cdot \left(\, y \,\overset{{\color{white}.}}{-}\, \pi(\beta) \right)
 	\;\; = \;\;
 		0_{p} \;\; \in \;\; \Re^{p}\,,
@@ -190,15 +194,20 @@ Then, the following statements are true:
 	%\quad
 	%\textnormal{for each \,$k = 1, 2,\ldots,p$}\,.
 	%\end{equation*}
-\item
-	The derivative of $\pi : \Re^{p} \longrightarrow \Re^{n}$ with respect to $\beta \in \Re^{p}$
-	is the map \,$\nabla\pi : \Re^{p} \longrightarrow \Re^{n \times p}$\, given by
+\item\label{DerivativePi}
+	The derivative
+	\,$\nabla\pi : \Re^{p} \longrightarrow \Re^{n \times p}$\,
+	of
+	\,$\pi : \Re^{p} \longrightarrow \Re^{n}$\,
+	is given by
 	\begin{equation*}
 	\left(\,\nabla\pi\,\right)(\beta)
 	\;\; = \;\;
 		D(\beta) \cdot X\,,
 	\end{equation*}
 	where
+	\,$D : \Re^{p} \longrightarrow \Re^{n \times n}$\,
+	is defined by
 	\begin{equation*}
 	D(\beta) \; := \; \diag\!\left(\;
 		\overset{{\color{white}-}}{\pi}_{1}(\beta) \cdot (\,1-\pi_{1}(\beta)\,)\,,
@@ -208,10 +217,12 @@ Then, the following statements are true:
 		\;\in\;
 		\Re^{n \times n}\,.
 	\end{equation*}
-\item
-	The Hessian of the log-likelihood \,$\log L$\, is given by:
+\item\label{HessianLogLikelihood}
+	The Hessian
+	\,$\nabla^{2}\!\left(\,\log L\,\right) : \Re^{p} \longrightarrow \Re^{p \times p}$\,
+	of the log-likelihood \,$\log L$\, is given by:
 	\begin{equation*}
-	\nabla_{\beta}^{2}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)
+	\nabla^{2}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)(\beta)
 	\;\; = \;\;
 		-\, X^{T} \cdot \left(\,\nabla\pi\,\right)(\beta)
 	\;\; = \;\;
@@ -397,45 +408,21 @@ Then, the following statements are true:
 		x^{(i)}_{k}	
 		\cdot
 		\left(\; y_{i} \; \overset{{\color{white}.}}{-} \; \pi_{i}(\beta) \,\right)
-%	\;\; = \;\;
-%		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot y_{i}
-%		\; - \;
-%		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot \pi_{i}
 	\end{eqnarray*}
-%	\begin{eqnarray*}
-%	\dfrac{\partial\,\log L}{\partial\,\beta_{k}}
-%	&=&
-%		\overset{n}{\underset{i=1}{\sum}}\,
-%		\left\{\;
-%			y_{i}\cdot\,x^{(i)}_{k}
-%			\; \overset{{\color{white}\vert}}{-} \;
-%			\dfrac{
-%				\exp\!\left(\,\overset{p}{\underset{l=1}{\sum}}\;\beta_{l}\,x^{(i)}_{l}\,\right)
-%				}{
-%				1 + \exp\!\left(\,\overset{p}{\underset{l=1}{\sum}}\;\beta_{l}\,x^{(i)}_{l}\,\right)
-%				}
-%			\cdot
-%			x^{(i)}_{k}
-%			\;\right\}	
-%	\;\; = \;\;
-%		\overset{n}{\underset{i=1}{\sum}}\,
-%		\left\{\;
-%			y_{i}\cdot\,x^{(i)}_{k}
-%			\; \overset{{\color{white}\vert}}{-} \;
-%			\pi_{i} \cdot x^{(i)}_{k}
-%			\;\right\}	
-%	\\
-%	&=&
-%		\overset{n}{\underset{i=1}{\sum}}\;\;
-%		x^{(i)}_{k}	
-%		\cdot
-%		\left(\; y_{i} \; \overset{{\color{white}.}}{-} \; \pi_{i} \;\right)
-%	\;\; = \;\;
-%		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot y_{i}
-%		\; - \;
-%		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot \pi_{i}
-%	\end{eqnarray*}
-	Thus, the score equations are
+	Equivalently, in matrix form, we have
+	\begin{equation*}
+	\nabla\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)(\beta)
+	\;\; = \;\;
+		X^{T} \cdot \left(\, y \,\overset{{\color{white}.}}{-}\, \pi(\beta) \right).
+	\end{equation*}
+	Hence the score equation
+	\,$\nabla\!\left(\,\log L\,\right) \,=\, 0$\,
+	in explicit terms can be given by:
+	\begin{equation*}
+	X^{T} \cdot \left(\, y \,\overset{{\color{white}.}}{-}\, \pi(\beta) \right) \;\; = \;\; 0_{p}\,,
+	\end{equation*}
+	as desired.
+	Incidentally, the score equations in component form are
 	\begin{eqnarray*}
 	\dfrac{\partial\,\log L}{\partial\,\beta_{k}} \;=\; 0
 	&\quad\Longleftrightarrow\quad&
@@ -504,7 +491,7 @@ Then, the following statements are true:
 		\cdot
 		x^{(i)}_{k}\,,
 	\end{eqnarray*}
-	which immediately implies that
+	which is equivalent to:
 	\begin{equation*}
 	\left(\,\nabla\pi\,\right)(\beta)
 	\;\; = \;\;
@@ -521,9 +508,9 @@ Then, the following statements are true:
 		\Re^{n \times n}\,.
 	\end{equation*}
 \item
-	Observe that
+	By \eqref{DerivativePi}, we have
 	\begin{equation*}
-	\nabla_{\beta}^{2}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)
+	\nabla^{2}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)(\beta)
 	\;\; = \;\;
 		\nabla_{\beta}\!\left(\;\overset{{\color{white}.}}{\nabla}_{\beta}\!\left(\,\log L\,\right)\;\right)
 	\;\; = \;\;
@@ -534,110 +521,74 @@ Then, the following statements are true:
 		-\, X^{T} \cdot D(\beta) \cdot X\,.
 	\end{equation*}
 \item
-	By \eqref{logisticScoreEqn}, the score equation is $g(\,\beta\,;\,X,y\,) = 0$,
-	where $\beta$ is the unknown to be solved, and
-	$g : \Re^{p} \longrightarrow \Re^{p}$ is defined by
-	\begin{eqnarray*}
-	g\!\left(\,\overset{{\color{white}.}}{\beta}\,;\,X,y\,\right){\color{white}.}
-	& = &
-		{\color{white}-}\, X^{T} \cdot \left(\,y \,\overset{{\color{white}.}}{-}\, \pi(\beta)\,\right)
-	\end{eqnarray*}
-	where the matrix $X$ is given by:
+	By \eqref{logisticScoreEqn}, the score equation is
+	\,$g(\,\beta\,;\,X,y\,) = 0$,\,
+	where $\beta$ is the unknown to be solved for, and
+	\,$g : \Re^{p} \longrightarrow \Re^{p}$\,
+	is simply the gradient
+	\,$\nabla\!\left(\,\log L\,\right)$\,
+	of the log-likelihood
+	\,$\log L$.
+	In other words,
 	\begin{equation*}
-	X \;\in\; \Re^{n \times p}\,,
-	\quad
-	X_{ik} \; = \; x^{(i)}_{k}\,,
-	\end{equation*}
-	the component functions \,$g_{k}(\,\beta\,;\,X,y\,)$,\, \,$k = 1,2,\ldots,p$,\,
-	of \,$g : \Re^{p} \longrightarrow \Re^{p}$\, can be given by:
-	\begin{equation*}
-	g_{k}(\,\beta\,;\,X,y\,)
+	g\!\left(\,\beta\,;\,X,y\,\right)
 	\;\; := \;\;
-		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot \left(\,y_{i} - \pi_{i}(\beta)\,\right),
+		\nabla\!\left(\,\log L\,\right)(\beta)
+	\;\; = \;\;
+		X^{T} \cdot \left(\,y \,\overset{{\color{white}.}}{-}\, \pi(\beta)\,\right).
 	\end{equation*}
-	and the component functions \,$\pi_{i}(\beta)$, $k = 1,2,\ldots,p$,\, can be given by:
-	\begin{equation*}
-	\pi_{i}(\beta)
-	\;\ := \;\;
-		\dfrac{\exp(\beta^{T} \cdot x^{(i)})}{1+\exp(\beta^{T}\cdot x^{(i)})}
-	\;\ = \;\;
-		\dfrac{1}{1+\exp(\,-\,\beta^{T}\cdot x^{(i)})}\,.
-	\end{equation*}
-	Now, recall that the Newton-Raphson iterations proceed as follows:
-	Given $\beta^{(m)} \in \Re^{p}$, where $m \in \N$, $\beta^{(m+1)} \in \Re^{p}$
+	Now, recall (see Theorem \eqref{NewtonRaphson}) that,
+	in order to produce an approximate solution to
+	\,$g(\beta\,;\,X,y) = 0$,\,
+	the Newton-Raphson iterations proceed as follows:
+	Choose $\beta^{(1)} \in \Re^{p}$ arbitrarily.
+	Then, for each $m \in \N$, $\beta^{(m+1)} \in \Re^{p}$
 	is defined to be the solution of the following vectorial linear equation:
-	\begin{equation*}
-	\left[\,\overset{{\color{white}\vert}}{\nabla}_{\beta}\,g(\,\beta^{(m)}\,;\,X,y\,)\,\right] \cdot {\color{red}\beta^{(m+1)}}
+	\begin{equation}\label{nablaGBetaMPlusOne}
+	\left[\,(\,\overset{{\color{white}\vert}}{\nabla}_{\beta}\,g\,)(\,\beta^{(m)}\,;\,X,y\,)\,\right] \cdot {\color{red}\beta^{(m+1)}}
 	\;\; = \;\;
-		\left[\,\overset{{\color{white}\vert}}{\nabla}_{\beta}\,g(\,\beta^{(m)}\,;\,X,y\,)\,\right] \cdot \beta^{(m)}
+		\left[\,(\,\overset{{\color{white}\vert}}{\nabla}_{\beta}\,g\,)(\,\beta^{(m)}\,;\,X,y\,)\,\right] \cdot \beta^{(m)}
 		\; - \;
-		g(\,\beta^{(m)}\,;\,X,y\,)
-	\end{equation*}
+		g(\,\beta^{(m)}\,;\,X,y\,)\,.
+	\end{equation}
 	Hence, in order to complete the proof of the present Proposition,
-	it remains only to work out an expression for
-	\,$\overset{{\color{white}\vert}}{\nabla}_{\beta}\,g(\,\beta\,;\,X,y\,)$\,.
-	To this end, first note that
-	\begin{eqnarray*}
-	\dfrac{\partial\,\pi_{i}(\beta)}{\partial\,\beta_{k}}
-	&=&
-		\left[\,1+\exp(\,-\,\beta^{T}\cdot x^{(i)})\,\right]^{-2}
-		\cdot
-		\exp(\,-\,\beta^{T}\cdot x^{(i)})
-		\cdot
-		x^{(i)}_{k}
-	\\
-	&=&
-		\dfrac{1}{1+\exp(\,-\,\beta^{T}\cdot x^{(i)})}
-		\cdot
-		\dfrac{\exp(\,-\,\beta^{T}\cdot x^{(i)})}{1+\exp(\,-\,\beta^{T}\cdot x^{(i)})}
-		\cdot
-		x^{(i)}_{k}
-	\\
-	&=&
-		\dfrac{1}{1+\exp(\,-\,\beta^{T}\cdot x^{(i)})}
-		\cdot
-		\dfrac{1}{1+\exp(\beta^{T}\cdot x^{(i)})}
-		\cdot
-		x^{(i)}_{k}
-	\\
-	&=&
-		\pi_{i}(\beta)
-		\cdot
-		\left(1\overset{{\color{white}.}}{-}\pi_{i}(\beta)\right)
-		\cdot
-		x^{(i)}_{k}
-	\end{eqnarray*}
-	Hence, we see that
-	\begin{eqnarray*}
-	\dfrac{\partial}{\partial\,\beta_{l}}\!\left(\,\overset{{\color{white}\vert}}{g}_{k}(\,\beta\,;\,X,y\,)\,\right)
-	& = &
-		-\;\overset{n}{\underset{i=1}{\sum}}\;x^{(i)}_{k}\cdot\dfrac{\partial\,\pi_{i}(\beta)}{\partial\,\beta_{l}}
-	\;\; = \;\;
-		-\;\overset{n}{\underset{i=1}{\sum}}\;x^{(i)}_{k}\cdot
-		\pi_{i}(\beta)
-		\cdot
-		\left(1\overset{{\color{white}.}}{-}\pi_{i}(\beta)\right)
-		\cdot
-		x^{(i)}_{l}
-	\end{eqnarray*}
-	In the matrix notation, the above equation becomes
+	it remains only to derive an explicit expression for
+	\,$(\,\overset{{\color{white}.}}{\nabla}_{\beta}\,g\,)(\,\beta\,;\,X,y\,)$\,.
+	But, by \eqref{HessianLogLikelihood}, we have
 	\begin{equation*}
-	\nabla_{\beta}\,g(\,\beta\,,\,X,y\,)
+	(\,\nabla g\,)(\beta)
 	\;\; = \;\;
-		-\,X^{T} \cdot D(\beta) \cdot X\,,
+		\nabla\!\left(\;\overset{{\color{white}.}}{\nabla}\log L\;\right)(\beta)
+	\;\; = \;\;
+		\nabla^{2}\!\left(\,\overset{{\color{white}.}}{\log}\,L\,\right)(\beta)
+	\;\; = \;\;
+		-\, X^{T} \cdot D(\beta) \cdot X\,.
 	\end{equation*}
-	where
+	Substituting the above into \eqref{nablaGBetaMPlusOne} yields:
 	\begin{equation*}
-	D(\beta) \; := \; \diag\!\left(\;
-		\overset{{\color{white}-}}{\pi}_{1}(\beta) \cdot (\,1-\pi_{1}(\beta)\,)\,,
-		\,\ldots\,,
-		\pi_{n}(\beta) \cdot (\,1-\pi_{n}(\beta)\,)
-		\;\right)
-		\;\in\;
-		\Re^{n \times n}\,.
+	\left[\; -\, X^{T} \cdot \overset{{\color{white}-}}{D}(\beta) \cdot X \;\right]
+	\cdot
+	{\color{red}\beta^{(m+1)}}
+	\;\; = \;\;
+		\left[\; -\, X^{T} \cdot \overset{{\color{white}-}}{D}(\beta) \cdot X \;\right]
+		\cdot
+		\beta^{(m)}
+		\; - \;
+		g(\,\beta^{(m)}\,;\,X,y\,)\,,
 	\end{equation*}
-	The desired statement now follows immediately from the preceding expression of
-	$\nabla_{\beta}\,g(\,\beta\,,\,X,y\,)$.
+	which simplifies to
+	\begin{equation*}
+	X^{T} \cdot \overset{{\color{white}-}}{D}(\beta) \cdot X
+	\cdot
+	{\color{red}\beta^{(m+1)}}
+	\;\; = \;\;
+		X^{T} \cdot \overset{{\color{white}-}}{D}(\beta) \cdot X
+		\cdot
+		\beta^{(m)}
+		\; + \;
+		g(\,\beta^{(m)}\,;\,X,y\,)\,,
+	\end{equation*}
+	as desired.
 \end{enumerate}
 This completes the proof of the present Proposition.
 \qed
