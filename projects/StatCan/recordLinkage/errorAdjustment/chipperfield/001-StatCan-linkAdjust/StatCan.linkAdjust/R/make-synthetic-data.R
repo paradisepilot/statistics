@@ -28,5 +28,6 @@ make.synthetic.data <- function(
 	colnames(DF.output) <- c("y",colnames(X),"prY1");
 
 	return(DF.output);
+
 	}
 
