@@ -15,7 +15,10 @@ source(paste0(package.directory,'/make-synthetic-data.R'));
 setwd(output.directory);
 
 ###################################################
-results <- make.synthetic.data();
+results <- make.synthetic.data(
+	nobs = 10,
+	beta = c(-0.5,1.5,2.5,-3.5)
+	);
 
 results;
 
