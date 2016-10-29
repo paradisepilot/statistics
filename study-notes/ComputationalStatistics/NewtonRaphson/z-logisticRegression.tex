@@ -209,14 +209,20 @@ Then, the following statements are true:
 	The Newton-Raphson method, when applied to solve the score equation for $\beta \in \Re^{p}$
 	in \eqref{logisticScoreEqn} above, takes the following explicit form:
 	\begin{center}
-	\begin{minipage}{6in}
-	\underline{\textnormal{\bf Newton-Raphson method applied to solve the score equation from logistic regression}}
-	\vskip 0.3cm
-	\noindent
-	\textnormal{Choose $\varepsilon > 0$. ($\varepsilon > 0$ will be used as the termination threshold.)
-	\vskip 0.4cm
-	\textnormal{\bf INITIALIZATION}
+	\setlength{\fboxsep}{2em}
+	\fbox{\begin{minipage}{5.25in}
+	\begin{center}
+		\textnormal{\LARGE\bf The Newton-Raphson method }
+		\vskip 0.25cm
+		\textnormal{\large\bf applied to solve the score equation of logistic regression}
+		\vskip -0.1cm
+		\rule{4.575in}{.3pt}
+	\end{center}
+	\textnormal{
+		\textbf{INITIALIZATION}
 		\begin{itemize}
+		\item
+			Choose $\varepsilon > 0$ (error tolerance).
 		\item
 			Choose \,$\beta^{(0)} \in \Re^{p}$\, arbitrarily.
 		\item
@@ -227,32 +233,32 @@ Then, the following statements are true:
 				\;+\; X^{T}\cdot\!\left(\,y - \pi(\beta^{(0)})\,\right).
 			\end{equation*}
 		\item
-			Let \,$k \,:=\, 1$\,.
+			Initialize \,$k$\, to $1$.
 		\end{itemize}
-	\vskip 0.2cm
-	\textnormal{\bf WHILE} \; $\left(\;\Vert\,\beta^{(k)} \,-\, \beta^{(k-1)}\,\Vert > \varepsilon\;\right)$ \; \textnormal{\bf DO}
-	\begin{itemize}
-	\item
-		Define \,$\beta^{(k+1)} \in \Re^{p}$\, as the solution of the following (vectorial) linear equation:
-		\begin{equation*}
-			X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot {\color{red}\beta^{(k+1)}}
-			\;\; = \;\;
-				X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot \beta^{(k)}
-				\;+\; X^{T}\cdot\!\left(\,y - \pi(\beta^{(k)})\,\right).
-		\end{equation*}
-	\item
-		Increment \,$k$.	
-	\end{itemize}
-	\textnormal{\bf ENDWHILE}
-	\vskip 0.4cm
-	\textnormal{\bf OUTPUT}
-	\begin{itemize}
-	\item
-		Return \,$\beta^{(k)} \in \Re^{p}$\, as approximate solution to the score equation
-		in \eqref{logisticScoreEqn}.
-	\end{itemize}
-	}
-	\end{minipage}
+		\vskip 0.2cm
+		\textbf{WHILE} \; $\left(\;\Vert\,\beta^{(k)} \,-\, \beta^{(k-1)}\,\Vert > \varepsilon\;\right)$ \; \textnormal{\bf DO}
+		\begin{itemize}
+		\item
+			Define \,$\beta^{(k+1)} \in \Re^{p}$\, as the solution of the following (vectorial) linear equation:
+			\begin{equation*}
+				X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot {\color{red}\beta^{(k+1)}}
+				\;\; = \;\;
+					X^{T} \cdot D(\beta^{(k)}) \cdot X \cdot \beta^{(k)}
+					\;+\; X^{T}\cdot\!\left(\,y - \pi(\beta^{(k)})\,\right).
+			\end{equation*}
+		\item
+			Increment \,$k$\, by $1$.	
+		\end{itemize}
+		\textbf{ENDWHILE}
+		\vskip 0.4cm
+		\textbf{OUTPUT}
+		\begin{itemize}
+		\item
+			Return \,$\beta^{(k)} \in \Re^{p}$\, as approximate solution to the score equation
+			in \eqref{logisticScoreEqn}.
+		\end{itemize}
+	} %\textnormal
+	\end{minipage}}
 	\end{center}
 \end{enumerate}
 \end{proposition}
