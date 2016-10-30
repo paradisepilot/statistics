@@ -17,18 +17,18 @@ setwd(output.directory);
 
 ###################################################
 synthetic.data <- make.synthetic.data(
-	nobs           = 100,
+	nobs           = 50000,
 	beta           = c(-0.5,1.5,2.5,-3.5),
-	errorRate      = 0.35,
-	reviewFraction = 0.5
+	errorRate      = 0.50,
+	reviewFraction = 0.99
 	);
 
 synthetic.data[1:5,];
 
 results <- linkAdjust.logistic(
-	data       = synthetic.data[,c("ystar","x0","x1","x2","x3","review","match")],
-	response   = "ystar",
-	predictors = c("x0","x1","x2","x3"),
+	data       = synthetic.data[,c("y.observed","x1","x2","x3","review","match")],
+	response   = "y.observed",
+	predictors = c("x1","x2","x3"),
 	review     = "review",
 	match      = "match"
 	);
