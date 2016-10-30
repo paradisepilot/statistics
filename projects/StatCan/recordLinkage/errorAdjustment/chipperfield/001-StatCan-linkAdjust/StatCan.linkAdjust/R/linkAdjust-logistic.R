@@ -4,15 +4,104 @@ linkAdjust.logistic <- function(
 	response,
 	predictors,
 	review,
+	match,
+	tolerence = 1e-5,
+	max.iter  = 1000
+	) {
+
+	beta.im1 <- .initialize.beta(
+		data       = data,
+		response   = response,
+		predictors = predictors
+		);
+
+	print("beta.im1");
+	print( beta.im1 );
+
+	results.expectation <- .step.expectation(
+		beta       = beta.im1,
+		data       = data,
+		response   = response,
+		predictors = predictors,
+		review     = review,
+		match      = match
+		);
+
+	print("str(results.expectation)");
+	print( str(results.expectation) );
+
+#	i <- 1;
+#	while (i < max.iter & norm(beta.im1-beta.i,type="F") > tolerance) {
+#
+#		}
+
+	return(data);
+
+	}
+
+########
+
+.step.expectation <- function(
+	beta,
+	data,
+	response,
+	predictors,
+	review,
 	match
 	) {
 
+	DF.output <- as.data.frame(data);
 
-	selected.indices <- (data[,"review"] == 1) & (data[,"match"] == 1);
-	print("data");
-	print( data[selected.indices,] );
+	print("response");
+	print( response );
 
-	return(data);
+	print("colnames(DF.output)");
+	print( colnames(DF.output) );
+
+	print("AAA");
+	DF.output <- cbind(DF.output, y.expected = DF.output[,response]);
+	print("BBB");
+
+	print("str(DF.output)");
+	print( str(DF.output) );
+
+	DF.output <- cbind(
+		DF.output,
+		pi.temp = 1 / (1+exp(as.matrix(cbind(rep(1,nrow(DF.output)),DF.output[,predictors])) %*% (-beta)))
+		);
+
+	selected.indices <- (DF.output[,review] == TRUE) & (DF.output[,match] == FALSE);
+	DF.output[selected.indices,"y.expected"] <- DF.output[selected.indices,"pi.temp"];
+
+	return(DF.output);
+
+	}
+
+.initialize.beta <- function(
+	data,
+	response,
+	predictors
+	) {
+
+	selected.indices <- (data[,"review"] == TRUE) & (data[,"match"] == TRUE);
+
+	temp.formula = paste0(response," ~ ",paste(predictors,collapse=" + "));
+	temp.formula = as.formula(temp.formula);
+
+	results.glm <- glm(
+		formula = temp.formula,
+		data   = as.data.frame(data[selected.indices,c(response,predictors)]),
+		family = binomial(link="logit")
+		);
+
+	print("summary(results.glm)");
+	print( summary(results.glm) );
+
+	return( coefficients(results.glm) );
+
+	}
+
+.step.maximization <- function() {
 
 	}
 
