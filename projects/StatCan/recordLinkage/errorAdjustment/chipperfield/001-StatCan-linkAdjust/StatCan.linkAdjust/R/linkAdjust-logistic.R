@@ -51,22 +51,9 @@ linkAdjust.logistic <- function(
 	) {
 
 	DF.output <- as.data.frame(data);
-
-	print("response");
-	print( response );
-
-	print("colnames(DF.output)");
-	print( colnames(DF.output) );
-
-	print("AAA");
-	DF.output <- cbind(DF.output, y.expected = DF.output[,response]);
-	print("BBB");
-
-	print("str(DF.output)");
-	print( str(DF.output) );
-
 	DF.output <- cbind(
 		DF.output,
+		y.expected = DF.output[,response],
 		pi.temp = 1 / (1+exp(as.matrix(cbind(rep(1,nrow(DF.output)),DF.output[,predictors])) %*% (-beta)))
 		);
 
