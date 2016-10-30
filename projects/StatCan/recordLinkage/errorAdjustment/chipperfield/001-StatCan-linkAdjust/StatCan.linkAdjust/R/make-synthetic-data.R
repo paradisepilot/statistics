@@ -34,16 +34,18 @@ make.synthetic.data <- function(
 		response.vector,
 		X,
 		review.vector,
+		match.vector,
 		prY1
 		);
 	colnames(DF.output) <- c(
 		"ID",
-		"match",
+		"true.match",
 		"IDstar",
 		"y",
 		"ystar",
 		colnames(X),
 		"review",
+		"match",
 		"prY1"
 		);
 
@@ -61,6 +63,8 @@ make.synthetic.data <- function(
 
 	DF.output <- rbind(DF.matches,DF.nonmatches);
 	DF.output <- DF.output[order(DF.output[,"ID"]),];
+
+	DF.output[DF.output[,"review"] == 0,"match"] <- NA;
 
 	return(DF.output);
 

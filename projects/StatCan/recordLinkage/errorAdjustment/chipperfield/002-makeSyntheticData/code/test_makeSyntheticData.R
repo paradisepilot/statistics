@@ -10,19 +10,28 @@ package.directory <- normalizePath(command.arguments[2]);
 # library(RColorBrewer);
 # library(VennDiagram);
 
+source(paste0(package.directory,'/linkAdjust-logistic.R'));
 source(paste0(package.directory,'/make-synthetic-data.R'));
 
 setwd(output.directory);
 
 ###################################################
-results <- make.synthetic.data(
+synthetic.data <- make.synthetic.data(
 	nobs           = 100,
 	beta           = c(-0.5,1.5,2.5,-3.5),
 	errorRate      = 0.35,
 	reviewFraction = 0.5
 	);
 
-results;
+synthetic.data[1:5,];
+
+results <- linkAdjust.logistic(
+	data       = synthetic.data[,c("ystar","x0","x1","x2","x3","review","match")],
+	response   = "ystar",
+	predictors = c("x0","x1","x2","x3"),
+	review     = "review",
+	match      = "match"
+	);
 
 ###################################################
 
