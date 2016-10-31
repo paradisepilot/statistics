@@ -18,8 +18,6 @@ linkAdjust.logistic <- function(
 	print("DF.data[1:100,]");
 	print( DF.data[1:100,] );
 
-	return(DF.data);
-
 	beta.im1 <- .initialize.beta(
 		data       = DF.data,
 		response   = response,
@@ -115,6 +113,11 @@ linkAdjust.logistic <- function(
 
 	selected.indices <- (DF.output[,review] == TRUE) & (DF.output[,match] == FALSE);
 	DF.output[selected.indices,"y.expected"] <- DF.output[selected.indices,"pi.temp"];
+
+	selected.indices <- (DF.output[,review] == FALSE);
+	DF.output[selected.indices,response] <-
+		DF.output[selected.indices,"Pxystar"] * DF.output[selected.indices,response]
+		+ (1 - DF.output[selected.indices,"Pxystar"]) * DF.output[selected.indices,"pi.temp"];
 
 	return(DF.output);
 
