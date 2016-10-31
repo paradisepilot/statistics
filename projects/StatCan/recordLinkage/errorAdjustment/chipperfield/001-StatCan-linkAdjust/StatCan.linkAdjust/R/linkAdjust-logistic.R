@@ -9,7 +9,7 @@ linkAdjust.logistic <- function(
 	max.iter  = 1000
 	) {
 
-	DF.data <- .augment.Pxystar(
+	DF.data <- .attach.Pxystar(
 		data       = as.data.frame(data),
 		response   = response,
 		predictors = predictors
@@ -52,7 +52,7 @@ linkAdjust.logistic <- function(
 
 ########
 
-.augment.Pxystar <- function(
+.attach.Pxystar <- function(
 	data,
 	response,
 	predictors
