@@ -39,6 +39,13 @@ linkAdjust.logistic <- function(
 	print("str(results.expectation)");
 	print( str(results.expectation) );
 
+	beta.i <- .step.maximization(
+		beta0      = beta.im1,
+		data       = results.expectation,
+		response   = "y.expected",
+		predictors = predictors
+		);
+
 #	i <- 1;
 #	while (i < max.iter & norm(beta.im1-beta.i,type="F") > tolerance) {
 #
@@ -147,7 +154,16 @@ linkAdjust.logistic <- function(
 
 	}
 
-.step.maximization <- function() {
+.step.maximization <- function(
+	beta0,
+	data,
+	response,
+	predictors,
+	tolerance = 1e-6,
+	max.iter  = 1000
+	) {
+
+	return(1);
 
 	}
 
