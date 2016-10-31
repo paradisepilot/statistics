@@ -9,8 +9,19 @@ linkAdjust.logistic <- function(
 	max.iter  = 1000
 	) {
 
+	DF.data <- .augment.Pxystar(
+		data       = as.data.frame(data),
+		response   = response,
+		predictors = predictors
+		);
+
+	print("DF.data[1:100,]");
+	print( DF.data[1:100,] );
+
+	return(DF.data);
+
 	beta.im1 <- .initialize.beta(
-		data       = data,
+		data       = DF.data,
 		response   = response,
 		predictors = predictors
 		);
@@ -20,7 +31,7 @@ linkAdjust.logistic <- function(
 
 	results.expectation <- .step.expectation(
 		beta       = beta.im1,
-		data       = data,
+		data       = DF.data,
 		response   = response,
 		predictors = predictors,
 		review     = review,
@@ -40,6 +51,51 @@ linkAdjust.logistic <- function(
 	}
 
 ########
+
+.augment.Pxystar <- function(
+	data,
+	response,
+	predictors
+	) {
+
+	require(dplyr);
+
+	print("head(data)");
+	print( head(data) );
+
+	DF.output <- cbind(
+		data,
+		xystar = apply(
+			X      = data[,c(response,predictors)],
+			FUN    = function(u) {paste0(u,collapse="")},
+			MARGIN = 1
+			)
+		);
+
+	DF.xystar <- DF.output %>%
+		filter(review == TRUE) %>%
+		group_by(xystar) %>%
+		summarize(count.match=sum(match),count.total=n())
+		;
+
+	DF.xystar <- as.data.frame(DF.xystar);
+	DF.xystar <- cbind(
+		DF.xystar,
+		Pxystar = DF.xystar[,"count.match"] / DF.xystar[,"count.total"]
+		);
+	rownames(DF.xystar) <- DF.xystar[,"xystar"];
+
+	print("DF.xystar");
+	print( DF.xystar );
+
+	DF.output <- cbind(
+		DF.output,
+		Pxystar = DF.xystar[DF.output[,"xystar"],"Pxystar"]
+		);
+
+	return(DF.output);
+
+	}
 
 .step.expectation <- function(
 	beta,
