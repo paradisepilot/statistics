@@ -5,7 +5,7 @@ linkAdjust.logistic <- function(
 	predictors,
 	review,
 	match,
-	tolerence = 1e-5,
+	tolerance = 1e-5,
 	max.iter  = 1000
 	) {
 
@@ -39,19 +39,47 @@ linkAdjust.logistic <- function(
 	print("str(results.expectation)");
 	print( str(results.expectation) );
 
-	beta.i <- .step.maximization(
+	results.maximization <- .step.maximization(
 		beta0      = beta.im1,
 		data       = results.expectation,
 		response   = "y.expected",
 		predictors = predictors
 		);
+
+	beta.i <- results.maximization[['estimate']];
 	print( "beta.i" );
 	print(  beta.i  );
 
-#	i <- 1;
-#	while (i < max.iter & norm(beta.im1-beta.i,type="F") > tolerance) {
-#
-#		}
+	i <- 1;
+	while (i < max.iter & sqrt(sum((beta.i - beta.im1)^2)) > tolerance) {
+
+		beta.im1 <- beta.i;
+
+		results.expectation <- .step.expectation(
+			beta       = beta.im1,
+			data       = DF.data,
+			response   = response,
+			predictors = predictors,
+			review     = review,
+			match      = match
+			);
+		print("str(results.expectation)");
+		print( str(results.expectation) );
+
+		results.maximization <- .step.maximization(
+			beta0      = beta.im1,
+			data       = results.expectation,
+			response   = "y.expected",
+			predictors = predictors
+			);
+		print("str(results.maximization)");
+		print( str(results.maximization) );
+
+		beta.i <- results.maximization[['estimate']];
+		print( "beta.i" );
+		print(  beta.i  );
+
+		}
 
 	return(data);
 
@@ -171,31 +199,17 @@ linkAdjust.logistic <- function(
 	X <- as.matrix(cbind(rep(1,nrow(data)),data[,predictors]));
 
 	logL <- function(beta) {
-		XB  <- X %*% beta;
-		PiB <- 1/(1+exp(-XB));
 
-		print("str(t(X))");
-		print( str(t(X)) );
+		XB       <- X %*% beta;
+		PiB      <- 1/(1+exp(-XB));
+		DB       <- PiB*(1-PiB);
+		logL.out <- sum( - apply(X=XB,MARGIN=2,FUN=function(u){u*y}) + log(1+exp(XB)) );
 
-		print("str(PiB * (1-PiB))");
-		print( str(PiB * (1-PiB)) );
+		attr(logL.out,"gradient") <- t(X) %*% (PiB - y);
+		attr(logL.out,"hessian")  <- t(X) %*% apply(X=X,MARGIN=2,FUN=function(u){u*DB});
 
-		print("str(X)");
-		print( str(X) );
-
-		print("str( diag(as.numeric(PiB * (1-PiB))) )");
-		print( str( diag(as.numeric(PiB * (1-PiB))) ) );
-
-		print("diag(PiB * (1-PiB))");
-		print( diag(PiB * (1-PiB)) );
-
-		print("str(t(X) %*% (diag(as.numeric(PiB * (1-PiB))) %*% X))");
-		print( str(t(X) %*% (diag(as.numeric(PiB * (1-PiB))) %*% X)) );
-
-		logL.out <- sum( diag(y) %*% XB - log(1 + exp(XB)) );
-		attr(logL.out,"gradient") <- t(X) %*% (y - PiB);
-		attr(logL.out,"hessian")  <- - t(X) %*% diag(as.numeric(PiB * (1-PiB))) %*% X;
 		return(logL.out);
+
 		}
 
 	results.nlm <- nlm(
@@ -203,7 +217,7 @@ linkAdjust.logistic <- function(
 		p = beta0
 		); 
 
-	return(1);
+	return(results.nlm);
 
 	}
 
