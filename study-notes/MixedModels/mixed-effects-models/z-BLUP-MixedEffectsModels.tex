@@ -12,10 +12,59 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{definition}[Best linear unbiased predictor]
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$Y^{(0)} = \left\{\,\left.Y^{(0)}_{\beta} : \Omega \longrightarrow \Re\,\;\right\vert\;\beta\in\Re^{p}\,\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$, of \,$\Re$-valued random variables
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$Y = \left\{\,\left.(Y^{(1)}_{\beta}, Y^{(2)}_{\beta}, \ldots, Y^{(n)}_{\beta})
+	: \Omega \longrightarrow \Re^{n}\,\;\right\vert\; \beta \in \Re^{p} \,\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$, of \,$\Re^{n}$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\end{itemize}
+Then:
+\begin{enumerate}
+\item
+	An affine function
+	\,$f : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto a_{0} + a^{T} \cdot y$\,
+	is said to be a
+	{\color{red}linear unbiased estimator of \,$Y^{(0)}$ in terms of \,$Y$} if
+	\begin{equation*}
+	E\!\left[\;\overset{{\color{white}.}}{f}(Y_{\beta})\,\right]
+	\;\; = \;\;
+		E\!\left[\;\,Y^{(0)}_{\beta}\;\right],
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,.
+	\end{equation*}
+\item
+	A linear unbiased estimtor
+	\,$f : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto a_{0} + a^{T} \cdot y$\,
+	of \,$Y^{(0)}$ in terms of \,$Y$\, is said to be a
+	{\color{red}best linear unbiased estimator of \,$Y^{(0)}$ in terms of \,$Y$} if,
+	for each linear unbiased estimator $g : \Re^{n} \longrightarrow \Re^{1}$
+	of \,$Y^{(0)}$ in terms of $Y$, we have
+	\begin{equation*}
+	E\!\left[\; \left(\,Y^{(0)}_{\beta } - \overset{{\color{white}.}}{f}(Y_{\beta})\,\right)^{2}\,\right]
+	\;\; \leq \;\;
+		E\!\left[\;\left(\,Y^{(0)}_{\beta } - \overset{{\color{white}.}}{g}(Y_{\beta})\,\right)^{2}\;\right],
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,.
+	\end{equation*}
+\end{enumerate}
+\end{definition}
+
 \begin{theorem}[Theorem 12.2.3, p.294, \cite{Christensen2011}]
 \label{AMixedModelEquivalentFixedModel}
 \mbox{}
-\vskip 0.2cm
+\vskip 0.1cm
 \noindent
 Suppose:
 \begin{itemize}
