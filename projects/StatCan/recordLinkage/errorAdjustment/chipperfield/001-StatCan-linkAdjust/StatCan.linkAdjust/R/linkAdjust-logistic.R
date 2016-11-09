@@ -12,7 +12,8 @@ linkAdjust.logistic <- function(
 	DF.data <- .attach.Pxystar(
 		data       = as.data.frame(data),
 		response   = response,
-		predictors = predictors
+		predictors = predictors,
+		match      = match
 		);
 
 	print("DF.data[1:100,]");
@@ -21,7 +22,9 @@ linkAdjust.logistic <- function(
 	beta.im1 <- .initialize.beta(
 		data       = DF.data,
 		response   = response,
-		predictors = predictors
+		predictors = predictors,
+		review     = review,
+		match      = match
 		);
 
 	print("beta.im1");
@@ -90,7 +93,8 @@ linkAdjust.logistic <- function(
 .attach.Pxystar <- function(
 	data,
 	response,
-	predictors
+	predictors,
+	match
 	) {
 
 	require(dplyr);
@@ -152,7 +156,7 @@ linkAdjust.logistic <- function(
 	DF.output[selected.indices,"y.expected"] <- DF.output[selected.indices,"pi.temp"];
 
 	selected.indices <- (DF.output[,review] == FALSE);
-	DF.output[selected.indices,response] <-
+	DF.output[selected.indices,"y.expected"] <-
 		DF.output[selected.indices,"Pxystar"] * DF.output[selected.indices,response]
 		+ (1 - DF.output[selected.indices,"Pxystar"]) * DF.output[selected.indices,"pi.temp"];
 
@@ -163,10 +167,12 @@ linkAdjust.logistic <- function(
 .initialize.beta <- function(
 	data,
 	response,
-	predictors
+	predictors,
+	match,
+	review
 	) {
 
-	selected.indices <- (data[,"review"] == TRUE) & (data[,"match"] == TRUE);
+	selected.indices <- (data[,review] == TRUE) & (data[,match] == TRUE);
 
 	temp.formula = paste0(response," ~ ",paste(predictors,collapse=" + "));
 	temp.formula = as.formula(temp.formula);

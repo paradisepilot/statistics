@@ -17,10 +17,10 @@ setwd(output.directory);
 
 ###################################################
 synthetic.data <- make.synthetic.data(
-	nobs           = 5000,
+	nobs           = 50000,
 	beta           = c(-0.5,1.5,2.5,-3.5),
 	errorRate      = 0.05,
-	reviewFraction = 0.20
+	reviewFraction = 0.10
 	);
 
 synthetic.data[1:5,];
