@@ -35,5 +35,7 @@ results <- linkAdjust.logistic(
 
 ###################################################
 
+sessionInfo();
+
 q();
 
