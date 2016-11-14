@@ -14,7 +14,7 @@
 
 \begin{definition}[Best linear unbiased predictor]
 \mbox{}
-\vskip 0.2cm
+\vskip 0.1cm
 \noindent
 Suppose:
 \begin{itemize}
@@ -25,9 +25,9 @@ Suppose:
 	is a family, indexed by $\beta \in \Re^{p}$, of \,$\Re$-valued random variables
 	defined on $(\Omega,\mathcal{A},\mu)$.
 \item
-	$Y = \left\{\,\left.(Y^{(1)}_{\beta}, Y^{(2)}_{\beta}, \ldots, Y^{(n)}_{\beta})
-	: \Omega \longrightarrow \Re^{n}\,\;\right\vert\; \beta \in \Re^{p} \,\right\}$
-	is a family, indexed by $\beta \in \Re^{p}$, of \,$\Re^{n}$-valued random variable
+	$Y = \left\{\;Y_{\beta} = \left.(\,Y^{(1)}_{\beta}, Y^{(2)}_{\beta}, \ldots, Y^{(n)}_{\beta}\,)
+	: \Omega \longrightarrow \Re^{n}\,\;\right\vert\; \beta \in \Re^{p} \;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$, of \,$\Re^{n}$-valued random variables
 	defined on $(\Omega,\mathcal{A},\mu)$.
 \end{itemize}
 Then:
@@ -35,8 +35,8 @@ Then:
 \item
 	An affine function
 	\,$f : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto a_{0} + a^{T} \cdot y$\,
-	is said to be a
-	{\color{red}linear unbiased estimator of \,$Y^{(0)}$ in terms of \,$Y$} if
+	(where $a_{0} \in \Re^{1}$ and $a \in \Re^{n}$) is said to be a
+	{\color{red}linear unbiased predictor of \,$Y^{(0)}$ in terms of \,$Y$} if
 	\begin{equation*}
 	E\!\left[\;\overset{{\color{white}.}}{f}(Y_{\beta})\,\right]
 	\;\; = \;\;
@@ -45,11 +45,11 @@ Then:
 	\textnormal{for each \,$\beta \in \Re^{p}$}\,.
 	\end{equation*}
 \item
-	A linear unbiased estimtor
+	A linear unbiased predictor
 	\,$f : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto a_{0} + a^{T} \cdot y$\,
 	of \,$Y^{(0)}$ in terms of \,$Y$\, is said to be a
-	{\color{red}best linear unbiased estimator of \,$Y^{(0)}$ in terms of \,$Y$} if,
-	for each linear unbiased estimator $g : \Re^{n} \longrightarrow \Re^{1}$
+	{\color{red}best linear unbiased predictor of \,$Y^{(0)}$ in terms of \,$Y$} if,
+	for each linear unbiased predictor $g : \Re^{n} \longrightarrow \Re^{1}$
 	of \,$Y^{(0)}$ in terms of $Y$, we have
 	\begin{equation*}
 	E\!\left[\; \left(\,Y^{(0)}_{\beta } - \overset{{\color{white}.}}{f}(Y_{\beta})\,\right)^{2}\,\right]
@@ -61,8 +61,7 @@ Then:
 \end{enumerate}
 \end{definition}
 
-\begin{theorem}[Theorem 12.2.3, p.294, \cite{Christensen2011}]
-\label{AMixedModelEquivalentFixedModel}
+\begin{proposition}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -70,58 +69,122 @@ Suppose:
 \begin{itemize}
 \item
 	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	\,$X \in \Re^{n \times p}$.\,
+	$x_{0} \in \Re^{1 \times p}$.
 \item
-	$Y_{0} : \Omega \longrightarrow \Re$ is an $\Re$-valued random variable
+	$Y^{(0)} = \left\{\,\left.Y^{(0)}_{\beta} : \Omega \longrightarrow \Re\,\;\right\vert\;\beta\in\Re^{p}\,\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$, of \,$\Re$-valued random variables
 	defined on $(\Omega,\mathcal{A},\mu)$.
 \item
-	$Y = (Y_{1}, Y_{2}, \ldots, Y_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
+	$Y = \left\{\;Y_{\beta} = \left.(\,Y^{(1)}_{\beta}, Y^{(2)}_{\beta}, \ldots, Y^{(n)}_{\beta}\,)
+	: \Omega \longrightarrow \Re^{n}\,\;\right\vert\; \beta \in \Re^{p} \;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$, of \,$\Re^{n}$-valued random variables
 	defined on $(\Omega,\mathcal{A},\mu)$.
 \item
-	$e = (e_{1}, e_{2}, \ldots, e_{n}) : \Omega \longrightarrow \Re^{n}$ is an $\Re^{n}$-valued random variable
-	defined on $(\Omega,\mathcal{A},\mu)$.
-\item
-	$x_{0} \in \Re^{1 \times p}$, $X \in \Re^{n \times p}$, and $\beta \in \Re^{p \times 1}$.
-	\vskip 0.0cm
-	%The vector $x_{0}$ and the matrix $X$ are known,
-	%but the parameter \textbf{\color{red}$\beta$ is unknown}.
-\item
-	The quantities $Y_{0}$, $Y$, $X$, $\beta$, and $e$ satisfy the following four properties:
+	The quantities $X$, $x_{0}$, $Y^{(0)}$ and $Y$ satisfy the following properties:
 	\begin{equation*}
-	\begin{array}{ccll}
-	Y & = & X \cdot \beta + e, & \textnormal{$\mu$-almost everywhere}
-	\\
-	E\!\left[\,Y_{0}\,\right] &\overset{{\color{white}\vert}}{=}& x_{0} \cdot \beta
-	\\
-	x_{0} &\overset{{\color{white}\vert}}{=}& \rho^{T} \cdot X, & \textnormal{for some \,$\rho \in \Re^{n \times 1}$}
-	\\
-	E\!\left[\,e\,\right] &\overset{{\color{white}\vert}}{=}& 0
-	\end{array}
-	\end{equation*}
-\item
-	The following covariance matrices exist:
-	\begin{equation*}
-	V \;:=\; \Cov(Y) \;=\; \Cov(e) \;\in\; \Re^{n \times n}\,,
+	E\!\left[\;\overset{{\color{white}.}}{Y_{\beta}}\,\right] \; = \; X \cdot \beta\,,
 	\quad\textnormal{and}\quad
-	\Cov(Y,Y_{0}) \;\in\; \Re^{n \times 1}\,.
+	E\!\left[\;Y^{(0)}_{\beta}\,\right] \; = \; x_{0} \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,.
+	\end{equation*}
+\end{itemize}
+If \,$f : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto a_{0} + a^{T} \cdot y$\,
+(where $a_{0} \in \Re^{1}$ and $a \in \Re^{n}$) is a
+\textbf{linear unbiased predictor of \,$Y^{(0)}$ in terms of \,$Y$},
+then we in fact necessarily have:
+\begin{equation*}
+a_{0} \; = \; 0\,,
+\quad\quad\textnormal{and}\quad\quad
+x_{0} \; = \; a^{T} \cdot X
+\end{equation*}
+\end{proposition}
+\proof
+Note that $f : \Re^{n} \longrightarrow \Re^{1}$ being
+a linear unbiased predictor of $Y^{(0)}$ in terms of $Y$ implies:
+\begin{equation*}
+x_{0} \cdot \beta
+\;\; = \;\;
+	E\!\left[\;Y^{(0)}_{\beta}\,\right]
+\;\; = \;\;
+	E\!\left[\,\overset{{\color{white}.}}{f}(Y_{\beta})\,\right]
+\;\; = \;\;
+	E\!\left[\,a_{0} + a^{T}\cdot Y_{\beta}\,\right]
+\;\; = \;\;
+	a_{0} + a^{T}\cdot E\!\left[\;Y_{\beta}\,\right]
+\;\; = \;\;
+	a_{0} + a^{T}\cdot X \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta\in\Re^{p}$}\,,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+a_{0}
+\;\; = \;\;
+	\left(\,x_{0} - a^{T}\cdot X\,\right) \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta\in\Re^{p}$}\,.
+\end{equation*}
+Since the left-hand side of the preceding equation does not involve $\beta$
+while the right-hand side does, we see that both sides must in fact be zero for the equality to hold.
+In other words, we must have $a_{0} = 0$ and that $a \in \Re^{n}$ satisfies $a^{T} \cdot X = x_{0}$.
+This completes the proof of the present Proposition.
+\qed
+
+\vskip 1.0cm
+
+\begin{theorem}[Theorem 12.2.3, p.294, \cite{Christensen2011}]
+\label{formulaBLUP}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	\,$X \in \Re^{n \times p}$.\,
+	$\rho \in \Re^{n \times 1}$.
+\item
+	$Y^{(0)} = \left\{\,\left.Y^{(0)}_{\beta} : \Omega \longrightarrow \Re\,\;\right\vert\;\beta\in\Re^{p}\,\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$, of \,$\Re$-valued random variables
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	$Y = \left\{\;Y_{\beta} = \left.(\,Y^{(1)}_{\beta}, Y^{(2)}_{\beta}, \ldots, Y^{(n)}_{\beta}\,)
+	: \Omega \longrightarrow \Re^{n}\,\;\right\vert\; \beta \in \Re^{p} \;\right\}$
+	is a family, indexed by $\beta \in \Re^{p}$, of \,$\Re^{n}$-valued random variables
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	The quantities $X$, $\rho$, $Y^{(0)}$ and $Y$ satisfy the following properties:
+	\begin{equation*}
+	E\!\left[\;\overset{{\color{white}.}}{Y_{\beta}}\,\right] \; = \; X \cdot \beta\,,
+	\quad\textnormal{and}\quad
+	E\!\left[\;Y^{(0)}_{\beta}\,\right] \; = \; \rho^{T} \cdot X \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,.
 	\end{equation*}
 \item
-	Define:
-	\begin{eqnarray*}
-	\xi & := & Z \cdot \gamma + e
-	\\
-	V & := & \Cov(Y) \;\; = \;\; \Cov\!\left(\,Z\cdot\gamma+e\,\right) \;\; = \;\; Z \cdot \Cov(\gamma) \cdot Z^{T} + \Cov(e)
-	\end{eqnarray*}
-\end{itemize}
-Then, the quantities $Y$, $X$, $\beta$, $\xi$ and $V$ together satisfy:
+	The following are constant in $\beta \in \Re^{p}$:
 	\begin{equation*}
-	\begin{array}{ccll}
-	Y & = & X \cdot \beta + \xi, & \textnormal{$\mu$-almost everywhere}
-	\\
-	E\!\left[\,\xi\,\right] &\overset{{\color{white}\vert}}{=}& 0
-	\\
-	\Cov\!\left(\xi\right) &\overset{{\color{white}\vert}}{=}& V
-	\end{array}
+	\Re^{p} \longrightarrow \Re^{n \times n} : \beta \longmapsto \Cov\!\left(\,Y_{\beta}\,\right)
+	\quad\quad\textnormal{and}\quad\quad
+	\Re^{p} \longrightarrow \Re^{n \times 1} : \beta \longmapsto \Cov\!\left(\,Y_{\beta}\,,\,Y^{(0)}_{\beta}\right).
 	\end{equation*}
+	We will use respectively $\Cov(\,Y\,)\in\Re^{n \times n}$ and $\Cov(\,Y,Y^{(0)}) \in \Re^{n \times 1}$
+	to denote the images of the above two constant matrix-valued functions.
+%\item
+%	Define:
+%	\begin{eqnarray*}
+%	\xi & := & Z \cdot \gamma + e
+%	\\
+%	V & := & \Cov(Y) \;\; = \;\; \Cov\!\left(\,Z\cdot\gamma+e\,\right) \;\; = \;\; Z \cdot \Cov(\gamma) \cdot Z^{T} + \Cov(e)
+%	\end{eqnarray*}
+\end{itemize}
+Then, \,$f : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto a^{T} \cdot y$\,
+is a best linear unbiased predictor of \,$Y^{(0)}$ in terms of \,$Y$ if
+\,$\Re^{n} \longrightarrow \Re^{1} : y \longmapsto (a - \delta)^{T} \cdot y$\,
+is a best linear unbiased estimator of 
+\,$\Re^{p} \longrightarrow \Re^{1} : \beta \longmapsto (\rho - \delta)^{T} \cdot X \cdot \beta$\,.
 \end{theorem}
 
 \begin{remark}
@@ -154,7 +217,7 @@ the BLUP of \,$Y_{0}$ in terms of \,$Y$, and that this BLUP happens to involves
 the BLUE of the unknown parameter $\beta$.
 \end{remark}
 
-\proofof Theorem \ref{AMixedModelEquivalentFixedModel}
+\proofof Theorem \ref{formulaBLUP}
 
 \vskip 0.3cm
 \noindent
