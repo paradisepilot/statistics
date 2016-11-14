@@ -225,46 +225,61 @@ the BLUE of the unknown parameter $\beta$.
 \end{remark}
 
 \proofof Theorem \ref{formulaBLUP}
+\begin{enumerate}
+\item
+\item
+	\vskip 0.3cm
+	\noindent
+	\textbf{Claim 1:}\quad
+	If the map
+	\,$\Re^{n} \longrightarrow \Re^{1} : \beta \longmapsto (a - \delta)^{T}\cdot y$\,
+	is a linear unbiased estimator of 
+	\,$\Re^{p} \longrightarrow \Re^{1} : \beta \longmapsto (\rho - \delta)^{T} \cdot X \cdot \beta$\,
+	in terms of $Y$,
+	then the map
+	\,$\Re^{n} \longrightarrow \Re^{1} : \beta \longmapsto b^{T}\cdot y$\,
+	is a linear unbiased predictor of \,$Y^{(0)}$ in terms of \,$Y$.
+	\vskip 0.2cm
+	\noindent
+	Proof of Claim 1:\quad
+	\begin{equation*}
+	(\rho - \delta)^{T} \cdot X \cdot \beta
+	\;\; = \;\;
+		E\!\left[\,(a - \delta)^{T}\cdot Y_{\beta}\,\right]
+	\;\; = \;\;
+		(a - \delta)^{T} \cdot E\!\left[\;Y_{\beta}\,\right]
+	\;\; = \;\;
+		(a - \delta)^{T} \cdot X \cdot \beta\,,
+	\quad
+	\textnormal{for each \,$\beta \in \Re^{p}$}\,,
+	\end{equation*}
+	which then implies that \,$(\rho - \delta)^{T} \cdot X  = (a - \delta)^{T} \cdot X$,\,
+	which in turn implies that \,$\rho^{T} \cdot X  = a^{T} \cdot X$.
+	Thus,
+	\begin{equation*}
+	E\!\left[\;a^{T} \cdot Y_{\beta}\,\right]
+	\;\; = \;\;
+		a^{T} \cdot E\!\left[\;Y_{\beta}\,\right]
+	\;\; = \;\;
+		a^{T} \cdot X \cdot \beta
+	\;\; = \;\;
+		\rho^{T} \cdot X \cdot \beta
+	\;\; = \;\;
+		E\!\left[\;Y^{(0)}_{\beta}\,\right],
+	\quad\textnormal{for each \,$\beta \in \Re^{p}$}\,.
+	\end{equation*}
+	This proves Claim 1.
+\end{enumerate}
 
-\vskip 0.3cm
+%\vskip 0.5cm
+%$E\!\left[\,f(Y;0,b)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$
+%also implies that
+%$(b - \delta)^{T}\cdot Y$ is a linear unbiased estimator of \,$(x_{0} - \delta^{T}\cdot X)\cdot\beta$.
+%\vskip 0.2cm
 %\noindent
-%Let $f(Y;b_{0},b) \,:=\, b_{0} + b^{T}\cdot Y$, where $b_{0} \in \Re$ and $b \in \Re^{n}$,
-%be a linear unbiased predictor of $Y_{0}$.
+%Proof of Claim 1:\quad
 
-%\vskip 0.3cm
-%\noindent
-%\textbf{Claim 1:}\quad $E\!\left[\,f(Y;b_{0},b)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$
-%\;\;$\Longrightarrow$\;\; $b_{0} = 0$\,, \;and\; $b \in \Re^{n}$ satisfies $b^{T}\cdot X = x_{0}$.
-%\mbox{}\vskip 0.2cm\noindent
-%Proof of Claim 1:\quad Observe that $E\!\left[\,f(Y)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$ implies:
-%\begin{equation*}
-%x_{0} \cdot \beta
-%\;\; = \;\;
-%	E\!\left[\;Y_{0}\,\right]
-%\;\; = \;\;
-%	E\!\left[\,f(Y)\,\right]
-%\;\; = \;\;
-%	E\!\left[\,b_{0} + b^{T}\cdot Y\,\right]
-%\;\; = \;\;
-%	b_{0} + b^{T}\cdot E\!\left[\;Y\,\right]
-%\;\; = \;\;
-%	b_{0} + b^{T}\cdot X \cdot \beta\,,
-%	\quad
-%	\textnormal{for each \,$\beta\in\Re^{n}$}\,,
-%\end{equation*}
-%which in turn implies
-%\begin{equation*}
-%b_{0}
-%\;\; = \;\;
-%	\left(\,x_{0} - b^{T}\cdot X\,\right) \cdot \beta\,,
-%	\quad
-%	\textnormal{for each \,$\beta\in\Re^{p}$}\,.
-%\end{equation*}
-%Since the left-hand side of the preceding equation does not involve $\beta$
-%while the right-hand side does, we see that both sides must in fact be zero for the equality to hold.
-%In other words, we must have $b_{0} = 0$ and that $b \in \Re^{n}$ satisfies $b^{T} \cdot X = x_{0}$.
-%This proves Claim 1.
-
+\vskip 0.5cm
 \noindent
 Recall that, for each $\beta \in \Re^{p}$, the best linear predictor
 \,$\blp\!\left(\,\left.Y^{(0)}_{\beta}\right\vert\,Y_{\beta}\right)$\, of
@@ -279,29 +294,29 @@ Recall that, for each $\beta \in \Re^{p}$, the best linear predictor
 where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
 $\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
 
-\vskip 0.5cm
-\noindent
-\textbf{Claim 2:}\quad
-$E\!\left[\,f(Y;0,b)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$
-also implies that
-$(b - \delta)^{T}\cdot Y$ is a linear unbiased estimator of \,$(x_{0} - \delta^{T}\cdot X)\cdot\beta$.
-\vskip 0.2cm
-\noindent
-Proof of Claim 2:\quad
-Simply note that
-\begin{equation*}
-E\!\left[\,(b - \delta)^{T}\cdot Y\,\right]
-\;\; = \;\;
-	(b - \delta)^{T} \cdot E\!\left[\;Y\,\right]
-\;\; = \;\;
-	(b - \delta)^{T} \cdot X \cdot \beta
-\;\; = \;\;
-	(b^{T}\cdot X - \delta^{T} \cdot X) \cdot \beta
-\;\; = \;\;
-	(x_{0} - \delta^{T} \cdot X) \cdot \beta\,,
-\end{equation*}
-where the last equality follows from Claim 1.
-This proves Claim 2.
+%\vskip 0.5cm
+%\noindent
+%\textbf{Claim 2:}\quad
+%$E\!\left[\,f(Y;0,b)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$
+%also implies that
+%$(b - \delta)^{T}\cdot Y$ is a linear unbiased estimator of \,$(x_{0} - \delta^{T}\cdot X)\cdot\beta$.
+%\vskip 0.2cm
+%\noindent
+%Proof of Claim 2:\quad
+%Simply note that
+%\begin{equation*}
+%E\!\left[\,(b - \delta)^{T}\cdot Y\,\right]
+%\;\; = \;\;
+%	(b - \delta)^{T} \cdot E\!\left[\;Y\,\right]
+%\;\; = \;\;
+%	(b - \delta)^{T} \cdot X \cdot \beta
+%\;\; = \;\;
+%	(b^{T}\cdot X - \delta^{T} \cdot X) \cdot \beta
+%\;\; = \;\;
+%	(x_{0} - \delta^{T} \cdot X) \cdot \beta\,,
+%\end{equation*}
+%where the last equality follows from Claim 1.
+%This proves Claim 2.
 
 \vskip 0.5cm
 \noindent
