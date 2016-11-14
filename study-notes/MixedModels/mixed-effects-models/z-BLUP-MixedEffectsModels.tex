@@ -180,92 +180,101 @@ Suppose:
 %	V & := & \Cov(Y) \;\; = \;\; \Cov\!\left(\,Z\cdot\gamma+e\,\right) \;\; = \;\; Z \cdot \Cov(\gamma) \cdot Z^{T} + \Cov(e)
 %	\end{eqnarray*}
 \end{itemize}
-Then, \,$f : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto a^{T} \cdot y$\,
-is a best linear unbiased predictor of \,$Y^{(0)}$ in terms of \,$Y$ if
-\,$\Re^{n} \longrightarrow \Re^{1} : y \longmapsto (a - \delta)^{T} \cdot y$\,
-is a best linear unbiased estimator of 
-\,$\Re^{p} \longrightarrow \Re^{1} : \beta \longmapsto (\rho - \delta)^{T} \cdot X \cdot \beta$\,.
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	There exists \,$\delta \in \Re^{n \times 1}$\, satisfying \,$\Cov(\,Y\,) \cdot \delta \,=\, \Cov(\,Y,Y^{(0)})$.
+\item
+	The map $f : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto a^{T} \cdot y$\,
+	is a \textbf{\color{red}best linear unbiased predictor of \,$Y^{(0)}$ in terms of \,$Y$} if
+	\,$\Re^{n} \longrightarrow \Re^{1} : y \longmapsto (a - \delta)^{T} \cdot y$\,
+	is a best linear unbiased estimator of 
+	\,$\Re^{p} \longrightarrow \Re^{1} : \beta \longmapsto (\rho - \delta)^{T} \cdot X \cdot \beta$\,.
+\end{enumerate}
 \end{theorem}
 
 \begin{remark}
 \mbox{}
 \vskip 0.05cm
 \noindent
-Theorem \ref{AMixedModelEquivalentFixedModel} is applicable to the scenario in which
+Theorem \ref{formulaBLUP} is applicable to the scenario in which
 the quantities $x_{0}$, $X$, $\Cov(Y)$ and $\Cov(Y,Y_{0})$ are {\color{red}known}, while
 {\color{red}$\beta$ is unknown}.
-In this scenario, Theorem \ref{AMixedModelEquivalentFixedModel} gives the BLUP of
-\,$Y_{0}$ in terms of the BLUE of $X\cdot\beta$.
+In this scenario, Theorem \ref{formulaBLUP} gives the BLUP of
+\,$Y^{(0)}$ in terms of the BLUE of $X\cdot\beta$.
 Both the BLUP and BLUE here are affine functions of \,$Y$.
 
-Next, recall that, if one knows all of $\beta$, $\Cov(Y)$ and $\Cov(Y,Y_{0})$, then one can compute
-the best linear predictor of \,$Y_{0}$ in terms of \,$Y$:
+Next, recall that, if one knows all of $\beta$, $\Cov(Y)$ and $\Cov(Y,Y^{(0)})$,
+then one can compute, for each $\beta\in\Re^{p}$,
+the {\color{red}best linear predictor of \,$Y^{(0)}_{\beta}$ in terms of \,$Y_{\beta}$}:
 \begin{equation*}
-\blp(\,Y_{0}\vert Y)
+\blp(\,Y^{(0)}_{\beta}\vert\,Y_{\beta})
 \;\; = \;\;
-	E\!\left[\;Y_{0}\,\right] \; + \; \delta^{T}\cdot(\;Y - E\!\left[\;Y\,\right]\,)
+	E\!\left[\;Y^{(0)}_{\beta}\,\right] \; + \; \delta^{T}\cdot(\;Y_{\beta} - E\!\left[\;Y_{\beta}\,\right]\,)
 \;\; = \;\;
-	x_{0}^{T}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - X\cdot\beta\,)\,,
+	x_{0}^{T}\cdot\beta \; + \; \delta^{T}\cdot(\;Y_{\beta} - X\cdot\beta\,)\,,
 \end{equation*}
 where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
-$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
+$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y^{(0)})$.
 
-Thus the key point of Theorem \ref{AMixedModelEquivalentFixedModel} is that,
-if we know only $\Cov(Y)$ and $\Cov(Y,Y_{0})$ but not $\beta$, then we cannot
-compute $\blp(\,Y_{0}\vert Y)$, but we can instead compute arguably the next best thing:
-the BLUP of \,$Y_{0}$ in terms of \,$Y$, and that this BLUP happens to involves
+Thus the key point of Theorem \ref{formulaBLUP} is that,
+if we know only $\Cov(Y)$ and $\Cov(Y,Y^{(0)})$ but not $\beta$, then we cannot
+compute $\blp(\,Y^{(0)}\vert\,Y)$, but we can instead compute arguably the next best thing:
+the BLUP of \,$Y^{(0)}$ in terms of \,$Y$, and that this BLUP happens to involves
 the BLUE of the unknown parameter $\beta$.
 \end{remark}
 
 \proofof Theorem \ref{formulaBLUP}
 
 \vskip 0.3cm
-\noindent
-Let $f(Y;b_{0},b) \,:=\, b_{0} + b^{T}\cdot Y$, where $b_{0} \in \Re$ and $b \in \Re^{n}$, be a linear unbiased predictor of $Y_{0}$.
+%\noindent
+%Let $f(Y;b_{0},b) \,:=\, b_{0} + b^{T}\cdot Y$, where $b_{0} \in \Re$ and $b \in \Re^{n}$,
+%be a linear unbiased predictor of $Y_{0}$.
 
-\vskip 0.3cm
-\noindent
-\textbf{Claim 1:}\quad $E\!\left[\,f(Y;b_{0},b)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$
-\;\;$\Longrightarrow$\;\; $b_{0} = 0$\,, \;and\; $b \in \Re^{n}$ satisfies $b^{T}\cdot X = x_{0}$.
-\mbox{}\vskip 0.2cm\noindent
-Proof of Claim 1:\quad Observe that $E\!\left[\,f(Y)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$ implies:
-\begin{equation*}
-x_{0} \cdot \beta
-\;\; = \;\;
-	E\!\left[\;Y_{0}\,\right]
-\;\; = \;\;
-	E\!\left[\,f(Y)\,\right]
-\;\; = \;\;
-	E\!\left[\,b_{0} + b^{T}\cdot Y\,\right]
-\;\; = \;\;
-	b_{0} + b^{T}\cdot E\!\left[\;Y\,\right]
-\;\; = \;\;
-	b_{0} + b^{T}\cdot X \cdot \beta\,,
-	\quad
-	\textnormal{for each \,$\beta\in\Re^{n}$}\,,
-\end{equation*}
-which in turn implies
-\begin{equation*}
-b_{0}
-\;\; = \;\;
-	\left(\,x_{0} - b^{T}\cdot X\,\right) \cdot \beta\,,
-	\quad
-	\textnormal{for each \,$\beta\in\Re^{p}$}\,.
-\end{equation*}
-Since the left-hand side of the preceding equation does not involve $\beta$
-while the right-hand side does, we see that both sides must in fact be zero for the equality to hold.
-In other words, we must have $b_{0} = 0$ and that $b \in \Re^{n}$ satisfies $b^{T} \cdot X = x_{0}$.
-This proves Claim 1.
+%\vskip 0.3cm
+%\noindent
+%\textbf{Claim 1:}\quad $E\!\left[\,f(Y;b_{0},b)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$
+%\;\;$\Longrightarrow$\;\; $b_{0} = 0$\,, \;and\; $b \in \Re^{n}$ satisfies $b^{T}\cdot X = x_{0}$.
+%\mbox{}\vskip 0.2cm\noindent
+%Proof of Claim 1:\quad Observe that $E\!\left[\,f(Y)\,\right]$ $=$ $E\!\left[\;Y_{0}\,\right]$ implies:
+%\begin{equation*}
+%x_{0} \cdot \beta
+%\;\; = \;\;
+%	E\!\left[\;Y_{0}\,\right]
+%\;\; = \;\;
+%	E\!\left[\,f(Y)\,\right]
+%\;\; = \;\;
+%	E\!\left[\,b_{0} + b^{T}\cdot Y\,\right]
+%\;\; = \;\;
+%	b_{0} + b^{T}\cdot E\!\left[\;Y\,\right]
+%\;\; = \;\;
+%	b_{0} + b^{T}\cdot X \cdot \beta\,,
+%	\quad
+%	\textnormal{for each \,$\beta\in\Re^{n}$}\,,
+%\end{equation*}
+%which in turn implies
+%\begin{equation*}
+%b_{0}
+%\;\; = \;\;
+%	\left(\,x_{0} - b^{T}\cdot X\,\right) \cdot \beta\,,
+%	\quad
+%	\textnormal{for each \,$\beta\in\Re^{p}$}\,.
+%\end{equation*}
+%Since the left-hand side of the preceding equation does not involve $\beta$
+%while the right-hand side does, we see that both sides must in fact be zero for the equality to hold.
+%In other words, we must have $b_{0} = 0$ and that $b \in \Re^{n}$ satisfies $b^{T} \cdot X = x_{0}$.
+%This proves Claim 1.
 
-\vskip 0.5cm
 \noindent
-Recall that the best linear predictor of \,$Y_{0}$ in terms of \,$Y$ is given by:
+Recall that, for each $\beta \in \Re^{p}$, the best linear predictor
+\,$\blp\!\left(\,\left.Y^{(0)}_{\beta}\right\vert\,Y_{\beta}\right)$\, of
+\,$Y^{(0)}_{\beta}$ in terms of \,$Y_{\beta}$ is given by:
 \begin{equation*}
-\blp(\,Y_{0}\vert Y)
+\blp\!\left(\,\left.Y^{(0)}_{\beta}\right\vert\,Y_{\beta}\right)
 \;\; = \;\;
-	E\!\left[\;Y_{0}\,\right] \; + \; \delta^{T}\cdot(\;Y - E\!\left[\;Y\,\right]\,)
+	E\!\left[\;Y^{(0)}_{\beta}\,\right] \; + \; \delta^{T}\cdot(\;Y_{\beta} - E\!\left[\;Y_{\beta}\,\right]\,)
 \;\; = \;\;
-	x_{0}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - \,X\cdot\beta\,\;)\,,
+	x_{0}\cdot\beta \; + \; \delta^{T}\cdot(\;Y_{\beta} - \,X\cdot\beta\,\;)\,,
 \end{equation*}
 where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
 $\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
