@@ -208,7 +208,7 @@ Next, recall that, if one knows all of $\beta$, $\Cov(Y)$ and $\Cov(Y,Y^{(0)})$,
 then one can compute, for each $\beta\in\Re^{p}$,
 the {\color{red}best linear predictor of \,$Y^{(0)}_{\beta}$ in terms of \,$Y_{\beta}$}:
 \begin{equation*}
-\blp(\,Y^{(0)}_{\beta}\vert\,Y_{\beta})
+\blp\!\left(\left.Y^{(0)}_{\beta}\right\vert Y_{\beta}\right)
 \;\; = \;\;
 	E\!\left[\;Y^{(0)}_{\beta}\,\right] \; + \; \delta^{T}\cdot(\;Y_{\beta} - E\!\left[\;Y_{\beta}\,\right]\,)
 \;\; = \;\;
@@ -228,16 +228,17 @@ the BLUE of the unknown parameter $\beta$.
 \begin{enumerate}
 \item
 \item
+	Suppose the map
+	\,$\Re^{n} \longrightarrow \Re^{1} : y \longmapsto (a - \delta)^{T}\cdot y$,\,
+	where $a \in \Re^{n}$,\, is a linear unbiased estimator of 
+	\,$\Re^{p} \longrightarrow \Re^{1} : \beta \longmapsto (\rho - \delta)^{T} \cdot X \cdot \beta$\,
+	in terms of $Y$.
+
 	\vskip 0.3cm
 	\noindent
 	\textbf{Claim 1:}\quad
-	If the map
-	\,$\Re^{n} \longrightarrow \Re^{1} : \beta \longmapsto (a - \delta)^{T}\cdot y$\,
-	is a linear unbiased estimator of 
-	\,$\Re^{p} \longrightarrow \Re^{1} : \beta \longmapsto (\rho - \delta)^{T} \cdot X \cdot \beta$\,
-	in terms of $Y$,
-	then the map
-	\,$\Re^{n} \longrightarrow \Re^{1} : \beta \longmapsto b^{T}\cdot y$\,
+	The map
+	\,$\Re^{n} \longrightarrow \Re^{1} : \beta \longmapsto a^{T}\cdot y$\,
 	is a linear unbiased predictor of \,$Y^{(0)}$ in terms of \,$Y$.
 	\vskip 0.2cm
 	\noindent
@@ -269,6 +270,73 @@ the BLUE of the unknown parameter $\beta$.
 	\quad\textnormal{for each \,$\beta \in \Re^{p}$}\,.
 	\end{equation*}
 	This proves Claim 1.
+
+	\vskip 0.8cm
+	\noindent
+	Recall that, for each $\beta \in \Re^{p}$, the best linear predictor
+	\,$\blp\!\left(\left.Y^{(0)}_{\beta}\right\vert\,Y_{\beta}\right)$\, of
+	\,$Y^{(0)}_{\beta}$ in terms of \,$Y_{\beta}$ is given by:
+	\begin{equation*}
+	\blp\!\left(\left.Y^{(0)}_{\beta}\right\vert\,Y_{\beta}\right)
+	\;\; = \;\;
+		E\!\left[\;Y^{(0)}_{\beta}\,\right] \; + \; \delta^{T}\cdot(\;Y_{\beta} - E\!\left[\;Y_{\beta}\,\right]\,)
+	\;\; = \;\;
+		\rho^{T}\cdot X \cdot\beta \; + \; \delta^{T}\cdot(\;Y_{\beta} - \,X\cdot\beta\,\;)\,,
+	\end{equation*}
+	where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
+	$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
+
+	\vskip 0.8cm
+	\noindent
+	\textbf{Claim 2:}
+	\begin{equation*}
+	E\!\left[\,\left(\blp\!\left(\left.Y^{(0)}_{\beta}\right\vert Y_{\beta}\right) \overset{{\color{white}.}}{-} f(Y_{\beta})\right)^{2}\,\right]
+	\;\; = \;\;
+		\Var\!\left[\;(a \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y_{\beta}\;\right]
+	\end{equation*}
+	Proof of Claim 2:\quad Observe that
+	\begin{eqnarray*}
+	\blp\!\left(\left.Y^{(0)}_{\beta}\right\vert Y_{\beta}\right) - f(Y_{\beta})
+	&=&
+		\rho^{T} \cdot X \cdot \beta \; + \; \delta^{T}\cdot(\;Y_{\beta} - \,X\cdot\beta\,) \; - \; a^{T} \cdot Y_{\beta}
+	\;\; = \;\;
+		(\rho \, - \, \delta)^{T} \cdot X \cdot \beta \; - \; (a - \delta)^{T} \cdot Y_{\beta}
+	\\
+	&=&
+		- \left\{\;
+			(a - \delta)^{T} \cdot Y_{\beta} \; - \; E\!\left[\,(a \overset{{\color{white}.}}{-} \delta)^{T} \cdot Y_{\beta}\,\right]
+			 \;\right\}\,,
+		\quad\textnormal{by Claim 1},
+	\end{eqnarray*}
+	from which Claim 2 immediately follows.
+
+	\vskip 0.5cm
+	\noindent
+	\textbf{Claim 3:}\quad
+	$f(\;\cdot\;;b) : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto b^{T} \cdot y$\,
+	is a best linear unbiased predictor of \,$Y^{(0)}$\, in terms of \,$Y$\, if
+	\begin{equation*}
+	b \;\; = \;\;
+		\underset{a\,\in\,\Re^{n}}{\textnormal{argmin}}
+		\left\{\;
+			\Var\!\left[\;(a \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y_{\beta}\;\right]
+			\;\right\}
+	\end{equation*}
+	Proof of Claim 3:\quad Recall that
+	\begin{eqnarray*}
+	E\!\left[\,\left(Y^{(0)}_{\beta} \overset{{\color{white}.}}{-} f(Y_{\beta};a)\right)^{2}\,\right]
+	& = &
+		E\!\left[\,\left(Y^{(0)}_{\beta} \overset{{\color{white}.}}{-} \blp\!\left(\left.Y^{(0)}_{\beta}\right\vert Y\right)\right)^{2}\,\right]
+		\; + \;
+		E\!\left[\,\left(\blp\!\left(\left.Y^{(0)}_{\beta}\right\vert Y\right) \overset{{\color{white}.}}{-} f(Y_{\beta};a)\right)^{2}\,\right]
+	\\
+	& = &
+		E\!\left[\,\left(Y^{(0)}_{\beta} \overset{{\color{white}.}}{-} \blp\!\left(\left.Y^{(0)}_{\beta}\right\vert Y\right)\right)^{2}\,\right]
+		\; + \;
+		\Var\!\left[\;(a \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y_{\beta}\;\right]
+	\end{eqnarray*}
+	Claim 3 now follows immediately.
+
 \end{enumerate}
 
 %\vskip 0.5cm
@@ -278,21 +346,6 @@ the BLUE of the unknown parameter $\beta$.
 %\vskip 0.2cm
 %\noindent
 %Proof of Claim 1:\quad
-
-\vskip 0.5cm
-\noindent
-Recall that, for each $\beta \in \Re^{p}$, the best linear predictor
-\,$\blp\!\left(\,\left.Y^{(0)}_{\beta}\right\vert\,Y_{\beta}\right)$\, of
-\,$Y^{(0)}_{\beta}$ in terms of \,$Y_{\beta}$ is given by:
-\begin{equation*}
-\blp\!\left(\,\left.Y^{(0)}_{\beta}\right\vert\,Y_{\beta}\right)
-\;\; = \;\;
-	E\!\left[\;Y^{(0)}_{\beta}\,\right] \; + \; \delta^{T}\cdot(\;Y_{\beta} - E\!\left[\;Y_{\beta}\,\right]\,)
-\;\; = \;\;
-	x_{0}\cdot\beta \; + \; \delta^{T}\cdot(\;Y_{\beta} - \,X\cdot\beta\,\;)\,,
-\end{equation*}
-where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
-$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
 
 %\vskip 0.5cm
 %\noindent
@@ -317,56 +370,6 @@ $\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y_{0})$.
 %\end{equation*}
 %where the last equality follows from Claim 1.
 %This proves Claim 2.
-
-\vskip 0.5cm
-\noindent
-\textbf{Claim 3:}
-\begin{equation*}
-E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} f(Y;0,b)\right)^{2}\,\right]
-\;\; = \;\;
-	\Var\!\left[\;(b \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y\;\right]
-\end{equation*}
-Proof of Claim 3:\quad Observe that
-\begin{eqnarray*}
-\blp(\,Y_{0}\vert Y) - f(Y;0,b)
-&=&
-	x_{0}\cdot\beta \; + \; \delta^{T}\cdot(\;Y - \,X\cdot\beta\,) \; - \; b^{T} \cdot Y
-\;\; = \;\;
-	(x_{0} \; - \; \delta^{T} \cdot X) \cdot \beta \; - \; (b - \delta)^{T} \cdot Y
-\\
-&=&
-	- \left\{\;
-		(b - \delta)^{T} \cdot Y \; - \; E\!\left[\,(b \overset{{\color{white}.}}{-} \delta)^{T} \cdot Y\,\right]
-		 \;\right\}\,,
-\end{eqnarray*}
-from which Claim 3 immediately follows.
-
-\vskip 0.5cm
-\noindent
-\textbf{Claim 4:}\quad
-$f(Y;0,b)$ is a best linear unbiased predictor of \,$Y_{0}$ if
-\begin{equation*}
-b \;\; = \;\;
-	\underset{c\,\in\,\Re^{n}}{\textnormal{argmin}}
-	\left\{\;
-		%E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} f(Y;0,c)\right)^{2}\,\right]
-		\Var\!\left[\;(c \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y\;\right]
-		\;\right\}
-\end{equation*}
-Proof of Claim 4:\quad Recall that
-\begin{eqnarray*}
-E\!\left[\,\left(Y_{0} \overset{{\color{white}.}}{-} f(Y;0,b)\right)^{2}\,\right]
-& = &
-	E\!\left[\,\left(Y_{0} \overset{{\color{white}.}}{-} \blp(\,Y_{0}\vert Y)\right)^{2}\,\right]
-	\; + \;
-	E\!\left[\,\left(\blp(\,Y_{0}\vert Y) \overset{{\color{white}.}}{-} f(Y;0,b)\right)^{2}\,\right]
-\\
-& = &
-	E\!\left[\,\left(Y_{0} \overset{{\color{white}.}}{-} \blp(\,Y_{0}\vert Y)\right)^{2}\,\right]
-	\; + \;
-	\Var\!\left[\;(b \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y\;\right]
-\end{eqnarray*}
-Claim 4 now follows immediately.
 
 \vskip 0.5cm
 \noindent
