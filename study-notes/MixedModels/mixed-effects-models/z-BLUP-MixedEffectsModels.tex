@@ -198,7 +198,7 @@ Then, the following statements hold:
 \vskip 0.05cm
 \noindent
 Theorem \ref{formulaBLUP} is applicable to the scenario in which
-the quantities $x_{0}$, $X$, $\Cov(Y)$ and $\Cov(Y,Y_{0})$ are {\color{red}known}, while
+the quantities $x_{0}$, $X$, $\Cov(Y)$ and $\Cov(\,Y,Y^{(0)})$ are {\color{red}known}, while
 {\color{red}$\beta$ is unknown}.
 In this scenario, Theorem \ref{formulaBLUP} gives the BLUP of
 \,$Y^{(0)}$ in terms of the BLUE of $X\cdot\beta$.
@@ -215,10 +215,10 @@ the {\color{red}best linear predictor of \,$Y^{(0)}_{\beta}$ in terms of \,$Y_{\
 	x_{0}^{T}\cdot\beta \; + \; \delta^{T}\cdot(\;Y_{\beta} - X\cdot\beta\,)\,,
 \end{equation*}
 where $\delta \in \Re^{n \times 1}$ is any element in $\Re^{n}$ which satisfies
-$\Cov(Y) \cdot \delta \,=\, \Cov(Y,Y^{(0)})$.
+$\Cov(Y) \cdot \delta \,=\, \Cov(\,Y,Y^{(0)})$.
 
 Thus the key point of Theorem \ref{formulaBLUP} is that,
-if we know only $\Cov(Y)$ and $\Cov(Y,Y^{(0)})$ but not $\beta$, then we cannot
+if we know only $\Cov(Y)$ and $\Cov(\,Y,Y^{(0)})$ but not $\beta$, then we cannot
 compute $\blp(\,Y^{(0)}\vert\,Y)$, but we can instead compute arguably the next best thing:
 the BLUP of \,$Y^{(0)}$ in terms of \,$Y$, and that this BLUP happens to involves
 the BLUE of the unknown parameter $\beta$.
@@ -248,7 +248,9 @@ the BLUE of the unknown parameter $\beta$.
 		\\
 		\textnormal{of \,$Y^{(0)}$ in terms of \,$Y$}
 		\end{array}
-	\quad\Longleftrightarrow\quad
+	\quad\Longleftrightarrow\quad\;\;
+		\rho^{T} \cdot X \; = \; a^{T} \cdot X
+	\;\;\quad\Longleftrightarrow\quad
 		\begin{array}{c}
 		\textnormal{the map}
 		\\
@@ -267,33 +269,67 @@ the BLUE of the unknown parameter $\beta$.
 	%\vskip 0.2cm
 	\noindent
 	Proof of Claim 1:\quad
-	\begin{equation*}
-	(\rho - \delta)^{T} \cdot X \cdot \beta
-	\;\; = \;\;
-		E\!\left[\,(a - \delta)^{T}\cdot Y_{\beta}\,\right]
-	\;\; = \;\;
-		(a - \delta)^{T} \cdot E\!\left[\;Y_{\beta}\,\right]
-	\;\; = \;\;
-		(a - \delta)^{T} \cdot X \cdot \beta\,,
-	\quad
-	\textnormal{for each \,$\beta \in \Re^{p}$}\,,
-	\end{equation*}
-	which then implies that \,$(\rho - \delta)^{T} \cdot X  = (a - \delta)^{T} \cdot X$,\,
-	which in turn implies that \,$\rho^{T} \cdot X  = a^{T} \cdot X$.
-	Thus,
-	\begin{equation*}
-	E\!\left[\;a^{T} \cdot Y_{\beta}\,\right]
-	\;\; = \;\;
-		a^{T} \cdot E\!\left[\;Y_{\beta}\,\right]
-	\;\; = \;\;
-		a^{T} \cdot X \cdot \beta
-	\;\; = \;\;
+	We first prove the first equivalence:
+	\begin{eqnarray*}
+	&&
+		\textnormal{$f(\;\cdot\;;a)$ is a linear unbiased predictor of $Y^{(0)}$ in terms of $Y$}
+	\\
+	&\Longleftrightarrow&
 		\rho^{T} \cdot X \cdot \beta
-	\;\; = \;\;
-		E\!\left[\;Y^{(0)}_{\beta}\,\right],
-	\quad\textnormal{for each \,$\beta \in \Re^{p}$}\,.
-	\end{equation*}
-	This proves Claim 1.
+		\; = \;
+			E\!\left[\;Y^{(0)}_{\beta}\,\right]
+		\; = \;
+			E\!\left[\;f(\,Y_{\beta};a)\;\right]
+		\; = \;
+			E\!\left[\,a^{T} \cdot Y_{\beta}\,\right]
+		\; = \;
+			a^{T} \cdot E\!\left[\;Y_{\beta}\,\right]
+		\; = \;
+			a^{T} \cdot X \cdot \beta\,,
+		\;\; \forall \; \beta \in \Re^{p}
+	\\
+	&\Longleftrightarrow&
+		\rho^{T} \cdot X \cdot \beta
+		\; = \;
+			a^{T} \cdot X \cdot \beta\,,
+		\;\; \forall \; \beta \in \Re^{p}
+	\\
+	&\Longleftrightarrow&
+		\rho^{T} \cdot X \; = \; a^{T} \cdot X
+	\end{eqnarray*}
+	Now, we prove the second equivalence:
+	\begin{eqnarray*}
+	&&
+		\textnormal{$g(\;\cdot\;;a)$ is a linear unbiased estimator of
+		\,$\Re^{p} \longrightarrow \Re^{1} : \beta \longmapsto (\rho - \delta)^{T} \cdot X \cdot \beta$\,
+		in terms of $Y$}
+	\\
+	&\Longleftrightarrow&
+		(\rho - \delta)^{T} \cdot X \cdot \beta
+		\; = \;
+			E\!\left[\;g(\,Y_{\beta};a)\;\right]
+		\; = \;
+			E\!\left[\,(a - \delta)^{T}\cdot Y_{\beta}\,\right]
+		\; = \;
+			(a - \delta)^{T} \cdot E\!\left[\;Y_{\beta}\,\right]
+		\; = \;
+			(a - \delta)^{T} \cdot X \cdot \beta\,,
+		\; \forall\;\beta \in \Re^{p}
+	\\
+	&\Longleftrightarrow&
+		(\rho - \delta)^{T} \cdot X \cdot \beta
+		\; = \;
+			(a - \delta)^{T} \cdot X \cdot \beta\,,
+		\;\; \forall\;\beta \in \Re^{p}
+	\\
+	&\Longleftrightarrow&
+		\rho^{T} \cdot X \cdot \beta \; = \; a^{T} \cdot X \cdot \beta\,,
+		\;\; \forall\;\beta \in \Re^{p}
+	\\
+	&\Longleftrightarrow&
+		\rho^{T} \cdot X \; = \; a^{T} \cdot X
+	\end{eqnarray*}
+	This completes the proof of Claim 1.
 
 	\vskip 0.8cm
 	\noindent
@@ -373,6 +409,17 @@ the BLUE of the unknown parameter $\beta$.
 	\end{eqnarray*}
 	Claim 3 now follows immediately.
 
+	\vskip 0.5cm
+	\noindent
+	\textbf{Claim 4:}\quad
+	$f(Y;0,b) = b^{T}\cdot Y$\, is a best linear unbiased predictor (BLUP) of \,$Y_{0}$ if
+	$(b-\delta)^{T} \cdot Y$ is a best linear unbiased estimator (BLUE) of
+	$(x_{0} - \delta^{T}\cdot X) \cdot \beta$.
+
+	\vskip 0.2cm
+	\noindent
+	Proof of Claim 4: \quad Immediate by Claim 2 and Claim 4.
+	
 \end{enumerate}
 
 %\vskip 0.5cm
@@ -407,16 +454,6 @@ the BLUE of the unknown parameter $\beta$.
 %where the last equality follows from Claim 1.
 %This proves Claim 2.
 
-\vskip 0.5cm
-\noindent
-\textbf{Claim 5:}\quad
-$f(Y;0,b) = b^{T}\cdot Y$\, is a best linear unbiased predictor (BLUP) of \,$Y_{0}$ if
-$(b-\delta)^{T} \cdot Y$ is a best linear unbiased estimator (BLUE) of
-$(x_{0} - \delta^{T}\cdot X) \cdot \beta$.
-
-\vskip 0.2cm
-\noindent
-Proof of Claim 5: \quad Immediate by Claim 2 and Claim 4.
 %\vskip 0.5cm
 %\noindent
 %Claim 2 and Claim 4 together imply that if
