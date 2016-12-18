@@ -377,7 +377,7 @@ the BLUE of the unknown parameter $\beta$.
 	is a best linear unbiased predictor of \,$Y^{(0)}$\, in terms of \,$Y$\, if
 	\begin{equation*}
 	b \;\; = \;\;
-		\underset{a\,\in\,\Re^{n}}{\textnormal{argmin}}
+		\underset{a\,\in\,\Re^{n}\,\left\vert\,a^{T} \cdot X \,=\, \rho^{T} \cdot X\right.}{\textnormal{argmin}}
 		\left\{\;
 			\Var\!\left[\;(a \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y_{\beta}\;\right]
 			\;\right\}
@@ -407,18 +407,37 @@ the BLUE of the unknown parameter $\beta$.
 		\; + \;
 		\Var\!\left[\;(a \overset{{\color{white}.}}{-} \delta)^{T}\cdot Y_{\beta}\;\right]
 	\end{eqnarray*}
-	Claim 3 now follows immediately.
+	Claim 3 now follows immediately from the above equality and Claim 1.
 
 	\vskip 0.5cm
 	\noindent
 	\textbf{Claim 4:}\quad
-	$f(Y;0,b) = b^{T}\cdot Y$\, is a best linear unbiased predictor (BLUP) of \,$Y_{0}$ if
-	$(b-\delta)^{T} \cdot Y$ is a best linear unbiased estimator (BLUE) of
-	$(x_{0} - \delta^{T}\cdot X) \cdot \beta$.
-
-	\vskip 0.2cm
+	For any $b \in \Re^{n}$,
+	\begin{equation*}
+		\begin{array}{c}
+		\textnormal{the map}
+		\\
+		g(\;\cdot\;;b) : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto (b - \delta)^{T}\cdot y
+		\\
+		\textnormal{is a \textbf{\color{red}best} linear unbiased estimator of}
+		\\
+		\Re^{p} \longrightarrow \Re^{1} : \beta \longmapsto (\rho - \delta)^{T} \cdot X \cdot \beta
+		\\
+		\textnormal{in terms of \,$Y$.}
+		\end{array}
+	\;\;\quad\Longrightarrow\quad
+		\begin{array}{c}
+		\textnormal{the map}
+		\\
+		f(\;\cdot\;;b) : \Re^{n} \longrightarrow \Re^{1} : y \longmapsto b^{T}\cdot y
+		\\
+		\textnormal{is a \textbf{\color{red}best} linear unbiased predictor}
+		\\
+		\textnormal{of \,$Y^{(0)}$ in terms of \,$Y$}
+		\end{array}
+	\end{equation*}
 	\noindent
-	Proof of Claim 4: \quad Immediate by Claim 2 and Claim 3.
+	Proof of Claim 4: \quad Immediate by Claim 3.
 	
 \end{enumerate}
 
