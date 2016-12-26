@@ -1,6 +1,6 @@
 
 make.synthetic.data <- function(
-	nobs,
+	n.observation,
 	beta,
 	errorRate,
 	reviewFraction
@@ -9,36 +9,36 @@ make.synthetic.data <- function(
 	npredictors <- length(beta) - 1;
 
 	X <- rbinom(
-		n    = nobs * npredictors,
+		n    = n.observation * npredictors,
 		size = 1,
 		prob = 0.5
 		);
 
-	X <- matrix(data = X, nrow = nobs, byrow = TRUE);
-	X <- cbind(rep(1,times=nobs),X);
+	X <- matrix(data = X, nrow = n.observation, byrow = TRUE);
+	X <- cbind(rep(1,times=n.observation),X);
 	colnames(X) <- paste0("x",seq(0,npredictors));
 
 	prY1.numerator <- exp(X %*% beta);
 	prY1 <- prY1.numerator / (1 + prY1.numerator);
-	response.vector <- rbinom(n = nobs, size = 1, prob = prY1);
+	response.vector <- rbinom(n = n.observation, size = 1, prob = prY1);
 
-	# match.vector  <- rbinom(n = nobs, size = 1, prob = 1 - errorRate);
+	# match.vector  <- rbinom(n = n.observation, size = 1, prob = 1 - errorRate);
 	match.vector  <- sample(
 		x       = c(TRUE,FALSE),
-		size    = nobs,
+		size    = n.observation,
 		replace = TRUE,
 		prob    = c(1-errorRate,errorRate)
 		);
 
-	# review.vector <- rbinom(n = nobs, size = 1, prob = reviewFraction);
+	# review.vector <- rbinom(n = n.observation, size = 1, prob = reviewFraction);
 	review.vector <- sample(
 		x       = c(TRUE,FALSE),
-		size    = nobs,
+		size    = n.observation,
 		replace = TRUE,
 		prob    = c(reviewFraction,1-reviewFraction)
 		);
 
-	tempID <- seq(1,nobs);
+	tempID <- seq(1,n.observation);
 	DF.output <- cbind(
 		tempID,
 		match.vector,
