@@ -24,6 +24,12 @@ true.beta <- c(-0.5,1.5,2.5,-3.5);
 # errorRates      <- seq(0,1,0.25);
 # reviewFractions <- seq(0,1,0.25);
 
+#n.trials        <- 100;
+#n.observations  <- c(2000,3000,4000,5000);
+#errorRates      <- c(0,0.05,0.1);
+#reviewFractions <- c(0.1,0.2,0.9,1);
+#predictors      <- c("x1","x2","x3");
+
 n.trials        <- 100;
 n.observations  <- c(2000,3000,4000,5000);
 errorRates      <- c(0,0.05,0.1);
@@ -59,7 +65,7 @@ for (reviewFraction in reviewFractions) {
 	for (i in 1:n.trials) {
 
 	    row.index <- 1 + row.index;
-	    print(paste0(rep("#",50),collapse=""));
+	    print( paste0("#####  row.index = ",row.index," of ",n.rows) );
 
 		### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 		synthetic.data <- make.synthetic.data(
@@ -78,8 +84,8 @@ for (reviewFraction in reviewFractions) {
 		    data    = as.data.frame(synthetic.data[,c("y.observed",predictors)]),
 		    family  = binomial(link="logit")
 		    ));
-		print("results.glm.all");
-		print( results.glm.all );
+		# print("results.glm.all");
+		# print( results.glm.all );
 
 		selected.indices <- (synthetic.data[,"review"] == TRUE) & (synthetic.data[,"match"] == TRUE);
 		results.glm.reviewedTrue <- coefficients(glm(
@@ -87,11 +93,9 @@ for (reviewFraction in reviewFractions) {
 		    data    = as.data.frame(synthetic.data[selected.indices,c("y.observed",predictors)]),
 		    family  = binomial(link="logit")
             ));
-		print("results.glm.reviewedTrue");
-		print( results.glm.reviewedTrue );
-		print("str(results.glm.reviewedTrue)");
-		print( str(results.glm.reviewedTrue) );
-		
+		#print("results.glm.reviewedTrue");
+		#print( results.glm.reviewedTrue );
+
 		### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 		results.linkAdjust <- linkAdjust.logistic(
 			data       = synthetic.data[,c("y.observed","x1","x2","x3","review","match")],
