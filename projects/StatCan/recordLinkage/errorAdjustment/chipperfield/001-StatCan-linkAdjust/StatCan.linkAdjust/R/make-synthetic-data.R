@@ -65,14 +65,18 @@ make.synthetic.data <- function(
 	DF.matches    <- DF.output[DF.output[,"match"] == TRUE,];
 	DF.nonmatches <- DF.output[DF.output[,"match"] == FALSE,];
 
-	nrow.nonmatches <- nrow(DF.nonmatches);
-	permuted.indices <- sample(
-		x       = 1:nrow.nonmatches,
-		size    = nrow.nonmatches,
-		replace = FALSE
-		);
+	# nrow.nonmatches <- nrow(DF.nonmatches);
+	# cyclically.permuted.indices <- c( seq(from = 2, to = nrow.nonmatches), 1 );
 
-	DF.nonmatches[,c("IDstar","y.observed")] <- DF.nonmatches[permuted.indices,c("IDstar","y.observed")]
+	# permuted.indices <- sample(
+	#	x       = 1:nrow.nonmatches,
+	#	size    = nrow.nonmatches,
+	#	replace = FALSE
+	#	);
+
+	if (nrow(DF.nonmatches) > 1) {
+		DF.nonmatches[,c("IDstar","y.observed")] <- DF.nonmatches[ c(2:nrow(DF.nonmatches),1), c("IDstar","y.observed") ];
+		}
 
 	DF.output <- rbind(DF.matches,DF.nonmatches);
 	DF.output <- DF.output[order(DF.output[,"ID"]),];

@@ -16,9 +16,6 @@ linkAdjust.logistic <- function(
 		match      = match
 		);
 
-	print("DF.data[1:100,]");
-	print( DF.data[1:100,] );
-
 	beta.im1 <- .initialize.beta(
 		data       = DF.data,
 		response   = response,
@@ -26,9 +23,6 @@ linkAdjust.logistic <- function(
 		review     = review,
 		match      = match
 		);
-
-	print("beta.im1");
-	print( beta.im1 );
 
 	results.expectation <- .step.expectation(
 		beta       = beta.im1,
@@ -39,9 +33,6 @@ linkAdjust.logistic <- function(
 		match      = match
 		);
 
-	print("str(results.expectation)");
-	print( str(results.expectation) );
-
 	results.maximization <- .step.maximization(
 		beta0      = beta.im1,
 		data       = results.expectation,
@@ -50,11 +41,10 @@ linkAdjust.logistic <- function(
 		);
 
 	beta.i <- results.maximization[['estimate']];
-	print( "beta.i" );
-	print(  beta.i  );
 
 	i <- 1;
-	while (i < max.iter & sqrt(sum((beta.i - beta.im1)^2)) > tolerance) {
+	not.converged <- TRUE;
+	while (i < max.iter & not.converged) {
 
 		beta.im1 <- beta.i;
 
@@ -66,8 +56,6 @@ linkAdjust.logistic <- function(
 			review     = review,
 			match      = match
 			);
-		print("str(results.expectation)");
-		print( str(results.expectation) );
 
 		results.maximization <- .step.maximization(
 			beta0      = beta.im1,
@@ -75,16 +63,32 @@ linkAdjust.logistic <- function(
 			response   = "y.expected",
 			predictors = predictors
 			);
-		print("str(results.maximization)");
-		print( str(results.maximization) );
 
+		i      <- i + 1;
 		beta.i <- results.maximization[['estimate']];
-		print( "beta.i" );
-		print(  beta.i  );
+		not.converged <- ( sqrt(sum((beta.i - beta.im1)^2)) > tolerance );
 
 		}
 
-	return(data);
+	parameter.estimates <- results.maximization[['estimate']];
+	attributes(parameter.estimates) <- list(names=c('Intercept',predictors));
+
+	list.output <- list(
+		estimates   = parameter.estimates,
+		nIterations = i,
+		converged   = (!not.converged),
+		input       = list(
+			data       = data,
+			response   = response,
+			predictors = predictors,
+			review     = review,
+			match      = match,
+			tolerance  = tolerance,
+			max.iter   = max.iter
+			)
+		);
+
+	return( list.output );
 
 	}
 
@@ -98,9 +102,6 @@ linkAdjust.logistic <- function(
 	) {
 
 	require(dplyr);
-
-	print("head(data)");
-	print( head(data) );
 
 	DF.output <- cbind(
 		data,
@@ -123,9 +124,6 @@ linkAdjust.logistic <- function(
 		Pxystar = DF.xystar[,"count.match"] / DF.xystar[,"count.total"]
 		);
 	rownames(DF.xystar) <- DF.xystar[,"xystar"];
-
-	print("DF.xystar");
-	print( DF.xystar );
 
 	DF.output <- cbind(
 		DF.output,
@@ -182,9 +180,6 @@ linkAdjust.logistic <- function(
 		data   = as.data.frame(data[selected.indices,c(response,predictors)]),
 		family = binomial(link="logit")
 		);
-
-	print("summary(results.glm)");
-	print( summary(results.glm) );
 
 	return( coefficients(results.glm) );
 
