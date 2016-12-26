@@ -20,7 +20,7 @@ synthetic.data <- make.synthetic.data(
 	nobs           = 50000,
 	beta           = c(-0.5,1.5,2.5,-3.5),
 	errorRate      = 0.10,
-	reviewFraction = 0.90
+	reviewFraction = 0.10
 	);
 
 synthetic.data[1:5,];
