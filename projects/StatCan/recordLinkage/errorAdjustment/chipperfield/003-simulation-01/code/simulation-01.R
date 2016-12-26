@@ -24,10 +24,11 @@ true.beta <- c(-0.5,1.5,2.5,-3.5);
 # errorRates      <- seq(0,1,0.25);
 # reviewFractions <- seq(0,1,0.25);
 
-n.trials        <- 3;
-n.observations  <- c(2000,5000);
-errorRates      <- seq(0,1,0.5);
-reviewFractions <- seq(0.1,0.9,0.4);
+n.trials        <- 100;
+n.observations  <- c(2000,3000,4000,5000);
+errorRates      <- c(0,0.05,0.1);
+reviewFractions <- c(0.1,0.2,0.9,1);
+predictors      <- c("x1","x2","x3");
 
 n.trials;
 n.observations;
@@ -37,7 +38,14 @@ reviewFractions;
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
 n.rows <- n.trials * length(n.observations) * length(errorRates) * length(reviewFractions);
-results.simulation <- matrix(data = -999, nrow = n.rows, ncol = 3+length(true.beta));
+results.simulation <- matrix(data = -999, nrow = n.rows, ncol = 3+3*(1+length(true.beta)));
+colnames(results.simulation) <- c(
+    "nobs","errorRate","reviewFraction",
+    "err.all","err.reviewedTrue","err.chipperfield", 
+    paste("all",c("Intercept",predictors),sep="."),
+    paste("reviewedTrue",c("Intercept",predictors),sep="."),
+    paste("chipperfield",c("Intercept",predictors),sep=".")
+);
 
 str( results.simulation );
 
@@ -48,43 +56,65 @@ for (n.observation  in n.observations)  {
 for (errorRate      in errorRates)      {
 for (reviewFraction in reviewFractions) {
 
-	synthetic.data <- make.synthetic.data(
-		n.observation  = n.observation,
-		beta           = true.beta,
-		errorRate      = errorRate,
-		reviewFraction = reviewFraction
-		);
-
 	for (i in 1:n.trials) {
 
-		row.index <- 1 + row.index;
+	    row.index <- 1 + row.index;
+	    print(paste0(rep("#",50),collapse=""));
 
-		print( c(n.observation,errorRate,reviewFraction,i) );
+		### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+		synthetic.data <- make.synthetic.data(
+			n.observation  = n.observation,
+			beta           = true.beta,
+			errorRate      = errorRate,
+			reviewFraction = reviewFraction
+			);
 
+		### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+		temp.formula = paste0("y.observed"," ~ ",paste(predictors,collapse=" + "));
+		temp.formula = as.formula(temp.formula);
+
+		results.glm.all <- coefficients(glm(
+		    formula = temp.formula,
+		    data    = as.data.frame(synthetic.data[,c("y.observed",predictors)]),
+		    family  = binomial(link="logit")
+		    ));
+		print("results.glm.all");
+		print( results.glm.all );
+
+		selected.indices <- (synthetic.data[,"review"] == TRUE) & (synthetic.data[,"match"] == TRUE);
+		results.glm.reviewedTrue <- coefficients(glm(
+		    formula = temp.formula,
+		    data    = as.data.frame(synthetic.data[selected.indices,c("y.observed",predictors)]),
+		    family  = binomial(link="logit")
+            ));
+		print("results.glm.reviewedTrue");
+		print( results.glm.reviewedTrue );
+		print("str(results.glm.reviewedTrue)");
+		print( str(results.glm.reviewedTrue) );
+		
+		### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 		results.linkAdjust <- linkAdjust.logistic(
 			data       = synthetic.data[,c("y.observed","x1","x2","x3","review","match")],
 			response   = "y.observed",
-			predictors = c("x1","x2","x3"),
+			predictors = predictors,
 			review     = "review",
 			match      = "match"
 			);
 
-		print("results.linkAdjust[['estimates']]");
-		print( results.linkAdjust[['estimates']] );
+		# print("results.linkAdjust[['estimates']]");
+		# print( results.linkAdjust[['estimates']] );
 
-		temp <- c(
-			n.observation,
-			errorRate,
-			reviewFraction,
-			results.linkAdjust[['estimates']]
-			);
-		print("temp");
-		print( temp );
-
+		### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+		err.all          <- sqrt( sum((results.glm.all                   - true.beta)^2) );
+		err.reviewedTrue <- sqrt( sum((results.glm.reviewedTrue          - true.beta)^2) );
+		err.linkAdjust   <- sqrt( sum((results.linkAdjust[['estimates']] - true.beta)^2) );
+		
+		### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 		results.simulation[row.index,] <- c(
-			n.observation,
-			errorRate,
-			reviewFraction,
+			n.observation, errorRate, reviewFraction,
+			err.all, err.reviewedTrue, err.linkAdjust,
+			results.glm.all,
+			results.glm.reviewedTrue,
 			results.linkAdjust[['estimates']]
 			);
 
@@ -92,11 +122,20 @@ for (reviewFraction in reviewFractions) {
 
 	}}}
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+
 str( results.simulation );
+results.simulation;
+
+write.table(
+    x         = results.simulation,
+    file      = "results-simulation.tsv",
+    sep       = "\t",
+    row.names = FALSE
+    );
 
 ###################################################
 
 sessionInfo();
 
 q();
-

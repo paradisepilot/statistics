@@ -177,8 +177,8 @@ linkAdjust.logistic <- function(
 
 	results.glm <- glm(
 		formula = temp.formula,
-		data   = as.data.frame(data[selected.indices,c(response,predictors)]),
-		family = binomial(link="logit")
+		data    = as.data.frame(data[selected.indices,c(response,predictors)]),
+		family  = binomial(link="logit")
 		);
 
 	return( coefficients(results.glm) );
