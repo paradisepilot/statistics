@@ -45,7 +45,7 @@ colnames(results.simulation) <- c(
     paste("all",c("Intercept",predictors),sep="."),
     paste("reviewedTrue",c("Intercept",predictors),sep="."),
     paste("chipperfield",c("Intercept",predictors),sep=".")
-);
+    );
 
 str( results.simulation );
 
