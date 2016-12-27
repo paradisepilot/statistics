@@ -30,7 +30,7 @@ true.beta <- c(-0.5,1.5,2.5,-3.5);
 #reviewFractions <- c(0.1,0.2,0.9,1);
 #predictors      <- c("x1","x2","x3");
 
-n.trials        <- 100;
+n.trials        <- 1000;
 n.observations  <- c(2000,3000,4000,5000);
 errorRates      <- c(0,0.05,0.1);
 reviewFractions <- c(0.1,0.2,0.9,1);

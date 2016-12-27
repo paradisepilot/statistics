@@ -7,25 +7,42 @@ package.directory <- normalizePath(command.arguments[2]);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 library(dplyr);
+library(tidyr);
 library(ggplot2);
 # library(ggmap);
 # library(RColorBrewer);
 # library(VennDiagram);
 
-# source(paste0(package.directory,'/linkAdjust-logistic.R'));
-# source(paste0(package.directory,'/make-synthetic-data.R'));
+source(paste0(code.directory,'/plotDensityParameters.R'));
 
 setwd(output.directory);
 
 ###################################################
-
 results.simulation <- read.table(
     file   = input.file,
     header = TRUE,
     sep    = "\t"
     );
 
+results.simulation <- results.simulation %>%
+    unite(myGroup, nobs, errorRate, reviewFraction, sep = '; ', remove = FALSE);
+
 str( results.simulation );
+print( head(results.simulation) );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+plotDensityParameters(
+    FILE.ggplot = 'plot-density.png',
+    DF.input    = results.simulation    
+    );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
 ###################################################
 
