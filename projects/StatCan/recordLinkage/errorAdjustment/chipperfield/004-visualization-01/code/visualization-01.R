@@ -24,9 +24,6 @@ results.simulation <- read.table(
     sep    = "\t"
     );
 
-#results.simulation <- results.simulation %>%
-#    unite(myGroup, nobs, errorRate, reviewFraction, sep = '; ', remove = FALSE);
-
 results.simulation[,"myGroup"] <- as.factor(results.simulation[,"errorRate"]);
 
 str( results.simulation );
@@ -41,7 +38,7 @@ DF.parameters <- data.frame(
     );
 
 for (methodology in methodologies) {
-for (i in 1:nrow(DF.parameters)) {
+for (i in 1:nrow(DF.parameters))   {
     plotDensityParameters(
         DF.input    = results.simulation,
         methodology = methodology,
