@@ -24,17 +24,31 @@ results.simulation <- read.table(
     sep    = "\t"
     );
 
-results.simulation <- results.simulation %>%
-    unite(myGroup, nobs, errorRate, reviewFraction, sep = '; ', remove = FALSE);
+#results.simulation <- results.simulation %>%
+#    unite(myGroup, nobs, errorRate, reviewFraction, sep = '; ', remove = FALSE);
+
+results.simulation[,"myGroup"] <- as.factor(results.simulation[,"errorRate"]);
 
 str( results.simulation );
 print( head(results.simulation) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-plotDensityParameters(
-    FILE.ggplot = 'plot-density.png',
-    DF.input    = results.simulation    
+methodologies <- c("all","reviewedTrue","chipperfield");
+
+DF.parameters <- data.frame(
+    parameter =  c("Intercept","x1","x2","x3"),
+    true.value = c(-0.5,1.5,2.5,-3.5)
     );
+
+for (methodology in methodologies) {
+for (i in 1:nrow(DF.parameters)) {
+    plotDensityParameters(
+        DF.input    = results.simulation,
+        methodology = methodology,
+        parameter   = DF.parameters[i,"parameter"],
+        true.value  = DF.parameters[i,"true.value"]
+        );
+    }}
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
