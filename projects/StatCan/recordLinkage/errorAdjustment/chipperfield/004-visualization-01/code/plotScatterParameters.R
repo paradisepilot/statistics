@@ -1,9 +1,11 @@
 
-plotDensityParameters <- function(
+plotScatterParameters <- function(
     DF.input    = NULL,
-    methodology = NULL,
+    x.method    = NULL,
+    y.method    = NULL,
     parameter   = NULL,
     true.value  = NULL,
+    input.alpha = 0.2,
     resolution  = 300
     ) {
     
@@ -12,15 +14,17 @@ plotDensityParameters <- function(
     
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     FILE.ggplot <- paste0(
-        "density-",
+        "scatter-",
         parameter,"-",
-        methodology,
+        x.method,"-",
+        y.method,
         ".png"
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     DF.temp <- DF.input;
-    DF.temp[,"tempParameter"] <- DF.temp[,paste(methodology,parameter,sep=".")];
+    DF.temp[,"x.Parameter"] <- DF.temp[,paste(x.method,parameter,sep=".")];
+    DF.temp[,"y.Parameter"] <- DF.temp[,paste(y.method,parameter,sep=".")];
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     my.ggplot <- ggplot(data = NULL) + theme_bw() + coord_fixed(ratio=1);
@@ -38,14 +42,17 @@ plotDensityParameters <- function(
     #is.selected <- DF.temp[['ContactTypeMain']] %in% contact.types;
     #DF.temp     <- na.omit(DF.temp[is.selected,]);
 
-    my.ggplot <- my.ggplot + geom_density(
+    my.ggplot <- my.ggplot + geom_point(
         data    = DF.temp,
         mapping = aes(
-            x     = tempParameter,
+            x     = x.Parameter,
+            y     = y.Parameter,
             color = myGroup
-            )
+            ),
+        size  = 0.01,
+        alpha = input.alpha
         );
-    
+
     my.ggplot <- my.ggplot + facet_grid(
         nobs ~ reviewFraction,
         labeller = labeller(nobs = label_both, reviewFraction = label_both)
@@ -55,21 +62,30 @@ plotDensityParameters <- function(
         limits = true.value + 2.5 * c(-1,1),
         breaks = seq(-10,10,1)
         );
-    
+
     my.ggplot <- my.ggplot + scale_y_continuous(
-        limits = c(0,6.5),
-        breaks = seq(0,7,1)
+        limits = true.value + 2.5 * c(-1,1),
+        breaks = seq(-10,10,1)
         );
-    
-    my.ggplot <- my.ggplot + xlab(label=paste0("parameter: ",parameter,",  ","method: ",methodology));
+
+    my.ggplot <- my.ggplot + xlab(label=paste0("parameter: ",parameter,",  ","method: ",x.method));
+    my.ggplot <- my.ggplot + ylab(label=paste0("parameter: ",parameter,",  ","method: ",y.method));
     my.ggplot <- my.ggplot + scale_colour_discrete(name="Error Rate")
+
     my.ggplot <- my.ggplot + geom_vline(
         xintercept = true.value,
         size       = 0.5,
         linetype   = 2,
         colour     = "black"
         );
-    
+
+    my.ggplot <- my.ggplot + geom_hline(
+        yintercept = true.value,
+        size       = 0.5,
+        linetype   = 2,
+        colour     = "black"
+        );
+
     my.ggplot <- my.ggplot + theme(
         title             = element_text(size = 25, face = "bold"),
         axis.title        = element_text(size = 22, face = "bold"),
@@ -90,5 +106,5 @@ plotDensityParameters <- function(
         width  =  8,
         units  = 'in'
         );
-    
+
     }

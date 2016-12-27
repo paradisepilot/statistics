@@ -14,7 +14,8 @@ library(ggplot2);
 # library(VennDiagram);
 
 source(paste0(code.directory,'/plotDensityParameters.R'));
-
+source(paste0(code.directory,'/plotScatterParameters.R'));
+       
 setwd(output.directory);
 
 ###################################################
@@ -37,6 +38,44 @@ DF.parameters <- data.frame(
     true.value = c(-0.5,1.5,2.5,-3.5)
     );
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+for (i in 1:nrow(DF.parameters)) {
+
+    plotScatterParameters(
+        DF.input    = results.simulation,
+        x.method   = "all",
+        y.method   = "reviewedTrue",
+        parameter   = DF.parameters[i,"parameter"],
+        true.value  = DF.parameters[i,"true.value"]
+        );
+    
+    plotScatterParameters(
+        DF.input    = results.simulation,
+        x.method   = "reviewedTrue",
+        y.method   = "all",
+        parameter   = DF.parameters[i,"parameter"],
+        true.value  = DF.parameters[i,"true.value"]
+        );
+    
+    plotScatterParameters(
+        DF.input    = results.simulation,
+        x.method   = "reviewedTrue",
+        y.method   = "chipperfield",
+        parameter   = DF.parameters[i,"parameter"],
+        true.value  = DF.parameters[i,"true.value"]
+        );
+    
+    plotScatterParameters(
+        DF.input    = results.simulation,
+        x.method   = "all",
+        y.method   = "chipperfield",
+        parameter   = DF.parameters[i,"parameter"],
+        true.value  = DF.parameters[i,"true.value"]
+        );
+    
+    }
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 for (methodology in methodologies) {
 for (i in 1:nrow(DF.parameters))   {
     plotDensityParameters(
@@ -46,14 +85,6 @@ for (i in 1:nrow(DF.parameters))   {
         true.value  = DF.parameters[i,"true.value"]
         );
     }}
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
 ###################################################
 
