@@ -17,7 +17,7 @@ packageDIR=${packageDIR}/001-StatCan-linkAdjust/StatCan.linkAdjust/R
 
 inputDIR=${parentDIR}
 inputDIR="$(dirname "$inputDIR")"
-inputDIR=${inputDIR//github/gitdat}/003-simulation-01/output-SNAPSHOT-2016-12-26-02
+inputDIR=${inputDIR//github/gitdat}/003-simulation-01/output.SNAPSHOT.2016-12-26.02
 inputFILE=${inputDIR}/results-simulation-nTrials-1000.tsv
 
 ##################################################

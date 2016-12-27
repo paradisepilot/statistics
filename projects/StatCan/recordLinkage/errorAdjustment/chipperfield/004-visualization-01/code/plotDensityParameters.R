@@ -46,13 +46,21 @@ plotDensityParameters <- function(
             )
         );
     
-    my.ggplot <- my.ggplot + facet_grid( nobs ~ reviewFraction );
+    my.ggplot <- my.ggplot + facet_grid(
+        nobs ~ reviewFraction,
+        labeller = labeller(nobs = label_both, reviewFraction = label_both)
+        );
 
     my.ggplot <- my.ggplot + scale_x_continuous(
         limits = true.value + 2.5 * c(-1,1),
         breaks = seq(-10,10,1)
         );
-
+    
+    my.ggplot <- my.ggplot + scale_y_continuous(
+        limits = c(0,6.5),
+        breaks = seq(0,7,1)
+        );
+    
     my.ggplot <- my.ggplot + xlab(label=paste0("parameter: ",parameter,",  ","method: ",methodology));
     my.ggplot <- my.ggplot + scale_colour_discrete(name="Error Rate")
     my.ggplot <- my.ggplot + geom_vline(
@@ -78,8 +86,8 @@ plotDensityParameters <- function(
         file   = FILE.ggplot,
         plot   = my.ggplot,
         dpi    = resolution,
-        height = 12,
-        width  = 12,
+        height = 11,
+        width  =  8,
         units  = 'in'
         );
     
