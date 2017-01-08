@@ -48,16 +48,16 @@ an arbitrary map from $\Omega$, where $\overline{\Re} := [-\infty,\infty]$ is th
 	A measurable $\overline{\Re}$-valued function $g : \Omega\longrightarrow\overline{\Re}$
 	is called a \underline{\textbf{measurable majorant}} of $f$ if there exists a measurable
 	subset $A \subset \Omega$ with $\mu(A) = 1$ such that
-	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\;f(\omega) \,\leq\, g(\omega)\;\right\}$.
+	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\; g(\omega) \,\geq\, f(\omega)\;\right\}$.
 \item
 	A measurable $\overline{\Re}$-valued function $g : \Omega\longrightarrow\overline{\Re}$
 	is called a \underline{\textbf{measurable minorant}} of $f$ if there exists a measurable
 	subset $A \subset \Omega$ with $\mu(A) = 1$ such that
-	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\;f(\omega) \,\geq\, g(\omega)\;\right\}$.
+	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\; g(\omega) \,\leq\, f(\omega)\;\right\}$.
 \end{enumerate}
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}[Existence of minimal measurable majorant]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -69,13 +69,12 @@ Suppose:
 	is an arbitrary map from $\Omega$ into the extended real numbers
 	$\overline{\Re} := [-\infty,\infty]$.
 \end{itemize}
-Then, there exists a measurable function $f^{*} : \Omega \longrightarrow [-\infty,\infty]$
-satisfying the following two properties:
-\begin{enumerate}
-\item
-	$\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\; f(\omega) > f^{*}(\omega)\;\right\}$
-	is contained in a measurable subset of \,$\Omega$ of measure zero.
-\end{enumerate}
+Then, there exists a measurable majorant $f^{*} : \Omega \longrightarrow \overline{R}$ of $f$ such that
+\begin{equation*}
+\mu\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\; f^{*}(\omega) \,\leq\, g(\omega)\;\right\}\,\right)
+\;=\;1\,,\;\;
+\textnormal{for every measurable majorant $g$ of $f$}.
+\end{equation*}
 \end{lemma}
 
 \begin{theorem}[Theorem 1.4.1, p.90, \cite{Bertsekas1999}]
