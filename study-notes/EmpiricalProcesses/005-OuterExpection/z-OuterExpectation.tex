@@ -13,29 +13,44 @@
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \begin{definition}[Outer Expectation]
-\label{defn:OuterExpectation}
+\label{defn:MajorantsOuterExpectation}
 \mbox{}\vskip 0.1cm
 \noindent
 Let $(\Omega,\mathcal{A},\mu)$ be a probability space and
-$f : \Omega \longrightarrow \overline{R}$
+$f : \Omega \longrightarrow \overline{\Re}$
 an arbitrary map from $\Omega$, where $\overline{\Re} := [-\infty,\infty]$ is the set of extended real numbers.
+Let $\mathcal{O}$ denote the Borel $\sigma$-algebra of $\Re$.
 \begin{enumerate}
 \item
+	A $(\mathcal{A},\mathcal{O})$-measurable $\overline{\Re}$-valued function
+	$g : \Omega\longrightarrow\overline{\Re}$
+	is called a \underline{\textbf{measurable majorant}} of $f$ if there exists a measurable
+	subset $A \in \mathcal{A}$ with $\mu(A) = 1$ such that
+	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\; g(\omega) \,\geq\, f(\omega)\;\right\}$.
+\item
+	A $(\mathcal{A},\mathcal{O})$-measurable $\overline{\Re}$-valued function
+	$g : \Omega\longrightarrow\overline{\Re}$
+	is called a \underline{\textbf{measurable minorant}} of $f$ if there exists a measurable
+	subset $A \in \mathcal{A}$ with $\mu(A) = 1$ such that
+	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\; g(\omega) \,\leq\, f(\omega)\;\right\}$.
+\item\label{defn:OuterExpectation}
 	The \underline{\textbf{outer expectation}}\,, or outer integral,
 	$E^{*}\!\left[\;f\;\right] \in \overline{\Re}$
 	of $f$ is defined as follows:
 	\begin{equation*}
-	E^{*}\!\left[\;f\;\right]
+	E^{*}\!\left[\,f\,\right]
 	\;\; := \;\;
 		\inf\!\left\{\;
-			E\!\left[\;g\;\right] \in \Re
+			E\!\left[\,g\,\right] \in \overline{\Re}
 			\;\;\left\vert\;
 			\begin{array}{c}
-				\textnormal{$g:\Omega\rightarrow\Re$ is $\mu$-integrable, and}
+				\textnormal{$g:\Omega\rightarrow\overline{\Re}$ is a measurable majorant of $f$, and}
 				\\
-				\textnormal{$\exists$\; a measurable $A \subset \Omega$ with $\mu(A) = 1$}
-				\\
-				\textnormal{such that $A \subset \{\;\omega\in\Omega\;\vert\;f(\omega) \,\leq\, g(\omega)\;\}$}
+				\textnormal{$E\!\left[\,g\,\right] \in \overline{\Re}$ is defined ($g$ need not be $\mu$-integrable)}
+				%\\
+				%\textnormal{there exists a measurable $A \subset \Omega$ with $\mu(A) = 1$}
+				%\\
+				%\textnormal{such that $A \subset \{\;\omega\in\Omega\;\vert\;f(\omega) \,\leq\, g(\omega)\;\}$}
 			\end{array}
 			\right.
 			\right\}
@@ -44,28 +59,30 @@ an arbitrary map from $\Omega$, where $\overline{\Re} := [-\infty,\infty]$ is th
 	The \underline{\textbf{inner expectation}}\,, or inner integral,
 	of $f$ is defined to be
 	$E_{*}\!\left[\;f\;\right] \, := \, - E^{*}\!\left[\;- f\;\right]$.
-\item
-	A measurable $\overline{\Re}$-valued function $g : \Omega\longrightarrow\overline{\Re}$
-	is called a \underline{\textbf{measurable majorant}} of $f$ if there exists a measurable
-	subset $A \subset \Omega$ with $\mu(A) = 1$ such that
-	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\; g(\omega) \,\geq\, f(\omega)\;\right\}$.
-\item
-	A measurable $\overline{\Re}$-valued function $g : \Omega\longrightarrow\overline{\Re}$
-	is called a \underline{\textbf{measurable minorant}} of $f$ if there exists a measurable
-	subset $A \subset \Omega$ with $\mu(A) = 1$ such that
-	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\; g(\omega) \,\leq\, f(\omega)\;\right\}$.
 \end{enumerate}
 \end{definition}
 
-\begin{lemma}[Existence of minimal measurable majorant]
+\begin{remark}
+\mbox{}\vskip 0.1cm
+\noindent
+Measurable majorants always exist for any $\overline{\Re}$-valued function defined on $\Omega$.
+Indeed, let $g : \Omega \longrightarrow \overline{\Re}$ be defined by $g(\omega) := +\infty$, for each $\omega \in \Omega$.
+Then, $g$ is a measurable majorant of every $\overline{\Re}$-valued function defined on $\Omega$.
+Note furthermore that $E\!\left[\,g\,\right] = +\infty$.
+Hence, in Definition \ref{defn:MajorantsOuterExpectation} \eqref{defn:OuterExpectation} above,
+the collection of majorants over which the infimum is taken is never the empty set.
+\end{remark}
+
+\begin{theorem}[Existence of minimal measurable majorant]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
 \begin{itemize}
 \item
 	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\Re$.
 \item
-	$f : \Omega \longrightarrow \overline{R}$
+	$f : \Omega \longrightarrow \overline{\Re}$
 	is an arbitrary map from $\Omega$ into the extended real numbers
 	$\overline{\Re} := [-\infty,\infty]$.
 \end{itemize}
@@ -75,7 +92,157 @@ Then, there exists a measurable majorant $f^{*} : \Omega \longrightarrow \overli
 \;=\;1\,,\;\;
 \textnormal{for every measurable majorant $g$ of $f$}.
 \end{equation*}
-\end{lemma}
+\end{theorem}
+\proof
+Define
+\begin{equation*}
+\mathcal{M}(f)
+\;\; := \;\;
+	\left\{\;
+		h : \Omega \longrightarrow \overline{\Re}
+	\;\,\left\vert
+		\begin{array}{c}
+		\textnormal{$h$ is measurable majorant of $\arctan(f)$, and}
+		\\
+		-\frac{\pi}{2} \leq h \leq \frac{\pi}{2} \;\, \mu\textnormal{-almost everywhere}
+		\end{array}
+	\right.
+	\;\right\}
+\end{equation*}
+Note that, for each $h \in \mathcal{M}(f)$, we have
+\begin{equation*}
+-\dfrac{\pi}{2}
+\;\;=\;\; -\dfrac{\pi}{2} \cdot \int_{\Omega} 1\;\d\mu
+\;\;=\;\; \int_{\Omega} -\dfrac{\pi}{2} \;\d\mu
+\;\;\leq\;\; \int_{\Omega} h \;\d\mu
+\;\;\leq\; \int_{\Omega} \dfrac{\pi}{2} \;\d\mu
+\;\;=\;\; \dfrac{\pi}{2} \cdot \int_{\Omega} 1\;\d\mu
+\;\;=\;\; \dfrac{\pi}{2}
+\end{equation*}
+Hence,
+\begin{equation*}
+\alpha
+\;\; := \;\; \underset{h\,\in\,\mathcal{M}(f)}{\inf}\left\{\;\int_{\Omega}h\;\d\mu\;\right\}
+\;\;\in\;\; \left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]
+\;\;\subset\;\; \Re
+\end{equation*}
+Now, for each $n \in \N$, choose $h_{n} \in \mathcal{M}(f)$ such that
+$\underset{n\rightarrow\infty}{\lim}\int_{\Omega}h_{n}\;\d\mu = \alpha$.
+Next, for each $n \in \N$, define
+\begin{equation*}
+\widetilde{h}_{n} \;\; := \;\; \min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\}.
+\end{equation*}
+Then, the sequence $\left\{\,\widetilde{h}_{n}\,\right\}$ is non-increasing in $n \in \N$.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 1:}\quad $\widetilde{h}_{n} \,\in\, \mathcal{M}(f)$, for each $n \in \N$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\;\;
+It is clear that, for each $n \in \N$, $-\dfrac{\pi}{2} \,\leq\, \widetilde{h}_{n} \,\leq\, \dfrac{\pi}{2}$ $\mu$-almost everywhere.
+For each $i \in \N$, since $h_{i}$ is a measurable majorant of $\arctan(f)$,
+there exists $A_{i} \in \mathcal{A}$ with $\mu(A_{i}) = 1$
+such that $A_{i} \subset \left\{\, \arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{i} \,\right\}$.
+Note that $\mu\!\left(\,\overset{n}{\underset{i=1}{\bigcap}}\,A_{i}\,\right) = 1$, for each $n \in \N$.
+Indeed,
+\begin{equation*}
+\mu\!\left(\,\left(\;\overset{n}{\underset{i=1}{\bigcap}}\,A_{i}\,\right)^{c}\;\right)
+\;\; = \;\;
+	\mu\!\left(\;\overset{n}{\underset{i=1}{\bigcup}}\,A_{i}^{c}\;\right)
+\;\; \leq \;\;
+	\overset{n}{\underset{i=1}{\sum}}\;\mu\!\left(A_{i}^{c}\,\right)
+\;\; = \;\;
+	\overset{n}{\underset{i=1}{\sum}}\,\left(1 \overset{{\color{white}.}}{-} \mu\!\left(A_{i}\,\right)\right)
+\;\; = \;\;
+	\overset{n}{\underset{i=1}{\sum}}\;0
+\;\; = \;\;
+	0\,,
+\end{equation*}
+which shows that we indeed have $\mu\!\left(\,\overset{n}{\underset{i=1}{\bigcap}}\,A_{i}\,\right) = 1$.
+On the other hand,
+\begin{equation*}
+\left\{\;\arctan(f) \,\leq\, \widetilde{h}_{n}\;\right\}
+\;\; = \;\;
+	\bigcap_{i=1}^{n}\,\left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{i}\;\right\}
+\;\; \supset \;\;
+	\bigcap_{i=1}^{n}\,A_{i}
+\end{equation*}
+This proves that, for each $n \in \N$, $\widetilde{h}_{n}$ is a measurable majorant of $\arctan(f)$;
+hence, $\widetilde{h}_{n} \in \mathcal{M}(f)$. This completes the proof of Claim 1.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 2:}\quad
+$h \; := \; \underset{n\rightarrow\infty}{\lim}\,\widetilde{h}_{n} \; \in \; \mathcal{M}(f)$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 2:
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 3:}\quad $\int_{\Omega}\, h \; \d\mu \; = \; \alpha$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 3:
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 4:}\quad
+$f^{*} \, := \, \tan(h)$ is a measurable majorant of $f$ and satisfies the following property:
+\begin{equation*}
+\mu\!\left(\left\{\;f^{*} \,\overset{{\color{white}.}}{\leq}\, g \;\right\}\right) =1\,,
+\quad
+\textnormal{for each measurable majorant $g : \Omega \longrightarrow \overline{\Re}$ of $f$}.
+\end{equation*}
+Proof of Claim 4:\;\;
+\noindent
+First note that: $\arctan(g) \in \mathcal{M}(f)$.
+Indeed, since $g : \Omega \longrightarrow \overline{\Re}$ is measurable,
+so is $\arctan(g) : \Omega \longrightarrow \left[-\frac{\pi}{2},\frac{\pi}{2}\right]$.
+\begin{equation*}
+-\dfrac{\pi}{2} \leq \arctan(f) \leq \arctan(g) \leq \dfrac{\pi}{2}
+\end{equation*}
+$\min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\} \in \mathcal{M}(f)$.
+Hence,
+\begin{equation*}
+\alpha
+\;\; \leq \;\;
+	\int_{\Omega}\,\min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\}\d\mu
+\;\; \leq \;\;
+	\int_{\Omega}\;h\;\d\mu
+\;\; = \;\;
+	\alpha
+\end{equation*}
+Since $\min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\} \,\leq\, h$, we have
+\begin{equation*}
+\left\vert\; h \, - \, \min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\} \;\right\vert
+\;\; = \;\;
+	h \, - \, \min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\}
+\end{equation*}
+Thus,
+\begin{eqnarray*}
+\int_{\Omega}\;\left\vert\; h \, - \, \min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\} \;\right\vert\;\d\mu
+& = &
+	\int_{\Omega}\; \left(\;h \, - \, \min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\}\,\right)\;\d\mu
+\\
+& = &
+	\int_{\Omega}\; h \;\d\mu
+	\; - \;
+	\int_{\Omega}\; \min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\}\;\d\mu
+\;\; = \;\;
+	\alpha \, - \, \alpha
+\;\; = \;\;
+	0\,,
+\end{eqnarray*}
+This implies that $h \, = \, \min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\}$
+$\mu$-almost everywhere;
+equivalently, $h \leq \arctan(g)$, $\mu$-almost everywhere.
+This in turn implies that
+$f^{*} := \tan(h) \leq \tan\!\left(\arctan(g)\right) = g$, $\mu$-almost everywhere.
+This proves Claim 3 and completes the proof of the Theorem.
+\qed
+
 
 \begin{theorem}[Theorem 1.4.1, p.90, \cite{Bertsekas1999}]
 \label{NewtonRaphson}
