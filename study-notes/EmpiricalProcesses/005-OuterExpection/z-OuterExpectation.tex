@@ -1,0 +1,529 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Outer Expectation (a.k.a. Outer Integral)}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Outer Expectation]
+\label{defn:OuterExpectation}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $(\Omega,\mathcal{A},\mu)$ be a probability space and
+$f : \Omega \longrightarrow \overline{R}$
+an arbitrary map from $\Omega$, where $\overline{\Re} := [-\infty,\infty]$ is the set of extended real numbers.
+\begin{enumerate}
+\item
+	The \underline{\textbf{outer expectation}}\,, or outer integral,
+	$E^{*}\!\left[\;f\;\right] \in \overline{\Re}$
+	of $f$ is defined as follows:
+	\begin{equation*}
+	E^{*}\!\left[\;f\;\right]
+	\;\; := \;\;
+		\inf\!\left\{\;
+			E\!\left[\;g\;\right] \in \Re
+			\;\;\left\vert\;
+			\begin{array}{c}
+				\textnormal{$g:\Omega\rightarrow\Re$ is $\mu$-integrable, and}
+				\\
+				\textnormal{$\exists$\; a measurable $A \subset \Omega$ with $\mu(A) = 1$}
+				\\
+				\textnormal{such that $A \subset \{\;\omega\in\Omega\;\vert\;f(\omega) \,\leq\, g(\omega)\;\}$}
+			\end{array}
+			\right.
+			\right\}
+	\end{equation*}
+\item
+	The \underline{\textbf{inner expectation}}\,, or inner integral,
+	of $f$ is defined to be
+	$E_{*}\!\left[\;f\;\right] \, := \, - E^{*}\!\left[\;- f\;\right]$.
+\item
+	A measurable $\overline{\Re}$-valued function $g : \Omega\longrightarrow\overline{\Re}$
+	is called a \underline{\textbf{measurable majorant}} of $f$ if there exists a measurable
+	subset $A \subset \Omega$ with $\mu(A) = 1$ such that
+	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\;f(\omega) \,\leq\, g(\omega)\;\right\}$.
+\item
+	A measurable $\overline{\Re}$-valued function $g : \Omega\longrightarrow\overline{\Re}$
+	is called a \underline{\textbf{measurable minorant}} of $f$ if there exists a measurable
+	subset $A \subset \Omega$ with $\mu(A) = 1$ such that
+	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\;f(\omega) \,\geq\, g(\omega)\;\right\}$.
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$f : \Omega \longrightarrow \overline{R}$
+	is an arbitrary map from $\Omega$ into the extended real numbers
+	$\overline{\Re} := [-\infty,\infty]$.
+\end{itemize}
+Then, there exists a measurable function $f^{*} : \Omega \longrightarrow [-\infty,\infty]$
+satisfying the following two properties:
+\begin{enumerate}
+\item
+	$\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\; f(\omega) > f^{*}(\omega)\;\right\}$
+	is contained in a measurable subset of \,$\Omega$ of measure zero.
+\end{enumerate}
+\end{lemma}
+
+\begin{theorem}[Theorem 1.4.1, p.90, \cite{Bertsekas1999}]
+\label{NewtonRaphson}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\Omega \subset \Re^{n}$ is open subset of $\Re^{n}$, where $n \in \N$.
+\item
+	$g : \Omega \longrightarrow \Re$ is a continuously differentiable $\Re$-valued function
+	defined on $\Omega$.
+\item
+	$x^{\star} \in \Omega$ such that $g(x^{\star}) = 0$ and
+	$\nabla g(x^{\star}) \in \Re^{n \times n}$ is a non-singular matrix,
+	where $\nabla g : \Omega \longrightarrow \Re^{n \times n}$ is component-wise given by:
+	\begin{equation*}
+	(\,\nabla g\,)_{ij}
+	\;\; = \;\;
+		\dfrac{\partial\,g_{i}}{\partial\,x_{j}}
+	\end{equation*}
+\item
+	For each $y \in \Re^{n}$ and \,$\varepsilon > 0$, define
+	\begin{equation*}
+	B_{\varepsilon}(y)
+	\; := \;
+		\left\{\;\left.
+		\zeta \overset{{\color{white}+}}{\in} \Re^{n}
+		\;\;\right\vert\;\;
+		\Vert\,\zeta - y\,\Vert \,<\, \varepsilon
+		\;\right\}
+	\quad\textnormal{and}\quad
+	\overline{B}_{\varepsilon}(y)
+	\; := \;
+		\left\{\;\left.
+		\zeta \overset{{\color{white}+}}{\in} \Re^{n}
+		\;\;\right\vert\;\;
+		\Vert\,\zeta - y\,\Vert \,\leq\, \varepsilon
+		\;\right\}\,.
+	\end{equation*}
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item\label{NewtonRaphsonGeometricConvergence}
+	Given any $\beta \in (0,1)$,
+	there exists $\delta > 0$ such that $\overline{B}_{\delta}(x^{\star}) \subset \Omega$ and,
+	for each $x^{0} \in \overline{B}_{\delta}(x^{\star})$, the sequence $\{\,x^{k}\,\}_{k=0}^{\infty}$
+	defined iteratively by
+	\begin{equation*}
+	x^{k+1}
+	\;\; := \;\;
+		x^{k} \;-\; \left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}\cdot g(x^{k})\,,
+	\quad
+	\textnormal{for \,$k = 0, 1, 2, \ldots$}
+	\end{equation*}
+	satisfies the following properties:
+	\begin{itemize}
+	\item
+		$x^{k} \in \overline{B}_{\delta}(x^{\star})$, for each $k \in \N$,
+	\item
+		$\left\Vert\,x^{k+1}\,-\,x^{\star}\right\Vert \, \leq \, \beta\cdot\left\Vert\,x^{k}\,-\,x^{\star}\right\Vert$\,,
+		for each $k = 0,1,2,\ldots$\,.
+	\end{itemize}
+\item
+	There exist $\delta > 0$ and $\gamma > 0$
+	such that $\overline{B}_{\delta}(x^{\star}) \subset \Omega$ and,
+	for each $x^{0} \in \overline{B}_{\delta}(x^{\star})$, the sequence $\{\,x^{k}\,\}_{k=0}^{\infty}$
+	defined iteratively by
+	\begin{equation*}
+	x^{k+1}
+	\;\; := \;\;
+		x^{k} \;-\; \left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}\cdot g(x^{k})\,,
+	\quad
+	\textnormal{for \,$k = 0, 1, 2, \ldots$}
+	\end{equation*}
+	satisfies the following properties:
+	\begin{itemize}
+	\item
+		$x^{k} \in \overline{B}_{\delta}(x^{\star})$, for each $k \in \N$,
+	\item
+		$\underset{k\rightarrow\infty}{\lim}\,\left\Vert\,x^{k} - x^{\star}\,\right\Vert \,=\, 0$\,, and
+	\item
+		$\left\Vert\,x^{k+1}\,-\,x^{\star}\right\Vert \, \leq \, \gamma \cdot \left\Vert\,x^{k}\,-\,x^{\star}\right\Vert^{2}$\,,
+		for each $k = 0,1,2,\ldots$\,.
+	\end{itemize}
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	\textbf{Claim 1:}\quad
+	There exist $\varepsilon > 0$ and $M > 0$ such that
+	$\overline{B}_{\varepsilon}(x^{\star}) \subset \Omega$ and
+	\begin{equation*}
+	\underset{x\,\in\,\overline{B}_{\varepsilon}(x^{\star})}{\sup}\,
+	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
+	\;\; \leq \;\; M\,.
+	\end{equation*}
+	Proof of Claim 1:\quad
+	By the openness of $\Omega$, the continuity of $\nabla g$ and
+	the non-singularity of $\nabla g(x^{\star}) \in \Re^{n \times n}$,
+	we may choose $\varepsilon_{1} > 0$ such that
+	$B_{\varepsilon_{1}}\!(x^{\star}) \subset \Omega$
+	and $\nabla g(x)$ is non-singular for each $x \in B_{\varepsilon_{1}}\!(x^{\star})$.
+	Next, choose $\varepsilon > 0$ such that $0 < \varepsilon < \varepsilon_{1}$.
+	By compactness of $\overline{B}_{\varepsilon}(x^{\star})$ and continuity of
+	$(\,\nabla g\,)^{-1}$ on $\overline{B}_{\varepsilon}(x^{\star})$, we have
+	\begin{equation*}
+	\underset{x\,\in\,\overline{B}_{\varepsilon}(x^{\star})}{\sup}\,
+	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
+	\;\; < \;\; \infty\,.
+	\end{equation*}
+	Hence, there exists $M > 0$ such that
+	\begin{equation*}
+	\underset{x\,\in\,\overline{B}_{\varepsilon}(x^{\star})}{\sup}\,
+	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
+	\;\; \leq \;\; M\,.
+	\end{equation*}
+	This proves Claim 1.
+	
+	\vskip 0.3cm
+	\noindent
+	\textbf{Claim 2:}\quad
+	For each $x \in \overline{B}_{\varepsilon}(x^{\star})$, we have
+	\begin{equation*}
+	g(x)
+	\;\; = \;\;
+		\left(\;
+			\int_{0}^{1}
+			\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right)
+			\,\d t
+		\;\right)
+		\cdot
+		(x - x^{\star})\,.
+	\end{equation*}	
+	Proof of Claim 2:\quad
+	Define $H : [0,1] \longrightarrow \Re^{n}$ by
+	\begin{equation*}
+	H(t) \;\; := \;\; g\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right),
+	\quad
+	\textnormal{for \,$t \in [0,1]$}\,.
+	\end{equation*}
+	Then, $H(0) = g(x^{\star}) = 0$, $H(1) = g(x)$,
+	$H(t)$ is continuously differentiable with respect to $t \in [0,1]$, and
+	\begin{equation*}
+	H^{\prime}(t) \;\; := \;\; \left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right) \cdot (x - x^{\star})\,.
+	\end{equation*}
+	By the Fundamental Theorem of Calculus, we have
+	\begin{eqnarray*}
+	g(x)
+	& = &
+		H(1) \;\; = \;\; H(1) \,-\, 0 \;\; = \;\; H(1) \,-\, H(0)
+	\;\; = \;\;
+		\int_{0}^{1} H^{\prime}(t) \,\d t
+	\\
+	& = &
+		\int_{0}^{1}\,
+			\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right) \cdot (x - x^{\star})
+			\,\d t
+	\\
+	& = &
+		\left(\;\int_{0}^{1}
+			\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x-x^{\star})\,\right) 
+			\;\d t
+			\;\right)
+		\cdot (x - x^{\star})\,.
+	\end{eqnarray*}
+	This proves Claim 2.
+
+	\vskip 0.3cm
+	\noindent
+	\textbf{Claim 3:}\quad
+	If $x^{k} \in \overline{B}_{\varepsilon}(x^{\star})$, for each $k = 0,1,2,\ldots$\,,
+	then we have
+	\begin{equation*}
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	\;\; \leq \;\;
+		M \cdot\,
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,.
+	\end{equation*}
+	Proof of Claim 3: \quad
+	\begin{eqnarray*}
+	&&
+		\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	\\
+	&\overset{{\color{white}\textnormal{\Large 1}}}{=}&
+		\left\Vert\;x^{k} \,-\, \left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}\cdot g(x^{k}) \,-\, x^{\star}\;\right\Vert\,,
+		\quad
+		\textnormal{by definition of $x^{k+1}$}
+	\\
+	&=&
+		\left\Vert\;
+			\left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}
+			\cdot
+			\left\{\;
+				\left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)\cdot\left(\,x^{k} \,-\, x^{\star}\,\right)
+				\;-\; g(x^{k}) 
+			\;\right\}
+		\;\right\Vert
+	\\
+	&=&
+		\left\Vert\;
+			\left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}
+			\cdot
+			\left\{\;
+				\left(\,
+					\overset{{\color{white}.}}{\nabla} g(x^{k})
+					\,-\,
+					\int_{0}^{1}
+					\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right) 
+					\;\d t
+				\,\right)
+				\cdot\left(\,x^{k} \,-\, x^{\star}\,\right)
+			\;\right\}
+		\;\right\Vert\,,
+		\quad
+		\textnormal{by Claim 2}
+	\\
+	&=&
+		\left\Vert\;
+			\left(\,\overset{{\color{white}.}}{\nabla} g(x^{k})\,\right)^{-1}
+			\cdot
+			\left\{\;
+				\left(\,
+					\int_{0}^{1}
+					\left[\;
+						\overset{{\color{white}.}}{\nabla} g(x^{k})
+						\,-\,
+						\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+					\;\right]
+					\d t
+				\,\right)
+				\cdot\left(\,x^{k} \,-\, x^{\star}\,\right)
+			\;\right\}
+		\;\right\Vert
+	\\
+	&\leq&
+		M \cdot\,
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\quad
+		\textnormal{by Claim 1}\,.
+	\end{eqnarray*}
+	This proves Claim 3.
+
+	\vskip 0.3cm
+	\noindent
+	Now, by the continuity of $\nabla g$, we may choose $\delta \in (0,\varepsilon)$
+	sufficiently small such that
+	\begin{equation*}
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(\xi) \,-\, \nabla g(\zeta)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\;\; < \;\; \dfrac{\beta}{M}\,,
+		\quad
+		\textnormal{for each \,$\xi, \, \zeta \in \overline{B}_{\delta}(x^{\star})$}\,.
+	\end{equation*}
+	With this choice of $\delta > 0$, we now see that,
+	whenever $x^{0} \in \overline{B}_{\delta}(x^{\star})$, we have, for each $k = 0, 1, 2, \ldots$\,,
+	\begin{eqnarray*}
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	&\leq&
+		M \cdot\,
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\quad
+		\textnormal{by Claim 3}
+	\\
+	&\leq&
+		\beta \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\quad
+		\textnormal{by choice of $\delta > 0$}\,.
+	\end{eqnarray*}
+	This completes the proof of \eqref{NewtonRaphsonGeometricConvergence}.
+\item
+	Let $\varepsilon > 0$ and $M > 0$ be as in Claim 1 and Claim 3
+	in the proof of \eqref{NewtonRaphsonGeometricConvergence},
+	i.e. $\varepsilon$ and $M$ satisfy $\overline{B}_{\varepsilon}(x^{\star}) \subset \Omega$,
+	\begin{equation*}
+	\underset{x\,\in\,\overline{B}_{\varepsilon}(x^{\star})}{\sup}\,
+	\left\Vert\;\left(\,\nabla g(x)\,\right)^{-1}\,\right\Vert
+	\;\; \leq \;\; M\,,
+	\end{equation*}
+	and, if $x^{k} \in \overline{B}_{\varepsilon}(x^{\star})$,
+	for each $k = 0, 1, 2, \ldots$\,, then
+	\begin{equation*}
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	\;\; \leq \;\;
+		M \cdot\,
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,.
+	\end{equation*}
+	On the other hand, by compactness of $\overline{B}_{\varepsilon}(x^{\star})$ and
+	continuity of $\nabla g$ thereon, there exists $L > 0$ such that
+	\begin{equation*}
+	\left\Vert\; \nabla g(\xi) \,\overset{{\color{white}.}}{-}\, \nabla g(\zeta)\;\right\Vert
+	\;\; \leq \;\;
+		L \cdot \left\Vert\; \xi \,-\, \zeta \;\right\Vert\,,
+	\quad
+	\textnormal{for each \,$\xi,\,\zeta \in \overline{B}_{\varepsilon}(x^{\star})$}\,.
+	\end{equation*}
+	Now, let $\gamma := LM/2$ and choose $\delta \in (0,\varepsilon)$ sufficiently small such that
+	\begin{equation*}
+	\gamma \cdot \delta \;\; = \;\; \dfrac{LM\cdot\delta}{2} \;\; < \;\; 1\,.
+	\end{equation*}
+	Then, whenever $x^{0} \in \overline{B}_{\delta}(x^{\star})$, we have
+	by Claim 3 above in the proof of \eqref{NewtonRaphsonGeometricConvergence},
+	\begin{eqnarray*}
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert
+	&\leq&
+		M \cdot\,
+		\left\Vert\;
+			\int_{0}^{1}
+			\left[\;
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\;\right]
+			\d t
+		\;\right\Vert
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\quad
+		\textnormal{by Claim 3}
+	\\
+	&\leq&
+		M \cdot\,
+		\left(\;\int_{0}^{1}\,
+			\left\Vert\,
+				\overset{{\color{white}.}}{\nabla} g(x^{k})
+				\,-\,
+				\left(\,\nabla g\,\right)\!\left(\,x^{\star} + t\cdot(x^{k}-x^{\star})\,\right)
+			\,\right\Vert
+		\,\d t\;\right)
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert
+	\\
+	&\leq&
+		M \cdot\,
+		\left(\;\int_{0}^{1}\,
+			L \cdot
+			\left\Vert\,
+				x^{k} \,\overset{{\color{white}.}}{-}\, x^{\star} - t\cdot(x^{k}-x^{\star})
+			\,\right\Vert
+		\,\d t\;\right)
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		\quad
+		\textnormal{by choice of $L$}
+	\\
+	&=&
+		L M \cdot
+		\left(\;\int_{0}^{1}\,	
+			(1-t)\cdot
+			\left\Vert\;
+				x^{k} \,\overset{{\color{white}.}}{-}\, x^{\star}
+			\,\right\Vert
+		\,\d t\;\right)
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert
+	\\
+	&=&
+		L M \cdot
+		\left(\;\int_{0}^{1}\,(1-t)\,\d t\;\right)
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert^{2}
+	\;\; = \;\;
+		L M \cdot
+		\left(\;\left[\;t - \dfrac{t^{2}}{2}\;\right]_{0}^{1}\;\right)
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert^{2}
+	\\
+	&=&
+		\dfrac{L M}{2}
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert^{2}
+	\;\; = \;\;
+		\gamma \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert^{2}
+	\\
+	&\leq&
+		\gamma \cdot \delta
+		\cdot
+		\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert\,,
+		{\color{white}\dfrac{LM}{2}}
+	\end{eqnarray*}
+	for each $k = 0,1,2,\ldots$
+	This in turn implies that we indeed have
+	$\underset{k\rightarrow\infty}{\lim}\,\left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert \;=\; 0$\,,
+	and
+	\begin{equation*}
+	\left\Vert\;x^{k+1} \,-\, x^{\star}\;\right\Vert \;\; \leq \;\; \gamma \cdot \left\Vert\,x^{k} \,-\, x^{\star}\,\right\Vert^{2}\,,
+	\quad
+	\textnormal{for each \,$k = 0, 1, 2, \ldots$}\,,
+	\end{equation*}
+	as desired.
+\end{enumerate}
+This completes the proof of the present Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
