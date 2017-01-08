@@ -109,6 +109,103 @@ Define
 	\right.
 	\;\right\}
 \end{equation*}
+
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\quad
+\begin{enumerate}
+\item
+	$\mathcal{M}(f)$ is closed under taking countable infimum.
+	More precisely, suppose $h_{n} \in \mathcal{M}(f)$, $n \in \N$.
+	Then,
+	\begin{equation*}
+	\widetilde{h} \;\; := \; \underset{n\in\N}{\inf}\; h_{n} \;\in\; \mathcal{M}(f).
+	\end{equation*}
+\item
+	$\mathcal{M}(f)$ is closed under taking finite infimum.
+	More precisely, suppose $h_{1}, h_{2}, \ldots, h_{n} \in \mathcal{M}(f)$.
+	Then,
+	\begin{equation*}
+	\widetilde{h}_{n} \;\; := \; \min\!\left\{\;h_{1},h_{2},\ldots,h_{n}\;\right\} \;\in\; \mathcal{M}(f).
+	\end{equation*}
+\end{enumerate}
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:
+\begin{enumerate}
+\item
+	Since \,$\widetilde{h}$\, is the infimum of a sequence of measurable functions,
+	\,$\widetilde{h}$\, is itself measurable (see, for example, Theorem 11.7, p.311, \cite{Rudin1976}).
+	Next, note that
+	\begin{eqnarray*}
+	h_{n} \in \mathcal{M}(f)\,,\;\; \forall\;\, n \in \N
+	&\Longrightarrow&
+		-\dfrac{\pi}{2} \;\;\leq\;\; h_{n} \;\;\leq\;\; \dfrac{\pi}{2} \;\;\; \mu\textnormal{-almost everywhere}\,,\;\;
+		\forall\;\, n \in \N
+	\\
+	&\Longrightarrow&
+		-\dfrac{\pi}{2} \;\;\leq\;\; \widetilde{h} \,:=\, \underset{n\in\N}{\inf}\;h_{n} \;\;\leq\;\; \dfrac{\pi}{2}
+		\;\;\; \mu\textnormal{-almost everywhere}
+	\end{eqnarray*}
+	For each $n \in \N$, since $h_{n}$ is a measurable majorant of $\arctan(f)$,
+	there exists $A_{n} \in \mathcal{A}$ with $\mu(A_{n}) = 1$
+	such that $A_{n} \subset \left\{\, \arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{n} \,\right\}$.
+	Note that $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right) = 1$.
+	Indeed,
+	\begin{equation*}
+	\mu\!\left(\,\left(\;\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right)^{c}\;\right)
+	\;\; = \;\;
+		\mu\!\left(\;\overset{\infty}{\underset{n=1}{\bigcup}}\,A_{n}^{c}\;\right)
+	\;\; \leq \;\;
+		\overset{\infty}{\underset{n=1}{\sum}}\;\mu\!\left(A_{n}^{c}\,\right)
+	\;\; = \;\;
+		\overset{\infty}{\underset{n=1}{\sum}}\,\left(1 \overset{{\color{white}.}}{-} \mu\!\left(A_{n}\,\right)\right)
+	\;\; = \;\;
+		\overset{\infty}{\underset{n=1}{\sum}}\;0
+	\;\; = \;\;
+		0\,,
+	\end{equation*}
+	which shows that we indeed have $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right) = 1$.
+	On the other hand,
+	\begin{equation*}
+	\left\{\;\arctan(f) \,\leq\, \widetilde{h}\;\right\}
+	\;\; = \;\;
+		\bigcap_{n=1}^{\infty}\,\left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{n}\;\right\}
+	\;\; \supset \;\;
+		\bigcap_{n=1}^{\infty}\,A_{n}
+	\end{equation*}
+	This proves that \,$\widetilde{h}$\, is a measurable majorant of $\arctan(f)$;
+	hence, \,$\widetilde{h} \in \mathcal{M}(f)$,\, as required.
+\item
+	This follows readily from Claim 1(i).
+	Indeed, let $h_{1}, h_{2}, \ldots, h_{n} \in \mathcal{M}(f)$.
+	We need to show that
+	\,$\widetilde{h}_{n} \,:=\, \min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\} \,\in\, \mathcal{M}(f)$.\,
+	To this end, let $g_{i} := h_{i}$, for $i = 1,2,\ldots,n$. Let $g_{i} \equiv \dfrac{\pi}{2}$, for $i \geq n+1$.
+	Then, $g_{i} \in \mathcal{M}(f)$, for each $i \in \N$.
+	But then
+	\begin{equation*}
+	\widetilde{h}_{n}
+	\;\; := \;\;
+		\min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\}
+	\;\; = \;\;
+		\underset{i\in\N}{\inf}\;\, g_{i}
+	\;\; \in \;\;
+		\mathcal{M}(f)\,,
+		\quad
+		\textnormal{by part (i)}.
+	\end{equation*}
+\end{enumerate}
+This completes the proof of Claim 1.
+
+%It is clear that, for each $n \in \N$, $-\dfrac{\pi}{2} \,\leq\, \widetilde{h}_{n} \,\leq\, \dfrac{\pi}{2}$ $\mu$-almost everywhere.
+%For each $i \in \N$, since $h_{i}$ is a measurable majorant of $\arctan(f)$,
+%there exists $A_{i} \in \mathcal{A}$ with $\mu(A_{i}) = 1$
+%such that $A_{i} \subset \left\{\, \arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{i} \,\right\}$.
+%Note that $\mu\!\left(\,\overset{n}{\underset{i=1}{\bigcap}}\,A_{i}\,\right) = 1$, for each $n \in \N$.
+
+\vskip 0.8cm
+\noindent
 Note that, for each $h \in \mathcal{M}(f)$, we have
 \begin{equation*}
 -\dfrac{\pi}{2}
@@ -132,95 +229,25 @@ Next, for each $n \in \N$, define
 \begin{equation*}
 \widetilde{h}_{n} \;\; := \;\; \min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\}.
 \end{equation*}
-Then, the sequence $\left\{\,\widetilde{h}_{n}\,\right\}$ is non-increasing in $n \in \N$,
-with each \,$\widetilde{h}_{n}$\, measurable.
+Then, by Claim 1, \,$\widetilde{h}_{n} \in \mathcal{M}(f)$, for each $n \in \N$.
+Furthermore, the sequence $\left\{\,\widetilde{h}_{n}\,\right\}$ is non-increasing in $n \in \N$.
+We may therefore define:
+\begin{equation*}
+h
+\;\; := \;\; \underset{n\rightarrow\infty}{\lim}\,\widetilde{h}_{n}
+\;\; = \;\; \underset{n\in\N}{\inf}\;\,\widetilde{h}_{n}\,.
+\end{equation*}
+By Claim 1 again, we have:
+$h \; := \; \underset{n\rightarrow\infty}{\lim}\,\widetilde{h}_{n} \; = \; \underset{n\in\N}{\inf}\;\,\widetilde{h}_{n} \; \in \; \mathcal{M}(f)$.
 
 \vskip 0.8cm
 \noindent
-\textbf{Claim 1:}\quad $\widetilde{h}_{n} \,\in\, \mathcal{M}(f)$, for each $n \in \N$.
-\vskip 0.1cm
-\noindent
-Proof of Claim 1:\;\;
-It is clear that, for each $n \in \N$, $-\dfrac{\pi}{2} \,\leq\, \widetilde{h}_{n} \,\leq\, \dfrac{\pi}{2}$ $\mu$-almost everywhere.
-For each $i \in \N$, since $h_{i}$ is a measurable majorant of $\arctan(f)$,
-there exists $A_{i} \in \mathcal{A}$ with $\mu(A_{i}) = 1$
-such that $A_{i} \subset \left\{\, \arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{i} \,\right\}$.
-Note that $\mu\!\left(\,\overset{n}{\underset{i=1}{\bigcap}}\,A_{i}\,\right) = 1$, for each $n \in \N$.
-Indeed,
-\begin{equation*}
-\mu\!\left(\,\left(\;\overset{n}{\underset{i=1}{\bigcap}}\,A_{i}\,\right)^{c}\;\right)
-\;\; = \;\;
-	\mu\!\left(\;\overset{n}{\underset{i=1}{\bigcup}}\,A_{i}^{c}\;\right)
-\;\; \leq \;\;
-	\overset{n}{\underset{i=1}{\sum}}\;\mu\!\left(A_{i}^{c}\,\right)
-\;\; = \;\;
-	\overset{n}{\underset{i=1}{\sum}}\,\left(1 \overset{{\color{white}.}}{-} \mu\!\left(A_{i}\,\right)\right)
-\;\; = \;\;
-	\overset{n}{\underset{i=1}{\sum}}\;0
-\;\; = \;\;
-	0\,,
-\end{equation*}
-which shows that we indeed have $\mu\!\left(\,\overset{n}{\underset{i=1}{\bigcap}}\,A_{i}\,\right) = 1$.
-On the other hand,
-\begin{equation*}
-\left\{\;\arctan(f) \,\leq\, \widetilde{h}_{n}\;\right\}
-\;\; = \;\;
-	\bigcap_{i=1}^{n}\,\left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{i}\;\right\}
-\;\; \supset \;\;
-	\bigcap_{i=1}^{n}\,A_{i}
-\end{equation*}
-This proves that, for each $n \in \N$, $\widetilde{h}_{n}$ is a measurable majorant of $\arctan(f)$;
-hence, $\widetilde{h}_{n} \in \mathcal{M}(f)$. This completes the proof of Claim 1.
-
-\vskip 0.8cm
-\noindent
-\textbf{Claim 2:}\quad
-$h \; := \; \underset{n\rightarrow\infty}{\lim}\,\widetilde{h}_{n} \; \in \; \mathcal{M}(f)$.
+\textbf{Claim 2:}\quad $\int_{\Omega}\, h \; \d\mu \; = \; \alpha$.
 \vskip 0.1cm
 \noindent
 Proof of Claim 2:\;\;
-Since $h$ is the pointwise limit of a sequence of measurable functions, $h$ is itself measurable.
-Since \;$-\dfrac{\pi}{2} \, \leq \, \widetilde{h}_{n} \, \leq \, \dfrac{\pi}{2}$\; $\mu$-almost everywhere, we also have
-\;$-\dfrac{\pi}{2} \, \leq \, h := \underset{n\rightarrow\infty}{\lim} \, \widetilde{h}_{n} \, \leq \, \dfrac{\pi}{2}$\; $\mu$-almost everywhere.
-Since, for each $n \in \N$, \,$\widetilde{h}_{n}$\, is a measurable majorant of $\arctan(f)$, there exists
-$B_{n} \in \mathcal{A}$ with $\mu(B_{n}) = 1$ such that
-$B_{n} \subset \left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\; \widetilde{h}_{n}\;\right\}$.
-Note that $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,B_{n}\,\right) = 1$.
-Indeed,
-\begin{equation*}
-\mu\!\left(\,\left(\;\overset{\infty}{\underset{n=1}{\bigcap}}\,B_{n}\,\right)^{c}\;\right)
-\;\; = \;\;
-	\mu\!\left(\;\overset{\infty}{\underset{n=1}{\bigcup}}\,B_{n}^{c}\;\right)
-\;\; \leq \;\;
-	\overset{\infty}{\underset{n=1}{\sum}}\;\mu\!\left(B_{n}^{c}\,\right)
-\;\; = \;\;
-	\overset{\infty}{\underset{n=1}{\sum}}\,\left(1 \overset{{\color{white}.}}{-} \mu\!\left(B_{n}\,\right)\right)
-\;\; = \;\;
-	\overset{\infty}{\underset{n=1}{\sum}}\;0
-\;\; = \;\;
-	0\,,
-\end{equation*}
-which shows that we indeed have $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,B_{n}\,\right) = 1$.
-Since $\widetilde{h}_{n}$ is non-increasing in $n \in \N$, we have
-$h \; := \; \underset{n\rightarrow\infty}{\lim}\,\widetilde{h}_{n} \; = \; \underset{n\in\N}{\inf}\;\widetilde{h}_{n}$.
-Consequently,
-\begin{equation*}
-\left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\, h\;\right\}
-\;\; = \;\;
-	\bigcap_{n=1}^{\infty}\,\left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\; \widetilde{h}_{n}\;\right\}
-\;\; \supset \;\;
-	\bigcap_{n=1}^{\infty}\,B_{n}\,.
-\end{equation*}
-We may now conclude that $h \in \mathcal{M}(f)$. This proves Claim 2.
-
-\vskip 0.8cm
-\noindent
-\textbf{Claim 3:}\quad $\int_{\Omega}\, h \; \d\mu \; = \; \alpha$.
-\vskip 0.1cm
-\noindent
-Proof of Claim 3:\;\;
 Since $h \,:=\, \underset{n\rightarrow\infty}{\lim}\;\widetilde{h}_{n} \in \mathcal{M}(f)$ and
-$h \,=\, \underset{n\in\N}{\inf}\;\widetilde{h}_{n}$ (since $\widetilde{h}_{n}$ is non-increasing in $n \in \N$),
+$h \,=\, \underset{n\in\N}{\inf}\;\,\widetilde{h}_{n}$ (since $\widetilde{h}_{n}$ is non-increasing in $n \in \N$),
 we have
 \begin{eqnarray*}
 \alpha
@@ -229,42 +256,38 @@ we have
 &=&
 	\int_{\Omega}\;\underset{n\rightarrow\infty}{\lim}\;\widetilde{h}_{n}\;\d\mu
 \;\;=\;\;
-	\int_{\Omega}\;\underset{n\in\N}{\inf}\;\widetilde{h}_{n}\;\d\mu
+	\int_{\Omega}\;\underset{n\in\N}{\inf}\;\,\widetilde{h}_{n}\;\d\mu
 \\
 &\leq&
 	\int_{\Omega}\;\widetilde{h}_{n}\;\d\mu
 \;\;=\;\;
-	\int_{\Omega}\;\min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\}\;\d\mu
+	\int_{\Omega}\;\min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\}\;\d\mu\,,
+	\quad\textnormal{for each \,$n \in \N$}
 \\
 &\leq&
 	\int_{\Omega}\;h_{n}\;\d\mu
 \;\;\longrightarrow\;\;
 	\alpha\,,
-	\quad
-	\textnormal{as \,$n \longrightarrow \infty$}\,.
+	\quad\textnormal{as \,$n \longrightarrow \infty$}\,,
+	\quad\textnormal{by choice of $h_{n}$}
 \end{eqnarray*}
-Thus, \;$\int_{\Omega}\;h\;\d\mu \,=\, \alpha$.\; This proves Claim 3.
+Thus, \;$\int_{\Omega}\;h\;\d\mu \,=\, \alpha$.\; This proves Claim 2.
 
 \vskip 0.8cm
 \noindent
-\textbf{Claim 4:}\quad
+\textbf{Claim 3:}\quad
 $f^{*} \, := \, \tan(h)$ is a measurable majorant of $f$ and satisfies the following property:
 \begin{equation*}
 \mu\!\left(\left\{\;f^{*} \,\overset{{\color{white}.}}{\leq}\, g \;\right\}\right) =1\,,
 \quad
 \textnormal{for each measurable majorant $g : \Omega \longrightarrow \overline{\Re}$ of $f$}.
 \end{equation*}
-Proof of Claim 4:\;\;
+Proof of Claim 3:\;\;
 \noindent
 The hypothesis that $g$ is a measurable majorant of $f$ and the fact that
 $\arctan : \overline{\Re} \longrightarrow \left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$
 is a strictly increasing homeomorphism readily imply that $\arctan(g) \in \mathcal{M}(f)$.
-%Indeed, since $g : \Omega \longrightarrow \overline{\Re}$ is measurable,
-%so is $\arctan(g) : \Omega \longrightarrow \left[-\frac{\pi}{2},\frac{\pi}{2}\right]$.
-%\begin{equation*}
-%-\dfrac{\pi}{2} \leq \arctan(f) \leq \arctan(g) \leq \dfrac{\pi}{2}
-%\end{equation*}
-It is then also routine to show that $\min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\} \in \mathcal{M}(f)$.
+Claim 1 then implies $\min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\} \in \mathcal{M}(f)$.
 Hence,
 \begin{equation*}
 \alpha
@@ -307,7 +330,7 @@ $\mu$-almost everywhere;
 equivalently, $h \leq \arctan(g)$, $\mu$-almost everywhere.
 This in turn implies that
 $f^{*} \,:=\, \tan(h) \,\leq\, \tan\!\left(\arctan(g)\right) \,=\, g$, $\mu$-almost everywhere.
-This proves Claim 4 and completes the proof of the Theorem.
+This proves Claim 3 and completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
