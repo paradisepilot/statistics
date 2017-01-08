@@ -178,7 +178,40 @@ hence, $\widetilde{h}_{n} \in \mathcal{M}(f)$. This completes the proof of Claim
 $h \; := \; \underset{n\rightarrow\infty}{\lim}\,\widetilde{h}_{n} \; \in \; \mathcal{M}(f)$.
 \vskip 0.1cm
 \noindent
-Proof of Claim 2:
+Proof of Claim 2:\;\;
+Since $h$ is the pointwise limit of a sequence of measurable functions, $h$ is itself measurable.
+Since \;$-\dfrac{\pi}{2} \, \leq \, \widetilde{h}_{n} \, \leq \, \dfrac{\pi}{2}$\; $\mu$-almost everywhere, we also have
+\;$-\dfrac{\pi}{2} \, \leq \, h := \underset{n\rightarrow\infty}{\lim} \, \widetilde{h}_{n} \, \leq \, \dfrac{\pi}{2}$\; $\mu$-almost everywhere.
+Since, for each $n$, \,$\widetilde{h}_{n}$\, is a measurable majorant of $\arctan(f)$, there exists
+$B_{n} \in \mathcal{A}$ with $\mu(B_{n}) = 1$ such that
+$B_{n} \subset \left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\; \widetilde{h}_{n}\;\right\}$.
+Note that $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,B_{n}\,\right) = 1$.
+Indeed,
+\begin{equation*}
+\mu\!\left(\,\left(\;\overset{\infty}{\underset{n=1}{\bigcap}}\,B_{n}\,\right)^{c}\;\right)
+\;\; = \;\;
+	\mu\!\left(\;\overset{\infty}{\underset{n=1}{\bigcup}}\,B_{n}^{c}\;\right)
+\;\; \leq \;\;
+	\overset{\infty}{\underset{n=1}{\sum}}\;\mu\!\left(B_{n}^{c}\,\right)
+\;\; = \;\;
+	\overset{\infty}{\underset{n=1}{\sum}}\,\left(1 \overset{{\color{white}.}}{-} \mu\!\left(B_{n}\,\right)\right)
+\;\; = \;\;
+	\overset{\infty}{\underset{n=1}{\sum}}\;0
+\;\; = \;\;
+	0\,,
+\end{equation*}
+which shows that we indeed have $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,B_{n}\,\right) = 1$.
+Since $\widetilde{h}_{n}$ is non-increasing in $n \in \N$, we have
+$h \; := \; \underset{n\rightarrow\infty}{\lim}\,\widetilde{h}_{n} \; = \; \underset{n\in\N}{\inf}\;\widetilde{h}_{n}$.
+Consequently,
+\begin{equation*}
+\left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\, h\;\right\}
+\;\; = \;\;
+	\bigcap_{n=1}^{\infty}\,\left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\; \widetilde{h}_{n}\;\right\}
+\;\; \supset \;\;
+	\bigcap_{n=1}^{\infty}\,B_{n}\,.
+\end{equation*}
+We may now conclude that $h \in \mathcal{M}(f)$. This proves Claim 2.
 
 \vskip 0.8cm
 \noindent
