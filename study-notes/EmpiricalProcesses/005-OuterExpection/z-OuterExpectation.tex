@@ -182,7 +182,7 @@ Proof of Claim 2:\;\;
 Since $h$ is the pointwise limit of a sequence of measurable functions, $h$ is itself measurable.
 Since \;$-\dfrac{\pi}{2} \, \leq \, \widetilde{h}_{n} \, \leq \, \dfrac{\pi}{2}$\; $\mu$-almost everywhere, we also have
 \;$-\dfrac{\pi}{2} \, \leq \, h := \underset{n\rightarrow\infty}{\lim} \, \widetilde{h}_{n} \, \leq \, \dfrac{\pi}{2}$\; $\mu$-almost everywhere.
-Since, for each $n$, \,$\widetilde{h}_{n}$\, is a measurable majorant of $\arctan(f)$, there exists
+Since, for each $n \in \N$, \,$\widetilde{h}_{n}$\, is a measurable majorant of $\arctan(f)$, there exists
 $B_{n} \in \mathcal{A}$ with $\mu(B_{n}) = 1$ such that
 $B_{n} \subset \left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\; \widetilde{h}_{n}\;\right\}$.
 Note that $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,B_{n}\,\right) = 1$.
@@ -218,7 +218,32 @@ We may now conclude that $h \in \mathcal{M}(f)$. This proves Claim 2.
 \textbf{Claim 3:}\quad $\int_{\Omega}\, h \; \d\mu \; = \; \alpha$.
 \vskip 0.1cm
 \noindent
-Proof of Claim 3:
+Proof of Claim 3:\;\;
+Since $h \,:=\, \underset{n\rightarrow\infty}{\lim}\;\widetilde{h}_{n} \in \mathcal{M}(f)$ and
+$h \,=\, \underset{n\in\N}{\inf}\;\widetilde{h}_{n}$ (since $\widetilde{h}_{n}$ is non-increasing in $n \in \N$),
+we have
+\begin{eqnarray*}
+\alpha
+\;\;\leq\;\;
+	\int_{\Omega}\;h\;\d\mu
+&=&
+	\int_{\Omega}\;\underset{n\rightarrow\infty}{\lim}\;\widetilde{h}_{n}\;\d\mu
+\;\;=\;\;
+	\int_{\Omega}\;\underset{n\in\N}{\inf}\;\widetilde{h}_{n}\;\d\mu
+\\
+&\leq&
+	\int_{\Omega}\;\widetilde{h}_{n}\;\d\mu
+\;\;=\;\;
+	\int_{\Omega}\;\min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\}\;\d\mu
+\\
+&\leq&
+	\int_{\Omega}\;h_{n}\;\d\mu
+\;\;\longrightarrow\;\;
+	\alpha\,,
+	\quad
+	\textnormal{as \,$n \longrightarrow \infty$}\,.
+\end{eqnarray*}
+Thus, \;$\int_{\Omega}\;h\;\d\mu \,=\, \alpha$.\; This proves Claim 3.
 
 \vskip 0.8cm
 \noindent
@@ -231,13 +256,15 @@ $f^{*} \, := \, \tan(h)$ is a measurable majorant of $f$ and satisfies the follo
 \end{equation*}
 Proof of Claim 4:\;\;
 \noindent
-First note that: $\arctan(g) \in \mathcal{M}(f)$.
-Indeed, since $g : \Omega \longrightarrow \overline{\Re}$ is measurable,
-so is $\arctan(g) : \Omega \longrightarrow \left[-\frac{\pi}{2},\frac{\pi}{2}\right]$.
-\begin{equation*}
--\dfrac{\pi}{2} \leq \arctan(f) \leq \arctan(g) \leq \dfrac{\pi}{2}
-\end{equation*}
-$\min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\} \in \mathcal{M}(f)$.
+The hypothesis that $g$ is a measurable majorant of $f$ and the fact that
+$\arctan : \overline{\Re} \longrightarrow \left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$
+is a strictly increasing homeomorphism readily imply that $\arctan(g) \in \mathcal{M}(f)$.
+%Indeed, since $g : \Omega \longrightarrow \overline{\Re}$ is measurable,
+%so is $\arctan(g) : \Omega \longrightarrow \left[-\frac{\pi}{2},\frac{\pi}{2}\right]$.
+%\begin{equation*}
+%-\dfrac{\pi}{2} \leq \arctan(f) \leq \arctan(g) \leq \dfrac{\pi}{2}
+%\end{equation*}
+It is then also routine to show that $\min\!\left\{\,\arctan(g),\overset{{\color{white}.}}{h}\,\right\} \in \mathcal{M}(f)$.
 Hence,
 \begin{equation*}
 \alpha
@@ -280,7 +307,7 @@ $\mu$-almost everywhere;
 equivalently, $h \leq \arctan(g)$, $\mu$-almost everywhere.
 This in turn implies that
 $f^{*} \,:=\, \tan(h) \,\leq\, \tan\!\left(\arctan(g)\right) \,=\, g$, $\mu$-almost everywhere.
-This proves Claim 3 and completes the proof of the Theorem.
+This proves Claim 4 and completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
