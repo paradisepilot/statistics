@@ -22,7 +22,7 @@
 Let $(\Omega,\mathcal{A},\mu)$ be a probability space and
 $f : \Omega \longrightarrow \overline{\Re}$
 an arbitrary map from $\Omega$, where $\overline{\Re} := [-\infty,\infty]$ is the set of extended real numbers.
-Let $\mathcal{O}$ denote the Borel $\sigma$-algebra of $\Re$.
+Let $\mathcal{O}$ denote the Borel $\sigma$-algebra of $\overline{\Re}$.
 \begin{enumerate}
 \item
 	A $(\mathcal{A},\mathcal{O})$-measurable $\overline{\Re}$-valued function
@@ -33,9 +33,29 @@ Let $\mathcal{O}$ denote the Borel $\sigma$-algebra of $\Re$.
 \item
 	A $(\mathcal{A},\mathcal{O})$-measurable $\overline{\Re}$-valued function
 	$g : \Omega\longrightarrow\overline{\Re}$
-	is called a \underline{\textbf{measurable minorant}} of $f$ if there exists a measurable
+	is called a \underline{\textbf{measurable{\color{white}j}minorant}} of $f$ if there exists a measurable
 	subset $A \in \mathcal{A}$ with $\mu(A) = 1$ such that
 	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\; g(\omega) \,\leq\, f(\omega)\;\right\}$.
+\item
+	A measurable majorant $f^{*}:\Omega\longrightarrow\overline{\Re}$ of $f$
+	is called a \underline{\textbf{minimal measurable majorant}} of $f$ if
+	\begin{equation*}
+	\mu\!\left(\,
+		\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\; f^{*}(\omega) \,\leq\, g(\omega)\;\right\}
+		\,\right)
+	\;=\;1\,,\;\;
+	\textnormal{for every measurable majorant $g$ of $f$}.
+	\end{equation*}	
+\item
+	A measurable minorant $f_{*}:\Omega\longrightarrow\overline{\Re}$ of $f$
+	is called a \underline{\textbf{maximal{\color{white}p}measurable minorant}} of $f$ if
+	\begin{equation*}
+	\mu\!\left(\,
+		\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\; g(\omega) \,\leq\, f_{*}(\omega) \;\right\}
+		\,\right)
+	\;=\;1\,,\;\;
+	\textnormal{for every measurable minorant $g$ of $f$}.
+	\end{equation*}	
 \item\label{defn:OuterExpectation}
 	The \underline{\textbf{outer expectation}}\,, or outer integral,
 	$E^{*}\!\left[\;f\;\right] \in \overline{\Re}$
@@ -50,10 +70,6 @@ Let $\mathcal{O}$ denote the Borel $\sigma$-algebra of $\Re$.
 				\textnormal{$g:\Omega\rightarrow\overline{\Re}$ is a measurable majorant of $f$, and}
 				\\
 				\textnormal{$E\!\left[\,g\,\right] \in \overline{\Re}$ is defined ($g$ need not be $\mu$-integrable)}
-				%\\
-				%\textnormal{there exists a measurable $A \subset \Omega$ with $\mu(A) = 1$}
-				%\\
-				%\textnormal{such that $A \subset \{\;\omega\in\Omega\;\vert\;f(\omega) \,\leq\, g(\omega)\;\}$}
 			\end{array}
 			\right.
 			\right\}
@@ -83,13 +99,13 @@ Suppose:
 \begin{itemize}
 \item
 	$(\Omega,\mathcal{A},\mu)$ is a probability space.
-	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\Re$.
+	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\overline{\Re}$.
 \item
 	$f : \Omega \longrightarrow \overline{\Re}$
 	is an arbitrary map from $\Omega$ into the extended real numbers
 	$\overline{\Re} := [-\infty,\infty]$.
 \end{itemize}
-Then, there exists a measurable majorant $f^{*} : \Omega \longrightarrow \overline{R}$ of $f$ such that
+Then, there exists a measurable majorant $f^{*} : \Omega \longrightarrow \overline{\Re}$ of $f$ such that
 \begin{equation*}
 \mu\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\; f^{*}(\omega) \,\leq\, g(\omega)\;\right\}\,\right)
 \;=\;1\,,\;\;
@@ -105,7 +121,7 @@ Define
 		h : \Omega \longrightarrow \overline{\Re}
 	\;\,\left\vert
 		\begin{array}{c}
-		\textnormal{$h$ is measurable majorant of $\arctan(f)$, and}
+		\textnormal{$h$ is a measurable majorant of $\arctan(f)$, and}
 		\\
 		-\frac{\pi}{2} \leq h \leq \frac{\pi}{2} \;\, \mu\textnormal{-almost everywhere}
 		\end{array}
@@ -337,6 +353,79 @@ This proves Claim 3 and completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Expectation of minimal measurable majorant equals outer expectation]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\overline{\Re}$.
+\item
+	$f : \Omega \longrightarrow \overline{\Re}$
+	is an arbitrary map from $\Omega$ into the extended real numbers
+	$\overline{\Re} := [-\infty,\infty]$.
+\item
+	$f^{*} : \Omega \longrightarrow \overline{\Re}$ is a minimal measurable majorant of $f$
+	such that $E\!\left[\,f^{*}\,\right]$ exists, i.e. $E\!\left[\,f^{*}\,\right] \in \overline{\Re}$.
+\end{itemize}
+Then, we have:
+\begin{equation*}
+E\!\left[\,f^{*}\,\right] \;\; = \;\; E^{*}\!\left[\;f\;\right].
+\end{equation*}
+\end{theorem}
+\proof
+Recall that, by definition,
+\begin{equation*}
+E^{*}\!\left[\;f\;\right]
+\;\; := \;\;
+	\inf\!\left\{\;
+		E\!\left[\,g\,\right] \in \overline{\Re}
+		\;\;\left\vert\;
+		\begin{array}{c}
+			\textnormal{$g:\Omega\rightarrow\overline{\Re}$ is a measurable majorant of $f$, and}
+			\\
+			\textnormal{$E\!\left[\,g\,\right] \in \overline{\Re}$ is defined ($g$ need not be $\mu$-integrable)}
+		\end{array}
+		\right.
+		\right\}
+\end{equation*}
+Hence, we trivially have \,$E^{*}\!\left[\;f\;\right] \,\leq\, E\!\left[\,f^{*}\,\right]$.
+On the other hand, for every measurable majorant $g : \Omega\longrightarrow\overline{\Re}$ of $f$,
+we have
+\begin{equation*}
+\mu\!\left(\,
+	\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\; f^{*}(\omega) \,\leq\, g(\omega)\;\right\}
+	\,\right)
+\;=\;1\,.\;\;
+\end{equation*}
+Hence,
+\begin{equation*}
+E\!\left[\,f^{*}\,\right] \; \leq \; E\!\left[\,g\,\right],
+\quad
+\textnormal{for each measurable majorant $g:\Omega\longrightarrow\overline{\Re}$ of $f$
+with $E\!\left[\,g\,\right] \in \overline{\Re}$,}
+\end{equation*}
+which immediately implies:
+\begin{equation*}
+E\!\left[\,f^{*}\,\right]
+\;\; \leq \;\;
+	\inf\!\left\{\;
+		E\!\left[\,g\,\right] \in \overline{\Re}
+		\;\;\left\vert\;
+		\begin{array}{c}
+			\textnormal{$g:\Omega\rightarrow\overline{\Re}$ is a measurable majorant of $f$, and}
+			\\
+			\textnormal{$E\!\left[\,g\,\right] \in \overline{\Re}$ is defined ($g$ need not be $\mu$-integrable)}
+		\end{array}
+		\right.
+		\right\}
+\;\; =: \;\;
+	E^{*}\!\left[\;f\;\right]	
+\end{equation*}
+We may now conclude that $E\!\left[\,f^{*}\,\right] \,=\, E^{*}\!\left[\;f\;\right]$, as required.
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
