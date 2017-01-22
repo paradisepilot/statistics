@@ -18,6 +18,115 @@
 \begin{lemma}
 \mbox{}\vskip 0.1cm
 \noindent
+Suppose $B \subset \Re$ be a Borel measurable subset of \,$\Re$, and
+$f : B \longrightarrow \Re$ is an $\Re$-valued function defined on $B$.
+If $f$ is monotone, then $f$ is Borel measurable.
+\end{lemma}
+\proof
+Suppose that $(\Omega,\mathcal{A})$ is a measurable space and
+$f : \Omega \longrightarrow \Re$ is an $\Re$-valued defined on $\Omega$.
+Let $\mathcal{O}$ denote the Borel $\sigma$-algebra of $\Re$.
+Recall that $f$ is said to be $(\mathcal{A},\mathcal{O})$-measurable if
+$f^{-1}\!\left(\,(-\infty,\overset{{\color{white}-}}{y}\,]\,\right) \in \mathcal{A}$,
+for each $y \in \Re$.
+
+\vskip 0.3cm
+\noindent
+Now we specialize to the scenario of the present Lemma, namely that
+$(\Omega,\mathcal{A}) = (\Re,\mathcal{O})$.
+
+\vskip 0.3cm
+\noindent
+We give the proof only for the case where $f$ is nondecreasing.
+The proof for the case where $f$ is nonincreasing in similar.
+Now, for nondecreasing $f$, the present Lemma following immediately
+from Claim 1 below, since \,$\varemptyset$, \,$B \cap (-\infty,\infty)$,
+\,$B \cap (-\infty,x\,)$,\, and \,$B \cap (-\infty,x\,]$\, are measurable, for every $x\in\Re$.
+
+%\vskip 0.5cm
+%\noindent
+%\textbf{Claim 1:}\quad
+%For any $x \in B$,\;
+%$x \,\in\, f^{-1}\!\left(\,(\,-\infty,\overset{{\color{white}-}}{y}\,]\,\right)$\,
+%\,$\Longrightarrow$\;
+%$B \cap (-\infty,x\,] \,\subset\, f^{-1}\!\left(\,(\,-\infty,\overset{{\color{white}-}}{y}\,]\,\right)$
+%\vskip 0.1cm
+%\noindent
+%Proof of Claim 1:\;\;
+%First, note that $x \,\in\, f^{-1}\!\left(\,(\,-\infty,\overset{{\color{white}-}}{y}\,]\,\right)$
+%\;$\Longleftrightarrow$\; $f(x) \leq y$.
+%Now, since $f$ is nondecreasing, we see that
+%$\xi \in B \cap (-\infty,x\,]$ \;$\Longrightarrow$\; $f(\xi) \leq f(x) \leq y$
+%\;$\Longrightarrow$\; $\xi \,\in\, f^{-1}\!\left(\,(\,-\infty,\overset{{\color{white}-}}{y}\,]\,\right)$.
+%This shows that indeed \,$B \cap (-\infty,x\,] \,\subset\, f^{-1}\!\left(\,(\,-\infty,\overset{{\color{white}-}}{y}\,]\,\right)$,\,
+%and completes the proof of Claim 1.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\quad
+$f^{-1}\!\left(\,(\,-\infty,\overset{{\color{white}-}}{y}\,]\,\right)$\,
+is either \,$\varemptyset$, \,$B \cap (-\infty,\infty)$, \,$B \cap (-\infty,x\,)$,\, or \,$B \cap (-\infty,x\,]$,\, for some $x\in\Re$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\;\;
+First, note that
+\begin{eqnarray*}
+y \,\geq\, \underset{\xi \in B}{\sup}\left\{\;\overset{{\color{white}.}}{f}(\xi)\;\right\} \,\in\, \Re\cup\{\,+\infty\,\}
+& \Longrightarrow &
+	f^{-1}\!\left(\,(\,-\infty,\overset{{\color{white}-}}{y}\,]\,\right) \,=\, B \cap (-\infty,\infty) \,=\, B\,,
+	\quad
+	\textnormal{and}
+\\
+y \,<\, \underset{\xi \in B}{\inf}\left\{\;\overset{{\color{white}.}}{f}(\xi)\;\right\} \,\in\, \Re\cup\{\,-\infty\,\}
+& \Longrightarrow &
+	f^{-1}\!\left(\,(\,-\infty,\overset{{\color{white}-}}{y}\,]\,\right) \,=\, \varemptyset\,.
+\end{eqnarray*}
+Next, we consider the case where
+\;$-\infty \,\leq\, \underset{\xi \in B}{\inf}\left\{\;\overset{{\color{white}.}}{f}(\xi)\;\right\}
+\;\leq\; y \,<\, \underset{\xi \in B}{\sup}\left\{\;\overset{{\color{white}.}}{f}(\xi)\;\right\} \,\leq\, +\infty$.
+Let
+\begin{equation*}
+x \;\; := \;\; \sup\,f^{-1}\!\left(\,(-\infty,\overset{{\color{white}-}}{y}\,]\,\right) \;\; \in \;\; \Re\cup\{\,+\infty\,\}.
+\end{equation*}
+Then, we claim have
+\begin{equation*}
+B \cap (-\infty,x\,)
+\;\;\subset\;\;
+	f^{-1}\!\left(\,(-\infty,\overset{{\color{white}-}}{y}\,]\,\right)
+\;\;\subset\;\;
+	B \cap (-\infty,x\,].
+\end{equation*}
+Indeed, note that
+$x \,:=\, \sup\,f^{-1}\!\left(\,(-\infty,\overset{{\color{white}-}}{y}\,]\,\right)$
+trivially implies that
+$f^{-1}\!\left(\,(-\infty,\overset{{\color{white}-}}{y}\,]\,\right) \subset\,B \cap (-\infty,x\,]$.
+On the other hand, by definition of the supremum, there exists a sequence
+$\{\,\xi_{n}\,\}_{n\in\N} \,\subset\, f^{-1}\!\left(\,(-\infty,\overset{{\color{white}-}}{y}\,]\,\right)$
+such that $\xi_{n} \uparrow x$.
+Since $f$ is nondecreasing, we see that $f(\xi_{n})$ is also nondecreasing.
+Thus, the limit $\underset{n\rightarrow\infty}{\lim}f(\xi_{n})$ exists and $\underset{n\rightarrow\infty}{\lim}f(\xi_{n}) \,\leq\, y$.
+Therefore,
+\begin{eqnarray*}
+\xi \in B \cap (-\infty,x\,)
+&\Longrightarrow&
+	\xi \,<\, x
+\;\;\Longrightarrow\;\;
+	\exists \;\; m\,\in\,\N \;\;\textnormal{such that}\;\; \xi \,\leq\, \xi_{m} \,\leq\, x
+\\
+&\Longrightarrow&
+	f(\xi) \,\leq\, f(\xi_{m}) \,\leq\, \underset{n\rightarrow\infty}{\lim}f(\xi_{n}) \,\leq\, y
+\;\;\Longrightarrow\;\;
+	\xi \in f^{-1}\!\left(\,(-\infty,\overset{{\color{white}-}}{y}\,]\,\right),
+\end{eqnarray*}
+which proves that \,$B \cap (-\infty,x\,) \,\subset\, f^{-1}\!\left(\,(-\infty,\overset{{\color{white}-}}{y}\,]\,\right)$.
+This completes the proof of Claim 1, as well as that of the present Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
 Suppose:
 \begin{itemize}
 \item
@@ -46,16 +155,15 @@ Define \;$\psi : (c,d\,] \longrightarrow (a,b\,]$\; as follows:
 Then,
 \begin{enumerate}
 \item
-	$\psi$ is measurable.
-\item
 	$\phi$ and $\psi$ satisfy:\quad
 	$\phi(x) \,\leq\, y \;\; \Longleftrightarrow \;\; x \,\leq\, \psi(y)$,\;\;
 	for each \;$x \in (a,b\,]$\; and \;$y \in (c,d\,]$.
+\item
+	$\psi$ is measurable.
 \end{enumerate}
 \end{lemma}
 \proof
 \begin{enumerate}
-\item
 \item
 	\textbf{\underline{(\,$\Longrightarrow$\,)}}\quad
 	$\phi(x) \leq y
@@ -80,6 +188,7 @@ Then,
 	\begin{equation*}
 	\phi(x) \;\;\leq\;\; \phi(x+\delta) \;\;=\;\; \underset{n\rightarrow\infty}{\lim}\,\phi(\xi_{n}) \;\;\leq\;\; y.
 	\end{equation*}
+\item
 \end{enumerate}
 \qed
 
