@@ -1,0 +1,168 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}[Exercise 8, \S1.2, p.13, \cite{vanDerVaart1996}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\overline{\Re}$.
+\item
+	$f : \Omega \longrightarrow \Re$ is an arbitrary map from $\Omega$ into the real numbers.
+\item
+	$(a,b\,] \subset \Re$ is a interval in \,$\Re$ satisfying $f(\Omega) \cup f^{*}(\Omega) \subset (a,b\,]$,
+	where $f^{*}$ is a minimal measurable majorant of $f$.
+\item
+	$\phi : \Re \longrightarrow \Re$ is nondecreasing and left-continuous on $(a,b\,]$.
+\end{itemize}
+Then, $(\phi \circ f)^{*} \,=\, \phi \circ (f^{*})$, $\mu$-almost everywhere; more precisely,
+\begin{equation*}
+\mu\!\left(\,\left\{\;
+	\omega \in \Omega
+	\,\;\left\vert\;\;
+	(\phi \circ f)^{*}(\omega) \,\overset{{\color{white}\vert}}{=}\, \phi \circ (f^{*})(\omega)
+	\right.
+\,\right\}\,\right)
+\,\;=\;\, 1\,.
+\end{equation*}
+\end{lemma}
+\proof
+We prove this Lemma as the immediate consequence of Claim 1 and Claim 2 below.
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\quad
+$\mu\!\left(\,\left\{\;
+	\omega \in \Omega
+	\,\;\left\vert\;\;
+	(\phi \circ f)^{*}(\omega) \,\overset{{\color{white}\vert}}{\leq}\, \phi \circ (f^{*})(\omega)
+	\right.
+\,\right\}\,\right)
+\,\;=\;\, 1\,.
+$
+\vskip 0.2cm
+\noindent
+Proof of Claim 1:\;\;
+Since $f^{*}$ is a measurable majorant of $f$,
+there exists $A_{1} \in \mathcal{A}$ with $\mu(A_{1}) = 1$ such that
+\begin{equation*}
+A_{1}
+\;\;\subset\;\;
+	\left\{\;
+		\omega \in \Omega
+		\,\;\left\vert\;\;
+		f(\omega) \,\overset{{\color{white}\vert}}{\leq}\, f^{*}(\omega)
+	\right.
+	\,\right\}
+\;\; = \;\;
+	\left\{\;
+		\omega \in \Omega
+		\,\;\left\vert\;\;
+		(\phi \circ f)(\omega) \,=\, \phi(f(\omega)) \,\overset{{\color{white}\vert}}{\leq}\, \phi(f^{*}(\omega)) \,=\, (\phi \circ f^{*})(\omega)
+	\right.
+	\,\right\},
+\end{equation*}
+where the set equality follows from the hypothesis that $f(\Omega) \cup f^{*}(\Omega) \subset (a,b\,]$
+and $\phi$ is nondecreasing on $(a,b\,]$.
+Thus, $\phi \circ (f^{*})$ is a measurable majorant of $\phi \circ f$.
+Hence, by the definition of minimal measurable majorant, we immediately have:
+\begin{equation*}
+\mu\!\left(\,\left\{\;
+	\omega \in \Omega
+	\,\;\left\vert\;\;
+	(\phi \circ f)^{*}(\omega) \,\overset{{\color{white}\vert}}{\leq}\, \phi \circ (f^{*})(\omega)
+	\right.
+\,\right\}\,\right)
+\,\;=\;\, 1\,.
+\end{equation*}
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+$\mu\!\left(\,\left\{\;
+	\omega \in \Omega
+	\,\;\left\vert\;\;
+	\left(\overset{{\color{white}.}}{\phi} \circ (f^{*})\right)(\omega)
+		\,\overset{{\color{white}\vert}}{\leq}\,
+		(\phi \circ f)^{*}(\omega)
+	\right.
+\,\right\}\,\right)
+\,\;=\;\, 1\,.
+$
+\vskip 0.2cm
+\noindent
+Proof of Claim 2:\;\;
+Since $(\phi \circ f)^{*}$ is a measurable majorant of $\phi \circ f$,
+there exists $A_{2} \in \mathcal{A}$ with $\mu(A_{2}) = 1$ such that
+\begin{eqnarray*}
+A_{2}
+&\subset&
+	\left\{\;
+		\omega \in \Omega
+		\,\;\left\vert\;\;
+		\phi(f(\omega)) \,=\, (\phi \circ f)(\omega) \,\overset{{\color{white}\vert}}{\leq}\, (\phi \circ f)^{*}(\omega)
+	\right.
+	\,\right\}
+\\
+& = &
+	\left\{\;
+		\omega \in \Omega
+		\,\;\left\vert\;\;
+		f(\omega)
+			\,=\,
+				\phi^{-1}\!\left(\overset{{\color{white}.}}{\phi}(f(\omega))\right)
+			\,\overset{{\color{white}\vert}}{\leq}\,
+				\phi^{-1}\!\left((\overset{{\color{white}.}}{\phi} \circ f)^{*}(\omega)\right)
+	\right.
+	\,\right\},
+\end{eqnarray*}
+which implies that $\phi^{-1} \circ (\phi \circ f)^{*}$ is a measurable majorant of $f$.
+By the definition of minimal measurable majorant again, we have:
+\begin{equation*}
+\mu\!\left(\,\left\{\;
+	\omega \in \Omega
+	\,\;\left\vert\;\;
+	f^{*}(\omega) \,\overset{{\color{white}\vert}}{\leq}\, \phi^{-1}\!\left((\overset{{\color{white}.}}{\phi} \circ f)^{*}(\omega)\right)
+	\right.
+\,\right\}\,\right)
+\,\;=\;\, 1\,,
+\end{equation*}
+which in turn implies:
+\begin{equation*}
+\mu\!\left(\,\left\{\;
+	\omega \in \Omega
+	\,\;\left\vert\;\;
+	\left(\overset{{\color{white}.}}{\phi} \circ (f^{*})\right)(\omega)
+		\,\overset{{\color{white}\vert}}{\leq}\,
+		(\phi \circ f)^{*}(\omega)
+	\right.
+\,\right\}\,\right)
+\,\;=\;\, 1\,.
+\end{equation*}
+This proves Claim 2, as well as the present Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
