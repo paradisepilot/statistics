@@ -777,9 +777,9 @@ Then, the following statements hold:
 	$\mu\!\left(\,\left\{\;
 		\omega \in \Omega
 		\,\;\left\vert\;\;
-		\left(\overset{{\color{white}.}}{\phi} \circ (f^{*})\right)(\omega)
-			\,\overset{{\color{white}\vert}}{\leq}\,
 			(\phi \circ f)^{*}(\omega)
+			\,\overset{{\color{white}\vert}}{\geq}\,
+			\left(\overset{{\color{white}.}}{\phi} \circ (f^{*})\right)(\omega)
 		\right.
 	\,\right\}\,\right)
 	\,\;=\;\, 1\,.$
@@ -853,9 +853,9 @@ Then, the following statements hold:
 	$\mu\!\left(\,\left\{\;
 		\omega \in \Omega
 		\,\;\left\vert\;\;
-		\left(\overset{{\color{white}.}}{\phi} \circ (f_{*})\right)(\omega)
-			\,\overset{{\color{white}\vert}}{\geq}\,
 			(\phi \circ f)_{*}(\omega)
+			\,\overset{{\color{white}\vert}}{\leq}\,
+			\left(\overset{{\color{white}.}}{\phi} \circ (f_{*})\right)(\omega)
 		\right.
 	\,\right\}\,\right)
 	\,\;=\;\, 1\,.$
@@ -1016,6 +1016,158 @@ Then, the following statements hold:
 	\,\;=\;\, 1\,.
 	\end{equation*}
 	This proves Claim 4B.
+\item
+	This part follows immediately from Claim 4A above and Claim 5 below:
+	\vskip 0.3cm
+	\noindent
+	\textbf{Claim 5:}\quad
+	$\mu\!\left(\,\left\{\;
+		\omega \in \Omega
+		\,\;\left\vert\;\;
+			(\phi \circ f)_{*}(\omega)
+			\,\overset{{\color{white}\vert}}{\leq}\,
+			\left(\overset{{\color{white}.}}{\phi} \circ (f^{*})\right)(\omega)
+		\right.
+	\,\right\}\,\right)
+	\,\;=\;\, 1\,.$
+	\vskip 0.2cm
+	\noindent
+	Proof of Claim 5:\;\;
+	Define
+	\begin{equation*}
+	\psi(y)
+	\;\; := \;\;
+		\sup\left\{\;
+			x \in (a,b\,]
+		\,\;\left\vert\;\,
+			\overset{{\color{white}.}}{\phi}(x) \geq y
+		\right.
+		\;\right\}.
+	\end{equation*}
+	Since $(\phi \circ f)_{*}$ is a measurable minorant of $\phi \circ f$,
+	there exists $A_{5} \in \mathcal{A}$ with $\mu(A_{5}) = 1$ such that
+	\begin{eqnarray*}
+	A_{5}
+	&\subset&
+		\left\{\;
+			\omega \in \Omega
+			\,\;\left\vert\;\;
+			\phi(f(\omega)) \,=\, (\phi \circ f)(\omega) \,\overset{{\color{white}\vert}}{\geq}\, (\phi \circ f)_{*}(\omega)
+		\right.
+		\,\right\}
+	\\
+	& = &
+		\left\{\;
+			\omega \in \Omega
+			\,\;\left\vert\;\;
+			f(\omega)
+				\,\overset{{\color{white}\vert}}{\leq}\,
+					\psi\!\left((\overset{{\color{white}.}}{\phi} \circ f)_{*}(\omega)\right)
+		\right.
+		\,\right\},
+	\end{eqnarray*}
+	where the equality follows from Lemma \ref{lemma:nonincreasingLeftContinuous}(ii).
+	By Lemma \ref{lemma:nonincreasingLeftContinuous}(i), $\psi$ is measurable,
+	which implies that $\psi \circ (\phi \circ f)_{*}$ is a measurable majorant of $f$.
+	By the definition of minimal measurable majorant again, we then have:
+	\begin{equation*}
+	\mu\!\left(\,\left\{\;
+		\omega \in \Omega
+		\,\;\left\vert\;\;
+		f^{*}(\omega) \,\overset{{\color{white}\vert}}{\leq}\, \psi\!\left((\overset{{\color{white}.}}{\phi} \circ f)_{*}(\omega)\right)
+		\right.
+	\,\right\}\,\right)
+	\,\;=\;\, 1\,.
+	\end{equation*}
+	By Lemma \ref{lemma:nonincreasingLeftContinuous}(ii) again,
+	\begin{equation*}
+	\mu\!\left(\,\left\{\;
+		\omega \in \Omega
+		\,\;\left\vert\;\;
+		\left(\overset{{\color{white}.}}{\phi} \circ (f^{*})\right)(\omega)
+			\,\overset{{\color{white}\vert}}{\geq}\,
+			(\phi \circ f)_{*}(\omega)
+		\right.
+	\,\right\}\,\right)
+	\,\;=\;\, 1\,.
+	\end{equation*}
+	This proves Claim 5.
+\item
+	This part follows immediately from Claim 4B above and Claim 6 below:
+	\vskip 0.3cm
+	\noindent
+	\textbf{Claim 6:}\quad
+	$\mu\!\left(\,\left\{\;
+		\omega \in \Omega
+		\,\;\left\vert\;\;
+			(\phi \circ f)^{*}(\omega)
+			\,\overset{{\color{white}\vert}}{\geq}\,
+			\left(\overset{{\color{white}.}}{\phi} \circ (f_{*})\right)(\omega)
+		\right.
+	\,\right\}\,\right)
+	\,\;=\;\, 1\,.$
+	\vskip 0.2cm
+	\noindent
+	Proof of Claim 6:\;\;
+	Define
+	\begin{equation*}
+	\psi(y)
+	\;\; := \;\;
+		\inf\left\{\;
+			x \in (a,b\,]
+		\,\;\left\vert\;\,
+			\overset{{\color{white}.}}{\phi}(x) \leq y
+		\right.
+		\;\right\}.
+	\end{equation*}
+	Since $(\phi \circ f)^{*}$ is a measurable majorant of $\phi \circ f$,
+	there exists $A_{6} \in \mathcal{A}$ with $\mu(A_{6}) = 1$ such that
+	\begin{eqnarray*}
+	A_{6}
+	&\subset&
+		\left\{\;
+			\omega \in \Omega
+			\,\;\left\vert\;\;
+			\phi(f(\omega)) \,=\, (\phi \circ f)(\omega) \,\overset{{\color{white}\vert}}{\leq}\, (\phi \circ f)^{*}(\omega)
+		\right.
+		\,\right\}
+	\\
+	& = &
+		\left\{\;
+			\omega \in \Omega
+			\,\;\left\vert\;\;
+			f(\omega)
+				\,\overset{{\color{white}\vert}}{\geq}\,
+					\psi\!\left((\overset{{\color{white}.}}{\phi} \circ f)^{*}(\omega)\right)
+		\right.
+		\,\right\},
+	\end{eqnarray*}
+	where the equality follows from Lemma \ref{lemma:nonincreasingRightContinuous}(ii).
+	By Lemma \ref{lemma:nonincreasingRightContinuous}(i), $\psi$ is measurable,
+	which implies that $\psi \circ (\phi \circ f)^{*}$ is a measurable minorant of $f$.
+	By the definition of maximal measurable minorant again, we then have:
+	\begin{equation*}
+	\mu\!\left(\,\left\{\;
+		\omega \in \Omega
+		\,\;\left\vert\;\;
+		f_{*}(\omega) \,\overset{{\color{white}\vert}}{\geq}\, \psi\!\left((\overset{{\color{white}.}}{\phi} \circ f)^{*}(\omega)\right)
+		\right.
+	\,\right\}\,\right)
+	\,\;=\;\, 1\,.
+	\end{equation*}
+	By Lemma \ref{lemma:nonincreasingRightContinuous}(ii) again,
+	\begin{equation*}
+	\mu\!\left(\,\left\{\;
+		\omega \in \Omega
+		\,\;\left\vert\;\;
+		\left(\overset{{\color{white}.}}{\phi} \circ (f_{*})\right)(\omega)
+			\,\overset{{\color{white}\vert}}{\leq}\,
+			(\phi \circ f)^{*}(\omega)
+		\right.
+	\,\right\}\,\right)
+	\,\;=\;\, 1\,.
+	\end{equation*}
+	This proves Claim 6.
 \end{enumerate}
 \qed
 
