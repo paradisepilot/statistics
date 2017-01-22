@@ -15,6 +15,76 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(a,b\,], [\,c,d\,] \subset \Re$ are intervals in \,$\Re$.
+\item
+	$\phi : (a,b\,] \longrightarrow (c,d\,]$ is a nondecreasing and left-continuous
+	$\Re$-valued function mapping from $(a,b\,]$ {\color{red}onto} $(c,d\,]$.
+	Note that, since $\phi$ is nondecreasing, we have:
+	\begin{equation*}
+	c \; = \; \underset{\xi\,\rightarrow\,a^{+}}{\lim}\phi(\xi) \; \in \; \Re\cup\{\,-\infty\,\}
+	\quad\textnormal{and}\quad
+	d \; = \; \underset{\xi\,\rightarrow\,b^{-}}{\lim}\phi(\xi) \; = \; \phi(b) \; \in \; \Re
+	\end{equation*}
+\end{itemize}
+Define \;$\psi : (c,d\,] \longrightarrow (a,b\,]$\; as follows:
+\begin{equation*}
+\psi(y)
+\;\; := \;\;
+	\sup\left\{\;
+		x \in (a,b\,]
+	\,\;\left\vert\;\,
+		\overset{{\color{white}.}}{\phi}(x) \leq y
+	\right.
+	\;\right\}.
+\end{equation*}
+Then,
+\begin{enumerate}
+\item
+	$\psi$ is measurable.
+\item
+	$\phi$ and $\psi$ satisfy:\quad
+	$\phi(x) \,\leq\, y \;\; \Longleftrightarrow \;\; x \,\leq\, \psi(y)$,\;\;
+	for each \;$x \in (a,b\,]$\; and \;$y \in (c,d\,]$.
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+\item
+	\textbf{\underline{(\,$\Longrightarrow$\,)}}\quad
+	$\phi(x) \leq y
+	\;\;\Longrightarrow\;\;
+		x \in \left\{\,\xi\in(a,\,b] \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\leq} y\right.\,\right\}
+	\;\; \Longrightarrow \;\;
+		x \leq \sup\left\{\,\xi\in(a,\,b] \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\leq} y\right.\,\right\} =: \psi(y)$.
+
+	\vskip 0.2cm
+	\noindent
+	\textbf{\underline{(\,$\Longleftarrow$\,)}}\quad
+	Suppose \;$a \,<\, x \,\leq\, \psi(y) \,\leq\, d$.\;
+	Let \;$\delta \,:=\, \psi(y) \,-\, x \,\geq\, 0$. Then,
+	\begin{equation*}
+	x + \delta \;\;=\;\; \psi(y) \;\;:=\;\; \sup\left\{\,\xi\in(a,\,b] \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\leq} y\right.\,\right\}.
+	\end{equation*}
+	Hence, there exists a nondecreasing sequence
+	$\xi_{n} \in \left\{\,\xi\in(a,\,b] \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\leq} y\right.\,\right\}$
+	such that $\xi_{n} \uparrow (x+\delta)$.
+	Since $\phi$ is {\color{red}nondecreasing and left-continuous}, we see that $\phi(\xi_{n}) \uparrow \phi(x+\delta)$.
+	Since $\phi$ is nondecreasing and $\delta \geq 0$, we therefore have
+	\begin{equation*}
+	\phi(x) \;\;\leq\;\; \phi(x+\delta) \;\;=\;\; \underset{n\rightarrow\infty}{\lim}\,\phi(\xi_{n}) \;\;\leq\;\; y.
+	\end{equation*}
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \begin{lemma}[Exercise 8, \S1.2, p.13, \cite{vanDerVaart1996}]
 \mbox{}\vskip 0.1cm
 \noindent
@@ -26,7 +96,7 @@ Suppose:
 \item
 	$f : \Omega \longrightarrow \Re$ is an arbitrary map from $\Omega$ into the real numbers.
 \item
-	$(a,b\,] \subset \Re$ is a interval in \,$\Re$ satisfying $f(\Omega) \cup f^{*}(\Omega) \subset (a,b\,]$,
+	$(a,b\,] \subset \Re$ is an interval in \,$\Re$ satisfying $f(\Omega) \cup f^{*}(\Omega) \subset (a,b\,]$,
 	where $f^{*}$ is a minimal measurable majorant of $f$.
 \item
 	$\phi : \Re \longrightarrow \Re$ is nondecreasing and left-continuous on $(a,b\,]$.
