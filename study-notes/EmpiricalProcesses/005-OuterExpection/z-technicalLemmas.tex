@@ -329,13 +329,231 @@ Then,
 	\begin{equation*}
 	x - \delta \;\;=\;\; \psi(y) \;\;:=\;\; \inf\left\{\,\xi\in[\,a,b\,) \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\geq} y\right.\,\right\}.
 	\end{equation*}
-	Hence, there exists a nondecreasing sequence
+	Hence, there exists a nonincreasing sequence
 	$\xi_{n} \in \left\{\,\xi\in[\,a,b\,) \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\geq} y\right.\,\right\}$
 	such that $\xi_{n} \downarrow (x-\delta)$.
 	Since $\phi$ is {\color{red}nondecreasing and right-continuous}, we see that $\phi(\xi_{n}) \downarrow \phi(x-\delta)$.
 	Since $\phi$ is nondecreasing and $\delta \geq 0$, we therefore have
 	\begin{equation*}
 	\phi(x) \;\;\geq\;\; \phi(x-\delta) \;\;=\;\; \underset{n\rightarrow\infty}{\lim}\,\phi(\xi_{n}) \;\;\geq\;\; y.
+	\end{equation*}
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{lemma:nonincreasingLeftContinuous}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\,a,b\,], (\,c,d\,] \subset \Re$ are intervals in \,$\Re$.
+\item
+	$\phi : (\,a,b\,] \longrightarrow (\,c,d\,]$ is a nonincreasing and left-continuous
+	$\Re$-valued function mapping from $(\,a,b\,]$ {\color{red}onto} $(\,c,d\,]$.
+	Note that, since $\phi$ is nonincreasing and left-continuous, we have:
+	\begin{equation*}
+	c \; = \; \underset{\xi\,\rightarrow\,a^{+}}{\lim}\phi(\xi) \; \in \; \Re\cup\{\,-\infty\,\}
+	\quad\textnormal{and}\quad
+	d \; = \; \underset{\xi\,\rightarrow\,b^{-}}{\lim}\phi(\xi) \; = \; \phi(b) \; \in \; \Re
+	\end{equation*}
+\end{itemize}
+Define \;$\psi : (\,c,d\,] \longrightarrow (\,a,b\,]$\; as follows:
+\begin{equation*}
+\psi(y)
+\;\; := \;\;
+	\sup\left\{\;
+		x \in (\,a,b\,]
+	\,\;\left\vert\;\,
+		\overset{{\color{white}.}}{\phi}(x) \geq y
+	\right.
+	\;\right\}.
+\end{equation*}
+Then,
+\begin{enumerate}
+\item
+	$\psi$ is nonincreasing and measurable.
+\item
+	$\phi$ and $\psi$ satisfy:\quad
+	$\phi(x) \,\geq\, y \;\; \Longleftrightarrow \;\; x \,\leq\, \psi(y)$,\;\;
+	for each \;$x \in (\,a,b\,]$\; and \;$y \in (\,c,d\,]$.
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+	We first show that $\psi$ is nonincreasing.
+	Suppose $y_{1} \leq y_{2}$. Then, for each $x \in (\,a,b\,]$, we have
+	$\phi(x) \geq y_{2}$ $\Longrightarrow$ $\phi(x) \geq y_{1}$.
+	Hence
+	\begin{equation*}
+	\left\{\;
+		x \in (\,a,b\,]
+		\,\;\left\vert\;\,
+			\overset{{\color{white}.}}{\phi}(x) \geq y_{1}
+		\right.
+		\;\right\}
+	\;\; \supset \;\;
+	\left\{\;
+		x \in (\,a,b\,]
+		\,\;\left\vert\;\,
+			\overset{{\color{white}.}}{\phi}(x) \geq y_{2}
+		\right.
+		\;\right\},
+	\end{equation*}
+	which implies
+	\begin{equation*}
+	\psi(y_{1}) \; := \;
+	\sup\left\{\;
+		x \in (\,a,b\,]
+		\,\;\left\vert\;\,
+			\overset{{\color{white}.}}{\phi}(x) \geq y_{2}
+		\right.
+		\;\right\}
+	\;\; \geq \;\;
+	\sup\left\{\;
+		x \in (\,a,b\,]
+		\,\;\left\vert\;\,
+			\overset{{\color{white}.}}{\phi}(x) \geq y_{1}
+		\right.
+		\;\right\}
+	\; =: \; \psi(y_{2})
+	\end{equation*}
+	Thus $\psi$ is indeed nonincreasing.
+	Measurability of $\psi$ then follows at once from Lemma \ref{lemma:MonotoneFunctionsAreMeasurable}.
+\item
+	\textbf{\underline{(\,$\Longrightarrow$\,)}}\quad
+	$\phi(x) \geq y
+	\;\;\Longrightarrow\;\;
+		x \in \left\{\,\xi\in(\,a,b\,] \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\geq} y\right.\,\right\}
+	\;\; \Longrightarrow \;\;
+		x \leq \sup\left\{\,\xi\in(\,a,b\,] \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\geq} y\right.\,\right\} =: \psi(y)$.
+
+	\vskip 0.2cm
+	\noindent
+	\textbf{\underline{(\,$\Longleftarrow$\,)}}\quad
+	Suppose \;$a \,<\, x \,\leq\, \psi(y) \,\leq\, b$.\;
+	Let \;$\delta \,:=\, \psi(y) \,-\, x \,\geq\, 0$. Then,
+	\begin{equation*}
+	x + \delta \;\;=\;\; \psi(y) \;\;:=\;\; \sup\left\{\,\xi\in(\,a,b\,] \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\geq} y\right.\,\right\}.
+	\end{equation*}
+	Hence, there exists a nondecreasing sequence
+	$\xi_{n} \in \left\{\,\xi\in(\,a,b\,] \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\geq} y\right.\,\right\}$
+	such that $\xi_{n} \uparrow (x+\delta)$.
+	Since $\phi$ is {\color{red}nonincreasing and left-continuous}, we see that $\phi(\xi_{n}) \downarrow \phi(x+\delta)$.
+	Since $\phi$ is nonincreasing and $\delta \geq 0$, we therefore have
+	\begin{equation*}
+	\phi(x) \;\;\geq\;\; \phi(x+\delta) \;\;=\;\; \underset{n\rightarrow\infty}{\lim}\,\phi(\xi_{n}) \;\;\geq\;\; y.
+	\end{equation*}
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{lemma:nonincreasingRightContinuous}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$[\,a,b\,), [\,c,d\,) \subset \Re$ are intervals in \,$\Re$.
+\item
+	$\phi : [\,a,b\,) \longrightarrow [\,c,d\,)$ is a nonincreasing and right-continuous
+	$\Re$-valued function mapping from $[\,a,b\,)$ {\color{red}onto} $[\,c,d\,)$.
+	Note that, since $\phi$ is nonincreasing and right-continuous, we have:
+	\begin{equation*}
+	c \; = \; \underset{\xi\,\rightarrow\,a^{+}}{\lim}\phi(\xi) \; = \; \phi(a) \; \in \; \Re
+	\quad\textnormal{and}\quad
+	d \; = \; \underset{\xi\,\rightarrow\,b^{-}}{\lim}\phi(\xi) \; \in \; \Re\cup\{\,+\infty\,\}
+	\end{equation*}
+\end{itemize}
+Define \;$\psi : [\,c,d\,) \longrightarrow [\,a,b\,)$\; as follows:
+\begin{equation*}
+\psi(y)
+\;\; := \;\;
+	\inf\left\{\;
+		x \in [\,a,b\,)
+	\,\;\left\vert\;\,
+		\overset{{\color{white}.}}{\phi}(x) \leq y
+	\right.
+	\;\right\}.
+\end{equation*}
+Then,
+\begin{enumerate}
+\item
+	$\psi$ is nonincreasing and measurable.
+\item
+	$\phi$ and $\psi$ satisfy:\quad
+	$\phi(x) \,\leq\, y \;\; \Longleftrightarrow \;\; x \,\geq\, \psi(y)$,\;\;
+	for each \;$x \in [\,a,b\,)$\; and \;$y \in [\,c,d\,)$.
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+	We first show that $\psi$ is nonincreasing.
+	Suppose $y_{1} \leq y_{2}$. Then, for each $x \in [\,a,b\,)$, we have
+	$\phi(x) \leq y_{1}$ $\Longrightarrow$ $\phi(x) \leq y_{2}$.
+	Hence
+	\begin{equation*}
+	\left\{\;
+		x \in [\,a,b\,)
+		\,\;\left\vert\;\,
+			\overset{{\color{white}.}}{\phi}(x) \leq y_{1}
+		\right.
+		\;\right\}
+	\;\; \subset \;\;
+	\left\{\;
+		x \in [\,a,b\,)
+		\,\;\left\vert\;\,
+			\overset{{\color{white}.}}{\phi}(x) \leq y_{2}
+		\right.
+		\;\right\},
+	\end{equation*}
+	which implies
+	\begin{equation*}
+	\psi(y_{1}) \; := \;
+	\inf\left\{\;
+		x \in [\,a,b\,)
+		\,\;\left\vert\;\,
+			\overset{{\color{white}.}}{\phi}(x) \leq y_{1}
+		\right.
+		\;\right\}
+	\;\; \geq \;\;
+	\inf\left\{\;
+		x \in [\,a,b\,)
+		\,\;\left\vert\;\,
+			\overset{{\color{white}.}}{\phi}(x) \leq y_{2}
+		\right.
+		\;\right\}
+	\; =: \; \psi(y_{2})
+	\end{equation*}
+	Thus $\psi$ is indeed nonincreasing.
+	Measurability of $\psi$ then follows at once from Lemma \ref{lemma:MonotoneFunctionsAreMeasurable}.
+\item
+	\textbf{\underline{(\,$\Longrightarrow$\,)}}\quad
+	$\phi(x) \leq y
+	\;\;\Longrightarrow\;\;
+		x \in \left\{\,\xi\in[\,a,b\,) \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\leq} y\right.\,\right\}
+	\;\; \Longrightarrow \;\;
+		x \geq \inf\left\{\,\xi\in[\,a,b\,) \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\leq} y\right.\,\right\} =: \psi(y)$.
+
+	\vskip 0.2cm
+	\noindent
+	\textbf{\underline{(\,$\Longleftarrow$\,)}}\quad
+	Suppose \;$a \,\leq\, \psi(y) \,\leq\, x \,<\, b$.\;
+	Let \;$\delta \,:=\, x \,-\, \psi(y) \,\geq\, 0$. Then,
+	\begin{equation*}
+	x - \delta \;\;=\;\; \psi(y) \;\;:=\;\; \inf\left\{\,\xi\in[\,a,b\,) \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\leq} y\right.\,\right\}.
+	\end{equation*}
+	Hence, there exists a nonincreasing sequence
+	$\xi_{n} \in \left\{\,\xi\in[\,a,b\,) \;\left\vert\; \phi(\xi) \overset{{\color{white}.}}{\leq} y\right.\,\right\}$
+	such that $\xi_{n} \downarrow (x-\delta)$.
+	Since $\phi$ is {\color{red}nonincreasing and right-continuous}, we see that $\phi(\xi_{n}) \uparrow \phi(x-\delta)$.
+	Since $\phi$ is nonincreasing and $\delta \geq 0$, we therefore have
+	\begin{equation*}
+	\phi(x) \;\;\leq\;\; \phi(x-\delta) \;\;=\;\; \underset{n\rightarrow\infty}{\lim}\,\phi(\xi_{n}) \;\;\leq\;\; y.
 	\end{equation*}
 \end{enumerate}
 \qed
