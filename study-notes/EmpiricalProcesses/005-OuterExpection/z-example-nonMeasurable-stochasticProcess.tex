@@ -38,46 +38,53 @@ Suppose:
 	\begin{equation*}
 	X_{t}(\omega)
 	\;\; := \;\;
-		1_{\{U(\omega)\,\leq\,t\}} \, - \, t \,,
+		1_{\{U(\omega)\,\leq\,t\}}
+	\;\; = \;\;
+		\left\{\begin{array}{cl}
+		0, & \textnormal{for \,$0 \leq t < U(\omega)$}\,,
+		\\
+		\overset{{\color{white}+}}{1}, & \textnormal{for \,$U(\omega) \leq t \leq 1$}
+		\end{array}\right\},
 	\quad
 	\textnormal{for each $\omega \in \Omega$ and $t \in [0,1]$}\,.
 	\end{equation*}
-	Note that, for each $t \in [0,1]$, the range of $X_{t}$ is a subset of the
-	two-element set $\{0,1\}$.
-	Furthermore, the measurability of $U$ implies the measurability of the following:
-	\begin{eqnarray*}
-	\left\{\,X_{t} \,\overset{{\color{white}+}}{=}\, 1\,\right\}
-	& = &
-		%\mu\!\left(
-		\left\{\;
-			\left.
-			\overset{{\color{white}+}}{\omega}\in\Omega
-			\;\,\right\vert\;
-			X_{t}(\omega) \,\overset{{\color{white}+}}{=}\, 1
-			\;\right\}
-			%\right)
-	\;\; = \;\;
-		%\mu\!\left(
-		\left\{\;
-			\left.
-			\overset{{\color{white}+}}{\omega}\in\Omega
-			\;\,\right\vert\;
-			1_{\{U(\omega)\,\leq\,t\}} \,=\, 1
-			\;\right\}
-			%\right)
-	\\
-	& = &
-		%\mu\!\left(
-		\left\{\;
-			\left.
-			\overset{{\color{white}+}}{\omega}\in\Omega
-			\;\,\right\vert\;
-			U(\omega)\,\leq\,t
-			\;\right\}
-			%\right).
-	\end{eqnarray*}	
-	This shows that, for each $t\in[0,1]$, $X_{t}$ is a Bernoulli random variable defined on $\Omega$.
-	On the other hand, we may regard the stochastic process
+	%Note that, for each $t \in [0,1]$, the range of $X_{t}$ is a subset of the
+	%two-element set $\{0,1\}$.
+	%Furthermore, the measurability of $U$ implies the measurability of the following:
+	%\begin{eqnarray*}
+	%\left\{\,X_{t} \,\overset{{\color{white}+}}{=}\, 1\,\right\}
+	%& = &
+	%	%\mu\!\left(
+	%	\left\{\;
+	%		\left.
+	%		\overset{{\color{white}+}}{\omega}\in\Omega
+	%		\;\,\right\vert\;
+	%		X_{t}(\omega) \,\overset{{\color{white}+}}{=}\, 1
+	%		\;\right\}
+	%		%\right)
+	%\;\; = \;\;
+	%	%\mu\!\left(
+	%	\left\{\;
+	%		\left.
+	%		\overset{{\color{white}+}}{\omega}\in\Omega
+	%		\;\,\right\vert\;
+	%		1_{\{U(\omega)\,\leq\,t\}} \,=\, 1
+	%		\;\right\}
+	%		%\right)
+	%\\
+	%& = &
+	%	%\mu\!\left(
+	%	\left\{\;
+	%		\left.
+	%		\overset{{\color{white}+}}{\omega}\in\Omega
+	%		\;\,\right\vert\;
+	%		U(\omega)\,\leq\,t
+	%		\;\right\}
+	%		%\right).
+	%\end{eqnarray*}	
+	%This shows that, for each $t\in[0,1]$, $X_{t}$ is a Bernoulli random variable defined on $\Omega$.
+	%On the other hand, 
+	We may regard the stochastic process
 	$\left\{\, X_{t} : \Omega \overset{{\color{white}-}}{\longrightarrow} \Re \,\right\}_{t\,\in\,[0,1]}$
 	as a map
 	$X : \Omega \longrightarrow l^{\infty}\!\left([\overset{{\color{white}.}}{0},1]\right)$
@@ -86,25 +93,76 @@ Suppose:
 	$l^{\infty}\!\left([\overset{{\color{white}.}}{0},1]\right)$
 	is the Banach space of bounded $\Re$-valued functions defined on
 	the closed bounded interval $[0,1] \subset \Re$, equipped with supremum norm.
-\item
-	\begin{equation*}
-	h(\omega)(t)
-	\;\; := \;\;
-		\left\{\begin{array}{cc}
-		0, & \textnormal{for} \;\, 0 \leq t < U(\omega)
-		\\
-		\overset{{\color{white}+}}{1}, & \textnormal{for} \;\, U(\omega) \leq t \leq 1
-		\end{array}\right.
-	\end{equation*}
 \end{itemize}
 Then,
 $X : \Omega \longrightarrow l^{\infty}\!\left([\overset{{\color{white}.}}{0},1]\right)$
 is not a measurable map.
 \end{example}
 \proof
+Define, for each $\theta \in [0,1]$, the following element $f_{\theta} \in l^{\infty}(\,[0,1]\,)$:
+\begin{equation*}
+f_{\theta}(t)
+\;\; := \;\;
+	\left\{\begin{array}{cc}
+	0, & \textnormal{for} \;\, 0 \leq t < \theta
+	\\
+	\overset{{\color{white}+}}{1}, & \textnormal{for} \;\, \theta \leq t \leq 1
+	\end{array}\right.
+\end{equation*}
+
 We prove the non-measurability of $X$ by exhibiting a Borel subset $A \subset l^{\infty}(\,[0,1]\,)$
 such that $\{\,X \in A\,\} \,=\, X^{-1}(\overset{{\color{white}.}}{A}) \subset \Omega$ is not measurable
 subset of $\Omega$ (i.e. $\{\,X \in A\,\} \notin \mathcal{A}$).
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\;\;
+For every subset $H \subset [0,1]$, we have
+$U^{-1}(H)$ $=$ $X^{-1}\!\left(\,\underset{\theta\in H}{\bigcup}B(f_{\theta};1/2)\,\right)$.
+\vskip 0.3cm
+\noindent
+Proof of Claim 1:\quad
+For each $\omega \in \Omega$, we have
+\begin{eqnarray*}
+\omega \in X^{-1}\!\left(\,\underset{\theta\in H}{\bigcup}B(f_{\theta};1/2)\,\right)
+&\Longleftrightarrow&
+	X(\omega) \in \underset{\theta\in H}{\bigcup}B(f_{\theta};1/2)
+\\
+&\Longleftrightarrow&
+	X(\omega) \in B(f_{\theta};1/2),
+	\quad
+	\textnormal{for some \,$\theta \in H$}
+\\
+&\Longleftrightarrow&
+	\Vert\, X(\omega) - f_{\theta}\,\Vert_{\infty} < 1/2,
+	\quad
+	\textnormal{for some \,$\theta \in H$}
+\\
+&\Longleftrightarrow&
+	\Vert\, X(\omega) - f_{\theta}\,\Vert_{\infty} = 0,
+	\quad
+	\textnormal{for some \,$\theta \in H$}
+\\
+&\Longleftrightarrow&
+	X(\omega) = f_{\theta},
+	\quad
+	\textnormal{for some \,$\theta \in H$}
+\\
+&\Longleftrightarrow&
+	U(\omega) = \theta,
+	\quad
+	\textnormal{for some \,$\theta \in H$}
+\\
+&\Longleftrightarrow&
+	\omega = U^{-1}(\theta),
+	\quad
+	\textnormal{for some \,$\theta \in H$}
+\\
+&\Longleftrightarrow&
+	\omega = U^{-1}(H)
+\end{eqnarray*}
+This proves Claim 1.
+
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
