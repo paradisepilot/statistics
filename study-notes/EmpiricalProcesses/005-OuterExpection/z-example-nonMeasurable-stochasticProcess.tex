@@ -1,0 +1,119 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Example: a stochastic process
+which does not correspond to
+an $l^{\infty}$-valued random variable (measurable map)}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{example}
+%[\S 7.1, p.103, \cite{Kosorok2008}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$U : \Omega \longrightarrow [0,1]$ is a $[0,1]$-valued random variable
+	defined on $\Omega$ such that its induced distribution on the closed
+	unit interval $[0,1]$ is the uniform distribution.
+%\item
+%	$H \subset \Re$ is an arbitrary subset of $\Re$ which is not Borel measurable.
+\item
+	Define the stochastic process
+	$\left\{\, X_{t} : \Omega \overset{{\color{white}-}}{\longrightarrow} \Re \,\right\}_{t\,\in\,[0,1]}$
+	as follows:
+	\begin{equation*}
+	X_{t}(\omega)
+	\;\; := \;\;
+		1_{\{U(\omega)\,\leq\,t\}} \, - \, t \,,
+	\quad
+	\textnormal{for each $\omega \in \Omega$ and $t \in [0,1]$}\,.
+	\end{equation*}
+	Note that, for each $t \in [0,1]$, the range of $X_{t}$ is a subset of the
+	two-element set $\{0,1\}$.
+	Furthermore, the measurability of $U$ implies the measurability of the following:
+	\begin{eqnarray*}
+	\left\{\,X_{t} \,\overset{{\color{white}+}}{=}\, 1\,\right\}
+	& = &
+		%\mu\!\left(
+		\left\{\;
+			\left.
+			\overset{{\color{white}+}}{\omega}\in\Omega
+			\;\,\right\vert\;
+			X_{t}(\omega) \,\overset{{\color{white}+}}{=}\, 1
+			\;\right\}
+			%\right)
+	\;\; = \;\;
+		%\mu\!\left(
+		\left\{\;
+			\left.
+			\overset{{\color{white}+}}{\omega}\in\Omega
+			\;\,\right\vert\;
+			1_{\{U(\omega)\,\leq\,t\}} \,=\, 1
+			\;\right\}
+			%\right)
+	\\
+	& = &
+		%\mu\!\left(
+		\left\{\;
+			\left.
+			\overset{{\color{white}+}}{\omega}\in\Omega
+			\;\,\right\vert\;
+			U(\omega)\,\leq\,t
+			\;\right\}
+			%\right).
+	\end{eqnarray*}	
+	This shows that, for each $t\in[0,1]$, $X_{t}$ is a Bernoulli random variable defined on $\Omega$.
+	On the other hand, we may regard the stochastic process
+	$\left\{\, X_{t} : \Omega \overset{{\color{white}-}}{\longrightarrow} \Re \,\right\}_{t\,\in\,[0,1]}$
+	as a map
+	$X : \Omega \longrightarrow l^{\infty}\!\left([\overset{{\color{white}.}}{0},1]\right)$
+	via \,$X(\omega)(t) \, := \, X_{t}(\omega)$,
+	where  
+	$l^{\infty}\!\left([\overset{{\color{white}.}}{0},1]\right)$
+	is the Banach space of bounded $\Re$-valued functions defined on
+	the closed bounded interval $[0,1] \subset \Re$, equipped with supremum norm.
+\item
+	\begin{equation*}
+	h(\omega)(t)
+	\;\; := \;\;
+		\left\{\begin{array}{cc}
+		0, & \textnormal{for} \;\, 0 \leq t < U(\omega)
+		\\
+		\overset{{\color{white}+}}{1}, & \textnormal{for} \;\, U(\omega) \leq t \leq 1
+		\end{array}\right.
+	\end{equation*}
+\end{itemize}
+Then,
+$X : \Omega \longrightarrow l^{\infty}\!\left([\overset{{\color{white}.}}{0},1]\right)$
+is not a measurable map.
+\end{example}
+\proof
+We prove the non-measurability of $X$ by exhibiting a Borel subset $A \subset l^{\infty}(\,[0,1]\,)$
+such that $\{\,X \in A\,\} \,=\, X^{-1}(\overset{{\color{white}.}}{A}) \subset \Omega$ is not measurable
+subset of $\Omega$ (i.e. $\{\,X \in A\,\} \notin \mathcal{A}$).
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
