@@ -25,12 +25,14 @@ Suppose:
 \begin{itemize}
 \item
 	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$\mathcal{B}$ is the Borel $\sigma$-algebra of $[0,1]$.
 \item
-	$U : \Omega \longrightarrow [0,1]$ is a $[0,1]$-valued random variable
-	defined on $\Omega$ such that its induced distribution on the closed
-	unit interval $[0,1]$ is the uniform distribution.
-%\item
-%	$H \subset \Re$ is an arbitrary subset of $\Re$ which is not Borel measurable.
+	$U : (\Omega,\mathcal{A},\mu) \longrightarrow ([0,1],\mathcal{B})$
+	is a $[0,1]$-valued random variable defined on $\Omega$
+	such that its induced distribution on $([0,1],\mathcal{B})$
+	is the uniform distribution.
+	In particular, the measure on $([0,1],\mathcal{B})$ induced by $U$
+	coincides with the Lebesgue measure on $([0,1],\mathcal{B})$.
 \item
 	Define the stochastic process
 	$\left\{\, X_{t} : \Omega \overset{{\color{white}-}}{\longrightarrow} \Re \,\right\}_{t\,\in\,[0,1]}$
@@ -90,12 +92,12 @@ Suppose:
 	$X : \Omega \longrightarrow l^{\infty}\!\left([\overset{{\color{white}.}}{0},1]\right)$
 	via \,$X(\omega)(t) \, := \, X_{t}(\omega)$,
 	where  
-	$l^{\infty}\!\left([\overset{{\color{white}.}}{0},1]\right)$
+	$l^{\infty}(\,[\overset{{\color{white}.}}{0},1]\,)$
 	is the Banach space of bounded $\Re$-valued functions defined on
 	the closed bounded interval $[0,1] \subset \Re$, equipped with supremum norm.
 \end{itemize}
 Then,
-$X : \Omega \longrightarrow l^{\infty}\!\left([\overset{{\color{white}.}}{0},1]\right)$
+$X : \Omega \longrightarrow l^{\infty}(\,[\overset{{\color{white}.}}{0},1]\,)$
 is not a measurable map.
 \end{example}
 \proof
@@ -109,24 +111,37 @@ f_{\theta}(t)
 	\overset{{\color{white}+}}{1}, & \textnormal{for} \;\, \theta \leq t \leq 1
 	\end{array}\right.
 \end{equation*}
+Let $B(f_{\theta};1/2) \subset l^{\infty}(\,[0,1]\,)$ be the open ball in $l^{\infty}(\,[0,1]\,)$
+centred at $f_{\theta} \in l^{\infty}(\,[0,1]\,)$ with radius $1/2$.
+Note that the open balls $B(f_{\theta};1/2)$, for $\theta \in [0,1]$, are pairwise disjoint.
+Note also that, for each $\omega \in \Omega$ and each $\theta \in [0,1]$, we have
+\begin{equation*}
+\Vert\, X(\omega) - f_{\theta}\,\Vert_{\infty} \,<\, 1/2
+\quad\Longleftrightarrow\quad
+	\Vert\, X(\omega) - f_{\theta}\,\Vert_{\infty} \,=\, 0
+\quad\Longleftrightarrow\quad
+	X(\omega) \,=\, f_{\theta}
+\quad\Longleftrightarrow\quad
+	U(\omega) \,=\, \theta
+\end{equation*}
 
-We prove the non-measurability of $X$ by exhibiting a Borel subset $A \subset l^{\infty}(\,[0,1]\,)$
-such that $\{\,X \in A\,\} \,=\, X^{-1}(\overset{{\color{white}.}}{A}) \subset \Omega$ is not measurable
-subset of $\Omega$ (i.e. $\{\,X \in A\,\} \notin \mathcal{A}$).
+%We prove the non-measurability of $X$ by exhibiting a Borel subset $A \subset l^{\infty}(\,[0,1]\,)$
+%such that $\{\,X \in A\,\} \,=\, X^{-1}(\overset{{\color{white}.}}{A}) \subset \Omega$ is not measurable
+%subset of $\Omega$ (i.e. $\{\,X \in A\,\} \notin \mathcal{A}$).
 
 \vskip 0.5cm
 \noindent
 \textbf{Claim 1:}\;\;
 For every subset $H \subset [0,1]$, we have
-$U^{-1}(H)$ $=$ $X^{-1}\!\left(\,\underset{\theta\in H}{\bigcup}B(f_{\theta};1/2)\,\right)$.
+$U^{-1}(H)$ $=$ $X^{-1}\!\left(\,\underset{\theta\in H}{\bigsqcup}B(f_{\theta};1/2)\,\right)$.
 \vskip 0.3cm
 \noindent
 Proof of Claim 1:\quad
 For each $\omega \in \Omega$, we have
 \begin{eqnarray*}
-\omega \in X^{-1}\!\left(\,\underset{\theta\in H}{\bigcup}B(f_{\theta};1/2)\,\right)
+\omega \in X^{-1}\!\left(\,\underset{\theta\in H}{\bigsqcup}B(f_{\theta};1/2)\,\right)
 &\Longleftrightarrow&
-	X(\omega) \in \underset{\theta\in H}{\bigcup}B(f_{\theta};1/2)
+	X(\omega) \in \underset{\theta\in H}{\bigsqcup}B(f_{\theta};1/2)
 \\
 &\Longleftrightarrow&
 	X(\omega) \in B(f_{\theta};1/2),
