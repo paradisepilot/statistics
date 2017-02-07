@@ -89,7 +89,7 @@ Suppose:
 	We may regard the stochastic process
 	$\left\{\, X_{t} : \Omega \overset{{\color{white}-}}{\longrightarrow} \Re \,\right\}_{t\,\in\,[0,1]}$
 	as a map
-	$X : \Omega \longrightarrow l^{\infty}\!\left([\overset{{\color{white}.}}{0},1]\right)$
+	$X : \Omega \longrightarrow l^{\infty}(\,[\overset{{\color{white}.}}{0},1]\,)$
 	via \,$X(\omega)(t) \, := \, X_{t}(\omega)$,
 	where  
 	$l^{\infty}(\,[\overset{{\color{white}.}}{0},1]\,)$
@@ -115,6 +115,12 @@ Let $B(f_{\theta};1/2) \subset l^{\infty}(\,[0,1]\,)$ be the open ball in $l^{\i
 centred at $f_{\theta} \in l^{\infty}(\,[0,1]\,)$ with radius $1/2$.
 Note that the open balls $B(f_{\theta};1/2)$, for $\theta \in [0,1]$, are pairwise disjoint.
 Note also that, for each $\omega \in \Omega$ and each $\theta \in [0,1]$, we have
+\begin{eqnarray*}
+X(\omega) \,=\, f_{\theta} &\Longleftrightarrow& U(\omega) \,=\, \theta, \quad\textnormal{and}
+\\
+X(\omega) \,\neq\, f_{\theta} &\Longleftrightarrow& \Vert\, X(\omega) - f_{\theta}\,\Vert_{\infty} \,=\, 1
+\end{eqnarray*}
+Thus, for each $\omega \in \Omega$ and each $\theta \in [0,1]$, we have
 \begin{equation*}
 \Vert\, X(\omega) - f_{\theta}\,\Vert_{\infty} \,<\, 1/2
 \quad\Longleftrightarrow\quad
@@ -175,6 +181,25 @@ For each $\omega \in \Omega$, we have
 	\omega = U^{-1}(H)
 \end{eqnarray*}
 This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+For each (not necessarily Borel) subset $H \subset [0,1]$,
+the set \,$\underset{\theta\in H}{\bigsqcup}B(f_{\theta};1/2)$\,
+is an open -- hence Borel -- subset of $l^{\infty}(\,[0,1]\,)$,
+being a union of open balls.
+
+\vskip 0.3cm
+\noindent
+Now, suppose on the contrary that $X : \Omega \longrightarrow l^{\infty}(\,[0,1]\,)$ is measurable.
+Then, by Claim 1, we have for each (not necessarily Borel) subset $H \subset [0,1]$,
+\begin{equation*}
+U^{-1}(H)
+\;=\; X^{-1}\!\left(\,\underset{\theta\in H}{\bigsqcup}B(f_{\theta};1/2)\,\right)
+\;\in\; \mathcal{A}\,,
+\end{equation*}
+which implies that the measure on $(\,[0,1],\mathcal{B}\,)$ induced by $U$
+can in fact be extended to the entire power set of $[0,1]$.
 
 \qed
 
