@@ -81,21 +81,146 @@ Note that the convexity hypothesis on $\phi$ immediately implies that $\phi$ is 
 	\underline{Case 2: $\phi$ is nonincreasing}
 	\vskip 0.0cm
 	\noindent
+	By continuity of $\phi$ and Lemma \ref{longLemma}(vi),
+	$(\phi\,\circ\,f)^{*} = \phi\,\circ\,(f_{*})$ $\mu$-almost everywhere.
+	Hence,
+	\begin{equation*}
+	E^{*}\!\left[\;\phi \circ f\;\right]
+		\;=\; E\!\left[\;(\phi \circ f)^{*}\;\right]
+		\;=\; E\!\left[\;\phi \circ (f_{*})\;\right]
+		\;\geq\; \phi(\;E[\,f_{*}\,]\;)
+		\;=\; \phi(\;E_{*}[\,f\,]\;),
+	\end{equation*}
+	where the inequality follows from the usual Jensen's inequality.
+	Note that, since $f^{*} \geq f_{*}$ $\mu$-almost everywhere, we also have
+	\begin{equation*}
+	\phi(\;E_{*}[\,f\,]\;)
+		\;=\; \phi(\;E[\,f_{*}\,]\;)
+		\;\geq\; \phi(\;E[\,f^{*}\,]\;)
+		\;=\; \phi(\;E^{*}[\,f\,]\;).
+	\end{equation*}
+	The preceding two inequalities together imply:
+	\begin{equation*}
+	E^{*}\!\left[\;\phi \circ f\;\right]
+		\;\;\geq\;\; \max\!\left\{\;\phi(\;E_{*}[\,f\,]\;) \,,\, \phi(\;E^{*}[\,f\,]\;)\;\right\}.
+	\end{equation*}
 
 	\vskip 0.0cm
+	\underline{Case 3: $\phi$ is not necessarily monotone}
+	\vskip 0.0cm
 	\noindent
-	Similarly, by continuity of $\phi$ and Lemma \ref{longLemma}(iii),
+	In this case, by convexity of $\phi$, there exists $c \in \Re$
+	such that $\phi$ is nonincreasing on $(-\infty,c\,]$
+	and nondecreasing on $(c,\infty)$.
+	Define:
+	\begin{equation*}
+	\phi_{1}(t)
+	\;\; := \;\;
+	\left\{\begin{array}{cl}
+		\phi(t), & \textnormal{for $t \in (-\infty,c\,]$}
+		\\
+		\overset{{\color{white}+}}{\phi}(c), & \textnormal{for $t \in ({\color{white}-}c,\infty\,)$}
+	\end{array}\right.
+	\end{equation*}
+	and
+	\begin{equation*}
+	\phi_{2}(t)
+	\;\; := \;\;
+	\left\{\begin{array}{cl}
+		\phi(c), & \textnormal{for $t \in (-\infty,c\,]$}
+		\\
+		\overset{{\color{white}+}}{\phi}(t), & \textnormal{for $t \in ({\color{white}-}c,\infty\,)$}
+	\end{array}\right.
+	\end{equation*}
+	Then, $\phi = \phi_{1} + \phi_{2} - \phi(c)$,
+	$\phi_{1}$ is convex and nonincreasing, while $\phi_{2}$ is convex and nondecreasing.
+	Thus,
+	\begin{equation*}
+	(\phi \circ f)^{*}
+	\;\; = \;\;
+		\left[\;(\phi_{1} \circ f) \overset{{\color{white}.}}{+} (\phi_{2} \circ f) - \phi(c)\;\right]^{*}
+	\;\; \geq \;\;
+		(\phi_{1} \circ f)_{*} \;+\; (\phi_{2} \circ f)^{*} \,-\; \phi(c)
+	\end{equation*}
+	Hence,
+	\begin{eqnarray*}
+	E^{*}\!\left[\;\phi \circ f\,\right]
+	& = &
+		E\!\left[\;(\phi \circ f)^{*}\,\right]
+	\\
+	& \geq &
+		E\!\left[\;(\phi_{1} \circ f)_{*}\,\right]
+		\;+\;
+		E\!\left[\;(\phi_{2} \circ f)^{*}\,\right]
+		\,-\; \phi(c)
+	\\
+	& \geq &
+		\phi_{1}\!\left(\;E^{*}\!\left[\;f\;\right]\;\right)
+		\;+\;
+		\phi_{2}\!\left(E^{*}\!\left[\;f\;\right]\right)
+		\,-\; \phi(c)
+	\\
+	& = &
+		\phi\!\left(\;E^{*}\!\left[\;f\;\right]\;\right)
+	\end{eqnarray*}
+	On the other hand, we also have
+
+\item
+	\underline{Case 1: $\phi$ is nondecreasing}
+	\vskip 0.0cm
+	\noindent
+	By continuity of $\phi$ and Lemma \ref{longLemma}(iii),
 	$(\phi\,\circ\,f)_{*} = \phi\,\circ\,(f_{*})$ $\mu$-almost everywhere.
+	Hence,
 	\begin{equation*}
 	E_{*}\!\left[\;\phi \circ f\;\right]
 		\;=\; E\!\left[\;(\phi \circ f)_{*}\;\right]
 		\;=\; E\!\left[\;\phi \circ (f_{*})\;\right]
 		\;\geq\; \phi(\;E[\,f_{*}\,]\;)
-		\;=\; \phi(\;E_{*}[\,f\,]\;)
+		\;=\; \phi(\;E_{*}[\,f\,]\;),
 	\end{equation*}
-\item
-\end{enumerate}
+	where the inequality follows from the usual Jensen's inequality.
+	Note that, since $f^{*} \geq f_{*}$ $\mu$-almost everywhere, we also have
+	\begin{equation*}
+	\phi(\;E^{*}[\,f\,]\;)
+		\;=\; \phi(\;E[\,f^{*}\,]\;)
+		\;\geq\; \phi(\;E[\,f_{*}\,]\;)
+		\;=\; \phi(\;E_{*}[\,f\,]\;).
+	\end{equation*}
+	The preceding two inequalities together imply:
+	\begin{equation*}
+	E_{*}\!\left[\;\phi \circ f\;\right]
+		\;\;\geq\;\; \min\!\left\{\;\phi(\;E^{*}[\,f\,]\;) \,,\, \phi(\;E_{*}[\,f\,]\;)\;\right\}.
+	\end{equation*}
 
+	\underline{Case 2: $\phi$ is nonincreasing}
+	\vskip 0.0cm
+	\noindent
+	By continuity of $\phi$ and Lemma \ref{longLemma}(v),
+	$(\phi\,\circ\,f)_{*} = \phi\,\circ\,(f^{*})$ $\mu$-almost everywhere.
+	Hence,
+	\begin{equation*}
+	E_{*}\!\left[\;\phi \circ f\;\right]
+		\;=\; E\!\left[\;(\phi \circ f)_{*}\;\right]
+		\;=\; E\!\left[\;\phi \circ (f^{*})\;\right]
+		\;\geq\; \phi(\;E[\,f^{*}\,]\;)
+		\;=\; \phi(\;E^{*}[\,f\,]\;),
+	\end{equation*}
+	where the inequality follows from the usual Jensen's inequality.
+	Note that, since $f^{*} \geq f_{*}$ $\mu$-almost everywhere, we also have
+	\begin{equation*}
+	\phi(\;E_{*}[\,f\,]\;)
+		\;=\; \phi(\;E[\,f_{*}\,]\;)
+		\;\geq\; \phi(\;E[\,f^{*}\,]\;)
+		\;=\; \phi(\;E^{*}[\,f\,]\;).
+	\end{equation*}
+	The preceding two inequalities together imply:
+	\begin{equation*}
+	E_{*}\!\left[\;\phi \circ f\;\right]
+		\;\;\geq\;\; \min\!\left\{\;\phi(\;E^{*}[\,f\,]\;) \,,\, \phi(\;E_{*}[\,f\,]\;)\;\right\}.
+	\end{equation*}
+\end{enumerate}
+This completes the proof of the present Theorem.
 \qed
 
 
