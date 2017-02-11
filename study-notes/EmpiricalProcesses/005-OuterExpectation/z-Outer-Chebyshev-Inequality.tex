@@ -1,0 +1,67 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Outer Chebyshev's Inequality}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Outer Chebyshev's Inequality, Lemma 6.10, p.91, \cite{Kosorok2008}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\overline{\Re}$.
+\item
+	$f : \Omega \longrightarrow \Re$ is an arbitrary map from $\Omega$ into the real numbers.
+\item
+	$\phi : [0,\infty) \longrightarrow [0,\infty)$ is nondecreasing and strictly positive on $(0,\infty)$.
+\end{itemize}
+Then,
+\begin{equation*}
+P^{*}\!\left(\,\vert\,\overset{{\color{white}.}}{f}\,\vert\,\geq\,\varepsilon\,\right)
+\;\;\leq\;\;
+	\dfrac{1}{\phi(\varepsilon)} \cdot E^{*}\!\left[\,\phi\overset{{\color{white}-}}{\circ}\vert\,f\,\vert\,\right],
+	\quad
+	\textnormal{for each \;$\varepsilon > 0$}.
+\end{equation*}
+\end{theorem}
+\proof
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\;\; $\phi$ is Borel measurable.
+\vskip 0.1cm
+\noindent
+Proof of Claim 1: The Borel measurability of $\phi$ follows from its monotonicity.
+Indeed, recall that an $\Re$-valued function $\psi$ defined on a measurable space is Borel measurable
+if and only if
+the pre-image $\psi^{-1}\!\left((a\overset{{\color{white}-}}{,}b)\right)$ under $\psi$ of every open interval
+$(a,b)\subset\Re$ is a measurable subset of the domain of $\psi$
+(see, for example, Theorem 16.2, p.121, \cite{Aliprantis1998}).
+Since $\phi$ is monotone, the pre-image under $\phi$ of every open interval in $\Re$ is a
+(not necessarily open) interval in $\Re$.
+Since intervals are Borel open subsets of $\Re$, we see that $\phi$ is indeed a Borel measurable function.
+This proves Claim 1.
+\qed
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
