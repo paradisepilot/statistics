@@ -54,6 +54,48 @@ Since $\phi$ is monotone, the pre-image under $\phi$ of every open interval in $
 (not necessarily open) interval in $\Re$.
 Since intervals are Borel open subsets of $\Re$, we see that $\phi$ is indeed a Borel measurable function.
 This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\;\;
+$\left(\,1_{\{\,\varepsilon\,\leq\,\vert\,\overset{{\color{white}.}}{f}\,\vert\,\}}\,\right)^{*}$
+\;\;$\leq$\;\;
+$1_{\left\{\,1\,\leq\,\frac{(\phi\,\circ\vert f \vert)^{*}}{\phi(\varepsilon)}\right\}}$
+\vskip 0.1cm
+\noindent
+Proof of Claim 2: The Borel measurability of $\phi$ follows from its monotonicity.
+
+\vskip 0.5cm
+\begin{eqnarray*}
+P^{*}\!\left(\,\vert\,\overset{{\color{white}.}}{f}\,\vert\,\geq\,\varepsilon\,\right)
+&=&
+	E^{*}\!\left[\;1_{\{\,\varepsilon\,\leq\,\vert\,\overset{{\color{white}.}}{f}\,\vert\,\}}\;\right]
+\;\;=\;\;
+	E\!\left[\;\left(\,1_{\{\,\varepsilon\,\leq\,\vert\,\overset{{\color{white}.}}{f}\,\vert\,\}}\,\right)^{*}\;\right]
+\\
+&\leq&
+	E\!\left[\;1_{\left\{\,1\,\leq\,\frac{(\phi\,\circ\vert f \vert)^{*}}{\phi(\varepsilon)}\right\}}\;\right],
+	\quad
+	\textnormal{by Claim 2}
+\\
+&\leq&
+	E\!\left[\;
+		1_{\left\{\,1\,\leq\,\frac{(\phi\,\circ\vert f \vert)^{*}}{\phi(\varepsilon)}\right\}}
+		\cdot
+		\dfrac{(\phi\,\circ\,\vert f \vert)^{*}}{\phi(\varepsilon)}
+		\;\right]
+\\
+&\leq&
+	E\!\left[\; \dfrac{(\phi\,\circ\vert f \vert)^{*}}{\phi(\varepsilon)} \;\right],
+	\quad
+	\textnormal{since \;$0 \leq \dfrac{(\phi\,\circ\vert f \vert)^{*}}{\phi(\varepsilon)}$}
+\\
+&=&
+	\dfrac{1}{\phi(\varepsilon)} \cdot E\!\left[\; (\phi\overset{{\color{white}-}}{\circ}\vert f \vert)^{*} \;\right]
+\;\;=\;\;
+	\dfrac{1}{\phi(\varepsilon)} \cdot E^{*}\!\left[\,\phi\overset{{\color{white}-}}{\circ}\vert\,f\,\vert\,\right].
+\end{eqnarray*}
+This completes the proof of the Outer Chebyshev's Inequality.
 \qed
 
 
