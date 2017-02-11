@@ -38,6 +38,7 @@ P^{*}\!\left(\,\vert\,\overset{{\color{white}.}}{f}\,\vert\,\geq\,\varepsilon\,\
 \end{equation*}
 \end{theorem}
 \proof
+We first state and prove two claims.
 
 \vskip 0.5cm
 \noindent
@@ -60,12 +61,60 @@ This proves Claim 1.
 \textbf{Claim 2:}\;\;
 $\left(\,1_{\{\,\varepsilon\,\leq\,\vert\,\overset{{\color{white}.}}{f}\,\vert\,\}}\,\right)^{*}$
 \;\;$\leq$\;\;
-$1_{\left\{\,1\,\leq\,\frac{(\phi\,\circ\vert f \vert)^{*}}{\phi(\varepsilon)}\right\}}$
+$1_{\left\{\,\phi(\varepsilon)\,\overset{{\color{white}.}}{\leq}\,(\phi\,\circ\vert f \vert)^{*}\right\}}$
 \vskip 0.1cm
 \noindent
-Proof of Claim 2: The Borel measurability of $\phi$ follows from its monotonicity.
+Proof of Claim 2:
+Since $\phi$ is nondecreasing, we have the implication:\;
+$\varepsilon \leq \vert\,f(\omega)\,\vert
+\;\Longrightarrow\;
+\phi(\varepsilon) \leq \phi\!\left(\vert\,f(\overset{{\color{white}-}}{\omega})\,\vert\right)$,
+for each $\omega \in \Omega$.
+This implies:
+$\left\{\,\varepsilon \overset{{\color{white}.}}{\leq} \vert\,f\,\vert\,\right\}
+\;\subset\;
+\left\{\, \phi(\varepsilon) \overset{{\color{white}.}}{\leq} \phi\circ\vert\,f\,\vert\,\right\}$,
+which is equivalent to
+\begin{equation*}
+1_{\left\{\,\varepsilon \,\overset{{\color{white}.}}{\leq}\, \vert\,f\,\vert\,\right\}}
+\;\;\leq\;\;
+	1_{\left\{\, \phi(\varepsilon) \,\overset{{\color{white}.}}{\leq}\, \phi\,\circ\,\vert f \vert\,\right\}}\,,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+\left(\;1_{\left\{\,\varepsilon \,\overset{{\color{white}.}}{\leq}\, \vert\,f\,\vert\,\right\}}\;\right)^{*}
+\;\;\leq\;\;
+	\left(\;1_{\left\{\, \phi(\varepsilon) \,\overset{{\color{white}.}}{\leq}\, \phi\,\circ\,\vert f \vert\,\right\}}\;\right)^{*}
+\end{equation*}
+Next, since $\phi\circ\vert\,f\,\vert\,\leq\,(\phi\circ\vert\,f\,\vert)^{*}$, we have
+$\left\{\,\phi(\varepsilon) \overset{{\color{white}.}}{\leq} \phi\,\circ\,\vert\,f\,\vert\,\right\}
+\;\subset\;
+\left\{\, \phi(\varepsilon) \overset{{\color{white}.}}{\leq} (\phi\circ\vert\,f\,\vert)^{*}\right\}$,
+which is equivalent to
+\begin{equation*}
+1_{\left\{\,\phi(\varepsilon) \,\overset{{\color{white}.}}{\leq}\, \phi\,\circ\,\vert\,f\,\vert\,\right\}}
+\;\;\leq\;\;
+	1_{\left\{\, \phi(\varepsilon) \,\overset{{\color{white}.}}{\leq}\, (\phi\,\circ\,\vert f \vert)^{*}\,\right\}}\,,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+\left(\;1_{\left\{\,\phi(\varepsilon) \,\overset{{\color{white}.}}{\leq}\, \phi\,\circ\,\vert\,f\,\vert\,\right\}}\;\right)^{*}
+\;\;\leq\;\;
+	1_{\left\{\, \phi(\varepsilon) \,\overset{{\color{white}.}}{\leq}\, (\phi\,\circ\,\vert f \vert)^{*}\,\right\}}
+\end{equation*}
+Combining the above, we have
+\begin{equation*}
+\left(\;1_{\left\{\,\varepsilon \,\overset{{\color{white}.}}{\leq}\, \vert\,f\,\vert\,\right\}}\;\right)^{*}
+\quad\leq\quad
+	\left(\;1_{\left\{\,\phi(\varepsilon) \,\overset{{\color{white}.}}{\leq}\, \phi\,\circ\,\vert\,f\,\vert\,\right\}}\;\right)^{*}
+\quad\leq\quad
+	1_{\left\{\, \phi(\varepsilon) \,\overset{{\color{white}.}}{\leq}\, (\phi\,\circ\,\vert f \vert)^{*}\,\right\}}
+\end{equation*}
+This completes the proof of Claim 2.
 
 \vskip 0.5cm
+\noindent
+We are now ready to establish the validity of the Outer Chebyshev's Inequality:
 \begin{eqnarray*}
 P^{*}\!\left(\,\vert\,\overset{{\color{white}.}}{f}\,\vert\,\geq\,\varepsilon\,\right)
 &=&
@@ -74,11 +123,13 @@ P^{*}\!\left(\,\vert\,\overset{{\color{white}.}}{f}\,\vert\,\geq\,\varepsilon\,\
 	E\!\left[\;\left(\,1_{\{\,\varepsilon\,\leq\,\vert\,\overset{{\color{white}.}}{f}\,\vert\,\}}\,\right)^{*}\;\right]
 \\
 &\leq&
-	E\!\left[\;1_{\left\{\,1\,\leq\,\frac{(\phi\,\circ\vert f \vert)^{*}}{\phi(\varepsilon)}\right\}}\;\right],
+	E\!\left[\;1_{\left\{\,\phi(\varepsilon)\,\overset{{\color{white}.}}{\leq}\,(\phi\,\circ\vert f \vert)^{*}\right\}}\;\right],
 	\quad
 	\textnormal{by Claim 2}
 \\
-&\leq&
+&=&
+	E\!\left[\;1_{\left\{\,1\,\leq\,\frac{(\phi\,\circ\vert f \vert)^{*}}{\phi(\varepsilon)}\right\}}\;\right]
+\;\;\leq\;\;
 	E\!\left[\;
 		1_{\left\{\,1\,\leq\,\frac{(\phi\,\circ\vert f \vert)^{*}}{\phi(\varepsilon)}\right\}}
 		\cdot
