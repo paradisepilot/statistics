@@ -65,6 +65,141 @@ Then, the following statements hold:
 \proof
 \begin{enumerate}
 \item
+	Note that, for each $n \in \N$, we have \,$f_{n}^{*} \,\leq\, f_{n+1}^{*} \,\leq\, f^{*}$,\, $\mu$-almost surely, i.e.
+	\begin{equation*}
+		\mu\!\left(
+		\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f_{n}^{*}(\omega) \,\leq\, f_{n+1}^{*}(\omega) \,\leq\, f^{*}(\omega)
+		\;\right\}
+	\right)
+	\;\; = \;\; 1\,.
+	\end{equation*}
+	Next, recall that $\mu(A_{n}) = 1$, for each $n \in \N$, implies
+	$\mu\!\left(\;\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right) = 1$,
+	because
+	\begin{equation*}
+	\mu\!\left(\left(\;\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right)^{\!\!c}\;\right)
+	\;\; = \quad
+		\mu\!\left(\;\overset{\infty}{\underset{n=1}{\bigcup}}\,A_{n}^{c}\,\right)
+	\quad \leq \quad
+		\overset{\infty}{\underset{n=1}{\sum}}\, \mu\!\left(A_{n}^{c}\right)
+	\quad \leq \quad
+		\overset{\infty}{\underset{n=1}{\sum}}\, \left(1 \overset{{\color{white}.}}{-} \mu\!\left(A_{n}\right)\right)
+	\quad = \quad
+		\overset{\infty}{\underset{n=1}{\sum}}\, \left(\,0\,\right)
+	\quad = \quad
+		0
+	\end{equation*}
+	Hence, we see that
+	\begin{equation*}
+	\mu\!\left(\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f_{n}^{*}(\omega) \,\leq\, f_{n+1}^{*}(\omega) \,\leq\, f^{*}(\omega), \;\forall\;n\in\N
+			\;\right\}\right)
+	\; = \;
+	\mu\!\left(\;
+		\overset{\infty}{\underset{n=1}{\bigcap}}
+		\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f_{n}^{*}(\omega) \,\leq\, f_{n+1}^{*}(\omega) \,\leq\, f^{*}(\omega)
+		\;\right\}
+	\right)
+	\; = \; 1\,,
+	\end{equation*}
+	which implies
+	\begin{equation*}
+	\mu\!\left(\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}(\omega)
+			\,\leq\,
+			\underset{n\rightarrow\infty}{\limsup}\; f_{n}^{*}(\omega)
+			\,\leq\,
+			f^{*}(\omega)
+			\;\right\}\right)
+	\; = \; 1\,.
+	\end{equation*}
+	On the other hand,
+	\begin{equation*}
+	A
+	\;\;\subset\;\;
+		\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f(\omega)
+			\,=\,
+			\underset{n\rightarrow\infty}{\lim}\; f_{n}(\omega)
+			\,=\,
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}(\omega)
+			\,\leq\,
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}(\omega)
+			\;\right\}
+	\;\;\subset\;\;
+		\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f(\omega)
+			\,\leq\,
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}(\omega)
+			\;\right\}
+	\end{equation*}
+	Since, by hypothesis, $\mu(A) = 1$, we see that
+	\,$\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}$\,
+	is thus a measurable majorant of $f$.
+	Hence,
+	\begin{equation*}
+	\mu\!\left(\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f^{*}(\omega)
+			\,\leq\,
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}(\omega)
+			\;\right\}\right)
+	\; = \; 1\,.
+	\end{equation*}
+	We therefore have
+	\begin{eqnarray*}
+	\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\,\;\right\vert\;
+		f^{*}_{n}(\omega) \,\uparrow\, f^{*}(\omega)
+		\;\right\}
+	& \supset &
+		\left\{\;\,
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}
+			\,\leq\,
+			\underset{n\rightarrow\infty}{\limsup}\; f_{n}^{*}
+			\,\leq\,
+			f^{*}
+			\;\right\}
+		\;\bigcap\;
+		\left\{\;
+			f^{*} \,\leq\, \underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}
+			\;\right\},
+	\end{eqnarray*}
+	which implies (since both sets on the right-hand-side have probability $1$ as established above):
+	\begin{equation*}
+	\mu\!\left(\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\,\;\right\vert\;
+		f^{*}_{n}(\omega) \,\uparrow\, f^{*}(\omega)
+		\;\right\}\right)
+	\;\; = \;\; 1\,,
+	\end{equation*}
+	as required.
 \item
 \end{enumerate}
 \qed
