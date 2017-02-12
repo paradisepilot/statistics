@@ -47,20 +47,20 @@ Suppose:
 \item
 	$E^{*}\!\left[\;\overset{{\color{white}.}}{g}\;\right] \,<\, \infty$\,.
 \end{itemize}
-Then, $\underset{n\rightarrow\infty}{\lim}\;E^{*}\!\left[\;f_{n}\;\right]$ \,$=$\, $E^{*}\!\left[\;g\;\right]$
+Then, $\underset{n\rightarrow\infty}{\lim}\;E^{*}\!\left[\;f_{n}\;\right]$ \,$=$\, $E^{*}\!\left[\;f\;\right]$
 \end{theorem}
 \proof
 \vskip 0.3cm
 \noindent
-\textbf{Claim 1:}\quad There exists $B \in \mathcal{A}$, with $\mu(B)=1$, such that\,
+\textbf{Claim 1:}\quad
+There exists $B \in \mathcal{A}$, with $\mu(B)=1$, such that\,
 $B \,\subset\, \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\,\;\right\vert\;\vert\,f(\omega)\,\vert\,\leq\,g(\omega)\;\right\}$.
 \vskip 0.1cm
 \noindent
 Proof of Claim 1:\;\;
-For each $n\in\N$, let $A_{n} := \left\{\;\vert\,f_{n}\,\vert \,\overset{{\color{white}.}}{\leq}\, g\;\right\}$,
-and $A \,:= \overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}$.
+Let \;$A \,:= \overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}$.
 Note that $\mu(A) = 1$.
-Next, for each $n\in\N$, choose
+For each $n\in\N$, choose
 \,$C_{n} \subset \left\{\;\vert\,f_{n} - f\,\vert \,\overset{{\color{white}.}}{\leq}\, \vert\,f_{n} - f\,\vert^{*}\,\right\}$,
 with $\mu(C_{n}) = 1$. Let $C \,:= \overset{\infty}{\underset{n=1}{\bigcap}}\;C_{n}$. Then, $\mu(C) = 1$, and
 \begin{equation*}
@@ -100,7 +100,9 @@ B
 		\vert\,f - f_{n}\,\vert\,+\,\vert\,f_{n}\,\vert
 		\,\leq\,
 		\vert\,f - f_{n}\,\vert\,+\,g,
-		\;\forall\;n\in\N
+		\;\forall\;n\in\N\,,
+		\;\;\textnormal{and}\;\;
+		\underset{n\rightarrow\infty}{\lim}\,\vert\,f_{n} - f\,\vert\,=\,0
 	\;\right\}
 \\
 & \subset &
@@ -123,6 +125,59 @@ This proves Claim 1.
 
 \vskip 0.5cm
 \noindent
+\textbf{Claim 2:}\quad
+$\vert\,f\,\vert^{*} \,\leq\, g^{*}$\; $\mu$-almost surely.
+\vskip 0.1cm
+\noindent
+Proof of Claim 2:\quad
+Immediate by Claim 1.
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}\quad
+$\underset{n\rightarrow\infty}{\lim}\;E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right] \,=\, 0$\,.
+\vskip 0.1cm
+\noindent
+Proof of Claim 3:\quad
+Note that the triangle inequality \;$\vert\,f_{n}-f\,\vert \; \leq \; \vert\,f_{n}\,\vert \,+\, \vert\,f\,\vert$\; implies:
+\begin{equation*}
+\vert\,f_{n}-f\,\vert^{*}
+\; \leq \;
+	\left(\,\vert\,f_{n}\,\vert \,\overset{{\color{white}.}}{+}\, \vert\,f\,\vert\,\right)^{*}
+\; \leq \;
+	\vert\,f_{n}\,\vert^{*} \,\overset{{\color{white}.}}{+}\, \vert\,f\,\vert^{*}
+\; \leq \;
+	g^{*} \,+\, g^{*}
+\; = \;
+	2 \cdot g^{*}
+\end{equation*}
+Since \;$E\!\left[\;g^{*}\,\right] = E^{*}\!\left[\;g\;\right] < \infty$\;
+and
+\;$\mu\!\left(\left\{\;
+	\left.
+	\omega \overset{{\color{white}.}}{\in} \Omega
+	\;\;\right\vert\;
+	\underset{n\rightarrow\infty}{\lim}\,\vert\, f_{n}(\omega) - f(\omega) \,\vert^{*} \,=\, 0
+	\;\right\}\right)
+= 1\,,$\;
+the Lebesgue Dominated Convergence Theorem
+(see Theorem 11.32, p.321, \cite{Rudin1976} or Theorem 22.11, p.172, \cite{Aliprantis1998})
+now implies:
+\begin{equation*}
+\underset{n\rightarrow\infty}{\lim}\;E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right]
+\;\; = \;\;
+	E\!\left[\;\underset{n\rightarrow\infty}{\lim}\,\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right]
+\;\; = \;\;
+	E\!\left[\;\, \overset{{\color{white}.}}{0} \,\;\right]
+\;\; = \;\;
+	0\,.
+\end{equation*}
+This proves Claim 3.
+
+\vskip 0.8cm
+\noindent
+We now return to the proof of the present Theorem.
 By Lemma 6.6(iv), p.90, \cite{Kosorok2008}, we have
 \begin{equation*}
 \vert\,f_{n}^{*} - f^{*}\,\vert
@@ -155,8 +210,14 @@ which is equivalent to
 		E\!\left[\;f_{n}^{*}\,\right] \overset{{\color{white}.}}{-} E\!\left[\;f^{*}\,\right]
 	\;\right\vert
 \;\; \leq \;\;
-	E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right].
+	E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right]
+\;\; \longrightarrow \;\;
+	0\,,
+	\quad
+	\textnormal{by Claim 3}
 \end{equation*}
+It now follows that we indeed have:
+\;$\underset{n\rightarrow\infty}{\lim}\;E^{*}\!\left[\;f_{n}\;\right]$ \,$=$\, $E^{*}\!\left[\;f\;\right]$.\;
 This completes the proof of the present Theorem.
 \qed
 
