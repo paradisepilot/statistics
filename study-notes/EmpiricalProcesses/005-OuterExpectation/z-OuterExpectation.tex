@@ -25,13 +25,13 @@ an arbitrary map from $\Omega$, where $\overline{\Re} := [-\infty,\infty]$ is th
 Let $\mathcal{O}$ denote the Borel $\sigma$-algebra of $\overline{\Re}$.
 \begin{enumerate}
 \item
-	A $(\mathcal{A},\mathcal{O})$-measurable $\overline{\Re}$-valued function
+	An $(\mathcal{A},\mathcal{O})$-measurable $\overline{\Re}$-valued function
 	$g : \Omega\longrightarrow\overline{\Re}$
 	is called a \underline{\textbf{measurable majorant}} of $f$ if there exists a measurable
 	subset $A \in \mathcal{A}$ with $\mu(A) = 1$ such that
 	$A \subset \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\right\vert\; g(\omega) \,\geq\, f(\omega)\;\right\}$.
 \item
-	A $(\mathcal{A},\mathcal{O})$-measurable $\overline{\Re}$-valued function
+	An $(\mathcal{A},\mathcal{O})$-measurable $\overline{\Re}$-valued function
 	$g : \Omega\longrightarrow\overline{\Re}$
 	is called a \underline{\textbf{measurable{\color{white}j}minorant}} of $f$ if there exists a measurable
 	subset $A \in \mathcal{A}$ with $\mu(A) = 1$ such that
@@ -92,7 +92,7 @@ Hence, in Definition \ref{defn:MajorantsOuterExpectation} \eqref{defn:OuterExpec
 the collection of majorants over which the infimum is taken is never the empty set.
 \end{remark}
 
-\begin{theorem}[Existence of minimal measurable majorant]
+\begin{theorem}[Existence and uniqueness of minimal measurable majorant]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -105,115 +105,185 @@ Suppose:
 	is an arbitrary map from $\Omega$ into the extended real numbers
 	$\overline{\Re} := [-\infty,\infty]$.
 \end{itemize}
-Then, there exists a measurable majorant $f^{*} : \Omega \longrightarrow \overline{\Re}$ of $f$ such that
-\begin{equation*}
-\mu\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\; f^{*}(\omega) \,\leq\, g(\omega)\;\right\}\,\right)
-\;=\;1\,,\;\;
-\textnormal{for every measurable majorant $g$ of $f$}.
-\end{equation*}
-\end{theorem}
-\proof
-Define
-\begin{equation*}
-\mathcal{M}(f)
-\;\; := \;\;
-	\left\{\;
-		h : \Omega \longrightarrow \overline{\Re}
-	\;\,\left\vert
-		\begin{array}{c}
-		\textnormal{$h$ is a measurable majorant of $\arctan(f)$, and}
-		\\
-		-\frac{\pi}{2} \leq h \leq \frac{\pi}{2} \;\, \mu\textnormal{-almost everywhere}
-		\end{array}
-	\right.
-	\;\right\}
-\end{equation*}
-
-\vskip 0.3cm
-\noindent
-\textbf{Claim 1:}\quad
+Then, the following statements hold:
 \begin{enumerate}
 \item
-	$\mathcal{M}(f)$ is closed under taking countable infimum.
-	More precisely, suppose $h_{n} \in \mathcal{M}(f)$, $n \in \N$.
-	Then,
+	If $f^{*}_{1}$ and $f^{*}_{2}$ are two minimal measurable majorants of $f$, then
 	\begin{equation*}
-	\widetilde{h} \;\; := \; \underset{n\in\N}{\inf}\; h_{n} \;\in\; \mathcal{M}(f).
+	\mu\!\left(\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\;\,\right\vert\;
+		f^{*}_{1}(\omega) \, = \, f^{*}_{2}(\omega) 
+		\;\right\}\right)
+	\;\; = \;\; 1\,.
 	\end{equation*}
 \item
-	$\mathcal{M}(f)$ is closed under taking finite infimum.
-	More precisely, suppose $h_{1}, h_{2}, \ldots, h_{n} \in \mathcal{M}(f)$.
-	Then,
+	$f$ admits a minimal measurable majorant,
+	i.e. there exists a measurable majorant $f^{*} : \Omega \longrightarrow \overline{\Re}$ of $f$ such that
 	\begin{equation*}
-	\widetilde{h}_{n} \;\; := \; \min\!\left\{\;h_{1},h_{2},\ldots,h_{n}\;\right\} \;\in\; \mathcal{M}(f).
+	\mu\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\; f^{*}(\omega) \,\leq\, g(\omega)\;\right\}\,\right)
+	\;=\;1\,,\;\;
+	\textnormal{for every measurable majorant $g$ of $f$}.
 	\end{equation*}
 \end{enumerate}
-\vskip 0.1cm
-\noindent
-Proof of Claim 1:
+\end{theorem}
+\proof
 \begin{enumerate}
 \item
-	Since \,$\widetilde{h}$\, is the infimum of a sequence of measurable functions,
-	\,$\widetilde{h}$\, is itself measurable (see, for example, Theorem 11.7, p.311, \cite{Rudin1976}).
-	Next, note that
-	\begin{eqnarray*}
-	h_{n} \in \mathcal{M}(f)\,,\;\; \forall\;\, n \in \N
-	&\Longrightarrow&
-		-\dfrac{\pi}{2} \;\;\leq\;\; h_{n} \;\;\leq\;\; \dfrac{\pi}{2} \;\;\; \mu\textnormal{-almost everywhere}\,,\;\;
-		\forall\;\, n \in \N
-	\\
-	&\Longrightarrow&
-		-\dfrac{\pi}{2} \;\;\leq\;\; \widetilde{h} \,:=\, \underset{n\in\N}{\inf}\;h_{n} \;\;\leq\;\; \dfrac{\pi}{2}
-		\;\;\; \mu\textnormal{-almost everywhere}
-	\end{eqnarray*}
-	For each $n \in \N$, since $h_{n}$ is a measurable majorant of $\arctan(f)$,
-	there exists $A_{n} \in \mathcal{A}$ with $\mu(A_{n}) = 1$
-	such that $A_{n} \subset \left\{\, \arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{n} \,\right\}$.
-	Note that $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right) = 1$.
-	Indeed,
+	Since $f^{*}_{1}$ and $f^{*}_{2}$ are both minimal measurable majorants of $f$,
+	we have
 	\begin{equation*}
-	\mu\!\left(\,\left(\;\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right)^{c}\;\right)
+	\mu\!\left(\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\;\,\right\vert\;
+		f^{*}_{1}(\omega) \, \leq \, f^{*}_{2}(\omega) 
+		\;\right\}\right)
 	\;\; = \;\;
-		\mu\!\left(\;\overset{\infty}{\underset{n=1}{\bigcup}}\,A_{n}^{c}\;\right)
-	\;\; \leq \;\;
-		\overset{\infty}{\underset{n=1}{\sum}}\;\mu\!\left(A_{n}^{c}\,\right)
-	\;\; = \;\;
-		\overset{\infty}{\underset{n=1}{\sum}}\,\left(1 \overset{{\color{white}.}}{-} \mu\!\left(A_{n}\,\right)\right)
-	\;\; = \;\;
-		\overset{\infty}{\underset{n=1}{\sum}}\;0
-	\;\; = \;\;
-		0\,,
+	\mu\!\left(\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\;\,\right\vert\;
+		f^{*}_{1}(\omega) \, \geq \, f^{*}_{2}(\omega) 
+		\;\right\}\right)
+	\;\; = \;\; 1\,.
 	\end{equation*}
-	which shows that we indeed have $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right) = 1$.
-	On the other hand,
+	Now, recall that \,$\mu(A_{1}) = \mu(A_{2}) = 1$\, imply \,$\mu(A_{1} \cap A_{2}) = 1$, because:
 	\begin{equation*}
-	\left\{\;\arctan(f) \,\leq\, \widetilde{h}\;\right\}
-	\;\; = \;\;
-		\bigcap_{n=1}^{\infty}\,\left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{n}\;\right\}
-	\;\; \supset \;\;
-		\bigcap_{n=1}^{\infty}\,A_{n}
+	1 \;\geq\; \mu(A_{1} \cap A_{2})
+	\;=\; \mu(A_{1}) + \mu(A_{2}) - \mu(A_{1} \cup A_{2})
+	\;\geq\; \mu(A_{1}) + \mu(A_{2}) - 1
+	\;=\; 1 + 1 - 1 \;=\; 1\,.
 	\end{equation*}
-	This proves that \,$\widetilde{h}$\, is a measurable majorant of $\arctan(f)$;
-	hence, \,$\widetilde{h} \in \mathcal{M}(f)$,\, as required.
+	Hence,
+	\begin{equation*}
+	\mu\!\left(\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\;\,\right\vert\;
+		f^{*}_{1}(\omega) \, = \, f^{*}_{2}(\omega) 
+		\;\right\}\right)
+	\; = \;
+	\mu\!\left(
+		\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\;\,\right\vert\;
+		f^{*}_{1}(\omega) \, \leq \, f^{*}_{2}(\omega) 
+		\;\right\}
+	\;\bigcap\;
+		\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\;\,\right\vert\;
+		f^{*}_{1}(\omega) \, \geq \, f^{*}_{2}(\omega) 
+		\;\right\}
+	\right)
+	\; = \; 1\,.
+	\end{equation*}
 \item
-	This follows readily from Claim 1(i).
-	Indeed, let $h_{1}, h_{2}, \ldots, h_{n} \in \mathcal{M}(f)$.
-	We need to show that
-	\,$\widetilde{h}_{n} \,:=\, \min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\} \,\in\, \mathcal{M}(f)$.\,
-	To this end, let $g_{i} := h_{i}$, for $i = 1,2,\ldots,n$. Let $g_{i} \equiv \dfrac{\pi}{2}$, for $i \geq n+1$.
-	Then, $g_{i} \in \mathcal{M}(f)$, for each $i \in \N$.
-	But then
+	Define
 	\begin{equation*}
-	\widetilde{h}_{n}
+	\mathcal{M}(f)
 	\;\; := \;\;
-		\min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\}
-	\;\; = \;\;
-		\underset{i\in\N}{\inf}\;\, g_{i}
-	\;\; \in \;\;
-		\mathcal{M}(f)\,,
-		\quad
-		\textnormal{by part (i)}.
+		\left\{\;
+			h : \Omega \longrightarrow \overline{\Re}
+		\;\,\left\vert
+			\begin{array}{c}
+			\textnormal{$h$ is a measurable majorant of $\arctan(f)$, and}
+			\\
+			-\frac{\pi}{2} \leq h \leq \frac{\pi}{2} \;\, \mu\textnormal{-almost everywhere}
+			\end{array}
+		\right.
+		\;\right\}
 	\end{equation*}
+
+	\vskip 0.3cm
+	\noindent
+	\textbf{Claim 1:}\quad
+	\begin{enumerate}
+	\item
+		$\mathcal{M}(f)$ is closed under taking countable infimum.
+		More precisely, suppose $h_{n} \in \mathcal{M}(f)$, $n \in \N$.
+		Then,
+		\begin{equation*}
+		\widetilde{h} \;\; := \; \underset{n\in\N}{\inf}\; h_{n} \;\in\; \mathcal{M}(f).
+		\end{equation*}
+	\item
+		$\mathcal{M}(f)$ is closed under taking finite infimum.
+		More precisely, suppose $h_{1}, h_{2}, \ldots, h_{n} \in \mathcal{M}(f)$.
+		Then,
+		\begin{equation*}
+		\widetilde{h}_{n} \;\; := \; \min\!\left\{\;h_{1},h_{2},\ldots,h_{n}\;\right\} \;\in\; \mathcal{M}(f).
+		\end{equation*}
+	\end{enumerate}
+	\vskip 0.1cm
+	\noindent
+	Proof of Claim 1:
+	\begin{enumerate}
+	\item
+		Since \,$\widetilde{h}$\, is the infimum of a sequence of measurable functions,
+		\,$\widetilde{h}$\, is itself measurable (see, for example, Theorem 11.7, p.311, \cite{Rudin1976}).
+		Next, note that
+		\begin{eqnarray*}
+		h_{n} \in \mathcal{M}(f)\,,\;\; \forall\;\, n \in \N
+		&\Longrightarrow&
+			-\dfrac{\pi}{2} \;\;\leq\;\; h_{n} \;\;\leq\;\; \dfrac{\pi}{2} \;\;\; \mu\textnormal{-almost everywhere}\,,\;\;
+			\forall\;\, n \in \N
+		\\
+		&\Longrightarrow&
+			-\dfrac{\pi}{2} \;\;\leq\;\; \widetilde{h} \,:=\, \underset{n\in\N}{\inf}\;h_{n} \;\;\leq\;\; \dfrac{\pi}{2}
+			\;\;\; \mu\textnormal{-almost everywhere}
+		\end{eqnarray*}
+		For each $n \in \N$, since $h_{n}$ is a measurable majorant of $\arctan(f)$,
+		there exists $A_{n} \in \mathcal{A}$ with $\mu(A_{n}) = 1$
+		such that $A_{n} \subset \left\{\, \arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{n} \,\right\}$.
+		Note that $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right) = 1$.
+		Indeed,
+		\begin{equation*}
+		\mu\!\left(\,\left(\;\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right)^{c}\;\right)
+		\;\; = \;\;
+			\mu\!\left(\;\overset{\infty}{\underset{n=1}{\bigcup}}\,A_{n}^{c}\;\right)
+		\;\; \leq \;\;
+			\overset{\infty}{\underset{n=1}{\sum}}\;\mu\!\left(A_{n}^{c}\,\right)
+		\;\; = \;\;
+			\overset{\infty}{\underset{n=1}{\sum}}\,\left(1 \overset{{\color{white}.}}{-} \mu\!\left(A_{n}\,\right)\right)
+		\;\; = \;\;
+			\overset{\infty}{\underset{n=1}{\sum}}\;0
+		\;\; = \;\;
+			0\,,
+		\end{equation*}
+		which shows that we indeed have $\mu\!\left(\,\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right) = 1$.
+		On the other hand,
+		\begin{equation*}
+		\left\{\;\arctan(f) \,\leq\, \widetilde{h}\;\right\}
+		\;\; = \;\;
+			\bigcap_{n=1}^{\infty}\,\left\{\;\arctan(f) \,\overset{{\color{white}.}}{\leq}\, h_{n}\;\right\}
+		\;\; \supset \;\;
+			\bigcap_{n=1}^{\infty}\,A_{n}
+		\end{equation*}
+		This proves that \,$\widetilde{h}$\, is a measurable majorant of $\arctan(f)$;
+		hence, \,$\widetilde{h} \in \mathcal{M}(f)$,\, as required.
+	\item
+		This follows readily from Claim 1(i).
+		Indeed, let $h_{1}, h_{2}, \ldots, h_{n} \in \mathcal{M}(f)$.
+		We need to show that
+		\,$\widetilde{h}_{n} \,:=\, \min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\} \,\in\, \mathcal{M}(f)$.\,
+		To this end, let $g_{i} := h_{i}$, for $i = 1,2,\ldots,n$. Let $g_{i} \equiv \dfrac{\pi}{2}$, for $i \geq n+1$.
+		Then, $g_{i} \in \mathcal{M}(f)$, for each $i \in \N$.
+		But then
+		\begin{equation*}
+		\widetilde{h}_{n}
+		\;\; := \;\;
+			\min\!\left\{\,h_{1},h_{2},\ldots,h_{n}\,\right\}
+		\;\; = \;\;
+			\underset{i\in\N}{\inf}\;\, g_{i}
+		\;\; \in \;\;
+			\mathcal{M}(f)\,,
+			\quad
+			\textnormal{by part (i)}.
+		\end{equation*}
 \end{enumerate}
 This completes the proof of Claim 1.
 
@@ -349,8 +419,9 @@ $\mu$-almost everywhere;
 equivalently, $h \leq \arctan(g)$, $\mu$-almost everywhere.
 This in turn implies that
 $f^{*} \,:=\, \tan(h) \,\leq\, \tan\!\left(\arctan(g)\right) \,=\, g$, $\mu$-almost everywhere.
-This proves Claim 3 and completes the proof of the Theorem.
-\qed
+This proves Claim 3 and completes the proof of the Theorem. \qed
+\end{enumerate}
+
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
