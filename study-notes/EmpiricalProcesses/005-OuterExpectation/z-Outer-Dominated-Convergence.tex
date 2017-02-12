@@ -24,45 +24,139 @@ Suppose:
 	$(\Omega,\mathcal{A},\mu)$ is a probability space.
 	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\overline{\Re}$.
 \item
-	$f, f_{1}, f_{2}, \ldots : \Omega \longrightarrow \Re$ are (not necessarily measurable)
+	$g, f, f_{1}, f_{2}, \ldots : \Omega \longrightarrow \Re$ are (not necessarily measurable)
 	maps from $\Omega$ into the real numbers.
 \item
-	There exists $A \in \mathcal{A}$
-	satisfying:
-	\begin{equation*}
-	\mu(A) \;=\; 1
-	\quad\textnormal{and}\quad
-	A \;\subset\;\left\{\;
-		\omega \overset{{\color{white}.}}{\in} \Omega
-		\,\;\left\vert\;
-		\begin{array}{c}
-			f_{n}(\omega) \leq f_{n+1}(\omega),\;\forall\;n\in\N
-			\\
-			\underset{n\rightarrow\infty}{\lim}\,f_{n}(\omega) \,\overset{{\color{white}+}}{=}\, f(\omega)
-		\end{array}
-		\right.
-		\;\right\}
-	\end{equation*}
-\end{itemize}
-Then, the following statements hold:
-\begin{enumerate}
-\item
 	$\mu\!\left(\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\;\;\right\vert\;
+		\underset{n\rightarrow\infty}{\lim}\,\vert\, f_{n}(\omega) - f(\omega) \,\vert^{*} \,=\, 0
+	\;\right\}\right)
+	\; = \; 1\,.$
+\item
+	For each $n \in \N$, there exists $A_{n} \in \mathcal{A}$, with $\mu(A_{n}) = 1$, such that\;
+	$A_{n}
+	\,\subset\,
+		\left\{\;
 			\left.
 			\omega \overset{{\color{white}.}}{\in} \Omega
-			\,\;\right\vert\;
-			f^{*}_{n}(\omega) \,\uparrow\, f^{*}(\omega)
-			\;\right\}\right)
-	\; = \; 1$.
+			\;\;\right\vert\;
+			\vert\,f_{n}(\omega)\,\vert \,\leq\, g(\omega)
+		\;\right\}$.
 \item
-	If furthermore there exists $c \in \Re$ such that $c \leq f_{1}(\omega)$, for each $\omega \in A$, then
-	\begin{equation*}
-	\underset{n\rightarrow\infty}{\lim}\,E^{*}\!\left[\;f_{n}\;\right]
-	\;\; = \;\; E^{*}\!\left[\;f\;\right]
-	\end{equation*}
-\end{enumerate}
+	$E^{*}\!\left[\;\overset{{\color{white}.}}{g}\;\right] \,<\, \infty$\,.
+\end{itemize}
+Then, $\underset{n\rightarrow\infty}{\lim}\;E^{*}\!\left[\;f_{n}\;\right]$ \,$=$\, $E^{*}\!\left[\;g\;\right]$
 \end{theorem}
 \proof
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\quad There exists $B \in \mathcal{A}$, with $\mu(B)=1$, such that\,
+$B \,\subset\, \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\,\;\right\vert\;\vert\,f(\omega)\,\vert\,\leq\,g(\omega)\;\right\}$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\;\;
+For each $n\in\N$, let $A_{n} := \left\{\;\vert\,f_{n}\,\vert \,\overset{{\color{white}.}}{\leq}\, g\;\right\}$,
+and $A \,:= \overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}$.
+Note that $\mu(A) = 1$.
+Next, for each $n\in\N$, choose
+\,$C_{n} \subset \left\{\;\vert\,f_{n} - f\,\vert \,\overset{{\color{white}.}}{\leq}\, \vert\,f_{n} - f\,\vert^{*}\,\right\}$,
+with $\mu(C_{n}) = 1$. Let $C \,:= \overset{\infty}{\underset{n=1}{\bigcap}}\;C_{n}$. Then, $\mu(C) = 1$, and
+\begin{equation*}
+C \;\;\subset\;\;
+	\left\{\;
+	\omega \in \Omega
+	\;\,\left\vert\;
+	\vert\,f_{n}(\omega) - f(\omega)\,\vert \,\overset{{\color{white}.}}{\leq}\, \vert\,f_{n}(\omega) - f(\omega)\,\vert^{*},
+	\right.
+	\;\forall\;n\in\N
+	\,\right\}
+\end{equation*}
+Let \,$D \,:= \left\{\;\underset{n\rightarrow\infty}{\lim}\,\vert\,f_{n} - f\,\vert^{*}\,=\,0\;\right\}$.
+Then, $\mu(D) = 1$, by hypothesis.
+Now, let $B := A \cap C \cap D$. Then, $\mu(B) = 1$ and 
+\begin{eqnarray*}
+B
+&:=&
+	A \cap C \cap D
+\\
+& \subset &
+	\left\{\;\vert\,f_{n}\,\vert \,\overset{{\color{white}.}}{\leq}\, g,\;\forall\;n\in\N\;\right\}
+	\;\bigcap\;
+	\left\{\;\vert\,f_{n} - f\,\vert \,\overset{{\color{white}.}}{\leq}\, \vert\,f_{n} - f\,\vert^{*},\;\forall\;n\in\N\;\right\}
+	\;\bigcap\;
+	\left\{\;\underset{n\rightarrow\infty}{\lim}\,\vert\,f_{n} - f\,\vert^{*}\,=\,0\;\right\}
+\\
+& \subset &
+	\left\{\;\vert\,f_{n}\,\vert \,\overset{{\color{white}.}}{\leq}\, g,\;\forall\;n\in\N\;\right\}
+	\;\bigcap\;
+	\left\{\;\underset{n\rightarrow\infty}{\lim}\,\vert\,f_{n} - f\,\vert\,=\,0\;\right\}
+\\
+& \subset &
+	\left\{\;
+		\vert\,f\,\vert
+		\,\overset{{\color{white}+}}{=}\,
+		\vert\,f - f_{n}\,\vert\,+\,\vert\,f_{n}\,\vert
+		\,\leq\,
+		\vert\,f - f_{n}\,\vert\,+\,g,
+		\;\forall\;n\in\N
+	\;\right\}
+\\
+& \subset &
+	\left\{\;
+		\vert\,f\,\vert
+		\,\overset{{\color{white}+}}{\leq}\,
+		\vert\,f - f_{n}\,\vert\,+\,g
+		\;\longrightarrow\;
+		g
+	\;\right\}
+\\
+& \subset &
+	\left\{\;
+		\vert\,f\,\vert
+		\,\overset{{\color{white}+}}{\leq}\,
+		g
+	\;\right\}
+\end{eqnarray*}
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+By Lemma 6.6(iv), p.90, \cite{Kosorok2008}, we have
+\begin{equation*}
+\vert\,f_{n}^{*} - f^{*}\,\vert
+\;\; \leq \;\;
+	\vert\,f_{n} - f\,\vert^{*}\,,
+\end{equation*}
+which is equivalent to
+\begin{equation*}
+-\,\vert\,f_{n} - f\,\vert^{*}
+\;\; \leq \;\;
+	f_{n}^{*} - f^{*}
+\;\; \leq \;\;
+	\vert\,f_{n} - f\,\vert^{*}
+\end{equation*}
+This implies:
+\begin{equation*}
+-\,E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right]
+\;\; \leq \;\;
+	E\!\left[\;f_{n}^{*}\,\right] \overset{{\color{white}.}}{-} E\!\left[\;f^{*}\,\right]
+\;\; = \;\;
+	E\!\left[\;f_{n}^{*} \overset{{\color{white}.}}{-} f^{*}\,\right]
+\;\; \leq \;\;
+	E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right],
+\end{equation*}
+which is equivalent to
+\begin{equation*}
+0
+\;\; \leq \;\;
+	\left\vert\;
+		E\!\left[\;f_{n}^{*}\,\right] \overset{{\color{white}.}}{-} E\!\left[\;f^{*}\,\right]
+	\;\right\vert
+\;\; \leq \;\;
+	E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right].
+\end{equation*}
 This completes the proof of the present Theorem.
 \qed
 
