@@ -1,0 +1,228 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Outer Monotone Convergence Theorem}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Outer Monotone Convergence Theorem, Lemma 6.11, p.92, \cite{Kosorok2008}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\overline{\Re}$.
+\item
+	$f, f_{1}, f_{2}, \ldots : \Omega \longrightarrow \Re$ are (not necessarily measurable)
+	maps from $\Omega$ into the real numbers.
+\item
+	There exists $A \in \mathcal{A}$
+	satisfying:
+	\begin{equation*}
+	\mu(A) \;=\; 1
+	\quad\textnormal{and}\quad
+	A \;\subset\;\left\{\;
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\,\;\left\vert\;
+		\begin{array}{c}
+			f_{n}(\omega) \leq f_{n+1}(\omega),\;\forall\;n\in\N
+			\\
+			\underset{n\rightarrow\infty}{\lim}\,f_{n}(\omega) \,\overset{{\color{white}+}}{=}\, f(\omega)
+		\end{array}
+		\right.
+		\;\right\}
+	\end{equation*}
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	$\mu\!\left(\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f^{*}_{n}(\omega) \,\uparrow\, f^{*}(\omega)
+			\;\right\}\right)
+	\; = \; 1$.
+\item
+	If furthermore there exists $c \in \Re$ such that $c \leq f_{1}(\omega)$, for each $\omega \in A$, then
+	\begin{equation*}
+	\underset{n\rightarrow\infty}{\lim}\,E^{*}\!\left[\;f_{n}\;\right]
+	\;\; = \;\; E^{*}\!\left[\;f\;\right]
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	Note that, for each $n \in \N$, we have \,$f_{n}^{*} \,\leq\, f_{n+1}^{*} \,\leq\, f^{*}$,\, $\mu$-almost surely, i.e.
+	\begin{equation*}
+		\mu\!\left(
+		\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f_{n}^{*}(\omega) \,\leq\, f_{n+1}^{*}(\omega) \,\leq\, f^{*}(\omega)
+		\;\right\}
+	\right)
+	\;\; = \;\; 1\,.
+	\end{equation*}
+	Next, recall that $\mu(A_{n}) = 1$, for each $n \in \N$, implies
+	$\mu\!\left(\;\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right) = 1$,
+	because
+	\begin{equation*}
+	\mu\!\left(\left(\;\overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}\,\right)^{\!\!c}\;\right)
+	\;\; = \quad
+		\mu\!\left(\;\overset{\infty}{\underset{n=1}{\bigcup}}\,A_{n}^{c}\,\right)
+	\quad \leq \quad
+		\overset{\infty}{\underset{n=1}{\sum}}\, \mu\!\left(A_{n}^{c}\right)
+	\quad \leq \quad
+		\overset{\infty}{\underset{n=1}{\sum}}\, \left(1 \overset{{\color{white}.}}{-} \mu\!\left(A_{n}\right)\right)
+	\quad = \quad
+		\overset{\infty}{\underset{n=1}{\sum}}\, \left(\,0\,\right)
+	\quad = \quad
+		0
+	\end{equation*}
+	Hence, we see that
+	\begin{equation*}
+	\mu\!\left(\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f_{n}^{*}(\omega) \,\leq\, f_{n+1}^{*}(\omega) \,\leq\, f^{*}(\omega), \;\forall\;n\in\N
+			\;\right\}\right)
+	\; = \;
+	\mu\!\left(\;
+		\overset{\infty}{\underset{n=1}{\bigcap}}
+		\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f_{n}^{*}(\omega) \,\leq\, f_{n+1}^{*}(\omega) \,\leq\, f^{*}(\omega)
+		\;\right\}
+	\right)
+	\; = \; 1\,,
+	\end{equation*}
+	which implies
+	\begin{equation*}
+	\mu\!\left(\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}(\omega)
+			\,\leq\,
+			\underset{n\rightarrow\infty}{\limsup}\; f_{n}^{*}(\omega)
+			\,\leq\,
+			f^{*}(\omega)
+			\;\right\}\right)
+	\; = \; 1\,.
+	\end{equation*}
+	On the other hand,
+	\begin{equation*}
+	A
+	\;\;\subset\;\;
+		\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f(\omega)
+			\,=\,
+			\underset{n\rightarrow\infty}{\lim}\; f_{n}(\omega)
+			\,=\,
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}(\omega)
+			\,\leq\,
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}(\omega)
+			\;\right\}
+	\;\;\subset\;\;
+		\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f(\omega)
+			\,\leq\,
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}(\omega)
+			\;\right\}
+	\end{equation*}
+	Since, by hypothesis, $\mu(A) = 1$, we see that
+	\,$\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}$\,
+	is thus a measurable majorant of $f$.
+	Hence,
+	\begin{equation*}
+	\mu\!\left(\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\,\;\right\vert\;
+			f^{*}(\omega)
+			\,\leq\,
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}(\omega)
+			\;\right\}\right)
+	\; = \; 1\,.
+	\end{equation*}
+	We therefore have
+	\begin{eqnarray*}
+	\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\,\;\right\vert\;
+		f^{*}_{n}(\omega) \,\uparrow\, f^{*}(\omega)
+		\;\right\}
+	& \supset &
+		\left\{\;\,
+			\underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}
+			\,\leq\,
+			\underset{n\rightarrow\infty}{\limsup}\; f_{n}^{*}
+			\,\leq\,
+			f^{*}
+			\;\right\}
+		\;\bigcap\;
+		\left\{\;
+			f^{*} \,\leq\, \underset{n\rightarrow\infty}{\liminf}\; f_{n}^{*}
+			\;\right\},
+	\end{eqnarray*}
+	which implies (since both sets on the right-hand-side have probability $1$ as established above):
+	\begin{equation*}
+	\mu\!\left(\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\,\;\right\vert\;
+		f^{*}_{n}(\omega) \,\uparrow\, f^{*}(\omega)
+		\;\right\}\right)
+	\;\; = \;\; 1\,,
+	\end{equation*}
+	as required.
+\item
+	First, note that \,$c \,\leq\, f_{1}^{*}$,\, $\mu$-almost surely.
+	Hence,
+	we have
+	\begin{equation*}
+	E^{*}\!\left[\;f_{n}\;\right]
+	\;\; = \;\;
+		E\!\left[\;f_{n}^{*}\;\right]
+	\;\; \uparrow \;\;
+		E\!\left[\;f^{*}\;\right]
+	\;\; = \;\;
+		E^{*}\!\left[\;f\;\right].
+	\end{equation*}
+	where the convergence follows from Lebesgue's Monotone Convergence Theorem (Theorem 11.28, p.318, \cite{Rudin1976}).
+\end{enumerate}
+This completes the proof of the present Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

@@ -1,0 +1,224 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Empirical Processes}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Empirical measure]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$(\D,\mathcal{D})$\, is a measurable space.
+	$\mathcal{M}(\D,\mathcal{D})$ is the set of all measures defined on $(\D,\mathcal{D})$.
+\item
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\D,\mathcal{D})$
+	is a $(\D,\mathcal{D})$-valued random variable defined on
+	$(\Omega,\mathcal{A},\mu)$.
+	%$P_{X} \in \mathcal{M}(\D,\mathcal{D})$ is the probability measure
+	%on $(\D,\mathcal{D})$ induced by $X$.
+\end{itemize}
+For each $n\in\N$, the
+\,\underline{\textbf{$n^{\textnormal{th}}$ empirical measure $\Delta(X,n)$ of $X$}}\,
+is the $\mathcal{M}(\D,\mathcal{D})$-valued map defined on $\Omega$
+\begin{equation*}
+\Delta(X,n) \; : \; \Omega \;\longrightarrow\; \mathcal{M}(\D,\mathcal{D})
+\end{equation*}
+given by:
+\begin{equation*}
+\Delta(X,n)(\omega)(C)
+\;\; := \;\;
+	\dfrac{1}{n} \cdot
+	\#\left\{\;
+	\left.
+		i \overset{{\color{white}.}}{\in} \{1,2,\ldots,n\}
+	\;\,\right\vert\,
+		X_{i}(\omega) \in C
+	\;\right\},
+	\quad
+	\textnormal{for each \,$\omega\in\Omega$, $C \in \mathcal{D}$},
+\end{equation*}
+where $X_{1}, X_{2}, \ldots, X_{n}$ are independent and identically distributed (I.I.D.) copies of $X$.
+\end{definition}
+
+\begin{definition}[Empirical process]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$(\D,\mathcal{D})$\, is a measurable space.
+	$\mathcal{M}(\D,\mathcal{D})$ is the set of all measures defined on $(\D,\mathcal{D})$.
+\item
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\D,\mathcal{D})$
+	is a $(\D,\mathcal{D})$-valued random variable defined on
+	$(\Omega,\mathcal{A},\mu)$.
+\item
+	$P_{X} \in \mathcal{M}(\D,\mathcal{D})$ is the probability measure
+	on $(\D,\mathcal{D})$ induced by $X$.
+\item
+	$\mathcal{O}$ is the Borel $\sigma$-algebra of \,$\Re$.
+	$\mathcal{F}$ is a collection of $(\mathcal{D},\mathcal{O})$-measurable $\Re$-valued functions
+	defined on $\D$.
+\end{itemize}
+For each $n\in\N$, the
+\,\underline{\textbf{$n^{\textnormal{th}}$ $\mathcal{F}$-indexed empirical process
+	$\E(X,\mathcal{F},n)$ $=$
+	$\left\{\,\overset{{\color{white}.}}{\E}(X,\mathcal{F},n)_{f}\,\right\}_{f\in\mathcal{F}}$ of $X$}}\,
+is the stochastic process given by
+\begin{equation*}
+\E(X,\mathcal{F},n)_{f}
+\; : \; (\Omega,\mathcal{A},\mu) \;\longrightarrow\; (\Re,\mathcal{O})
+\; : \; \omega \;\longmapsto\;
+	\sqrt{n}\cdot
+	\left(\,\Delta(X,n)(\omega) \,\overset{{\color{white}.}}{-}\, P_{X}\,\right)[\,f\,]\,,
+\end{equation*}
+where $X_{1}, X_{2}, \ldots, X_{n}$ are independent and identically distributed (I.I.D.) copies of $X$,
+and
+\begin{eqnarray*}
+\Delta(X,n)(\omega)\left[\,f\,\right]
+&:=&
+	\int_{\D}\, f \;\d\,\Delta(X,n)(\omega)
+\;\; = \;\;
+	\dfrac{1}{n}\cdot
+	\overset{n}{\underset{i=1}{\sum}}\,(f \circ X_{i})(\omega) 
+\\
+P_{X}\!\left[\,f\,\right]
+& := &
+	\int_{\D}\,f\,\d P_{X}
+\;\; = \;\;
+	\int_{\Omega}\,f \circ X \;\d\mu
+\;\; = \;\;
+	E\!\left[\,f \circ X\,\right]
+\end{eqnarray*}
+\end{definition}
+
+\begin{remark}\mbox{}
+\vskip 0.1cm
+\noindent
+Note that \,$\Delta(X,n)$ can naturally be regarded as a map
+\begin{equation*}
+\Delta(X,n) \; : \; (\Omega,\mathcal{A},\mu) \;\longrightarrow\; l^{\infty}(\mathcal{F})
+\; : \; \omega \;\longmapsto\;
+	\left[\;\,
+	f
+	\,\overset{{\color{white}+}}{\longmapsto}\,
+		\Delta(X,n)(\omega)[\,f\,]
+		\;=\; \dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(f \circ X_{i})(\omega)
+	\,\;\right]
+\end{equation*}
+Similarly, \,$\E(X,\mathcal{F},n)$ can be regarded as a map
+\begin{equation*}
+\E(X,\mathcal{F},n) \; : \; (\Omega,\mathcal{A},\mu) \;\longrightarrow\; l^{\infty}(\mathcal{F})
+\; : \; \omega \;\longmapsto\; \left[\;\, f \,\overset{{\color{white}+}}{\longmapsto}\, E(X,\mathcal{F},n)_{f}(\omega) \,\;\right]
+\end{equation*}
+Note also:
+\begin{equation*}
+\E(X,\mathcal{F},n)(\omega)[\,f\,]
+\;\; = \;\;
+	 \dfrac{1}{\sqrt{n}}
+	 \cdot
+	 \overset{n}{\underset{i=1}{\sum}}\left(\,f(X_{i}(\omega)) \,\overset{{\color{white}.}}{-}\, E[\,f \circ X\,]\,\right)
+\end{equation*}
+\end{remark}
+
+\begin{definition}[$X$-Glivenko-Cantelli class and $X$-Donsker class]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$(\D,\mathcal{D})$\, is a measurable space.
+	$\mathcal{M}(\D,\mathcal{D})$ is the set of all measures defined on $(\D,\mathcal{D})$.
+\item
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\D,\mathcal{D})$
+	is a $(\D,\mathcal{D})$-valued random variable defined on
+	$(\Omega,\mathcal{A},\mu)$.
+\item
+	$P_{X} \in \mathcal{M}(\D,\mathcal{D})$ is the probability measure
+	on $(\D,\mathcal{D})$ induced by $X$.
+\item
+	$\mathcal{O}$ is the Borel $\sigma$-algebra of \,$\Re$.
+	$\mathcal{F}$ is a collection of $(\mathcal{D},\mathcal{O})$-measurable $\Re$-valued functions
+	defined on $\D$.
+\end{itemize}
+The collection $\mathcal{F}$ is called
+\begin{enumerate}
+\item
+	an \,\underline{\textbf{$X$-Glivenko-Cantelli{\color{white}j}class}}\, if
+	\begin{equation*}
+	\left\Vert\;\Delta(X,n) \,\overset{{\color{white}.}}{-}\, P_{X}\;\right\Vert_{\mathcal{F}}
+	\;\;\overset{\textnormal{as*}}{\longrightarrow}\;\;0\,,
+	\end{equation*}
+	or more precisely,
+	\begin{equation*}
+	P\!\left(\;
+		\underset{n\rightarrow\infty}{\lim}
+		\;\left\Vert\;\Delta(X,n) \,\overset{{\color{white}.}}{-}\, P_{X}\;\right\Vert_{\mathcal{F}}^{*}
+		\,=\, 0
+	\;\right)
+	\;\; = \;\;
+	\mu\!\left(\,\left\{\;
+		\omega\in\Omega
+	\;\left\vert\;\,
+		\underset{n\rightarrow\infty}{\lim}
+		\left(\;\Vert\;\Delta(X,n) \,\overset{{\color{white}.}}{-}\, P_{X}\;\Vert_{\mathcal{F}}\,\right)^{*}(\omega)
+		\,=\, 0
+		\right.
+	\;\right\}\,\right)
+	\;\; = \;\; 1\,,
+	\end{equation*}
+	where \,$\Vert\;\Delta(X,n) \,-\, P_{X}\;\Vert_{\mathcal{F}} : \Omega \longrightarrow \Re$\,
+	is given by
+	\begin{eqnarray*}
+	\left\Vert\;\Delta(X,n) \,\overset{{\color{white}.}}{-}\, P_{X}\;\right\Vert_{\mathcal{F}}(\omega)
+	& := &
+		\underset{f\in\mathcal{F}}{\sup}\left\{\,
+			\left\vert\; \Delta(X,n)(\omega)[\,f\,]\,\overset{{\color{white}+}}{-}\,P_{X}[\,f\,] \;\right\vert
+		\;\right\}
+	\\
+	& = &
+		\underset{f\in\mathcal{F}}{\sup}\left\{\;
+			\left\vert\;
+				\dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(f \circ X_{i})(\omega)
+				\,\overset{{\color{white}+}}{-}\,
+				E[\,f \circ X\,]
+			\;\right\vert
+		\;\right\}
+	\end{eqnarray*}
+\item
+	an \,\underline{\textbf{$X$-Donsker{\color{white}j}class}}\, if
+	\begin{equation*}
+	\E(X,\mathcal{F},n) \;\;\wconverge\;\; \G(X,\mathcal{F})
+	\;\;\textnormal{in \;$l^{\infty}(\mathcal{F})$}\,,
+	\end{equation*}
+	where $\G(X,\mathcal{F})$ is the $\mathcal{F}$-indexed Gaussian process induced by $X$.
+\end{enumerate}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

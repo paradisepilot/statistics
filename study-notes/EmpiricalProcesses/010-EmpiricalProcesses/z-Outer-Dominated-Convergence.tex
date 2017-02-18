@@ -1,0 +1,246 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Outer Dominated Convergence Theorem}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Outer Dominated Convergence Theorem, Lemma 6.12, p.92, \cite{Kosorok2008}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\overline{\Re}$.
+\item
+	$g, f, f_{1}, f_{2}, \ldots : \Omega \longrightarrow \Re$ are (not necessarily measurable)
+	maps from $\Omega$ into the real numbers.
+\item
+	$\mu\!\left(\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\;\;\right\vert\;
+		\underset{n\rightarrow\infty}{\lim}\,\vert\, f_{n}(\omega) - f(\omega) \,\vert^{*} \,=\, 0
+	\;\right\}\right)
+	\; = \; 1\,.$
+\item
+	For each $n \in \N$, there exists $A_{n} \in \mathcal{A}$, with $\mu(A_{n}) = 1$, such that\;
+	$A_{n}
+	\,\subset\,
+		\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\;\;\right\vert\;
+			\vert\,f_{n}(\omega)\,\vert \,\leq\, g(\omega)
+		\;\right\}$.
+\item
+	$E^{*}\!\left[\;\overset{{\color{white}.}}{g}\;\right] \,<\, \infty$\,.
+\end{itemize}
+Then,
+\,$E^{*}\!\left[\;f_{n}\;\right] \in \Re$, for each $n\in\N$, and
+\,$E^{*}\!\left[\;f\;\right] \in \Re$, and
+\,$\underset{n\rightarrow\infty}{\lim}\,E^{*}\!\left[\;f_{n}\;\right]$ \,$=$\, $E^{*}\!\left[\;f\;\right]$\,.
+\end{theorem}
+\proof
+For each $n\in\N$, by the hypothesis that
+\,$A_{n} \,\subset\,
+	\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\;\;\right\vert\;
+		\vert\,f_{n}(\omega)\,\vert \,\leq\, g(\omega)
+	\;\right\}$,\,
+where $\mu(A_{n}) = 1$, we immediately have
+\,$E^{*}\!\left[\;f_{n}\;\right] = E\!\left[\;f_{n}^{*}\;\right] \in \Re$\, (by Theorem 22.6, p.169, \cite{Aliprantis1998}).
+
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\quad
+There exists $B \in \mathcal{A}$, with $\mu(B)=1$, such that\,
+$B \,\subset\, \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\,\;\right\vert\;\vert\,f(\omega)\,\vert\,\leq\,g(\omega)\;\right\}$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\;\;
+Let \;$A \,:= \overset{\infty}{\underset{n=1}{\bigcap}}\,A_{n}$.
+Note that $\mu(A) = 1$.
+For each $n\in\N$, choose
+\,$C_{n} \subset \left\{\;\vert\,f_{n} - f\,\vert \,\overset{{\color{white}.}}{\leq}\, \vert\,f_{n} - f\,\vert^{*}\,\right\}$,
+with $\mu(C_{n}) = 1$. Let $C \,:= \overset{\infty}{\underset{n=1}{\bigcap}}\;C_{n}$. Then, $\mu(C) = 1$, and
+\begin{equation*}
+C \;\;\subset\;\;
+	\left\{\;
+	\omega \in \Omega
+	\;\,\left\vert\;
+	\vert\,f_{n}(\omega) - f(\omega)\,\vert \,\overset{{\color{white}.}}{\leq}\, \vert\,f_{n}(\omega) - f(\omega)\,\vert^{*},
+	\right.
+	\;\forall\;n\in\N
+	\,\right\}
+\end{equation*}
+Let \,$D \,:= \left\{\;\underset{n\rightarrow\infty}{\lim}\,\vert\,f_{n} - f\,\vert^{*}\,=\,0\;\right\}$.
+Then, $\mu(D) = 1$, by hypothesis.
+Now, let $B := A \cap C \cap D$. Then, $\mu(B) = 1$ and 
+\begin{eqnarray*}
+B
+&:=&
+	A \cap C \cap D
+\\
+& \subset &
+	\left\{\;\vert\,f_{n}\,\vert \,\overset{{\color{white}.}}{\leq}\, g,\;\forall\;n\in\N\;\right\}
+	\;\bigcap\;
+	\left\{\;\vert\,f_{n} - f\,\vert \,\overset{{\color{white}.}}{\leq}\, \vert\,f_{n} - f\,\vert^{*},\;\forall\;n\in\N\;\right\}
+	\;\bigcap\;
+	\left\{\;\underset{n\rightarrow\infty}{\lim}\,\vert\,f_{n} - f\,\vert^{*}\,=\,0\;\right\}
+\\
+& \subset &
+	\left\{\;\vert\,f_{n}\,\vert \,\overset{{\color{white}.}}{\leq}\, g,\;\forall\;n\in\N\;\right\}
+	\;\bigcap\;
+	\left\{\;\underset{n\rightarrow\infty}{\lim}\,\vert\,f_{n} - f\,\vert\,=\,0\;\right\}
+\\
+& \subset &
+	\left\{\;
+		\vert\,f\,\vert
+		\,\overset{{\color{white}+}}{=}\,
+		\vert\,f - f_{n}\,\vert\,+\,\vert\,f_{n}\,\vert
+		\,\leq\,
+		\vert\,f - f_{n}\,\vert\,+\,g,
+		\;\forall\;n\in\N\,,
+		\;\;\textnormal{and}\;\;
+		\underset{n\rightarrow\infty}{\lim}\,\vert\,f_{n} - f\,\vert\,=\,0
+	\;\right\}
+\\
+& \subset &
+	\left\{\;
+		\vert\,f\,\vert
+		\,\overset{{\color{white}+}}{\leq}\,
+		\vert\,f - f_{n}\,\vert\,+\,g
+		\;\longrightarrow\;
+		g
+	\;\right\}
+\\
+& \subset &
+	\left\{\;
+		\vert\,f\,\vert
+		\,\overset{{\color{white}+}}{\leq}\,
+		g
+	\;\right\}
+\end{eqnarray*}
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+$\vert\,f\,\vert^{*} \,\leq\, g^{*}$\; $\mu$-almost surely.
+Consequently, $E^{*}\!\left[\;f\;\right] = E\!\left[\;f^{*}\;\right] \in \Re$\, (by Theorem 22.6, p.169, \cite{Aliprantis1998}).
+\vskip 0.1cm
+\noindent
+Proof of Claim 2:\quad
+Immediate by Claim 1.
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}\quad
+$\underset{n\rightarrow\infty}{\lim}\;E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right] \,=\, 0$\,.
+\vskip 0.1cm
+\noindent
+Proof of Claim 3:\quad
+Note that the triangle inequality \;$\vert\,f_{n}-f\,\vert \; \leq \; \vert\,f_{n}\,\vert \,+\, \vert\,f\,\vert$\; implies:
+\begin{equation*}
+\vert\,f_{n}-f\,\vert^{*}
+\; \leq \;
+	\left(\,\vert\,f_{n}\,\vert \,\overset{{\color{white}.}}{+}\, \vert\,f\,\vert\,\right)^{*}
+\; \leq \;
+	\vert\,f_{n}\,\vert^{*} \,\overset{{\color{white}.}}{+}\, \vert\,f\,\vert^{*}
+\; \leq \;
+	g^{*} \,+\, g^{*}
+\; = \;
+	2 \cdot g^{*}
+\end{equation*}
+Since \;$E\!\left[\;g^{*}\,\right] = E^{*}\!\left[\;g\;\right] < \infty$\;
+and
+\;$\mu\!\left(\left\{\;
+	\left.
+	\omega \overset{{\color{white}.}}{\in} \Omega
+	\;\;\right\vert\;
+	\underset{n\rightarrow\infty}{\lim}\,\vert\, f_{n}(\omega) - f(\omega) \,\vert^{*} \,=\, 0
+	\;\right\}\right)
+= 1\,,$\;
+the Lebesgue Dominated Convergence Theorem
+(see Theorem 11.32, p.321, \cite{Rudin1976} or Theorem 22.11, p.172, \cite{Aliprantis1998})
+now implies:
+\begin{equation*}
+\underset{n\rightarrow\infty}{\lim}\;E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right]
+\;\; = \;\;
+	E\!\left[\;\underset{n\rightarrow\infty}{\lim}\,\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right]
+\;\; = \;\;
+	E\!\left[\;\, \overset{{\color{white}.}}{0} \,\;\right]
+\;\; = \;\;
+	0\,.
+\end{equation*}
+This proves Claim 3.
+
+\vskip 0.8cm
+\noindent
+We now return to the proof of the present Theorem.
+By Lemma 6.6(iv), p.90, \cite{Kosorok2008}, we have
+\begin{equation*}
+\vert\,f_{n}^{*} - f^{*}\,\vert
+\;\; \leq \;\;
+	\vert\,f_{n} - f\,\vert^{*}\,,
+\end{equation*}
+which is equivalent to
+\begin{equation*}
+-\,\vert\,f_{n} - f\,\vert^{*}
+\;\; \leq \;\;
+	f_{n}^{*} - f^{*}
+\;\; \leq \;\;
+	\vert\,f_{n} - f\,\vert^{*}
+\end{equation*}
+This implies:
+\begin{equation*}
+-\,E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right]
+\;\; \leq \;\;
+	E\!\left[\;f_{n}^{*}\,\right] \overset{{\color{white}.}}{-} E\!\left[\;f^{*}\,\right]
+\;\; = \;\;
+	E\!\left[\;f_{n}^{*} \overset{{\color{white}.}}{-} f^{*}\,\right]
+\;\; \leq \;\;
+	E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right],
+\end{equation*}
+which is equivalent to
+\begin{equation*}
+0
+\;\; \leq \;\;
+	\left\vert\;
+		E\!\left[\;f_{n}^{*}\,\right] \overset{{\color{white}.}}{-} E\!\left[\;f^{*}\,\right]
+	\;\right\vert
+\;\; \leq \;\;
+	E\!\left[\;\vert\,f_{n} \overset{{\color{white}.}}{-} f\,\vert^{*}\,\right]
+\;\; \longrightarrow \;\;
+	0\,,
+	\quad
+	\textnormal{by Claim 3}
+\end{equation*}
+It now follows that we indeed have:
+\;$\underset{n\rightarrow\infty}{\lim}\;E^{*}\!\left[\;f_{n}\;\right]$ \,$=$\, $E^{*}\!\left[\;f\;\right]$.\;
+This completes the proof of the present Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
