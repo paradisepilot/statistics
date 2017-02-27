@@ -110,7 +110,61 @@ Now,
 \underline{(vii)\;$\Longrightarrow$\;(ii)}
 \vskip 0.2cm \noindent
 Let $G \subset \D$ be an open subset.
+First, note that $1_{\{X_{n} \in G\}} \,=\, 1_{G} \circ X_{n}$.
+Indeed, for each $\omega \in \Omega_{n}$, we have
+\begin{equation*}
+1_{\{X_{n} \in G\}}(\omega) = 1
+\;\;\Longleftrightarrow\;\; X_{n}(\omega) \in G
+\;\;\Longleftrightarrow\;\; 1_{G}\!\left(\,X_{n}(\overset{{\color{white}-}}{\omega})\,\right) = 1
+\;\;\Longleftrightarrow\;\; \left(\,1_{G} \overset{{\color{white}-}}{\circ} X_{n}\,\right)(\omega) = 1
+\end{equation*}
+Similarly,
+\begin{equation*}
+1_{\{X_{n} \in G\}}(\omega) = 0
+\;\;\Longleftrightarrow\;\; X_{n}(\omega) \notin G
+\;\;\Longleftrightarrow\;\; 1_{G}\!\left(\,X_{n}(\overset{{\color{white}-}}{\omega})\,\right) = 0
+\;\;\Longleftrightarrow\;\; \left(\,1_{G} \overset{{\color{white}-}}{\circ} X_{n}\,\right)(\omega) = 0
+\end{equation*}
+Thus, we see that we indeed have: $1_{\{X_{n} \in G\}} \,=\, 1_{G} \circ X_{n}$.
+Next, for each $k \in \N$, define $f_{k} : \D \longrightarrow [0,1]$ as follows:
+\begin{equation*}
+f_{k}(\zeta)
+\;\; := \;\;
+	\min\!\left\{\;1\,\overset{{\color{white}\vert}}{,}\;k \cdot d(\zeta,\D \backslash G)\;\right\}
+\end{equation*}
+Then, each $f_{k}$ is non-negative and Lipschitz continuous, and
+$f_{k} \uparrow 1_{G}$, as $k \longrightarrow \infty$. Hence, we have
+\begin{equation*}
+P_{*}(X_{n} \in G)
+\;\; = \;\; E_{*}\!\left[\,1_{\{X_{n} \in G\}}\,\right]
+\;\; = \;\; E_{*}\!\left[\,1_{G} \circ X_{n}\,\right]
+\;\; \geq \;\; E_{*}\!\left[\,f_{k} \circ X_{n}\,\right],
+\end{equation*}
+which implies
+\begin{equation*}
+\underset{n\rightarrow\infty}{\liminf}\;P_{*}(X_{n} \in G)
+\;\; \geq \;\; \underset{n\rightarrow\infty}{\liminf}\;E_{*}\!\left[\,f_{k} \circ X_{n}\,\right]
+\;\; \geq \;\; \int_{\D}\; f_{k} \;\d L
+\;\; \uparrow \;\; \int_{\D}\; 1_{G} \;\d L
+\;\; = \;\; L(G)\,,
+\end{equation*}
+where the two inequalities hold for for each fixed $k \in \N$, the second inequality follows from the assumption (vii), and
+the convergence follows from the Monotone Convergence Theorem.
+This proves that (vii) $\Longrightarrow$ (ii).
 
+\vskip 0.5cm \noindent
+\underline{(ii)\;$\Longleftrightarrow$\;(iii)}
+\vskip 0.2cm \noindent
+The equivalence of (ii) and (iii) follows immediately by taking complementation.
+
+\vskip 0.5cm \noindent
+\underline{(ii)\;$\Longleftrightarrow$\;(iv)}
+\vskip 0.2cm \noindent
+
+\vskip 0.5cm \noindent
+\underline{(iv)\;$\Longleftrightarrow$\;(v)}
+\vskip 0.2cm \noindent
+The equivalence of (iv) and (v) follows immediately by replacing $f$ with $-f$.
 
 \qed
 
