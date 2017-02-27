@@ -54,10 +54,52 @@ Then, the following are equivalent:
 	\,$=$\, $L(B)$,
 	for each $B \in \mathcal{D}$ with $L(\partial B) = 0$.
 \item
-	$\int_{\D}\,f\,\d L \,\leq\, \underset{n\rightarrow\infty}{\liminf}E_{*}\!\left[\,f \circ X_{n}\,\right]$,
+	$\int_{\D}\,f\,\d L \,\leq\, \underset{n\rightarrow\infty}{\liminf}\;E_{*}\!\left[\,f \circ X_{n}\,\right]$,
 	for each bounded, non-negative, Lipschitz continuous $f : \D \longrightarrow \Re$.
 \end{enumerate}
 \end{theorem}
+\proof
+
+\vskip 0.3cm \noindent
+\underline{(i)\;$\Longrightarrow$\;(vii)}
+\vskip 0.2cm \noindent
+Let $f : \D \longrightarrow [0,\infty)$ be bounded, non-negative, and Lipschitz continuous.
+Since Lipschitz continuity implies continuity, we have $f \in C_{b}(\D,d)$, and hence, $-f \in C_{b}(\D,d)$.
+Now,
+\begin{eqnarray*}
+\textnormal{(i)}
+&\Longrightarrow&
+	{\color{white}1}\underset{n\rightarrow\infty}{\lim}\;\;\,E^{*}\!\left[\,-(f \circ X_{n})\,\right]
+	\;=\; \underset{n\rightarrow\infty}{\lim}\;E^{*}\!\left[\,(-f) \circ X_{n}\,\right]
+	\;=\; \int_{\D}\;(-f)\;\d L
+\\
+&\Longrightarrow&
+	\underset{n\rightarrow\infty}{\limsup}\;E^{*}\!\left[\,-(f \circ X_{n})\,\right] \;\leq\; \int_{\D}\;(-f)\;\d L
+\\
+&\Longrightarrow&
+	\underset{n\rightarrow\infty}{\limsup}\;
+	\left(\overset{{\color{white}\vert}}{-}\,E_{*}\!\left[\,f \circ X_{n}\,\right]\right) \;\leq\; \int_{\D}\;(-f)\;\d L\,,
+	\;\;\textnormal{since \,$E_{*}[\,f \circ X_{n}\,] \,=\, -E^{*}[\,-(f \circ X_{n})\,]$}
+\\
+&\Longrightarrow&
+	-\;\underset{n\rightarrow\infty}{\liminf}\;E_{*}\!\left[\,f \circ X_{n}\,\right]
+	\;\leq\; -\,\int_{\D}\;f\;\d L
+\\
+&\Longrightarrow&
+	\underset{n\rightarrow\infty}{\liminf}\;E_{*}\!\left[\,f \circ X_{n}\,\right]
+	\;\geq\; \int_{\D}\;f\;\d L
+\\
+&\Longrightarrow&
+	\textnormal{(vii)}
+\end{eqnarray*}
+
+\vskip 0.5cm \noindent
+\underline{(vii)\;$\Longrightarrow$\;(ii)}
+\vskip 0.2cm \noindent
+Let $G \subset \D$ be an open subset.
+
+
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
