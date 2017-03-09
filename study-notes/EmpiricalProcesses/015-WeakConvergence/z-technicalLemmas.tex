@@ -20,6 +20,86 @@
 The discontinuity set of an arbitrary map from a metric space into another metric space is Borel measurable.
 \end{proposition}
 \proof
+Let \,$g : (\D,d) \longrightarrow (\mathbb{E},\rho)$\, be an arbitrary map from
+the metric space $(\D,d)$ into the metric space $(\mathbb{E},\rho)$.
+Let
+\begin{equation*}
+D_{g}
+\; := \;
+	\left\{\;\left.
+		x\overset{{\color{white}.}}{\in}\D
+		\;\;\right\vert
+		\begin{array}{c}\textnormal{$g$ is not continuous at $x$}\end{array}
+		\right\}
+\;\;\subset\;\; \D
+\end{equation*}
+be the discontinuity set of $g$.
+We need to establish that $D_{g}$ is a Borel subset of $(\D,d)$.
+
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\;\;
+The set \;$D_{g}$\; can be expressed as follows:
+\begin{equation*}
+D_{g}
+\; := \;
+	\underset{m\,\in\,\N}{\bigcup}\;\,
+	\underset{k\,\in\,\N}{\bigcap}\;\,
+	G^{m}_{k}\,,
+\end{equation*}
+where, for each $m\in\N$ and $k\in\N$,
+\begin{equation*}
+G^{m}_{k}
+\;\; := \;\;
+	\left\{\;
+		x\overset{{\color{white}.}}{\in}\D
+		\;\,\left\vert\,
+		\begin{array}{c}
+			\exists \;\,y,z \in B_{\D}(x\,;1/k) \;\,\textnormal{such that}
+			\\
+			\rho(g(y),g(z)) \overset{{\color{white}-}}{>} 1/m
+		\end{array}
+		\right.
+		\right\}.
+\end{equation*}
+Proof of Claim 1:\;\;
+Recall that the continuity of $g$ at $x \in \D$ means precisely the following:
+\begin{equation*}
+\textnormal{For each $\varepsilon > 0$, there exists $\delta > 0$ such that
+\,$g\!\left(\overset{{\color{white}.}}{B}_{\D}(x\,;\delta)\right)$ \,$\subset$\, $B_{\mathbb{E}}(g(x)\,;\varepsilon)$}\,.
+\end{equation*}
+Thus,
+\begin{eqnarray*}
+x \in D_{g}
+&\Longleftrightarrow&
+	\exists\;\,\varepsilon > 0 \;\;\textnormal{such that, for each $\delta > 0$},\;
+	g\!\left(\overset{{\color{white}.}}{B}_{\D}(x\,;\delta)\right) \,\not\subset\, B_{\mathbb{E}}(g(x)\,;\varepsilon)
+\\
+&\Longleftrightarrow&
+	\exists\;\,m \in \N \;\;\textnormal{such that, for each $k \in \N$},\;
+	g\!\left(\overset{{\color{white}.}}{B}_{\D}(x\,;1/k)\right) \,\not\subset\, B_{\mathbb{E}}(g(x)\,;2/m)
+\\
+&\Longleftrightarrow&
+	\exists\;\,m \in \N \;\;\textnormal{such that, for each $k \in \N$},\;
+	\exists\;\, y_{k} \in B_{\D}(x\,;1/k)\;\,\textnormal{with}\;\, g(y_{k}) \notin B_{\mathbb{E}}(g(x)\,;2/m)
+\\
+&\Longrightarrow&
+	\exists\;\,m \in \N \;\;\textnormal{such that, for each $k \in \N$},\;
+	x \in G^{m}_{k}
+\\
+&\Longleftrightarrow&
+	\exists\;\,m \in \N \;\;\textnormal{such that}\;\, x \in \underset{k\,\in\,\N}{\bigcap}\; G^{m}_{k}
+\\
+&\Longleftrightarrow&
+	x \;\in\; \underset{m\,\in\,\N}{\bigcup}\;\, \underset{k\,\in\,\N}{\bigcap}\; G^{m}_{k}
+\end{eqnarray*}
+This proves that 
+\,$D_{g} \,\subset\, \underset{m\,\in\,\N}{\bigcup}\;\, \underset{k\,\in\,\N}{\bigcap}\; G^{m}_{k}$.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\;\;
+$G^{m}_{k}$ is an open subset of $(\D,d)$. Hence, $D_{g}$ is a Borel subset of $(\D,\mathcal{D})$, i.e. $D_{g} \in \mathcal{D}$.
 
 \qed
 
