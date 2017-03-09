@@ -52,7 +52,7 @@ Suppose:
 \item
 	$\mu\!\left(\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in D_{g}\;\right\}\right)$
 	\;$=$\; $\mu\!\left(X^{-1}(D_{g})\right)$
-	\;$=$\; $1$.
+	\;$=$\; $0$.
 \end{itemize}
 Then, \;$g \circ X_{n} \,\wconverge\, g \circ X$.
 \end{theorem}
@@ -60,48 +60,58 @@ Then, \;$g \circ X_{n} \,\wconverge\, g \circ X$.
 
 \vskip 0.5cm
 \noindent
-\textbf{Claim 3:}\;\;
-For each closed subset $F \subset \mathbb{E}$, we have\;
+\textbf{Claim 1:}\;\;
+For each closed subset $F \subset (\mathbb{E},\rho)$, we have\;
 $\overline{g^{-1}(F)}$ \;$\subset$\; $g^{-1}(F)\,\cup\,D_{g}$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\;\;
+Note that it suffices to show that \;$x \,\in\, \overline{g^{-1}(F)} \,\cap\, (D_{g})^{c}$ \;$\Longrightarrow$\; $x \in g^{-1}(F)$.
+To this end, observe:
+\begin{eqnarray*}
+x \,\in\, \overline{g^{-1}(F)} \,\cap\, (D_{g})^{c}
+&\Longrightarrow&
+	\textnormal{$g$ is continuous at $x$, and}\;\,
+	\exists\;\, \{\,x_{n}\}_{n\in\N} \subset g^{-1}(F)\;\, \textnormal{such that}\;\, x_{n} \longrightarrow x
+\\
+&\Longrightarrow&
+	\exists\;\, \{\,x_{n}\}_{n\in\N} \subset g^{-1}(F)\;\, \textnormal{such that}\;\, g(x_{n}) \longrightarrow g(x)
+\\
+&\Longrightarrow&
+	g(x) \in F\,, \quad\textnormal{since $g(x_{n}) \in F$, for each $n\in\N$, and $F$ is a close subset of $(\mathbb{E},\rho)$}
+\\
+&\Longrightarrow&
+	x \in g^{-1}(F)
+\end{eqnarray*}
+This proves Claim 1.
 
 \vskip 0.5cm
 \noindent
-\textbf{Claim 4:}\;\;
-For each closed subset $F \subset \mathbb{E}$, we have\;
+\textbf{Claim 2:}\;\;
+For each closed subset $F \subset (\mathbb{E},\rho)$, we have\;
 $\mu\!\left(X\in\overline{g^{-1}(F)}\,\right)$ \;$=$\;
 $\mu\!\left(X\overset{{\color{white}.}}{\in} g^{-1}(F)\right)$.
 \vskip 0.1cm
 \noindent
-Proof of Claim 4:\quad
+Proof of Claim 2:\;\;
 Clearly, 
 $\mu\!\left(X\in\overline{g^{-1}(F)}\,\right)$ \;$\geq$\;
 $\mu\!\left(X\overset{{\color{white}.}}{\in} g^{-1}(F)\right)$.
-Conversely, by Claim 3, we have
+Conversely, by Claim 1, we have
 \begin{equation*}
 \mu\!\left(X\in\overline{g^{-1}(F)}\,\right)
 \;\;\leq\;\;
 	\mu\!\left(X\overset{{\color{white}.}}{\in} g^{-1}(F)\right)
 	\; + \;
 	\mu\!\left(X\overset{{\color{white}.}}{\in} D_{g}\right)
+\;\;=\;\;
+	\mu\!\left(X\overset{{\color{white}.}}{\in} g^{-1}(F)\right)
+	\; + \;
+	0
+\;\;=\;\;
+	\mu\!\left(X\overset{{\color{white}.}}{\in} g^{-1}(F)\right)
 \end{equation*}
-Since $D_{g} \subset \D$ is the discontinuity set of $g$, while $g$ is continuous at each point in $\D_{0}$,
-it trivially follows that $D_{g} \subset \left(\D_{0}\right)^{c}$.
-Recall that for an arbitrary subset $B \subset \D$, we have \,$\mu_{*}(B) \,:=\, 1 - \mu^{*}(B^{c})$.
-Thus,
-\begin{equation*}
-1
-\;=\;
-	\mu_{*}\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in\D_{0}\;\right\}\,\right)
-\;:=\;
-	1 \; - \; \mu^{*}\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in\left(\D_{0}\right)^{c}\;\right\}\,\right),
-\end{equation*}
-which in turn implies
-\begin{equation*}
-\mu\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in D_{g}\;\right\}\,\right)
-\;\;=\;\; \mu^{*}\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in D_{g}\;\right\}\,\right)
-\;\;\leq\;\; \mu^{*}\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in\left(\D_{0}\right)^{c}\;\right\}\,\right)
-\;\;=\;\; 0
-\end{equation*}
+This proves Claim 2.
 
 \vskip 0.5cm
 \noindent
@@ -128,7 +138,7 @@ Lastly, note that for an arbitrary closed subset $F \subset (\mathbb{E},\rho)$, 
 \end{eqnarray*}
 Since $F$ above is an arbitrary closed subset of $(\mathbb{E},\rho)$,
 by the Portmanteau Theorem again, we have \;$g \circ X_{n} \wconverge g \circ X$.
-This completes the proof of the Continuous Mapping Theorem.
+This completes the proof of the Mapping Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
