@@ -15,6 +15,156 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{theorem}[The Mapping Theorem]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$(\D,d)$\, is a metric space.
+	$\mathcal{D}$\, is the Borel $\sigma$-algebra of $(\D,d)$.
+	%\vskip 0.0cm
+	%$\mathcal{M}_{1}(\D,\mathcal{D})$ is the collection of Borel probability measures
+	%defined on the measurable space $(\D,\mathcal{D})$.
+\item
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\D,\mathcal{D})$
+	is an $(\mathcal{A},\mathcal{D})$-measurable map.
+\item
+	For each $n \in \N$,
+	$(\Omega_{n},\mathcal{A}_{n},\mu_{n})$ is a probability space and
+	$X_{n} : \Omega_{n} \longrightarrow \D$
+	is a $\D$-valued map (not necessarily Borel measurable) defined on $\Omega_{n}$.
+\item
+	$(\mathbb{E},\rho)$ is a metric space and $\mathcal{E}$ is its Borel $\sigma$-algebra.
+	$g : \D \longrightarrow \mathbb{E}$ is a $(\mathcal{D},\mathcal{E})$-measurable map.
+\item
+	$D_{g} \, := \,
+	\left\{\;\left.
+		x\overset{{\color{white}.}}{\in}\D
+		\;\;\right\vert
+		\begin{array}{c}\textnormal{$g$ is not continuous at $x$}\end{array}
+		\right\}$
+	is the discontinuity set of $g$.
+\item
+	$\mu\!\left(\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in D_{g}\;\right\}\right)$
+	\;$=$\; $1$.
+\end{itemize}
+Then, \;$g \circ X_{n} \,\wconverge\, g \circ X$.
+\end{theorem}
+\proof
+
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\;\;
+The set\;
+$D_{g}
+\; := \;
+	\left\{\;\left.
+		x\overset{{\color{white}.}}{\in}\D
+		\;\;\right\vert
+		\begin{array}{c}\textnormal{$g$ is not continuous at $x\in\D$}\end{array}
+		\right\}$
+\;can be expressed as follows:
+\begin{equation*}
+D_{g}
+\;\; := \;\;
+	\underset{m\,\in\,\N}{\bigcup}\;\,
+	\underset{k\,\in\,\N}{\bigcap}\;\,
+	G^{m}_{k}\,,
+\end{equation*}
+where, for each $m\in\N$ and $k\in\N$,
+\begin{equation*}
+G^{m}_{k}
+\;\; := \;\;
+	\left\{\;
+		x\overset{{\color{white}.}}{\in}\D
+		\;\,\left\vert\,
+		\begin{array}{c} \exists \;\,y,z \in B_{\D}(x;1/k) \;\,\textnormal{such that} \\ \rho(g(y),g(z)) \overset{{\color{white}-}}{>} 1/m \end{array}
+		\right.
+		\right\}.
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\;\;
+$G^{m}_{k}$ is an open subset of $(\D,d)$. Hence, $D_{g}$ is a Borel subset of $(\D,\mathcal{D})$, i.e. $D_{g} \in \mathcal{D}$.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}\;\;
+For each closed subset $F \subset \mathbb{E}$, we have\;
+$\overline{g^{-1}(F)}$ \;$\subset$\; $g^{-1}(F)\,\cup\,D_{g}$.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4:}\;\;
+For each closed subset $F \subset \mathbb{E}$, we have\;
+$\mu\!\left(X\in\overline{g^{-1}(F)}\,\right)$ \;$=$\;
+$\mu\!\left(X\overset{{\color{white}.}}{\in} g^{-1}(F)\right)$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 4:\quad
+Clearly, 
+$\mu\!\left(X\in\overline{g^{-1}(F)}\,\right)$ \;$\geq$\;
+$\mu\!\left(X\overset{{\color{white}.}}{\in} g^{-1}(F)\right)$.
+Conversely, by Claim 3, we have
+\begin{equation*}
+\mu\!\left(X\in\overline{g^{-1}(F)}\,\right)
+\;\;\leq\;\;
+	\mu\!\left(X\overset{{\color{white}.}}{\in} g^{-1}(F)\right)
+	\; + \;
+	\mu\!\left(X\overset{{\color{white}.}}{\in} D_{g}\right)
+\end{equation*}
+Since $D_{g} \subset \D$ is the discontinuity set of $g$, while $g$ is continuous at each point in $\D_{0}$,
+it trivially follows that $D_{g} \subset \left(\D_{0}\right)^{c}$.
+Recall that for an arbitrary subset $B \subset \D$, we have \,$\mu_{*}(B) \,:=\, 1 - \mu^{*}(B^{c})$.
+Thus,
+\begin{equation*}
+1
+\;=\;
+	\mu_{*}\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in\D_{0}\;\right\}\,\right)
+\;:=\;
+	1 \; - \; \mu^{*}\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in\left(\D_{0}\right)^{c}\;\right\}\,\right),
+\end{equation*}
+which in turn implies
+\begin{equation*}
+\mu\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in D_{g}\;\right\}\,\right)
+\;\;=\;\; \mu^{*}\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in D_{g}\;\right\}\,\right)
+\;\;\leq\;\; \mu^{*}\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in\left(\D_{0}\right)^{c}\;\right\}\,\right)
+\;\;=\;\; 0
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+Lastly, note that for an arbitrary closed subset $F \subset (\mathbb{E},\rho)$, we now have
+\begin{eqnarray*}
+\underset{n\rightarrow\infty}{\limsup}\;\, \mu^{*}\!\left(\,g \circ X_{n} \overset{{\color{white}.}}{\in} F\,\right)
+&=&
+	\underset{n\rightarrow\infty}{\limsup}\;\, \mu^{*}\!\left(\,X_{n} \overset{{\color{white}.}}{\in} g^{-1}(F)\,\right)
+\\
+&\leq&
+	\underset{n\rightarrow\infty}{\limsup}\;\, \mu^{*}\!\left(\,X_{n} \overset{{\color{white}.}}{\in} \overline{g^{-1}(F)}\,\right)
+\\
+&\leq&
+	\mu\!\left(X\overset{{\color{white}.}}{\in}\overline{g^{-1}(F)}\,\right),
+	\quad\textnormal{by $X_{n} \wconverge X$ and the Portmanteau Theorem}
+\\
+&=&
+	\mu\!\left(X\overset{{\color{white}.}}{\in}g^{-1}(F)\,\right),
+	\quad\textnormal{by Claim 4}
+	%\mu\!\left(X^{-1}\!\left(\,\overline{g^{-1}(F)}\right)\right)
+\\
+&=&
+	\mu\!\left(\,g \circ X\overset{{\color{white}.}}{\in}F\,\right).
+\end{eqnarray*}
+Since $F$ above is an arbitrary closed subset of $(\mathbb{E},\rho)$,
+by the Portmanteau Theorem again, we have \;$g \circ X_{n} \wconverge g \circ X$.
+This completes the proof of the Continuous Mapping Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \begin{theorem}[The Continuous Mapping Theorem]
 \mbox{}\vskip 0.1cm
 \noindent
@@ -39,7 +189,7 @@ Suppose:
 	$(\mathbb{E},\rho)$ is a metric space.
 	$g : \D \longrightarrow \mathbb{E}$ is a map which is continuous at each point in $\D_{0} \subset \D$.
 \item
-	$\mu_{*}\!\left(\,\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in\D_{0}\;\right\}\,\right)$
+	$\mu_{*}\!\left(\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\;X(\omega)\in\D_{0}\;\right\}\right)$
 	%\;$=$\; $E_{*}\!\left[\;\overset{{\color{white}.}}{1}_{\left\{X\,\in\,\D_{0}\right\}}\;\right]$
 	\;$=$\; $1$.
 \end{itemize}
