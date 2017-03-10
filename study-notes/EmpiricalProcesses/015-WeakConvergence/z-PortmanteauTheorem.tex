@@ -82,7 +82,7 @@ Now,
 \begin{eqnarray*}
 \textnormal{(i)}
 &\Longrightarrow&
-	{\color{white}1}\underset{n\rightarrow\infty}{\lim}\;\;\,E^{*}\!\left[\,-(f \circ X_{n})\,\right]
+	{\color{white}1}\underset{n\rightarrow\infty}{\lim}\;E^{*}\!\left[\,-(f \circ X_{n})\,\right]
 	\;=\; \underset{n\rightarrow\infty}{\lim}\;E^{*}\!\left[\,(-f) \circ X_{n}\,\right]
 	\;=\; \int_{\D}\;(-f)\;\d L
 \\
@@ -158,8 +158,86 @@ This proves that (vii) $\Longrightarrow$ (ii).
 The equivalence of (ii) and (iii) follows by taking complementation.
 
 \vskip 0.5cm \noindent
-\underline{(ii)\;$\Longleftrightarrow$\;(iv)}
+\underline{(ii)\;$\Longrightarrow$\;(iv)}
 \vskip 0.2cm \noindent
+Let $f : \D \longrightarrow \Re$ be lower semicontinuous and bounded below,
+i.e. $f \geq K$, for some $K \in \Re$.
+Without loss of generality, we may assume $K = 0$ (by applying the following argument to $f - K$).
+For each $m \in \N$, define \,$f_{m} : \D \longrightarrow \Re$ by
+\begin{equation*}
+f_{m} \; := \; \dfrac{1}{m} \cdot \overset{m^{2}}{\underset{i=1}{\sum}} \; 1_{G_{i}}\,,
+\quad
+\textnormal{where \,$G_{i} \,:=\, \left\{\,x\in\D\;\left\vert\; f(x) > \dfrac{i}{m}\right.\,\right\}$}
+\end{equation*}
+Equivalently, for each $x \in \D$,
+\begin{equation*}
+f_{m}(x) \; := \;
+\left\{\begin{array}{cl}
+\dfrac{i}{m}, & \;\;\textnormal{for}\;\; \dfrac{i}{m} < f(x) \leq \dfrac{i+1}{m}\,, \;\;\textnormal{$i = 0, 1, 2, \ldots, m^{2}-1$}
+\\
+m, & \;\;\textnormal{for} \;\;\, m < \overset{{\color{white}\vert}}{f}(x)
+\end{array}\right.
+\end{equation*}
+Observe that the $f_{m}$'s satisfy
+\begin{eqnarray*}
+0 \,\leq\, f_{m}(x) \,\leq\, \min\!\left\{\,\overset{{\color{white}.}}{f}(x)\,,\,m\,\right\},
+&& \textnormal{for each \,$x \in \D$}\,,
+\quad\textnormal{and}\quad
+\\
+\left\vert\;f_{m}(x)\,\overset{{\color{white}-}}{-}\,f(x)\;\right\vert \;\leq\; \dfrac{1}{m}\,,{\color{white}11}
+&& \textnormal{for each \,$x \in \D$\, with $f(x) \,\leq\, m$}
+\end{eqnarray*}
+Hence, we have
+\begin{eqnarray*}
+\underset{n\rightarrow\infty}{\liminf}\;\,E_{*}\!\left[\;f \circ X_{n}\;\right]
+&\geq&
+	\underset{n\rightarrow\infty}{\liminf}\;\,E_{*}\!\left[\;f_{m} \circ X_{n}\;\right]
+\\
+&=&
+	\underset{n\rightarrow\infty}{\liminf}\;\,
+	E_{*}\!\left[\;
+		\left(\dfrac{1}{m} \cdot \overset{m^{2}}{\underset{i=1}{\sum}} \; 1_{G_{i}}\right) \circ X_{n}
+		\;\right]
+\;\; = \;\;
+	\underset{n\rightarrow\infty}{\liminf}\;\,
+	E_{*}\!\left[\;
+		\dfrac{1}{m} \cdot \overset{m^{2}}{\underset{i=1}{\sum}} \; 1_{\{X_{n} \in G_{i}\}}
+		\;\right]
+\\
+&\geq&
+	\underset{n\rightarrow\infty}{\liminf}\;\,
+	\dfrac{1}{m} \cdot \overset{m^{2}}{\underset{i=1}{\sum}} \; E_{*}\!\left[\; 1_{\{X_{n} \in G_{i}\}} \;\right]
+	\quad
+	\textnormal{\scriptsize(since \,$E_{*}\!\left[\,\alpha\cdot f\,\right] = \alpha\cdot E_{*}\!\left[\,f\,\right]$,
+	\,$E_{*}\!\left[\,f + g\,\right] \geq E_{*}\left[\,f\,\right] + E_{*}\left[\,g\,\right]$)}
+\\
+&\geq&
+	\dfrac{1}{m} \cdot \overset{m^{2}}{\underset{i=1}{\sum}}\;\,
+	\underset{n\rightarrow\infty}{\liminf}\;
+	E_{*}\!\left[\; 1_{\{X_{n} \in G_{i}\}} \;\right]
+\;\; = \;\;
+	\dfrac{1}{m} \cdot \overset{m^{2}}{\underset{i=1}{\sum}}\;\,
+	\underset{n\rightarrow\infty}{\liminf}\;
+	P_{*}\!\left(\, X_{n} \in G_{i} \,\right)
+\\
+&\geq&
+	\dfrac{1}{m} \cdot \overset{m^{2}}{\underset{i=1}{\sum}}\; L(G_{i})\,,
+	\quad
+	\textnormal{by (ii), since $f$ is lower semicontinuous, hence $G_{i}$ is open}
+\\
+&=&
+	\dfrac{1}{m} \cdot \overset{m^{2}}{\underset{i=1}{\sum}}\; \int_{\D}\, 1_{G_{i}} \,\d L
+\;\; = \;\;
+	\int_{\D} \left(\,\dfrac{1}{m} \cdot \overset{m^{2}}{\underset{i=1}{\sum}}\; 1_{G_{i}} \right) \d L
+\\
+&=&
+	\int_{\D}\, f_{m} \;\d L
+	\;\; \uparrow \;\;
+	\int_{\D}\, f \;\d L\,,
+	\quad
+	\textnormal{by the usual Lebesgue Monotone Convergence Theorem}
+\end{eqnarray*}
+This proves that indeed (ii) $\Longrightarrow$ (iv).
 
 \vskip 0.5cm \noindent
 \underline{(iv)\;$\Longleftrightarrow$\;(v)}
@@ -167,7 +245,7 @@ The equivalence of (ii) and (iii) follows by taking complementation.
 The equivalence of (iv) and (v) follows by replacing $f$ with $-f$.
 
 \vskip 0.5cm \noindent
-\underline{(v)\;$\Longleftrightarrow$\;(i)}
+\underline{(v)\;$\Longrightarrow$\;(i)}
 \vskip 0.2cm \noindent
 
 \vskip 0.5cm \noindent
@@ -175,7 +253,7 @@ The equivalence of (iv) and (v) follows by replacing $f$ with $-f$.
 \vskip 0.2cm \noindent
 
 \vskip 0.5cm \noindent
-\underline{(vi)\;$\Longleftrightarrow$\;(ii)}
+\underline{(vi)\;$\Longrightarrow$\;(ii)}
 \vskip 0.2cm \noindent
 
 \qed
