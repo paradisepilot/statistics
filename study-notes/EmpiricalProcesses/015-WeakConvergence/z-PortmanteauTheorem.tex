@@ -61,19 +61,45 @@ Then, the following are equivalent:
 \proof
 We will prove the Portmanteau Theorem by establishing the following collection
 of implications:
+\vskip 0.5cm
 \begin{center}
 \begin{tikzcd}
-& \textnormal{(vii)} \arrow[d, Rightarrow] & \textnormal{(vi)}
+&&& \textnormal{(vi)}
 \\
-	\textnormal{(i)} \arrow[ru, Rightarrow] &
-	\textnormal{(ii)} \arrow[r, Leftrightarrow] \arrow[d, Rightarrow] \arrow[ru, Leftrightarrow] &
-	\textnormal{(iii)}
+\textnormal{(i)} \arrow[r, Rightarrow] \arrow[d, Leftarrow]
+	& \textnormal{(vii)} \arrow[r, Rightarrow]
+	& \textnormal{(ii)} \arrow[d, Rightarrow] \arrow[ru, Leftrightarrow] \arrow[r, Leftrightarrow]
+	& \textnormal{(iii)}
 \\
-& \textnormal{(iv)} \arrow[r, Leftrightarrow] & \textnormal{(v)} \arrow[llu, bend left=70, Rightarrow] &
+\textnormal{(v)} \arrow[rr, Leftrightarrow] & & \textnormal{(iv)}
 \end{tikzcd}
 \end{center}
 
-\vskip 0.0cm \noindent
+%\begin{center}
+%\begin{tikzcd}
+%& \textnormal{(vii)} \arrow[d, Rightarrow] & \textnormal{(vi)}
+%\\
+%	\textnormal{(i)} \arrow[ru, Rightarrow] &
+%	\textnormal{(ii)} \arrow[r, Leftrightarrow] \arrow[d, Rightarrow] \arrow[ru, Leftrightarrow] &
+%	\textnormal{(iii)}
+%\\
+%& \textnormal{(iv)} \arrow[r, Leftrightarrow] & \textnormal{(v)} \arrow[llu, bend left=70, Rightarrow] &
+%\end{tikzcd}
+%\end{center}
+
+\vskip 0.5cm \noindent
+\underline{(ii)\;$\Longleftrightarrow$\;(iii)}
+\vskip 0.2cm \noindent
+The equivalence of (ii) and (iii) follows by taking complementation.
+
+\vskip 0.5cm \noindent
+\underline{(iv)\;$\Longleftrightarrow$\;(v)}
+\vskip 0.2cm \noindent
+The equivalence of (iv) and (v) follows by replacing $f$ with $-f$.
+
+\clearpage
+%\vskip 0.5cm
+\noindent
 \underline{(i)\;$\Longrightarrow$\;(vii)}
 \vskip 0.2cm \noindent
 Let $f : \D \longrightarrow [0,\infty)$ be bounded, non-negative, and Lipschitz continuous.
@@ -151,11 +177,6 @@ which implies
 where the two inequalities hold for for each fixed $k \in \N$, the second inequality follows from the assumption (vii), and
 the convergence follows from the Monotone Convergence Theorem.
 This proves that (vii) $\Longrightarrow$ (ii).
-
-\vskip 0.5cm \noindent
-\underline{(ii)\;$\Longleftrightarrow$\;(iii)}
-\vskip 0.2cm \noindent
-The equivalence of (ii) and (iii) follows by taking complementation.
 
 \vskip 0.5cm \noindent
 \underline{(ii)\;$\Longrightarrow$\;(iv)}
@@ -240,13 +261,33 @@ Hence, we have
 This proves that indeed (ii) $\Longrightarrow$ (iv).
 
 \vskip 0.5cm \noindent
-\underline{(iv)\;$\Longleftrightarrow$\;(v)}
-\vskip 0.2cm \noindent
-The equivalence of (iv) and (v) follows by replacing $f$ with $-f$.
-
-\vskip 0.5cm \noindent
 \underline{(v)\;$\Longrightarrow$\;(i)}
 \vskip 0.2cm \noindent
+Suppose (v) holds. Then, so does (iv), since (iv) $\Longleftrightarrow$ (v).
+Let $f \in C_{b}(\D,d)$. Now, $f$ is thus both upper and lower semicontinuous.
+Hence, (iv) and (v) together yield:
+\begin{eqnarray*}
+\int_{\D}\, f \;\d L
+& \leq &
+	\underset{n\rightarrow\infty}{\liminf}\;\,E_{*}\!\left[\;f \circ X_{n}\;\right],
+	\quad\textnormal{by (iv)}
+\\
+& \overset{{\color{white}+}}{\leq} &
+	\underset{n\rightarrow\infty}{\liminf}\;\,E^{*}\!\left[\;f \circ X_{n}\;\right],
+	\quad\textnormal{since \,$E_{*}\!\left[\;f \circ X_{n}\;\right] \,\leq\, E^{*}\!\left[\;f \circ X_{n}\;\right]$}
+\\
+& \overset{{\color{white}+}}{\leq} &
+	\underset{n\rightarrow\infty}{\limsup}\; E^{*}\!\left[\,f \circ X_{n}\,\right] 
+\\
+& \leq &
+	\int_{\D}\, f \;\d L\,,
+	\quad\quad\quad\quad\quad\quad\textnormal{by (v)}\,,
+\end{eqnarray*}
+which implies that the limit
+\,$\underset{n\rightarrow\infty}{\lim}\, E^{*}\!\left[\,f \circ X_{n}\,\right]$\,
+exists, and
+\,$\underset{n\rightarrow\infty}{\lim}\, E^{*}\!\left[\,f \circ X_{n}\,\right] \,=\, \int_{\D}\, f \;\d L$,\,
+i.e. (i) holds.
 
 \vskip 0.5cm \noindent
 \underline{(ii)\;$\Longleftrightarrow$\;(vi)}
