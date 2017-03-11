@@ -37,25 +37,47 @@ Suppose:
 Then, the following are equivalent:
 \begin{enumerate}
 \item
-	$X_{n} \wconverge L$
+	$X_{n} \wconverge L$, i.e.
+	$E^{*}\!\left[\,f \circ X_{n}\,\right] \longrightarrow L\!\left[\,f\,\right] = \int_{\D}\;f\;\d L$,
+	for each $f \in C_{d}(\D,d)$.
+\item
+	$\int_{\D}\,f\,\d L \,\leq\, \underset{n\rightarrow\infty}{\liminf}\;E_{*}\!\left[\,f \circ X_{n}\,\right]$,
+	for each bounded, non-negative, Lipschitz continuous $f : \D \longrightarrow \Re$.
 \item
 	$L(G) \;\leq\; \underset{n\rightarrow\infty}{\liminf}\; P_{*}(X_{n} \in G)$,\, for each open $G \subset \D$.
 \item
 	$\underset{n\rightarrow\infty}{\limsup}\; P^{*}(X_{n} \in F) \;\leq\; L(F)$,\, for each closed $F \subset \D$.
 \item
-	$\int_{\D}\, f \,\d L \;\leq\; \underset{n\rightarrow\infty}{\liminf}\; E_{*}\!\left[\,f \circ X_{n}\,\right]$,\,
-	for each lower semicontinuous $f : \D \longrightarrow \Re$ which is bounded below.
-\item
-	$\underset{n\rightarrow\infty}{\limsup}\; E^{*}\!\left[\,f \circ X_{n}\,\right] \;\leq\; \int_{\D}\, f \,\d L$,\,
-	for each upper semicontinuous $f : \D \longrightarrow \Re$ which is bounded above.
+	For every Borel subset $B \in \mathcal{D}$, the following two series of inequalities hold:
+	\begin{equation*}
+	L(B^{\circ})
+	\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\liminf}\; P^{*}(X_{n} \in B)
+	\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\limsup}\; P^{*}(X_{n} \in B)
+	\;\; \leq \;\;
+		L(\overline{B}\,)
+	\end{equation*}
+	\begin{equation*}
+	L(B^{\circ})
+	\;\;\leq\;\;
+		\underset{n\rightarrow\infty}{\liminf}\; P_{*}(X_{n} \in B)
+	\;\;\leq\;\;
+		\underset{n\rightarrow\infty}{\limsup}\; P_{*}(X_{n} \in B)
+	\;\;\leq\;\;
+		L(\overline{B}\,)
+	\end{equation*}
 \item
 	$\underset{n\rightarrow\infty}{\lim}\,P^{*}(X_{n} \in B)$
 	\,$=$\, $\underset{n\rightarrow\infty}{\lim}\,P_{*}(X_{n} \in B)$
 	\,$=$\, $L(B)$,
 	for each $B \in \mathcal{D}$ with $L(\partial B) = 0$.
 \item
-	$\int_{\D}\,f\,\d L \,\leq\, \underset{n\rightarrow\infty}{\liminf}\;E_{*}\!\left[\,f \circ X_{n}\,\right]$,
-	for each bounded, non-negative, Lipschitz continuous $f : \D \longrightarrow \Re$.
+	$\int_{\D}\, f \,\d L \;\leq\; \underset{n\rightarrow\infty}{\liminf}\; E_{*}\!\left[\,f \circ X_{n}\,\right]$,\,
+	for each lower semicontinuous $f : \D \longrightarrow \Re$ which is bounded below.
+\item
+	$\underset{n\rightarrow\infty}{\limsup}\; E^{*}\!\left[\,f \circ X_{n}\,\right] \;\leq\; \int_{\D}\, f \,\d L$,\,
+	for each upper semicontinuous $f : \D \longrightarrow \Re$ which is bounded above.
 \end{enumerate}
 \end{theorem}
 \proof
@@ -64,16 +86,30 @@ of implications:
 \vskip 0.5cm
 \begin{center}
 \begin{tikzcd}
-&&& \textnormal{(vi)}
+&& \textnormal{(v)} \arrow[r, Rightarrow] & \textnormal{(vi)} \arrow[d, Rightarrow]
 \\
 \textnormal{(i)} \arrow[r, Rightarrow] \arrow[d, Leftarrow]
-	& \textnormal{(vii)} \arrow[r, Rightarrow]
-	& \textnormal{(ii)} \arrow[d, Rightarrow] \arrow[ru, Leftrightarrow] \arrow[r, Leftrightarrow]
-	& \textnormal{(iii)}
+	& \textnormal{(ii)} \arrow[r, Rightarrow]
+	& \textnormal{(iii)} \arrow[d, Rightarrow] \arrow[u, Rightarrow] \arrow[r, Leftrightarrow]
+	& \textnormal{(iv)}
 \\
-\textnormal{(v)} \arrow[rr, Leftrightarrow] & & \textnormal{(iv)}
+\textnormal{(viii)} \arrow[rr, Leftrightarrow] & & \textnormal{(vii)}
 \end{tikzcd}
 \end{center}
+
+%\vskip 0.5cm
+%\begin{center}
+%\begin{tikzcd}
+%&&& \textnormal{(vi)} \arrow[d, Rightarrow]
+%\\
+%\textnormal{(i)} \arrow[r, Rightarrow] \arrow[d, Leftarrow]
+%	& \textnormal{(vii)} \arrow[r, Rightarrow]
+%	& \textnormal{(ii)} \arrow[d, Rightarrow] \arrow[ru, Rightarrow] \arrow[r, Leftrightarrow]
+%	& \textnormal{(iii)}
+%\\
+%\textnormal{(v)} \arrow[rr, Leftrightarrow] & & \textnormal{(iv)}
+%\end{tikzcd}
+%\end{center}
 
 %\begin{center}
 %\begin{tikzcd}
@@ -88,19 +124,18 @@ of implications:
 %\end{center}
 
 \vskip 0.5cm \noindent
-\underline{(ii)\;$\Longleftrightarrow$\;(iii)}
+\underline{(iii)\;$\Longleftrightarrow$\;(iv)}
 \vskip 0.2cm \noindent
-The equivalence of (ii) and (iii) follows by taking complementation.
+The equivalence of (iii) and (iv) follows by taking complementation.
 
 \vskip 0.5cm \noindent
-\underline{(iv)\;$\Longleftrightarrow$\;(v)}
+\underline{(vii)\;$\Longleftrightarrow$\;(viii)}
 \vskip 0.2cm \noindent
-The equivalence of (iv) and (v) follows by replacing $f$ with $-f$.
+The equivalence of (vii) and (viii) follows by replacing $f$ with $-f$.
 
-\clearpage
-%\vskip 0.5cm
+\vskip 0.5cm
 \noindent
-\underline{(i)\;$\Longrightarrow$\;(vii)}
+\underline{(i)\;$\Longrightarrow$\;(ii)}
 \vskip 0.2cm \noindent
 Let $f : \D \longrightarrow [0,\infty)$ be bounded, non-negative, and Lipschitz continuous.
 Since Lipschitz continuity implies continuity, we have $f \in C_{b}(\D,d)$, and hence, $-f \in C_{b}(\D,d)$.
@@ -129,11 +164,11 @@ Now,
 	\;\geq\; \int_{\D}\;f\;\d L
 \\
 &\Longrightarrow&
-	\textnormal{(vii)}
+	\textnormal{(ii)}
 \end{eqnarray*}
 
 \vskip 0.5cm \noindent
-\underline{(vii)\;$\Longrightarrow$\;(ii)}
+\underline{(ii)\;$\Longrightarrow$\;(iii)}
 \vskip 0.2cm \noindent
 Let $G \subset \D$ be an open subset.
 First, note that $1_{\{X_{n} \in G\}} \,=\, 1_{G} \circ X_{n}$.
@@ -174,12 +209,12 @@ which implies
 \;\; \uparrow \;\; \int_{\D}\; 1_{G} \;\d L
 \;\; = \;\; L(G)\,,
 \end{equation*}
-where the two inequalities hold for for each fixed $k \in \N$, the second inequality follows from the assumption (vii), and
+where the two inequalities hold for for each fixed $k \in \N$, the second inequality follows from the assumption (ii), and
 the convergence follows from the Monotone Convergence Theorem.
-This proves that (vii) $\Longrightarrow$ (ii).
+This proves that (ii) $\Longrightarrow$ (iii).
 
 \vskip 0.5cm \noindent
-\underline{(ii)\;$\Longrightarrow$\;(iv)}
+\underline{(iii)\;$\Longrightarrow$\;(vii)}
 \vskip 0.2cm \noindent
 Let $f : \D \longrightarrow \Re$ be lower semicontinuous and bounded below,
 i.e. $f \geq K$, for some $K \in \Re$.
@@ -258,19 +293,19 @@ Hence, we have
 	\quad
 	\textnormal{by the usual Lebesgue Monotone Convergence Theorem}
 \end{eqnarray*}
-This proves that indeed (ii) $\Longrightarrow$ (iv).
+This proves that indeed (iii) $\Longrightarrow$ (vii).
 
 \vskip 0.5cm \noindent
-\underline{(v)\;$\Longrightarrow$\;(i)}
+\underline{(viii)\;$\Longrightarrow$\;(i)}
 \vskip 0.2cm \noindent
-Suppose (v) holds. Then, so does (iv), since (iv) $\Longleftrightarrow$ (v).
+Suppose (viii) holds. Then, so does (vii), since (vii) $\Longleftrightarrow$ (viii).
 Let $f \in C_{b}(\D,d)$. Now, $f$ is thus both upper and lower semicontinuous.
-Hence, (iv) and (v) together yield:
+Hence, (vii) and (viii) together yield:
 \begin{eqnarray*}
 \int_{\D}\, f \;\d L
 & \leq &
 	\underset{n\rightarrow\infty}{\liminf}\;\,E_{*}\!\left[\;f \circ X_{n}\;\right],
-	\quad\textnormal{by (iv)}
+	\quad\textnormal{by (vii)}
 \\
 & \overset{{\color{white}+}}{\leq} &
 	\underset{n\rightarrow\infty}{\liminf}\;\,E^{*}\!\left[\;f \circ X_{n}\;\right],
@@ -281,7 +316,7 @@ Hence, (iv) and (v) together yield:
 \\
 & \leq &
 	\int_{\D}\, f \;\d L\,,
-	\quad\quad\quad\quad\quad\quad\textnormal{by (v)}\,,
+	\quad\quad\quad\quad\quad\quad\textnormal{by (viii)}\,,
 \end{eqnarray*}
 which implies that the limit
 \,$\underset{n\rightarrow\infty}{\lim}\, E^{*}\!\left[\,f \circ X_{n}\,\right]$\,
@@ -290,15 +325,15 @@ exists, and
 i.e. (i) holds.
 
 \vskip 0.5cm \noindent
-\underline{(ii)\;$\Longrightarrow$\;(vi)}
+\underline{(iii)\;$\Longrightarrow$\;(v)}
 \vskip 0.2cm \noindent
-Suppose (ii) holds. Then, so does (iii), since (ii) $\Longleftrightarrow$ (iii).
+Suppose (iii) holds. Then, so does (iv), since (iii) $\Longleftrightarrow$ (iv).
 Let $B \subset (\D,d)$ be a Borel subset. Then,
 \begin{eqnarray*}
 L(B^{\circ})
 & \leq &
 	\underset{n\rightarrow\infty}{\liminf}\; P_{*}(X_{n} \in B^{\circ})\,,
-	\quad\textnormal{by (ii)}
+	\quad\textnormal{by (iii)}
 \\
 & \overset{{\color{white}\vert}}{\leq} &
 	\underset{n\rightarrow\infty}{\liminf}\; P_{*}(X_{n} \in B)
@@ -314,19 +349,15 @@ L(B^{\circ})
 \\
 & \overset{{\color{white}\vert}}{\leq} &
 	L(\overline{B}\,)\,,
-	\quad\textnormal{by (iii)}
+	\quad\quad\quad\quad\quad\quad\quad\;\,
+	\textnormal{by (iv)}
 \end{eqnarray*}
-Thus, the hypothesis
-\,$0$ $=$ $L(\partial B\,)$ $=$ $L(\overline{B}\,\backslash B^{\circ})$
-$=$ $L(\overline{B}\,) - L(B^{\circ})$\,
-furthermore implies that the limit
-\,$\underset{n\rightarrow\infty}{\lim}\, P^{*}(X_{n} \in B)$\,
-exists and equals $L(B)$.
 Similarly, the following series of inequalities
 \begin{eqnarray*}
 L(B^{\circ})
 & \overset{{\color{white}\vert}}{\leq} &
-	\underset{n\rightarrow\infty}{\liminf}\; P_{*}(X_{n} \in B^{\circ})
+	\underset{n\rightarrow\infty}{\liminf}\; P_{*}(X_{n} \in B^{\circ})\,,
+	\quad\textnormal{by (iii)}
 \\
 & \overset{{\color{white}\vert}}{\leq} &
 	{\color{red}\underset{n\rightarrow\infty}{\liminf}\; P_{*}(X_{n} \in B)}
@@ -341,17 +372,87 @@ L(B^{\circ})
 	\underset{n\rightarrow\infty}{\limsup}\; P^{*}(X_{n} \in \overline{B}\,)
 \\
 & \overset{{\color{white}\vert}}{\leq} &
-	L(\overline{B}\,)
+	L(\overline{B}\,)\,,
+	\quad\quad\quad\quad\quad\quad\quad\;\,
+	\textnormal{by (iv)}
 \end{eqnarray*}
-implies that the limit
-\,$\underset{n\rightarrow\infty}{\lim}\, P_{*}(X_{n} \in B)$\,
-exists and equals $L(B)$.
-Thus, (vi) holds.
+This proves that indeed (iii) $\Longrightarrow$ (v).
 
 \vskip 0.5cm \noindent
-\underline{(vi)\;$\Longrightarrow$\;(ii)}
+\underline{(v)\;$\Longrightarrow$\;(vi)}
 \vskip 0.2cm \noindent
+(v) together with the hypothesis
+\,$0$ $=$ $L(\partial B\,)$ $=$ $L(\overline{B}\,\backslash B^{\circ})$
+$=$ $L(\overline{B}\,) - L(B^{\circ})$\,
+immediately imply that the limits
+\,$\underset{n\rightarrow\infty}{\lim}\, P^{*}(X_{n} \in B)$\,
+and
+\,$\underset{n\rightarrow\infty}{\lim}\, P_{*}(X_{n} \in B)$\,
+both exist and equal $L(B)$.
+This proves that indeed (v) $\Longrightarrow$ (vi)
 
+\vskip 0.5cm \noindent
+\underline{(vi)\;$\Longrightarrow$\;(iv)}
+\vskip 0.2cm \noindent
+Suppose (vi) holds and $F$ is an arbitrary closed subset of $(\D,d)$.
+For each $\varepsilon > 0$, define
+\begin{equation*}
+F^{\varepsilon}
+\;\; := \;\;
+	\left\{\;
+	\left.
+	x \overset{{\color{white}+}}{\in} \D
+	\;\;\right\vert\;
+	d(x,F) < \varepsilon
+	\;\right\} 
+\end{equation*}
+By Lemma \ref{LemmaAEpsilon}, $F^{\varepsilon}$ is an open, hence Borel, subset of $(\D,d)$.
+Then, for each $\varepsilon > 0$,
+\begin{equation*}
+\partial\!\left(\,F^{\varepsilon}\,\right)
+\;\; = \;\;
+	\left\{\;
+	\left.
+	x \overset{{\color{white}+}}{\in} \D
+	\;\;\right\vert\;
+	d(x,F) = \varepsilon
+	\;\right\},
+\end{equation*}
+and 
+$\left\{\,\overset{{\color{white}.}}{\partial}\!\left(\,F^{\varepsilon}\,\right)\,\right\}_{\varepsilon > 0}$
+is thus an uncountable collection of pairwise disjoint closed, hence Borel, subsets of $(\D,d)$.
+By Lemma \ref{LemmaUncountablePartition},
+\,$L\!\left(\,\partial\!\left(\,F^{\varepsilon}\,\right)\right) \,=\, 0$\,
+for all but countably many $\varepsilon > 0$.
+Consequently, there exists a sequence $\{\,\varepsilon_{k}\,\}_{k \in \N}$
+such that $\varepsilon_{k} \downarrow 0$ and
+$L\!\left(\,\partial\!\left(\,F^{\varepsilon_{k}}\,\right)\right) \,=\, 0$, for each $k \in \N$.
+Hence, for each $k \in \N$, we have
+\begin{equation*}
+\underset{n\rightarrow\infty}{\limsup}\;P^{*}\!\left(\,X_{n} \in F\,\right)
+\;\;\leq\;\;
+	\underset{n\rightarrow\infty}{\limsup}\;P^{*}\!\left(\,X_{n} \in \overline{F^{\varepsilon_{k}}}\,\right)
+\;\;=\;\;
+	\underset{n\rightarrow\infty}{\lim}\;P^{*}\!\left(\,X_{n} \in \overline{F^{\varepsilon_{k}}}\,\right)
+\;\;=\;\;
+	L\!\left(\,\overline{F^{\varepsilon_{k}}}\,\right),
+\end{equation*}
+where the two equalities above follow from the hypothesis (vi).
+But, we also have $\varepsilon_{k} \downarrow 0$ \,\;$\Longrightarrow$\;
+$\overline{F^{\varepsilon_{k}}} \,\downarrow\, \overline{F} \,=\, F$
+\;$\Longrightarrow$\;
+$L\!\left(\overline{F^{\varepsilon_{k}}}\right) \,\downarrow\, L\!\left(\,F\,\right)$.
+We may now conclude:
+\begin{equation*}
+\underset{n\rightarrow\infty}{\limsup}\;P^{*}\!\left(\,X_{n} \in F\,\right)
+\;\;\leq\;\;
+	L\!\left(\,F\,\right),
+\end{equation*}
+i.e. (iv) indeed holds.
+
+\vskip 0.5cm
+\noindent
+This completes the proof of the Portmanteau Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

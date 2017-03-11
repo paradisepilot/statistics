@@ -15,6 +15,68 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{lemma}
+\label{LemmaUncountablePartition}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose
+\begin{itemize}
+\item	$\left(\Omega,\mathcal{A}\right)$ is a measurable space,
+		i.e. $\Omega$ is a non-empty set and $\mathcal{A}$ is a $\sigma$-algebra of subsets of $\Omega$.
+\item	$\Gamma$ is an uncountable set and
+		$\underset{\gamma\in\Gamma}{\bigsqcup}\,F_{\gamma}$ is a collection,
+		indexed by $\Gamma$, of pairwise disjoint $\mathcal{A}$-measurable subsets
+		$F_{\gamma} \in \mathcal{A}$ of $\Omega$.
+\end{itemize}
+Then, for any finite measure $\mu$ on the measurable space $\left(\Omega,\mathcal{A}\right)$,
+we have:
+\begin{equation*}
+\mu\!\left(F_{\gamma}\right) \; = \; 0,
+\;\,\textnormal{for all but countably many $\gamma \in \Gamma$}.
+\end{equation*}
+\end{lemma}
+\proof
+Let $M_{\mu} := \mu(\Omega) < \infty$. Define
+$\Gamma_{0} := \left\{\,\gamma\in\Gamma\;\left\vert\;\mu(F_{\gamma}) = 0\right.\,\right\}$,
+and for each $n \in \N$, define
+\begin{equation*}
+\Gamma_{\mu}(n) \; := \; \left\{\,\gamma\in\Gamma\;\,\left\vert\;\,\mu(F_{\gamma}) \geq \dfrac{1}{n}\right.\,\right\}.
+\end{equation*}
+Clearly,
+\begin{equation*}
+\Gamma \;\; = \;\; \Gamma_{0}\;\bigsqcup\left(\;\bigcup_{n=1}^{\infty}\,\Gamma_{\mu}(n)\right).
+\end{equation*}
+Thus, the Lemma follows immediately from the following
+
+	\begin{center}
+	\begin{minipage}{6.5in}
+	\vskip 0.1cm
+	\noindent
+	\textbf{Claim:}\;\;For each $n \geq 1$, $\Gamma_{n}$ is a finite set with $\left\vert\,\Gamma_{n}\,\right\vert \leq n\cdot M_{\mu}$.
+	\vskip 0.2cm
+	\noindent
+	Proof of Claim:\quad
+	If the Claim were false, then there would exist some $n \in \N$ such that $\Gamma_{\mu}(n)$
+	contained at least $m$ distinct elements,
+	say $\gamma_{1}, \gamma_{2}, \ldots, \gamma_{m} \in \Gamma_{n}$,
+	where $m > n\cdot M_{\mu}$.
+	It would then lead to the following contradiction:
+	\begin{equation*}
+	M_{\mu}\;\;=\;\;\mu(X)
+	\;\;\geq\;\;\mu\!\left(\;\bigsqcup_{i=1}^{m} F_{\gamma_{i}}\,\right)
+	\;\;=\;\; \sum_{i=1}^{m}\,\mu\!\left(F_{\gamma_{i}}\right)
+	\;\;\geq\;\; \sum_{i=1}^{m}\,\dfrac{1}{n}
+	\;\;=\;\;\dfrac{m}{n}
+	\;\;>\;\; M_{\mu}.
+	\end{equation*}
+	Thus, the Claim in fact must be true.
+	\end{minipage}
+	\end{center}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \begin{proposition}\label{DiscontinuitySetsInMetricSpacesAreBorel}
 \mbox{} \vskip 0.1cm \noindent
 The discontinuity set of an arbitrary map from a metric space into another metric space is Borel measurable.
@@ -266,6 +328,8 @@ Then,
 	\end{eqnarray*}
 \qed
 \end{enumerate}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \begin{lemma}
 \label{LemmaAEpsilon}
