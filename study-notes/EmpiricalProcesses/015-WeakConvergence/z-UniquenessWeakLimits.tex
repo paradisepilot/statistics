@@ -1,0 +1,124 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Uniqueness of weak limits, if they exist}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[$C_{b}(\D,d)$ separates points of $\mathcal{M}_{1}(\D,\mathcal{D})$]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\D,d)$\, is a metric space.
+	$\mathcal{D}$\, is the Borel $\sigma$-algebra of $(\D,d)$.
+\item
+	$C_{b}(\D,d)$ denotes the collection of all bounded continuous $\Re$-valued functions defined on $(\D,d)$.
+\item
+	$L_{1},\; L_{2} \,\in\, \mathcal{M}_{1}(\D,\mathcal{D})$,
+	where $\mathcal{M}_{1}(\D,\mathcal{D})$ denotes the set of
+	all Borel probability measures defined on $(\D,\mathcal{D})$.
+\end{itemize}
+Observation:
+\begin{itemize}
+\item
+	$C_{b}(\D,d)$ may be regarded as a collection of \,$\Re$-valued functions
+	defined on $\mathcal{M}_{1}(\D,\mathcal{D})$, as follows:
+	\begin{equation*}
+	f\!\left[\,L\,\right]
+	\;\; := \;\;
+		\int_{\D}\; f\;\d L\,,
+	\quad
+	\textnormal{for each \,$f \in C_{b}(\D,d)$\, and \,$L \in \mathcal{M}_{1}(\D,\mathcal{D})$}\,.
+	\end{equation*}
+\end{itemize}
+Then, $C_{b}(\D,d)$ separates points in $\mathcal{M}_{1}(\D,\mathcal{D})$;
+more precisely,
+\begin{equation*}
+L_{1} \; = \; L_{2}
+\quad\Longleftrightarrow\quad
+	\int_{\D}\, f \,\d L_{1} \;=\; \int_{\D}\, f \,\d L_{2}\,,
+	\;\;
+	\textnormal{for each $f \in C_{b}(\D,d)$}\,.
+\end{equation*}
+\end{theorem}
+\proof
+\vskip 0.1cm
+\noindent
+\underline{\,($\Longrightarrow$)\,}\;\;
+Trivial.
+
+\vskip 0.5cm
+\noindent
+\underline{\,($\Longleftarrow$)\,}\;\;
+Let $C \subset (\D,d)$ be an arbitrary closed subset.
+Let $\varepsilon > 0$. Define 
+\begin{equation*}
+f
+\; : \; \D \longrightarrow \; [0,\infty) \; : \;
+x \; \longmapsto\;  \max\!\left\{\; 0\,,\, 1\,-\,\dfrac{d(x,C)}{\varepsilon} \;\right\}
+\end{equation*}
+Note that $0 \leq f(x) \leq 1$, for each $x \in \D$; hence, $f$ is bounded.
+$f$ is continuous since it is a composition of continuous functions.
+Next, note that, $x \in C$ $\Longrightarrow$ $f(x) = 1$, while 
+$x \notin C^{\varepsilon}$
+\;$\Longrightarrow$\; $d(x,C) > \varepsilon$
+\;$\Longrightarrow$\; $1\,-\,\dfrac{d(x,C)}{\varepsilon} < 0$
+\;$\Longrightarrow$\; $f(x) = 0$,
+where $C^{\varepsilon} \,:=\, \left\{\;\left.x \overset{{\color{white}.}}{\in} \D \;\,\right\vert\; d(x,C) > \varepsilon\;\right\}$.
+It follows that \,$1_{C}(x) \,\leq\, f(x) \,\leq\, 1_{C^{\varepsilon}}(x)$,\, for each $x\in\D$.
+Hence,
+\begin{equation*}
+L_{1}(C)
+\;\; = \;\;
+	\int_{\D}\;1_{C}\;\d L_{1}
+\;\; \leq \;\;
+	\int_{\D}\;f\;\d L_{1}
+\;\; = \;\;
+	\int_{\D}\;f\;\d L_{2}
+\;\; \leq \;\;
+	\int_{\D}\;1_{C^{\varepsilon}}\;\d L_{2}
+\;\; = \;\;
+	L_{2}(C^{\varepsilon})\,,
+	\quad
+	\textnormal{for each \,$\varepsilon > 0$}.
+\end{equation*}
+Letting $\varepsilon \downarrow 0$ now yields:
+\begin{equation*}
+L_{1}(C) \;\; \leq \;\; L_{2}\!\left(\,\overline{C}\,\right) \;\; = \;\; L_{2}(C),
+\end{equation*}
+where the equality follows from the fact that $C$ is a closed subset of $(\D,d)$.
+By symmetry in $L_{1}$ and $L_{2}$ of the foregoing argument,
+we also have $L_{1}(C) \,\geq\, L_{2}(C)$.
+We may therefore conclude that $L_{1}(C) = L_{2}(C)$,
+for each closed subset $C \subset (\D,d)$.
+This in turn implies that $L_{1}$ and $L_{2}$ agree on all open subsets of $(\D,d)$.
+By Corollary \ref{OpenSetsFormSeparatingClass},
+we may conclude that $L_{1} = L_{2}$ on all of $\mathcal{D}$.
+\qed
+
+\begin{corollary}\quad
+%\mbox{}\vskip 0.1cm
+%\noindent
+If a weak limit exists in $\mathcal{M}_{1}(\D,\mathcal{D})$, it is unique.
+\end{corollary}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
