@@ -15,7 +15,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{theorem}[$C_{b}(\D,d)$ separates points of $\mathcal{M}_{1}(\D,\mathcal{D})$]
+\begin{theorem}\label{CbSeparatesPointsInM1DD}[$C_{b}(\D,d)$ separates points of $\mathcal{M}_{1}(\D,\mathcal{D})$]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -108,11 +108,38 @@ By Corollary \ref{OpenSetsFormSeparatingClass},
 we may conclude that $L_{1} = L_{2}$ on all of $\mathcal{D}$.
 \qed
 
+\vskip 0.75cm
 \begin{corollary}\quad
-%\mbox{}\vskip 0.1cm
-%\noindent
-If a weak limit exists in $\mathcal{M}_{1}(\D,\mathcal{D})$, it is unique.
+If a weak limit exists, it is unique.
 \end{corollary}
+\proof
+Suppose $(\D,d)$ is a metric space, $\mathcal{D}$ is its $\sigma$-algebra, and
+$\mathcal{M}_{1}(\D,\mathcal{D})$ is the collection of probability measures
+defined on the measurable space $(\D,\mathcal{D})$.
+For each $n \in \N$, let $X_{n} : (\Omega_{n},\mathcal{A},\mu_{n}) \longrightarrow \D$
+be a $\D$-valued map defined on a probability space $(\Omega_{n},\mathcal{A},\mu_{n})$.
+Let $L_{1}, L_{2} \in \mathcal{M}_{1}(\D,\mathcal{D})$.
+We need to prove the following implication:
+\begin{equation*}
+X_{n} \,\wconverge\, L_{1} \;\;\textnormal{and}\;\; X_{n} \,\wconverge\, L_{2}
+\quad\Longrightarrow\quad
+L_{1} \,=\, L_{2} \,\in\, \mathcal{M}_{1}(\D,\mathcal{D})\,.
+\end{equation*}
+To this end, simply note that
+\begin{eqnarray*}
+X_{n} \,\wconverge\, L_{1} \;\;\textnormal{and}\;\; X_{n} \,\wconverge\, L_{2}
+&\Longrightarrow&
+	\int_{\D}\;f\;\d L_{1} \;=\; \underset{n\rightarrow\infty}{\lim}\;E^{*}\!\left[\,f \circ X_{n}\,\right] \;=\; \int_{\D}\;f\;\d L_{2}\,,
+	\quad
+	\textnormal{for each \,$f \in C_{b}(\D,d)$}
+\\
+&\overset{{\color{white}\vert}}{\Longrightarrow}&
+	L_{1} \;=\; L_{2}\,,
+	\quad	
+	\textnormal{by Theorem \ref{CbSeparatesPointsInM1DD}}
+\end{eqnarray*}
+This completes the proof of the Corollary.
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
