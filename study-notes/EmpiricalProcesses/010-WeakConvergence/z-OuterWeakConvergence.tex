@@ -15,7 +15,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{definition}[Weak Convergence of arbitrary $\D$-valued maps to a Borel probability measure on $(\D,\mathcal{D})$]
+\begin{definition}[Weak Convergence of arbitrary $\D$-valued maps to a Borel probability measure on $(\D,\mathcal{D})$]\label{defnOuterWeakConvergence}
 \mbox{}
 \vskip -0.3cm
 \noindent
@@ -42,11 +42,80 @@ E^{*}\!\left[\; f \circ X_{n} \;\right]
 \;\; \longrightarrow \;\;
 	L\!\left[\,f\,\right] \; := \; \int_{\D}\, f \;\d L\,,
 	\quad
-	\textnormal{for each \,$f \in C_{b}(\D,d)$},
+	\textnormal{for each \,$f \in C_{b}(\D,d)$}\,,
 \end{equation*}
 where $C_{b}(\D,d)$ is the collection of all bounded continuous $\Re$-valued
 functions defined on the metric space $(\D,d)$.
 \end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{remark}[Weak convergence is just pointwise convergence]\mbox{}
+\vskip 0.1cm
+\noindent
+We follow the notation introduced in Definition \ref{defnOuterWeakConvergence}.
+Let \,$\overline{\Re}^{C_{b}(\D,d)}$ denote the collection of all $\overline{\Re}$-valued
+maps defined on $C_{b}(\D,d)$, where $\overline{R} = \Re\cup\{\pm\infty\} = [-\infty,\infty]$
+is the set of extended real numbers.
+
+\vskip 0.3cm
+\noindent
+\textnormal{\bf Claim 1:}\;\;
+$\mathcal{M}_{1}(\D,\mathcal{D})$ can be naturally regarded as a subset of $\overline{\Re}^{C_{b}(\D,d)}$.
+\vskip 0.0cm\noindent
+More precisely, there exists an injective map from $\mathcal{M}_{1}(\D,\mathcal{D})$ into
+$\overline{\Re}^{C_{b}(\D,d)}$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\;
+Given $L \in \mathcal{M}_{1}(\D,\mathcal{D})$, let $L^{*} \in \overline{\Re}^{C_{b}(\D,d)}$
+be determined as follows:
+\begin{equation*}
+L^{*}\!\left[\,f\,\right] \;\; := \;\; \int_{\D}\;f\;\d L\,,
+\quad
+\textnormal{for each \,$f\in C_{b}(\D,d)$}\,.
+\end{equation*}
+Then, by Theorem \ref{CbSeparatesPointsInM1DD}, the map
+\;$\mathcal{M}_{1}(\D,\mathcal{D}) \,\longrightarrow\, \overline{\Re}^{C_{b}(\D,d)} \,:\, L \,\longmapsto\, L^{*}$\;
+is injective. This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+\textnormal{\bf Claim 2:}\;\;
+Suppose $(\Omega,\mathcal{A},\mu)$ is a probability space.
+Then, there exists a ``natural'' (though not necessarily injective) map from $\D^{\Omega}$
+into $\overline{\Re}^{C_{b}(\D,d)}$, where $\D^{\Omega}$ denotes the set of all
+(arbitrary) $\D$-valued maps defined on $\Omega$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 2:\;
+Note that an arbitrary map $Z : \Omega \longrightarrow \D$
+(in particular, $Z$ need not be $(\mathcal{A},\mathcal{D})$-measurable)
+induces a map $Z^{*} \in \overline{\Re}^{C_{b}(\D,d)}$ as follows:
+\begin{equation*}
+Z^{*}\!\left(f\right)
+\;\; := \;\; E^{*}\!\left[\,f \circ Z\,\right]
+\;\;  = \;\; \int_{\Omega}\;(f \circ Z)^{*} \;\d\mu,
+\quad
+\textnormal{for each \,$f \in C_{b}(\D,d)$}\,.
+\end{equation*}
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+Now, let $L \in \mathcal{M}_{1}(\D,\mathcal{D})$ and $X_{n}$, $n \in \N$,
+be as in Definition \ref{defnOuterWeakConvergence}.
+By Claim 1 and Claim 2 above, we see that
+\begin{equation*}
+X_{n} \,\wconverge\, L
+\quad\Longleftrightarrow\quad
+\underset{n\rightarrow\infty}{\lim}\, X_{n}^{*}(f) \,=\, L^{*}(f)\,,
+\quad\textnormal{for each \,$f \in C_{d}(\D,d)$}\,,
+\end{equation*}
+i.e. \,$X_{n} \wconverge L$\, if and only if
+\,$X_{n}^{*} \longrightarrow L^{*}$ pointwise at each $f \in C_{b}(\D,d)$.
+
+\end{remark}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
