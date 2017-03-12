@@ -1,0 +1,87 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Weak convergence in $l^{\infty}(\mathcal{F})$}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\overline{\Re}$.
+\item
+	$f, g : \Omega \longrightarrow \Re$ are arbitrary maps from $\Omega$ into the real numbers.
+\item
+	There exists $A \in \mathcal{A}$ such that
+	\begin{equation*}
+	\mu(A) \;=\; 1
+	\quad\textnormal{and}\quad
+	A \;\subset\;\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\,\;\right\vert\;
+			f(\omega) \,\leq\, g(\omega)
+		\;\right\}.
+	\end{equation*}
+\end{itemize}
+Then, \,$f^{*} \,\leq\, g^{*}$\, $\mu$-almost surely, i.e.
+	\begin{equation*}
+	\mu\!\left(\left\{\;
+		\left.
+		\omega \overset{{\color{white}.}}{\in} \Omega
+		\,\;\right\vert\;
+			f^{*}(\omega) \,\leq\, g^{*}(\omega)
+		\;\right\}\right)
+	\;\; = \;\; 1\,.
+	\end{equation*}
+\end{lemma}
+\proof
+It suffices to show that the minimal measurable majorant $g^{*}$ of $g$ is also a measurable majorant of $f$.
+To this end, note that since $g^{*}$ is a measurable majorant of $g$, there exists $B \in \mathcal{A}$, with
+$\mu(B) = 1$, such that $B \subset \{\,\omega\in\Omega\;\vert\;g(\omega)\leq g^{*}(\omega)\,\}$.
+Now, $\mu(A \cap B) = 1$, because
+\begin{equation*}
+1 \;\geq\; \mu(A \cap B) \;=\; \mu(A) + \mu(B) - \mu(A \cup B) \;\geq\; \mu(A) + \mu(B) - 1 \;=\; 1 + 1 - 1 \;=\; 1\,.
+\end{equation*}
+On the other hand,
+\begin{equation*}
+A \cap B
+\quad\subset\quad
+	\left\{\;
+	\left.\omega\overset{{\color{white}+}}{\in}\Omega
+	\,\;\right\vert\;
+	f(\omega) \,\leq\, g(\omega) \,\leq\, g^{*}(\omega)
+	\;\right\}
+\quad\subset\quad
+	\left\{\;
+	\left.\omega\overset{{\color{white}+}}{\in}\Omega
+	\,\;\right\vert\;
+	f(\omega) \,\leq\, g^{*}(\omega)
+	\;\right\}.
+\end{equation*}
+This shows that $g^{*}$ is indeed a measurable majorant of $f$.
+Hence, we may now conclude:\; $f^{*} \,\leq\, g^{*}$\; $\mu$-almost surely.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
