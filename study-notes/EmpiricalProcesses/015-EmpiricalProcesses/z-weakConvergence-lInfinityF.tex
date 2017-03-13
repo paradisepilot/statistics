@@ -15,66 +15,100 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{lemma}
+\begin{lemma}[Lemma 1.5.2, p.35, \cite{vanDerVaart1996}]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
 \begin{itemize}
 \item
-	$(\Omega,\mathcal{A},\mu)$ is a probability space.
-	$\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\overline{\Re}$.
+	$T$ is a non-empty set.
+	$l^{\infty}(T)$ is the Banach space of uniformly bounded $\Re$-valued functions defined on $T$
+	equipped with the supremum norm.
+	$\mathcal{B}$ is the Borel $\sigma$-algebra of $l^{\infty}(T)$.
 \item
-	$f, g : \Omega \longrightarrow \Re$ are arbitrary maps from $\Omega$ into the real numbers.
+	For each $n\in\N$, $(\Omega_{n},\mathcal{A}_{n},\mu_{n})$ is a probability space, and
+	\,$\left\{\,\overset{{\color{white}.}}{X}_{n}(t):(\Omega_{n},\mathcal{A}_{n},\mu_{n})\longrightarrow\Re\,\right\}_{t\in T}$
+	is an $\Re$-valued stochastic process indexed by $T$.
 \item
-	There exists $A \in \mathcal{A}$ such that
-	\begin{equation*}
-	\mu(A) \;=\; 1
-	\quad\textnormal{and}\quad
-	A \;\subset\;\left\{\;
-		\left.
-		\omega \overset{{\color{white}.}}{\in} \Omega
-		\,\;\right\vert\;
-			f(\omega) \,\leq\, g(\omega)
-		\;\right\}.
-	\end{equation*}
+	The corresponding sequence
+	$\left\{\;
+		X_{n} : \Omega_{n}
+		\overset{{\color{white}-}}{\longrightarrow}
+		l^{\infty}(T)\;\right\}_{n\in\N}$
+	of (not necessarily measurable) $l^{\infty}(T)$-valued maps
+	is asymptotically tight.
 \end{itemize}
-Then, \,$f^{*} \,\leq\, g^{*}$\, $\mu$-almost surely, i.e.
-	\begin{equation*}
-	\mu\!\left(\left\{\;
-		\left.
-		\omega \overset{{\color{white}.}}{\in} \Omega
-		\,\;\right\vert\;
-			f^{*}(\omega) \,\leq\, g^{*}(\omega)
-		\;\right\}\right)
-	\;\; = \;\; 1\,.
-	\end{equation*}
+Then,
+\,$\left\{\,X_{n} : \Omega_{n}\overset{{\color{white}-}}{\longrightarrow}l^{\infty}(T)\,\right\}_{n\in\N}$
+is asymptotically measurable if and only if
+\,$\left\{\,\overset{{\color{white}.}}{X}_{n}(t) : (\Omega_{n},\mathcal{A}_{n},\mu_{n}) \longrightarrow \Re\,\right\}_{n\in\N}$
+is asymptotically measurable, for each $t \in T$.
 \end{lemma}
 \proof
-It suffices to show that the minimal measurable majorant $g^{*}$ of $g$ is also a measurable majorant of $f$.
-To this end, note that since $g^{*}$ is a measurable majorant of $g$, there exists $B \in \mathcal{A}$, with
-$\mu(B) = 1$, such that $B \subset \{\,\omega\in\Omega\;\vert\;g(\omega)\leq g^{*}(\omega)\,\}$.
-Now, $\mu(A \cap B) = 1$, because
-\begin{equation*}
-1 \;\geq\; \mu(A \cap B) \;=\; \mu(A) + \mu(B) - \mu(A \cup B) \;\geq\; \mu(A) + \mu(B) - 1 \;=\; 1 + 1 - 1 \;=\; 1\,.
-\end{equation*}
-On the other hand,
-\begin{equation*}
-A \cap B
-\quad\subset\quad
-	\left\{\;
-	\left.\omega\overset{{\color{white}+}}{\in}\Omega
-	\,\;\right\vert\;
-	f(\omega) \,\leq\, g(\omega) \,\leq\, g^{*}(\omega)
-	\;\right\}
-\quad\subset\quad
-	\left\{\;
-	\left.\omega\overset{{\color{white}+}}{\in}\Omega
-	\,\;\right\vert\;
-	f(\omega) \,\leq\, g^{*}(\omega)
-	\;\right\}.
-\end{equation*}
-This shows that $g^{*}$ is indeed a measurable majorant of $f$.
-Hence, we may now conclude:\; $f^{*} \,\leq\, g^{*}$\; $\mu$-almost surely.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}[Lemma 1.5.3, p.35, \cite{vanDerVaart1996}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$T$ is a non-empty set.
+	$l^{\infty}(T)$ is the Banach space of uniformly bounded $\Re$-valued functions defined on $T$
+	equipped with the supremum norm.
+	$\mathcal{B}$ is the Borel $\sigma$-algebra of $l^{\infty}(T)$.
+\item
+	$X_{1} : (\Omega_{1},\mathcal{A}_{1},\mu_{1}) \longrightarrow l^{\infty}(T)$
+	and
+	$X_{2} : (\Omega_{2},\mathcal{A}_{2},\mu_{2}) \longrightarrow l^{\infty}(T)$
+	are two $l^{\infty}(T)$-valued random variables
+	(i.e. $X_{1}$ is $(\mathcal{A}_{1},\mathcal{B})$-measurable and
+	$X_{2}$ is $(\mathcal{A}_{2},\mathcal{B})$-measurable).
+\item
+	The probability measures $L_{X_{1}}$ and $L_{X_{2}}$ induced on $l^{\infty}(T)$
+	by $X_{1}$ and $X_{2}$ respectively are both tight.
+\end{itemize}
+Then,
+\,$L_{X_{1}} = L_{X_{2}} \in \mathcal{M}_{1}(l^{\infty}(T),\mathcal{B})$\,
+if and only if
+every pair of corresponding finite-dimensional projections of $X_{1}$ and $X_{2}$
+induce the same probability measure.
+\end{lemma}
+\proof
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Theorem 1.5.4, p.35, \cite{vanDerVaart1996}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$T$ is a non-empty set.
+	$l^{\infty}(T)$ is the Banach space of uniformly bounded $\Re$-valued functions defined on $T$
+	equipped with the supremum norm.
+	$\mathcal{B}$ is the Borel $\sigma$-algebra of $l^{\infty}(T)$.
+\item
+	$X_{1} : (\Omega_{1},\mathcal{A}_{1},\mu_{1}) \longrightarrow l^{\infty}(T)$
+	and
+	$X_{2} : (\Omega_{2},\mathcal{A}_{2},\mu_{2}) \longrightarrow l^{\infty}(T)$
+	are two $l^{\infty}(T)$-valued random variables
+	(i.e. $X_{1}$ is $(\mathcal{A}_{1},\mathcal{B})$-measurable and
+	$X_{2}$ is $(\mathcal{A}_{2},\mathcal{B})$-measurable).
+\item
+	The probability measures $L_{X_{1}}$ and $L_{X_{2}}$ induced on $l^{\infty}(T)$
+	by $X_{1}$ and $X_{2}$ respectively are both tight.
+\end{itemize}
+Then,
+\,$L_{X_{1}} = L_{X_{2}} \in \mathcal{M}_{1}(l^{\infty}(T),\mathcal{B})$\,
+if and only if
+every pair of corresponding finite-dimensional projections of $X_{1}$ and $X_{2}$
+induce the same probability measure.
+\end{theorem}
+\proof
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
