@@ -1,0 +1,165 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The Prokhorov Theorem}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Tightness]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $\Omega$ is a topological space and
+$\mathcal{B}$\, is the Borel $\sigma$-algebra of \,$\Omega$.
+Then, a Borel probability measure $\mu$ defined on the measurable space
+$(\Omega,\mathcal{B})$ is said to be \,\underline{\textbf{tight}}\,
+if, for each $\varepsilon > 0$, there exists a
+compact subset $K \subset \Omega$ such that
+\begin{equation*}
+1 - \varepsilon \;\; \leq \;\; \mu(\,\overset{{\color{white}.}}{K}\,) \;\; \leq \;\; 1\,.
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Asymptotic measurability \& asymptotic tightness]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\D,d)$\, is a metric space.
+	$\mathcal{D}$\, is the Borel $\sigma$-algebra of $(\D,d)$.
+	\vskip 0.0cm
+	$\mathcal{M}_{1}(\D,\mathcal{D})$ is the collection of Borel probability measures
+	defined on the measurable space $(\D,\mathcal{D})$.
+\item
+	For each $n \in \N$,
+	$(\Omega_{n},\mathcal{A}_{n},\mu_{n})$ is a probability space and
+	$X_{n} : \Omega_{n} \longrightarrow \D$
+	is a $\D$-valued map (not necessarily Borel measurable) defined on $\Omega_{n}$.
+\end{itemize}
+Then, $\{\,X_{n}\,\}_{n\in\N}$ is said to be
+\begin{enumerate}
+\item
+	\underline{\textbf{asymptotically measurable}}\; if
+	\begin{equation*}
+	\left(\, \overset{{\color{white}.}}{E^{*}}\!\left[\,f \circ X_{n}\,\right] \,-\, E_{*}\!\left[\,f \circ X_{n}\,\right] \,\right)
+	\;\longrightarrow\;
+	0\,,
+	\quad
+	\textnormal{for each \,$f \in C_{b}(\D,d)$}\,.
+	\end{equation*}
+\item
+	\underline{\textbf{asymptotically tight}}\; if, for each $\varepsilon > 0$, there exists
+	a compact subset $K \subset \D$ such that
+	\begin{equation*}
+	1 - \varepsilon
+	\;\; \leq \;\; \underset{n\rightarrow\infty}{\limsup}\; P_{*}(\,X_{n} \in K^{\delta}\,)
+	\;\; \leq \;\; 1\,,
+	\;\;
+	\textnormal{for each \,$\delta > 0$},
+	\end{equation*}
+	where the $\delta$-enlargement $K^{\delta}$ of $K$ is defined by:
+	\begin{equation*}
+	K^{\delta}
+		\;\; := \;\;
+		\left\{\;
+		\left.
+		y \overset{{\color{white}-}}{\in} \D
+		\;\;\right\vert\;
+		d(y,K) < \delta
+		\;\right\}
+	\end{equation*}
+\item
+	\underline{\textbf{weakly sequentially compact}}\; if each of its subsequences
+	admits a further subsequence which weakly converges to a tight
+	Borel measure in $\mathcal{M}_{1}(\D,\mathcal{D})$.
+\end{enumerate}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{proposition}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\D,d)$\, is a metric space.
+	$\mathcal{D}$\, is the Borel $\sigma$-algebra of $(\D,d)$.
+	\vskip 0.0cm
+	$\mathcal{M}_{1}(\D,\mathcal{D})$ is the collection of Borel probability measures
+	defined on the measurable space $(\D,\mathcal{D})$.
+\item
+	For each $n \in \N$,
+	$(\Omega_{n},\mathcal{A}_{n},\mu_{n})$ is a probability space and
+	$X_{n} : \Omega_{n} \longrightarrow \D$
+	is a $\D$-valued map (not necessarily Borel measurable) defined on $\Omega_{n}$.
+\end{itemize}
+Then, the following statements are true:
+\begin{enumerate}
+\item
+	$\overset{{\color{white}.}}{X}_{n} \wconverge X$\,
+	implies that
+	\,$\{\,\overset{{\color{white}.}}{X}_{n}\,\}_{n\in\N}$ is asymptotically measurable.
+\item
+	Suppose \,$\overset{{\color{white}.}}{X}_{n} \wconverge X$.
+	Then, \,$\{\,\overset{{\color{white}.}}{X}_{n}\,\}_{n\in\N}$ is asymptotically tight
+	if and only if
+	$X$ is tight.
+\end{enumerate}
+\end{proposition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\D,d)$\, is a metric space.
+	$\mathcal{D}$\, is the Borel $\sigma$-algebra of $(\D,d)$.
+	\vskip 0.0cm
+	$\mathcal{M}_{1}(\D,\mathcal{D})$ is the collection of Borel probability measures
+	defined on the measurable space $(\D,\mathcal{D})$.
+\item
+	For each $n \in \N$,
+	$(\Omega_{n},\mathcal{A}_{n},\mu_{n})$ is a probability space and
+	$X_{n} : \Omega_{n} \longrightarrow \D$
+	is a $\D$-valued map (not necessarily Borel measurable) defined on $\Omega_{n}$.
+\end{itemize}
+Then,
+\begin{equation*}
+	\left.\begin{array}{c}
+	\textnormal{$\{\,X_{n}\,\}_{n\in\N}$ is asymptotically tight}
+	\\
+	\overset{{\color{white}.}}{\textnormal{and asymptotically measurable}}
+	\end{array}\right\}
+\quad\;\;\Longrightarrow\quad
+	\begin{array}{c}
+	\textnormal{$\{\,X_{n}\,\}_{n\in\N}$ weakly sequentially compact}
+	\end{array}
+\end{equation*}
+\end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
