@@ -591,6 +591,64 @@ This proves Claim 3, as well as completes the proof of the present Lemma.
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{proposition}[Problem 11.13, p. 91, \cite{Aliprantis1998}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $(X,d)$ is a compact metric space.
+Then, the space $C(X,\Vert\cdot\Vert_{\infty})$ of bounded continuous $\Re$-valued
+functions defined on $(X,d)$, equipped with the supremum norm $\Vert\,\cdot\,\Vert_{\infty}$,
+is a separable metric space.
+\end{proposition}
+\proof
+Since $X$ is compact, it is separable (see Problem 7.2, p.55, \cite{Aliprantis1998}).
+Fix a countable dense subset $\{x_{1},x_{2},\ldots\,\} \subset X$, and
+for each $n \in \N$, let $f_{n} : X \longrightarrow \Re$ be defined as follows:
+$f_{n}(\zeta) := d(\zeta,x_{n})$, for each $\zeta \in X$.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\;\; $\{1, f_{1}, f_{2}, \ldots\,\}$ separates points of $X$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\;\;
+Let $x, y \in X$ with $x \neq y$. Let $\delta := d(x,y)/2$.
+Choose $n \in \N$ such that $d(x,x_{n}) < \delta$. Then
+\begin{equation*}
+f_{n}(y) \;=\; d(y,x_{n}) \;\geq\; d(x,y) - d(x,x_{n}) \;\geq\; 2\delta - \delta \;=\; \delta \;>\; d(x,x_{n}) \;=\; f_{n}(x)\,,
+\end{equation*}
+so that $f_{n}(x) \neq f_{n}(y)$. This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+Next, let $\mathcal{C}$ be the collection of all finite products of the countable collection
+$\{1, f_{1}, f_{2}, \ldots\,\}$. 
+Note that $\mathcal{C}$ is itself countable. Now, let $\mathcal{A}$ be the set of all
+(finite) linear combinations of elements of $\mathcal{C}$ with coefficients in $\Q$.
+Then, $\mathcal{A}$ is a countable set.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\;\; $\mathcal{A}$ is dense in $C(X,\Vert\cdot\Vert_{\infty})$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 2:\;\;
+Note that $\mathcal{A}$ is an algebra (i.e. a vector space of functions
+which is furthermore closed under finite products) of continuous $\Re$-valued
+functions defined on $(X,d)$ with
+$\mathcal{A} \supset \mathcal{C} \supset \{1,f_{1},f_{2},\ldots\,\}$. 
+Hence, by Claim 1, $\mathcal{A}$ also separates points of $X$.
+By the Stone-Weierstrass Approximation Theorem (Theorem 11.5, p.89, \cite{Aliprantis1998}),
+$\mathcal{A}$ is dense in $C(X,\Vert\cdot\Vert_{\infty})$.
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+Thus, $\mathcal{A}$ is a countable dense subset of $C(X,\Vert\cdot\Vert_{\infty})$.
+Hence, $C(X,\Vert\cdot\Vert_{\infty})$ is separable.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 %\renewcommand{\theenumi}{\alph{enumi}}
 %\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 \renewcommand{\theenumi}{\roman{enumi}}
