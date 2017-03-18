@@ -459,6 +459,88 @@ L(\,\lambda \cdot f\,)
 \end{eqnarray*}
 This proves Claim 3.
 
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4:}\;\;
+For any sequence \,$\{\;f_{m}\,\}_{m\in\N} \,\subset\, C_{b}(\D,d)$,\,
+we have:\;
+$f_{m}(\zeta) \downarrow 0$,\, for each $\zeta \in \D$
+\;\,$\Longrightarrow$\;
+$L(\,f_{m}\,) \,\downarrow\, 0$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 4:\;\;
+Let $\varepsilon > 0$ be given.
+Then, by the asymptotic tightness hypothesis, there exists a compact $K \subset \D$ such that
+\begin{equation*}
+1 - \varepsilon
+\;\; \leq \;\;
+	\underset{i\rightarrow\infty}{\liminf}\; P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right)
+\;\; \leq \;\;
+	1\,,
+\quad
+\textnormal{for each \,$\delta > 0$}.
+\end{equation*}
+By Dini's Theorem\footnote{Dini's Theorem (Theorem 9.4, p.70, \cite{Aliprantis1998}):\;
+Let $X$ be a compact topological space, and $C(X)$ the collection of continuous $\Re$-valued
+functions defined on $X$. Let $f \in C(X)$ and $\{\;f_{m}\,\}_{m\in\N} \subset C(X)$.
+If $f_{m}(x)$ converges monotonically to $f(x)$, for each $x \in X$,
+then $f_{m}$ also converges uniformly to $f$.} (Theorem 9.4, p.70, \cite{Aliprantis1998}),
+\,$f_{m} \downarrow 0$\, uniformly on every compact subset of $(\D,d)$.
+Thus, for all sufficiently large $m \in \N$, we have
+\,$\vert\,f_{m}(x)\,\vert \leq \varepsilon$,\, for each \,$x \in K$.
+Fix an $m \in \N$ for which this holds.
+Next, the compactness of $K$ implies, by an easy argument,
+that there exists $\delta > 0$ such that
+\,$\vert\,f_{m}(x)\,\vert \leq  2\,\varepsilon$,\, for each \,$x \in K^{\delta}$.
+\begin{eqnarray*}
+L(\,f_{m}\,)
+&=&
+	\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\; f_{m} \circ X_{n(i)} \,\right]
+\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\; E\!\left[\; \left(\;f_{m} \circ X_{n(i)}\,\right)^{*} \,\right]
+\\
+&=&
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\;
+		\left(\;f_{m} \circ X_{n(i)}\,\right)^{*}
+		\cdot
+		\left(
+			\left(1_{\left\{X_{n(i) \in K^{\delta}}\right\}}\right)_{*}
+			\,+\,
+			\left(1_{\left\{X_{n(i) \notin K^{\delta}}\right\}}\right)^{*}
+		\right)
+	\,\right],
+\\
+&=&
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\;
+		\left(\;f_{m} \circ X_{n(i)}\,\right)^{*}
+		\cdot
+		\left(
+			\left(1_{\left\{X_{n(i) \in K^{\delta}}\right\}}\right)_{*}
+			\,+\,
+			\left(1_{\left\{X_{n(i) \notin K^{\delta}}\right\}}\right)^{*}
+		\right)
+	\,\right],
+	\quad\textnormal{by Lemma 1.2.3(iii), p.9, \cite{vanDerVaart1996}}
+\\
+&=&
+	\underset{i\rightarrow\infty}{\lim}\;
+	\left\{\;
+		E\!\left[\;
+			\left(\;f_{m} \circ X_{n(i)}\,\right)^{*}
+			\cdot
+			\left(1_{\left\{X_{n(i) \in K^{\delta}}\right\}}\right)_{*}
+		\,\right]
+		\, + \,
+		E\!\left[\;
+			\left(\;f_{m} \circ X_{n(i)}\,\right)^{*}
+			\cdot
+			\left(1_{\left\{X_{n(i) \notin K^{\delta}}\right\}}\right)^{*}
+		\,\right]
+	\;\right\}
+\end{eqnarray*}
 
 \qed
 
