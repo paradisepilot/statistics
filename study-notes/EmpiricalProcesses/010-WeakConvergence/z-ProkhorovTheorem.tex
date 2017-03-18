@@ -31,7 +31,7 @@ compact subset $K \subset \Omega$ such that
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{definition}[Asymptotic measurability \& asymptotic tightness]
+\begin{definition}[Asymptotic measurability, asymptotic tightness \& weak sequential compactness]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -69,7 +69,7 @@ Then, $\{\,X_{n}\,\}_{n\in\N}$ is said to be
 	\;\;
 	\textnormal{for each \,$\delta > 0$},
 	\end{equation*}
-	where the $\delta$-enlargement $K^{\delta}$ of $K$ is defined by:
+	where the $\delta$-enlargement $K^{\delta}$ of $K$ is defined to be:
 	\begin{equation*}
 	K^{\delta}
 		\;\; := \;\;
@@ -82,7 +82,7 @@ Then, $\{\,X_{n}\,\}_{n\in\N}$ is said to be
 	\end{equation*}
 \item
 	\underline{\textbf{weakly sequentially compact}}\; if each of its subsequences
-	admits a further subsequence which weakly converges to a tight
+	admits a further subsequence which weakly converges to a {\color{red}tight}
 	Borel measure in $\mathcal{M}_{1}(\D,\mathcal{D})$.{\color{white}$\overset{.}{1}$}
 \end{enumerate}
 \end{definition}
@@ -100,6 +100,10 @@ Suppose:
 	\vskip 0.0cm
 	$\mathcal{M}_{1}(\D,\mathcal{D})$ is the collection of Borel probability measures
 	defined on the measurable space $(\D,\mathcal{D})$.
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space and
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\D,\mathcal{D})$
+	is a $\D$-valued random variable defined on $\Omega$.
 \item
 	For each $n \in \N$,
 	$(\Omega_{n},\mathcal{A}_{n},\mu_{n})$ is a probability space and
@@ -119,10 +123,121 @@ Then, the following statements are true:
 	$X$ is tight.
 \end{enumerate}
 \end{proposition}
+\proof
+\begin{enumerate}
+\item
+	Let $f \in C_{b}(\D,d)$. Then, we also have \,$-f \in C_{b}(\D,d)$.
+	Since, by hypothesis, $X_{n} \wconverge X$, it follows that
+	\begin{equation*}
+	E^{*}\!\left[\,f \circ X_{n}\,\right] \;\longrightarrow\; E\!\left[\,f \circ X\,\right],
+	\end{equation*}
+	and
+	\begin{equation*}
+	-\,E_{*}\!\left[\,f \circ X_{n}\,\right]
+	\;=\; E^{*}\!\left[\,-(f \circ X_{n})\,\right]
+	\;=\; E^{*}\!\left[\,(-f) \circ X_{n}\,\right]
+	\;\;\longrightarrow\;\;
+	E\!\left[\,(-f) \circ X\,\right]
+	\;=\; E\!\left[\,-(f \circ X)\,\right]
+	\;=\; -E\!\left[\,f \circ X\,\right].
+	\end{equation*}
+	Thus,
+	\begin{equation*}
+	\underset{n\rightarrow\infty}{\lim}\;E^{*}\!\left[\,f \circ X_{n}\,\right]
+	\;\; = \;\;
+	\underset{n\rightarrow\infty}{\lim}\;E_{*}\!\left[\,f \circ X_{n}\,\right]
+	\;\; = \;\;
+	E\!\left[\,f \circ X\,\right],
+	\end{equation*}
+	which, in particular, implies
+	\begin{equation*}
+	\underset{n\rightarrow\infty}{\lim}
+		\left(\,
+			E^{*}\!\left[\,f \circ X_{n}\,\right]
+			\,\overset{{\color{white}+}}{-}\,
+			E_{*}\!\left[\,f \circ X_{n}\,\right]
+		\,\right)
+	\;\; = \;\;
+		E\!\left[\,f \circ X\,\right] \,-\, E\!\left[\,f \circ X\,\right]
+	\;\; = \;\;
+		0\,.
+	\end{equation*}
+	Since $f \in C_{b}(\D,d)$ in the preceding argument is arbitrary,
+	we may conclude that $\left\{\,X_{n}\,\right\}_{n\in\N}$ is asymptotically measurable.
+\item
+	\underline{\,(\,$\Longleftarrow$\,)\,}\;\;
+	Suppose $X$ is tight.
+	Let $\varepsilon > 0$ be given.
+	Then, there exists compact $K \subset \D$ such that
+	\begin{equation*}
+	1 - \varepsilon \;\;\leq\;\; P\!\left(\,X \in K\,\right) \;\;\leq\;\; 1\,.
+	\end{equation*}
+	By Lemma \ref{LemmaAEpsilon}, the set $K^{\delta} \subset \D$
+	is an open subset of $(\D,d)$, for each $\delta > 0$.
+	Hence, by the Portmanteau Theorem (Theorem \ref{TheoremPortmanteau}),
+	we have
+	\begin{equation*}
+	P\!\left(\,X \in K^{\delta}\,\right)
+	\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\liminf}\;
+		P_{*}\!\left(\,X_{n} \in K^{\delta}\,\right),
+	\quad
+	\textnormal{for each \,$\delta > 0$}\,.
+	\end{equation*}
+	Thus, since $K \subset K^{\delta}$, we see that
+	\begin{equation*}
+	1 - \varepsilon
+	\;\; \leq \;\;
+		P\!\left(\,X \in K\,\right)
+	\;\; \leq \;\;
+		P\!\left(\,X \in K^{\delta}\,\right)
+	\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\liminf}\;
+		P_{*}\!\left(\,X_{n} \in K^{\delta}\,\right),
+	\quad
+	\textnormal{for each \,$\delta > 0$}\,.
+	\end{equation*}
+	This shows that tightness of $X$ indeed implies asymptotic tightness of
+	$\left\{\,X_{n}\,\right\}_{n\in\N}$.
+	
+	\vskip 0.5cm
+	\underline{\,(\,$\Longrightarrow$\,)\,}\;\;
+	Conversely, suppose $\left\{\,X_{n}\,\right\}_{n\in\N}$\, is asymptotically tight.
+	Let $\varepsilon > 0$ be given.
+	Then, there exists a compact $K \subset \D${\color{white}$\overset{.}{0}$}such that
+	\begin{equation*}
+	1 - \varepsilon
+	\;\;\leq\;\;
+		\underset{n\rightarrow\infty}{\liminf}\;P_{*}\!\left(\,X_{n} \in K^{\delta}\,\right)
+	\;\;\leq\;\; 1\,,
+	\quad
+	\textnormal{for each \,$\delta > 0$}\,.
+	\end{equation*}
+	By the Portmanteau Theorem (Theorem \ref{TheoremPortmanteau}),
+	we then have
+	\begin{equation*}
+	1 - \varepsilon
+	\;\;\leq\;\;
+		\underset{n\rightarrow\infty}{\liminf}\; P_{*}(X_{n} \in K^{\delta})
+	\;\;\leq\;\;
+		\underset{n\rightarrow\infty}{\limsup}\; P_{*}(X_{n} \in K^{\delta})
+	\;\;\leq\;\;
+		P\!\left(\,X \in \overline{K^{\delta}}\;\right),
+	\quad
+	\textnormal{for each \,$\delta > 0$}\,.
+	\end{equation*}
+	Letting \,$\delta \downarrow 0$,\, we may conclude that
+	\begin{equation*}
+	1 - \varepsilon \;\;\leq\;\; P\!\left(\,X \in K\;\right).
+	\end{equation*}
+	This shows that asymptotic tightness of $\left\{\,X_{n}\,\right\}_{n\in\N}$
+	indeed implies tightness of $X$.
+\end{enumerate}
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{theorem}
+\begin{theorem}[The Prokhorov Theorem]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
