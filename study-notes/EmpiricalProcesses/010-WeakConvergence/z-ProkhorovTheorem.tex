@@ -276,6 +276,192 @@ Then,
 	\end{array}
 \end{equation*}
 \end{theorem}
+\proof
+Let $C_{b}(\D,d)$ denote the set of all bounded continuous $\Re$-valued
+functions defined on $(\D,d)$.
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\;\;
+There exists a subsequence $\left\{\,X_{n(i)}\right\}_{i\in\N}$ such that
+\begin{equation*}
+\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\; f \circ X_{n(i)} \,\right]
+\;\;\textnormal{exists in $\Re$, \; for each \,$f \in C_{b}(\D,d)$}\,.
+\end{equation*}
+Thus, we may define a set-theoretic function $L : C_{b}(\D,d) \longrightarrow \Re$ by
+\begin{equation*}
+L(\,f\,)
+\;\; := \;\;
+	\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\; f \circ X_{n(i)} \,\right],
+\quad
+\textnormal{for each \,$f \in C_{b}(\D,d)$}\,.
+\end{equation*}
+Proof of Claim 1:\;\;
+
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\;\;
+$L : C_{b}(\D,d) \longrightarrow \Re$ is a additive.
+\vskip 0.2cm
+\noindent
+Proof of Claim 2:\;\;
+Observe that, for any \,$f_{1}, f_{2} \in C_{b}(\D,d)$,\, we have:
+\begin{eqnarray*}
+L(\,f_{1} + f_{2}\,)
+&:=&
+	\underset{i\rightarrow\infty}{\lim}\;
+	E^{*}\!\left[\; f_{1} \circ X_{n(i)} \overset{{\color{white}.}}{+} f_{2} \circ X_{n(i)} \,\right]
+\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\,\left(\; f_{1} \circ X_{n(i)} \overset{{\color{white}.}}{+} f_{2} \circ X_{n(i)} \,\right)^{*}\,\right]
+\\
+& \leq &
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\,\left(\;
+		f_{1} \circ X_{n(i)}\,\right)^{*}
+		\overset{{\color{white}.}}{+}
+		\left(\;f_{2} \circ X_{n(i)}
+	\,\right)^{*}\,\right],
+	\quad
+	\textnormal{since \,$(f + g)^{*} \,\leq\, f^{*} +  g^{*}$}
+\\
+& \overset{{\color{white}1}}{=} &
+%\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\;\left\{\;
+	E\!\left[\,\left(\,f_{1} \circ X_{n(i)}\,\right)^{*} \,\right]
+	\; + \;
+	E\!\left[\,\left(\,f_{2} \circ X_{n(i)}\,\right)^{*} \,\right]
+	\;\right\}
+\\
+& \overset{{\color{white}1}}{=} &
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\,\left(\,f_{1} \circ X_{n(i)}\,\right)^{*} \,\right]
+	\;\; + \;\;
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\,\left(\,f_{2} \circ X_{n(i)}\,\right)^{*} \,\right]
+\\
+& \overset{{\color{white}1}}{=} &
+%\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\;
+	E^{*}\!\left[\; f_{1} \circ X_{n(i)} \,\right]
+	\; + \;
+	\underset{i\rightarrow\infty}{\lim}\;
+	E^{*}\!\left[\; f_{2} \circ X_{n(i)} \,\right]
+\\
+& \overset{{\color{white}1}}{=:} &
+	{\color{red}L(\,f_{1}\,) \;\; + \;\; L(\,f_{2}\,)}
+\\
+& \overset{{\color{white}1}}{=} &
+	\underset{i\rightarrow\infty}{\lim}\;
+	E_{*}\!\left[\; f_{1} \circ X_{n(i)} \,\right]
+	\; + \;
+	\underset{i\rightarrow\infty}{\lim}\;
+	E_{*}\!\left[\; f_{2} \circ X_{n(i)} \,\right],
+	\quad\textnormal{by the asymptotic measurability hypothesis}
+\\
+& \overset{{\color{white}1}}{=} &
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\; \left(\,f_{1} \circ X_{n(i)}\right)_{*} \,\right]
+	\; + \;
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\; \left(\,f_{2} \circ X_{n(i)}\,\right)_{*} \,\right]
+\\
+& \overset{{\color{white}1}}{=} &
+%\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\;\left\{\;
+	E\!\left[\,\left(\,f_{1} \circ X_{n(i)}\,\right)_{*} \,\right]
+	\; \overset{{\color{white}.}}{+} \;
+	E\!\left[\,\left(\,f_{2} \circ X_{n(i)}\,\right)_{*} \,\right]
+	\;\right\}
+\\
+& \overset{{\color{white}1}}{=} &
+%\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\;\,
+	E\!\left[\,
+		\left(\,f_{1} \circ X_{n(i)}\,\right)_{*}
+		\overset{{\color{white}.}}{+}
+		\left(\,f_{2} \circ X_{n(i)}\,\right)_{*}
+	\,\right]
+\\
+& \overset{{\color{white}1}}{\leq} &
+%\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\;\,
+	E\!\left[\,\left(\,f_{1} \circ X_{n(i)} \,\overset{{\color{white}.}}{+}\, f_{2} \circ X_{n(i)} \,\right)_{*} \,\right],
+	\quad
+	\textnormal{since \,$f_{*} +  g_{*} \,\leq\, (f + g)_{*}$}
+\\
+& \overset{{\color{white}1}}{=} &
+%\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\;\,
+	E_{*}\!\left[\;f_{1} \circ X_{n(i)} \,\overset{{\color{white}.}}{+}\, f_{2} \circ X_{n(i)} \,\right]
+\\
+& \overset{{\color{white}1}}{=} &
+%\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\;\,
+	E^{*}\!\left[\;f_{1} \circ X_{n(i)} \,\overset{{\color{white}.}}{+}\, f_{2} \circ X_{n(i)} \,\right],
+	\quad\textnormal{by the asymptotic measurability hypothesis}
+\\
+& \overset{{\color{white}1}}{=:} &
+	L(\,f_{1} + f_{2}\,)\,,
+\end{eqnarray*}
+which immediately implies:
+\begin{equation*}
+L(\,f_{1} + f_{2}\,) \;\; = \;\; L(\,f_{1}\,) + L(\,f_{2}\,)\,,
+\quad
+\textnormal{for each \,$f_{1}, f_{2} \in C_{b}(\D,d)$}.
+\end{equation*}
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}\;\;
+$L : C_{b}(\D,d) \longrightarrow \Re$ satisfies:\,
+$L(\,\lambda\cdot f\,) \,=\, \lambda \cdot L(\,f\,)$,\;
+for each \,$\lambda \in \Re$\, and \,$f \in C_{b}(\D,d)$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 3:\;\;
+Observe that, for any \,$\lambda \in \Re$\, and \,$f \in C_{b}(\D,d)$,\, we have:
+\begin{eqnarray*}
+L(\,\lambda \cdot f\,)
+&:=&
+	\underset{i\rightarrow\infty}{\lim}\;
+	E^{*}\!\left[\; \lambda \cdot f \circ X_{n(i)} \,\right]
+\\
+& \overset{{\color{white}1}}{=} &
+%\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\,\left(\; \lambda \cdot f \circ X_{n(i)} \,\right)^{*}\,\right]
+\\
+& \overset{{\color{white}1}}{=} &
+%\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\; \lambda \cdot \left(\; f \circ X_{n(i)}\,\right)^{*} \,\right],
+	\quad
+	\textnormal{since \,$(\lambda \cdot f)^{*} \,=\, \lambda \cdot (f^{*})$}
+\\
+& \overset{{\color{white}1}}{=} &
+	\underset{i\rightarrow\infty}{\lim}\;\,
+	\lambda \cdot E\!\left[\;\left(\; f \circ X_{n(i)}\,\right)^{*} \,\right]
+\\
+& \overset{{\color{white}1}}{=} &
+%\;\; = \;\;
+	\lambda \cdot
+	\underset{i\rightarrow\infty}{\lim}\;
+	E\!\left[\;\left(\; f \circ X_{n(i)}\,\right)^{*} \,\right]
+\;\; = \;\;
+	\lambda \cdot
+	\underset{i\rightarrow\infty}{\lim}\;
+	E^{*}\!\left[\; f \circ X_{n(i)} \,\right]
+\\
+& \overset{{\color{white}1}}{=:} &
+	\lambda \cdot L(\,f\,)
+\end{eqnarray*}
+This proves Claim 3.
+
+
+\qed
+
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
