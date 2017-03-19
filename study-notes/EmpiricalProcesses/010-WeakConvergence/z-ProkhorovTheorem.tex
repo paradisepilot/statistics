@@ -493,56 +493,39 @@ Fix an $m \in \N$ for which this holds.
 Next, the compactness of $K$ implies, by an easy argument,
 that there exists $\delta > 0$ such that
 \,$\vert\,f_{m}(x)\,\vert \leq  2\,\varepsilon$,\, for each \,$x \in K^{\delta}$.
+%By passing to a further subsequence if necessary, we may furthermore assume
+%\begin{equation*}
+%1 - \varepsilon
+%\;\; \leq \;\;
+%	\underset{i\rightarrow\infty}{\lim}\; P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right)
+%\;\; \leq \;\;
+%	1\,.
+%\end{equation*}
+Note that
 \begin{eqnarray*}
-L(\,f_{m}\,)
-&=&
-	\underset{i\rightarrow\infty}{\lim}\; E_{*}\!\left[\; f_{m} \circ X_{n(i)} \,\right]\,,
+1 - \varepsilon \; \leq \; \underset{i\rightarrow\infty}{\liminf}\; P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right)
+&\Longrightarrow&
+	1 \,-\, \underset{i\rightarrow\infty}{\liminf}\; P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right) \;\leq\; \varepsilon
+\\
+&\Longrightarrow&
+	1 \,+\, \underset{i\rightarrow\infty}{\limsup}\left(\,
+		\overset{{\color{white}1}}{-}\,P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right)
+	\,\right)
+	\;\leq\; \varepsilon
+\\
+&\Longrightarrow&
+	\underset{i\rightarrow\infty}{\limsup}\left(\;
+		1 \overset{{\color{white}.}}{-} P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right)
+	\,\right)
+	\;\leq\; \varepsilon
+\\
+&\Longrightarrow&
+	\underset{i\rightarrow\infty}{\limsup}\left(\,
+		P^{*}(\,X_{n(i)} \overset{{\color{white}.}}{\notin} K^{\delta}\,)
+	\,\right)
+	\;\leq\; \varepsilon\,,
 	\quad
-	\textnormal{by the asymptotic measurability hypothesis}
-\\
-&=&
-	\underset{i\rightarrow\infty}{\lim}\; E\!\left[\; \left(\;f_{m} \circ X_{n(i)}\,\right)_{*} \,\right]
-\\
-&=&
-	\underset{i\rightarrow\infty}{\lim}\;
-	E\!\left[\;
-		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
-		\cdot
-		\left(
-			\left(1_{\left\{X_{n(i)} \in K^{\delta}\right\}}\right)_{*}
-			\,+\,
-			\left(1_{\left\{X_{n(i)} \notin K^{\delta}\right\}}\right)^{*}
-		\right)
-	\,\right],
-\\
-&=&
-	\underset{i\rightarrow\infty}{\lim}\;
-	E\!\left[\;
-		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
-		\cdot
-		\left(
-			\left(1_{\left\{X_{n(i)} \in K^{\delta}\right\}}\right)_{*}
-			\,+\,
-			\left(1_{\left\{X_{n(i)} \notin K^{\delta}\right\}}\right)^{*}
-		\right)
-	\,\right],
-	\quad\textnormal{by Lemma 1.2.3(iii), p.9, \cite{vanDerVaart1996}}
-\\
-&=&
-	\underset{i\rightarrow\infty}{\lim}\;
-	\left\{\;
-		E\!\left[\;
-			\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
-			\cdot
-			\left(1_{\left\{X_{n(i)} \in K^{\delta}\right\}}\right)_{*}
-		\,\right]
-		\, + \,
-		E\!\left[\;
-			\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
-			\cdot
-			\left(1_{\left\{X_{n(i)} \notin K^{\delta}\right\}}\right)^{*}
-		\,\right]
-	\;\right\}
+	\textnormal{by Lemma 1.2.3(i,iii), p.9, \cite{vanDerVaart1996}}
 \end{eqnarray*}
 Next, we argue that
 \begin{equation*}
@@ -551,14 +534,15 @@ E\!\left[\;
 	\cdot
 	\left(1_{\left\{X_{n(i)} \in K^{\delta}\right\}}\right)_{*}
 \,\right]
-\;\leq\; 2\,\varepsilon\,,
-\quad\textnormal{and}\quad
+\;\leq\; 2\,\varepsilon\,
+\;\;\textnormal{and}\;\;
 E\!\left[\;
 	\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 	\cdot
 	\left(1_{\left\{X_{n(i)} \notin K^{\delta}\right\}}\right)^{*}
 \,\right]
-\;\leq\; \Vert\,f_{1}\,\Vert_{\infty} \cdot \varepsilon\,.
+\;\leq\; \Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}(\,X_{n(i)} \overset{{\color{white}.}}{\notin} K^{\delta}\,)\,.
+%\varepsilon\,.
 \end{equation*}
 To this end, choose any $A_{n(i)} \in \mathcal{A}_{n(i)}$ such that
 \begin{equation*}
@@ -601,7 +585,7 @@ B_{n(i)}
 \;\; = \;\;
 	\left\{X_{n(i)} \in K^{\delta}\right\}.
 \end{equation*}
-Now, note that
+And, note that
 \begin{equation*}
 \left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 \;\; \leq \;\;
@@ -642,17 +626,26 @@ E\!\left[\;
 \;\; \leq \;\;
 	2\,\varepsilon
 \end{eqnarray*}
-Next, let $C_{n(i)} \,:=\, \left\{X_{n(i)} \notin K^{\delta}\right\}^{*}$.
-Recall that, by Lemma 1.2.3(ii), p.9, \cite{vanDerVaart1996},
+Now, recall that, by Lemma 1.2.3(ii), p.9, \cite{vanDerVaart1996}, we have
 \begin{equation*}
 \left(1_{\left\{X_{n(i)} \notin K^{\delta}\right\}}\right)^{*}
 \;\; = \;\;
 	1_{\left\{X_{n(i)} \notin K^{\delta}\right\}^{*}}
 \;\; = \;\;
-	1_{C_{n(i)}}
+	1_{B_{n(i)}^{c}}
 \end{equation*}
-Since $C_{n(i)} \,:=\, \left\{X_{n(i)} \notin K^{\delta}\right\}^{*} \,\supset\, \left\{X_{n(i)} \notin K^{\delta}\right\}$,
-we have
+and
+\begin{equation*}
+\mu_{n(i)}\!\left(\,B_{n(i)}^{c}\,\right)
+\;\; = \;\;
+	\mu_{n(i)}\!\left(\,\left\{X_{n(i)} \notin K^{\delta}\right\}^{*}\,\right)
+\;\; = \;\;
+	P\!\left(\,\left\{X_{n(i)} \notin K^{\delta}\right\}^{*}\,\right)
+\;\; = \;\;
+	P^{*}\!\left(\,X_{n(i)} \notin K^{\delta}\,\right)
+\end{equation*}
+%Since $C_{n(i)} \,:=\, \left\{X_{n(i)} \notin K^{\delta}\right\}^{*} \,\supset\, \left\{X_{n(i)} \notin K^{\delta}\right\}$,
+%we have
 Therefore,
 \begin{eqnarray*}
 E\!\left[\;
@@ -668,21 +661,119 @@ E\!\left[\;
 	\;\d\mu_{n(i)}
 \\
 &=&
-	\int_{A_{n(i)}}
+	\int_{\Omega_{n(i)}}
 		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 		\cdot
-		1_{C_{n(i)}}
+		1_{B_{n(i)}^{c}}
 	\;\d\mu_{n(i)}
 \\
 &=&
-	\int_{A_{n(i)} \,\cap\, C_{n(i)}}
+	\int_{B_{n(i)}^{c}}
 		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 	\;\d\mu_{n(i)}
 \\
+&\leq&
+	\int_{B_{n(i)}^{c}} \Vert\,f_{1}\,\Vert_{\infty} \;\d\mu_{n(i)}\,,
+	\quad
+	\textnormal{since \,$f_{m}$\, is pointwise monotonically nonincreasing}
+\\
 &=&
-	\int_{A_{n(i)} \,\cap\, C_{n(i)}} \Vert\,f_{1}\,\Vert_{\infty} \;\d\mu_{n(i)}
-\;\; \leq \;\;
-	\Vert\,f_{1}\,\Vert_{\infty} \cdot \varepsilon
+	\Vert\,f_{1}\,\Vert_{\infty} \cdot \int_{B_{n(i)}^{c}} \;\d\mu_{n(i)}
+%\\
+%&=&
+\;\; = \;\;
+	\Vert\,f_{1}\,\Vert_{\infty} \,\cdot\, \mu_{n(i)}\!\left(\,B_{n(i)}^{c}\,\right)
+\\
+&=&
+	\Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}\!\left(\,X_{n(i)} \notin K^{\delta}\,\right)
+\end{eqnarray*}
+Lastly, observe that
+\begin{eqnarray*}
+L(\,f_{m}\,)
+&=&
+	\underset{i\rightarrow\infty}{\lim}\; E_{*}\!\left[\; f_{m} \circ X_{n(i)} \,\right]\,,
+	\quad
+	\textnormal{by the asymptotic measurability hypothesis}
+\\
+&=&
+	\underset{i\rightarrow\infty}{\limsup}\; E_{*}\!\left[\; f_{m} \circ X_{n(i)} \,\right]
+\\
+&=&
+	\underset{i\rightarrow\infty}{\limsup}\; E\!\left[\; \left(\;f_{m} \circ X_{n(i)}\,\right)_{*} \,\right]
+%\\
+%&=&
+%	\underset{i\rightarrow\infty}{\limsup}\;
+%	E\!\left[\;
+%		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+%		\cdot
+%		\left(
+%			\left(1_{\left\{X_{n(i)} \in K^{\delta}\right\}}\right)_{*}
+%			\,+\,
+%			\left(1_{\left\{X_{n(i)} \notin K^{\delta}\right\}}\right)^{*}
+%		\right)
+%	\,\right],
+\\
+&=&
+	\underset{i\rightarrow\infty}{\limsup}\;
+	E\!\left[\;
+		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+		\cdot
+		\left(
+			\left(1_{\left\{X_{n(i)} \in K^{\delta}\right\}}\right)_{*}
+			\,+\,
+			\left(1_{\left\{X_{n(i)} \notin K^{\delta}\right\}}\right)^{*}
+		\right)
+	\,\right],
+	\quad\textnormal{by Lemma 1.2.3(iii), p.9, \cite{vanDerVaart1996}}
+\\
+&=&
+	\underset{i\rightarrow\infty}{\limsup}\;
+	\left\{\;
+		E\!\left[\;
+			\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+			\cdot
+			\left(1_{\left\{X_{n(i)} \in K^{\delta}\right\}}\right)_{*}
+		\,\right]
+		\, + \,
+		E\!\left[\;
+			\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+			\cdot
+			\left(1_{\left\{X_{n(i)} \notin K^{\delta}\right\}}\right)^{*}
+		\,\right]
+	\;\right\}
+\\
+&\leq&
+	\underset{i\rightarrow\infty}{\limsup}\;
+	E\!\left[\;
+		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+		\cdot
+		\left(1_{\left\{X_{n(i)} \in K^{\delta}\right\}}\right)_{*}
+	\,\right]
+	\, + \,
+	\underset{i\rightarrow\infty}{\limsup}\;
+	E\!\left[\;
+		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+		\cdot
+		\left(1_{\left\{X_{n(i)} \notin K^{\delta}\right\}}\right)^{*}
+	\,\right]
+\\
+&\leq&
+	2\,\varepsilon
+	\, + \,
+	\underset{i\rightarrow\infty}{\limsup}\;\,
+	\Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}\!\left(\,X_{n(i)} \notin K^{\delta}\,\right)
+\;\; = \;\;
+	2\,\varepsilon
+	\, + \,
+	\Vert\,f_{1}\,\Vert_{\infty} \cdot \,
+	\underset{i\rightarrow\infty}{\limsup}\;
+	P^{*}\!\left(\,X_{n(i)} \notin K^{\delta}\,\right)
+\\
+&\leq&
+	2\,\varepsilon \, + \, \Vert\,f_{1}\,\Vert_{\infty} \cdot \varepsilon
+\\
+&\leq&
+	\left(\,2 \, \overset{{\color{white}.}}{+} \, \Vert\,f_{1}\,\Vert_{\infty} \,\right) \cdot \varepsilon
 \end{eqnarray*}
 
 \qed
