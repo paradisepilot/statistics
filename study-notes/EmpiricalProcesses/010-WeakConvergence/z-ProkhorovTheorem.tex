@@ -496,14 +496,17 @@ that there exists $\delta > 0$ such that
 \begin{eqnarray*}
 L(\,f_{m}\,)
 &=&
-	\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\; f_{m} \circ X_{n(i)} \,\right]
-\;\; = \;\;
-	\underset{i\rightarrow\infty}{\lim}\; E\!\left[\; \left(\;f_{m} \circ X_{n(i)}\,\right)^{*} \,\right]
+	\underset{i\rightarrow\infty}{\lim}\; E_{*}\!\left[\; f_{m} \circ X_{n(i)} \,\right]\,,
+	\quad
+	\textnormal{by the asymptotic measurability hypothesis}
+\\
+&=&
+	\underset{i\rightarrow\infty}{\lim}\; E\!\left[\; \left(\;f_{m} \circ X_{n(i)}\,\right)_{*} \,\right]
 \\
 &=&
 	\underset{i\rightarrow\infty}{\lim}\;
 	E\!\left[\;
-		\left(\;f_{m} \circ X_{n(i)}\,\right)^{*}
+		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 		\cdot
 		\left(
 			\left(1_{\left\{X_{n(i) \in K^{\delta}}\right\}}\right)_{*}
@@ -515,7 +518,7 @@ L(\,f_{m}\,)
 &=&
 	\underset{i\rightarrow\infty}{\lim}\;
 	E\!\left[\;
-		\left(\;f_{m} \circ X_{n(i)}\,\right)^{*}
+		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 		\cdot
 		\left(
 			\left(1_{\left\{X_{n(i) \in K^{\delta}}\right\}}\right)_{*}
@@ -529,17 +532,139 @@ L(\,f_{m}\,)
 	\underset{i\rightarrow\infty}{\lim}\;
 	\left\{\;
 		E\!\left[\;
-			\left(\;f_{m} \circ X_{n(i)}\,\right)^{*}
+			\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 			\cdot
 			\left(1_{\left\{X_{n(i) \in K^{\delta}}\right\}}\right)_{*}
 		\,\right]
 		\, + \,
 		E\!\left[\;
-			\left(\;f_{m} \circ X_{n(i)}\,\right)^{*}
+			\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 			\cdot
 			\left(1_{\left\{X_{n(i) \notin K^{\delta}}\right\}}\right)^{*}
 		\,\right]
 	\;\right\}
+\end{eqnarray*}
+Next, we argue that
+\begin{equation*}
+E\!\left[\;
+	\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+	\cdot
+	\left(1_{\left\{X_{n(i) \in K^{\delta}}\right\}}\right)_{*}
+\,\right]
+\;\leq\; 2\,\varepsilon\,,
+\quad\textnormal{and}\quad
+E\!\left[\;
+	\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+	\cdot
+	\left(1_{\left\{X_{n(i) \notin K^{\delta}}\right\}}\right)^{*}
+\,\right]
+\;\leq\; \Vert\,f_{1}\,\Vert_{\infty} \cdot \varepsilon\,.
+\end{equation*}
+To this end, choose any $A_{n(i)} \in \mathcal{A}_{n(i)}$ such that
+\begin{equation*}
+\mu_{n(i)}\!\left(\,A_{n(i)}\,\right) \,=\, 1\,,
+\quad\textnormal{and}\quad
+A_{n(i)} \,\subset\,
+\left\{\;
+	\left.
+	\omega \overset{{\color{white}-}}{\in} \Omega_{n(i)}
+	\;\,\right\vert\;
+	\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}(\omega) \,\leq\, f_{m} \circ X_{n(i)}(\omega)
+\;\right\}.
+\end{equation*}
+On the other hand,
+\begin{eqnarray*}
+\left(1_{\left\{X_{n(i) \in K^{\delta}}\right\}}\right)_{*}
+& = &
+	1 - \left(1_{\left\{X_{n(i) \notin K^{\delta}}\right\}}\right)^{*}\,,
+	\quad
+	\textnormal{by Lemma 1.2.3(iii), p.9, \cite{vanDerVaart1996}}
+\\
+& = &
+	1 - 1_{\left\{X_{n(i) \notin K^{\delta}}\right\}^{*}}\,,
+	\quad
+	\textnormal{by Lemma 1.2.3(ii), p.9, \cite{vanDerVaart1996}}
+\\
+& = &
+	1_{\left(\left\{X_{n(i) \notin K^{\delta}}\right\}^{*}\right)^{c}}\,,
+\end{eqnarray*}
+where $\left\{X_{n(i) \notin K^{\delta}}\right\}^{*} \in \mathcal{A}_{n(i)}$
+and it satisfies 
+$\left\{X_{n(i) \notin K^{\delta}}\right\}^{*} \supset \left\{X_{n(i) \notin K^{\delta}}\right\}$,
+which implies
+\begin{equation*}
+B_{n(i)}
+\;\; :=	 \;\;
+	\left(\left\{X_{n(i) \notin K^{\delta}}\right\}^{*}\right)^{c}
+\;\; \subset \;\;
+	\left(\left\{X_{n(i) \notin K^{\delta}}\right\}\right)^{c}
+\;\; = \;\;
+	\left\{X_{n(i) \in K^{\delta}}\right\}.
+\end{equation*}
+Now, note that
+\begin{equation*}
+\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+\;\; \leq \;\;
+	f_{m} \circ X_{n(i)}
+\;\; \leq \;\;
+	2\,\varepsilon\,,
+\quad
+\textnormal{on \,$A_{n(i)} \,\cap\, B_{n(i)}$}
+\end{equation*}
+Thus, 
+\begin{eqnarray*}
+E\!\left[\;
+	\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+	\cdot
+	\left(1_{\left\{X_{n(i) \in K^{\delta}}\right\}}\right)_{*}
+\,\right]
+&=&
+	\int_{\Omega_{n(i)}}
+		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+		\cdot
+		\left(1_{\left\{X_{n(i) \in K^{\delta}}\right\}}\right)_{*}
+	\;\d\mu_{n(i)}
+\\
+&=&
+	\int_{A_{n(i)}}
+		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+		\cdot
+		1_{B_{n(i)}}
+	\;\d\mu_{n(i)}
+\\
+&=&
+	\int_{A_{n(i)} \,\cap\, B_{n(i)}}
+		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+	\;\d\mu_{n(i)}
+\\
+&=&
+	\int_{A_{n(i)} \,\cap\, B_{n(i)}} 2\,\varepsilon \;\d\mu_{n(i)}
+\;\; \leq \;\;
+	2\,\varepsilon
+\end{eqnarray*}
+
+\begin{eqnarray*}
+E\!\left[\;
+	\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+	\cdot
+	\left(1_{\left\{X_{n(i) \notin K^{\delta}}\right\}}\right)^{*}
+\,\right]
+&=&
+	\int_{\Omega_{n(i)}}
+		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+		\cdot
+		\left(1_{\left\{X_{n(i) \notin K^{\delta}}\right\}}\right)^{*}
+	\;\d\mu_{n(i)}
+\\
+&=&
+	\int_{A_{n(i)} \,\cap\, C_{n(i)}}
+		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
+	\;\d\mu_{n(i)}
+\\
+&=&
+	\int_{A_{n(i)} \,\cap\, C_{n(i)}} \Vert\,f_{1}\,\Vert_{\infty} \;\d\mu_{n(i)}
+\;\; \leq \;\;
+	2\,\varepsilon
 \end{eqnarray*}
 
 \qed
