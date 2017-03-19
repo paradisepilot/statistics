@@ -73,20 +73,20 @@ Then, $\{\,X_{n}\,\}_{n\in\N}$ is said to be
 	a compact subset $K \subset \D$ such that
 	\begin{equation*}
 	1 - \varepsilon
-	\;\; \leq \;\; \underset{n\rightarrow\infty}{\liminf}\; P_{*}(\,X_{n} \in K^{\delta(m)}\,)
+	\;\; \leq \;\; \underset{n\rightarrow\infty}{\liminf}\; P_{*}(\,X_{n} \in K^{\delta}\,)
 	\;\; \leq \;\; 1\,,
 	\;\;
-	\textnormal{for each \,$\delta(m) > 0$},
+	\textnormal{for each \,$\delta > 0$},
 	\end{equation*}
-	where the $\delta(m)$-enlargement $K^{\delta(m)}$ of $K$ is defined to be:
+	where the $\delta(m)$-enlargement $K^{\delta}$ of $K$ is defined to be:
 	\begin{equation*}
-	K^{\delta(m)}
+	K^{\delta}
 		\;\; := \;\;
 		\left\{\;
 		\left.
 		y \overset{{\color{white}-}}{\in} \D
 		\;\;\right\vert\;
-		d(y,K) < \delta(m)
+		d(y,K) < \delta
 		\;\right\}
 	\end{equation*}
 \item
@@ -181,30 +181,30 @@ Then, the following statements are true:
 	\begin{equation*}
 	1 - \varepsilon \;\;\leq\;\; P\!\left(\,X \in K\,\right) \;\;\leq\;\; 1\,.
 	\end{equation*}
-	By Lemma \ref{LemmaAEpsilon}, the set $K^{\delta(m)} \subset \D$
-	is an open subset of $(\D,d)$, for each $\delta(m) > 0$.
+	By Lemma \ref{LemmaAEpsilon}, the set $K^{\delta} \subset \D$
+	is an open subset of $(\D,d)$, for each $\delta > 0$.
 	Hence, by the Portmanteau Theorem (Theorem \ref{TheoremPortmanteau}),
 	we have
 	\begin{equation*}
-	P\!\left(\,X \in K^{\delta(m)}\,\right)
+	P\!\left(\,X \in K^{\delta}\,\right)
 	\;\; \leq \;\;
 		\underset{n\rightarrow\infty}{\liminf}\;
-		P_{*}\!\left(\,X_{n} \in K^{\delta(m)}\,\right),
+		P_{*}\!\left(\,X_{n} \in K^{\delta}\,\right),
 	\quad
-	\textnormal{for each \,$\delta(m) > 0$}\,.
+	\textnormal{for each \,$\delta > 0$}\,.
 	\end{equation*}
-	Thus, since $K \subset K^{\delta(m)}$, we see that
+	Thus, since $K \subset K^{\delta}$, we see that
 	\begin{equation*}
 	1 - \varepsilon
 	\;\; \leq \;\;
 		P\!\left(\,X \in K\,\right)
 	\;\; \leq \;\;
-		P\!\left(\,X \in K^{\delta(m)}\,\right)
+		P\!\left(\,X \in K^{\delta}\,\right)
 	\;\; \leq \;\;
 		\underset{n\rightarrow\infty}{\liminf}\;
-		P_{*}\!\left(\,X_{n} \in K^{\delta(m)}\,\right),
+		P_{*}\!\left(\,X_{n} \in K^{\delta}\,\right),
 	\quad
-	\textnormal{for each \,$\delta(m) > 0$}\,.
+	\textnormal{for each \,$\delta > 0$}\,.
 	\end{equation*}
 	This shows that tightness of $X$ indeed implies asymptotic tightness of
 	$\left\{\,X_{n}\,\right\}_{n\in\N}$.
@@ -217,25 +217,25 @@ Then, the following statements are true:
 	\begin{equation*}
 	1 - \varepsilon
 	\;\;\leq\;\;
-		\underset{n\rightarrow\infty}{\liminf}\;P_{*}\!\left(\,X_{n} \in K^{\delta(m)}\,\right)
+		\underset{n\rightarrow\infty}{\liminf}\;P_{*}\!\left(\,X_{n} \in K^{\delta}\,\right)
 	\;\;\leq\;\; 1\,,
 	\quad
-	\textnormal{for each \,$\delta(m) > 0$}\,.
+	\textnormal{for each \,$\delta > 0$}\,.
 	\end{equation*}
 	By the Portmanteau Theorem (Theorem \ref{TheoremPortmanteau}),
 	we then have
 	\begin{equation*}
 	1 - \varepsilon
 	\;\;\leq\;\;
-		\underset{n\rightarrow\infty}{\liminf}\; P_{*}(X_{n} \in K^{\delta(m)})
+		\underset{n\rightarrow\infty}{\liminf}\; P_{*}(X_{n} \in K^{\delta})
 	\;\;\leq\;\;
-		\underset{n\rightarrow\infty}{\limsup}\; P_{*}(X_{n} \in K^{\delta(m)})
+		\underset{n\rightarrow\infty}{\limsup}\; P_{*}(X_{n} \in K^{\delta})
 	\;\;\leq\;\;
-		P\!\left(\,X \in \overline{K^{\delta(m)}}\;\right),
+		P\!\left(\,X \in \overline{K^{\delta}}\;\right),
 	\quad
-	\textnormal{for each \,$\delta(m) > 0$}\,.
+	\textnormal{for each \,$\delta > 0$}\,.
 	\end{equation*}
-	Letting \,$\delta(m) \downarrow 0$,\, we may conclude that
+	Letting \,$\delta \downarrow 0$,\, we may conclude that
 	\begin{equation*}
 	1 - \varepsilon \;\;\leq\;\; P\!\left(\,X \in K\;\right).
 	\end{equation*}
@@ -480,46 +480,85 @@ L(\,f_{m}\,)
 \end{equation*}
 from which Claim 4 follows.
 
-\vskip 0.3cm
-\noindent
-By the asymptotic tightness hypothesis, there exists a compact $K \subset \D$ such that
+\vskip 0.8cm
+\begin{center}\begin{minipage}{6.5in}
+\underline{Claim{{\color{white}j}}4A:}\;\;
+There exists a compact subset $K \subset (\D,d)$ such that
 \begin{equation*}
-1 - \varepsilon
-\;\; \leq \;\;
-	\underset{i\rightarrow\infty}{\liminf}\; P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right)
-\;\; \leq \;\;
-	1\,,
+\underset{i\rightarrow\infty}{\limsup}\left(\,
+	P^{*}(\,X_{n(i)} \overset{{\color{white}.}}{\notin} K^{\delta}\,)
+\,\right)
+\;\leq\; \varepsilon\,,
 \quad
-\textnormal{for each \,$\delta > 0$}.
+\textnormal{for each \,$\delta > 0$}\,.
 \end{equation*}
+\end{minipage}\end{center}
+Proof of Claim 4A:\;\;
+The asymptotic tightness hypothesis implies that there exists
+a compact subset $K \subset (\D,d)$ such that,
+for each $\delta > 0$, we have{\color{white}$\overset{.}{1}$}
+\begin{eqnarray*}
+1 - \varepsilon \; \leq \; \underset{i\rightarrow\infty}{\liminf}\; P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right)
+&\Longrightarrow&
+	1 \,-\, \underset{i\rightarrow\infty}{\liminf}\; P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right) \;\leq\; \varepsilon
+\\
+&\Longrightarrow&
+	1 \,+\, \underset{i\rightarrow\infty}{\limsup}\left(\,
+		\overset{{\color{white}1}}{-}\,P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right)
+	\,\right)
+	\;\leq\; \varepsilon
+\\
+&\Longrightarrow&
+	\underset{i\rightarrow\infty}{\limsup}\left(\;
+		1 \overset{{\color{white}.}}{-} P_{*}\!\left(\,X_{n(i)} \in K^{\delta}\,\right)
+	\,\right)
+	\;\leq\; \varepsilon
+\\
+&\Longrightarrow&
+	\underset{i\rightarrow\infty}{\limsup}\left(\,
+		P^{*}(\,X_{n(i)} \overset{{\color{white}.}}{\notin} K^{\delta}\,)
+	\,\right)
+	\;\leq\; \varepsilon\,,
+	\quad
+	\textnormal{by Lemma 1.2.3(i,iii), p.9, \cite{vanDerVaart1996}}
+\end{eqnarray*}
+This proves Claim 4A.
+
+\vskip 0.8cm
+\begin{center}\begin{minipage}{6.5in}
+\underline{Claim{{\color{white}j}}4B:}\;\;
+There exists $m_{0} \in \N$ such that
+\begin{equation*}
+\left\vert\;f_{m}(\overset{{\color{white}.}}{x})\;\right\vert \,\leq\, \varepsilon,\,
+\quad
+\textnormal{for each \,$m \geq m_{0}$\, and \,$x \in K$}.
+\end{equation*}
+\end{minipage}\end{center}
+Proof of Claim 4B:\;\;
 By Dini's Theorem\footnote{Dini's Theorem (Theorem 9.4, p.70, \cite{Aliprantis1998}):\;
 Let $X$ be a compact topological space, and $C(X)$ the collection of continuous $\Re$-valued
 functions defined on $X$. Let $f \in C(X)$ and $\{\;f_{m}\,\}_{m\in\N} \subset C(X)$.
 If $f_{m}(x)$ converges monotonically to $f(x)$, for each $x \in X$,
 then $f_{m}$ also converges uniformly to $f$.} (Theorem 9.4, p.70, \cite{Aliprantis1998}),
 \,$f_{m} \downarrow 0$\, uniformly on every compact subset of $(\D,d)$.
-Thus, there exists $m_{0} \in \N$ such that
+Thus, there exists $m_{0} \in \N$ such that{\color{white}$\overset{.}{1}$}
 \begin{equation*}
-\vert\,f_{m}(x)\,\vert \leq \varepsilon,\,
+\left\vert\;f_{m}(\overset{{\color{white}.}}{x})\;\right\vert \,\leq\, \varepsilon,\,
 \quad\textnormal{for each \,$m \geq m_{0}$\, and \,$x \in K$}.
 \end{equation*}
-Now, for each fixed $m \geq m_{0}$, the compactness of $K$ implies, by an easy argument,
-that there exists $\delta(m) > 0$ such that
-\,$\vert\,f_{m}(x)\,\vert \leq  2\,\varepsilon$,\, for each \,$x \in K^{\delta(m)}$.
-%Next, we claim that, for each $m \geq m_{0}$, we have
-%\begin{equation*}
-%L(\,f_{m}\,)
-%\;\; \leq \;\;
-%	\left(\,2 \, \overset{{\color{white}.}}{+} \, \Vert\,f_{1}\,\Vert_{\infty} \,\right) \cdot \varepsilon
-%\end{equation*}
-Next, we argue that, for each $m \geq m_{0}$,
+This proves Claim 4B.
+
+\vskip 0.8cm
+\begin{center}\begin{minipage}{6.5in}
+\underline{Claim{{\color{white}j}}4C:}\;\;
+For each fixed $m \geq m_{0}$, there exists $\delta(m) > 0$ such that
 \begin{equation*}
 E\!\left[\;
 	\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 	\cdot
 	\left(1_{\left\{X_{n(i)} \in K^{\delta(m)}\right\}}\right)_{*}
 \,\right]
-\;\leq\; 2\,\varepsilon\,,
+\;\;\leq\;\; 2\,\varepsilon\,,
 \end{equation*}
 and
 \begin{equation*}
@@ -528,48 +567,18 @@ E\!\left[\;
 	\cdot
 	\left(1_{\left\{X_{n(i)} \notin K^{\delta(m)}\right\}}\right)^{*}
 \,\right]
-\;\leq\; \Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}(\,X_{n(i)} \overset{{\color{white}.}}{\notin} K^{\delta(m)}\,)\,.
-%\varepsilon\,.
+\;\;\leq\;\; \Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}(\,X_{n(i)} \overset{{\color{white}.}}{\notin} K^{\delta(m)}\,)\,.
 \end{equation*}
-%By passing to a further subsequence if necessary, we may furthermore assume
-%\begin{equation*}
-%1 - \varepsilon
-%\;\; \leq \;\;
-%	\underset{i\rightarrow\infty}{\lim}\; P_{*}\!\left(\,X_{n(i)} \in K^{\delta(m)}\,\right)
-%\;\; \leq \;\;
-%	1\,.
-%\end{equation*}
-Note that
-\begin{eqnarray*}
-1 - \varepsilon \; \leq \; \underset{i\rightarrow\infty}{\liminf}\; P_{*}\!\left(\,X_{n(i)} \in K^{\delta(m)}\,\right)
-&\Longrightarrow&
-	1 \,-\, \underset{i\rightarrow\infty}{\liminf}\; P_{*}\!\left(\,X_{n(i)} \in K^{\delta(m)}\,\right) \;\leq\; \varepsilon
-\\
-&\Longrightarrow&
-	1 \,+\, \underset{i\rightarrow\infty}{\limsup}\left(\,
-		\overset{{\color{white}1}}{-}\,P_{*}\!\left(\,X_{n(i)} \in K^{\delta(m)}\,\right)
-	\,\right)
-	\;\leq\; \varepsilon
-\\
-&\Longrightarrow&
-	\underset{i\rightarrow\infty}{\limsup}\left(\;
-		1 \overset{{\color{white}.}}{-} P_{*}\!\left(\,X_{n(i)} \in K^{\delta(m)}\,\right)
-	\,\right)
-	\;\leq\; \varepsilon
-\\
-&\Longrightarrow&
-	\underset{i\rightarrow\infty}{\limsup}\left(\,
-		P^{*}(\,X_{n(i)} \overset{{\color{white}.}}{\notin} K^{\delta(m)}\,)
-	\,\right)
-	\;\leq\; \varepsilon\,,
-	\quad
-	\textnormal{by Lemma 1.2.3(i,iii), p.9, \cite{vanDerVaart1996}}
-\end{eqnarray*}
-Choose any $A_{n(i)} \in \mathcal{A}_{n(i)}$ such that
+\end{minipage}\end{center}
+Proof of Claim 4C:\;\;
+For each fixed $m \geq m_{0}$, the compactness of $K$ implies, by an easy argument,
+that there exists $\delta(m) > 0$ such that
+\,$\vert\,f_{m}(x)\,\vert \leq  2\,\varepsilon$,\, for each \,$x \in K^{\delta(m)}$.
+For each $i \in \N$, choose any $A_{m,n(i)} \in \mathcal{A}_{n(i)}$ such that
 \begin{equation*}
-\mu_{n(i)}\!\left(\,A_{n(i)}\,\right) \,=\, 1\,,
+\mu_{n(i)}\!\left(\,A_{m,n(i)}\,\right) \,=\, 1\,,
 \quad\textnormal{and}\quad
-A_{n(i)} \,\subset\,
+A_{m,n(i)} \,\subset\,
 \left\{\;
 	\left.
 	\omega \overset{{\color{white}-}}{\in} \Omega_{n(i)}
@@ -577,7 +586,7 @@ A_{n(i)} \,\subset\,
 	\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}(\omega) \,\leq\, f_{m} \circ X_{n(i)}(\omega)
 \;\right\}.
 \end{equation*}
-On the other hand,
+Recall that
 \begin{eqnarray*}
 \left(1_{\left\{X_{n(i)} \in K^{\delta(m)}\right\}}\right)_{*}
 & = &
@@ -606,7 +615,7 @@ B_{m,n(i)}
 \;\; = \;\;
 	\left\{X_{n(i)} \in K^{\delta(m)}\right\}.
 \end{equation*}
-And, note that
+Consequently,
 \begin{equation*}
 \left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 \;\; \leq \;\;
@@ -614,9 +623,9 @@ And, note that
 \;\; \leq \;\;
 	2\,\varepsilon\,,
 \quad
-\textnormal{on \,$A_{n(i)} \,\cap\, B_{m,n(i)}$}
+\textnormal{on \,$A_{m,n(i)} \,\cap\, B_{m,n(i)}$}\,,
 \end{equation*}
-Thus, 
+which in turn implies
 \begin{eqnarray*}
 E\!\left[\;
 	\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
@@ -631,23 +640,23 @@ E\!\left[\;
 	\;\d\mu_{n(i)}
 \\
 &=&
-	\int_{A_{n(i)}}
+	\int_{A_{m,n(i)}}
 		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 		\cdot
 		1_{B_{m,n(i)}}
 	\;\d\mu_{n(i)}
 \\
 &=&
-	\int_{A_{n(i)} \,\cap\, B_{m,n(i)}}
+	\int_{A_{m,n(i)} \,\cap\, B_{m,n(i)}}
 		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 	\;\d\mu_{n(i)}
 \\
 &=&
-	\int_{A_{n(i)} \,\cap\, B_{m,n(i)}} 2\,\varepsilon \;\d\mu_{n(i)}
+	\int_{A_{m,n(i)} \,\cap\, B_{m,n(i)}} 2\,\varepsilon \;\d\mu_{n(i)}
 \;\; \leq \;\;
 	2\,\varepsilon
 \end{eqnarray*}
-Now, recall that, by Lemma 1.2.3(ii), p.9, \cite{vanDerVaart1996}, we have
+Next, recall again that, by Lemma 1.2.3(ii), p.9, \cite{vanDerVaart1996}, we have
 \begin{equation*}
 \left(1_{\left\{X_{n(i)} \notin K^{\delta(m)}\right\}}\right)^{*}
 \;\; = \;\;
@@ -700,14 +709,16 @@ E\!\left[\;
 \\
 &=&
 	\Vert\,f_{1}\,\Vert_{\infty} \cdot \int_{B_{m,n(i)}^{c}} \;\d\mu_{n(i)}
-%\\
-%&=&
 \;\; = \;\;
 	\Vert\,f_{1}\,\Vert_{\infty} \,\cdot\, \mu_{n(i)}\!\left(\,B_{m,n(i)}^{c}\,\right)
 \\
 &=&
 	\Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}\!\left(\,X_{n(i)} \notin K^{\delta(m)}\,\right)
 \end{eqnarray*}
+This proves Claim 4C.
+
+\vskip 0.5cm
+\noindent
 Lastly, observe that, for each $m \geq m_{0}$, we now have
 \begin{eqnarray*}
 L(\,f_{m}\,)
@@ -782,8 +793,11 @@ L(\,f_{m}\,)
 	2\,\varepsilon
 	\, + \,
 	\underset{i\rightarrow\infty}{\limsup}\;\,
-	\Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}\!\left(\,X_{n(i)} \notin K^{\delta(m)}\,\right)
-\;\; = \;\;
+	\Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}\!\left(\,X_{n(i)} \notin K^{\delta(m)}\,\right),
+	\quad
+	\textnormal{by Claim 4C}
+\\
+&\leq&
 	2\,\varepsilon
 	\, + \,
 	\Vert\,f_{1}\,\Vert_{\infty} \cdot \,
@@ -796,6 +810,7 @@ L(\,f_{m}\,)
 &\leq&
 	\left(\,2 \, \overset{{\color{white}.}}{+} \, \Vert\,f_{1}\,\Vert_{\infty} \,\right) \cdot \varepsilon
 \end{eqnarray*}
+This completes the proof of Claim 4.
 
 \qed
 
