@@ -553,6 +553,63 @@ This proves Claim 4B.
 \underline{Claim{{\color{white}j}}4C:}\;\;
 For each fixed $m \geq m_{0}$, there exists $\delta(m) > 0$ such that
 \begin{equation*}
+\left\vert\;\overset{{\color{white}.}}{f}_{m}(\xi)\;\right\vert \,\leq\,  2\,\varepsilon,
+\quad
+\textnormal{for each \,$\xi \in K^{\delta(m)}$}.
+\end{equation*}
+\end{minipage}\end{center}
+Proof of Claim 4C:\;\;
+By the continuity of $f_{m}$, for each fixed $x \in K$, there exists
+$\delta_{x} > 0$ such that
+\begin{equation*}
+f_{m}\!\left(\overset{{\color{white}.}}{B}_{\D}(x\,;\delta_{x})\right)
+\; \subset \;
+	B_{\Re}\!\left(f_{m}(x)\,;\varepsilon\right).
+\end{equation*}
+Now, $\left\{\, \overset{{\color{white}.}}{B}_{\D}(x\,;\delta_{x}/2) \,\right\}_{x \in K}$
+is an open cover of $K$, and hence, by the compactness of $K$, admits a finite
+subcover of $K$, say,
+$\left\{\, \overset{{\color{white}.}}{B}_{\D}(x_{j}\,;\delta_{x_{j}}/2) \,\right\}_{j = 1}^{l}$.
+Now, let
+\,$\delta(m) \,:=\, \dfrac{1}{2}\cdot\min\!\left\{\,\delta_{x_{1}},\delta_{x_{2}},\ldots,\delta_{x_{l}}\,\right\}$.
+Note that
+\,$K^{\delta(m)} \,\subset\, \overset{l}{\underset{j=1}{\bigcup}} \; B_{\D}(x_{j}\,;\delta_{x_{j}})$.
+Indeed,
+\begin{eqnarray*}
+\xi \in K^{\delta(m)}
+&\Longrightarrow&
+	d(\xi,x) \,<\, \delta(m)\,, \;\;\textnormal{for some \,$x \in K$}
+\\
+&\overset{{\color{white}\overset{.}{1}}}{\Longrightarrow}&
+	d(\xi,x_{j}) \,\leq\, d(\xi,x) + d(x,x_{j}) \,<\, \delta(m) + d(x,x_{j})\,,
+	\;\;\textnormal{where \,$x \in B_{\D}(x_{j}\,;\delta_{x_{j}}/2)$, \,$j\in\{\,1,2,\ldots,l\,\}$}
+\\
+&\Longrightarrow&
+	d(\xi,x_{j}) \,<\, \dfrac{\delta_{x_{j}}}{2} + \dfrac{\delta_{x_{j}}}{2} \,=\, \delta_{x_{j}}
+\\
+&\Longrightarrow&
+	\xi \,\in\, \overset{l}{\underset{j=1}{\bigcup}} \; B_{\D}(x_{j}\,;\delta_{x_{j}})
+\end{eqnarray*}
+Hence, by Claim 4B as well as the above argument, we have, for each \,$\xi \in K^{\delta(m)}$,
+\begin{equation*}
+\left\vert\;\overset{{\color{white}.}}{f}_{m}(\xi)\;\right\vert
+\;\; \leq \;\;
+	\left\vert\;\overset{{\color{white}.}}{f}_{m}(\xi) - f_{m}(x_{j})\;\right\vert
+	\,+\,
+	\left\vert\;\overset{{\color{white}.}}{f}_{m}(x_{j})\;\right\vert
+\;\; \leq \;\;
+	\varepsilon \,+\, \varepsilon 
+\;\; = \;\;
+	2\,\varepsilon\,,
+\end{equation*}
+where \,$x_{j} \in K$\, is such that \,$\xi \in B_{\D}(x_{j}\,;\delta_{x_{j}})$.
+This proves Claim 4C.
+
+\vskip 0.8cm
+\begin{center}\begin{minipage}{6.5in}
+\underline{Claim{{\color{white}j}}4D:}\;\;
+For each fixed $m \geq m_{0}$ and each $i \in \N$, we have
+\begin{equation*}
 E\!\left[\;
 	\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 	\cdot
@@ -570,10 +627,10 @@ E\!\left[\;
 \;\;\leq\;\; \Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}(\,X_{n(i)} \overset{{\color{white}.}}{\notin} K^{\delta(m)}\,)\,.
 \end{equation*}
 \end{minipage}\end{center}
-Proof of Claim 4C:\;\;
-For each fixed $m \geq m_{0}$, the compactness of $K$ implies, by an easy argument,
-that there exists $\delta(m) > 0$ such that
-\,$\vert\,f_{m}(x)\,\vert \leq  2\,\varepsilon$,\, for each \,$x \in K^{\delta(m)}$.
+Proof of Claim 4D:\;\;
+%For each fixed $m \geq m_{0}$, the compactness of $K$ implies, by an easy argument,
+%that there exists $\delta(m) > 0$ such that
+%\,$\vert\,f_{m}(x)\,\vert \leq  2\,\varepsilon$,\, for each \,$x \in K^{\delta(m)}$.
 For each $i \in \N$, choose any $A_{m,n(i)} \in \mathcal{A}_{n(i)}$ such that
 \begin{equation*}
 \mu_{n(i)}\!\left(\,A_{m,n(i)}\,\right) \,=\, 1\,,
@@ -615,7 +672,7 @@ B_{m,n(i)}
 \;\; = \;\;
 	\left\{X_{n(i)} \in K^{\delta(m)}\right\}.
 \end{equation*}
-Consequently,
+Consequently, by Claim 4C,
 \begin{equation*}
 \left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 \;\; \leq \;\;
@@ -651,7 +708,7 @@ E\!\left[\;
 		\left(\;f_{m} \circ X_{n(i)}\,\right)_{*}
 	\;\d\mu_{n(i)}
 \\
-&=&
+&\leq&
 	\int_{A_{m,n(i)} \,\cap\, B_{m,n(i)}} 2\,\varepsilon \;\d\mu_{n(i)}
 \;\; \leq \;\;
 	2\,\varepsilon
@@ -715,15 +772,18 @@ E\!\left[\;
 &=&
 	\Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}\!\left(\,X_{n(i)} \notin K^{\delta(m)}\,\right)
 \end{eqnarray*}
-This proves Claim 4C.
+This proves Claim 4D.
 
-\vskip 0.5cm
+\vskip 0.8cm
 \noindent
 Lastly, observe that, for each $m \geq m_{0}$, we now have
 \begin{eqnarray*}
 L(\,f_{m}\,)
+&:=&
+	\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\; f_{m} \circ X_{n(i)} \,\right]
+\\
 &=&
-	\underset{i\rightarrow\infty}{\lim}\; E_{*}\!\left[\; f_{m} \circ X_{n(i)} \,\right]\,,
+	\underset{i\rightarrow\infty}{\lim}\; E_{*}\!\left[\; f_{m} \circ X_{n(i)} \,\right],
 	\quad
 	\textnormal{by the asymptotic measurability hypothesis}
 \\
@@ -795,7 +855,7 @@ L(\,f_{m}\,)
 	\underset{i\rightarrow\infty}{\limsup}\;\,
 	\Vert\,f_{1}\,\Vert_{\infty} \cdot P^{*}\!\left(\,X_{n(i)} \notin K^{\delta(m)}\,\right),
 	\quad
-	\textnormal{by Claim 4C}
+	\textnormal{by Claim 4D}
 \\
 &\leq&
 	2\,\varepsilon
@@ -805,7 +865,9 @@ L(\,f_{m}\,)
 	P^{*}\!\left(\,X_{n(i)} \notin K^{\delta(m)}\,\right)
 \\
 &\leq&
-	2\,\varepsilon \, + \, \Vert\,f_{1}\,\Vert_{\infty} \cdot \varepsilon
+	2\,\varepsilon \, + \, \Vert\,f_{1}\,\Vert_{\infty} \cdot \varepsilon\,,
+	\quad
+	\textnormal{by Claim 4A}
 \\
 &\leq&
 	\left(\,2 \, \overset{{\color{white}.}}{+} \, \Vert\,f_{1}\,\Vert_{\infty} \,\right) \cdot \varepsilon
