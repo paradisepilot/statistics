@@ -76,7 +76,7 @@ Then, $\{\,X_{n}\,\}_{n\in\N}$ is said to be
 	\;\; \leq \;\; \underset{n\rightarrow\infty}{\liminf}\; P_{*}(\,X_{n} \in K^{\delta}\,)
 	\;\; \leq \;\; 1\,,
 	\;\;
-	\textnormal{for each \,$\delta > 0$},
+	\textnormal{for each \,$\delta > 0$}\,,
 	\end{equation*}
 	where the $\delta(m)$-enlargement $K^{\delta}$ of $K$ is defined to be:
 	\begin{equation*}
@@ -95,6 +95,76 @@ Then, $\{\,X_{n}\,\}_{n\in\N}$ is said to be
 	Borel measure in $\mathcal{M}_{1}(\D,\mathcal{D})$.{\color{white}$\overset{.}{1}$}
 \end{enumerate}
 \end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{proposition}[Subsequences inherit asymptotic measurability and asymptotic tightness]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\D,d)$\, is a metric space.
+	$\mathcal{D}$\, is the Borel $\sigma$-algebra of $(\D,d)$.
+	\vskip 0.0cm
+	$\mathcal{M}_{1}(\D,\mathcal{D})$ is the collection of Borel probability measures
+	defined on the measurable space $(\D,\mathcal{D})$.
+\item
+	For each $n \in \N$,
+	$(\Omega_{n},\mathcal{A}_{n},\mu_{n})$ is a probability space and
+	$X_{n} : \Omega_{n} \longrightarrow \D$
+	is a $\D$-valued map (not necessarily Borel measurable) defined on $\Omega_{n}$.
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	If \,$\{\,X_{n}\,\}_{n\in\N}$\, is asymptotically measurable, then so is every subsequence of it.
+\item
+	If \,$\{\,X_{n}\,\}_{n\in\N}$\, is asymptotically tight, then so is every subsequence of it.
+\end{enumerate}
+\end{proposition}
+\proof
+\begin{enumerate}
+\item
+	Obvious (since a sequence of real numbers converges to a limit if and only if
+	each of its subsequences converges to the same limit).
+\item
+	Let $\varepsilon > 0$ be given.
+	By the asymptotic tightness of \,$\{\,X_{n}\,\}_{n\in\N}$,\,
+	there exists a compact subset $K \subset (\D,d)$ such that
+	\begin{equation*}
+	1 - \varepsilon
+	\;\; \leq \;\; \underset{n\rightarrow\infty}{\liminf}\; P_{*}(\,X_{n} \in K^{\delta}\,)
+	\;\; \leq \;\; 1\,,
+	\;\;
+	\textnormal{for each \,$\delta > 0$}\,.
+	\end{equation*}
+	Now, let 
+	\,$\{\,X_{n(i)}\}_{i\in\N} \,\subset\, \{\,X_{n}\,\}_{n\in\N}$,\,
+	be any subsequence.
+	By Lemma \ref{LiminfLimsupSubsequences}, we have
+	\begin{equation*}
+	\underset{n\rightarrow\infty}{\liminf}\; P_{*}(\,X_{n} \in K^{\delta}\,)
+	\;\; \leq \;\;
+		\underset{i\rightarrow\infty}{\liminf}\; P_{*}(\,X_{n(i)} \in K^{\delta}\,)\,,
+	\quad
+	\textnormal{for each \,$\delta > 0$}\,,
+	\end{equation*}
+	which in turn implies
+	\begin{equation*}
+	1 - \varepsilon
+	\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\liminf}\; P_{*}(\,X_{n} \in K^{\delta}\,)
+	\;\; \leq \;\;
+		\underset{i\rightarrow\infty}{\liminf}\; P_{*}(\,X_{n(i)} \in K^{\delta}\,)
+	\;\; \leq \;\;
+		1\,,
+	\quad
+	\textnormal{for each \,$\delta > 0$}\,,
+	\end{equation*}
+	Thus, the subsequence \,$\{\,X_{n(i)}\}_{i\in\N}$\, is itself asymptotically tight, as required.
+\end{enumerate}
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 

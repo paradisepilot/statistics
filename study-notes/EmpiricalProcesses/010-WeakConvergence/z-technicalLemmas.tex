@@ -77,6 +77,90 @@ Thus, the Lemma follows immediately from the following
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{lemma}
+\label{LiminfLimsupSubsequences}
+\mbox{}\vskip 0.1cm
+\noindent
+Let
+\,$\{\,x_{n}\}_{n\in\N} \subset \Re$\,
+be a sequence of real numbers, and
+\,$\{\,x_{n(i)}\}_{i\in\N} \subset \Re$\,
+be an arbitrary subsequence.
+Then,
+\begin{equation*}
+\underset{n\rightarrow\infty}{\liminf}\;\, x_{n}
+\;\; \leq \;\;
+	\underset{i\rightarrow\infty}{\liminf}\;\, x_{n(i)}
+\;\; \leq \;\;
+	\underset{i\rightarrow\infty}{\limsup}\;\, x_{n(i)}
+\;\; \leq \;\;
+	\underset{n\rightarrow\infty}{\limsup}\;\, x_{n}\,.
+\end{equation*}
+\end{lemma}
+\proof
+Recall that the limit infimum
+\,$\underset{n\rightarrow\infty}{\liminf}\;x_{n}$\,
+and the limit supremum
+\,$\underset{n\rightarrow\infty}{\limsup}\;x_{n}$\,
+of a sequence of real numbers
+\,$\{\,x_{n}\}_{n\in\N}$\, can be defined as follows:
+\begin{equation*}
+\underset{n\rightarrow\infty}{\liminf}\;\,x_{n}
+\;\; := \;\;
+	\inf\left(\,\textnormal{Acc}\!\left(\,\{\,\overset{{\color{white}-}}{x}_{n}\}_{n\in\N}\,\right)\,\right)
+\quad\textnormal{and}\quad
+\underset{n\rightarrow\infty}{\limsup}\;\,x_{n}
+\;\; := \;\;
+	\sup\left(\,\textnormal{Acc}\!\left(\,\{\,\overset{{\color{white}-}}{x}_{n}\}_{n\in\N}\,\right)\,\right),
+\end{equation*}
+where
+\begin{equation*}
+\textnormal{Acc}\!\left(\,\{\,\overset{{\color{white}-}}{x}_{n}\}_{n\in\N}\,\right)
+	\;\; := \;\;
+	\left\{\;\,
+	a \in \Re\cup\{\,\pm\infty\,\}
+	\;\,\left\vert\;
+		\begin{array}{c}
+			a = \underset{i\rightarrow\infty}{\lim}\;x_{n(i)}\,,\;\;\textnormal{for some subsequence}
+			\\
+			\textnormal{$\{\;x_{n(i)}\,\}_{i\in\N}$
+				\,$\overset{{\color{white}1}}{\subset}$\,
+				$\{\;x_{n}\,\}_{n\in\N}$}
+		\end{array}
+	\right.
+	\right\}.
+\end{equation*}
+Note that for each subsequence \,$\{\,x_{n(i)}\}_{i\in\N} \,\subset\, \{\,x_{n}\}_{n\in\N}$,\, we have:
+\begin{equation*}
+\textnormal{Acc}\!\left(\,\{\,\overset{{\color{white}-}}{x}_{n(i)}\}_{i\in\N}\,\right)
+\;\;\subset\;\;
+	\textnormal{Acc}\!\left(\,\{\,\overset{{\color{white}-}}{x}_{n}\}_{n\in\N}\,\right),
+\end{equation*}
+which immediately implies
+\begin{equation*}
+\inf\left(\,\textnormal{Acc}\!\left(\,\{\,\overset{{\color{white}-}}{x}_{n}\}_{n\in\N}\,\right)\,\right)
+\;\;\leq\;\;
+	\inf\left(\,\textnormal{Acc}\!\left(\,\{\,\overset{{\color{white}-}}{x}_{n(i)}\}_{i\in\N}\,\right)\,\right)
+\;\;\leq\;\;
+	\sup\left(\,\textnormal{Acc}\!\left(\,\{\,\overset{{\color{white}-}}{x}_{n(i)}\}_{i\in\N}\,\right)\,\right)
+\;\;\leq\;\;
+	\sup\left(\,\textnormal{Acc}\!\left(\,\{\,\overset{{\color{white}-}}{x}_{n}\}_{n\in\N}\,\right)\,\right),
+\end{equation*}
+which translates to
+\begin{equation*}
+\underset{n\rightarrow\infty}{\liminf}\;\, x_{n}
+\;\; \leq \;\;
+	\underset{i\rightarrow\infty}{\liminf}\;\, x_{n(i)}
+\;\;\leq\;\;
+	\underset{i\rightarrow\infty}{\limsup}\;\, x_{n(i)}
+\;\; \leq \;\;
+	\underset{n\rightarrow\infty}{\limsup}\;\, x_{n}
+\end{equation*}
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 %\renewcommand{\theenumi}{\alph{enumi}}
 %\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 \renewcommand{\theenumi}{\roman{enumi}}
