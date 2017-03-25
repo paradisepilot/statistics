@@ -355,7 +355,69 @@ Then,
 \proof
 Let $C_{b}(\D,d)$ denote the set of all bounded continuous $\Re$-valued
 functions defined on $(\D,d)$.
-\vskip 0.3cm
+
+\vskip 0.5cm
+\begin{center}\begin{minipage}{6.5in}
+\underline{Claim{{\color{white}j}}0:}\;\;
+Let $K \subset (\D,d)$ be a compact subset and $f \in C_{b}(\D,d)$ such that
+\,$\left\vert\, f(\overset{{\color{white}.}}{x}) \,\right\vert \,\leq\, \varepsilon$,
+for each \,$x \in K$.
+Then, there exists $\delta > 0$ such that{\color{white}$\overset{.}{1}$}
+\begin{equation*}
+\left\vert\; f(\overset{{\color{white}.}}{x}) \;\right\vert \,\leq\,  2\,\varepsilon,
+\quad
+\textnormal{for each \,$x \in K^{\delta}$}.
+\end{equation*}
+\end{minipage}\end{center}
+Proof of Claim 0:\;\;
+By the continuity of $f$, for each fixed $x \in K$, there exists
+$\delta_{x} > 0$ such that
+\begin{equation*}
+f\!\left(\overset{{\color{white}.}}{B}_{\D}(x\,;\delta_{x})\right)
+\; \subset \;
+	B_{\Re}\!\left(f(x)\,;\varepsilon\right).
+\end{equation*}
+Now, $\left\{\, \overset{{\color{white}.}}{B}_{\D}(x\,;\delta_{x}/2) \,\right\}_{x \in K}$
+is an open cover of $K$, and hence, by the compactness of $K$, admits a finite
+subcover of $K$, say,
+$\left\{\, \overset{{\color{white}.}}{B}_{\D}(x_{j}\,;\delta_{x_{j}}/2) \,\right\}_{j = 1}^{l}$.
+Now, let
+\,$\delta \,:=\, \dfrac{1}{2}\cdot\min\!\left\{\,\delta_{x_{1}},\delta_{x_{2}},\ldots,\delta_{x_{l}}\,\right\}$.
+Note that
+\,$K^{\delta} \,\subset\, \overset{l}{\underset{j=1}{\bigcup}} \; B_{\D}(x_{j}\,;\delta_{x_{j}})$.
+Indeed,
+\begin{eqnarray*}
+\xi \in K^{\delta}
+&\Longrightarrow&
+	d(\xi,x) \,<\, \delta\,, \;\;\textnormal{for some \,$x \in K$}
+\\
+&\overset{{\color{white}\overset{.}{1}}}{\Longrightarrow}&
+	d(\xi,x_{j}) \,\leq\, d(\xi,x) + d(x,x_{j}) \,<\, \delta(m) + d(x,x_{j})\,,
+	\;\;\textnormal{where \,$x \in B_{\D}(x_{j}\,;\delta_{x_{j}}/2)$, \,$j\in\{\,1,2,\ldots,l\,\}$}
+\\
+&\Longrightarrow&
+	d(\xi,x_{j}) \,<\, \dfrac{\delta_{x_{j}}}{2} + \dfrac{\delta_{x_{j}}}{2} \,=\, \delta_{x_{j}}
+\\
+&\Longrightarrow&
+	\xi \,\in\, \overset{l}{\underset{j=1}{\bigcup}} \; B_{\D}(x_{j}\,;\delta_{x_{j}})
+\end{eqnarray*}
+Hence, by the above argument and the hypothesis that $\vert\,f(x)\,\vert \,\leq\,\varepsilon,\;\forall\;x\in K$,
+we have, for each \,$\xi \in K^{\delta}$,
+\begin{equation*}
+\left\vert\;\overset{{\color{white}.}}{f}(\xi)\;\right\vert
+\;\; \leq \;\;
+	\left\vert\;\overset{{\color{white}.}}{f}(\xi) - f(x_{j})\;\right\vert
+	\,+\,
+	\left\vert\;\overset{{\color{white}.}}{f}(x_{j})\;\right\vert
+\;\; \leq \;\;
+	\varepsilon \,+\, \varepsilon 
+\;\; = \;\;
+	2\,\varepsilon\,,
+\end{equation*}
+where \,$x_{j} \in K$\, is such that \,$\xi \in B_{\D}(x_{j}\,;\delta_{x_{j}})$.
+This proves Claim 0.
+
+\vskip 0.8cm
 \noindent
 \textbf{Claim 1:}\;\;
 There exists a subsequence $\left\{\,X_{n(i)}\right\}_{i\in\N}$ such that
@@ -385,24 +447,52 @@ For each $m \in \N$, fix a compact subset $K_{m} \subset (\D,d)$ such that
 \vskip 0.8cm
 \begin{center}\begin{minipage}{6.5in}
 \underline{Claim{{\color{white}j}}1A:}\;\;
-For each $m \in \N$, there exists a countable subset $\mathcal{C}_{m}$
-of the unit ball of $C_{b}(\D,d)$ such that the set
+For each $m \in \N$, there exists a countable subset $\mathcal{G}_{m}$
+of the closed unit ball of $C_{b}(\D,d)$ such that the set{\color{white}$\overset{.}{1}$}
 \begin{equation*}
 \left\{\;
 	\left.
-	f\,\vert_{K_{m}} \overset{{\color{white}1}}{\in} C_{b}(K_{m},d)
+	g\,\vert_{K_{m}} \overset{{\color{white}1}}{\in} C_{b}(K_{m},d)
 	\,\;\right\vert\;
-	f \in \mathcal{C}_{m}
+	g \in \mathcal{G}_{m}
 \;\right\}
 \end{equation*}
 is dense in $C_{b}(K_{m},d)$.
 \end{minipage}\end{center}
 Proof of Claim 1A:\;\;
+By Proposition \ref{XCompactImpliesCXSeparable}, the compactness of
+$K_{m} \subset (\D,d)$ implies the separability of $C_{b}(K_{m},d)$.
+By Proposition \ref{EverySubsetOfSeparableMetricSpaceIsSeparable},
+the unit ball of $C_{b}(K_{m},d)$ is itself separable.
+Let $\mathcal{H}_{m}$ be a countable dense subset of the unit ball of $C_{b}(K_{m},d)$.
+Next, by Lemma \ref{MetricSpacesAreNormal}, metric spaces are normal.
+Hence, by Lemma \ref{NormalContinuousExtensionLemma},
+every element of the unit ball of $C_{b}(K_{m},d)$
+(continuous $[-1,1]$-valued functions defined on $K_{m}$) 
+admits a continuous $[-1,1]$-valued extension to all of $(\D,d)$.
+Thus, for each $h \in \mathcal{H}_{m}$, we may choose a continuous
+$[-1,1]$-valued extension $\widetilde{h}$ of $h$ to all $(\D,d)$.
+Then, $\widetilde{h}$ belongs to the unit ball of $C_{b}(\D,d)$, and we may take
+\begin{equation*}
+\mathcal{G}_{m}
+\;\; := \;\;
+	\left\{\;
+	\left.
+	\widetilde{h} \overset{{\color{white}.}}{\in} C_{b}(\D,d)
+	\,\;\right\vert\;
+	h \in \mathcal{H}_{m}
+	\;\right\}
+\end{equation*}
+This proves Claim 1A.
+
+
+\vskip 0.3cm
+\noindent
 
 \vskip 0.5cm
 \noindent
-Let \,$\mathcal{F} \,:=\, \overset{\infty}{\underset{m=1}{\bigcup}}\,\mathcal{C}_{m}$.\,
-Then, \,$\mathcal{F}$\, is a countable subset of \,$C_{b}(\D,d)$.\,
+Let \,$\mathcal{G} \,:=\, \overset{\infty}{\underset{m=1}{\bigcup}}\,\mathcal{G}_{m}$.\,
+Then, \,$\mathcal{G}$\, is a countable subset the closed unit ball of \,$C_{b}(\D,d)$.\,
 
 \vskip 0.8cm
 \begin{center}\begin{minipage}{6.5in}
@@ -411,8 +501,8 @@ There exists a subsequence
 \,$\left\{\;X_{n(i)}\,\right\}_{i\in\N} \,\subset\, \left\{\;X_{n}\,\right\}_{n\in\N}$\,
 such that %, for each $f \in \mathcal{F}$,
 \begin{equation*}
-\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\,f \in X_{n(i)}\,\right]
-\;\textnormal{exists in $[-1,1]$, \;for each $f \in \mathcal{F}$}\,.
+\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\;g \circ X_{n(i)}\,\right]
+\;\textnormal{exists in $[-1,1]$, \;for each $g \in \mathcal{G}$}\,.
 \end{equation*}
 %\begin{equation*}
 %\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\,f \in X_{n(i)}\,\right]
@@ -426,11 +516,13 @@ Proof of Claim 1B:\;\;
 \vskip 0.8cm
 \begin{center}\begin{minipage}{6.5in}
 \underline{Claim{{\color{white}j}}1C:}\;\;
-Let \,$f \in C_{b}(\D,d)$.\,
-For each $\varepsilon > 0$, and $m \in \N$,
-there exists $f_{m} \in \mathcal{F}$ and $n(\varepsilon,m) \in \N$ such that
+Let \,$f$ be an element of the closed unit ball of $C_{b}(\D,d)$,\,
+i.e. $f \in C_{b}(\D,d)$ and $\Vert\,f\,\Vert_{\infty} \leq 1$.
+Then, for each $\varepsilon > 0$, and $m \in \N$,
+there exists $g_{m} \in \mathcal{G}$ and $n(\varepsilon,m) \in \N$
+such that{\color{white}$\overset{.}{1}$}
 \begin{equation*}
-\left\vert\; \overset{{\color{white}.}}{E^{*}}[\,f \circ X_{n}\,] \,-\, E^{*}[\,f_{m} \circ X_{n}\,] \;\right\vert
+\left\vert\; \overset{{\color{white}.}}{E^{*}}[\,f \circ X_{n}\,] \,-\, E^{*}[\,g_{m} \circ X_{n}\,] \;\right\vert
 \;\; \leq \;\;
 	2\,\varepsilon \,+\, \dfrac{2}{m}\,,
 \quad
@@ -438,40 +530,55 @@ there exists $f_{m} \in \mathcal{F}$ and $n(\varepsilon,m) \in \N$ such that
 \end{equation*}
 \end{minipage}\end{center}
 Proof of Claim 1C:\;\;
+Let $\varepsilon > 0$ and $m \in \N$ be given. By Claim 1A,
+there exists $g_{m} \in \mathcal{G}$ such that
+\begin{equation*}
+\left\vert\;f(x) \overset{{\color{white}.}}{-} g_{m}(x)\;\right\vert \;\leq\; \varepsilon\,,
+\quad
+\textnormal{for each \,$x \in K_{m}$}\,.
+\end{equation*}
+By Claim 0, there exists $\delta > 0$ such that
+\begin{equation*}
+\left\vert\;f(x) \overset{{\color{white}.}}{-} g_{m}(x)\;\right\vert \;\leq\; 2\,\varepsilon\,,
+\quad
+\textnormal{for each \,$x \in K_{m}^{\delta}$}\,.
+\end{equation*}
+Hence,
 \begin{eqnarray*}
 &&
-	\left\vert\; \overset{{\color{white}-}}{E^{*}}[\,f \circ X_{n}\,] \,-\, E^{*}[\,f_{m} \circ X_{n}\,] \;\right\vert
+	\left\vert\; \overset{{\color{white}-}}{E^{*}}[\,f \circ X_{n}\,] \,-\, E^{*}[\,g_{m} \circ X_{n}\,] \;\right\vert
 %\\
 %& = &
 \;\; = \;\;
 	\left\vert\; \overset{{\color{white}-}}{E}\!\left[\,
 		(f \overset{{\color{white}.}}{\circ} X_{n})^{*}
 		\,-\,
-		(f_{m} \circ X_{n})^{*}
+		(g_{m} \circ X_{n})^{*}
 	\,\right] \;\right\vert
-\\
-& \leq &
+%\\
+%& \leq &
+\;\; \leq \;\;
 	E\!\left[\;\left\vert\;
 		(f \overset{{\color{white}.}}{\circ} X_{n})^{*}
 		\,\overset{{\color{white}.}}{-}\,
-		(f_{m} \circ X_{n})^{*}
+		(g_{m} \circ X_{n})^{*}
 	\;\right\vert\;\right]
 \\
 & \leq &
 	E\!\left[\;\left\vert\;
 		(f \overset{{\color{white}.}}{\circ} X_{n})
 		\,\overset{{\color{white}.}}{-}\,
-		(f_{m} \circ X_{n})
+		(g_{m} \circ X_{n})
 	\;\right\vert^{*}\;\right],
 	\quad
 	\textnormal{by Lemma 1.2.2(iii), p.7, \cite{vanDerVaart1996}}
 \\
-& \leq &
+& = &
 	E\!\left[\;
 		\left\vert\;
 		(f \overset{{\color{white}.}}{\circ} X_{n})
 		\,\overset{{\color{white}.}}{-}\,
-		(f_{m} \circ X_{n})
+		(g_{m} \circ X_{n})
 		\;\right\vert^{*}
 		\cdot
 		\left(
@@ -482,13 +589,86 @@ Proof of Claim 1C:\;\;
 	\;\right],
 	\quad
 	\textnormal{by Lemma 1.2.3(iii), p.9, \cite{vanDerVaart1996}}
+\\
+& = &
+	E\!\left[\;
+		\left\vert\;
+		(f \overset{{\color{white}.}}{\circ} X_{n})
+		\,\overset{{\color{white}.}}{-}\,
+		(g_{m} \circ X_{n})
+		\;\right\vert^{*}
+		\cdot
+		\left(\,1_{\{X_{n} \in K^{\delta}_{m}\}}\,\right)_{*}
+	\;\right]
+	\;+\;
+	E\!\left[\;
+		\left\vert\;
+		(f \overset{{\color{white}.}}{\circ} X_{n})
+		\,\overset{{\color{white}.}}{-}\,
+		(g_{m} \circ X_{n})
+		\;\right\vert^{*}
+		\cdot
+		\left(\,1_{\{X_{n} \notin K^{\delta}_{m}\}}\,\right)^{*}
+	\;\right]
+\\
+& \leq &
+	2\,\varepsilon\cdot
+	E\!\left[\;
+		\left(\,1_{\{X_{n} \in K^{\delta}_{m}\}}\,\right)_{*}
+	\;\right]
+	\;+\;
+	E\!\left[\;
+		\left(\;
+		\vert\,f \overset{{\color{white}.}}{\circ} X_{n}\,\vert
+		\,\overset{{\color{white}.}}{+}\,
+		\vert\,g_{m} \circ X_{n}\,\vert
+		\;\right)^{*}
+		\cdot
+		\left(\,1_{\{X_{n} \notin K^{\delta}_{m}\}}\,\right)^{*}
+	\;\right]
+\\
+& \leq &
+	2\,\varepsilon \cdot P_{*}\!\left(\,X_{n} \in K^{\delta}_{m}\,\right)
+	\;+\;
+	E\!\left[\;
+		\left(\;
+		\vert\,f \overset{{\color{white}.}}{\circ} X_{n}\,\vert^{*}
+		\,\overset{{\color{white}.}}{+}\,
+		\vert\,g_{m} \circ X_{n}\,\vert^{*}
+		\;\right)
+		\cdot
+		\left(\,1_{\{X_{n} \notin K^{\delta}_{m}\}}\,\right)^{*}
+	\;\right],
+	\quad
+	\textnormal{by Lemma 1.2.2(i), p.7, \cite{vanDerVaart1996}}
+\\
+& \leq &
+	2\,\varepsilon
+	\;+\;
+	2 \cdot E\!\left[\; \left(\,1_{\{X_{n} \notin K^{\delta}_{m}\}}\,\right)^{*} \;\right],
+	\quad
+	\textnormal{since $\Vert\,f\,\Vert_{\infty}\,, \Vert\,g_{m}\,\Vert_{\infty} \,\leq\, 1$}
+\\
+& = &
+	2\,\varepsilon
+	\;+\;
+	2 \cdot E\!\left[\; 1 \,-\, \left(\,1_{\{X_{n} \in K^{\delta}_{m}\}}\,\right)_{*} \;\right],
+	\quad
+	\textnormal{by Lemma 1.2.3(iii), p.9, \cite{vanDerVaart1996}}
+\\
+& = &
+	2\,\varepsilon
+	\;+\;
+	2 \cdot \left(\, 1 \,-\, P_{*}\!\left(\,X_{n} \in K^{\delta}_{m}\,\right) \,\right),
+	\quad
+	\textnormal{by Lemma 1.2.3(i), p.9, \cite{vanDerVaart1996}}
 \end{eqnarray*}
 
 \vskip 0.8cm
 \begin{center}\begin{minipage}{6.5in}
 \underline{Claim{{\color{white}j}}1D:}\;\;
 For each \,$f \in C_{b}(\D,d)$,\, the limit
-\,$\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\,f \in X_{n(i)}\,\right]$\,
+\,$\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\;f \in X_{n(i)}\,\right]$\,
 exists in $\Re$.
 %\begin{equation*}
 %\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\,f \in X_{n(i)}\,\right]

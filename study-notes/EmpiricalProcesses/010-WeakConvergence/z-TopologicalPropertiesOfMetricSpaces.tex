@@ -1,0 +1,432 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Topological properties of metric spaces}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\label{LemmaRho}
+\quad
+Suppose $\left(S,\rho\right)$ is a metric space, and $A \subset S$ is an arbitrary non-empty subset.
+Define
+\begin{equation*}
+\rho(\,\cdot\,,A) \;:\; S \;\longrightarrow\; \Re \;:\; x \;\longmapsto\; \inf_{y\in A}\left\{\,\rho(x,y)\,\right\}
+\end{equation*}
+Then,
+\begin{enumerate}
+\item	$\rho(\,\cdot\,,A)$ is a continuous $\Re$-valued function on $S$.
+\item	For each $x \in S$, $\rho(x,A) = 0$ if and only if $x \in \overline{A}$.
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+	Suppose $x_{n} \longrightarrow x$. We need to prove $\rho(x_{n},A) \longrightarrow \rho(x,A)$.
+	We first make the following two claims:
+
+	\vskip 0.5cm
+	\begin{center}
+	\begin{minipage}{6.0in}
+	\noindent
+	\textbf{Claim 1:}\quad$\rho(x,A) \;-\; \rho(x_{n},A) \;\leq\; \rho(x,x_{n})$.
+	\vskip 0.2cm
+	\textbf{Claim 2:}\quad$- \rho(x_{n},x) \;\leq\; \rho(x,A) \;-\; \rho(x_{n},A)$.
+	\end{minipage}
+	\end{center}
+
+	\vskip 0.1cm
+	\noindent
+	The hypothesis $x_{n} \longrightarrow x$, Claim 1, and Claim 2 together imply:
+	\begin{equation*}
+	\left\vert\;\rho(x,A) \,-\, \rho(x_{n},A)\;\right\vert \; \leq \; \rho(x,x_{n})
+	\;\;\longrightarrow\;\;0,
+	\end{equation*}
+	which proves (i). We now prove the two Claims.
+
+	\vskip 0.2cm
+	\noindent
+	\underline{Proof of Claim 1:}\quad
+	By the Triangle Inequality, we have
+	\begin{equation*}
+	\rho(x,A) \;=\; \inf_{a \in A}\,\rho(x,a) \;\leq\; \rho(x,y) \;\leq\; \rho(x,x_{n}) \;+\; \rho(x_{n},y),
+	\;\;\textnormal{for each $y \in A$},
+	\end{equation*}
+	which implies
+	\begin{equation*}
+	\rho(x,A) \;\leq\; \rho(x,x_{n}) \;+\; \inf_{y \in A}\,\rho(x_{n},y) \;=\; \rho(x,x_{n}) \;+\; \rho(x_{n},A).
+	\end{equation*}
+	This proves Claim 1.
+	\vskip 0.5cm
+	\noindent
+	\underline{Proof of Claim 2:}\quad
+	By the Triangle Inequality, we have
+	\begin{equation*}
+	\rho(x_{n},A) \;=\; \inf_{a \in A}\,\rho(x_{n},a) \;\leq\; \rho(x_{n},y) \;\leq\; \rho(x_{n},x) \;+\; \rho(x,y),
+	\;\;\textnormal{for each $y \in A$},
+	\end{equation*}
+	which implies
+	\begin{equation*}
+	\rho(x_{n},A) \;\leq\; \rho(x_{n},x) \;+\; \inf_{y \in A}\,\rho(x,y) \;=\; \rho(x_{n},x) \;+\; \rho(x,A).
+	\end{equation*}
+	This proves Claim 2.
+
+\item
+	\begin{eqnarray*}
+	\rho(x,A) = 0
+	&\Longleftrightarrow& \inf_{y\in A}\,\rho(x,y) = 0
+	\\
+	&\Longleftrightarrow& \textnormal{For each $\varepsilon > 0$, there exists $y \in A$ such that $\rho(x,y) < \varepsilon$}
+	\\
+	&\Longleftrightarrow& x \in \overline{A}
+	\end{eqnarray*}
+\qed
+\end{enumerate}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\label{LemmaAEpsilon}
+\quad
+Suppose $\left(S,\rho\right)$ is a metric space, and $A \subset S$ is an arbitrary non-empty subset.
+For each $\varepsilon > 0$, define
+\begin{equation*}
+A^{\varepsilon} \;:=\;
+\left\{\;
+s \in S
+\;\left\vert\;\;
+\rho(s,A) < \varepsilon
+\right.
+\;\right\}.
+\end{equation*}
+Then the following are true:
+\begin{enumerate}
+\item
+	$A^{\varepsilon}$ is an open subset of $S$. In particular, $A^{\varepsilon}$ is a $\mathcal{B}(S)$-measurable subset of $S$.
+\item
+	$A^{\varepsilon}\,\downarrow\,\overline{A}$, as $\varepsilon \downarrow 0$.
+\item
+	There exists a bounded continuous $\Re$-valued function $f : S \longrightarrow \Re$
+	such that
+	\begin{equation*}
+	I_{\bar{A}}(x) \;\leq\; f(x) \;\leq\; I_{A^{\varepsilon}}(x)\,,
+	\quad\textnormal{for each $x \in S$}.
+	\end{equation*}
+\end{enumerate}	
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+	Let $x \in A^{\varepsilon}$. Let $\delta := \varepsilon - \rho(x,A) > 0$.
+	Let $U := \left\{\,y \in S \;\vert\; \rho(x,y) < \delta/2 \,\right\}$.
+	Then, for each $y \in U$ and $a \in A$, we have
+	\begin{equation*}
+	\rho(y,a) \;\leq\; \rho(y,x) + \rho(x,a)
+	\;\;\Longrightarrow\;\;
+	\rho(y,A) \;\leq\; \rho(y,x) + \rho(x,A) \;\leq\; \dfrac{\delta}{2} + \varepsilon - \delta \;=\; \varepsilon - \dfrac{\delta}{2},
+	\end{equation*}
+	which implies $\rho(y,A) \;\leq\; \varepsilon - \dfrac{\delta}{2} \; < \; \varepsilon$.
+	Hence $U \subset A^{\varepsilon}$.
+	Since $U$ is an open subset of $S$, we may now conclude that $A^{\varepsilon}$ is indeed an open subset of $S$.
+\item
+	First, note that $A^{\varepsilon_{1}} \subset A^{\varepsilon_{2}}$ whenever $\varepsilon_{1} \leq \varepsilon_{2}$.
+	Indeed, suppose $\varepsilon_{1} \leq \varepsilon_{2}$. Then,
+	\begin{equation*}
+	x \in A^{\varepsilon_{1}}
+	\;\;\Longrightarrow\;\;
+	\rho(x,A) < \varepsilon_{1}
+	\;\;\Longrightarrow\;\;
+	\rho(x,A) < \varepsilon_{2}
+	\;\;\Longrightarrow\;\;
+	x \in A^{\varepsilon_{2}},
+	\end{equation*}
+	which proves $A^{\varepsilon_{1}} \subset A^{\varepsilon_{2}}$ whenever $\varepsilon_{1} \leq \varepsilon_{2}$.
+	Next,
+	\begin{eqnarray*}
+	x \in \bigcap_{\varepsilon > 0}\,A^{\varepsilon}
+	&\Longleftrightarrow& x \in A^{\varepsilon}, \;\textnormal{for each $\varepsilon > 0$}
+	\\
+	&\Longleftrightarrow& \rho(x,A) < \varepsilon, \;\textnormal{for each $\varepsilon > 0$}
+	\\
+	&\Longleftrightarrow& \rho(x,A) = 0
+	\\
+	&\Longleftrightarrow& x \in \overline{A} \;\;\textnormal{(by Lemma \ref{LemmaRho})}
+	\end{eqnarray*}
+	Hence, we see that
+	\begin{equation*}
+	\bigcap_{\varepsilon > 0}\,A^{\varepsilon} \;\; = \;\; \overline{A}.
+	\end{equation*}
+	This proves completes the proof of (ii).
+\item
+	Define $f : S \longrightarrow \Re$ as follows:
+	\begin{equation*}
+	f(x) \; := \;
+	\max\left\{\;
+	0\,,\,
+	1 - \dfrac{\rho(x,A)}{\varepsilon}
+	\;\right\}.
+	\end{equation*}
+	Then, by Lemma \ref{LemmaRho}, $f$ is a continuous $\Re$-valued function on $S$.
+	Clearly, $0 \leq f(x) \leq 1$, for each $x \in S$.
+	By Lemma \ref{LemmaRho}, we have
+	\begin{equation*}
+	x \;\in\; \overline{A}
+	\quad\Longleftrightarrow\quad
+	\rho(x,A) \;=\; 0
+	\quad\Longleftrightarrow\quad
+	f(x) \; = \; 1.
+	\end{equation*}
+	This proves $I_{\bar{A}}(x) \leq 1 = f(x)$, for each $x \in \overline{A}$, and hence for each $x \in S$
+	(since $I_{\bar{A}}(x) = 0$ for $x \in S\,\backslash\,\overline{A}$, and the inequality holds trivially).
+	On the other hand,
+	\begin{equation*}
+	x \;\in\; S\,\backslash\,A^{\varepsilon}
+	\quad\Longleftrightarrow\quad
+	\varepsilon \;\leq\; \rho(x,A)
+	\quad\Longleftrightarrow\quad
+	1 - \dfrac{\rho(x,A)}{\varepsilon} \;\leq\; 0
+	\quad\Longrightarrow\quad
+	f(x) \;=\; 0.
+	\end{equation*}
+	This proves $f(x) = 0 \leq I_{A^{\varepsilon}}(x)$, for each $x \in S\,\backslash\,A^{\varepsilon}$,
+	and hence for each $x \in S$ (since $I_{A^{\varepsilon}}(x) = 1$ for each $x \in A^{\varepsilon}$
+	and the inequality holds trivially).
+	This completes the proof of (iii).
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{proposition}[Problem 11.13, p. 91, \cite{Aliprantis1998}]
+\label{XCompactImpliesCXSeparable}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose $(X,d)$ is a compact metric space.
+Then, the space $C(X,\Vert\cdot\Vert_{\infty})$ of continuous $\Re$-valued
+functions defined on $(X,d)$, equipped with the supremum norm $\Vert\,\cdot\,\Vert_{\infty}$,
+is a separable metric space.
+\end{proposition}
+\proof
+Since $X$ is compact, it is separable (see Problem 7.2, p.55, \cite{Aliprantis1998}).
+Fix a countable dense subset $\{x_{1},x_{2},\ldots\,\} \subset X$, and
+for each $n \in \N$, let $f_{n} : X \longrightarrow \Re$ be defined as follows:
+$f_{n}(\zeta) := d(\zeta,x_{n})$, for each $\zeta \in X$.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\;\; $\{1, f_{1}, f_{2}, \ldots\,\}$ separates points of $X$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\;\;
+Let $x, y \in X$ with $x \neq y$. Let $\delta := d(x,y)/2$.
+Choose $n \in \N$ such that $d(x,x_{n}) < \delta$. Then
+\begin{equation*}
+f_{n}(y) \;=\; d(y,x_{n}) \;\geq\; d(x,y) - d(x,x_{n}) \;\geq\; 2\delta - \delta \;=\; \delta \;>\; d(x,x_{n}) \;=\; f_{n}(x)\,,
+\end{equation*}
+so that $f_{n}(x) \neq f_{n}(y)$. This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+Next, let $\mathcal{C}$ be the collection of all finite products of the countable collection
+$\{1, f_{1}, f_{2}, \ldots\,\}$. 
+Note that $\mathcal{C}$ is itself countable. Now, let $\mathcal{A}$ be the set of all
+(finite) linear combinations of elements of $\mathcal{C}$ with coefficients in $\Q$.
+Then, $\mathcal{A}$ is a countable set.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\;\; $\mathcal{A}$ is dense in $C(X,\Vert\cdot\Vert_{\infty})$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 2:\;\;
+Note that $\mathcal{A}$ is an algebra (i.e. a vector space of functions
+which is furthermore closed under finite products) of continuous $\Re$-valued
+functions defined on $(X,d)$ with
+$\mathcal{A} \supset \mathcal{C} \supset \{1,f_{1},f_{2},\ldots\,\}$. 
+Hence, by Claim 1, $\mathcal{A}$ also separates points of $X$.
+By the Stone-Weierstrass Approximation Theorem (Theorem 11.5, p.89, \cite{Aliprantis1998}),
+$\mathcal{A}$ is dense in $C(X,\Vert\cdot\Vert_{\infty})$.
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+Thus, $\mathcal{A}$ is a countable dense subset of $C(X,\Vert\cdot\Vert_{\infty})$.
+Hence, $C(X,\Vert\cdot\Vert_{\infty})$ is separable.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{proposition}
+\label{EverySubsetOfSeparableMetricSpaceIsSeparable}
+\mbox{}\vskip 0.1cm
+\noindent
+Every subset of a separable metric space is itself separable.
+\end{proposition}
+\proof
+Let $(X,d)$ be a separable metric space and $A \subset X$ with $A \neq \varemptyset$.
+Let $Q \subset X$ be countable and dense.
+Define
+\begin{equation*}
+\mathcal{C}
+\;\; := \;\;
+	\left\{\;
+	\left.
+	(q,n) \overset{{\color{white}.}}{\in} Q \times \N
+	\;\;\right\vert\;
+	A \,\cap B_{1/n}(q) \,\neq\, \varemptyset
+	\;\right\}.
+\end{equation*}
+Clearly, $\mathcal{C}$ is countable. The density of $Q$ implies that $\mathcal{C}$ is non-empty.
+Indeed, since $Q$ is dense, we have $B_{\delta}(a) \,\cap\, Q \neq \varemptyset$,
+for each $a \in A$ and each $\delta > 0$. In particular, given any $a \in A$ and $n \in \N$,
+there exists some $q \in Q$ such that $d(a,q) < 1/n$, hence
+$A \, \cap B_{1/n}(q) \neq \varemptyset$. This shows that $\mathcal{C}$ is indeed non-empty.
+
+\vskip 0.3cm
+\noindent
+For each $(q,n) \in \mathcal{C}$, choose $a_{q,n} \in A\,\cap B_{1/n}(q) \neq \varemptyset$.
+Now, define
+\begin{equation*}
+A^{*} \;\; = \;\; \underset{(n,q)\in\mathcal{C}}{\bigcup}\; \left\{\, \overset{{\color{white}-}}{a}_{q,n} \,\right\}
+\end{equation*}
+Clearly, $A^{*}$ is a countable subset of $A$.
+
+\vskip 0.3cm
+\noindent
+The proof of the Proposition is complete once we show that $A^{*}$ is also dense in $A$.
+In other words, we need to show that
+$A^{*} \cap B_{\varepsilon}(a) \neq \varemptyset$, for each $a \in A$ and each $\varepsilon > 0$.
+To this end, for each $a \in A$ and $\varepsilon > 0$, we may choose
+$q \in B_{\varepsilon / 4}(a) \cap Q \neq \varemptyset$ (since $Q$ is dense in $(X,d)$).
+In particular, $d(a,q) < \varepsilon / 4$.
+Next, choose $n \in \N$ such that $\varepsilon / 4 < 1 / n < \varepsilon / 2$.
+Hence, $d(a,q) < \varepsilon / 4 < 1/n$, which implies
+$A \,\cap B_{1/n}(q) \neq \varemptyset$, which in turn implies $(q,n) \in \mathcal{C}$.
+Now, we choose $a^{*} \,:=\, a_{q,n} \,\in\, A \,\cap B_{1/n}(q)$.
+Note in particular that $d(a^{*}, q) < 1 / n$.
+Lastly, observe that
+\begin{equation*}
+d(a^*,a)
+\;\leq\; d(a^*,q) + d(q,a)
+\;<\; 1 / n + \varepsilon / 4
+\;<\; \varepsilon / 2 + \varepsilon / 4
+\;<\; \varepsilon
+\end{equation*}
+So, $a^* \in A\, \cap B_\epsilon(a)$, hence $A\, \cap B_\epsilon(a) \neq \varemptyset$.
+This proves that $A^{*}$ is indeed dense in $A$ and completes the proof of the Proposition.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{lemma}
+\label{MetricSpacesAreNormal}
+\mbox{}\vskip 0.1cm
+\noindent
+Every metric space is a normal topological space (i.e. disjoint closed subsets admit disjoint open neighbourhoods).
+\end{lemma}
+\proof
+Let $(X,d)$ be a metric space, and $A, B \subset (X,d)$ be disjoint closed subsets.
+Let
+\begin{equation*}
+U_{A}
+\;\; := \;\;
+	\left\{\;
+	\left.
+	x \overset{{\color{white}.}}{\in} X
+	\;\;\right\vert\;
+	d(x,A) < d(x,B)
+	\;\right\},
+\quad\textnormal{and}\quad
+U_{B}
+\;\; := \;\;
+	\left\{\;
+	\left.
+	x \overset{{\color{white}.}}{\in} X
+	\;\;\right\vert\;
+	d(x,A) > d(x,B)
+	\;\right\}.
+\end{equation*}
+Clearly, $U_{A} \cap U_{B} = \varemptyset$.
+By Lemma \ref{LemmaRho}(i), $d(\,\cdot\,,A)$ and $d(\,\cdot\,,B)$
+are continuous functions, which implies that
+$U_{A}$ and $U_{B}$ are open subsets of $X$.
+Since $A \cap B = \varemptyset$, and $B$ is a closed subset, we have
+$a \in A$ $\Longrightarrow$ $a \notin B = \overline{B}$ $\Longrightarrow$ $d(a,B) > 0$,
+by Lemma \ref{LemmaRho}(ii).
+On the other hand, $d(a,A) = 0$, for each $a \in A$.
+We thus see that $A \subset U_{A}$.
+Similarly, we also have $B \subset U_{B}$.
+Thus, $U_{A}$ and $U_{B}$ are disjoint open subsets of $X$
+containing $A$ and $B$, respectively.
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{lemma}
+\label{NormalContinuousExtensionLemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Every continuous $\Re$-value function defined on a closed subset
+of a normal topological space with values in $[-1,1]$
+admits a continuous extension with values in $[-1,1]$ to the whole space.
+\end{lemma}
+\proof
+By Urysohn's Lemma (Theorem 10.5, p.81, \cite{Aliprantis1998}),
+every continuous $\Re$-value function defined on a closed subset of a normal topological space
+(every two disjoint closed subsets have disjoint open neighbourhoods)
+with values in $[0,1]$ admits a continuous extension with values in $[0,1]$
+to the whole space.
+
+\vskip 0.3cm
+\noindent
+Let $\phi : [-1,1] \longrightarrow [0,1]$ be defined by $\phi(u) := \dfrac{1}{2}(u + 1)$.
+Note that $\phi$ is a homeomorphism, and $\phi^{-1} : [0,1] \longrightarrow [-1,1]$
+is given by $\phi^{-1}(v) = 2v-1$.
+
+\vskip 0.3cm
+\noindent
+Now, let $X$ be a normal topological space, $C \subset X$ a closed subset, and
+$f : C \longrightarrow [-1,1]$ a continuous map.
+Then $\phi \circ f : C \longrightarrow [0,1]$ is continuous (being the composition of two continuous maps).
+By Urysohn's Lemma, $\phi \circ f$ admits a continuous extension
+$\widetilde{\phi \circ f} : X \longrightarrow [0,1]$.
+Then, $\phi^{-1} \circ (\widetilde{\phi \circ f}) : X \longrightarrow [-1,1]$ is also continuous.
+But, for each $c \in C$, we have
+\begin{equation*}
+\left(\phi^{-1} \circ (\,\widetilde{\phi \circ f}\,)\right)(c)
+\;\; = \;\;
+	\phi^{-1}\!\left(\; \widetilde{\phi \circ f}(c) \,\right)
+\;\; = \;\;
+	\phi^{-1}\!\left(\; (\phi \overset{{\color{white}-}}{\circ} f)(c) \,\right)
+\;\; = \;\;
+	\phi^{-1}\!\left(\; \overset{{\color{white}.}}{\phi}(\,f(c)\,) \,\right)
+\;\; = \;\;
+	f(c).
+\end{equation*}
+Thus, $\phi^{-1} \circ (\,\widetilde{\phi \circ f}\,) : X \longrightarrow [-1,1]$
+is a continuous extension of $f : C \longrightarrow [-1,1]$.
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
