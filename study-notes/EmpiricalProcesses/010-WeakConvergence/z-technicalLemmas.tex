@@ -161,6 +161,109 @@ This completes the proof of the Lemma.
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.6cm
+\begin{theorem}[The Diagonal Method, Appendix A.14, \cite{Billingsley1995}]
+\label{theorem:DiagonalMethod}
+\mbox{}
+\vskip 0.3cm
+\noindent
+Suppose that each row of the array
+\begin{equation*}
+\begin{array}{cccc}
+x_{1,1} & x_{1,2} & x_{1,3} & \cdots \\
+x_{2,1} & x_{2,2} & x_{2,3} & \cdots \\
+\vdots & \vdots & \vdots & \vdots  
+\end{array}
+\end{equation*}
+is a bounded sequence of real numbers.
+Then, there exists an increasing sequence
+\begin{equation*}
+n_{1} \; < \; n_{2} \; < \; n_{3} \; < \cdots \; \in \; \N
+\end{equation*}
+of positive integers such that the limit
+\begin{equation*}
+\lim_{k\rightarrow\infty}\,x_{r,n_{k}}
+\;\;\textnormal{exists, \;\;for each $r = 1, 2, 3, \ldots$}
+\end{equation*}
+\end{theorem}
+\proof
+From the first row, select a convergent subsequence
+\begin{equation*}
+x_{1,n(1,1)},\;\;
+x_{1,n(1,2)},\;\; 
+x_{1,n(1,3)},\;\;
+\cdots\cdots 
+\end{equation*}
+Here, we have $n(1,1) < n(1,2) < n(1,3) < \cdots \;\in\;\N$, and
+$\underset{k\rightarrow\infty}{\lim}\,x_{1,n(1,k)} \in \Re$ exists.
+Next, note that the following subsequence of the second row:
+\begin{equation*}
+x_{2,n(1,1)},\;\;
+x_{2,n(1,2)},\;\; 
+x_{2,n(1,3)},\;\;
+\cdots\cdots 
+\end{equation*}
+is still a bounded sequence of real numbers, and we may thus
+select a convergent subsequence:
+\begin{equation*}
+x_{2,n(2,1)},\;\;
+x_{2,n(2,2)},\;\; 
+x_{2,n(2,3)},\;\;
+\cdots\cdots 
+\end{equation*}
+Here, we have $n(2,1) < n(2,2) < n(2,3) < \cdots \;\in\;\{\,n(1,k)\,\}_{k\in\N}$, and
+$\underset{k\rightarrow\infty}{\lim}\,x_{2,n(2,k)} \in \Re$ exists.
+Continuing inductively, we obtain an array of positive integers
+\begin{equation*}
+\begin{array}{cccc}
+n(1,1) & n(1,2) & n(1,3) & \cdots \\
+n(2,1) & n(2,2) & n(2,3) & \cdots \\
+\vdots & \vdots & \vdots & \vdots  
+\end{array}
+\end{equation*}
+which satisfies: For each $r \in \N$, we have
+\begin{itemize}
+\item	each row is an increasing sequence of positive integers, i.e. $n(r,1) \,<\, n(r,2) \,<\, n(r,3) \,<\, \cdots$,
+\item	the $(r+1)^{\textnormal{th}}$ row is a subsequence of the $r^{\textnormal{th}}$ row, i.e.
+		$\{\,n(r+1,k)\,\}_{k\in\N} \;\subset\; \{\,n(r,k)\,\}_{k\in\N}$,
+		%which in turn implies $n(k,k+1) < n(k+1,k+1)$, for each $k \in \N$,
+		and
+\item	$\underset{k\rightarrow\infty}{\lim}\,x_{r,n(r,k)} \,\in\, \Re$ exists.
+\end{itemize}
+Note that the first two properties together imply:
+\begin{equation*}
+n(k,k) \;\;<\;\; n(k,k+1) \;\;\leq\;\; n(k+1,k+1),
+\quad
+\textnormal{for each $k \in \N$}.
+\end{equation*} 
+Now, define $n_{k} \,:=\, n(k,k)$, for $k \in \N$.
+We then see that
+\begin{equation*}
+n_{k} \;\; := \;\; n(k,k) \;\; < \;\; n(k+1,k+1) \;\; =: \;\; n_{k+1},
+\end{equation*}
+i.e., $\{\,n_{k}\,\}_{k\in\N}$ is a strictly increasing sequence of positive integers.
+Lastly, for each $r \in \N$, consider the sequence
+\begin{equation*}
+x_{r,n_{1}}\,,\;\;
+x_{r,n_{2}}\,,\;\;
+x_{r,n_{3}}\,,\;\;
+\cdots
+\end{equation*}
+Note that, for each $r \in \N$,
+\begin{equation*}
+x_{r,n_{r}}\,,\;\;
+x_{r,n_{r+1}}\,,\;\;
+x_{r,n_{r+2}}\,,\;\;
+\cdots
+\end{equation*}
+is a subsequence of $\{\,x_{r,n(r,k)}\,\}_{k\in\N}$.
+We saw above that $\underset{k\rightarrow\infty}{\lim}\,x_{r,n(r,k)}$ exists,
+which in turn implies that $\underset{k\rightarrow\infty}{\lim}\,x_{r,n_{k}}$ exists.
+Since $r \in \N$ is arbitrary, the proof of the Theorem is now complete.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 %\renewcommand{\theenumi}{\alph{enumi}}
 %\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 \renewcommand{\theenumi}{\roman{enumi}}
