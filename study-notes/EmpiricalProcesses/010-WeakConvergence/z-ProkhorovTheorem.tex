@@ -433,7 +433,8 @@ L(\,f\,)
 \textnormal{for each \,$f \in C_{b}(\D,d)$}\,.
 \end{equation*}
 Proof of Claim 1:\;\;
-For each $m \in \N$, fix a compact subset $K_{m} \subset (\D,d)$ such that
+By asymptotic tightness of $\{\,X_{n}\,\}_{n\in\N}$, for each $m \in \N$,
+there exists a compact subset $K_{m} \subset (\D,d)$ such that
 \begin{equation*}
 1 - \dfrac{1}{m}
 \;\; \leq \;\;
@@ -442,6 +443,16 @@ For each $m \in \N$, fix a compact subset $K_{m} \subset (\D,d)$ such that
 \quad
 \textnormal{for each \,$\delta > 0$}.
 \end{equation*}
+This implies, for each $\delta > 0$,
+\begin{equation}\label{limsupLeqOneOverM}
+\underset{n\rightarrow\infty}{\limsup}\left(\,1\,-\,\overset{{\color{white}.}}{P}_{*}\!\left(\,X_{n} \in K_{m}^{\delta}\,\right)\right)
+\; = \;
+	1 \,+\, \underset{n\rightarrow\infty}{\limsup}\left(\,-\,\overset{{\color{white}.}}{P}_{*}\!\left(\,X_{n} \in K_{m}^{\delta}\,\right)\right)
+\; = \;
+	1 \,-\, \underset{n\rightarrow\infty}{\liminf}\;P_{*}\!\left(\,X_{n} \in K_{m}^{\delta}\,\right)
+\; \leq \;
+	\dfrac{1}{m}
+\end{equation}
 
 \vskip 0.8cm
 \begin{center}\begin{minipage}{6.5in}
@@ -504,10 +515,10 @@ such that %, for each $f \in \mathcal{F}$,
 \;\textnormal{exists in $[-1,1]$, \;for each $g \in \mathcal{G}$}\,.
 \end{equation*}
 %\begin{equation*}
-%\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\,f \in X_{n(i)}\,\right]
+%\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\,f \circ X_{n(i)}\,\right]
 %\;\textnormal{exists}\,,
 %\quad\textnormal{and}\quad
-%\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\,f \in X_{n(i)}\,\right] \,\in\, [-1,1]\,.
+%\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\,f \circ X_{n(i)}\,\right] \,\in\, [-1,1]\,.
 %\end{equation*}
 \end{minipage}\end{center}
 Proof of Claim 1B:\;\;
@@ -535,14 +546,13 @@ This proves Claim 1B.
 Let \,$f$ be an element of the closed unit ball of $C_{b}(\D,d)$,\,
 i.e. $f \in C_{b}(\D,d)$ and $\Vert\,f\,\Vert_{\infty} \leq 1$.
 Then, for each $\varepsilon > 0$, and $m \in \N$,
-there exists $g_{m} \in \mathcal{G}$ and $n(\varepsilon,m) \in \N$
+there exists $g_{m} \in \mathcal{G}$
 such that{\color{white}$\overset{.}{1}$}
 \begin{equation*}
+\underset{n\rightarrow\infty}{\limsup}\,
 \left\vert\; \overset{{\color{white}.}}{E^{*}}[\,f \circ X_{n}\,] \,-\, E^{*}[\,g_{m} \circ X_{n}\,] \;\right\vert
 \;\; \leq \;\;
-	2\,\varepsilon \,+\, \dfrac{2}{m}\,,
-\quad
-\textnormal{for each \,$n \geq n(\epsilon,m)$}\,.
+	2\,\varepsilon \,+\, \dfrac{2}{m}\,.
 \end{equation*}
 \end{minipage}\end{center}
 Proof of Claim 1C:\;\;
@@ -563,16 +573,12 @@ Hence,
 \begin{eqnarray*}
 &&
 	\left\vert\; \overset{{\color{white}-}}{E^{*}}[\,f \circ X_{n}\,] \,-\, E^{*}[\,g_{m} \circ X_{n}\,] \;\right\vert
-%\\
-%& = &
 \;\; = \;\;
 	\left\vert\; \overset{{\color{white}-}}{E}\!\left[\,
 		(f \overset{{\color{white}.}}{\circ} X_{n})^{*}
 		\,-\,
 		(g_{m} \circ X_{n})^{*}
 	\,\right] \;\right\vert
-%\\
-%& \leq &
 \;\; \leq \;\;
 	E\!\left[\;\left\vert\;
 		(f \overset{{\color{white}.}}{\circ} X_{n})^{*}
@@ -605,27 +611,27 @@ Hence,
 	\;\right],
 	\quad
 	\textnormal{by Lemma 1.2.3(iii), p.9, \cite{vanDerVaart1996}}
-\\
-& = &
-	E\!\left[\;
-		\left\vert\;
-		(f \overset{{\color{white}.}}{\circ} X_{n})
-		\,\overset{{\color{white}.}}{-}\,
-		(g_{m} \circ X_{n})
-		\;\right\vert^{*}
-		\cdot
-		\left(\,1_{\{X_{n} \in K^{\delta}_{m}\}}\,\right)_{*}
-	\;\right]
-	\;+\;
-	E\!\left[\;
-		\left\vert\;
-		(f \overset{{\color{white}.}}{\circ} X_{n})
-		\,\overset{{\color{white}.}}{-}\,
-		(g_{m} \circ X_{n})
-		\;\right\vert^{*}
-		\cdot
-		\left(\,1_{\{X_{n} \notin K^{\delta}_{m}\}}\,\right)^{*}
-	\;\right]
+%\\
+%& = &
+%	E\!\left[\;
+%		\left\vert\;
+%		(f \overset{{\color{white}.}}{\circ} X_{n})
+%		\,\overset{{\color{white}.}}{-}\,
+%		(g_{m} \circ X_{n})
+%		\;\right\vert^{*}
+%		\cdot
+%		\left(\,1_{\{X_{n} \in K^{\delta}_{m}\}}\,\right)_{*}
+%	\;\right]
+%	\;+\;
+%	E\!\left[\;
+%		\left\vert\;
+%		(f \overset{{\color{white}.}}{\circ} X_{n})
+%		\,\overset{{\color{white}.}}{-}\,
+%		(g_{m} \circ X_{n})
+%		\;\right\vert^{*}
+%		\cdot
+%		\left(\,1_{\{X_{n} \notin K^{\delta}_{m}\}}\,\right)^{*}
+%	\;\right]
 \\
 & \leq &
 	2\,\varepsilon\cdot
@@ -679,7 +685,7 @@ Hence,
 	\quad
 	\textnormal{by Lemma 1.2.3(i), p.9, \cite{vanDerVaart1996}}
 \end{eqnarray*}
-Taking limit superior as $n \longrightarrow \infty$, we have
+Taking limit superior as $n \longrightarrow \infty$, by \eqref{limsupLeqOneOverM}, we have
 \begin{equation*}
 0
 \;\; \leq \;\;
@@ -696,25 +702,114 @@ Taking limit superior as $n \longrightarrow \infty$, we have
 	\;+\;
 	\dfrac{2}{m}
 \end{equation*}
+This proves Claim 1C.
+
 
 \vskip 0.8cm
 \begin{center}\begin{minipage}{6.5in}
 \underline{Claim{{\color{white}j}}1D:}\;\;
-For each \,$f \in C_{b}(\D,d)$,\, the limit
-\,$\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\;f \in X_{n(i)}\,\right]$\,
+For each \,$f \in C_{b}(\D,d)$ with $\Vert\,f\,\Vert_{\infty} \,\leq\,1$,\,
+the limit \,$\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\;f \circ X_{n(i)}\,\right]$\,
 exists in $\Re$.
-%\begin{equation*}
-%\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\,f \in X_{n(i)}\,\right]
-%\;\textnormal{exists in $\Re$}\,.
-%\end{equation*}
 \end{minipage}\end{center}
 Proof of Claim 1D:\;\;
+We will show that the sequence
+$\left\{\,\overset{{\color{white}.}}{E^{*}}\!\left[\;f \circ X_{n(i)}\,\right]\,\right\}_{i\in\N}$
+is a Cauchy sequence in $\Re$.
+Hence, we show that, for each $\eta > 0$, there exists $i_{0} \in \N$ such that
+\begin{equation*}
+\left\vert\; \overset{{\color{white}.}}{E^{*}}\!\left[\;f \circ X_{n(i)}\,\right] \,-\, E^{*}\!\left[\;f \circ X_{n(j)}\,\right] \;\right\vert
+\;\; \leq \;\; \eta\,,
+\quad
+\textnormal{for each \,$i, j > i_{0}$}\,.
+\end{equation*}
+Let $\eta > 0$ be given. Choose $\varepsilon > 0$ and $m \in \N$ such that
+$2\,\varepsilon + \dfrac{2}{m} < \dfrac{\eta}{3}$.
+By Claim 1C, we have
+\begin{equation*}
+\underset{i\rightarrow\infty}{\limsup}\,
+\left\vert\; \overset{{\color{white}.}}{E^{*}}[\,f \circ X_{n(i)}\,] \,-\, E^{*}[\,g_{m} \circ X_{n(i)}\,] \;\right\vert
+\;\; \leq \;\;
+	\underset{n\rightarrow\infty}{\limsup}\,
+	\left\vert\; \overset{{\color{white}.}}{E^{*}}[\,f \circ X_{n}\,] \,-\, E^{*}[\,g_{m} \circ X_{n}\,] \;\right\vert
+\;\; \leq \;\;
+	2\,\varepsilon \,+\, \dfrac{2}{m}
+\;\; < \;\;
+	\dfrac{\eta}{3}\,.
+\end{equation*}
+Hence, there exists $i_{1} \in \N$ such that
+\begin{equation*}
+\left\vert\; \overset{{\color{white}.}}{E^{*}}[\,f \circ X_{n(i)}\,] \,-\, E^{*}[\,g_{m} \circ X_{n(i)}\,] \;\right\vert
+\;\; < \;\;
+	\dfrac{\eta}{3}\,,
+\quad
+\textnormal{for each \,$i \geq i_{1}$}
+\end{equation*}
+By Claim 1B, $\underset{i\rightarrow\infty}{\lim}\;E^{*}[\,g_{m} \circ X_{n(i)}\,]$ exists,
+hence the sequence $\left\{\,\overset{{\color{white}.}}{E^{*}}[\,g_{m} \circ X_{n(i)}\,]\,\right\}_{i\in\N}$\, is Cauchy,
+i.e. there exists $i_{2} \in \N$ such that
+\begin{equation*}
+\left\vert\; \overset{{\color{white}.}}{E^{*}}[\,g_{m} \circ X_{n(i)}\,] \,-\, E^{*}[\,g_{m} \circ X_{n(j)}\,] \;\right\vert
+\;\; < \;\;
+	\dfrac{\eta}{3}\,,
+\quad
+\textnormal{for each \,$i,j \geq i_{2}$}
+\end{equation*}
+Letting $i_{0} \,:=\, \max\{\,i_{1},i_{2}\,\}$, we therefore have
+\begin{eqnarray*}
+&&
+	\left\vert\; \overset{{\color{white}.}}{E^{*}}\!\left[\;f \circ X_{n(i)}\;\right] \,-\, E^{*}\!\left[\;f \circ X_{n(j)}\;\right] \;\right\vert
+\\
+&\leq&
+	\left\vert\, \overset{{\color{white}.}}{E^{*}}\!\left[\,f \circ X_{n(i)}\right] \,-\, E^{*}\!\left[\,g_{m} \circ X_{n(i)}\right] \,\right\vert
+	+
+	\left\vert\, \overset{{\color{white}.}}{E^{*}}\!\left[\,g_{m} \circ X_{n(i)}\right] \,-\, E^{*}\!\left[\,g_{m} \circ X_{n(j)}\right] \,\right\vert
+	+
+	\left\vert\, \overset{{\color{white}.}}{E^{*}}\!\left[\,g_{m} \circ X_{n(j)}\right] \,-\, E^{*}\!\left[\,f \circ X_{n(j)}\right] \,\right\vert
+\\
+& < &
+	\dfrac{\eta}{3} \,+\, \dfrac{\eta}{3} \,+\, \dfrac{\eta}{3}
+\;\; = \;\;
+	\eta\,,
+\quad
+\textnormal{for each \,$i,j \geq i_{0}$}\,.
+\end{eqnarray*}
+This shows that the sequence
+$\left\{\,\overset{{\color{white}.}}{E^{*}}\!\left[\;f \circ X_{n(i)}\,\right]\,\right\}_{i\in\N}$
+is indeed a Cauchy sequence in $\Re$, and
+the limit \,$\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\;f \circ X_{n(i)}\,\right]$\, exists in $\Re$.
+This proves Claim 1D
 
-\vskip 0.5cm
-\noindent
-This completes the proof of Claim 1.
 
-\vskip 0.5cm
+\vskip 0.8cm
+\begin{center}\begin{minipage}{6.5in}
+\underline{Claim{{\color{white}j}}1E:}\;\;
+For each \,$f \in C_{b}(\D,d)$,\,
+the limit \,$\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\;f \circ X_{n(i)}\,\right]$\, exists in $\Re$.
+\end{minipage}\end{center}
+Proof of Claim 1E:\;\;
+If $\Vert\,f\,\Vert_{\infty} = 0$, then $E^{*}\!\left[\;f \circ X_{n(i)}\,\right] = 0$, for each $i\in\N$.
+Hence, $\underset{i\rightarrow\infty}{\lim}\, E^{*}\!\left[\;f \circ X_{n(i)}\,\right] = 0$\,;
+in particular, this limit exists in $\Re$.
+If \,$\Vert\,f\,\Vert_{\infty} > 0$,\, define \,$\widehat{f} \; := \dfrac{f}{{\color{white}2.}\Vert\,f\,\Vert_{\infty}}$.\,
+Then, \,$\widehat{f} \,\in\, C_{b}(\D,d)$\, with \,$\left\Vert\;\widehat{f}\;\,\right\Vert_{\infty} \leq 1$.\,
+By Claim 1D, the limit
+$\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\;\widehat{f} \circ X_{n(i)}\,\right]$\, exists in $\Re$.
+On the other hand,
+\begin{equation*}
+E^{*}\!\left[\;f \circ X_{n(i)}\,\right]
+\;\; = \;\;
+	E^{*}\!\left[\; \left(\,\Vert\,f\,\Vert_{\infty} \cdot \widehat{f}\;\right) \circ X_{n(i)}\,\right]
+\;\; = \;\;
+	\Vert\,f\,\Vert_{\infty} \cdot E^{*}\!\left[\; \widehat{f} \circ X_{n(i)}\,\right],
+\quad
+\textnormal{for each \,$i \in \N$}\,.
+\end{equation*}
+We may now conclude that the limit
+\,$\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\;f \circ X_{n(i)}\,\right]$\, indeed also exists in $\Re$.
+This completes the proof of Claim 1E, as well as that of Claim 1.
+
+\vskip 0.8cm
 \noindent
 \textbf{Claim 2:}\;\;
 $L : C_{b}(\D,d) \longrightarrow \Re$ is a additive.
@@ -843,9 +938,9 @@ L(\,\lambda \cdot f\,)
 &:=&
 	\underset{i\rightarrow\infty}{\lim}\;
 	E^{*}\!\left[\; \lambda \cdot f \circ X_{n(i)} \,\right]
-\\
-& \overset{{\color{white}1}}{=} &
-%\;\; = \;\;
+%\\
+%& \overset{{\color{white}1}}{=} &
+\;\; = \;\;
 	\underset{i\rightarrow\infty}{\lim}\;
 	E\!\left[\,\left(\; \lambda \cdot f \circ X_{n(i)} \,\right)^{*}\,\right]
 \\
@@ -869,8 +964,9 @@ L(\,\lambda \cdot f\,)
 	\lambda \cdot
 	\underset{i\rightarrow\infty}{\lim}\;
 	E^{*}\!\left[\; f \circ X_{n(i)} \,\right]
-\\
-& \overset{{\color{white}1}}{=:} &
+%\\
+%& \overset{{\color{white}1}}{=:} &
+\;\; = \;\;
 	\lambda \cdot L(\,f\,)
 \end{eqnarray*}
 This proves Claim 3.
