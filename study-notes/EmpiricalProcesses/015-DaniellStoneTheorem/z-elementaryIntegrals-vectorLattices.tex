@@ -92,6 +92,25 @@ if $I$ satisfies the following conditions:
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{remark}\label{ElementaryIntegralsPreserveInequalities}\quad
+Suppose $I : \mathcal{L} \longrightarrow \Re$ is an elementary integral
+defined on a vector lattice $\mathcal{L}$ of \,$\Re$-valued functions
+defined on a nonempty set $\Omega$.
+Then, for $f, g \in \mathcal{L}$, we have
+\begin{equation*}
+f \,\leq\, g \quad\Longrightarrow\quad I(f) \,\leq\, I(g)\,.
+\end{equation*}
+Indeed,\,
+$f\,\leq\,g$
+\,\;$\Longrightarrow$\; $0\,\leq (g-f)$
+\,\;$\Longrightarrow$\; $0\,\leq\,I(g-f)$
+\,\;$\Longrightarrow$\; $0\,\leq\,I(g)-I(f)$
+\,\;$\Longrightarrow$\; $I(f) \,\leq\, I(g)$\,,
+where the second and third implications follow from the non-negativity and the linearity of $I$, respectively.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \begin{lemma}[Lemma 7.7.1, p.227, \cite{Cohn2013}]
 \mbox{}\vskip 0.1cm
 \noindent
@@ -144,18 +163,28 @@ Then, the following statements hold:
 \item
 	Immediate by applying (i) to \,$g_{n} := \overset{n}{\underset{i=1}{\sum}}\,f_{i}$.
 \item
+	Let \,$g_{n} \,:=\, f \wedge \left(\,\overset{n}{\underset{i=1}{\sum}}\,f_{i}\right)$.
+	Then, $g_{n} \in \mathcal{L}$ with $g_{n} \uparrow f$.
+	Hence, by (i), we have
+	\begin{eqnarray*}
+	I(f)
+	&=&
+		\underset{n\rightarrow\infty}{\lim}\;I(g_{n})
+	\;\; = \;\;
+		\underset{n\rightarrow\infty}{\lim}\;I\!\left(\,f \wedge \left(\,\overset{n}{\underset{i=1}{\sum}}\,f_{i}\right)\,\right)
+	\\
+	&\leq&
+		\underset{n\rightarrow\infty}{\lim}\;I\!\left(\,\overset{n}{\underset{i=1}{\sum}}\,f_{i}\,\right)
+	\;\; = \;\;
+		\underset{n\rightarrow\infty}{\lim}\;\,\overset{n}{\underset{i=1}{\sum}}\;I(f_{i})
+	\;\; = \;\;
+		\overset{\infty}{\underset{i=1}{\sum}}\;I(f_{i})\,,
+	\end{eqnarray*}
+	where the inequality follows from Remark \ref{ElementaryIntegralsPreserveInequalities}.
 \end{enumerate}
-
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\begin{corollary}
-\mbox{}\vskip 0.1cm
-\noindent
-If two Borel probability measures defined on a metric space agree on each closed subset of the metric space,
-then the two probability measures are in fact equal.
-\end{corollary}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
