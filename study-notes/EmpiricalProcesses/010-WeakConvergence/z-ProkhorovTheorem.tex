@@ -99,6 +99,7 @@ Then, $\{\,X_{n}\,\}_{n\in\N}$ is said to be
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \begin{proposition}[Subsequences inherit asymptotic measurability and asymptotic tightness]
+\label{SubsequencesInheritAsymptoticMeasurabilityAndTightness}
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -168,7 +169,7 @@ Then, the following statements hold:
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{proposition}
+\begin{proposition}\label{ConverseOfProkhorovTheorem}
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -1356,7 +1357,110 @@ L(\,f\,)
 \vskip 0.2cm
 \noindent
 Proof of Claim 5:\;\;
+Note that $C_{b}(\D,d)$ is a \textit{vector lattice} of $\Re$-valued functions defined on the non-empty set $\D$, and
+$C_{b}(\D,d)$ satisfies \textit{Stone's condition}.
+Recall also that $\sigma\!\left(\,C_{b}(\D,d)\,\right)$ $=$ $\mathcal{D}$, by Lemma \ref{DeqSigmaCb}.
 
+\vskip 0.3cm
+\noindent
+By Claim 2 and Claim 3, $L : C_{b}(\D,d) \longrightarrow \Re$ is an $\Re$-valued linear functional
+defined on $C_{b}(\D,d)$.
+By Claim 4, $L$ is furthermore an \textit{elementary integral} defined on $C_{b}(\D,d)$.
+(See p.227, \cite{Cohn2013}, for the definitions of \textit{vector lattice}, \textit{Stone's condition}, and \textit{elementary integral}.)
+
+\vskip 0.3cm
+\noindent
+By the Daniell-Stone Theorem (Theorem 7.7.4, p.229, \cite{Cohn2013}),
+there exists a measure $\mu$ defined on the measurable space
+$(\,\D,\sigma\!\left(C_{b}(\D,d)\right)\,)$ $=$ $(\D,\mathcal{D})$ such that
+\begin{equation*}
+L(\,f\,)
+\;\; = \;\;
+	\int\, f \;\d\mu\,,
+\quad
+\textnormal{for each \,$f \in C_{b}(\D,d)$}\,.
+\end{equation*}
+(We emphasize that the Daniell-Stone Theorem itself does not assert that $\mu$ is a probability measure, 
+nor does it assert the uniqueness of $\mu$ as a measure defined on
+$(\D,\mathcal{D})$ $=$ $(\,\D,\sigma\!\left(C_{b}(\D,d)\right)\,)$.
+It only asserts the uniqueness of the restriction of $\mu$ to a certain sub-$\sigma$-ring of
+$\sigma\!\left(C_{b}(\D,d)\right)$.)
+
+\vskip 0.3cm
+\noindent
+We next show that $\mu$ is in fact a probability measure on $(\D,\mathcal{D})$.
+To this end, simply note that, since $1_{\D} \in C_{b}(\D,d)$, we have
+\begin{eqnarray*}
+\mu\!\left(\,\D\,\right)
+& = &
+	\int\, 1_{\D}\;\d\mu
+\;\; = \;\;
+	L\!\left(\, 1_{\D} \,\right)
+\;\; := \;\;
+	\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\; 1_{\D} \circ X_{n(i)} \,\right]
+\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\; 1_{\Omega_{n(i)}} \,\right]
+\\
+& = &
+	\underset{i\rightarrow\infty}{\lim}\; E\!\left[\; 1_{\Omega_{n(i)}} \,\right]
+\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\; \int\, 1_{\Omega_{n(i)}} \;\d\mu_{n(i)}
+\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\; \mu_{n(i)}\!\left(\,\Omega_{n(i)}\,\right)
+\;\; = \;\;
+	\underset{i\rightarrow\infty}{\lim}\; 1
+\;\; = \;\;
+	1\,,
+\end{eqnarray*}
+which shows that $\mu$ is indeed a probability measure on $(\D,\mathcal{D})$,
+i.e. $\mu \in \mathcal{M}_{1}(\D,\mathcal{D})$.
+
+\vskip 0.3cm
+\noindent
+Lastly, we argue that $\mu \in \mathcal{M}_{1}(\D,\mathcal{D})$ is unique.
+To this end, let $\mu_{1}, \mu_{2} \in \mathcal{M}_{1}(\D,\mathcal{D})$ be two such
+Borel probability measures, then
+\begin{equation*}
+\int\, f \;\d\mu_{1}
+\;\; = \;\;
+	L\!\left(\,f\,\right)
+\;\; = \;\;
+	\int\, f \;\d\mu_{2}\,,
+\quad
+\textnormal{for each \,$f \in C_{b}(\D,d)$}\,.
+\end{equation*}
+But then, by Theorem \ref{CbSeparatesPointsInM1DD}, we have
+$\mu_{1} = \mu_{2}$.
+This establishes the uniqueness of
+$\mu \in \mathcal{M}_{1}(\D,\mathcal{D})$
+and completes the proof of Claim 5.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 6:}\;\;
+$X_{n(i)} \wconverge \mu$,\, and
+the Borel probability measure $\mu \in \mathcal{M}_{1}(\D,\mathcal{D})$ is tight.
+\vskip 0.2cm
+\noindent
+Proof of Claim 6:\;\;
+Note that, for each $f \in C_{b}(\D,d)$, we now have
+\begin{eqnarray*}
+\underset{i\rightarrow\infty}{\lim}\; E^{*}\!\left[\,f \circ X_{n(i)}\,\right]
+& =: &
+	L\!\left(\,f\,\right),
+	\quad\textnormal{by Claim 1}
+\\
+& = &
+	\int\, f \;\d\mu\,,
+	\quad\textnormal{by Claim 5}\,
+\end{eqnarray*}
+which proves that \,$X_{n(i)} \wconverge \mu$.\,
+By hypothesis, $\left\{\,X_{n}\,\right\}_{n\in\N}$ is asymptotically tight;
+hence, by Proposition \ref{SubsequencesInheritAsymptoticMeasurabilityAndTightness}(ii),
+the subsequence $\left\{\,X_{n(i)}\,\right\}_{i\in\N}$ is itself asymptotically tight.
+Since $X_{n(i)} \wconverge \mu$, by Proposition \ref{ConverseOfProkhorovTheorem}(ii),
+the Borel probability measure $\mu \in \mathcal{M}_{1}(\D,\mathcal{D})$ is tight.
+This proves Claim 6, as well as completes the proof of the Prokhorov Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

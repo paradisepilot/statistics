@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{The Daniell-Stone Representation Theorem}
+\section{The Daniell-Stone Representation Theorem, Section 4.5, p.142, \cite{Dudley2004}}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -15,29 +15,89 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{theorem}[Regularity of Borel probability measures on metric spaces]
+\begin{definition}[Vector lattice of $\Re$-valued functions]
 \mbox{}\vskip 0.1cm
 \noindent
-Every Borel probability measure on a metric space is regular.
-More precisely, suppose $(\D,d)$ is a metric space, $\mathcal{D}$ its Borel $\sigma$-algebra,
-and $\mu$ is a probability measure defined on the measurable space $(\D,\mathcal{D})$.
-Then, for each $\varepsilon > 0$ and each Borel subset $B \in \mathcal{D}$, there exist
-an open subset $G \subset (D,d)$ and closed subset $F \subset (\D,d)$ such that
-\begin{equation*}
-F \subset B \subset G
-\quad\textnormal{and}\quad
-\mu\!\left(\,G \,\backslash F\,\right) < \varepsilon\,.
-\end{equation*} 
-\end{theorem}
+Suppose:\;\; $\Omega$ is a non-empty set and \,$\Re^{\Omega}$ denotes the set of all arbitrary $\Re$-valued functions
+defined on $\Omega$. A subset $\mathcal{L} \subset \Re^{\Omega}$ is called a
+\underline{\textbf{vector{\color{white}$j$\!}lattice}} if it satisfies the following properties:
+\begin{enumerate}
+\item
+	Linearity:
+	\begin{equation*}
+	c \cdot f + g \,\in\, \mathcal{L}\,,
+	\quad
+	\textnormal{for each \,$c\in\Re$,\, and \,$f,g\in\mathcal{L}$}
+	\end{equation*}
+\item
+	Closure under pointwise maximization:
+	\begin{equation*}
+	f \vee g \,:=\, \max\{\,f,g\,\} \,\in\, \mathcal{L}\,,
+	\quad
+	\textnormal{for each \,$f,g\in\mathcal{L}$}
+	\end{equation*}
+\end{enumerate}
+\end{definition}
+
+\begin{remark}\quad
+Suppose that $\mathcal{L}$ is a vector lattice of \,$\Re$-valued functions defined on a non-empty set $\Omega$.
+If $f, g \in \mathcal{L}$, then so is
+$f \wedge g \,:=\, \min\{\,f,g\,\} \,=\, -\max\{\,-f,-g\,\} \,\in\, \mathcal{L}$.
+\end{remark}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{corollary}
+\begin{definition}[Pre-integral defined on a vector lattice of $\Re$-valued functions]
 \mbox{}\vskip 0.1cm
 \noindent
-Let $(\D,d)$ be a metric space, $\mathcal{D}$ its Borel $\sigma$-algebra, and
-$\mu$ be probability measure defined on the measurable space $(\D,\mathcal{D})$.
-Then, for each $B \in \mathcal{D}$, we have:
+Suppose:
+\begin{itemize}
+\item
+	$\Omega$ is a non-empty set.
+\item
+	$\mathcal{L}$ is a vector lattice of \,$\Re$-valued functions defined on $\Omega$.
+\end{itemize}
+A function $I : \mathcal{L} \longrightarrow \Re$ is called a \,\underline{\textit{pre-integral}}\,
+if $I$ satisfies the following conditions:
+\begin{enumerate}
+\item
+	Linearity:\;\;
+	$I(c \cdot f + g) \;\; = \;\; c \cdot I(f) + I(g)$\,,
+	for each $c \in \Re$ and $f, g \in \mathcal{L}$\,.
+\item
+	Non-negativity:\;\; $I(f) \; \geq \; 0$\,,\;\;
+	for each $f \in \mathcal{L}$ with $f(x) \geq 0$ for each $x \in X$\,.
+\item
+	$I(f_{n}) \, \downarrow \, 0$\,,
+	for each sequence $\{\,f_{n}\,\}_{n\in\N} \subset \mathcal{L}$ where $f_{n}(x) \downarrow 0$ for each $x \in X$
+\end{enumerate}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[A. C. Zaanen, Theorem 4.5.1, p.143, \cite{Dudley2004}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\Omega$ is a non-empty set,
+	$\mathcal{L} \subset \Re^{\Omega}$ is a vector lattice of $\Re$-valued functions defined on $X$, and
+	$I : \mathcal{L} \longrightarrow \Re$ is a pre-integral defined on $\mathcal{L}$.
+\item
+	For each $f \leq g \in \mathcal{L}$ (i.e. $f(\omega) \leq g(\omega)$, for each $\omega \in \Omega$), define
+	\begin{equation*}
+	\Graph\!\left([\,\overset{{\color{white}.}}{f},g\,)\right)
+	\;\; := \;\;
+		\left\{\,
+		\left.
+		(\omega,t) \overset{{\color{white}.}}{\in} \Omega \times \Re
+		\,\;\right\vert\;
+		f(\omega) \leq t < g(\omega)
+		\;\right\},
+	\end{equation*}
+	and
+\end{itemize}
 \begin{eqnarray*}
 \mu(B)
 & = &
@@ -54,7 +114,7 @@ Then, for each $B \in \mathcal{D}$, we have:
 		C \;\textnormal{\;open\; in}\; (\D,d)
 	\right.\;\right\}
 \end{eqnarray*} 
-\end{corollary}
+\end{theorem}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
