@@ -1,0 +1,167 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Elementary integrals defined on vector lattices}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Vector lattice of $\Re$-valued functions, p.227, \cite{Cohn2013}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:\;\; $\Omega$ is a non-empty set and \,$\Re^{\Omega}$ denotes the set of all arbitrary $\Re$-valued functions
+defined on $\Omega$. A subset $\mathcal{L} \subset \Re^{\Omega}$ is called a
+\underline{\textbf{vector{\color{white}$j$\!}lattice}} if it satisfies the following properties:
+\begin{enumerate}
+\item
+	Linearity:
+	\begin{equation*}
+	c \cdot f + g \,\in\, \mathcal{L}\,,
+	\quad
+	\textnormal{for each \,$c\in\Re$,\, and \,$f,g\in\mathcal{L}$}
+	\end{equation*}
+\item
+	Closure under pointwise maximization:
+	\begin{equation*}
+	f \vee g \,:=\, \max\{\,f,g\,\} \,\in\, \mathcal{L}\,,
+	\quad
+	\textnormal{for each \,$f,g\in\mathcal{L}$}
+	\end{equation*}
+\end{enumerate}
+\end{definition}
+
+\begin{remark}\quad
+A vector lattice is also closed under pointwise minimization.
+Indeed, suppose that $\mathcal{L}$ is a vector lattice of
+\,$\Re$-valued functions defined on a non-empty set $\Omega$.
+If $f, g \in \mathcal{L}$, then
+$f \wedge g \,:=\, \min\{\,f,g\,\} \,=\, -\max\{\,-f,-g\,\} \,\in\, \mathcal{L}$.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Stone's condition, p.227, \cite{Cohn2013}]
+\mbox{}\vskip 0.1cm
+\noindent
+A vector lattice $\mathcal{L}$ of \,$\Re$-valued functions defined on a nonempty set $\Omega$
+is said to satisfy \,\underline{\textbf{Stone's{\color{white}$p$\!}conditions}}\, if
+\begin{equation*}
+f \wedge 1_{\Omega} \,\in\, \mathcal{L}\,,
+\quad\textnormal{for each \,$f \in \mathcal{L}$}\,,
+\end{equation*}
+where $1_{\Omega}$ denotes the constant $\Re$-valued function $1$ on $\Omega$.
+(Note that $1_{\Omega}$ may or may not be in $\mathcal{L}$.)
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Elementary integral defined on a vector lattice of $\Re$-valued functions, p.227, \cite{Cohn2013}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\Omega$ is a non-empty set.
+\item
+	$\mathcal{L}$ is a vector lattice of \,$\Re$-valued functions defined on $\Omega$.
+\end{itemize}
+A function $I : \mathcal{L} \longrightarrow \Re$ is called an \,\underline{\textbf{elementary integral}}\,
+if $I$ satisfies the following conditions:
+\begin{enumerate}
+\item
+	Linearity:\;\;
+	$I(c \cdot f + g) \;\; = \;\; c \cdot I(f) + I(g)$\,,
+	for each $c \in \Re$ and $f, g \in \mathcal{L}$\,.
+\item
+	Non-negativity:\;\; $I(f) \; \geq \; 0$\,,\;\;
+	for each $f \in \mathcal{L}$ with $f(x) \geq 0$ for each $x \in X$\,.
+\item
+	$I(f_{n}) \, \downarrow \, 0$\,,
+	for each sequence $\{\,f_{n}\,\}_{n\in\N} \subset \mathcal{L}$ where $f_{n}(x) \downarrow 0$ for each $x \in X$
+\end{enumerate}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}[Lemma 7.7.1, p.227, \cite{Cohn2013}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\Omega$ is a non-empty set,
+	$\mathcal{L} \subset \Re^{\Omega}$ is a vector lattice of \,$\Re$-valued functions defined on $X$.
+\item
+	$I : \mathcal{L} \longrightarrow \Re$ is an elementary integral defined on $\mathcal{L}$.
+\item
+	$f, f_{1}, f_{2}, \ldots \in \mathcal{L}$ are non-negative functions in $\mathcal{L}$.
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	$f_{n}(\omega) \uparrow f(\omega)$\,, for each $\omega\in\Omega$
+	\;\;$\Longrightarrow$\;\,
+	$I(f)$ $=$ $\underset{n\rightarrow\infty}{\lim}\,I(f_{n})$.
+\item
+	$f(\omega) \,=\, \overset{\infty}{\underset{n=1}{\sum}}\;f_{n}(\omega)$\,,\,
+	for each $\omega\in\Omega$
+	\;\;$\Longrightarrow$\;\,
+	$I(f)$ $=$ $\overset{\infty}{\underset{n=1}{\sum}}\,I(f_{n})$.
+\item
+	$f(\omega) \,\leq\, \overset{\infty}{\underset{n=1}{\sum}}\;f_{n}(\omega)$\,,\,
+	for each $\omega\in\Omega$
+	\;\;$\Longrightarrow$\;\,
+	$I(f)$ $\leq$ $\overset{\infty}{\underset{n=1}{\sum}}\,I(f_{n})$.
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+	$f_{n} \uparrow f$
+	\;\;$\Longrightarrow$\,\; $(f - f_{n}) \downarrow 0$
+	\;\;$\Longrightarrow$\,\; $I(f - f_{n}) \downarrow 0$\,,
+	since $I$ is an elementary integral.
+	Hence,
+	\begin{equation*}
+	I(f) \,- \,\underset{n\rightarrow\infty}{\lim}\,I(f_{n})
+	\;\; = \;\;
+		\underset{n\rightarrow\infty}{\lim} \left(\, I(f) \overset{{\color{white}.}}{-} I(f_{n}) \,\right)
+	\;\; = \;\;
+		\underset{n\rightarrow\infty}{\lim}\;I(f \overset{{\color{white}.}}{-} f_{n})
+	\;\; = \;\;
+		0\,,
+	\end{equation*}
+	which implies \,$I(f) \,=\,\underset{n\rightarrow\infty}{\lim}\,I(f_{n})$.
+\item
+	Immediate by applying (i) to \,$g_{n} := \overset{n}{\underset{i=1}{\sum}}\,f_{i}$.
+\item
+\end{enumerate}
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{corollary}
+\mbox{}\vskip 0.1cm
+\noindent
+If two Borel probability measures defined on a metric space agree on each closed subset of the metric space,
+then the two probability measures are in fact equal.
+\end{corollary}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
