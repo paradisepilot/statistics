@@ -16,6 +16,7 @@
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \begin{theorem}[Daniell-Stone, Theorem 7.7.4, p.229, \cite{Cohn2013}]
+\label{DaniellStoneTheorem}
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -35,14 +36,15 @@ Define:
 	\; := \;
 		\left\{\;
 		\left.
-		f^{-1}(\beta) \overset{{\color{white}.}}{\subset} \Omega
+		f^{-1}\!\left(\,(\beta\overset{{\color{white}+}}{,}\infty)\,\right) \overset{{\color{white}.}}{\subset} \Omega
 		\;\;\right\vert\;
 		f \in \mathcal{L}\,,\; \beta > 0
 		\;\right\}
 	\; \subset \;
 		\mathcal{P}(\Omega)$\,,
 	where
-	\,$f^{-1}(\beta) \,:=\, \left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega \,\;\right\vert\; f(\omega) > \beta \;\right\}$.
+	\,$f^{-1}\!\left(\,(\beta\overset{{\color{white}+}}{,}\infty)\,\right)$
+	\,$:=$\, $\left\{\;\left.\omega\overset{{\color{white}.}}{\in}\Omega \,\;\right\vert\; f(\omega) > \beta \;\right\}$.
 \item
 	$\mathcal{R}(\mathcal{L})$ $:=$ the smallest $\sigma$-ring that contains $\mathcal{F}(\mathcal{L})$, and
 	$\mathcal{A}(\mathcal{L})$ $:=$ the smallest $\sigma$-algebra that contains $\mathcal{F}(\mathcal{L})$.
@@ -67,6 +69,201 @@ Then, the following statements hold:
 	\end{equation*}	
 \end{enumerate} 
 \end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\proofoutline
+\begin{itemize}
+\item
+	We need to construct a measure $\mu$ defined on a sufficiently large
+	$\sigma$-algebra $\mathcal{A}$ of subsets of \,$\Omega$
+	which is ``representative'' of the elementary integral
+	$I : \mathcal{L} \longrightarrow \Re$ in the sense that each $f \in \mathcal{L}$
+	is $\mathcal{A}$-measurable and
+	\begin{equation*}
+	I(f) \; = \; \int_{\Omega}\; f \;\d\mu\,,
+	\quad\textnormal{for each \,$f \in \mathcal{L}$}\,.
+	\end{equation*}
+\item
+	Recall that the smallest collections of subsets on which a measure theory can be constructed
+	are {\color{red}semirings} of sets (see, for example, opening paragraph of \S15, p.110, \cite{Aliprantis1998}),
+	in which a measure space is defined to be a triple $(X,\mathcal{S},\mu)$, where
+	$X$ is a nonempty set, $\mathcal{S}$ is a semiring of subsets of $X$, and
+	$\mu:\mathcal{S}\longrightarrow [0,\infty]$ is a measure on $\mathcal{S}$,
+	and here $\mu$ being a measure simply means $\mu$ is a $\sigma$-additive function
+	satisfying $\mu(\varemptyset) = 0$. See p.99, \cite{Aliprantis1998}.
+\item
+	Next, observe that if the elementary integral $I : \mathcal{L} \longrightarrow \Re$
+	is to be ``representable'' by such a measure $\mu$ on $(\Omega,\mathcal{A}(\mathcal{L}))$,
+	we will be able to express $I(f)$, for each non-negative $f \in \mathcal{L}$, as follows:
+	\begin{eqnarray*}
+	I(f)
+	& = &
+		\int\, f \;\d\mu
+	\;\; = \;\;
+		\underset{n\rightarrow\infty}{\lim}
+		\left(\;
+			\int\;
+			\overset{n2^{n}-1}{\underset{i=0}{\sum}}\; \dfrac{i}{2^{n}} \cdot 1_{J^{(f)}_{n,i}}
+			\;\d\mu
+		\;\right)
+	\;\; = \;\;
+		\underset{n\rightarrow\infty}{\lim}
+		\left(\;
+			\overset{n2^{n}-1}{\underset{i=0}{\sum}}\; \dfrac{i}{2^{n}}\,
+			\int\; 1_{J^{(f)}_{n,i}} \;\d\mu
+		\;\right)
+	\\
+	& = &
+		\underset{n\rightarrow\infty}{\lim}
+		\left(\;
+			\overset{n2^{n}-1}{\underset{i=0}{\sum}}\; \dfrac{i}{2^{n}} \cdot \mu\!\left(\,J^{(f)}_{n,i}\,\right)
+		\;\right),
+	\end{eqnarray*}
+	where
+	\begin{equation*}
+	J^{(f)}_{n,i}
+	\;\; := \;\;
+		\left\{\;\,
+			\omega \in \Omega
+		\;\;\left\vert\;\;
+			\dfrac{i}{2^{n}} \,<\, f(\omega) \,\leq\, \dfrac{i+1}{2^{n}}
+		\right.
+		\;\right\}
+	\;\; = \;\;
+		f^{-1}\!\left(\,(\,i/2^{n}\overset{{\color{white}\vert}}{,}\,\infty\,)\,\right)
+		\;\left\backslash\;
+		f^{-1}\!\left(\,(\,(i+1)/2^{n}\overset{{\color{white}\vert}}{,}\,\infty\,)\,\right)
+		\right.\,,
+	\end{equation*}
+	for $n \in \N$, $i = 0, 1, 2, \ldots, n2^{n}-1$.
+	Recall that one of the defining properties of a semiring of subsets is that every set-theoretic subtraction
+	of a set in the semiring from another can be expressed as a union of finitely many pairwise disjoint sets
+	from that semiring (see Definition 12.1, p.94, \cite{Aliprantis1998}).
+	The above observation therefore suggests that, in order to construct such a ``representative'' measure
+	$\mu$ for the elementary integral $I$, we could start by establishing that
+	subsets of \,$\Omega$ of the form
+	\begin{equation*}
+	f^{-1}\!\left(\,(\beta\overset{{\color{white}\vert}}{,}\,\infty)\,\right),
+	\quad\textnormal{for \,$f \in \mathcal{L}$, $\beta > 0$}\,
+	\end{equation*}
+	form a semiring $\mathcal{S}$, and then defining $\mu$ first on this semiring.
+	%This $\sigma$-ring is precisely $\mathcal{R}(\mathcal{L})$ as in Theorem \ref{DaniellStoneTheorem}.
+\item
+	Where would such a $\mu$ (measure defined on the semiring $\mathcal{S}$) come from?
+	Of course, it will have to come from the elementary integral $I : \mathcal{L} \longrightarrow \Re$ somehow.
+	Now, recall the following fundamental geometric intuition behind the integral:
+	If $f : \Omega \longrightarrow [0,\infty)$ is a non-negative $\Re$-valued function defined on $\Omega$,
+	then its integral $I(f)$ is the ``volume under the graph of $f$.''
+	This suggests that the elementary integral
+	{\color{red}$I : \mathcal{L} \longrightarrow \Re$ should admit an associated measure $\nu$}
+	defined on a sufficiently large $\sigma$-algebra of subsets of $\Omega \times \Re$ such that
+	\begin{equation*}
+	I(f) \;\; = \;\;
+		\nu\!\left(\;
+		\left\{\;
+		\left.
+			(\omega,t) \overset{{\color{white}.}}{\in} \Omega \times \Re
+		\;\;\right\vert\;\,
+			0 \leq t \leq f(\omega)
+		\;\right\}
+		\;\right),
+	\quad
+	\textnormal{for each \,$f \in \mathcal{L}$\, with \,$f \geq 0$}\,.
+	\end{equation*}
+	Furthermore, such a measure
+	{\color{red}$\nu$ on $\Omega \times \Re$ should in turn induce a measure $\mu$}
+	on $\Omega$ as follows:
+	\begin{equation*}
+	\mu(\,\overset{{\color{white}.}}{A}\,)
+	\;\; = \;\;
+		\nu\!\left(\, \overset{{\color{white}.}}{A} \times [0,1] \,\right),
+	\end{equation*}
+	the intuition being that the ``area'' of $A \subset \Omega$ should equal the
+	``volume'' of the prism in $\Omega \times \Re$ with base $A$ and constant height 1.
+\item
+	We are now ready to give a technical outline of the proof:
+	\begin{itemize}
+	\item
+		For each $f$, $g$ $\in$ $\mathcal{L}$, define
+		\,$[\,f,g)
+		\; := \;
+			\left\{\,
+			\left.
+			(\omega,t) \overset{{\color{white}.}}{\in} \Omega \times \Re
+			\;\;\right\vert\;
+			f(\omega) \leq t < g(\omega)
+			\;\right\}
+		\; \subset \;
+		\Omega \times \Re$.
+		\vskip 0.05cm
+		Then, define
+		$\mathscr{J}\!(\mathcal{L})
+		\; := \;
+			\left\{\,
+			\left.
+			[\,f,g) \,\overset{{\color{white}.}}{\subset}\, \Omega \times \Re
+			\;\;\right\vert\;
+			f,g \in \mathcal{L}
+			\;\right\}
+		\; \subset \;
+			\mathcal{P}\!\left(\Omega \times \Re\right)$.
+		%\vskip 0.05cm
+		%We call \,$\mathscr{J}\!(\mathcal{L})$\, the \,\underline{\textbf{system of intervals over $\Omega$}}\,
+		%induced by the vector lattice $\mathcal{L}$.
+		\vskip 0.05cm
+		Prove that \,$\mathscr{J}\!(\mathcal{L})$\, is a semiring of subsets of $\Omega \times \Re$.
+	\item
+		Prove that the elementary integral $I : \mathcal{L} \longrightarrow \Re$ ``naturally'' induces
+		a measure $\widetilde{I} : \mathscr{J}\!(\mathcal{L}) \longrightarrow [0,\infty]$ defined on the semiring
+		$\mathscr{J}\!(\mathcal{L}) \subset \mathcal{P}(\Omega\times\Re)$, via:
+		\,$\widetilde{I}\!\left(\,[\,f\!\overset{{\color{white}-}}{,}g)\,\right) := I(g-f)$,\,
+		for every $f, g \in \mathcal{L}$\, with \,$f \leq g$.
+		\vskip 0.05cm
+		Prove that $\widetilde{I}$ is indeed well-defined.
+	\item
+		Let $\nu^{*} : \mathcal{P}(\Omega\times\Re) \longrightarrow [0,\infty]$ be the outer measure
+		generated by the measure $\widetilde{I} : \mathscr{J}\!(\mathcal{L}) \longrightarrow [0,\infty]$.
+		\vskip 0.05cm
+		This follows the standard construction procedure for outer measures;
+		see, for example, \S15, p.110, \cite{Aliprantis1998}.
+	\item
+		Define
+		\,$\mathcal{S}
+		\; := \;
+			\left\{\;\left.
+				f^{-1}((\beta,\infty)) \overset{{\color{white}.}}{\subset} \Omega
+			\;\;\right\vert\;
+				0 \,\leq f \in \mathcal{L},\, \beta > 0
+			\;\right\}
+		\;\subset\;
+			\mathcal{P}(\Omega)$.
+		\vskip 0.05cm
+		Prove that $\mathcal{S}$ is a semiring of subsets of $\Omega$.
+		\vskip 0.05cm
+		Prove that \,$f^{-1}((\beta,\infty)) \times [0,1]$\, is $\nu^{*}$-measurable,
+		for each $f^{-1}((\beta,\infty)) \in \mathcal{S}$.
+		\vskip 0.05cm
+	\item
+		Hence, we may define \,$\widehat{\mu} : \mathcal{S} \longrightarrow [0,\infty]$\, via:
+		\begin{equation*}
+		\widehat{\mu}\!\left(\,f^{-1}((\beta,\overset{{\color{white}-}}{\infty}))\,\right)
+		\;\; := \;\;
+			\nu\!\left(\; f^{-1}((\beta,\overset{{\color{white}-}}{\infty})) \times [0,1] \;\right)			
+		\end{equation*}
+		Prove that $\widehat{\mu}$ is a measure defined on the semiring $\mathcal{S}$.
+	\item
+		Let $\mu^{*} : \mathcal{P}(\Omega) \longrightarrow [0,\infty]$ be the outer measure generated by $\widehat{\mu}$.
+		\vskip 0.05cm
+		Let $\mathcal{A} \subset \mathcal{P}(\Omega)$ be the $\sigma$-algebra of $\mu^{*}$-measurable
+		subsets of $\Omega$.
+		\vskip 0.05cm
+		Let $\mu$ be the restriction of $\mu^{*}$ to $\mathcal{A}$.
+	\item
+		Prove that $\mu$ has all the desired properties.
+	\end{itemize}
+\end{itemize}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
