@@ -1,0 +1,201 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Systems of intervals}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}[System of intervals induced by a vector lattice, Lemma 7.7.5, p.230, \cite{Cohn2013}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\Omega$ is a non-empty set.
+\item
+	$\mathcal{L} \subset \Re^{\Omega}$ is a vector lattice of \,$\Re$-valued functions defined on $\Omega$.
+\end{itemize}
+We make the following definitions:
+\begin{itemize}
+\item
+	For each $f$, $g$ $\in$ $\mathcal{L}$, define
+	\,$[\,f,g)
+	\; := \;
+		\left\{\,
+		\left.
+		(\omega,t) \overset{{\color{white}.}}{\in} \Omega \times \Re
+		\;\;\right\vert\;
+		f(\omega) \leq t < g(\omega)
+		\;\right\}
+	\; \subset \;
+		\Omega \times \Re$.
+\item
+	$\mathscr{J}\!(\mathcal{L})
+	\; := \;
+		\left\{\,
+		\left.
+		[\,f,g) \,\overset{{\color{white}.}}{\subset}\, \Omega \times \Re
+		\;\;\right\vert\;
+		f,g \in \mathcal{L}
+		\;\right\}
+	\; \subset \;
+		\mathcal{P}\!\left(\Omega \times \Re\right)$.
+	\vskip 0.05cm
+	We call \,$\mathscr{J}\!(\mathcal{L})$\, the \,\underline{\textbf{system of intervals over $\Omega$}}\,
+	induced by the vector lattice $\mathcal{L}$.
+%\item
+%	$\mathscr{B}(\mathcal{L})$ \,$:=$\,
+%	smallest $\sigma$-algebra of subsets of \,$\Omega \times \Re$\,
+%	that contains $\mathscr{J}\!(\mathcal{L})$.
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	For each $J \in \mathscr{J}\!(\mathcal{L})$,
+	there exists $f$, $g$ $\in$ $\mathcal{L}$ with $f \leq g$ such that $J = [\,f,g)$.
+\item
+	Let $J \in \mathscr{J}\!(\mathcal{L})$, and $f_{1}, g_{1}, f_{2}, g_{2} \in \mathcal{L}$
+	with $f_{1} \leq g_{1}$, $f_{2} \leq g_{2}$.
+	If $J = [\,f_{1},g_{1}) = [\,f_{2},g_{2})$, then $g_{1} - f_{1} = g_{2} - f_{2}$.
+\item
+	$J_{1} \cap J_{2} \,\in \mathscr{J}\!(\mathcal{L})$,\, for each $J_{1}, J_{2} \in \mathscr{J}\!(\mathcal{L})$.
+\item
+	For any $J_{1}, J_{2} \in \mathscr{J}\!(\mathcal{L})$,
+	there exist disjoint $J^{\prime}, J^{\prime\prime} \in \mathscr{J}\!(\mathcal{L})$ such that
+	$J_{1} \cap J_{2}^{c} = J^{\prime} \cup J^{\prime\prime}$.
+	\vskip 0.05cm
+	Hence,
+	$J_{1}$ $=$ $(J_{1} \cap J_{2}) \cup (J_{1} \cap J_{2}^{c}\,)$
+	$=$ $(J_{1} \cap J_{2}) \cup J^{\prime} \cup J^{\prime\prime}$.
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+\item
+\item
+\item
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}[Lift of an elementary integral to its induced system of intervals, Lemma 7.7.6, p.230, \cite{Cohn2013}]
+\mbox{}\vskip -0.3cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\Omega$ is a non-empty set.
+\item
+	$\mathcal{L} \subset \Re^{\Omega}$ is a vector lattice of \,$\Re$-valued functions defined on $\Omega$.
+	\vskip 0.05cm
+	$\mathscr{J}\!(\mathcal{L}) \subset \mathcal{P}\!\left(\Omega\times\Re\right)$ is the system of intervals
+	over $\Omega$ induced by $\mathcal{L}$.
+\item
+	$I : \mathcal{L} \longrightarrow \Re$ is an elementary integral defined on $\mathcal{L}$.
+\end{itemize}
+Define:\; the \,\underline{{\color{white}.}\textbf{lift}{\color{white}.}}\,
+$\widetilde{I} : \mathscr{J}\!(\mathcal{L}) \longrightarrow \Re$ of $I$ is defined as follows:
+\begin{equation*}
+\widetilde{I}(J)
+\;\; := \;\;
+	I(\,g - f\,)\,,
+\quad\textnormal{for any \,$f,\,g\in\mathcal{L}$\, with \,$f \leq g$\, and \,$J = [\,f,g)$}\,.
+\end{equation*}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	The lift \,$\widetilde{I}$\, is well-defined.
+\item
+	For every sequence $\left\{\,J_{n}\,\right\}_{n\in\N} \,\subset \mathscr{J}\!(\mathcal{L})$
+	of pairwise disjoint sets in $\mathscr{J}\!(\mathcal{L})$ such that
+	\,$\underset{n\in\N}{\bigsqcup}\,J_{n} \in \mathscr{J}\!(\mathcal{L})$, we have
+	\begin{equation*}
+	\widetilde{I}\left(\;\underset{n\in\N}{\bigsqcup}\,J_{n}\,\right)
+	\;\, = \;\;
+		\underset{n\in\N}{\sum}\;\,\widetilde{I}(J_{n})\,.
+	\end{equation*}
+\item
+	For every \,$J \in \mathscr{J}\!(\mathcal{L})$\,
+	and every sequence
+	\,$\left\{\,J_{n}\,\right\}_{n\in\N} \,\subset \mathscr{J}\!(\mathcal{L})$\,
+	such that
+	\,$J \subset \underset{n\in\N}{\bigcup}\,J_{n} \in \mathscr{J}\!(\mathcal{L})$,\,
+	we have
+	\begin{equation*}
+	\widetilde{I}\left(J\right)
+	\;\, \leq \;\;
+		\underset{n\in\N}{\sum}\;\,\widetilde{I}(J_{n})\,.
+	\end{equation*}
+\end{enumerate}
+\end{lemma}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}[Outer measure induced by the lift of an elementary integral, Lemma 7.7.7, p.231, \cite{Cohn2013}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\Omega$ is a non-empty set.
+\item
+	$\mathcal{L} \subset \Re^{\Omega}$ is a vector lattice of \,$\Re$-valued functions defined on $\Omega$.
+	\vskip 0.05cm
+	$\mathscr{J}\!(\mathcal{L}) \subset \mathcal{P}\!\left(\Omega\times\Re\right)$ is the system of intervals
+	over $\Omega$ induced by $\mathcal{L}$.
+\item
+	$I : \mathcal{L} \longrightarrow \Re$ is an elementary integral defined on $\mathcal{L}$.
+	\vskip 0.05cm
+	$\widetilde{I} : \mathscr{J}\!(\mathcal{L}) \longrightarrow \Re$ is its lift.
+\end{itemize}
+Define:\;
+$\nu^{*}_{I} : \mathcal{P}(\Omega\times\Re) \longrightarrow \Re$ as follows:
+\begin{equation*}
+\nu^{*}_{I}\!\left(\,A\,\right) 
+\;\, := \;\,
+	\inf\left\{\;\,
+	\left.
+		\overset{\infty}{\underset{n=1}{\sum}}\; \widetilde{I}(J_{n}) \,\in\, [0,+\infty]
+	\;\;\right\vert\;
+		A \subset \overset{\infty}{\underset{n=1}{\bigcup}}\;J_{n}\,,\;\,
+		\left\{\,\overset{{\color{white}.}}{J}_{n}\,\right\}_{n\in\N} \subset \mathscr{J}\!(\mathcal{L})
+	\;\right\},
+\quad
+\textnormal{for each \,$A \,\subset\, \Omega \times \Re$}\,,
+\end{equation*}
+provided the collection above over which the infimum is taken is nonempty;
+otherwise, we set \,$\nu^{*}_{I}\!\left(\,A\,\right) \,:=\, +\infty$.
+\vskip 0.1cm
+\noindent
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	$\nu^{*}_{I} : \mathcal{P}(\Omega\times\Re) \longrightarrow \Re$\,
+	is an outer measure on \,$\Omega \times \Re$.
+\item
+	Every set in \,$\mathscr{J}\!(\mathcal{L})$\, is \,$\nu^{*}_{I}$-measurable.
+\item
+	$\nu^{*}_{I}(J)$ \,$=$\, $\widetilde{I}(J)$,\, for every \,$J \in \mathscr{J}\!(\mathcal{L})$.
+\end{enumerate}
+\end{lemma}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
