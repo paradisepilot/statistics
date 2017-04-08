@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Empirical Processes}
+\section{The Bracketing Glivenko-Cantelli Theorem}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -15,7 +15,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{definition}[Empirical measure]
+\begin{definition}[Bracketing Number, Definition 2.1.6, p.83, \cite{vanDerVaart1996}]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -29,35 +29,94 @@ Suppose:
 	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\D,\mathcal{D})$
 	is a $(\D,\mathcal{D})$-valued random variable defined on
 	$(\Omega,\mathcal{A},\mu)$.
-	%$P_{X} \in \mathcal{M}(\D,\mathcal{D})$ is the probability measure
-	%on $(\D,\mathcal{D})$ induced by $X$.
+\item
+	$P_{X} \in \mathcal{M}(\D,\mathcal{D})$ is the probability measure
+	on $(\D,\mathcal{D})$ induced by $X$.
+\item
+	$r \in [1,\infty)$, and $\mathcal{O}$ denotes the Borel $\sigma$-algebra of $\Re$, and
+	\begin{equation*}
+	L^{r}(P_{X})
+	\;\; := \;\;
+		\left\{\;\,
+			g : \D \overset{{\color{white}.}}{\longrightarrow} \Re
+		\;\;\left\vert\;
+			\begin{array}{c}
+			\textnormal{$g$ is $(\mathcal{D},\mathcal{O})$-measurable\,, and} \\
+			\mathlarger{\int}_{\,\D}\;\, \vert\,g(x)\,\vert^{r} \;\d P_{X}(x)
+				\;\overset{{\color{white}1}}{=}\;
+				\mathlarger{\,\int}_{\,\Omega}\;\, \vert\,g \circ X\,\vert^{r} \;\d\mu \;<\; \infty
+			\end{array}
+		\right.
+		\right\}
+	\end{equation*}
+	For each \,$g \in L^{r}(P_{X})$,
+	\begin{equation*}
+	\Vert\,g\,\Vert_{r,P_{X}} 
+	\;\; := \;\;
+		\left(\,\int_{\,\D}\;\, \vert\,g(x)\,\vert^{r} \;\d P_{X}(x)\,\right)^{1/r}
+	\; = \;\;
+		\left(\,\int_{\,\Omega}\;\, \vert\,g \circ X\,\vert^{r} \;\d\mu\,\right)^{1/r}
+	\end{equation*}
+	Note that $\Vert\cdot\Vert_{r,P_{X}}$ defines a norm on $L^{r}(P_{X})$. 
+\item
+	$\mathcal{F} \,\subset\, L^{r}(P_{X})$
 \end{itemize}
-For each $n\in\N$, the
-\,\underline{\textbf{$n^{\textnormal{th}}$ empirical measure $\Delta(X,n)$ of $X$}}\,
-is the $\mathcal{M}(\D,\mathcal{D})$-valued map defined on $\Omega$
-\begin{equation*}
-\Delta(X,n) \; : \; \Omega \;\longrightarrow\; \mathcal{M}(\D,\mathcal{D})
-\end{equation*}
-given by:
-\begin{equation*}
-\Delta(X,n)(\omega)(C)
-\;\; := \;\;
-	\dfrac{1}{n} \cdot
-	\#\left\{\;
-	\left.
-		i \overset{{\color{white}.}}{\in} \{1,2,\ldots,n\}
-	\;\,\right\vert\,
-		X_{i}(\omega) \in C
-	\;\right\},
-	\quad
-	\textnormal{for each \,$\omega\in\Omega$, $C \in \mathcal{D}$},
-\end{equation*}
-where $X_{1}, X_{2}, \ldots, X_{n}$ are independent and identically distributed (I.I.D.) copies of $X$.
+We make the following definitions:
+\begin{enumerate}
+\item
+	For \,$l, u \in L^{r}(P_{X})$\, with
+	\begin{equation*}
+	P_{X}\!\left(\,l \overset{{\color{white}.}}{\leq} u\,\right)
+	\;\;=\;\;
+		P_{X}\!\left(\,\left\{\,\left. x\overset{{\color{white}.}}{\in}\D \;\,\right\vert\; l(x) \,\leq\, u(x)\,\right\}\,\right)
+	\;\;=\;\;
+		\mu\!\left(\,\left\{\,
+			\left.
+			\omega\overset{{\color{white}.}}{\in}\Omega
+			\;\,\right\vert\;
+			l(X(\omega)) \,\leq\, u(X(\omega))
+		\,\right\}\,\right)
+	\;=\; 1\,,
+	\end{equation*}
+	the \underline{\textbf{bracket $[\,l,u\,] \,\subset\,L^{r}(P_{X})$}} is defined to be:
+	\begin{equation*}
+	[\,l,u\,]
+	\;\; := \;\;
+		\left\{\;
+		\left.
+			g \overset{{\color{white}.}}{\in} L^{r}(P_{X})
+		\;\;\right\vert\;\,
+			P_{X}(\,l \,\overset{{\color{white}.}}{\leq}\, g \,\leq\, u\,) \,=\, 1
+			%l(x) \leq g(x) \leq u(x)\,,\;\forall\;x\in\D
+		\;\right\}.
+	\end{equation*}
+\item
+	For $\varepsilon > 0$, an \underline{\textbf{$\varepsilon$-bracket}{\color{white}j}}
+	is a bracket $[\,l,u\,]$, with $l, u \in \mathcal{F}$, such that
+	$\Vert\,u-l\,\Vert\,<\,\varepsilon$.
+\item
+	The \underline{\textbf{bracketing number \,$N_{[\,]}\!\left(\,\varepsilon,\mathcal{F},\Vert\cdot\Vert\,\right)$}}
+	is defined as follows:
+	\begin{equation*}
+	N_{[\,]}\!\left(\,\varepsilon,\mathcal{F},\Vert\cdot\Vert\,\right)
+	\;\; := \;\;
+		\min\left\{\;
+			n \overset{{\color{white}.}}{\in} \N
+		\;\;\left\vert\;
+			\begin{array}{c}
+			\exists\;\;\; l_{1}, u_{1},\; l_{2}, u_{2},\; \ldots\,,\; l_{n}, u_{n} \,\in\, \mathcal{F} \;\;\; \textnormal{such that} \\
+			\Vert\,u_{i} - l_{i}\,\Vert < \varepsilon\,, \;\overset{{\color{white}-}}{\forall}\; i = 1,2,\ldots,n\,, \;\;
+			\textnormal{and}\;\; \mathcal{F} \,\subset \overset{n}{\underset{i=1}{\bigcup}}\,[\,l_{i},u_{i}\,] \\
+			\end{array}
+		\right.
+		\right\}
+	\end{equation*}
+\end{enumerate}
 \end{definition}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{definition}[Empirical process]
+\begin{theorem}[The Bracketing Glivenko-Cantelli Theorem, Theorem 2.4.1, p.122, \cite{vanDerVaart1996}]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -78,121 +137,15 @@ Suppose:
 	$\mathcal{F}$ is a collection of $(\mathcal{D},\mathcal{O})$-measurable $\Re$-valued functions
 	defined on $\D$, where $\mathcal{O}$ is the Borel $\sigma$-algebra of \,$\Re$.
 \end{itemize}
-For each $n\in\N$, the
-\,\underline{\textbf{$n^{\textnormal{th}}$ $\mathcal{F}$-indexed empirical process
-	$\E(X,\mathcal{F},n)$ $=$
-	$\left\{\,\overset{{\color{white}.}}{\E}(X,\mathcal{F},n)_{f}\,\right\}_{f\in\mathcal{F}}$ of $X$}}\,
-is the stochastic process given by
-\begin{eqnarray*}
-\E(X,\mathcal{F},n)_{f}
-	\; : \; (\Omega,\mathcal{A},\mu) \;\longrightarrow\; (\Re,\mathcal{O})
-	\; : \; \omega
-&\longmapsto&
-	\sqrt{n}\,\cdot
-	\left(\,\Delta(X,n)(\omega) \,\overset{{\color{white}.}}{-}\, P_{X}\,\right)[\,f\,]
-\\
-& = &
-	\sqrt{n}\,\cdot
-	\left(
-		\dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\,(f \circ X_{i})(\omega)
-		\, - \,
-		E\!\left[\,f \circ X\,\right]
-	\right)
-	\,,
-\end{eqnarray*}
-%\begin{equation*}
-%\E(X,\mathcal{F},n)_{f}
-%\; : \; (\Omega,\mathcal{A},\mu) \;\longrightarrow\; (\Re,\mathcal{O})
-%\; : \; \omega \;\longmapsto\;
-%	\sqrt{n}\cdot
-%	\left(\,\Delta(X,n)(\omega) \,\overset{{\color{white}.}}{-}\, P_{X}\,\right)[\,f\,]
-%	\; = \;
-%	\sqrt{n}\cdot
-%	\left(
-%		\dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\,(f \circ X_{i})(\omega)
-%		\, - \,
-%		E\!\left[\,f \circ X\,\right]
-%	\right)
-%	\,,
-%\end{equation*}
-where $X_{1}, X_{2}, \ldots, X_{n}$ are independent and identically distributed (I.I.D.) copies of $X$,
-and
-\begin{eqnarray*}
-\Delta(X,n)(\omega)\left[\,f\,\right]
-&:=&
-	\int_{\D}\, f \;\d\,\Delta(X,n)(\omega)
-\;\; = \;\;
-	\dfrac{1}{n}\cdot
-	\overset{n}{\underset{i=1}{\sum}}\,(f \circ X_{i})(\omega) 
-\\
-P_{X}\!\left[\,f\,\right]
-& := &
-	\int_{\D}\,f\,\d P_{X}
-\;\; = \;\;
-	\int_{\Omega}\,f \circ X \;\d\mu
-\;\; = \;\;
-	E\!\left[\,f \circ X\,\right]
-\end{eqnarray*}
-\end{definition}
-
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\begin{remark}[Glivenko-Cantelli \& Donsker as stochastic convergence
-of \,$l^{\infty}(\mathcal{F})$-valued functions]\mbox{}
-\vskip 0.1cm
-\noindent
-Note that, with respect to the collection \,$\mathcal{F}$ of measurable functions,
-\,$\Delta(X,n)$\, can be regarded as a map
+Then,
 \begin{equation*}
-\Delta(X,n) \; : \; (\Omega,\mathcal{A},\mu) \;\longrightarrow\; l^{\infty}(\mathcal{F})
-\; : \; \omega \;\longmapsto\;
-	\left[\;\,
-	f
-	\,\overset{{\color{white}+}}{\longmapsto}\,
-		\Delta(X,n)(\omega)[\,f\,]
-		\;=\; \dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(f \circ X_{i})(\omega)
-	\,\;\right]
+	\begin{array}{c}
+	N_{[\,]}\!\left(\,\varepsilon,\mathcal{F},L^{1}(P_{X})\,\right) \,<\, \infty\,, \\
+	\overset{{\color{white}.}}{\textnormal{for each $\varepsilon > 0$}}
+	\end{array}
+\quad\Longrightarrow\quad
+	\textnormal{$\mathcal{F}$\, is an $X$-Glivenko-Cantelli class}\,.
 \end{equation*}
-Similarly, \,$\E(X,\mathcal{F},n)$ can be regarded as a map
-\begin{equation*}
-\E(X,\mathcal{F},n) \; : \; (\Omega,\mathcal{A},\mu) \;\longrightarrow\; l^{\infty}(\mathcal{F})
-\; : \; \omega \;\longmapsto\; \left[\;\, f \,\overset{{\color{white}+}}{\longmapsto}\, \E(X,\mathcal{F},n)_{f}(\omega) \,\;\right]
-\end{equation*}
-Note also:
-\begin{equation*}
-\E(X,\mathcal{F},n)(\omega)[\,f\,]
-\;\; = \;\;
-	 \dfrac{1}{\sqrt{n}}
-	 \cdot
-	 \overset{n}{\underset{i=1}{\sum}}\left(\,f(X_{i}(\omega)) \,\overset{{\color{white}.}}{-}\, E[\,f \circ X\,]\,\right)
-\end{equation*}
-The notions of Glivenko-Cantelli and Donsker classes are simply certain types
-of stochastic convergence of the sequences of \,$l^{\infty}(\mathcal{F})$-valued maps above.
-\end{remark}
-
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\begin{definition}[$X$-Glivenko-Cantelli class and $X$-Donsker class]
-\mbox{}\vskip 0.1cm
-\noindent
-Suppose:
-\begin{itemize}
-\item
-	$(\Omega,\mathcal{A},\mu)$ is a probability space.
-\item
-	$(\D,\mathcal{D})$\, is a measurable space.
-	$\mathcal{M}(\D,\mathcal{D})$ is the set of all measures defined on $(\D,\mathcal{D})$.
-\item
-	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\D,\mathcal{D})$
-	is a $(\D,\mathcal{D})$-valued random variable defined on
-	$(\Omega,\mathcal{A},\mu)$.
-\item
-	$P_{X} \in \mathcal{M}(\D,\mathcal{D})$ is the probability measure
-	on $(\D,\mathcal{D})$ induced by $X$.
-\item
-	$\mathcal{F}$ is a collection of $(\mathcal{D},\mathcal{O})$-measurable $\Re$-valued functions
-	defined on $\D$, where $\mathcal{O}$ is the Borel $\sigma$-algebra of \,$\Re$.
-\end{itemize}
 The collection $\mathcal{F}$ is called:
 \begin{enumerate}
 \item
@@ -266,7 +219,7 @@ The collection $\mathcal{F}$ is called:
 	\end{eqnarray*}
 	for each $f_{1}, f_{2} \in \mathcal{F}$.
 \end{enumerate}
-\end{definition}
+\end{theorem}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
