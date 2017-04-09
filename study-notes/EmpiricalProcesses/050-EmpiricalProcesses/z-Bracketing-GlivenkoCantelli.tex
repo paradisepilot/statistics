@@ -174,12 +174,13 @@ Let $\varepsilon > 0$ be given.
 Since $N_{[\,]}\!\left(\,\varepsilon,\mathcal{F},L^{1}(P_{X})\,\right) \,<\, \infty$,
 there exist $\varepsilon$-brackets $[\,l_{1},u_{1}\,],\ldots,[\,l_{k},u_{k}\,]\in L^{1}(P_{X})$
 such that $\mathcal{F} \,\subset \overset{k}{\underset{j=1}{\bigcup}}\,[\,l_{j},u_{j}\,]$.
-Note that
-$\Vert\,u_{j} - l_{j}\,\Vert_{1,P_{X}}$
-$=$ $\mathlarger{\int}_{\,\D}\;\vert\,u_{j}(x) - l_{j}(x)\,\vert\;\d P_{X}(x)$
-$<$ $\varepsilon$.
-\vskip 0.5cm
-\noindent
+Note that, since each $[\,l_{j},u_{j}\,]$ is an $\varepsilon$-bracket, we have
+\begin{equation*}
+E\!\left[\;\vert\, u_{j} \circ X \overset{{\color{white}.}}{-} l_{j} \circ X \,\vert\;\right]
+\;\; = \;\; \mathlarger{\int}_{\,\D}\;\vert\,u_{j}(x) - l_{j}(x)\,\vert\;\d P_{X}(x)
+\;\; = \;\; \left\Vert\; u_{j} \overset{{\color{white}.}}{-} l_{j} \;\right\Vert_{1,P_{X}}
+\;\; < \;\; \varepsilon\,.
+\end{equation*}
 For each $f \in \mathcal{F}$, we have $f \in [\,l_{j},u_{j}\,]$, for some $j = 1,2,\ldots,k$.
 Hence, for $\mu$-almost every $\omega\in\Omega$,
 \begin{eqnarray*}
@@ -211,6 +212,24 @@ Hence, for $\mu$-almost every $\omega\in\Omega$,
 		\;\right\}
 	\,\overset{{\color{white}+}}{+}\,
 	E\!\left[\, u_{j} \circ X \overset{{\color{white}.}}{-} f \circ X\,\right]
+\\
+& \leq &
+	\underset{1\leq j \leq k}{\max}\left\{\;
+		\dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(u_{j} \circ X_{i})(\omega)
+		\,\overset{{\color{white}+}}{-}\,
+		E[\,u_{j} \circ X\,]
+		\;\right\}
+	\,\overset{{\color{white}+}}{+}\,
+	E\!\left[\; \vert\, u_{j} \circ X \overset{{\color{white}.}}{-} f \circ X \,\vert \;\right]
+\\
+& \leq &
+	\underset{1\leq j \leq k}{\max}\left\{\;
+		\dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(u_{j} \circ X_{i})(\omega)
+		\,\overset{{\color{white}+}}{-}\,
+		E[\,u_{j} \circ X\,]
+		\;\right\}
+	\,\overset{{\color{white}+}}{+}\,
+	E\!\left[\; \vert\, u_{j} \circ X \overset{{\color{white}.}}{-} l_{j} \circ X \,\vert \;\right]
 \\
 & \leq &
 	\underset{1\leq j \leq k}{\max}\left\{\;
@@ -259,6 +278,24 @@ Similarly, for $\mu$-almost every $\omega\in\Omega$,
 		E[\,l_{j} \circ X\,]
 		\;\right\}
 	\,\overset{{\color{white}+}}{-}\,
+	E\!\left[\; \vert\, l_{j} \circ X \overset{{\color{white}.}}{-} f \circ X \,\vert \;\right]
+\\
+& \geq &
+	\underset{1\leq j \leq k}{\min}\left\{\;
+		\dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(l_{j} \circ X_{i})(\omega)
+		\,\overset{{\color{white}+}}{-}\,
+		E[\,l_{j} \circ X\,]
+		\;\right\}
+	\,\overset{{\color{white}+}}{-}\,
+	E\!\left[\; \vert\, u_{j} \circ X \overset{{\color{white}.}}{-} l_{j} \circ X \,\vert \;\right]
+\\
+& \geq &
+	\underset{1\leq j \leq k}{\min}\left\{\;
+		\dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(l_{j} \circ X_{i})(\omega)
+		\,\overset{{\color{white}+}}{-}\,
+		E[\,l_{j} \circ X\,]
+		\;\right\}
+	\,\overset{{\color{white}+}}{-}\,
 	\varepsilon\,.
 \end{eqnarray*}
 We thus see that, for $\mu$-almost every $\omega \in \Omega$,
@@ -296,7 +333,7 @@ We thus see that, for $\mu$-almost every $\omega \in \Omega$,
 	\,\overset{{\color{white}+}}{+}\,
 	\varepsilon\,.
 \end{eqnarray*}
-which implies we have $\mu$-almost surely
+which implies that we have, $\mu$-almost surely,
 \begin{eqnarray*}
 	\underset{1\leq j \leq k}{\min}\left\{\;
 		\dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(l_{j} \circ X_{i})
@@ -320,7 +357,7 @@ which implies we have $\mu$-almost surely
 	\,\overset{{\color{white}+}}{+}\,
 	\varepsilon\,.
 \end{eqnarray*}
-Note that both
+Now, note that both
 \begin{equation*}
 	\underset{1\leq j \leq k}{\max}\left\{\;
 		\dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(u_{j} \circ X_{i})
@@ -334,7 +371,7 @@ Note that both
 		E[\,l_{j} \circ X\,]
 	\;\right\}
 \end{equation*}
-are measurable functions defined on $(\Omega,\mathcal{A},\mu)$, and
+are measurable $\Re$-valued functions defined on $(\Omega,\mathcal{A},\mu)$, and
 each converges $\mu$-almost surely to zero as $n \longrightarrow \infty$,
 by applying the Strong Law of Large Numbers to each of
 \begin{equation*}
@@ -343,7 +380,7 @@ by applying the Strong Law of Large Numbers to each of
 \dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(l_{j} \circ X_{i})\,,
 \quad\textnormal{for \,$j = 1, 2, \ldots, k$}
 \end{equation*}
-It follows that
+It follows that, for each \,$\varepsilon > 0$,
 \begin{equation*}
 \mu\!\left(\,\left\{\;
 	\omega\in\Omega
