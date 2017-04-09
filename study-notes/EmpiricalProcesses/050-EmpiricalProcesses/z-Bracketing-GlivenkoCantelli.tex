@@ -363,23 +363,41 @@ It follows that
 \end{equation*}
 This completes the proof of Claim 1.
 
-
+\vskip 0.3cm
+\noindent
+Next, note that
 \begin{eqnarray*}
-\left\Vert\;\Delta(X,n) \,\overset{{\color{white}.}}{-}\, P_{X}\;\right\Vert_{\mathcal{F}}(\omega)
-& := &
-	\underset{f\in\mathcal{F}}{\sup}\left\{\,
-		\left\vert\; \Delta(X,n)(\omega)[\,f\,]\,\overset{{\color{white}+}}{-}\,P_{X}[\,f\,] \;\right\vert
+&&
+	\left\{\;
+		\omega\in\Omega
+	\;\left\vert\;
+		\underset{n\rightarrow\infty}{\lim}
+		\left(\;\left\Vert\;\Delta(X,n) \,\overset{{\color{white}.}}{-}\, P_{X}\;\right\Vert_{\mathcal{F}}\,\right)^{*}(\omega)
+		\,=\,
+		0
+	\right.
 	\;\right\}
 \\
-& \leq &
-	\underset{1\leq j \leq k}{\max}\left\{\;
-		\dfrac{1}{n}\cdot \overset{n}{\underset{i=1}{\sum}}\,(u_{j} \circ X_{i})(\omega)
-		\,\overset{{\color{white}+}}{-}\,
-		E[\,u_{j} \circ X\,]
-		\;\right\}
-	\,\overset{{\color{white}+}}{+}\,
-	\varepsilon
+& \mathlarger{\mathlarger{=}} &
+	\underset{m\in\N}{\bigcap}\;
+	\left\{\;
+		\omega\in\Omega
+	\;\left\vert\;
+		-\,\dfrac{1}{m}
+		\,\leq\,
+		\underset{n\rightarrow\infty}{\liminf}
+		\left(\;\left\Vert\;\Delta(X,n) \,\overset{{\color{white}.}}{-}\, P_{X}\;\right\Vert_{\mathcal{F}}\,\right)^{*}(\omega)
+		\,\leq\,
+		\underset{n\rightarrow\infty}{\limsup}
+		\left(\;\left\Vert\;\Delta(X,n) \,\overset{{\color{white}.}}{-}\, P_{X}\;\right\Vert_{\mathcal{F}}\,\right)^{*}(\omega)
+		\,\leq\,
+		\dfrac{1}{m}
+	\right.
+	\;\right\}
 \end{eqnarray*}
+But the countable intersection on the right-hand-side above has $\mu$-probability one,
+by Claim 1 and the fact that a countable intersection of sets of probability one itself has probability one.
+This completes the proof of the present Theorem.
 \qed
 
 
