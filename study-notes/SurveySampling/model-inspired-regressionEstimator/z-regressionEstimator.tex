@@ -1,0 +1,184 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Model-inspired Regression Estimator -- Definition}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Model-inspired regression estimator]
+\mbox{}
+\vskip 0.05cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$N \in \N$ and $U = \{1,2,\ldots,N\}$.
+	\vskip 0.05cm
+	$y : U \longrightarrow \Re$ is an $\Re$-valued population characteristic defined on $U$.
+	\vskip 0.05cm
+	$\mathbf{x} : U \longrightarrow \Re^{1 \times m}$ is an $\Re^{1 \times m}$-valued population characteristic defined on $U$.
+\item
+	$\mathcal{S} \subset \mathcal{P}(U)$ is a collection of subsets of $U$.
+	$p : \mathcal{S} \longrightarrow (0,1]$ is a sampling design on $\mathcal{S}$,
+	i.e. $\underset{s\in\mathcal{S}}{\sum}\;p(s) = 1$.
+	\vskip 0.05cm
+	$\mathcal{S}$ can therefore be considered the collection of admissible samples under the sampling design $p$.
+%	\vskip 0.05cm
+%	Let $(\mathcal{S},\mathcal{P}(\mathcal{S}),p)$ be the probability space induced by $p$.
+%\item
+%	For each $s \in \mathcal{S}$, $q_{s} : \mathcal{P}(s) \longrightarrow [0,1]$
+%	is a probability function defined on $\mathcal{P}(s)$,
+%	i.e. $\underset{r\in\mathcal{P}(s)}{\sum}q_{s}(r) = 1$.
+%\item
+%	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+%	\vskip 0.05cm
+%	$R_{1}, R_{2}, \ldots, R_{N} : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
+%	are Bernoulli random variables.
+\item
+	For each \,$k \in \left\{\,1,2,\ldots,N\,\right\} = U$,\, we have
+	$\pi_{k} \,:=\, \underset{s \ni k}{\sum}\,p(s) \,>\, 0$.
+\item
+	$\sigma_{1}$, $\sigma_{2}$, $\ldots$\,, $\sigma_{N}$ $>$ $0$.
+\end{itemize}
+The \,\underline{\textbf{model-inspired regression estimator}}\; is the function
+\,$\widehat{T}^{\,\textnormal{RGR}}_{y,\mathbf{x}} : \mathcal{S} \longrightarrow \Re$\,
+defined by:
+\begin{equation*}
+\widehat{T}^{\,\textnormal{RGR}}_{y,\mathbf{x}}(s)
+\;\; := \;\;
+	\widehat{T}^{\,\textnormal{HT}}_{y}(s)
+	\; + \;
+	\left(\,T_{\mathbf{x}} - \widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s) \,\right)
+	\cdot
+	\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)\,,
+	\quad\textnormal{for each \,$s \in \mathcal{S}$},
+\end{equation*}
+where
+\begin{equation*}
+\widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s)
+\;\; := \;\;
+	\underset{k \in s}{\sum}\;\dfrac{\mathbf{x}_{k}}{\pi_{k}}
+	\;\; \in \;\;
+	\Re^{1 \times m}
+\quad\quad\textnormal{and}\quad\quad
+\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
+\;\; := \;\;
+	\left(\,\underset{k \in s}{\sum}\;\dfrac{\mathbf{x}_{k}^{T} \cdot \mathbf{x}_{k}}{\pi_{k}\,\sigma_{k}^{2}} \,\right)^{-1}
+	\cdot
+	\left(\,\underset{k \in s}{\sum}\;\dfrac{\mathbf{x}_{k}^{T} \cdot y_{k}}{\pi_{k}\,\sigma_{k}^{2}} \,\right)
+	\;\; \in \;\;
+	\Re^{m \times 1}
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{remark}[Motivating observations for model-inspired regression estimator]
+\mbox{}
+\vskip 0.05cm
+\noindent
+Suppose
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$N \in \N$.
+\item
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \Re^{N}$ is an $\Re^{N}$-valued random variable.
+\item
+	$X \in \Re^{N \times m}$.\;
+	$\beta \in \Re^{m \times 1}$.\;
+	$\Sigma \in \Re^{N \times N}$ is symmetric and positive-definite.
+\item
+	$E\!\left[\,Y\,\right] \; = \; X \cdot \beta$.
+\item
+	$\Var\!\left[\,Y\,\right]$
+	\,$=$\, $\Sigma$
+	\,$=$\, $\diag\!\left(\,\sigma_{1}^{2}\,,\,\sigma_{2}^{2}\,,\,\ldots,\sigma_{N}^{2}\,\right) \in \Re^{N \times N}$,\,
+	where $\sigma_{1}$, $\sigma_{2}$, $\ldots$\,, $\sigma_{N}$ $>$ $0$.
+\end{itemize}
+Then, according to Gauss-Markov theory,
+\begin{equation*}
+\widehat{\beta}
+\;\; := \;\;
+	\underset{\beta\in\Re^{m \times 1}}{\textnormal{argmin}}\,
+	\left\{\,
+		\left\Vert\;Y - X \cdot \beta\;\right\Vert^{2}
+	\,\right\}
+\;\; = \;\;
+	\left(\,X^{T} \overset{{\color{white}!}}{\cdot} \Sigma^{-1} \cdot X\,\right)^{-1}
+	\cdot
+	\left(\,X^{T} \overset{{\color{white}!}}{\cdot} \Sigma^{-1} \cdot Y \,\right)
+\end{equation*}
+Hence, we have
+\begin{equation}\label{TyEqTxBetaHat}
+T_{y}
+\;\; = \;\; J \cdot Y
+\;\; \approx \;\; J \cdot X \cdot \widehat{\beta}
+\;\; = \;\; T_{\mathbf{x}} \cdot \widehat{\beta}\,,
+\end{equation}
+where $J = (1,1,\ldots,1) \in \Re^{1 \times N}$.
+
+\vskip 0.3cm
+\noindent
+Now, $\Sigma$
+\,$=$\, $\diag\!\left(\,\sigma_{1}^{2}\,,\,\sigma_{2}^{2}\,,\,\ldots,\sigma_{N}^{2}\,\right) \in \Re^{N \times N}$,\,
+we see that $\widehat{\beta}$ simplifies to:
+\begin{equation*}
+\widehat{\beta}
+\;\; = \;\;
+	\left(\,\underset{k \in U}{\sum}\;\dfrac{\mathbf{x}_{k}^{T} \cdot \mathbf{x}_{k}}{\sigma_{k}^{2}} \,\right)^{-1}
+	\cdot
+	\left(\,\underset{k \in U}{\sum}\;\dfrac{\mathbf{x}_{k}^{T} \cdot y_{k}}{\sigma_{k}^{2}} \,\right)
+	\;\; \in \;\;
+	\Re^{m \times 1}
+\end{equation*}
+Lastly, replacing $T_{y}$ and $T_{\mathbf{x}}$ in \eqref{TyEqTxBetaHat}
+with their respective Horvitz-Thompson estimators,
+as well as the numerator and denominator of $\widehat{\beta}$
+with their respective Horvitz-Thompson estimators yields:
+\begin{equation}\label{THTyEqTHTxBetaHat}
+\widehat{T}_{y}^{\,\textnormal{HT}}(s)
+\;\; \approx \;\; \widehat{T}_{\mathbf{x}}^{\,\textnormal{HT}}(s) \cdot \widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
+\end{equation}
+Substracting \eqref{THTyEqTHTxBetaHat} from \eqref{TyEqTxBetaHat} yields:
+\begin{equation*}
+T_{y}
+	\,-\,
+	\widehat{T}_{y}^{\,\textnormal{HT}}(s)
+\;\; \approx \;\;
+	T_{\mathbf{x}} \cdot \widehat{\beta}
+	\,-\,
+	\widehat{T}_{\mathbf{x}}^{\,\textnormal{HT}}(s) \cdot \widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
+\end{equation*}
+Replacing $\widehat{\beta}$ with $\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)$ in the above equation
+and rearranging then finally yield:
+\begin{equation*}
+T_{y}
+\;\; \approx \;\;
+	\widehat{T}_{y}^{\,\textnormal{HT}}(s)
+	\,+\,
+	\left(\,T_{\mathbf{x}} \,-\, \widehat{T}_{\mathbf{x}}^{\,\textnormal{HT}}(s) \right)
+	\cdot \widehat{\mathbf{B}}_{y,\mathbf{x}}(s)\,,
+\end{equation*}
+where right-hand-side above is precisely the definition of the model-inspired regression estimator.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
