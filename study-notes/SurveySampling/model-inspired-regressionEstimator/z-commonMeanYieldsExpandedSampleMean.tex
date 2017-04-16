@@ -1,0 +1,253 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Common mean model yields the expanded sample mean estimator}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+The following proposition shows that the model-inspired regression estimator specializes to
+the expanded sample mean estimator under the common mean model.
+\begin{proposition}
+\mbox{}
+\vskip 0.05cm
+\noindent
+%\textnormal{\textbf{(model-inspired regression estimator specializes to poststratified estimator under group mean model)}}
+%\vskip 0.15cm
+%\noindent
+Suppose:
+\begin{itemize}
+\item
+	$N \in \N$ and $U = \{1,2,\ldots,N\}$.
+	\vskip 0.05cm
+	$y : U \longrightarrow \Re$ is an $\Re$-valued population characteristic defined on $U$.
+\item
+	$\mathcal{S} \subset \mathcal{P}(U)$ is a collection of subsets of $U$.
+	$p : \mathcal{S} \longrightarrow (0,1]$ is a sampling design on $\mathcal{S}$,
+	i.e. $\underset{s\in\mathcal{S}}{\sum}\;p(s) = 1$.
+	\vskip 0.05cm
+	$\mathcal{S}$ can therefore be considered the collection of admissible samples under the sampling design $p$.
+\item
+	For each \,$k \in \left\{\,1,2,\ldots,N\,\right\} = U$,\, we have
+	$\pi_{k} \,:=\, \underset{s \ni k}{\sum}\,p(s) \,>\, 0$.
+\end{itemize}
+Suppose furthermore that
+$\mathbf{x} : U \longrightarrow \Re^{1 \times G}$ and
+$\sigma_{1}$, $\sigma_{2}$, $\ldots$\,, $\sigma_{N}$ $>$ $0$
+follow the \,\underline{\textbf{{\color{red}common}{\color{white}j}mean model}}.
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\vskip 0.1cm
+\noindent
+Equivalently, but more precisely, suppose:
+\begin{enumerate}
+\item \vskip -0.10cm
+	The population characteristic (auxiliary variable)
+	$\mathbf{x} : U \longrightarrow \Re^{1 \times 1}$ is the scalar constant $1$, i.e.
+	\begin{equation*}
+	\mathbf{x}_{k}
+		\; = \; 1\,,
+	\quad\textnormal{for each \,$k \in U$}
+	\end{equation*}
+\item
+	There exist \,$\sigma \,>\, 0$\, such that
+	$\sigma_{1}$, $\sigma_{2}$, $\ldots$\,, $\sigma_{N}$ $>$ $0$ are given by:
+	\begin{equation*}
+	\sigma_{k} \; = \; \sigma\,,
+	\quad\textnormal{for each \,$k \in U$}\,.
+	\end{equation*}
+\end{enumerate}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+Then, the \,\textbf{model-inspired regression estimator}\,
+specializes to the \,\underline{\textbf{{\color{red}expanded sample mean} estimator}}, i.e.
+\begin{eqnarray*}
+\widehat{T}^{\,\textnormal{RGR}}_{y,\mathbf{x}}(s)
+& := &
+	\widehat{T}^{\,\textnormal{HT}}_{y}(s)
+	\; + \;
+	\left(\,T_{\mathbf{x}} - \widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s) \,\right)
+	\cdot
+	\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
+\\
+& = &
+	N \cdot
+	\dfrac{
+		\underset{k\,\in\,s}{\sum}\;y_{k}/\pi_{k}
+		}{
+		\overset{{\color{white}.}}{\widehat{N}(s)}
+		}
+\;\; = \;\;
+	N \cdot
+	\dfrac{
+		\underset{k\,\in\,s}{\sum}\;y_{k}/\pi_{k}
+		}{
+		\underset{k\,\in\,s}{\overset{{\color{white}.}}{\sum}}\;\;1/\pi_{k}
+		}
+	\,,\quad\quad\textnormal{for each \,$s \in \mathcal{S}$},
+\end{eqnarray*}
+\end{proposition}
+\proof
+Recall that \,$\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)$\, is given by
+\begin{eqnarray*}
+\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
+& = &
+	\left(\,X(s)^{T} \overset{{\color{white}!}}{\cdot} \Sigma(s)^{-1} \cdot X(s)\,\right)^{-1}
+	\cdot
+	\left(\,X(s)^{T} \overset{{\color{white}!}}{\cdot} \Sigma(s)^{-1} \cdot Y(s) \,\right)
+\end{eqnarray*}
+where $X(s) \in \Re^{n(s) \times 1}$, $\Sigma(s)^{-1} \in \Re^{n(s) \times n(s)}$, and $Y(s) \in \Re^{n(s)}$
+are, in the present scenario, given by
+\begin{eqnarray*}
+X(s)_{i}
+& = &
+	1
+\\
+\Sigma(s)^{-1}_{ij}
+& = &
+	\dfrac{\delta_{ij}}{\pi_{i}\,\sigma^{2}}
+\\
+Y(s)_{i}
+& = &
+	y_{i}
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+\left(\,\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} X(s)\right)_{i}{\color{white}!}
+& = &
+	\underset{k \in s}{\sum}\;\,
+	\dfrac{\delta_{ik}}{\pi_{i}\,\sigma^{2}} \cdot 1
+\;\; = \;\;
+	\dfrac{1}{\pi_{i}\,\sigma^{2}}
+\\
+X(s)^{T}\cdot\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} X(s)
+& = &
+	\underset{k \in s}{\sum}\;\,
+	1 \cdot \dfrac{1}{\pi_{k}\,\sigma^{2}}
+\;\; = \;\;
+	\dfrac{1}{\sigma^{2}}
+	\cdot
+	\left(\,\underset{k\,\in\,s}{\sum}\,\dfrac{1}{\pi_{k}}\,\right)
+\;\; = \;\;
+	\dfrac{\widehat{N}(s)}{\sigma^{2}}
+\\
+\left(\,\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} Y(s)\right)_{i}{\color{white}1}
+& = &
+	\underset{k \in s}{\sum}\;\,
+	\dfrac{\delta_{ik}}{\pi_{i}\,\sigma^{2}}
+	\cdot
+	y_{k}
+\;\; = \;\;
+	\dfrac{y_{i}}{\pi_{i}\,\sigma^{2}}
+\\
+X(s)^{T}\cdot\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} Y(s){\color{white}!}
+& = &
+	\underset{k \in s}{\sum}\;\,
+	1 \cdot \dfrac{y_{k}}{\pi_{k}\,\sigma^{2}}
+\;\; = \;\;
+	\dfrac{1}{\sigma^{2}}
+	\cdot
+	\underset{k\,\in\,s}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+\end{eqnarray*}
+which together imply
+\begin{eqnarray*}
+\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
+& = &
+	\left(\,X(s)^{T} \overset{{\color{white}!}}{\cdot} \Sigma(s)^{-1} \cdot X(s)\,\right)^{-1}
+	\cdot
+	\left(\,X(s)^{T} \overset{{\color{white}!}}{\cdot} \Sigma(s)^{-1} \cdot Y(s) \,\right)
+\\
+& = &
+	\left(\, \dfrac{\widehat{N}(s)}{\sigma^{2}} \,\right)^{-1}
+	\cdot
+	\left(\,
+		\dfrac{1}{\sigma^{2}}
+		\cdot
+		\underset{k\,\in\,s}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+	\,\right)
+\;\; = \;\;
+	\dfrac{\sigma^{2}}{\overset{{\color{white}.}}{\widehat{N}(s)}}
+	\cdot
+	\dfrac{1}{\sigma^{2}}
+	\cdot
+	\underset{k\,\in\,s}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+\;\; = \;\;
+%\\
+%& = &
+	\dfrac{1}{\overset{{\color{white}.}}{\widehat{N}(s)}}
+	\cdot
+	\underset{k\,\in\,s}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+\end{eqnarray*}
+On the other hand, it is clear that
+\begin{equation*}
+T_{x} \,-\, \widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s) \;\; = \;\; N - \widehat{N}(s)
+\end{equation*}
+Consequently,
+\begin{eqnarray*}
+\left(\,T_{x} \,-\, \widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s)\right)
+\cdot
+\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
+& = &
+	\left(\,N - \widehat{N}(s) \,\right)
+	\cdot
+	\left(\,
+		\dfrac{1}{\overset{{\color{white}.}}{\widehat{N}(s)}}
+		\cdot
+		\underset{k\,\in\,s}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+	\,\right)
+\\
+& = &
+	N \cdot \dfrac{ \underset{k\,\in\,s}{\sum}\, y_{k}/\pi_{k} }{\overset{{\color{white}.}}{\widehat{N}(s)}}
+	\; - \;
+	\underset{k\,\in\,s}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+\\
+& = &
+	N \cdot \dfrac{ \underset{k\,\in\,s}{\sum}\, y_{k}/\pi_{k} }{\overset{{\color{white}.}}{\widehat{N}(s)}}
+	\; - \;
+	\widehat{T}^{\textnormal{HT}}_{y}(s)
+\end{eqnarray*}
+We now see that
+\begin{eqnarray*}
+\widehat{T}^{\,\textnormal{RGR}}_{y,\mathbf{x}}(s)
+& := &
+	\widehat{T}^{\,\textnormal{HT}}_{y}(s)
+	\; + \;
+	\left(\,T_{\mathbf{x}} - \widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s) \,\right)
+	\cdot
+	\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
+\\
+& = &
+	N \cdot
+	\dfrac{
+		\underset{k\,\in\,s}{\sum}\;y_{k}/\pi_{k}
+		}{
+		\overset{{\color{white}.}}{\widehat{N}(s)}
+		}
+\;\; = \;\;
+	N \cdot
+	\dfrac{
+		\underset{k\,\in\,s}{\sum}\;y_{k}/\pi_{k}
+		}{
+		\underset{k\,\in\,s}{\overset{{\color{white}.}}{\sum}}\;\;1/\pi_{k}
+		}
+\end{eqnarray*}
+This completes the proof of the Proposition.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
