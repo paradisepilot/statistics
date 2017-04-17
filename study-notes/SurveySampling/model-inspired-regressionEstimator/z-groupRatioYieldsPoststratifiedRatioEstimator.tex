@@ -95,10 +95,12 @@ specializes to the \,\underline{\textbf{{\color{red}poststratified ratio} estima
 \\
 & = &
 	\overset{G}{\underset{g\,=\,1}{\sum}}\;
-	\left(\, \underset{k\,\in\,s}{\overset{{\color{white}.}}{\sum}}\; \dfrac{x_{k}}{\pi_{k}} \,\right)
+	\left(\,
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+	\,\right)
 	\cdot
 	\dfrac{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\;y_{k}/\pi_{k}
+		\underset{k\,\in\,U_{g}}{\overset{{\color{white}.}}{\sum}}\, x_{k}
 		}{
 		\underset{k\,\in\,s\,\cap\,U_{g}}{\overset{{\color{white}.}}{\sum}}\;x_{k}/\pi_{k}
 		}
@@ -209,7 +211,15 @@ On the other hand, it is clear that
 \begin{equation*}
 T_{\mathbf{x}} \,-\, \widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s)
 \;\; = \;\;
-	\left(\, N_{1} - \widehat{N}_{1}(s) \,,\, N_{2} - \widehat{N}_{2}(s) \,,\, \ldots \,,\, N_{G} - \widehat{N}_{G}(s) \,\right)
+	\left(\,
+		\underset{k\,\in\,U_{1}}{\sum} x_{k} \, -  \underset{k \in s \cap U_{1}}{\sum} \dfrac{x_{k}}{\pi_{k}}
+		\;,\,
+		\underset{k\,\in\,U_{2}}{\sum} x_{k} \, -  \underset{k \in s \cap U_{2}}{\sum} \dfrac{x_{k}}{\pi_{k}}
+		\;,\,
+		\ldots
+		\,,\,
+		\underset{k\,\in\,U_{G}}{\sum} x_{k} \, -  \underset{k \in s \cap U_{G}}{\sum} \dfrac{x_{k}}{\pi_{k}}
+	\,\right)
 \end{equation*}
 Consequently,
 \begin{eqnarray*}
@@ -219,7 +229,7 @@ Consequently,
 & = &
 	\overset{G}{\underset{g\,=\,1}{\sum}}\;
 	\left(\,
-		\underset{k\,\in\,U_{g}}{\sum}\, \dfrac{x_{k}}{\pi_{k}}
+		\underset{k\,\in\,U_{g}}{\sum}\, x_{k}
 		 \;\, -
 		 \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{x_{k}}{\pi_{k}}
 	\,\right)
@@ -234,20 +244,44 @@ Consequently,
 \\
 & = &
 	\overset{G}{\underset{g\,=\,1}{\sum}}\;
-	N_{g} \cdot \dfrac{ \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, y_{k}/\pi_{k} }{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
+	\left(\,
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+	\,\right)
+	\cdot
+	\dfrac{
+		\underset{k\,\in\,U_{g}}{\sum}\, x_{k}
+	}{
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, x_{k}/\pi_{k}
+	}
 	\; - \;
 	\overset{G}{\underset{g\,=\,1}{\sum}}\;\;
 	\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
 \\
 & = &
 	\overset{G}{\underset{g\,=\,1}{\sum}}\;
-	N_{g} \cdot \dfrac{ \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, y_{k}/\pi_{k} }{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
+	\left(\,
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+	\,\right)
+	\cdot
+	\dfrac{
+		\underset{k\,\in\,U_{g}}{\sum}\, x_{k}
+	}{
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, x_{k}/\pi_{k}
+	}
 	\; - \;
 	\underset{k\,\in\,s}{\sum}\;\;\dfrac{y_{k}}{\pi_{k}}
 \\
 & = &
 	\overset{G}{\underset{g\,=\,1}{\sum}}\;
-	N_{g} \cdot \dfrac{ \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, y_{k}/\pi_{k} }{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
+	\left(\,
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+	\,\right)
+	\cdot
+	\dfrac{
+		\underset{k\,\in\,U_{g}}{\sum}\, x_{k}
+	}{
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, x_{k}/\pi_{k}
+	}
 	\; - \;
 	\widehat{T}^{\textnormal{HT}}_{y}(s)
 \end{eqnarray*}
@@ -262,22 +296,16 @@ We now see that
 	\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
 \\
 & = &
-	\overset{G}{\underset{g\,=\,1}{\sum}}\;\, N_{g}
+	\overset{G}{\underset{g\,=\,1}{\sum}}\;
+	\left(\,
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+	\,\right)
 	\cdot
 	\dfrac{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\;y_{k}/\pi_{k}
-		}{
-		\overset{{\color{white}.}}{\widehat{N}_{g}(s)}
-		%\underset{k\,\in\,s\,\cap\,U_{g}}{\overset{{\color{white}.}}{\sum}}\;\;1/\pi_{k}
-		}
-\;\; = \;\;
-	\overset{G}{\underset{g\,=\,1}{\sum}}\;\, N_{g}
-	\cdot
-	\dfrac{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\;y_{k}/\pi_{k}
-		}{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\overset{{\color{white}.}}{\sum}}\;\;1/\pi_{k}
-		}
+		\underset{k\,\in\,U_{g}}{\sum}\, x_{k}
+	}{
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, x_{k}/\pi_{k}
+	}
 \end{eqnarray*}
 This completes the proof of the Proposition.
 \qed
