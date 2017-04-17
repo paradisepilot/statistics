@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Group mean model yields the poststratified estimator}
+\section{Group ratio model yields the poststratified ratio estimator}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -16,7 +16,7 @@
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 The following proposition shows that the model-inspired regression estimator specializes to
-the poststratified estimator under the group mean model.
+the poststratified ratio estimator under the group ratio model.
 \begin{proposition}
 \mbox{}
 \vskip 0.05cm
@@ -43,7 +43,7 @@ Suppose:
 Suppose furthermore that
 $\mathbf{x} : U \longrightarrow \Re^{1 \times G}$ and
 $\sigma_{1}$, $\sigma_{2}$, $\ldots$\,, $\sigma_{N}$ $>$ $0$
-follow the \,\underline{\textbf{{\color{red}group mean} model}}.
+follow the \,\underline{\textbf{{\color{red}group ratio} model}}.
 \renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 \vskip 0.1cm
@@ -58,8 +58,8 @@ Equivalently, but more precisely, suppose:
 	for each $k \in U$ and $g = 1,2,\ldots,G$,
 	\begin{equation*}
 	\mathbf{x}_{k}
-	\; = \; (\eta_{k1},\eta_{k2},\ldots,\eta_{kg},\ldots,\eta_{kG})
-	\; = \; (0,0,\ldots,0,1,0,\ldots,0)\,,
+	\; = \; x_{k} \cdot (\eta_{k1},\eta_{k2},\ldots,\eta_{kg},\ldots,\eta_{kG})
+	\; = \; x_{k} \cdot (0,0,\ldots,0,1,0,\ldots,0)\,,
 	\end{equation*}
 	where
 	\begin{equation*}
@@ -76,14 +76,14 @@ Equivalently, but more precisely, suppose:
 	such that
 	$\sigma_{1}$, $\sigma_{2}$, $\ldots$\,, $\sigma_{N}$ $>$ $0$ are given by:
 	\begin{equation*}
-	\sigma_{k} \; = \; \eta_{kg}\cdot\sigma_{0,g}\,,
+	\sigma_{k}^{2} \; = \; \eta_{kg} \cdot x_{k} \cdot \sigma_{0,g}^{2}\,,
 	\quad\textnormal{for each \,$k \in U$\, and \,$g = 1,2,\ldots,G$}\,.
 	\end{equation*}
 \end{enumerate}
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 Then, the \,\textbf{model-inspired regression estimator}\,
-specializes to the \,\underline{\textbf{{\color{red}poststratified} estimator}}, i.e.
+specializes to the \,\underline{\textbf{{\color{red}poststratified ratio} estimator}}, i.e.
 \begin{eqnarray*}
 \widehat{T}^{\,\textnormal{RGR}}_{y,\mathbf{x}}(s)
 & := &
@@ -94,20 +94,13 @@ specializes to the \,\underline{\textbf{{\color{red}poststratified} estimator}},
 	\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
 \\
 & = &
-	\overset{G}{\underset{g\,=\,1}{\sum}}\;\, N_{g}
+	\overset{G}{\underset{g\,=\,1}{\sum}}\;
+	\left(\, \underset{k\,\in\,s}{\overset{{\color{white}.}}{\sum}}\; \dfrac{x_{k}}{\pi_{k}} \,\right)
 	\cdot
 	\dfrac{
 		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\;y_{k}/\pi_{k}
 		}{
-		\overset{{\color{white}.}}{\widehat{N}_{g}(s)}
-		}
-\;\; = \;\;
-	\overset{G}{\underset{g\,=\,1}{\sum}}\;\, N_{g}
-	\cdot
-	\dfrac{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\;y_{k}/\pi_{k}
-		}{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\overset{{\color{white}.}}{\sum}}\;\;1/\pi_{k}
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\overset{{\color{white}.}}{\sum}}\;x_{k}/\pi_{k}
 		}
 	\,,\;\;\quad\textnormal{for each \,$s \in \mathcal{S}$}.
 \end{eqnarray*}
@@ -126,17 +119,17 @@ are, in the present scenario, given by
 \begin{eqnarray*}
 X(s)_{ig}
 & = &
-	\eta_{ig}
+	\eta_{ig} \cdot x_{i}
 \;\; = \;\;
 	\left\{\begin{array}{cl}
-		1, &  \textnormal{if \,$i \in s \cap U_{g}$}
+		x_{i}, &  \textnormal{if \,$i \in s \cap U_{g}$}
 		\\
 		0, & \textnormal{if \,$i \in s\,\backslash\,U_{g}$}
 	\end{array}\right.
 \\
 \Sigma(s)^{-1}_{ij}
 & = &
-	\dfrac{\delta_{ij}}{\pi_{i}\,\sigma^{2}_{0,g(i)}}\,,
+	\dfrac{\delta_{ij}}{\pi_{i}\cdot x_{i} \cdot\sigma^{2}_{0,g(i)}}\,,
 	\quad
 	\textnormal{where \,$i = j \in s \cap U_{g(i)}$}
 \\
@@ -149,40 +142,38 @@ Hence,
 \left(\,\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} X(s)\right)_{ig}{\color{white}111}
 & = &
 	\underset{k \in s}{\sum}\;\,
-	\dfrac{\delta_{ik}}{\pi_{i}\,\sigma^{2}_{0,g(i)}}
+	\dfrac{\delta_{ik}}{\pi_{i} \cdot x_{i} \cdot \sigma^{2}_{0,g(i)}}
 	\cdot
-	\eta_{kg}
+	\eta_{kg} \cdot x_{k}
 \;\; = \;\;
-	\dfrac{\eta_{ig}}{\pi_{i}\,\sigma^{2}_{0,g}}
+	\dfrac{\eta_{ig}}{\pi_{i}\cdot\sigma^{2}_{0,g}}
 \\
 \left(\,X(s)^{T}\cdot\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} X(s)\right)_{gh}
 & = &
 	\underset{k \in s}{\sum}\;\,
-	\eta_{kg} \cdot \dfrac{\eta_{kh}}{\pi_{k}\,\sigma^{2}_{0,h}}
+	\eta_{kg} \cdot x_{k} \cdot \dfrac{\eta_{kh}}{\pi_{k} \cdot \sigma^{2}_{0,h}}
 \;\; = \;\;
 	\dfrac{\delta_{gh}}{\sigma^{2}_{0,g}}
 	\cdot
-	\left(\,\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\,\dfrac{1}{\pi_{k}}\,\right)
-\;\; = \;\;
-	\dfrac{\delta_{gh}}{\sigma^{2}_{0,g}} \cdot \widehat{N}_{g}(s)
+	\left(\,\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\,\dfrac{x_{k}}{\pi_{k}}\,\right)
 \\
 \left(\,\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} Y(s)\right)_{i}{\color{white}1111}
 & = &
 	\underset{k \in s}{\sum}\;\,
-	\dfrac{\delta_{ik}}{\pi_{i}\,\sigma^{2}_{0,g(i)}}
+	\dfrac{\delta_{ik}}{\pi_{i} \cdot x_{i} \cdot \sigma^{2}_{0,g(i)}}
 	\cdot
 	y_{k}
 \;\; = \;\;
-	\dfrac{y_{i}}{\pi_{i}\,\sigma^{2}_{0,g(i)}}
+	\dfrac{y_{i}}{\pi_{i} \cdot x_{i} \cdot \sigma^{2}_{0,g(i)}}
 \\
 \left(\,X(s)^{T}\cdot\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} Y(s)\right)_{g}{\color{white}1}
 & = &
 	\underset{k \in s}{\sum}\;\,
-	\eta_{kg} \cdot \dfrac{y_{k}}{\pi_{k}\,\sigma^{2}_{0,g(k)}}
+	\eta_{kg} \cdot x_{k} \cdot \dfrac{y_{k}}{\pi_{k} \cdot x_{k} \cdot \sigma^{2}_{0,g(k)}}
 \;\; = \;\;
 	\dfrac{1}{\sigma^{2}_{0,g}}
 	\cdot
-	\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+	\left(\, \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}} \,\right)
 \end{eqnarray*}
 which together imply
 \begin{eqnarray*}
@@ -196,7 +187,11 @@ which together imply
 \\
 & = &
 	\overset{G}{\underset{g=1}{\sum}}\;\;
-	\dfrac{\delta_{gh}\,\sigma^{2}_{0,g}}{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
+	\dfrac{
+		\delta_{gh}\,\sigma^{2}_{0,g}
+	}{
+		\overset{{\color{white}.}}{\underset{k\,\in\,s\,\cap\,U_{g}}{\sum} x_{k}/\pi_{k}}
+	}
 	\cdot
 	\left(\,
 		\dfrac{1}{\sigma^{2}_{0,h}}
@@ -204,16 +199,11 @@ which together imply
 		\underset{k\,\in\,s\,\cap\,U_{h}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
 	\,\right)
 \;\; = \;\;
-	\dfrac{\sigma^{2}_{0,g}}{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
-	\cdot
-	\dfrac{1}{\sigma^{2}_{0,g}}
-	\cdot
-	\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
-\\
-& = &
-	\dfrac{1}{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
-	\cdot
-	\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
+	\dfrac{
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, y_{k} / \pi_{k}
+	}{
+		\overset{{\color{white}.}}{\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, x_{k}/\pi_{k}}
+	}
 \end{eqnarray*}
 On the other hand, it is clear that
 \begin{equation*}
