@@ -94,21 +94,23 @@ specializes to the \,\underline{\textbf{{\color{red}poststratified} estimator}},
 	\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
 \\
 & = &
-	\overset{G}{\underset{g\,=\,1}{\sum}}\;\, N_{g}
+	\overset{G}{\underset{g\,=\,1}{\sum}}\,
+	\left(\, \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\; \dfrac{ y_{k} }{ \pi_{k}} \,\right)
 	\cdot
 	\dfrac{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\;y_{k}/\pi_{k}
-		}{
+		N_{g}
+	}{
 		\overset{{\color{white}.}}{\widehat{N}_{g}(s)}
-		}
+	}
 \;\; = \;\;
-	\overset{G}{\underset{g\,=\,1}{\sum}}\;\, N_{g}
+	\overset{G}{\underset{g\,=\,1}{\sum}}\,
+	\left(\, \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\; \dfrac{ y_{k} }{ \pi_{k}} \,\right)
 	\cdot
 	\dfrac{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\;y_{k}/\pi_{k}
-		}{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\overset{{\color{white}.}}{\sum}}\;\;1/\pi_{k}
-		}
+		N_{g}
+	}{
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\overset{{\color{white}.}}{\sum}}\, 1/\pi_{k}
+	}
 	\,,\;\;\quad\textnormal{for each \,$s \in \mathcal{S}$}.
 \end{eqnarray*}
 \end{proposition}
@@ -238,20 +240,26 @@ Consequently,
 \\
 & = &
 	\overset{G}{\underset{g\,=\,1}{\sum}}\;
-	N_{g} \cdot \dfrac{ \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, y_{k}/\pi_{k} }{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
+	\left(\, \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{ y_{k} }{ \pi_{k} } \,\right)
+	\cdot
+	\dfrac{ N_{g} }{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
 	\; - \;
 	\overset{G}{\underset{g\,=\,1}{\sum}}\;\;
 	\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
 \\
 & = &
 	\overset{G}{\underset{g\,=\,1}{\sum}}\;
-	N_{g} \cdot \dfrac{ \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, y_{k}/\pi_{k} }{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
+	\left(\, \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{ y_{k} }{ \pi_{k} } \,\right)
+	\cdot
+	\dfrac{ N_{g} }{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
 	\; - \;
 	\underset{k\,\in\,s}{\sum}\;\;\dfrac{y_{k}}{\pi_{k}}
 \\
 & = &
 	\overset{G}{\underset{g\,=\,1}{\sum}}\;
-	N_{g} \cdot \dfrac{ \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, y_{k}/\pi_{k} }{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
+	\left(\, \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{ y_{k} }{ \pi_{k} } \,\right)
+	\cdot
+	\dfrac{ N_{g} }{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
 	\; - \;
 	\widehat{T}^{\textnormal{HT}}_{y}(s)
 \end{eqnarray*}
@@ -266,22 +274,19 @@ We now see that
 	\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
 \\
 & = &
-	\overset{G}{\underset{g\,=\,1}{\sum}}\;\, N_{g}
+	\overset{G}{\underset{g\,=\,1}{\sum}}\,
+	\left(\, \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{ y_{k} }{ \pi_{k} } \,\right)
 	\cdot
-	\dfrac{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\;y_{k}/\pi_{k}
-		}{
-		\overset{{\color{white}.}}{\widehat{N}_{g}(s)}
-		%\underset{k\,\in\,s\,\cap\,U_{g}}{\overset{{\color{white}.}}{\sum}}\;\;1/\pi_{k}
-		}
+	\dfrac{ N_{g} }{\overset{{\color{white}.}}{\widehat{N}_{g}(s)}}
 \;\; = \;\;
-	\overset{G}{\underset{g\,=\,1}{\sum}}\;\, N_{g}
+	\overset{G}{\underset{g\,=\,1}{\sum}}\,
+	\left(\, \underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\, \dfrac{ y_{k} }{ \pi_{k} } \,\right)
 	\cdot
 	\dfrac{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\sum}\;y_{k}/\pi_{k}
-		}{
-		\underset{k\,\in\,s\,\cap\,U_{g}}{\overset{{\color{white}.}}{\sum}}\;\;1/\pi_{k}
-		}
+		N_{g}
+	}{
+		\underset{k\,\in\,s\,\cap\,U_{g}}{\overset{{\color{white}.}}{\sum}}\, 1/\pi_{k}
+	}
 \end{eqnarray*}
 This completes the proof of the Proposition.
 \qed
