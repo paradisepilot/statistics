@@ -17,7 +17,7 @@
 
 The following proposition shows that the model-inspired regression estimator specializes to
 the expanded sample mean estimator under the common mean model.
-\begin{proposition}
+\begin{corollary}
 \mbox{}
 \vskip 0.05cm
 \noindent
@@ -97,143 +97,22 @@ specializes to the \,\underline{\textbf{{\color{red}expanded sample mean} estima
 		}
 	\,,\quad\quad\textnormal{for each \,$s \in \mathcal{S}$}.
 \end{eqnarray*}
-\end{proposition}
+\end{corollary}
 \proof
-Recall that \,$\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)$\, is given by
-\begin{eqnarray*}
-\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
-& = &
-	\left(\,X(s)^{T} \overset{{\color{white}!}}{\cdot} \Sigma(s)^{-1} \cdot X(s)\,\right)^{-1}
-	\cdot
-	\left(\,X(s)^{T} \overset{{\color{white}!}}{\cdot} \Sigma(s)^{-1} \cdot Y(s) \,\right)
-\end{eqnarray*}
-where $X(s) \in \Re^{n(s) \times 1}$, $\Sigma(s)^{-1} \in \Re^{n(s) \times n(s)}$, and $Y(s) \in \Re^{n(s)}$
-are, in the present scenario, given by
-\begin{eqnarray*}
-X(s)_{i}
-& = &
-	1
-\\
-\Sigma(s)^{-1}_{ij}
-& = &
-	\dfrac{\delta_{ij}}{\pi_{i}\,\sigma^{2}}
-\\
-Y(s)_{i}
-& = &
-	y_{i}
-\end{eqnarray*}
-Hence,
-\begin{eqnarray*}
-\left(\,\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} X(s)\right)_{i}{\color{white}!}
-& = &
-	\underset{k \in s}{\sum}\;\,
-	\dfrac{\delta_{ik}}{\pi_{i}\,\sigma^{2}} \cdot 1
-\;\; = \;\;
-	\dfrac{1}{\pi_{i}\,\sigma^{2}}
-\\
-X(s)^{T}\cdot\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} X(s)
-& = &
-	\underset{k \in s}{\sum}\;\,
-	1 \cdot \dfrac{1}{\pi_{k}\,\sigma^{2}}
-\;\; = \;\;
-	\dfrac{1}{\sigma^{2}}
-	\cdot
-	\left(\,\underset{k\,\in\,s}{\sum}\,\dfrac{1}{\pi_{k}}\,\right)
-\;\; = \;\;
-	\dfrac{\widehat{N}(s)}{\sigma^{2}}
-\\
-\left(\,\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} Y(s)\right)_{i}{\color{white}1}
-& = &
-	\underset{k \in s}{\sum}\;\,
-	\dfrac{\delta_{ik}}{\pi_{i}\,\sigma^{2}}
-	\cdot
-	y_{k}
-\;\; = \;\;
-	\dfrac{y_{i}}{\pi_{i}\,\sigma^{2}}
-\\
-X(s)^{T}\cdot\Sigma(s)^{-1} \overset{{\color{white}!}}{\cdot} Y(s){\color{white}!}
-& = &
-	\underset{k \in s}{\sum}\;\,
-	1 \cdot \dfrac{y_{k}}{\pi_{k}\,\sigma^{2}}
-\;\; = \;\;
-	\dfrac{1}{\sigma^{2}}
-	\cdot
-	\underset{k\,\in\,s}{\sum}\, \dfrac{y_{k}}{\pi_{k}}
-\;\; = \;\;
-	\dfrac{\widehat{T}^{\,\textnormal{HT}}_{y}(s)}{\sigma^{2}}
-\end{eqnarray*}
-which together imply
-\begin{eqnarray*}
-\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
-& = &
-	\left(\,X(s)^{T} \overset{{\color{white}!}}{\cdot} \Sigma(s)^{-1} \cdot X(s)\,\right)^{-1}
-	\cdot
-	\left(\,X(s)^{T} \overset{{\color{white}!}}{\cdot} \Sigma(s)^{-1} \cdot Y(s) \,\right)
-\\
-& = &
-	\left(\, \dfrac{\widehat{N}(s)}{\sigma^{2}} \,\right)^{-1}
-	\cdot
-	\dfrac{\widehat{T}^{\,\textnormal{HT}}_{y}(s)}{\sigma^{2}}
-\;\; = \;\;
-	\dfrac{\sigma^{2}}{\overset{{\color{white}.}}{\widehat{N}(s)}}
-	\cdot
-	\dfrac{\widehat{T}^{\,\textnormal{HT}}_{y}(s)}{\sigma^{2}}
-\;\; = \;\;
-	\dfrac{
-		\widehat{T}^{\,\textnormal{HT}}_{y}(s)
-	}{
-		\overset{{\color{white}.}}{\widehat{N}(s)}
-	}
-\end{eqnarray*}
-On the other hand, it is clear that
+Observe that {\color{red}the common mean model is a special case of the common ratio model}.
+Thus, we see that the present Corollary follows immediately from
+Proposition \ref{commonRatioYieldsRatioEstimator},
+once we note that
 \begin{equation*}
-T_{\mathbf{x}} \,-\, \widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s) \;\; = \;\; N - \widehat{N}(s)
+	T_{\mathbf{x}}
+	\; = \; \underset{k\,\in\,U}{\sum}\;1
+	\; = \; N
+\quad\quad\textnormal{and}\quad\quad
+	\widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s)
+	\; = \; \underset{k\,\in\,S}{\sum}\;\dfrac{1}{\pi_{k}}
+	\; = \; \widehat{N}(s)\,.
 \end{equation*}
-Consequently,
-\begin{eqnarray*}
-\left(\,T_{\mathbf{x}} \,-\, \widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s)\right)
-\cdot
-\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
-& = &
-	\left(\,N - \widehat{N}(s) \,\right)
-	\cdot
-	\left(\,
-		\dfrac{\widehat{T}^{\,\textnormal{HT}}_{y}(s)}{\overset{{\color{white}.}}{\widehat{N}(s)}}
-	\,\right)
-\\
-& = &
-	\widehat{T}^{\,\textnormal{HT}}_{y}(s) \cdot \dfrac{ N }{\overset{{\color{white}.}}{\widehat{N}(s)}}
-	\; - \;
-	\widehat{T}^{\,\textnormal{HT}}_{y}(s)
-\end{eqnarray*}
-We now see that
-\begin{eqnarray*}
-\widehat{T}^{\,\textnormal{RGR}}_{y,\mathbf{x}}(s)
-& := &
-	\widehat{T}^{\,\textnormal{HT}}_{y}(s)
-	\; + \;
-	\left(\,T_{\mathbf{x}} - \widehat{T}^{\,\textnormal{HT}}_{\mathbf{x}}(s) \,\right)
-	\cdot
-	\widehat{\mathbf{B}}_{y,\mathbf{x}}(s)
-\\
-& = &
-	\widehat{T}^{\,\textnormal{HT}}_{y}(s)
-	\cdot
-	\dfrac{
-		N
-		}{
-		\overset{{\color{white}.}}{\widehat{N}(s)}
-		}
-\;\; = \;\;
-	\left(\, \underset{k\,\in\,s}{\sum}\; \dfrac{ y_{k} }{ \pi_{k} } \,\right)
-	\cdot
-	\dfrac{
-		N
-		}{
-		\underset{k\,\in\,s}{\overset{{\color{white}.}}{\sum}}\; 1/\pi_{k}
-		}
-\end{eqnarray*}
-This completes the proof of the Proposition.
+This completes the proof of the Corollary.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
