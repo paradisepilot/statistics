@@ -1,0 +1,184 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Variance of a linear combination of Horvitz-Thompson estimators}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{proposition}[Variance of a linear combination of Horvitz-Thompson estimator, p.172, \cite{Sarndal1992}]
+\mbox{}
+\vskip 0.15cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$N \in \N$ and $U = \{1,2,\ldots,N\}$.
+	\vskip 0.05cm
+	$\mathbf{y} = \left(\,y^{(1)},\ldots,y^{(q)}\,\right) : U \longrightarrow \Re^{q}$
+	is an $\Re^{q}$-valued population characteristic defined on $U$.
+	\vskip 0.05cm
+	$T_{\mathbf{y}} \; := \; \underset{k \in U}{\sum}\,\mathbf{y}_{k} \; \in \; \Re^{q}$ is the population total
+	of the population characteristic $\mathbf{y} : U \longrightarrow \Re^{q}$.
+\item
+	$c = \left(\,c_{1}, c_{2}, \ldots, c_{q}\,\right) \in \Re^{q}$, and
+	$z : U \longrightarrow \Re$ is the population characteristic defined by
+	\begin{equation*}
+	z_{k}
+	\;\; := \;\;
+		c^{T} \cdot \mathbf{y}_{k}
+	\;\; = \;\;
+		\overset{q}{\underset{a=1}{\sum}}\; c_{a} \cdot y^{(a)}_{k}
+	\end{equation*}
+\item
+	$\mathcal{S} \subset \mathcal{P}(U)$ is a collection of subsets of $U$.
+	$p : \mathcal{S} \longrightarrow (0,1]$ is a sampling design on $\mathcal{S}$,
+	i.e. $\underset{s\in\mathcal{S}}{\sum}\;p(s) = 1$.
+	\vskip 0.05cm
+	$\mathcal{S}$ can therefore be considered the collection of admissible samples under the sampling design $p$.
+\item
+	For each \,$k \in \left\{\,1,2,\ldots,N\,\right\} = U$,\, we have
+	$\pi_{k} \,:=\, \underset{s \ni k}{\sum}\,p(s) \,>\, 0$.
+	\vskip 0.05cm
+	For each \,$i,j \in \left\{\,1,2,\ldots,N\,\right\} = U$,\, define
+	\,$\pi_{ij} \, := \, \underset{s \ni i,j}{\sum}\;p(s)$\,,\, and
+	\,$\Delta_{ij} \, := \, \pi_{ij} - \pi_{i}\,\pi_{j}$.
+\end{itemize}
+Define the Horvitz-Thompson estimator
+\,$\widehat{T}^{\,\textnormal{HT}}_{\mathbf{y}} : \mathcal{S} \longrightarrow \Re^{q}$\,
+as follows:
+\begin{equation*}
+\widehat{T}^{\,\textnormal{HT}}_{\mathbf{y}}(s)
+\;\; := \;\;
+	\underset{k \in s}{\sum}\;\dfrac{\mathbf{y}_{k}}{\pi_{k}}
+	\;\; \in \;\;
+	\Re^{q}\,.
+\end{equation*}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	The Horvitz-Thompson estimator
+	\,$\widehat{T}^{\,\textnormal{HT}}_{z} : \mathcal{S} \longrightarrow \Re$\,
+	for the population total \,$T_{z}$\, of \,$z : U \longrightarrow \Re$\, is given by
+	\begin{equation*}
+	\widehat{T}^{\,\textnormal{HT}}_{z}
+	\;\; = \;\;
+		c^{T} \cdot \widehat{T}^{\,\textnormal{HT}}_{\mathbf{y}}
+	\;\; = \;\;
+		\overset{a}{\underset{a\,=\,1}{\sum}} \; c_{a} \cdot \widehat{T}^{\,\textnormal{HT}}_{y^{(a)}}
+	\end{equation*}
+\item
+	The variance
+	\,$\Var\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{z}\,\right) \in \Re$\,
+	of \,$\widehat{T}^{\,\textnormal{HT}}_{z}$\, is given by
+	\begin{eqnarray*}
+	\Var\!\left(\;\widehat{T}^{\,\textnormal{HT}}_{z}\,\right)
+	& = &
+		\Var\!\left(\;\, \overset{q}{\underset{a=1}{\sum}}\; c_{a}\cdot\widehat{T}^{\,\textnormal{HT}}_{y^{(a)}} \;\right)
+	\;\; = \;\;
+		\overset{q}{\underset{a\,=\,1}{\sum}}\;\,
+		\overset{q}{\underset{b\,=\,1}{\sum}}\;
+		c_{a} \cdot c_{b} \cdot
+		\Cov\!\left(\; \widehat{T}^{\,\textnormal{HT}}_{y^{(a)}} \;,\; \widehat{T}^{\,\textnormal{HT}}_{y^{(b)}} \;\right)
+	\\
+	& = &
+		\overset{q}{\underset{a\,=\,1}{\sum}}\;\,
+		\overset{q}{\underset{b\,=\,1}{\sum}}\;\,
+		c_{a} \cdot c_{b} \cdot
+		\left(\;\,
+			\underset{i\,\in\,U}{\sum}\;\,
+			\underset{j\,\in\,U}{\sum}\;\,
+			\Delta_{ij} \cdot \dfrac{y^{(a)}_{i}}{\pi_{i}} \cdot \dfrac{y^{(b)}_{j}}{\pi_{j}}
+		\;\right)
+	\end{eqnarray*}
+\item
+	If $\pi_{ij} > 0$, for each $i , j \in U = \{\,1,2,\ldots,N\,\}$, then the random variable
+	\,$\widehat{\Var}\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{z}\,\right) : U \longrightarrow \Re$\,
+	defined by:
+	\begin{equation*}
+	\widehat{\Var}\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{\mathbf{y}}\,\right)({\color{red}s})
+	\;\; := \;\;
+		\overset{q}{\underset{a\,=\,1}{\sum}}\;\,
+		\overset{q}{\underset{b\,=\,1}{\sum}}\;\,
+		c_{a} \cdot c_{b} \cdot
+		\left(\;\,
+			\underset{i\,\in\,{\color{red}s}}{\sum}\;\,
+			\underset{j\,\in\,{\color{red}s}}{\sum}\;\,
+			\dfrac{\Delta_{ij}}{\pi_{ij}} \cdot \dfrac{y^{(a)}_{i}}{\pi_{i}} \cdot \dfrac{y^{(b)}_{j}}{\pi_{j}}
+		\;\right)
+	\end{equation*}
+	is a (design-)unbiased estimator of \,$\Var\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{\mathbf{y}}\,\right)$;\,
+	equivalently but more precisely,
+	\begin{equation*}
+	E\!\left[\; \widehat{\Var}\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{z}\,\right) \;\right]
+	\;\; := \;\;
+		\underset{s\in\mathcal{S}}{\sum}\;\,
+		p(s) \cdot \widehat{\Var}\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{z}\,\right)(s)
+	\;\; = \;\;
+		\Var\!\left(\;\widehat{T}^{\,\textnormal{HT}}_{z}\,\right)
+	\;\; \in \;\;
+		\Re
+	\end{equation*}
+\end{enumerate}
+\end{proposition}
+\proof
+\begin{enumerate}
+\item
+	For each $s \in \mathcal{S}$, we have:
+	\begin{equation*}
+	\widehat{T}^{\,\textnormal{HT}}_{z}(s)
+	\;\; := \;\;
+		\underset{k \in s}{\sum}\;\dfrac{z_{k}}{\pi_{k}}
+	\;\; = \;\;
+		\underset{k \in s}{\sum}\;\dfrac{c^{T} \cdot \mathbf{y}_{k}}{\pi_{k}}
+	\;\; = \;\;
+		c^{T} \cdot \left(\, \underset{k \in s}{\sum}\;\dfrac{\mathbf{y}_{k}}{\pi_{k}} \,\right)
+	\;\; =: \;\;
+		c^{T} \cdot \widehat{T}^{\,\textnormal{HT}}_{\mathbf{y}}(s)\,
+	\end{equation*}
+	which proves the first equality.
+	On the other hand, we also have: for each $s \in \mathcal{S}$,
+	\begin{eqnarray*}
+	\widehat{T}^{\,\textnormal{HT}}_{z}(s)
+	& := &
+		\underset{k \in s}{\sum}\;\dfrac{z_{k}}{\pi_{k}}
+	\;\; = \;\;
+		\underset{k \in s}{\sum}\;\dfrac{c^{T} \cdot \mathbf{y}_{k}}{\pi_{k}}
+	\;\; = \;\;
+		\underset{k \in s}{\sum}\; \dfrac{1}{\pi_{k}} \left(\, \overset{q}{\underset{a\,=\,1}{\sum}}\; c_{a} \cdot y^{(a)}_{k} \,\right)
+	\;\; =: \;\;
+		\overset{q}{\underset{a\,=\,1}{\sum}}\;\;
+		c_{a} \cdot \left(\;
+			\underset{k \in s}{\sum}\;\; \dfrac{ y^{(a)}_{k} }{ \pi_{k} }
+		\,\right)		
+	\\
+	& = &
+		\overset{q}{\underset{a\,=\,1}{\sum}}\;
+		c_{a} \cdot \widehat{T}^{\,\textnormal{HT}}_{y^{(a)}}(s)\,,
+	\end{eqnarray*}
+	which proves the second equality.
+\item
+	Immediate by the usual formula for the covariance of two Horvitz-Thompson estimators.
+\item
+	Immediate by the usual formula for the Horvitz-Thompson estimator of the covariance of two Horvitz-Thompson estimators.
+\end{enumerate}
+This completes the proof of the present Proposition.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
