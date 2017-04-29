@@ -1,0 +1,75 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Two-phase Sampling}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$U = \{\,1,2,\ldots,N\,\}$ represents a finite population.
+\item
+	$y : U \longrightarrow \Re$ is an $\Re$-valued population characteristic.
+	\vskip 0.1cm
+	$T_{y} := \underset{i \in U}{\sum}\;y_{i}$ is the population total of the population characteristic $y : U \longrightarrow \Re$.
+\item
+	$\mathcal{S}^{(1)} \subset \mathcal{P}(U)$ is a non-empty collection of subsets of $U$.
+	\vskip 0.1cm
+	$p^{(1)} : \mathcal{S}^{(1)} \longrightarrow [0,1]$ is a sampling design defined on $\mathcal{S}^{(1)}$.
+\item
+	For each non-empty $s_{1} \in \mathcal{S}^{(1)}$,
+	$\mathcal{S}^{(2)}_{s_{1}} \subset \mathcal{P}(s_{1})$ is a non-empty collection of subsets of $s_{1}$.
+	\vskip 0.1cm
+	$p^{(2)}_{s_{1}} : \mathcal{S}^{(2)}_{s_{1}} \longrightarrow [0,1]$ is a sampling design defined on $\mathcal{S}^{(2)}_{s_{1}} \subset s_{1}$.
+\end{itemize}
+Define:
+\begin{itemize}
+\item
+	$\mathcal{S}$ is a collection of ordered pairs of nested subsets of $U$ defined by:
+	\begin{equation*}
+	\mathcal{S}
+	\;\; := \;\;
+		\left\{\;
+		\left.
+			(s_{2}\,\vert\,s_{1}) \in \left(\underset{s_{1}\in\mathcal{S}^{(1)}}{\bigcup}\; \mathcal{S}^{(2)}_{s_{1}}\right) \times \mathcal{S}^{(1)}
+		\;\;\right\vert\;
+			s_{2} \in \mathcal{S}^{(2)}_{s_{1}}
+		\;\right\}
+	\end{equation*}
+\item
+	$p : \mathcal{S} \longrightarrow [0,1]$ is defined by:
+	\begin{equation*}
+	p(s_{2}\,\vert\,s_{1}) \;\; := \;\; p^{(2)}_{s_{1}}(s_{2}) \cdot p^{(1)}(s_{1})\,,
+	\quad
+	\textnormal{for each \,$s_{1} \in \mathcal{S}^{(1)}$\, and \,$s_{2} \in \mathcal{S}^{(2)}_{s_{1}}$}\,.
+	\end{equation*}
+\item
+	$\widehat{T}^{\TvertO}_{y} : \mathcal{S} \longrightarrow \Re$ is defined by:
+	\begin{equation*}
+	\widehat{T}^{\TvertO}_{y}(s_{2}\,\vert\,s_{1})
+	\;\; := \;\;
+		\underset{k \in s_{2}}{\sum}\;\dfrac{y_{k}}{p(s_{2} \vert s_{1})}
+	\;\; := \;\;
+		\underset{k \in s_{2}}{\sum}\;\dfrac{y_{k}}{ p^{(2)}_{s_{1}}(s_{2}) \cdot p^{(1)}(s_{1}) }
+	\end{equation*}
+\end{itemize}
+Then, \,$\widehat{T}^{\TvertO}_{y} : \mathcal{S} \longrightarrow \Re$\,
+is a design-unbiased estimator of $T_{y}$; in other words,
+\begin{equation*}
+E\!\left[\;\widehat{T}_{y}\;\right]
+\;\; := \;\;
+	\underset{(s_{2} \vert s_{1})\in\mathcal{S}}{\sum}\;\,
+	\widehat{T}^{\TvertO}_{y}(s_{2} \vert s_{1}) \cdot p(s_{2} \vert s_{1})
+\;\; = \;\;
+	T_{y} \;\; := \;\; \underset{k \in U}{\sum}\;\, y_{k}
+\end{equation*}
+\end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
