@@ -239,6 +239,109 @@ Then, the following statements hold:
 	\;\; = \;\;
 		T_{y}
 	\end{eqnarray*}
+\item
+	\begin{eqnarray*}
+	\Var\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right]
+	& = &
+		\Var\!\left[\, E\!\left(\left.\widehat{T}^{\TvertO}_{y} \,\right\vert\, S_{1} \,\right) \,\right]
+		\; + \;
+		E\!\left(\, \Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right] \;\right)
+	\end{eqnarray*}
+	\begin{eqnarray*}
+	E\!\left(\left.\widehat{T}^{\TvertO}_{y} \,\right\vert\, S_{1} = s_{1} \,\right)
+	& = &
+		\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}\;\,
+		\widehat{T}^{\TvertO}_{y}(s_{2}) \cdot p^{(2)}_{s_{1}}(s_{2})
+	\;\; = \;\;
+		\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}
+		\left(\;
+			\underset{k \in s_{2}}{\sum}\;\dfrac{y_{k}}{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+		\;\right)
+		\cdot\,
+		p^{(2)}_{s_{1}}(s_{2})
+	\\
+	& = &
+		\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}
+		\left(\;
+			\underset{k \in {\color{red}s_{1}}}{\sum}\;
+			\dfrac{ {\color{red}I_{k \vert s_{1}}(s_{2})} \cdot y_{k} }{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+		\;\right)
+		\cdot\,
+		p^{(2)}_{s_{1}}(s_{2})
+	\;\; = \;\;
+		\underset{k \in {\color{red}s_{1}}}{\sum}\;
+		\dfrac{ y_{k} }{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+			\left(\;
+				\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}\;
+				I_{k \vert s_{1}}(s_{2}) \cdot p^{(2)}_{s_{1}}(s_{2})
+			\;\right)
+	\\
+	& = &
+		\underset{k \in s_{1}}{\sum}\;
+		\dfrac{ y_{k} }{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+			\left(\;
+				\underset{k \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}\; p^{(2)}_{s_{1}}(s_{2})
+			\;\right)
+	\;\; = \;\;
+		\widehat{T}^{\,\textnormal{HT}}_{y}(s_{1})
+	\end{eqnarray*}
+	Hence,
+	\begin{equation*}
+	\Var\!\left[\, E\!\left(\left.\widehat{T}^{\TvertO}_{y} \,\right\vert\, S_{1} \,\right) \,\right]
+	\;\; = \;\;
+		\Var\!\left[\; \widehat{T}^{\,\textnormal{HT}}_{y} \;\right]
+	\;\; = \;\;
+		\underset{i \in U}{\sum}\;\,
+		\underset{j \in U}{\sum}\;\;
+		\Delta^{(1)}_{ij} \cdot \dfrac{y_{i}}{\pi^{(1)}_{i}} \cdot \dfrac{y_{j}}{\pi^{(1)}_{j}}\,,
+	\end{equation*}
+	where
+	\,$\Delta^{(1)}_{ij} \, := \, \pi^{(1)}_{ij} - \pi^{(1)}_{i} \cdot \pi^{(1)}_{j}$\,
+	and
+	\,$\pi^{(1)}_{ij} \, := \, \underset{i,j \in s_{1}}{\sum}\; p^{(1)}(s_{1})$\,.
+	Next, note that, for each fixed $s_{1} \in \mathcal{S}^{(1)}$,
+	\begin{equation*}
+	\widehat{T}^{\TvertO}_{y}(s_{2} \vert s_{1})
+	\;\; := \;\;
+		\underset{k \in s_{2}}{\sum}\;\dfrac{y_{k}}{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+	\;\; = \;\;
+		\underset{k \in s_{2}}{\sum}\;\dfrac{ y_{k} \,/\, \pi^{(1)}_{k} }{ \pi^{(2)}_{k \vert s_{1}} }
+	\end{equation*}
+	Hence,
+	\begin{equation*}
+	\Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} = s_{1} \,\right]
+	\;\; = \;\;
+		\underset{i \in s_{1}}{\sum}\;\,
+		\underset{j \in s_{1}}{\sum}\;\;
+			\Delta^{(2)}_{ij \vert s_{1}}
+			\cdot
+			\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert s_{1}} }
+			\cdot
+			\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }\,,
+	\end{equation*}
+	where
+	\,$\Delta^{(2)}_{ij \vert s_{1}} \, := \, \pi^{(2)}_{ij \vert s_{1}} - \pi^{(2)}_{i \vert s_{1}} \cdot \pi^{(2)}_{j \vert s_{1}}$\,
+	and
+	\,$\pi^{(2)}_{ij \vert s_{1}} \, := \, \underset{i,j \in s_{2}}{\sum}\; p^{(2)}_{s_{1}}(s_{2})$\,.
+	\begin{eqnarray*}
+	E\!\left(\, \Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right] \;\right)
+	& = &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;
+		p^{(1)}(s_{1}) \cdot \Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} = s_{1} \,\right]
+	\\
+	& = &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;
+		p^{(1)}(s_{1}) \,\cdot
+		\left(\,
+		\underset{i \in s_{1}}{\sum}\;\,
+		\underset{j \in s_{1}}{\sum}\;\;
+			\Delta^{(2)}_{ij \vert s_{1}}
+			\cdot
+			\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert s_{1}} }
+			\cdot
+			\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }
+		\,\right)
+	\end{eqnarray*}
 \end{enumerate}
 \qed
 
