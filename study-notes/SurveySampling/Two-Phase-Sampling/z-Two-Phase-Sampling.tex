@@ -5,6 +5,10 @@
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -29,7 +33,7 @@ Suppose:
 	\vskip 0.1cm
 	$p^{(2)}_{s_{1}} : \mathcal{S}^{(2)}_{s_{1}} \longrightarrow [0,1]$ is a sampling design defined on $\mathcal{S}^{(2)}_{s_{1}} \subset s_{1}$.
 \end{itemize}
-Define:
+We make the following definitions:
 \begin{itemize}
 \item
 	$\mathcal{S}$ is a collection of ordered pairs of nested subsets of $U$ defined by:
@@ -51,25 +55,114 @@ Define:
 	\textnormal{for each \,$s_{1} \in \mathcal{S}^{(1)}$\, and \,$s_{2} \in \mathcal{S}^{(2)}_{s_{1}}$}\,.
 	\end{equation*}
 \item
-	$\widehat{T}^{\TvertO}_{y} : \mathcal{S} \longrightarrow \Re$ is defined by:
+	For each $k \in U$,
+	\begin{equation*}
+	\pi^{(1)}_{k} \;\; := \;\; \underset{k \in s_{1} \in \mathcal{S}^{(1)}}{\sum} \; p^{(1)}(s_{1})
+	\end{equation*}
+\item
+	For each $k \in U$ and $s_{1} \in \mathcal{S}^{(1)}$,
+	\begin{equation*}
+	\pi^{(2)}_{k \vert s_{1}} \;\; := \;\; \underset{k \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum} \; p^{(2)}_{s_{1}}(s_{2})
+	\end{equation*}
+\item
+	Suppose furthermore that
+	\begin{equation*}
+	\pi^{(1)}_{k} > 0 \;\;\textnormal{for each \,$k \in U$}\,,
+	\quad\quad\textnormal{and}\quad\quad
+	\pi^{(2)}_{k \vert s_{1}} > 0 \;\;\textnormal{for each \,$k \in U$, \,$s_{1} \in \mathcal{S}^{(1)}$}\,.
+	\end{equation*}
+	Then, we may define \,$\widehat{T}^{\TvertO}_{y} : \mathcal{S} \longrightarrow \Re$ as follows:
 	\begin{equation*}
 	\widehat{T}^{\TvertO}_{y}(s_{2}\,\vert\,s_{1})
 	\;\; := \;\;
-		\underset{k \in s_{2}}{\sum}\;\dfrac{y_{k}}{p(s_{2} \vert s_{1})}
-	\;\; := \;\;
-		\underset{k \in s_{2}}{\sum}\;\dfrac{y_{k}}{ p^{(2)}_{s_{1}}(s_{2}) \cdot p^{(1)}(s_{1}) }
+		\underset{k \in s_{2}}{\sum}\;\dfrac{y_{k}}{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
 	\end{equation*}
 \end{itemize}
-Then, \,$\widehat{T}^{\TvertO}_{y} : \mathcal{S} \longrightarrow \Re$\,
-is a design-unbiased estimator of $T_{y}$; in other words,
-\begin{equation*}
-E\!\left[\;\widehat{T}_{y}\;\right]
-\;\; := \;\;
-	\underset{(s_{2} \vert s_{1})\in\mathcal{S}}{\sum}\;\,
-	\widehat{T}^{\TvertO}_{y}(s_{2} \vert s_{1}) \cdot p(s_{2} \vert s_{1})
-\;\; = \;\;
-	T_{y} \;\; := \;\; \underset{k \in U}{\sum}\;\, y_{k}
-\end{equation*}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	$p : \mathcal{S} \longrightarrow [0,1]$ is a probability function defined on $\mathcal{S}$.
+\item
+	$\widehat{T}^{\TvertO}_{y} : \mathcal{S} \longrightarrow \Re$\,
+	is a design-unbiased estimator of $T_{y}$; in other words,
+	\begin{equation*}
+	E\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right]
+	\;\; := \;\;
+		\underset{(s_{2} \vert s_{1})\in\mathcal{S}}{\sum}\;\,
+		\widehat{T}^{\TvertO}_{y}(s_{2} \vert s_{1}) \cdot p(s_{2} \vert s_{1})
+	\;\; = \;\;
+		T_{y} \;\; := \;\; \underset{k \in U}{\sum}\;\, y_{k}
+	\end{equation*}
+\item
+	\begin{equation*}
+	\Var\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right]
+	\end{equation*}
+\item
+	\begin{equation*}
+	\widehat{\Var}\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right]
+	\end{equation*}
+\end{enumerate}
 \end{theorem}
+\proof
+\begin{enumerate}
+\item
+	\begin{eqnarray*}
+	\underset{(s_{2} \vert s_{1}) \in \mathcal{S}}{\sum}\;\, p(s_{2} \vert s_{1})
+	& = &
+		\underset{(s_{2} \vert s_{1}) \in \mathcal{S}}{\sum}\;\, p^{(2)}_{s_{1}}(s_{2}) \cdot p^{(1)}(s_{1})
+	\;\; = \;\;
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\;
+		\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}\;\;
+		p^{(2)}_{s_{1}}(s_{2}) \cdot p^{(1)}(s_{1})
+	\\
+	& = &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
+		p^{(1)}(s_{1}) \cdot
+		\left(\;
+			\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}\;\; p^{(2)}_{s_{1}}(s_{2})
+		\,\right)
+	\\
+	& \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
+		p^{(1)}(s_{1}) \cdot
+		\left(\; \overset{{\color{white}.}}{1} \;\right),
+		\quad\textnormal{since \,$p^{(2)}_{s_{1}}$\, is a sampling design on \,$\mathcal{S}^{(2)}_{s_{1}}$}
+	\\
+	& \overset{{\color{white}\textnormal{\huge$1$}}}{=} &
+		1\,,
+		\quad\textnormal{since \,$p^{(1)}$\, is a sampling design on \,$\mathcal{S}^{(1)}$}
+	\end{eqnarray*}
+\item
+	\begin{eqnarray*}
+	E\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right]
+	& := &
+		\underset{(s_{2} \vert s_{1})\in\mathcal{S}}{\sum}\;\,
+		\widehat{T}^{\TvertO}_{y}(s_{2} \vert s_{1}) \cdot p(s_{2} \vert s_{1})
+	\\
+	& = &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
+		\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}
+		\left(\;
+			\underset{k \in s_{2}}{\sum}\;\dfrac{y_{k}}{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+		\;\right)
+		\cdot
+		p^{(2)}_{s_{1}}(s_{2}) \cdot p^{(1)}(s_{1})
+	\\
+	& = &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
+		\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}
+		\left(\;
+			\underset{k \in s_{2}}{\sum}\;\dfrac{y_{k}}{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+		\;\right)
+		\cdot
+		p^{(2)}_{s_{1}}(s_{2}) \cdot p^{(1)}(s_{1})
+	\end{eqnarray*}
+\end{enumerate}
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
