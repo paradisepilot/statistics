@@ -94,13 +94,82 @@ Then, the following statements hold:
 		T_{y} \;\; := \;\; \underset{k \in U}{\sum}\;\, y_{k}
 	\end{equation*}
 \item
-	\begin{equation*}
+	The variance \,$\Var\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right]$\, of
+	\;$\widehat{T}^{\TvertO}_{y}$\, is gven by:
+	\begin{eqnarray*}
 	\Var\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right]
+	& = &
+		\Var\!\left[\, E\!\left(\left.\widehat{T}^{\TvertO}_{y} \,\right\vert\, S_{1} \,\right) \,\right]
+		\; + \;
+		E\!\left[\, \Var\!\left(\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right) \;\right]
+	\\
+	& = &
+		\underset{i \in U}{\sum}\;\,
+		\underset{j \in U}{\sum}\;\;
+			\Delta^{(1)}_{ij} \cdot \dfrac{y_{i}}{\pi^{(1)}_{i}} \cdot \dfrac{y_{j}}{\pi^{(1)}_{j}}
+		\; + \;
+		E_{\,p^{(1)}}\!\!\left[\;
+			\Var\!\left(\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right)
+			%\underset{i \in s_{1} }{\sum}\;\;
+			%\underset{j \in s_{1} }{\sum}\;\,
+			%	\Delta^{(2)}_{ij \vert s_{1}}
+			%	\cdot
+			%	\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert s_{1}} }
+			%	\cdot
+			%	\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }
+		\;\right]
+	\end{eqnarray*}
+	where
+	\,$\Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right] : \mathcal{S}^{(1)} \longrightarrow \Re$\,
+	is given by
+	\begin{equation*}
+	\Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} = {\color{red}s_{1}} \,\right]
+	\;\; = \;\;
+		\underset{i \in {\color{red}s_{1}} }{\sum}\;\;
+		\underset{j \in {\color{red}s_{1}} }{\sum}\;\,
+			\Delta^{(2)}_{ij \vert {\color{red}s_{1}}}
+			\cdot
+			\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert {\color{red}s_{1}}} }
+			\cdot
+			\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert {\color{red}s_{1}}} }
+	\end{equation*}
+	\begin{equation*}
+	\begin{array}{lccclcl}
+	\Delta^{(1)}_{ij} & := & \pi^{(1)}_{ij} - \pi^{(1)}_{i} \cdot \pi^{(1)}_{j}\,,
+	&&
+	\pi^{(1)}_{ij} & := & \underset{i,j \in s_{1}}{\sum}\; p^{(1)}(s_{1})\,,
+	\\
+	\Delta^{(2)}_{ij \vert s_{1}} & := & \pi^{(2)}_{ij \vert s_{1}} - \pi^{(2)}_{i \vert s_{1}} \cdot \pi^{(2)}_{j \vert s_{1}}\,,
+	&{\color{white}\overset{\textnormal{\Large$1$}}{111}}&
+	\pi^{(2)}_{ij \vert s_{1}} & := & \underset{i,j \in s_{2}}{\sum}\; p^{(2)}_{s_{1}}(s_{2})\,.
+	\end{array}
 	\end{equation*}
 \item
+	If \,$\pi^{(1)}_{ij} > 0$\, for each \,$i,j \in U$\, and
+	\,$\pi^{(2)}_{ij \vert s_{1}} > 0$\, for each \,$s_{1} \in \mathcal{S}^{(1)}$\, and each \,$i,j \in s_{1}$\,,
+	then the function
+	\,$\widehat{\Var}\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right] : \mathcal{S}^{(1)} \longrightarrow \Re$\,
+	given by
 	\begin{equation*}
-	\widehat{\Var}\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right]
+	\widehat{\Var}\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right](s_{2} \vert s_{1})
+	\;\; := \;\;
+		\underset{i \in s_{1}}{\sum}\;\,
+		\underset{j \in s_{1}}{\sum}\;\;
+			\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} }
+			\cdot
+			\dfrac{y_{i}}{\pi^{(1)}_{i}}
+			\cdot
+			\dfrac{y_{j}}{\pi^{(1)}_{j}}
+		\;\, + \,
+		\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\;
+		\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+			\dfrac{ \Delta^{(2)}_{ij \vert s_{1}} }{ \pi^{(2)}_{ij \vert s_{1}} }
+			\cdot
+			\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert s_{1}} }
+			\cdot
+			\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }
 	\end{equation*}
+	is well-defined and it is an unbiased estimator of \,$\Var\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right]$.
 \end{enumerate}
 \end{theorem}
 \proof
@@ -139,8 +208,6 @@ Then, the following statements hold:
 		\underset{(s_{2} \vert s_{1})\in\mathcal{S}}{\sum}\;\,
 		\widehat{T}^{\TvertO}_{y}(s_{2} \vert s_{1}) \cdot p(s_{2} \vert s_{1})
 	\;\; = \;\;
-	%\\
-	%& = &
 		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
 		\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}
 		\left(\;
@@ -240,13 +307,24 @@ Then, the following statements hold:
 		T_{y}
 	\end{eqnarray*}
 \item
+	First, recall that the ``Law of Total Variance'' states that
+	\begin{equation*}
+	\Var[\,Y\,]
+	\;\; = \;\;
+		\Var\!\left[\;\overset{{\color{white}.}}{E}\!\left(\,Y\,\vert\,X\,\right)\;\right]
+		\; + \;
+		E\!\left[\;\overset{{\color{white}.}}{\Var}\!\left(\,Y\,\vert\,X\,\right)\;\right],
+	\end{equation*}
+	for any two random variables $X$ and $Y$ defined on a common probability space.
+	Hence, we have
 	\begin{eqnarray*}
 	\Var\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right]
 	& = &
 		\Var\!\left[\, E\!\left(\left.\widehat{T}^{\TvertO}_{y} \,\right\vert\, S_{1} \,\right) \,\right]
 		\; + \;
-		E\!\left(\, \Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right] \;\right)
+		E\!\left[\, \Var\!\left(\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right) \;\right]
 	\end{eqnarray*}
+	Next, we rewrite the first term in the above equation.
 	\begin{eqnarray*}
 	E\!\left(\left.\widehat{T}^{\TvertO}_{y} \,\right\vert\, S_{1} = s_{1} \,\right)
 	& = &
@@ -293,13 +371,10 @@ Then, the following statements hold:
 	\;\; = \;\;
 		\underset{i \in U}{\sum}\;\,
 		\underset{j \in U}{\sum}\;\;
-		\Delta^{(1)}_{ij} \cdot \dfrac{y_{i}}{\pi^{(1)}_{i}} \cdot \dfrac{y_{j}}{\pi^{(1)}_{j}}\,,
+			\Delta^{(1)}_{ij} \cdot \dfrac{y_{i}}{\pi^{(1)}_{i}} \cdot \dfrac{y_{j}}{\pi^{(1)}_{j}}\,.
 	\end{equation*}
-	where
-	\,$\Delta^{(1)}_{ij} \, := \, \pi^{(1)}_{ij} - \pi^{(1)}_{i} \cdot \pi^{(1)}_{j}$\,
-	and
-	\,$\pi^{(1)}_{ij} \, := \, \underset{i,j \in s_{1}}{\sum}\; p^{(1)}(s_{1})$\,.
-	Next, note that, for each fixed $s_{1} \in \mathcal{S}^{(1)}$,
+	Now, we rewrite \,$E\!\left[\, \Var\!\left(\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right) \;\right]$.\,
+	First, note that, for each fixed $s_{1} \in \mathcal{S}^{(1)}$,
 	\begin{equation*}
 	\widehat{T}^{\TvertO}_{y}(s_{2} \vert s_{1})
 	\;\; := \;\;
@@ -317,22 +392,29 @@ Then, the following statements hold:
 			\cdot
 			\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert s_{1}} }
 			\cdot
-			\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }\,,
+			\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }\,.
 	\end{equation*}
-	where
-	\,$\Delta^{(2)}_{ij \vert s_{1}} \, := \, \pi^{(2)}_{ij \vert s_{1}} - \pi^{(2)}_{i \vert s_{1}} \cdot \pi^{(2)}_{j \vert s_{1}}$\,
-	and
-	\,$\pi^{(2)}_{ij \vert s_{1}} \, := \, \underset{i,j \in s_{2}}{\sum}\; p^{(2)}_{s_{1}}(s_{2})$\,.
+	Thus,
+	\begin{equation*}
+	E\!\left[\, \Var\!\left(\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right) \;\right]
+	\;\; = \;\;
+		E_{\,p^{(1)}}\!\!\left[\, \Var\!\left(\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right) \;\right]
+	\;\; = \;\;
+		E_{\,p^{(1)}}\!\!\left[\;\;
+			\underset{i \in s_{1} }{\sum}\;\;
+			\underset{j \in s_{1} }{\sum}\;\,
+				\Delta^{(2)}_{ij \vert s_{1}}
+				\cdot
+				\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert s_{1}} }
+				\cdot
+				\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }
+		\;\right]
+	\end{equation*}
+\item
+	Observe that
 	\begin{eqnarray*}
-	E\!\left(\, \Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right] \;\right)
+	\Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} = s_{1} \,\right]
 	& = &
-		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;
-		p^{(1)}(s_{1}) \cdot \Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} = s_{1} \,\right]
-	\\
-	& = &
-		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;
-		p^{(1)}(s_{1}) \,\cdot
-		\left(\,
 		\underset{i \in s_{1}}{\sum}\;\,
 		\underset{j \in s_{1}}{\sum}\;\;
 			\Delta^{(2)}_{ij \vert s_{1}}
@@ -340,8 +422,80 @@ Then, the following statements hold:
 			\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert s_{1}} }
 			\cdot
 			\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }
-		\,\right)
+	\\
+	& = &
+		E\!\left[\;\,
+		\left.
+			\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\;
+			\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+				\dfrac{ \Delta^{(2)}_{ij \vert s_{1}} }{ \pi^{(2)}_{ij \vert s_{1}} }
+				\cdot
+				\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert s_{1}} }
+				\cdot
+				\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }
+		\;\,\right\vert\;
+			S_{1} = s_{1}
+		\;\right]
 	\end{eqnarray*}
+	\begin{eqnarray*}
+	E\!\left(\, \Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right] \;\right)
+	& = &
+		E\!\left(\;E\!\left[\;\,
+		\left.
+			\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\;
+			\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+				\dfrac{ \Delta^{(2)}_{ij \vert s_{1}} }{ \pi^{(2)}_{ij \vert s_{1}} }
+				\cdot
+				\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert s_{1}} }
+				\cdot
+				\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }
+		\;\,\right\vert\;
+			S_{1}
+		\;\right]\;\,\right)
+	\end{eqnarray*}
+	Lastly, recall that
+	\begin{equation*}
+		\underset{i \in U}{\sum}\;\,
+		\underset{j \in U}{\sum}\;\;
+			\Delta^{(1)}_{ij}
+			\cdot
+			\dfrac{y_{i}}{\pi^{(1)}_{i}}
+			\cdot
+			\dfrac{y_{j}}{\pi^{(1)}_{j}}
+	\;\; = \;\;
+		E_{\,p^{(1)}}\!\!\left[\;\,
+			\underset{i \in s_{1}}{\sum}\;\,
+			\underset{j \in s_{1}}{\sum}\;\;
+				\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} }
+				\cdot
+				\dfrac{y_{i}}{\pi^{(1)}_{i}}
+				\cdot
+				\dfrac{y_{j}}{\pi^{(1)}_{j}}
+		\;\right]
+	\end{equation*}
+	Thus, the function
+	\,$\widehat{\Var}\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right] : \mathcal{S} \longrightarrow \Re$\,
+	defined by
+	\begin{equation*}
+	\widehat{\Var}\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right](s_{2} \vert s_{1})
+	\;\; := \;\;
+		\underset{i \in s_{1}}{\sum}\;\,
+		\underset{j \in s_{1}}{\sum}\;\;
+			\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} }
+			\cdot
+			\dfrac{y_{i}}{\pi^{(1)}_{i}}
+			\cdot
+			\dfrac{y_{j}}{\pi^{(1)}_{j}}
+		\;\, + \,
+		\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\;
+		\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+			\dfrac{ \Delta^{(2)}_{ij \vert s_{1}} }{ \pi^{(2)}_{ij \vert s_{1}} }
+			\cdot
+			\dfrac{ y_{i} \,/\, \pi^{(1)}_{i} }{ \pi^{(2)}_{i \vert s_{1}} }
+			\cdot
+			\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }
+	\end{equation*}
+	is indeed an unbiased estimator of \,$\Var\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right]$.
 \end{enumerate}
 \qed
 
