@@ -138,8 +138,9 @@ Then, the following statements hold:
 	& := &
 		\underset{(s_{2} \vert s_{1})\in\mathcal{S}}{\sum}\;\,
 		\widehat{T}^{\TvertO}_{y}(s_{2} \vert s_{1}) \cdot p(s_{2} \vert s_{1})
-	\\
-	& = &
+	\;\; = \;\;
+	%\\
+	%& = &
 		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
 		\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}
 		\left(\;
@@ -150,12 +151,93 @@ Then, the following statements hold:
 	\\
 	& = &
 		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
-		\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}
+		p^{(1)}(s_{1}) \,\cdot
 		\left(\;
-			\underset{k \in s_{2}}{\sum}\;\dfrac{y_{k}}{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+			\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}\;\,
+			\underset{k \in s_{2}}{\sum}\;\,
+			\dfrac{y_{k}}{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+			\cdot
+			p^{(2)}_{s_{1}}(s_{2})
 		\;\right)
-		\cdot
-		p^{(2)}_{s_{1}}(s_{2}) \cdot p^{(1)}(s_{1})
+	\\
+	& = &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
+		p^{(1)}(s_{1}) \,\cdot
+		\left(\;
+			\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}\;\,
+			\underset{k \in {\color{red}s_{1}}}{\sum}\;\,
+			\dfrac{ {\color{red}I_{k \vert s_{1}}\!(s_{2})} \cdot y_{k} }{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+			\cdot
+			p^{(2)}_{s_{1}}(s_{2})
+		\;\right)
+	\\
+	& = &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
+		p^{(1)}(s_{1}) \,\cdot
+		\left(\;
+			\underset{k \in {\color{red}s_{1}}}{\sum}\;\,
+			\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}\;\,
+			\dfrac{ y_{k} \cdot I_{k \vert s_{1}}\!(s_{2}) }{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+			\cdot
+			p^{(2)}_{s_{1}}(s_{2})
+		\;\right)
+	\\
+	& = &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
+		p^{(1)}(s_{1}) \,\cdot
+		\left(\;
+			\underset{k \in s_{1}}{\sum}\;\,
+			\dfrac{ y_{k} }{ \pi^{(1)}_{k} \cdot \pi^{(2)}_{k \vert s_{1}} }
+				\;\cdot
+				\underset{s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}\;
+				I_{k \vert s_{1}}\!(s_{2}) \cdot p^{(2)}_{s_{1}}(s_{2})
+		\;\right)
+	\\
+	& = &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
+		p^{(1)}(s_{1}) \,\cdot
+		\left(\;
+			\underset{k \in s_{1}}{\sum}\;\,
+			\dfrac{ y_{k} }{ \pi^{(1)}_{k} \cdot {\color{red}\pi^{(2)}_{k \vert s_{1}}} }
+				\;\cdot
+				{\color{red}\underset{k \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}}}{\sum}\; p^{(2)}_{s_{1}}(s_{2})}
+		\;\right)
+	\\
+	& = &
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
+		p^{(1)}(s_{1}) \,\cdot
+		\left(\;\,
+			\underset{k \in s_{1}}{\sum}\;\,
+			\dfrac{ y_{k} }{ \pi^{(1)}_{k} }
+		\,\right)
+	\;\; = \;\;
+		\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;\,
+		p^{(1)}(s_{1}) \,\cdot
+		\left(\;\,
+			\underset{k \in {\color{red}U}}{\sum}\;\,
+			\dfrac{ {\color{red}I_{k}\!(s_{1})} \cdot y_{k} }{ \pi^{(1)}_{k} }
+		\,\right)
+	\\
+	& = &
+		\underset{k \in U}{\sum}\;\;
+		\dfrac{ y_{k} }{ \pi^{(1)}_{k} }
+			\,\cdot
+			\left(\;\,
+				\underset{s_{1} \in \mathcal{S}^{(1)}}{\sum}\;
+				p^{(1)}(s_{1}) \cdot I_{k}\!(s_{1})
+			\,\right)
+	\;\; = \;\;
+		\underset{k \in U}{\sum}\;\;
+		\dfrac{ y_{k} }{ \pi^{(1)}_{k} }
+			\,\cdot
+			\left(\;\,
+				\underset{k \in s_{1} \in \mathcal{S}^{(1)}}{\sum}\; p^{(1)}(s_{1})
+			\,\right)
+	\\
+	& \overset{{\color{white}\textnormal{\huge$1$}}}{=} &
+		\underset{k \in U}{\sum}\; y_{k}
+	\;\; = \;\;
+		T_{y}
 	\end{eqnarray*}
 \end{enumerate}
 \qed
