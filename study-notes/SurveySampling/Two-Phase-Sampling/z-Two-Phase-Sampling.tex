@@ -148,19 +148,19 @@ Then, the following statements hold:
 	If \,$\pi^{(1)}_{ij} > 0$\, for each \,$i,j \in U$\, and
 	\,$\pi^{(2)}_{ij \vert s_{1}} > 0$\, for each \,$s_{1} \in \mathcal{S}^{(1)}$\, and each \,$i,j \in s_{1}$\,,
 	then the function
-	\,$\widehat{\Var}\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right] : \mathcal{S}^{(1)} \longrightarrow \Re$\,
+	\,$\widehat{\Var}\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right] : \mathcal{S}^{(1)} \longrightarrow \Re$\,
 	given by
 	\begin{equation*}
-	\widehat{\Var}\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right](s_{2} \vert s_{1})
-	\;\; := \;\;
-		\underset{i \in s_{1}}{\sum}\;\,
-		\underset{j \in s_{1}}{\sum}\;\;
-			\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} }
+	\widehat{\Var}\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right](s_{2} \vert s_{1})
+	\; := \,
+		\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+		\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+			\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} \cdot \pi^{(2)}_{ij \vert s_{1}} }
 			\cdot
 			\dfrac{y_{i}}{\pi^{(1)}_{i}}
 			\cdot
 			\dfrac{y_{j}}{\pi^{(1)}_{j}}
-		\;\, + \,
+		\;\; + \,
 		\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\;
 		\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
 			\dfrac{ \Delta^{(2)}_{ij \vert s_{1}} }{ \pi^{(2)}_{ij \vert s_{1}} }
@@ -169,7 +169,7 @@ Then, the following statements hold:
 			\cdot
 			\dfrac{ y_{j} \,/\, \pi^{(1)}_{j} }{ \pi^{(2)}_{j \vert s_{1}} }
 	\end{equation*}
-	is well-defined and it is an unbiased estimator of \,$\Var\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right]$.
+	is well-defined and it is an unbiased estimator of \,$\Var\!\left[\;\widehat{T}^{\TvertO}_{y}\,\right]$.
 \end{enumerate}
 \end{theorem}
 \proof
@@ -413,6 +413,53 @@ Then, the following statements hold:
 \item
 	Observe that
 	\begin{eqnarray*}
+	&&
+		E\!\left[\;\,
+			\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+			\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+				\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} \cdot \pi^{(2)}_{ij \vert s_{1}} }
+				\cdot
+				\dfrac{y_{i}}{\pi^{(1)}_{i}}
+				\cdot
+				\dfrac{y_{j}}{\pi^{(1)}_{j}}
+		\,\;\right]
+	\\
+	& = &
+		E_{\,p^{(1)}}\!\!\left[\;E\!\left(\;
+		\left.
+			\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+			\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+				\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} \cdot \pi^{(2)}_{ij \vert s_{1}} }
+				\cdot
+				\dfrac{y_{i}}{\pi^{(1)}_{i}}
+				\cdot
+				\dfrac{y_{j}}{\pi^{(1)}_{j}}
+		\,\;\right\vert\;\,
+			S_{1}
+		\;\right)\;\right]
+	\\
+	& = &
+		E_{\,p^{(1)}}\!\!\left[\;\,
+			\underset{i \in s_{1}}{\sum}\;\,
+			\underset{j \in s_{1}}{\sum}\;\,
+				\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} }
+				\cdot
+				\dfrac{y_{i}}{\pi^{(1)}_{i}}
+				\cdot
+				\dfrac{y_{j}}{\pi^{(1)}_{j}}
+		\;\right]
+	\\
+	& \overset{{\color{white}\textnormal{\Huge$1$}}}{=} &
+		\underset{i \in U}{\sum}\;\,
+		\underset{j \in U}{\sum}\;\;
+			\Delta^{(1)}_{ij}
+			\cdot
+			\dfrac{y_{i}}{\pi^{(1)}_{i}}
+			\cdot
+			\dfrac{y_{j}}{\pi^{(1)}_{j}}
+	\end{eqnarray*}
+	Observe also that
+	\begin{eqnarray*}
 	\Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} = s_{1} \,\right]
 	& = &
 		\underset{i \in s_{1}}{\sum}\;\,
@@ -437,10 +484,11 @@ Then, the following statements hold:
 			S_{1} = s_{1}
 		\;\right]
 	\end{eqnarray*}
+	Hence,
 	\begin{eqnarray*}
 	E\!\left(\, \Var\!\left[\, \left.\widehat{T}^{\TvertO}_{y} \;\right\vert\, S_{1} \,\right] \;\right)
 	& = &
-		E\!\left(\;E\!\left[\;\,
+		E_{\,p^{(1)}}\!\left(\;E\!\left[\;\,
 		\left.
 			\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\;
 			\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
@@ -453,41 +501,21 @@ Then, the following statements hold:
 			S_{1}
 		\;\right]\;\,\right)
 	\end{eqnarray*}
-	Lastly, recall that
-	\begin{equation*}
-		\underset{i \in U}{\sum}\;\,
-		\underset{j \in U}{\sum}\;\;
-			\Delta^{(1)}_{ij}
-			\cdot
-			\dfrac{y_{i}}{\pi^{(1)}_{i}}
-			\cdot
-			\dfrac{y_{j}}{\pi^{(1)}_{j}}
-	\;\; = \;\;
-		E_{\,p^{(1)}}\!\!\left[\;\,
-			\underset{i \in s_{1}}{\sum}\;\,
-			\underset{j \in s_{1}}{\sum}\;\;
-				\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} }
-				\cdot
-				\dfrac{y_{i}}{\pi^{(1)}_{i}}
-				\cdot
-				\dfrac{y_{j}}{\pi^{(1)}_{j}}
-		\;\right]
-	\end{equation*}
 	Thus, the function
 	\,$\widehat{\Var}\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right] : \mathcal{S} \longrightarrow \Re$\,
 	defined by
 	\begin{equation*}
 	\widehat{\Var}\!\left[\,\widehat{T}^{\TvertO}_{y}\,\right](s_{2} \vert s_{1})
-	\;\; := \;\;
-		\underset{i \in s_{1}}{\sum}\;\,
-		\underset{j \in s_{1}}{\sum}\;\;
-			\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} }
+	\; := \,
+		\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;
+		\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
+			\dfrac{ \Delta^{(1)}_{ij} }{ \pi^{(1)}_{ij} \cdot \pi^{(2)}_{ij \vert s_{1}} }
 			\cdot
 			\dfrac{y_{i}}{\pi^{(1)}_{i}}
 			\cdot
 			\dfrac{y_{j}}{\pi^{(1)}_{j}}
-		\;\, + \,
-		\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\;
+		\; + \,
+		\underset{i \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;
 		\underset{j \in s_{2} \in \mathcal{S}^{(2)}_{s_{1}} }{\sum}\;\,
 			\dfrac{ \Delta^{(2)}_{ij \vert s_{1}} }{ \pi^{(2)}_{ij \vert s_{1}} }
 			\cdot
