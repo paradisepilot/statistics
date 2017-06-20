@@ -131,6 +131,75 @@ For each $x \in \Re^{d}$, observe that
 	\quad
 	\textnormal{by Claim 1}
 \end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+&&
+	P\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+	\, - \,
+	P\!\left(\,\left. g^{*} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+\\
+&=&
+	{\color{white}- \;}
+	\left\{\;
+		\,\overset{{\color{white}.}}{I}_{\{g^{*}(x)\,=\,1\}} \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\; + \;
+		\,\overset{{\color{white}.}}{I}_{\{g^{*}(x)\,=\,0\}} \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\;\right\}
+\\
+&&
+	- \;
+	\left\{\;
+		\,\;\overset{{\color{white}.}}{I}_{\{g(x)\,=\,1\}}\, \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\; + \;
+		\,\;\overset{{\color{white}.}}{I}_{\{g(x)\,=\,0\}}\, \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\;\right\}
+\\
+&=&
+	P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right) \cdot \left\{ I_{\{g^{*}(x)\,=\,1\}} \overset{{\color{white}.}}{-} I_{\{g(x)\,=\,1\}} \right\}
+	\,+\,
+	P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right) \cdot \left\{ I_{\{g^{*}(x)\,=\,0\}} \overset{{\color{white}.}}{-} I_{\{g(x)\,=\,0\}} \right\}
+\\
+&=&
+	\cdots
+	\;\; = \;\;
+	\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
+	\cdot
+	\left(\; I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)
+\end{eqnarray*}
+Next, observe that we always have:
+$\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
+\cdot
+\left(\; I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right) \; \geq 0$,
+which follows from the definition of $g^{*}$, as illustrated in the following table:
+{\footnotesize
+\begin{center}
+\begin{tabular}{|c||c|c|c|}
+\hline
+&&&\\
+	$P\!\left(\left.Y=1\,\right\vert X =x \,\right)$ &
+	$2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1$ &
+	$I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}}$ &
+	$\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)$
+	$\cdot$
+	$\left(\; I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)$
+\\
+&&&\\
+\hline
+	$\underset{{\color{white}-}}{\overset{{\color{white}-}}{>} 1/2}$ &
+	$ >\; 0 $ &
+	$ =\; 0 \;\textnormal{or}\; +1$ &
+	$ \geq\; 0 $
+\\
+\hline
+	$\underset{{\color{white}-}}{\overset{{\color{white}-}}{\leq} 1/2}$ &
+	$ \leq\; 0$ &
+	$ =\; 0 \;\textnormal{or}\; -1$ &
+	$ \geq\; 0 $
+\\
+\hline
+\end{tabular}
+\end{center}
+}
 \qed
 
 
