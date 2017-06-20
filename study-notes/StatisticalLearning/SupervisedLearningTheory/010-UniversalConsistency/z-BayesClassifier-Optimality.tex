@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Optimality of the Bayes Classifier and the Bayes Risk}
+\section{Optimality of the Bayes $(Y \vert X)$-Classifier and the Bayes $(Y \vert X)$-Risk}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -15,29 +15,36 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{definition}[Classifier, risk, Bayes classifier, Bayes Risk]
+\begin{definition}[Classifier]
+\mbox{}\vskip 0.1cm
+\noindent
+A \,\underline{\textbf{classifier}}\, is a Borel measurable function
+$g : \Re^{d} \longrightarrow \{0,1\}$,
+where $d \in \N$ is a natural number.
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{definition}[$(Y \vert X)$-Risk, Bayes $(Y \vert X)$-classifier, Bayes $(Y \vert X)$-Risk]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
 \begin{itemize}
 \item
-	$(\Omega,\mathcal{A},\mu)$ is a probability space.
-\item
 	$d \in \N$.
 	$\mathcal{O}(\Re^{d})$ denotes the Borel $\sigma$-algebra of \,$\Re^{d}$.
 \item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
 	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d}))$ and\,
 	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
 	are random variables.
 \end{itemize}
-Define:
+Then:
 \begin{itemize}
 \item
-	A \,\underline{\textbf{classifier}}\, is a Borel measurable function
-	$g : \Re^{d} \longrightarrow \{0,1\}$.
-\item
 	The
-	\,\underline{\textbf{risk} with respect to predicting $Y$ with $g \circ X$},
+	\,\underline{\textbf{$(Y \vert X)$-risk}}\,,
 	denoted by $L_{\,Y \vert X}(g)$, of a classifier
 	$g : \Re^{d} \longrightarrow \{0,1\}$ is defined to be:
 	\begin{equation*}
@@ -45,7 +52,7 @@ Define:
 	\end{equation*}
 \item
 	The
-	\,\underline{\textbf{Bayes classifier} of predicting $Y$ based on $X$}\,
+	\,\underline{\textbf{Bayes $(Y \vert X)$-classifier}}\,
 	is defined as follows:
 	\begin{equation*}
 	\kappa^{*}_{\,Y \vert X} : \Re^{d} \longrightarrow \{0,1\} : x \longmapsto
@@ -56,8 +63,8 @@ Define:
 		\end{array}\right.
 	\end{equation*}
 \item
-	The \underline{\textbf{Bayes risk} of predicting $Y$ based on $X$},
-	denoted by $L^{*}_{\,Y \vert X}$, is the probability of error of the Bayes classifier, i.e.
+	The \underline{\textbf{Bayes $(Y \vert X)$-risk}}\,,
+	denoted by $L^{*}_{\,Y \vert X}$, is the probability of error of the Bayes $(Y \vert X)$-classifier, i.e.
 	\begin{equation*}
 	L^{*}_{\,Y \vert X} \;\; := \;\; P\!\left(\, \kappa^{*}_{\,Y \vert X} \circ X \neq Y \,\right)
 	\end{equation*}
@@ -73,25 +80,26 @@ Define:
 Suppose:
 \begin{itemize}
 \item
-	$(\Omega,\mathcal{A},\mu)$ is a probability space.
-\item
 	$d \in \N$.
 	$\mathcal{O}(\Re^{d})$ denotes the Borel $\sigma$-algebra of \,$\Re^{d}$.
 \item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
 	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d}))$ and\,
 	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
 	are random variables.
-\item
-	$\kappa^{*}_{\,Y \vert X}$ is the Bayes classifier of predicting $Y$ based on $X$.
 \end{itemize}
-Then,
+Then, the Bayes $(Y \vert X)$-classifier \,$\kappa^{*}_{\,Y \vert X}$\, has the smallest
+$(Y \vert X)$-risk among all classifiers, i.e.
 \begin{equation*}
-P\!\left(\, \kappa^{*}_{\,Y \vert X} \circ X \neq Y \,\right)
+L_{\,Y \vert X}(\,\kappa^{*}_{\,Y \vert X}\,)
+\;\; := \;\;
+	P\!\left(\, \kappa^{*}_{\,Y \vert X} \circ X \neq Y \,\right)
 \;\;\leq\;\;
-	P\!\left(\, g \circ X \neq Y \,\right)\,,
-	\quad
-	\textnormal{for each classifier $g : \Re^{d} \longrightarrow \{0,1\}$.}
+	P\!\left(\, g \circ X \neq Y \,\right)
+\;\; =: \;\;
+	L_{\,Y \vert X}(\, g \,)\,,
 \end{equation*}
+for each classifier $g : \Re^{d} \longrightarrow \{0,1\}$.
 \end{theorem}
 \proof
 \vskip 0.2cm
