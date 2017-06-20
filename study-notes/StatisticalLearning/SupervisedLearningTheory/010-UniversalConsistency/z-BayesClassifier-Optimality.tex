@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Optimality of the Bayes Classifier}
+\section{Optimality of the Bayes Classifier and the Bayes Risk}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -15,6 +15,58 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{definition}[Classifier, risk, Bayes classifier, Bayes Risk]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$d \in \N$.
+	$\mathcal{O}(\Re^{d})$ denotes the Borel $\sigma$-algebra of \,$\Re^{d}$.
+\item
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d}))$ and\,
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
+	are random variables.
+\end{itemize}
+Define:
+\begin{itemize}
+\item
+	A \,\underline{\textbf{classifier}}\, is a Borel measurable function
+	$g : \Re^{d} \longrightarrow \{0,1\}$.
+\item
+	The
+	\,\underline{\textbf{risk} with respect to predicting $Y$ with $g \circ X$},
+	denoted by $L_{\,Y \vert X}(g)$, of a classifier
+	$g : \Re^{d} \longrightarrow \{0,1\}$ is defined to be:
+	\begin{equation*}
+	L_{\,Y \vert X}(g) \;\; := \;\; P\!\left(\,g \circ X \overset{{\color{white}.}}{\neq} Y\,\right)
+	\end{equation*}
+\item
+	The
+	\,\underline{\textbf{Bayes classifier} of predicting $Y$ based on $X$}\,
+	is defined as follows:
+	\begin{equation*}
+	\kappa^{*}_{\,Y \vert X} : \Re^{d} \longrightarrow \{0,1\} : x \longmapsto
+		\left\{\begin{array}{cl}
+			0, & \textnormal{if \,$P(\,Y=1 \,\vert X = x) \leq 1/2$}
+			\\
+			\overset{{\color{white}-}}{1}, & \textnormal{if \,$P(\,Y=1 \,\vert X = x) > 1/2$}
+		\end{array}\right.
+	\end{equation*}
+\item
+	The \underline{\textbf{Bayes risk} of predicting $Y$ based on $X$},
+	denoted by $L^{*}_{\,Y \vert X}$, is the probability of error of the Bayes classifier, i.e.
+	\begin{equation*}
+	L^{*}_{\,Y \vert X} \;\; := \;\; P\!\left(\, \kappa^{*}_{\,Y \vert X} \circ X \neq Y \,\right)
+	\end{equation*}
+\end{itemize}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
 \begin{theorem}[Theorem 2.1, p.10, \cite{Devroye1996}]
 \mbox{}\vskip 0.1cm
 \noindent
@@ -27,36 +79,26 @@ Suppose:
 	$\mathcal{O}(\Re^{d})$ denotes the Borel $\sigma$-algebra of \,$\Re^{d}$.
 \item
 	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d}))$ and\,
-	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \{\,0,1\,\}$
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
 	are random variables.
-\end{itemize}
-Define:
-\begin{itemize}
 \item
-	The \underline{\textbf{Bayes classifier}} is defined as follows:
-	\begin{equation*}
-	g^{*} : \Re^{d} \longrightarrow \{\,0,1\,\} : x \longmapsto
-		\left\{\begin{array}{cl}
-			0, & \textnormal{if \,$P(\,Y=1 \,\vert X = x) \leq 1/2$}
-			\\
-			\overset{{\color{white}-}}{1}, & \textnormal{if \,$P(\,Y=1 \,\vert X = x) > 1/2$}
-		\end{array}\right.
-	\end{equation*}
+	$\kappa^{*}_{\,Y \vert X}$ is the Bayes classifier of predicting $Y$ based on $X$.
 \end{itemize}
 Then,
 \begin{equation*}
-P\!\left(\, g^{*} \circ X \neq Y \,\right)
+P\!\left(\, \kappa^{*}_{\,Y \vert X} \circ X \neq Y \,\right)
 \;\;\leq\;\;
 	P\!\left(\, g \circ X \neq Y \,\right)\,,
 	\quad
-	\textnormal{for each Borel measurable $g : \Re^{d} \longrightarrow \{\,0,1\,\}$.}
+	\textnormal{for each classifier $g : \Re^{d} \longrightarrow \{0,1\}$.}
 \end{equation*}
 \end{theorem}
 \proof
 \vskip 0.2cm
 \noindent
 \textbf{Claim 1:}\quad
-For each $x \in \Re^{d}$ and $y \in \{\,0,1\,\}$, we have
+For each $x \in \Re^{d}$, $y \in \{0,1\}$ and classifier $g : \Re^{d} \longrightarrow \{0,1\}$,
+we have
 \begin{equation*}
 P\!\left(\,\left. Y = y \,,\, \overset{{\color{white}.}}{g} \circ X = y \,\right\vert X = x \,\right)
 \;=\;
@@ -107,17 +149,17 @@ This completes the proof of Claim 1.
 
 \vskip 0.8cm
 \noindent
-\textbf{Claim 2:}\; For each $x \in \Re^{d}$, we have
+\textbf{Claim 2:}\; For each $x \in \Re^{d}$ and each classifier $g : \Re^{d} \longrightarrow \{0,1\}$, we have
 \begin{equation*}
 P\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
 \, - \,
-P\!\left(\,\left. g^{*} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+P\!\left(\,\left. \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
 \; = \;
 	\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
 	\cdot
-	\left(\; I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)
+	\left(\; I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)
 \end{equation*}
-Proof of Claim 2:\; For each $x \in \Re^{d}$, observe that
+Proof of Claim 2:\; For each $x \in \Re^{d}$ and each classifier $g : \Re^{d} \longrightarrow \{0,1\}$, observe that
 \begin{eqnarray*}
 &&
 	P\!\left(\,\left. \overset{{\color{white}.}}{g} \circ X \neq Y \,\right\vert X = x \,\right)
@@ -146,52 +188,54 @@ Hence,
 &&
 	P\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
 	\, - \,
-	P\!\left(\,\left. g^{*} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+	P\!\left(\,\left. \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
 \\
 &=&
 	{\color{white}- \;}
 	\left\{\;
-		\,\overset{{\color{white}.}}{I}_{\{g^{*}(x)\,=\,1\}} \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\,\overset{{\color{white}.}}{I}_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
 		\; + \;
-		\,\overset{{\color{white}.}}{I}_{\{g^{*}(x)\,=\,0\}} \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\,\overset{{\color{white}.}}{I}_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,0\}} \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
 		\;\right\}
 \\
 &&
 	- \;
 	\left\{\;
-		\,\;\overset{{\color{white}.}}{I}_{\{g(x)\,=\,1\}}\, \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\,{\color{white}111}\overset{{\color{white}.}}{I}_{\{g(x)\,=\,1\}}\, \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
 		\; + \;
-		\,\;\overset{{\color{white}.}}{I}_{\{g(x)\,=\,0\}}\, \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\,\,\,{\color{white}11}\overset{{\color{white}.}}{I}_{\{g(x)\,=\,0\}}\, \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
 		\;\right\}
 \\
 &=&
-	P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right) \cdot \left\{ I_{\{g^{*}(x)\,=\,1\}} \overset{{\color{white}.}}{-} I_{\{g(x)\,=\,1\}} \right\}
+	P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right) \cdot \left\{ I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \overset{{\color{white}.}}{-} I_{\{g(x)\,=\,1\}} \right\}
 	\,+\,
-	P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right) \cdot \left\{ I_{\{g^{*}(x)\,=\,0\}} \overset{{\color{white}.}}{-} I_{\{g(x)\,=\,0\}} \right\}
+	P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right) \cdot \left\{ I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,0\}} \overset{{\color{white}.}}{-} I_{\{g(x)\,=\,0\}} \right\}
 \\
 &=&
 	\cdots
 	\;\; = \;\;
 	\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
 	\cdot
-	\left(\; I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)
+	\left(\; I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)
 \end{eqnarray*}
 This proves Claim 2.
 
 \vskip 0.8cm
 \noindent
-\textbf{Claim 3:}\; For each $x \in \Re^{d}$, we have:
-$P\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+\textbf{Claim 3:}\; For each $x \in \Re^{d}$ and each classifier $g : \Re^{d} \longrightarrow \{0,1\}$, we have:
+\begin{equation*}
+P\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
 \, - \,
-P\!\left(\,\left. g^{*} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right) \; \geq \; 0$.
-\vskip 0.1cm
-\noindent
+P\!\left(\,\left. \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right) \; \geq \; 0.
+\end{equation*}
 Proof of Claim 3:\;
 By Claim 2, it is equivalent to show
-$\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
+\begin{equation*}
+\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
 \cdot
-\left(\; I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right) \; \geq 0$,
-which in turns follows readily from the definition of $g^{*}$, as illustrated in the following table:
+\left(\; I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right) \; \geq 0,
+\end{equation*}
+which in turns follows readily from the definition of $\kappa^{*}_{\,Y \vert X}$, as illustrated in the following table:
 {\footnotesize
 \begin{center}
 \begin{tabular}{|c||c|c|c|}
@@ -199,10 +243,10 @@ which in turns follows readily from the definition of $g^{*}$, as illustrated in
 &&&\\
 	$P\!\left(\left.Y=1\,\right\vert X =x \,\right)$ &
 	$2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1$ &
-	$I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}}$ &
-	$\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)$
+	$I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}}$ &
+	{\tiny$\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)$
 	$\cdot$
-	$\left(\; I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)$
+	$\left(\; I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)$}
 \\
 &&&\\
 \hline
@@ -227,11 +271,12 @@ This proves Claim 3.
 \vskip 0.8cm
 \noindent
 \textbf{Claim 4:}\;
-$P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right)$
-\;$=$\;
-$E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right]$
-\vskip 0.1cm
-\noindent
+For each classifier $g : \Re^{d} \longrightarrow \{0,1\}$, we have:
+\begin{equation*}
+P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right)
+\;\;=\;\;
+E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right].
+\end{equation*}
 Proof of Claim 4:\;
 \begin{eqnarray*}
 P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right)
@@ -248,18 +293,18 @@ This proves Claim 4.
 \noindent
 We are now ready to complete the proof of the Theorem.
 \begin{eqnarray*}
-P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right) \,-\, P\!\left(\,g^{*}\overset{{\color{white}.}}{\circ}X \neq Y\,\right)
+P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right) \,-\, P\!\left(\,\kappa^{*}_{\,Y \vert X}\overset{{\color{white}.}}{\circ}X \neq Y\,\right)
 &=&
 	E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right]
 	\; - \;
-	E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g^{*} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right],
+	E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right],
 	\;\;\textnormal{by Claim 4}
 \\
 &=&
 	E\!\left[\;
 		\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)
 		\; - \;
-		\overset{{\color{white}.}}{P}\!\left(\,\left. g^{*} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)
+		\overset{{\color{white}.}}{P}\!\left(\,\left. \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)
 	\;\right]
 \\
 &\overset{{\color{white}.}}{\geq}&
@@ -269,7 +314,6 @@ P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right) \,-\, P\!\left(\,
 \end{eqnarray*}
 This competes the proof of the Theorem.
 \qed
-
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
