@@ -1,0 +1,144 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Optimality of the Bayes Classifier}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Theorem 2.1, p.10, \cite{Devroye1996}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$d \in \N$.
+	$\mathcal{O}(\Re^{d})$ denotes the Borel $\sigma$-algebra of \,$\Re^{d}$.
+\item
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d}))$ and\,
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \{\,0,1\,\}$
+	are random variables.
+\end{itemize}
+Define:
+\begin{itemize}
+\item
+	The \underline{\textbf{Bayes classifier}} is defined as follows:
+	\begin{equation*}
+	g^{*} : \Re^{d} \longrightarrow \{\,0,1\,\} : x \longmapsto
+		\left\{\begin{array}{cl}
+			0, & \textnormal{if \,$P(\,Y=1 \,\vert X = x) \leq 1/2$}
+			\\
+			\overset{{\color{white}-}}{1}, & \textnormal{if \,$P(\,Y=1 \,\vert X = x) > 1/2$}
+		\end{array}\right.
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{equation*}
+P\!\left(\, g^{*} \circ X \neq Y \,\right)
+\;\;\leq\;\;
+	P\!\left(\, g \circ X \neq Y \,\right)\,,
+	\quad
+	\textnormal{for each Borel measurable $g : \Re^{d} \longrightarrow \{\,0,1\,\}$.}
+\end{equation*}
+\end{theorem}
+\proof
+\vskip 0.2cm
+\noindent
+\textbf{Claim 1:}\quad
+For each $x \in \Re^{d}$ and $y \in \{\,0,1\,\}$, we have:
+$P\!\left(\,\left. Y = y \,,\, \overset{{\color{white}.}}{g} \circ X = y \,\right\vert X = x \,\right)$
+\,$=$\,
+$I_{\{g(x)\,=\,y\}} \cdot P\!\left(\,\left. Y = y \,\right\vert X = x \,\right)$
+\vskip 0.2cm
+\noindent
+Proof of Claim 1:\;
+First note that, for $x \in \Re^{d}$ with $g(x) = y$, we have:
+\begin{eqnarray*}
+P\!\left(\,\left. Y = y \,\right\vert X = x \,\right)
+& = &
+	P\!\left(\,\left. Y = y\,,\, g \circ X = y \,\right\vert X = x \,\right)
+	\; + \;
+	P\!\left(\,\left. Y = y\,,\, g \circ X \neq y \,\right\vert X = x \,\right)
+\\
+& = &
+	P\!\left(\,\left. Y = y\,,\, g \circ X = y \,\right\vert X = x \,\right)
+	\; + \;
+	0\,,
+	\quad
+	\textnormal{since \;$g(x) = y$}
+\\
+& = &
+	P\!\left(\,\left. Y = y\,,\, g \circ X = y \,\right\vert X = x \,\right)
+\end{eqnarray*}
+For $x \in \Re^{d}$ with $g(x) \neq y$, we trivially have
+$P\!\left(\,\left. Y = y\,,\, g \circ X = y \,\right\vert X = x \,\right) = 0$.
+In other words,
+\begin{equation*}
+P\!\left(\,\left. Y = y \,,\, \overset{{\color{white}.}}{g} \circ X = y \,\right\vert X = x \,\right)
+\;\; = \;\;
+	\left\{\begin{array}{cl}
+	P\!\left(\,\left. Y = y \,\right\vert X = x \,\right), & \textnormal{if \,$g(x) = y$}
+	\\
+	\overset{{\color{white}-}}{0}, & \textnormal{if \,$g(x) \neq y$}
+	\end{array}\right.
+\end{equation*}
+On the other hand, it is clear that
+\begin{equation*}
+I_{\{g(x)\,=\,y\}} \cdot P\!\left(\,\left. Y = y \,\right\vert X = x \,\right)
+\;\; = \;\;
+	\left\{\begin{array}{cl}
+	P\!\left(\,\left. Y = y \,\right\vert X = x \,\right), & \textnormal{if \,$g(x) = y$}
+	\\
+	\overset{{\color{white}-}}{0}, & \textnormal{if \,$g(x) \neq y$}
+	\end{array}\right.
+\end{equation*}
+This completes the proof of Claim 1.
+
+\vskip 0.5cm
+\noindent
+For each $x \in \Re^{d}$, observe that
+\begin{eqnarray*}
+&&
+	P\!\left(\,\left. \overset{{\color{white}.}}{g} \circ X \neq Y \,\right\vert X = x \,\right)
+\\
+&=&
+	1 - P\!\left(\,\left. Y = \overset{{\color{white}.}}{g} \circ X \,\right\vert X = x \,\right)
+\\
+&=&
+	1 - \left\{\;
+		\overset{{\color{white}.}}{P}\!\left(\,\left. Y = 1 \,,\, \overset{{\color{white}.}}{g} \circ X = 1 \,\right\vert X = x \,\right)
+		\; + \;
+		P\!\left(\,\left. Y = 0 \,,\, \overset{{\color{white}.}}{g} \circ X = 0 \,\right\vert X = x \,\right)
+		\;\right\}
+\\
+&=&
+	1 - \left\{\;
+		\,\overset{{\color{white}.}}{I}_{\{g(x)\,=\,1\}} \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\; + \;
+		\,\overset{{\color{white}.}}{I}_{\{g(x)\,=\,0\}} \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\;\right\},
+	\quad
+	\textnormal{by Claim 1}
+\end{eqnarray*}
+\qed
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
