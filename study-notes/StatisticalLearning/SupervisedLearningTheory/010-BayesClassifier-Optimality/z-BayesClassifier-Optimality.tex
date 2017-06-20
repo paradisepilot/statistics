@@ -56,12 +56,12 @@ P\!\left(\, g^{*} \circ X \neq Y \,\right)
 \vskip 0.2cm
 \noindent
 \textbf{Claim 1:}\quad
-For each $x \in \Re^{d}$ and $y \in \{\,0,1\,\}$, we have:
-$P\!\left(\,\left. Y = y \,,\, \overset{{\color{white}.}}{g} \circ X = y \,\right\vert X = x \,\right)$
-\,$=$\,
-$I_{\{g(x)\,=\,y\}} \cdot P\!\left(\,\left. Y = y \,\right\vert X = x \,\right)$
-\vskip 0.2cm
-\noindent
+For each $x \in \Re^{d}$ and $y \in \{\,0,1\,\}$, we have
+\begin{equation*}
+P\!\left(\,\left. Y = y \,,\, \overset{{\color{white}.}}{g} \circ X = y \,\right\vert X = x \,\right)
+\;=\;
+I_{\{g(x)\,=\,y\}} \cdot P\!\left(\,\left. Y = y \,\right\vert X = x \,\right)
+\end{equation*}
 Proof of Claim 1:\;
 First note that, for $x \in \Re^{d}$ with $g(x) = y$, we have:
 \begin{eqnarray*}
@@ -105,9 +105,19 @@ I_{\{g(x)\,=\,y\}} \cdot P\!\left(\,\left. Y = y \,\right\vert X = x \,\right)
 \end{equation*}
 This completes the proof of Claim 1.
 
-\vskip 0.5cm
+\vskip 0.8cm
 \noindent
-For each $x \in \Re^{d}$, observe that
+\textbf{Claim 2:}\; For each $x \in \Re^{d}$, we have
+\begin{equation*}
+P\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+\, - \,
+P\!\left(\,\left. g^{*} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+\; = \;
+	\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
+	\cdot
+	\left(\; I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)
+\end{equation*}
+Proof of Claim 2:\; For each $x \in \Re^{d}$, observe that
 \begin{eqnarray*}
 &&
 	P\!\left(\,\left. \overset{{\color{white}.}}{g} \circ X \neq Y \,\right\vert X = x \,\right)
@@ -166,11 +176,22 @@ Hence,
 	\cdot
 	\left(\; I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)
 \end{eqnarray*}
-Next, observe that we always have:
+This proves Claim 2.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 3:}\; For each $x \in \Re^{d}$, we have:
+$P\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+\, - \,
+P\!\left(\,\left. g^{*} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right) \; \geq \; 0$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 3:\;
+By Claim 2, it is equivalent to show
 $\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
 \cdot
 \left(\; I_{\{g^{*}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right) \; \geq 0$,
-which follows from the definition of $g^{*}$, as illustrated in the following table:
+which in turns follows readily from the definition of $g^{*}$, as illustrated in the following table:
 {\footnotesize
 \begin{center}
 \begin{tabular}{|c||c|c|c|}
@@ -200,6 +221,53 @@ which follows from the definition of $g^{*}$, as illustrated in the following ta
 \end{tabular}
 \end{center}
 }
+\noindent
+This proves Claim 3.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 4:}\;
+$P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right)$
+\;$=$\;
+$E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right]$
+\vskip 0.1cm
+\noindent
+Proof of Claim 4:\;
+\begin{eqnarray*}
+P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right)
+&=&
+	E\!\left[\; I_{\{\,g \circ X \neq Y\,\}} \;\right]
+\;\; = \;\;
+	E\!\left[\; \overset{{\color{white}.}}{E}\!\left[\, \left. I_{\{\,g \circ X \neq Y\,\}} \right\vert X \;\right] \;\right]
+\;\; = \;\;
+	E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right]
+\end{eqnarray*}
+This proves Claim 4.
+
+\vskip 0.8cm
+\noindent
+We are now ready to complete the proof of the Theorem.
+\begin{eqnarray*}
+P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right) \,-\, P\!\left(\,g^{*}\overset{{\color{white}.}}{\circ}X \neq Y\,\right)
+&=&
+	E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right]
+	\; - \;
+	E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g^{*} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right],
+	\;\;\textnormal{by Claim 4}
+\\
+&=&
+	E\!\left[\;
+		\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)
+		\; - \;
+		\overset{{\color{white}.}}{P}\!\left(\,\left. g^{*} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)
+	\;\right]
+\\
+&\overset{{\color{white}.}}{\geq}&
+	0\,,
+	\quad
+	\textnormal{by Claim 3}
+\end{eqnarray*}
+This competes the proof of the Theorem.
 \qed
 
 
