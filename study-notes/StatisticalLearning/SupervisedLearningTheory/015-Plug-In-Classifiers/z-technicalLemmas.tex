@@ -1,0 +1,187 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{lemma:conditionalProbabilityOfError}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$g_{1} \,,\, g_{2} : \Re^{d} \longrightarrow \{0,1\}$ are two classifiers.
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d}))$ and\,
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
+	are random variables.
+\end{itemize}
+Then, for each $x \in \Re^{d}$, we have:
+\begin{equation*}
+P\!\left(\,\left. g_{1} \overset{{\color{white}.}}{\circ} X \neq y \;\right\vert X = x \,\right)
+\, - \,
+P\!\left(\,\left. g_{2} \overset{{\color{white}.}}{\circ} X \neq y \;\right\vert X = x \,\right)
+\; = \;
+	\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
+	\cdot
+	\left(\; I_{\{g_{2}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g_{1}(x)\,=\,1\}} \;\right)
+\end{equation*}
+\end{lemma}
+\proof
+
+\vskip 0.2cm
+\noindent
+\textbf{Claim 1:}\quad
+For each $x \in \Re^{d}$, $y \in \{0,1\}$ and classifier $g : \Re^{d} \longrightarrow \{0,1\}$, we have
+\begin{equation*}
+P\!\left(\,\left. Y = y \,,\, \overset{{\color{white}.}}{g} \circ X = y \;\right\vert X = x \,\right)
+\;=\;
+I_{\{g(x)\,=\,y\}} \cdot P\!\left(\,\left. Y = y \;\right\vert X = x \,\right)
+\end{equation*}
+Proof of Claim 1:\;
+First note that, for $x \in \Re^{d}$ with $g(x) = y$, we have:
+\begin{eqnarray*}
+P\!\left(\,\left. Y = y \;\right\vert X = x \,\right)
+& = &
+	P\!\left(\,\left. Y = y\,,\, g \circ X = y \;\right\vert X = x \,\right)
+	\; + \;
+	P\!\left(\,\left. Y = y\,,\, g \circ X \neq y \;\right\vert X = x \,\right)
+\\
+& = &
+	P\!\left(\,\left. Y = y\,,\, g \circ X = y \;\right\vert X = x \,\right)
+	\; + \;
+	0\,,
+	\quad
+	\textnormal{since \;$g(x) = y$}
+\\
+& = &
+	P\!\left(\,\left. Y = y\,,\, g \circ X = y \;\right\vert X = x \,\right)
+\end{eqnarray*}
+For $x \in \Re^{d}$ with $g(x) \neq y$, we trivially have
+$P\!\left(\,\left. Y = y\,,\, g \circ X = y \;\right\vert X = x \,\right) = 0$.
+In other words,
+\begin{equation*}
+P\!\left(\,\left. Y = y \,,\, \overset{{\color{white}.}}{g} \circ X = y \;\right\vert X = x \,\right)
+\;\; = \;\;
+	\left\{\begin{array}{cl}
+	P\!\left(\,\left. Y = y \;\right\vert X = x \,\right), & \textnormal{if \,$g(x) = y$}
+	\\
+	\overset{{\color{white}-}}{0}, & \textnormal{if \,$g(x) \neq y$}
+	\end{array}\right.
+\end{equation*}
+On the other hand, it is clear that
+\begin{equation*}
+I_{\{g(x)\,=\,y\}} \cdot P\!\left(\,\left. Y = y \;\right\vert X = x \,\right)
+\;\; = \;\;
+	\left\{\begin{array}{cl}
+	P\!\left(\,\left. Y = y \;\right\vert X = x \,\right), & \textnormal{if \,$g(x) = y$}
+	\\
+	\overset{{\color{white}-}}{0}, & \textnormal{if \,$g(x) \neq y$}
+	\end{array}\right.
+\end{equation*}
+This completes the proof of Claim 1.
+
+
+\vskip 0.5cm
+\noindent
+Now, observe that, for each $x \in \Re^{d}$ and classifier $g : \Re^{d} \longrightarrow \{0,1\}$, we have
+\begin{eqnarray*}
+&&
+	P\!\left(\,\left. \overset{{\color{white}.}}{g} \circ X \neq y \;\right\vert X = x \,\right)
+\\
+&=&
+	1 - P\!\left(\,\left. Y = \overset{{\color{white}.}}{g} \circ X \,\right\vert X = x \,\right)
+\\
+&=&
+	1 - \left\{\;
+		\overset{{\color{white}.}}{P}\!\left(\,\left. Y = 1 \,,\, \overset{{\color{white}.}}{g} \circ X = 1 \,\right\vert X = x \,\right)
+		\; + \;
+		P\!\left(\,\left. Y = 0 \,,\, \overset{{\color{white}.}}{g} \circ X = 0 \,\right\vert X = x \,\right)
+		\;\right\}
+\\
+&=&
+	1 - \left\{\;
+		\,\overset{{\color{white}.}}{I}_{\{g(x)\,=\,1\}} \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\; + \;
+		\,\overset{{\color{white}.}}{I}_{\{g(x)\,=\,0\}} \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\;\right\},
+	\quad
+	\textnormal{by Claim 1}
+\end{eqnarray*}
+We thus see that
+\begin{eqnarray*}
+&&
+	P\!\left(\,\left. g_{1} \overset{{\color{white}.}}{\circ} X \neq y \;\right\vert X = x \,\right)
+	\, - \,
+	P\!\left(\,\left. g_{2} \overset{{\color{white}.}}{\circ} X \neq y \;\right\vert X = x \,\right)
+\\
+&=&
+	{\color{white}- \;}
+	\left\{\;
+		\,\overset{{\color{white}.}}{I}_{\{g_{2}(x)\,=\,1\}} \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\; + \;
+		\,\overset{{\color{white}.}}{I}_{\{g_{2}(x)\,=\,0\}} \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\;\right\}
+\\
+&&
+	- \;
+	\left\{\;
+		\,\overset{{\color{white}.}}{I}_{\{g_{1}(x)\,=\,1\}} \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\; + \;
+		\,\overset{{\color{white}.}}{I}_{\{g_{1}(x)\,=\,0\}} \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\;\right\}
+\\
+&=&
+	P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right) \cdot \left(\, I_{\{g_{2}(x)\,=\,1\}} \overset{{\color{white}.}}{-} I_{\{g_{1}(x)\,=\,1\}} \,\right)
+	\,+\,
+	P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right) \cdot \left(\, I_{\{g_{2}(x)\,=\,0\}} \overset{{\color{white}.}}{-} I_{\{g_{1}(x)\,=\,0\}} \,\right)
+\\
+&=&
+	{\color{white}+\,}
+	P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right) \cdot \left(\, I_{\{g_{2}(x)\,=\,1\}} \overset{{\color{white}.}}{-} I_{\{g_{1}(x)\,=\,1\}} \,\right)
+\\
+&&
+	+\,
+	\left(\;\overset{{\color{white}.}}{1} \,-\, P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\;\right)
+	\cdot
+	\left(\; 1 - I_{\{g_{2}(x)\,=\,1\}} \;\overset{{\color{white}.}}{-}\; 1 + I_{\{g_{1}(x)\,=\,1\}} \;\right)
+\\
+&=&
+	{\color{white}+\,}
+	P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right) \cdot \left(\, I_{\{g_{2}(x)\,=\,1\}} \overset{{\color{white}.}}{-} I_{\{g_{1}(x)\,=\,1\}} \,\right)
+\\
+&&
+	+\,
+	P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)
+	\cdot
+	\left(\; I_{\{g_{2}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g_{1}(x)\,=\,1\}} \;\right)
+	\,-\,
+	\left(\; I_{\{g_{2}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g_{1}(x)\,=\,1\}} \;\right)
+\\
+&=&
+	\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
+	\cdot
+	\left(\; I_{\{g_{2}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g_{1}(x)\,=\,1\}} \;\right)
+\end{eqnarray*}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

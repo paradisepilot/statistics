@@ -1,0 +1,360 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The plug-in classifier of a Borel measurable $[0,1]$-valued function}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[\textit{A Posteriori} Probability]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d}))$ and\,
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
+	are random variables.
+\end{itemize}
+Then, the \,\underline{\textbf{a posteriori probability}} of $Y$ given $X$ is, definition, the function
+\begin{equation*}
+\eta_{\,Y\vert X}
+\;:\; \Re^{d} \longrightarrow [0,1]
+\; :\; x \; \longmapsto \; P\!\left(\,\left. \overset{{\color{white}.}}{Y} = 1 \;\right\vert X = x\,\right)
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+
+\begin{definition}[Classifier]
+\mbox{}\vskip 0.1cm
+\noindent
+A \,\underline{\textbf{classifier}}\, is a Borel measurable function
+$g : \Re^{d} \longrightarrow \{0,1\}$,
+where $d \in \N$ is a natural number.
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+
+\begin{definition}[Plug-in Classifier of a Borel measurable {$[0,1]$}-valued function] %$[0,1]$-valued function]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose \,$\eta : \Re^{d} \longrightarrow [0,1]$\, is a Borel measurable function.
+The \,\underline{{\color{white}.}\textbf{plug-in classifier}}\, $\kappa_{\eta}$ of $\eta$ is defined as follows:
+\begin{equation*}
+\kappa_{\eta}(x) \; : \; \Re^{d} \longrightarrow \{0,1\} \; : \; x \longmapsto
+	\left\{\begin{array}{cl}
+		0, & \textnormal{if \,$\eta(x) \leq 1/2$}
+		\\
+		\overset{{\color{white}-}}{1}, & \textnormal{if \,$\eta(x) > 1/2$}
+	\end{array}\right.
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{theorem}[Theorem 2.2, p.16, \cite{Devroye1996}]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$d \in \N$.
+	$\mathcal{O}(\Re^{d})$ denotes the Borel $\sigma$-algebra of \,$\Re^{d}$.
+\item
+	$\eta : \Re^{d} \longrightarrow [0,1]$ is a Borel measurable function, and
+	$\kappa_{\eta}$ its plug-in classifier.
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d}))$ and\,
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
+	are random variables.
+\item
+	$\kappa^{*}_{\,Y \vert X} : \Re^{d} \longrightarrow \{0,1\}$ is the Bayes $(Y \vert X)$-classifier, i.e.
+	\begin{equation*}
+	\kappa^{*}_{\,Y \vert X} : \Re^{d} \longrightarrow \{0,1\} : x \longmapsto
+		\left\{\begin{array}{cl}
+			0, & \textnormal{if \,$P(\,Y=1 \,\vert X = x) \leq 1/2$}
+			\\
+			\overset{{\color{white}-}}{1}, & \textnormal{if \,$P(\,Y=1 \,\vert X = x) > 1/2$}
+		\end{array}\right.
+	\end{equation*}
+\item
+	$L^{*}_{\,Y \vert X}$ is the Bayes $(Y \vert X)$-risk,
+	i.e. the probability of error of the Bayes $(Y \vert X)$-classifier;
+	equivalently,
+	\begin{equation*}
+	L^{*}_{\,Y \vert X} \;\; := \;\; P\!\left(\, \kappa^{*}_{\,Y \vert X} \circ X \neq Y \,\right)
+	\end{equation*}	
+\end{itemize}
+Then, we have
+\begin{enumerate}
+\item
+	\begin{equation*}
+	P\!\left(\;\kappa_{\eta} \overset{{\color{white}.}}{\circ} X \neq Y \;\right) \,-\, L^{*}_{\,Y \vert X}
+	\;\; = \;\;
+		2 \cdot \int_{\Omega}\,\;
+			\left\vert\;\, \eta_{\,Y\vert X}(X(\omega)) - \dfrac{1}{2} \;\,\right\vert
+			\cdot
+			I_{\left\{\,\kappa_{\eta}(X(\omega)) \,\neq\, \kappa^{*}_{Y \vert X}(X(\omega))\,\right\}}
+			\,\;\d\mu(\omega)
+	\end{equation*}
+\item
+	\begin{equation*}
+	P\!\left(\;\kappa_{\eta} \overset{{\color{white}.}}{\circ} X \neq Y \;\right) \,-\, L^{*}_{\,Y \vert X}
+	\;\; \leq \;\;
+		2 \cdot \int_{\Omega}\,\;
+			\left\vert\;\, \eta(X(\omega)) \,\overset{{\color{white}.}}{-}\, \eta_{\,Y\vert X}(X(\omega)) \;\,\right\vert
+			\;\d\mu(\omega)
+	\;\; = \;\;
+		2 \cdot E\!\left[\;
+			\left\vert\;\, \eta \circ X \,\overset{{\color{white}.}}{-}\, \eta_{\,Y\vert X} \circ X \;\,\right\vert
+			\;\right]
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+\proof
+\vskip 0.2cm
+\noindent
+\textbf{Claim 1:}\quad
+For each $x \in \Re^{d}$, $y \in \{0,1\}$ and classifier $g : \Re^{d} \longrightarrow \{0,1\}$,
+we have
+\begin{equation*}
+P\!\left(\,\left. Y = y \,,\, \overset{{\color{white}.}}{g} \circ X = y \,\right\vert X = x \,\right)
+\;=\;
+I_{\{g(x)\,=\,y\}} \cdot P\!\left(\,\left. Y = y \,\right\vert X = x \,\right)
+\end{equation*}
+Proof of Claim 1:\;
+First note that, for $x \in \Re^{d}$ with $g(x) = y$, we have:
+\begin{eqnarray*}
+P\!\left(\,\left. Y = y \,\right\vert X = x \,\right)
+& = &
+	P\!\left(\,\left. Y = y\,,\, g \circ X = y \,\right\vert X = x \,\right)
+	\; + \;
+	P\!\left(\,\left. Y = y\,,\, g \circ X \neq y \,\right\vert X = x \,\right)
+\\
+& = &
+	P\!\left(\,\left. Y = y\,,\, g \circ X = y \,\right\vert X = x \,\right)
+	\; + \;
+	0\,,
+	\quad
+	\textnormal{since \;$g(x) = y$}
+\\
+& = &
+	P\!\left(\,\left. Y = y\,,\, g \circ X = y \,\right\vert X = x \,\right)
+\end{eqnarray*}
+For $x \in \Re^{d}$ with $g(x) \neq y$, we trivially have
+$P\!\left(\,\left. Y = y\,,\, g \circ X = y \,\right\vert X = x \,\right) = 0$.
+In other words,
+\begin{equation*}
+P\!\left(\,\left. Y = y \,,\, \overset{{\color{white}.}}{g} \circ X = y \,\right\vert X = x \,\right)
+\;\; = \;\;
+	\left\{\begin{array}{cl}
+	P\!\left(\,\left. Y = y \,\right\vert X = x \,\right), & \textnormal{if \,$g(x) = y$}
+	\\
+	\overset{{\color{white}-}}{0}, & \textnormal{if \,$g(x) \neq y$}
+	\end{array}\right.
+\end{equation*}
+On the other hand, it is clear that
+\begin{equation*}
+I_{\{g(x)\,=\,y\}} \cdot P\!\left(\,\left. Y = y \,\right\vert X = x \,\right)
+\;\; = \;\;
+	\left\{\begin{array}{cl}
+	P\!\left(\,\left. Y = y \,\right\vert X = x \,\right), & \textnormal{if \,$g(x) = y$}
+	\\
+	\overset{{\color{white}-}}{0}, & \textnormal{if \,$g(x) \neq y$}
+	\end{array}\right.
+\end{equation*}
+This completes the proof of Claim 1.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 2:}\; For each $x \in \Re^{d}$ and each classifier $g : \Re^{d} \longrightarrow \{0,1\}$, we have
+\begin{equation*}
+P\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+\, - \,
+P\!\left(\,\left. \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+\; = \;
+	\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
+	\cdot
+	\left(\; I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)
+\end{equation*}
+Proof of Claim 2:\; For each $x \in \Re^{d}$ and each classifier $g : \Re^{d} \longrightarrow \{0,1\}$, observe that
+\begin{eqnarray*}
+&&
+	P\!\left(\,\left. \overset{{\color{white}.}}{g} \circ X \neq Y \,\right\vert X = x \,\right)
+\\
+&=&
+	1 - P\!\left(\,\left. Y = \overset{{\color{white}.}}{g} \circ X \,\right\vert X = x \,\right)
+\\
+&=&
+	1 - \left\{\;
+		\overset{{\color{white}.}}{P}\!\left(\,\left. Y = 1 \,,\, \overset{{\color{white}.}}{g} \circ X = 1 \,\right\vert X = x \,\right)
+		\; + \;
+		P\!\left(\,\left. Y = 0 \,,\, \overset{{\color{white}.}}{g} \circ X = 0 \,\right\vert X = x \,\right)
+		\;\right\}
+\\
+&=&
+	1 - \left\{\;
+		\,\overset{{\color{white}.}}{I}_{\{g(x)\,=\,1\}} \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\; + \;
+		\,\overset{{\color{white}.}}{I}_{\{g(x)\,=\,0\}} \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\;\right\},
+	\quad
+	\textnormal{by Claim 1}
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+&&
+	P\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+	\, - \,
+	P\!\left(\,\left. \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+\\
+&=&
+	{\color{white}- \;}
+	\left\{\;
+		\,\overset{{\color{white}.}}{I}_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\; + \;
+		\,\overset{{\color{white}.}}{I}_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,0\}} \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\;\right\}
+\\
+&&
+	- \;
+	\left\{\;
+		\,{\color{white}111}\overset{{\color{white}.}}{I}_{\{g(x)\,=\,1\}}\, \cdot P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right)\,
+		\; + \;
+		\,\,\,{\color{white}11}\overset{{\color{white}.}}{I}_{\{g(x)\,=\,0\}}\, \cdot P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right)
+		\;\right\}
+\\
+&=&
+	P\!\left(\,\left. Y = 1 \,\right\vert X = x \,\right) \cdot \left\{ I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \overset{{\color{white}.}}{-} I_{\{g(x)\,=\,1\}} \right\}
+	\,+\,
+	P\!\left(\,\left. Y = 0 \,\right\vert X = x \,\right) \cdot \left\{ I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,0\}} \overset{{\color{white}.}}{-} I_{\{g(x)\,=\,0\}} \right\}
+\\
+&=&
+	\cdots
+	\;\; = \;\;
+	\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
+	\cdot
+	\left(\; I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)
+\end{eqnarray*}
+This proves Claim 2.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 3:}\; For each $x \in \Re^{d}$ and each classifier $g : \Re^{d} \longrightarrow \{0,1\}$, we have:
+\begin{equation*}
+P\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right)
+\, - \,
+P\!\left(\,\left. \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X = x \,\right) \; \geq \; 0.
+\end{equation*}
+Proof of Claim 3:\;
+By Claim 2, it is equivalent to show
+\begin{equation*}
+\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
+\cdot
+\left(\; I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right) \; \geq 0,
+\end{equation*}
+which in turns follows readily from the definition of $\kappa^{*}_{\,Y \vert X}$, as illustrated in the following table:
+{\footnotesize
+\begin{center}
+\begin{tabular}{|c||c|c|c|}
+\hline
+&&&\\
+	$P\!\left(\left.Y=1\,\right\vert X =x \,\right)$ &
+	$2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1$ &
+	$I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}}$ &
+	{\tiny$\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X =x \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)$
+	$\cdot$
+	$\left(\; I_{\{\kappa^{*}_{\,Y \vert X}(x)\,=\,1\}} \,\overset{{\color{white}.}}{-}\, I_{\{g(x)\,=\,1\}} \;\right)$}
+\\
+&&&\\
+\hline
+	$\underset{{\color{white}-}}{\overset{{\color{white}-}}{>} 1/2}$ &
+	$ >\; 0 $ &
+	$ =\; 0 \;\textnormal{or}\; +1$ &
+	$ \geq\; 0 $
+\\
+\hline
+	$\underset{{\color{white}-}}{\overset{{\color{white}-}}{\leq} 1/2}$ &
+	$ \leq\; 0$ &
+	$ =\; 0 \;\textnormal{or}\; -1$ &
+	$ \geq\; 0 $
+\\
+\hline
+\end{tabular}
+\end{center}
+}
+\noindent
+This proves Claim 3.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 4:}\;
+For each classifier $g : \Re^{d} \longrightarrow \{0,1\}$, we have:
+\begin{equation*}
+P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right)
+\;\;=\;\;
+E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right].
+\end{equation*}
+Proof of Claim 4:\;
+\begin{eqnarray*}
+P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right)
+&=&
+	E\!\left[\; I_{\{\,g \circ X \neq Y\,\}} \;\right]
+\;\; = \;\;
+	E\!\left[\; \overset{{\color{white}.}}{E}\!\left[\, \left. I_{\{\,g \circ X \neq Y\,\}} \right\vert X \;\right] \;\right]
+\;\; = \;\;
+	E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right]
+\end{eqnarray*}
+This proves Claim 4.
+
+\vskip 0.8cm
+\noindent
+We are now ready to complete the proof of the Theorem.
+\begin{eqnarray*}
+P\!\left(\,g\overset{{\color{white}.}}{\circ}X \neq Y\,\right) \,-\, P\!\left(\,\kappa^{*}_{\,Y \vert X}\overset{{\color{white}.}}{\circ}X \neq Y\,\right)
+&=&
+	E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right]
+	\; - \;
+	E\!\left[\;\overset{{\color{white}.}}{P}\!\left(\,\left. \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)\;\right],
+	\;\;\textnormal{by Claim 4}
+\\
+&=&
+	E\!\left[\;
+		\overset{{\color{white}.}}{P}\!\left(\,\left. g \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)
+		\; - \;
+		\overset{{\color{white}.}}{P}\!\left(\,\left. \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \,\right\vert X \,\right)
+	\;\right]
+\\
+&\overset{{\color{white}.}}{\geq}&
+	0\,,
+	\quad
+	\textnormal{by Claim 3}
+\end{eqnarray*}
+This competes the proof of the Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
