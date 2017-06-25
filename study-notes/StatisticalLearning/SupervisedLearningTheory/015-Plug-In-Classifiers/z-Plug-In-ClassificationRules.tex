@@ -113,12 +113,12 @@ Notations:
 	\;\right\}_{i\in\N}$\;
 	is a sequence of independent and identically distributed copies of
 	$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d})) \times \{0,1\}$.
-%\item
-%	For each $n \in \N$, we write
-%	$D^{(n)}_{X,Y} := (X_{1},Y_{1},\ldots,X_{n},Y_{n}) :
-%		(\Omega,\mathcal{A},\mu)
-%		\longrightarrow
-%		\left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}$.
+\item
+	For each $n \in \N$, we write
+	$D^{(n)}_{X,Y} := (X_{1},Y_{1},\ldots,X_{n},Y_{n}) :
+		(\Omega,\mathcal{A},\mu)
+		\longrightarrow
+		\left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}$.
 \item
 	$\left\{\,L^{(\kappa_{\eta_{n}})}_{\,Y \vert X}\,\right\}_{n\in\N}$\,
 	is the \,$(Y \vert X)$-risk\, of the classification rule $\{\,\kappa_{\eta_{n}}\,\}_{n\in\N}$, i.e.
@@ -137,10 +137,10 @@ Notations:
 			\,\right\}\,\right)
 	\end{equation*}
 \end{itemize}
-Then, we have
+Then, the following statements are true:
 \begin{enumerate}
 \item
-	for each
+	For each
 	\;$d_{n} \in \left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}$,
 	\begin{eqnarray*}
 	L^{(\kappa_{\eta_{n}})}_{\,Y \vert X}(\,d_{n}\,) \, - \, L^{*}_{\,Y \vert X}
@@ -158,7 +158,7 @@ Then, we have
 			\;\d\mu(\omega)
 	\end{eqnarray*}
 \item
-	for each
+	For each
 	\;$d_{n} \in \left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}$,
 	\begin{eqnarray*}
 	L^{(\kappa_{\eta_{n}})}_{\,Y \vert X}(\,d_{n}\,) \, - \, L^{*}_{\,Y \vert X}
@@ -172,6 +172,21 @@ Then, we have
 			\;\d\mu(\omega)
 			\;}
 	\end{eqnarray*}
+\item
+	The plug-in classification rule \,$\left\{\;\kappa_{\eta_{n}}\;\right\}_{n\in\N}$\,
+	is weakly $(Y \vert X)$-consistent if
+	\begin{equation*}
+		\underset{n\rightarrow\infty}{\lim}\;
+		\int_{\Omega}\;\left(\;
+		\int_{\Omega}\,\;
+			\left\vert\;\,
+			\eta_{n}\!\left(X(\omega),D^{(n)}_{X,Y}(\zeta)\right) \,\overset{{\color{white}.}}{-}\; \eta_{\,Y\vert X}(X(\omega))
+			\;\right\vert^{2}
+		\,\d\mu(\omega)
+		\;\right)\;\d\mu(\zeta)
+		\;\; = \;\;
+		0
+	\end{equation*}
 \end{enumerate}
 \end{theorem}
 \proof
