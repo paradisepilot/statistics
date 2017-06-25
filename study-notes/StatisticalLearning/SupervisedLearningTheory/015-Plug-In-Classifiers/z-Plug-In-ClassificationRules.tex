@@ -113,12 +113,12 @@ Notations:
 	\;\right\}_{i\in\N}$\;
 	is a sequence of independent and identically distributed copies of
 	$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d})) \times \{0,1\}$.
-\item
-	For each $n \in \N$, we write
-	$D^{(n)}_{X,Y} := (X_{1},Y_{1},\ldots,X_{n},Y_{n}) :
-		(\Omega,\mathcal{A},\mu)
-		\longrightarrow
-		\left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}$.
+%\item
+%	For each $n \in \N$, we write
+%	$D^{(n)}_{X,Y} := (X_{1},Y_{1},\ldots,X_{n},Y_{n}) :
+%		(\Omega,\mathcal{A},\mu)
+%		\longrightarrow
+%		\left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}$.
 \item
 	$\left\{\,L^{(\kappa_{\eta_{n}})}_{\,Y \vert X}\,\right\}_{n\in\N}$\,
 	is the \,$(Y \vert X)$-risk\, of the classification rule $\{\,\kappa_{\eta_{n}}\,\}_{n\in\N}$, i.e.
@@ -177,127 +177,41 @@ Then, we have
 \proof
 \begin{enumerate}
 \item
-	\begin{eqnarray*}
-	P\!\left(\;\kappa_{\eta} \overset{{\color{white}.}}{\circ} X \neq Y \;\right) \,-\, L^{*}_{\,Y \vert X}
-	&=&
-		P\!\left(\;\kappa_{\eta} \overset{{\color{white}.}}{\circ} X \neq Y \;\right)
-		\,-\,
-		P\!\left(\;\kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \neq Y \;\right)
-	\\
-	&=&
-		E\!\left[\; I_{\left\{\, \kappa_{\eta} \overset{{\color{white}.}}{\circ} X \,\neq\, Y \,\right\}} \;\right]
-		\,-\,
-		E\!\left[\; I_{\left\{\, \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \,\neq\, Y \,\right\}} \;\right]
-	\\
-	&=&
-		E\!\left[\,\;
-			I_{\left\{\, \kappa_{\eta} \overset{{\color{white}.}}{\circ} X \,\neq\, Y \,\right\}}
-			\,-\,
-			I_{\left\{\, \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \,\neq\, Y \,\right\}}
-		\,\;\right]
-	\\
-	&=&
-		E\!\left[\,\;
-		E\!\left[\,\;
-			\left.
-			I_{\left\{\, \kappa_{\eta} \overset{{\color{white}.}}{\circ} X \,\neq\, Y \,\right\}}
-			\,-\,
-			I_{\left\{\, \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \,\neq\, Y \,\right\}}
-			\,\;\right\vert\;
-			X
-		\,\;\right]
-		\,\;\right]
-	\\
-	&=&
-		E\!\left[\,\;
-			P\!\left(\, \kappa_{\eta} \overset{{\color{white}.}}{\circ} X \,\neq\, Y \,\vert\, X \,\right)
-			\,-\,
-			P\!\left(\, \kappa^{*}_{\,Y \vert X} \overset{{\color{white}.}}{\circ} X \,\neq\, Y \,\vert\, X \,\right)
-		\,\;\right]
-	\\
-	&=&
-		E\!\left[\,\;
-			\left(\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right)
-			\cdot
-			\left(\; I_{\{\kappa^{*}_{\,Y \vert X} \circ X \,=\, 1\}} \,\overset{{\color{white}.}}{-}\, I_{\{\kappa_{\eta} \circ X \,=\, 1\}} \;\right)
-		\,\;\right],
-		\;\;
-		\textnormal{by Lemma \ref{lemma:conditionalProbabilityOfError}}
-	\\
-	&=&
-		E\!\left[\,\;
-			\left\vert\; 2 \cdot P\!\left(\left.Y=1\,\right\vert X \,\right) \,\overset{{\color{white}.}}{-}\, 1 \;\right\vert
-			\cdot
-			I_{\left\{\,\kappa^{*}_{\,Y \vert X} \circ X \,\neq\, \kappa_{\eta} \circ X\,\right\}}
-		\,\;\right]
-	\\
-	&=&
-		E\!\left[\,\;
-			\left\vert\; 2 \cdot \eta_{\,Y \vert X} \circ X \,\overset{{\color{white}.}}{-}\, 1 \;\right\vert
-			\cdot
-			I_{\left\{\,\kappa^{*}_{\,Y \vert X} \circ X \,\neq\, \kappa_{\eta} \circ X\,\right\}}
-		\,\;\right]
-	\\
-	&=&
-		2 \cdot E\!\left[\,\;
-			\left\vert\; \eta_{\,Y \vert X} \circ X \,\overset{{\color{white}.}}{-}\, 1/2 \;\right\vert
-			\cdot
-			I_{\left\{\,\kappa^{*}_{\,Y \vert X} \circ X \,\neq\, \kappa_{\eta} \circ X\,\right\}}
-		\,\;\right]
-	\end{eqnarray*}
+	Immediate by applying Theorem \ref{BoundOfProbabilityOfErrorsPlugInClassifier}(ii) for each
+	$d_{n} \in \left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}$.
 \item
-	\textbf{Claim 1:}\;\;
-	For $x \in \Re^{d}$ with $\kappa^{*}_{\,Y \vert X}(x) \,\neq\, \kappa_{\eta}(x)$, we have
-	\begin{equation*}
-	\left\vert\;\eta_{\,Y \vert X}(x) \,\overset{{\color{white}.}}{-}\, 1/2\;\right\vert
-	\;\;\leq\;\;
-	\left\vert\;\eta_{\,Y \vert X}(x) \,\overset{{\color{white}.}}{-}\, \eta(x)\;\right\vert
-	\end{equation*}
-	Proof of Claim 1: First, observe that
-	\,$\kappa^{*}_{\,Y \vert X}(x) \,\neq\, \kappa_{\eta}(x)$
-	\,$\Longleftrightarrow$\,
-	$(\kappa^{*}_{\,Y \vert X}(x),\kappa_{\eta}(x))$ $=$ $(0,1)$ or $(1,0)$.\,
-	Now,
-	\begin{equation*}
-	(\kappa^{*}_{\,Y \vert X}(x),\kappa_{\eta}(x)) \,=\, (0,1)
-	\;\;\Longleftrightarrow\;\;
-	\eta_{\,Y \vert X}(x) \,\leq\, 1/2 \,<\, \eta(x)
-	\;\;\Longrightarrow\;\;
-	\left\vert\;\eta_{\,Y \vert X}(x) \,\overset{{\color{white}.}}{-}\, 1/2\;\right\vert
-	\;\;\leq\;\;
-	\left\vert\;\eta_{\,Y \vert X}(x) \,\overset{{\color{white}.}}{-}\, \eta(x)\;\right\vert
-	\end{equation*}
-	and
-	\begin{equation*}
-	(\kappa^{*}_{\,Y \vert X}(x),\kappa_{\eta}(x)) \,=\, (1,0)
-	\;\;\Longleftrightarrow\;\;
-	\eta(x) \,\leq\, 1/2 \,<\, \eta_{\,Y \vert X}(x)
-	\;\;\Longrightarrow\;\;
-	\left\vert\;\eta_{\,Y \vert X}(x) \,\overset{{\color{white}.}}{-}\, 1/2\;\right\vert
-	\;\;\leq\;\;
-	\left\vert\;\eta_{\,Y \vert X}(x) \,\overset{{\color{white}.}}{-}\, \eta(x)\;\right\vert
-	\end{equation*}
-	This proves Claim 1.
-
-	\vskip 0.5cm
-	\noindent
-	Hence,
 	\begin{eqnarray*}
-	P\!\left(\;\kappa_{\eta} \overset{{\color{white}.}}{\circ} X \neq Y \;\right) \,-\, L^{*}_{\,Y \vert X}
-	&=&
-		2 \cdot E\!\left[\,\;
-			\left\vert\; \eta_{\,Y \vert X} \circ X \,\overset{{\color{white}.}}{-}\, 1/2 \;\right\vert
-			\cdot
-			I_{\left\{\,\kappa^{*}_{\,Y \vert X} \circ X \,\neq\, \kappa_{\eta} \circ X\,\right\}}
-		\,\;\right],
-		\;\;
-		\textnormal{by \eqref{boundOnProbabilityOrError}}
+	L^{(\kappa_{\eta_{n}})}_{\,Y \vert X}(\,d_{n}\,) \, - \, L^{*}_{\,Y \vert X}
+	& \leq &
+		2 \cdot \int_{\Omega}\,\;
+			\left\vert\;\, \eta_{n}(X(\omega),d_{n}) \,\overset{{\color{white}.}}{-}\, \eta_{\,Y\vert X}(X(\omega)) \;\,\right\vert
+			\;\d\mu(\omega)\,,
+		\quad
+		\textnormal{by (i)}
 	\\
-	&\leq&
-		2 \cdot E\!\left[\,\;
-			\left\vert\; \eta \circ X \,\overset{{\color{white}.}}{-}\, \eta_{\,Y \vert X} \circ X \;\right\vert
-		\,\;\right]
+	& = &
+		2 \cdot \int_{\Omega}\,\;
+			\left\vert\;\, \eta_{n}(X(\omega),d_{n}) \,\overset{{\color{white}.}}{-}\, \eta_{\,Y\vert X}(X(\omega)) \;\,\right\vert
+			\,\cdot\, 1
+			\,\;\d\mu(\omega)
+	\\
+	& \leq &
+		2 \cdot \sqrt{\;
+			\int_{\Omega}\,\;
+			\left\vert\;\, \eta_{n}(X(\omega),d_{n}) \,\overset{{\color{white}.}}{-}\, \eta_{\,Y\vert X}(X(\omega)) \;\,\right\vert^{2}
+			\,\d\mu(\omega)
+			\;\cdot\;
+			\int_{\Omega}\,\; 1^{2} \,\;\d\mu(\omega)
+			\;}
+	\\
+	& = &
+		2 \cdot \sqrt{\;
+			\int_{\Omega}\,\;
+			\left\vert\;\, \eta_{n}(X(\omega),d_{n}) \,\overset{{\color{white}.}}{-}\, \eta_{\,Y\vert X}(X(\omega)) \;\,\right\vert^{2}
+			\,\d\mu(\omega)
+			\;}\,,
 	\end{eqnarray*}
+	where the second inequality follows by the Cauch-Schwarz inequality.
 \end{enumerate}
 This competes the proof of the Theorem.
 \qed
