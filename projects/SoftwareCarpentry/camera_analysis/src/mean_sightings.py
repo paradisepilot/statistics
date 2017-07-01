@@ -80,7 +80,7 @@ def get_sightings_loop(filename, focusanimal):
     return totalrecs, meancount
 
 if __name__ == '__main__':
-    #print sys.argv
-    filename = sys.argv[1]
-    focusanimal = sys.argv[2]
-    print get_sightings(filename, focusanimal)
+    print(sys.argv[0])
+#    filename = sys.argv[1]
+#    focusanimal = sys.argv[2]
+#    print get_sightings(filename, focusanimal)
