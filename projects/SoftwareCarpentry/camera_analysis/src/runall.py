@@ -1,5 +1,36 @@
 #!/usr/bin/env python
 
+import os, stat, sys
+
+thisScript = sys.argv[0]
+srcDIR     = sys.argv[1]
+datDIR     = sys.argv[2]
+outDIR     = sys.argv[3]
+
+print('thisScript')
+print( thisScript )
+
+print('srcDIR')
+print( srcDIR )
+
+print('datDIR')
+print( datDIR )
+
+print('outDIR')
+print( outDIR )
+
+# append module path with srcDIR
+sys.path.append(srcDIR)
+
+# set permissions on outDIR
+#os.chmod(outDIR,stat.S_IRWXU)
+#os.chmod(outDIR,stat.S_IRWXG)
+# change current working directory to outDIR
+#os.chdir(outDIR)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# sys.exit(0)
+
 '''
 Script to create all results for camera_analysis project.
 '''
@@ -9,20 +40,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from mean_sightings import get_sightings
 
-
 # ------------------------------------------------------------------------
 # Declare variables
 # ------------------------------------------------------------------------
 
-# Set paths to data and results directories. Note that this method of
-# relative paths only works on *nix - for Windows, see os.path module.
-data_dir    = '~/Work/gitdat/paradisepilot/statistics/projects/SoftwareCarpentry/camera_analysis/'
-results_dir = '/Users/woodenbeauty/Work/gittmp/paradisepilot/statistics/projects/SoftwareCarpentry/camera_analysis/'
-
 # Set name of data file, table, and figure
-data_name  = 'sightings_tab_lg.csv'
-table_name = 'spp_table.csv'
-fig_name   = 'spp_fig.png'
+dataFILE  = os.path.join(datDIR,'sightings_tab_lg.csv')
+tableFILE = os.path.join(outDIR,'spp_table.csv')
+figFILE   = os.path.join(outDIR,'spp_fig.png')
 
 # Set names of species to count
 spp_names = ['Fox', 'Wolf', 'Grizzly', 'Wolverine']
@@ -37,7 +62,7 @@ spp_recs = []
 
 # Get total number of records for each species
 for spp in spp_names:
-    totalrecs, meancount = get_sightings(data_dir + data_name, spp)
+    totalrecs, meancount = get_sightings(dataFILE, spp)
     spp_recs.append(totalrecs)
 
 print('spp_names')
@@ -57,15 +82,9 @@ print( np.transpose([spp_names, spp_recs]) )
 # ------------------------------------------------------------------------
 
 # Put two lists into a pandas DataFrame
-#table = pd.DataFrame(np.array(
-#                object = [spp_names, spp_recs],
-#                order  = 'C'
-#                #, dtype=[('species', 'S12'), ('recs', int)]
-#                ))
 table = pd.DataFrame(
     data    = { 'species' : spp_names, 'recs' : spp_recs },
     columns = ['species','recs']
-    # dtype   = [ 'str',   'str' ]
     )
 
 table.recs = table.recs.astype(str)
@@ -77,7 +96,7 @@ print('table.dtypes')
 print( table.dtypes )
 
 # Save DataFrame as csv
-table.to_csv(results_dir + table_name, index=False)
+table.to_csv(tableFILE,index=False)
 
 # -----------------------------------------------------------------------
 # Save results as figure 
@@ -99,5 +118,5 @@ ax.set_xlim([-0.2, 4])
 ax.set_xticklabels(spp_names)
 
 # Save figure
-fig.savefig(results_dir + fig_name)
+fig.savefig(figFILE)
 
