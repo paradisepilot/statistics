@@ -10,12 +10,6 @@ outDIR     = sys.argv[3]
 # append module path with srcDIR
 sys.path.append(srcDIR)
 
-# set permissions on outDIR
-#os.chmod(outDIR,stat.S_IRWXU)
-#os.chmod(outDIR,stat.S_IRWXG)
-# change current working directory to outDIR
-#os.chdir(outDIR)
-
 #################################################
 #################################################
 import numpy as np
@@ -62,7 +56,19 @@ fig.savefig(figFILE)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ppn = Perceptron(eta = 0.1, n_iter = 10)
-#ppn.fit(X,y)
+ppn.fit(X,y)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+figFILE = os.path.join(outDIR,'error-epoch.png')
+fig, ax = plt.subplots(1, 1)
+ax.plot(
+    range(1,len(ppn.errors_)+1),
+    ppn.errors_,
+    marker = 'o'
+    )
+ax.set_xlabel('epoch')
+ax.set_ylabel('number of misclassifications')
+fig.savefig(figFILE)
 
 #################################################
 #################################################
