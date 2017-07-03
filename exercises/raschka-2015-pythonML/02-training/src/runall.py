@@ -82,9 +82,10 @@ plotDecisionRegions(
     )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+figFILE = os.path.join(outDIR,'adaline-error-epoch.png')
 fig, ax = plt.subplots(nrows = 1, ncols = 2, figsize = (8,4))
 
-ada0 = AdalineGD(eta = 0.01, n_iter = 10).fit(X,y)
+ada0 = AdalineGD(eta = 0.01, n_iter = 20).fit(X,y)
 ax[0].plot(
     range(1,len(ada0.cost_)+1),
     np.log10(ada0.cost_),
@@ -94,7 +95,7 @@ ax[0].set_xlabel('epoch')
 ax[0].set_ylabel('log(sum of squared errors)')
 ax[0].set_title('Adaline - Learning rate 0.01')
 
-ada1 = AdalineGD(eta = 0.0001, n_iter = 10).fit(X,y)
+ada1 = AdalineGD(eta = 0.0001, n_iter = 20).fit(X,y)
 ax[1].plot(
     range(1,len(ada1.cost_)+1),
     ada1.cost_,
@@ -104,7 +105,37 @@ ax[1].set_xlabel('epoch')
 ax[1].set_ylabel('sum of squared errors')
 ax[1].set_title('Adaline - Learning rate 0.0001')
 
-figFILE = os.path.join(outDIR,'adaline-error-epoch.png')
+fig.savefig(figFILE)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+X_std = np.copy(X)
+X_std[:,0] = (X_std[:,0] - X_std[:,0].mean()) / X[:,0].std()
+X_std[:,1] = (X_std[:,1] - X_std[:,1].mean()) / X[:,1].std()
+
+ada = AdalineGD(n_iter = 100, eta = 0.01)
+ada.fit(X_std,y)
+
+figFILE = os.path.join(outDIR,'adaline-STD-decision-regions.png')
+plotDecisionRegions(
+    X          = X_std,
+    y          = y,
+    classifier = ada,
+    outFILE    = figFILE,
+    xlabel     = 'sepal length (standardized)',
+    ylabel     = 'petal length (standardized)'
+    )
+
+figFILE = os.path.join(outDIR,'adaline-STD-error-epoch.png')
+fig, ax = plt.subplots(nrows = 1, ncols = 1, figsize = (8,4))
+ax.plot(
+    range(1,len(ada.cost_)+1),
+    ada.cost_,
+    marker = 'o'
+    )
+ax.set_xlabel('epoch')
+ax.set_ylabel('sum of squared errors')
+ax.set_title('Adaline - Learning rate 0.0001')
+
 fig.savefig(figFILE)
 
 #################################################
