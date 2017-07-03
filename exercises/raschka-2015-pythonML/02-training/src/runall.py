@@ -16,6 +16,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from   Perceptron import Perceptron
+from   plotFunctions import plotDecisionRegions
 
 # ------------------------------------------------------------------------
 # Declare variables
@@ -69,6 +70,17 @@ ax.plot(
 ax.set_xlabel('epoch')
 ax.set_ylabel('number of misclassifications')
 fig.savefig(figFILE)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+figFILE = os.path.join(outDIR,'decision-regions.png')
+plotDecisionRegions(
+    X          = X,
+    y          = y,
+    classifier = ppn,
+    outFILE    = figFILE,
+    xlabel     = 'sepal length (cm)',
+    ylabel     = 'petal length (cm)'
+    )
 
 #################################################
 #################################################
