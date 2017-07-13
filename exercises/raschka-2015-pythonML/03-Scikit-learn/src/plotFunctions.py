@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from   matplotlib.colors import ListedColormap
 
-def plotDecisionRegions(X, y, classifier, outFILE, title, xlabel, ylabel, resolution = 0.02):
+def plotDecisionRegions(X, y, classifier, outFILE, title, xlabel, ylabel, test_idx = None, resolution = 0.02):
 
     markers = ('s','x','o','^','v')
     colors  = ('red','blue','lightgreen','gray','cyan')
@@ -37,9 +37,25 @@ def plotDecisionRegions(X, y, classifier, outFILE, title, xlabel, ylabel, resolu
             marker = markers[idx],
             label  = cl
             )
+
+    if test_idx:
+        X_test, y_test = X[test_idx,:], y[test_idx]
+        ax.scatter(
+            x          = X_test[:,0],
+            y          = X_test[:,1],
+            c          = '',
+            edgecolors = 'black',
+            alpha      = 1.0,
+            linewidth  = 1,
+            marker     = 'o',
+            s          = 55,
+            label      = 'test set'
+            )
+
     ax.set_title(title)
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.legend(loc = 'upper left')
+
     return( fig.savefig(outFILE) )
 

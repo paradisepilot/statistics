@@ -70,6 +70,12 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size = 0.3, random_state = 0
     )
 
+print('X_train.shape')
+print( X_train.shape )
+
+print('X_train.shape[0]')
+print( X_train.shape[0] )
+
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 sc = StandardScaler()
 sc.fit(X_train)
@@ -85,41 +91,27 @@ print('Misclassified test observations: %d' % (y_test != y_pred).sum())
 
 print('Accuracy: %.2f' % accuracy_score(y_test,y_pred))
 
-#################################################
-#################################################
-sys.exit(0)
-#################################################
-#################################################
-
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-ada = AdalineSGD(n_iter = 20, eta = 0.01, random_state = 1)
-ada.fit(X_std,y)
+X_combined_std = np.vstack((X_train_std,X_test_std))
+y_combined     = np.hstack((y_train,    y_test    ))
 
-figFILE = os.path.join(outDIR,'adalineSGD-STD-decision-regions.png')
+print('X_combined_std.shape[0]')
+print( X_combined_std.shape[0] )
+
+pngFILE = os.path.join(outDIR,'width-vs-length.png')
 plotDecisionRegions(
-    X          = X_std,
-    y          = y,
-    classifier = ada,
-    outFILE    = figFILE,
-    title      = 'Adaline SGD',
-    xlabel     = 'sepal length (standardized)',
-    ylabel     = 'petal length (standardized)'
+    X          = X_combined_std,
+    y          = y_combined,
+    classifier = ppn,
+    test_idx   = range(X_train.shape[0],X_combined_std.shape[0]),
+    outFILE    = pngFILE,
+    title      = 'Perceptron decision regions',
+    xlabel     = 'petal length (standardized)',
+    ylabel     = 'petal width (standardized)'
     )
-
-figFILE = os.path.join(outDIR,'adalineSGD-STD-error-epoch.png')
-fig, ax = plt.subplots(nrows = 1, ncols = 1, figsize = (8,4))
-ax.plot(
-    range(1,len(ada.cost_)+1),
-    ada.cost_,
-    marker = 'o'
-    )
-ax.set_xlabel('epoch')
-ax.set_ylabel('average cost')
-ax.set_title('Adaline SGD - Learning rate 0.01')
-
-fig.savefig(figFILE)
 
 #################################################
 #################################################
+
 sys.exit(0)
 
