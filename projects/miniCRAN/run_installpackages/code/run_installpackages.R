@@ -15,6 +15,13 @@ sink(file = fh.message, type = "message");
 sink(file = fh.output,  type = "output" );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+print("\n##### Sys.time()");
+Sys.time();
+
+start.proc.time <- proc.time();
+
+###################################################
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # read list of desired R packages
 pkgs.desired <- read.table(
     file = pkgs.desired.FILE,
@@ -49,7 +56,7 @@ if (nrow(caCRANmirrors) > 0) {
 	q();
 	}
 
-print(paste("myRepoURL",myRepoURL,sep=" = "));
+print(paste("\n##### myRepoURL",myRepoURL,sep=" = "));
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # assemble full path for R library to be built
@@ -60,14 +67,14 @@ if(!dir.exists(myLibrary)) { dir.create(path = myLibrary, recursive = TRUE); }
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # install desired R packages to
 # user-specified library
-print("installation of packages starts ...");
+print("\n##### installation of packages starts ...");
 install.packages(
     pkgs         = pkgs.desired,
     lib          = myLibrary,
     repos        = myRepoURL,
     dependencies = TRUE
     );
-print("installation of packages complete ...");
+print("\n##### installation of packages complete ...");
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 write.table(
@@ -93,9 +100,21 @@ write.table(
     );
 
 ###################################################
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+print("\n##### warnings()")
 warnings();
+
+print("\n##### sessionInfo()")
 sessionInfo();
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+print("\n##### Sys.time()");
+Sys.time();
+
+stop.proc.time <- proc.time();
+print("\n##### start.proc.time() - stop.proc.time()");
+stop.proc.time - start.proc.time;
+
 sink(type = "output" );
 sink(type = "message");
-close(con = fh.output);
-close(con = fh.message);
+closeAllConnections();

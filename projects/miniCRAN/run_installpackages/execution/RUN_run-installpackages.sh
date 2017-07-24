@@ -1,5 +1,6 @@
 #!/bin/bash
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 currentDIR=`pwd`
 parentDIR="$(dirname "$currentDIR")"
   codeDIR=${parentDIR}/code
@@ -9,10 +10,12 @@ if [ ! -d ${outputDIR} ]; then
 	mkdir -p ${outputDIR}
 fi
 
-cp -r ${codeDIR} ${outputDIR}
-
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 rpackagesFILE=Rpackages-desired.txt
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+cp -r ${codeDIR}    ${outputDIR}
+cp ${rpackagesFILE} ${outputDIR}
 
 ##################################################
 myRscript=${codeDIR}/run_installpackages.R
