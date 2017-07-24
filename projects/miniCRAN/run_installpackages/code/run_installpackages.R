@@ -79,7 +79,7 @@ write.table(
     );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-pkgs.nonInstalled <- setdiff(
+pkgs.notInstalled <- setdiff(
     pkgs.desired,
     as.character(installed.packages(lib = myLibrary)[,"Package"])
     );
