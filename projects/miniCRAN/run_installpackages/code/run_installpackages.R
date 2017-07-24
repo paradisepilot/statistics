@@ -72,7 +72,7 @@ install.packages(
     pkgs         = pkgs.desired,
     lib          = myLibrary,
     repos        = myRepoURL,
-    dependencies = c("Depends", "Imports", "LinkingTo", "Suggests")
+    dependencies = TRUE # c("Depends", "Imports", "LinkingTo", "Suggests")
     );
 print("\n##### installation of packages complete ...");
 
