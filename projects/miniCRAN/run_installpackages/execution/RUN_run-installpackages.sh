@@ -9,6 +9,8 @@ if [ ! -d ${outputDIR} ]; then
 	mkdir -p ${outputDIR}
 fi
 
+cp -r ${codeDIR} ${outputDIR}
+
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 rpackagesFILE=Rpackages-desired.txt
 
