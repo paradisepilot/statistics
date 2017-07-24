@@ -72,14 +72,18 @@ install.packages(
     pkgs         = pkgs.desired,
     lib          = myLibrary,
     repos        = myRepoURL,
-    dependencies = TRUE
+    dependencies = c("Depends", "Imports", "LinkingTo", "Suggests")
     );
 print("\n##### installation of packages complete ...");
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+my.colnames <- c("Package","Version","License","License_restricts_use","NeedsCompilation","Built");
+DF.installed.packages <- as.data.frame(installed.packages(lib = myLibrary)[,my.colnames]);
+
 write.table(
     file      = "Rpackages-newlyInstalled.txt",
-    x         = as.data.frame(installed.packages(lib = myLibrary)),
+    x         = DF.installed.packages,
+    sep       = "\t",
     quote     = FALSE,
     row.names = FALSE,
     col.names = TRUE
