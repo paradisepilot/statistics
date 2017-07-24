@@ -1,0 +1,101 @@
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+command.arguments <- commandArgs(trailingOnly = TRUE);
+   code.directory <- normalizePath(command.arguments[1]);
+ output.directory <- normalizePath(command.arguments[2]);
+pkgs.desired.FILE <- normalizePath(command.arguments[3]);
+
+setwd(output.directory);
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+fh.output  <- file("log.output",  open = "wt");
+fh.message <- file("log.message", open = "wt");
+
+sink(file = fh.message, type = "message");
+sink(file = fh.output,  type = "output" );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# read list of desired R packages
+pkgs.desired <- read.table(
+    file = pkgs.desired.FILE,
+    header = FALSE,
+    stringsAsFactors = FALSE
+    )[,1];
+
+# exclude packages already installed
+pkgs.desired <- setdiff(
+    pkgs.desired,
+    as.character(installed.packages()[,"Package"])
+    );
+
+write.table(
+    file      = "Rpackages-desired-minus-preinstalled.txt",
+    x         = data.frame(package = sort(pkgs.desired)),
+    quote     = FALSE,
+    row.names = FALSE,
+    col.names = FALSE
+    );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# get URL of an active CRAN mirror
+CRANmirrors   <- getCRANmirrors();
+CRANmirrors   <- CRANmirrors[CRANmirrors[,"OK"]==1,];
+caCRANmirrors <- CRANmirrors[CRANmirrors[,"CountryCode"]=="ca",c("Name","CountryCode","OK","URL")];
+if (nrow(caCRANmirrors) > 0) {
+	myRepoURL <- caCRANmirrors[nrow(caCRANmirrors),"URL"];
+	} else if (nrow(CRANmirrors) > 0) {
+	myRepoURL <- CRANmirrors[1,"URL"];
+	} else {
+	q();
+	}
+
+print(paste("myRepoURL",myRepoURL,sep=" = "));
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# assemble full path for R library to be built
+current.version <- paste0(R.Version()["major"],".",R.Version()["minor"]);
+myLibrary <- file.path(".","library",current.version,"library");
+if(!dir.exists(myLibrary)) { dir.create(path = myLibrary, recursive = TRUE); }
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# install desired R packages to
+# user-specified library
+print("installation of packages starts ...");
+install.packages(
+    pkgs         = pkgs.desired,
+    lib          = myLibrary,
+    repos        = myRepoURL,
+    dependencies = TRUE
+    );
+print("installation of packages complete ...");
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+write.table(
+    file      = "Rpackages-newlyInstalled.txt",
+    x         = as.data.frame(installed.packages(lib = myLibrary)),
+    quote     = FALSE,
+    row.names = FALSE,
+    col.names = TRUE
+    );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+pkgs.nonInstalled <- setdiff(
+    pkgs.desired,
+    as.character(installed.packages(lib = myLibrary)[,"Package"])
+    );
+
+write.table(
+    file      = "Rpackages-notInstalled.txt",
+    x         = data.frame(package.notInstalled = sort(pkgs.notInstalled)),
+    quote     = FALSE,
+    row.names = FALSE,
+    col.names = TRUE
+    );
+
+###################################################
+warnings();
+sessionInfo();
+sink(type = "output" );
+sink(type = "message");
+close(con = fh.output);
+close(con = fh.message);
