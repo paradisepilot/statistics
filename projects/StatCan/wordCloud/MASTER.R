@@ -1,26 +1,37 @@
 
+# absolute path to custom R library
+myLibPath <- "/Users/woodenbeauty/Work/gittmp/paradisepilot/statistics/projects/miniCRAN/run_installpackages/output.BACKUP.2017-07-24.05/library/3.4.1/library";
+
+# get directory of this script, i.e. MASTER.R
 dir.MASTER <- getSrcDirectory(function(x) {x});
+
+# define path to the code directory
 dir.code   <- file.path(dir.MASTER,"code");
+
+# define path to the output directory
 dir.output <- file.path(dir.MASTER,paste0("output.",Sys.info()[["login"]]));
 
+# create output directory if it does not yet exist
 if (!dir.exists(dir.output)) { dir.create(path=dir.output,recursive=FALSE); }
 setwd(dir.output);
 
+# save replica of MASTER.R and code directory to output directory
 path.MASTER <- file.path(dir.MASTER,getSrcFilename(function(x) {x}));
 file.copy(from = dir.code,    to = dir.output, recursive = TRUE);
 file.copy(from = path.MASTER, to = dir.output);
 
+# redirect R output and R messages to file
 fh.output  <- file("log.output",  open = "wt");
 fh.message <- file("log.message", open = "wt");
 sink(file = fh.message, type = "message");
 sink(file = fh.output,  type = "output" );
 
+# print system time to log file
 print("");
 print(paste0("##### Sys.time(): ",Sys.time()));
 start.proc.time <- proc.time();
 
 ###################################################
-myLibPath <- "/Users/woodenbeauty/Work/gittmp/paradisepilot/statistics/projects/miniCRAN/run_installpackages/output.BACKUP.2017-07-24.05/library/3.4.1/library";
 libPaths.original <- .libPaths();
 libPaths.new      <- c(myLibPath,libPaths.original);
 .libPaths(libPaths.new);
@@ -50,22 +61,27 @@ wordcloud(names(freq), freq, min.freq=50, colors=brewer.pal(6,"Dark2"));
 dev.off();
 
 ###################################################
+# print warning messages to log
 print("");
 print("##### warnings()")
 (warnings());
 
+# print session info to log
 print("");
 print("##### sessionInfo()")
 print(sessionInfo());
 
+# print system time to log
 print("");
 print(paste0("##### Sys.time(): ",Sys.time()));
 
+# print elapsed time to log
 stop.proc.time <- proc.time();
 print("");
 print("##### start.proc.time() - stop.proc.time()");
 print( stop.proc.time - start.proc.time );
 
+# close output and message files
 sink(type = "output" );
 sink(type = "message");
 closeAllConnections();
