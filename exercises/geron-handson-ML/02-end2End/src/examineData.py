@@ -19,7 +19,7 @@ def examineData(inputDF):
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     outputFILE = 'histograms.png'
-    fig, ax = plt.subplots(nrows = 3, ncols = 3, figsize = (8,4))
+    fig, ax = plt.subplots(nrows = 3, ncols = 3, figsize = (12,12))
     inputDF.hist(ax=ax,bins=50)
     fig.savefig(outputFILE)
 
