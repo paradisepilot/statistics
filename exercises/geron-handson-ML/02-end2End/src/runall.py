@@ -25,7 +25,8 @@ from sklearn.preprocessing   import StandardScaler
 from sklearn.linear_model    import Perceptron
 from sklearn.metrics         import accuracy_score
 
-from examineData import examineData
+from examineData    import examineData
+from splitTrainTest import splitTrainTest
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -33,6 +34,7 @@ housingFILE = os.path.join(datDIR,'housing.csv')
 housingDF   = pd.read_csv(housingFILE);
 
 examineData(inputDF = housingDF);
+stratifiedTrainSet, stratifiedTestSet = splitTrainTest(inputDF = housingDF)
 
 #################################################
 #################################################
