@@ -18,7 +18,10 @@ def splitTrainTest(inputDF):
     print('\ninputDF["income_category"].value_counts() / len(inputDF)')
     print(   inputDF["income_category"].value_counts() / len(inputDF) )
 
+    for set in (stratifiedTrainSet,stratifiedTestSet):
+        set.drop(["income_category"],axis=1,inplace=True)
+
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    #return( stratifiedTrainSet , stratifiedTestSet )
-    return( simpleTrainSet, simpleTestSet )
+    return( stratifiedTrainSet , stratifiedTestSet )
+    # return( simpleTrainSet, simpleTestSet )
 
