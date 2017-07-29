@@ -34,7 +34,7 @@ housingFILE = os.path.join(datDIR,'housing.csv')
 housingDF   = pd.read_csv(housingFILE);
 
 examineData(inputDF = housingDF);
-stratifiedTrainSet, stratifiedTestSet = splitTrainTest(inputDF = housingDF)
+stratifiedTrainSet, stratifiedTestSet = splitTrainTest(inputDF = housingDF, random_state = 19)
 
 #################################################
 #################################################
