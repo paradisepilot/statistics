@@ -17,7 +17,6 @@ def visualizeData(inputDF):
         colorbar = True,
         alpha    = 0.1
         )
-    # plt.tight_layout()
     plt.savefig(filename = outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -25,7 +24,6 @@ def visualizeData(inputDF):
     corrMatrix = inputDF.corr()
     attributes = ["median_house_value","median_income","total_rooms","housing_median_age"]
     myPlot = scatter_matrix(frame=inputDF[attributes], figsize=(12,8))
-    # plt.tight_layout()
     plt.savefig(filename = outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     print('\ncorrMatrix["median_house_value"].sort_values(ascending=False)')
@@ -40,7 +38,6 @@ def visualizeData(inputDF):
         alpha   = 0.1,
         figsize = (12,8)
         )
-    # plt.tight_layout()
     plt.savefig(filename = outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -53,7 +50,6 @@ def visualizeData(inputDF):
     corrMatrix = inputDF.corr()
     attributes = ["median_house_value","median_income","roomsPerHousehold","bedroomsPerRoom"]
     myPlot = scatter_matrix(frame=inputDF[attributes], figsize=(12,8))
-    # plt.tight_layout()
     plt.savefig(filename = outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     print('\ncorrMatrix["median_house_value"].sort_values(ascending=False)')
