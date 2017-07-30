@@ -34,9 +34,10 @@ from visualizeData  import visualizeData
 
 from PipelinePreprocessHousingData import PipelinePreprocessHousingData
 
-from sklearn.metrics      import mean_squared_error
-from sklearn.linear_model import LinearRegression
-from sklearn.tree         import DecisionTreeRegressor
+from sklearn.metrics         import mean_squared_error
+from sklearn.linear_model    import LinearRegression
+from sklearn.tree            import DecisionTreeRegressor
+from sklearn.model_selection import cross_val_score
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -87,7 +88,7 @@ print("\nlinearRMSE")
 print(   linearRMSE )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# regression tree (this overfits the data)
+# regression tree (this overfits the data: zero MSE)
 regressionTreeModel = DecisionTreeRegressor()
 regressionTreeModel.fit(X = preprocessedStratTrainSet, y = stratifiedTrainSet["median_house_value"])
 
@@ -97,6 +98,26 @@ regressionTreeRMSE = np.sqrt(regressionTreeMSE)
 
 print("\nregressionTreeRMSE")
 print(   regressionTreeRMSE )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# evaluate regression tree via 10-fold cross-validation
+regressionTreeCVScores = cross_val_score(
+    estimator = regressionTreeModel,
+    X         = preprocessedStratTrainSet,
+    y         = stratifiedTrainSet["median_house_value"],
+    scoring   = "neg_mean_square_error",
+    cv        = 10
+    )
+regressionTreeCVRMSE = np.sqrt( - regressionTreeCVScores )
+
+print("\nregressionTreeCVRMSE")
+print(   regressionTreeCVRMSE )
+
+print("\nregressionTreeCVRMSE.mean()")
+print(   regressionTreeCVRMSE.mean() )
+
+print("\nregressionTreeCVRMSE.std()")
+print(   regressionTreeCVRMSE.std() )
 
 #################################################
 #################################################
