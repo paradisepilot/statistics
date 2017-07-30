@@ -100,12 +100,32 @@ print("\nregressionTreeRMSE")
 print(   regressionTreeRMSE )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# evaluate linear model via 10-fold cross-validation
+linearModelCVScores = cross_val_score(
+    estimator = linearModel,
+    X         = preprocessedStratTrainSet,
+    y         = stratifiedTrainSet["median_house_value"],
+    scoring   = "neg_mean_squared_error",
+    cv        = 10
+    )
+linearModelCVRMSE = np.sqrt( - linearModelCVScores )
+
+print("\nlinearModelCVRMSE")
+print(   linearModelCVRMSE )
+
+print("\nlinearModelCVRMSE.mean()")
+print(   linearModelCVRMSE.mean() )
+
+print("\nlinearModelCVRMSE.std()")
+print(   linearModelCVRMSE.std() )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # evaluate regression tree via 10-fold cross-validation
 regressionTreeCVScores = cross_val_score(
     estimator = regressionTreeModel,
     X         = preprocessedStratTrainSet,
     y         = stratifiedTrainSet["median_house_value"],
-    scoring   = "neg_mean_square_error",
+    scoring   = "neg_mean_squared_error",
     cv        = 10
     )
 regressionTreeCVRMSE = np.sqrt( - regressionTreeCVScores )
