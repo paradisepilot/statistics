@@ -196,7 +196,7 @@ print("\ngridSearch.best_estimator_")
 print(   gridSearch.best_estimator_ )
 
 CVResults = gridSearch.cv_results_
-for mean_score, params = in zip(CVResults["mean_test_score"], CVResults["params"]):
+for mean_score, params in zip(CVResults["mean_test_score"], CVResults["params"]):
     print( np.sqrt(-mean_score) , params )
 
 #################################################
