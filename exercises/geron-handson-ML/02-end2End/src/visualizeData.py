@@ -44,5 +44,21 @@ def visualizeData(inputDF):
     plt.savefig(filename = outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    outputFILE = 'plot-correlations-02.png'
+
+    inputDF[     "roomsPerHousehold"] = inputDF["total_rooms"]    / inputDF["households"]
+    inputDF[  "bedroomsPerHousehold"] = inputDF["total_bedrooms"] / inputDF["households"]
+    inputDF["populationPerHousehold"] = inputDF["population"]     / inputDF["households"]
+
+    corrMatrix = inputDF.corr()
+    attributes = ["median_house_value","median_income","roomsPerHousehold","bedroomsPerHousehold"]
+    myPlot = scatter_matrix(frame=inputDF[attributes], figsize=(12,8))
+    # plt.tight_layout()
+    plt.savefig(filename = outputFILE, bbox_inches='tight', pad_inches=0.2)
+
+    print('\ncorrMatrix["median_house_value"].sort_values(ascending=False)')
+    print(   corrMatrix["median_house_value"].sort_values(ascending=False) )
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( 0 )
 
