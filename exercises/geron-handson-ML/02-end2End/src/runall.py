@@ -15,6 +15,7 @@ os.chdir(outDIR)
 
 #################################################
 #################################################
+import numpy   as np
 import pandas  as pd
 import seaborn as sns
 
@@ -25,6 +26,9 @@ from splitTrainTest import splitTrainTest
 from visualizeData  import visualizeData
 
 from PipelinePreprocessHousingData import PipelinePreprocessHousingData
+
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics      import mean_squared_error
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -61,6 +65,18 @@ print(   preprocessedStratTrainSet.shape )
 
 print("\nstats.describe(preprocessedStratTrainSet)")
 print(   stats.describe(preprocessedStratTrainSet) )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# linear model
+linearModel = LinearRegression()
+linearModel.fit(X = preprocessedStratTrainSet, y = stratifiedTrainSet["median_house_value"])
+
+predictedHouseValues = linearModel.predict(X = preprocessedStratTrainSet)
+linearMSE  = mean_squared_error(predictedHouseValues,stratifiedTrainSet["median_house_value"])
+linearRMSE = np.sqrt(linearMSE)
+
+print("\nlinearRMSE")
+print(   linearRMSE )
 
 #################################################
 #################################################

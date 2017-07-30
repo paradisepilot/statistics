@@ -21,5 +21,5 @@ def examineData(inputDF):
     plt.savefig(filename = outputFILE, dpi = 600, bbox_inches='tight', pad_inches=0.2)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    return( 0 )
+    return( None )
 
