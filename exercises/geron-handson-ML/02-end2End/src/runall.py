@@ -34,8 +34,9 @@ from visualizeData  import visualizeData
 
 from PipelinePreprocessHousingData import PipelinePreprocessHousingData
 
-from sklearn.linear_model import LinearRegression
 from sklearn.metrics      import mean_squared_error
+from sklearn.linear_model import LinearRegression
+from sklearn.tree         import DecisionTreeRegressor
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -74,7 +75,7 @@ print("\nstats.describe(preprocessedStratTrainSet)")
 print(   stats.describe(preprocessedStratTrainSet) )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# linear model
+# linear model (this underfits the data)
 linearModel = LinearRegression()
 linearModel.fit(X = preprocessedStratTrainSet, y = stratifiedTrainSet["median_house_value"])
 
@@ -84,6 +85,18 @@ linearRMSE = np.sqrt(linearMSE)
 
 print("\nlinearRMSE")
 print(   linearRMSE )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# regression tree (this overfits the data)
+regressionTreeModel = DecisionTreeRegressor()
+regressionTreeModel.fit(X = preprocessedStratTrainSet, y = stratifiedTrainSet["median_house_value"])
+
+predictedHouseValues = regressionTreeModel.predict(X = preprocessedStratTrainSet)
+regressionTreeMSE  = mean_squared_error(predictedHouseValues,stratifiedTrainSet["median_house_value"])
+regressionTreeRMSE = np.sqrt(regressionTreeMSE)
+
+print("\nregressionTreeRMSE")
+print(   regressionTreeRMSE )
 
 #################################################
 #################################################
