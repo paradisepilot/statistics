@@ -38,7 +38,7 @@ from sklearn.metrics         import mean_squared_error
 from sklearn.linear_model    import LinearRegression
 from sklearn.tree            import DecisionTreeRegressor
 from sklearn.ensemble        import RandomForestRegressor
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_score, GridSearchCV
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -170,6 +170,34 @@ print(   randomForestCVRMSE.mean() )
 
 print("\nrandomForestCVRMSE.std()")
 print(   randomForestCVRMSE.std() )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# random forest with hyperparameter tuning via grid search
+newRandomForestModel = RandomForestRegressor()
+
+parameterGrid = [
+    { 'n_estimators':[3,10,30], 'max_features':[2,4,6,8]                     },
+    { 'n_estimators':[3,10],    'max_features':[2,3,4],  'bootstrap':[False] }
+    ]
+
+gridSearch = GridSearchCV(
+    estimator = newRandomForestModel,
+    param_grid = parameterGrid,
+    scoring = "neg_mean_squared_error",
+    cv = 5
+    )
+
+gridSearch.fit(X = preprocessedStratTrainSet, y = stratifiedTrainSet["median_house_value"])
+
+print("\ngridSearch.best_params_")
+print(   gridSearch.best_params_ )
+
+print("\ngridSearch.best_estimator_")
+print(   gridSearch.best_estimator_ )
+
+CVResults = gridSearch.cv_results_
+for mean_score, params = in zip(CVResults["mean_test_score"], CVResults["params"]):
+    print( np.sqrt(-mean_score) , params )
 
 #################################################
 #################################################
