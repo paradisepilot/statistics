@@ -16,13 +16,10 @@ def examineData(inputDF):
     print(   inputDF.describe() )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    outputFILE = 'histograms.png'
-    fig, ax = plt.subplots(nrows = 3, ncols = 3, figsize = (24,12))
-    inputDF.hist(ax=ax,bins=50)
-    fig.tight_layout()
-    fig.savefig(outputFILE)
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    outputFILE = 'plot-histograms.png'
+    myHistogram = inputDF.hist(bins = 50, figsize = (12,6))
+    plt.tight_layout()
+    plt.savefig(outputFILE)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( 0 )

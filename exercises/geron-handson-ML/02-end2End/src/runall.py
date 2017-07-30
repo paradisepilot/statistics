@@ -27,6 +27,7 @@ from sklearn.metrics         import accuracy_score
 
 from examineData    import examineData
 from splitTrainTest import splitTrainTest
+from visualizeData  import visualizeData
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -35,6 +36,7 @@ housingDF   = pd.read_csv(housingFILE);
 
 examineData(inputDF = housingDF);
 stratifiedTrainSet, stratifiedTestSet = splitTrainTest(inputDF = housingDF, random_state = 19)
+visualizeData(inputDF = stratifiedTrainSet);
 
 #################################################
 #################################################
