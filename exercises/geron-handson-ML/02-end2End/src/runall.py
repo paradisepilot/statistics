@@ -37,6 +37,7 @@ from PipelinePreprocessHousingData import PipelinePreprocessHousingData
 from sklearn.metrics         import mean_squared_error
 from sklearn.linear_model    import LinearRegression
 from sklearn.tree            import DecisionTreeRegressor
+from sklearn.ensemble        import RandomForestRegressor
 from sklearn.model_selection import cross_val_score
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -139,8 +140,38 @@ print(   regressionTreeCVRMSE.mean() )
 print("\nregressionTreeCVRMSE.std()")
 print(   regressionTreeCVRMSE.std() )
 
-#################################################
-#################################################
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# random forest
+randomForestModel = RandomForestRegressor()
+randomForestModel.fit(X = preprocessedStratTrainSet, y = stratifiedTrainSet["median_house_value"])
 
+predictedHouseValues = randomForestModel.predict(X = preprocessedStratTrainSet)
+randomForestMSE      = mean_squared_error(predictedHouseValues,stratifiedTrainSet["median_house_value"])
+randomForestRMSE     = np.sqrt(randomForestMSE)
+
+print("\nrandomForestRMSE")
+print(   randomForestRMSE )
+
+# evaluate random forest with 10-fold cross-validation
+randomForestCVScores = cross_val_score(
+    estimator = randomForestModel,
+    X         = preprocessedStratTrainSet,
+    y         = stratifiedTrainSet["median_house_value"],
+    scoring   = "neg_mean_squared_error",
+    cv        = 10
+    )
+randomForestCVRMSE = np.sqrt( - randomForestCVScores )
+
+print("\nrandomForestCVRMSE")
+print(   randomForestCVRMSE )
+
+print("\nrandomForestCVRMSE.mean()")
+print(   randomForestCVRMSE.mean() )
+
+print("\nrandomForestCVRMSE.std()")
+print(   randomForestCVRMSE.std() )
+
+#################################################
+#################################################
 sys.exit(0)
 
