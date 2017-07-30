@@ -34,5 +34,17 @@ def visualizeData(inputDF):
     print(   corrMatrix["median_house_value"].sort_values(ascending=False) )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    outputFILE = 'plot-medianIncome.png'
+    myPlot = inputDF.plot(
+        kind    = 'scatter',
+        x       = "median_income",
+        y       = "median_house_value",
+        alpha   = 0.1,
+        figsize = (12,8)
+        )
+    plt.tight_layout()
+    plt.savefig(outputFILE)
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( 0 )
 
