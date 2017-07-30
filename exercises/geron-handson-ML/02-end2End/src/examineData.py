@@ -18,8 +18,7 @@ def examineData(inputDF):
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     outputFILE = 'plot-histograms.png'
     myHistogram = inputDF.hist(bins = 50, figsize = (12,6))
-    plt.tight_layout()
-    plt.savefig(outputFILE)
+    plt.savefig(filename = outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( 0 )
