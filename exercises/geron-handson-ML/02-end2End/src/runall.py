@@ -199,6 +199,19 @@ CVResults = gridSearch.cv_results_
 for mean_score, params in zip(CVResults["mean_test_score"], CVResults["params"]):
     print( np.sqrt(-mean_score) , params )
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# examine feature importances
+featureImportances = gridSearch.best_estimator_.feature_importances_
+print("\nfeatureImportances")
+print(   featureImportances )
+
+# extra_attribs = ["roomsPerHhold", "popPerHhold", "bedroomsPerRoom"]
+# cat_one_hot_attribs = list(encoder.classes_)
+# attributes = + extra_attribs + cat_one_hot_attribs
+
+# print("\nsorted(zip(featureImportances,attributes),reverse=True)")
+# print(   sorted(zip(featureImportances,attributes),reverse=True) )
+
 #################################################
 #################################################
 sys.exit(0)
