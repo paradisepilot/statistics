@@ -15,15 +15,8 @@ os.chdir(outDIR)
 
 #################################################
 #################################################
-import numpy   as np
 import pandas  as pd
 import seaborn as sns
-import matplotlib.pyplot as plt
-
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing   import StandardScaler
-from sklearn.linear_model    import Perceptron
-from sklearn.metrics         import accuracy_score
 
 from examineData    import examineData
 from splitTrainTest import splitTrainTest
