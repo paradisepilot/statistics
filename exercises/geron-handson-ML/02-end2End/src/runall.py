@@ -41,12 +41,20 @@ stratifiedTrainSet, stratifiedTestSet = splitTrainTest(inputDF = housingDF, rand
 # visualize stratified training data set
 visualizeData(inputDF = stratifiedTrainSet);
 
+print("\nstratifiedTrainSet.info()")
+print(   stratifiedTrainSet.info() )
+
 print("\nstratifiedTrainSet.describe()")
 print(   stratifiedTrainSet.describe() )
 
+print("\ntype(stratifiedTrainSet)")
+print(   type(stratifiedTrainSet) )
+
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # preprocess stratified training data set
-preprocessedStratTrainSet = PipelinePreprocessHousingData.fit_transform(stratifiedTrainSet)
+preprocessedStratTrainSet = PipelinePreprocessHousingData.fit_transform(
+    stratifiedTrainSet.drop(["median_house_value"],axis=1)
+    )
 
 print("\npreprocessedStratTrainSet.shape")
 print(   preprocessedStratTrainSet.shape )
