@@ -39,6 +39,7 @@ from sklearn.linear_model    import LinearRegression
 from sklearn.tree            import DecisionTreeRegressor
 from sklearn.ensemble        import RandomForestRegressor
 from sklearn.model_selection import cross_val_score, GridSearchCV
+from sklearn.preprocessing   import LabelEncoder
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -205,12 +206,26 @@ featureImportances = gridSearch.best_estimator_.feature_importances_
 print("\nfeatureImportances")
 print(   featureImportances )
 
-# extra_attribs = ["roomsPerHhold", "popPerHhold", "bedroomsPerRoom"]
-# cat_one_hot_attribs = list(encoder.classes_)
-# attributes = + extra_attribs + cat_one_hot_attribs
+numericAttribs = list(stratifiedTrainSet.drop(["ocean_proximity"],axis=1).columns)
 
-# print("\nsorted(zip(featureImportances,attributes),reverse=True)")
-# print(   sorted(zip(featureImportances,attributes),reverse=True) )
+oneHotEncoder     = LabelEncoder()
+housingCatEncoded = oneHotEncoder.fit(stratifiedTrainSet["ocean_proximity"])
+oneHotAttribs     = oneHotEncoder.classes_
+
+extraAttribs = ["roomsPerHhold", "popPerHhold", "bedroomsPerRoom"]
+attributes = list(numericAttribs) + extraAttribs + list(oneHotAttribs)
+
+print("\nnumericAttribs")
+print(   numericAttribs )
+
+print("\noneHotAttribs")
+print(   oneHotAttribs )
+
+print("\nattributes")
+print(   attributes )
+
+print("\nsorted(zip(featureImportances,attributes),reverse=True)")
+print(   sorted(zip(featureImportances,attributes),reverse=True) )
 
 #################################################
 #################################################
