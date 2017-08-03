@@ -1,6 +1,6 @@
 
 # absolute path to custom R library
-myLibPath <- "/Users/woodenbeauty/Work/gittmp/paradisepilot/statistics/projects/miniCRAN/run_installpackages/output.BACKUP.2017-07-24.05/library/3.4.1/library";
+myLibPath <- "/Users/woodenbeauty/Work/gittmp/paradisepilot/statistics/projects/miniCRAN/run_installpackages/output.BACKUP.2017-08-02.01";
 
 # add custom library using .libPaths()
 libPaths.original <- .libPaths();
