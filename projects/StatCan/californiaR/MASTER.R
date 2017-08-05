@@ -40,11 +40,12 @@ print(paste0("##### Sys.time(): ",Sys.time()));
 start.proc.time <- proc.time();
 
 ###################################################
-source(file.path(dir.code,"examineData.R"))
+require(caret);
 
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-require(tm);
-require(wordcloud);
+source(file.path(dir.code,"examineData.R"))
+source(file.path(dir.code,"splitTrainTest.R"))
+source(file.path(dir.code,"visualizeData.R"))
+source(file.path(dir.code,"preprocessData.R"))
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -60,32 +61,26 @@ print( str(DF.housing) );
 examineData(DF.input = DF.housing);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-quit(save="no");
+LIST.trainTest <- splitTrainTest(DF.input = DF.housing);
+
+print("str(LIST.trainTest)");
+print( str(LIST.trainTest) );
+
+preprocessedTrainSet = preprocessData(
+    DF.input =  LIST.trainTest[["trainSet"]]
+    )
+
+print("str(preprocessedTrainSet)");
+print( str(preprocessedTrainSet) );
+
+print("head(preprocessedTrainSet)");
+print( head(preprocessedTrainSet) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-dir.data <- file.path(dir.MASTER,"data");
-docs <- Corpus(DirSource(dir.data));
-docs <- tm_map(docs, removePunctuation);
-docs <- tm_map(docs, removeWords, stopwords("english"));
-docs <- tm_map(docs, stripWhitespace);
-docs <- tm_map(docs, stemDocument);
-
-print("summary(docs)");
-print( summary(docs) );
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-dtm  <- DocumentTermMatrix(docs);
-freq <- sort(colSums(as.matrix(dtm)), decreasing=TRUE);
-
-set.seed(123);
-png(filename="my-word-cloud.png",height=6,width=6,units="in",res=1000);
-wordcloud(names(freq), freq, min.freq=50, colors=brewer.pal(6,"Dark2"));
-dev.off();
 
 ###################################################
 # print warning messages to log
-print("");
+print("###################################################");
 print("##### warnings()")
 print(warnings());
 
