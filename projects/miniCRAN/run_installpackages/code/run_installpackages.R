@@ -22,6 +22,12 @@ start.proc.time <- proc.time();
 
 ###################################################
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# copy the file of desired packages to output directory
+file.copy(
+    from = pkgs.desired.FILE,
+    to   = "."
+    );
+
 # read list of desired R packages
 pkgs.desired <- read.table(
     file = pkgs.desired.FILE,
