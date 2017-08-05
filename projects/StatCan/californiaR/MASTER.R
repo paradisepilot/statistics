@@ -45,10 +45,14 @@ require(caret);
 source(file.path(dir.code,"addAttributes.R"))
 source(file.path(dir.code,"examineData.R"))
 source(file.path(dir.code,"preprocessData.R"))
+source(file.path(dir.code,"regressionLinear.R"))
+source(file.path(dir.code,"regressionTree.R"))
 source(file.path(dir.code,"splitTrainTest.R"))
 source(file.path(dir.code,"visualizeData.R"))
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+set.seed(1234567);
+
 # load data
 DF.housing <- read.csv(
     file   = file.path(dir.data,"housing.csv"),
@@ -56,8 +60,8 @@ DF.housing <- read.csv(
     );
 
 # examine full data set
-examineData(DF.input = DF.housing);
-visualizeData(DF.input = DF.housing);
+# examineData(DF.input = DF.housing);
+# visualizeData(DF.input = DF.housing);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 LIST.trainTest <- splitTrainTest(DF.input = DF.housing);
@@ -109,6 +113,8 @@ print("summary(abs(preprocessedTrainSet - preprocessedTrainSet1)/preprocessedTra
 print( summary(abs(preprocessedTrainSet - preprocessedTrainSet1)) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+regressionLinear(DF.input = preprocessedTrainSet1);
+regressionTree(  DF.input = preprocessedTrainSet1);
 
 ###################################################
 # print warning messages to log
