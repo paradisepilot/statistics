@@ -23,10 +23,10 @@ examineData <- function(DF.input) {
         data = DF.input[,setdiff(colnames(DF.input),"ocean_proximity")]
         );
 
-    print('str(melted.DF.input)');
-    print( str(melted.DF.input) );
-    print('head(melted.DF.input)');
-    print( head(melted.DF.input) );
+    # print('str(melted.DF.input)');
+    # print( str(melted.DF.input) );
+    # print('head(melted.DF.input)');
+    # print( head(melted.DF.input) );
 
     my.ggplot <- ggplot(data = NULL);
     my.ggplot <- my.ggplot + geom_histogram(data = melted.DF.input, mapping = aes(x = value), bins = 50); 

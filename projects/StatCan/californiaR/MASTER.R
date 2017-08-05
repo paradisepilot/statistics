@@ -1,6 +1,6 @@
 
 # absolute path to custom R library
-myLibPath <- "/Users/woodenbeauty/Work/gittmp/paradisepilot/statistics/projects/miniCRAN/run_installpackages/output.BACKUP.2017-08-02.01/library/3.4.1/library";
+myLibPath <- "/Users/woodenbeauty/Work/gittmp/paradisepilot/statistics/projects/miniCRAN/run_installpackages/output.BACKUP.2017-08-05.01/library/3.4.1/library";
 
 # add custom library using .libPaths()
 libPaths.original <- .libPaths();
@@ -42,10 +42,11 @@ start.proc.time <- proc.time();
 ###################################################
 require(caret);
 
+source(file.path(dir.code,"addAttributes.R"))
 source(file.path(dir.code,"examineData.R"))
+source(file.path(dir.code,"preprocessData.R"))
 source(file.path(dir.code,"splitTrainTest.R"))
 source(file.path(dir.code,"visualizeData.R"))
-source(file.path(dir.code,"preprocessData.R"))
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -54,11 +55,9 @@ DF.housing <- read.csv(
     header = TRUE
     );
 
-print("str(DF.housing)");
-print( str(DF.housing) );
-
 # examine full data set
 examineData(DF.input = DF.housing);
+visualizeData(DF.input = DF.housing);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 LIST.trainTest <- splitTrainTest(DF.input = DF.housing);
@@ -66,15 +65,48 @@ LIST.trainTest <- splitTrainTest(DF.input = DF.housing);
 print("str(LIST.trainTest)");
 print( str(LIST.trainTest) );
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 preprocessedTrainSet = preprocessData(
     DF.input =  LIST.trainTest[["trainSet"]]
     )
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+trainSetAugmented <- addAttributes(
+    DF.input = LIST.trainTest[["trainSet"]]
+    )
+
+myPreprocessor <- preProcess(
+    x      = trainSetAugmented,
+    method = c("medianImpute","center","scale"),
+    );
+
+preprocessedTrainSet1 <- predict(
+    object  = myPreprocessor,
+    newdata = trainSetAugmented
+    );
+
+preprocessedTrainSet1 <- data.frame(predict(
+    dummyVars(formula = ~ ., data=preprocessedTrainSet1),
+    newdata=preprocessedTrainSet1
+    )); 
+
+preprocessedTrainSet1[,"median_house_value"] <- LIST.trainTest[["trainSet"]][,"median_house_value"];
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 print("str(preprocessedTrainSet)");
 print( str(preprocessedTrainSet) );
 
+print("str(preprocessedTrainSet1)");
+print( str(preprocessedTrainSet1) );
+
 print("head(preprocessedTrainSet)");
 print( head(preprocessedTrainSet) );
+
+print("head(preprocessedTrainSet1)");
+print( head(preprocessedTrainSet1) );
+
+print("summary(abs(preprocessedTrainSet - preprocessedTrainSet1)/preprocessedTrainSet)");
+print( summary(abs(preprocessedTrainSet - preprocessedTrainSet1)) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
