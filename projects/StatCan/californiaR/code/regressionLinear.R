@@ -13,10 +13,11 @@ lm.train <- function(DF.input, attributeAdder) {
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     trained.model <- train(
-        form    = median_house_value ~ .,
-        data    = DF.temp,
-        method  = "lm",
-        preProc = c("center", "scale")
+        form      = median_house_value ~ .,
+        data      = DF.temp,
+        method    = "lm",
+        preProc   = c("center", "scale"),
+        trControl = trainControl(method = "none")
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###

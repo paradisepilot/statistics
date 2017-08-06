@@ -13,8 +13,13 @@ train.predict.evaluate <- function(DF.input, attributeAdder, methodName, trainFu
         trainedModel   = my.trainedMachine[['trainedModel']]
         );
 
-    print(paste0("results: ",methodName));
+
+    print(paste0(rep("#",50),collapse=""));
+    print(paste0("###  results: ",methodName));
     print( postResample(pred = my.predictions, obs = DF.input[,'median_house_value']) );
+
+    print("###  trained model");
+    print( my.trainedMachine[['trainedModel']] );
 
     return( NULL );
 
