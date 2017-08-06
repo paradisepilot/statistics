@@ -82,15 +82,15 @@ train.predict.evaluate(
 train.predict.evaluate(
     DF.input       = LIST.trainTest[["trainSet"]],
     attributeAdder = attributeAdder,
-    methodName     = "regressionTree",
-    trainFunction  = regressionTree.train
+    methodName     = "cvLM",
+    trainFunction  = cvLM.train
     );
 
 train.predict.evaluate(
     DF.input       = LIST.trainTest[["trainSet"]],
     attributeAdder = attributeAdder,
-    methodName     = "cvLM",
-    trainFunction  = cvLM.train
+    methodName     = "regressionTree",
+    trainFunction  = regressionTree.train
     );
 
 train.predict.evaluate(
