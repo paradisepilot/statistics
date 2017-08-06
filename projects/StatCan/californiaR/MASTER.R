@@ -106,13 +106,13 @@ train.predict.evaluate(
     trainFunction  = cvRegressionTree.train
     );
 
-train.predict.evaluate(
-    DF.train       = LIST.trainTest[["trainSet"]],
-    DF.test        = LIST.trainTest[["testSet"]],
-    attributeAdder = attributeAdder,
-    methodName     = "cvRandomForest",
-    trainFunction  = cvRandomForest.train
-    );
+#train.predict.evaluate(
+#    DF.train       = LIST.trainTest[["trainSet"]],
+#    DF.test        = LIST.trainTest[["testSet"]],
+#    attributeAdder = attributeAdder,
+#    methodName     = "cvRandomForest",
+#    trainFunction  = cvRandomForest.train
+#    );
 
 ###################################################
 # print warning messages to log
