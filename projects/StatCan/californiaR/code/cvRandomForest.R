@@ -14,12 +14,13 @@ cvRandomForest.train <- function(DF.input, attributeAdder) {
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     trained.model <- train(
-        form      = median_house_value ~ .,
-        data      = DF.temp,
-        method    = 'rf',
-        preProc   = c("center", "scale"),
-        tuneGrid  = data.frame(mtry = c(1)),
-        trControl = trainControl(method = "repeatedcv", repeats = 10)
+        form       = median_house_value ~ .,
+        data       = DF.temp,
+        method     = 'rf',
+        preProc    = c("center", "scale"),
+        tuneGrid   = data.frame(mtry = c(5)),
+        trControl  = trainControl(method = "cv", number = 10),
+        tuneLength = 1
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
