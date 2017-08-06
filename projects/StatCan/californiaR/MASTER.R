@@ -75,39 +75,44 @@ print( str(LIST.trainTest) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 train.predict.evaluate(
-    DF.input       = LIST.trainTest[["trainSet"]],
+    DF.train       = LIST.trainTest[["trainSet"]],
+    DF.test        = LIST.trainTest[["testSet"]],
     attributeAdder = attributeAdder,
     methodName     = "lm",
     trainFunction  = lm.train
     );
 
 train.predict.evaluate(
-    DF.input       = LIST.trainTest[["trainSet"]],
+    DF.train       = LIST.trainTest[["trainSet"]],
+    DF.test        = LIST.trainTest[["testSet"]],
     attributeAdder = attributeAdder,
     methodName     = "cvLM",
     trainFunction  = cvLM.train
     );
 
 train.predict.evaluate(
-    DF.input       = LIST.trainTest[["trainSet"]],
+    DF.train       = LIST.trainTest[["trainSet"]],
+    DF.test        = LIST.trainTest[["testSet"]],
     attributeAdder = attributeAdder,
     methodName     = "regressionTree",
     trainFunction  = regressionTree.train
     );
 
 train.predict.evaluate(
-    DF.input       = LIST.trainTest[["trainSet"]],
+    DF.train       = LIST.trainTest[["trainSet"]],
+    DF.test        = LIST.trainTest[["testSet"]],
     attributeAdder = attributeAdder,
     methodName     = "cvRegressionTree",
     trainFunction  = cvRegressionTree.train
     );
 
-train.predict.evaluate(
-    DF.input       = LIST.trainTest[["trainSet"]],
-    attributeAdder = attributeAdder,
-    methodName     = "cvRandomForest",
-    trainFunction  = cvRandomForest.train
-    );
+#train.predict.evaluate(
+#    DF.train       = LIST.trainTest[["trainSet"]],
+#    DF.test        = LIST.trainTest[["testSet"]],
+#    attributeAdder = attributeAdder,
+#    methodName     = "cvRandomForest",
+#    trainFunction  = cvRandomForest.train
+#    );
 
 ###################################################
 # print warning messages to log

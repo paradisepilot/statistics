@@ -1,25 +1,34 @@
 
-train.predict.evaluate <- function(DF.input, attributeAdder, methodName, trainFunction) {
+train.predict.evaluate <- function(DF.train, DF.test, attributeAdder, methodName, trainFunction) {
 
     my.trainedMachine <- trainFunction(
-        DF.input       = DF.input,
+        DF.input       = DF.train,
         attributeAdder = attributeAdder
         );
 
-    my.predictions <- my.predict(
-        DF.input       = DF.input,
+    train.predictions <- my.predict(
+        DF.input       = DF.train,
         attributeAdder = attributeAdder,
         trainedImputer = my.trainedMachine[['trainedImputer']],
         trainedModel   = my.trainedMachine[['trainedModel']]
         );
 
+    test.predictions <- my.predict(
+        DF.input       = DF.test,
+        attributeAdder = attributeAdder,
+        trainedImputer = my.trainedMachine[['trainedImputer']],
+        trainedModel   = my.trainedMachine[['trainedModel']]
+        );
 
     print(paste0(rep("#",50),collapse=""));
-    print(paste0("###  results: ",methodName));
-    print( postResample(pred = my.predictions, obs = DF.input[,'median_house_value']) );
+    print(paste0("###  evaluations on train set: ",methodName));
+    print( postResample(pred = train.predictions, obs = DF.train[,'median_house_value']) );
 
     print("###  trained model");
     print( my.trainedMachine[['trainedModel']] );
+
+    print(paste0("###  evaluations on test set: ",methodName));
+    print( postResample(pred = test.predictions, obs = DF.test[,'median_house_value']) );
 
     return( NULL );
 
