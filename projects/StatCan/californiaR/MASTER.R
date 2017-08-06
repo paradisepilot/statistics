@@ -42,9 +42,10 @@ start.proc.time <- proc.time();
 ###################################################
 require(caret);
 
-source(file.path(dir.code,"addAttributes.R"))
+source(file.path(dir.code,"attributeAdder.R"))
+source(file.path(dir.code,"cvRegressionTree.R"))
 source(file.path(dir.code,"examineData.R"))
-source(file.path(dir.code,"preprocessData.R"))
+source(file.path(dir.code,"my-predict.R"))
 source(file.path(dir.code,"regressionLinear.R"))
 source(file.path(dir.code,"regressionTree.R"))
 source(file.path(dir.code,"splitTrainTest.R"))
@@ -70,51 +71,52 @@ print("str(LIST.trainTest)");
 print( str(LIST.trainTest) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-preprocessedTrainSet = preprocessData(
-    DF.input =  LIST.trainTest[["trainSet"]]
-    )
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-trainSetAugmented <- addAttributes(
-    DF.input = LIST.trainTest[["trainSet"]]
-    )
-
-myPreprocessor <- preProcess(
-    x      = trainSetAugmented,
-    method = c("medianImpute","center","scale"),
+lm.trainedMachine <- lm.train(
+    DF.input       = LIST.trainTest[["trainSet"]],
+    attributeAdder = attributeAdder
     );
 
-preprocessedTrainSet1 <- predict(
-    object  = myPreprocessor,
-    newdata = trainSetAugmented
+lm.predictions <- my.predict(
+    DF.input       = LIST.trainTest[["trainSet"]],
+    attributeAdder = attributeAdder,
+    trainedImputer = lm.trainedMachine[['trainedImputer']],
+    trainedModel   = lm.trainedMachine[['trainedModel']]
     );
 
-preprocessedTrainSet1 <- data.frame(predict(
-    dummyVars(formula = ~ ., data=preprocessedTrainSet1),
-    newdata=preprocessedTrainSet1
-    )); 
-
-preprocessedTrainSet1[,"median_house_value"] <- LIST.trainTest[["trainSet"]][,"median_house_value"];
+print("postResample(pred = lm.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value'])");
+print( postResample(pred = lm.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value']) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-print("str(preprocessedTrainSet)");
-print( str(preprocessedTrainSet) );
+regressionTree.trainedMachine <- regressionTree.train(
+    DF.input       = LIST.trainTest[["trainSet"]],
+    attributeAdder = attributeAdder
+    );
 
-print("str(preprocessedTrainSet1)");
-print( str(preprocessedTrainSet1) );
+regressionTree.predictions <- my.predict(
+    DF.input       = LIST.trainTest[["trainSet"]],
+    attributeAdder = attributeAdder,
+    trainedImputer = regressionTree.trainedMachine[['trainedImputer']],
+    trainedModel   = regressionTree.trainedMachine[['trainedModel']]
+    );
 
-print("head(preprocessedTrainSet)");
-print( head(preprocessedTrainSet) );
-
-print("head(preprocessedTrainSet1)");
-print( head(preprocessedTrainSet1) );
-
-print("summary(abs(preprocessedTrainSet - preprocessedTrainSet1)/preprocessedTrainSet)");
-print( summary(abs(preprocessedTrainSet - preprocessedTrainSet1)) );
+print("postResample(pred = regressionTree.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value'])");
+print( postResample(pred = regressionTree.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value']) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-regressionLinear(DF.input = preprocessedTrainSet1);
-regressionTree(  DF.input = preprocessedTrainSet1);
+cvRegressionTree.trainedMachine <- cvRegressionTree.train(
+    DF.input       = LIST.trainTest[["trainSet"]],
+    attributeAdder = attributeAdder
+    );
+
+cvRegressionTree.predictions <- my.predict(
+    DF.input       = LIST.trainTest[["trainSet"]],
+    attributeAdder = attributeAdder,
+    trainedImputer = cvRegressionTree.trainedMachine[['trainedImputer']],
+    trainedModel   = cvRegressionTree.trainedMachine[['trainedModel']]
+    );
+
+print("postResample(pred = cvRegressionTree.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value'])");
+print( postResample(pred = cvRegressionTree.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value']) );
 
 ###################################################
 # print warning messages to log

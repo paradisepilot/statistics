@@ -1,5 +1,5 @@
 
-addAttributes <- function(DF.input) {
+attributeAdder <- function(DF.input) {
     require(dplyr);
     DF.output <- DF.input %>%
         mutate(      roomsPerHousehold =     total_rooms/  households ) %>%
