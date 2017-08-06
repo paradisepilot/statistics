@@ -18,7 +18,7 @@ cvRandomForest.train <- function(DF.input, attributeAdder) {
         data      = DF.temp,
         method    = 'rf',
         preProc   = c("center", "scale"),
-        tuneGrid  = data.frame(mtry = c(5)),
+        tuneGrid  = data.frame(mtry = c(1)),
         trControl = trainControl(method = "repeatedcv", repeats = 10)
         );
 
