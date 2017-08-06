@@ -17,7 +17,7 @@ cvLM.train <- function(DF.input, attributeAdder) {
         data      = DF.temp,
         method    = "lm",
         preProc   = c("center", "scale"),
-        trControl = trainControl(method = "repeatedcv", repeats = 10)
+        trControl = trainControl(method = "cv", number = 10)
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
