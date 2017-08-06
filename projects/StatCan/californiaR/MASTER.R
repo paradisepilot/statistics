@@ -41,9 +41,11 @@ start.proc.time <- proc.time();
 
 ###################################################
 require(caret);
+require(randomForest);
 
 source(file.path(dir.code,"attributeAdder.R"))
 source(file.path(dir.code,"cvLM.R"))
+source(file.path(dir.code,"cvRandomForest.R"))
 source(file.path(dir.code,"cvRegressionTree.R"))
 source(file.path(dir.code,"examineData.R"))
 source(file.path(dir.code,"regressionLinear.R"))
@@ -98,6 +100,13 @@ train.predict.evaluate(
     attributeAdder = attributeAdder,
     methodName     = "cvRegressionTree",
     trainFunction  = cvRegressionTree.train
+    );
+
+train.predict.evaluate(
+    DF.input       = LIST.trainTest[["trainSet"]],
+    attributeAdder = attributeAdder,
+    methodName     = "cvRandomForest",
+    trainFunction  = cvRandomForest.train
     );
 
 ###################################################
