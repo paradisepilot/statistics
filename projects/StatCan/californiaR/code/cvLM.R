@@ -1,8 +1,7 @@
 
-regressionTree.train <- function(DF.input, attributeAdder) {
+cvLM.train <- function(DF.input, attributeAdder) {
 
     require(caret);
-    require(rpart);
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     trained.imputer <- preProcess(x = DF.input, method = c("medianImpute"));
@@ -13,21 +12,12 @@ regressionTree.train <- function(DF.input, attributeAdder) {
     DF.temp[,"median_house_value"] <- DF.input[,"median_house_value"];
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    #trained.model <- rpart(
-    #    formula   = median_house_value ~ .,
-    #    data      = DF.temp,
-    #    minsplit  =  1,
-    #    minbucket =  1,
-    #    cp        = -1 
-    #    );
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     trained.model <- train(
-        form     = median_house_value ~ .,
-        data     = DF.temp,
-        method   = "rpart",
-        preProc  = c("center", "scale"),
-        tuneGrid = data.frame(cp = c(-1)) # complexity parameter = -1: no pruning at all
+        form      = median_house_value ~ .,
+        data      = DF.temp,
+        method    = "lm",
+        preProc   = c("center", "scale"),
+        trControl = trainControl(method = "repeatedcv", repeats = 10)
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###

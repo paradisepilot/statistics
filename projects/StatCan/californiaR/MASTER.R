@@ -43,12 +43,13 @@ start.proc.time <- proc.time();
 require(caret);
 
 source(file.path(dir.code,"attributeAdder.R"))
+source(file.path(dir.code,"cvLM.R"))
 source(file.path(dir.code,"cvRegressionTree.R"))
 source(file.path(dir.code,"examineData.R"))
-source(file.path(dir.code,"my-predict.R"))
 source(file.path(dir.code,"regressionLinear.R"))
 source(file.path(dir.code,"regressionTree.R"))
 source(file.path(dir.code,"splitTrainTest.R"))
+source(file.path(dir.code,"train-predict-evaluate.R"))
 source(file.path(dir.code,"visualizeData.R"))
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -71,52 +72,33 @@ print("str(LIST.trainTest)");
 print( str(LIST.trainTest) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-lm.trainedMachine <- lm.train(
-    DF.input       = LIST.trainTest[["trainSet"]],
-    attributeAdder = attributeAdder
-    );
-
-lm.predictions <- my.predict(
+train.predict.evaluate(
     DF.input       = LIST.trainTest[["trainSet"]],
     attributeAdder = attributeAdder,
-    trainedImputer = lm.trainedMachine[['trainedImputer']],
-    trainedModel   = lm.trainedMachine[['trainedModel']]
+    methodName     = "lm",
+    trainFunction  = lm.train
     );
 
-print("postResample(pred = lm.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value'])");
-print( postResample(pred = lm.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value']) );
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-regressionTree.trainedMachine <- regressionTree.train(
-    DF.input       = LIST.trainTest[["trainSet"]],
-    attributeAdder = attributeAdder
-    );
-
-regressionTree.predictions <- my.predict(
+train.predict.evaluate(
     DF.input       = LIST.trainTest[["trainSet"]],
     attributeAdder = attributeAdder,
-    trainedImputer = regressionTree.trainedMachine[['trainedImputer']],
-    trainedModel   = regressionTree.trainedMachine[['trainedModel']]
+    methodName     = "regressionTree",
+    trainFunction  = regressionTree.train
     );
 
-print("postResample(pred = regressionTree.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value'])");
-print( postResample(pred = regressionTree.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value']) );
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-cvRegressionTree.trainedMachine <- cvRegressionTree.train(
-    DF.input       = LIST.trainTest[["trainSet"]],
-    attributeAdder = attributeAdder
-    );
-
-cvRegressionTree.predictions <- my.predict(
+train.predict.evaluate(
     DF.input       = LIST.trainTest[["trainSet"]],
     attributeAdder = attributeAdder,
-    trainedImputer = cvRegressionTree.trainedMachine[['trainedImputer']],
-    trainedModel   = cvRegressionTree.trainedMachine[['trainedModel']]
+    methodName     = "cvLM",
+    trainFunction  = cvLM.train
     );
 
-print("postResample(pred = cvRegressionTree.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value'])");
-print( postResample(pred = cvRegressionTree.predictions, obs = LIST.trainTest[['trainSet']][,'median_house_value']) );
+train.predict.evaluate(
+    DF.input       = LIST.trainTest[["trainSet"]],
+    attributeAdder = attributeAdder,
+    methodName     = "cvRegressionTree",
+    trainFunction  = cvRegressionTree.train
+    );
 
 ###################################################
 # print warning messages to log

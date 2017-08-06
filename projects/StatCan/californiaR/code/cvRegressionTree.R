@@ -17,8 +17,8 @@ cvRegressionTree.train <- function(DF.input, attributeAdder) {
         data      = DF.temp,
         method    = "rpart",
         preProc   = c("center", "scale"),
-        trControl = trainControl(method = "repeatedcv", repeats = 10),
-        tuneGrid  = data.frame(cp = c(-1)) # complexity parameter = -1: no pruning at all
+        tuneGrid  = data.frame(cp = c(-1)), # complexity parameter = -1: no pruning at all
+        trControl = trainControl(method = "repeatedcv", repeats = 10)
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
