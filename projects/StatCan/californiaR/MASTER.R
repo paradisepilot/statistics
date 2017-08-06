@@ -64,8 +64,8 @@ DF.housing <- read.csv(
     );
 
 # examine full data set
-# examineData(DF.input = DF.housing);
-# visualizeData(DF.input = DF.housing);
+examineData(DF.input = DF.housing);
+visualizeData(DF.input = DF.housing);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 LIST.trainTest <- splitTrainTest(DF.input = DF.housing);
