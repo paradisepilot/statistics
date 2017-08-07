@@ -53,7 +53,7 @@ from sklearn.linear_model    import LinearRegression
 from sklearn.tree            import DecisionTreeRegressor
 from sklearn.ensemble        import RandomForestRegressor
 
-ms_spec = importlib.util.find_spec(name="model_selection")
+ms_spec = importlib.util.find_spec(name="sklearn.model_selection")
 if ms_spec is not None:
     from sklearn.model_selection import GridSearchCV
 else:
