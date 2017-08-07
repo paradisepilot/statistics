@@ -106,14 +106,14 @@ trainEvaluate(
     )
 
 # random forest
-#myRandomForestModel = RandomForestRegressor()
-#trainEvaluate(
-#    trainData           = trainSet,
-#    testData            = testSet,
-#    trainedPreprocessor = PipelinePreprocessHousingData,
-#    myModel             = myRandomForestModel,
-#    modelName           = "Random Forest"
-#    )
+myRandomForestModel = RandomForestRegressor()
+trainEvaluate(
+    trainData           = trainSet,
+    testData            = testSet,
+    trainedPreprocessor = PipelinePreprocessHousingData,
+    myModel             = myRandomForestModel,
+    modelName           = "Random Forest"
+    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # random forest with hyperparameter tuning via grid search
