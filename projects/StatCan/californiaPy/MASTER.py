@@ -67,7 +67,7 @@ examineData(inputDF = housingDF);
 trainSet, testSet = splitTrainTest(inputDF = housingDF, random_state = 19)
 
 # visualize stratified training data set
-visualizeData(inputDF = stratifiedTrainSet);
+visualizeData(inputDF = trainSet);
 
 print("\ntrainSet.info()")
 print(   trainSet.info() )
