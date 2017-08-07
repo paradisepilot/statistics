@@ -60,14 +60,14 @@ housingFILE = os.path.join(dir_data,'housing.csv')
 housingDF   = pd.read_csv(housingFILE);
 
 # examine full data set
-#examineData(inputDF = housingDF);
+examineData(inputDF = housingDF);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # split into training and testing data sets in a stratified manner
 trainSet, testSet = splitTrainTest(inputDF = housingDF, random_state = 19)
 
 # visualize stratified training data set
-#visualizeData(inputDF = stratifiedTrainSet);
+visualizeData(inputDF = stratifiedTrainSet);
 
 print("\ntrainSet.info()")
 print(   trainSet.info() )
