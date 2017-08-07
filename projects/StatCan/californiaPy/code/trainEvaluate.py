@@ -2,7 +2,7 @@
 import numpy as np
 
 from sklearn.metrics         import mean_squared_error
-from sklearn.model_selection import cross_val_score, GridSearchCV
+from sklearn.model_selection import cross_val_score
 
 def trainEvaluate(trainData, testData, trainedPreprocessor, myModel, modelName):
 
