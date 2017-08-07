@@ -48,8 +48,6 @@ def trainEvaluateGrid(trainData, testData, trainedPreprocessor, myModel, modelNa
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     # examine feature importances
     featureImportances = myModel.best_estimator_.feature_importances_
-    print("\nfeatureImportances")
-    print(   featureImportances )
 
     numericAttribs = list(trainData.drop(["ocean_proximity"],axis=1).columns)
 
@@ -60,17 +58,9 @@ def trainEvaluateGrid(trainData, testData, trainedPreprocessor, myModel, modelNa
     extraAttribs = ["roomsPerHhold", "popPerHhold", "bedroomsPerRoom"]
     attributes = list(numericAttribs) + extraAttribs + list(oneHotAttribs)
 
-    print("\nnumericAttribs")
-    print(   numericAttribs )
-
-    print("\noneHotAttribs")
-    print(   oneHotAttribs )
-
-    print("\nattributes")
-    print(   attributes )
-
-    print("\nsorted(zip(featureImportances,attributes),reverse=True)")
-    print(   sorted(zip(featureImportances,attributes),reverse=True) )
+    print("\nfeatureImportances")
+    for currentItem in sorted(zip(featureImportances,attributes),reverse=True):
+        print( currentItem )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( None )
