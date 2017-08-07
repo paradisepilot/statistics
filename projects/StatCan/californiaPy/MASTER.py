@@ -136,13 +136,13 @@ gridSearch = GridSearchCV(
     cv         = 5
     )
 
-#trainEvaluateGrid(
-#    trainData           = trainSet,
-#    testData            = testSet,
-#    trainedPreprocessor = PipelinePreprocessHousingData,
-#    myModel             = gridSearch,
-#    modelName           = "Random Forest, Cross Validation, Grid Search"
-#    )
+trainEvaluateGrid(
+    trainData           = trainSet,
+    testData            = testSet,
+    trainedPreprocessor = PipelinePreprocessHousingData,
+    myModel             = gridSearch,
+    modelName           = "Random Forest, Cross Validation, Grid Search"
+    )
 
 ##################################################
 ##################################################
