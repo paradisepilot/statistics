@@ -38,8 +38,8 @@ if seaborn_spec is not None:
     import seaborn as sns
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-import numpy   as np
-import pandas  as pd
+import numpy  as np
+import pandas as pd
 
 from examineData       import examineData
 from splitTrainTest    import splitTrainTest
@@ -49,10 +49,11 @@ from trainEvaluateGrid import trainEvaluateGrid
 
 from PipelinePreprocessHousingData import PipelinePreprocessHousingData
 
-from sklearn.linear_model    import LinearRegression
-from sklearn.tree            import DecisionTreeRegressor
-from sklearn.ensemble        import RandomForestRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.tree         import DecisionTreeRegressor
+from sklearn.ensemble     import RandomForestRegressor
 
+#from sklearn.model_selection import GridSearchCV
 ms_spec = importlib.util.find_spec(name="sklearn.model_selection")
 if ms_spec is not None:
     from sklearn.model_selection import GridSearchCV
