@@ -52,7 +52,12 @@ from PipelinePreprocessHousingData import PipelinePreprocessHousingData
 from sklearn.linear_model    import LinearRegression
 from sklearn.tree            import DecisionTreeRegressor
 from sklearn.ensemble        import RandomForestRegressor
-from sklearn.model_selection import GridSearchCV
+
+ms_spec = importlib.util.find_spec(name="model_selection")
+if ms_spec is not None:
+    from sklearn.model_selection import GridSearchCV
+else:
+    from sklearn.grid_search import GridSearchCV
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -131,13 +136,13 @@ gridSearch = GridSearchCV(
     cv         = 5
     )
 
-trainEvaluateGrid(
-    trainData           = trainSet,
-    testData            = testSet,
-    trainedPreprocessor = PipelinePreprocessHousingData,
-    myModel             = gridSearch,
-    modelName           = "Random Forest, Cross Validation, Grid Search"
-    )
+#trainEvaluateGrid(
+#    trainData           = trainSet,
+#    testData            = testSet,
+#    trainedPreprocessor = PipelinePreprocessHousingData,
+#    myModel             = gridSearch,
+#    modelName           = "Random Forest, Cross Validation, Grid Search"
+#    )
 
 ##################################################
 ##################################################

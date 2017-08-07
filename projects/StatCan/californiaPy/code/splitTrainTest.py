@@ -1,8 +1,18 @@
 
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import StratifiedShuffleSplit
+#from sklearn.model_selection import train_test_split
+#from sklearn.model_selection import StratifiedShuffleSplit
 
+import importlib
+from   importlib.util import find_spec
+ms_spec = importlib.util.find_spec(name="sklearn.model_selection")
+if ms_spec is not None:
+    from sklearn.model_selection import train_test_split
+    from sklearn.model_selection import StratifiedShuffleSplit
+else:
+    from sklearn.cross_validation import train_test_split
+
+###################################################
 def splitTrainTest(inputDF,random_state):
 
     simpleTrainSet, simpleTestSet = train_test_split(inputDF, test_size=0.2, random_state=random_state)

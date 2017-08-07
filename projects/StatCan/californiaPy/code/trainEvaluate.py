@@ -1,9 +1,17 @@
 
 import numpy as np
+from sklearn.metrics import mean_squared_error
+# from sklearn.model_selection import cross_val_score
 
-from sklearn.metrics         import mean_squared_error
-from sklearn.model_selection import cross_val_score
+import importlib
+from importlib.util import find_spec
+ms_spec = importlib.util.find_spec(name="sklearn.model_selection")
+if ms_spec is not None:
+    from sklearn.model_selection import cross_val_score
+else:
+    from sklearn.cross_validation import cross_val_score
 
+###################################################
 def trainEvaluate(trainData, testData, trainedPreprocessor, myModel, modelName):
 
     preprocessedTrainData = trainedPreprocessor.transform(
