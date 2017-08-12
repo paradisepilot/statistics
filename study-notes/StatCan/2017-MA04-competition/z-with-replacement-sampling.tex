@@ -38,6 +38,13 @@ Suppose:
 Then,
 \begin{enumerate}
 \item
+	The expected value and variance of $Z$ are given respectively by:
+	\begin{equation*}
+	E\!\left[\;Z\;\right] \;=\; t_{y}
+	\quad\quad\textnormal{and}\quad\quad
+	\Var\!\left[\;Z\;\right] \;=\; \underset{u \in U}{\sum}\;\; p(u)\cdot\left(\,\dfrac{y(u)}{p(u)}\,-\,t_{y}\,\right)^{2}
+	\end{equation*}
+\item
 	$\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i}$
 	is an unbiased estimator of $t_{y}$;
 	in other words,
@@ -58,7 +65,30 @@ Then,
 \proof
 \begin{enumerate}
 \item
-	Simply observe that
+	Observe that
+	\begin{eqnarray*}
+	E\!\left[\;Z\;\right]
+	&=&
+		\underset{u \in U}{\sum}\;\; p(u) \cdot Z(u)
+	\;\; = \;\;
+		\underset{u \in U}{\sum}\;\; p(u) \cdot \dfrac{y(u)}{p(u)}
+	\;\; = \;\;
+		\underset{u \in U}{\sum}\;\; y(u)
+	\;\; = \;\;
+		t_{y}
+	\end{eqnarray*}
+	Secondly, since \;$E\!\left[\;Z\;\right] \,=\, t_{y}$,\; we have
+	\begin{eqnarray*}
+	\Var\!\left[\;Z\;\right]
+	&=&
+		E\!\left[\;(Z\,-\,t_{y})^{2}\;\right]	
+	\;\; = \;\;
+		\underset{u \in U}{\sum}\;\, p(u)\cdot\left(\overset{{\color{white}.}}{Z}(u)\,-\,t_{y}\,\right)^{2}
+	\;\; = \;\;
+		\underset{u \in U}{\sum}\;\, p(u)\cdot\left(\,\dfrac{y(u)}{p(u)}\,-\,t_{y}\,\right)^{2}
+	\end{eqnarray*}
+\item
+	Observe that
 	\begin{eqnarray*}
 	E\!\left[\;\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i}\;\right]
 	&=&
@@ -67,13 +97,6 @@ Then,
 		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;E\!\left[\;Z\;\right]
 	\;\; = \;\;
 		E\!\left[\;Z\;\right]
-	\\
-	&=&
-		\underset{u \in U}{\sum}\; p(u) \cdot Z(u)
-	\;\; = \;\;
-		\underset{u \in U}{\sum}\; p(u) \cdot \dfrac{y(u)}{p(u)}
-	\;\; = \;\;
-		\underset{u \in U}{\sum}\; y(u)
 	\;\; = \;\;
 		t_{y}\,,
 	\end{eqnarray*}
@@ -89,13 +112,8 @@ Then,
 		\dfrac{1}{n^{2}}\;\overset{n}{\underset{i=1}{\sum}}\;\Var\!\left[\;Z\;\right]
 	\;\; = \;\;
 		\dfrac{1}{n}\cdot\Var\!\left[\;Z\;\right]
-	\;\; = \;\;
-		\dfrac{1}{n} \cdot E\!\left[\;(Z\,-\,t_{y})^{2}\;\right]	
 	\\
 	&=&
-		\dfrac{1}{n}\cdot
-		\underset{u \in U}{\sum}\;\, p(u)\cdot\left(\overset{{\color{white}.}}{Z}(u)\,-\,t_{y}\,\right)^{2}
-	\;\; = \;\;
 		\dfrac{1}{n}\cdot
 		\underset{u \in U}{\sum}\;\, p(u)\cdot\left(\,\dfrac{y(u)}{p(u)}\,-\,t_{y}\,\right)^{2}\,,
 	\end{eqnarray*}
