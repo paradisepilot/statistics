@@ -1,0 +1,166 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Design covariance of the Horvitz-Thompson estimators of two population totals}
+
+\vskip 0.5cm
+
+\begin{equation*}
+\widehat{T}^{\,\textnormal{HT}}_{x}(s)
+\;\; := \;\;
+	\underset{i \in s}{\sum}\; \dfrac{x_{i}}{\pi_{i}}
+\;\; = \;\;
+	\underset{i \in U}{\sum}\; I_{i}(s)\cdot\dfrac{x_{i}}{\pi_{i}}
+\quad
+\quad
+\textnormal{and}
+\quad
+\quad
+\widehat{T}^{\,\textnormal{HT}}_{y}(s)
+\;\; := \;\;
+	\underset{i \in s}{\sum}\; \dfrac{y_{i}}{\pi_{i}}
+\;\; = \;\;
+	\underset{i \in U}{\sum}\; I_{i}(s)\cdot\dfrac{y_{i}}{\pi_{i}}
+\end{equation*}
+
+\begin{eqnarray*}
+\Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y}\;\right]
+& = &
+	\Cov\!\left(\;
+		\underset{i \in U}{\sum}\; I_{i}\cdot\dfrac{y_{i}}{\pi_{i}}
+		\,,\,
+		\underset{k \in U}{\sum}\; I_{k}\cdot\dfrac{y_{k}}{\pi_{k}}
+		\;\right)
+\;\; = \;\;
+	\underset{i \in U}{\sum}\;\,
+	\underset{k \in U}{\sum}\;
+		\Cov\!\left(\;I_{i}\,,\,I_{k}\;\right)
+		\cdot\dfrac{y_{i}}{\pi_{i}}
+		\cdot\dfrac{y_{k}}{\pi_{k}}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\Cov\!\left(\;
+	\widehat{T}^{\,\textnormal{HT}}_{x}
+	\,,\,
+	\widehat{T}^{\,\textnormal{HT}}_{y}
+	\;\right)
+& = &
+	\Cov\!\left(\;
+		\underset{i \in U}{\sum}\; I_{i}\cdot\dfrac{x_{i}}{\pi_{i}}
+		\,,\,
+		\underset{k \in U}{\sum}\; I_{k}\cdot\dfrac{y_{k}}{\pi_{k}}
+		\;\right)
+\;\; = \;\;
+	\underset{i \in U}{\sum}\;\,
+	\underset{k \in U}{\sum}\;
+		\Cov\!\left(\;I_{i}\,,\,I_{k}\;\right)
+		\cdot\dfrac{x_{i}}{\pi_{i}}
+		\cdot\dfrac{y_{k}}{\pi_{k}}
+\end{eqnarray*}
+
+\noindent
+For $i = k$,
+\begin{eqnarray*}
+\Cov\!\left(\;I_{i}\,,\,I_{i}\;\right)
+& = &
+	E\!\left[\;\left(I_{i}-\pi_{i}\right)^{2}\;\right]
+\;\; = \;\;
+	E\!\left[\;I_{i}^{2} \, - \, 2\pi_{i} \cdot I_{i} \,+\, \pi_{i}^{2}\;\right]
+\;\; = \;\;
+	E\!\left[\;I_{i}^{2}\;\right] \, - \, 2\pi_{i}^{2} \,+\, \pi_{i}^{2}
+\\
+& = &
+	E\!\left[\;I_{i}\;\right] \, - \,\pi_{i}^{2}
+\;\; = \;\;
+	\pi_{i} \, - \,\pi_{i}^{2}
+\end{eqnarray*}
+
+\noindent
+For $i \neq k$,
+\begin{eqnarray*}
+\Cov\!\left(\;I_{i}\,,\,I_{k}\;\right)
+& = &
+	E\!\left[\;\left(I_{i}-\pi_{i}\right)\overset{{\color{white}-}}{\cdot}\left(I_{k}-\pi_{k}\right)\;\right]
+\;\; = \;\;
+	E\!\left[\;
+		I_{i} \overset{{\color{white}-}}{\cdot} I_{k}
+		\, - \, \pi_{i} \cdot I_{k}
+		\, - \, \pi_{i} \cdot \pi_{k}
+		\, + \, \pi_{i} \cdot \pi_{k}
+		\;\right]
+\\
+& = &
+	E\!\left[\;
+		I_{i} \overset{{\color{white}\vert}}{\cdot} I_{k}
+		\, - \, I_{i} \cdot \pi_{k}
+		\, - \, \pi_{i} \cdot I_{k}
+		\, + \, \pi_{i} \cdot \pi_{k}
+		\;\right]
+\;\; = \;\;
+	E\!\left[\; I_{i} \overset{{\color{white}-}}{\cdot} I_{k} \;\right]
+		\, - \, \pi_{i} \cdot \pi_{k}
+		\, - \, \pi_{i} \cdot \pi_{k}
+		\, + \, \pi_{i} \cdot \pi_{k}
+\\
+& = &
+	\pi_{ik} \, - \, \pi_{i} \cdot \pi_{k} 
+\end{eqnarray*}
+
+\noindent
+Hence,
+\begin{eqnarray*}
+\Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y}\;\right]
+& = &
+	\Cov\!\left(\;
+		\underset{i \in U}{\sum}\; I_{i}\cdot\dfrac{y_{i}}{\pi_{i}}
+		\,,\,
+		\underset{k \in U}{\sum}\; I_{k}\cdot\dfrac{y_{k}}{\pi_{k}}
+		\;\right)
+\;\; = \;\;
+	\underset{i \in U}{\sum}\;\,
+	\underset{k \in U}{\sum}\;
+		\Cov\!\left(\;I_{i}\,,\,I_{k}\;\right)
+		\cdot\dfrac{y_{i}}{\pi_{i}}
+		\cdot\dfrac{y_{k}}{\pi_{k}}
+\\
+& = &
+	\overset{{\color{white}1}}{\underset{i \in U}{\sum}}\,
+		\left(\,\pi_{i}\,-\,\pi_{i}^{2}\,\right) \cdot \dfrac{y_{i}^{2}}{\pi_{i}^{2}}
+	\; + \;
+	\underset{i \, \neq \, k}{\underset{i , k \,\in\,U}{\sum\,\sum}}\;
+		\left(\,\pi_{ik} \, - \, \pi_{i}\pi_{k}\,\right)
+		\cdot\dfrac{y_{i}}{\pi_{i}}
+		\cdot\dfrac{y_{k}}{\pi_{k}}
+\end{eqnarray*}
+And,
+\begin{eqnarray*}
+\Cov\!\left(\;
+	\widehat{T}^{\,\textnormal{HT}}_{x}
+	\,,\,
+	\widehat{T}^{\,\textnormal{HT}}_{y}
+	\;\right)
+& = &
+	\Cov\!\left(\;
+		\underset{i \in U}{\sum}\; I_{i}\cdot\dfrac{x_{i}}{\pi_{i}}
+		\,,\,
+		\underset{k \in U}{\sum}\; I_{k}\cdot\dfrac{y_{k}}{\pi_{k}}
+		\;\right)
+\;\; = \;\;
+	\underset{i \in U}{\sum}\;\,
+	\underset{k \in U}{\sum}\;
+		\Cov\!\left(\;I_{i}\,,\,I_{k}\;\right)
+		\cdot\dfrac{x_{i}}{\pi_{i}}
+		\cdot\dfrac{y_{k}}{\pi_{k}}
+\\
+& = &
+	\overset{{\color{white}1}}{\underset{i \in U}{\sum}}\,
+		\left(\,\pi_{i}\,-\,\pi_{i}^{2}\,\right) \cdot \dfrac{x_{i}\,y_{i}}{\pi_{i}^{2}}
+	\; + \;
+	\underset{i \, \neq \, k}{\underset{i , k \,\in\,U}{\sum\,\sum}}\;
+		\left(\,\pi_{ik} \, - \, \pi_{i}\pi_{k}\,\right)
+		\cdot\dfrac{y_{i}}{\pi_{i}}
+		\cdot\dfrac{y_{k}}{\pi_{k}}
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

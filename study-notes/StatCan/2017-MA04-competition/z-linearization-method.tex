@@ -1,0 +1,195 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{The Linearization (Taylor Series) Method}
+
+\vskip 0.2cm
+
+Suppose $t_{1}, \ldots, t_{A}$ are (finitely many) population totals, and
+$\widehat{T}^{\,\textnormal{HT}}_{1}, \ldots, \widehat{T}^{\,\textnormal{HT}}_{A}$
+are, respectively, Horvitz-Thompson estimators of theirs according to a certain sampling design.
+Suppose $h(x_{1},\ldots,x_{A})$ is a smooth function in $(x_{1},\ldots,x_{A})$.
+Then, $h(t_{1},\ldots,t_{A})$ is a population characteristic and we may take
+$h\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1}, \ldots, \widehat{T}^{\,\textnormal{HT}}_{A}\,\right)$
+as an estimator of $h(t_{1},\ldots,t_{A})$.
+The linearization method is a technique to approximate the design variance of
+$h\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1}, \ldots, \widehat{T}^{\,\textnormal{HT}}_{A}\,\right)$.
+
+\vskip 0.5cm
+\noindent
+Recall that, by Taylor's Theorem,
+\begin{eqnarray*}
+h\!\left(\,\hat{x}\,\right)
+&=&
+	h\!\left(\,x\,\right)
+	\; + \;
+	(\nabla h)(x) \,\bullet\, \left(\,\hat{x} \,-\, x\,\right)
+	\; + \;
+	\left(\,\overset{{\color{white}.}}{\textnormal{higher-order terms}}\,\right)
+\\
+&=&
+	h\!\left(\,x\,\right)
+	\; + \;
+	\overset{A}{\underset{a=1}{\sum}} \;\, (\partial_{a}h)(x) \cdot (\,\hat{x}_{a} - x_{a}\,)
+	\; + \;
+	\left(\,\overset{{\color{white}.}}{\textnormal{higher-order terms}}\,\right)
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+\Var\!\left[\;
+	h\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1},\ldots,\widehat{T}^{\,\textnormal{HT}}_{A}\,\right)
+	\;\right]
+&\approx&
+	\Var\!\left[\;
+		\overset{{\color{white}.}}{h}\!\left(\,t_{1},\ldots,t_{A}\,\right)
+		\; + \;
+		(\nabla h)(t) \,\bullet\, \left(\,\widehat{T}^{\,\textnormal{HT}} \,-\, t\,\right)
+		\;\right]
+\\
+&=&
+	\Var\!\left[\;
+		h\!\left(\,t_{1},\ldots,t_{A}\,\right)
+		\; + \;
+		\overset{A}{\underset{a=1}{\sum}} \;\,
+			(\partial_{a}h)(t) \cdot \left(\,\widehat{T}^{\,\textnormal{HT}}_{a} - t_{a}\,\right)
+		\;\right]
+\\
+&=&
+	\overset{A}{\underset{a=1}{\sum}} \;\;
+	\overset{A}{\underset{b=1}{\sum}} \;\,
+	(\partial_{a}h)(t) \cdot (\partial_{b}h)(t) \cdot
+	\Cov\!\left(\,
+			\left(\,\widehat{T}^{\,\textnormal{HT}}_{a} - t_{a}\,\right)
+			\,,\,
+			\left(\,\widehat{T}^{\,\textnormal{HT}}_{b} - t_{b}\,\right)
+		\,\right)
+\\
+&\approx&
+	\overset{A}{\underset{a=1}{\sum}} \;\;
+	\overset{A}{\underset{b=1}{\sum}} \;\,
+	(\partial_{a}h)\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1},\ldots,\widehat{T}^{\,\textnormal{HT}}_{A}\,\right)
+	\cdot
+	(\partial_{b}h)\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1},\ldots,\widehat{T}^{\,\textnormal{HT}}_{A}\,\right)
+	\cdot
+	\Cov\!\left(\,
+			\widehat{T}^{\,\textnormal{HT}}_{a}
+			\,,\,
+			\widehat{T}^{\,\textnormal{HT}}_{b}
+		\,\right)
+\end{eqnarray*}
+%The design variance of a linear combination of finitely many
+%Horvitz-Thompson estimators of population totals
+%can be given by:
+%\begin{eqnarray*}
+%\Var\!\left[\;\;
+%	\overset{A}{\underset{a=1}{\sum}}\;c_{a}\,\widehat{T}^{\,\textnormal{HT}}_{a}
+%	\;\right]
+%&=&
+%	\Cov\!\left(\;\;
+%		\overset{A}{\underset{a=1}{\sum}}\;c_{a}\,\widehat{T}^{\,\textnormal{HT}}_{a}
+%		\,,\,
+%		\overset{A}{\underset{b=1}{\sum}}\;c_{b}\,\widehat{T}^{\,\textnormal{HT}}_{b}
+%		\;\right)
+%\;\; = \;\;
+%	\overset{A}{\underset{a=1}{\sum}}\;\,
+%	\overset{A}{\underset{b=1}{\sum}}\;\,
+%	c_{a}\,c_{b}
+%	\cdot
+%	\Cov\!\left(\;
+%		\widehat{T}^{\,\textnormal{HT}}_{a}
+%		\,,\,
+%		\widehat{T}^{\,\textnormal{HT}}_{b}
+%		\;\right)
+%\end{eqnarray*}
+
+\begin{example}[Ratio estimator]
+\mbox{}\vskip 0.2cm
+\noindent
+Consider
+\begin{equation*}
+\widehat{B}
+\;\; := \;\;
+	\dfrac{
+	\widehat{T}^{\,\textnormal{HT}}_{1}
+	}{
+	\overset{{\color{white}.}}{\widehat{T}^{\,\textnormal{HT}}_{2}}
+	}
+\;\; := \;\;
+	h\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1}\,,\,\widehat{T}^{\,\textnormal{HT}}_{2}\,\right),
+\end{equation*}
+where $h(x_{1},x_{2}) = x_{1} / x_{2}$.
+Now,
+\begin{equation*}
+(\,\nabla h\,)(x_{1},x_{2})
+\;\; = \;\;
+	\left(\,\overset{{\color{white}.}}{\partial_{1}h}\,,\,\partial_{2}h\,\right)(x_{1},x_{2})
+\;\; = \;\;
+	\left(\;\dfrac{1}{x_{2}}\,,\,-\,\dfrac{x_{1}}{x_{2}^{2}}\;\right)
+\end{equation*}
+\begin{eqnarray*}
+\Var\left[\;\widehat{B}\;\right]
+&\approx&
+	\dfrac{1}{\left(\widehat{T}^{\,\textnormal{HT}}_{2}\right)^{2}}
+		\cdot
+		\Var\!\left[\,\widehat{T}^{\,\textnormal{HT}}_{1}\,\right]
+	\; + \;
+	\left(\dfrac{\widehat{T}^{\,\textnormal{HT}}_{1}}{\left(\widehat{T}^{\,\textnormal{HT}}_{2}\right)^{2}}\right)^{2}
+		\cdot
+		\Var\!\left[\,\widehat{T}^{\,\textnormal{HT}}_{2}\,\right]
+	\; - \;
+		2 \cdot
+		\dfrac{\widehat{T}^{\,\textnormal{HT}}_{1}}{\left(\widehat{T}^{\,\textnormal{HT}}_{2}\right)^{3}}
+		\cdot
+		\Cov\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1}\,,\,\widehat{T}^{\,\textnormal{HT}}_{2}\,\right)
+\\
+&=&
+	\dfrac{1}{\left(\widehat{T}^{\,\textnormal{HT}}_{2}\right)^{2}}
+	\cdot
+	\left\{\;
+		\Var\!\left[\,\widehat{T}^{\,\textnormal{HT}}_{1}\,\right]
+		\; + \;
+		\left(
+			\dfrac{\widehat{T}^{\,\textnormal{HT}}_{1}
+			}{
+			\overset{{\color{white}.}}{\widehat{T}^{\,\textnormal{HT}}_{2}}
+			}
+			\right)^{2}
+			\cdot
+			\Var\!\left[\,\widehat{T}^{\,\textnormal{HT}}_{2}\,\right]
+		\; - \;
+			2 \cdot
+			\dfrac{\widehat{T}^{\,\textnormal{HT}}_{1}}{\overset{{\color{white}.}}{\widehat{T}^{\,\textnormal{HT}}_{2}}}
+			\cdot
+			\Cov\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1}\,,\,\widehat{T}^{\,\textnormal{HT}}_{2}\,\right)
+		\;\right\}
+\end{eqnarray*}
+\end{example}
+
+\vskip 0.5cm
+\noindent
+\textbf{Advantages}
+\begin{itemize}
+\item
+	Applicable to general sampling designs.
+\item
+	Software is available for calculation of linearization variance estimators
+	for common nonlinear functions of population totals,
+	e.g. ratios and regression coefficients.
+\end{itemize}
+
+\vskip 0.5cm
+\noindent
+\textbf{Disdvantages}
+\begin{itemize}
+\item
+	Only applies to smooth functions of population totals.
+	In particular, it does NOT apply to medians or quantiles.
+\item
+	Linearization variance estimators are accurate only when sample size is sufficiently large.
+\item
+	Calculations of partial derivatives for complex functions can be tedious and messy.
+\item
+	Special programming may be required to implement the numerical computations for these partial derivatives.
+\end{itemize}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
