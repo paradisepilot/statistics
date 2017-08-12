@@ -44,16 +44,6 @@ Then,
 	\quad\quad\textnormal{and}\quad\quad
 	\Var\!\left[\;Z\;\right] \;=\; \underset{u \in U}{\sum}\;\; p(u)\cdot\left(\,\dfrac{y(u)}{p(u)}\,-\,t_{y}\,\right)^{2}
 	\end{equation*}
-	Furthermore,\;
-	$\dfrac{1}{n-1}\;\overset{n}{\underset{i=1}{\sum}}\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}$\;
-	is an unbiased estimator of \,$\Var\!\left[\;\overline{Z}_{n}\;\right]$; in other words,	
-	\begin{equation*}
-	E\!\left[\;\,\dfrac{1}{n-1}\;\overset{n}{\underset{i=1}{\sum}}\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}\;\right]
-	\;\; = \;\;
-		\Var\!\left[\;\overline{Z}_{n}\;\right]
-	\;\; = \;\;
-		\dfrac{1}{n}\cdot\Var\!\left[\;Z\;\right]
-	\end{equation*}
 \item
 	$\overline{Z}_{n}\,:=\,\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i}$
 	is an unbiased estimator of $t_{y}$;
@@ -78,9 +68,17 @@ Then,
 	\end{equation*}
 \item
 	$\dfrac{1}{n-1}\;\overset{n}{\underset{i=1}{\sum}}\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}$\;
-	is an unbiased estimator of \,$\Var\!\left[\;\overline{Z}_{n}\;\right]$; in other words,	
+	is an unbiased estimator of \,$\Var\!\left[\;Z\;\right]$; in other words,	
 	\begin{equation*}
 	E\!\left[\;\,\dfrac{1}{n-1}\;\overset{n}{\underset{i=1}{\sum}}\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}\;\right]
+	\;\; = \;\;
+		\Var\!\left[\;Z\;\right]
+	\end{equation*}
+\item
+	$\dfrac{1}{n}\left(\,\dfrac{1}{n-1}\;\overset{n}{\underset{i=1}{\sum}}\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}\,\right)$\;
+	is an unbiased estimator of \,$\Var\!\left[\;\overline{Z}_{n}\;\right]$; in other words,	
+	\begin{equation*}
+	E\!\left[\;\,\dfrac{1}{n}\left(\,\dfrac{1}{n-1}\;\overset{n}{\underset{i=1}{\sum}}\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}\,\right)\;\right]
 	\;\; = \;\;
 		\Var\!\left[\;\overline{Z}_{n}\;\right]
 	\;\; = \;\;
@@ -113,17 +111,6 @@ Then,
 	\;\; = \;\;
 		\underset{u \in U}{\sum}\;\, p(u)\cdot\left(\,\dfrac{y(u)}{p(u)}\,-\,t_{y}\,\right)^{2}
 	\end{eqnarray*}
-	Lastly, in order to see that
-	\begin{eqnarray*}
-	E\!\left[\;\,\dfrac{1}{n-1}\;\overset{n}{\underset{i=1}{\sum}}\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}\;\right]
-	\;\; = \;\;
-		\Var\!\left[\;Z\;\right],
-	\end{eqnarray*}
-	observe first that
-	\begin{eqnarray*}
-	E\!\left[\;\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}\;\right]
-	\;\; = \;\;
-	\end{eqnarray*}
 \item
 	Observe that
 	\begin{eqnarray*}
@@ -155,7 +142,76 @@ Then,
 		\underset{u \in U}{\sum}\;\, p(u)\cdot\left(\,\dfrac{y(u)}{p(u)}\,-\,t_{y}\,\right)^{2}\,,
 	\end{eqnarray*}
 	as desired.
+\item
+	In order to see that
+	\begin{eqnarray*}
+	E\!\left[\;\,\dfrac{1}{n-1}\;\overset{n}{\underset{i=1}{\sum}}\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}\;\right]
+	\;\; = \;\;
+		\Var\!\left[\;Z\;\right],
+	\end{eqnarray*}
+	observe first that
+	\begin{eqnarray*}
+	E\!\left[\;\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}\;\right]
+	& = &
+		E\!\left[\;Z_{i}^{2} \,-\, 2\,Z_{i}\,\overline{Z}_{n} \,+\, \overline{Z}_{n}^{2}\;\right]
+	\;\; = \;\;
+		E\!\left[\;Z_{i}^{2}\;\right]
+		\,-\, 2 \cdot E\!\left[\;Z_{i}\cdot\overline{Z}_{n}\;\right]
+		\,+\, E\!\left[\;\overline{Z}_{n}^{2}\;\right]
+	\\
+	& = &
+		E\!\left[\;Z^{2}\;\right]
+		\,-\, 2 \cdot E\!\left[\;Z_{i}\cdot\left(\dfrac{1}{n}\;\overset{n}{\underset{k=1}{\sum}}\;Z_{k}\right)\;\right]
+		\,+\, \Var\!\left[\;\overline{Z}_{n}\;\right] + E\!\left[\;\overline{Z}_{n}\;\right]^{2}
+	\\
+	& = &
+		\Var\!\left[\;Z\;\right] + E\!\left[\;Z\;\right]^{2}
+		\,-\, \dfrac{2}{n} \cdot \overset{n}{\underset{k=1}{\sum}} \; E\!\left[\;Z_{i} \cdot Z_{k}\;\right]
+		\,+\, \dfrac{1}{n}\cdot\Var\!\left[\;Z\;\right] + E\!\left[\;\overline{Z}\;\right]^{2}
+	\\
+	& = &
+		\left(1+\dfrac{1}{n}\right)\cdot\Var\!\left[\;Z\;\right] + 2 \cdot E\!\left[\;Z\;\right]^{2}
+		\,-\, \dfrac{2}{n} \cdot \left(
+			E\!\left[\;Z_{i}^{2}\;\right] + \underset{k \neq i}{\sum} \; E\!\left[\;Z_{i} \cdot Z_{k}\;\right]
+			\right)
+	\\
+	& = &
+		\left(1+\dfrac{1}{n}\right)\cdot\Var\!\left[\;Z\;\right] + 2 \cdot E\!\left[\;Z\;\right]^{2}
+		\,-\, \dfrac{2}{n} \cdot \left(
+			\Var\!\left[\;Z\;\right] + E\!\left[\;Z\;\right]^{2} + (n-1)\cdot E\!\left[\;Z\;\right]^{2}
+			\right)
+	\\
+	& = &
+		\left(1+\dfrac{1}{n}\right)\cdot\Var\!\left[\;Z\;\right] + 2 \cdot E\!\left[\;Z\;\right]^{2}
+		\,-\, \dfrac{2}{n} \cdot \left(
+			\Var\!\left[\;Z\;\right] + n\cdot E\!\left[\;Z\;\right]^{2}
+			\right)
+	\\
+	& = &
+		\left(1-\dfrac{1}{n}\right)\cdot\Var\!\left[\;Z\;\right]
+	\;\; = \;\;
+		\left(\dfrac{n-1}{n}\right)\cdot\Var\!\left[\;Z\;\right]
+	\end{eqnarray*}
+	Consequently,
+	\begin{eqnarray*}
+	E\!\left[\;\,\dfrac{1}{n-1}\;\overset{n}{\underset{i=1}{\sum}}\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}\;\right]
+	&=&
+		\dfrac{1}{n-1}\cdot
+		\overset{n}{\underset{i=1}{\sum}}\;E\!\left[\;\left(\,Z_{i} \,-\, \overline{Z}_{n}\,\right)^{2}\;\right]
+	\;\; = \;\;
+		\dfrac{1}{n-1}\cdot
+		\overset{n}{\underset{i=1}{\sum}}\,\left(\dfrac{n-1}{n}\right)\cdot\Var\!\left[\;Z\;\right]
+	\\
+	&=&
+		\dfrac{1}{n-1} \cdot n \cdot \left(\dfrac{n-1}{n}\right)\cdot\Var\!\left[\;Z\;\right]
+	\;\; = \;\;
+		\Var\!\left[\;Z\;\right],
+	\end{eqnarray*}
+	as desired.
+\item
+	Immediate by the preceding result.
 \end{enumerate}
+This completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
