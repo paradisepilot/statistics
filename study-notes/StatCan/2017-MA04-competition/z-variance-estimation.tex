@@ -280,6 +280,96 @@ Hence,
 %		\;\right)
 %\end{eqnarray*}
 
+\begin{example}[Ratio estimator]
+\mbox{}\vskip 0.2cm
+\noindent
+Consider
+\begin{equation*}
+\widehat{B}
+\;\; := \;\;
+	\dfrac{
+	\widehat{T}^{\,\textnormal{HT}}_{1}
+	}{
+	\overset{{\color{white}.}}{\widehat{T}^{\,\textnormal{HT}}_{2}}
+	}
+\;\; := \;\;
+	h\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1}\,,\,\widehat{T}^{\,\textnormal{HT}}_{2}\,\right),
+\end{equation*}
+where $h(x_{1},x_{2}) = x_{1} / x_{2}$.
+Now,
+\begin{equation*}
+(\,\nabla h\,)(x_{1},x_{2})
+\;\; = \;\;
+	\left(\,\overset{{\color{white}.}}{\partial_{1}h}\,,\,\partial_{2}h\,\right)(x_{1},x_{2})
+\;\; = \;\;
+	\left(\;\dfrac{1}{x_{2}}\,,\,-\,\dfrac{x_{1}}{x_{2}^{2}}\;\right)
+\end{equation*}
+\begin{eqnarray*}
+\Var\left[\;\widehat{B}\;\right]
+&\approx&
+	\dfrac{1}{\left(\widehat{T}^{\,\textnormal{HT}}_{2}\right)^{2}}
+		\cdot
+		\Var\!\left[\,\widehat{T}^{\,\textnormal{HT}}_{1}\,\right]
+	\; + \;
+	\left(\dfrac{\widehat{T}^{\,\textnormal{HT}}_{1}}{\left(\widehat{T}^{\,\textnormal{HT}}_{2}\right)^{2}}\right)^{2}
+		\cdot
+		\Var\!\left[\,\widehat{T}^{\,\textnormal{HT}}_{2}\,\right]
+	\; - \;
+		2 \cdot
+		\dfrac{\widehat{T}^{\,\textnormal{HT}}_{1}}{\left(\widehat{T}^{\,\textnormal{HT}}_{2}\right)^{3}}
+		\cdot
+		\Cov\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1}\,,\,\widehat{T}^{\,\textnormal{HT}}_{2}\,\right)
+\\
+&=&
+	\dfrac{1}{\left(\widehat{T}^{\,\textnormal{HT}}_{2}\right)^{2}}
+	\cdot
+	\left\{\;
+		\Var\!\left[\,\widehat{T}^{\,\textnormal{HT}}_{1}\,\right]
+		\; + \;
+		\left(
+			\dfrac{\widehat{T}^{\,\textnormal{HT}}_{1}
+			}{
+			\overset{{\color{white}.}}{\widehat{T}^{\,\textnormal{HT}}_{2}}
+			}
+			\right)^{2}
+			\cdot
+			\Var\!\left[\,\widehat{T}^{\,\textnormal{HT}}_{2}\,\right]
+		\; - \;
+			2 \cdot
+			\dfrac{\widehat{T}^{\,\textnormal{HT}}_{1}}{\overset{{\color{white}.}}{\widehat{T}^{\,\textnormal{HT}}_{2}}}
+			\cdot
+			\Cov\!\left(\,\widehat{T}^{\,\textnormal{HT}}_{1}\,,\,\widehat{T}^{\,\textnormal{HT}}_{2}\,\right)
+		\;\right\}
+\end{eqnarray*}
+\end{example}
+
+\vskip 0.5cm
+\noindent
+\textbf{Advantages}
+\begin{itemize}
+\item
+	Applicable to general sampling designs.
+\item
+	Software is available for calculation of linearization variance estimators
+	for common nonlinear functions of population totals,
+	e.g. ratios and regression coefficients.
+\end{itemize}
+
+\vskip 0.5cm
+\noindent
+\textbf{Disdvantages}
+\begin{itemize}
+\item
+	Only applies to smooth functions of population totals.
+	In particular, it does NOT apply to medians or quantiles.
+\item
+	Linearization variance estimators are accurate only when sample size is sufficiently large.
+\item
+	Calculations of partial derivatives for complex functions can be tedious and messy.
+\item
+	Special programming may be required to implement the numerical computations for these partial derivatives.
+\end{itemize}
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 %\renewcommand{\theenumi}{\alph{enumi}}
