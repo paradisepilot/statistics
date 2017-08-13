@@ -84,6 +84,16 @@ Then,
 	\;\; = \;\;
 		\dfrac{1}{n}\cdot\Var\!\left[\;Z\;\right]
 	\end{equation*}
+\item
+	For each $u \in U$, the probability \;$\pi_{u} \in (0,1]$\, of selecting \;$u \in U$\,
+	in an independent with-replacement random sample from \,$(U,p)$\, satisfies:
+	\begin{equation*}
+	\pi_{u}
+	\;\; = \;\;
+		n \cdot p(u)
+		\; + \;
+		O\!\left(\,\overset{{\color{white}-}}{p}(u)^{2}\,\right)
+	\end{equation*}
 \end{enumerate}
 \end{theorem}
 \proof
@@ -210,6 +220,34 @@ Then,
 	as desired.
 \item
 	Immediate by the preceding result.
+\item
+	\begin{eqnarray*}
+	\pi_{u}
+	& = &
+		1 - \left(\,1 - \overset{{\color{white}-}}{p}(u)\,\right)^{n}
+	\;\; = \;\;
+		1 \; - \;
+			\overset{n}{\underset{i=0}{\sum}}\,
+			\left(\!\begin{array}{c}n \\ i\end{array}\!\right)
+			\left(\,1\,\right)^{n-i}\cdot\left(\,-\,\overset{{\color{white}-}}{p}(u)\,\right)^{i}
+	\;\; = \;\;
+		1 \; - \;
+			\overset{n}{\underset{i=0}{\sum}}\,
+			\left(\!\begin{array}{c}n \\ i\end{array}\!\right)
+			\left(\,-1\,\right)^{i} \cdot p(u)^{i}
+	\\
+	& = &
+		1 \; - \; 1 \; + \; n\cdot p(u) \; + \;
+			\overset{n}{\underset{i=2}{\sum}}\,
+			\left(\!\begin{array}{c}n \\ i\end{array}\!\right)
+			\left(\,-1\,\right)^{i} \cdot p(u)^{i}
+	\\
+	& = &
+		n\cdot p(u) \; + \;
+			\overset{n}{\underset{i=2}{\sum}}\,
+			\left(\!\begin{array}{c}n \\ i\end{array}\!\right)
+			\left(\,-1\,\right)^{i} \cdot p(u)^{i}
+	\end{eqnarray*}
 \end{enumerate}
 This completes the proof of the Theorem.
 \qed
