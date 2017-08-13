@@ -26,7 +26,7 @@ Suppose:
 	s \;\; = \;\; \overset{A}{\underset{a = 1}{\bigsqcup}}\;s_{a}
 	\end{equation*}
 	into \,$A \in \N$\, subsamples, in a probabilistic fashion in such a way that
-	\textbf{\color{red}the \,$s_{a}$'s\, all share a common sampling design $q$}.
+	the \,$s_{a}$'s\, all share \textbf{\color{red}``essentially the same''} sampling design $q$.
 	Let \,$\widehat{\theta}_{q}(s_{a}\,;y\vert_{s_{a}})$,\, $a = 1,2,\ldots,A$,\, be unbiased estimators
 	for $\theta(y)$.
 \item
@@ -71,6 +71,53 @@ Suppose:
 	or
 	\,$\Var\!\left[\;\widehat{\theta}_{\textnormal{DRG}}\;\right]$.\,
 	However, \textbf{\color{red}neither is unbiased} for any of these two purposes.
+\end{itemize}
+
+\vskip 0.5cm
+\noindent
+\textbf{Examples}
+\begin{itemize}
+\item
+	\underline{$p$ is SRSWOR of fixed sample size $n = mA$}
+	\begin{itemize}
+	\item
+		Choose $s_{1}$ as an SRSWOR sample of size $m$ from $s$.
+	\item
+		Choose $s_{2}$ as an SRSWOR sample of size $m$ from $s \backslash s_{1}$.
+	\item
+		Choose $s_{3}$ as an SRSWOR sample of size $m$ from $s \backslash (s_{1} \cup s_{2})$, and so on.
+	\item
+		Then each $s_{a}$ can be considered as an SRSWOR sample of fixed size $m$ from $U$.
+	\end{itemize}
+\item
+	\underline{$p$ is a probability-proportional-to-size design of fixed sample size $n = mA$}
+	\begin{itemize}
+	\item
+		Choose $s_{1}$ as an SRSWOR sample of size $m$ from $s$.
+	\item
+		Choose $s_{2}$ as an SRSWOR sample of size $m$ from $s \backslash s_{1}$.
+	\item
+		Choose $s_{3}$ as an SRSWOR sample of size $m$ from $s \backslash (s_{1} \cup s_{2})$, and so on.
+	\item
+		Then, each $s_{a}$ could be considered as having been selected
+		from a probability-proportional-to-size sampling design of fixed size $m$,
+		with probabilities of selection given by:
+		\begin{equation*}
+		\pi_{k,a} \;\; = \;\; \dfrac{m}{n} \cdot \pi_{k}\,,
+		\quad
+		\textnormal{for each \,$k \in s_{a} \subset U$}\,,
+		\end{equation*}
+		and
+		\begin{equation*}
+		\widehat{\theta}_{q}(s_{a}\,;y\vert_{s_{a}})
+		\;\; = \;\;
+			\underset{k \in s_{a}}{\sum}\;\dfrac{y_{k}}{\pi_{k,a}}
+		\;\; = \;\;
+			\underset{k \in s_{a}}{\sum}\;\dfrac{y_{k}}{(m/n)\pi_{k}}
+		\;\; = \;\;
+			\dfrac{n}{m}\cdot\underset{k \in s_{a}}{\sum}\;\dfrac{y_{k}}{\pi_{k}}
+		\end{equation*}
+	\end{itemize}
 \end{itemize}
 
 \vskip 0.5cm
