@@ -1,0 +1,85 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Independent Random Groups (IRG)}
+
+\vskip 0.2cm
+Suppose:
+\begin{itemize}
+\item
+	$U = \{1,2,\ldots,N\}$\; is a finite population.
+	\;$y : U \longrightarrow \Re$\; is a population characteristic, i.e. \;$y \in \Re^{U}$.\;
+	\;$\theta : \Re^{U} \longrightarrow \Re$\; is a functional.
+	We would like to estimate \;$\theta(y) \in \Re$\; via finite population sampling.
+\item
+	Let \;$p : \mathcal{S} \subset \mathcal{P}(U) \longrightarrow (0,1]$\; be a sampling design.
+	Let \;$\widehat{\theta}_{p}(s\,;y\vert_{s})$\; be an \textbf{\color{red}unbiased} estimator for \,$\theta(y)$.
+\item
+	We wish to estimate the sampling variance \;$\Var\!\left[\;\widehat{\theta}_{p}\;\right]$\;
+	of the design-based estimator \;$\widehat{\theta}_{p}$.
+\end{itemize}
+
+\vskip 0.5cm
+\noindent
+\textbf{The Independent Random Groups (IRG) method of estimation (parameter and variance!!)}
+\begin{itemize}
+\item
+	Repeat independently the sampling procedure according to the sampling design \,$p$\, exactly \,$A \in \N$\, times.
+\item
+	Then,
+	\begin{equation*}
+	\widehat{\theta}_{\textnormal{IRG}}
+	\;\; = \;\;
+		\widehat{\theta}_{\textnormal{IRG}}(\,s_{1},\ldots,s_{A}\,;\,y\vert_{s_{1}},\ldots,y\vert_{s_{A}})
+	\;\; := \;\;
+		\dfrac{1}{A}\cdot\overset{A}{\underset{a=1}{\sum}}\;\,\widehat{\theta}_{p}(s_{a}\,;y\vert_{s_{a}})
+	\end{equation*}
+	is an unbiased estimator for \,$\theta(y)$.
+\item
+	\begin{equation*}
+	\widehat{\Var}_{\,\textnormal{IRG}}\!\left[\;\widehat{\theta}_{\textnormal{IRG}}\;\right]
+	\;\; : \;\;
+		(\,s_{1},\ldots,s_{A}\,;\,y\vert_{s_{1}},\ldots,y\vert_{s_{A}})
+	\;\; \longmapsto \;\;
+		\dfrac{1}{A}
+		\left(\;
+			\dfrac{1}{A-1}\cdot
+			\overset{A}{\underset{a=1}{\sum}}\;
+			\left(\;\widehat{\theta}_{p}(s_{a}\,;y\vert_{s_{a}}) \,-\, \widehat{\theta}_{\textnormal{IRG}}\;\right)^{2}
+			\right)
+	\end{equation*}
+	is an unbiased estimator of \,$\Var\!\left[\;\widehat{\theta}_{\textnormal{IRG}}\;\right]$.
+\end{itemize}
+
+\vskip 0.5cm
+\noindent
+\textbf{Advantages}
+\begin{itemize}
+\item
+	The variance estimator
+	\,$\widehat{\Var}_{\,\textnormal{IRG}}\!\left[\;\widehat{\theta}_{\textnormal{IRG}}\;\right]$\,
+	is very simple to compute, regardless of the sampling design $p$ or
+	the complexity of \,$\widehat{\theta}_{p}(s\,;y\vert_{s})$.
+	For example, the method of independent random groups may be applicable to variance
+	estimation for the correlation coefficient under systematic sampling with a single random start
+	(for which there are no traditional techniques that give unbiased variance estimators).
+\end{itemize}
+
+\vskip 0.5cm
+\noindent
+\textbf{Disdvantages}
+\begin{itemize}
+\item
+	It may be costly to repeat the sampling procedures multiple times.
+\item
+	Unintended dependence among repeated sampling may creep in during the production process
+	(interviewing, processing).
+\item
+	In practice, the number $A$ of sampling repetitions will tend to be small,
+	possibly leading to instability of the estimators
+	\,$\widehat{\theta}_{\textnormal{IRG}}$\,
+	and
+	\,$\widehat{\Var}_{\,\textnormal{IRG}}\!\left[\;\widehat{\theta}_{\textnormal{IRG}}\;\right]$.
+\end{itemize}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
