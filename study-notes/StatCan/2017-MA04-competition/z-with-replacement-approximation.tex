@@ -1,0 +1,156 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{With-replacement approximation}
+
+\vskip 0.2cm
+First, note that every without-replacement (complex) sampling design
+\textbf{\color{red}with fixed sample size} admits a with-replacement
+``counterpart'' sampling design.
+
+\vskip 0.5cm
+\noindent
+Indeed, let $U := \{1,2,\ldots,N\}$, and
+$p : \mathcal{S} \subset \mathcal{P}(U) \longrightarrow (0,1]$
+be a sampling design of fixed sample size $n$
+such that, for each $i \in U$, we have
+\begin{equation*}
+\pi_{i}
+\;\; := \;\;
+	\underset{s \in \mathcal{S}}{\sum} \; p(s)\cdot I_{i}(s)
+\;\; = \;\;
+	\underset{s \ni i}{\sum} \; p(s)
+\;\; > \;\;
+	0
+\end{equation*}
+Then, define a probability function $p_{0} : U \longrightarrow (0,1]$ by
+\begin{equation*}
+p_{0}(i) \;\; := \;\; \dfrac{\pi_{i}}{n} \;\; > \;\; 0\,.
+\end{equation*}
+Note that $p_{0}$ is indeed a probability function on $U$ since
+\begin{eqnarray*}
+\underset{i\in U}{\sum}\;\,p_{0}(i)
+&=&
+	\underset{i\in U}{\sum}\;\,\dfrac{\pi_{i}}{n}
+\;\; = \;\;
+	\dfrac{1}{n} \cdot
+	\underset{i\in U}{\sum}
+	\left(\,\underset{s \in \mathcal{S}}{\sum} \; p(s)\cdot I_{i}(s)\right)
+\;\; = \;\;
+	\dfrac{1}{n} \cdot
+	\underset{i\in U}{\sum}\;\,
+	\underset{s \in \mathcal{S}}{\sum}\;\,
+	p(s)\cdot I_{i}(s)
+\;\; = \;\;
+	\dfrac{1}{n} \cdot
+	\underset{s \in \mathcal{S}}{\sum}\;\,
+	\underset{i\in U}{\sum}\;\,
+	p(s)\cdot I_{i}(s)
+\\
+&=&
+	\dfrac{1}{n} \cdot
+	\underset{s \in \mathcal{S}}{\sum}\;\,
+	p(s)\cdot \left(\,\underset{i\in U}{\sum}\;\, I_{i}(s)\right)
+\;\; = \;\;
+	\dfrac{1}{n} \cdot
+	\underset{s \in \mathcal{S}}{\sum}\;\,
+	p(s)\cdot n
+\;\; = \;\;
+	\underset{s \in \mathcal{S}}{\sum}\;\,p(s)
+\;\; = \;\;
+	1
+\end{eqnarray*}
+Now, let \;$y : U \longrightarrow \Re$\; be a population characteristic,
+and \;$t_{y} \, := \, \underset{i \in U}{\sum}\;\,y_{i}$\; its population total.
+For \;$s \in \mathcal{S}$,\; let \;$\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)$\;
+represents the Horvitz-Thompson estimate of \;$t_{y}$\, under the sampling
+plan \;$p : \mathcal{S} \subset \mathcal{P}(U) \longrightarrow (0,1]$.\;
+Next, observe that, although \;$s \in \mathcal{S}$\; is selected under the
+without-replacement sampling design \;$p : \mathcal{S} \longrightarrow (0,1]$,\;
+it could also have arisen as a selected sample under the fixed-sample-size-$n$
+with-replacement sampling plan induced by \;$p_{0} : U \longrightarrow (0,1]$.\;
+Let \;$\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}(s)$\; be the estimate for
+\;$t_{y}$\, under \;$p_{0}$.\;
+Let \;$Z : U \longrightarrow \Re$\; be defined by
+\;$Z(i) := y_{i} / p_{0}(i)$,\; for each \;$i \in U$.\;
+Then,
+\;$\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)$\; and
+\;$\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}(s)$\;
+agree numerically.
+Indeed,
+\begin{eqnarray*}
+\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)
+& := &
+	\underset{i \in s}{\sum}\;\, \dfrac{y_{i}}{\pi_{i}}
+\;\; = \;\;
+	\underset{i \in s}{\sum}\;\, \dfrac{y_{i}}{n \cdot p_{0}(i)}
+\;\; = \;\;
+	\dfrac{1}{n}\cdot \underset{i \in s}{\sum}\;\, \dfrac{y_{i}}{p_{0}(i)}
+\\
+& \overset{*}{=} &
+	\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\; Z_{i}
+\;\; = \;\;
+	\overline{Z}_{n}
+\;\; =: \;\;
+	\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}(s)\,,
+\end{eqnarray*}
+where \;$\overset{*}{=}$\; emphasizes the fact that the same sample \;$s$\;
+on its two sides are from different sampling plans:
+On the left, \;$s$\; is selected under the without-replacement sampling design
+$p : \mathcal{S} \longrightarrow (0,1]$, while on the right,
+\;$s$\; is considered selected from the with-replacement sampling design
+induced by \;$p_{0} : U \longrightarrow (0,1]$.
+
+\vskip 0.5cm
+\noindent
+We may now define the
+\textbf{with-replacement approximate variance estimator}
+\;$\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,p}\;\right]$\;
+of \;$\widehat{T}^{\,\textnormal{HT}}_{y,p}$\; as follows:
+\begin{eqnarray*}
+\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,p}\;\right]\!(s)
+& := &
+	\widehat{V}\!\left[\;\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}\;\right]\!(s)
+\;\; := \;\;
+	\dfrac{1}{n}\left(
+		\dfrac{1}{n-1}\cdot\overset{n}{\underset{i=1}{\sum}}\;
+		\left(\,Z_{i}\,-\,\overline{Z}_{n}\,\right)^{2}
+		\right)
+\\
+& = &
+	\dfrac{1}{n}\left(\,
+		\dfrac{1}{n-1}\cdot\underset{i \in s}{\sum}
+		\left(\,\dfrac{y_{i}}{p_{0}(i)}\,-\,\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)\right)^{2}
+		\,\right)
+\;\; = \;\;
+	\dfrac{1}{n\,(n-1)}\cdot\underset{i \in s}{\sum}
+		\left(\,
+		\dfrac{y_{i}}{p_{0}(i)}\,-\,\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)
+		\right)^{2}
+\\
+& = &
+	\dfrac{1}{n\,(n-1)}\cdot\underset{i \in s}{\sum}
+		\left(\,
+		\dfrac{y_{i}}{\pi_{i}/n}\,-\,\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)
+		\right)^{2}
+\end{eqnarray*}
+
+\vskip 0.5cm
+\noindent
+\textbf{Advantages}
+\begin{itemize}
+\item
+	Unbiased
+\item
+	Easy to compute
+\end{itemize}
+
+\vskip 0.5cm
+\noindent
+\textbf{Disdvantages}
+\begin{itemize}
+\item
+	It is an over-estimate.
+\end{itemize}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
