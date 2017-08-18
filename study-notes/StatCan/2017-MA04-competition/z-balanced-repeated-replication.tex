@@ -4,6 +4,9 @@
 \subsection{Balanced Repeated Replication (BRR)}
 
 \vskip 0.2cm
+\begin{proposition}
+\mbox{}\vskip 0.1cm
+\noindent
 Suppose:
 \begin{itemize}
 \item
@@ -15,13 +18,51 @@ Suppose:
 	Let \,$p : \mathcal{S} \subset \mathcal{P}(U) \longrightarrow (0,1]$\, be a stratified
 	sampling design with $H$ strata such that, for each $s \in \mathcal{S}$, there are
 	exactly two selected units in each stratum.
+	We write $U = \overset{H}{\underset{h = 1}{\bigsqcup}}\;U_{h}$.
 	Let \,$\widehat{\theta}_{p}(s\,;y\vert_{s})$\, be an unbiased estimator for \,$\theta(y)$.
 \item
-	Consequently, given each $s \in \mathcal{S}$, there are exactly $2^{H}$ distinct ways
-	to select a subsample $s_{a}$\,, $a \in \{1,2,\ldots,2^{H}\}$, such that each $s_{a}$
-	contains exactly one selected unit from each stratum.
-	In particular, we have $\vert\,s_{a}\,\vert = \vert\,s\,\vert\,/\,2$, for each $a \in \{1,2,\ldots,2^{H}\}$. 
+	Let $A \in \{1,2,\ldots,2^{H}\}$.
+	For each $a \in \{1,2,\ldots,A\}$, let \,$s_{a} \subset s$ be a subsample of $s$
+	such that \,$s_{a}$ contains exactly one selected unit from each stratum.
+	In particular, we have $\vert\,s_{a}\,\vert = \vert\,s\,\vert\,/\,2$, for each $a \in \{1,2,\ldots,A\}$.
+	For each $a \in \{1,2,\ldots,A\}$, let \,$\widehat{\theta}_{a}(s_{a}\,;y\vert_{s_{a}})$\, be an
+	estimator for \,$\theta(y)$.	
+\item
+	For each $s \in S$, we fix an (arbitrary) labelling
+	\,$\{\,u^{(h)}_{1}, u^{(h)}_{2}\,\} = s \,\cap\, U_{h}$\,
+	for the two selected units constituting $s \cap U_{h}$.
+	With respect to this choice of labelling, we define,
+	for each $a \in \{1,2,\ldots,A\}$ and each $h = 1,2,\ldots,H$:
+	\begin{equation*}
+	\varepsilon_{ah}
+	\;\; := \;\;
+		\left\{\begin{array}{rl}
+			1\,, & \textnormal{if \,$u^{(h)}_{1} \,\in\, s_{a}$}
+			\\
+			-1\,, & \overset{{\color{white}-}}{\textnormal{if \,$u^{(h)}_{2} \,\in\, s_{a}$}}
+			\end{array}\right.
+	\end{equation*}
 \end{itemize}
+If:
+\begin{enumerate}
+\item
+	For each $h_{1}, h_{2} \in \{1,2,\ldots,H\}$ with $h_{1} \neq h_{2}$, we have
+	\begin{equation*}
+	\overset{A}{\underset{a=1}{\sum}}\;\varepsilon_{ah_{1}}\,\varepsilon_{ah_{2}} \; = \; 0\,.
+	\end{equation*}
+\item
+	\begin{equation*}
+	\widehat{\theta}_{a}
+	\;\; = \;\;
+		\overset{H}{\underset{h=1}{\sum}}\;
+		\left\{\,
+			\left(\dfrac{1+\varepsilon_{ah}}{2}\right)\cdot\dfrac{y^{(h)}_{1}}{\pi^{(h)}_{1}/\,2}
+			\,+\,
+			\left(\dfrac{1-\varepsilon_{ah}}{2}\right)\cdot\dfrac{y^{(h)}_{2}}{\pi^{(h)}_{2}/\,2}
+			\,\right\}
+	\end{equation*}
+\end{enumerate}
+\end{proposition}
 
 \vskip 0.5cm
 \textbf{Highlights:}
