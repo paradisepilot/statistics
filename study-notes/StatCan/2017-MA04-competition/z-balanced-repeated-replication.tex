@@ -7,7 +7,7 @@
 \begin{proposition}
 \mbox{}\vskip 0.1cm
 \noindent
-Suppose:
+Synopsis:
 \begin{itemize}
 \item
 	$U = \{1,2,\ldots,N\}$\; is a finite population.
@@ -19,7 +19,15 @@ Suppose:
 	sampling design with $H$ strata such that, for each $s \in \mathcal{S}$, there are
 	exactly two selected units in each stratum.
 	We write $U = \overset{H}{\underset{h = 1}{\bigsqcup}}\;U_{h}$.
-	Let \,$\widehat{\theta}_{p}(s\,;y\vert_{s})$\, be an unbiased estimator for \,$\theta(y)$.
+\item
+	Let
+	\begin{equation*}
+	\widehat{\theta} \; : \; \mathcal{S} \; \longrightarrow \; \Re
+	\end{equation*}
+	be an unbiased estimator of \,$\theta(y)$\, such that
+	\,$\widehat{\theta}(s) \, = \, \widehat{\theta}(s\,;y\vert_{s})$\,
+	depends only on the restriction \,$y\,\vert_{s}$ of $y$ to $s \in \mathcal{S}$,
+	for each $s \in \mathcal{S}$.
 \item
 	Let $A \in \{1,2,\ldots,2^{H}\}$.
 	For each $a \in \{1,2,\ldots,A\}$, let \,$s_{a} \subset s$ be a subsample of $s$
@@ -29,7 +37,7 @@ Suppose:
 	estimator for \,$\theta(y)$.	
 \item
 	For each $s \in S$, we fix an (arbitrary) labelling
-	\,$\{\,u^{(h)}_{1}, u^{(h)}_{2}\,\} = s \,\cap\, U_{h}$\,
+	\,$\{\,u^{(s\,\cap\,U_{h})}_{1}, u^{(s\,\cap\,U_{h})}_{2}\,\} = s \,\cap\, U_{h}$\,
 	for the two selected units constituting $s \cap U_{h}$.
 	With respect to this choice of labelling, we define,
 	for each $a \in \{1,2,\ldots,A\}$ and each $h = 1,2,\ldots,H$:
@@ -37,35 +45,144 @@ Suppose:
 	\varepsilon_{ah}
 	\;\; := \;\;
 		\left\{\begin{array}{rl}
-			1\,, & \textnormal{if \,$u^{(h)}_{1} \,\in\, s_{a}$}
+			1\,, & \textnormal{if \,$u^{(s\,\cap\,U_{h})}_{1} \,\in\, s_{a}$}
 			\\
-			-1\,, & \overset{{\color{white}-}}{\textnormal{if \,$u^{(h)}_{2} \,\in\, s_{a}$}}
+			-1\,, & \overset{{\color{white}-}}{\textnormal{if \,$u^{(s\,\cap\,U_{h})}_{2} \,\in\, s_{a}$}}
 			\end{array}\right.
 	\end{equation*}
+	We denote the selection probabilities of \,$u^{(s\,\cap\,U_{h})}_{1}$ and \,$u^{(s\,\cap\,U_{h})}_{2}$,
+	respectively, by \,$\pi^{(s\,\cap\,U_{h})}_{1}$\, and \,$\pi^{(s\,\cap\,U_{h})}_{2}$.
 \end{itemize}
-If:
-\begin{enumerate}
+Suppose:
+\begin{itemize}
 \item
 	For each $h_{1}, h_{2} \in \{1,2,\ldots,H\}$ with $h_{1} \neq h_{2}$, we have
 	\begin{equation*}
 	\overset{A}{\underset{a=1}{\sum}}\;\varepsilon_{ah_{1}}\,\varepsilon_{ah_{2}} \; = \; 0\,.
 	\end{equation*}
 \item
+	$\widehat{\theta}$\, is the Horvitz-Thompson estimator for the population total
+	\,$\theta(y) := \underset{u \in U}{\sum}\;y_{u}$\, of \,$y$,\, i.e.
+	\begin{eqnarray*}
+	\widehat{\theta}(s)
+	& = &
+		\widehat{T}^{\textnormal{HT}}_{y}(s)
+	\;\; = \;\;
+		\overset{H}{\underset{h = 1}{\sum}}\left(\;
+			\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}\,+\,\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+			\;\right),
+	\quad
+	\textnormal{for each \,$s \in \mathcal{S}$.}
+	\end{eqnarray*}
+\item
 	\begin{equation*}
 	\widehat{\theta}_{a}
+	\;\; = \;\;
+		\widehat{\theta}_{a}\!\left(\,s_{a}\,\right)
 	\;\; = \;\;
 		\widehat{\theta}_{a}\!\left(\,s_{a}\,;\,y\vert_{s_{a}}\,\right)
 	\;\; := \;\;
 		\overset{H}{\underset{h=1}{\sum}}\;
 		\left\{\,
-			\left(\dfrac{1+\varepsilon_{ah}}{2}\right)\cdot\dfrac{y^{(h)}_{1}}{\pi^{(h)}_{1}/\,2}
+			\left(\dfrac{1+\varepsilon_{ah}}{2}\right)\cdot\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}/\,2}
 			\,+\,
-			\left(\dfrac{1-\varepsilon_{ah}}{2}\right)\cdot\dfrac{y^{(h)}_{2}}{\pi^{(h)}_{2}/\,2}
+			\left(\dfrac{1-\varepsilon_{ah}}{2}\right)\cdot\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}/\,2}
 			\,\right\}
 	\end{equation*}
+\item
+	We define the (design-based) random variable
+	\,$\widehat{V}^{\textnormal{BRR}} : \mathcal{S} \longrightarrow \Re$\,
+	as follows:
+	\begin{equation*}
+	\widehat{V}^{\textnormal{BRR}}(s)
+	\;\; := \;\;
+		\dfrac{1}{A}\cdot\overset{A}{\underset{a=1}{\sum}}\,
+		\left(\,\widehat{\theta}_{a}(s_{a}) \,-\, \widehat{T}^{\textnormal{HT}}_{y}(s)\,\right)^{2}
+	\end{equation*}
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	The with-replacement approximation variance estimator 
+	\,$\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]$\,
+	for the variance of the Horvitz-Thompson estimator is given by
+	\begin{eqnarray*}
+	\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s)
+	& = &
+		\overset{H}{\underset{h = 1}{\sum}}\,
+		\left(\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
+			\,-\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+			\,\right)^{2}
+	\end{eqnarray*}
+\item
+	$\widehat{V}^{\textnormal{BRR}}$ \,$=$\,
+	$\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]$, i.e.
+	\begin{equation*}
+	\widehat{V}^{\textnormal{BRR}}(s)
+	\;\; = \;\;
+		\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s),
+	\quad
+	\textnormal{for each \,$s \in \mathcal{S}$}
+	\end{equation*}
 \end{enumerate}
-then:
 \end{proposition}
+\proof
+\begin{enumerate}
+\item
+	\begin{eqnarray*}
+	\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s)
+	& = &
+		\overset{H}{\underset{h = 1}{\sum}}\;\,
+		\dfrac{1}{n_{h}\,(n_{h}-1)}\cdot\underset{i \in s_{h}}{\sum}
+			\left(\,
+			\dfrac{y_{i}}{\pi_{i}/n_{h}}\,-\,\widehat{T}^{\,\textnormal{HT}}_{y\vert_{U_{h}},\,p\vert_{U_{h}}}(s_{h})
+			\right)^{2}
+	\\
+	& = &
+		\overset{H}{\underset{h = 1}{\sum}}\;\,
+		\dfrac{1}{n_{h}\,(n_{h}-1)}\cdot\overset{2}{\underset{i = 1}{\sum}}
+			\left(\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{i}}{\pi^{(s\,\cap\,U_{h})}_{i}\!/n_{h}}\,-\,
+			\left(\,
+				\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
+				+
+				\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+				\,\right)
+			\right)^{2}
+	\\
+	& = &
+		\overset{H}{\underset{h = 1}{\sum}}\;\,
+		\dfrac{1}{{\color{red}2}\,({\color{red}2}-1)}\cdot\overset{2}{\underset{i = 1}{\sum}}
+			\left(\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{i}}{\pi^{(s\,\cap\,U_{h})}_{i}\!/{\color{red}2}}\,-\,
+			\left(\,
+				\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
+				+
+				\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+				\,\right)
+			\right)^{2}
+	\\
+	& = &
+		\overset{H}{\underset{h = 1}{\sum}}\;\,
+		\dfrac{1}{2} \cdot 2 \cdot
+		\left(\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
+			\,-\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+			\,\right)^{2}
+	\\
+	& = &
+		\overset{H}{\underset{h = 1}{\sum}}\,
+		\left(\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
+			\,-\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+			\,\right)^{2}
+	\end{eqnarray*}
+\end{enumerate}
+\qed
 
 \vskip 0.5cm
 \textbf{Highlights:}
