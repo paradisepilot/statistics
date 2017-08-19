@@ -69,7 +69,9 @@ Suppose:
 		\widehat{T}^{\textnormal{HT}}_{y}(s)
 	\;\; = \;\;
 		\overset{H}{\underset{h = 1}{\sum}}\left(\;
-			\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}\,+\,\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+			\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
+			\,+\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
 			\;\right),
 	\quad
 	\textnormal{for each \,$s \in \mathcal{S}$.}
@@ -106,16 +108,26 @@ Then, the following statements hold:
 	The with-replacement approximation variance estimator 
 	\,$\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]$\,
 	for the variance of the Horvitz-Thompson estimator is given by
-	\begin{eqnarray*}
+	\begin{equation*}
 	\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s)
-	& = &
+	\;\;\; = \;\;\;
 		\overset{H}{\underset{h = 1}{\sum}}\,
 		\left(\,
 			\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
 			\,-\,
 			\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
 			\,\right)^{2}
-	\end{eqnarray*}
+	\;\; = \;\;\;
+		\overset{H}{\underset{h=1}{\sum}}\;\, \Delta_{(s\,\cap\,U_{h})}^{2}\,,
+	\end{equation*}
+	where
+	\begin{equation*}
+	\Delta_{(s\,\cap\,U_{h})}
+	\;\; := \;\;\;
+		\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
+		\; - \;
+		\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+	\end{equation*}
 \item
 	$\widehat{V}^{\textnormal{BRR}}$ \,$=$\,
 	$\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]$, i.e.
@@ -180,8 +192,181 @@ Then, the following statements hold:
 			\,-\,
 			\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
 			\,\right)^{2}
+	\;\; = \;\;\;
+		\overset{H}{\underset{h=1}{\sum}}\;\, \Delta_{(s\,\cap\,U_{h})}^{2}
 	\end{eqnarray*}
+\item
+	\underline{\textbf{Claim 1:}}
+	\begin{eqnarray*}
+	\widehat{\theta}_{a}(s_{a}) \;-\; \widehat{T}^{\textnormal{HT}}_{y}(s)
+	& = &
+		\overset{H}{\underset{h=1}{\sum}}\;\, \varepsilon_{ah} \cdot \Delta_{(s\,\cap\,U_{h})}
+	\end{eqnarray*}
+	Proof of Claim 1:
+	\begin{eqnarray*}
+	&&
+		\widehat{\theta}_{a}(s_{a}) \;-\; \widehat{T}^{\textnormal{HT}}_{y}(s)
+	\\
+	& = &
+		\overset{H}{\underset{h=1}{\sum}}\;
+		\left\{\,
+			\left(\dfrac{1+\varepsilon_{ah}}{2}\right)\cdot\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}/\,2}
+			\,+\,
+			\left(\dfrac{1-\varepsilon_{ah}}{2}\right)\cdot\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}/\,2}
+			\,\right\}
+		\; - \;
+		\overset{H}{\underset{h = 1}{\sum}}\left(\;
+			\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
+			\,+\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+			\;\right)
+	\\
+	& = &
+		\overset{H}{\underset{h=1}{\sum}}\;
+		\left\{\,
+			\left(\dfrac{1+\varepsilon_{ah}}{2}\cdot 2 \,-\, 1\right)
+			\cdot
+			\dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
+			\,+\,
+			\left(\dfrac{1-\varepsilon_{ah}}{2}\cdot 2 \,-\, 1 \right)
+			\cdot
+			\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+			\,\right\}
+	\\
+	& = &
+		\overset{H}{\underset{h=1}{\sum}}\;\, \varepsilon_{ah} \cdot
+		\left(\,
+			 \dfrac{y^{(s\,\cap\,U_{h})}_{1}}{\pi^{(s\,\cap\,U_{h})}_{1}}
+			\,-\,
+			\dfrac{y^{(s\,\cap\,U_{h})}_{2}}{\pi^{(s\,\cap\,U_{h})}_{2}}
+			\,\right)
+	\;\;\, = \;\;\,
+		\overset{H}{\underset{h=1}{\sum}}\;\, \varepsilon_{ah} \cdot \Delta_{(s\,\cap\,U_{h})}
+	\end{eqnarray*}
+	This proves Claim 1.
+
+	\vskip 0.8cm
+	\noindent
+	\underline{\textbf{Claim 2:}}
+	\begin{eqnarray*}
+	\left(\;\widehat{\theta}_{a}(s_{a}) \;-\; \widehat{T}^{\textnormal{HT}}_{y}(s)\,\right)^{2}
+	& = &
+		\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s)
+		\;\; + \;\;
+		\underset{h \neq h^{\prime}}{\sum\,\sum}\;\,
+			\varepsilon_{ah} \cdot \varepsilon_{ah^{\prime}} 
+			\cdot \Delta_{(s\,\cap\,U_{h})}
+			\cdot \Delta_{(s\,\cap\,U_{h^{\prime}})}
+	\end{eqnarray*}
+	Proof of Claim 2:
+	\begin{eqnarray*}
+	\left(\;\widehat{\theta}_{a}(s_{a}) \;-\; \widehat{T}^{\textnormal{HT}}_{y}(s)\,\right)^{2}
+	& = &
+		\left(\,\overset{H}{\underset{h=1}{\sum}}\;\,
+			\varepsilon_{ah} \cdot \Delta_{(s\,\cap\,U_{h})}\right)
+		\cdot
+		\left(\,\overset{H}{\underset{h^{\prime}=1}{\sum}}\;\,
+			\varepsilon_{ah^{\prime}} \cdot \Delta_{(s\,\cap\,U_{h^{\prime}})}\right)
+	\\
+	& = &
+		\overset{H}{\underset{h=1}{\sum}}\;\;
+		\overset{H}{\underset{h^{\prime}=1}{\sum}}\;\,
+			\varepsilon_{ah} \cdot \varepsilon_{ah^{\prime}} 
+			\cdot \Delta_{(s\,\cap\,U_{h})}
+			\cdot \Delta_{(s\,\cap\,U_{h^{\prime}})}
+	\\
+	& = &
+		\overset{H}{\underset{h=1}{\sum}}\;\;
+			\varepsilon_{ah}^{2} \cdot \Delta_{(s\,\cap\,U_{h})}^{2}
+		\;\; + \;\;
+		\underset{h \neq h^{\prime}}{\sum\,\sum}\;\,
+			\varepsilon_{ah} \cdot \varepsilon_{ah^{\prime}} 
+			\cdot \Delta_{(s\,\cap\,U_{h})}
+			\cdot \Delta_{(s\,\cap\,U_{h^{\prime}})}
+	\\
+	& = &
+		\overset{H}{\underset{h=1}{\sum}}\; \Delta_{(s\,\cap\,U_{h})}^{2}
+		\;\; + \;\;
+		\underset{h \neq h^{\prime}}{\sum\,\sum}\;\,
+			\varepsilon_{ah} \cdot \varepsilon_{ah^{\prime}} 
+			\cdot \Delta_{(s\,\cap\,U_{h})}
+			\cdot \Delta_{(s\,\cap\,U_{h^{\prime}})}
+	\\
+	& = &
+		\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s)
+		\;\; + \;\;
+		\underset{h \neq h^{\prime}}{\sum\,\sum}\;\,
+			\varepsilon_{ah} \cdot \varepsilon_{ah^{\prime}} 
+			\cdot \Delta_{(s\,\cap\,U_{h})}
+			\cdot \Delta_{(s\,\cap\,U_{h^{\prime}})}
+	\end{eqnarray*}
+	This proves Claim 2.
+
+	\vskip 0.8cm
+	\noindent
+	\underline{\textbf{Claim 3:}}
+	\begin{equation*}
+	\widehat{V}^{\textnormal{BRR}}(s)
+	\;\; = \;\;
+		\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s),
+	\quad
+	\textnormal{for each \,$s \in \mathcal{S}$}
+	\end{equation*}
+	Proof of Claim 3:
+	\begin{eqnarray*}
+	\widehat{V}^{\textnormal{BRR}}(s)
+	& = &
+		\dfrac{1}{A} \cdot \overset{A}{\underset{a=1}{\sum}}\,
+		\left(\;\widehat{\theta}_{a}(s_{a}) \;-\; \widehat{T}^{\textnormal{HT}}_{y}(s)\,\right)^{2}
+	\\
+	& = &
+		\dfrac{1}{A} \cdot \overset{A}{\underset{a=1}{\sum}}\,
+		\left\{\;\,
+			\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s)
+			\;\; + \;\;
+			\underset{h \neq h^{\prime}}{\sum\,\sum}\;\,
+				\varepsilon_{ah} \cdot \varepsilon_{ah^{\prime}} 
+				\cdot \Delta_{(s\,\cap\,U_{h})}
+				\cdot \Delta_{(s\,\cap\,U_{h^{\prime}})}
+			\;\right\}
+	\\
+	& = &
+		\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s)
+		\;\; + \;\;
+		\dfrac{1}{A} \cdot
+		\overset{A}{\underset{a=1}{\sum}}
+		\left(\;
+			\underset{h \neq h^{\prime}}{\sum\,\sum}\;\,
+			\varepsilon_{ah} \cdot \varepsilon_{ah^{\prime}} 
+			\cdot \Delta_{(s\,\cap\,U_{h})}
+			\cdot \Delta_{(s\,\cap\,U_{h^{\prime}})}
+			\;\right)
+	\\
+	& = &
+		\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s)
+		\;\; + \;\;
+		\dfrac{1}{A} \cdot
+		\underset{h \neq h^{\prime}}{\sum\,\sum}
+		\left(\;
+			\overset{A}{\underset{a=1}{\sum}}\;\,
+			\varepsilon_{ah} \cdot \varepsilon_{ah^{\prime}} 
+			\,\right)
+		\cdot \Delta_{(s\,\cap\,U_{h})}
+		\cdot \Delta_{(s\,\cap\,U_{h^{\prime}})}
+	\\
+	& = &
+		\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\textnormal{HT}}_{y}\;\right]\!(s)
+	\end{eqnarray*}
+	since, by hypothesis on $\varepsilon_{ah}$, we have
+	\begin{equation*}
+	\overset{A}{\underset{a=1}{\sum}}\;\,
+	\varepsilon_{ah} \cdot \varepsilon_{ah^{\prime}}
+	\;\; = \;\; 0\,,
+	\quad
+	\textnormal{for each \,$h \neq h^{\prime}$}
+	\end{equation*}
 \end{enumerate}
+This completes the proof of the Proposition.
 \qed
 
 \vskip 0.5cm
