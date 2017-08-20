@@ -273,79 +273,41 @@ This proves the present Proposition.
 
 \vskip 0.5cm
 \noindent
-Let \,$Z, Z_{1}, \ldots, Z_{n}$\, be as in the proof of the preceding Proposition.
-Recall that
-\begin{eqnarray*}
-\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}
-&=&
-	\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\; Z_{i}\,,
-\end{eqnarray*}
-where \,$Z_{i}$\, are I.I.D. copies of $Z : U \longrightarrow \Re$.
-
-
-Let \;$Z : U \longrightarrow \Re$\; be defined by
-\;$Z(i) := y_{i} / p_{0}(i)$,\; for each \;$i \in U$.\;
-Then,
-\;$\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)$\; and
-\;$\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}(s)$\;
-agree numerically.
-Indeed,
-\begin{eqnarray*}
-\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)
-& := &
-	\underset{i \in s}{\sum}\;\, \dfrac{y_{i}}{\pi_{i}}
-\;\; = \;\;
-	\underset{i \in s}{\sum}\;\, \dfrac{y_{i}}{n \cdot p_{0}(i)}
-\;\; = \;\;
-	\dfrac{1}{n}\cdot \underset{i \in s}{\sum}\;\, \dfrac{y_{i}}{p_{0}(i)}
-\\
-& \overset{*}{=} &
-	\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\; Z_{i}
-\;\; = \;\;
-	\overline{Z}_{n}
-\;\; = \;\;
-	\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}(s)\,,
-\end{eqnarray*}
-where \;$\overset{*}{=}$\; emphasizes the fact that the same sample \;$s$\;
-on its two sides are from different sampling plans:
-On the left, \;$s$\; is selected under the without-replacement sampling design
-$p : \mathcal{S} \longrightarrow (0,1]$, while on the right,
-\;$s$\; is considered selected from the with-replacement sampling design
-induced by \;$p_{0} : U \longrightarrow (0,1]$.
-
-\vskip 0.5cm
-\noindent
-We may now define the
-\textbf{with-replacement approximate variance estimator}
-\;$\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,p}\;\right]$\;
-of \;$\widehat{T}^{\,\textnormal{HT}}_{y,p}$\; as follows:
+Inspired by the preceding Proposition, we now define
+\,$\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,p}\;\right]
+: \mathcal{S} \longrightarrow \Re$\,
+by
 \begin{eqnarray*}
 \widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,p}\;\right]\!(s)
 & := &
-	\widehat{V}\!\left[\;\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}\;\right]\!(s)
-\;\; := \;\;
-	\dfrac{1}{n}\left(
-		\dfrac{1}{n-1}\cdot\overset{n}{\underset{i=1}{\sum}}\;
-		\left(\,Z_{i}\,-\,\overline{Z}_{n}\,\right)^{2}
-		\right)
-\\
-& = &
-	\dfrac{1}{n}\left(\,
-		\dfrac{1}{n-1}\cdot\underset{i \in s}{\sum}
-		\left(\,\dfrac{y_{i}}{p_{0}(i)}\,-\,\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)\right)^{2}
-		\,\right)
-\;\; = \;\;
-	\dfrac{1}{n\,(n-1)}\cdot\underset{i \in s}{\sum}
-		\left(\,
-		\dfrac{y_{i}}{p_{0}(i)}\,-\,\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)
+	\dfrac{1}{n\,(n-1)}\cdot\overset{n}{\underset{i = 1}{\sum}}\left(\,
+		\dfrac{y_{u_{i}}}{p_{0}(u_{i})}
+		\, - \,
+		%\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)
+		\left(\dfrac{1}{n}\,\overset{n}{\underset{k=1}{\sum}}\,\dfrac{y_{u_{k}}}{p_{0}(u_{k})}\right)
 		\right)^{2}
 \\
 & = &
-	\dfrac{1}{n\,(n-1)}\cdot\underset{i \in s}{\sum}
-		\left(\,
-		\dfrac{y_{i}}{\pi_{i}/n}\,-\,\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)
+	\dfrac{1}{n\,(n-1)}\cdot\overset{n}{\underset{i = 1}{\sum}}\left(\,
+		\dfrac{y_{u_{i}}}{p_{0}(u_{i})}
+		\, - \,
+		\left(\,\overset{n}{\underset{k=1}{\sum}}\,\dfrac{y_{u_{k}}}{n \cdot p_{0}(u_{k})}\right)
+		\right)^{2}
+\\
+& = &
+	\dfrac{1}{n\,(n-1)}\cdot \underset{v \in s}{\sum} \left(\,
+		\dfrac{y_{v}}{\pi_{v}/n}
+		\, - \,
+		\left(\,\underset{u \in s}{\sum}\;\dfrac{y_{u}}{\pi_{u}}\right)
 		\right)^{2}
 \end{eqnarray*}
+where \,$s = \{u_{1},\ldots,u_{n}\}$.
+We call
+\;$\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,p}\;\right]
+: \mathcal{S} \longrightarrow \Re$\;
+the \textbf{with-replacement approximate variance estimator}
+%\;$\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,p}\;\right]$\;
+of \;$\widehat{T}^{\,\textnormal{HT}}_{y,p}$.
 
 \vskip 0.5cm
 \begin{proposition}
