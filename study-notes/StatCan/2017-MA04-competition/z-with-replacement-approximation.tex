@@ -61,16 +61,153 @@ Note that $p_{0}$ is indeed a probability function on $U$ since
 	1
 \end{eqnarray*}
 Now, let \;$y : U \longrightarrow \Re$\; be a population characteristic,
-and \;$t_{y} \, := \, \underset{i \in U}{\sum}\;\,y_{i}$\; its population total.
+and \;$t_{y} \, := \, \underset{u \in U}{\sum}\;y_{u}$\; its population total.
 For \;$s \in \mathcal{S}$,\; let \;$\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)$\;
 represents the Horvitz-Thompson estimate of \;$t_{y}$\, under the sampling
 plan \;$p : \mathcal{S} \subset \mathcal{P}(U) \longrightarrow (0,1]$.\;
+
+\vskip 0.5cm
+\noindent
 Next, observe that, although \;$s \in \mathcal{S}$\; is selected under the
 without-replacement sampling design \;$p : \mathcal{S} \longrightarrow (0,1]$,\;
 it could also have arisen as a selected sample under the fixed-sample-size-$n$
 with-replacement sampling plan induced by \;$p_{0} : U \longrightarrow (0,1]$.\;
-Let \;$\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}(s)$\; be the estimate for
-\;$t_{y}$\, under \;$p_{0}$.\;
+
+\vskip 0.5cm
+\noindent
+Next, we consider the ``with-replacement counterpart''
+\,$\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}$\,
+of
+\;$\widehat{T}^{\,\textnormal{HT}}_{y,p}$.\,
+To this end, let \,$U \times \cdots \times U$ be the $n$-fold Cartesian product of \,$U$,
+equipped with the probability space structure induced by I.I.D. sampling under
+the probability function \,$p_{0} : U \longrightarrow (0,1]$.
+Define
+\,$\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}} : U \times \cdots \times U \longrightarrow \Re$\,
+by:
+\begin{equation*}
+\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}(u_{1},\ldots,u_{n})
+\;\; := \;\;
+	\dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\;\, \dfrac{y_{u_{i}}}{p_{0}(u_{i})}
+\end{equation*}
+\begin{proposition}
+\mbox{}\vskip 0.1cm
+\begin{enumerate}
+\item
+	\begin{equation*}
+	E\!\left[\;\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}\;\right]
+	\;\; = \;\;
+		\underset{u \in U}{\sum}\; y_{u}
+	\;\; = \;\;
+		t_{y}
+	\end{equation*}
+\item
+	\begin{equation*}
+	\Var\!\left[\;\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}\;\right]
+	\;\; = \;\;
+		\dfrac{1}{n}\cdot
+		\underset{u \in U}{\sum}\;\,
+		p_{0}(u)\cdot\left(\,\dfrac{y_{u}}{p_{0}(u)}\,-\,t_{y}\,\right)^{2}
+	\end{equation*}
+\end{enumerate}
+\end{proposition}
+\proof
+\begin{enumerate}
+\item
+	First, define
+	\,$Z : (U,p_{0}) \longrightarrow \Re$\, by:
+	\begin{equation*}
+	Z(u) \;\; := \;\; \dfrac{y_{u}}{p_{0}(u)}\,,
+	\quad
+	\textnormal{for each \,$u \in U$}
+	\end{equation*}
+	Hence,
+	\begin{equation*}
+	E\!\left[\;Z\;\right]
+	\;\; = \;\;
+		\underset{u \in U}{\sum}\; Z(u) \cdot p_{0}(u)
+	\;\; = \;\;
+		\underset{u \in U}{\sum}\; \dfrac{y_{u}}{p_{0}(u)} \cdot p_{0}(u)
+	\;\; = \;\;
+		\underset{u \in U}{\sum}\; y_{u}
+	\;\; = \;\;
+		t_{y}
+	\end{equation*}
+	Next, note that
+	\begin{eqnarray*}
+	\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}(u_{1},\ldots,u_{n})
+	&=&
+		\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\;\, \dfrac{y_{u_{i}}}{p_{0}(u_{i})}
+	\;\;\; = \;\;\;
+		\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\; Z(u_{i})
+	\end{eqnarray*}
+	Since \,$\{u_{1},\ldots,u_{n}\}$\, is an I.I.D. sample from \,$(U,p_{0})$,\,
+	we see that
+	\begin{eqnarray*}
+	\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}
+	&=&
+		\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\; Z_{i}\,,
+	\end{eqnarray*}
+	where \,$Z_{i}$\, are I.I.D. copies of $Z : U \longrightarrow \Re$.
+	Consequently,
+	\begin{eqnarray*}
+	E\!\left[\;\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}\;\right]
+	&=&
+		E\!\left[\;
+			\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\; Z_{i}
+			\;\right]
+	\;\;\; = \;\;\;
+		\dfrac{1}{n} \cdot
+		\overset{n}{\underset{i = 1}{\sum}}\,
+		E\!\left[\; Z_{i} \;\right]
+	\;\;\; = \;\;\;
+		\dfrac{1}{n} \cdot
+		\overset{n}{\underset{i = 1}{\sum}}\,
+		E\!\left[\; Z \;\right]
+	\;\;\; = \;\;\;
+		E\!\left[\; Z \;\right]
+	\;\;\; = \;\;\;
+		t_{y}
+	\end{eqnarray*}
+\item
+	\begin{eqnarray*}
+	\Var\!\left[\;\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}\;\right]
+	& = &
+		\Var\!\left[\;
+			\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\; Z_{i}
+			\;\right]
+	\;\;\; = \;\;\;
+		\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\;
+		\Var\!\left[\; Z_{i} \;\right]
+	\;\;\; = \;\;\;
+		\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\;
+		\Var\!\left[\; Z \;\right]
+	\;\;\; = \;\;\,
+		\Var\!\left[\; Z \;\right]
+	\\
+	& = &
+		\dfrac{1}{n}\cdot
+		\underset{u \in U}{\sum}\;\,
+		p_{0}(u)\cdot\left(\,\dfrac{y_{u}}{p_{0}(u)}\,-\,t_{y}\,\right)^{2}\,,
+	\end{eqnarray*}
+	where the second and third equalities follow from that fact that
+	the $Z_{i}$'s are I.I.D. copies of $Z$.
+\end{enumerate}
+This proves the present Proposition.
+\qed
+
+\vskip 0.5cm
+\noindent
+Let \,$Z, Z_{1}, \ldots, Z_{n}$\, be as in the proof of the preceding Proposition.
+Recall that
+\begin{eqnarray*}
+\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}
+&=&
+	\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\; Z_{i}\,,
+\end{eqnarray*}
+where \,$Z_{i}$\, are I.I.D. copies of $Z : U \longrightarrow \Re$.
+
+
 Let \;$Z : U \longrightarrow \Re$\; be defined by
 \;$Z(i) := y_{i} / p_{0}(i)$,\; for each \;$i \in U$.\;
 Then,
@@ -91,7 +228,7 @@ Indeed,
 	\dfrac{1}{n}\cdot \overset{n}{\underset{i = 1}{\sum}}\; Z_{i}
 \;\; = \;\;
 	\overline{Z}_{n}
-\;\; =: \;\;
+\;\; = \;\;
 	\widehat{T}^{\,\textnormal{WR}}_{y,p_{0}}(s)\,,
 \end{eqnarray*}
 where \;$\overset{*}{=}$\; emphasizes the fact that the same sample \;$s$\;
@@ -134,6 +271,23 @@ of \;$\widehat{T}^{\,\textnormal{HT}}_{y,p}$\; as follows:
 		\dfrac{y_{i}}{\pi_{i}/n}\,-\,\widehat{T}^{\,\textnormal{HT}}_{y,p}(s)
 		\right)^{2}
 \end{eqnarray*}
+
+\vskip 0.5cm
+\begin{proposition}
+\begin{equation*}
+E\!\left(\;\widehat{V}^{\textnormal{WR}}\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,p}\;\right]\;\right)
+\; - \; \Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,p}\;\right]
+\;\; = \;\;
+	\left(\,\dfrac{n}{n-1}\,\right)
+	\cdot
+	\left(\,
+		\Var\!\left[\;\widehat{T}^{\,\textnormal{WR}}_{y,p_{\color{red}0}}\;\right]
+		\, - \,
+		\Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,p}\;\right]
+		\,\right)
+\end{equation*}
+\end{proposition}
+
 
 \vskip 0.5cm
 \noindent
