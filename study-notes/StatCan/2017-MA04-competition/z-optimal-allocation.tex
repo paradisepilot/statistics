@@ -1,0 +1,153 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Optimal allocation}
+
+\vskip 0.2cm
+\noindent
+\textbf{Synopsis:}
+\begin{itemize}
+\item
+	\vskip -0.2cm
+	$U = \overset{H}{\underset{h=1}{\bigsqcup}}\,U_{h}$,\, with
+	\,$\vert\;U_{h}\;\vert \,=\, N_{h}$, for each $h \in \{1,2,\ldots,H\}$.
+\item
+	$y : U \longrightarrow \Re$\, is a population characteristic.
+\item
+	Variance of Horvitz-Thompson estimator
+	\,$\widehat{T}^{\,\textnormal{HT}}_{y,\,\textnormal{StrSRS}}$\,
+	under stratified simple random sampling is:
+	\begin{eqnarray*}
+	\Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,\,\textnormal{StrSRS}}\;\right]
+	& = &
+		\Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,\,\textnormal{StrSRS}}\;\right]\!(n_{1},\ldots,n_{H})
+	\;\; = \;\;
+		\overset{H}{\underset{h=1}{\sum}}\;\,
+		\Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y\vert_{U_{h}},\,\textnormal{SRS}}\;\right]
+	\\
+	& = &
+		\overset{H}{\underset{h=1}{\sum}}\;
+		N_{h}^{2}
+		\cdot
+		\left(\,1 - \dfrac{n_{h}}{N_{h}}\,\right)
+		\cdot
+		\dfrac{S_{h}^{2}}{n_{h}}
+	\;\; = \;\;
+		\overset{H}{\underset{h=1}{\sum}}\;\,
+		N_{h}^{2} \cdot S_{h}^{2}
+		\cdot
+		\left(\,\dfrac{1}{n_{n}} - \dfrac{1}{N_{h}}\,\right),
+	\end{eqnarray*}
+	where
+	\,$S_{h}^{2}
+	\; = \,
+	\dfrac{1}{N_{h}-1}\cdot\underset{i \in U_{h}}{\sum}\!\left(\,y_{i}-\overline{y}_{U_{h}}\,\right)^{2}$\,
+\item
+	Cost function:
+	\begin{equation*}
+	C(n_{1},\ldots,n_{H})
+	\;\; = \;\;
+		c_{0} + c_{1} \cdot n_{1} + \cdots + c_{H} \cdot n_{H}\,,
+	\end{equation*}
+	while $c_{0}, c_{1}, \ldots, c_{H}$ are known constants.
+	$c_{0}$ represents the fixed cost of conducting the survey,
+	where $c_{h}$, $h \in \{1,2,\ldots,H\}$, represent the unit collection cost in stratum $h$. 
+\end{itemize}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\noindent
+\textbf{Lagrange Multipliers:}
+\vskip 0.1cm
+\noindent
+We can use the method of Lagrange multipliers to solve
+either one of the following two constrained optimization problems:
+\begin{itemize}
+\item
+	Subject to a given fixed cost $C^{*}$, minimize the sampling variance
+	$\Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,\,\textnormal{StrSRS}}\;\right]$. 
+\item
+	Subject to a given fixed sampling variance
+	$\Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,\,\textnormal{StrSRS}}\;\right] = V^{*}$,
+	minimize the cost $C$.
+\end{itemize}
+In either case, by the method of Lagrange multipliers, we seek $\lambda \neq 0$ and 
+$(n_{1},\ldots,n_{H})$ such that
+\begin{equation*}
+\nabla\,\Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,\,\textnormal{StrSRS}}\;\right]\!(n_{1},\ldots,n_{H})
+\;\; = \;\;
+	\lambda\cdot\nabla C(n_{1},\ldots,n_{H})
+\end{equation*}
+Now,
+\begin{equation*}
+\dfrac{\partial}{\partial\,n_{h}}\,\Var\!\left[\;\widehat{T}^{\,\textnormal{HT}}_{y,\,\textnormal{StrSRS}}\;\right]
+\;\; = \;\;
+	-\,\dfrac{N_{h}^{2}\,S_{h}^{2}}{n_{h}^{2}}
+\quad\quad
+\textnormal{and}
+\quad\quad
+\dfrac{\partial\,C}{\partial\,n_{h}} \;\; = \;\; c_{h}
+\end{equation*}
+We thus see that the preceding equation of Lagrange multipliers implies that
+\begin{equation*}
+n_{h} \;\; = \;\; \lambda \cdot \dfrac{N_{h}\,S_{h}}{\sqrt{c_{h}}}
+\end{equation*}
+Consequently,
+\begin{equation*}
+n \;\; = \;\; \overset{H}{\underset{h=1}{\sum}}\;n_{h}
+\quad\quad
+\Longrightarrow
+\quad\quad
+n
+\;\; = \;\;
+	\lambda
+	\cdot
+	\left(\,\,\overset{H}{\underset{k=1}{\sum}}\;\dfrac{N_{k}\,S_{k}}{\sqrt{c_{k}}}\,\right)
+\quad\quad
+\Longrightarrow
+\quad\quad
+\dfrac{n_{h}}{n}
+\;\; = \;\;
+	\dfrac{
+		N_{h}\,S_{h}/\sqrt{c_{h}}
+		}{
+		\overset{H}{\underset{k=1}{\sum}}\;N_{k}\,S_{k}/\sqrt{c_{k}}
+		}
+\end{equation*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\noindent
+\underline{\textbf{Minimize variance subject to given fixed cost $C^{*}$}}
+\vskip 0.1cm
+\noindent
+In this case, we have
+\begin{equation*}
+C^{*} - c_{0}
+\;\; = \;\;
+	\overset{H}{\underset{h=1}{\sum}}\; c_{h}\,n_{h}
+\;\; = \;\;
+	\overset{H}{\underset{h=1}{\sum}}\; c_{h}\,\cdot \lambda \cdot \dfrac{N_{h}\,S_{h}}{\sqrt{c_{h}}}
+\quad
+\Longrightarrow
+\quad
+\lambda
+\;\; = \;\;
+	\dfrac{C^{*} - c_{0}
+		}{
+		\overset{H}{\underset{h=1}{\sum}}\;N_{h}\,S_{h}\sqrt{c_{h}}
+		}
+\end{equation*}
+Hence, the optimal stratum sample size $n_{h}$ is given by:
+\begin{equation*}
+n_{h}
+\;\; = \;\;
+	\left(\,\dfrac{C^{*} - c_{0}}{\overset{H}{\underset{k=1}{\sum}}\;N_{k}\,S_{k}\sqrt{c_{k}}}\,\right)
+	\cdot
+	\dfrac{N_{h}\,S_{h}}{\sqrt{c_{h}}}
+\end{equation*}
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
