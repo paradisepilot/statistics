@@ -4,9 +4,9 @@
 \subsection{Response propensity scores}
 
 \begin{proposition}\label{PropnPropensityScore} 
-\mbox{}\vskip 0.1cm
+\mbox{}\vskip 0.25cm
 \noindent
-Suppose:
+Set-up:
 \begin{itemize}
 \item
 	$U = \{1,2,\ldots,N\}$.
@@ -18,28 +18,44 @@ Suppose:
 \item
 	$I_{1},\ldots,I_{N},R_{1},\ldots,R_{N} : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
 	are Bernoulli random variables defined on $(\Omega,\mathcal{A},\mu)$. 
+\item
+	Let \,$w : U \longrightarrow (0,\infty)$\, be a positive $\Re$-valued function defined on \,$U$.
+	\vskip 0.05cm
+	Define the random variable \,$\widehat{T}_{y} : \Omega \longrightarrow \Re$\, by:
+	\begin{equation*}
+	\widehat{T}_{y}(\omega)
+	\;\; := \;\;
+		\underset{i \in U}{\sum}\,\;w_{i}\,y_{i}\cdot R_{i}(\omega) \cdot I_{i}(\omega)
+	\end{equation*}
 \end{itemize}
-Let \,$w : U \longrightarrow (0,\infty)$\, be a positive $\Re$-valued function defined on \,$U$.
-Define the random variable \,$\widehat{T}_{y} : \Omega \longrightarrow \Re$\, by:
+Suppose:
+\begin{itemize}
+\item
+	For each \,$i \in U$, the conditional distribution of the Bernoulli random variable
+	\,$R_{i}$,\, given $I_{1},\ldots,I_{N}$, is completely determined by
+	\,$\mathbf{x}_{1}, \ldots, \mathbf{x}_{N}$\,;
+	in other words,
+	\,$P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)$\,
+	is a function of \,$\mathbf{x}_{1},\ldots,\mathbf{x}_{N}$.
+\item
+	For each \,$i \in U$,
+	\,$P\!\left(\,
+		\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,
+		I_{1},\ldots,I_{N}\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+		\,\right)$\,
+	furthermore satisfies:
+	\begin{equation*}
+	P\!\left(\,
+		\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,
+		I_{1},\ldots,I_{N}\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+		\,\right)
+	\;\; = \;\;
+		P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\;;\,\mathbf{x}_{i}\,\right).
+	\end{equation*}
+\end{itemize}
+Then,
 \begin{equation*}
-\widehat{T}_{y}(\omega)
-\;\; := \;\;
-	\underset{i \in U}{\sum}\,\;w_{i}\,y_{i}\cdot R_{i}(\omega) \cdot I_{i}(\omega)
-\end{equation*}
-If, for each \,$i \in U$, the conditional probability
-\,$P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)$\,
-is a function of \,$\mathbf{x}_{1},\ldots,\mathbf{x}_{N}$,\, and it furthermore satisfies:
-\begin{equation*}
-P\!\left(\,
-	\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,
-	I_{1},\ldots,I_{N}\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
-	\,\right)
-\;\; = \;\;
-	P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\;;\,\mathbf{x}_{i}\,\right),
-\end{equation*}
-then
-\begin{equation*}
-E\!\left[\;\,\widehat{T}_{y}\,\,\right]
+E\!\left[\;\;\widehat{T}_{y}\;\,\right]
 \;\; = \;\;
 	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
 	\cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=1\;;\,\mathbf{x}_{i}\,\right) 
@@ -84,7 +100,7 @@ E\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}\;\,\right\vert\,I_{i}\;;\,\ma
 \end{eqnarray*}
 Hence,
 \begin{eqnarray*}
-E\!\left[\;\widehat{T}_{y}\,\right]
+E\!\left[\;\;\widehat{T}_{y}\;\,\right]
 & = &
 	E\!\left(E\!\left[\;
 		\left.\widehat{T}_{y}\;\right\vert\,I_{1},\ldots,I_{N}
@@ -190,7 +206,44 @@ E\!\left[\;\widehat{T}_{y}\,\right]
 	know the values of the response propensity scores of the respondent selected units
 	(i.e. we know \,$w_{i} > 0$ for \,$i \in U$, whenever $I_{i} = R_{i} = 1$),
 	then we can construct an unbiased estimator for the population total of
-	\,$y : U \longrightarrow \Re$.	
+	\,$y : U \longrightarrow \Re$.
+\item
+	In Proposition \ref{PropnPropensityScore}, the key assumptions are the following:
+	\begin{itemize}
+	\item
+		For each \,$i \in U$, the conditional distribution of the Bernoulli random variable
+		\,$R_{i}$,\, given $I_{1},\ldots,I_{N}$, is completely determined by
+		\,$\mathbf{x}_{1}, \ldots, \mathbf{x}_{N}$\,;
+		in other words,
+		\,$P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)$\,
+		is a function of \,$\mathbf{x}_{1},\ldots,\mathbf{x}_{N}$.
+	\item
+		For each \,$i \in U$,
+		\,$P\!\left(\,
+			\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,
+			I_{1},\ldots,I_{N}\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+			\,\right)$\,
+		furthermore satisfies:
+		\begin{equation*}
+		P\!\left(\,
+			\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,
+			I_{1},\ldots,I_{N}\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+			\,\right)
+		\;\; = \;\;
+			P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\;;\,\mathbf{x}_{i}\,\right).
+		\end{equation*}
+	\end{itemize}
+	The above assumptions together constitute what is known as the
+	\,\textbf{Missing At Random}\, (MAR) assumption.
+\item
+	A special case of the Missing At Random assumption is that
+	$P(\,R_{i} = 1\;\vert\,I_{i}\;;\,\mathbf{x}_{i}\,)$ is furthermore independent of
+	\,$\mathbf{x}_{i}$.
+	This stronger assumption is known as the
+	\,\textbf{Missing Completely At Random}\, (MCAR) assumption.
+\item
+	Conversely, when the Missing At Random assumptions fails,
+	we say that we have \,\textbf{non-ignorable nonresponse}.
 \end{itemize}
 \end{remark}
 
