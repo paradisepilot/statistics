@@ -99,16 +99,8 @@ E\!\left[\;\widehat{T}_{y}\,\right]
 & = &
 	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
 	\cdot
-	E\!\left(\,E\!\left[\;
-		\left.\overset{{\color{white}.}}{R_{i}\,I_{i}}\;\;\right\vert\,I_{1},\ldots,I_{N}
-		\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
-		\,\right]\,\right)
-\\
-& = &
-	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
-	\cdot
-	E\!\left(\,I_{i} \cdot E\!\left[\;
-		\left.\,\overset{{\color{white}.}}{R_{i}}\;\;\right\vert\,I_{1},\ldots,I_{N}
+	E\!\left(\,E\!\left[\,
+		\left.\overset{{\color{white}.}}{R_{i}\,I_{i}}\;\,\right\vert\,I_{1},\ldots,I_{N}
 		\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
 		\,\right]\,\right)
 \\
@@ -116,10 +108,19 @@ E\!\left[\;\widehat{T}_{y}\,\right]
 	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
 	\cdot
 	E\!\left(\,I_{i} \cdot E\!\left[\,
-		\left.\overset{{\color{white}.}}{R_{i}}\;\right\vert\,I_{i}
-		\;;\,\mathbf{x}_{i}
+		\left.\,\overset{{\color{white}.}}{R_{i}}\;\,\right\vert\,I_{1},\ldots,I_{N}
+		\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
 		\,\right]\,\right)
-\;\; = \;\;
+\\
+& = &
+	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
+	\cdot
+	E\!\left(\,I_{i} \cdot P\!\left(
+		\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{1},\ldots,I_{N}
+		\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+		\,\right)\,\right)
+\\
+& = &
 	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
 	\cdot
 	E\!\left(\,I_{i} \cdot P\!\left(
