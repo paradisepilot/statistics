@@ -1,0 +1,142 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Response propensity scores}
+
+\begin{proposition}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$U = \{1,2,\ldots,N\}$.
+	$y : U \longrightarrow \Re$ is an $\Re$-valued function defined on $U$.
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$I_{1},\ldots,I_{N},R_{1},\ldots,R_{N} : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
+	are Bernoulli random variables defined on $(\Omega,\mathcal{A},\mu)$. 
+\end{itemize}
+Let \,$w : U \longrightarrow (0,\infty)$\, be a positive $\Re$-valued function defined on \,$U$.
+Define the random variable \,$\widehat{T}_{y} : \Omega \longrightarrow \Re$\, by:
+\begin{equation*}
+\widehat{T}_{y}(\omega)
+\;\; := \;\;
+	\underset{i \in U}{\sum}\,\;w_{i}\,y_{i}\cdot R_{i}(\omega) \cdot I_{i}(\omega)
+\end{equation*}
+If \,$I_{N},\ldots,I_{N},R_{1}, \ldots, R_{N}$\, satisfy:
+\begin{equation*}
+P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)
+\;\; = \;\;
+	P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\,\right),
+\quad
+\textnormal{for each \,$i \in \{1,2,\ldots,N\}$},
+\end{equation*}
+then
+\begin{equation*}
+E\!\left[\;\widehat{T}_{y}\,\right]
+\;\; = \;\;
+	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
+	\cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=1\,\right) \cdot P(\,I_{i}=1\,)
+\end{equation*}
+\end{proposition}
+\proof
+First, note that, since each $R_{i}$ is a Bernoulli random variable, we have
+\begin{eqnarray*}
+E\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)
+& = &
+	1 \cdot P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)
+	\; + \;
+	0 \cdot P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=0\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)
+\\
+& = &
+	P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)
+\end{eqnarray*}
+Similarly,
+\begin{eqnarray*}
+E\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}\;\,\right\vert\,I_{i}\,\right)
+& = &
+	1 \cdot P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\,\right)
+	\; + \;
+	0 \cdot P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=0\;\,\right\vert\,I_{i}\,\right)
+\;\; = \;\;
+	P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\,\right)
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+E\!\left[\;\widehat{T}_{y}\,\right]
+& = &
+	E\!\left(E\!\left[\;\left.\widehat{T}_{y}\;\right\vert\,I_{1},\ldots,I_{N}\,\right]\,\right)
+\;\; = \;\;
+	E\!\left(E\!\left[\;\,\left.
+		\underset{k \in U}{\sum}\;w_{i}\,y_{i}\,R_{i}\,I_{i}
+		\;\;\right\vert\,I_{1},\ldots,I_{N}\,\right]\,\right)
+\\
+& = &
+	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
+	\cdot
+	E\!\left(\,E\!\left[\;\left.\overset{{\color{white}.}}{R_{i}\,I_{i}}\;\;\right\vert\,I_{1},\ldots,I_{N}\,\right]\,\right)
+\;\; = \;\;
+	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
+	\cdot
+	E\!\left(\,I_{i} \cdot E\!\left[\;\left.\,\overset{{\color{white}.}}{R_{i}}\;\;\right\vert\,I_{1},\ldots,I_{N}\,\right]\,\right)
+\\
+& = &
+	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
+	\cdot
+	E\!\left(\,I_{i} \cdot E\!\left[\,\left.\overset{{\color{white}.}}{R_{i}}\;\right\vert\,I_{i}\,\right]\,\right)
+\;\; = \;\;
+	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
+	\cdot
+	E\!\left(\,I_{i} \cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}\,\right)\,\right)
+\\
+& = &
+	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
+	\cdot
+	\left\{\;
+		1 \cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=1\,\right) \cdot P(\,I_{i}=1\,)
+		\; + \;
+		0 \cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=0\,\right) \cdot P(\,I_{i}=0\,)
+		\;\right\}
+\\
+& = &
+	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
+	\cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=1\,\right) \cdot P(\,I_{i}=1\,)
+%\\
+%& = &
+%	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i} \cdot \phi_{i} \cdot \pi_{i}
+\end{eqnarray*}
+\qed
+
+\begin{remark}
+\mbox{}\vskip 0.05cm
+\begin{itemize}
+\item
+	In the Proposition above, if \,$P(\,I_{i}=1\,) >0$\, and \,$P(\,R_{i}=1\;\vert\,I_{i}=1\,) > 0$,\,
+	for each \,$i \in U$,\, and the function \,$w : U \longrightarrow (0,\infty)$\, is given by:
+	\begin{equation*}
+	w_{i} \;\; = \;\; \dfrac{1}{\overset{{\color{white}.}}{P}(\,R_{i}=1\;\vert\,I_{i}=1\,) \cdot P(\,I_{i}=1\,)}\,,
+	\quad
+	\textnormal{for each \,$i \in U$}\,,
+	\end{equation*}
+	then we furthermore have:
+	\begin{equation*}
+	E\!\left[\;\widehat{T}_{y}\,\right]
+	\;\; = \;\;
+		\underset{i \in U}{\sum}\;\,y_{i}
+	\;\; =: \;\;
+		T_{y}
+	\end{equation*}
+\item
+	The quantity
+	\begin{equation*}
+	\phi_{i}
+	\;\; := \;\;
+		P\!\left(\left.R_{i}\overset{{\color{white}-}}{=}1\;\right\vert\,I_{i}=1\,\right)
+	\end{equation*}
+	is called the \,\textbf{response propensity score}\, of unit $i \in U$.
+\end{itemize}
+\end{remark}
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
