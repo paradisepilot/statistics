@@ -3,14 +3,16 @@
 
 \subsection{Response propensity scores}
 
-\begin{proposition}
+\begin{proposition}\label{PropnPropensityScore} 
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
 \begin{itemize}
 \item
 	$U = \{1,2,\ldots,N\}$.
-	$y : U \longrightarrow \Re$ is an $\Re$-valued function defined on $U$.
+\item
+	$y : U \longrightarrow \Re$ is an $\Re$-valued function defined on $U$.\;
+	$\mathbf{x} : U \longrightarrow \Re^{p}$ is an $\Re^{p}$-valued function defined on $U$.
 \item
 	$(\Omega,\mathcal{A},\mu)$ is a probability space.
 \item
@@ -26,9 +28,12 @@ Define the random variable \,$\widehat{T}_{y} : \Omega \longrightarrow \Re$\, by
 \end{equation*}
 If \,$I_{N},\ldots,I_{N},R_{1}, \ldots, R_{N}$\, satisfy:
 \begin{equation*}
-P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)
+P\!\left(\,
+	\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,
+	I_{1},\ldots,I_{N}\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+	\,\right)
 \;\; = \;\;
-	P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\,\right),
+	P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\;;\,\mathbf{x}_{i}\,\right),
 \quad
 \textnormal{for each \,$i \in \{1,2,\ldots,N\}$},
 \end{equation*}
@@ -37,71 +42,109 @@ then
 E\!\left[\;\widehat{T}_{y}\,\right]
 \;\; = \;\;
 	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
-	\cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=1\,\right) \cdot P(\,I_{i}=1\,)
+	\cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=1\;;\,\mathbf{x}_{i}\,\right) 
+	\cdot P(\,I_{i}=1\,)
 \end{equation*}
 \end{proposition}
 \proof
 First, note that, since each $R_{i}$ is a Bernoulli random variable, we have
 \begin{eqnarray*}
-E\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)
-& = &
-	1 \cdot P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)
-	\; + \;
-	0 \cdot P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=0\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)
+&&
+	E\!\left(\,
+	\left.\overset{{\color{white}.}}{R_{i}}\;\,\right\vert\,
+	I_{1},\ldots,I_{N}\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+	\,\right)
 \\
 & = &
-	P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{1},\ldots,I_{N}\,\right)
+	1 \cdot P\!\left(\,
+		\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,
+		I_{1},\ldots,I_{N}\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+		\,\right)
+	\; + \;
+	0 \cdot P\!\left(\,
+		\left.\overset{{\color{white}.}}{R_{i}}=0\;\,\right\vert\,
+		I_{1},\ldots,I_{N}\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+		\,\right)
+\\
+& = &
+	P\!\left(\,
+		\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,
+		I_{1},\ldots,I_{N}\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+		\,\right)
 \end{eqnarray*}
 Similarly,
 \begin{eqnarray*}
-E\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}\;\,\right\vert\,I_{i}\,\right)
+E\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}\;\,\right\vert\,I_{i}\;;\,\mathbf{x}_{i}\,\right)
 & = &
-	1 \cdot P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\,\right)
+	1 \cdot P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\;;\,\mathbf{x}_{i}\,\right)
 	\; + \;
-	0 \cdot P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=0\;\,\right\vert\,I_{i}\,\right)
+	0 \cdot P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=0\;\,\right\vert\,I_{i}\;;\,\mathbf{x}_{i}\,\right)
 \;\; = \;\;
-	P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\,\right)
+	P\!\left(\,\left.\overset{{\color{white}.}}{R_{i}}=1\;\,\right\vert\,I_{i}\;;\,\mathbf{x}_{i}\,\right)
 \end{eqnarray*}
 Hence,
 \begin{eqnarray*}
 E\!\left[\;\widehat{T}_{y}\,\right]
 & = &
-	E\!\left(E\!\left[\;\left.\widehat{T}_{y}\;\right\vert\,I_{1},\ldots,I_{N}\,\right]\,\right)
+	E\!\left(E\!\left[\;
+		\left.\widehat{T}_{y}\;\right\vert\,I_{1},\ldots,I_{N}
+		\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+		\,\right]\,\right)
 \;\; = \;\;
-	E\!\left(E\!\left[\;\,\left.
-		\underset{k \in U}{\sum}\;w_{i}\,y_{i}\,R_{i}\,I_{i}
-		\;\;\right\vert\,I_{1},\ldots,I_{N}\,\right]\,\right)
+	E\!\left(E\!\left[\;\,
+		\left.\underset{k \in U}{\sum}\;w_{i}\,y_{i}\,R_{i}\,I_{i}\;\;\right\vert\,I_{1},\ldots,I_{N}
+		\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+		\,\right]\,\right)
 \\
 & = &
 	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
 	\cdot
-	E\!\left(\,E\!\left[\;\left.\overset{{\color{white}.}}{R_{i}\,I_{i}}\;\;\right\vert\,I_{1},\ldots,I_{N}\,\right]\,\right)
-\;\; = \;\;
-	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
-	\cdot
-	E\!\left(\,I_{i} \cdot E\!\left[\;\left.\,\overset{{\color{white}.}}{R_{i}}\;\;\right\vert\,I_{1},\ldots,I_{N}\,\right]\,\right)
+	E\!\left(\,E\!\left[\;
+		\left.\overset{{\color{white}.}}{R_{i}\,I_{i}}\;\;\right\vert\,I_{1},\ldots,I_{N}
+		\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+		\,\right]\,\right)
 \\
 & = &
 	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
 	\cdot
-	E\!\left(\,I_{i} \cdot E\!\left[\,\left.\overset{{\color{white}.}}{R_{i}}\;\right\vert\,I_{i}\,\right]\,\right)
+	E\!\left(\,I_{i} \cdot E\!\left[\;
+		\left.\,\overset{{\color{white}.}}{R_{i}}\;\;\right\vert\,I_{1},\ldots,I_{N}
+		\;;\,\mathbf{x}_{1},\ldots,\mathbf{x}_{N}
+		\,\right]\,\right)
+\\
+& = &
+	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
+	\cdot
+	E\!\left(\,I_{i} \cdot E\!\left[\,
+		\left.\overset{{\color{white}.}}{R_{i}}\;\right\vert\,I_{i}
+		\;;\,\mathbf{x}_{i}
+		\,\right]\,\right)
 \;\; = \;\;
 	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
 	\cdot
-	E\!\left(\,I_{i} \cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}\,\right)\,\right)
+	E\!\left(\,I_{i} \cdot P\!\left(
+		\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}
+		\;;\,\mathbf{x}_{i}
+		\,\right)\,\right)
 \\
 & = &
 	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
 	\cdot
 	\left\{\;
-		1 \cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=1\,\right) \cdot P(\,I_{i}=1\,)
+		1 \cdot P\!\left(\left.
+			\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=1
+			\;;\,\mathbf{x}_{i}
+			\,\right) \cdot P(\,I_{i}=1\,)
 		\; + \;
-		0 \cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=0\,\right) \cdot P(\,I_{i}=0\,)
+		0 \cdot P\!\left(\left.
+			\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=0
+			\;;\,\mathbf{x}_{i}
+			\,\right) \cdot P(\,I_{i}=0\,)
 		\;\right\}
 \\
 & = &
 	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i}
-	\cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=1\,\right) \cdot P(\,I_{i}=1\,)
+	\cdot P\!\left(\left.\overset{{\color{white}.}}{R_{i}}=1\;\right\vert\,I_{i}=1\;;\,\mathbf{x}_{i}\,\right) \cdot P(\,I_{i}=1\,)
 %\\
 %& = &
 %	\underset{k \in U}{\sum}\;\,w_{i}\,y_{i} \cdot \phi_{i} \cdot \pi_{i}
@@ -112,10 +155,14 @@ E\!\left[\;\widehat{T}_{y}\,\right]
 \mbox{}\vskip 0.05cm
 \begin{itemize}
 \item
-	In the Proposition above, if \,$P(\,I_{i}=1\,) >0$\, and \,$P(\,R_{i}=1\;\vert\,I_{i}=1\,) > 0$,\,
+	In Proposition \ref{PropnPropensityScore},
+	if \,$P(\,I_{i}=1\,) >0$\, and \,$P(\,R_{i}=1\;\vert\,I_{i}=1\,) > 0$,\,
 	for each \,$i \in U$,\, and the function \,$w : U \longrightarrow (0,\infty)$\, is given by:
 	\begin{equation*}
-	w_{i} \;\; = \;\; \dfrac{1}{\overset{{\color{white}.}}{P}(\,R_{i}=1\;\vert\,I_{i}=1\,) \cdot P(\,I_{i}=1\,)}\,,
+	w_{i}
+	\;\; = \;\;
+		\dfrac{1}{\overset{{\color{white}.}}{P}(\,R_{i}=1\;\vert\,I_{i}=1\;;\,\mathbf{x}_{i}\,)
+		\cdot P(\,I_{i}=1\,)}\,,
 	\quad
 	\textnormal{for each \,$i \in U$}\,,
 	\end{equation*}
@@ -132,9 +179,14 @@ E\!\left[\;\widehat{T}_{y}\,\right]
 	\begin{equation*}
 	\phi_{i}
 	\;\; := \;\;
-		P\!\left(\left.R_{i}\overset{{\color{white}-}}{=}1\;\right\vert\,I_{i}=1\,\right)
+		P\!\left(\,\left.R_{i}\overset{{\color{white}-}}{=}1\;\right\vert\,I_{i}=1\;;\,\mathbf{x}_{i}\,\right)
 	\end{equation*}
 	is called the \,\textbf{response propensity score}\, of unit $i \in U$.
+\item
+	Thus, according Proposition \ref{PropnPropensityScore}, if we somehow
+	know the values of the response propensity scores of the respondent selected units
+	(i.e. we know $w_{i}$ for $i \in U$, whenever $I_{i} = R_{i} = 1$), then we can construct
+	an unbiased estimator for the population total of $y : U \longrightarrow \Re$.	
 \end{itemize}
 \end{remark}
 
