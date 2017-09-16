@@ -32,8 +32,9 @@ print("####################")
 import seaborn as sns
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-from getMNIST      import getMNIST
-from visualizeData import visualizeData
+from getMNIST       import getMNIST
+from visualizeData  import visualizeData
+from splitTrainTest import splitTrainTest
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -45,14 +46,47 @@ print(   type(mnist) )
 print('\nmnist')
 print(   mnist )
 
+print('\ntype(mnist["data"])')
+print(   type(mnist["data"]) )
+
+print('\nmnist["data"].shape')
+print(   mnist["data"].shape )
+
 print('\nmnist["data"]')
 print(   mnist["data"] )
+
+print('\ntype(mnist["target"])')
+print(   type(mnist["target"]) )
+
+print('\nmnist["target"].shape')
+print(   mnist["target"].shape )
 
 print('\nmnist["target"]')
 print(   mnist["target"] )
 
 # visualize data
-visualizeData(data = mnist["data"])
+visualizeData(data = mnist["data"], outputFILE = 'myDigit-full.png')
+
+# split data into training and testing sets
+mnistTrain, mnistTest = splitTrainTest(data = mnist, random_state = 1234567)
+
+print('\ntype(mnistTrain)')
+print(   type(mnistTrain) )
+
+print('\nmnistTrain.shape')
+print(   mnistTrain.shape )
+
+print('\ntype(mnistTest)')
+print(   type(mnistTest) )
+
+print('\nmnistTest.shape')
+print(   mnistTest.shape )
+
+print('\nmnistTrain.describe()')
+print(   mnistTrain.describe() )
+
+# visualize data
+visualizeData(data = mnistTrain, outputFILE = 'myDigit-train.png')
 
 #################################################
 #################################################
