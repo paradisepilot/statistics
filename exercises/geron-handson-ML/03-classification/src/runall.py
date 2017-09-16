@@ -65,7 +65,8 @@ print('\nmnist["target"]')
 print(   mnist["target"] )
 
 # visualize data
-visualizeData(data = mnist["data"], outputFILE = 'myDigit-full.png')
+myIndex = 36000;
+visualizeData(data = mnist["data"], index = myIndex, outputFILE = 'digit-full-' + str(myIndex) + '.png')
 
 # split data into training and testing sets
 mnistTrain, mnistTest = splitTrainTest(data = mnist, random_state = 1234567)
@@ -82,11 +83,24 @@ print(   type(mnistTest) )
 print('\nmnistTest.shape')
 print(   mnistTest.shape )
 
-print('\nmnistTrain.describe()')
-print(   mnistTrain.describe() )
+#print('\nmnistTrain.describe()')
+#print(   mnistTrain.describe() )
 
 # visualize data
-visualizeData(data = mnistTrain, outputFILE = 'myDigit-train.png')
+myIndex = 10000;
+visualizeData(data = mnistTrain, index = myIndex, outputFILE = 'digit-train-' + str(myIndex) + '.png')
+
+myIndex = 20000;
+visualizeData(data = mnistTrain, index = myIndex, outputFILE = 'digit-train-' + str(myIndex) + '.png')
+
+myIndex = 30000;
+visualizeData(data = mnistTrain, index = myIndex, outputFILE = 'digit-train-' + str(myIndex) + '.png')
+
+myIndex = 40000;
+visualizeData(data = mnistTrain, index = myIndex, outputFILE = 'digit-train-' + str(myIndex) + '.png')
+
+myIndex = 50000;
+visualizeData(data = mnistTrain, index = myIndex, outputFILE = 'digit-train-' + str(myIndex) + '.png')
 
 #################################################
 #################################################
