@@ -1,17 +1,19 @@
 
-import os.path
+import os.path, pickle
 import numpy as np
 
 def getMNIST( mnistFILE ):
 
-    if os.path.isfile(path = mnistFILE) == True :
-        print("loading data from hard drive ...")
-        mnist = np.load(file = mnistFILE)
-    else :
-        print("downloading data from Internet ...")
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    if os.path.isfile(path = mnistFILE) == False :
+        print("downloading MNIST data set from Internet ...")
         from sklearn.datasets import fetch_mldata
-        mnist = fetch_mldata('MNIST original')
-        np.save(file = mnistFILE, arr = mnist)
+        with open(file = mnistFILE, mode = 'wb') as myFile:
+            pickle.dump(obj = fetch_mldata('MNIST original'), file = myFile)
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    with open(file = mnistFILE, mode = 'rb') as myFile:
+        mnist = pickle.load(myFile)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( mnist )

@@ -32,14 +32,27 @@ print("####################")
 import seaborn as sns
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-from getMNIST import getMNIST
+from getMNIST      import getMNIST
+from visualizeData import visualizeData
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
-mnist = getMNIST( mnistFILE = os.path.join(datDIR,"mnist.npy") )
+mnist = getMNIST( mnistFILE = os.path.join(datDIR,"mnist.pickle") )
+
+print('\ntype(mnist)')
+print(   type(mnist) )
 
 print('\nmnist')
 print(   mnist )
+
+print('\nmnist["data"]')
+print(   mnist["data"] )
+
+print('\nmnist["target"]')
+print(   mnist["target"] )
+
+# visualize data
+#visualizeData(data = mnist["data"])
 
 #################################################
 #################################################
