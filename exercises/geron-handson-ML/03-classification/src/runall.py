@@ -52,7 +52,7 @@ print('\nmnist["target"]')
 print(   mnist["target"] )
 
 # visualize data
-#visualizeData(data = mnist["data"])
+visualizeData(data = mnist["data"])
 
 #################################################
 #################################################
