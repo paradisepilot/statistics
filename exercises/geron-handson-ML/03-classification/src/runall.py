@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, getpass, shutil, stat, sys, time
+import os, getpass, shutil, stat, sys, time, pprint, logging, datetime
 
 thisScript = sys.argv[0]
 srcDIR     = sys.argv[1]
@@ -17,12 +17,14 @@ os.chdir(outDIR)
 # copy srcDIR to srcCOPY
 srcCOPY = os.path.join(outDIR,"src")
 shutil.copytree(src = srcDIR, dst = srcCOPY)
-time.sleep(2)
-
-print("srcCOPY: " + srcCOPY)
 
 # append module path with srcCOPY
 sys.path.append(srcCOPY)
+
+# print system time
+myTime = "\nsystem time: " + datetime.datetime.now().strftime("%c")
+print( "\n" + myTime + "\n" )
+print("####################")
 
 #################################################
 #################################################
@@ -41,5 +43,7 @@ print(   mnist )
 
 #################################################
 #################################################
-sys.exit(0)
+print("\n####################\n")
+myTime = "system time: " + datetime.datetime.now().strftime("%c")
+print( myTime + "\n" )
 
