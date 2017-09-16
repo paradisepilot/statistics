@@ -22,7 +22,7 @@ shutil.copytree(src = srcDIR, dst = srcCOPY)
 sys.path.append(srcCOPY)
 
 # print system time
-myTime = "\nsystem time: " + datetime.datetime.now().strftime("%c")
+myTime = "system time: " + datetime.datetime.now().strftime("%c")
 print( "\n" + myTime + "\n" )
 print("####################")
 
