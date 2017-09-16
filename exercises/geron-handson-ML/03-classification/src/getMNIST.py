@@ -5,7 +5,7 @@ import numpy as np
 def getMNIST( mnistFILE ):
 
     if os.path.isfile(path = mnistFILE) == True :
-        print("loading data from drive ...")
+        print("loading data from hard drive ...")
         mnist = np.load(file = mnistFILE)
     else :
         print("downloading data from Internet ...")
