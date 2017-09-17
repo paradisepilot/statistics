@@ -33,10 +33,11 @@ import seaborn as sns
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 from getMNIST             import getMNIST
-from visualizeData        import visualizeData
+from NeverFiveClassifier  import NeverFiveClassifier
+from sklearn.linear_model import SGDClassifier
 from splitTrainTest       import splitTrainTest
 from trainEvaluateBinary  import trainEvaluateBinary
-from sklearn.linear_model import SGDClassifier
+from visualizeData        import visualizeData
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -114,6 +115,14 @@ trainEvaluateBinary(
     testData  = mnistTest,
     myModel   = mySGDClassifier,
     modelName = "SGDClassifier"
+    )
+
+myNeverFiveClassifier = NeverFiveClassifier()
+trainEvaluateBinary(
+    trainData = mnistTrain,
+    testData  = mnistTest,
+    myModel   = myNeverFiveClassifier,
+    modelName = "Never-Five Classifier"
     )
 
 #################################################
