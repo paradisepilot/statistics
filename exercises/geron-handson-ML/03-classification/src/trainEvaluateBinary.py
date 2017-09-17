@@ -1,19 +1,46 @@
 
 import numpy as np
+import matplotlib.pyplot as plt
 from NeverFiveClassifier     import NeverFiveClassifier
 from sklearn.metrics         import confusion_matrix
+from sklearn.metrics         import precision_recall_curve, roc_curve
 from sklearn.metrics         import precision_score, recall_score, f1_score
 from sklearn.model_selection import cross_val_score, cross_val_predict
 
 ###################################################
-def trainEvaluateBinary(trainData, testData, myModel):
+def plotROC(modelName,fpr,tpr):
+    outputFILE = "ROC-" + modelName + ".png"
+    plt.figure(figsize=(8,8))
+    plt.plot(fpr, tpr, label=None)
+    plt.plot([0,1],[0,1],'k--')
+    plt.axis([0,1,0,1])
+    plt.xlim([-0.1,1.1])
+    plt.ylim([-0.1,1.1])
+    plt.xlabel("False Positive Rate")
+    plt.ylabel( "True Positive Rate")
+    plt.savefig(filename = outputFILE, bbox_inches='tight', pad_inches=0.2)
+    return( None )
 
+def plotPrecisionRecallCurves(modelName,precision,recall,threshold):
+    outputFILE = "precision-recall-vs-thresholds-" + modelName + ".png"
+    plt.figure(figsize=(8,8))
+    plt.plot(threshold, precision[:-1], "b--", label='Precision')
+    plt.plot(threshold,    recall[:-1], "g-",  label='Recall'   )
+    plt.xlabel("Threshold")
+    plt.legend(loc = 'upper left')
+    plt.ylim([0,1])
+    plt.savefig(filename = outputFILE, bbox_inches='tight', pad_inches=0.2)
+    return( None )
+
+def trainEvaluateBinary(trainData, testData, myModel, modelName):
+
+    trainData['isFive'] = (trainData.loc[:,'label'] == 5)
     featureColumns = trainData.columns.tolist()
     featureColumns.remove('index')
     featureColumns.remove('label')
+    featureColumns.remove('isFive')
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    trainData['isFive'] = (trainData.loc[:,'label'] == 5)
     myModel.fit(
         X = trainData.loc[:,featureColumns],
         y = trainData.loc[:,'isFive']
@@ -61,6 +88,39 @@ def trainEvaluateBinary(trainData, testData, myModel):
         myF1 = f1_score(
             y_true = trainData.loc[:,"isFive"],
             y_pred = myPredictions
+            )
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    if (not isinstance(myModel,NeverFiveClassifier)):
+        myScores = cross_val_predict(
+            estimator = myModel,
+            X         = trainData.loc[:,featureColumns],
+            y         = trainData.loc[:,"isFive"],
+            cv        = nFold,
+            method    = 'decision_function'
+            )
+
+        precisionCurve, recallCurve, thresholds = precision_recall_curve(
+            y_true      = trainData.loc[:,"isFive"],
+            probas_pred = myPredictions
+            )
+
+        plotPrecisionRecallCurves(
+            modelName = modelName,
+            precision = precisionCurve,
+            recall    = recallCurve,
+            threshold = thresholds
+            )
+
+        fpr, tpr, thresholds = roc_curve(
+            y_true  = trainData.loc[:,"isFive"],
+            y_score = myScores
+            )
+
+        plotROC(
+            modelName = modelName,
+            fpr       = fpr,
+            tpr       = tpr
             )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###

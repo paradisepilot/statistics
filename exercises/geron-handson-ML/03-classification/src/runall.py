@@ -113,14 +113,16 @@ mySGDClassifier = SGDClassifier(random_state = 42)
 trainEvaluateBinary(
     trainData = mnistTrain,
     testData  = mnistTest,
-    myModel   = mySGDClassifier
+    myModel   = mySGDClassifier,
+    modelName = 'SGDClassifier'
     )
 
 myNeverFiveClassifier = NeverFiveClassifier()
 trainEvaluateBinary(
     trainData = mnistTrain,
     testData  = mnistTest,
-    myModel   = myNeverFiveClassifier
+    myModel   = myNeverFiveClassifier,
+    modelName = 'NeverFiveClassifier'
     )
 
 #################################################
