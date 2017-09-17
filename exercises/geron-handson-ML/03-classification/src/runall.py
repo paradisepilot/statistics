@@ -34,6 +34,7 @@ import seaborn as sns
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 from getMNIST             import getMNIST
 from NeverFiveClassifier  import NeverFiveClassifier
+from sklearn.ensemble     import RandomForestClassifier
 from sklearn.linear_model import SGDClassifier
 from splitTrainTest       import splitTrainTest
 from trainEvaluateBinary  import trainEvaluateBinary
@@ -123,6 +124,14 @@ trainEvaluateBinary(
     testData  = mnistTest,
     myModel   = myNeverFiveClassifier,
     modelName = 'NeverFiveClassifier'
+    )
+
+myRFClassifier = RandomForestClassifier(random_state = 42)
+trainEvaluateBinary(
+    trainData = mnistTrain,
+    testData  = mnistTest,
+    myModel   = myRFClassifier,
+    modelName = 'RandomForestClassifier'
     )
 
 #################################################

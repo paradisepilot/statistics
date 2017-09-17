@@ -2,9 +2,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from NeverFiveClassifier     import NeverFiveClassifier
+from sklearn.ensemble        import RandomForestClassifier
 from sklearn.metrics         import confusion_matrix
 from sklearn.metrics         import precision_recall_curve, roc_curve
-from sklearn.metrics         import precision_score, recall_score, f1_score
+from sklearn.metrics         import precision_score, recall_score, f1_score, roc_auc_score
 from sklearn.model_selection import cross_val_score, cross_val_predict
 
 ###################################################
@@ -74,6 +75,7 @@ def trainEvaluateBinary(trainData, testData, myModel, modelName):
         myPrecision = None
         myRecall    = None
         myF1        = None
+        myROCAUC    = None
     else:
         myPrecision = precision_score(
             y_true = trainData.loc[:,"isFive"],
@@ -92,14 +94,8 @@ def trainEvaluateBinary(trainData, testData, myModel, modelName):
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     if (not isinstance(myModel,NeverFiveClassifier)):
-        myScores = cross_val_predict(
-            estimator = myModel,
-            X         = trainData.loc[:,featureColumns],
-            y         = trainData.loc[:,"isFive"],
-            cv        = nFold,
-            method    = 'decision_function'
-            )
 
+        # construct precision/recall vs threshold curves
         precisionCurve, recallCurve, thresholds = precision_recall_curve(
             y_true      = trainData.loc[:,"isFive"],
             probas_pred = myPredictions
@@ -110,6 +106,31 @@ def trainEvaluateBinary(trainData, testData, myModel, modelName):
             precision = precisionCurve,
             recall    = recallCurve,
             threshold = thresholds
+            )
+
+        # construct ROC curve
+        if (isinstance(myModel,RandomForestClassifier)):
+            myScores = cross_val_predict(
+                estimator = myModel,
+                X         = trainData.loc[:,featureColumns],
+                y         = trainData.loc[:,"isFive"],
+                cv        = nFold,
+                method    = 'predict_proba'
+                )
+            myScores = myScores[:,1]
+        else:
+            myMethod = 'decision_function'
+            myScores = cross_val_predict(
+                estimator = myModel,
+                X         = trainData.loc[:,featureColumns],
+                y         = trainData.loc[:,"isFive"],
+                cv        = nFold,
+                method    = 'decision_function'
+                )
+
+        myROCAUC = roc_auc_score(
+            y_true  = trainData.loc[:,"isFive"],
+            y_score = myScores
             )
 
         fpr, tpr, thresholds = roc_curve(
@@ -142,6 +163,9 @@ def trainEvaluateBinary(trainData, testData, myModel, modelName):
 
     print("\nF1 Score:")
     print(myF1)
+
+    print("\nROC AUC Socre:")
+    print(myROCAUC)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( None )
