@@ -1,10 +1,12 @@
 
 import numpy as np
+from NeverFiveClassifier     import NeverFiveClassifier
 from sklearn.metrics         import confusion_matrix
+from sklearn.metrics         import precision_score, recall_score, f1_score
 from sklearn.model_selection import cross_val_score, cross_val_predict
 
 ###################################################
-def trainEvaluateBinary(trainData, testData, myModel, modelName):
+def trainEvaluateBinary(trainData, testData, myModel):
 
     featureColumns = trainData.columns.tolist()
     featureColumns.remove('index')
@@ -41,14 +43,45 @@ def trainEvaluateBinary(trainData, testData, myModel, modelName):
         )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    if (isinstance(myModel,NeverFiveClassifier)):
+        myPrecision = None
+        myRecall    = None
+        myF1        = None
+    else:
+        myPrecision = precision_score(
+            y_true = trainData.loc[:,"isFive"],
+            y_pred = myPredictions
+            )
+
+        myRecall = recall_score(
+            y_true = trainData.loc[:,"isFive"],
+            y_pred = myPredictions
+            )
+
+        myF1 = f1_score(
+            y_true = trainData.loc[:,"isFive"],
+            y_pred = myPredictions
+            )
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     print("\n### ~~~~~~~~~~~~~~~~~~~~ ###")
-    print("###  " + modelName)
+    print('type(myModel)')
+    print( type(myModel) )
 
     print("\nCV Accuracy (" + str(nFold) + "-fold):")
     print(myCVAccuracy)
 
-    print("\nConfusion Matrix (" + str(nFold) + "-fold):")
+    print("\nConfusion Matrix:")
     print(myConfusionMatrix)
+
+    print("\nPrecision:")
+    print(myPrecision)
+
+    print("\nRecall:")
+    print(myRecall)
+
+    print("\nF1 Score:")
+    print(myF1)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( None )
