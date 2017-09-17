@@ -8,7 +8,10 @@ def visualizeData(data,index,outputFILE):
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     if isinstance(data,pd.DataFrame):
         ncol = data.shape[1]
-        myDigit = data.loc[index,2:ncol]
+        retainedColumns = data.columns.tolist()
+        retainedColumns.remove('index')
+        retainedColumns.remove('label')
+        myDigit = data.loc[index,retainedColumns]
         myDigit = myDigit.as_matrix()
     else:
         myDigit = data[index]

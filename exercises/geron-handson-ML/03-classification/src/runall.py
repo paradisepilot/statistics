@@ -32,9 +32,11 @@ print("####################")
 import seaborn as sns
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-from getMNIST       import getMNIST
-from visualizeData  import visualizeData
-from splitTrainTest import splitTrainTest
+from getMNIST             import getMNIST
+from visualizeData        import visualizeData
+from splitTrainTest       import splitTrainTest
+from trainEvaluateBinary  import trainEvaluateBinary
+from sklearn.linear_model import SGDClassifier
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # load data
@@ -86,6 +88,9 @@ print(   mnistTest.shape )
 #print('\nmnistTrain.describe()')
 #print(   mnistTrain.describe() )
 
+print('\nmnistTrain.columns')
+print(   mnistTrain.columns )
+
 # visualize data
 myIndex = 10000;
 visualizeData(data = mnistTrain, index = myIndex, outputFILE = 'digit-train-' + str(myIndex) + '.png')
@@ -101,6 +106,15 @@ visualizeData(data = mnistTrain, index = myIndex, outputFILE = 'digit-train-' + 
 
 myIndex = 50000;
 visualizeData(data = mnistTrain, index = myIndex, outputFILE = 'digit-train-' + str(myIndex) + '.png')
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+mySGDClassifier = SGDClassifier(random_state = 42)
+trainEvaluateBinary(
+    trainData = mnistTrain,
+    testData  = mnistTest,
+    myModel   = mySGDClassifier,
+    modelName = "SGDClassifier"
+    )
 
 #################################################
 #################################################
