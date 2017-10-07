@@ -11,11 +11,12 @@ def nodeValueLifecycle():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     with tf.Session() as mySession:
-        print("y.eval()")
-        print( y.eval() )
+        #print("y.eval(): " + str(y.eval()) )
+        #print("z.eval(): " + str(z.eval()) )
 
-        print("z.eval()")
-        print( z.eval() )
+        y_val, z_val = mySession.run([y,z]);
+        print("y_val: " + str(y_val))
+        print("z_val: " + str(z_val))
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( None )
