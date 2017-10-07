@@ -3,6 +3,8 @@ import tensorflow as tf
 
 def nodeValueLifecycle():
 
+    print("\nLifecyle of a node value:")
+
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     w = tf.constant(3)
     x = w + 2

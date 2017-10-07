@@ -3,6 +3,8 @@ import tensorflow as tf
 
 def manageGraphs():
 
+    print("\nManaging graphs:")
+
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     x1 = tf.Variable(1)
     print("x1.graph is tf.get_default_graph()")

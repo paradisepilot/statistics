@@ -3,6 +3,8 @@ import tensorflow as tf
 
 def firstGraph():
 
+    print("\nCreating your first graph and running it in a session:")
+
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     x = tf.Variable(3,name="x")
     y = tf.Variable(4,name="y")
