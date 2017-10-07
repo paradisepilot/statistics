@@ -40,6 +40,11 @@ firstGraph()
 from manageGraphs import manageGraphs
 manageGraphs()
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# Lifecycle of a node value
+from nodeValueLifecycle import nodeValueLifecycle
+nodeValueLifecycle()
+
 #################################################
 #################################################
 print("\n####################\n")
