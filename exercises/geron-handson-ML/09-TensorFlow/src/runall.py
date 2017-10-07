@@ -35,6 +35,10 @@ print("####################")
 from firstGraph import firstGraph
 firstGraph()
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# Managing graphs
+from manageGraphs import manageGraphs
+manageGraphs()
 
 #################################################
 #################################################
