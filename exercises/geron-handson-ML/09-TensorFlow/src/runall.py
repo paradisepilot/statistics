@@ -45,6 +45,11 @@ manageGraphs()
 from nodeValueLifecycle import nodeValueLifecycle
 nodeValueLifecycle()
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# Linear regression with TensorFlow
+from linearRegressionTF import linearRegressionTF
+linearRegressionTF()
+
 #################################################
 #################################################
 print("\n####################\n")
