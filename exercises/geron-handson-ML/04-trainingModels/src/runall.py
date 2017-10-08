@@ -29,6 +29,7 @@ print("####################")
 #################################################
 #################################################
 import seaborn
+import numpy as np
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Generate synthetic data
@@ -41,9 +42,18 @@ from normalEquation import normalEquation
 normalEquation(X,y)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+np.random.seed(seed=12345)
+theta0 = np.random.randn(1,2)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using Batch Gradient Descent
 from batchGradientDescent import batchGradientDescent
-batchGradientDescent(X,y)
+batchGradientDescent(X,y,theta0)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# Perform linear regression using Stochastic Gradient Descent
+from stochasticGradientDescent import stochasticGradientDescent
+stochasticGradientDescent(X,y,theta0)
 
 #################################################
 #################################################

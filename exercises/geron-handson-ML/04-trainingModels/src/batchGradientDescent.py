@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def batchGradientDescent(X,y):
+def batchGradientDescent(X,y,theta0):
 
     print("\n### ~~~~~~~~~~~~~~~~~~~~ ###")
     print("Batch Gradient Descent")
@@ -17,7 +17,7 @@ def batchGradientDescent(X,y):
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     # random initialization
     theta      = np.zeros((2,nIter))
-    theta[:,0] = np.random.randn(1,2)
+    theta[:,0] = theta0
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     for i in range(nIter-1):
