@@ -36,10 +36,14 @@ from getData import getData
 X , y = getData(nrow=100,seed=12345)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# Perform linear regression
-# using the normal equation
+# Perform linear regression using the normal equation
 from normalEquation import normalEquation
 normalEquation(X,y)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# Perform linear regression using Batch Gradient Descent
+from batchGradientDescent import batchGradientDescent
+batchGradientDescent(X,y)
 
 #################################################
 #################################################

@@ -30,7 +30,7 @@ def normalEquation(X,y):
     print("LinearRegression(): b1 = " + str(b1))
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    outputFILE = 'normal-equation.png'
+    outputFILE = 'plot-normalEquation.png'
     fig, ax = plt.subplots()
     ax.scatter(X,y)
     ax.plot(X, b0 + b1 * X, color='red')
