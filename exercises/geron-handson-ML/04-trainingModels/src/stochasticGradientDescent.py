@@ -24,12 +24,29 @@ def stochasticGradientDescent(X,y,theta0):
     theta[:,0] = theta0
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    randomIndex = np.random.randint(nobs)
+    xi          = X1[randomIndex:randomIndex+1]
+    yi          =  y[randomIndex:randomIndex+1]
+
+    print("randomIndex = " + str(randomIndex))
+
+    print("xi.shape = " + str(xi.shape))
+    print("           " + str(X1[randomIndex,:].shape))
+    print("xi = " + str(xi))
+    print("     " + str(X1[randomIndex,:]))
+
+    print("yi.shape = " + str(yi.shape))
+    print("           " + str(y[randomIndex].shape))
+    print("yi = " + str(yi))
+    print("     " + str(y[randomIndex]))
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     for epoch in range(nEpochs-1):
         tempTheta = theta[:,epoch].reshape((2,1))
         for i in range(nobs):
             randomIndex = np.random.randint(nobs)
-            xi          = X1[randomIndex:randomIndex+1]
-            yi          =  y[randomIndex:randomIndex+1]
+            xi          = X1[randomIndex,:].reshape((1,2))
+            yi          =  y[randomIndex  ].reshape((1,1))
             gradient    = 2 * xi.T.dot(np.matmul(xi,tempTheta) - yi)
             eta         = learningSchedule(epoch * nobs + i)
             tempTheta   = tempTheta - eta * gradient
