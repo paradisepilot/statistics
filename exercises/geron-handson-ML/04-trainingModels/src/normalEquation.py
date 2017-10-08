@@ -9,24 +9,25 @@ def normalEquation(X,y):
     print("The Normal Equation")
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    # X1 = np.c_[np.ones((X.shape[0],1)),X]
-    # theta_best = np.linalg.inv(X1.T.dot(X1)).dot(X1.T).dot(y)
-    # print("theta_best:")
-    # print( theta_best )
+    X1 = np.c_[np.ones((X.shape[0],1)),X]
+    theta_best = np.linalg.inv(X1.T.dot(X1)).dot(X1.T).dot(y)
 
-    # b0 = theta_best[0][0]
-    # b1 = theta_best[1][0]
+    b0 = theta_best[0][0]
+    b1 = theta_best[1][0]
+
+    print("normal equation:    b0 = " + str(b0))
+    print("normal equation:    b1 = " + str(b1))
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     myLinReg = LinearRegression()
     myLinReg.fit(X,y)
 
-    b0 = myLinReg.intercept_
-    b1 = myLinReg.coef_
+    b0 = myLinReg.intercept_[0]
+    b1 = myLinReg.coef_[0][0]
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    print("b0 = " + str(b0))
-    print("b1 = " + str(b1))
+    print("LinearRegression(): b0 = " + str(b0))
+    print("LinearRegression(): b1 = " + str(b1))
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     outputFILE = 'normal-equation.png'
