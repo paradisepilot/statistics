@@ -23,6 +23,7 @@ def normalEquation(X,y):
     fig, ax = plt.subplots()
     ax.scatter(X,y)
     ax.plot(X, b0 + b1 * X, color='red')
+    ax.axis([0,2,0,15])
     plt.savefig(filename = outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
