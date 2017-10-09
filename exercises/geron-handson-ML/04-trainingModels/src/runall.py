@@ -37,35 +37,35 @@ from getData import getDataQuadratic
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Generate synthetic data
-#X,y = getDataLinear(nobs=100,seed=12345)
+X,y = getDataLinear(nobs=100,seed=12345)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using the normal equation
-#from normalEquation import normalEquation
-#normalEquation(X,y)
+from normalEquation import normalEquation
+normalEquation(X,y)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#np.random.seed(seed=12345)
-#theta0 = np.random.randn(1,2)
+np.random.seed(seed=12345)
+theta0 = np.random.randn(1,2)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using Batch Gradient Descent
-#from batchGradientDescent import batchGradientDescent
-#batchGradientDescent(X,y,theta0)
+from batchGradientDescent import batchGradientDescent
+batchGradientDescent(X,y,theta0)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using Stochastic Gradient Descent
-#from stochasticGradientDescent import stochasticGradientDescent
-#stochasticGradientDescent(X,y,theta0)
+from stochasticGradientDescent import stochasticGradientDescent
+stochasticGradientDescent(X,y,theta0)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using Stochastic Gradient Descent
-#from polynomialRegression import polynomialRegression
-#X,y = getDataQuadratic(nobs=200,seed=12345)
-#polynomialRegression(X,y)
+from polynomialRegression import polynomialRegression
+X,y = getDataQuadratic(nobs=200,seed=12345)
+polynomialRegression(X,y)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Learning curves
