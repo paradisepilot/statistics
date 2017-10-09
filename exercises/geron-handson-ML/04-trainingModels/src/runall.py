@@ -31,11 +31,13 @@ print("####################")
 import seaborn
 import numpy as np
 
+from getData import getDataLinear
+from getData import getDataQuadratic
+
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Generate synthetic data
-#from getData import getDataLinear
-#X , y = getDataLinear(nobs=100,seed=12345)
+#X,y = getDataLinear(nobs=100,seed=12345)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using the normal equation
@@ -58,14 +60,18 @@ import numpy as np
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# Generate synthetic data
-from getData import getDataQuadratic
-X , y = getDataQuadratic(nobs=200,seed=12345)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using Stochastic Gradient Descent
-from polynomialRegression import polynomialRegression
-polynomialRegression(X,y)
+#from polynomialRegression import polynomialRegression
+#X,y = getDataQuadratic(nobs=200,seed=12345)
+#polynomialRegression(X,y)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# Learning curves
+from learningCurves import learningCurves
+X,y = getDataQuadratic(nobs=100,seed=19)
+learningCurves(X,y)
 
 #################################################
 #################################################
