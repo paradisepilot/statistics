@@ -60,7 +60,7 @@ import numpy as np
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Generate synthetic data
 from getData import getDataQuadratic
-X , y = getDataQuadratic(nobs=500,seed=12345)
+X , y = getDataQuadratic(nobs=200,seed=12345)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using Stochastic Gradient Descent
