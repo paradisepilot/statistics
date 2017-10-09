@@ -10,14 +10,14 @@ def polynomialRegression(X,y):
     print("Polynomial Regression")
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    myDegree = 3
+    myDegree = 20
     polynomialFeatures = PolynomialFeatures(degree=myDegree, include_bias=False)
-    Xn = polynomialFeatures.fit_transform(X)
+    Xp = polynomialFeatures.fit_transform(X)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     # random initialization
     linearModel = LinearRegression()
-    linearModel.fit(Xn,y)
+    linearModel.fit(Xp,y)
 
     betaHat = np.concatenate((linearModel.intercept_.reshape((1,1)),linearModel.coef_),axis=1)
     betaHat = betaHat.T
