@@ -44,16 +44,13 @@ X,y = getDataLinear(nobs=100,seed=12345)
 from normalEquation import normalEquation
 normalEquation(X,y)
 
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 np.random.seed(seed=12345)
 theta0 = np.random.randn(1,2)
 
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using Batch Gradient Descent
 from batchGradientDescent import batchGradientDescent
 batchGradientDescent(X,y,theta0)
 
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using Stochastic Gradient Descent
 from stochasticGradientDescent import stochasticGradientDescent
 stochasticGradientDescent(X,y,theta0)
@@ -61,17 +58,31 @@ stochasticGradientDescent(X,y,theta0)
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Perform linear regression using Stochastic Gradient Descent
 from polynomialRegression import polynomialRegression
 X,y = getDataQuadratic(nobs=200,seed=12345)
 polynomialRegression(X,y)
 
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Learning curves
 from learningCurves import learningCurves
 X,y = getDataQuadratic(nobs=100,seed=19)
 learningCurves(X,y)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+X,y = getDataLinear(nobs=35,seed=12345)
+
+# Ridge regression
+from ridgeRegression import ridgeRegression
+ridgeRegression(X,y)
+
+# Lasso regression
+from lassoRegression import lassoRegression
+lassoRegression(X,y)
+
+# Elastic Net
+from elasticNet import elasticNet
+elasticNet(X,y)
 
 #################################################
 #################################################

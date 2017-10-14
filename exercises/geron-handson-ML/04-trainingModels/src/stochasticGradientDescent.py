@@ -59,7 +59,7 @@ def stochasticGradientDescent(X,y,theta0):
     outputFILE = 'plot-stochasticGradientDescent.png'
     fig, ax = plt.subplots()
     ax.axis([0,2,0,15])
-    ax.scatter(X,y)
+    ax.scatter(X,y,s=10.0)
     ax.plot(X, theta[0,nEpochs-1] + theta[1,nEpochs-1] * X, color='red', linewidth=1)
     for i in range(0,nEpochs,5):
         ax.plot(X, theta[0,i] + theta[1,i] * X, color='gray', linewidth=0.5, linestyle='dashed')
