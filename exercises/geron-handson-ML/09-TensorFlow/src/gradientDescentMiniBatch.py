@@ -48,7 +48,7 @@ def gradientDescentMiniBatch(housingData,housingTarget,nEpochs,learningRate,page
         mySession.run(init)
         for epoch in range(nEpochs):
             if epoch % pageSize == 0:
-                print( "epoch: " + str(epoch) )
+                print( "epoch: " + str(epoch) ) # Printing the MSE here would generate an error; why?
             for batchIndex in range(nBatches):
                 X_batch, y_batch = fetchBatch(
                     X          = scaled_housing_data_plus_bias,
