@@ -60,6 +60,11 @@ gradientDescentManual(nEpochs=5000, learningRate=0.01, pageSize=500)
 from gradientDescentAutodiff import gradientDescentAutodiff
 gradientDescentAutodiff(nEpochs=5000, learningRate=0.01, pageSize=500)
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# Gradient Descent using an optimizer
+from gradientDescentOptimizer import gradientDescentOptimizer
+gradientDescentOptimizer(nEpochs=5000, learningRate=0.01, pageSize=500)
+
 #################################################
 #################################################
 print("\n####################\n")
