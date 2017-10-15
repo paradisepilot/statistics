@@ -46,24 +46,52 @@ from nodeValueLifecycle import nodeValueLifecycle
 nodeValueLifecycle()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# loading california housing data
+from getCaliforniaHousingData import getCaliforniaHousingData
+housingData, housingTarget = getCaliforniaHousingData(
+    housingFILE = os.path.join(datDIR,"housing.pickle")
+    )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Linear regression with TensorFlow
 from linearRegressionTF import linearRegressionTF
-linearRegressionTF()
+linearRegressionTF(
+    housingData   = housingData,
+    housingTarget = housingTarget
+    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # manual Gradient Descent
 from gradientDescentManual import gradientDescentManual
-gradientDescentManual(nEpochs=5000, learningRate=0.01, pageSize=500)
+gradientDescentManual(
+    housingData   = housingData,
+    housingTarget = housingTarget,
+    nEpochs       = 5000,
+    learningRate  = 0.01,
+    pageSize      = 500
+    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Gradient Descent with Autodiff
 from gradientDescentAutodiff import gradientDescentAutodiff
-gradientDescentAutodiff(nEpochs=5000, learningRate=0.01, pageSize=500)
+gradientDescentAutodiff(
+    housingData   = housingData,
+    housingTarget = housingTarget,
+    nEpochs       = 5000,
+    learningRate  = 0.01,
+    pageSize      = 500
+    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Gradient Descent using an optimizer
 from gradientDescentOptimizer import gradientDescentOptimizer
-gradientDescentOptimizer(nEpochs=5000, learningRate=0.01, pageSize=500)
+gradientDescentOptimizer(
+    housingData   = housingData,
+    housingTarget = housingTarget,
+    nEpochs       = 5000,
+    learningRate  = 0.01,
+    pageSize      = 500
+    )
 
 #################################################
 #################################################

@@ -1,10 +1,9 @@
 
 import tensorflow as tf
 import numpy as np
-from sklearn.datasets      import fetch_california_housing
 from sklearn.preprocessing import StandardScaler
 
-def gradientDescentManual(nEpochs,learningRate,pageSize):
+def gradientDescentManual(housingData,housingTarget,nEpochs,learningRate,pageSize):
 
     print("\nManual Gradient Descent with TensorFlow:")
 
@@ -12,15 +11,13 @@ def gradientDescentManual(nEpochs,learningRate,pageSize):
     myScaler = StandardScaler()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    housing = fetch_california_housing()
-    m,n = housing.data.shape
-
-    scaled_housing_data = myScaler.fit_transform(housing.data)
+    m,n = housingData.shape
+    scaled_housing_data = myScaler.fit_transform(housingData)
     scaled_housing_data_plus_bias = np.c_[np.ones((m,1)),scaled_housing_data]
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     X = tf.constant(scaled_housing_data_plus_bias, dtype=tf.float32, name="X")
-    y = tf.constant(housing.target.reshape(-1,1),  dtype=tf.float32, name="y")
+    y = tf.constant(housingTarget.reshape(-1,1),   dtype=tf.float32, name="y")
 
     theta = tf.Variable(tf.random_uniform([n+1,1], -1.0, 1.0), name="theta")
     yPredicted = tf.matmul(X,theta,name="predictions")
