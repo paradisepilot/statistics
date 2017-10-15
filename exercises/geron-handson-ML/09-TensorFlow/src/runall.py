@@ -101,7 +101,9 @@ gradientDescentMiniBatch(
     housingTarget = housingTarget,
     nEpochs       = 100,
     learningRate  = 0.01,
-    pageSize      = 10
+    pageSize      = 10,
+    logFrequency  = 10,
+    outDIR        = outDIR
     )
 
 #################################################

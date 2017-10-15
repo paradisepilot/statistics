@@ -1,6 +1,7 @@
 
 import tensorflow as tf
 import numpy as np
+from datetime import datetime
 from sklearn.preprocessing import StandardScaler
 
 def fetchBatch(X,y,batchIndex,batchSize):
@@ -10,9 +11,17 @@ def fetchBatch(X,y,batchIndex,batchSize):
     y_batch    = y[startIndex:endIndex].reshape(-1,1)
     return( X_batch , y_batch )
 
-def gradientDescentMiniBatch(housingData,housingTarget,nEpochs,learningRate,pageSize):
+def gradientDescentMiniBatch(housingData,housingTarget,nEpochs,learningRate,pageSize,logFrequency,outDIR):
 
     print("\nMini-batch Gradient Descent using Placeholder:")
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    # create log directory for TensorBoard
+    logROOT = "./TFlogs"
+    #if not os.path.exists(logROOT):
+    #    os.makedirs(logROOT)
+    timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+    logDIR    = "{}/run-{}/".format(logROOT,timestamp)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     m , n     = housingData.shape
@@ -44,6 +53,12 @@ def gradientDescentMiniBatch(housingData,housingTarget,nEpochs,learningRate,page
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     init = tf.global_variables_initializer()
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    mseSummary = tf.summary.scalar("MSE",MSE)
+    fileWriter = tf.summary.FileWriter(logDIR,tf.get_default_graph())
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     with tf.Session() as mySession:
         mySession.run(init)
         for epoch in range(nEpochs):
@@ -56,6 +71,10 @@ def gradientDescentMiniBatch(housingData,housingTarget,nEpochs,learningRate,page
                     batchIndex = batchIndex,
                     batchSize  = batchSize
                     )
+                if batchIndex % logFrequency == 0:
+                    summaryStr = mseSummary.eval(feed_dict={X:X_batch,y:y_batch})
+                    step       = epoch * nBatches + batchIndex
+                    fileWriter.add_summary(summaryStr,step)
                 mySession.run(trainingOp,feed_dict={X:X_batch,y:y_batch})
         bestTheta = theta.eval()
 
@@ -63,5 +82,6 @@ def gradientDescentMiniBatch(housingData,housingTarget,nEpochs,learningRate,page
     print("bestTheta: " + str(bestTheta))
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    fileWriter.close()
     return( None )
 
