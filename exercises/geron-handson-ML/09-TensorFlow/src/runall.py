@@ -50,6 +50,11 @@ nodeValueLifecycle()
 from linearRegressionTF import linearRegressionTF
 linearRegressionTF()
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# manual Gradient Descent
+from manualGradientDescent import manualGradientDescent
+manualGradientDescent()
+
 #################################################
 #################################################
 print("\n####################\n")
