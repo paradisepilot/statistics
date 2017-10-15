@@ -4,14 +4,11 @@ import numpy as np
 from sklearn.datasets      import fetch_california_housing
 from sklearn.preprocessing import StandardScaler
 
-def manualGradientDescent():
+def gradientDescentManual(nEpochs,learningRate,pageSize):
 
     print("\nManual Gradient Descent with TensorFlow:")
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    nEpochs      = 1000
-    learningRate = 0.01
-
     myScaler = StandardScaler()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -38,7 +35,7 @@ def manualGradientDescent():
     with tf.Session() as mySession:
         mySession.run(init)
         for epoch in range(nEpochs):
-            if epoch % 100 == 0:
+            if epoch % pageSize == 0:
                 print("Epoch: " + str(epoch) + ", MSE = " + str(MSE.eval()))
             mySession.run(trainingOp)
         bestTheta = theta.eval()

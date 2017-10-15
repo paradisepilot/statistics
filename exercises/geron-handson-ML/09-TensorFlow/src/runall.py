@@ -52,8 +52,13 @@ linearRegressionTF()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # manual Gradient Descent
-from manualGradientDescent import manualGradientDescent
-manualGradientDescent()
+from gradientDescentManual import gradientDescentManual
+gradientDescentManual(nEpochs=5000, learningRate=0.01, pageSize=500)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# Gradient Descent with Autodiff
+from gradientDescentAutodiff import gradientDescentAutodiff
+gradientDescentAutodiff(nEpochs=5000, learningRate=0.01, pageSize=500)
 
 #################################################
 #################################################
