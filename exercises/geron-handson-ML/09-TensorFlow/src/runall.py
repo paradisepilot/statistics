@@ -93,6 +93,17 @@ gradientDescentOptimizer(
     pageSize      = 500
     )
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# Mini-batch Gradient Descent using TensorFlow.placeholder()
+from gradientDescentMiniBatch import gradientDescentMiniBatch
+gradientDescentMiniBatch(
+    housingData   = housingData,
+    housingTarget = housingTarget,
+    nEpochs       = 100,
+    learningRate  = 0.01,
+    pageSize      = 10
+    )
+
 #################################################
 #################################################
 print("\n####################\n")
