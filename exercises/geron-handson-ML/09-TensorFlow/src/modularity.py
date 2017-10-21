@@ -11,7 +11,7 @@ def myReLU(X):
         z = tf.add(tf.matmul(X,w),b,name="z")
         return( tf.maximum(z,0.,name="ReLU") )
 
-def Modularity():
+def modularity():
 
     print("\nModularity:")
 

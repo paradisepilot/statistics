@@ -108,8 +108,8 @@ print("####################")
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Modularity
-from Modularity import Modularity
-Modularity()
+from modularity import modularity
+modularity()
 
 #################################################
 #################################################
