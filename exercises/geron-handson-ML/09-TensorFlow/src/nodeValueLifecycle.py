@@ -1,9 +1,16 @@
 
+import numpy as np
 import tensorflow as tf
+
+def reset_graph(seed=1234567):
+    tf.reset_default_graph()
+    tf.set_random_seed(seed)
+    np.random.seed(seed)
 
 def nodeValueLifecycle():
 
     print("\nLifecyle of a node value:")
+    reset_graph()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     w = tf.constant(3)

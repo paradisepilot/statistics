@@ -3,9 +3,15 @@ import tensorflow as tf
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
+def reset_graph(seed=1234567):
+    tf.reset_default_graph()
+    tf.set_random_seed(seed)
+    np.random.seed(seed)
+
 def gradientDescentManual(housingData,housingTarget,nEpochs,learningRate,pageSize):
 
     print("\nManual Gradient Descent with TensorFlow:")
+    reset_graph()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     myScaler = StandardScaler()

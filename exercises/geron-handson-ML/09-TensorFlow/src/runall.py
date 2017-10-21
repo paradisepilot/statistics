@@ -32,84 +32,92 @@ print("####################")
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Creating your first graph and
 # running it in a session
-#from firstGraph import firstGraph
-#firstGraph()
+from firstGraph import firstGraph
+firstGraph()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Managing graphs
-#from manageGraphs import manageGraphs
-#manageGraphs()
+from manageGraphs import manageGraphs
+manageGraphs()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Lifecycle of a node value
-#from nodeValueLifecycle import nodeValueLifecycle
-#nodeValueLifecycle()
+from nodeValueLifecycle import nodeValueLifecycle
+nodeValueLifecycle()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # loading california housing data
-#from getCaliforniaHousingData import getCaliforniaHousingData
-#housingData, housingTarget = getCaliforniaHousingData(
-#    housingFILE = os.path.join(datDIR,"housing.pickle")
-#    )
+from getCaliforniaHousingData import getCaliforniaHousingData
+housingData, housingTarget = getCaliforniaHousingData(
+    housingFILE = os.path.join(datDIR,"housing.pickle")
+    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Linear regression with TensorFlow
-#from linearRegressionTF import linearRegressionTF
-#linearRegressionTF(
-#    housingData   = housingData,
-#    housingTarget = housingTarget
-#    )
+from linearRegressionTF import linearRegressionTF
+linearRegressionTF(
+    housingData   = housingData,
+    housingTarget = housingTarget
+    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # manual Gradient Descent
-#from gradientDescentManual import gradientDescentManual
-#gradientDescentManual(
-#    housingData   = housingData,
-#    housingTarget = housingTarget,
-#    nEpochs       = 5000,
-#    learningRate  = 0.01,
-#    pageSize      = 500
-#    )
+from gradientDescentManual import gradientDescentManual
+gradientDescentManual(
+    housingData   = housingData,
+    housingTarget = housingTarget,
+    nEpochs       = 5000,
+    learningRate  = 0.01,
+    pageSize      = 500
+    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Gradient Descent with Autodiff
-#from gradientDescentAutodiff import gradientDescentAutodiff
-#gradientDescentAutodiff(
-#    housingData   = housingData,
-#    housingTarget = housingTarget,
-#    nEpochs       = 5000,
-#    learningRate  = 0.01,
-#    pageSize      = 500
-#    )
+from gradientDescentAutodiff import gradientDescentAutodiff
+gradientDescentAutodiff(
+    housingData   = housingData,
+    housingTarget = housingTarget,
+    nEpochs       = 5000,
+    learningRate  = 0.01,
+    pageSize      = 500
+    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Gradient Descent using an optimizer
-#from gradientDescentOptimizer import gradientDescentOptimizer
-#gradientDescentOptimizer(
-#    housingData   = housingData,
-#    housingTarget = housingTarget,
-#    nEpochs       = 5000,
-#    learningRate  = 0.01,
-#    pageSize      = 500
-#    )
+from gradientDescentOptimizer import gradientDescentOptimizer
+gradientDescentOptimizer(
+    housingData   = housingData,
+    housingTarget = housingTarget,
+    nEpochs       = 5000,
+    learningRate  = 0.01,
+    pageSize      = 500
+    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Mini-batch Gradient Descent using TensorFlow.placeholder()
-#from gradientDescentMiniBatch import gradientDescentMiniBatch
-#gradientDescentMiniBatch(
-#    housingData   = housingData,
-#    housingTarget = housingTarget,
-#    nEpochs       = 100,
-#    learningRate  = 0.01,
-#    pageSize      = 10,
-#    logFrequency  = 10,
-#    outDIR        = outDIR
-#    )
+from gradientDescentMiniBatch import gradientDescentMiniBatch
+gradientDescentMiniBatch(
+    housingData   = housingData,
+    housingTarget = housingTarget,
+    nEpochs       = 100,
+    learningRate  = 0.01,
+    pageSize      = 10,
+    logFrequency  = 10,
+    outDIR        = outDIR
+    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # Modularity
 from modularity import modularity
 modularity()
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# Sharing Variables
+from sharingVariables import sharingVariables1
+sharingVariables1()
+
+from sharingVariables import sharingVariables2
+sharingVariables2()
 
 #################################################
 #################################################

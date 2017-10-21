@@ -1,9 +1,16 @@
 
+import numpy as np
 import tensorflow as tf
+
+def reset_graph(seed=1234567):
+    tf.reset_default_graph()
+    tf.set_random_seed(seed)
+    np.random.seed(seed)
 
 def manageGraphs():
 
     print("\nManaging graphs:")
+    reset_graph()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     x1 = tf.Variable(1)

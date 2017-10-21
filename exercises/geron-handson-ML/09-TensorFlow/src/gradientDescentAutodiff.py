@@ -3,9 +3,15 @@ import tensorflow as tf
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
+def reset_graph(seed=1234567):
+    tf.reset_default_graph()
+    tf.set_random_seed(seed)
+    np.random.seed(seed)
+
 def gradientDescentAutodiff(housingData,housingTarget,nEpochs,learningRate,pageSize):
 
     print("\nGradient Descent using TensorFlow Autodiff:")
+    reset_graph()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     myScaler = StandardScaler()

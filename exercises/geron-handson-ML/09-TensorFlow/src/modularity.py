@@ -3,6 +3,11 @@ import tensorflow as tf
 import numpy as np
 from datetime import datetime
 
+def reset_graph(seed=1234567):
+    tf.reset_default_graph()
+    tf.set_random_seed(seed)
+    np.random.seed(seed)
+
 def myReLU(X):
     with tf.name_scope("relu"):
         wShape = (int(X.get_shape()[1]),1)
@@ -14,6 +19,7 @@ def myReLU(X):
 def modularity():
 
     print("\nModularity:")
+    reset_graph()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     # create log directory for TensorBoard

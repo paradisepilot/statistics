@@ -4,6 +4,11 @@ import numpy as np
 from datetime import datetime
 from sklearn.preprocessing import StandardScaler
 
+def reset_graph(seed=1234567):
+    tf.reset_default_graph()
+    tf.set_random_seed(seed)
+    np.random.seed(seed)
+
 def fetchBatch(X,y,batchIndex,batchSize):
     startIndex = batchIndex * batchSize
     endIndex   = min(X.shape[0], (batchIndex+1) * batchSize)
@@ -14,6 +19,7 @@ def fetchBatch(X,y,batchIndex,batchSize):
 def gradientDescentMiniBatch(housingData,housingTarget,nEpochs,learningRate,pageSize,logFrequency,outDIR):
 
     print("\nMini-batch Gradient Descent using Placeholder:")
+    reset_graph()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     # create log directory for TensorBoard

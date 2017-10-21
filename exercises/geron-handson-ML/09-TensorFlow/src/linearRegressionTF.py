@@ -4,9 +4,15 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import Imputer, StandardScaler
 
+def reset_graph(seed=1234567):
+    tf.reset_default_graph()
+    tf.set_random_seed(seed)
+    np.random.seed(seed)
+
 def linearRegressionTF(housingData,housingTarget):
 
     print("\nLinear regression with TensorFlow:")
+    reset_graph()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     m,n = housingData.shape
