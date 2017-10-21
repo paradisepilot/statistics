@@ -17,9 +17,7 @@ def gradientDescentMiniBatch(housingData,housingTarget,nEpochs,learningRate,page
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     # create log directory for TensorBoard
-    logROOT = "./TFlogs"
-    #if not os.path.exists(logROOT):
-    #    os.makedirs(logROOT)
+    logROOT   = "./TFlogs"
     timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
     logDIR    = "{}/run-{}/".format(logROOT,timestamp)
 
@@ -44,8 +42,14 @@ def gradientDescentMiniBatch(housingData,housingTarget,nEpochs,learningRate,page
 
     yPredicted = tf.matmul(X,theta,name="predictions")
 
-    error = yPredicted - y
-    MSE   = tf.reduce_mean(tf.square(error),name="MSE")
+    # define the TensorFlow operations error and MSE within the same name scope
+    with tf.name_scope("loss") as scope:
+        error = yPredicted - y
+        MSE   = tf.reduce_mean(tf.square(error),name="MSE")
+        print( "type(error):   " + str(type(error)) )
+        print( "error.op.name: " + str(error.op.name) )
+        print( "type(MSE):     " + str(type(MSE)) )
+        print( "MSE.op.name:   " + str(MSE.op.name) )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     myOptimizer = tf.train.GradientDescentOptimizer(learning_rate=learningRate)
