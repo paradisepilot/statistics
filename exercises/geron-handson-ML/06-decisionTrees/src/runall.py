@@ -39,72 +39,12 @@ irisData = getIrisData(
 examineIrisData(irisData = irisData)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-from trainVisualizeTree import trainVisualizeTree
-trainVisualizeTree(irisData = irisData)
-
-#################################################
-#################################################
-print("\n####################\n")
-myTime = "system time: " + datetime.datetime.now().strftime("%c")
-print( myTime + "\n" )
-quit()
-
-#################################################
-#################################################
+from irisClassificationTree import irisClassificationTree
+irisClassificationTree(irisData = irisData)
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# Linear regression with TensorFlow
-from linearRegressionTF import linearRegressionTF
-linearRegressionTF(
-    housingData   = housingData,
-    housingTarget = housingTarget
-    )
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# manual Gradient Descent
-from gradientDescentManual import gradientDescentManual
-gradientDescentManual(
-    housingData   = housingData,
-    housingTarget = housingTarget,
-    nEpochs       = 5000,
-    learningRate  = 0.01,
-    pageSize      = 500
-    )
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# Gradient Descent with Autodiff
-from gradientDescentAutodiff import gradientDescentAutodiff
-gradientDescentAutodiff(
-    housingData   = housingData,
-    housingTarget = housingTarget,
-    nEpochs       = 5000,
-    learningRate  = 0.01,
-    pageSize      = 500
-    )
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# Gradient Descent using an optimizer
-from gradientDescentOptimizer import gradientDescentOptimizer
-gradientDescentOptimizer(
-    housingData   = housingData,
-    housingTarget = housingTarget,
-    nEpochs       = 5000,
-    learningRate  = 0.01,
-    pageSize      = 500
-    )
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# Mini-batch Gradient Descent using TensorFlow.placeholder()
-from gradientDescentMiniBatch import gradientDescentMiniBatch
-gradientDescentMiniBatch(
-    housingData   = housingData,
-    housingTarget = housingTarget,
-    nEpochs       = 100,
-    learningRate  = 0.01,
-    pageSize      = 10,
-    logFrequency  = 10,
-    outDIR        = outDIR
-    )
+from irisRegressionTree import irisRegressionTree
+irisRegressionTree(irisData = irisData)
 
 #################################################
 #################################################
