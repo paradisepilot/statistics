@@ -78,6 +78,17 @@ randomForest(
     y_test       = y_test
     )
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+from adaBoost import adaBoost 
+adaBoost(
+    nEstimators  = 200,
+    learningRate = 0.5,
+    X_train      = X_train,
+    y_train      = y_train,
+    X_test       = X_test,
+    y_test       = y_test
+    )
+
 #################################################
 #################################################
 print("\n####################\n")
