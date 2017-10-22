@@ -43,7 +43,7 @@ examineIrisData(irisData = irisData)
 from splitIrisData import splitIrisData
 X_train, y_train, X_test, y_test = splitIrisData(
     irisData    = irisData,
-    testSize    = 0.4,
+    testSize    = 0.2,
     randomState = 1234567
     )
 
@@ -54,6 +54,16 @@ votingClassifier(
     y_train = y_train,
     X_test  = X_test,
     y_test  = y_test
+    )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+from baggedDecisionTree import baggedDecisionTree
+baggedDecisionTree(
+    nEstimators = 500,
+    X_train     = X_train,
+    y_train     = y_train,
+    X_test      = X_test,
+    y_test      = y_test
     )
 
 #################################################
