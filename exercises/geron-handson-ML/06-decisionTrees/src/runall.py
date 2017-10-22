@@ -30,13 +30,17 @@ print("####################")
 #################################################
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# loading california housing data
+# loading iris data
 from getIrisData import getIrisData, examineIrisData
 irisData = getIrisData(
     irisFILE = os.path.join(datDIR,"iris.pickle")
     )
 
 examineIrisData(irisData = irisData)
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+from trainVisualizeTree import trainVisualizeTree
+trainVisualizeTree(irisData = irisData)
 
 #################################################
 #################################################
