@@ -66,6 +66,18 @@ baggedDecisionTree(
     y_test      = y_test
     )
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+from randomForest import randomForest
+randomForest(
+    nEstimators  = 500,
+    maxLeafNodes = 16,
+    irisData     = irisData,
+    X_train      = X_train,
+    y_train      = y_train,
+    X_test       = X_test,
+    y_test       = y_test
+    )
+
 #################################################
 #################################################
 print("\n####################\n")
