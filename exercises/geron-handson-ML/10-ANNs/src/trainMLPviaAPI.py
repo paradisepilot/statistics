@@ -47,7 +47,7 @@ def trainMLPviaAPI( mnistTrain, mnistTest ):
     X_test = mnistTest.drop(labels = ['index','label'], axis=1)
     X_test = X_test.astype('float32')
 
-    X_test_scaled = myScaler.fit_transform(X_test)
+    X_test_scaled = myScaler.transform(X_test)
     X_test_scaled = X_test_scaled.astype('float32')
 
     y_test = mnistTest['label'].astype('int')
