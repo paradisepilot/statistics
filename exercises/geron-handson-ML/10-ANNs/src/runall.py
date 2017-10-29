@@ -64,11 +64,16 @@ from splitMNIST import splitMNIST
 mnistTrain, mnistTest = splitMNIST(data = mnistData, random_state = 1234567)
 
 # training
-from trainMLPviaAPI import trainMLPviaAPI
-trainMLPviaAPI(
-    mnistTrain = mnistTrain,
-    mnistTest  = mnistTest
-    )
+#from trainMLPviaAPI import trainMLPviaAPI
+#trainMLPviaAPI(
+#    mnistTrain = mnistTrain,
+#    mnistTest  = mnistTest
+#    )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+# training a DNN with plain TensorFlow
+from trainDNNviaPlainTF import trainDNNviaPlainTF
+trainDNNviaPlainTF( mnistFILE = os.path.join(datDIR,"tfMNIST.pickle") )
 
 #################################################
 #################################################
