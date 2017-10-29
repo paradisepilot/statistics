@@ -97,7 +97,7 @@ def trainDNNviaPlainTF( mnistFILE ):
     print( "type(mnistData.validation): "   + str(type(mnistData.validation))   )
     print( "type(mnistData.test): "         + str(type(mnistData.test))         )
 
-    nEpochs   = 400
+    nEpochs   = 20
     batchSize = 50
 
     X_test = mnistData.test.images
@@ -110,22 +110,11 @@ def trainDNNviaPlainTF( mnistFILE ):
             for iteration in range(mnistData.train.num_examples // batchSize):
                 X_batch, y_batch = mnistData.train.next_batch(batchSize)
                 y_batch = np.matmul(y_batch,np.arange(y_batch.shape[1])).astype('int')
-                #print( "iteration: " + str(iteration) + ", X_batch.shape: " + str(X_batch.shape) )
-                #print( "iteration: " + str(iteration) + ", y_batch.shape: " + str(y_batch.shape) )
-                #print( "y_batch" )
-                #print(  y_batch  )
                 mySession.run(trainingOp,feed_dict={X:X_batch,y:y_batch})
-            #print( "epoch:" + str(epoch) + ", X_batch.shape: " + str(X_batch.shape) )
-            #print( "epoch:" + str(epoch) + ", y_batch.shape: " + str(y_batch.shape) )
-            #print( "epoch:" + str(epoch) + ", mnistData.test.images: " + str(mnistData.test.images) )
-            #print( "epoch:" + str(epoch) + ", mnistData.test.labels: " + str(mnistData.test.labels) )
-            #print( "epoch:" + str(epoch) + ", mnistData.test.images.shape: " + str(mnistData.test.images.shape) )
-            #print( "epoch:" + str(epoch) + ", mnistData.test.labels.shape: " + str(mnistData.test.labels.shape) )
             accuracyTrain = accuracy.eval(feed_dict={X:X_batch,y:y_batch})
             accuracyTest  = accuracy.eval(feed_dict={X:X_test, y:y_test })
             print("epoch: ", epoch, ", accuracy(train): ", accuracyTrain, ", accuracy(test): ", accuracyTest)
-
-    savePath = mySaver.save(mySession,"my_model_final.ckpt")
+        savePath = mySaver.save(mySession,"my_model_final.ckpt")
 
     print("\nExecution Phase complete.")
 
