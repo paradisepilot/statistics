@@ -97,7 +97,7 @@ def trainDNNviaPlainTF( mnistFILE ):
     print( "type(mnistData.validation): "   + str(type(mnistData.validation))   )
     print( "type(mnistData.test): "         + str(type(mnistData.test))         )
 
-    nEpochs   = 20
+    nEpochs   = 400
     batchSize = 50
 
     X_test = mnistData.test.images
