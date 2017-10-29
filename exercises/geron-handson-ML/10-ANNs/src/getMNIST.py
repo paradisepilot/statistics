@@ -20,5 +20,7 @@ def getMNIST( mnistFILE ):
         mnist = pickle.load(myFile)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print("\nexiting: getMNIST()")
+    print("####################")
     return( mnist )
 

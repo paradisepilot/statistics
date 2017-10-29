@@ -1,4 +1,5 @@
 
+import glob
 import numpy      as np
 import tensorflow as tf
 
@@ -10,7 +11,7 @@ from tensorflow.contrib.layers import fully_connected
 ##################################################
 def tfGetMNIST( mnistFILE ):
 
-    print("\n####################")
+    print("\n### ~~~~~~~~~~~~ ###")
     print("tfGetMNIST():\n")
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -27,6 +28,8 @@ def tfGetMNIST( mnistFILE ):
         mnist = pickle.load(myFile)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print("\nexiting: tfGetMNIST()")
+    print("### ~~~~~~~~~~~~ ###")
     return( mnist )
 
 ##################################################
@@ -44,7 +47,7 @@ def neuronLayer(X, nNeurons, name, activation=None):
             return( z )
 
 ##################################################
-def trainDNNviaPlainTF( mnistFILE ):
+def trainDNNviaPlainTF( mnistFILE, checkpointPATH ):
 
     print("\n####################")
     print("trainDNNviaPlainTF():\n")
@@ -88,49 +91,58 @@ def trainDNNviaPlainTF( mnistFILE ):
     print("\nConstruction Phase complete.\n")
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    print("\nExecution Phase begins ...")
+    print("\nTraining Execution Phase begins ...")
 
     mnistData = tfGetMNIST( mnistFILE = mnistFILE )
+    print("\n")
     print( "type(mnistData): "              + str(type(mnistData))              )
     print( "type(mnistData.train): "        + str(type(mnistData.train))        )
     print( "mnistData.train.num_examples: " + str(mnistData.train.num_examples) )
     print( "type(mnistData.validation): "   + str(type(mnistData.validation))   )
     print( "type(mnistData.test): "         + str(type(mnistData.test))         )
 
-    nEpochs   = 400
-    batchSize = 50
-
     X_test = mnistData.test.images
     y_test = mnistData.test.labels
     y_test = np.matmul(y_test,np.arange(y_test.shape[1])).astype('int')
 
+    tempWildCard = checkpointPATH + "*"
+    print("\n")
+    print( "tempWildCard: " + tempWildCard )
+    print('glob.glob(checkpointPATH + "*")')
+    print( glob.glob(checkpointPATH + "*") )
+    print('len(glob.glob(checkpointPATH + "*")): ' + str(len(glob.glob(checkpointPATH + "*"))) )
+
+    if (len(glob.glob(checkpointPATH + "*")) < 1):
+        print( "\nperforming batch gradient descent ..." )
+        nEpochs   = 400
+        batchSize = 50
+        with tf.Session() as mySession:
+            myInitializer.run()
+            for epoch in range(nEpochs):
+                for iteration in range(mnistData.train.num_examples // batchSize):
+                    X_batch, y_batch = mnistData.train.next_batch(batchSize)
+                    y_batch = np.matmul(y_batch,np.arange(y_batch.shape[1])).astype('int')
+                    mySession.run(trainingOp,feed_dict={X:X_batch,y:y_batch})
+                accuracyTrain = accuracy.eval(feed_dict={X:X_batch,y:y_batch})
+                accuracyTest  = accuracy.eval(feed_dict={X:X_test, y:y_test })
+                print("epoch: ", epoch, ", accuracy(train): ", accuracyTrain, ", accuracy(test): ", accuracyTest)
+            savePath = mySaver.save(mySession,checkpointPATH)
+
+    print("\nTraining Execution Phase complete.")
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print("\nDeployment Execution Phase begins ...")
+
     with tf.Session() as mySession:
-        myInitializer.run()
-        for epoch in range(nEpochs):
-            for iteration in range(mnistData.train.num_examples // batchSize):
-                X_batch, y_batch = mnistData.train.next_batch(batchSize)
-                y_batch = np.matmul(y_batch,np.arange(y_batch.shape[1])).astype('int')
-                mySession.run(trainingOp,feed_dict={X:X_batch,y:y_batch})
-            accuracyTrain = accuracy.eval(feed_dict={X:X_batch,y:y_batch})
-            accuracyTest  = accuracy.eval(feed_dict={X:X_test, y:y_test })
-            print("epoch: ", epoch, ", accuracy(train): ", accuracyTrain, ", accuracy(test): ", accuracyTest)
-        savePath = mySaver.save(mySession,"my_model_final.ckpt")
+        mySaver.restore(mySession,checkpointPATH)
+        print( "type(logits): " + str(type(logits)) )
+        accuracyTest  = accuracy.eval(feed_dict={X:X_test, y:y_test })
+        print("Deployment: accuracy(test): ", accuracyTest)
 
-    print("\nExecution Phase complete.")
+    print("\nDeployment Execution Phase complete.")
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    #y_predicted = clfDNN.predict(X_test_scaled)
-    #y_predicted = y_predicted['classes']
-    #print( "type(y_predicted): " + str(type(y_predicted)) )
-    #print( "y_predicted:" )
-    #print(  y_predicted   )
-    #print( "y_predicted.shape: " + str(y_predicted.shape) )
-
-    #print( "accuracy_score(y_test,y_predicted): " + str(accuracy_score(y_test,y_predicted)) )
-
-    #print("clfDNN.evaluate(X_test_scaled,y_test)")
-    #print( clfDNN.evaluate(X_test_scaled,y_test) )
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print("\nexiting: trainDNNviaPlainTF()")
+    print("####################")
     return( None )
 

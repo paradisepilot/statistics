@@ -95,5 +95,7 @@ def trainMLPviaAPI( mnistTrain, mnistTest ):
     #print( clfDNN.evaluate(X_test_scaled,y_test) )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print("\nexiting: trainMLPviaAPI()")
+    print("####################")
     return( None )
 

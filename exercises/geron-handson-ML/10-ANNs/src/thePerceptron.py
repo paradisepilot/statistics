@@ -5,7 +5,7 @@ from sklearn.linear_model import Perceptron
 def thePerceptron( irisData ):
 
     print("\n####################")
-    print("The Perceptron:\n")
+    print("thePerceptron():\n")
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     X = irisData.data[:,(2,3)]
@@ -20,5 +20,7 @@ def thePerceptron( irisData ):
     print( "y_predicted = " + str(y_predicted) )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print("\nexiting: thePerceptron()")
+    print("####################")
     return( None )
 

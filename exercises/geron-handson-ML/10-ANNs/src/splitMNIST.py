@@ -41,5 +41,7 @@ def splitMNIST(data,random_state):
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     del label_features
+    print("\nexiting: splitMNIST()")
+    print("####################")
     return( simpleTrainSet, simpleTestSet )
 

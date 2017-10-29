@@ -39,5 +39,7 @@ def examineIrisData( irisData ):
     print( str(irisData.DESCR) )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print("\nexiting: examineIrisData()")
+    print("### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###")
     return( None )
 
