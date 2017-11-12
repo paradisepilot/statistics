@@ -47,6 +47,10 @@ def neuronLayer(X, nNeurons, name, activation=None):
             return( z )
 
 ##################################################
+def leakyReLU(z, name=None):
+    return( tf.maximum(0.01*z,z,name=name) )
+
+##################################################
 def trainDNNviaPlainTF( mnistFILE, checkpointPATH, nHidden1, nHidden2, learningRate, nEpochs, batchSize):
 
     print("\n####################")
@@ -70,7 +74,7 @@ def trainDNNviaPlainTF( mnistFILE, checkpointPATH, nHidden1, nHidden2, learningR
         hidden1 = fully_connected(
             inputs              = X,
             num_outputs         = nHidden1,
-            activation_fn       = tf.nn.elu,
+            activation_fn       = leakyReLU, # tf.nn.elu,
             weights_initializer = He_initializer,
             scope               = "hidden1"
             )
