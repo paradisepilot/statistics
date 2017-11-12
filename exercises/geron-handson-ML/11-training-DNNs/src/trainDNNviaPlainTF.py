@@ -65,10 +65,18 @@ def trainDNNviaPlainTF( mnistFILE, checkpointPATH, nHidden1, nHidden2, learningR
         #hidden1 = neuronLayer(X,      nHidden1,"hidden1",activation="relu")
         #hidden2 = neuronLayer(hidden1,nHidden2,"hidden2",activation="relu")
         #logits  = neuronLayer(hidden2,nOutputs,"outputs")
+
         He_initializer = tf.contrib.layers.variance_scaling_initializer()
-        hidden1        = fully_connected(X,      nHidden1,weights_initializer=He_initializer,scope="hidden1")
-        hidden2        = fully_connected(hidden1,nHidden2,scope="hidden2")
-        logits         = fully_connected(hidden2,nOutputs,scope="outputs",activation_fn=None)
+        hidden1 = fully_connected(
+            inputs              = X,
+            num_outputs         = nHidden1,
+            activation_fn       = tf.nn.elu,
+            weights_initializer = He_initializer,
+            scope               = "hidden1"
+            )
+
+        hidden2 = fully_connected(hidden1,nHidden2,scope="hidden2")
+        logits  = fully_connected(hidden2,nOutputs,scope="outputs",activation_fn=None)
 
     with tf.name_scope("loss"):
         xEntropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y,logits=logits)
