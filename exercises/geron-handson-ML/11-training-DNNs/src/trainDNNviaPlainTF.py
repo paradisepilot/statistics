@@ -167,7 +167,7 @@ def trainDNNviaPlainTF( mnistFILE, checkpointPATH, nHidden1, nHidden2, learningR
     with tf.Session() as mySession:
         mySaver.restore(mySession,checkpointPATH)
         print( "type(logits): " + str(type(logits)) )
-        accuracyTest  = accuracy.eval(feed_dict={X:X_test, y:y_test })
+        accuracyTest  = accuracy.eval(feed_dict={is_training:False,X:X_test, y:y_test })
         print("Deployment: accuracy(test): ", accuracyTest)
 
     print("\nDeployment Execution Phase complete.")
