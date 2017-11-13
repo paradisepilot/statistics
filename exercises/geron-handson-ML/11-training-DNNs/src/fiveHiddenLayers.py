@@ -9,14 +9,14 @@ from tensorflow.contrib.learn  import SKCompat, DNNClassifier, infer_real_valued
 from tensorflow.contrib.layers import fully_connected, batch_norm
 
 ##################################################
-def sixLayers(
+def fiveHiddenLayers(
     mnistData, checkpointPATH,
     nInputs, nHidden1, nHidden2, nHidden3, nHidden4, nHidden5, nOutputs,
     learningRate, nEpochs, batchSize
     ):
 
     print("\n####################")
-    print("sixLayers():\n")
+    print("fiveHiddenLayers():\n")
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     print("\nConstruction Phase begins ...")
@@ -128,7 +128,7 @@ def sixLayers(
     print("\nDeployment Execution Phase complete.")
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    print("\nexiting: sixLayers()")
+    print("\nexiting: fiveHiddenLayers()")
     print("####################")
     return( None )
 
