@@ -38,14 +38,32 @@ mnistData = tfGetMNIST(
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### training a DNN with plain TensorFlow
-from trainDNNviaPlainTF import trainDNNviaPlainTF
-trainDNNviaPlainTF(
+#from trainDNNviaPlainTF import trainDNNviaPlainTF
+#trainDNNviaPlainTF(
+#    mnistData      = mnistData,
+#    checkpointPATH = os.path.join(datDIR,"my_model_final.ckpt"),
+#    nHidden1       = 10,
+#    nHidden2       = 10,
+#    learningRate   = 0.01,
+#    nEpochs        = 40,
+#    batchSize      = 50
+#    )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### training a DNN with plain TensorFlow
+from sixLayers import sixLayers
+sixLayers(
     mnistData      = mnistData,
-    checkpointPATH = os.path.join(datDIR,"my_model_final.ckpt"),
-    nHidden1       = 10,
-    nHidden2       = 10,
+    checkpointPATH = os.path.join(datDIR,"sixLayers.ckpt"),
+    nInputs        = 28 * 28,
+    nOutputs       = 10,
+    nHidden1       = 1,
+    nHidden2       = 1,
+    nHidden3       = 1,
+    nHidden4       = 1,
+    nHidden5       = 1,
     learningRate   = 0.01,
-    nEpochs        = 40,
+    nEpochs        = 10,
     batchSize      = 50
     )
 
