@@ -57,13 +57,13 @@ fiveHiddenLayers(
     checkpointPATH = os.path.join(datDIR,"fiveHiddenLayers.ckpt"),
     nInputs        = 28 * 28,
     nOutputs       = 10,
-    nHidden1       = 2,
-    nHidden2       = 2,
-    nHidden3       = 2,
-    nHidden4       = 2,
-    nHidden5       = 2,
+    nHidden1       = 10,
+    nHidden2       = 10,
+    nHidden3       = 10,
+    nHidden4       = 10,
+    nHidden5       = 10,
     learningRate   = 0.01,
-    nEpochs        = 10,
+    nEpochs        = 40,
     batchSize      = 50
     )
 
