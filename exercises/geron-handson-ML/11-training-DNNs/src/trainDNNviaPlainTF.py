@@ -111,8 +111,12 @@ def trainDNNviaPlainTF( mnistFILE, checkpointPATH, nHidden1, nHidden2, learningR
 
 
     with tf.name_scope("train"):
-        myOptimizer = tf.train.GradientDescentOptimizer(learningRate)
-        trainingOp  = myOptimizer.minimize(loss)
+        myOptimizer   = tf.train.GradientDescentOptimizer(learningRate)
+        #trainingOp   = myOptimizer.minimize(loss)
+        clipThreshold = 1.0
+        gvs           = myOptimizer.compute_gradients(loss)
+        cappedGVs     = [(tf.clip_by_value(grad,-clipThreshold,clipThreshold),var) for grad, var in gvs]
+        trainingOp    = myOptimizer.apply_gradients(cappedGVs)
 
     with tf.name_scope("eval"):
         correct  = tf.nn.in_top_k(logits,y,1)

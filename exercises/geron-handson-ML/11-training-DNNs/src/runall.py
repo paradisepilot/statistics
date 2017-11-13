@@ -30,47 +30,6 @@ print("####################")
 #################################################
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### loading iris data
-#from getIrisData import getIrisData, examineIrisData
-#irisData = getIrisData(
-#    irisFILE = os.path.join(datDIR,"iris.pickle")
-#    )
-
-#examineIrisData(irisData = irisData)
-
-### load MNIST data
-#from getMNIST import getMNIST
-#mnistData = getMNIST( mnistFILE = os.path.join(datDIR,"mnist.pickle") )
-
-### split MNIST data into training and testing sets
-#from splitMNIST import splitMNIST
-#mnistTrain, mnistTest = splitMNIST(data = mnistData, random_state = 1234567)
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### The Perceptron
-#from thePerceptron import thePerceptron
-#thePerceptron(irisData = irisData)
-
-### splitting iris data into training and testing subsets
-#from splitIrisData import splitIrisData
-#X_train, y_train, X_test, y_test = splitIrisData(
-#    irisData    = irisData,
-#    testSize    = 0.2,
-#    randomState = 1234567
-#    )
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### training Multi-Layer Perceptron with
-### high-level API
-
-### training
-#from trainMLPviaAPI import trainMLPviaAPI
-#trainMLPviaAPI(
-#    mnistTrain = mnistTrain,
-#    mnistTest  = mnistTest
-#    )
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### training a DNN with plain TensorFlow
 from trainDNNviaPlainTF import trainDNNviaPlainTF
 trainDNNviaPlainTF(
