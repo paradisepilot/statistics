@@ -30,10 +30,17 @@ print("####################")
 #################################################
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### load MNIST data from TensorFlow
+from tfGetMNIST import tfGetMNIST
+mnistData = tfGetMNIST(
+    mnistFILE = os.path.join(datDIR,"tfMNIST.pickle")
+    )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### training a DNN with plain TensorFlow
 from trainDNNviaPlainTF import trainDNNviaPlainTF
 trainDNNviaPlainTF(
-    mnistFILE      = os.path.join(datDIR,"tfMNIST.pickle"),
+    mnistData      = mnistData,
     checkpointPATH = os.path.join(datDIR,"my_model_final.ckpt"),
     nHidden1       = 10,
     nHidden2       = 10,

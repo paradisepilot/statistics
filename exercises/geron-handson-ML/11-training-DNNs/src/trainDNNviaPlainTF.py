@@ -9,30 +9,6 @@ from tensorflow.contrib.learn  import SKCompat, DNNClassifier, infer_real_valued
 from tensorflow.contrib.layers import fully_connected, batch_norm
 
 ##################################################
-def tfGetMNIST( mnistFILE ):
-
-    print("\n### ~~~~~~~~~~~~ ###")
-    print("tfGetMNIST():\n")
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    import os.path, pickle
-    if os.path.isfile(path = mnistFILE) == False :
-        print("downloading TensorFlow MNIST data set from Internet ...")
-        from tensorflow.examples.tutorials.mnist import input_data
-        with open(file = mnistFILE, mode = 'wb') as myFile:
-            pickle.dump(obj = input_data.read_data_sets('MNISTdata',one_hot=True), file = myFile)
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    print("loading TensorFlow MNIST data set from disk ...")
-    with open(file = mnistFILE, mode = 'rb') as myFile:
-        mnist = pickle.load(myFile)
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    print("\nexiting: tfGetMNIST()")
-    print("### ~~~~~~~~~~~~ ###")
-    return( mnist )
-
-##################################################
 def neuronLayer(X, nNeurons, name, activation=None):
     with tf.name_scope(name):
         nInputs = int(X.get_shape()[1])
@@ -51,7 +27,7 @@ def leakyReLU(z, name=None):
     return( tf.maximum(0.01*z,z,name=name) )
 
 ##################################################
-def trainDNNviaPlainTF( mnistFILE, checkpointPATH, nHidden1, nHidden2, learningRate, nEpochs, batchSize):
+def trainDNNviaPlainTF( mnistData, checkpointPATH, nHidden1, nHidden2, learningRate, nEpochs, batchSize):
 
     print("\n####################")
     print("trainDNNviaPlainTF():\n")
@@ -129,14 +105,6 @@ def trainDNNviaPlainTF( mnistFILE, checkpointPATH, nHidden1, nHidden2, learningR
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     print("\nTraining Execution Phase begins ...")
-
-    mnistData = tfGetMNIST( mnistFILE = mnistFILE )
-    print("\n")
-    print( "type(mnistData): "              + str(type(mnistData))              )
-    print( "type(mnistData.train): "        + str(type(mnistData.train))        )
-    print( "mnistData.train.num_examples: " + str(mnistData.train.num_examples) )
-    print( "type(mnistData.validation): "   + str(type(mnistData.validation))   )
-    print( "type(mnistData.test): "         + str(type(mnistData.test))         )
 
     X_test = mnistData.test.images
     y_test = mnistData.test.labels
