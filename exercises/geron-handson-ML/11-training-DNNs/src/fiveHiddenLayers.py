@@ -26,11 +26,7 @@ def fiveHiddenLayers(
     y = tf.placeholder(tf.int64,  shape=(None),        name="y")
 
     with tf.name_scope("dnn"):
-        #hidden1 = neuronLayer(X,      nHidden1,"hidden1",activation="relu")
-        #hidden2 = neuronLayer(hidden1,nHidden2,"hidden2",activation="relu")
-        #logits  = neuronLayer(hidden2,nOutputs,"outputs")
 
-        He_initializer = tf.contrib.layers.variance_scaling_initializer()
         is_training = tf.placeholder(tf.bool, shape=(), name='is_training')
         bn_params = {
             'is_training'         : is_training,
@@ -38,32 +34,12 @@ def fiveHiddenLayers(
             'updates_collections' : None
             }
 
-        hidden1 = fully_connected(
-            inputs              = X,
-            num_outputs         = nHidden1,
-            activation_fn       = tf.nn.elu,
-            weights_initializer = He_initializer,
-            normalizer_fn       = batch_norm,
-            normalizer_params   = bn_params,
-            scope               = "hidden1"
-            )
-
-        hidden2 = fully_connected(
-            inputs            = hidden1,
-            num_outputs       = nHidden2,
-            normalizer_fn     = batch_norm,
-            normalizer_params = bn_params,
-            scope             = "hidden2"
-            )
-
-        logits = fully_connected(
-            inputs            = hidden2,
-            num_outputs       = nOutputs,
-            activation_fn     = None,
-            normalizer_fn     = batch_norm,
-            normalizer_params = bn_params,
-            scope             = "outputs"
-            )
+        hidden1 = tf.layers.dense(inputs=X,       units=nHidden1, activation=tf.nn.relu, name="hidden1")
+        hidden2 = tf.layers.dense(inputs=hidden1, units=nHidden2, activation=tf.nn.relu, name="hidden2")
+        hidden3 = tf.layers.dense(inputs=hidden2, units=nHidden3, activation=tf.nn.relu, name="hidden3")
+        hidden4 = tf.layers.dense(inputs=hidden3, units=nHidden4, activation=tf.nn.relu, name="hidden4")
+        hidden5 = tf.layers.dense(inputs=hidden4, units=nHidden5, activation=tf.nn.relu, name="hidden5")
+        logits  = tf.layers.dense(inputs=hidden5, units=nOutputs, activation=None,       name="outputs")
 
     with tf.name_scope("loss"):
         xEntropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y,logits=logits)
