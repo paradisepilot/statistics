@@ -11,7 +11,8 @@ from tensorflow.contrib.layers import fully_connected, batch_norm
 ##################################################
 def fiveHiddenLayers(
     mnistData, checkpointPATH,
-    nInputs, nHidden1, nHidden2, nHidden3, nHidden4, nHidden5, nOutputs,
+    nInputs, nOutputs,
+    nHidden1, nHidden2, nHidden3, nHidden4, nHidden5,
     learningRate, nEpochs, batchSize
     ):
 
