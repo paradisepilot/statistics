@@ -50,11 +50,29 @@ mnistData = tfGetMNIST(
 #    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### training a DNN with plain TensorFlow
-from fiveHiddenLayers import fiveHiddenLayers
-fiveHiddenLayers(
+### using a DNN with five hidden layers
+#from fiveHiddenLayers import fiveHiddenLayers
+#fiveHiddenLayers(
+#    mnistData      = mnistData,
+#    checkpointPATH = os.path.join(datDIR,"fiveHiddenLayers.ckpt"),
+#    nInputs        = 28 * 28,
+#    nOutputs       = 10,
+#    nHidden1       = 10,
+#    nHidden2       = 10,
+#    nHidden3       = 10,
+#    nHidden4       = 10,
+#    nHidden5       = 10,
+#    learningRate   = 0.01,
+#    nEpochs        = 40,
+#    batchSize      = 50
+#    )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### using pretrained layers
+from pretrainedLayers import pretrainedLayers
+pretrainedLayers(
     mnistData      = mnistData,
-    checkpointPATH = os.path.join(datDIR,"fiveHiddenLayers.ckpt"),
+    checkpointPATH = os.path.join(datDIR,"pretrainedLayers.ckpt"),
     nInputs        = 28 * 28,
     nOutputs       = 10,
     nHidden1       = 10,
