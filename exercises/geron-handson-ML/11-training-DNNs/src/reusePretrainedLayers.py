@@ -49,7 +49,6 @@ def reusePretrainedLayers(
         xEntropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y,logits=logits)
         loss = tf.reduce_mean(xEntropy,name="loss")
 
-
     with tf.name_scope("train"):
         myOptimizer   = tf.train.GradientDescentOptimizer(learningRate)
         trainingOp   = myOptimizer.minimize(loss)
