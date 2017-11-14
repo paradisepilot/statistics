@@ -59,13 +59,13 @@ fiveHiddenLayers(
     checkpointPATH = chkpt0,
     nInputs        = 28 * 28,
     nOutputs       = 10,
-    nHidden1       = 10,
-    nHidden2       = 10,
-    nHidden3       = 10,
-    nHidden4       = 10,
-    nHidden5       = 10,
+    nHidden1       = 300,
+    nHidden2       = 50,
+    nHidden3       = 50,
+    nHidden4       = 50,
+    nHidden5       = 50,
     learningRate   = 0.01,
-    nEpochs        = 40,
+    nEpochs        = 20,
     batchSize      = 50
     )
 
@@ -80,13 +80,13 @@ continueTraining(
     checkpointNEW = chkpt1,
     nInputs       = 28 * 28,
     nOutputs      = 10,
-    nHidden1      = 10,
-    nHidden2      = 10,
-    nHidden3      = 10,
-    nHidden4      = 10,
-    nHidden5      = 10,
+    nHidden1      = 300,
+    nHidden2      = 50,
+    nHidden3      = 50,
+    nHidden4      = 50,
+    nHidden5      = 50,
     learningRate  = 0.01,
-    nEpochs       = 40,
+    nEpochs       = 20,
     batchSize     = 50
     )
 
