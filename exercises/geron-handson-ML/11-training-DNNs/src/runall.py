@@ -91,22 +91,22 @@ continueTraining(
     )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### using pretrained layers
-#from pretrainedLayers import pretrainedLayers
-#pretrainedLayers(
-#    mnistData      = mnistData,
-#    checkpointPATH = os.path.join(datDIR,"pretrainedLayers.ckpt"),
-#    nInputs        = 28 * 28,
-#    nOutputs       = 10,
-#    nHidden1       = 10,
-#    nHidden2       = 10,
-#    nHidden3       = 10,
-#    nHidden4       = 10,
-#    nHidden5       = 10,
-#    learningRate   = 0.01,
-#    nEpochs        = 40,
-#    batchSize      = 50
-#    )
+### re-using pretrained layers
+chkpt2 = os.path.join(datDIR,"chkpt2.ckpt")
+
+from reusePretrainedLayers import reusePretrainedLayers
+reusePretrainedLayers(
+    mnistData     = mnistData,
+    checkpointOLD = chkpt1,
+    checkpointNEW = chkpt2,
+    nInputs       = 28 * 28,
+    nOutputs      = 10,
+    nHidden4      = 100,
+    nHidden5      = 100,
+    learningRate  = 0.01,
+    nEpochs       = 40,
+    batchSize     = 50
+    )
 
 #################################################
 #################################################
