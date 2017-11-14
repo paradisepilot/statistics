@@ -51,28 +51,12 @@ mnistData = tfGetMNIST(
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### using a DNN with five hidden layers
-#from fiveHiddenLayers import fiveHiddenLayers
-#fiveHiddenLayers(
-#    mnistData      = mnistData,
-#    checkpointPATH = os.path.join(datDIR,"fiveHiddenLayers.ckpt"),
-#    nInputs        = 28 * 28,
-#    nOutputs       = 10,
-#    nHidden1       = 10,
-#    nHidden2       = 10,
-#    nHidden3       = 10,
-#    nHidden4       = 10,
-#    nHidden5       = 10,
-#    learningRate   = 0.01,
-#    nEpochs        = 40,
-#    batchSize      = 50
-#    )
+chkpt0 = os.path.join(datDIR,"chkpt0.ckpt")
 
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### using pretrained layers
-from pretrainedLayers import pretrainedLayers
-pretrainedLayers(
+from fiveHiddenLayers import fiveHiddenLayers
+fiveHiddenLayers(
     mnistData      = mnistData,
-    checkpointPATH = os.path.join(datDIR,"pretrainedLayers.ckpt"),
+    checkpointPATH = chkpt0,
     nInputs        = 28 * 28,
     nOutputs       = 10,
     nHidden1       = 10,
@@ -84,6 +68,45 @@ pretrainedLayers(
     nEpochs        = 40,
     batchSize      = 50
     )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### continue training ...
+chkpt1 = os.path.join(datDIR,"chkpt1.ckpt")
+
+from continueTraining import continueTraining
+continueTraining(
+    mnistData     = mnistData,
+    checkpointOLD = chkpt0,
+    checkpointNEW = chkpt1,
+    nInputs       = 28 * 28,
+    nOutputs      = 10,
+    nHidden1      = 10,
+    nHidden2      = 10,
+    nHidden3      = 10,
+    nHidden4      = 10,
+    nHidden5      = 10,
+    learningRate  = 0.01,
+    nEpochs       = 40,
+    batchSize     = 50
+    )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### using pretrained layers
+#from pretrainedLayers import pretrainedLayers
+#pretrainedLayers(
+#    mnistData      = mnistData,
+#    checkpointPATH = os.path.join(datDIR,"pretrainedLayers.ckpt"),
+#    nInputs        = 28 * 28,
+#    nOutputs       = 10,
+#    nHidden1       = 10,
+#    nHidden2       = 10,
+#    nHidden3       = 10,
+#    nHidden4       = 10,
+#    nHidden5       = 10,
+#    learningRate   = 0.01,
+#    nEpochs        = 40,
+#    batchSize      = 50
+#    )
 
 #################################################
 #################################################

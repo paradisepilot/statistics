@@ -9,15 +9,15 @@ from tensorflow.contrib.learn  import SKCompat, DNNClassifier, infer_real_valued
 from tensorflow.contrib.layers import fully_connected, batch_norm
 
 ##################################################
-def fiveHiddenLayers(
-    mnistData, checkpointPATH,
+def continueTraining(
+    mnistData, checkpointOLD, checkpointNEW,
     nInputs, nOutputs,
     nHidden1, nHidden2, nHidden3, nHidden4, nHidden5,
     learningRate, nEpochs, batchSize
     ):
 
     print("\n####################")
-    print("fiveHiddenLayers():\n")
+    print("continueTraining():\n")
     tf.reset_default_graph()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -59,8 +59,7 @@ def fiveHiddenLayers(
         correct  = tf.nn.in_top_k(logits,y,1)
         accuracy = tf.reduce_mean(tf.cast(correct,tf.float32))
 
-    myInitializer = tf.global_variables_initializer()
-    mySaver       = tf.train.Saver()
+    mySaver = tf.train.Saver()
 
     print("\nConstruction Phase complete.\n")
 
@@ -71,17 +70,17 @@ def fiveHiddenLayers(
     y_test = mnistData.test.labels
     y_test = np.matmul(y_test,np.arange(y_test.shape[1])).astype('int')
 
-    tempWildCard = checkpointPATH + "*"
+    tempWildCard = checkpointNEW + "*"
     print("\n")
     print( "tempWildCard: " + tempWildCard )
-    print('glob.glob(checkpointPATH + "*")')
-    print( glob.glob(checkpointPATH + "*") )
-    print('len(glob.glob(checkpointPATH + "*")): ' + str(len(glob.glob(checkpointPATH + "*"))) )
+    print('glob.glob(checkpointNEW + "*")')
+    print( glob.glob(checkpointNEW + "*") )
+    print('len(glob.glob(checkpointNEW + "*")): ' + str(len(glob.glob(checkpointNEW + "*"))) )
 
-    if (len(glob.glob(checkpointPATH + "*")) < 1):
+    if (len(glob.glob(checkpointNEW + "*")) < 1):
         print( "\nperforming batch gradient descent ..." )
         with tf.Session() as mySession:
-            myInitializer.run()
+            mySaver.restore(mySession,checkpointOLD)
             for epoch in range(nEpochs):
                 for iteration in range(mnistData.train.num_examples // batchSize):
                     X_batch, y_batch = mnistData.train.next_batch(batchSize)
@@ -90,9 +89,9 @@ def fiveHiddenLayers(
                 accuracyTrain = accuracy.eval(feed_dict={is_training:True, X:X_batch,y:y_batch})
                 accuracyTest  = accuracy.eval(feed_dict={is_training:False,X:X_test, y:y_test })
                 print("epoch: ", epoch, ", accuracy(train): ", accuracyTrain, ", accuracy(test): ", accuracyTest)
-            savePath = mySaver.save(mySession,checkpointPATH)
+            savePath = mySaver.save(mySession,checkpointNEW)
     else:
-        print( "\nThe checkpoint\n" + checkpointPATH + "\nis found. No training is performed." )
+        print( "\nThe checkpoint\n" + checkpointNEW + "\nis found. No training is performed." )
 
     print("\nTraining Execution Phase complete.")
 
@@ -100,7 +99,7 @@ def fiveHiddenLayers(
     print("\nDeployment Execution Phase begins ...")
 
     with tf.Session() as mySession:
-        mySaver.restore(mySession,checkpointPATH)
+        mySaver.restore(mySession,checkpointNEW)
         print( "type(logits): " + str(type(logits)) )
         accuracyTest  = accuracy.eval(feed_dict={is_training:False,X:X_test, y:y_test })
         print("Deployment: accuracy(test): ", accuracyTest)
@@ -108,7 +107,7 @@ def fiveHiddenLayers(
     print("\nDeployment Execution Phase complete.")
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    print("\nexiting: fiveHiddenLayers()")
+    print("\nexiting: continueTraining()")
     print("####################")
     return( None )
 
