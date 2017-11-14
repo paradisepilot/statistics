@@ -50,11 +50,11 @@ mnistData = tfGetMNIST(
 #    )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### using a DNN with five hidden layers
+### using a DNN with three hidden layers
 chkpt0 = os.path.join(datDIR,"chkpt0.ckpt")
 
-from fiveHiddenLayers import fiveHiddenLayers
-fiveHiddenLayers(
+from threeHiddenLayers import threeHiddenLayers
+threeHiddenLayers(
     mnistData      = mnistData,
     checkpointPATH = chkpt0,
     nInputs        = 28 * 28,
@@ -62,8 +62,6 @@ fiveHiddenLayers(
     nHidden1       = 300,
     nHidden2       = 50,
     nHidden3       = 50,
-    nHidden4       = 50,
-    nHidden5       = 50,
     learningRate   = 0.01,
     nEpochs        = 10,
     batchSize      = 50
@@ -83,8 +81,6 @@ continueTraining(
     nHidden1      = 300,
     nHidden2      = 50,
     nHidden3      = 50,
-    nHidden4      = 50,
-    nHidden5      = 50,
     learningRate  = 0.01,
     nEpochs       = 30,
     batchSize     = 50

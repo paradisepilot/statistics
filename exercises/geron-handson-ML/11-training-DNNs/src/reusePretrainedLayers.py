@@ -23,9 +23,6 @@ def reusePretrainedLayers(
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     print("\nConstruction Phase begins ...")
 
-    #X = tf.placeholder(tf.float32,shape=(None,nInputs),name="X")
-    #y = tf.placeholder(tf.int64,  shape=(None),        name="y")
-
     oldSaver = tf.train.import_meta_graph( checkpointOLD + ".meta" )
     X        = tf.get_default_graph().get_tensor_by_name("X:0")
     y        = tf.get_default_graph().get_tensor_by_name("y:0")
@@ -56,10 +53,6 @@ def reusePretrainedLayers(
     with tf.name_scope("train"):
         myOptimizer   = tf.train.GradientDescentOptimizer(learningRate)
         trainingOp   = myOptimizer.minimize(loss)
-        #clipThreshold = 1.0
-        #gvs           = myOptimizer.compute_gradients(loss)
-        #cappedGVs     = [(tf.clip_by_value(grad,-clipThreshold,clipThreshold),var) for grad, var in gvs]
-        #trainingOp    = myOptimizer.apply_gradients(cappedGVs)
 
     with tf.name_scope("eval"):
         correct  = tf.nn.in_top_k(logits,y,1)
