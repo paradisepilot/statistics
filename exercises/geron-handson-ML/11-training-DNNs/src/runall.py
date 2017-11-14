@@ -65,7 +65,7 @@ fiveHiddenLayers(
     nHidden4       = 50,
     nHidden5       = 50,
     learningRate   = 0.01,
-    nEpochs        = 20,
+    nEpochs        = 10,
     batchSize      = 50
     )
 
@@ -86,7 +86,7 @@ continueTraining(
     nHidden4      = 50,
     nHidden5      = 50,
     learningRate  = 0.01,
-    nEpochs       = 20,
+    nEpochs       = 30,
     batchSize     = 50
     )
 
