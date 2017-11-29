@@ -1,0 +1,176 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Four notions of consistency of classification rules}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Classification rule]
+\mbox{}\vskip 0.1cm
+\noindent
+A \,\underline{\textbf{classification rule}}\, is a sequence $\{\,g_{n}\,\}_{n\in\N}$
+of Borel measurable functions of the form:
+\begin{equation*}
+g_{n} :
+	(\Re^{d},\mathcal{O}(\Re^{d})) \times \left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
+	\longrightarrow
+	\{0,1\}\,,
+\end{equation*}
+where $d \in \N$ is a natural number.
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{definition}[$(Y \vert X)$-risk, weak $(Y \vert X)$-consistency, and strong $(Y \vert X)$-consistency]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$d \in \N$.
+	$\mathcal{O}(\Re^{d})$ denotes the Borel $\sigma$-algebra of \,$\Re^{d}$.
+\item
+	$\left\{\;
+		g_{n} :
+		(\Re^{d},\mathcal{O}(\Re^{d}))
+			\times
+			\left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
+		\longrightarrow
+		\{0,1\}
+	\;\right\}_{n\in\N}$
+	\,is a classification rule.
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$X : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d}))$ and\,
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow \{0,1\}$
+	are random variables.
+\end{itemize}
+Notations:
+\begin{itemize}
+\item
+	$\kappa^{*}_{\,Y \vert X}$ is the Bayes $(Y \vert X)$-classifier of predicting $Y$ based on $X$,
+	and $L^{*}_{\,Y \vert X} \,:=\, P\!\left(\,\kappa^{*}_{\,Y \vert X} \circ X \neq Y\,\right)$\,
+	is the Bayes $(Y \vert X)$-risk of predicting $Y$ based on $X$.
+\item
+	$\left\{\;
+		(X_{i},Y_{i}) : (\Omega,\mathcal{A},\mu)
+			\overset{{\color{white}-}}{\longrightarrow}
+			(\Re^{d},\mathcal{O}(\Re^{d})) \times \{0,1\}
+	\;\right\}_{i\in\N}$\;
+	is a sequence of independent and identically distributed copies of
+	$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d})) \times \{0,1\}$.
+\item
+	For each $n \in \N$, we write
+	$D^{(n)}_{X,Y} := (X_{1},Y_{1},\ldots,X_{n},Y_{n}) :
+		(\Omega,\mathcal{A},\mu)
+		\longrightarrow
+		\left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}$.
+\end{itemize}
+Then:
+\begin{itemize}
+\item
+	The \,\underline{\textbf{$(Y \vert X)$-risk}}\, of a classification rule $\{\,g_{n}\,\}_{n\in\N}$
+	is the sequence $\left\{\,L^{(g_{n})}_{\,Y \vert X}\,\right\}_{n\in\N}$ of (deterministic) functions
+	\begin{equation*}
+	L^{(g_{n})}_{\,Y \vert X} :
+		\left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n} \longrightarrow\; [\,0,1\,]
+	\end{equation*}
+	defined by
+	\begin{equation*}
+	L^{(g_{n})}_{\,Y \vert X}(\,d_{n}\,)
+	\; := \;
+		P\!\left(\, g_{n}(X,d_{n}) \overset{{\color{white}.}}{\neq} Y \,\right)
+	\; = \;
+		\mu\!\left(\,\left\{\,
+			\left.\omega\overset{{\color{white}.}}{\in}\Omega\;\,\right\vert\,g_{n}(X(\omega),d_{n}) \neq Y(\omega)
+			\,\right\}\,\right)
+	\end{equation*}
+\item
+	The classification rule $\{\,g_{n}\,\}_{n\in\N}$ is said to be
+	\,\underline{\textbf{weakly $(Y \vert X)$-consistent}}\, if
+	\begin{equation*}
+	\underset{n\rightarrow\infty}{\lim}\;
+		E\!\left[\; L^{(g_{n})}_{\,Y \vert X} \overset{{\color{white}-}}{\circ} D^{(n)}_{X,Y} \;\right]
+	\;\; = \;\;
+	\underset{n\rightarrow\infty}{\lim}\;
+		\int_{\Omega}\; L^{(g_{n})}_{\,Y \vert X}\!\left(\,D^{(n)}_{X,Y}(\omega)\,\right) \;\d\mu(\omega)
+	\;\; = \;\;
+		L^{*}_{\,Y \vert X}
+	\end{equation*}
+\item
+	The classification rule $\{\,g_{n}\,\}_{n\in\N}$ is said to be
+	\,\underline{\textbf{strongly $(Y \vert X)$-consistent}}\, if
+	\begin{equation*}
+	P\!\left(\;
+		\underset{n\rightarrow\infty}{\lim}\,
+		L^{(g_{n})}_{\,Y \vert X}\circ D^{(n)}_{X,Y} \;\overset{{\color{white}.}}{=}\; L^{*}_{\,Y \vert X}
+	\;\right)
+	\;\; = \;\;
+		\mu\!\left(\,\left\{\,\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+		\,\;\right\vert\;
+			\underset{n\rightarrow\infty}{\lim}\;
+			L^{(g_{n})}_{\,Y \vert X}\!\left(\,D^{(n)}_{X,Y}(\omega)\,\right) \,=\, L^{*}_{\,Y \vert X}	
+		\,\right\}\,\right)
+	\;\; = \;\;
+		1
+	\end{equation*}
+\end{itemize}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\newpage
+\begin{definition}[Universal weak consistency and universal strong consistency]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$d \in \N$.
+	$\mathcal{O}(\Re^{d})$ denotes the Borel $\sigma$-algebra of \,$\Re^{d}$.
+\item
+	$\left\{\;
+		g_{n} :
+		(\Re^{d},\mathcal{O}(\Re^{d})) \times \left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
+		\longrightarrow
+		\{0,1\}
+	\;\right\}_{n\in\N}$
+	\,is a classification rule.
+\end{itemize}
+Then:
+\begin{itemize}
+\item
+	The classification rule $\{\,g_{n}\,\}_{n\in\N}$ is said to be
+	\,\underline{\textbf{universally weakly consistent}}\, if
+	it is weakly $(Y \vert X)$-consistent, for every random variable
+	$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d})) \times \{0,1\}$.
+\item
+	The classification rule $\{\,g_{n}\,\}_{n\in\N}$ is said to be
+	\,\underline{\textbf{universally strongly consistent}}\, if
+	it is strongly $(Y \vert X)$-consistent, for every random variable
+	$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow (\Re^{d},\mathcal{O}(\Re^{d})) \times \{0,1\}$.
+\end{itemize}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

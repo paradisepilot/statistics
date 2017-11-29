@@ -1,0 +1,142 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{PAC Learnability}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Classification rule]
+\mbox{}\vskip 0.1cm
+\noindent
+A \,\underline{\textbf{classification rule}}\, is a sequence $\{\,h_{n}\,\}_{n\in\N}$
+of Borel measurable functions of the form:
+\begin{equation*}
+h_{n} :
+	(\Re^{d},\mathcal{O}(\Re^{d})) \times \left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
+	\longrightarrow
+	\{0,1\}\,,
+\end{equation*}
+where $d \in \N$ is a natural number.
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[PAC Learnability]
+\mbox{}\vskip 0.1cm
+\noindent
+A hypothesis class
+\,$\mathcal{H} = \left\{\; h : \mathcal{X} \overset{{\color{white}-}}{\longrightarrow} \{0,1\} \;\right\}$\,
+is said to be \underline{\textbf{PAC{\color{white}j}learnable}} if
+there exist
+a learning algorithm
+\begin{equation*}
+\mathcal{F}
+\;\; : = \;\;
+	\left\{\;\,
+		h_{n} : \left(\;\mathcal{X} \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
+		\; \longrightarrow \;\mathcal{H}
+		\;\;\right\}_{n\in\N}
+\end{equation*}
+and a function
+\begin{equation*}
+n_{\mathcal{F}} : (0,1) \times (0,1) \longrightarrow \N
+\end{equation*}
+such that
+\begin{itemize}
+\item
+	for each \,$\varepsilon,\, \delta > 0$,\, and
+\item
+	for each probability space $(\Omega,\mathcal{A},\mu)$ and
+	random variables $X : \Omega \longrightarrow \Re^{d}$,
+	$Y : \Omega \longrightarrow \{0,1\}$\,,
+\end{itemize}
+we have:
+\begin{equation*}
+P_{{\color{red}D_{n}}}\!\!\left(\;
+	P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}_{n}({\color{red}D_{n}})(X) \neq Y \,\right)
+		\,-\,
+		\underset{h\in\mathcal{F}}{\inf}\,P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}(X) \neq Y \,\right)
+	\,\leq\,
+		\varepsilon
+	\;\right)
+\;\; \geq \;\;
+	1 - \delta\,,
+\quad
+	\textnormal{for every \,$n \,\geq\, n_{\mathcal{F}}(\varepsilon,\delta)$}\,,
+\end{equation*}
+where
+\,$D_{n} = (X_{1},Y_{1},X_{2},Y_{2},\ldots,X_{n},Y_{n})
+	: \Omega \longrightarrow
+	\left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\,\right)^{n}$\,
+is such that the
+$(X_{i},Y_{i})$'s are I.I.D. copies of $(X,Y)$.
+%\begin{equation*}
+%P\!\left(\,\overset{{\color{white}.}}{h}_{n}(d_{n})(X) \neq Y \,\right)
+%\;=\;
+%	\mu\!\left(\,\left\{\;\omega \in \Omega \vert h_{n}(d_{n})(X(\omega)) \neq Y(\omega) \;\right\}\,\right)
+%\end{equation*}
+\end{definition}
+
+\begin{remark}[Countrapositive of PAC Learnability]
+\mbox{}\vskip 0.1cm
+\noindent
+A hypothesis class
+\,$\mathcal{H} = \left\{\; h : \mathcal{X} \overset{{\color{white}-}}{\longrightarrow} \{0,1\} \;\right\}$\,
+is NOT PAC learnable if, for every learning algorithm
+\begin{equation*}
+\left\{\;\,
+	h_{n} : \left(\;\mathcal{X} \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
+	\; \longrightarrow \;\mathcal{H}
+	\;\;\right\}_{n\in\N}\,,
+\end{equation*}
+there exist
+\begin{itemize}
+\item
+	$\varepsilon,\, \delta > 0$,\, and
+\item
+	a probability space $(\Omega,\mathcal{A},\mu)$ and
+	random variables $X : \Omega \longrightarrow \Re^{d}$,
+	$Y : \Omega \longrightarrow \{0,1\}$\,,
+\end{itemize}
+such that, given any $n_{0} \in \N$, we have
+\begin{equation*}
+P_{D_{n}}\!\!\left(\;
+	P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}_{n}(D_{n})(X) \neq Y \,\right)
+		\,-\,
+		\underset{h\in\mathcal{H}}{\inf}\,P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}(X) \neq Y \,\right)
+	\,\leq\,
+		\varepsilon
+	\;\right)
+\;\; {\color{red}<} \;\;
+	1 - \delta\,,
+\quad
+	\textnormal{for {\color{red}some} \,$n \,>\, n_{0}$}\,,
+\end{equation*}
+where
+\,$D_{n} = (X_{1},Y_{1},X_{2},Y_{2},\ldots,X_{n},Y_{n})
+	: \Omega \longrightarrow
+	\left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\,\right)^{n}$\,
+is such that the
+$(X_{i},Y_{i})$'s are I.I.D. copies of $(X,Y)$.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
