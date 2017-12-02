@@ -1,0 +1,101 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Finite Hypothesis Classes Are Agnostically PAC Learnable}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}[Zero true risk implies empirical risk equals zero with probability one]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space, and
+\item
+	$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow \mathcal{X}\times\{0,1\}$\,
+	is an $\left(\,\mathcal{X}\times\{0,1\}\right)$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\end{itemize}
+If \,$h : \mathcal{X} \overset{{\color{white}-}}{\longrightarrow} \{0,1\}$\,
+is a function with zero true risk, i.e.
+\begin{equation*}
+P\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y \,\right) \,=\, 0\,,
+\end{equation*}
+then its empirical risk equals zero with probability one, i.e.
+\begin{equation*}
+P_{\,D_{n}}\!\!\left(\;
+	\textnormal{EmpiricalRisk}(\;h\,\overset{{\color{white}-}}{;}\,D_{n}\,) \,=\, 0
+	\;\right)
+\;\, = \;\;
+P_{\,D_{n}}\!\!\left(\;
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;
+	I_{\left\{h(X_{i}) \,\overset{{\color{white}.}}{\neq}\, Y_{i}\right\}} \,=\, 0
+	\;\right)
+\;\, = \;\;
+	1\,,
+\quad
+\textit{for each \,$n\in\N$}\,,
+\end{equation*}
+where
+\,$D_{n} = \left((X_{1},Y_{1}),(X_{2},Y_{2}),\,\overset{{\color{white}\vert}}{\ldots}\,,(X_{n},Y_{n})\right)
+	: \Omega \longrightarrow
+	\left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\,\right)^{n}$\,
+is such that the $(X_{i},Y_{i})$'s are I.I.D. copies of $(X,Y)$.
+\end{lemma}
+\proof
+Note that
+\begin{equation*}
+P\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y \,\right) \,=\, 0
+\quad\Longleftrightarrow\quad
+P\!\left(\,h(X) \overset{{\color{white}-}}{=} Y \,\right) \,=\, 1
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+P_{\,D_{n}}\!\!\left(\;
+	\textnormal{EmpiricalRisk}(\;h\,\overset{{\color{white}-}}{;}\,D_{n}\,) \,=\, 0
+	\;\right)
+& = &
+	P_{\,D_{n}}\!\!\left(\;
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;
+		I_{\left\{h(X_{i}) \,\overset{{\color{white}.}}{\neq}\, Y_{i}\right\}} \,=\, 0
+		\;\right)
+\\
+& = &
+	P_{\,D_{n}}\!\!\left(\;
+		h(X_{i}) \,\overset{{\color{white}-}}{=}\, Y_{i}\,,\;\forall\;i\in\{1,\ldots,n\}
+		\;\right)
+\\
+& = &
+	\overset{n}{\underset{i=1}{\prod}}\;
+	P\!\left(\; h(X_{i}) \,\overset{{\color{white}-}}{=}\, Y_{i} \;\right)
+\\
+& = &
+	P\!\left(\; h(X) \,\overset{{\color{white}-}}{=}\, Y \;\right)^{n}
+	\;\; = \;\;\, 1^{n} \;\; = \;\; 1\,,
+\end{eqnarray*}
+as required.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
