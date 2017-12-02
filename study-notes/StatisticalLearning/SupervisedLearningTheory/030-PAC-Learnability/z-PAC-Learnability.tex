@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{PAC Learnability}
+\section{Agnostic PAC Learnability}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -15,28 +15,12 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{definition}[Classification rule]
-\mbox{}\vskip 0.1cm
-\noindent
-A \,\underline{\textbf{classification rule}}\, is a sequence $\{\,h_{n}\,\}_{n\in\N}$
-of Borel measurable functions of the form:
-\begin{equation*}
-h_{n} :
-	(\Re^{d},\mathcal{O}(\Re^{d})) \times \left(\;(\Re^{d},\mathcal{O}(\Re^{d})) \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
-	\longrightarrow
-	\{0,1\}\,,
-\end{equation*}
-where $d \in \N$ is a natural number.
-\end{definition}
-
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\begin{definition}[PAC Learnability]
+\begin{definition}[Agnostic PAC Learnability]
 \mbox{}\vskip 0.1cm
 \noindent
 A hypothesis class
 \,$\mathcal{H} = \left\{\; h : \mathcal{X} \overset{{\color{white}-}}{\longrightarrow} \{0,1\} \;\right\}$\,
-is said to be \underline{\textbf{PAC{\color{white}j}learnable}} if
+is said to be \underline{\textbf{agnostically PAC{\color{white}j}learnable}} if
 there exist
 a learning algorithm
 \begin{equation*}
@@ -56,16 +40,19 @@ such that
 \item
 	for each \,$\varepsilon,\, \delta > 0$,\, and
 \item
-	for each probability space $(\Omega,\mathcal{A},\mu)$ and
-	random variables $X : \Omega \longrightarrow \Re^{d}$,
-	$Y : \Omega \longrightarrow \{0,1\}$\,,
+	for each $\left(\,\mathcal{X}\times\{0,1\}\right)$-valued random variable
+	$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow \mathcal{X}\times\{0,1\}$\,,
+%\item
+%	for each probability space $(\Omega,\mathcal{A},\mu)$ and
+%	random variables $X : \Omega \longrightarrow \Re^{d}$,
+%	$Y : \Omega \longrightarrow \{0,1\}$\,,
 \end{itemize}
 we have:
 \begin{equation*}
 P_{{\color{red}D_{n}}}\!\!\left(\;
 	P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}_{n}({\color{red}D_{n}})(X) \neq Y \,\right)
 		\,-\,
-		\underset{h\in\mathcal{F}}{\inf}\,P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}(X) \neq Y \,\right)
+		\underset{h\in\mathcal{H}}{\inf}\,P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}(X) \neq Y \,\right)
 	\,\leq\,
 		\varepsilon
 	\;\right)
@@ -75,7 +62,7 @@ P_{{\color{red}D_{n}}}\!\!\left(\;
 	\textnormal{for every \,$n \,\geq\, n_{\mathcal{F}}(\varepsilon,\delta)$}\,,
 \end{equation*}
 where
-\,$D_{n} = (X_{1},Y_{1},X_{2},Y_{2},\ldots,X_{n},Y_{n})
+\,$D_{n} = \left((X_{1},Y_{1}),(X_{2},Y_{2}),\,\overset{{\color{white}\vert}}{\ldots}\,,(X_{n},Y_{n})\right)
 	: \Omega \longrightarrow
 	\left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\,\right)^{n}$\,
 is such that the
@@ -87,12 +74,32 @@ $(X_{i},Y_{i})$'s are I.I.D. copies of $(X,Y)$.
 %\end{equation*}
 \end{definition}
 
-\begin{remark}[Countrapositive of PAC Learnability]
+\begin{remark}[Agnostic PAC Learnability in plain English]
+\mbox{}\vskip 0.1cm
+\noindent
+A hypothesis class $\mathcal{H}$ is \,\textbf{agnostically PAC learnable}\, if
+there exists a learning algorithm
+\begin{equation*}
+\mathcal{F} \; = \; \left\{\;
+	h_{n} : \left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow\mathcal{H}
+	\;\right\}_{n\in\N}
+\end{equation*}
+such that, given any ``accuracy tolerance'' $\varepsilon > 0$ and
+``confidence level'' $0 <1 - \delta < 1$, 
+the event that
+\begin{equation*}
+\textnormal{$h_{n}$ has a probability of error within the $\varepsilon$-ball of
+the best-in-class probability of error}
+\end{equation*}
+has probability exceeding $1 - \delta$, for all sufficiently large $n$.
+\end{remark}
+
+\begin{remark}[Countrapositive of Agnostic PAC Learnability]
 \mbox{}\vskip 0.1cm
 \noindent
 A hypothesis class
 \,$\mathcal{H} = \left\{\; h : \mathcal{X} \overset{{\color{white}-}}{\longrightarrow} \{0,1\} \;\right\}$\,
-is NOT PAC learnable if, for every learning algorithm
+is NOT agnostically PAC learnable if, for every learning algorithm
 \begin{equation*}
 \left\{\;\,
 	h_{n} : \left(\;\mathcal{X} \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
@@ -123,7 +130,7 @@ P_{D_{n}}\!\!\left(\;
 	\textnormal{for {\color{red}some} \,$n \,>\, n_{0}$}\,,
 \end{equation*}
 where
-\,$D_{n} = (X_{1},Y_{1},X_{2},Y_{2},\ldots,X_{n},Y_{n})
+\,$D_{n} = \left((X_{1},Y_{1}),(X_{2},Y_{2}),\,\overset{{\color{white}\vert}}{\ldots}\,,(X_{n},Y_{n})\right)
 	: \Omega \longrightarrow
 	\left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\,\right)^{n}$\,
 is such that the
