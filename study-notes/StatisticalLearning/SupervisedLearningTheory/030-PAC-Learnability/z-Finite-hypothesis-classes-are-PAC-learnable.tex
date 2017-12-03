@@ -15,6 +15,210 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{theorem}[Finite hypothesis classes are agnostically PAC learnable]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\mathcal{H} \; = \; \left\{\; h : \mathcal{X} \overset{{\color{white}\vert}}{\longrightarrow} \{0,1\}\;\right\}$
+	is a hypothesis class, with $\vert\,\mathcal{H}\,\vert \,<\, \infty$.
+\item
+	$\mathcal{H}$\, admits an Empirical Risk Minimization (ERM) learning algorithm
+	\begin{equation*}
+	\textnormal{ERM} \;=\; \left\{\;
+		\overset{{\color{white}.}}{\textnormal{ERM}_{n}} :
+		\left(\mathcal{X}\times\{0,1\}\right)^{n} \longrightarrow \, \mathcal{H}
+		\;\right\}_{n\in\N}
+	\end{equation*}
+	i.e.
+	\begin{equation*}
+	\textnormal{ERM}_{n}({\color{red}d_{n}})
+	\;\; \in \;\;
+		\mathcal{H}
+		\;\; \bigcap \;\;
+		\underset{h\in\mathcal{H}}{\argmin}\;\left\{\;
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;
+			I_{\left\{h({\color{red}x_{i}})\,\overset{{\color{white}.}}{\neq}\,{\color{red}y_{i}}\right\}}
+			\;\right\}
+	\end{equation*}
+	for each
+	\,$d_{n} = \left((x_{1},y_{1}),(x_{2},y_{2}),\,\overset{{\color{white}\vert}}{\ldots}\,,(x_{n},y_{n})\right)
+	\in \left(\,\mathcal{X} \times \{0,1\} \right)^{n}$\,.
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	$\mathcal{H}$\, possesses the Uniform Convergence Property,
+	with minimum sample size function
+	\begin{equation*}
+	n^{\textnormal{UC}}_{\mathcal{H}}(\varepsilon,\delta)
+	\;\; \leq \;\;
+		\left\lceil\; \dfrac{\log\!\left(\,2\,\vert\,\mathcal{H}\,\vert\,/\,\delta\,\right)}{2\,\varepsilon^{2}} \;\right\rceil
+	\end{equation*}
+\item
+	\,$\mathcal{H}$\,is agnostically PAC learnable,
+	with viable learning algorithm ERM (Empirical Risk Minimization),
+	and minimum sample size function:
+	\begin{equation*}
+	n_{\textnormal{ERM}}(\varepsilon,\delta)
+	\;\; \leq \;\;
+		n^{\textnormal{UC}}_{\mathcal{H}}(\varepsilon/2,\delta)
+	\;\; \leq \;\;
+		\left\lceil\; \dfrac{2\,\log\!\left(\,2\,\vert\,\mathcal{H}\,\vert\,/\,\delta\,\right)}{\varepsilon^{2}} \;\right\rceil
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	Let $(\varepsilon,\delta) \in (0,1) \times (0,1)$ be fixed.
+	We need to determine
+	\,$n^{\textnormal{UC}}_{\mathcal{H}}(\varepsilon,\delta) \in \N$\,
+	such that, for each $\left(\,\mathcal{X}\times\{0,1\}\right)$-valued random variable
+	\,$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow \mathcal{X}\times\{0,1\}$\,
+	defined on an arbitrary probability space $(\Omega,\mathcal{A},\mu)$, we have:
+	\begin{equation*}
+	P_{D_{n}}\!\!\left(\;
+		\underset{h\in\mathcal{H}}{\sup}\;
+			\left\vert\;
+				\dfrac{1}{n}\,\overset{n}{\underset{i=1}{\sum}}\;
+				I_{\left\{h(X_{i}) \overset{{\color{white}.}}{\neq} Y_{i}\right\}}
+				\, - \, P\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y\,\right)
+				\;\right\vert
+		\; \leq \; \varepsilon
+		\;\right)
+	\;\; \geq \;\; 1 \, - \, \delta\,,
+	\quad\textnormal{for each \,$n \,\geq\, n^{\textnormal{UC}}_{\mathcal{H}}(\varepsilon,\delta)$}\,,
+	\end{equation*}
+	where
+	\,$D_{n} = \left((X_{1},Y_{1}),(X_{2},Y_{2}),\,\overset{{\color{white}\vert}}{\ldots}\,,(X_{n},Y_{n})\right)
+		: \Omega \longrightarrow
+		\left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\,\right)^{n}$\,
+	is such that the $(X_{i},Y_{i})$'s are I.I.D. copies of $(X,Y)$.
+	
+	\vskip 0.3cm
+	\noindent
+	The preceding inequality is equivalent to:
+	\begin{equation*}
+	P_{D_{n}}\!\!\left(\;
+		\left\vert\;
+			\dfrac{1}{n}\,\overset{n}{\underset{i=1}{\sum}}\;
+			I_{\left\{h(X_{i}) \overset{{\color{white}.}}{\neq} Y_{i}\right\}}
+			\, - \, P\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y\,\right)
+			\;\right\vert
+		\; > \; \varepsilon\,,
+		\;\textnormal{for some $h\in\mathcal{H}$}
+		\;\right)
+	\;\; < \;\; \delta\,,
+	\quad\textnormal{for each \,$n \,\geq\, n^{\textnormal{UC}}_{\mathcal{H}}(\varepsilon,\delta)$}\,,
+	\end{equation*}
+
+	\vskip 0.3cm
+	\noindent
+	Since \,$\vert\,\mathcal{H}\,\vert \,<\, \infty$,\, it follows that:
+	\begin{eqnarray*}
+	&&
+		P_{D_{n}}\!\!\left(\;
+			\left\vert\;
+				\dfrac{1}{n}\,\overset{n}{\underset{i=1}{\sum}}\;
+				I_{\left\{h(X_{i}) \overset{{\color{white}.}}{\neq} Y_{i}\right\}}
+				\, - \, P\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y\,\right)
+				\;\right\vert
+			\; > \; \varepsilon\,,
+			\;\textnormal{for some $h\in\mathcal{H}$}
+			\;\right)
+	\\
+	& \leq &
+		\underset{h\,\in\,\mathcal{H}}{\sum}\;\,
+		P_{D_{n}}\!\!\left(\;\,
+			\left\vert\;
+				\dfrac{1}{n}\,\overset{n}{\underset{i=1}{\sum}}\;
+				I_{\left\{h(X_{i}) \overset{{\color{white}.}}{\neq} Y_{i}\right\}}
+				\, - \, P\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y\,\right)
+				\;\right\vert
+			\; > \; \varepsilon
+			\;\right)
+	\\
+	& \leq &
+		\underset{h\,\in\,\mathcal{H}}{\sum}\;\,
+		2\,\exp\!\left(\,-\,\dfrac{2\,n\,\varepsilon^{2}}{(1-0)^{2}}\,\right)\,,
+		\quad\textnormal{by Hoeffding's Inequality}
+	\\
+	& = &
+		2\,\vert\,\mathcal{H}\,\vert\,\exp\!\left(\,-\,2\,\overset{{\color{white}-}}{n}\,\varepsilon^{2}\,\right)
+		\;\; = \;\;\;
+		\dfrac{
+			2\,\vert\,\mathcal{H}\,\vert
+			}{
+			\exp\!\left(\,2\,\overset{{\color{white}-}}{n}\,\varepsilon^{2}\,\right)
+			}
+	\end{eqnarray*}
+	Now, note that
+	\begin{equation*}
+		\dfrac{
+			2\,\vert\,\mathcal{H}\,\vert
+			}{
+			\exp\!\left(\,2\,\overset{{\color{white}-}}{n}\,\varepsilon^{2}\,\right)
+			}
+		\,<\, \delta
+	\quad\Longleftrightarrow\quad
+		n \,>\, \dfrac{
+			\log\!\left(\,2\,\vert\,\mathcal{H}\,\vert\,/\,\delta\,\right)
+			}{
+			2\,\varepsilon^{2}
+			}
+	\end{equation*}
+	We now see that \,$\mathcal{H}$\, indeed possesses the Uniform Convergence Property
+	and its minimum sample size function satisfies:
+	\begin{equation*}
+	n^{\textnormal{UC}}_{\mathcal{H}}(\varepsilon,\delta)
+	\;\; \leq \;\;
+		\left\lceil\;
+			\dfrac{
+				\log\!\left(\,2\,\vert\,\mathcal{H}\,\vert\,/\,\delta\,\right)
+				}{
+				2\,\varepsilon^{2}
+				}
+			\;\right\rceil\,,
+	\end{equation*}
+	as required.
+\item
+	This now readily follows from Theorem \ref{Thm:UCPimpliesAPAC}.
+	Indeed, since \,$\mathcal{H}$\, possesses the Uniform Convergence Property,
+	by Theorem \ref{Thm:UCPimpliesAPAC}, \,$\mathcal{H}$\, is
+	agnostically PAC learnable, with ERM as viable learning algorithm, and
+	minimum sample size function \,$n_{\textnormal{ERM}}(\varepsilon,\delta)$\,
+	satisfying:
+	\begin{equation*}
+	n_{\textnormal{ERM}}(\varepsilon,\delta)
+	\;\; \leq \;\;
+		n^{\textnormal{UC}}_{\mathcal{H}}(\varepsilon/2,\delta)
+	\;\; \leq \;\;
+		\left\lceil\;
+			\dfrac{
+				\log\!\left(\,2\,\vert\,\mathcal{H}\,\vert\,/\,\delta\,\right)
+				}{
+				2\,(\varepsilon/2)^{2}
+				}
+			\;\right\rceil
+	\;\; = \;\;
+		\left\lceil\;
+			\dfrac{
+				2\,\log\!\left(\,2\,\vert\,\mathcal{H}\,\vert\,/\,\delta\,\right)
+				}{
+				\varepsilon^{2}
+				}
+			\;\right\rceil
+	\end{equation*}
+\end{enumerate}
+This completes the proof of the Theorem.
+\qed
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
 \begin{lemma}[Zero true risk implies empirical risk equals zero with probability one]
 \mbox{}\vskip 0.1cm
 \noindent
