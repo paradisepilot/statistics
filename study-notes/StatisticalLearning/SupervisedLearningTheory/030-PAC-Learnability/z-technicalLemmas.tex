@@ -112,9 +112,9 @@ E\!\left[\;\overset{{\color{white}-}}{\exp}\!\left(\,\lambda\,X\,\right)\;\right
 \end{equation*}
 Thus, to complete the proof of Hoeffding's Lemma, it suffices to show that
 \,$f(t) \,\leq\, \dfrac{t^{2}}{8}$,\, for each \,$t \geq 0$.\,
-But this last inequality follows easily from Taylor's Theorem:
-\,$f(0) = 0$,\, $f^{\prime}(t)\,=\,-\,p+\dfrac{p\,e^{t}}{1-p+p\,e^{t}}$,\,
-hence \,$f^{\prime}(0) = 0$,\, and
+But this last inequality follows easily from elementary Calculus:
+First, note that
+$f^{\prime}(t)\,=\,-\,p+\dfrac{p\,e^{t}}{1-p+p\,e^{t}}$\,,\, and
 \begin{eqnarray*}
 f^{\prime\prime}(t)
 & = &
@@ -132,16 +132,31 @@ f^{\prime\prime}(t)
 	\dfrac{1}{4}\,,
 	\quad\textnormal{for each \,$t \in \Re$}
 \end{eqnarray*}
-Hence,
+Since \,$f^{\prime}(0) = 0$,\, we have
 \begin{equation*}
 f^{\prime}(t)
-\;\leq\;
+\;\; = \;\;
+	f^{\prime}(t) \,-\, 0
+\;\; = \;\;
+	f^{\prime}(t) \,-\, f^{\prime}(0)
+\;\; = \;\;
+	\int^{t}_{0}\; f^{\prime\prime}(\zeta) \;\d\,\zeta
+\;\; \leq \;\;
 	\int^{t}_{0}\;\dfrac{1}{4}\;\d\,\zeta
-\; = \;
+\;\; = \;\;
 	\dfrac{t}{4}\,,
-\quad\textnormal{and}\quad
+\quad\textnormal{for each \,$t \geq 0$}.
+\end{equation*}
+Since \,$f(0) = 0$,\, we have
+\begin{equation*}
 f(t)
-\;\leq\;
+\;\; = \;\;
+	f(t) \,-\, 0
+\;\; = \;\;
+	f(t) \,-\, f(0)
+\;\; = \;\;
+	\int^{t}_{0}\; f^{\prime}(\zeta) \;\d\,\zeta
+\;\; \leq\;\;
 	\int^{t}_{0}\;\dfrac{\zeta}{4}\;\d\,\zeta
 \; = \;
 	\dfrac{t^{2}}{8}\,,
@@ -152,6 +167,7 @@ This completes the proof of Hoeffding's Lemma.
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 1.0cm
 \begin{lemma}[Hoeffding's Inequality]
 \label{lemma:HoeffdingInequality}
 \mbox{}\vskip 0.1cm
