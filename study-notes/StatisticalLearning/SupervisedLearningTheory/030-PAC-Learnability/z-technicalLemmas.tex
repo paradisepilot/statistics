@@ -240,7 +240,7 @@ P\!\left(\;\,\left\vert\,
 	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
 	\,\right\vert
 	\,>\,\varepsilon
-	\;\,\right)
+	\;\right)
 \;\; \leq \;\;
 	2\,\exp\!\left(\;
 		-\,\dfrac{
@@ -258,6 +258,208 @@ where
 are I.I.D. copies of $Z$.
 \end{lemma}
 \proof
+First, note that for any \,$\lambda > 0$,\, we have
+\begin{eqnarray*}
+P\!\left(\;\,
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+	\,>\,\varepsilon
+	\;\right)
+& \leq &
+	P\!\left(\;\,
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+		\,\geq\,\varepsilon
+		\;\right)
+\;\; = \;\;
+	P\!\left(\;\,
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,(Z_{i} \, - \, \mu)
+		\,\geq\,\varepsilon
+		\;\right)
+\\
+& = &
+	P\!\left(\;
+		\exp\!\left(\,\dfrac{{\color{red}\lambda}}{n}\;\overset{n}{\underset{i=1}{\sum}}\,(Z_{i} \, - \, \mu)\,\right)
+		\,\geq\, \exp(\,{\color{red}\lambda}\,\varepsilon\,)
+		\;\right),
+	\quad
+	\textnormal{by $\lambda > 0$ and monotonicity of \,$\exp(\,\cdot\,)$}
+\\
+& \leq &
+	\left.E\!\left[\;
+		\exp\!\left(\,\dfrac{\lambda}{n}\;\overset{n}{\underset{i=1}{\sum}}\,(Z_{i} \, - \, \mu)\,\right)
+		\;\right]
+		\right\slash \exp(\,\lambda\,\varepsilon\,)\,,
+	\quad
+	\textnormal{by Markov's Inequality, Lemma \ref{lemma:MarkovInequality}}
+%\\
+%& = &
+%	\left.E\!\left[\;\,
+%		\overset{n}{\underset{i=1}{\prod}}\;
+%		\exp\!\left(\,\dfrac{\lambda}{n}\;(Z_{i} \, - \, \mu)\,\right)
+%		\;\right]
+%		\right\slash \exp(\,\lambda\,\varepsilon\,)
+\\
+& = &
+	\overset{n}{\underset{i=1}{\prod}}\;
+	\left.E\!\left[\;\,
+		\exp\!\left(\,\dfrac{\lambda}{n}\;(Z_{i} \, - \, \mu)\,\right)
+		\;\right]
+		\right\slash \exp(\,\lambda\,\varepsilon\,)\,,
+	\quad
+	\textnormal{by independence of the $Z_{i}$'s}
+\\
+& \leq &
+	\overset{n}{\underset{i=1}{\prod}}\;
+	\left.\exp\!\left(\,\dfrac{\lambda^{2}\cdot(b/n-a/n)^{2}}{8}\,\right)
+		\right\slash \exp(\,\lambda\,\varepsilon\,)\,,
+	\quad
+	\textnormal{by Hoeffding's Lemma, Lemma \ref{lemma:HoeffdingLemma}}
+\\
+& = &
+	\overset{n}{\underset{i=1}{\prod}}\;
+	\left.\exp\!\left(\,\dfrac{\lambda^{2}\cdot(b-a)^{2}}{8\,n^{2}}\,\right)
+		\right\slash \exp(\,\lambda\,\varepsilon\,)
+\\
+& = &
+	\exp\!\left(\;
+		n\cdot\dfrac{\lambda^{2}\cdot(b-a)^{2}}{8\,n^{2}}
+		\; - \;
+		\lambda\,\varepsilon
+		\;\right)
+\;\; = \;\;
+	\exp\!\left(\;
+		- \, \lambda\,\varepsilon
+		\; + \;
+		\dfrac{\lambda^{2}\cdot(b-a)^{2}}{8\,n}
+		\;\right)
+\end{eqnarray*}
+Now, choosing \,$\lambda \,=\, \dfrac{4\,n\,\varepsilon}{(b-a)^{2}}$\, yields:
+\begin{equation*}
+- \, \lambda\,\varepsilon \; + \; \dfrac{\lambda^{2}\cdot(b-a)^{2}}{8\,n}
+\;\; = \;\;
+	- \, \dfrac{4\,n\,\varepsilon}{(b-a)^{2}}\cdot\varepsilon
+	\; + \;
+	\dfrac{16\,n^{2}\,\varepsilon^{2}}{}\cdot\dfrac{(b-a)^{2}}{8\,n}
+\;\; = \;\;
+	- \, \dfrac{4\,n\,\varepsilon^{2}}{(b-a)^{2}}
+	\; + \; \dfrac{2\,n\,\varepsilon^{2}}{(b-a)^{2}}
+\;\; = \;\;
+	- \, \dfrac{2\,n\,\varepsilon^{2}}{(b-a)^{2}}
+\end{equation*}
+We therefore see that, via the above choice of \,$\lambda \,=\, \dfrac{4\,n\,\varepsilon}{(b-a)^{2}}$\,:
+\begin{eqnarray*}
+P\!\left(\;\,
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+	\,>\,\varepsilon
+	\;\right)
+& \leq &
+	\exp\!\left(\;
+		- \, \lambda\,\varepsilon
+		\; + \;
+		\dfrac{\lambda^{2}\cdot(b-a)^{2}}{8\,n}
+		\;\right)
+\;\; = \;\;
+	\exp\!\left(\,
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)
+\end{eqnarray*}
+On the other hand,
+\begin{eqnarray*}
+P\!\left(\;\,
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+	\,<\, -\,\varepsilon
+	\;\right)
+& \leq &
+	P\!\left(\;\,
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+		\,\leq\,-\,\varepsilon
+		\;\right)
+\;\; = \;\;
+	P\!\left(\;\,
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,(Z_{i} \, - \, \mu)
+		\,\leq\, -\,\varepsilon
+		\;\right)
+\\
+& = &
+	P\!\left(\;
+		- \, \dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,(Z_{i} \, - \, \mu)
+		\,\geq\, \varepsilon
+		\;\right)
+\,\;\; \leq \;\;\,
+	\cdots
+\,\;\; \leq \;\;\,
+	\exp\!\left(\,
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)
+\end{eqnarray*}
+Lastly, we may now conclude that, for each \,$\varepsilon > 0$\,,
+\begin{eqnarray*}
+P\!\left(\;\,\left\vert\,
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+	\,\right\vert
+	\,>\,\varepsilon
+	\;\right)
+& = &
+	P\!\left(\;
+		\left\{\,
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+			\,>\,\varepsilon
+			\,\right\}
+		\;\bigcup\;
+		\left\{\,
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+			\,<\,-\,\varepsilon
+			\,\right\}
+		\;\right)
+\\
+& \leq &
+	P\!\left(\;
+		\left\{\,
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+			\,>\,\varepsilon
+			\,\right\}
+		\;\right)
+	\; + \;
+	P\!\left(\;
+		\left\{\,
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+			\,<\,-\,\varepsilon
+			\,\right\}
+		\;\right)
+\\
+& \leq &
+	\exp\!\left(\;
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)
+	\; + \;
+	\exp\!\left(\;
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)
+	\;\; = \;\;
+	2\,\exp\!\left(\;
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)\,.
+\end{eqnarray*}
+This completes the proof Hoeffding's Inequality.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
