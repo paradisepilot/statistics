@@ -15,9 +15,63 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{lemma}[Markov's Inequality]
+\label{lemma:MarkovInequality}
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose \,$Z : (\Omega,\mathcal{A},\mu) \longrightarrow [0,\infty)$\,
+is a non-negative $\Re$-valued random variable.
+Then,
+\begin{equation*}
+P\!\left(\; Z \,\overset{{\color{white}.}}{\geq}\, \alpha \;\right)
+\;\; \leq \;\;
+	\dfrac{ E\!\left[\; Z \;\right] }{ \alpha }\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}
+\end{equation*}
+\end{lemma}
+\proof
+First, observe that
+\begin{equation*}
+\alpha \cdot I_{\{Z \,\geq\, \alpha\}} \;\; \leq \;\; Z\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}
+\end{equation*}
+Taking expectation on both sides yields:
+\begin{equation*}
+E\!\left[\; \alpha \overset{{\color{white}-}}{\cdot} I_{\{Z \,\geq\, \alpha\}} \;\right]
+\;\; \leq \;\;
+	E\!\left[\; Z \;\right]\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}\,,
+\end{equation*}
+which immediately implies:
+\begin{equation*}
+E\!\left[\; I_{\{Z \,\overset{{\color{white}.}}{\geq}\, \alpha\}} \;\right]
+\;\; \leq \;\;
+	\dfrac{ E\!\left[\; Z \;\right] }{ \alpha }\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}\,.
+\end{equation*}
+Hence,
+\begin{equation*}
+P\!\left(\; Z \,\overset{{\color{white}.}}{\geq}\, \alpha \;\right)
+\;\; = \;\;
+	E\!\left[\; I_{\{Z \,\overset{{\color{white}.}}{\geq}\, \alpha\}} \;\right]
+\;\; \leq \;\;
+	\dfrac{ E\!\left[\; Z \;\right] }{ \alpha }\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}\,,
+\end{equation*}
+as required.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
 \begin{lemma}[Hoeffding's Lemma]
 \label{lemma:HoeffdingLemma}
-\mbox{}\vskip 0.1cm
+\mbox{}\vskip 0.2cm
 \noindent
 Let \,$X : (\Omega,\mathcal{A}) \longrightarrow \Re$\, be an
 $\Re$-valued random variable and $a,b \in \Re$, with $a < b$, such that
@@ -170,7 +224,7 @@ This completes the proof of Hoeffding's Lemma.
 \vskip 1.0cm
 \begin{lemma}[Hoeffding's Inequality]
 \label{lemma:HoeffdingInequality}
-\mbox{}\vskip 0.1cm
+\mbox{}\vskip 0.2cm
 \noindent
 Suppose:
 \begin{itemize}
