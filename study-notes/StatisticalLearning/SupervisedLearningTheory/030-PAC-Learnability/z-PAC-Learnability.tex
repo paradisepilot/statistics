@@ -74,7 +74,14 @@ of the agnostically PAC learnable hypothesis class $\mathcal{H}$, and the functi
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 1.0cm
+\vskip 0.5cm
+\begin{remark}\quad
+PAC stands for ``probably approximately correct.''
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
 \begin{remark}[Agnostic PAC Learnability in plain English]
 \mbox{}\vskip 0.1cm
 \noindent
@@ -93,6 +100,42 @@ the event that
 the best-in-class probability of error}
 \end{equation*}
 has probability exceeding $1 - \delta$, for all sufficiently large $n$.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{remark}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose the hypothesis class $\mathcal{H}$ is \,\textbf{agnostically PAC learnable}\,
+with viable learning algorithm
+\begin{equation*}
+\mathcal{F} \; = \; \left\{\;
+	h_{n} : \left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow\mathcal{H}
+	\;\right\}_{n\in\N}\,.
+\end{equation*}
+Then,
+for each $\left(\,\mathcal{X}\times\{0,1\}\right)$-valued random variable
+$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow \mathcal{X}\times\{0,1\}$\,,
+and for each $\varepsilon > 0$, we have
+\begin{equation*}
+\underset{n\rightarrow\infty}{\lim}\;\,P_{{\color{red}D_{n}}}\!\!\left(\;
+	P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}_{n}({\color{red}D_{n}})(X) \neq Y \,\right)
+		\,-\,
+		\underset{h\in\mathcal{H}}{\inf}\,P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}(X) \neq Y \,\right)
+	\,\leq\,
+		\varepsilon
+	\;\right)
+\;\; = \;\;
+	1\,,
+\end{equation*}
+where
+\,$D_{n} = \left((X_{1},Y_{1}),(X_{2},Y_{2}),\,\overset{{\color{white}\vert}}{\ldots}\,,(X_{n},Y_{n})\right)
+	: \Omega \longrightarrow
+	\left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\,\right)^{n}$\,
+is such that the
+$(X_{i},Y_{i})$'s are I.I.D. copies of $(X,Y)$.
 \end{remark}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
