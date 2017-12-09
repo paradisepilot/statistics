@@ -27,7 +27,7 @@ a learning algorithm
 \mathcal{F}
 \;\; : = \;\;
 	\left\{\;\,
-		h_{n} : \left(\;\mathcal{X} \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
+		F_{n} : \left(\;\mathcal{X} \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
 		\; \longrightarrow \;\mathcal{H}
 		\;\;\right\}_{n\in\N}
 \end{equation*}
@@ -42,15 +42,11 @@ such that
 \item
 	for each $\left(\,\mathcal{X}\times\{0,1\}\right)$-valued random variable
 	$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow \mathcal{X}\times\{0,1\}$\,,
-%\item
-%	for each probability space $(\Omega,\mathcal{A},\mu)$ and
-%	random variables $X : \Omega \longrightarrow \Re^{d}$,
-%	$Y : \Omega \longrightarrow \{0,1\}$\,,
 \end{itemize}
 we have:
 \begin{equation*}
 P_{{\color{red}D_{n}}}\!\!\left(\;
-	P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}_{n}({\color{red}D_{n}})(X) \neq Y \,\right)
+	P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{F}_{n}({\color{red}D_{n}})(X) \neq Y \,\right)
 		\,-\,
 		\underset{h\in\mathcal{H}}{\inf}\,P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}(X) \neq Y \,\right)
 	\,\leq\,
@@ -82,8 +78,8 @@ of the agnostically PAC learnable hypothesis class $\mathcal{H}$, and the functi
 	``PAC'' stands for ``probably approximately correct.''
 \item
 	``Agnostic'' refers to the fact that the \textbf{generalization error}
-	\,$P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}_{n}({\color{red}D_{n}})(X) \neq Y \,\right)$\,
-	of the learned-from-data prediction rule \,$h_{n}(D_{n}) : \mathcal{X} \longrightarrow \{0,1\}$\,
+	\,$P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{F}_{n}({\color{red}D_{n}})(X) \neq Y \,\right)$\,
+	of the learned-from-data prediction rule \,$F_{n}(D_{n}) : \mathcal{X} \longrightarrow \{0,1\}$\,
 	is being compared to the ``best-in-class'' prediction error
 	\,$\underset{h\in\mathcal{H}}{\inf}\,P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}(X) \neq Y \,\right)$\,
 	(rather than being compared to zero).
@@ -100,14 +96,14 @@ A hypothesis class $\mathcal{H}$ is \,\textbf{agnostically PAC learnable}\, if
 there exists a learning algorithm
 \begin{equation*}
 \mathcal{F} \; = \; \left\{\;
-	h_{n} : \left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow\mathcal{H}
+	F_{n} : \left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow\mathcal{H}
 	\;\right\}_{n\in\N}
 \end{equation*}
 such that, given any ``accuracy tolerance'' $\varepsilon > 0$ and
 ``confidence level'' $0 <1 - \delta < 1$, 
 the event that
 \begin{equation*}
-\textnormal{$h_{n}$ has a probability of error within the $\varepsilon$-ball of
+\textnormal{$F_{n}$ has a probability of error within the $\varepsilon$-ball of
 the best-in-class probability of error}
 \end{equation*}
 has probability exceeding $1 - \delta$, for all sufficiently large $n$.
@@ -123,7 +119,7 @@ Suppose the hypothesis class $\mathcal{H}$ is \,\textbf{agnostically PAC learnab
 with viable learning algorithm
 \begin{equation*}
 \mathcal{F} \; = \; \left\{\;
-	h_{n} : \left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow\mathcal{H}
+	F_{n} : \left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow\mathcal{H}
 	\;\right\}_{n\in\N}\,.
 \end{equation*}
 Then,
@@ -132,7 +128,7 @@ $(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow \mathcal{X}\times\{0,1\}$\,,
 and for each $\varepsilon > 0$, we have
 \begin{equation*}
 \underset{n\rightarrow\infty}{\lim}\;\,P_{{\color{red}D_{n}}}\!\!\left(\;
-	P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}_{n}({\color{red}D_{n}})(X) \neq Y \,\right)
+	P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{F}_{n}({\color{red}D_{n}})(X) \neq Y \,\right)
 		\,-\,
 		\underset{h\in\mathcal{H}}{\inf}\,P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}(X) \neq Y \,\right)
 	\,\leq\,
@@ -152,7 +148,7 @@ $(X_{i},Y_{i})$'s are I.I.D. copies of $(X,Y)$.
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 1.0cm
-\begin{remark}[Countrapositive of Agnostic PAC Learnability]
+\begin{remark}[Contrapositive of Agnostic PAC Learnability]
 \mbox{}\vskip 0.1cm
 \noindent
 A hypothesis class
@@ -160,7 +156,7 @@ A hypothesis class
 is NOT agnostically PAC learnable if, for every learning algorithm
 \begin{equation*}
 \left\{\;\,
-	h_{n} : \left(\;\mathcal{X} \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
+	F_{n} : \left(\;\mathcal{X} \overset{{\color{white}.}}{\times} \{0,1\} \;\right)^{n}
 	\; \longrightarrow \;\mathcal{H}
 	\;\;\right\}_{n\in\N}\,,
 \end{equation*}
@@ -176,7 +172,7 @@ there exist
 such that, given any $n_{0} \in \N$, we have
 \begin{equation*}
 P_{D_{n}}\!\!\left(\;
-	P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}_{n}(D_{n})(X) \neq Y \,\right)
+	P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{F}_{n}(D_{n})(X) \neq Y \,\right)
 		\,-\,
 		\underset{h\in\mathcal{H}}{\inf}\,P_{X,Y}\!\!\left(\,\overset{{\color{white}.}}{h}(X) \neq Y \,\right)
 	\,\leq\,
