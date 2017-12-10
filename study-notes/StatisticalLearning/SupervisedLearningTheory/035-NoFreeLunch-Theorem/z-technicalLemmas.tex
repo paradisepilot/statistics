@@ -1,0 +1,558 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}[Markov's Inequality]
+\label{lemma:MarkovInequality}
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose \,$Z : (\Omega,\mathcal{A},\mu) \longrightarrow [0,\infty)$\,
+is a non-negative $\Re$-valued random variable.
+Then,
+\begin{equation*}
+P\!\left(\; Z \,\overset{{\color{white}.}}{\geq}\, \alpha \;\right)
+\;\; \leq \;\;
+	\dfrac{ E\!\left[\; Z \;\right] }{ \alpha }\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}
+\end{equation*}
+\end{lemma}
+\proof
+First, observe that
+\begin{equation*}
+\alpha \cdot I_{\{Z \,\geq\, \alpha\}} \;\; \leq \;\; Z\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}
+\end{equation*}
+Taking expectation on both sides yields:
+\begin{equation*}
+E\!\left[\; \alpha \overset{{\color{white}-}}{\cdot} I_{\{Z \,\geq\, \alpha\}} \;\right]
+\;\; \leq \;\;
+	E\!\left[\; Z \;\right]\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}\,,
+\end{equation*}
+which immediately implies:
+\begin{equation*}
+E\!\left[\; I_{\{Z \,\overset{{\color{white}.}}{\geq}\, \alpha\}} \;\right]
+\;\; \leq \;\;
+	\dfrac{ E\!\left[\; Z \;\right] }{ \alpha }\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}\,.
+\end{equation*}
+Hence,
+\begin{equation*}
+P\!\left(\; Z \,\overset{{\color{white}.}}{\geq}\, \alpha \;\right)
+\;\; = \;\;
+	E\!\left[\; I_{\{Z \,\overset{{\color{white}.}}{\geq}\, \alpha\}} \;\right]
+\;\; \leq \;\;
+	\dfrac{ E\!\left[\; Z \;\right] }{ \alpha }\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}\,,
+\end{equation*}
+as required.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
+\begin{lemma}[Hoeffding's Lemma]
+\label{lemma:HoeffdingLemma}
+\mbox{}\vskip 0.2cm
+\noindent
+Let \,$X : (\Omega,\mathcal{A}) \longrightarrow \Re$\, be an
+$\Re$-valued random variable and $a,b \in \Re$, with $a < b$, such that
+\begin{equation*}
+P\!\left(\;a \leq X \leq b\;\right) \,=\, 1\,,
+\quad\textnormal{and}\quad
+E\!\left[\,X\,\right] \,=\, 0\,.
+\end{equation*}
+Then,
+\begin{equation*}
+E\!\left[\;\overset{{\color{white}-}}{\exp}\!\left(\,\lambda\,X\,\right)\;\right]
+	\;\; \leq \;\;
+	\exp\!\left(\,\dfrac{\lambda^{2}\,(b-a)^{2}}{8}\,\right)\,,
+\quad
+\textnormal{for each \,$\lambda > 0$}\,.
+\end{equation*}
+\end{lemma}
+\proof
+Since \,$x \longmapsto \exp\!\left(\,\lambda\,x\,\right)$\, is a convex function,
+we have
+\begin{equation*}
+\exp\!\left(\,\lambda\,x\,\right)
+\;\; \leq \;\;
+	\alpha \cdot \exp\!\left(\,\lambda\,a\,\right)
+	\, + \,
+	(1-\alpha) \cdot \exp\!\left(\,\lambda\,b\,\right)\,,
+\quad
+\textnormal{for each \,$x \in [\,a,b\,]$\, and \,$\alpha \in (0,1)$}\,.
+\end{equation*}
+Setting \,$\alpha = \dfrac{b - x}{b - a}$\, yields
+\begin{equation*}
+\exp\!\left(\,\lambda\,x\,\right)
+\;\; \leq \;\;
+	\dfrac{b-x}{b-a} \cdot \exp\!\left(\,\lambda\,a\,\right)
+	\, + \,
+	\dfrac{x-a}{b-a} \cdot \exp\!\left(\,\lambda\,b\,\right)
+\end{equation*}
+Taking expectation now gives
+\begin{equation*}
+E\!\left[\;\overset{{\color{white}-}}{\exp}\!\left(\,\lambda\,X\,\right)\;\right]
+\;\; \leq \;\;
+	\dfrac{b-E\!\left[\,X\,\right]}{b-a} \cdot \exp\!\left(\,\lambda\,a\,\right)
+	\, + \,
+	\dfrac{E\!\left[\,X\,\right]-a}{b-a} \cdot \exp\!\left(\,\lambda\,b\,\right)
+\;\; = \;\;
+	\dfrac{b}{b-a} \cdot \exp\!\left(\,\lambda\,a\,\right)
+	\, - \,
+	\dfrac{a}{b-a} \cdot \exp\!\left(\,\lambda\,b\,\right)\,,
+\end{equation*}
+since \,$E\!\left[\,X\,\right] \,=\, 0$.\,
+Now, let \,$t \,:=\, \lambda\cdot(b-a)$, \;$p \,:=\, \dfrac{-a}{b-a}$\;
+and \,$f(t) \,:=\, -p\,t + \log\!\left(\,1-p+p\,e^{t}\,\right)$.
+Then,
+\begin{equation*}
+-\,p\,t \,=\, -\left(\,\dfrac{-a}{b-a}\,\right)\cdot\lambda\cdot(b-a) \,=\, \lambda\,a\,
+\quad\quad\textnormal{and}\quad\quad
+1 \, - \, p \,=\, \cdots \,=\, \dfrac{b}{b-a} 
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+\exp\!\left(\,\overset{{\color{white}.}}{f}(t)\,\right)
+&=&
+	\exp\!\left(\;
+		-\,p\,t \,\overset{{\color{white}.}}{+}\, \log(\,1-p+p\,e^{t}\,)
+		\;\right)
+\;\; = \;\;
+	\exp\!\left(\;-\,p\,t \;\right) \cdot \left[\; 1 \,-\, p \,\overset{{\color{white}.}}{+}\, p\,e^{t} \;\right]
+\\
+&=&
+	\exp\!\left(\, \lambda\,a \,\right)
+	\cdot
+	\left[\;\,
+		\dfrac{b}{b-a}
+		\,\overset{{\color{white}.}}{+}\,
+		\left(\dfrac{-a}{b-a}\right)\,\exp(\,\lambda\,(b-a)\,)
+		\;\right]
+\\
+&=&
+	\dfrac{b}{b-a} \cdot \exp\!\left(\,\lambda\,a\,\right)
+	\, - \,
+	\dfrac{a}{b-a} \cdot \exp\!\left(\,\lambda\,b\,\right)
+\end{eqnarray*}
+We therefore see that
+\begin{equation*}
+E\!\left[\;\overset{{\color{white}-}}{\exp}\!\left(\,\lambda\,X\,\right)\;\right]
+\;\; \leq \;\;
+	\dfrac{b}{b-a} \cdot \exp\!\left(\,\lambda\,a\,\right)
+	\, - \,
+	\dfrac{a}{b-a} \cdot \exp\!\left(\,\lambda\,b\,\right)
+\;\; = \;\;
+	\exp\!\left(\,\overset{{\color{white}.}}{f}(t)\,\right)
+\end{equation*}
+Thus, to complete the proof of Hoeffding's Lemma, it suffices to show that
+\,$f(t) \,\leq\, \dfrac{t^{2}}{8}$,\, for each \,$t \geq 0$.\,
+But this last inequality follows easily from elementary Calculus:
+First, note that
+$f^{\prime}(t)\,=\,-\,p+\dfrac{p\,e^{t}}{1-p+p\,e^{t}}$\,,\, and
+\begin{eqnarray*}
+f^{\prime\prime}(t)
+& = &
+	\dfrac{p\,e^{t}}{1 - p + p\,e^{t}}
+	\,-\,
+	\dfrac{p\,e^{t} \cdot p\,e^{t}}{(\,1 - p + p\,e^{t}\,)^{2}}
+\;\; = \;\;
+	\dfrac{p\,e^{t}}{1 - p + p\,e^{t}}
+	\cdot
+	\left(\,1 \,-\, \dfrac{p\,e^{t}}{1 - p + p\,e^{t}}\,\right)
+\\
+& \leq &
+	\underset{\zeta\,\in\,\Re}{\sup}\;\left\{\,\zeta\,(1\overset{{\color{white}.}}{-}\zeta)\,\right\}
+\;\; = \;\;
+	\dfrac{1}{4}\,,
+	\quad\textnormal{for each \,$t \in \Re$}
+\end{eqnarray*}
+Since \,$f^{\prime}(0) = 0$,\, we have
+\begin{equation*}
+f^{\prime}(t)
+\;\; = \;\;
+	f^{\prime}(t) \,-\, 0
+\;\; = \;\;
+	f^{\prime}(t) \,-\, f^{\prime}(0)
+\;\; = \;\;
+	\int^{t}_{0}\; f^{\prime\prime}(\zeta) \;\d\,\zeta
+\;\; \leq \;\;
+	\int^{t}_{0}\;\dfrac{1}{4}\;\d\,\zeta
+\;\; = \;\;
+	\dfrac{t}{4}\,,
+\quad\textnormal{for each \,$t \geq 0$}.
+\end{equation*}
+Since \,$f(0) = 0$,\, we have
+\begin{equation*}
+f(t)
+\;\; = \;\;
+	f(t) \,-\, 0
+\;\; = \;\;
+	f(t) \,-\, f(0)
+\;\; = \;\;
+	\int^{t}_{0}\; f^{\prime}(\zeta) \;\d\,\zeta
+\;\; \leq\;\;
+	\int^{t}_{0}\;\dfrac{\zeta}{4}\;\d\,\zeta
+\; = \;
+	\dfrac{t^{2}}{8}\,,
+\quad\textnormal{for each \,$t \geq 0$}.
+\end{equation*}
+This completes the proof of Hoeffding's Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
+\begin{lemma}[Hoeffding's Inequality]
+\label{lemma:HoeffdingInequality}
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$Z : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\,
+	is an $\Re$-valued random variable.
+\item
+	There exist \,$a < b \in \Re$\, such that \,$P\!\left(\,a \leq Z \leq b\,\right) \,=\, 1$.
+\end{itemize}
+Then, we have
+\begin{equation*}
+P\!\left(\;\,\left\vert\,
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+	\,\right\vert
+	\,>\,\varepsilon
+	\;\right)
+\;\; \leq \;\;
+	2\,\exp\!\left(\;
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)\,,
+\quad
+\textnormal{for each \,$\varepsilon > 0$}\,,
+\end{equation*}
+where
+\,$\mu \, := \, E\!\left[\,Z\,\right]$\, and
+\,$Z_{1}, Z_{2}, \ldots, Z_{n} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\,
+are I.I.D. copies of $Z$.
+\end{lemma}
+\proof
+First, note that for any \,$\lambda > 0$,\, we have
+\begin{eqnarray*}
+P\!\left(\;\,
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+	\,>\,\varepsilon
+	\;\right)
+& \leq &
+	P\!\left(\;\,
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+		\,\geq\,\varepsilon
+		\;\right)
+\;\; = \;\;
+	P\!\left(\;\,
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,(Z_{i} \, - \, \mu)
+		\,\geq\,\varepsilon
+		\;\right)
+\\
+& = &
+	P\!\left(\;
+		\exp\!\left(\,\dfrac{{\color{red}\lambda}}{n}\;\overset{n}{\underset{i=1}{\sum}}\,(Z_{i} \, - \, \mu)\,\right)
+		\,\geq\, \exp(\,{\color{red}\lambda}\,\varepsilon\,)
+		\;\right),
+	\quad
+	\textnormal{by $\lambda > 0$ and monotonicity of \,$\exp(\,\cdot\,)$}
+\\
+& \leq &
+	\left.E\!\left[\;
+		\exp\!\left(\,\dfrac{\lambda}{n}\;\overset{n}{\underset{i=1}{\sum}}\,(Z_{i} \, - \, \mu)\,\right)
+		\;\right]
+		\right\slash \exp(\,\lambda\,\varepsilon\,)\,,
+	\quad
+	\textnormal{by Markov's Inequality, Lemma \ref{lemma:MarkovInequality}}
+%\\
+%& = &
+%	\left.E\!\left[\;\,
+%		\overset{n}{\underset{i=1}{\prod}}\;
+%		\exp\!\left(\,\dfrac{\lambda}{n}\;(Z_{i} \, - \, \mu)\,\right)
+%		\;\right]
+%		\right\slash \exp(\,\lambda\,\varepsilon\,)
+\\
+& = &
+	\overset{n}{\underset{i=1}{\prod}}\;
+	\left.E\!\left[\;\,
+		\exp\!\left(\,\dfrac{\lambda}{n}\;(Z_{i} \, - \, \mu)\,\right)
+		\;\right]
+		\right\slash \exp(\,\lambda\,\varepsilon\,)\,,
+	\quad
+	\textnormal{by independence of the $Z_{i}$'s}
+\\
+& \leq &
+	\overset{n}{\underset{i=1}{\prod}}\;
+	\left.\exp\!\left(\,\dfrac{\lambda^{2}\cdot(b/n-a/n)^{2}}{8}\,\right)
+		\right\slash \exp(\,\lambda\,\varepsilon\,)\,,
+	\quad
+	\textnormal{by Hoeffding's Lemma, Lemma \ref{lemma:HoeffdingLemma}}
+\\
+& = &
+	\overset{n}{\underset{i=1}{\prod}}\;
+	\left.\exp\!\left(\,\dfrac{\lambda^{2}\cdot(b-a)^{2}}{8\,n^{2}}\,\right)
+		\right\slash \exp(\,\lambda\,\varepsilon\,)
+\\
+& = &
+	\exp\!\left(\;
+		n\cdot\dfrac{\lambda^{2}\cdot(b-a)^{2}}{8\,n^{2}}
+		\; - \;
+		\lambda\,\varepsilon
+		\;\right)
+\;\; = \;\;
+	\exp\!\left(\;
+		- \, \lambda\,\varepsilon
+		\; + \;
+		\dfrac{\lambda^{2}\cdot(b-a)^{2}}{8\,n}
+		\;\right)
+\end{eqnarray*}
+Now, choosing \,$\lambda \,=\, \dfrac{4\,n\,\varepsilon}{(b-a)^{2}}$\, yields:
+\begin{equation*}
+- \, \lambda\,\varepsilon \; + \; \dfrac{\lambda^{2}\cdot(b-a)^{2}}{8\,n}
+\;\; = \;\;
+	- \, \dfrac{4\,n\,\varepsilon}{(b-a)^{2}}\cdot\varepsilon
+	\; + \;
+	\dfrac{16\,n^{2}\,\varepsilon^{2}}{}\cdot\dfrac{(b-a)^{2}}{8\,n}
+\;\; = \;\;
+	- \, \dfrac{4\,n\,\varepsilon^{2}}{(b-a)^{2}}
+	\; + \; \dfrac{2\,n\,\varepsilon^{2}}{(b-a)^{2}}
+\;\; = \;\;
+	- \, \dfrac{2\,n\,\varepsilon^{2}}{(b-a)^{2}}
+\end{equation*}
+We therefore see that, via the above choice of \,$\lambda \,=\, \dfrac{4\,n\,\varepsilon}{(b-a)^{2}}$\,:
+\begin{eqnarray*}
+P\!\left(\;\,
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+	\,>\,\varepsilon
+	\;\right)
+& \leq &
+	\exp\!\left(\;
+		- \, \lambda\,\varepsilon
+		\; + \;
+		\dfrac{\lambda^{2}\cdot(b-a)^{2}}{8\,n}
+		\;\right)
+\;\; = \;\;
+	\exp\!\left(\,
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)
+\end{eqnarray*}
+On the other hand,
+\begin{eqnarray*}
+P\!\left(\;\,
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+	\,<\, -\,\varepsilon
+	\;\right)
+& \leq &
+	P\!\left(\;\,
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+		\,\leq\,-\,\varepsilon
+		\;\right)
+\;\; = \;\;
+	P\!\left(\;\,
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,(Z_{i} \, - \, \mu)
+		\,\leq\, -\,\varepsilon
+		\;\right)
+\\
+& = &
+	P\!\left(\;
+		- \, \dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,(Z_{i} \, - \, \mu)
+		\,\geq\, \varepsilon
+		\;\right)
+\,\;\; \leq \;\;\,
+	\cdots
+\,\;\; \leq \;\;\,
+	\exp\!\left(\,
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)
+\end{eqnarray*}
+Lastly, we may now conclude that, for each \,$\varepsilon > 0$\,,
+\begin{eqnarray*}
+P\!\left(\;\,\left\vert\,
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+	\,\right\vert
+	\,>\,\varepsilon
+	\;\right)
+& = &
+	P\!\left(\;
+		\left\{\,
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+			\,>\,\varepsilon
+			\,\right\}
+		\;\bigcup\;
+		\left\{\,
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+			\,<\,-\,\varepsilon
+			\,\right\}
+		\;\right)
+\\
+& \leq &
+	P\!\left(\;
+		\left\{\,
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+			\,>\,\varepsilon
+			\,\right\}
+		\;\right)
+	\; + \;
+	P\!\left(\;
+		\left\{\,
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \, - \, \mu
+			\,<\,-\,\varepsilon
+			\,\right\}
+		\;\right)
+\\
+& \leq &
+	\exp\!\left(\;
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)
+	\; + \;
+	\exp\!\left(\;
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)
+	\;\; = \;\;
+	2\,\exp\!\left(\;
+		-\,\dfrac{
+			2\,n\,\varepsilon^{2}
+			}{
+			(b-a)^{2}
+			}
+		\;\right)\,.
+\end{eqnarray*}
+This completes the proof Hoeffding's Inequality.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
+\begin{lemma}[Zero true risk implies empirical risk equals zero with probability one]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space, and
+\item
+	$(X,Y) : (\Omega,\mathcal{A},\mu) \longrightarrow \mathcal{X}\times\{0,1\}$\,
+	is an $\left(\,\mathcal{X}\times\{0,1\}\right)$-valued random variable
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\end{itemize}
+If \,$h : \mathcal{X} \overset{{\color{white}-}}{\longrightarrow} \{0,1\}$\,
+is a function with zero true risk, i.e.
+\begin{equation*}
+P\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y \,\right) \,=\, 0\,,
+\end{equation*}
+then its empirical risk equals zero with probability one, i.e.
+\begin{equation*}
+P_{\,D_{n}}\!\!\left(\;
+	\textnormal{EmpiricalRisk}(\;h\,\overset{{\color{white}-}}{;}\,D_{n}\,) \,=\, 0
+	\;\right)
+\;\, = \;\;
+P_{\,D_{n}}\!\!\left(\;
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;
+	I_{\left\{h(X_{i}) \,\overset{{\color{white}.}}{\neq}\, Y_{i}\right\}} \,=\, 0
+	\;\right)
+\;\, = \;\;
+	1\,,
+\quad
+\textit{for each \,$n\in\N$}\,,
+\end{equation*}
+where
+\,$D_{n} = \left((X_{1},Y_{1}),(X_{2},Y_{2}),\,\overset{{\color{white}\vert}}{\ldots}\,,(X_{n},Y_{n})\right)
+	: \Omega \longrightarrow
+	\left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\,\right)^{n}$\,
+is such that the $(X_{i},Y_{i})$'s are I.I.D. copies of $(X,Y)$.
+\end{lemma}
+\proof
+Note that
+\begin{equation*}
+P\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y \,\right) \,=\, 0
+\quad\Longleftrightarrow\quad
+P\!\left(\,h(X) \overset{{\color{white}-}}{=} Y \,\right) \,=\, 1
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+P_{\,D_{n}}\!\!\left(\;
+	\textnormal{EmpiricalRisk}(\;h\,\overset{{\color{white}-}}{;}\,D_{n}\,) \,=\, 0
+	\;\right)
+& = &
+	P_{\,D_{n}}\!\!\left(\;
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;
+		I_{\left\{h(X_{i}) \,\overset{{\color{white}.}}{\neq}\, Y_{i}\right\}} \,=\, 0
+		\;\right)
+\\
+& = &
+	P_{\,D_{n}}\!\!\left(\;
+		h(X_{i}) \,\overset{{\color{white}-}}{=}\, Y_{i}\,,\;\forall\;i\in\{1,\ldots,n\}
+		\;\right)
+\\
+& = &
+	\overset{n}{\underset{i=1}{\prod}}\;
+	P\!\left(\; h(X_{i}) \,\overset{{\color{white}-}}{=}\, Y_{i} \;\right)
+\\
+& = &
+	P\!\left(\; h(X) \,\overset{{\color{white}-}}{=}\, Y \;\right)^{n}
+	\;\; = \;\;\, 1^{n} \;\; = \;\; 1\,,
+\end{eqnarray*}
+as required.
+\qed
+
+\begin{remark}
+\mbox{}\vskip 0.1cm
+\noindent
+Note that the existence of a function \,$h : \mathcal{X} \longrightarrow \{0,1\}$\,
+with zero risk, i.e.
+\begin{equation*}
+P\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y \,\right) \,=\, 0
+\end{equation*}
+implies that, with probability one, $Y$ is in fact a deterministic function of $X$.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
