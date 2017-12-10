@@ -136,12 +136,12 @@ Fix any subset $\mathcal{C} \subset \mathcal{X}$ with $\vert\,\mathcal{C}\,\vert
 Let $\{0,1\}^{\mathcal{C}}$ be the collection of all (arbitrary) $\{0,1\}$-valued functions defined on $\mathcal{C}$.
 Note that $\left\vert\,\{0,1\}^{\mathcal{C}}\right\vert \,=\, 2^{\vert\,\mathcal{C}\,\vert} \, = \, 2^{2n}$.
 Let $\{0,1\}^{\mathcal{C}} = \left\{\,g_{1},\, g_{2},\, \ldots,\, g_{2^{2n}}\,\right\}$ be an enumeration of $\{0,1\}^{\mathcal{C}}$.
-For each $i \in \{1,2,\ldots,2^{2n}\}$, define a probability measure $\mathcal{D}_{i}$ on $\mathcal{C} \times \{0,1\}$ via
+For each $i \in \{1,2,\ldots,2^{2n}\}$, define a probability measure $\mathcal{D}_{i}$ on $\mathcal{X} \times \{0,1\}$ via
 \begin{equation*}
 \mathcal{D}_{i}\!\left(\,\left\{\,(x\overset{{\color{white}\vert}}{,}y)\,\right\}\,\right)
 \;\; := \;\;
-	\left\{\begin{array}{cc}
-		1\,/\,\vert\,C\,\vert\, \;=\; 1\,/\,2n\,, & \textnormal{if \,$y = g_{i}(x)$} \\
+	\left\{\begin{array}{cl}
+		1\,/\,\vert\,C\,\vert\, \;=\; 1\,/\,2n\,, & \textnormal{if \,$x \in \mathcal{C}$\, and \,$y = g_{i}(x)$} \\
 		\overset{{\color{white}\vert}}{0}, & \textnormal{otherwise}
 		\end{array}\right.
 \end{equation*}
@@ -150,7 +150,7 @@ For each $i \in \{1,2,\ldots,2^{2n}\}$, define a probability measure $\mathcal{D
 \noindent
 \textbf{Claim 1:}\quad
 For every
-\,$h : \left(\,\mathcal{C}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow \,\{0,1\}^{\mathcal{C}}$\,,
+\,$h : \left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow \,\{0,1\}^{\mathcal{X}}$\,,
 we have:
 \begin{equation*}
 \underset{1 \,\leq\, i \,\leq\, 2^{2n}}{\max}\left\{\;
@@ -166,7 +166,7 @@ we have:
 \noindent
 \textbf{Claim 2:}\quad
 For every
-\,$h : \left(\,\mathcal{C}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow \,\{0,1\}^{\mathcal{C}}$\,,
+\,$h : \left(\,\mathcal{X}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow \,\{0,1\}^{\mathcal{X}}$\,,
 there exist a function \,$g : \mathcal{X} \longrightarrow \{0,1\}$\, and
 a probability measure \,$\mathcal{D}$\, on \,$\mathcal{X} \times \{0,1\}$\,
 such that
@@ -184,7 +184,7 @@ P_{\,(X,Y)\,\sim\,\mathcal{D}}\!\left(\,Y \overset{{\color{white}-}}{=} g(X)\,\r
 \noindent
 \textbf{Claim 3:}\quad
 For every
-\,$h : \left(\,\mathcal{C}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow \,\{0,1\}^{\mathcal{C}}$\,,
+\,$h : \left(\,\mathcal{C}\overset{{\color{white}.}}{\times}\{0,1\}\right)^{n} \longrightarrow \,\{0,1\}^{\mathcal{X}}$\,,
 there exist a function \,$g : \mathcal{X} \longrightarrow \{0,1\}$\, and
 a probability measure \,$\mathcal{D}$\, on \,$\mathcal{X} \times \{0,1\}$\,
 such that
@@ -313,7 +313,7 @@ On the other hand,
 \begin{eqnarray*}
 P_{\,(X,Y)\,\sim\,\mathcal{D}_{i}}\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y\,\right)
 & = &
-	\underset{(x,y)\,\in\,\mathcal{C}\times\{0,1\}}{\sum}\; \mathbf{1}_{\{h(x) \neq y\}}
+	\underset{(x,y)\,\in\,\mathcal{X}\times\{0,1\}}{\sum}\; \mathbf{1}_{\{h(x) \neq y\}}
 	\cdot P_{\,\mathcal{D}_{i}}\!\left(\,(X,Y)\overset{{\color{white}-}}{=}(x,y)\,\right)
 \\
 &= &
