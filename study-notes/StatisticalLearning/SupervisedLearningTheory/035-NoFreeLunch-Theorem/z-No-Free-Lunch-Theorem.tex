@@ -22,8 +22,13 @@
 Suppose:
 \begin{itemize}
 \item
+	$\mathcal{X}$ is a measurable space, i.e. $\mathcal{X}$ is a non-empty set equipped with a $\sigma$-algebra,
+	and \,$\vert\,\mathcal{X}\,\vert \,\in\, \N\cup\{+\infty\}$\,.
+\item
 	$\mathcal{H} \; = \; \left\{\; h : \mathcal{X} \overset{{\color{white}\vert}}{\longrightarrow} \{0,1\}\;\right\}$\,
-	is a hypothesis class, where \,$\vert\,\mathcal{X}\,\vert \,\in\, \N\cup\{+\infty\}$\,, and
+	is a hypothesis class, i.e.
+	$\mathcal{H}$ is a non-empty collection of measurable $\{0,1\}$-valued functions defined on the
+	measurable space $\mathcal{X}$.
 \item
 	$\mathcal{F}
 	\;\; : = \;\;
@@ -39,8 +44,9 @@ there exists a probability measure \,$\mathcal{D}$\, on
 such that
 \begin{enumerate}
 \item
-	$Y$ equals a deterministic function of $X$ $\mathcal{D}$-almost surely, i.e. there exists a function
-	\,$g : \mathcal{X} \longrightarrow \{0,1\} $\, ($g$ need not be in $\mathcal{H}$)\, such that
+	$Y$ equals a deterministic function of $X$ $\mathcal{D}$-almost surely, i.e. there exists a
+	measurable function \,$g : \mathcal{X} \longrightarrow \{0,1\} $\, ($g$ need not be in $\mathcal{H}$)\,
+	such that
 	\begin{equation*}
 	P_{\,(X,Y)\,\sim\,\mathcal{D}}\!\left(\,g(X) \,\overset{{\color{white}-}}{=}\, Y\,\right) = 1\,,
 	%\quad\textnormal{hence,}\;\;\;
@@ -305,11 +311,35 @@ On the other hand,
 \\
 & \geq &
 \underset{1\,\leq\, k \,\leq\, (2n)^{n}}{\min}\left\{\;
-		\dfrac{1}{2^{2n}}\;\,
-		\overset{2^{2n}}{\underset{i\,=\,1}{\sum}}\;
-		P_{\,(X,Y)\,\sim\,\mathcal{D}_{i}}\!\left(\,h(d^{(n,i)}_{k})(X) \overset{{\color{white}.}}{\neq} Y\,\right)
-		\;\right\}
+	\dfrac{1}{2^{2n}}\;\,
+	\overset{2^{2n}}{\underset{i\,=\,1}{\sum}}\;
+	P_{\,(X,Y)\,\sim\,\mathcal{D}_{i}}\!\left(\,h(d^{(n,i)}_{k})(X) \overset{{\color{white}.}}{\neq} Y\,\right)
+	\;\right\}
 \end{eqnarray*}
+Now, note that Claim 1 now follows immediately from the following:
+
+\vskip 0.5cm
+\begin{center}
+\begin{minipage}{6.5in}
+\noindent
+\underline{Claim${\color{white}\textnormal{j}}$1A:}
+\begin{equation*}
+\dfrac{1}{2^{2n}}\;\,
+\overset{2^{2n}}{\underset{i\,=\,1}{\sum}}\;
+P_{\,(X,Y)\,\sim\,\mathcal{D}_{i}}\!\left(\,h(d^{(n,i)}_{k})(X) \overset{{\color{white}.}}{\neq} Y\,\right)
+\;\; \geq \;\;
+	\dfrac{1}{4}\,,
+\quad
+\textnormal{for each \,$k \in \left\{1,2,\overset{{\color{white}\vert}}{\ldots},(2n)^{n}\right\}$}
+\end{equation*}
+\end{minipage}
+\end{center}
+\vskip 0.1cm
+\underline{Proof of Claim${\color{white}\textnormal{j}}$1A:}
+\vskip 0.2cm
+\noindent
+First, note that for each \,$\mathcal{D}_{i}$\, and
+for each measurable \,$h : \mathcal{X} \longrightarrow \{0,1\}$,\, we have
 \begin{eqnarray*}
 P_{\,(X,Y)\,\sim\,\mathcal{D}_{i}}\!\left(\,h(X) \overset{{\color{white}.}}{\neq} Y\,\right)
 & = &
@@ -324,9 +354,72 @@ P_{\,(X,Y)\,\sim\,\mathcal{D}_{i}}\!\left(\,h(X) \overset{{\color{white}.}}{\neq
 	\underset{x\,\in\,\mathcal{C}}{\sum}\; \mathbf{1}_{\{h(x) \neq g_{i}(x)\}}
 	\cdot \dfrac{1}{{\color{white}.}\vert\,\mathcal{C}\,\vert{\color{white}.}}
 	\;\; = \;\;
-	\dfrac{1}{{\color{white}.}2n{\color{white}.}}\;
+	\dfrac{1}{{\color{white}.}2\,n{\color{white}.}}\;
 	\underset{x\,\in\,\mathcal{C}}{\sum}\; \mathbf{1}_{\{h(x) \neq g_{i}(x)\}}
 \end{eqnarray*}
+Next, consider the sequence \,$S_{1}$\, of elements of \,$\mathcal{C}$\, introduced
+at the beginning of the proof of Claim 1.
+Let \,$\mathcal{C}\,\backslash S_{1}$\, denote the set of elements in \,$\mathcal{C}$\,
+that do not appear in \,$S_{1}$. Recall that $\mathcal{C}$ has $2n$ distinct elements,
+while $S_{1}$ is a with-replacement sequence of elements of $\mathcal{C}$ of length
+$n$. It follows that the number \,$\vert\,\mathcal{C}\,\backslash S_{1}\,\vert$\,
+of distinct elements in \,$\mathcal{C}\,\backslash S_{1}$\, must satisfy
+\,$\vert\,\mathcal{C}\,\backslash S_{1}\,\vert \geq n$.
+Thus,
+\begin{eqnarray*}
+\dfrac{1}{{\color{white}.}2n{\color{white}.}}\;
+\underset{x\,\in\,\mathcal{C}}{\sum}\; \mathbf{1}_{\{h(x) \neq g_{i}(x)\}}
+& \geq &
+	\dfrac{1}{{\color{white}.}2\,n{\color{white}.}}\;
+	\underset{x\,\in\,\mathcal{C}\,\backslash S_{1}}{\sum} \mathbf{1}_{\{h(x) \neq g_{i}(x)\}}\,,
+	\quad
+	\textnormal{(\,summands \,$\geq$\, $0$, and summing over a subset\,)}
+\\
+& \geq &
+	\dfrac{1}{{\color{white}.}2\,\vert\,\mathcal{C}\,\backslash S_{1}\,\vert{\color{white}.}}\;
+	\underset{x\,\in\,\mathcal{C}\,\backslash S_{1}}{\sum} \mathbf{1}_{\{h(x) \neq g_{i}(x)\}}\,.
+\end{eqnarray*}
+Hence, we see that
+\begin{eqnarray*}
+\dfrac{1}{2^{2n}}\;\,
+\overset{2^{2n}}{\underset{i\,=\,1}{\sum}}\;
+P_{\,(X,Y)\,\sim\,\mathcal{D}_{i}}\!\left(\,h(d^{(n,i)}_{k})(X) \overset{{\color{white}.}}{\neq} Y\,\right)
+& = &
+	\dfrac{1}{2^{2n}}\;\,
+	\overset{2^{2n}}{\underset{i\,=\,1}{\sum}}\;
+	\left(\;
+		\dfrac{1}{{\color{white}.}2n{\color{white}.}}
+		\underset{x\,\in\,\mathcal{C}}{\sum}\; \mathbf{1}_{\left\{h(d^{(n,i)}_{k})(x) \neq g_{i}(x)\right\}}
+		\;\right)
+\\
+& \geq &
+	\dfrac{1}{2^{2n}}\;\,
+	\overset{2^{2n}}{\underset{i\,=\,1}{\sum}}\;
+	\left(\;
+		\dfrac{1}{{\color{white}.}2\,\vert\,\mathcal{C}\,\backslash S_{1}\,\vert{\color{white}.}}\;
+		\underset{x\,\in\,\mathcal{C}\,\backslash S_{1}}{\sum} \mathbf{1}_{\left\{(d^{(n,i)}_{k})(x) \neq g_{i}(x)\right\}}
+		\;\right)
+\\
+& = &
+	\dfrac{1}{{\color{white}.}2\,\vert\,\mathcal{C}\,\backslash S_{1}\,\vert{\color{white}.}}
+	\underset{x\,\in\,\mathcal{C}\,\backslash S_{1}}{\sum}
+	\left(\;
+		\dfrac{1}{2^{2n}}\;\,
+		\overset{2^{2n}}{\underset{i\,=\,1}{\sum}}\;\,
+		\mathbf{1}_{\left\{(d^{(n,i)}_{k})(x) \neq g_{i}(x)\right\}}
+		\;\right)
+\\
+& \geq &
+	\dfrac{1}{2}\,\cdot
+	\underset{x\,\overset{{\color{white}.}}{\in}\,\mathcal{C}\,\backslash S_{1}}{\min}
+	\left\{\;\,
+		\dfrac{1}{2^{2n}}\;\,
+		\overset{2^{2n}}{\underset{i\,=\,1}{\sum}}\;\,
+		\mathbf{1}_{\left\{(d^{(n,i)}_{k})(x) \neq g_{i}(x)\right\}}
+		\,\;\right\}
+\end{eqnarray*}
+
+\vskip 5.0cm
 \noindent
 This completes the proof of the Theorem.
 \qed
