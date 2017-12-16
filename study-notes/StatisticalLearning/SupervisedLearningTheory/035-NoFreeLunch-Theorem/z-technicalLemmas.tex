@@ -69,6 +69,72 @@ as required.
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 1.0cm
+\begin{corollary}
+\label{corollary:MarkovLemma}
+\mbox{}\vskip 0.2cm
+\noindent
+Suppose \,$Z : (\Omega,\mathcal{A},\mu) \longrightarrow [0,1]$\,
+is a random variable. Let \,$\mu_{Z} \,:=\, E\!\left[\,Z\,\right]$.
+Then,
+\begin{equation*}
+P\!\left(\,Z \,\overset{{\color{white}.}}{>}\, \varepsilon\,\right)
+\;\; \geq \;\;
+	\dfrac{\mu_{Z} \,-\, \varepsilon}{1\,-\,\varepsilon}\,,
+\quad
+\textnormal{for each \,$\varepsilon \in (0,1)$}
+\end{equation*}
+In particular
+\end{corollary}
+\proof
+Let \,$Y \,:=\, 1 - Z$.\, Then, \,$Y$\, is a non-negative $\Re$-valued random variable.
+By Markov's Inequality (Lemma \ref{lemma:MarkovInequality}), we have
+\begin{equation*}
+P\!\left(\; Y \,\overset{{\color{white}.}}{\geq}\, \alpha \;\right)
+\;\; \leq \;\;
+	\dfrac{ E\!\left[\; Y \;\right] }{ \alpha }\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}
+\end{equation*}
+In terms of \,$Z$,\, we thus have
+\begin{equation*}
+P\!\left(\; Z \,\overset{{\color{white}.}}{\leq}\, 1 - \alpha \;\right)
+\;\; = \;\;
+	P\!\left(\; 1 - Z \,\overset{{\color{white}.}}{\geq}\, \alpha \;\right)
+\;\; = \;\;
+	P\!\left(\; Y \,\overset{{\color{white}.}}{\geq}\, \alpha \;\right)
+\;\; \leq \;\;
+	\dfrac{ E\!\left[\; Y \;\right] }{ \alpha }
+\;\; = \;\;
+	\dfrac{ 1 - E\!\left[\; Z \;\right] }{ \alpha }\,,
+\quad
+\textnormal{for each \,$\alpha > 0$}
+\end{equation*}
+Restricting to \,$\alpha \in (0,1)$,\, and letting \,$\varepsilon \,:=\, 1 - \alpha \in (0,1)$,\, we have
+\begin{equation*}
+P\!\left(\; Z \,\overset{{\color{white}.}}{\leq}\, \varepsilon \;\right)
+\;\; \leq \;\;
+	\dfrac{ 1 \,-\, \mu_{Z} }{ 1 \,-\, \varepsilon }\,,
+\quad
+\textnormal{for each \,$\varepsilon \in (0,1)$}
+\end{equation*}
+Equivalently,
+\begin{equation*}
+P\!\left(\; Z \,\overset{{\color{white}.}}{>}\, \varepsilon \;\right)
+\;\; = \;\;
+	1 \,-\, P\!\left(\; Z \,\overset{{\color{white}.}}{\leq}\, \varepsilon \;\right)
+\;\; \geq \;\;
+	1 \,-\, \dfrac{ 1 \,-\, \mu_{Z} }{ 1 \,-\, \varepsilon }
+\;\; = \;\;
+	\dfrac{ \mu_{Z} \,-\, \varepsilon }{ 1 \,-\, \varepsilon }\,,
+\quad
+\textnormal{for each \,$\varepsilon \in (0,1)$}\,,
+\end{equation*}
+as required.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
 \begin{lemma}[Hoeffding's Lemma]
 \label{lemma:HoeffdingLemma}
 \mbox{}\vskip 0.2cm
