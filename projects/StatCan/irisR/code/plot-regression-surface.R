@@ -5,7 +5,7 @@ plot.regression.surface <- function(results.rpart) {
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     FILE.graphics <- "plot-regression-surface.png";
-    png(filename = FILE.graphics, height = 8, width = 12, units = "in", res = 300);
+    png(filename = FILE.graphics, height = 10, width = 8, units = "in", res = 300);
     
     plotmo(
         object    = results.rpart,

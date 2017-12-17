@@ -45,15 +45,7 @@ require(rpart.plot);
 
 source(file.path(dir.code,"visualizeData.R"))
 source(file.path(dir.code,"plot-results-rpart.R"))
-
-#source(file.path(dir.code,"cvLM.R"))
-#source(file.path(dir.code,"cvRandomForest.R"))
-#source(file.path(dir.code,"cvRegressionTree.R"))
-#source(file.path(dir.code,"examineData.R"))
-#source(file.path(dir.code,"regressionLinear.R"))
-#source(file.path(dir.code,"regressionTree.R"))
-#source(file.path(dir.code,"splitTrainTest.R"))
-#source(file.path(dir.code,"train-predict-evaluate.R"))
+source(file.path(dir.code,"plot-regression-surface.R"))
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 set.seed(1234567);
@@ -80,6 +72,10 @@ results.rpart <- rpart(
 plot.results.rpart(
     results.rpart = results.rpart,
     palette.iris  = palette.iris
+    );
+
+plot.regression.surface(
+    results.rpart = results.rpart
     );
 
 ###################################################
