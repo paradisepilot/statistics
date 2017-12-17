@@ -56,14 +56,14 @@ visualizeData <- function(DF.input, palette.iris) {
         legend.title     = element_blank(),
         legend.text      = element_text(size = textsize.title, face = "bold"),
         legend.key.size  = unit(x=0.1,units="in"),
-        #legend.position  = "bottom",
-        #legend.direction = "horizontal",
-        #axis.title.x    = element_blank(),
-        #axis.title.y    = element_blank(),
+        legend.position  = "bottom",
+        legend.direction = "horizontal",
         axis.title       = element_text(size = textsize.axis.title,     face = "bold"),
         axis.text        = element_text(size = textsize.axis.tickLabel, face = "bold"),
         panel.grid.major = element_line(colour="gray", linetype=2, size=0.25),
         panel.grid.minor = element_line(colour="gray", linetype=2, size=0.25)
+        #axis.title.x    = element_blank(),
+        #axis.title.y    = element_blank(),
         );
     
     my.ggplot <- my.ggplot + scale_x_continuous(limits=c(0,2.5),breaks=seq(0,10,1));
@@ -81,7 +81,7 @@ visualizeData <- function(DF.input, palette.iris) {
         alpha = 0.75
         ); 
     
-    ggsave(file = FILE.ggplot, plot = my.ggplot, dpi = 300, height = 8, width = 12, units = 'in');
+    ggsave(file = FILE.ggplot, plot = my.ggplot, dpi = 300, height = 10, width = 8, units = 'in');
     
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( NULL );

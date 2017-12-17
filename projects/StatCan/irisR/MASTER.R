@@ -44,8 +44,8 @@ require(rpart);
 require(rpart.plot);
 
 source(file.path(dir.code,"visualizeData.R"))
+source(file.path(dir.code,"plot-results-rpart.R"))
 
-#source(file.path(dir.code,"attributeAdder.R"))
 #source(file.path(dir.code,"cvLM.R"))
 #source(file.path(dir.code,"cvRandomForest.R"))
 #source(file.path(dir.code,"cvRegressionTree.R"))
@@ -59,16 +59,28 @@ source(file.path(dir.code,"visualizeData.R"))
 set.seed(1234567);
 
 data(iris);
-DF.iris = iris;
+DF.iris <- iris;
 remove(iris);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-palette.iris <- brewer.pal(3,"Set1"); # c("black","red","blue");
-names(palette.iris) <- c("versicolor","virginica","setosa");
+palette.iris <- brewer.pal(3,"Set1")[c(3,2,1)]; # c("black","red","blue");
+names(palette.iris) <- c("setosa","versicolor","virginica");
 
-visualizeData(DF.input = DF.iris, palette.iris = palette.iris);
+visualizeData(
+    DF.input     = DF.iris,
+    palette.iris = palette.iris
+    );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+results.rpart <- rpart(
+    formula = Species ~ Petal.Length + Petal.Width,
+    data    = DF.iris
+    );
+
+plot.results.rpart(
+    results.rpart = results.rpart,
+    palette.iris  = palette.iris
+    );
 
 ###################################################
 # print warning messages to log
