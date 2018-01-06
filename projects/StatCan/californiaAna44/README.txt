@@ -16,6 +16,11 @@ californiaAna44
 
    Aurélien Géron, Hands-On Machine Learning with Scikit-Learn & TensorFlow, O'Reilly, March 2017
 
+-  The embedded data set can also be downloaded from either of the following two web sites:
+
+   1)  https://github.com/ageron/handson-ml/tree/master/datasets/housing
+   2)  https://www.kaggle.com/camnugent/california-housing-prices
+
 Author
 ======
 Kenneth Chu (kenneth.chu@canada.ca)
