@@ -6,10 +6,10 @@ californiaAna44
 -  Its goal is to serve as a viable starting point for Statistics Canada colleagues who wish
    to experiment with Python-based machine learning tools or to prototype Python-based machine
    learning solutions.
--  californiaAna44 contains a single master program called MASTER.py, which in turns executes code
+-  californiaAna44 contains a single master program called MASTER.py, which in turn executes code
    contained in a collection of supporting Python modules. Execution of MASTER.py executes an
    entire generic regression (supervised machine learning with continuous response variable)
-   workflow on a small embedded publically downloadable data set.
+   workflow on a small embedded publicly downloadable data set.
    The workflow is composed of the following steps: visualization, preprocessing, training
    (including hyperparameter tuning via cross validation where applicable) and testing.
 -  The workflow implemented in californiaAna44 is based on Chapter 2 of the following book:
