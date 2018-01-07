@@ -51,6 +51,13 @@
 #  ======
 #  Kenneth Chu, Statistics Canada (kenneth.chu@canada.ca)
 #
+#  INPUT
+#  =====
+#      1)  ./data/housing.csv
+#
+#  OUTPUT
+#  ======
+#
 ################################################################################
 ################################################################################
 
@@ -84,8 +91,10 @@ print("####################")
 
 logging.basicConfig(filename='log.debug',level=logging.DEBUG)
 
-# create a copy of code directory in output directory (for reproducibility)
+# create a copy this program (MASTER.py) in output directory (for reproducibility)
 shutil.copy2( src = thisScript, dst = dir_output )
+
+# create a copy of code directory in output directory (for reproducibility)
 shutil.copytree(src = dir_code, dst = os.path.join(dir_output,"code"))
 
 # append code directory to list of library paths
