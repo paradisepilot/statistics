@@ -49,7 +49,7 @@
 #
 #  AUTHOR
 #  ======
-#  Kenneth Chu, Statistics Canada (kenneth.chu@canada.ca)
+#  Kenneth Chu, ICCSMD, Statistics Canada (kenneth.chu@canada.ca)
 #
 #  EXECUTION INSTRUCTIONS
 #  ======================
