@@ -51,6 +51,13 @@
 #  ======
 #  Kenneth Chu, Statistics Canada (kenneth.chu@canada.ca)
 #
+#  EXECUTION INSTRUCTIONS
+#  ======================
+#  For how to execute this pipeline (MASTER.py), follow the instructions in
+#  the README file, namely:
+#
+#      ./README.txt
+#
 #  INPUT
 #  =====
 #  This pipeline contains a single (input) tabular data file in CSV format:
