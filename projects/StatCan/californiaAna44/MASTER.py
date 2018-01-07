@@ -4,7 +4,7 @@
 ################################################################################
 #
 #  SYNOPSIS
-#  --------
+#  ========
 #  This Python program is a demo supervised machine learning pipeline. Its
 #  purpose is to provide Statistics Canada colleagues a more or less generic
 #  supervised machine learning workflow implemented in Python and executable
@@ -48,7 +48,7 @@
 #  accuracy on a test data set.
 #
 #  AUTHOR
-#  ------
+#  ======
 #  Kenneth Chu, Statistics Canada (kenneth.chu@canada.ca)
 #
 ################################################################################
