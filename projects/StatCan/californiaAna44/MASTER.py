@@ -5,10 +5,10 @@
 #
 #  SYNOPSIS
 #  ========
-#  This Python program is a demo supervised machine learning pipeline. Its
-#  purpose is to provide Statistics Canada colleagues a more or less generic
-#  supervised machine learning workflow implemented in Python and executable
-#  on Network A.
+#  This Python program (MASTER.py) is a demo supervised machine learning
+#  pipeline. Its purpose is to provide Statistics Canada colleagues a more or
+#  less generic supervised machine learning workflow implemented in Python and
+#  executable on Network A.
 #
 #  The implemented workflow follows closely the one described in Chapter 2 of
 #  the following book:
