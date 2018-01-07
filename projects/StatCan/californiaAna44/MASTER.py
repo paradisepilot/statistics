@@ -53,10 +53,70 @@
 #
 #  INPUT
 #  =====
-#      1)  ./data/housing.csv
+#  This pipeline contains a single (input) tabular data file in CSV format:
+#
+#    1)  ./data/housing.csv
+#
+#        This CSV file contains 20640 non-header rows. Each row contains data
+#        for a census block group from the 1990 California census data. This
+#        file contains columns with the following headers:
+#
+#            longitude
+#            latitude
+#            housing_median_age
+#            total_rooms
+#            total_bedrooms
+#            population
+#            households
+#            median_income
+#            median_house_value
+#            ocean_proximity
+#
+#        The (continuous) variable "median_house_value" will be used as the
+#        response variable for the regression exercises performed by this
+#        pipeline. The rest of the variables will be used as predictor
+#        variables.
 #
 #  OUTPUT
 #  ======
+#  Upon execution, MASTER.py first creates the following output directory:
+#  ./output.<username>. When execution finishes without errors, the newly
+#  created output directory will contain the following:
+#
+#    1)  ./output.<username>/MASTER.py
+#        a copy of ./MASTER.py (for reproducibility)
+#
+#    2)  ./output.<username>/code
+#        a copy of the code directory ./code (for reproducibility)
+#
+#    3)  ./output.<username>/log.debug
+#        debugging log file (should be empty)
+#
+#    4)  ./output.<username>/log.stderr
+#        standard error log file (should be empty)
+#
+#    5)  ./output.<username>/log.stdout
+#        main output text file of the pipeline.
+#        It starts with summary and exploratory statistics of the input file,
+#        followed by model-fitting performance metrics of the aforementioned
+#        implemented machine learnign techniques.
+#
+#    6)  ./output.<username>/plot-histograms.png
+#        histograms of the nine continuous variables
+#
+#    7)  ./output.<username>/plot-scatter.png
+#        bubble heat map illustrating census block group population sizes and
+#        median house values according to geocoordinates
+#
+#    8)  ./output.<username>/plot-correlations.png
+#        correlation matrix for four continuous variables
+#
+#    9)  ./output.<username>/plot-medianIncome.png
+#        scatter plot of median_house_value vs median_income
+#
+#   10)  ./output.<username>/plot-correlations-02.png
+#        correlation matrix involving two existing variables and derived
+#        variables
 #
 ################################################################################
 ################################################################################
