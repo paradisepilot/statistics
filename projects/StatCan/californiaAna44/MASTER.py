@@ -51,6 +51,10 @@
 #  ======
 #  Kenneth Chu, ICCSMD, Statistics Canada (kenneth.chu@canada.ca)
 #
+#  RELEASE DATE
+#  ============
+#  February 20, 2018
+#
 #  EXECUTION INSTRUCTIONS
 #  ======================
 #  For how to execute this pipeline (MASTER.py), follow the instructions in
