@@ -1,4 +1,58 @@
 #!/usr/bin/env python
+
+################################################################################
+################################################################################
+#
+#  SYNOPSIS
+#  --------
+#  This Python program is a demo supervised machine learning pipeline. Its
+#  purpose is to provide Statistics Canada colleagues a more or less generic
+#  supervised machine learning workflow implemented in Python and executable
+#  on Network A.
+#
+#  The implemented workflow is the one described in Chapter 2 of the following
+#  book:
+#
+#      Aurélien Géron
+#      Hands-On Machine Learning with Scikit-Learn & TensorFlow
+#      O'Reilly, March 2017
+#
+#  We refer the user to the reference above for implemention and conceptual
+#  details about this pipeline. We give here a brief summary of what the
+#  pipeline does.
+#
+#  This pipeline contains an embedded data set, which is a table of housing
+#  data at the level of census block group. This data set is based on the 1990
+#  California census data. It is also downloadable from either of the following
+#  two web sites:
+#
+#      1)  https://github.com/ageron/handson-ml/tree/master/datasets/housing
+#      2)  https://www.kaggle.com/camnugent/california-housing-prices
+#
+#  This pipeline performs explorative analysis, visualization and basic
+#  preprocessing on the embedded input data. It then uses functionalities from
+#  Scikit-learn (a widely used machine learning Python library) to apply, with
+#  default parameter settings, the following basic supervised machine learning
+#  techniques:
+#
+#      i)  linear regression
+#     ii)  regression trees
+#    iii)  random forest regression
+#
+#  to fit models for predicting the variable "median_house_value," treating the
+#  rest of the variables as predictors. Lastly, it fits an additional random
+#  forests model, this time instead of simply using the default parameter
+#  settings, the fitting procedure includes tuning of certain hyperparameters 
+#  via cross validation. The performances of these fitted models is evaluated
+#  by their prediction accuracy on a test data set.
+#
+#  AUTHOR
+#  ------
+#  Kenneth Chu, Statistics Canada (kenneth.chu@canada.ca)
+#
+################################################################################
+################################################################################
+
 import os, sys, shutil, getpass
 import pprint, logging, datetime
 import stat
