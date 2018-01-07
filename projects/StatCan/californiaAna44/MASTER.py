@@ -58,32 +58,40 @@ import os, sys, shutil, getpass
 import pprint, logging, datetime
 import stat
 
+# dynamically determine the absolute path of this Python program, and then
+# relatively to it, those of the code, data and output folders
 thisScript = os.path.realpath(sys.argv[0])
 dir_MASTER = os.path.dirname(thisScript)
 dir_code   = os.path.join(dir_MASTER, "code")
 dir_data   = os.path.join(dir_MASTER, "data")
 dir_output = os.path.join(dir_MASTER, "output." + getpass.getuser())
 
+# create the output directory if not already exists
 if not os.path.exists(dir_output):
     os.makedirs(dir_output)
 
+# change directory to the output directory
 os.chdir(dir_output)
+
+# redirect output and error messages to file
 sys.stdout = open('log.stdout','w')
 sys.stderr = open('log.stderr','w')
 
+# print system time to output file
 myTime = "system time: " + datetime.datetime.now().strftime("%c")
 print( "\n" + myTime + "\n" )
 print("####################")
 
 logging.basicConfig(filename='log.debug',level=logging.DEBUG)
 
+# create a copy of code directory in output directory (for reproducibility)
 shutil.copy2( src = thisScript, dst = dir_output )
 shutil.copytree(src = dir_code, dst = os.path.join(dir_output,"code"))
 
 # append code directory to list of library paths
+# (to enable use of Python modules therein)
 sys.path.append(dir_code)
 
-##################################################
 ##################################################
 # import seaborn (for improved graphics) if available
 import importlib
@@ -96,6 +104,7 @@ if seaborn_spec is not None:
 import numpy  as np
 import pandas as pd
 
+# import custom-built Python modules
 from examineData       import examineData
 from splitTrainTest    import splitTrainTest
 from visualizeData     import visualizeData
@@ -104,11 +113,11 @@ from trainEvaluateGrid import trainEvaluateGrid
 
 from PipelinePreprocessHousingData import PipelinePreprocessHousingData
 
+# import Scikit-learn classes
 from sklearn.linear_model import LinearRegression
 from sklearn.tree         import DecisionTreeRegressor
 from sklearn.ensemble     import RandomForestRegressor
 
-#from sklearn.model_selection import GridSearchCV
 ms_spec = importlib.util.find_spec(name="sklearn.model_selection")
 if ms_spec is not None:
     from sklearn.model_selection import GridSearchCV
@@ -116,7 +125,7 @@ else:
     from sklearn.grid_search import GridSearchCV
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# load data
+# load 1990 California census block group housing data
 housingFILE = os.path.join(dir_data,'housing.csv')
 housingDF   = pd.read_csv(housingFILE);
 
@@ -200,7 +209,6 @@ trainEvaluateGrid(
     modelName           = "Random Forest, Cross Validation, Grid Search"
     )
 
-##################################################
 ##################################################
 print("\n####################\n")
 myTime = "system time: " + datetime.datetime.now().strftime("%c")

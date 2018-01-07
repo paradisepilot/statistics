@@ -23,7 +23,7 @@ californiaAna44
 
 Author
 ======
-Kenneth Chu (kenneth.chu@canada.ca)
+Kenneth Chu, Statistics Canada (kenneth.chu@canada.ca)
 
 Release Date
 =============
