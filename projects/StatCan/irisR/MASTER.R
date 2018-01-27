@@ -62,8 +62,11 @@ print(str(iris));
 print(str(DF.iris));
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-palette.iris <- brewer.pal(3,"Set1")[c(3,2,1)]; # c("black","red","blue");
+palette.iris <- brewer.pal(3,"Set1")[c(3,2,1)]; # c("green","blue","red");
 names(palette.iris) <- c("setosa","versicolor","virginica");
+
+palette.iris.light        <- c("#99ff99","#99ccff","#ffad99");
+names(palette.iris.light) <- c("setosa","versicolor","virginica");
 
 visualizeData(
     DF.input     = DF.iris,
@@ -78,7 +81,7 @@ results.rpart <- rpart(
 
 plot.results.rpart(
     results.rpart = results.rpart,
-    palette.iris  = palette.iris
+    palette.iris  = palette.iris.light #palette.iris
     );
 
 plot.regression.surface(
