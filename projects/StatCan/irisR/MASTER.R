@@ -42,6 +42,7 @@ start.proc.time <- proc.time();
 ###################################################
 require(rpart);
 require(rpart.plot);
+require(RColorBrewer);
 
 source(file.path(dir.code,"visualizeData.R"))
 source(file.path(dir.code,"plot-results-rpart.R"))
@@ -51,7 +52,7 @@ source(file.path(dir.code,"plot-regression-surface.R"))
 set.seed(1234567);
 
 data(iris);
-DF.iris <- iris;
+DF.iris <- iris[,c("Sepal.Length","Sepal.Width","Petal.Width","Petal.Length","Species")];
 remove(iris);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
