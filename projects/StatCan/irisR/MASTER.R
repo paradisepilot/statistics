@@ -52,8 +52,14 @@ source(file.path(dir.code,"plot-regression-surface.R"))
 set.seed(1234567);
 
 data(iris);
-DF.iris <- iris[,c("Sepal.Length","Sepal.Width","Petal.Width","Petal.Length","Species")];
+DF.iris <- iris;
 remove(iris);
+
+#DF.iris[,"Petal.Length"] <- iris[,"Petal.Width" ];
+#DF.iris[,"Petal.Width"]  <- iris[,"Petal.Length"];
+
+print(str(iris));
+print(str(DF.iris));
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 palette.iris <- brewer.pal(3,"Set1")[c(3,2,1)]; # c("black","red","blue");
