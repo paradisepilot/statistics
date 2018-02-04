@@ -18,12 +18,12 @@ plot.results.rpart <- function(results.rpart,palette.iris) {
     
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     FILE.ggplot <- "plot-rpart.png";
-    png(filename = FILE.ggplot, height = 12, width = 8, units = "in", res = 300);
+    png(filename = FILE.ggplot, height = 12, width = 8.0, units = "in", res = 300);
     
     prp(
         x           = results.rpart,
-        extra       = 2,
-        cex         = 3.5,
+        extra       = 101,
+        cex         = 3.5, # 3.5,
         legend.cex  = 3.5,
         box.palette = as.list(palette.iris)
         );
