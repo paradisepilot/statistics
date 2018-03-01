@@ -40,10 +40,12 @@ DF.existing.portfolio <- read.table(
 DF.existing.portfolio;
 str(DF.existing.portfolio);
 
+new.contribution.rrsp <-  7031 +  4315.52;
+new.contribution.tfsa <- 16500 + 26348.31;
 DF.adjustments <- compute.adjustments(
     existing.portfolio    = DF.existing.portfolio,
-    new.contribution.rrsp =  7031,
-    new.contribution.tfsa = 16500
+    new.contribution.rrsp = new.contribution.rrsp,
+    new.contribution.tfsa = new.contribution.tfsa
     );
 
 write.table(

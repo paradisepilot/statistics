@@ -12,7 +12,7 @@ if [ ! -d ${outputDIR} ]; then
 fi
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-csvPortfolio=${dataDIR}/portfolio-2018-0225.csv
+csvPortfolio=${dataDIR}/portfolio-2018-02-23.csv
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 cp -r ${codeDIR}   ${outputDIR}
