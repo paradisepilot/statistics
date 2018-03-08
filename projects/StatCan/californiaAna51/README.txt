@@ -27,7 +27,7 @@ Kenneth Chu, ICCSMD, Statistics Canada (kenneth.chu@canada.ca)
 
 Release Date
 =============
-February 20, 2018
+March 8, 2018
 
 Software requirements
 =====================
