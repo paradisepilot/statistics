@@ -17,14 +17,14 @@ def visualizeData(inputDF):
         colorbar = True,
         alpha    = 0.1
         )
-    plt.savefig(fname = outputFILE, bbox_inches='tight', pad_inches=0.2)
+    plt.savefig(outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     outputFILE = 'plot-correlations.png'
     corrMatrix = inputDF.corr()
     attributes = ["median_house_value","median_income","total_rooms","housing_median_age"]
     myPlot = scatter_matrix(frame=inputDF[attributes], figsize=(12,8))
-    plt.savefig(fname = outputFILE, bbox_inches='tight', pad_inches=0.2)
+    plt.savefig(outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     print('\ncorrMatrix["median_house_value"].sort_values(ascending=False)')
     print(   corrMatrix["median_house_value"].sort_values(ascending=False) )
@@ -38,7 +38,7 @@ def visualizeData(inputDF):
         alpha   = 0.1,
         figsize = (12,8)
         )
-    plt.savefig(fname = outputFILE, bbox_inches='tight', pad_inches=0.2)
+    plt.savefig(outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     outputFILE = 'plot-correlations-02.png'
@@ -55,7 +55,7 @@ def visualizeData(inputDF):
 
     attributes = ["median_house_value","median_income","roomsPerHousehold","bedroomsPerRoom"]
     myPlot = scatter_matrix(frame=tempDF[attributes], figsize=(12,8))
-    plt.savefig(fname = outputFILE, bbox_inches='tight', pad_inches=0.2)
+    plt.savefig(outputFILE, bbox_inches='tight', pad_inches=0.2)
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( None )
