@@ -1,0 +1,58 @@
+
+%%%%%%%%%%
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{1}
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.5cm \normalsize S\'equence de travail g\'en\'erique de\\ \textit{\Large l'apprentissage automatique supervis\'e}}
+
+\footnotesize
+
+\begin{center}
+\vskip -0.3cm
+\textbf{\normalsize But: Produire une machine de pr\'ediction avec une\\faible \,{\color{blue}Erreur(nouvelles donn\'ees) = erreur de g\'en\'eralisation}}
+\end{center}
+
+\vskip -0.2cm
+\begin{enumerate}
+\item
+	Visualiser les donn\'ees. Analyse exploratoire des donn\'ees.
+
+\vskip -0.25cm
+\item
+	Diviser al\'eatoirement les donn\'ees disponibles en sous-ensembles:
+	{\color{red}entra\^inement}, {\color{red}validation}, et {\color{red}essai}.
+
+\vskip -0.25cm
+\item
+	Pr\'etraiter les donn\'ees d'entra\^inement + de validation.%{\tiny(Standardiser, E\&I, transformer, ...)}
+
+\vskip -0.25cm
+\item
+	%Choisir le mod\`ele. Former-le bas\'e sur les donn\'ees d'entra\^inement.
+	Choisir le mod\`ele. Entra\^iner \`a partir des donn\'ees d'entra\^inement.
+	{\scriptsize\begin{itemize}
+	\item
+		\vskip -0.1cm
+		{\scriptsize{\color{red}Optimisation des hyperparam\`etres} le cas \'ech\'eant}
+	\item
+		{\scriptsize \'Evaluer/comparer les mod\`eles\!\!\footnote{\tiny\color{gray}\!\!plus pr\'ecis\'ement,
+		les m\'ecanismes de g\'en\'eration de donn\'ees dans le mod\`ele choisi}
+		bas\'e sur Erreur(ensemble de validation).}
+	\item
+		{\scriptsize{\color{red}validation crois\'ee en $k$ blocs} si n\'ecessaire}
+	\item
+		{\scriptsize R\'eentra\^iner le mod\`ele \`a partir des donn\'ees d'entra\^inement + de validation,
+		en utilisant les valeurs d'hyperparam\`etres optimis\'es \;$\leadsto$\; ``machine optimis\'ee'' finale}
+	\end{itemize}}
+
+\vskip -0.25cm
+\item
+	\'Evaluer la machine optimis\'ee finale bas\'e sur \,\textbf{\color{blue}Erreur(essai)}.
+\end{enumerate}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

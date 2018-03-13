@@ -1,0 +1,109 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\large The H\'ajek Central Limit Theorem for SRSWOR}
+
+{\tiny
+\begin{itemize}
+\item	Let $\left\{\,U_{\nu}\,\right\}_{\nu \in \N}$ be a sequence of finite populations,
+and $N_{\nu} = \left\vert\,U_{\nu}\,\right\vert \geq 2$ be the population size of $U_{\nu}$.
+%Let the elements of $U_{\nu}$ be indexed by $1,2,3,\ldots,N_{\nu}$.
+\item For each $\nu \in \N$, let $y^{(\nu)} : U_{\nu} \longrightarrow \Re$ be a non-constant $\Re$-valued population characteristic.\\
+For each $i \in U_{\nu}$, let $y^{(\nu)}_{i}$ denote $y^{(\nu)}(i)$,
+the value of $y^{(\nu)}$ evaluated at the $i^{\textnormal{th}}$ element of $U_{\nu}$.
+\item For each $\nu \in \N$, let $n_{\nu} \in \{ 1,2,3,\ldots,N_{\nu}-1 \}$ be given,
+and let $\mathcal{S}_{\nu}$ be the set of all $n_{\nu}$-element subsets of $U_{\nu}$.
+Let $\mathcal{S}_{\nu}$ be endowed with the uniform probability function, namely
+\begin{equation*}
+P(s) \; = \; \dfrac{1}{\left(\!\begin{array}{c} N_{\nu} \\ n_{\nu} \end{array}\!\right)},
+\;\;\textnormal{for each}\; s \in \mathcal{S}_{\nu}.
+\end{equation*}
+\item For each $\nu \in \N$, let $\widehat{\overline{Y}}_{\nu} : \mathcal{S}_{\nu} \longrightarrow \Re$ be the random variable
+defined as follows:
+\begin{equation*}
+\widehat{\overline{Y}}_{\nu}(s)
+\;\;:=\;\;
+\dfrac{1}{n_{\nu}}\sum_{i \in s}\, y^{(\nu)}_{i},
+\;\;\textnormal{for each}\; s \in \mathcal{S}_{\nu}
+\end{equation*}
+Let
+\begin{equation*}
+\mu_{\nu} \;:=\; E\!\left[\;\widehat{\overline{Y}}_{\nu}\;\right] \;=\; \dfrac{1}{N_{\nu}}\sum_{i \in U_{\nu}}\,y^{(\nu)}_{i}
+\quad\textnormal{and}\quad
+\sigma^{2}_{\nu} \;:=\; \Var\!\left[\;\widehat{\overline{Y}}_{\nu}\;\right] \;=\; \left(1 - \dfrac{n_{\nu}}{N_{\nu}}\right)\dfrac{S^{2}_{\nu}}{n_{\nu}}\,,
+\end{equation*}
+where
+\begin{equation*}
+S^{2}_{\nu} \;:=\; \dfrac{1}{N_{\nu} - 1}\sum_{i \in U_{\nu}}\left(y^{(\nu)}_{i} - \mu_{\nu}\right)^{2}
+\;\; > \;\; 0
+\quad\left(\textnormal{since $y^{(\nu)} : U^{(\nu)} \longrightarrow \Re$ is non-constant}\right).
+\end{equation*}
+\end{itemize}
+%\item For each $\nu \in \N$ and each $\delta > 0$ define:
+%\begin{equation*}
+%U_{\nu}(\delta) \;:=\; \left\{\,i \in U_{\nu}\;\left\vert\; \vert y^{(\nu)}_{i} - \mu_{\nu} \vert \geq \delta \, \sqrt{\sigma_{\nu}^{2}} %\right.\,\right\}
+%\; \subset \; U_{\nu}.
+%\end{equation*}
+%\end{itemize}
+%Suppose $n_{\nu} \longrightarrow \infty$ and $N_{\nu} - n_{\nu} \longrightarrow \infty$.
+%Then,
+%\begin{equation*}
+%\lim_{\nu \rightarrow \infty}
+%P\!\left\{\;s \in \mathcal{S}_{\nu} \;\,\left\vert\;\,\dfrac{\widehat{\overline{Y}}_{\nu}(s) - \mu_{\nu}}{\sqrt{\sigma_{\nu}^{2}}}%\right. < x \;\right\}
+%\;\;=\;\;
+%\dfrac{1}{\sqrt{2\pi}}
+%\int_{-\infty}^{x}\,e^{-t^{2}/2}\,\d t,
+%\quad
+%\textnormal{for each $x \in \Re$}
+%\end{equation*}
+%if and only if
+%\begin{equation*}
+%\lim_{\nu\rightarrow\infty}
+%\dfrac{
+%\underset{i \in U_{\nu}(\delta)}{\sum}\left(y^{(\nu)}_{i} - \mu_{\nu}\right)^{2}
+%}{
+%\underset{i \in U_{\nu}}{\sum}\left(y^{(\nu)}_{i} - \mu_{\nu}\right)^{2}
+%}\;\; = \;\; 0,
+%\;\;\textnormal{for every}\;\, \delta > 0.
+%\end{equation*}
+}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\large The H\'ajek Central Limit Theorem for SRSWOR (cont'd)}
+
+{\tiny
+\begin{itemize}
+\item	For each $\nu \in \N$ and each $\delta > 0$ define:
+\begin{equation*}
+U_{\nu}(\delta) \;:=\; \left\{\,i \in U_{\nu}\;\left\vert\; \vert y^{(\nu)}_{i} - \mu_{\nu} \vert \geq \delta \, \sqrt{\sigma_{\nu}^{2}} \right.\,\right\}
+\; \subset \; U_{\nu}.
+\end{equation*}
+\end{itemize}
+}
+\scriptsize
+Suppose $n_{\nu} \longrightarrow \infty$ and $N_{\nu} - n_{\nu} \longrightarrow \infty$.
+Then,
+\begin{equation*}
+\lim_{\nu \rightarrow \infty}
+P\left\{\;s \in \mathcal{S}_{\nu} \;\,\left\vert\;\,\dfrac{\widehat{\overline{Y}}_{\nu}(s) - \mu_{\nu}}{\sqrt{\sigma_{\nu}^{2}}}\right. < x \;\right\}
+\;\;=\;\;
+\dfrac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{x}\,e^{-t^{2}/2}\,\d t,
+\quad
+\textnormal{for each $x \in \Re$}
+\end{equation*}
+if and only if
+\small
+\begin{equation*}
+\lim_{\nu\rightarrow\infty}
+\dfrac{
+\underset{i\,\in\,U_{\nu}(\delta)}{\sum}\left(y^{(\nu)}_{i} - \mu_{\nu}\right)^{2}
+}{
+\underset{i\,\in\,U_{\nu}}{\sum}\left(y^{(\nu)}_{i} - \mu_{\nu}\right)^{2}
+}\;\; = \;\; 0,
+\;\;\textnormal{for every}\;\, \delta > 0.
+\end{equation*}
+
+\end{frame}
+\normalsize

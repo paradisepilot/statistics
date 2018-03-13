@@ -1,0 +1,59 @@
+
+\definecolor{lightRed}{RGB}{255,130,130}
+
+%%%%%%%%%%
+
+\begin{frame}{\Large \vskip -0.2cm Bonus: Validation crois\'ee en $k$ blocs}
+
+\small
+
+\begin{itemize}
+
+\item
+	Les r\'esultats de validation peuvent \^etre \textbf{\color{red}instables}.\\
+	{\scriptsize Autrement dit, on se demande \`a quel point
+	Erreur(donn\'ees validation) soit \guillemotleft\;repr\'esentative \guillemotright,
+	\'etant donn\'e qu'elle n'est bas\'ee sur qu'une seule fa\c{c}on de diviser les donn\'ees
+	en des sous-ensembles d'entra\^inement et de validation.}
+
+\vskip 0.3cm
+\item
+	Pour mitiger partiellement cette situation,
+	\guillemotleft\;r\'ep\'eter \guillemotright\;la validation $k$ fois.
+
+\vskip 0.3cm
+\item
+	Plus pr\'ecis\'ement:
+	\begin{itemize}
+	\item
+		%Randomly divide the non-testing data set into $k$ ``folds'' (subsets) of roughly equal sizes.
+		Diviser al\'eatoirement les donn\'ees non testing en
+		$k$ \guillemotleft\;blocs\;\guillemotright\;(parties)
+		\`a peu pr\`es de la m\^eme taille.
+	\item
+		R\'ep\'eter la validation $k$ fois, chaque fois en utilisant une diff\'erente partie
+		comme sous-ensemble de validation, et
+		le reste des $k-1$ parties comme sous-ensemble d'entra\^inement.
+	\item
+		{\color{white}1} \vskip -0.5cm
+		\begin{equation*}
+		\textnormal{\scriptsize Erreur}\!\left(\!\!\begin{array}{c}
+			\textnormal{\scriptsize validation crois\'ee}
+			\\
+			\textnormal{\scriptsize en\;$k$\;blocs}
+			\end{array}\!\!\right)
+		\;\; := \;\;
+		\left(\!\!\begin{array}{c}
+			\textnormal{\scriptsize moyenne des $k$ erreurs}
+			\\
+			\textnormal{\scriptsize de validation r\'esultants}
+			\end{array}\!\!\right)
+		\end{equation*}
+	\end{itemize}
+
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

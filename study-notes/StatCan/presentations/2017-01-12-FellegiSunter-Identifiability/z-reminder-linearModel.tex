@@ -1,0 +1,79 @@
+
+\begin{minipage}{4in}
+{\tiny
+\begin{equation*}
+\begin{array}{c||c|c|c||c|c|c}
+i & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline\hline
+x & \textnormal{A} & \textnormal{A} & \textnormal{A} &
+      \textnormal{B} & \textnormal{B} & \textnormal{B}
+\\
+\hline
+y & ? & ? & ? & ? & ? & ?
+\end{array}
+\quad
+\quad
+\quad
+\begin{array}{lccl}
+	M_{\textnormal{I}}: & y_{i} &=& \mu + \tau_{x_{i}} + \varepsilon_{i}
+	\\
+	\overset{{\color{white}-}}{M}_{\textnormal{II}}: & y_{i} &=& \mbox{}\quad{\color{customRed}\alpha_{x_{i}}}\quad\mbox{} + \varepsilon_{i}
+\end{array}\,,
+\quad
+\quad
+\quad
+\begin{array}{c}
+	\varepsilon_{i} \;\; \textnormal{i.i.d.}
+	\\
+	\overset{{\color{white}-}}{E}\!\left[\,\varepsilon_{i}\,\right] = 0
+\end{array}
+\end{equation*}
+}
+
+\vskip -0.7cm
+
+{\tiny
+\begin{eqnarray*}
+\left(\begin{array}{c}
+	E\!\left[\,y_{1}\,\right] \\ E\!\left[\,y_{2}\,\right] \\ E\!\left[\,y_{3}\,\right] \\
+	E\!\left[\,{\color{customRed}y_{4}}\,\right] \\ E\!\left[\,{\color{customRed}y_{5}}\,\right] \\ E\!\left[\,{\color{customRed}y_{6}}\,\right]
+	\end{array}\right)
+&=&
+\underset{X_{\textnormal{I}}}{\underbrace{\left[\begin{array}{cccc}
+	1&1&0\\
+	1&1&0\\
+	1&1&0\\
+	1&0&1\\
+	1&0&1\\
+	1&0&1
+\end{array}\right]}}
+\left(\!\begin{array}{l} \mu \\ \tau_{\textnormal{A}} \\ \tau_{\textnormal{B}} \end{array}\!\!\right)
+%\;=\;
+%X\cdot\!
+%\left(\!\begin{array}{l} \mu \\ \tau_{\textnormal{A}} \\ \tau_{\textnormal{B}} \end{array}\!\!\right)
+\;\;=\;\;
+\left[\begin{array}{cccc}
+	1&0\\
+	1&0\\
+	1&0\\
+	0&1\\
+	0&1\\
+	0&1
+\end{array}\right]
+\left(\!\begin{array}{l} \mu + \tau_{\textnormal{A}} \\ \mu + \tau_{\textnormal{B}} \end{array}\!\!\right)
+%\;=\;
+%X\cdot\!
+%\left(\!\begin{array}{l} \mu + \tau_{\textnormal{A}} \\ \mu + \tau_{\textnormal{B}} \end{array}\!\!\right)
+\;\;=\;\;
+\underset{X_{\textnormal{II}}}{\underbrace{\left[\begin{array}{cccc}
+	1&0\\
+	1&0\\
+	1&0\\
+	0&1\\
+	0&1\\
+	0&1
+\end{array}\right]}}
+\left(\!\begin{array}{l} \alpha_{\textnormal{A}} \\ \alpha_{\textnormal{B}} \end{array}\!\!\right)
+\end{eqnarray*}
+}
+\end{minipage}

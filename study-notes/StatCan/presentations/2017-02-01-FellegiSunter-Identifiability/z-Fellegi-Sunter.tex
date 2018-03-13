@@ -1,0 +1,652 @@
+
+\newcommand{\poz}{{\color{red}p^{(1)}_{0}}}
+\newcommand{\poo}{{\color{red}p^{(1)}_{1}}}
+\newcommand{\pot}{{\color{red}p^{(1)}_{2}}}
+
+\newcommand{\ptz}{{\color{blue}p^{(2)}_{0}}}
+\newcommand{\pto}{{\color{blue}p^{(2)}_{1}}}
+
+\newcommand{\phz}{{\color{green}p^{(3)}_{0}}}
+\newcommand{\pho}{{\color{green}p^{(3)}_{1}}}
+
+\newcommand{\pozz}{{\color{red}p^{(1)}_{0|0}}}
+\newcommand{\pooz}{{\color{red}p^{(1)}_{1|0}}}
+
+\newcommand{\ptzz}{{\color{blue}p^{(2)}_{0|0}}}
+\newcommand{\ptoz}{{\color{blue}p^{(2)}_{1|0}}}
+
+\newcommand{\phzz}{{\color{green}p^{(3)}_{0|0}}}
+\newcommand{\phoz}{{\color{green}p^{(3)}_{1|0}}}
+
+\newcommand{\pozo}{{\color{pink}p^{(1)}_{0|1}}}
+\newcommand{\pooo}{{\color{pink}p^{(1)}_{1|1}}}
+
+\newcommand{\ptzo}{{\color{cyan}p^{(2)}_{0|1}}}
+\newcommand{\ptoo}{{\color{cyan}p^{(2)}_{1|1}}}
+
+\newcommand{\phzo}{{\color{lime}p^{(3)}_{0|1}}}
+\newcommand{\phoo}{{\color{lime}p^{(3)}_{1|1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\Large Parameter space of categorical distributions = Probability simplex}
+
+\begin{multicols}{2}
+
+\begin{minipage}{5cm}
+\vskip 1.5cm
+\begin{equation*}
+\begin{array}{c}
+P(X=x_{1}) \;=\; \theta_{1} \\
+P(X=x_{2}) \;=\; \theta_{2}
+\end{array}
+\end{equation*}
+\end{minipage}
+
+\newpage
+
+\begin{minipage}{3cm}
+\begin{flushright}
+\input{z-one-simplex.tex}
+\end{flushright}
+\end{minipage}
+
+\end{multicols}
+
+\vskip -0.2cm
+\begin{equation*}
+\Delta_{\color{red}1}
+\; := \;
+\left\{\;
+(\theta_{1},\theta_{2}) \in \Re^{2}
+\;\;\left\vert\;
+\begin{array}{c}
+	0 \;\leq\; \theta_{1}, \theta_{2} \;\leq\; 1 \\
+	\theta_{1} + \theta_{2} \;=\; 1
+\end{array}
+\right.
+\right\}
+\end{equation*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\Large Parameter space of categorical distributions = Probability simplex (cont'd)}
+
+\begin{multicols}{2}
+
+\begin{minipage}{5cm}
+\vskip 1.5cm
+\begin{equation*}
+\begin{array}{c}
+P(X=x_{1}) \;=\; \theta_{1} \\
+P(X=x_{2}) \;=\; \theta_{2} \\
+P(X=x_{3}) \;=\; \theta_{3}
+\end{array}
+\end{equation*}
+\end{minipage}
+
+\newpage
+
+\begin{minipage}{5cm}
+\begin{center}
+\includegraphics[width=4.5cm]{z-two-simplex.png}
+\end{center}
+\end{minipage}
+
+\end{multicols}
+
+\vskip -0.2cm
+\begin{equation*}
+\Delta_{\color{red}2}
+\; := \;
+\left\{\;
+(\theta_{1},\theta_{2},\theta_{3}) \in \Re^{3}
+\;\;\left\vert\;
+\begin{array}{c}
+	0 \;\leq\; \theta_{1}, \theta_{2}, \theta_{3} \;\leq\; 1 \\
+	\theta_{1} + \theta_{2} + \theta_{3} \;=\; 1
+\end{array}
+\right.
+\right\}
+\end{equation*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\Large Parameter space of categorical distributions = Probability simplex (cont'd)}
+
+\begin{multicols}{2}
+
+\begin{minipage}{5cm}
+\vskip 1.0cm
+\begin{equation*}
+\begin{array}{c}
+P(X=x_{1}) \;=\; \theta_{1} \\
+P(X=x_{2}) \;=\; \theta_{2} \\
+P(X=x_{3}) \;=\; \theta_{3} \\
+P(X=x_{4}) \;=\; \theta_{4}
+\end{array}
+\end{equation*}
+\end{minipage}
+
+\newpage
+
+\begin{minipage}{5cm}
+\begin{center}
+\includegraphics[width=3.5cm]{z-three-simplex.png}
+\end{center}
+\end{minipage}
+
+\end{multicols}
+
+\vskip -0.4cm
+\begin{equation*}
+\Delta_{\color{red}3}
+\; := \;
+\left\{\;
+(\theta_{1},\theta_{2},\theta_{3},\theta_{4}) \in \Re^{4}
+\;\;\left\vert\;
+\begin{array}{c}
+	0 \;\leq\; \theta_{1}, \theta_{2}, \theta_{3}, \theta_{4} \;\leq\; 1 \\
+	\theta_{1} + \theta_{2} + \theta_{3} + \theta_{4} \;=\; 1
+\end{array}
+\right.
+\right\}
+\end{equation*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\LARGE Contingency tables with independent factors \& Segre embeddings}
+
+\begin{multicols}{2}
+
+\scriptsize
+
+\begin{minipage}{5cm}
+\mbox{}
+\begin{center}
+\vskip 0.1cm
+\begin{tabular}{|c||c|c||c|}
+\hline
+&&& \\
+& $\textnormal{\tiny$X^{(2)} = 0$}$ & $\textnormal{\tiny$X^{(2)} = 1$}$ & \\
+&&& \\
+\hline\hline
+&&& \\
+$\textnormal{\tiny$X^{(1)} = 0$}$ & $\pi_{00}$ & $\pi_{01}$ & $\poz$ \\
+&&& \\
+\hline
+&&& \\
+$\textnormal{\tiny$X^{(1)} = 1$}$ & $\pi_{10}$ & $\pi_{11}$ & $\poo$ \\
+&&& \\
+\hline\hline
+&&& \\
+& $\ptz$ & $\pto$ & \\
+&&& \\
+\hline
+\end{tabular}
+\end{center}
+\end{minipage}
+
+\newpage
+
+\pause
+
+\begin{minipage}{5cm}
+
+\begin{equation*}
+f \; : \; {\color{red}\Delta_{1}} \times {\color{blue}\Delta_{1}} \;\longrightarrow\; \Sigma \, \subset \, \Delta_{3}
+\end{equation*}
+
+\tiny
+\begin{eqnarray*}
+	\overset{\Delta_{3}}{\overbrace{
+	\left(\begin{array}{c}
+	\overset{{\color{white}+}}{\pi}_{00} \\
+	\overset{{\color{white}+}}{\pi}_{01} \\
+	\overset{{\color{white}+}}{\pi}_{10} \\
+	\overset{{\color{white}+}}{\pi}_{11}
+	\end{array}\right)
+	}}
+& = &
+	f\left(
+		\left(\poz:\poo\right),
+		\left(\ptz:\pto\right)
+	\right)
+\\
+& = &
+	\underset{\Sigma\,\subset\,\Delta_{3}}{\underbrace{
+	\left(\begin{array}{c}
+	\poz\,\ptz \\
+	\poz\,\overset{{\color{white}.}}{\pto} \\
+	\poo\,\overset{{\color{white}.}}{\ptz} \\
+	\poo\,\overset{{\color{white}.}}{\pto}
+	\end{array}\right)
+	}}
+\end{eqnarray*}
+\end{minipage}
+
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\LARGE Contingency tables with independent factors \& Segre embeddings (cont'd)}
+
+\begin{equation*}
+f \; : \; {\color{red}\Delta_{1}} \times {\color{blue}\Delta_{1}} \times {\color{green}\Delta_{1}} \;\longrightarrow\; \Sigma \, \subset \, \Delta_{7}
+\end{equation*}
+
+\vskip -0.3cm
+
+\tiny
+\begin{eqnarray*}
+	\overset{\Delta_{7}}{\overbrace{
+	\left(\begin{array}{c}
+	\overset{{\color{white}+}}{\pi}_{000} \\
+	\overset{{\color{white}+}}{\pi}_{001} \\
+	\overset{{\color{white}+}}{\pi}_{010} \\
+	\overset{{\color{white}+}}{\pi}_{011} \\
+	\\
+	\overset{{\color{white}+}}{\pi}_{100} \\
+	\overset{{\color{white}+}}{\pi}_{101} \\
+	\overset{{\color{white}+}}{\pi}_{110} \\
+	\overset{{\color{white}+}}{\pi}_{111} \\
+	\end{array}\right)
+	}}
+& = &
+	f\left(
+		\left(\poz:\poo\right),
+		\left(\ptz:\pto\right),
+		\left(\phz:\pho\right)
+	\right)
+\;\; = \;\;
+	\overset{\Sigma\,\subset\,\Delta_{7}}{\overbrace{
+	\left(\begin{array}{c}
+	\poz\,\ptz\,\phz \\
+	\poz\,\overset{{\color{white}.}}{\ptz}\,\pho \\
+	\poz\,\overset{{\color{white}.}}{\pto}\,\phz \\
+	\poz\,\overset{{\color{white}.}}{\pto}\,\pho \\
+	\\
+	\poo\,\overset{{\color{white}.}}{\ptz}\,\phz \\
+	\poo\,\overset{{\color{white}.}}{\ptz}\,\pho \\
+	\poo\,\overset{{\color{white}.}}{\pto}\,\phz \\
+	\poo\,\overset{{\color{white}.}}{\pto}\,\pho
+	\end{array}\right)
+	}}
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\LARGE Contingency tables with independent factors \& Segre embeddings (cont'd)}
+
+\vskip -0.1cm
+
+\scriptsize
+\begin{equation*}
+	f
+	\; : \;
+	{\color{red}\Delta_{2}} \times {\color{blue}\Delta_{1}} \times {\color{green}\Delta_{1}}
+	\;\longrightarrow\;
+	\Sigma \, \subset \, \Delta_{11} \,=\, \Delta_{3 \times 2 \times 2 - 1}
+\end{equation*}
+
+\vskip -0.5cm
+
+\tiny
+\begin{eqnarray*}
+	\overset{\Delta_{11}}{\overbrace{
+	\left(\begin{array}{c}
+	\overset{{\color{white}+}}{\pi}_{000} \\
+	\overset{{\color{white}+}}{\pi}_{001} \\
+	\overset{{\color{white}+}}{\pi}_{010} \\
+	\overset{{\color{white}+}}{\pi}_{011} \\
+	\\
+	\overset{{\color{white}+}}{\pi}_{100} \\
+	\overset{{\color{white}+}}{\pi}_{101} \\
+	\overset{{\color{white}+}}{\pi}_{110} \\
+	\overset{{\color{white}+}}{\pi}_{111} \\
+	\\
+	\overset{{\color{white}+}}{\pi}_{200} \\
+	\overset{{\color{white}+}}{\pi}_{201} \\
+	\overset{{\color{white}+}}{\pi}_{210} \\
+	\overset{{\color{white}+}}{\pi}_{211} \\
+	\end{array}\right)
+	}}
+& = &
+	f\left(
+		\left(\poz:\poo:\pot\right),
+		\left(\ptz:\pto\right),
+		\left(\phz:\pho\right)
+	\right)
+\;\; = \;\;
+	\overset{\Sigma\,\subset\,\Delta_{11}}{\overbrace{
+	\left(\begin{array}{c}
+	\poz\,\ptz\,\phz \\
+	\poz\,\overset{{\color{white}.}}{\ptz}\,\pho \\
+	\poz\,\overset{{\color{white}.}}{\pto}\,\phz \\
+	\poz\,\overset{{\color{white}.}}{\pto}\,\pho \\
+	\\
+	\poo\,\overset{{\color{white}.}}{\ptz}\,\phz \\
+	\poo\,\overset{{\color{white}.}}{\ptz}\,\pho \\
+	\poo\,\overset{{\color{white}.}}{\pto}\,\phz \\
+	\poo\,\overset{{\color{white}.}}{\pto}\,\pho \\
+	\\
+	\pot\,\overset{{\color{white}.}}{\ptz}\,\phz \\
+	\pot\,\overset{{\color{white}.}}{\ptz}\,\pho \\
+	\pot\,\overset{{\color{white}.}}{\pto}\,\phz \\
+	\pot\,\overset{{\color{white}.}}{\pto}\,\pho
+	\end{array}\right)
+	}}
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\Large \vskip -0.3cm Latent Class Models for Contingency Tables \&\vskip 0.1cm Fellegi-Sunter Probabilistic Record Linkage}
+
+\tiny
+
+\pause
+\vskip -0.25cm
+\begin{eqnarray*}
+\pi_{\gamma}
+& = & P\!\left(\,\Gamma = \gamma\,\right)
+\;\; = \;\;
+	P\!\left(\,\Gamma = \gamma\;\vert\;M=1\,\right)\cdot P\!\left(\,M=1\,\right)
+	\; + \;
+	P\!\left(\,\Gamma = \gamma\;\vert\;M=0\,\right)\cdot P\!\left(\,M=0\,\right)
+\\
+& = &
+	\overset{1}{\underset{m=0}{\sum}}\;
+	P\!\left(\,M=m\,\right) \cdot
+	\overset{p}{\underset{i=1}{\prod}}\;P\!\left(\,\Gamma_{i} = \gamma_{i}\;\vert\,M=m\,\right)
+\end{eqnarray*}
+
+\pause
+\scriptsize
+\begin{eqnarray*}
+\pi_{000} &=& \pozz\,\ptzz\,\phzz \cdot q_{0} \;+\; \pozo\,\ptzo\,\phzo \cdot q_{1} \\
+\pi_{001} &=& \pozz\,\ptzz\,\phoz \cdot q_{0} \;+\; \pozo\,\ptzo\,\phoo \cdot q_{1} \\
+\pi_{010} &=& \pozz\,\ptoz\,\phzz \cdot q_{0} \;+\; \pozo\,\ptoo\,\phzo \cdot q_{1} \\
+\pi_{011} &=& \pozz\,\ptoz\,\phoz \cdot q_{0} \;+\; \pozo\,\ptoo\,\phoo \cdot q_{1} \\
+\pi_{100} &=& \pooz\,\ptzz\,\phzz \cdot q_{0} \;+\; \pooo\,\ptzo\,\phzo \cdot q_{1} \\
+\pi_{101} &=& \pooz\,\ptzz\,\phoz \cdot q_{0} \;+\; \pooo\,\ptzo\,\phoo \cdot q_{1} \\
+\pi_{110} &=& \pooz\,\ptoz\,\phzz \cdot q_{0} \;+\; \pooo\,\ptoo\,\phzo \cdot q_{1} \\
+\pi_{111} &=& \pooz\,\ptoz\,\phoz \cdot q_{0} \;+\; \pooo\,\ptoo\,\phoo \cdot q_{1} \\
+\end{eqnarray*}
+
+%\begin{equation*}
+%\log P\!\left(\,Y = y\,\right)
+%\;\; = \;\;
+%\underset{\gamma\,\in\,\mathcal{G}}{\textnormal{\large$\sum$}}\;\, y_{\gamma}\cdot
+%	\log\!\left[\;
+%		\overset{1}{\underset{m=0}{\sum}}\;
+%		{\color{red}P\!\left(\,M=m\,\right)} \cdot
+%		\overset{p}{\underset{i=1}{\prod}}\,{\color{red}P\!\left(\,\Gamma_{i} = \gamma_{i}\;\vert\,M=m\,\right)}
+%	\;\right]
+%\; + \;
+%\log\!\left(n!\left/\overset{{\color{white}.}}{\underset{\gamma\,\in\,\mathcal{G}}{\prod}}\,y_{\gamma}!\right.\right),
+%\end{equation*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\Large \vskip -0.3cm Latent Class Models for Contingency Tables \&\vskip 0.1cm Fellegi-Sunter Probabilistic Record Linkage}
+
+\vskip -0.3cm
+
+\tiny
+%\begin{eqnarray*}
+%\pi_{000} &=& \pozz\,\ptzz\,\phzz \cdot q_{0} \;+\; \pozo\,\ptzo\,\phzo \cdot q_{1} \\
+%\pi_{001} &=& \pozz\,\ptzz\,\phoz \cdot q_{0} \;+\; \pozo\,\ptzo\,\phoo \cdot q_{1} \\
+%\pi_{010} &=& \pozz\,\ptoz\,\phzz \cdot q_{0} \;+\; \pozo\,\ptoo\,\phzo \cdot q_{1} \\
+%\pi_{011} &=& \pozz\,\ptoz\,\phoz \cdot q_{0} \;+\; \pozo\,\ptoo\,\phoo \cdot q_{1} \\
+%\pi_{100} &=& \pooz\,\ptzz\,\phzz \cdot q_{0} \;+\; \pooo\,\ptzo\,\phzo \cdot q_{1} \\
+%\pi_{101} &=& \pooz\,\ptzz\,\phoz \cdot q_{0} \;+\; \pooo\,\ptzo\,\phoo \cdot q_{1} \\
+%\pi_{110} &=& \pooz\,\ptoz\,\phzz \cdot q_{0} \;+\; \pooo\,\ptoo\,\phzo \cdot q_{1} \\
+%\pi_{111} &=& \pooz\,\ptoz\,\phoz \cdot q_{0} \;+\; \pooo\,\ptoo\,\phoo \cdot q_{1} \\
+%\end{eqnarray*}
+
+\begin{eqnarray*}
+\left(\begin{array}{c}
+\overset{{\color{white}+}}{\pi}_{000} \\
+\overset{{\color{white}+}}{\pi}_{001} \\
+\overset{{\color{white}+}}{\pi}_{010} \\
+\overset{{\color{white}+}}{\pi}_{011} \\
+\overset{{\color{white}+}}{\pi}_{100} \\
+\overset{{\color{white}+}}{\pi}_{101} \\
+\overset{{\color{white}+}}{\pi}_{110} \\
+\overset{{\color{white}+}}{\pi}_{111} \\
+\end{array}\right)
+& = &
+\left(\begin{array}{c}
+\pozz\,\ptzz\,\phzz \cdot q_{0} \;+\; \pozo\,\ptzo\,\phzo \cdot q_{1} \\
+\pozz\,\ptzz\,\phoz \cdot q_{0} \;+\; \pozo\,\ptzo\,\phoo \cdot q_{1} \\
+\pozz\,\ptoz\,\phzz \cdot q_{0} \;+\; \pozo\,\ptoo\,\phzo \cdot q_{1} \\
+\pozz\,\ptoz\,\phoz \cdot q_{0} \;+\; \pozo\,\ptoo\,\phoo \cdot q_{1} \\
+\pooz\,\ptzz\,\phzz \cdot q_{0} \;+\; \pooo\,\ptzo\,\phzo \cdot q_{1} \\
+\pooz\,\ptzz\,\phoz \cdot q_{0} \;+\; \pooo\,\ptzo\,\phoo \cdot q_{1} \\
+\pooz\,\ptoz\,\phzz \cdot q_{0} \;+\; \pooo\,\ptoo\,\phzo \cdot q_{1} \\
+\pooz\,\ptoz\,\phoz \cdot q_{0} \;+\; \pooo\,\ptoo\,\phoo \cdot q_{1} \\
+\end{array}\right)
+\\
+\pause
+& = &
+q_{0} \cdot
+\left(\begin{array}{c}
+\pozz\,\ptzz\,\phzz \\
+\pozz\,\ptzz\,\phoz \\
+\pozz\,\ptoz\,\phzz \\ 
+\pozz\,\ptoz\,\phoz \\
+\pooz\,\ptzz\,\phzz \\
+\pooz\,\ptzz\,\phoz \\
+\pooz\,\ptoz\,\phzz \\
+\pooz\,\ptoz\,\phoz
+\end{array}\right)
+\;\; + \;\;
+q_{1} \cdot
+\left(\begin{array}{c}
+\pozo\,\ptzo\,\phzo \\
+\pozo\,\ptzo\,\phoo \\
+\pozo\,\ptoo\,\phzo \\
+\pozo\,\ptoo\,\phoo \\
+\pooo\,\ptzo\,\phzo \\
+\pooo\,\ptzo\,\phoo \\
+\pooo\,\ptoo\,\phzo \\
+\pooo\,\ptoo\,\phoo
+\end{array}\right)
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.35cm \Large Model parametrization map of\\ Fellegi-Sunter Probabilistic Record Linkage}
+
+\vskip -0.35cm
+
+\tiny
+
+\begin{eqnarray*}
+	\overset{\Delta_{7}}{\overbrace{
+	\left(\begin{array}{c}
+	\overset{{\color{white}+}}{\pi}_{000} \\
+	\overset{{\color{white}+}}{\pi}_{001} \\
+	\overset{{\color{white}+}}{\pi}_{010} \\
+	\overset{{\color{white}+}}{\pi}_{011} \\
+	\overset{{\color{white}+}}{\pi}_{100} \\
+	\overset{{\color{white}+}}{\pi}_{101} \\
+	\overset{{\color{white}+}}{\pi}_{110} \\
+	\overset{{\color{white}+}}{\pi}_{111} \\
+	\end{array}\right)
+	}}
+& = &
+q_{0} \cdot
+	\overset{\Sigma\,\subset\,\Delta_{7}}{\overbrace{
+	\left(\begin{array}{c}
+	\pozz\,\ptzz\,\phzz \\
+	\pozz\,\ptzz\,\phoz \\
+	\pozz\,\ptoz\,\phzz \\ 
+	\pozz\,\ptoz\,\phoz \\
+	\pooz\,\ptzz\,\phzz \\
+	\pooz\,\ptzz\,\phoz \\
+	\pooz\,\ptoz\,\phzz \\
+	\pooz\,\ptoz\,\phoz
+	\end{array}\right)
+	}}
+\;\; + \;\;
+q_{1} \cdot
+	\overset{\Sigma\,\subset\,\Delta_{7}}{\overbrace{
+	\left(\begin{array}{c}
+	\pozo\,\ptzo\,\phzo \\
+	\pozo\,\ptzo\,\phoo \\
+	\pozo\,\ptoo\,\phzo \\
+	\pozo\,\ptoo\,\phoo \\
+	\pooo\,\ptzo\,\phzo \\
+	\pooo\,\ptzo\,\phoo \\
+	\pooo\,\ptoo\,\phzo \\
+	\pooo\,\ptoo\,\phoo
+	\end{array}\right)
+	}}
+\end{eqnarray*}
+
+\pause
+\vskip -0.5cm
+\tiny
+\begin{eqnarray*}
+&&
+	\left(\,\pi_{000}\,:\,\overset{{\color{white}|}}{\ldots}\,:\,\pi_{111}\,\right)
+\\
+&=&
+	\Psi\left(\,
+		\left(\pozz:\pooz\right),
+		\left(\ptzz:\ptoz\right),
+		\left(\phzz:\phoz\right),
+		\left(\pozo:\pooo\right),
+		\left(\ptzo:\ptoo\right),
+		\left(\phzo:\phoo\right),
+		\left(q_{0}:q_{1}\right)
+	\,\right)
+\end{eqnarray*}
+
+\tiny
+\begin{equation*}
+\Psi \, :
+\left({\color{red}\Delta_{1}} \overset{{\color{white}.}}{\times} {\color{blue}\Delta_{1}} \times {\color{green}\Delta_{1}}\right)
+\times
+\left({\color{pink}\Delta_{1}} \overset{{\color{white}.}}{\times} {\color{cyan}\Delta_{1}} \times {\color{lime}\Delta_{1}}\right)
+\times
+\Delta_{1}
+\;\;\longrightarrow\;\;
+\mathcal{S}^{2}\!\left(\,\Sigma\,\right) \,\subset\, \Delta_{7}
+\end{equation*}
+
+\pause
+
+\scriptsize
+\begin{equation*}
+\Psi \, :
+\left(\Delta_{d_{1}} \times \cdots \times \Delta_{d_{p}}\right)
+\times \cdots \times
+\left(\Delta_{d_{1}} \times \cdots \times \Delta_{d_{p}}\right)
+\times
+\Delta_{r-1}
+\;\;\longrightarrow\;\;
+\mathcal{S}^{r}\!\left(\,\Sigma\,\right) \,\subset\, \Delta_{d_{1}\cdots d_{p} - 1}
+\end{equation*}
+
+%\large
+%\begin{center}
+%\textbf{
+%Identifiability
+%\;$:=$\;
+%generic injectivity of $\Psi$
+%}
+%\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\Large What is ``identifiability'' here, at least intuitively?}
+
+\vskip -0.35cm
+
+\scriptsize
+\begin{equation*}
+\Psi \, :
+\left({\color{red}\Delta_{1}} \overset{{\color{white}.}}{\times} {\color{blue}\Delta_{1}} \times {\color{green}\Delta_{1}}\right)
+\times
+\left({\color{pink}\Delta_{1}} \overset{{\color{white}.}}{\times} {\color{cyan}\Delta_{1}} \times {\color{lime}\Delta_{1}}\right)
+\times
+\Delta_{1}
+\;\;\longrightarrow\;\;
+\mathcal{S}^{2}\!\left(\,\Sigma\,\right) \,\subset\, \Delta_{7}
+\end{equation*}
+
+\vskip -0.3cm
+
+\tiny
+\begin{eqnarray*}
+&&
+	\left(\,\pi_{000}\,:\,\overset{{\color{white}|}}{\ldots}\,:\,\pi_{111}\,\right)
+\\
+&=&
+	\Psi\left(\,
+		\left(\pozz:\pooz\right),
+		\left(\ptzz:\ptoz\right),
+		\left(\phzz:\phoz\right),
+		\left(\pozo:\pooo\right),
+		\left(\ptzo:\ptoo\right),
+		\left(\phzo:\phoo\right),
+		\left(q_{0}:q_{1}\right)
+	\,\right)
+\end{eqnarray*}
+
+\pause
+
+\vskip 0.6cm
+\small
+\begin{center}
+\textbf{\Large Is \,$\Psi$\, ``identifiable''\,?}
+\end{center}
+\pause
+\vskip 0.2cm
+Does \;$\left(\,\pi_{000}\,:\,\overset{{\color{white}|}}{\ldots}\,:\,\pi_{111}\,\right)$\;
+``uniquely determine''
+\tiny
+\begin{equation*}
+\left(\,
+	\left(\pozz:\pooz\right),
+	\left(\ptzz:\ptoz\right),
+	\left(\phzz:\phoz\right),
+	\left(\pozo:\pooo\right),
+	\left(\ptzo:\ptoo\right),
+	\left(\phzo:\phoo\right),
+	\left(q_{0}:q_{1}\right)
+\,\right)?
+\end{equation*}
+
+%\large
+%\begin{center}
+%\textbf{
+%Identifiability
+%\;$:=$\;
+%generic injectivity of $\Psi$
+%}
+%\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

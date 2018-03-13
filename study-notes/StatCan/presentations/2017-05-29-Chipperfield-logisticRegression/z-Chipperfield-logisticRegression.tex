@@ -1,0 +1,923 @@
+
+%%%%%%%%%%
+
+\newcommand{\modelParameters}{
+	\begin{array}{c}
+		\pi_{c \vert x}\,, \; \mu_{m \vert xy}\,, \; \nu_{xy}\,, \; \omega_{j}
+		\\
+		\textnormal{$c,y\in\{0,1\}, \, x\in\{0,1\}^{p},$}
+		\\
+		\textnormal{$m,j\in\{0,1\}$}
+	\end{array}
+}
+
+\newcommand{\EMConditions}{
+	\begin{array}{c}
+		X^{(a)},\,\widetilde{Y}^{(a)},\,K^{(a)}
+		\\
+		\textnormal{$a\in\{1,\ldots,n\}$}
+	\end{array}
+	\textnormal{\large;}
+	\modelParameters
+}
+
+\newcommand{\EMConditionsWithValues}{
+	\begin{array}{c}
+		X^{(a)} = x^{(a)} ,\, \widetilde{Y}^{(a)} = y_{a} ,\, K^{(a)} = k_{a}
+		\\
+		\textnormal{$a\in\{1,\ldots,n\}$}
+	\end{array}
+	\textnormal{\large;}
+	\modelParameters
+}
+
+\newcommand{\ithEMConditionsWithValues}{
+	\begin{array}{c}
+		X^{(i)} = x^{(i)} ,\, \widetilde{Y}^{(i)}=y_{i} ,\, K^{(i)}=k_{i}
+	\end{array}
+	\textnormal{\large;}
+	\modelParameters
+}
+
+\newcommand{\ithGYZeroEMConditionsWithValues}{
+	\begin{array}{c}
+		X^{(i)}=x , \widetilde{Y}^{(i)}=y , K^{(i)}=0
+	\end{array}
+	\textnormal{\large;}
+	\modelParameters
+}
+
+\newcommand{\ithGYOneEMConditionsWithValues}{
+	\begin{array}{c}
+		X^{(i)}=x , \widetilde{Y}^{(i)}=y , K^{(i)}=1
+	\end{array}
+	\textnormal{\large;}
+	\modelParameters
+}
+
+\newcommand{\ithGYTwoEMConditionsWithValues}{
+	\begin{array}{c}
+		X^{(i)}=x , \widetilde{Y}^{(i)}=y , K^{(i)}=2
+	\end{array}
+	\textnormal{\large;}
+	\modelParameters
+}
+
+\newcommand{\logisticBetaX}{
+	\dfrac{\exp\!\left(\,\beta^{T} \cdot x \,\right)}{1 \,+\, \exp\!\left(\,\beta^{T} \cdot x \,\right)}
+}
+
+\newcommand{\oneMinusLogisticBetaX}{
+	\dfrac{1}{1 \,+\, \exp\!\left(\,\beta^{T} \cdot x \,\right)}
+}
+
+%%%%%%%%%%
+
+\begin{frame}{\Large The random variables involved ...}
+
+\scriptsize
+\begin{center}
+\begin{tabular}{|c|c|l|}
+\hline
+$\overset{{\color{white}.}}{X^{(i)}}$ & observed & multivariate predictor variable with binary component variables
+\\ \hline
+$\overset{{\color{white}.}}{Y^{(i)}}$ & unobserved & (true) binary response variable
+\\ \hline
+$\overset{{\color{white}.}}{\widetilde{Y}^{(i)}}$ & observed & observed binary response variable (may contain measurement errors)
+\\ \hline
+$M^{(i)}$ & $\begin{array}{c} \textnormal{partially} \\ \textnormal{observed} \end{array}$ &
+	\!\!\!$\begin{array}{l}
+		{\color{white}.}
+		\\
+		\textnormal{binary variable indicating whether clerical review}
+		\\
+		\textnormal{confirms correctness of \,$\overset{{\color{white}.}}{\widetilde{Y}^{(i)}}$}
+		\\
+		{\color{white}.}
+	\end{array}$ 
+\\ \hline
+$\overset{{\color{white}.}}{J^{(i)}}$ & $\begin{array}{c} \textnormal{partially} \\ \textnormal{observed} \end{array}$ &
+	\!\!\!$\begin{array}{l}
+		{\color{white}.}
+		\\
+		\textnormal{binary variable indicating whether}
+		\\
+		\textnormal{observation $i$ is selected for clerical review}
+		\\
+		{\color{white}.}
+	\end{array}$
+\\ \hline
+&& \\
+$K^{(i)}$ & observed & $K^{(i)} \;:=\;
+	\left\{\begin{array}{cl}
+		0, & \textnormal{if}\;\; J^{(i)} = 0,
+		\\
+		1, & \textnormal{if}\;\; J^{(i)} = 1, \;\;\textnormal{and}\;\; M^{(i)} = 0,
+		\\
+		2, & \textnormal{if}\;\; J^{(i)} = 1, \;\;\textnormal{and}\;\; M^{(i)} = 1
+	\end{array}\right.$
+\\
+&& \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large Want to prove ...}
+
+\small
+The logarithm of the joint probability distribution of
+\begin{equation*}
+Y^{(i)}\,, X^{(i)}\,, \widetilde{Y}^{(i)}\,, K^{(i)}\,,
+\quad
+\textnormal{for \;$i \in \{1,2,\ldots,n\}$}\,,
+\end{equation*}
+is given by:
+\scriptsize
+\begin{eqnarray*}
+	&&
+		\log\,L
+	\\
+		&=&
+		\log\,P\!\left(\;
+			\overset{n}{\underset{i=1}{\bigcap}}\;
+			\left\{
+				Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}
+			\right\}
+		\;\right)
+	\\
+	&=&
+		{\color{white}+} \;\;
+		\overset{1}{\underset{c=0}{\sum}}\;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}\right)
+		\cdot
+		\left(\,
+			\log\left(\pi_{c \vert x}\,\mu_{0 \vert xy} + \delta_{cy}\,\mu_{1\vert xy}\right)
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{0}
+		\,\right)
+	\\
+	&&
+		+ \;\;
+		\overset{1}{\underset{c=0}{\sum}}\;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\;\;
+		\overset{1}{\underset{y=0}{\sum}}\;
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}\right)
+		\cdot
+		\left(\,
+			\log\,\pi_{c \vert x}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\mu_{0\vert xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{1}
+		\,\right)
+	\\
+	&&
+		+ \;\;
+		\overset{1}{\underset{y=0}{\sum}}\;\;
+		\underset{x\in\{0,1\}^{p}}{\sum}\,
+		\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert xy{\color{red}2}}\right)
+		\cdot
+		\left(\,
+			\log\,\mu_{1 \vert xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\nu_{xy}
+			\,\overset{{\color{white}.}}{+}\,
+			\log\,\omega_{1}
+		\,\right)
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large The quantities involved ...}
+
+\normalsize
+\begin{equation*}
+\begin{array}{ccll}
+	W^{(i)}_{c \vert xyk}
+		&:=&
+		\overset{\textnormal{\large\color{white}1}}{I}\!\left\{\,Y^{(i)}=c,X^{(i)}=x,\widetilde{Y}^{(i)}=y,K^{(i)}=k\,\right\}
+	\\
+	{\color{red}\pi_{c \vert x}}
+		&\overset{{\color{white}\vert}}{:=}&
+		P\!\left(\,\left.\overset{{\color{white}.}}{Y}=c\;\right\vert X=x\,\right)
+	\\
+	\mu_{m \vert xy}
+		&\overset{{\color{white}\vert}}{:=}&
+		P\!\left(\,\left.\overset{{\color{white}.}}{M}=m\;\right\vert X=x, \widetilde{Y}=y\,\right)
+	\\
+	\nu_{xy}
+		&\overset{{\color{white}\vert}}{:=}&
+		P\!\left(\,\overset{{\color{white}.}}{X}=x, \widetilde{Y}=y\,\right)
+	\\
+	\omega_{j}
+		&\overset{{\color{white}\vert}}{:=}&
+		P\!\left(\,\overset{{\color{white}.}}{J}=j\,\right)
+	\\
+	\overset{\textnormal{\Large\color{white}1}}{\delta}_{cy}
+		&\overset{{\color{white}\vert}}{:=}&
+		\left\{\begin{array}{cl}
+			1, & \textnormal{if}\;\; c = y\,,
+			\\
+			0, & \textnormal{otherwise}\,.
+		\end{array}\right.
+\end{array}
+\end{equation*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.25cm \Large Assumptions ...}
+
+\tiny
+
+\renewcommand{\theenumi}{\alph{enumi}}
+\begin{enumerate}
+\item
+	There exists $\beta \in \Re^{p}$ such that
+	\begin{equation*}
+	\pi_{1 \vert x}
+	\;\; := \;\;
+		P\!\left(\; Y^{(i)} = 1 \,\left\vert\, X^{(i)} = x \right.\,\right)
+	\;\; = \;\;
+		E\!\left[\; Y^{(i)}  = 1 \,\left\vert\, X^{(i)} = x \right.\,\right]
+	\;\; = \;\;
+		\logisticBetaX\,,
+	\quad
+	\end{equation*}
+	for each $x \in \{0,1\}^{p}$ and for each \,$i = 1,2,\ldots,n$.
+\item\label{iIndependence}
+	The $\left(\left\{0,1\right\} \overset{{\color{white}.}}{\times} \left\{0,1\right\}^{p} \times \left\{0,1\right\} \times \left\{0,1\right\}\right)$-valued
+	random variables
+	\,$Z^{(i)} := \left(\,Y^{(i)},X^{(i)},\widetilde{Y}^{(i)},M^{(i)}\,\right)$,
+	\,$i \in \{1, \ldots, n\}$,
+	\,are independent and identically distributed.
+\item\label{Jindependence}
+	The Bernoulli random variables \,$J^{(i)}$, \,$i \in \{1, \ldots, n\}$, \,are independent and identically distributed.
+\item\label{ZJindependence}
+	The two collections of random variables
+	\,$\left\{\,Z^{(i)} := \left(\,Y^{(i)},X^{(i)},\widetilde{Y}^{(i)},M^{(i)}\right)\,\right\}_{i=1}^{n}$\,
+	and
+	\,$\left\{\,J^{(i)}\,\right\}_{i=1}^{n}$\,
+	are independent, in the sense that, for all
+	\,$z_{1}, \ldots, z_{n} \in \left\{0,1\right\}^{p+3}$\, and \,$j_{1}, \ldots, j_{n} \in \{0,1\}$,\,
+	\begin{eqnarray*}
+	&&
+		P\!\left(\,Z^{(1)}=z_{1},\,\ldots\,,Z^{(n)}=z_{n},\;J^{(1)}=j_{1},\,\ldots\,,J^{(n)}=j_{n}\,\right)
+	\\
+	& = &
+		P\!\left(\,Z^{(1)}=z_{1},\,\ldots\,,Z^{(n)}=z_{n}\,\right)
+		\cdot
+		P\!\left(\,J^{(1)}=j_{1},\,\ldots\,,J^{(n)}=j_{n}\,\right)
+	\end{eqnarray*}
+\item\label{MzeroImplies}
+	{\color{red}For each \,$i\in\{1,2,\ldots,n\}$, \,$c\in\{0,1\}$, \,$x \in \{0,1\}^{p+3}$, and \,$y \in \{0,1\}$, \,we have:
+	\begin{equation*}
+	P\!\left(\left.Y^{(i)} = c\,\;\right\vert X^{(i)}=x,\widetilde{Y}^{(i)}=y,M^{(i)}=0\,\right)
+	\;\; = \;\;
+	P\!\left(\;Y^{(i)} = c\;\left\vert\,X^{(i)}=x\right.\,\right)\,.
+	\end{equation*}}
+\item\label{MoneImpliesCEqualsY}
+	For each $i\in\{1,2,\ldots,n\}$, we have:
+	\begin{equation*}
+	M^{(i)} \; = \; 1
+	\quad\Longrightarrow\quad
+	Y^{(i)} \; = \; \widetilde{Y}^{(i)},
+	\end{equation*}
+	which, in particular, implies $P\!\left(\,\left.Y^{(i)} = \widetilde{Y}^{(i)}\;\right\vert\;M^{(i)}=1\,\right)\,=\,1$.
+\end{enumerate}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.20cm\Large Proof ...}
+
+\vskip -0.5cm
+
+\scriptsize
+\begin{eqnarray*}
+L &=&
+	P\!\left(\;
+		\overset{n}{\underset{i=1}{\bigcap}}\;
+		\left\{
+			Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}
+		\right\}
+	\;\right)
+\\
+\pause
+&=&
+	\overset{n}{\underset{i=1}{\prod}} \;\,
+	P\!\left(\,Y^{(i)}=c_{i},X^{(i)}=x^{(i)},\widetilde{Y}^{(i)}=y_{i},K^{(i)}=k_{i}\,\right)
+\\
+\pause
+&=&
+	\overset{n}{\underset{i=1}{\prod}} \;
+	\left\{\;
+		\overset{1}{\underset{c=0}{\prod}}
+		\,\;\underset{x\in\{0,1\}^{p}}{\prod}\;\,
+		\overset{1}{\underset{y=0}{\prod}}\;\;
+		\overset{2}{\underset{k=0}{\prod}}\;\;
+		P\!\left(\,Y=c,X=x,\widetilde{Y}=y,K=k\,\right)^{W^{(i)}_{c \vert xyk}}
+	\;\right\}
+\\
+\pause
+&=&
+	\overset{1}{\underset{c=0}{\prod}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\prod}\;\,
+	\overset{1}{\underset{y=0}{\prod}}\;\;
+	\overset{2}{\underset{k=0}{\prod}}\;
+	\left\{\;
+		\overset{n}{\underset{i=1}{\prod}} \;\,
+		P\!\left(\,Y=c,X=x,\widetilde{Y}=y,K=k\,\right)^{W^{(i)}_{c \vert xyk}}
+	\;\right\}
+\\
+\pause
+&=&
+	\overset{1}{\underset{c=0}{\prod}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\prod}\;\,
+	\overset{1}{\underset{y=0}{\prod}}\;\;
+	\overset{2}{\underset{k=0}{\prod}}\;
+	\left\{\;
+		P\!\left(\,Y=c,X=x,\widetilde{Y}=y,K=k\,\right)
+		^{\overset{n}{\underset{i=1}{\sum}}\,W^{(i)}_{c \vert xyk}}
+	\;\right\}\,.
+\end{eqnarray*}
+
+\vskip -0.40cm
+
+\pause
+\begin{eqnarray*}
+\log\,L &=&
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
+	\overset{1}{\underset{y=0}{\sum}}\;\;
+	\overset{2}{\underset{k=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xyk}\right)
+	\cdot
+	\log\,P\!\left(\,Y=c,X=x,\widetilde{Y}=y,K=k\,\right)
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.20cm\Large Proof ...}
+
+\tiny
+\begin{eqnarray*}
+\log\,L &=&
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
+	\overset{1}{\underset{y=0}{\sum}}\;\;
+	\overset{2}{\underset{k=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xyk}\right)
+	\cdot
+	\log\,P\!\left(\,Y=c,X=x,\widetilde{Y}=y,K=k\,\right)
+\\
+\pause
+&=&
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
+	\overset{1}{\underset{y=0}{\sum}}\;\;
+	\overset{2}{\underset{k=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xyk}\right)
+	\cdot
+	\log\left[\,
+		\begin{array}{c}
+			P\!\left(\,Y=c\,\left\vert\,X=x,\widetilde{Y}=y,K=k\right.\,\right)
+			\\
+			\times \; P\!\left(\,X=x,\widetilde{Y}=y,K=k\,\right)
+		\end{array}
+	\,\right]
+\\
+\pause
+&=&
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
+	\overset{1}{\underset{y=0}{\sum}}\;\;
+	\overset{2}{\underset{k=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xyk}\right)
+	\cdot
+	\log\left[\,
+		\pi_{c \vert xyk} \overset{{\color{white}\vert}}{\cdot} p_{xyk}
+	\,\right]
+\\
+\pause
+&=&
+	{\color{white}+} \;\;
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
+	\overset{1}{\underset{y=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}\right)
+	\cdot
+	\log\left[\,
+		\pi_{c \vert xy\color{red}0} \cdot p_{xy\color{red}0}
+	\,\right]
+\\
+&&
+	+ \;\;
+	\overset{1}{\underset{c=0}{\sum}}
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\;\,
+	\overset{1}{\underset{y=0}{\sum}}\;
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}\right)
+	\cdot
+	\log\left[\,
+		\pi_{c \vert xy\color{red}1} \cdot p_{xy\color{red}1}
+	\,\right]
+\\
+&&
+	+ \;\;
+	\overset{1}{\underset{y=0}{\sum}}\;
+	\,\;\underset{x\in\{0,1\}^{p}}{\sum}\,
+	\left(\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{y \vert xy{\color{red}2}}\right)
+	\cdot
+	\log\left[\,
+		\pi_{y \vert xy\color{red}2} \cdot p_{xy\color{red}2}
+	\,\right]
+\end{eqnarray*}
+
+\pause
+\begin{eqnarray*}
+W^{(i)}_{c \vert xy{\color{red}2}}
+&:=&
+	I\!\left\{\,Y^{(i)}=c,X^{(i)}=x,\widetilde{Y}^{(i)}=y,K^{(i)}={\color{red}2}\,\right\}
+\\
+&=&
+	I\!\left\{\,Y^{(i)}=c,X^{(i)}=x,\widetilde{Y}^{(i)}=y,J^{(i)}=1,M^{(i)}=1\,\right\}
+%\\
+%&=&
+\;\; = \;\;
+	\left\{\begin{array}{cl}
+		1, & \textnormal{if}\;\; c = y
+		\\
+		0, & \textnormal{otherwise}
+	\end{array}\right.
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.20cm\Large Proof ...}
+
+\scriptsize
+
+\begin{eqnarray*}
+\pi_{c \vert xy0}
+\pause
+&=&
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y,K=0\right.\,\right)
+\\
+\pause
+&=&
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y,J=0\right.\,\right)
+\\
+\pause
+&=&
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right),
+	\quad\quad
+	\textnormal{by \eqref{ZJindependence}}
+\\
+\pause
+&=&
+	P\!\left(\;Y=c,M=0\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right)
+	\;+\;
+	P\!\left(\;Y=c,M=1\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right)
+\\
+\pause
+&=&
+	{\color{white}+}\;\;
+	P\!\left(\;Y=c\;\left\vert\;M=0,X=x,\widetilde{Y}=y\right.\,\right)
+	\cdot
+	P\!\left(\;M=0\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right)
+\\
+\pause
+&&
+	+\;\;
+	P\!\left(\;Y=c\;\left\vert\;M=1,X=x,\widetilde{Y}=y\right.\,\right)
+	\cdot
+	P\!\left(\;M=1\;\left\vert\;X=x,\widetilde{Y}=y\right.\,\right)
+\\
+\pause
+&=&
+	P\!\left(\;\left.Y\overset{{\color{white}-}}{=}c\;\right\vert X=x\;\right)
+	\cdot
+	\mu_{0 \vert xy}
+	\;\;+\;\;
+	\delta_{cy}
+	\cdot
+	\mu_{1 \vert xy}\,,
+	\quad\;
+	\textnormal{by \,\eqref{MzeroImplies}, \eqref{MoneImpliesCEqualsY},\, and definition of \,$\mu_{m \vert xy}$}
+\\
+\pause
+&=&
+	\pi_{c \vert x}
+	\cdot
+	\mu_{0 \vert xy}
+	\;\;+\;\;
+	\delta_{cy}
+	\cdot
+	\mu_{1 \vert xy}\,,
+	\quad\quad
+	\textnormal{by definition of \,$\pi_{c \vert x}$}
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.20cm\Large Proof ...}
+
+\vskip -0.20cm
+
+\small
+
+\begin{eqnarray*}
+\pi_{c \vert xy1}
+&=&
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y,K=1\right.\,\right)
+\\
+&=&
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y,J=1,M=0\right.\,\right)
+\\
+&=&
+	P\!\left(\;Y=c\;\left\vert\;X=x,\widetilde{Y}=y,M=0\right.\,\right),
+	\quad\quad
+	\textnormal{by \eqref{ZJindependence}}
+\\
+&=&
+	P\!\left(\;Y=c\;\left\vert\;X\overset{{\color{white}-}}{=}x\right.\,\right),
+	\quad\quad
+	\textnormal{by \,\eqref{MzeroImplies}}
+\\
+&=&
+	\pi_{c \vert x}\,,
+	\quad\quad
+	\textnormal{by definition of \,$\pi_{c \vert x}$}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\pi_{y \vert xy2}
+&=&
+	P\!\left(\;Y=y\;\left\vert\;X=x,\widetilde{Y}=y,K=2\right.\,\right)
+\\
+&=&
+	P\!\left(\;Y=y\;\left\vert\;X=x,\widetilde{Y}=y,J=1,M=1\right.\,\right)
+\\
+&=&
+	1\,,
+	\quad\quad
+	\textnormal{by \eqref{MoneImpliesCEqualsY}.}
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.20cm\Large Also want to show:}
+
+\tiny
+
+	\begin{eqnarray*}
+	E\!\left[\;\,
+		\left.
+		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}0}}
+		\,\;\right\vert
+		\EMConditions
+	\right]
+		&=&
+		N_{xy{\color{red}0}}\cdot\left(\,\pi_{c \vert x}\,\mu_{0 \vert xy} \,+\, \delta_{cy}\,\mu_{1 \vert xy}\,\right)
+	\\ \\
+	E\!\left[\;\,
+		\left.
+		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}1}}
+		\,\;\right\vert
+		\EMConditions
+	\right]
+		&=&
+		N_{xy{\color{red}1}}\cdot\pi_{c \vert x}
+	\\ \\
+	E\!\left[\;\,
+		\left.
+		\overset{n}{\underset{i=1}{\sum}}\;W^{(i)}_{c \vert xy{\color{red}2}}
+		\,\;\right\vert
+		\EMConditions
+	\right]
+		&=&
+		N_{xy{\color{red}2}}\,,
+	\end{eqnarray*}
+	where \;$N_{xy{\color{red}k}}$ $:=$
+	$\overset{n}{\underset{i=1}{\sum}}\,I\!\left\{\,X^{(i)}=x,\,\widetilde{Y}^{(i)}=y,\,K^{(i)}={\color{red}k}\,\right\}$,
+	for $k \in \{0,1,2\}$.
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.20cm\Large Proof ...}
+
+\tiny
+
+	\begin{eqnarray*}
+	&&
+		E\!\left[\;
+			\left.
+			W^{(i)}_{c \vert xy{\color{red}0}}
+			\,\;\right\vert
+			\EMConditionsWithValues
+		\right]
+	\\
+	&=&
+		E\!\left[\;
+			\left.
+			W^{(i)}_{c \vert xy{\color{red}0}}
+			\,\;\right\vert
+			\ithEMConditionsWithValues
+		\right]\,,
+		\quad
+		\textnormal{by \; \eqref{iIndependence}, \eqref{Jindependence} and \eqref{ZJindependence}.}
+	\\
+	&=&
+		P\!\left(\,
+			\left.
+			W^{(i)}_{c \vert xy{\color{red}0}} = 1
+			\,\;\right\vert
+			\ithEMConditionsWithValues
+		\right)
+	\\
+	&=&
+		P\!\left(\,
+			\left.
+			Y^{(i)} = c, X^{(i)} = x, \widetilde{Y}^{(i)} = y, K^{(i)} = 0
+			\,\;\right\vert
+			\!\!
+			\ithEMConditionsWithValues
+		\!\!\right)
+	\\
+	&=&
+		I\!\left\{\,X^{(i)}=x , \widetilde{Y}^{(i)}=y , K^{(i)}\,=0\,\right\}
+		\cdot
+		P\!\left(
+			\left.
+			Y^{(i)} = c
+			\,\;\right\vert
+			\!\!
+			\ithGYZeroEMConditionsWithValues
+		\!\!\right)
+	\\
+	&=&
+		I^{(i)}_{xy0}
+		\cdot
+		P\!\left(
+			\left.
+			Y^{(i)} = c
+			\,\;\right\vert
+			\!\!
+			\begin{array}{c}
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y,\, J^{(i)} = 0
+			\end{array}
+			\textnormal{\large;}
+			\modelParameters
+		\!\!\right)
+	\\
+	&=&
+		I^{(i)}_{xy0}
+		\cdot
+		P\!\left(
+			\left.
+			Y^{(i)} = c
+			\,\;\right\vert
+			\!\!
+			\begin{array}{c}
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+			\end{array}
+			\textnormal{\large;}
+			\;\;\cdots\;\;
+		\right)\,,
+		\quad
+		\textnormal{by \eqref{ZJindependence} and suppressing parameters for brevity}
+%	\\
+%	&=&
+%		I^{(i)}_{xy0}
+%		\cdot
+%		\left\{\;
+%			P\!\left(\,
+%				\left.
+%				Y^{(i)} = c,\,M^{(i)}=0
+%				\;\right\vert
+%				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+%			\;\right)
+%			\;+\;
+%			P\!\left(\,
+%				\left.
+%				Y^{(i)} = c,\,M^{(i)}=1
+%				\;\right\vert
+%				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+%			\;\right)
+%		\;\right\}
+%	\\
+%	&=&
+%		I^{(i)}_{xy0}
+%		\cdot
+%		\left\{\;
+%		\begin{array}{cc}
+%			&
+%			P\!\left(\,
+%				\left.
+%				Y^{(i)} = c
+%				\;\right\vert
+%				M^{(i)}=0,\,X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+%			\;\right)
+%			\cdot
+%			P\!\left(\,
+%				\left.
+%				M^{(i)}=0
+%				\;\right\vert
+%				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+%			\;\right)
+%		\\
+%			\overset{\textnormal{\large{\color{white}1}}}{+}&
+%			P\!\left(\,
+%				\left.
+%				Y^{(i)} = c
+%				\;\right\vert
+%				M^{(i)}=1,\, X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+%			\;\right)
+%			\cdot
+%			P\!\left(\,
+%				\left.
+%				M^{(i)}=1
+%				\;\right\vert
+%				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+%			\;\right)
+%		\end{array}
+%		\;\right\}
+%	\\
+%	&=&
+%		I^{(i)}_{xy0}
+%		\cdot
+%		\left(\;
+%			\pi_{c \vert xy}
+%			\cdot
+%			\mu_{0 \vert xy}
+%			\;\overset{{\color{white}.}}{+}\;
+%			\delta_{cy}
+%			\cdot
+%			\mu_{1 \vert xy}
+%		\;\right)\,,
+%		\quad
+%		\textnormal{by \,\eqref{MzeroImplies}, \,\eqref{MoneImpliesCEqualsY}, and definition of \,$\mu_{m \vert xy}$}
+	\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.20cm\Large Proof ...}
+
+\tiny
+
+	\begin{eqnarray*}
+	&&
+		E\!\left[\;
+			\left.
+			W^{(i)}_{c \vert xy{\color{red}0}}
+			\,\;\right\vert
+			\EMConditionsWithValues
+		\right]
+	\\
+	&=&
+		\overset{{\color{white}1}}{\cdots}
+%	\\
+%	&=&
+%		I^{(i)}_{xy0}
+%		\cdot
+%		P\!\left(
+%			\left.
+%			Y^{(i)} = c
+%			\,\;\right\vert
+%			\!\!
+%			\begin{array}{c}
+%				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y,\, J^{(i)} = 0
+%			\end{array}
+%			\textnormal{\large;}
+%			\modelParameters
+%		\!\!\right)
+	\\
+	&=&
+		I^{(i)}_{xy0}
+		\cdot
+		P\!\left(
+			\left.
+			Y^{(i)} = c
+			\,\;\right\vert
+			\!\!
+			\begin{array}{c}
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+			\end{array}
+			\textnormal{\large;}
+			\;\;\cdots\;\;
+		\right)\,,
+		\quad
+		\textnormal{by \eqref{ZJindependence} and suppressing parameters for brevity}
+	\\
+	&=&
+		I^{(i)}_{xy0}
+		\cdot
+		\left\{\;
+			P\!\left(\,
+				\left.
+				Y^{(i)} = c,\,M^{(i)}=0
+				\;\right\vert
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+			\;+\;
+			P\!\left(\,
+				\left.
+				Y^{(i)} = c,\,M^{(i)}=1
+				\;\right\vert
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+		\;\right\}
+	\\
+	&=&
+		I^{(i)}_{xy0}
+		\cdot
+		\left\{\;
+		\begin{array}{cc}
+			&
+			P\!\left(\,
+				\left.
+				Y^{(i)} = c
+				\;\right\vert
+				M^{(i)}=0,\,X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+			\cdot
+			P\!\left(\,
+				\left.
+				M^{(i)}=0
+				\;\right\vert
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+		\\
+			\overset{\textnormal{\large{\color{white}1}}}{+}&
+			P\!\left(\,
+				\left.
+				Y^{(i)} = c
+				\;\right\vert
+				M^{(i)}=1,\, X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+			\cdot
+			P\!\left(\,
+				\left.
+				M^{(i)}=1
+				\;\right\vert
+				X^{(i)} = x,\, \widetilde{Y}^{(i)} = y
+			\;\right)
+		\end{array}
+		\;\right\}
+	\\
+	&=&
+		I^{(i)}_{xy0}
+		\cdot
+		\left(\;
+			\pi_{c \vert xy}
+			\cdot
+			\mu_{0 \vert xy}
+			\;\overset{{\color{white}.}}{+}\;
+			\delta_{cy}
+			\cdot
+			\mu_{1 \vert xy}
+		\;\right)\,,
+		\quad
+		\textnormal{by \,\eqref{MzeroImplies}, \,\eqref{MoneImpliesCEqualsY}, and definition of \,$\mu_{m \vert xy}$}
+	\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

@@ -1,0 +1,532 @@
+
+%\newcommand{\poz}{{\color{red}p^{(1)}_{0}}}
+%\newcommand{\poo}{{\color{red}p^{(1)}_{1}}}
+\newcommand{\pot}{{\color{red}p^{(1)}_{2}}}
+
+\newcommand{\ptz}{{\color{blue}p^{(2)}_{0}}}
+\newcommand{\pto}{{\color{blue}p^{(2)}_{1}}}
+
+\newcommand{\phz}{{\color{green}p^{(3)}_{0}}}
+\newcommand{\pho}{{\color{green}p^{(3)}_{1}}}
+
+\newcommand{\pozz}{{\color{red}p^{(1)}_{0|0}}}
+\newcommand{\pooz}{{\color{red}p^{(1)}_{1|0}}}
+
+\newcommand{\ptzz}{{\color{blue}p^{(2)}_{0|0}}}
+\newcommand{\ptoz}{{\color{blue}p^{(2)}_{1|0}}}
+
+\newcommand{\phzz}{{\color{green}p^{(3)}_{0|0}}}
+\newcommand{\phoz}{{\color{green}p^{(3)}_{1|0}}}
+
+\newcommand{\pozo}{{\color{pink}p^{(1)}_{0|1}}}
+\newcommand{\pooo}{{\color{pink}p^{(1)}_{1|1}}}
+
+\newcommand{\ptzo}{{\color{cyan}p^{(2)}_{0|1}}}
+\newcommand{\ptoo}{{\color{cyan}p^{(2)}_{1|1}}}
+
+\newcommand{\phzo}{{\color{lime}p^{(3)}_{0|1}}}
+\newcommand{\phoo}{{\color{lime}p^{(3)}_{1|1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pzz}{{\color{pink}p_{0\vert0}}}
+\newcommand{\poz}{{\color{pink}p_{1\vert0}}}
+\newcommand{\qzz}{{\color{cyan}q_{0\vert0}}}
+\newcommand{\qoz}{{\color{cyan}q_{1\vert0}}}
+\newcommand{\rzz}{{\color{green}r_{0\vert0}}}
+\newcommand{\roz}{{\color{green}r_{1\vert0}}}
+
+\newcommand{\pzo}{{\color{red}p_{0\vert1}}}
+\newcommand{\poo}{{\color{red}p_{1\vert 1}}}
+\newcommand{\qzo}{{\color{blue}q_{0\vert1}}}
+\newcommand{\qoo}{{\color{blue}q_{1\vert1}}}
+\newcommand{\rzo}{{\color{deepGreen}r_{0\vert1}}}
+\newcommand{\roo}{{\color{deepGreen}r_{1\vert1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \LARGE Information additionnelle}
+
+\begin{eqnarray*}
+\textnormal{sensibilit\'e}
+&:=&
+	P\!\left(\,\left.\widehat{M}=1\;\right\vert\,M=1\,\right)
+\\
+&=&
+	\underset{\gamma}{\sum}\;P\!\left(\,\left.\widehat{M}=1,\Gamma=\gamma\;\right\vert\,M=1\,\right)
+\\
+&=&
+	\underset{\gamma}{\sum}\;
+	P\!\left(\,\left.\widehat{M}=1\;\right\vert\,\Gamma=\gamma,M=1\,\right)
+	P\!\left(\,\left.\Gamma=\gamma\;\right\vert\,M=1\,\right)
+\\
+&=&
+	\underset{\gamma}{\sum}\;
+	P\!\left(\,\left.\widehat{M}=1\;\right\vert\,\Gamma=\gamma\,\right)
+	P\!\left(\,\left.\Gamma=\gamma\;\right\vert\,M=1\,\right)
+\\
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \LARGE Information additionnelle}
+
+\tiny
+\begin{center}
+\begin{tabular}{
+	|c|c|c
+	|>{\columncolor{lightGreen}}r
+	||>{\columncolor{lightYellow}}c
+	|>{\columncolor{lightYellow}}c|}
+\hline
+	&
+	&
+	&
+	&
+	\cellcolor{yellow}&
+	\cellcolor{yellow}
+	\\
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{1}$}&
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{2}$}&
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{3}$}&
+	\multirow{-2}{*}{compte{\color{lightGreen}00}}&
+	\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2},\Gamma_{3} \vert M={\color{red}1})}$}&
+	\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2},\Gamma_{3} \vert M={\color{red}0})}$}
+\\
+\hline\hline
+	0 & 0 & 0 & 85,331,561 & $3.091\times10^{-8}$ & $8.533\times10^{-1}$ \\
+\hline
+	0 & 0 & 1 & 4,803,818 & $6.960\times10^{-4}$ & $4.805\times10^{-2}$ \\
+\hline
+	0 & 1 & 0 & 4,806,876 & $6.960\times10^{-4}$ & $4.805\times10^{-2}$ \\
+\hline
+	0 & 1 & 1 & 83,385 & $5.191\times10^{-2}$ & $8.333\times10^{-4}$ \\
+\hline
+	1 & 0 & 0 & 4,807,980 & $6.960\times10^{-4}$ & $4.805\times10^{-2}$ \\
+\hline
+	1 & 0 & 1 & 83,288 & $5.191\times10^{-2}$ & $8.333\times10^{-4}$ \\
+\hline
+	1 & 1 & 0 & 82,995 & $5.191\times10^{-2}$ & $8.333\times10^{-4}$ \\
+\hline
+	1 & 1 & 1 & \cellcolor{lightGray}97 & \cellcolor{lightGray}$8.422\times10^{-1}$ & \cellcolor{lightGray}$8.138\times10^{-7}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\vskip 0.3cm
+
+\tiny
+\begin{center}
+\begin{tabular}{
+	|c|c|c
+	|>{\columncolor{lightGreen}}c
+	||c|c|}
+	%|>{\columncolor{lightGreen}}c
+	%||>{\centering}m{3.75cm}|>{\centering}m{3.75cm}|c|c
+	%|>{\centering}m{3.75cm}c|}
+\hline
+	&
+	&
+	&
+	Obn.&
+	&
+	\\
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{1}$}&
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{2}$}&
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{3}$}&
+	param.&
+	\multirow{-2}{*}{$\underset{{\color{white}.}}{\overset{{\color{white}.}}{P}}(\,\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M=1\,)$}&
+	\multirow{-2}{*}{$\underset{{\color{white}.}}{\overset{{\color{white}.}}{P}}(\,\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M=0\,)$}
+\\
+\hline\hline
+	0 & 0 & 0 & $\pi_{000}$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=0)$ 
+\\
+\hline
+	0 & 0 & 1 & $\pi_{001}$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=0)$ 
+\\
+\hline
+	0 & 1 & 0 & $\pi_{010}$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=0)$ 
+\\
+\hline
+	0 & 1 & 1 & $\pi_{011}$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=0)$ 
+\\
+\hline
+	1 & 0 & 0 & $\pi_{100}$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=0)$ 
+\\
+\hline
+	\rowcolor{lightGray}
+	{\color{red}1} & {\color{red}0} & {\color{red}1} & $\pi_{{\color{red}101}}$ &
+	$P(\Gamma_{1}={\color{red}1},\Gamma_{2}={\color{red}0},\Gamma_{3}={\color{red}1}\,\vert\,M=1)$ &
+	$P(\Gamma_{1}={\color{red}1},\Gamma_{2}={\color{red}0},\Gamma_{3}={\color{red}1}\,\vert\,M=0)$ 
+\\
+\hline
+	1 & 1 & 0 & $\pi_{110}$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=0)$ 
+\\
+\hline
+	1 & 1 & 1 & $\pi_{111}$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=0)$ 
+\\
+\hline
+\end{tabular}
+\pause
+\vskip 0.2cm
+$
+\pi_{{\color{red}101}} \;=\;
+P(\Gamma_{1}={\color{red}1},\Gamma_{2}={\color{red}0},\Gamma_{3}={\color{red}1}\,\vert\,M=1)\cdot P(M=1)
+\;+\;
+P(\Gamma_{1}={\color{red}1},\Gamma_{2}={\color{red}0},\Gamma_{3}={\color{red}1}\,\vert\,M=0)\cdot P(M=0)
+$
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \LARGE Information additionnelle}
+
+\tiny
+\begin{center}
+\vskip -0.3cm
+{\color{gray}
+\begin{tabular}{
+	|c|c|c
+	|>{\columncolor{lightGreen}}c
+	||c|c|}
+\hline
+	&
+	&
+	&
+	Obn.&
+	&
+	\\
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{1}$}&
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{2}$}&
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{3}$}&
+	param.&
+	\multirow{-2}{*}{$\underset{{\color{white}.}}{\overset{{\color{white}.}}{P}}(\,\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M=1\,)$}&
+	\multirow{-2}{*}{$\underset{{\color{white}.}}{\overset{{\color{white}.}}{P}}(\,\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M=0\,)$}
+\\
+\hline\hline
+	0 & 0 & 0 & $\pi_{000}$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=0)$ 
+\\
+\hline
+	0 & 0 & 1 & $\pi_{001}$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=0)$ 
+\\
+\hline
+	0 & 1 & 0 & $\pi_{010}$ &
+	\cellcolor{lightGray}$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=1)$ &
+	\cellcolor{lightGray}$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=0)$ 
+\\
+\hline
+	0 & 1 & 1 & $\pi_{011}$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=0)$ 
+\\
+\hline
+	1 & 0 & 0 & $\pi_{100}$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=0)$ 
+\\
+\hline
+	{\color{customRed}1} & {\color{customRed}0} & {\color{customRed}1} & $\pi_{{\color{customRed}101}}$ &
+	$P(\Gamma_{1}={\color{customRed}1},\Gamma_{2}={\color{customRed}0},\Gamma_{3}={\color{customRed}1}\,\vert\,M=1)$ &
+	$P(\Gamma_{1}={\color{customRed}1},\Gamma_{2}={\color{customRed}0},\Gamma_{3}={\color{customRed}1}\,\vert\,M=0)$ 
+\\
+\hline
+	1 & 1 & 0 & $\pi_{110}$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=0)$ 
+\\
+\hline
+	1 & 1 & 1 & $\pi_{111}$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1)$ &
+	$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=0)$ 
+\\
+\hline
+\end{tabular}
+} % \color{gray}
+\end{center}
+
+\vskip 0.2cm
+
+\pause
+\scriptsize
+Ind\'ependance conditionnelle :\quad
+$P\!\left(\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M\right)
+\;\; = \;\;
+	{\color{red}P\!\left(\Gamma_{1}\,\vert\,M\right)}
+	\cdot
+	{\color{blue}P\!\left(\Gamma_{2}\,\vert\,M\right)}
+	\cdot
+	{\color{deepGreen}P\!\left(\Gamma_{3}\,\vert\,M\right)}$
+
+\pause
+\tiny
+\begin{center}
+\vskip -0.35cm
+{\color{gray}
+\begin{tabular}{
+	|c|c|c
+	|>{\columncolor{lightGreen}}c
+	||>{\centering}m{3.5cm}|c|}
+\hline
+	&
+	&
+	&
+	Obn.&
+	&
+	\\
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{1}$}&
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{2}$}&
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{3}$}&
+	param.&
+	\multirow{-2}{*}{$\underset{{\color{white}.}}{\overset{{\color{white}.}}{P}}(\,\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M=1\,)$}&
+	\multirow{-2}{*}{$\underset{{\color{white}.}}{\overset{{\color{white}.}}{P}}(\,\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M=0\,)$}
+\\
+\hline\hline
+	0 & 0 & 0 & $\pi_{000}$ &
+	\alt<5->{$\pzo\cdot\qzo\cdot\rzo$}{$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1)$} &
+	\alt<5->{{\color{white}0.000000000}$\pzz\cdot\qzz\cdot\rzz${\color{white}0000000000}}{$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=0)$} 
+\\
+\hline
+	0 & 0 & 1 & $\pi_{001}$ &
+	\alt<5->{$\pzo\cdot\qzo\cdot\roo$}{$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=1)$} &
+	\alt<5->{$\pzz\cdot\qzz\cdot\roz$}{$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=0)$} 
+\\
+\hline
+	0 & 1 & 0 & $\pi_{010}$ &
+	$\pzo\cdot\qoo\cdot\rzo$ &
+	$\pzz\cdot\qoz\cdot\rzz$
+\\
+\hline
+	0 & 1 & 1 & $\pi_{011}$ &
+	\alt<5->{$\pzo\cdot\qoo\cdot\roo$}{$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1)$} &
+	\alt<5->{$\pzz\cdot\qoz\cdot\roz$}{$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=0)$} 
+\\
+\hline
+	1 & 0 & 0 & $\pi_{100}$ &
+	\alt<5->{$\poo\cdot\qzo\cdot\rzo$}{$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1)$} &
+	\alt<5->{$\poz\cdot\qzz\cdot\rzz$}{$P(\Gamma_{1}=1\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=0)$} 
+\\
+\hline
+	1 & 0 & 1 & $\pi_{101}$ &
+	\alt<5->{$\poo\cdot\qzo\cdot\roo$}{$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=1)$} &
+	\alt<5->{$\poz\cdot\qzz\cdot\roz$}{$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=0)$} 
+\\
+\hline
+	1 & 1 & 0 & $\pi_{110}$ &
+	\alt<5->{$\poo\cdot\qoo\cdot\rzo$}{$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=1)$} &
+	\alt<5->{$\poz\cdot\qoz\cdot\rzz$}{$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=0)$} 
+\\
+\hline
+	1 & 1 & 1 & $\pi_{111}$ &
+	\alt<5->{$\poo\cdot\qoo\cdot\roo$}{$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1)$} &
+	\alt<5->{$\poz\cdot\qoz\cdot\roz$}{$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=0)$} 
+\\
+\hline
+\end{tabular}
+} % {\color{gray}
+\vskip 0.1cm
+\pause
+\onslide<4->{
+	${\color{red}p_{0\vert1}} := P\!\left(\Gamma_{1}=0\vert M=1\right)$
+	\quad\quad
+	${\color{blue}q_{1\vert1}} := P\!\left(\Gamma_{2}=1\vert M=1\right)$
+	\quad\quad
+	${\color{deepGreen}r_{0\vert1}} := P\!\left(\Gamma_{3}=0\vert M=1\right)$
+	}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \LARGE Information additionnelle}
+
+\vskip 0.425cm
+
+\tiny
+\begin{center}
+\vskip -0.45cm
+{\color{gray}
+\begin{tabular}{
+	|c|c|c
+	|>{\columncolor{lightGreen}}c
+	||>{\centering}m{3.5cm}|c|}
+\hline
+	&
+	&
+	&
+	Obn.&
+	&
+	\\
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{1}$}&
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{2}$}&
+	\cellcolor{white}\multirow{-2}{*}{$\Gamma_{3}$}&
+	param.&
+	\multirow{-2}{*}{$\underset{{\color{white}.}}{\overset{{\color{white}.}}{P}}(\,\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M=1\,)$}&
+	\multirow{-2}{*}{$\underset{{\color{white}.}}{\overset{{\color{white}.}}{P}}(\,\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M=0\,)$}
+\\
+\hline\hline
+	0 & 0 & 0 & $\pi_{000}$ &
+	\alt<1->{$\pzo\cdot\qzo\cdot\rzo$}{$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1)$} &
+	\alt<1->{{\color{white}0.000000000}$\pzz\cdot\qzz\cdot\rzz${\color{white}0000000000}}{$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=0)$} 
+\\
+\hline
+	0 & 0 & 1 & $\pi_{001}$ &
+	\alt<1->{$\pzo\cdot\qzo\cdot\roo$}{$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=1)$} &
+	\alt<1->{$\pzz\cdot\qzz\cdot\roz$}{$P(\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=0)$} 
+\\
+\hline
+	0 & 1 & 0 & $\pi_{010}$ &
+	$\pzo\cdot\qoo\cdot\rzo$ &
+	$\pzz\cdot\qoz\cdot\rzz$
+\\
+\hline
+	0 & 1 & 1 & $\pi_{011}$ &
+	\alt<1->{$\pzo\cdot\qoo\cdot\roo$}{$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1)$} &
+	\alt<1->{$\pzz\cdot\qoz\cdot\roz$}{$P(\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=0)$} 
+\\
+\hline
+	1 & 0 & 0 & $\pi_{100}$ &
+	\alt<1->{$\poo\cdot\qzo\cdot\rzo$}{$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1)$} &
+	\alt<1->{$\poz\cdot\qzz\cdot\rzz$}{$P(\Gamma_{1}=1\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=0)$} 
+\\
+\hline
+	1 & 0 & 1 & $\pi_{101}$ &
+	\alt<1->{$\poo\cdot\qzo\cdot\roo$}{$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=1)$} &
+	\alt<1->{$\poz\cdot\qzz\cdot\roz$}{$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=0)$} 
+\\
+\hline
+	1 & 1 & 0 & $\pi_{110}$ &
+	\alt<1->{$\poo\cdot\qoo\cdot\rzo$}{$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=1)$} &
+	\alt<1->{$\poz\cdot\qoz\cdot\rzz$}{$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=0)$} 
+	%$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1)$ &
+	%$P(\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=0)$ 
+\\
+\hline
+	1 & 1 & 1 & $\pi_{111}$ &
+	\alt<1->{$\poo\cdot\qoo\cdot\roo$}{$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1)$} &
+	\alt<1->{$\poz\cdot\qoz\cdot\roz$}{$P(\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=0)$} 
+\\
+\hline
+\end{tabular}
+} % {\color{gray}
+%\vskip 0.1cm
+%${\color{red}p_{0\vert1}} := P\!\left(\Gamma_{1}=0\vert M=1\right)$
+%\quad\quad
+%${\color{blue}q_{1\vert1}} := P\!\left(\Gamma_{2}=1\vert M=1\right)$
+%\quad\quad
+%${\color{deepGreen}r_{0\vert1}} := P\!\left(\Gamma_{3}=0\vert M=1\right)$
+\end{center}
+
+\vskip -0.3cm
+\begin{eqnarray*}
+\pi_{101}
+%&=&
+%	{\color{white}+}\;
+%	{\color{red}P\!\left(\Gamma_{1}=0\vert M=1\right)}\,
+%	{\color{blue}P\!\left(\Gamma_{2}=1\vert M=1\right)}\,
+%	{\color{deepGreen}P\!\left(\Gamma_{3}=0\vert M=1\right)}
+%	\cdot
+%	P\!\left(M=1\right)
+%\\
+%&&
+%	+\;
+%	{\color{pink}P\!\left(\Gamma_{1}=0\vert M=0\right)}\,
+%	{\color{cyan}P\!\left(\Gamma_{2}=1\vert M=0\right)}\,
+%	{\color{green}P\!\left(\Gamma_{3}=0\vert M=0\right)}
+%	\cdot
+%	P\!\left(M=0\right)
+%\\
+&=& \pzo\,\qoo\,\rzo \cdot P\!\left(M=1\right) \;+\; \pzz\,\qoz\,\rzz \cdot P\!\left(M=0\right) 
+\end{eqnarray*}
+
+\vskip -0.5cm
+\begin{eqnarray*}
+\left(\!\!\begin{array}{c}
+\overset{{\color{white}+}}{\pi}_{000} \\
+\overset{{\color{white}.}}{\pi}_{001} \\
+\overset{{\color{white}.}}{\pi}_{010} \\
+\overset{{\color{white}.}}{\pi}_{011} \\
+\overset{{\color{white}.}}{\pi}_{100} \\
+\overset{{\color{white}.}}{\pi}_{101} \\
+\overset{{\color{white}.}}{\pi}_{110} \\
+\underset{{\color{white}.}}{\overset{{\color{white}.}}{\pi}_{111}} \\
+\end{array}\!\!\right)
+& \!\! = \!\! &
+\left(\begin{array}{c}
+\pzo\,\qzo\,\rzo \cdot w_{1} \;+\; \pzz\,\qzz\,\rzz \cdot w_{0} \\
+\pzo\,\qzo\,\roo \cdot w_{1} \;+\; \pzz\,\qzz\,\roz \cdot w_{0} \\
+\pzo\,\qoo\,\rzo \cdot w_{1} \;+\; \pzz\,\qoz\,\rzz \cdot w_{0} \\
+\pzo\,\qoo\,\roo \cdot w_{1} \;+\; \pzz\,\qoz\,\roz \cdot w_{0} \\
+\poo\,\qzo\,\rzo \cdot w_{1} \;+\; \poz\,\qzz\,\rzz \cdot w_{0} \\
+\poo\,\qzo\,\roo \cdot w_{1} \;+\; \poz\,\qzz\,\roz \cdot w_{0} \\
+\poo\,\qoo\,\rzo \cdot w_{1} \;+\; \poz\,\qoz\,\rzz \cdot w_{0} \\
+\poo\,\qoo\,\roo \cdot w_{1} \;+\; \poz\,\qoz\,\roz \cdot w_{0} \\
+\end{array}\right)
+\\
+& \!\! =\!\! &
+	\!\!\Psi\!\left(
+		(\pzo:\poo),
+		(\qzo:\qoo),
+		(\rzo:\roo),
+		(\pzz:\poz),
+		t(\qzz:\qoz),
+		(\rzz:\roz),
+		\left(w_{0}:w_{1}\right)
+	\right)
+\end{eqnarray*}
+
+\vskip -0.1cm
+
+%\tiny
+%\begin{eqnarray*}
+%&&
+%	\left(\,\pi_{000}\,:\,\overset{{\color{white}|}}{\ldots}\,:\,\pi_{111}\,\right)
+%\\
+%&=&
+%	\Psi\left(\,
+%		\left(\pzz:\poz\right),
+%		\left(\qzz:\qoz\right),
+%		\left(\rzz:\roz\right),
+%		\left(\pzo:\poo\right),
+%		\left(\qzo:\qoo\right),
+%		\left(\rzo:\roo\right),
+%		\left(w_{0}:w_{1}\right)
+%	\,\right)
+%\end{eqnarray*}
+
+\scriptsize
+\begin{equation*}
+\Psi \, :
+\left({\color{red}\Delta_{1}} \overset{{\color{white}.}}{\times} {\color{blue}\Delta_{1}} \times {\color{green}\Delta_{1}}\right)
+\times
+\left({\color{pink}\Delta_{1}} \overset{{\color{white}.}}{\times} {\color{cyan}\Delta_{1}} \times {\color{lime}\Delta_{1}}\right)
+\times
+\Delta_{1}
+\;\;\longrightarrow\;\;
+\mathcal{S}^{2}\!\left(\,\Sigma\,\right) \,\subset\, \Delta_{7}
+\end{equation*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

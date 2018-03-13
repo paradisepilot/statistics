@@ -1,0 +1,264 @@
+
+
+%%%%%%%%%%
+
+\begin{frame}{\Large Classical Logistic Regression}
+
+\small
+
+Suppose:
+\begin{itemize}
+\item
+	$\left(\Omega,\mathcal{A},\mu\right)$ is a probability space\,,
+	\,and
+	\,$n \in \N$\, is a natural number.
+\item
+	$Y^{(1)}, \ldots, Y^{(n)} : \Omega \longrightarrow \left\{0,1\right\}$\,
+	are binary random variables.
+\end{itemize}
+
+\vskip 0.25cm
+
+\pause
+Suppose:
+\begin{itemize}
+\item
+	The binary random variables \,$Y^{(i)}$, $i = 1, 2, \ldots, n$,\,
+	are independent (but NOT necessarily identically distributed).
+\item
+	There exist
+	\,$\beta \in \Re^{p}$\,
+	and
+	\,$x^{(1)}, x^{(2)}, \ldots, x^{(n)} \in \Re^{p}$\,,
+	such that
+	\begin{equation*}
+	\pi_{i}
+	\;\; := \;\;
+		P\!\left(\; Y^{(i)} = 1 \;\right)
+	\;\; = \;\;
+		E\!\left[\; Y^{(i)}  = 1 \;\right]
+	\;\; = \;\;
+		\dfrac{
+			\exp\!\left(\,\beta^{T} \cdot x^{(i)} \,\right)
+			}{
+			1 \,+\, \exp\!\left(\,\beta^{T} \cdot x^{(i)} \,\right)
+			}\,,
+	\end{equation*}
+	for each \,$i = 1,2,\ldots,n$\,.
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.25cm\Large Classical Logistic Regression}
+
+\tiny
+
+Then, the following statements are true:
+\begin{enumerate}
+\pause
+\item
+	The logarithm of the joint probability distribution of
+	\;$Y^{(1)},Y^{(2)},\ldots,Y^{(n)}$\, is given by:
+	\begin{eqnarray*}
+	\log\,L
+		&=&
+		\log\,P\!\left(\; Y^{(1)}=y_{1},\,Y^{(2)}=y_{2},\,\ldots,\;Y^{(n)}=y_{n} \;\right)
+	\\
+	&=&
+		\overset{n}{\underset{i=1}{\sum}}\,
+		\left\{\;
+			y_{i}\cdot(\,\beta^{T} \cdot x^{(i)}\,)
+			\, \overset{{\color{white}\vert}}{-} \,
+			\log\!\left(\,1 + \exp(\,\beta^{T} \cdot x^{(i)}\,)\,\right)
+			\;\right\}
+	\end{eqnarray*}
+\pause
+\item
+	The (vectorial) score equation is given by:
+	\begin{equation*}
+	X \cdot \left(\, \pi \,-\, y\,\right) \;\; = \;\; 0_{p} \;\; \in \;\; \Re^{p}\,,
+	\end{equation*}
+	where $X \in \Re^{p \times n}$, $\pi \in \Re^{n}$, and $y \in \Re^{n}$ are respectively defined by
+	\begin{eqnarray*}
+	X
+	&=&
+		\left(\;\;\overset{{\color{white}.}}{X}_{ki}\;\;\right)
+	\;\;:=\;\;
+		\left(\;\; x^{(i)}_{k} \;\;\right)
+	\;\;=\;\;
+		\left(\;\; x^{(1)} \quad x^{(2)} \quad \cdots \quad x^{(n)} \;\;\right) \in \Re^{p \times n}\,,
+	\end{eqnarray*}
+	\begin{equation*}
+	y \,:=\, \left(\;y_{1},\ldots,y_{n}\;\right)^{T} \in \Re^{n \times 1}\,, 
+	\quad\quad
+	\textnormal{and}	
+	\quad\quad
+	\pi \,:=\, \left(\;\pi_{1},\ldots,\pi_{n}\;\right)^{T} \in \Re^{n \times 1}\,.
+	\end{equation*}
+\pause
+	The score equation can be given equivalently in component form by:
+	\begin{equation*}
+	\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot \left(\,\pi_{i} - y_{i}\,\right)
+	\;\; = \;\; 0\,,
+	\quad
+	\textnormal{for each \,$k = 1, 2,\ldots,p$}\,;
+	\end{equation*}
+\pause
+	or equivalently but more explicitly,
+	\begin{equation*}
+	\overset{n}{\underset{i=1}{\sum}}\;\,
+	\dfrac{x^{(i)}_{k}}{1 \,+\, \exp\!\left({\color{red}-}\;\overset{n}{\underset{l=1}{\sum}}\;\beta_{l}\,x^{(i)}_{l}\,\right)}
+	\;\; = \;\;
+	\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot y_{i}\,,
+	\quad
+	\textnormal{for each \,$k = 1, 2,\ldots,p$}\,.
+	\end{equation*}
+\end{enumerate}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.25cm\Large Classical Logistic Regression: proof ...}
+
+\tiny
+
+	First, note that
+	\begin{equation*}
+	\dfrac{\pi_{i}}{1 - \pi_{i}}
+	\;\; = \;\;
+		\dfrac{\exp\!\left(\,\beta^{T} \cdot x^{(i)}\,\right)}{1 + \exp\!\left(\,\beta^{T} \cdot x^{(i)}\,\right)}
+		\cdot
+		\dfrac{1 + \exp\!\left(\,\beta^{T} \cdot x^{(i)}\,\right)}{1}
+	\;\; = \;\;
+		\exp\!\left(\,\beta^{T} \cdot x^{(i)}\,\right)
+	\end{equation*}
+
+\pause
+	Hence,
+	\begin{eqnarray*}
+	{\color{red}\log\,L}
+	&{\color{red}=}&
+		{\color{red}\log\,P\!\left(\;Y^{(1)} = y_{1},\,Y^{(2)} = y_{2},\,\ldots\,,\,Y^{(n)} = y_{n}\;\right)}
+\pause
+	\\
+	&=&
+		\log\!\left(\;\,
+			\overset{n}{\underset{i=1}{\prod}}\;\, \pi_{i}^{y_{i}} \cdot \left(1 - \pi_{i}\right)^{1-y_{i}}
+			\,\right)
+\pause
+	\;\;=\;\;
+		\overset{n}{\underset{i=1}{\sum}}\,
+		\left(\;
+			y_{i}\cdot\log\,\pi_{i}
+			\, \overset{{\color{white}\vert}}{+} \,
+			(1-y_{i})\cdot\log\!\left(1 - \pi_{i}\right)
+			\;\right)	
+\pause
+	\\
+	&=&
+		\overset{n}{\underset{i=1}{\sum}}\,
+		\left(\;
+			y_{i}\cdot\log\left(\,\dfrac{\pi_{i}}{1 - \pi_{i}}\,\right)
+			\, \overset{{\color{white}\vert}}{+} \,
+			\log\!\left(1 - \pi_{i}\right)
+			\;\right)	
+\pause
+	\\
+	&=&
+		\overset{n}{\underset{i=1}{\sum}}\,
+		\left(\;
+			y_{i}\cdot\left(\,\beta^{T} \cdot x^{(i)}\,\right)
+			\, \overset{{\color{white}\vert}}{-} \,
+			\log\!\left(\,1 + \exp\!\left(\,\beta^{T} \cdot x^{(i)}\,\right)\,\right)
+			\;\right)	
+\pause
+	\\
+	&=&
+		\overset{n}{\underset{i=1}{\sum}}\,
+		\left\{\;
+			y_{i}\cdot\left(\,\overset{n}{\underset{l=1}{\sum}}\;\beta_{l}\,x^{(i)}_{l}\,\right)
+			\, \overset{{\color{white}\vert}}{-} \,
+			\log\!\left(\,1 + \exp\!\left(\,\overset{n}{\underset{l=1}{\sum}}\;\beta_{l}\,x^{(i)}_{l}\,\right)\,\right)
+			\;\right\}	
+	\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.1cm\Large Classical Logistic Regression: proof ...}
+
+\vskip -0.2cm
+
+\tiny
+
+	\begin{eqnarray*}
+	\dfrac{\partial\,\log L}{\partial\,\beta_{k}}
+	&=&
+		\overset{n}{\underset{i=1}{\sum}}\,
+		\left\{\;
+			y_{i}\cdot\,x^{(i)}_{k}
+			\; \overset{{\color{white}\vert}}{-} \;
+			\dfrac{
+				\exp\!\left(\,\overset{n}{\underset{l=1}{\sum}}\;\beta_{l}\,x^{(i)}_{l}\,\right)
+				}{
+				1 + \exp\!\left(\,\overset{n}{\underset{l=1}{\sum}}\;\beta_{l}\,x^{(i)}_{l}\,\right)
+				}
+			\cdot
+			x^{(i)}_{k}
+			\;\right\}	
+	\;\; = \;\;
+		\overset{n}{\underset{i=1}{\sum}}\,
+		\left\{\;
+			y_{i}\cdot\,x^{(i)}_{k}
+			\; \overset{{\color{white}\vert}}{-} \;
+			\pi_{i} \cdot x^{(i)}_{k}
+			\;\right\}	
+	\\
+	&=&
+		\overset{n}{\underset{i=1}{\sum}}\;\;
+		x^{(i)}_{k}	
+		\cdot
+		\left(\; y_{i} \; \overset{{\color{white}.}}{-} \; \pi_{i} \;\right)
+	\;\; = \;\;
+		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot y_{i}
+		\; - \;
+		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot \pi_{i}
+	\end{eqnarray*}
+
+	\vskip 0.3cm
+	For each $k = 1,2,\ldots,p$,
+	\begin{eqnarray*}
+	\dfrac{\partial\,\log L}{\partial\,\beta_{k}} \;=\; 0
+	&\quad\Longleftrightarrow\quad&
+		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot \pi_{i}
+		\;\; = \;\;
+		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot y_{i}
+	\\
+	&\quad\Longleftrightarrow\quad&
+		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot
+		\dfrac{
+			\exp\!\left(\,\overset{n}{\underset{l=1}{\sum}}\;\beta_{l}\,x^{(i)}_{l}\,\right)
+			}{
+			1 + \exp\!\left(\,\overset{n}{\underset{l=1}{\sum}}\;\beta_{l}\,x^{(i)}_{l}\,\right)
+			}
+		\;\; = \;\;
+		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot y_{i}
+	\\
+	&\quad\Longleftrightarrow\quad&
+		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot
+		\dfrac{1}{1 \,+\, \exp\!\left({\color{red}-}\;\overset{n}{\underset{l=1}{\sum}}\;\beta_{l}\,x^{(i)}_{l}\,\right)}
+		\;\; = \;\;
+		\overset{n}{\underset{i=1}{\sum}}\;\, x^{(i)}_{k} \cdot y_{i}
+	\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

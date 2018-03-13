@@ -1,0 +1,206 @@
+%This is the presentation template Christine P'ng made (and uses)
+%It uses a different theme and different fonts
+
+\documentclass{beamer}
+%\documentclass[handout]{beamer}
+
+%\usetheme{Boadilla}
+
+\usepackage{libertine}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+\usepackage[french]{babel}
+\usepackage{subfig}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{marvosym}
+%\usepackage{tikzsymbols}
+ \usepackage[marvosym]{tikzsymbols}
+\usetikzlibrary{arrows.meta}
+\usepackage{environ}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage[ampersand]{easylist}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage{centernot}
+\usetikzlibrary{shapes,arrows,decorations.pathmorphing,decorations.pathreplacing,backgrounds,positioning,fit,petri}
+\usepackage{ulem}
+\usepackage{cancel}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{appendixnumberbeamer}
+
+\definecolor{gcblue}{RGB}{66,126,214} % sampled with Gimp
+\definecolor{customRed}{RGB}{240,80,80}
+\definecolor{faintred}{RGB}{255,175,175}
+\definecolor{faintblue}{RGB}{110,220,255}
+\definecolor{faintgray}{RGB}{225,225,225}
+\definecolor{titlefontblue}{RGB}{45,45,80}
+\definecolor{titlefontcolour}{RGB}{75,75,75}
+
+\usecolortheme[named=titlefontcolour]{structure}
+\setbeamersize{text margin left=10mm}
+\setbeamertemplate{frametitle}{\vspace{1.5cm}\insertframetitle}
+\usefonttheme{serif} %serif
+
+%Setting a different font family for the title and frame titles
+%Short titles and headers are required because the font size is set to very large (feel free to change this based on presentation requirements)
+% ##### \setbeamerfont{title}{family=\fontfamily{cmr}}
+\setbeamerfont{title}{family=\fontfamily{cmss}}
+\setbeamerfont{title}{family=\sffamily} %sffamily
+\setbeamerfont{title}{size=\fontsize{33}{33}\bfseries}%make this smaller if your title is too long (do the same for the frametitles, etc)
+\setbeamerfont{frametitle}{family=\sffamily}
+\setbeamerfont{frametitle}{size=\Huge\bfseries}
+\setbeamerfont{author}{size=\normalsize\scshape}
+\setbeamerfont{institute}{size=\small\scshape}
+\setbeamerfont{date}{size=\small\scshape}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{normal text}{size=\Huge}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]{}
+\setbeamertemplate{itemize items}[ball]
+%\setbeamercolor{itemize items}{fg=blue}
+%\setbeamertemplate{itemize item}{\color{yellow}$\blacksquare$}
+
+%\setbeamercolor{itemize item}{fg=red}
+%\setbeamercolor{itemize item}{bg=red}
+
+%Adding page numbers at the bottom of each frame
+%\setbeamertemplate{footline}
+%{%
+%  \leavevmode%
+%  \hbox{%
+%  \begin{beamercolorbox}[wd=1\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+%   % \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+
+%Header Info
+% information not capitalized because fonts are set to small caps (looks cleaner this way)
+%\title[SRSWOR CLT]{
+%	\mbox{} \vskip 2.0cm
+%	%{\color{white}Statistics + Algebraic Geometry $=$ $?$}
+%	\vskip 0.1cm
+%	\small
+%	%{\color{white}Identifiability}
+%	}
+
+
+%\author{\vskip -1.5cm\LARGE%\color{titlefontcolour}
+%Kenneth Chu}
+
+%\institute[oicr]{\scriptsize
+%	\color{titlefontcolour}
+%	\inst{}
+%	Special Surveys, Transportation, Technology and Quality Assurance, BSMD
+%	\vskip 0.0cm
+%	Enqu\^{e}tes sp\'{e}ciales, transport, technologie et assurance de la qualit\'{e}, DMEE
+%	}
+
+%\date{\color{titlefontcolour}October 21, 2015} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\addtocounter{framenumber}{-1}
+{
+% Titlepage
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{StatCan-presentation-titlePage-background.jpg}}
+\begin{frame}[plain]
+%\titlepage
+
+\begin{center}
+
+\vskip 3.25cm
+\textbf{\huge\color{titlefontblue}Linkage-error-adjusted}
+\vskip 0.15cm
+\resizebox{0.75\linewidth}{!}{\color{titlefontblue}\bf\itshape Logistic Regression}
+\vskip 0.15cm
+\textbf{\huge\color{titlefontblue} via Clerical Review}
+
+\vskip 0.5cm
+\textbf{\large\color{titlefontcolour}Kenneth Chu}
+
+\vskip 0.2cm
+\textbf{\scriptsize\color{titlefontcolour}Enqu\^{e}tes sp\'{e}ciales,
+transport, technologie et assurance de la qualit\'{e}, DMEE
+\vskip -0.1cm
+Special Surveys, Transportation, Technology and Quality Assurance, BSMD}
+
+\vskip 0.2cm
+\textbf{\color{titlefontcolour}May 29, 2017} 
+
+\end{center}
+
+\end{frame}
+}
+
+% Outline
+%\begin{frame}{Outline}
+%\tableofcontents
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\graphicsDir}{graphics}
+\newcommand*\rot{\rotatebox{90}}
+\renewcommand{\Re}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\d}{\textnormal{d}}
+\newcommand{\Var}{\textnormal{Var}}
+
+\definecolor{bgOrange}{RGB}{255,229,204}
+\definecolor{lightOrange}{RGB}{220,153,136}
+
+%\definecolor{lightBlue}{RGB}{204,229,225}
+\definecolor{lightBlue}{RGB}{0,200,200}
+
+%\definecolor{lessDeepGreen}{RGB}{153,255,204}
+\definecolor{lessDeepGreen}{RGB}{0,201,100}
+
+%\definecolor{deepGreen}{RGB}{0,153,76}
+\definecolor{deepGreen}{RGB}{0,115,57}
+
+%\definecolor{darkYellow}{RGB}{210,210,0}
+\definecolor{darkYellow}{RGB}{200,200,0}
+
+\definecolor{lightTurquoise}{RGB}{153,255,255}
+\definecolor{lightYellow}{RGB}{255,255,204}
+\definecolor{lightGreen}{RGB}{204,255,204}
+\definecolor{darkGreen}{RGB}{128,255,0}
+\definecolor{veryDarkGreen}{RGB}{100,225,100}
+\definecolor{lightGray}{RGB}{224,224,224}
+\definecolor{mediumLightGray}{RGB}{176,176,176}
+\definecolor{mediumGray}{RGB}{128,128,128}
+
+\setlength{\arrayrulewidth}{0.55pt}
+\arrayrulecolor{mediumGray}
+
+%%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=0.0825\paperwidth]{StatCan-presentation-body-topBanner.jpg}}
+
+%\setlength{\parskip}{0.3cm}
+
+\input{z-classicalLogisticRegression}
+\input{z-Chipperfield-logisticRegression}
+
+%\input{z-qu-est-cest}
+%\input{z-pertinence-nest-pas-suffisante}
+%\input{z-PageRank}
+\input{z-thanks}
+
+%%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+%\appendix
+%\input{z-supplementary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

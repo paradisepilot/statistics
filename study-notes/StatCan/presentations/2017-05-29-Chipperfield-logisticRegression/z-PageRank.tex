@@ -1,0 +1,542 @@
+
+\newcommand{\TMatrix}
+	{\left(\begin{array}{ccccc}
+	0 & 1/2 & 1/3 & 1 & 0
+	\\
+	\overset{{\color{white}-}}{1} & 0 & 1/3 & {\color{white}.}0{\color{white}.} & 1/3
+	\\
+	\overset{{\color{white}-}}{0} & 1/2 & 0 & 0 & 1/3
+	\\
+	\overset{{\color{white}-}}{0} & 0 & 0 & 0 & 1/3
+	\\
+	\overset{{\color{white}-}}{0} & 0 & 1/3 & 0 & 0
+	\end{array}\right)}
+
+%%%%%%%%%%
+
+\begin{frame}{\Large PageRank de Google}
+
+\begin{center}
+\vskip 0.5cm
+\includegraphics[height=5cm]{graphics/web-of-five-pages.png}
+\vskip 0.1cm
+\Large Exemple: web de 5 pages
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large PageRank de Google}
+
+\begin{multicols}{2}
+	\begin{minipage}{4.5cm}
+	\begin{center}
+	\includegraphics[height=2.5cm]{graphics/web-of-five-pages.png}
+	\vskip 0.1cm
+	\scriptsize Exemple: web de 5 pages
+	\end{center}
+	\end{minipage}
+\pause
+\columnbreak
+	\begin{flushright}
+	\begin{minipage}{5.5cm}
+	\begin{center}
+	\vskip -0.50cm
+	\underline{\textit{\normalsize Imaginez}}
+	\vskip 0.2cm
+	Navigateur \,web\, ``al\'eatoire''
+	\begin{equation*}
+	X_{k} \; := \;
+		\left\{\begin{array}{c}
+		\textnormal{page web visit\'ee}
+		\\
+		\textnormal{au \, $k^{\textnormal{\,\`eme}}$ \, arr\^et}
+		\end{array}\right.
+	\end{equation*}
+	$k = 1, 2, 3, \ldots$\,.
+	\end{center}
+	\end{minipage}
+	\end{flushright}
+\end{multicols}
+
+\pause
+\vskip 0.30cm
+
+\begin{center}
+\underline{\textit{\normalsize Hypoth\`ese}}
+\vskip 0.2cm
+\large\`A partir de chaque page,
+\vskip 0.1cm
+\Large chaque page suivante possible
+\vskip 0.1cm
+est \;\'equiprobable.
+\end{center}
+
+%\begin{multicols}{2}
+%\pause
+%	\begin{flushleft}
+%	\begin{minipage}{4.5cm}
+%	\begin{center}
+%	\underline{\textit{\normalsize Hypoth\`ese}}
+%	\vskip 0.2cm
+%	Cha\^ine \,de\, Markov\,:
+%	\vskip -0.65cm
+%	{\small\begin{eqnarray*}
+%	&&
+%		P\!\left(\,\left.X_{k}\;\right\vert X_{1},\ldots,X_{k-1}\,\right)
+%	\\
+%	& = &
+%		P\!\left(\,\left.X_{k}\;\right\vert X_{k-1}\,\right)
+%	\end{eqnarray*}}
+%	\end{center}
+%	\end{minipage}
+%	\end{flushleft}
+%\pause
+%\columnbreak
+%	\begin{flushright}
+%	\begin{minipage}{6.0cm}
+%	\begin{center}
+%	\vskip -0.45cm
+%	\underline{\textit{\normalsize Hypoth\`ese}}
+%	\vskip 0.2cm
+%	\small\`A partir de chaque page,
+%	\vskip 0.1cm
+%	\large chaque page suivante possible
+%	\vskip 0.1cm
+%	est \;\'equiprobable.
+%	\end{center}
+%	\end{minipage}
+%	\end{flushright}
+%\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large PageRank de Google}
+
+\begin{multicols}{2}
+	\begin{minipage}{4.5cm}
+	\begin{center}
+	\includegraphics[height=2.5cm]{graphics/web-of-five-pages.png}
+	\end{center}
+	\end{minipage}
+\columnbreak
+	\begin{flushright}
+	\begin{minipage}{5.5cm}
+	\vskip -1.25cm
+	\begin{equation*}
+	X_{k} \; := \;
+		\left\{\begin{array}{c}
+		\textnormal{page web visit\'ee}
+		\\
+		\textnormal{au \, $k^{\textnormal{\,\`eme}}$ \, arr\^et}
+		\end{array}\right.
+	\end{equation*}
+	\begin{center}
+	%\textit{On se demande}
+	%\vskip 0.1cm
+	\large Quelle est la probabilit\'e que
+	\vskip 0.025cm
+	notre navigateur web
+	\vskip 0.025cm
+	se trouvera sur chaque page
+	\vskip 0.025cm
+	\pause {\color{red}quand \;$k \longrightarrow \infty$}\, ?
+	\end{center}
+	\end{minipage}
+	\end{flushright}
+\end{multicols}
+
+\vskip 0.1cm
+
+\pause
+\large Autrement dit, pour \,$i = \textnormal{A}, \textnormal{B}, \textnormal{C}, \textnormal{D}, \textnormal{E}$\,,
+\huge
+\begin{equation*}
+\underset{k\rightarrow\infty}{\lim}\;P\!\left(\,X_{k} = i\,\right)
+\;\;\textnormal{existe\;?}
+\end{equation*}
+
+%\begin{center}
+%\huge notre navigateur web
+%\vskip 0.1cm
+%se trouve sur chaque page
+%\vskip 0.1cm
+%\pause quand \;$k \longrightarrow \infty$\, ?
+%\end{center}
+
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\Large PageRank de Google}
+
+\vskip -0.75cm
+
+\huge
+\begin{equation*}
+\underset{k\rightarrow\infty}{\lim}\;P\!\left(\,X_{k} = i\,\right)
+\;\;\textnormal{existe\;?}
+\end{equation*}
+
+\vskip 0.75cm
+
+\begin{center}
+\pause \resizebox{0.75\linewidth}{!}{\itshape Oui !!}
+\vskip 0.75cm
+\pause \Large Entre en sc\`ene: Cha\^{i}ne de Markov
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large PageRank de Google}
+
+\begin{multicols}{2}
+
+	\begin{minipage}{4.5cm}
+	\begin{center}
+	\vskip 0.75cm
+	\includegraphics[height=2.5cm]{graphics/web-of-five-pages.png}
+	\end{center}
+	\end{minipage}
+
+\columnbreak
+
+	\begin{flushleft}
+	\begin{minipage}{4.0cm}
+	\vskip -0.5cm
+	\tiny
+	\begin{equation*}
+		\left(\begin{array}{c}
+			\overset{{\color{white}\textnormal{          .}}}{\pi_{A}^{(\infty)}} \\
+			\overset{{\color{white}\textnormal{\huge1}}}{\pi_{B}^{(\infty)}} \\
+			\overset{{\color{white}\textnormal{\huge1}}}{\pi_{C}^{(\infty)}} \\
+			\overset{{\color{white}\textnormal{\huge1}}}{\pi_{D}^{(\infty)}} \\
+			\overset{{\color{white}\textnormal{\huge1}}}{\pi_{E}^{(\infty)}}
+		\end{array}\right)
+	\;\; := \;\;
+		\left(\begin{array}{c}
+			\overset{{\color{white}\textnormal{         .}}}{\underset{k\rightarrow\infty}{\lim}\; P(\,X_{k} = A\,)} \\
+			\overset{{\color{white}\textnormal{\huge1}}}{\underset{k\rightarrow\infty}{\lim}\; P(\,X_{k} = B\,)} \\
+			\overset{{\color{white}\textnormal{\huge1}}}{\underset{k\rightarrow\infty}{\lim}\; P(\,X_{k} = C\,)} \\
+			\overset{{\color{white}\textnormal{\huge1}}}{\underset{k\rightarrow\infty}{\lim}\; P(\,X_{k} = D\,)} \\
+			\overset{{\color{white}\textnormal{\huge1}}}{\underset{k\rightarrow\infty}{\lim}\; P(\,X_{k} = E\,)}
+		\end{array}\right)
+	\end{equation*}
+	\end{minipage}
+	\end{flushleft}
+
+\end{multicols}
+
+\vskip 0.3cm
+
+\begin{center}
+\pause\small ``Importance'' \`a la PageRank :
+\vskip 0.2cm
+\pause
+\large Pour une page web donn\'ee, on se demand qu'elle est la {\color{customRed}destination de combien d'autres pages},
+\vskip 0.1cm
+\normalsize imm\'ediatement, au 2$^{\textnormal{eme}}$ degr\'e, 3$^{\textnormal{eme}}$, 4$^{\textnormal{eme}}$, etc.
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large PageRank de Google}
+
+\begin{multicols}{3}
+	\begin{flushleft}
+	\begin{minipage}{4.0cm}
+	\begin{center}
+	\underline{\textit{\small Hypoth\`ese}}
+	\vskip 0.2cm
+	\scriptsize\`A partir de chaque page,
+	\vskip 0.1cm
+	\scriptsize chaque page suivante possible
+	\vskip 0.1cm
+	est \;\'equiprobable.
+	\end{center}
+	\end{minipage}
+	\end{flushleft}
+\columnbreak
+	\begin{center}
+	\begin{minipage}{4.0cm}
+	\vskip 1.0cm
+	\begin{center}
+	{\huge$\Longrightarrow$}
+	\end{center}
+	\end{minipage}
+	\end{center}
+\columnbreak
+	\begin{flushleft}
+	\begin{minipage}{3.5cm}
+	\begin{center}
+	\underline{\textit{\normalsize Par cons\'equent}}
+	\vskip 0.2cm
+	Cha\^ine \,de\, Markov\,:
+	\vskip -0.65cm
+	{\small\begin{eqnarray*}
+	&&
+		P\!\left(\,\left.X_{k}\;\right\vert X_{1},\ldots,X_{k-1}\,\right)
+	\\
+	& = &
+		P\!\left(\,\left.X_{k}\;\right\vert X_{k-1}\,\right)
+	\end{eqnarray*}}
+	\end{center}
+	\end{minipage}
+	\end{flushleft}
+\end{multicols}
+
+\vskip 0.5cm
+
+\begin{multicols}{2}
+\pause
+	\begin{minipage}{4.5cm}
+	\begin{center}
+	\includegraphics[height=2.5cm]{graphics/web-of-five-pages.png}
+	\end{center}
+	\end{minipage}
+\pause
+\columnbreak
+	\begin{flushright}
+	\begin{minipage}{6.0cm}
+	{\scriptsize\begin{equation*}
+	T \; := \; \textnormal{\tiny$\TMatrix$}
+	\end{equation*}}
+	\begin{center}
+	\vskip 0.1cm
+	{\small Matrice de transition}
+	\end{center}
+	%{\scriptsize\begin{equation*}
+	%\pi_{2} \; = \; T \cdot \pi_{1}
+	%\end{equation*}}
+	\end{minipage}
+	\end{flushright}
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large PageRank de Google}
+
+\scriptsize
+
+\vskip -0.5cm
+
+\begin{equation*}
+P(\,X_{k{\color{red}+1}} = i\,)
+\pause
+\;\;\; = \;\;\;
+	\overset{N}{\underset{j=1}{\sum}}\;
+	P(\,X_{k{\color{red}+1}} = i \,,\, X_{k} = j\,)
+\pause
+\;\;\; = \;\;\;
+	\overset{N}{\underset{j=1}{\sum}}\;\;
+	\underset{T_{ij}}{\underbrace{P(\,X_{k{\color{red}+1}} = i \,\vert\, X_{k} = j\,)}} \;\cdot\; P(\,X_{k} = j\,)
+\end{equation*}
+
+\pause
+Sous forme de matrice :
+\begin{eqnarray*}
+	\left(\begin{array}{c}
+		\underset{{\color{white}.}}{P(X_{k{\color{red}+1}} = A)} \\
+		\underset{{\color{white}.}}{P(X_{k{\color{red}+1}} = B)} \\
+		\underset{{\color{white}.}}{P(X_{k{\color{red}+1}} = C)} \\
+		\underset{{\color{white}.}}{P(X_{k{\color{red}+1}} = D)} \\
+		P(X_{k{\color{red}+1}} = E) \\
+	\end{array}\right)
+& = &
+	\textnormal{\scriptsize$\TMatrix$}
+	\cdot
+	\left(\begin{array}{c}
+		\underset{{\color{white}.}}{P(X_{k} = A)} \\
+		\underset{{\color{white}.}}{P(X_{k} = B)} \\
+		\underset{{\color{white}.}}{P(X_{k} = C)} \\
+		\underset{{\color{white}.}}{P(X_{k} = D)} \\
+		P(X_{k} = E) \\
+	\end{array}\right)
+\end{eqnarray*}
+
+\vskip 0.3cm
+
+\pause
+En format vectoriel :
+\large
+\begin{equation*}
+\pi^{(k{\color{red}+1})} \;\; = \;\; T \cdot \pi^{(k)}
+\end{equation*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large PageRank de Google}
+
+Rappel : on cherche
+{\tiny\begin{equation*}
+	\textnormal{\large$\pi^{(\infty)}$}
+	\;\; = \;\;
+		\left(\begin{array}{c}
+			\overset{{\color{white}\textnormal{ .}}}{\pi_{A}^{(\infty)}} \\
+			\overset{{\color{white}\textnormal{1}}}{\pi_{B}^{(\infty)}} \\
+			\overset{{\color{white}\textnormal{1}}}{\pi_{C}^{(\infty)}} \\
+			\overset{{\color{white}\textnormal{1}}}{\pi_{D}^{(\infty)}} \\
+			\overset{{\color{white}\textnormal{1}}}{\pi_{E}^{(\infty)}}
+		\end{array}\right)
+	\;\; := \;\;
+		\left(\begin{array}{c}
+			\overset{{\color{white}\textnormal{ .}}}{\underset{k\rightarrow\infty}{\lim}\; P(\,X_{k} = A\,)} \\
+			\overset{{\color{white}\textnormal{1}}}{\underset{k\rightarrow\infty}{\lim}\; P(\,X_{k} = B\,)} \\
+			\overset{{\color{white}\textnormal{1}}}{\underset{k\rightarrow\infty}{\lim}\; P(\,X_{k} = C\,)} \\
+			\overset{{\color{white}\textnormal{1}}}{\underset{k\rightarrow\infty}{\lim}\; P(\,X_{k} = D\,)} \\
+			\overset{{\color{white}\textnormal{1}}}{\underset{k\rightarrow\infty}{\lim}\; P(\,X_{k} = E\,)}
+		\end{array}\right)
+	\;\; = \;\;
+		\left(\begin{array}{c}
+			\overset{{\color{white}\textnormal{ .}}}{\underset{k\rightarrow\infty}{\lim}\; \pi_{A}^{(k)} }\\
+			\overset{{\color{white}\textnormal{1}}}{\underset{k\rightarrow\infty}{\lim}\; \pi_{B}^{(k)} }\\
+			\overset{{\color{white}\textnormal{1}}}{\underset{k\rightarrow\infty}{\lim}\; \pi_{C}^{(k)} }\\
+			\overset{{\color{white}\textnormal{1}}}{\underset{k\rightarrow\infty}{\lim}\; \pi_{D}^{(k)} }\\
+			\overset{{\color{white}\textnormal{1}}}{\underset{k\rightarrow\infty}{\lim}\; \pi_{E}^{(k)} }
+		\end{array}\right)
+	\;\; = \;\;
+		\textnormal{\large$\underset{k\rightarrow\infty}{\lim}\;\pi^{(k)}$}
+	\end{equation*}}
+
+\pause
+Donc, \,si \,$\pi^{(\infty)}$\, existe\,,\;
+\pause\;$\pi^{(k{\color{red}+1})} \;\; = \;\; T \cdot \pi^{(k)}$\; \pause implique
+\begin{equation*}
+\pi^{(\infty)} \;\; = \;\; T \cdot \pi^{(\infty)}
+\end{equation*}
+\pause soit \,$\pi^{(\infty)}$\, est un vecteur propre de $T$ \pause associ\'e \`a la valeur propre $1$.
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large PageRank de Google}
+
+\footnotesize
+Entre en sc\`ene la th\'eorie de la Cha\^ine de Markov:
+\pause
+\begin{center}
+\Large Le probl\`eme de PageRank\\ admet un unique solution !!
+\vskip 0.3cm
+\small(sous certaines conditions, \pause faibles si l'Internet est \'enorme).
+\end{center}
+
+\pause
+\vskip 0.1cm
+\scriptsize
+\textbf{Theorem}
+\vskip 0.1cm
+Supposer :
+\pause La matrice de transition \,$T \in \Re^{N \times N}$\,
+\pause d'une cha\^{i}ne de Markov
+\,$\left\{\,\overset{{\color{white}.}}{X}_{k} : \Omega \longrightarrow \{1,2,\ldots,N\}\,\right\}_{k\in\N}$\,
+\pause satisfait {\color{customRed}certaines conditions}.
+\vskip 0.1cm
+\pause Alors,
+\begin{itemize}
+\item
+	\pause il existe un \textbf{unique} vecteur propre \;$\pi^{(\infty)} \in \Re^{N}$\; de la matrice $T$
+	\pause associ\'e \'a la valeur propre 1
+	\pause (\;c.-\`a-d. \;$T \cdot \pi^{(\infty)} \, = \, \pi^{(\infty)}$\;)
+	\pause qui satisfait en plus
+	\begin{equation*}
+	\pi_{i}^{(\infty)} \;\geq\; 0\,,
+	\quad\textnormal{et}\quad\;
+	\overset{N}{\underset{i\,=\,1}{\sum}}\; \pi_{i}^{(\infty)} \;=\; 1\,.
+	\end{equation*}
+\item
+	\pause $\underset{k\rightarrow\infty}{\lim}\; T^{\,k} \cdot \pi^{(0)} \; = \; \pi^{(\infty)}$\,,\;\;
+	pour chaque vecteur \,$\pi^{(0)} \in \Re^{N}$\, de probabilit\'es.
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+%\begin{frame}{\Large PageRank de Google}
+%
+%\begin{multicols}{2}
+%	\begin{minipage}{4.5cm}
+%	\begin{center}
+%	\includegraphics[height=2.5cm]{graphics/web-of-five-pages.png}
+%	\end{center}
+%	\end{minipage}
+%\columnbreak
+%	\begin{flushright}
+%	\begin{minipage}{6.0cm}
+%	\begin{flushleft}
+%	\vskip -0.50cm
+%	\underline{\textit{\normalsize Par cons\'equent}}
+%	{\scriptsize\begin{eqnarray*}
+%	&&
+%		P(\,X_{2} = i\,)
+%	\\
+%	& = &
+%		\overset{{\color{white}.}}{\underset{j}{\sum}}\;P(\,X_{2} = i \,,\, X_{1} = j\,)
+%	\\
+%	& = &
+%		\underset{j}{\sum}\; \underset{T_{ij}}{\underbrace{P(\,X_{2} = i \,\vert\, X_{1} = j\,)}} \cdot P(\,X_{1} = j\,)
+%	\end{eqnarray*}}
+%	\end{flushleft}
+%	\end{minipage}
+%	\end{flushright}
+%\end{multicols}
+%
+%\begin{multicols}{2}
+%	\begin{flushleft}
+%	\begin{minipage}{5.0cm}
+%	{\scriptsize\begin{equation*}
+%	T \; := \; \textnormal{\tiny$\TMatrix$}
+%	\end{equation*}}
+%	{\scriptsize\begin{equation*}
+%	\pi_{k} \; = \; \textnormal{\tiny$\left(\,\overset{{\color{white}.}}{P}(X_{k}=A) \,,\, \ldots \,,\, P(X_{k}=E)\,\right)^{T}$}
+%	\end{equation*}}
+%	\end{minipage}
+%	\end{flushleft}
+%\pause
+%	\begin{flushright}
+%	\begin{minipage}{6.0cm}
+%	\vskip -0.75cm
+%	{\scriptsize\begin{eqnarray*}
+%	\pi_{2} & = & T \cdot \pi_{1}
+%	\\
+%	\pause\pi_{3} & = & T \cdot \pi_{2} \pause \;\; = \;\; T^{\,2} \cdot \pi_{1}
+%	\\
+%	\pause\pi_{4} & = & T \cdot \pi_{3} \pause \;\; = \;\; \cdots \;\; = \;\; T^{\,3} \cdot \pi_{1}
+%	\\
+%	\pause & \vdots &
+%	\\
+%	\pause{\color{customRed}\pi_{\infty}} & = & T \cdot {\color{customRed}\pi_{\infty}}
+%	\end{eqnarray*}}
+%	\begin{center}
+%	\vskip -0.15cm
+%	\pause\small $\pi_{\infty} \; := \; \underset{k\rightarrow\infty}{\lim}\,\pi_{k}$\;,\;\,  existe-il ?
+%	\end{center}
+%	\end{minipage}
+%	\end{flushright}
+%\columnbreak
+%\end{multicols}
+%
+%\end{frame}
+%\normalsize
+
+%%%%%%%%%%

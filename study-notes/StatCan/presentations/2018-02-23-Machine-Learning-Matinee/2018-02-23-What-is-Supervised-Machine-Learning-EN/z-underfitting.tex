@@ -1,0 +1,68 @@
+
+%%%%%%%%%%
+
+\begin{frame}{\Large But, not every phenomenon is linear ...}
+
+\scriptsize
+\pause
+
+\begin{multicols}{2}
+
+	\begin{flushleft}
+	\only<1-2|handout:0>{\includegraphics[width=5cm]{graphics/xy-quadratic.png}}
+	\only<3-3|handout:0>{\includegraphics[width=5cm]{graphics/qxy-straight-lines.png}}
+	\only<4-6>{\includegraphics[width=5cm]{graphics/qxy-quadratic-fit.png}}
+	\end{flushleft}
+
+\columnbreak
+
+	\begin{flushright}
+	\begin{minipage}{5.0cm}
+
+	\pause
+	Linear (all affine functions in $x$):
+	\vskip -0.5cm
+	\begin{equation*}
+	\begin{array}{ccl}
+	Y & = & \beta_{0}  + \beta_{1} x + \textnormal{noise}
+	\\
+	\overset{{\color{white}1}}{E}\!\left[\,Y\,\vert\,x\,\right] & = & \beta_{0}  + \beta_{1} x
+	\end{array},
+	\end{equation*}
+	\vskip -0.25cm
+	where $(\beta_{0},\beta_{1})\in\Re^{2} =: \Theta$.
+
+	\pause
+	\vskip 0.3cm
+	Quadratic  (all quadratic functions in $x$):
+	\vskip -0.5cm
+	\begin{equation*}
+	\begin{array}{ccl}
+	Y & = & \beta_{0}  + \beta_{1} x + \beta_{2}x^{2} + \textnormal{noise}
+	\\
+	\overset{{\color{white}1}}{E}\!\left[\,Y\,\vert\,x\,\right] & = & \beta_{0}  + \beta_{1} x + \beta_{2}x^{2}
+	\end{array},
+	\end{equation*}
+	\vskip -0.25cm
+	where $(\beta_{0},\beta_{1},\beta_{2})\in\Re^{3} =: \Theta$.
+
+	\vskip 0.3cm
+	\pause
+	\textit{Model needs to be sufficiently complex in order to have a chance to well approximate the
+	true underlying data-generation mechanism.}
+	
+	\end{minipage}
+	\end{flushright}
+
+\end{multicols}
+
+\pause
+\begin{center}
+\large Insufficient model complexity \;\;$\leadsto$\;\;
+\begin{minipage}{4.0cm} \begin{center} \textbf{\Large\color{red}underfitting} \vskip -0.1cm {\scriptsize high bias, large training error} \end{center} \end{minipage}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

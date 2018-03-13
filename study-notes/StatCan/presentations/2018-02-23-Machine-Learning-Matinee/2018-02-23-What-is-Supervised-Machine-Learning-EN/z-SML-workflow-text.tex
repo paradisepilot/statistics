@@ -1,0 +1,57 @@
+
+%%%%%%%%%%
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{1}
+
+%%%%%%%%%%
+
+\begin{frame}{\large Generic \,\textit{\Large Supervised Machine Learning}\, workflow}
+
+\small
+
+\begin{center}
+\vskip -0.2cm
+\textbf{\normalsize Goal: To produce a prediction machine with\\small \,{\color{blue}Error(new data) = generalization error}}
+\end{center}
+
+\vskip -0.2cm
+\begin{enumerate}
+\item
+	Visualize data. Exploratory Data Analysis.
+
+\vskip -0.25cm
+\item
+	Randomly split available data into {\color{red}training}, {\color{red}validation}, and
+	{\color{red}testing} subsets.
+
+\vskip -0.25cm
+\item
+	Preprocess training + validation data. {\scriptsize(Standardize, E\&I, transform, etc.)}
+
+\vskip -0.25cm
+\item
+	Choose model. Train model on training set.
+	\begin{itemize}
+	\item
+		\vskip -0.1cm
+		{\footnotesize{\color{red}Hyperparameter tuning} if applicable}
+	\item
+		{\footnotesize Evaluate/compare models\!\!\footnote{\tiny\color{gray}\!\!more precisely,
+		the constituent data-generation mechanisms in the chosen model}
+		based on Error(validation set).}
+	\item
+		{\footnotesize{\color{red}$k$-fold cross validation} if deemed appropriate}
+	\item
+		{\footnotesize Retrain model on training + validation data,
+		using chosen hyperparameter values \;$\leadsto$\; final ``trained machine''}
+	\end{itemize}
+
+\vskip -0.25cm
+\item
+	Evaluate final trained machine based on \,\textbf{\color{blue}Error(testing set)}.
+\end{enumerate}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

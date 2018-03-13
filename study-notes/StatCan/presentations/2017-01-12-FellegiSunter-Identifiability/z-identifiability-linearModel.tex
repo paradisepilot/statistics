@@ -1,0 +1,259 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\LARGE Identifiability of linear models}
+
+\vskip 0.3cm
+
+\pause
+Data:{\scriptsize
+\begin{equation*}
+\begin{array}{c||c|c|c||c|c|c}
+i & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline\hline
+x & \textnormal{A} & \textnormal{A} & \textnormal{A} &
+      \textnormal{B} & \textnormal{B} & \textnormal{B}
+\\
+\hline
+y & ? & ? & ? & ? & ? & ?
+\end{array}
+\end{equation*}
+}
+
+\vskip -0.25cm
+\pause
+\begin{equation*}
+\begin{array}{llcccclc}
+\textnormal{Model \;I:} \quad\mbox{}&
+	y_{i} &=& \mu + \tau_{x_{i}} &+& \varepsilon_{i}, &
+	E\left[\,\varepsilon_{i}\,\right] = 0, &
+	\varepsilon_{i} \;\;\textnormal{i.i.d.} \\
+\textnormal{Model II:}  \quad\mbox{}&
+	y_{i} &\overset{{\color{white}\vert}}{=}& \alpha_{x_{i}} &+& \varepsilon_{i}, &
+	E\left[\,\varepsilon_{i}\,\right] = 0, &
+	\varepsilon_{i} \;\;\textnormal{i.i.d.}
+\end{array}
+\end{equation*}
+where $\mu$, $\tau_{\textnormal{A}}$, $\tau_{\textnormal{B}}$,
+are unknown \textbf{model parameters} of Model I (to be estimated based on data),
+while $\alpha_{\textnormal{A}}$, $\alpha_{\textnormal{B}}$ those of Model II.
+
+%\vskip 0.5cm
+%\pause
+%Assumption:\quad
+%$E\!\left[\,y_{i}\,\right]$ fully determines probability distribution of $y_{i}$.
+
+\vskip 0.8cm
+\pause
+{\Large\color{customRed}Fact:\quad Model I \;is NOT identifiable; \; Model II \;is.}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{\LARGE Identifiability of linear models (cont'd)}
+
+\pause
+{\tiny
+\begin{equation*}
+\begin{array}{c||c|c|c||c|c|c}
+i & 1 & 2 & 3 & 4 & 5 & 6 \\
+\hline\hline
+x & \textnormal{A} & \textnormal{A} & \textnormal{A} &
+      \textnormal{B} & \textnormal{B} & \textnormal{B}
+\\
+\hline
+y & ? & ? & ? & ? & ? & ?
+\end{array}
+\quad
+\quad
+\quad
+\begin{array}{lccl}
+	M_{\textnormal{I}}: & y_{i} &=& \mu + \tau_{x_{i}} + \varepsilon_{i}
+	\\ \\
+	M_{\textnormal{II}}: & y_{i} &=& \mbox{}\quad{\color{customRed}\alpha_{x_{i}}}\quad\mbox{} + \varepsilon_{i}
+\end{array}\,,
+\quad
+\quad
+\quad
+\begin{array}{c}
+	\varepsilon_{i} \;\; \textnormal{i.i.d.}
+	\\
+	\overset{{\color{white}-}}{E}\!\left[\,\varepsilon_{i}\,\right] = 0
+\end{array}
+\end{equation*}
+}
+
+\vskip -0.5cm
+
+\pause
+{\tiny
+\begin{eqnarray*}
+\left(\begin{array}{c}
+	E\!\left[\,y_{1}\,\right] \\ E\!\left[\,y_{2}\,\right] \\ E\!\left[\,y_{3}\,\right] \\
+	E\!\left[\,{\color{customRed}y_{4}}\,\right] \\ E\!\left[\,{\color{customRed}y_{5}}\,\right] \\ E\!\left[\,{\color{customRed}y_{6}}\,\right]
+	\end{array}\right)
+&=&
+\left(\begin{array}{c}
+	\mu + \tau_{\textnormal{A}} \\	\mu + \tau_{\textnormal{A}} \\ 	\mu + \tau_{\textnormal{A}} \\
+	\mu + \tau_{\color{customRed}\textnormal{B}} \\
+	\mu + \tau_{\color{customRed}\textnormal{B}} \\ 
+	\mu + \tau_{\color{customRed}\textnormal{B}}
+	\end{array}\right)
+\\
+\pause
+&=&
+\mu\left(\begin{array}{c} 1\\1\\1\\1\\1\\1 \end{array}\right)
+\;+\;\tau_{\textnormal{A}}\left(\begin{array}{c} 1\\1\\1\\0\\0\\0 \end{array}\right)
+\;+\;\tau_{\textnormal{B}}\left(\begin{array}{c} 0\\0\\0\\1\\1\\1 \end{array}\right)
+\pause
+\;=\;
+\left[\begin{array}{cccc}
+	1&1&0\\
+	1&1&0\\
+	1&1&0\\
+	1&0&1\\
+	1&0&1\\
+	1&0&1
+\end{array}\right]
+\left(\!\begin{array}{l} \mu \\ \tau_{\textnormal{A}} \\ \tau_{\textnormal{B}} \end{array}\!\!\right)
+%\;=\;
+%X\cdot\!
+%\left(\!\begin{array}{l} \mu \\ \tau_{\textnormal{A}} \\ \tau_{\textnormal{B}} \end{array}\!\!\right)
+\\
+\pause
+&=&
+      (\mu+\tau_{\textnormal{A}})\left(\begin{array}{c} 1\\1\\1\\0\\0\\0 \end{array}\right)
+\;+\;(\mu+\tau_{\textnormal{B}})\left(\begin{array}{c} 0\\0\\0\\1\\1\\1 \end{array}\right)
+\pause
+\;=\;
+\left[\begin{array}{cccc}
+	1&0\\
+	1&0\\
+	1&0\\
+	0&1\\
+	0&1\\
+	0&1
+\end{array}\right]
+\left(\!\begin{array}{l} \mu + \tau_{\textnormal{A}} \\ \mu + \tau_{\textnormal{B}} \end{array}\!\!\right)
+%\;=\;
+%X\cdot\!
+%\left(\!\begin{array}{l} \mu + \tau_{\textnormal{A}} \\ \mu + \tau_{\textnormal{B}} \end{array}\!\!\right)
+\end{eqnarray*}
+}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{\LARGE Identifiability of linear models (cont'd)}
+
+\vskip -0.2cm
+
+\input{z-reminder-linearModel}
+
+\vskip -0.3cm
+
+Recall (least-squares estimators):\pause
+{\scriptsize
+\begin{equation*}
+\left(\!\begin{array}{l}
+	\widehat{\mu} \\
+	\overset{{\color{white}.}}{\widehat{\tau}_{\textnormal{A}}} \\
+	\overset{{\color{white}.}}{\widehat{\tau}_{\textnormal{B}}}
+\end{array}\!\!\right)
+\;\;=\;\;
+\left(X_{\textnormal{I}}^{T}X_{\textnormal{I}}\right)^{-1}X_{\textnormal{I}}^{T}\cdot\mathbf{y}\,,
+\quad\quad
+\textnormal{and}
+\quad\quad
+\left(\!\begin{array}{l}
+	\overset{{\color{white}.}}{\widehat{\alpha}_{\textnormal{A}}} \\
+	\overset{{\color{white}.}}{\widehat{\alpha}_{\textnormal{B}}}
+\end{array}\!\!\right)
+\;\;=\;\;
+\left(X_{\textnormal{II}}^{T}X_{\textnormal{II}}\right)^{-1}X_{\textnormal{II}}^{T}\cdot\mathbf{y}\,,
+\end{equation*}
+}\pause
+except that \pause\,$X_{\textnormal{I}}^{T}X_{\textnormal{I}}$\, is NOT invertible
+\pause(cannot solve for\, $\widehat{\mu}$,\, $\widehat{\tau}_{\textnormal{A}}$,\, $\widehat{\tau}_{\textnormal{B}}$\,;
+\pause \textbf{Model I is not identifiable}),
+\pause
+since the design matrix \,$X_{\textnormal{I}}$\, does not have full rank.
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{\LARGE Identifiability of linear models (cont'd)}
+
+\vskip -0.35cm
+
+\input{z-reminder-linearModel}
+
+\vskip -0.3cm
+
+\newcommand{\colSpace}{\textnormal{colSpace}}
+
+In terms of \textbf{model parametrization maps}:\pause
+{\scriptsize
+\vskip -0.6cm
+\begin{equation*}
+\begin{array}{lclclcccc}
+\varphi_{\textnormal{I}} &: &\Re^{3} &\longrightarrow& M \,=\, \colSpace\!\left(X_{\textnormal{I}}\right) \,\subset\, \Re^{6}
+&:&
+\textnormal{\tiny$\left(\!\begin{array}{l} \mu \\ \tau_{\textnormal{A}} \\ \tau_{\textnormal{B}} \end{array}\!\!\right)$}
+&\longmapsto&
+X_{\textnormal{I}}
+\textnormal{\tiny$\left(\!\begin{array}{l} \mu \\ \tau_{\textnormal{A}} \\ \tau_{\textnormal{B}} \end{array}\!\!\right)$}
+\\
+\pause
+\varphi_{\textnormal{II}} &: & \Re^{2} &\longrightarrow& M \,=\, \colSpace\!\left(X_{\textnormal{II}}\right) \subset\, \Re^{6}
+&\overset{{\color{white}\vert}}{:}&
+\textnormal{\tiny$\left(\!\begin{array}{l} \alpha_{\textnormal{A}} \\ \alpha_{\textnormal{B}} \end{array}\!\!\right)$}
+&\longmapsto&
+X_{\textnormal{II}}
+\textnormal{\tiny$\left(\!\begin{array}{l} \alpha_{\textnormal{A}} \\ \alpha_{\textnormal{B}} \end{array}\!\!\right)$}
+\end{array}
+\end{equation*}
+}\pause
+Note:\quad
+\textbf{$\varphi_{\textnormal{I}}$\; is not injective (one-to-one), \quad\; \pause while \;$\varphi_{\textnormal{II}}$\; is.}
+\vskip 0.1cm
+\pause
+{\color{white}Note:}\quad\quad\textbf{Model I\; is not identifiable, \;\; while \;Model II\; is.}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{\LARGE Identifiability of linear models (cont'd)}
+
+\large
+Linear \textbf{models} can be regarded as linear \textbf{maps}
+\pause
+{\LARGE
+\begin{equation*}
+\begin{array}{clcll}
+{\color{customRed}\varphi} : & {\color{customRed}\Theta} = \Re^{p} & \longrightarrow & M & \subset {\color{customRed}\Psi} = \Re^{n} \\
+& \beta & \longmapsto & X\cdot\beta & (X \in \Re^{n\times p})
+\end{array}
+\end{equation*}
+}
+between
+\pause
+\begin{center}\vskip 0.2cm{\LARGE finite-dimensional vector spaces.}\end{center}
+
+\pause
+\vskip 0.5cm
+\textbf{Identifiability} of linear models is simply:
+\pause
+\begin{center}{\LARGE\textbf{injectivity} of these linear maps.}\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

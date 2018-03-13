@@ -1,0 +1,417 @@
+
+
+%%%%%%%%%%
+
+\begin{frame}{\Large Qu'est-ce que{ \color{customRed}Google} ?}
+
+\pause
+\begin{center}
+\Huge Moteur de recherche
+\vskip 0.1cm
+\Huge le plus populaire
+\vskip 0.1cm
+\Huge aujourd'hui
+\end{center}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\Large Qu'est-ce que {\color{customRed}PageRank} ?}
+
+\begin{center}
+\pause \Huge Premier algorithme de Google
+\vskip 0.1cm
+\pause \Huge pour ordonner
+\vskip 0.1cm
+\pause \Huge toutes les pages web
+\vskip 0.1cm
+\pause \Huge par ``importance''
+\end{center}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\Large Et {\color{customRed}Cha\^{i}ne de Markov} ?}
+
+\begin{center}
+\pause \Huge th\'{e}orie probabiliste
+\vskip 0.1cm
+\pause \Huge derri\`{e}re PageRank
+\end{center}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\LARGE Pourquoi parle-t-on de l'entropie ?}
+
+\vskip 0.3cm
+
+\footnotesize
+\pause
+{\large Parce qu'on l'utilise \`a Statistique Canada:}
+\begin{itemize}
+\pause
+\item
+	Pour quantifier la {\color{customRed}complexit\'e de structure} d'une entreprise
+	\pause afin d'aider \`a identifier les entreprises les plus essentielles
+	\`a mettre \`a jour dans le {\color{gcblue}Registre des entreprises} (RE).
+	\pause\vskip -0.075cm
+	{\scriptsize\color{gray}
+	complexit\'e de structure $\approx$
+	h\'et\'erog\'en\'eit\'e des revenues parmi les \'etablissements}
+\end{itemize}
+
+\vskip 0.5cm
+\pause
+{\large Parce qu'on l'utilise dans notre section:}
+\begin{itemize}
+\pause
+\item\vskip 0.1cm
+	Pour quantifier l'{\color{customRed}h\'et\'erog\'en\'eit\'e des marchandises}
+	des \'etablissements manufacturiers
+	en l'\'etude d'\'echantillonnage de l'{\color{gcblue}enqu\^ete du flux des marchandises canadiennes}.
+\pause
+\item
+	Pour d\'eterminer les compagnies de camionnage
+	avec des {\color{customRed}exp\'editions} les plus h\'et\'erog\`enes
+	pour la {\color{gcblue}collecte \'electronique}.
+\pause
+\item\vskip 0.1cm
+	Pour distinguer les {\color{customRed}arr\^ets} ``primaires'' de ceux ``secondaires''
+	de camions \`a partir de donn\'ees GPS, pour ensuite en reconstruire les {\color{gcblue}itin\'eraires}.
+\end{itemize}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\huge Un jour, dans un avenir proche}
+
+\LARGE
+
+\pause Vous entrez dans le Casino \pause de StatCan.
+\vskip -0.25cm
+\pause {\small\color{gray}(\;un projet \`a co\^uts recouvrables, peut-\^etre, pourquoi pas ... \dSmiley[1.25]\,)}
+
+\vskip 1.5cm
+\pause Vous vous asseyez \`a la table d'\textbf{\huge entropie}.
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\Huge Le Jeu d'entropie}
+
+\Large
+
+\vskip -0.5cm
+
+\textbf{
+\begin{itemize}
+\item 	\pause Le joueur lance un d\'e (\`a six faces).
+\vskip 0.5cm
+\item 	\pause Le joueur obtiens 5 $\Longrightarrow$ Le joueur gagne \$1.
+\vskip 0.5cm
+\item 	\pause Autrement \;$\Longrightarrow$\; Le joueur perd \$0.
+\vskip 0.5cm
+\item 	\pause Mais un petit truc :
+		\pause
+		\vskip 0.1cm
+		\begin{center}{\LARGE Le joueur doit choisir\vskip 0.15em son d\'e avant de jouer.}\end{center}
+\end{itemize}
+}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\Huge Quel d\'e choisissez-vous?}
+\Huge
+
+\begin{center}
+	\pause \includegraphics[width=3.3cm]{graphics/fair-die.png}
+	\;
+	\pause \includegraphics[width=3.3cm]{graphics/loaded-die.png}
+	\;
+	\pause \includegraphics[width=3.3cm]{graphics/certain-die.png}
+\end{center}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\Huge ``Niveau'' d'incertitude}
+
+\vskip 0.5cm
+
+\begin{center}
+\includegraphics[height=3.0cm,width=1.5cm]{graphics/fair-die.png}
+\quad\quad
+\includegraphics[height=3.0cm,width=1.5cm]{graphics/loaded-die.png}
+\quad\quad
+\includegraphics[height=3.0cm,width=1.5cm]{graphics/certain-die.png}
+\end{center}
+
+\Large
+
+\begin{center}
+\vskip 0.25cm
+\begin{tabular}{|c|c|}
+\hline
+{\color{white}1}D\'e{\color{white}1} & {\color{white}881}Incertitude{\color{white}881} \\
+\hline \hline
+\#2 & \onslide<3->{la plus \'elev\'ee} \\
+\#1 & \onslide<4->{interm\'ediaire} \\
+\#0 & \onslide<2->{aucune}      \\
+\hline
+\end{tabular}
+\end{center}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\huge Entropie ({\scriptsize th\'eorie de l'information de \large Claude Shannon})}
+\normalsize
+
+\vskip -0.3cm
+
+\pause
+\begin{eqnarray*}
+\textnormal{Entropie}(\textnormal{D\'e \#2})
+&:=&
+	\textnormal{\color{customRed}\small$p_{1}\!\log_{2}\!\left(\frac{1}{p_{1}}\right)
+	+ p_{2}\log_{2}\!\left(\frac{1}{p_{2}}\right)
+	+ \cdots
+	+ p_{6}\log_{2}\!\left(\frac{1}{p_{6}}\right)$}
+\\
+\pause
+& =&
+	\textnormal{\tiny$\frac{1}{6}\log_{2}\!\left(\frac{1}{1/6}\right)
+	+ \frac{1}{6}\log_{2}\!\left(\frac{1}{1/6}\right)
+	+ \cdots
+	+ \frac{1}{6}\log_{2}\!\left(\frac{1}{1/6}\right)$}
+\\
+\pause
+& =&
+	\log_{2}(6) \;\; \approx \;\; 2.585
+\\
+\pause
+\textnormal{Entropie}(\overset{{\color{white}\textnormal{\huge$1$}}}{\textnormal{D\'e \#1}})
+\pause
+& =&
+	\textnormal{\tiny$0.05\times\log_{2}\!\left(\frac{1}{0.05}\right)
+	+ 0.05\times\log_{2}\!\left(\frac{1}{0.05}\right)
+	+ 0.05\times\log_{2}\!\left(\frac{1}{0.05}\right)$}
+\\
+&  &
+	\textnormal{\tiny$+\,0.2\times\log_{2}\!\left(\frac{1}{0.2}\right)
+	+ 0.45\times\log_{2}\!\left(\frac{1}{0.45}\right)
+	+ 0.2\times\log_{2}\!\left(\frac{1}{0.2}\right)$}
+\\
+\pause
+&\approx&
+	2.095
+\\
+\pause
+\textnormal{Entropie}(\overset{{\color{white}\textnormal{\Huge$1$}}}{\textnormal{D\'e \#0}})
+\pause
+& =&
+	5\times\left[\textnormal{\tiny$0\times\log_{2}\!\left(\frac{1}{0}\right)$}\right]
+	+ \textnormal{\tiny$1\times\log_{2}\!\left(\frac{1}{1}\right)$}
+	\;\; = \;\; \pause 0\,,
+\\
+&&
+	{\color{white},\times}\textnormal{\tiny o\`u\;\; $0 \times \log_{2}\!\left(\dfrac{1}{0}\right) := 0$}
+	{\color{white}\overset{1}{1}}
+\end{eqnarray*}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\Huge Incertitude \& Entropie}
+\LARGE
+
+\begin{center}
+\vskip 0.3cm
+\begin{tabular}{|c|c|c|}
+\hline
+{\color{white}1}D\'e{\color{white}1} & {\color{white}88}Incertitude{\color{white}88} & {\color{white}1}Entropie{\color{white}1} \\
+\hline \hline
+\#2 & la plus \'elev\'ee & $\approx$ 2.585 \\
+\#1 & interm\'ediaire  & $\approx$ 2.095 \\
+\#0 & aucune          & 0 \\
+\hline
+\end{tabular}
+\end{center}
+
+\vskip 0.5cm
+\pause
+\Large
+On peut prouver:
+\begin{equation*}
+\underset{\textnormal{Entropie}(\textnormal{D\'e \#0})}{\underbrace{0}}
+\;\leq\;\textnormal{Entropie}(\,\textnormal{\textbf{\color{customRed}tout} d\'e}\,)
+\;\leq\;\underset{\textnormal{Entropie}(\textnormal{D\'e \#2})}{\underbrace{\log_{2}(6)}}
+\end{equation*}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\huge Entropie \;$\sim$\; taille \;$\sim$\; incertitude}
+
+\vskip 0.2em
+
+\small
+
+\pause
+Soit \,$X \,\sim\, \textnormal{Cat\'egorique}\left(\{\,1,2,\ldots,n\,\}\,;\,p_{1},p_{2},\ldots,p_{n}\,\right)$,\,
+o\`u \,$P\!\left(\,X = i\,\right) = p_{i}$.
+\pause
+\begin{equation*}
+\textnormal{Entropie}(\,X\,)
+\;:=\;
+	\textnormal{\small$p_{1}\log_{2}\!\left(\frac{1}{p_{1}}\right)
+		+ \cdots +
+		p_{n}\log_{2}\!\left(\frac{1}{p_{n}}\right)$}
+\;=\;
+	\textnormal{\small$\sum_{i=1}^{n}p_{i}\log_{2}\!\left(\frac{1}{p_{i}}\right)$}
+\end{equation*}
+
+\scriptsize
+
+\pause
+Si \,$X \,\sim\, \textnormal{Uniforme}\!\left(\{1,2,\ldots,n\}\right)$,\, donc
+\,$P\!\left(\,X = i\,\right) = 1/n$,\, $\forall\;i$,\, on a
+\begin{equation*}
+\textnormal{Entropie}\!\left(
+	\textnormal{Uniforme}(\{\overset{{\color{white}.}}{1},2,\ldots,{\color{red}\textnormal{\small$n$}}\})
+	\right)
+\;=\;
+	\sum_{i=1}^{n}\,\dfrac{1}{n}\log_{2}\!\left(\frac{1}{1/n}\right)
+\;=\;
+	\log_{2}\!\left(\,{\color{red}\textnormal{\small$n$}}\,\right)
+\end{equation*}
+
+\pause
+Donc, pour les distributions \textbf{\color{orange}uniformes}, c'est clair:
+\scriptsize
+\begin{equation*}
+\pause
+\textnormal{\bf\color{orange}incertitude}
+\pause
+\;\;\;\textnormal{\color{orange}\large$\sim$}\;
+	\begin{array}{c} \textnormal{\bf\color{orange}taille de} \\ \textnormal{\bf\color{orange}l'univers} \end{array}
+\pause
+\;\textnormal{\large$\sim$}\;\;\;
+	\textnormal{$\log_{2}$}
+	\!\left(\begin{array}{c} \textnormal{taille de} \\ \textnormal{l'univers} \end{array}\right)
+\pause
+\;\;\textnormal{\large$\sim$}\;\;\;
+	\textnormal{entropie}
+\end{equation*}
+
+\small
+\pause
+G\'en\'eralement,
+\scriptsize
+\begin{equation*}
+\pause
+\textnormal{\small entropie}
+\pause
+\;\;\textnormal{\large$\sim$}\;\;
+	\textnormal{\small$E$}\!\left[\;
+		\textnormal{\small$\log_{2}$}
+		\!\left(\!\!\!\begin{array}{c}
+			\textnormal{taille de l'univers de la}
+			\\
+			\textnormal{distribution uniforme}
+			\\
+			\textnormal{\color{customRed}g\'en\'eralis\'ee}
+			\\
+			\textnormal{associ\'ee \`a {\color{gcblue}chaque valeur}}
+		\end{array}\!\!\!\right)
+	\;\right]
+\pause
+\;\;\textnormal{\large$\sim$}\;\;
+	\!\!\!\begin{array}{c}
+		\textnormal{taille de l'univers de la}
+		\\
+		\textnormal{distribution uniforme}
+		\\
+		\textnormal{\color{customRed}g\'en\'eralis\'ee}
+		\\
+		\textnormal{associ\'ee \`a {\color{gcblue}la distribution donn\'ee}}
+	\end{array}
+\end{equation*}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%
+
+\begin{frame}{\LARGE Incertitude, entropie, taille de l'univers}
+\large
+
+\begin{center}
+\vskip 0.3cm
+\begin{minipage}{6.5cm}
+\includegraphics[height=3.0cm,width=1.5cm]{graphics/fair-die.png}
+\quad\;\;
+\includegraphics[height=3.0cm,width=1.5cm]{graphics/loaded-die.png}
+\quad\;\;
+\includegraphics[height=3.0cm,width=1.5cm]{graphics/certain-die.png}
+\end{minipage}
+\quad
+\begin{minipage}{2.5cm}
+\small
+	\begin{eqnarray*}
+	&&
+		\!\!\!\textnormal{Entropie}
+	\\
+	& := &
+		\!\!\!\textnormal{\small$\sum_{i=1}^{n}\,p_{i}\log_{2}\!\left(\frac{1}{p_{i}}\right)$}
+	\end{eqnarray*}
+\end{minipage}
+\end{center}
+
+\vskip 0.3cm
+
+\begin{center}
+\small
+\begin{tabular}{|c|c|c|c|}
+\hline
+{\color{white}1}D\'e{\color{white}1} & {\color{white}88}Incertitude{\color{white}88} & {\color{white}8}Entropie{\color{white}8} & \og taille de l'univers \fg \\
+\hline \hline
+\#$\overset{{\color{white}-}}{2}$
+	& la plus \'elev\'ee   & $\approx$ 2.585 & \onslide<2->{$6{\color{white}.272} \;\approx\; 2^{2.585}$}
+\\
+\#$\overset{{\color{white}-}}{1}$
+	& interm\'ediaire & $\approx$ 2.095 & $\onslide<5->{4.272 \;\approx\;} \onslide<4->{2^{2.095}}$
+\\
+\#$\overset{{\color{white}-}}{0}$
+	& aucune            & 0  & \onslide<3->{$1{\color{white}.272} \;=\; 2^{0{\color{white}.095}}$}
+\\
+\hline
+\end{tabular}
+\end{center}
+
+\normalsize
+\end{frame}
+
+%%%%%%%%%%

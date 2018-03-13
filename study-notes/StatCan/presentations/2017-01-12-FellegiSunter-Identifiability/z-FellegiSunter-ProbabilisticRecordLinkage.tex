@@ -1,0 +1,397 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\Large Couplage d'enregistrements de Fellegi-Sunter}
+
+\vskip 0.5cm
+
+\tiny
+\begin{multicols}{2}
+	\begin{flushleft}
+	\begin{tabular}{|c|c|c||c|}
+	\hline
+		\multicolumn{4}{|c|}{Marvel Studios} \\
+	\hline
+		ID & Nom de famille & Pr\'enom & A. de N. \\
+	\hline
+		\rowcolor{bgOrange}
+		M1 & Rogers & Steve & 1920 \\
+	\hline
+		\rowcolor{bgOrange}
+		M2 & Stark & Tony & 1970 \\
+	\hline
+		\rowcolor{bgOrange}
+		M5 & Maximo{\color{red}ff} & Pietro & 1990 \\
+	\hline
+		\rowcolor{bgOrange}
+		M6 & Maximo{\color{red}ff} & Wanda & 1990 \\
+	\hline
+	\end{tabular}
+	\end{flushleft}
+\columnbreak
+	\begin{flushright}
+	\begin{tabular}{|c|c|c||c|}
+	\hline
+		\multicolumn{4}{|c|}{20th Century Fox} \\
+	\hline
+		ID & Nom de famille & Pr\'enom & P. de N. \\
+	\hline
+		\rowcolor{lightTurquoise}
+		F004 & Xavier & Charles & USA \\
+	\hline
+		\rowcolor{lightTurquoise}
+		F007 & Lehnsherr & Erik & Germany \\
+	\hline
+		\rowcolor{lightTurquoise}
+		F403 & Maximo{\color{red}v} & Pietro & Sokovia \\
+	\hline
+		\rowcolor{lightTurquoise}
+		F751 & Maximo{\color{red}ff} & Wanda & Sokovia \\
+	\hline
+	\end{tabular}
+	\end{flushright}
+\end{multicols}
+
+\vskip -0.5cm
+\mbox{}
+
+\pause
+
+\tiny
+
+\begin{center}
+\begin{tabular}{
+	|>{\columncolor{bgOrange}}c
+	|>{\columncolor{bgOrange}}c
+	|>{\columncolor{lightTurquoise}}c
+	|>{\columncolor{lightTurquoise}}c
+	||>{\columncolor{pink}}c
+	||>{\columncolor{lightGreen}}c|}
+\hline
+	&
+	&
+	&
+	&
+	\onslide<3->{\cellcolor{pink}Match}&
+	\\
+	\multirow{-2}{*}{M\,:\,LN} &
+	\multirow{-2}{*}{M\,:\,FN} &
+	\multirow{-2}{*}{F\,:\,LN} &
+	\multirow{-2}{*}{F\,:\,FN} &
+	\onslide<3->{\cellcolor{pink}$^{M}$} &
+	\onslide<4->{\multirow{-2}{*}{Lien, $\widehat{M}$}}
+	\\
+\hline\hline
+	Rogers & Steve & Xavier & Charles & \onslide<3->{0} & \onslide<4->{0} \\
+\hline
+	Rogers & Steve & Lehnsherr & Erik & \onslide<3->{0} & \onslide<4->{0} \\
+\hline
+	Rogers & Steve & Maximov & Pietro & \onslide<3->{0} & \onslide<4->{0} \\
+\hline
+	Rogers & Steve & Maximov & Wanda & \onslide<3->{0} & \onslide<4->{0} \\
+\hline
+	$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<3->{$\cdots$} & \onslide<4->{$\cdots$} \\
+\hline
+	Stark & Tony & $\cdots$ & $\cdots$ & \onslide<3->{0} & \onslide<4->{0} \\
+\hline
+	$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<3->{$\cdots$} & \onslide<4->{$\cdots$} \\
+\hline
+	Maximo{\color{red}ff} & Pietro & Maximo{\color{red}v} & Pietro & \alt<3->{\cellcolor{customRed}1} & \alt<4->{\cellcolor{lightGray}?}{} \\
+\hline
+	$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<3->{$\cdots$} & \onslide<4->{$\cdots$} \\
+\hline
+	Maximo{\color{red}ff} & Wanda & Xavier & Charles & \onslide<3->{0} & \onslide<4->{0} \\
+\hline
+	Maximo{\color{red}ff} & Wanda & Lehnsherr & Erik & \onslide<3->{0} & \onslide<4->{0} \\
+\hline
+	Maximo{\color{red}ff} & Wanda & Maximo{\color{red}v} & Pietro & \onslide<3->{0} & \onslide<4->{0} \\
+\hline
+	Maximo{\color{red}ff} & Wanda & Maximo{\color{red}ff} & Wanda & \alt<3->{\cellcolor{customRed}1} & \alt<4->{\cellcolor{darkGreen}1}{} \\
+\hline
+\end{tabular}
+\end{center}
+
+%\begin{multicols}{2}
+%	\begin{flushleft}
+%	\begin{tabular}{
+%		|>{\columncolor{bgOrange}}c
+%		|>{\columncolor{bgOrange}}c
+%		|>{\columncolor{lightTurquoise}}c
+%		|>{\columncolor{lightTurquoise}}c
+%		||>{\columncolor{pink}}c
+%		||>{\columncolor{lightGreen}}c|}
+%	\hline
+%		&
+%		&
+%		&
+%		&
+%		\onslide<3->{\cellcolor{pink}Match}&
+%		\\
+%		\multirow{-2}{*}{M\,:\,LN} &
+%		\multirow{-2}{*}{M\,:\,FN} &
+%		\multirow{-2}{*}{F\,:\,LN} &
+%		\multirow{-2}{*}{F\,:\,FN} &
+%		\onslide<3->{\cellcolor{pink}$^{M}$} &
+%		\onslide<4->{\multirow{-2}{*}{Lien, $\widehat{M}$}}
+%		\\
+%	\hline\hline
+%		Rogers & Steve & Xavier & Charles & \onslide<3->{0} & \onslide<4->{0} \\
+%	\hline
+%		Rogers & Steve & Lehnsherr & Erik & \onslide<3->{0} & \onslide<4->{0} \\
+%	\hline
+%		Rogers & Steve & Maximov & Pietro & \onslide<3->{0} & \onslide<4->{0} \\
+%	\hline
+%		Rogers & Steve & Maximov & Wanda & \onslide<3->{0} & \onslide<4->{0} \\
+%	\hline
+%		$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<3->{$\cdots$} & \onslide<4->{$\cdots$} \\
+%	\hline
+%		Stark & Tony & $\cdots$ & $\cdots$ & \onslide<3->{0} & \onslide<4->{0} \\
+%	\hline
+%		$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<3->{$\cdots$} & \onslide<4->{$\cdots$} \\
+%	\hline
+%		Maximo{\color{red}ff} & Pietro & Maximo{\color{red}v} & Pietro & \alt<3->{\cellcolor{customRed}1} & \alt<4->{\cellcolor{lightGray}?}{} \\
+%	\hline
+%		$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<3->{$\cdots$} & \onslide<4->{$\cdots$} \\
+%	\hline
+%		Maximo{\color{red}ff} & Wanda & Xavier & Charles & \onslide<3->{0} & \onslide<4->{0} \\
+%	\hline
+%		Maximo{\color{red}ff} & Wanda & Lehnsherr & Erik & \onslide<3->{0} & \onslide<4->{0} \\
+%	\hline
+%		Maximo{\color{red}ff} & Wanda & Maximo{\color{red}v} & Pietro & \onslide<3->{0} & \onslide<4->{0} \\
+%	\hline
+%		Maximo{\color{red}ff} & Wanda & Maximo{\color{red}ff} & Wanda & \alt<3->{\cellcolor{customRed}1} & \alt<4->{\cellcolor{darkGreen}1}{} \\
+%	\hline
+%	\end{tabular}
+%	\end{flushleft}	
+%\columnbreak
+	%\begin{flushright}
+	%\mbox{}
+	%\vskip 0.2cm
+	%\begin{minipage}{3.2cm}{\scriptsize
+	%	\onslide<5->{
+	%		\emph{Probl\`eme de classification}
+	%		\vskip 0.1cm
+	%		D\'eclarer chaque paire:
+	%		\begin{itemize}
+	%		\item  non-lien,
+	%		\item  lien possible, o\`u
+	%		\item  lien.
+	%		\end{itemize}
+	%	}
+	%	\vskip 0.2cm
+	%	\onslide<6->{Ressemblant \`a l'apprentissage automatique supervis\'e.}
+	%	\vskip 0.2cm
+	%	\onslide<7->{Mais on veut \'eviter l'utilisation des \textbf{donn\'ees d'apprentissage}.}
+	%}\end{minipage}
+	%\end{flushright}
+%\end{multicols}
+
+%\scriptsize
+%\vskip -0.4cm
+%\onslide<10->{L'\textbf{\color{red}\footnotesize identifiabilit\'e} permet l'estimation des}
+%\onslide<8->{\og mesures du pr\'ecision \fg,\; p. ex.}
+%\begin{center}
+%\vskip -0.05cm
+%\onslide<8->{sensibilit\'e \,$:=$\, $P(\,\widehat{M}=1\,\vert\,M=1\,)$,}
+%\;
+%\onslide<9->{sp\'ecificit\'e \,$:=$\, $P(\,\widehat{M}=0\,\vert\,M=0\,)$.}
+%\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \Large Couplage d'enregistrements de Fellegi-Sunter}
+
+\tiny
+\begin{center}
+%\vskip -0.25cm
+\begin{tabular}{
+	|>{\columncolor{bgOrange}}c
+	|>{\columncolor{bgOrange}}c
+	|>{\columncolor{lightTurquoise}}c
+	|>{\columncolor{lightTurquoise}}c
+	||>{\columncolor{pink}}c
+	||>{\columncolor{lightGreen}}c
+	||c|c|}
+\hline
+	&
+	&
+	&
+	&
+	\cellcolor{pink}Match&
+	&
+	\onslide<2->{\cellcolor{white}$\Gamma_{1}$}&
+	\onslide<3->{\cellcolor{white}$\Gamma_{2}$}
+	\\
+	\multirow{-2}{*}{M\,:\,LN} &
+	\multirow{-2}{*}{M\,:\,FN} &
+	\multirow{-2}{*}{F\,:\,LN} &
+	\multirow{-2}{*}{F\,:\,FN} &
+	\cellcolor{pink}$^{M}$ &
+	\multirow{-2}{*}{Lien, $\widehat{M}$}&
+	\onslide<2->{$^{\textnormal{(M:LN = F:LN)}}$}&
+	\onslide<3->{$^{\textnormal{(M:FN = F:FN)}}}$
+	\\
+\hline\hline
+	Rogers & Steve & Xavier & Charles & 0 & 0 & \onslide<2->{0} & \onslide<3->{0} \\
+\hline
+	Rogers & Steve & Lehnsherr & Erik & 0 & 0 & \onslide<2->{0} & \onslide<3->{0}  \\
+\hline
+	Rogers & Steve & Maximov & Pietro & 0 & 0 & \onslide<2->{0} & \onslide<3->{0}  \\
+\hline
+	Rogers & Steve & Maximov & Wanda & 0 & 0 & \onslide<2->{0} & \onslide<3->{0}  \\
+\hline
+	$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<2->{$\cdots$} & \onslide<3->{$\cdots$} \\
+\hline
+	Stark & Tony & $\cdots$ & $\cdots$ & 0 & 0 & \onslide<2->{0} & \onslide<3->{0} \\
+\hline
+	$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<2->{$\cdots$} & \onslide<3->{$\cdots$} \\
+\hline
+	Maximo{\color{red}ff} & Pietro & Maximo{\color{red}v} & Pietro & \cellcolor{customRed}1 & \cellcolor{lightGray}? & \onslide<2->{0} & \alt<3->{\cellcolor{lightGray}1}{} \\
+\hline
+	$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<2->{$\cdots$} & \onslide<3->{$\cdots$} \\
+\hline
+	Maximo{\color{red}ff} & Wanda & Xavier & Charles & 0 & 0 & \onslide<2->{0} & \onslide<3->{0} \\
+\hline
+	Maximo{\color{red}ff} & Wanda & Lehnsherr & Erik & 0 & 0 & \onslide<2->{0} & \onslide<3->{0} \\
+\hline
+	Maximo{\color{red}ff} & Wanda & Maximo{\color{red}v} & Pietro & 0 & 0 & \onslide<2->{0} & \onslide<3->{0} \\
+\hline
+	Maximo{\color{red}ff} & Wanda & Maximo{\color{red}ff} & Wanda & \cellcolor{customRed}1 & \cellcolor{darkGreen}1 & \alt<2->{\cellcolor{lightGray}1} & \alt<3->{\cellcolor{lightGray}1}{} \\
+\hline
+\end{tabular}
+\normalsize
+\vskip 0.6cm
+\onslide<4->{Les \,$\Gamma_{i}$\, s'appellent les \textbf{variables de comparaison}.}
+\vskip 0.3cm
+\onslide<5->{Elles sont toutes cat\'egorielles, mais pas n\'ecessairement binaires.}
+\vskip 0.2cm
+\onslide<6->{\scriptsize p. ex. \;\,$\Gamma_{i}$ \,$=$\,
+	1 (pleinement d'accord),
+	2 (partiellement d'accord),
+	\vskip 0.0cm
+	\mbox{}\;3 (pas du tout d'accord),
+	4 (manquant)}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\Large Couplage d'enregistrements de Fellegi-Sunter}
+
+\tiny
+\begin{center}
+\vskip 0.0cm
+\begin{tabular}{
+	|>{\columncolor{bgOrange}}c
+	|>{\columncolor{bgOrange}}c
+	|>{\columncolor{lightTurquoise}}c
+	|>{\columncolor{lightTurquoise}}c
+	||>{\columncolor{pink}}c
+	||c|c
+	|>{\columncolor{lightGreen}}c|}
+\hline
+	&
+	&
+	&
+	&
+	\cellcolor{pink}Match&
+	\cellcolor{white}$\Gamma_{1}$&
+	\cellcolor{white}$\Gamma_{2}$&
+	Lien, $\overset{{\color{white}.}}{\widehat{M}}$
+	\\
+	\multirow{-2}{*}{M\,:\,LN} &
+	\multirow{-2}{*}{M\,:\,FN} &
+	\multirow{-2}{*}{F\,:\,LN} &
+	\multirow{-2}{*}{F\,:\,FN} &
+	\cellcolor{pink}$^{M}$ &
+	\cellcolor{white}$^{\textnormal{(M:LN = F:LN)}}$&
+	\cellcolor{white}$^{\textnormal{(M:FN = F:FN)}}$&
+	\onslide<12->{$^{(\pm 1.5)}$}
+	\\
+\hline\hline
+	Rogers & Steve & Xavier & Charles & 0 & 0 & 0 & \onslide<12->{0} \\
+\hline
+	$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<12->{$\cdots$} \\
+\hline
+	Stark & Tony & $\cdots$ & $\cdots$ & 0 & 0 & 0 & \onslide<12->{0} \\
+\hline
+	$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<12->{$\cdots$} \\
+\hline
+	Maximo{\color{red}ff} & Pietro & Maximo{\color{red}v} & Pietro & \cellcolor{customRed}1 & 0 & \cellcolor{lightGray}1 & \alt<12->{\cellcolor{lightGray}??}{} \\
+\hline
+	$\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & \onslide<12->{$\cdots$} \\
+\hline
+	Maximo{\color{red}ff} & Wanda & Maximo{\color{red}v} & Pietro & 0 & 0 & 0 & \onslide<12->{0} \\
+\hline
+	Maximo{\color{red}ff} & Wanda & Maximo{\color{red}ff} & Wanda & \cellcolor{customRed}1 & \cellcolor{lightGray}1 & \cellcolor{lightGray}1 & \alt<12->{\cellcolor{darkGreen}1}{} \\
+\hline
+\end{tabular}
+\end{center}
+
+\pause
+
+\vskip -0.4cm
+\mbox{}
+
+\begin{center}
+\begin{tabular}{
+	|c|c
+	||>{\columncolor{lightYellow}}c
+	|>{\columncolor{lightYellow}}c
+	|>{\columncolor{lightYellow}}c
+	|>{\columncolor{lightYellow}}c
+	|>{\columncolor{lightGreen}}c|}
+\hline
+	\cellcolor{white}&
+	\cellcolor{white}&
+	\cellcolor{yellow}&
+	\cellcolor{yellow}&
+	&
+	&
+	\onslide<8->{Lien, $\overset{{\color{white}.}}{\widehat{M}}$}
+	\\
+	\cellcolor{white} \multirow{-2}{*}{$^{(\Gamma_{1},\Gamma_{2})}$}&
+	\cellcolor{white}\multirow{-2}{*}{\onslide<4->{compte}}&
+	\cellcolor{yellow}\multirow{-2}{*}{\onslide<5->{$^{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}$}}&
+	\cellcolor{yellow}\multirow{-2}{*}{\onslide<5->{$^{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}$}}&
+	\multirow{-2}{*}{\onslide<6->{$^{\frac{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}}$}}&
+	\multirow{-2}{*}{\onslide<7->{$^{\log_{10}\frac{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}}$}}&
+	\onslide<9->{$^{(\pm 1.5)}$}
+	\\
+\hline\hline
+	\onslide<3->{(\,0,\,0\,)} & \onslide<4->{14} & \onslide<5->{0.0010} & \onslide<5->{0.900} & \onslide<6->{11.11 $\times 10^{-3}$} & \onslide<7->{-2.954} & \onslide<10->{0} \\
+\hline
+	\onslide<3->{(\,0,\,1\,)} & \onslide<4->{1} & \onslide<5->{0.0045} & \onslide<5->{0.045} & \onslide<6->{0.10} & \onslide<7->{-1.00} & \alt<10->{\cellcolor{lightGray}??}{} \\
+\hline
+	\onslide<3->{(\,1,\,0\,)} & \onslide<4->{0} & \onslide<5->{0.0045} & \onslide<5->{0.045} & \onslide<6->{0.10} & \onslide<7->{-1.00} & \alt<10->{\cellcolor{lightGray}??}{} \\
+\hline
+	\onslide<3->{(\,1,\,1\,)} & \onslide<4->{1} & \onslide<5->{0.9900} & \onslide<5->{0.010} & \onslide<6->{99.00} & \onslide<7->{1.996} & \alt<10->{\cellcolor{darkGreen}1}{} \\
+\hline
+\end{tabular}
+\end{center}
+
+\small
+\begin{center}
+\vskip 0.1cm
+\onslide<5->{On a besoin d'un mod\`ele statistique pour estimer
+\vskip 0.025cm
+\;$P\!\left(\,\Gamma_{1},\Gamma_{2},\ldots,\Gamma_{p}\,\vert\,M={\color{red}1}\,\right)$\;
+et
+\;$P\!\left(\,\Gamma_{1},\Gamma_{2},\ldots,\Gamma_{p}\,\vert\,M={\color{red}0}\,\right)$.}
+%\vskip 0.2cm
+%\scriptsize
+%\onslide<11->{Remarque : l'estimations des
+%\,$P\!\left(\,\Gamma_{1},\Gamma_{2},\ldots,\Gamma_{p}\,\vert\,M\,\right)$\,
+%\`a son tour permet celles de\\
+%%in turn allow estimation of\\
+%sensibilit\'e \,$:=$\, $P(\,\widehat{M}=1\,\vert\,M=1\,)$,
+%\;
+%sp\'ecificit\'e \,$:=$\, $P(\,\widehat{M}=0\,\vert\,M=0\,)$.}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

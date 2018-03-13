@@ -1,0 +1,52 @@
+
+%\definecolor{lightRed}{RGB}{240,80,80}
+%\definecolor{lightRed}{RGB}{255,120,120}
+\definecolor{lightRed}{RGB}{255,130,130}
+
+%%%%%%%%%%
+
+\begin{frame}{\Large Bonus: $k$-fold Cross Validation}
+
+\small
+
+\begin{itemize}
+
+\item
+	Results of validation may be \textbf{\color{red}unstable}.\\
+	{\scriptsize Put another way, one wonders how ``representative'' Error(validation data) is
+	based on just one way of splitting the non-testing data set into training and validation subsets.}
+
+\vskip 0.3cm
+\item
+	To partially mitigate for this, ``repeat'' validation $k$ times.
+
+\vskip 0.3cm
+\item
+	More precisely:
+	\begin{itemize}
+	\item
+		Randomly divide the non-testing data set into $k$ ``folds'' (subsets) of roughly equal sizes.
+	\item
+		Perform validation $k$ times, each time using a different fold as validation subset,
+		and the rest of the $k-1$ folds as training subset.
+	\item
+		\begin{equation*}
+		\textnormal{\scriptsize Error}\!\left(\!\!\begin{array}{c}
+			\textnormal{\scriptsize $k$-fold cross}
+			\\
+			\textnormal{\scriptsize validation}
+			\end{array}\!\!\right)
+		\;\; := \;\;
+		\left(\!\!\begin{array}{c}
+			\textnormal{\scriptsize average of the $k$ resulting}
+			\\
+			\textnormal{\scriptsize validation errors}
+			\end{array}\!\!\right)
+		\end{equation*}
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

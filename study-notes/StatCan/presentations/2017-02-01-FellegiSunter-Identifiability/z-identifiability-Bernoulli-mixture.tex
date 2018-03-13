@@ -1,0 +1,263 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \Large Identifiability by example: {\LARGE non-mixture}}
+
+\mbox{}
+\vskip -0.4cm
+
+\pause
+Suppose we have a population \,$\Omega$\,  of loaded coins.
+
+\pause
+\vskip 0.3cm
+\textbf{Q:}\; {\color{red}Can we estimate} the following parameter:
+\begin{equation*}
+{\color{red}\mu} \;:=\; P\!\left(\,\textnormal{Heads}\,\right)
+\end{equation*}
+\vskip -0.3cm
+by:
+\pause
+\begin{itemize}
+\item
+	drawing a random sample (of coins) from \,$\Omega$,
+\item
+	tossing the selected coins, and
+\item
+	observing the results of the tosses?
+\end{itemize}
+
+\scriptsize
+
+\pause
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	& & & bound of length of \\
+	\#(tosses) & & & equal-tailed 95\% C.I. \\
+	${\color{red}n}$ & \multirow{-3}{*}{\#(heads)} & \multirow{-3}{*}{$\widehat{\mu}_{\textnormal{MLE}}$} & $2 \times 1.96\sqrt{(1/2)(1-1/2)/{\color{red}n}}$ \\
+	\hline
+	\hline
+	10 & 7 & 0.7 & 0.61980642 \\
+	100 & 65 & 0.65 & 0.19600000\\
+	1000 & 650 & 0.65 & 0.06198064 \\
+	\vdots & \vdots & \vdots & \vdots \\
+	$10^{6}$ & $0.65 \times 10^{6}$ & 0.65 &  0.00196000 \\
+	\hline
+	\end{tabular}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \large Non-identifiability by example: {\Large mixture of 2 groups}}
+
+\mbox{}
+\vskip -0.5cm
+
+\pause
+Suppose we have a 50/50 mixture population \,$\Omega$\, of two
+sub-populations (say, $M$ $=$ $1$ or $2$) of loaded coins.
+
+\pause
+\vskip 0.3cm
+\textbf{Q:}\; {\color{red}Can we estimate} the following parameters:
+\begin{equation*}
+{\color{red}\mu_{1}} \;:=\; P\!\left(\,\textnormal{Heads}\,\vert\,M=1\,\right)
+\quad\textnormal{and}\quad
+{\color{red}\mu_{2}} \;:=\; P\!\left(\,\textnormal{Heads}\,\vert\,M=2\,\right)
+\end{equation*}
+\pause
+\begin{center} \vskip-0.8cm \textbf{\Large\color{red}individually} \end{center}
+\vskip -0.3cm
+by:
+\pause
+\begin{itemize}
+\item
+	drawing a random sample (of coins) from \,$\Omega$,
+\item
+	tossing the selected coins, and
+\item
+	observing the results of the tosses?
+\end{itemize}
+
+\pause
+\vskip 0.3cm
+({\small\textbf{Note:}\, the group identity $M$ of each selected coin is NOT observed.})
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \large Non-identifiability by example: {\Large mixture of 2 groups}}
+
+\scriptsize
+Suppose: a 50/50 mixture population \,$\Omega$\, of two sub-populations
+(say, $M$ $=$ $1$ or $2$) of loaded coins.
+
+\pause
+\vskip 0.2cm
+\small
+\textbf{Q:}\; 
+What is the ``overall'' probability of getting heads by tossing a coin
+selected from such a mixture in terms of
+\;$\mu_{i} := P\!\left(\,\textnormal{Heads}\,\vert\,M=i\,\right)$,\,$i = 1,2$\,?
+
+\vskip -0.2cm
+\pause
+\footnotesize
+\begin{eqnarray*}
+{\color{red}P\!\left(\,\textnormal{Heads}\,\right)}
+&=&
+	\textnormal{\tiny$\color{gray}
+	P\!\left(\,\textnormal{Heads}\,, M=1\,\right)
+	\;+\;
+	P\!\left(\,\textnormal{Heads}\,, M=2\,\right)
+	$}
+%\\
+%&{\color{gray}=}&
+%	\textnormal{\tiny$\color{gray}
+%	\dfrac{P\!\left(\,\textnormal{Heads}\,, M=1\,\right)}{P\!\left(\,M=1\,\right)} \cdot P\!\left(\,M=1\,\right)
+%	\;+\;
+%	\dfrac{P\!\left(\,\textnormal{Heads}\,, M=2\,\right)}{P\!\left(\,M=2\,\right)} \cdot P\!\left(\,M=2\,\right)
+%	$}
+\;\; {\color{gray}=} \;\;
+	\textnormal{\tiny$\color{gray}
+	\overset{2}{\underset{i=1}{\sum}}\;
+	\dfrac{P\!\left(\,\textnormal{Heads}\,, M=i\,\right)}{P\!\left(\,M=i\,\right)} \cdot P\!\left(\,M=i\,\right)
+	$}
+\\
+&{\color{gray}=}&
+	\textnormal{\tiny$\color{gray}
+	P\!\left(\,\textnormal{Heads}\,\vert\,M=1\,\right)\cdot P\!\left(\,M=1\,\right)
+	\;+\;
+	P\!\left(\,\textnormal{Heads}\,\vert\,M=2\,\right)\cdot P\!\left(\,M=2\,\right)
+	$}
+\\
+&{\color{gray}=}&
+	\textnormal{\tiny$\color{gray}
+	P\!\left(\,\textnormal{Heads}\,\vert\,M=1\,\right)\cdot \dfrac{1}{2}
+	\;+\;
+	P\!\left(\,\textnormal{Heads}\,\vert\,M=2\,\right)\cdot \dfrac{1}{2}
+	$}
+\;\;=\;\;
+	{\color{red}\dfrac{1}{2}\left(\mu_{1} \overset{{\color{white}.}}{+} \mu_{2} \right)}
+\end{eqnarray*}
+\pause
+\vskip -0.9cm
+\mbox{}
+\begin{multicols}{2}
+\mbox{}
+	\begin{center}
+	\vskip -0.45cm
+	\begin{tabular}{|c|c||c|}
+	\hline
+	$\overset{{\color{white}1}}{\mu}_{1}$ & $\mu_{2}$ & $\underset{{\color{white}~}}{P}\!\left(\,\textnormal{Heads}\,\right)$ \\
+	\hline
+	0.4 & 0.9 & \onslide<5->{0.65} \\
+	\hline
+	\onslide<6->{0.5} & \onslide<6->{0.8} & \onslide<7->{0.65} \\
+	\hline
+	\onslide<8->{0.6} & \onslide<8->{0.7} & \onslide<9->{0.65} \\
+	\hline
+	\onslide<10->{$\cdots$} & \onslide<10->{$\cdots$} & \onslide<10->{0.65} \\
+	\hline
+	\end{tabular}
+	\end{center}
+\columnbreak
+	\onslide<11->{\scriptsize Now, the reverse question, suppose:}
+	\vskip 0.15cm
+	\onslide<12->{\scriptsize \#(tosses) = 100\,000, \; \#(Heads) = 65\,000.}
+	\vskip 0.25cm
+	\onslide<13->{\scriptsize Can you guess the values of $\mu_{1}$ and $\mu_{2}$,
+		\vskip 0.05cm
+		\mbox{}\quad\quad\quad\quad\quad\quad{\footnotesize\color{red}individually}?}
+	\vskip 0.25cm
+	\onslide<14->{\scriptsize No, because distinct \,($\mu_{1},\mu_{2}$)'s\, can be
+		\begin{center}
+		\vskip -0.2cm
+		\footnotesize\textbf{``observationally equivalent.''}}
+		\end{center}
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \LARGE Identifiability}
+
+\vskip 0.0cm
+\textbf{Informal Definition}
+\vskip 0.025cm
+%Un mod\`ele statistique (param\'etrique) est dit \emph{\textbf{identifiable}}
+%si l'on peut en inf\'erer chaque param\`etre,
+%tout au moins en th\'eorie, uniquement et sans ambigu\"it\'e.
+A (parametric) statistical model is said to be \emph{\textbf{identifiable}} if, at least in theory, each of its
+parameters can be uniquely and unambiguously inferred, as sample size approaches infinity.
+
+\vskip 0.2cm
+
+\footnotesize
+\begin{itemize}
+\pause\item
+	%L'estimation de param\`etres est {\color{red}vou\'ee \`a l'\'echec} si le mod\`ele est non identifiable.
+	Parameter estimation is {\color{red}doomed to fail} if the model is non-identifiable.
+	\vskip 0.01cm
+	%\pause
+	%In practice, always check if a model is identifiable. If not, change the model.
+	\vskip 0.2cm
+\pause\item
+	``Na\"ive identifiability filter'':
+	%\og filtre na\"if d'identifiabilit\'e \fg\,:
+	\vskip -0.4cm
+	\begin{equation*}
+	\left(\!\!\begin{array}{c}
+		\textnormal{\scriptsize \# parameters of} \\
+		\textnormal{\scriptsize distribution of} \\
+		\textnormal{\scriptsize observations}
+	\end{array}\!\!\right)
+	<
+	\left(\!\!\begin{array}{c}
+		\textnormal{\scriptsize \# parameters of} \\
+		\textnormal{\scriptsize statistical model}
+	\end{array}\!\!\right)
+	\;\;\Longrightarrow\;\;
+	\begin{array}{c}
+		\textnormal{\small model is} \\
+		\textnormal{\small non-identifiable.}
+	\end{array}
+	\end{equation*}
+	\pause
+	{[\; (\# \textit{equations}) \,$<$\, (\# \textit{unknowns}) \;$\Longrightarrow$\; \textit{non-unique solutions}\;]}
+	\vskip 0.3cm
+\pause\item
+	But \tiny 
+	\vskip -0.5cm
+	\begin{equation*}
+	\left(\!\!\begin{array}{c}
+		\textnormal{\tiny \# parameters of} \\
+		\textnormal{\tiny distribution of} \\
+		\textnormal{\tiny observations}
+	\end{array}\!\!\right)
+	\geq
+	\left(\!\!\begin{array}{c}
+		\textnormal{\tiny \# parameters of} \\
+		\textnormal{\tiny statistical model}
+	\end{array}\!\!\right)
+	\;\;\not\Longrightarrow\;\;
+	\begin{array}{c}
+		\textnormal{\scriptsize model is} \\
+		\textnormal{\scriptsize identifiable.}
+	\end{array}
+	\end{equation*}
+	\vskip 0.2cm
+\pause\item
+	\footnotesize
+	Related to \textbf{estimability} and, for linear models, \textbf{multi-collinearity}.
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

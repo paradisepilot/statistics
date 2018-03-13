@@ -1,0 +1,230 @@
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.45cm \large Le probl\`eme d'optimisation derri\`ere les arbres de classification}
+
+\small
+
+\begin{multicols}{2}
+
+	\begin{center}
+	\begin{minipage}{4.5cm}
+	\vskip -0.5cm
+	\input{z-tikz-plot-rpart}
+	\end{minipage}
+	\only<1-7|handout:0>{
+		{\color{white}\scriptsize\begin{equation*}
+		I(T \vert D) = \frac{50}{150}\times 0 + \frac{54}{150}\times 0.168 + \frac{46}{150} \times 0.043
+		\end{equation*}}
+		}
+	\only<8->{
+		{\scriptsize\begin{equation*}
+		I(T \vert D) = \frac{{\color{red}50}}{150}\times 0 + \frac{{\color{red}54}}{150}\times 0.168 + \frac{{\color{red}46}}{150} \times 0.043
+		\end{equation*}}
+		}
+	\end{center}
+
+\columnbreak
+
+	\begin{flushright}
+	\begin{minipage}{6.0cm}
+	\vskip -0.6cm
+	\pause
+		{\Large Fonction objective}
+	\pause
+		\begin{center}\textbf{Impuret\'e d'arbres\\ d'apr\`es les donn\'ees}\end{center}
+	\pause
+		\begin{equation*}
+		I(T\,\vert D)
+		\; =
+			\underset{l\,\in\,\textnormal{Feuilles}(T)}{\sum}\!\!
+			P(X \!\in\! l\,) \cdot I(l\,\vert D)
+		\end{equation*}
+		{\scriptsize o\`u}
+		{\scriptsize\begin{eqnarray*}
+		\only<1-6|handout:0>{\color{white}
+			P(X \!\in\! l\,) &\color{white}=& \color{white}\left(\!\!\!\begin{array}{c}
+			\textnormal{probabilit\'e pour}
+			\\
+			\textnormal{une unit\'e tir\'ee au hasard}
+			\\
+			\textnormal{de parvenir la feuille $l$}
+			\end{array}\!\!\!\!\right)
+			}
+		\only<7->{
+			P(X \!\in\! l\,) &=& \left(\!\!\!\begin{array}{c}
+			\textnormal{probabilit\'e pour}
+			\\
+			\textnormal{une unit\'e tir\'ee au hasard}
+			\\
+			\textnormal{de parvenir la feuille $l$}
+			\end{array}\!\!\!\!\right)
+			}
+		\only<1-4|handout:0>{
+		\\
+			\color{white}I(l\,\vert D) &\color{white}=& \color{white}\left(\!\!\begin{array}{c}
+				\textnormal{impurity of leaf $l$}
+				\\
+				\textnormal{given data $D$}
+				\end{array}\!\!\right)
+			}
+		\only<5->{
+		\\
+			I(l\,\vert D) &=& \left(\!\!\begin{array}{c}
+				\textnormal{impuret\'e de la feuille $l$}
+				\\
+				\textnormal{d'apr\`es les donn\'ees $D$}
+				\end{array}\!\!\right)
+			}
+		\end{eqnarray*}}
+	\pause
+		\only<1-5|handout:0>{\color{white}\begin{center}
+		\vskip -0.5cm
+		{\scriptsize Choix communs pour $I(l\,\vert D)$:}
+		\vskip 0.1cm
+		Entropy ($H$),\;
+		Gini Impurity ($G$)
+		\end{center}}
+		\only<6->{\begin{center}
+		\vskip -0.5cm
+		{\scriptsize Choix communs pour $I(l\,\vert D)$:}
+		\vskip 0.1cm
+		Entropie ($H$),\;
+		Impuret\'e Gini ($G$)
+		\end{center}}
+	\end{minipage}
+	\end{flushright}
+
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.2cm \Large Mesures d'impuret\'e : Entropie \& Impuret\'e Gini}
+
+\vskip -0.2cm
+\tiny
+\begin{equation*}
+I(l\,\vert D)
+\;\; = \;\;
+\left\{\begin{array}{ccl}
+\textnormal{Entropie}
+& := &
+	\textnormal{\tiny$-\;\overset{C}{\underset{y=1}{\sum}}\;\,
+	\widehat{p}(Y=c\,\vert X\in l\,) \cdot \log\,\widehat{p}(Y=c\,\vert X\in l\,)$}
+\\
+\textnormal{Impuret\'e Gini}
+& := &
+	\textnormal{\tiny$+\;\overset{C}{\underset{y=1}{\sum}}\;\,
+	\widehat{p}(Y=c\,\vert X\in l\,) \cdot
+	\left(\overset{{\color{white}.}}{1}\,-\,\widehat{p}(Y=c\,\vert X\in l\,)\right)$}
+\end{array}\right.
+\end{equation*}
+
+\begin{multicols}{2}
+
+	\begin{minipage}{4.5cm}
+	\begin{flushleft}
+	\vskip 0.25cm
+	{\scriptsize
+	\begin{eqnarray*}
+	\pause
+	&&
+		\textnormal{\normalsize$G\!\left(\left(\frac{0}{54},\frac{49}{54},\frac{5}{54}\right)\right)$}
+	\\
+	\pause
+	& = &
+		{\color{white}+} \;\frac{\overset{{\color{white}1}}{0}}{54} \cdot \left( 1 - \frac{0}{54} \right)
+	\\
+	&&
+		+ \;\frac{49}{54} \cdot \left( 1 - \frac{49}{54} \right)
+	\\
+	&&
+		+ \;\frac{5}{54} \cdot \left( 1 - \frac{5}{54} \right)
+	\\
+	\pause
+	& \approx &
+		\overset{{\color{white}-}}{\textnormal{\normalsize$0.168$}}
+	\end{eqnarray*}
+	}
+	\end{flushleft}
+	\end{minipage}
+	
+\columnbreak
+
+	\pause
+	\begin{minipage}{4.5cm}
+	\begin{flushright}
+	\includegraphics[height=5.9cm]{graphics/plot-impurity-metrics.png}
+	\end{flushright}
+	\end{minipage}
+	
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.5cm \normalsize Fonction Objective : \vskip 0.05cm \Large l'Impuret\'e d'arbres d'apr\`es les donn\'ees}
+
+\vskip -0.5cm
+
+\begin{eqnarray*}
+%\pause
+I(T\,\vert D)
+& = &
+	\!\!\!\!
+	\underset{l\,\in\,\textnormal{Feuilles}(T)}{\sum}\!\!
+	{\color{red}P(X \!\in\! l\,)} \cdot I(l\,\vert D)
+\\
+%\pause
+& \approx &
+	\!\!\!\!
+	\underset{l\,\in\,\textnormal{Feuilles}(T)}{\sum}
+	{\color{red}\widehat{p}(X \!\in\! l\,)} \cdot I(l\,\vert D)
+%\pause
+\;\; = \;\;
+	\!\!\!\!
+	\underset{l\in\textnormal{Feuilles}(T)}{\sum}
+	{\color{red}\dfrac{\overset{n}{\underset{i=1}{\sum}}\,I_{\{x_{i} \in l\}}}{n}} \cdot I(l\,\vert D)
+\end{eqnarray*}
+
+\small
+\begin{equation*}
+%\pause
+I(l\,\vert D)
+\;\; = \;\;
+\left\{\begin{array}{ccl}
+%\pause
+\textnormal{Entropie}
+& := &
+	\textnormal{\scriptsize$-\;\overset{C}{\underset{y=1}{\sum}}\;\,
+	\widehat{p}(Y=c\,\vert X\in l\,) \cdot \log\,\widehat{p}(Y=c\,\vert X\in l\,)$}
+\\
+%\pause
+\textnormal{Impuret\'e Gini}
+& := &
+	\textnormal{\scriptsize$+\;\overset{C}{\underset{y=1}{\sum}}\;\,
+	\widehat{p}(Y=c\,\vert X\in l\,) \cdot
+	\left(\overset{{\color{white}.}}{1}\,-\,\widehat{p}(Y=c\,\vert X\in l\,)\right)$}
+\end{array}\right.
+\end{equation*}
+
+%\pause
+\vskip -0.5cm
+
+\footnotesize
+\begin{equation*}
+\widehat{p}(Y=c\,\vert X\in l\,)
+\;\; := \;\;
+	\left.\overset{n}{\underset{i=1}{\sum}}\; I_{\{x_{i}\in l, y_{i} = c\}} \right\slash
+	\overset{n}{\underset{i=1}{\sum}}\; I_{\{x_{i}\in l\}}
+\end{equation*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

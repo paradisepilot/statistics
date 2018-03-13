@@ -1,0 +1,281 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\large L'estimation de param\`etres en \Large PRL Fellegi-Sunter}
+
+\large
+
+\begin{itemize}
+\pause\item
+	%Uses maximum likelihood estimation
+	L'estimation du maximum de vraisemblance :
+	{\small
+	\begin{equation*}
+	P\!\left(\,\Gamma_{1},\Gamma_{2},\ldots,\Gamma_{p}\,\vert\,M={\color{red}1}\,\right)
+	\quad\textnormal{et}\quad
+	P\!\left(\,\Gamma_{1},\Gamma_{2},\ldots,\Gamma_{p}\,\vert\,M={\color{red}0}\,\right).
+	\end{equation*}
+	}
+\pause\item
+	\vskip -0.4cm
+	%Assume the pairs are \textbf{independently} sampled.
+	L'hypoth\`ese que les paires sont \'echantillonn\'ees ind\'ependamment.
+	\vskip 0.8cm
+\pause\item
+	%Assume \textbf{conditional independence} of comparison variables given match status:
+	L'hypoth\`ese de l'ind\'ependance conditionnelle des variables de comparaison sachant le statut d'appariement :
+	{\small
+	\begin{equation*}
+	P\!\left(\,\Gamma_{1},\Gamma_{2},\ldots,\Gamma_{p}\,\vert\,M\,\right)
+	\;=\;
+	P\!\left(\,\Gamma_{1}\,\vert\,M\,\right)
+	\cdot
+	P\!\left(\,\Gamma_{2}\,\vert\,M\,\right)
+	\cdot \,\cdots\, \cdot
+	P\!\left(\,\Gamma_{p}\,\vert\,M\,\right)
+	\end{equation*}
+	}
+	\pause\vskip -0.6cm
+	%{\small This assumption is due to \textbf{\color{red}identifiability} considerations.}
+	{\small On fait cette hypoth\`ese \`a cause des consid\'erations d'\textbf{\color{red}identifiabilit\'e}.}
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.3cm \large L'estimation de param\`etres en PRL Fellegi-Sunter}
+
+\tiny
+\begin{center}
+\vskip -0.4cm
+\begin{tabular}{
+	|c
+	|>{\columncolor{lightGreen}}c
+	||>{\columncolor{lightYellow}}c
+	|>{\columncolor{lightYellow}}c
+	|c|c|c|}
+\hline
+	\cellcolor{white}&
+	&
+	\cellcolor{yellow}&
+	\cellcolor{yellow}&
+	&
+	&
+	Lien, $\overset{{\color{white}.}}{\widehat{M}}$
+	\\
+	\cellcolor{white} \multirow{-2}{*}{$^{(\Gamma_{1},\Gamma_{2})}$}&
+	\multirow{-2}{*}{compte}&
+	\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}$}&
+	\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}$}&
+	\multirow{-2}{*}{$^{\frac{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}}$}&
+	\multirow{-2}{*}{$^{\log_{10}\frac{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}}$}&
+	$^{(\pm 1.5)}$
+	\\
+\hline\hline
+	(\,0,\,0\,) & 14 & 0.0010 & 0.900 & 11.11$\times 10^{-3}$& -2.954 & 0 \\
+\hline
+	(\,0,\,1\,) & 1 & 0.0045 & 0.045 & 0.10 & -1.00 & ?? \\
+\hline
+	(\,1,\,0\,) & 0 & 0.0045 & 0.045 & 0.10 & -1.00 & ?? \\
+\hline
+	(\,1,\,1\,) & \cellcolor{lightGray}1 & \cellcolor{lightGray}0.9900 & \cellcolor{lightGray}0.010 & 99.00 & 1.996 & 1 \\
+\hline
+\end{tabular}
+\vskip 0.1cm
+\scriptsize
+\#(\,param\`etres d'observations\,) $=$ $2^{2}-1$ $=$ $3$
+$<$
+$7$ $=$ ${\color{red}1}+2\times\!(2^{2}\!-1)$ $=$ \#(\,param\`etres de mod\`ele\,)
+\end{center}
+
+\footnotesize
+\begin{itemize}
+\pause\item
+	%Use maximum likelihood estimation.\;\;
+	%Assume the pairs are independent.
+	Maximum de vraisemblance.\;\;
+	Supposer que les paires sont ind\'ependantes.
+	\vskip 0.3cm
+\pause\item
+	%Log-likelihood function:
+	Fonction de vraisemblance :
+	{\tiny\color{mediumLightGray}
+	\begin{eqnarray*}
+	&& \log P\!\left(
+		\left.
+		\textnormal{compte} = {\color{veryDarkGreen}(14 ,1 , 0 ,1)}^{T}
+		\;\right\vert\,
+		\textnormal{\small\color{customRed}param\`etres du \color{darkYellow}mod\`ele}
+		\,\right)
+	\\
+	\pause
+	&=&
+		{\color{white}+}\,
+		{\color{veryDarkGreen}14} \cdot
+			\log\left(
+				\colorbox{lightYellow}{\color{darkGray}$P(\Gamma_{1}=0,\Gamma_{2}=0\,\vert\,M=1)$} \cdot {\color{customRed}P(M=1)}
+				\overset{{\color{white}.}}{+}
+				\colorbox{lightYellow}{\color{darkGray}$P(\Gamma_{1}=0,\Gamma_{2}=0\,\vert\,M=0)$} \cdot {\color{customRed}P(M=0)}
+				\right)
+	\\
+	&&
+		+ \, {\color{veryDarkGreen}{\color{white}4}1} \cdot
+			\log\left(
+				\colorbox{lightYellow}{\color{darkGray}$P(\Gamma_{1}=0,\Gamma_{2}=1\,\vert\,M=1)$} \cdot {\color{customRed}P(M=1)}
+				\overset{{\color{white}.}}{+}
+				\colorbox{lightYellow}{\color{darkGray}$P(\Gamma_{1}=0,\Gamma_{2}=1\,\vert\,M=0)$} \cdot {\color{customRed}P(M=0)}
+				\right)
+	\\
+	&&
+		+ \, {\color{veryDarkGreen}{\color{white}4}0} \cdot
+			\log\left(
+				\colorbox{lightYellow}{\color{darkGray}$P(\Gamma_{1}=1,\Gamma_{2}=0\,\vert\,M=1)$} \cdot {\color{customRed}P(M=1)}
+				\overset{{\color{white}.}}{+}
+				\colorbox{lightYellow}{\color{darkGray}$P(\Gamma_{1}=1,\Gamma_{2}=0\,\vert\,M=0)$} \cdot {\color{customRed}P(M=0)}
+				\right)
+	\\
+	&&
+		+ \, {\color{veryDarkGreen}{\color{white}4}1} \cdot
+			\log\left(
+				\colorbox{lightYellow}{\color{darkGray}$P(\Gamma_{1}=1,\Gamma_{2}=1\,\vert\,M=1)$} \cdot {\color{customRed}P(M=1)}
+				\overset{{\color{white}.}}{+}
+				\colorbox{lightYellow}{\color{darkGray}$P(\Gamma_{1}=1,\Gamma_{2}=1\,\vert\,M=0)$} \cdot {\color{customRed}P(M=0)}
+				\right)
+	\\
+	&&
+		+ \cdot \log\left( \left.\overset{{\color{white}.}}{16!} \right/
+		({\color{veryDarkGreen}14}! \cdot {\color{veryDarkGreen}1}! \cdot {\color{veryDarkGreen}0}! \cdot {\color{veryDarkGreen}1}!)\,\right)
+	\end{eqnarray*}
+	}
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.3cm \large L'estimation de param\`etres en PRL Fellegi-Sunter}
+
+\tiny
+\begin{center}
+\vskip -0.4cm
+\begin{tabular}{
+	|c
+	|>{\columncolor{lightGreen}}c
+	||>{\columncolor{lightYellow}}c
+	|>{\columncolor{lightYellow}}c
+	|c|c|c|}
+\hline
+	\cellcolor{white}&
+	&
+	\cellcolor{yellow}&
+	\cellcolor{yellow}&
+	&
+	&
+	Lien, $\overset{{\color{white}.}}{\widehat{M}}$
+	\\
+	\cellcolor{white} \multirow{-2}{*}{$^{(\Gamma_{1},\Gamma_{2})}$}&
+	\multirow{-2}{*}{compte}&
+	\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}$}&
+	\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}$}&
+	\multirow{-2}{*}{$^{\frac{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}}$}&
+	\multirow{-2}{*}{$^{\log_{10}\frac{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}}$}&
+	$^{(\pm 1.5)}$
+	\\
+\hline\hline
+	(\,0,\,0\,) & 14 & 0.0010 & 0.900 & 11.11$\times 10^{-3}$& -2.954 & 0 \\
+\hline
+	(\,0,\,1\,) & 1 & 0.0045 & 0.045 & 0.10 & -1.00 & ?? \\
+\hline
+	(\,1,\,0\,) & 0 & 0.0045 & 0.045 & 0.10 & -1.00 & ?? \\
+\hline
+	(\,1,\,1\,) & \cellcolor{lightGray}1 & \cellcolor{lightGray}0.9900 & \cellcolor{lightGray}0.010 & 99.00 & 1.996 & 1 \\
+\hline
+\end{tabular}
+\vskip 0.1cm
+\scriptsize
+\#(\,param\`etres d'observations\,) $=$ $2^{2}-1$ $=$ $3$
+$<$
+$7$ $=$ ${\color{red}1}+2\times\!(2^{2}\!-1)$ $=$ \#(\,param\`etres de mod\`ele\,)
+\end{center}
+
+\mbox{}
+\vskip -0.85cm
+\mbox{}
+
+\pause
+
+\tiny
+\begin{multicols}{2}
+	\begin{flushleft}
+	\begin{tabular}{
+		|c
+		|>{\columncolor{lightGreen}}r
+		||>{\columncolor{lightYellow}}c
+		|>{\columncolor{lightYellow}}c|}
+	\hline
+		&
+		&
+		\cellcolor{yellow}&
+		\cellcolor{yellow}
+		\\
+		\cellcolor{white}\multirow{-2}{*}{$^{(\Gamma_{1},\Gamma_{2},\Gamma_{3})}$}&
+		\multirow{-2}{*}{compte{\color{lightGreen}00}}&
+		\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2},\Gamma_{3} \vert M={\color{red}1})}$}&
+		\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2},\Gamma_{3} \vert M={\color{red}0})}$}
+		\\
+	\hline\hline
+		(\,0,\,0,\,0\,) & 85,331,561 & $3.091\times10^{-8}$ & $8.533\times10^{-1}$ \\
+	\hline
+		(\,0,\,0,\,1\,) & 4,803,818 & $6.960\times10^{-4}$ & $4.805\times10^{-2}$ \\
+	\hline
+		(\,0,\,1,\,0\,) & 4,806,876 & $6.960\times10^{-4}$ & $4.805\times10^{-2}$ \\
+	\hline
+		(\,0,\,1,\,1\,) & 83,385 & $5.191\times10^{-2}$ & $8.333\times10^{-4}$ \\
+	\hline
+		(\,1,\,0,\,0\,) & 4,807,980 & $6.960\times10^{-4}$ & $4.805\times10^{-2}$ \\
+	\hline
+		(\,1,\,0,\,1\,) & 83,288 & $5.191\times10^{-2}$ & $8.333\times10^{-4}$ \\
+	\hline
+		(\,1,\,1,\,0\,) & 82,995 & $5.191\times10^{-2}$ & $8.333\times10^{-4}$ \\
+	\hline
+		(\,1,\,1,\,1\,) & \cellcolor{lightGray}97 & \cellcolor{lightGray}$8.422\times10^{-1}$ & \cellcolor{lightGray}$8.138\times10^{-7}$ \\
+	\hline
+	\end{tabular}
+	\end{flushleft}
+\columnbreak
+	\begin{flushright}
+	\mbox{}\vskip 0.1cm
+	\begin{minipage}{3.3cm}
+	\scriptsize
+	\begin{eqnarray*}
+	&& \!\!\!\!\!\!\!\!\!\! \textnormal{\#(\,param\`etres d'observations\,)}\\
+	&=& \!\!\!\! 2^{3}-1 \; = \; 7\\
+	&<& \!\!\!\! 15 \; = \; 1 + 2\times(2^{3}-1)\\
+	&=& \!\!\!\! \textnormal{\#(\,param\`etres de mod\`ele\,)}
+	\end{eqnarray*}
+	\end{minipage}
+	\end{flushright}
+\end{multicols}
+
+\pause
+
+\scriptsize
+\begin{center}
+\vskip 0.1cm
+Le probl\`eme d'estimation direct n'est JAMAIS identifiable ! 
+%The ``straightforward'' estimation problem is NEVER identifiable!\;
+\pause
+Solution de Fellegi-Sunter :
+\pause
+\vskip 0.05cm
+\normalsize
+Formuler l'\textbf{\color{red}hypoth\`ese d'ind\'ependance conditionnelle}
+%Make \textbf{\color{red}conditional independence assumptions}
+\vskip -0.05cm
+afin de r\'eduire le nombre de param\`etres.
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

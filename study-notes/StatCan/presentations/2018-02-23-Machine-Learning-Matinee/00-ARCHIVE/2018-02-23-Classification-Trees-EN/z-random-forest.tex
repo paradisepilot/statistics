@@ -1,0 +1,153 @@
+
+%%%%%%%%%%
+
+\begin{frame}{\Large Strengths \& weaknesses of classification trees}
+
+\vskip 0.5cm
+
+\scriptsize
+\pause
+{\large Strengths}
+\vskip 0.05cm
+\begin{itemize}
+\item
+	{\normalsize Low bias / small training error}
+	\vskip 0.1cm
+	Thanks to high complexity of its hypothesis class
+\end{itemize}
+
+\vskip 0.5cm
+\pause
+{\large Weaknesses}
+\vskip 0.05cm
+\begin{itemize}
+\pause
+\item
+	{\normalsize High variance / large generalization error / tend to overfit}
+	\vskip 0.1cm
+	Due to high complexity of its hypothesis class
+
+\vskip 0.3cm
+\pause
+\item
+	{\normalsize Strong, artificial implicit geometric assumptions :}
+	\vskip 0.1cm
+	fitted trees correspond to functions piecewise constant on hyper-rectangles with boundaries
+	parallel to coordinate hyperplanes in predictor space
+	
+\vskip 0.3cm
+\pause
+\item
+	{\normalsize Instability}
+	\vskip 0.1cm
+	fitted trees sensitive to small perturbations of data
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.3cm \LARGE Random Forest\!\!\footnote{\scriptsize Breiman (2001), Random forests, \textit{Machine Learning}, 45(1), 5--32}\\{\small Ensemble method based on classification trees}}
+
+\scriptsize
+\begin{itemize}
+\pause
+\item
+	{\normalsize Reduce variance of classification trees}
+	
+\vskip 0.3cm
+\pause
+\item
+	{\normalsize Without compromising too much on low bias}
+
+\vskip 0.3cm
+\pause
+\item
+	{\small Observation: A majority-vote ensemble of a {\color{red}large} number of
+	weak but {\color{red}independent} (binary) classifiers could be a strong classifier.}
+	\vskip 0.1cm
+	\pause
+	Suppose $Z$ is a Bernoulli random variable
+	with $P(Z = 1) = \dfrac{1}{2} + \delta$, with $\delta \in (0,1/2)$.\;
+	Let \,$Z_{1}, Z_{2}, Z_{3}, \ldots$\, be I.I.D. copies of \,$Z$,\, and
+	\pause
+	\,$Y_{n}$\, be defined by:
+	\vskip -0.1cm
+	\begin{equation*}
+	Y_{n}
+	\; = \;
+		\left\{\begin{array}{cl}
+			1, & \textnormal{if \;\,$\overline{Z}_{n} \,:=\,
+				\dfrac{1}{n}\,\overset{n}{\underset{i=1}{\sum}}\,Z_{i} \;>\,\dfrac{1}{2}$}
+			\\
+			\overset{{\color{white}-}}{0}, & \textnormal{otherwise}
+		\end{array}\right.
+	\end{equation*}
+	\pause
+	Then, SLLN + (almost-sure convergence $\Rightarrow$ convergence in probability) together imply:
+	\vskip -0.4cm
+	\begin{equation*}
+	P\!\left(Y_{n} = 1\right)
+	\,=\, \textnormal{\tiny$P\!\left(\overline{Z}_{n} > \dfrac{1}{2}\right)$}
+	\,\geq\, \textnormal{\tiny$P\!\left(\overline{Z}_{n} \geq \dfrac{1}{2} + \dfrac{\delta}{2}\right)$}
+	\,\geq\, \textnormal{\tiny
+		$P\!\left(\,\left\vert\,\overline{Z}_{n} - \dfrac{1}{2} - \delta\,\right\vert \leq \dfrac{\delta}{2}\,\right)$}
+	\,\longrightarrow\,
+		1
+	\end{equation*}
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.3cm \LARGE Random Forest\\{\small Ensemble method based on classification trees}}
+
+\scriptsize
+\begin{itemize}
+\item
+	{\small Bagging (bootstrap aggregation)}
+	\vskip -0.15cm
+	\begin{itemize}
+	\item
+		{\scriptsize Grow a {\color{red}large} number of classification trees,
+		each based on a bootstrap\!\!\footnote{\tiny bootstrap = with-replacement re-sample
+		drawn from uniform distribution on original data set}
+		sample of observations.}
+	\item
+		{\scriptsize Final fitted model is the resulting \textbf{majority vote ensemble classifier}.}
+	\end{itemize}
+
+\vskip 0.2cm
+\item
+	{\small ``De-correlated'' trees}
+	\vskip 0.05cm
+	During leaf splitting, choose the ``partitioning variable''
+	from a {\color{red}random subset} of predictor variables
+	(recall: for classification trees, choose from all predictor variables).
+
+\vskip 0.4cm
+\item
+	{\small Bagging + tree de-correlation $\Longrightarrow$
+	prediction accuracy $\uparrow$ \,+\, variance $\downarrow$}
+
+\vskip 0.4cm
+\item
+	{\small Hyperparameters}
+	\vskip -0.15cm
+	\begin{itemize}
+	\item
+		{\scriptsize number of trees in the forest (usually in the hundreds)}
+	\item
+		{\scriptsize bootstrap sample size (usually same as original data set)}
+	\item
+		{\scriptsize number of predictor variables to choose from during leaf splitting (usually $\sqrt{p}$\,)}
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

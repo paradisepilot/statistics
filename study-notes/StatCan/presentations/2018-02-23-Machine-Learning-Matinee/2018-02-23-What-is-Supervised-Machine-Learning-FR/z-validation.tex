@@ -1,0 +1,69 @@
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.2cm \Large Validation: \footnotesize imiter l'\'evaluation du mod\`ele sur des nouvelles donn\'ees}
+
+\footnotesize
+\begin{itemize}
+\pause
+\item
+	\vskip -0.1cm
+	Diviser al\'eatoirement
+	%les donn\'ees \textbf{non testing}
+	%les donn\'ees qui ne font pas parties des donn\'ees d'essai
+	les donn\'ees d'entra\^inement
+	en le sous-ensemble d'entra\^inement et celui de validation.
+\pause
+\item
+	Entra\^iner en utilisant le sous-ensemble d'entra\^inement.
+\pause
+\item
+	\'{E}valuer la machine optimis\'ee sur le sous-ensemble de validation.
+\end{itemize}
+
+\pause
+
+\scriptsize
+\begin{multicols}{2}
+
+	\begin{flushleft}
+
+	\only<2-5|handout:0>{\includegraphics[width=5cm]{graphics/xy.png}}
+	\only<6-6|handout:0>{\includegraphics[width=5cm]{graphics/xy-split-training-validation.png}}
+	\only<7-8>{\includegraphics[width=5cm]{graphics/xy-fit-training.png}
+	\scriptsize
+	\vskip -0.5cm
+	\begin{equation*}
+	\textnormal{Mod\`ele}
+	\,\sim\,
+		\left\{\,\textnormal{fonctions affines de $x$}\,\right\}
+	\end{equation*}
+	}
+
+	\end{flushleft}
+
+\columnbreak
+
+	\begin{flushright}
+	\begin{minipage}{5.0cm}
+
+	\only<2-7|handout:0>{\includegraphics[width=5cm]{graphics/xy.png}}
+	\only<8-8>{\includegraphics[width=5cm]{graphics/xy-poly-training.png}
+	\scriptsize
+	\vskip -0.6cm
+	\begin{equation*}
+	\textnormal{Mod\`ele}
+	\,\sim\,
+		\left\{\,\textnormal{fonctions polynomiales de $x$}\,\right\}
+	\end{equation*}
+	}
+
+	\end{minipage}
+	\end{flushright}
+
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

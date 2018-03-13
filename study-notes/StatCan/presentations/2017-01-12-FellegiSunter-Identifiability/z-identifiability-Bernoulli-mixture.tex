@@ -1,0 +1,264 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \Large Identifiabilit\'e par l'exemple: {\LARGE non-m\'elange}}
+
+\mbox{}
+\vskip -0.4cm
+
+\pause
+Soit une population \,$\Omega$\, de pi\`eces non conformes.
+
+\pause
+\vskip 0.3cm
+\textbf{Q :}\; {\color{red}Peut-on estimer} le param\`etre suivant :
+\begin{equation*}
+{\color{red}\mu} \;:=\; P\!\left(\,\textnormal{pile}\,\right)
+\end{equation*}
+\vskip -0.3cm
+en :
+\pause
+\begin{itemize}
+\item
+	tirant un \'echantillon al\'eatoire (de pi\`eces) de \,$\Omega$,
+\item
+	tirant \`a pile ou face chaque pi\`ece s\'electionn\'ee,
+\item
+	observant les r\'esultats ?
+\end{itemize}
+
+\scriptsize
+
+\pause
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	& & & limite sup\'erieure de \\
+	\#(tirage) & & & longueur de l'I.C. \`a 95\% \\
+	${\color{red}n}$ & \multirow{-3}{*}{\#(pile)} & \multirow{-3}{*}{$\widehat{\mu}_{\textnormal{MLE}}$} & $2 \times 1.96\sqrt{(1/2)(1-1/2)/{\color{red}n}}$ \\
+	\hline
+	\hline
+	10 & 7 & 0.7 & 0.61980642 \\
+	100 & 65 & 0.65 & 0.19600000\\
+	1000 & 650 & 0.65 & 0.06198064 \\
+	\vdots & \vdots & \vdots & \vdots \\
+	$10^{6}$ & $0.65 \times 10^{6}$ & 0.65 &  0.00196000 \\
+	\hline
+	\end{tabular}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \normalsize Non-identifiabilit\'e par l'exemple: {\large m\'elange de 2 groupes}}
+
+\mbox{}
+\vskip -0.5cm
+
+\pause
+Soit une population \,$\Omega$\, de m\'elanges moiti\'e-moiti\'e
+de deux sous-populations (disons $M$ $=$ $1$ or $2$)
+de pi\`eces non conformes.
+
+\pause
+\vskip 0.3cm
+\textbf{Q :}\; {\color{red}Peut-on estimer} les param\`etres suivants :
+\begin{equation*}
+{\color{red}\mu_{1}} \;:=\; P\!\left(\,\textnormal{pile}\,\vert\,M=1\,\right)
+\quad\textnormal{et}\quad
+{\color{red}\mu_{2}} \;:=\; P\!\left(\,\textnormal{pile}\,\vert\,M=2\,\right)
+\end{equation*}
+\pause
+\begin{center} \vskip-0.8cm \textbf{\Large\color{red}individuellement} \end{center}
+\vskip -0.3cm
+en :
+\pause
+\begin{itemize}
+\item
+	tirant un \'echantillon al\'eatoire (de pi\`eces) de \,$\Omega$,
+\item
+	tirant \`a pile ou face chaque pi\`ece s\'electionn\'ee,
+\item
+	observant les r\'esultats ?
+\end{itemize}
+
+\pause
+\vskip 0.3cm
+({\small\textbf{Remarque:}\, l'identit\'e de groupe $M$ de chaque pi\`ece n'est pas observ\'ee.})
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \large \normalsize Non-identifiabilit\'e par l'exemple: {\large m\'elange de 2 groupes}}
+
+\scriptsize
+Soit une population \,$\Omega$\, de m\'elanges moiti\'e-moiti\'e
+de deux sous-populations ($M$ $=$ $1$ or $2$)
+de pi\`eces non conformes.
+
+\pause
+\vskip 0.3cm
+\small
+\textbf{Q :}\; 
+Quelle est la probabilit\'e \og globale \fg\,de tirer pile d'un tel m\'elange
+\vskip 0.075cm
+en termes de \;$\mu_{i} := P\!\left(\,\textnormal{pile}\,\vert\,M=i\,\right)$,\,
+$i = 1,2$\,?
+\pause
+\footnotesize
+\begin{eqnarray*}
+{\color{red}P\!\left(\,\textnormal{pile}\,\right)}
+&=&
+	\textnormal{\tiny$\color{gray}
+	P\!\left(\,\textnormal{pile}\,, M=1\,\right)
+	\;+\;
+	P\!\left(\,\textnormal{pile}\,, M=2\,\right)
+	$}
+%\\
+%&{\color{gray}=}&
+%	\textnormal{\tiny$\color{gray}
+%	\dfrac{P\!\left(\,\textnormal{pile}\,, M=1\,\right)}{P\!\left(\,M=1\,\right)} \cdot P\!\left(\,M=1\,\right)
+%	\;+\;
+%	\dfrac{P\!\left(\,\textnormal{pile}\,, M=2\,\right)}{P\!\left(\,M=2\,\right)} \cdot P\!\left(\,M=2\,\right)
+%	$}
+\;\; {\color{gray}=} \;\;
+	\textnormal{\tiny$\color{gray}
+	\overset{2}{\underset{i=1}{\sum}}\;
+	\dfrac{P\!\left(\,\textnormal{pile}\,, M=i\,\right)}{P\!\left(\,M=i\,\right)} \cdot P\!\left(\,M=i\,\right)
+	$}
+\\
+&{\color{gray}=}&
+	\textnormal{\tiny$\color{gray}
+	P\!\left(\,\textnormal{pile}\,\vert\,M=1\,\right)\cdot P\!\left(\,M=1\,\right)
+	\;+\;
+	P\!\left(\,\textnormal{pile}\,\vert\,M=2\,\right)\cdot P\!\left(\,M=2\,\right)
+	$}
+\\
+&{\color{gray}=}&
+	\textnormal{\tiny$\color{gray}
+	P\!\left(\,\textnormal{pile}\,\vert\,M=1\,\right)\cdot \dfrac{1}{2}
+	\;+\;
+	P\!\left(\,\textnormal{pile}\,\vert\,M=2\,\right)\cdot \dfrac{1}{2}
+	$}
+\;\;=\;\;
+	{\color{red}\dfrac{1}{2}\left(\mu_{1} \overset{{\color{white}.}}{+} \mu_{2} \right)}
+\end{eqnarray*}
+\pause
+\vskip -0.9cm
+\mbox{}
+\begin{multicols}{2}
+\mbox{}
+	\begin{center}
+	\vskip -0.45cm
+	\begin{tabular}{|c|c||c|}
+	\hline
+	$\overset{{\color{white}1}}{\mu}_{1}$ & $\mu_{2}$ & $\underset{{\color{white}~}}{P}\!\left(\,\textnormal{pile}\,\right)$ \\
+	\hline
+	0.4 & 0.9 & \onslide<5->{0.65} \\
+	\hline
+	\onslide<6->{0.5} & \onslide<6->{0.8} & \onslide<7->{0.65} \\
+	\hline
+	\onslide<8->{0.6} & \onslide<8->{0.7} & \onslide<9->{0.65} \\
+	\hline
+	\onslide<10->{$\cdots$} & \onslide<10->{$\cdots$} & \onslide<10->{0.65} \\
+	\hline
+	\end{tabular}
+	\end{center}
+\columnbreak
+	\onslide<11->{\scriptsize Donc la question inverse, supposer:}
+	\vskip 0.15cm
+	\onslide<12->{\scriptsize \#(tirages) = 100\,000, \; \#(\`a pile) = 65\,000.}
+	\vskip 0.15cm
+	\onslide<13->{\scriptsize Peut-on deviner les valeurs de $\mu_{1}$ et $\mu_{2}$,
+		\vskip 0.05cm
+		\mbox{}\quad\quad\quad\quad\quad\quad{\footnotesize\color{red}individuellement}?}
+	\vskip 0.1cm
+	\onslide<14->{\scriptsize Non, parce que des \,($\mu_{1},\mu_{2}$)\, distincts pouvent \^etre
+		\begin{center}
+		\vskip -0.3cm
+		\footnotesize\textbf{\'equivalents du point de vue\\ des observations.}}
+		\end{center}
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm \LARGE Identifiabilit\'e}
+
+\vskip 0.0cm
+\textbf{D\'efinition informelle}
+\vskip 0.025cm
+Un mod\`ele statistique (param\'etrique) est dit \emph{\textbf{identifiable}}
+si l'on peut en inf\'erer chaque param\`etre,
+tout au moins en th\'eorie, uniquement et sans ambigu\"it\'e,
+quand la taille de l'\'echantillon tend vers l'infini.
+%A (parametric) statistical model is said to be \emph{\textbf{identifiable}} if, at least in theory, each of its
+%parameters can be uniquely and unambiguously inferred as sample size approaches infinity.
+
+\vskip 0.2cm
+
+\footnotesize
+\begin{itemize}
+\pause\item
+	L'estimation de param\`etres est {\color{red}vou\'ee \`a l'\'echec} si le mod\`ele est non identifiable.
+	%Parameter estimation is doomed to fail if the model is non-identifiable.
+	\vskip 0.01cm
+	%\pause
+	%In practice, always check if a model is identifiable. If not, change the model.
+	\vskip 0.2cm
+\pause\item
+	\og filtre na\"if d'identifiabilit\'e \fg\,:
+	\vskip -0.4cm
+	\begin{equation*}
+	\left(\!\!\begin{array}{c}
+		\textnormal{\scriptsize \# param\`etres de la} \\
+		\textnormal{\scriptsize distribution des} \\
+		\textnormal{\scriptsize observations}
+	\end{array}\!\!\right)
+	<
+	\left(\!\!\begin{array}{c}
+		\textnormal{\scriptsize \# param\`etres du} \\
+		\textnormal{\scriptsize mod\`ele statistique}
+	\end{array}\!\!\right)
+	\;\;\Longrightarrow\;\;
+	\begin{array}{c}
+		\textnormal{\small mod\`ele} \\
+		\textnormal{\small non identifiable.}
+	\end{array}
+	\end{equation*}
+	\pause
+	{[\; (\# \textit{\'equations}) \,$<$\, (\# \textit{inconnues}) \;$\Longrightarrow$\; \textit{solutions non uniques}\;]}
+	\vskip 0.3cm
+\pause\item
+	Mais \tiny 
+	\vskip -0.5cm
+	\begin{equation*}
+	\left(\!\!\begin{array}{c}
+		\textnormal{\tiny \# param\`etres de la} \\
+		\textnormal{\tiny distribution des} \\
+		\textnormal{\tiny observations}
+	\end{array}\!\!\right)
+	\geq
+	\left(\!\!\begin{array}{c}
+		\textnormal{\tiny \# param\`etres du} \\
+		\textnormal{\tiny mod\`ele statistique}
+	\end{array}\!\!\right)
+	\;\;\not\Longrightarrow\;\;
+	\begin{array}{c}
+		\textnormal{\scriptsize mod\`ele} \\
+		\textnormal{\scriptsize identifiable.}
+	\end{array}
+	\end{equation*}
+	\vskip 0.2cm
+\pause\item
+	\footnotesize
+	Li\'ee \`a l'\textbf{estimabilit\'e} et, pour les mod\`eles lin\'eaires, \`a la \textbf{multicolin\'earit\'e}.
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

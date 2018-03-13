@@ -1,0 +1,446 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.3cm \Large Conditional independence assumptions in PRL}
+
+\tiny
+\begin{center}
+\vskip -0.4cm
+\begin{tabular}{
+	|c
+	|>{\columncolor{lightGreen}}c
+	||>{\columncolor{lightYellow}}c
+	|>{\columncolor{lightYellow}}c
+	|c|c|c|}
+\hline
+	\cellcolor{white}&
+	&
+	\cellcolor{yellow}&
+	\cellcolor{yellow}&
+	&
+	&
+	Link, $\overset{{\color{white}.}}{\widehat{M}}$
+	\\
+	\cellcolor{white} \multirow{-2}{*}{$^{(\Gamma_{1},\Gamma_{2})}$}&
+	\multirow{-2}{*}{count}&
+	\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}$}&
+	\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}$}&
+	\multirow{-2}{*}{$^{\frac{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}}$}&
+	\multirow{-2}{*}{$^{\log_{10}\frac{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}1})}{P(\Gamma_{1},\Gamma_{2} \vert M={\color{red}0})}}$}&
+	$^{(\pm 1.5)}$
+	\\
+\hline\hline
+	(\,0,\,0\,) & 14 & 0.0010 & 0.900 & 11.11$\times 10^{-3}$& -2.954 & 0 \\
+\hline
+	(\,0,\,1\,) & 1 & 0.0045 & 0.045 & 0.10 & -1.00 & ?? \\
+\hline
+	(\,1,\,0\,) & 0 & 0.0045 & 0.045 & 0.10 & -1.00 & ?? \\
+\hline
+	(\,1,\,1\,) & \cellcolor{lightGray}1 & \cellcolor{lightGray}0.9900 & \cellcolor{lightGray}0.010 & 99.00 & 1.996 & 1 \\
+\hline
+\end{tabular}
+\vskip 0.1cm
+\scriptsize
+\#(\,observation parameters\,) $=$ $2^{2}-1$ $=$ $3$
+\;\;$<$\;\;
+$7$ $=$ $1+2\times(2^{2}-1)$ $=$ \#(\,model parameters\,)
+\end{center}
+
+\scriptsize
+\onslide<2->{
+%L'hypoth\`ese d'ind\'ependance conditionnelle :
+Conditional independence assumption:
+\vskip -0.25cm
+\begin{equation*}
+P\!\left(\,\Gamma_{1},\Gamma_{2}\,\vert\,M\,\right)
+\; = \;
+	P\!\left(\,\Gamma_{1}\,\vert\,M\,\right) \cdot P\!\left(\,\Gamma_{2}\,\vert\,M\,\right)
+\end{equation*}
+}
+
+\vskip -0.5cm
+
+\onslide<3->{{\tiny
+\begin{equation*}
+\begin{array}{c}
+\colorbox{lightYellow}{$P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=0\,\vert\,M=1\,\right)$}=
+	\colorbox{bgOrange}{$P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{lightCyan}{$P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)$} \\
+\colorbox{lightYellow}{$P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=1\,\vert\,M=1\,\right)$}=
+	\colorbox{bgOrange}{$P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{mediumCyan}{$P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)$} \\
+\colorbox{lightYellow}{$P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=0\,\vert\,M=1\,\right)$}=
+	\colorbox{mediumOrange}{$P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{lightCyan}{$P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)$} \\
+\colorbox{lightGray}{$P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=1\,\vert\,M=1\,\right)$}=
+	\colorbox{mediumOrange}{$P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{mediumCyan}{$P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)$} \\
+%{\color{darkYellow}P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=0\,\vert\,M=1\,\right)}=
+	%{\color{lightOrange}P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)} \cdot
+	%{\color{lightBlue}P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)} \\
+%{\color{darkYellow}P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=1\,\vert\,M=1\,\right)}=
+	%{\color{lightOrange}P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)} \cdot
+	%{\color{gcblue}P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)} \\
+%{\color{darkYellow}P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=0\,\vert\,M=1\,\right)}=
+	%{\color{orange}P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)} \cdot
+	%{\color{lightBlue}P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)} \\
+%{\color{gray}P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=1\,\vert\,M=1\,\right)}=
+	%{\color{orange}P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)} \cdot
+	%{\color{gcblue}P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)} \\
+\end{array}
+\end{equation*}
+}}
+
+\vskip -0.15cm
+\onslide<4->{reduces the number of ``$M=1$'' parameters (conditional probabilities) {\color{red}from $3$ to $2$}.}
+\onslide<5->{Similarly, they reduce the number of ``$M=0$'' parameters from $3$ to $2$.}
+
+\vskip 0.2cm
+
+\scriptsize
+\onslide<6->{Under conditional independence assumptions,}
+%\onslide<6->{Donc sous l'hypoth\`ese d'ind\'ependance conditionnelle,}
+
+\begin{center}
+\vskip -0.1cm
+
+\onslide<6->{\#(\,observation parameters\,) $=$ $2^{2}-1$ $=$ $3$}
+\onslide<11->{\;\;$<$\;\;}
+\onslide<11->{$5$ $=$}
+\onslide<10->{$1\,+$}
+\onslide<8->{$2\,\times$\!}
+\onslide<9->{$(2)$}
+\onslide<8->{$=$}
+\onslide<7->{\#(\,model parameters\,)}
+
+\vskip 0.15cm
+
+\textbf{\normalsize
+	\onslide<12->{Still non-identifiable,}
+	\onslide<13->{with 2 comparison variables!}
+	\vskip 0.13cm
+	\onslide<14>{But what about 3?}
+	}
+	
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.3cm \Large Conditional independence assumptions in PRL}
+
+\mbox{}
+\vskip -1.5cm
+\mbox{}
+
+\tiny
+\begin{multicols}{2}
+	\begin{flushleft}
+	\begin{tabular}{
+		|c
+		|>{\columncolor{lightGreen}}r
+		||>{\columncolor{lightYellow}}c
+		|>{\columncolor{lightYellow}}c|}
+	\hline
+		&
+		&
+		\cellcolor{yellow}&
+		\cellcolor{yellow}
+		\\
+		\cellcolor{white}\multirow{-2}{*}{$^{(\Gamma_{1},\Gamma_{2},\Gamma_{3})}$}&
+		\multirow{-2}{*}{count{\color{lightGreen}00}}&
+		\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2},\Gamma_{3} \vert M={\color{red}1})}$}&
+		\cellcolor{yellow}\multirow{-2}{*}{$^{P(\Gamma_{1},\Gamma_{2},\Gamma_{3} \vert M={\color{red}0})}$}
+		\\
+	\hline\hline
+		(\,0,\,0,\,0\,) & 85,331,561 & $3.091\times10^{-8}$ & $8.533\times10^{-1}$ \\
+	\hline
+		(\,0,\,0,\,1\,) & 4,803,818 & $6.960\times10^{-4}$ & $4.805\times10^{-2}$ \\
+	\hline
+		(\,0,\,1,\,0\,) & 4,806,876 & $6.960\times10^{-4}$ & $4.805\times10^{-2}$ \\
+	\hline
+		(\,0,\,1,\,1\,) & 83,385 & $5.191\times10^{-2}$ & $8.333\times10^{-4}$ \\
+	\hline
+		(\,1,\,0,\,0\,) & 4,807,980 & $6.960\times10^{-4}$ & $4.805\times10^{-2}$ \\
+	\hline
+		(\,1,\,0,\,1\,) & 83,288 & $5.191\times10^{-2}$ & $8.333\times10^{-4}$ \\
+	\hline
+		(\,1,\,1,\,0\,) & 82,995 & $5.191\times10^{-2}$ & $8.333\times10^{-4}$ \\
+	\hline
+		(\,1,\,1,\,1\,) & \cellcolor{lightGray}97 & \cellcolor{lightGray}$8.422\times10^{-1}$ & \cellcolor{lightGray}$8.138\times10^{-7}$ \\
+	\hline
+	\end{tabular}
+	\end{flushleft}
+\columnbreak
+	\begin{flushright}
+	\mbox{}\vskip 0.1cm
+	\begin{minipage}{3.3cm}
+	\scriptsize
+	\begin{eqnarray*}
+	&& \!\!\!\! \textnormal{\#(\,observation parameters\,)}\\
+	&=& \!\!\!\! 2^{3}-1 \; = \; 7\\
+	&<& \!\!\!\! 15 \; = \; 1 + 2\times(2^{3}-1)\\
+	&=& \!\!\!\! \textnormal{\#(\,model parameters\,)}
+	\end{eqnarray*}
+	\end{minipage}
+	\end{flushright}
+\end{multicols}
+
+\pause
+
+\scriptsize
+%L'hypoth\`ese d'ind\'ependance conditionnelle :
+Conditional independence assumption:
+\vskip -0.25cm
+\begin{equation*}
+P\!\left(\,\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M\,\right)
+= P\!\left(\,\Gamma_{1}\,\vert\,M\,\right) \cdot P\!\left(\,\Gamma_{2}\,\vert\,M\,\right) \cdot P\!\left(\,\Gamma_{3}\,\vert\,M\,\right)
+\end{equation*}
+\pause
+\vskip -0.75cm
+{\tiny
+\begin{equation*}
+\begin{array}{c}
+\colorbox{lightYellow}{$P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1\,\right)$}=
+	\colorbox{lightOrange}{$P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{lightCyan}{$P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{lightGreen}{$P\!\left(\,\Gamma_{3}=0\,\vert\,M=1\,\right)$}
+\\
+\colorbox{lightYellow}{$P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=1\,\right)$}=
+	\colorbox{lightOrange}{$P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{lightCyan}{$P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{mediumGreen}{$P\!\left(\,\Gamma_{3}=1\,\vert\,M=1\,\right)$}
+\\
+\colorbox{lightYellow}{$P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=1\,\right)$}=
+	\colorbox{lightOrange}{$P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{mediumCyan}{$P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{lightGreen}{$P\!\left(\,\Gamma_{3}=0\,\vert\,M=1\,\right)$}
+\\
+\colorbox{lightYellow}{$P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1\,\right)$}=
+	\colorbox{lightOrange}{$P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{mediumCyan}{$P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{mediumGreen}{$P\!\left(\,\Gamma_{3}=1\,\vert\,M=1\,\right)$}
+\\
+\colorbox{lightYellow}{$P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1\,\right)$}=
+	\colorbox{mediumOrange}{$P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{lightCyan}{$P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{lightGreen}{$P\!\left(\,\Gamma_{3}=0\,\vert\,M=1\,\right)$}
+\\
+\colorbox{lightYellow}{$P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=1\,\right)$}=
+	\colorbox{mediumOrange}{$P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{lightCyan}{$P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{mediumGreen}{$P\!\left(\,\Gamma_{3}=1\,\vert\,M=1\,\right)$}
+\\
+\colorbox{lightYellow}{$P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=1\,\right)$}=
+	\colorbox{mediumOrange}{$P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{mediumCyan}{$P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{lightGreen}{$P\!\left(\,\Gamma_{3}=0\,\vert\,M=1\,\right)$}
+\\
+\colorbox{lightGray}{$P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1\,\right)$}=
+	\colorbox{mediumOrange}{$P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{mediumCyan}{$P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)$} \cdot
+	\colorbox{mediumGreen}{$P\!\left(\,\Gamma_{3}=1\,\vert\,M=1\,\right)$}
+\\
+%%
+%{\color{darkYellow}P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1\,\right)}=
+%	{\color{lightOrange}P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)} \cdot
+%	{\color{lightBlue}P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)} \cdot
+%	{\color{lessDeepGreen}P\!\left(\,\Gamma_{3}=0\,\vert\,M=1\,\right)}
+%\\
+%{\color{darkYellow}P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=1\,\right)}=
+%	{\color{lightOrange}P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)} \cdot
+%	{\color{lightBlue}P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)} \cdot
+%	{\color{deepGreen}P\!\left(\,\Gamma_{3}=1\,\vert\,M=1\,\right)}
+%\\
+%{\color{darkYellow}P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=1\,\right)}=
+%	{\color{lightOrange}P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)} \cdot
+%	{\color{gcblue}P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)} \cdot
+%	{\color{lessDeepGreen}P\!\left(\,\Gamma_{3}=0\,\vert\,M=1\,\right)}
+%\\
+%{\color{darkYellow}P\!\left(\,\Gamma_{1}=0,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1\,\right)}=
+%	{\color{lightOrange}P\!\left(\,\Gamma_{1}=0\,\vert\,M=1\,\right)} \cdot
+%	{\color{gcblue}P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)} \cdot
+%	{\color{deepGreen}P\!\left(\,\Gamma_{3}=1\,\vert\,M=1\,\right)}
+%\\
+%{\color{darkYellow}P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=0\,\vert\,M=1\,\right)}=
+%	{\color{orange}P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)} \cdot
+%	{\color{lightBlue}P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)} \cdot
+%	{\color{lessDeepGreen}P\!\left(\,\Gamma_{3}=0\,\vert\,M=1\,\right)}
+%\\
+%{\color{darkYellow}P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=0,\Gamma_{3}=1\,\vert\,M=1\,\right)}=
+%	{\color{orange}P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)} \cdot
+%	{\color{lightBlue}P\!\left(\,\Gamma_{2}=0\,\vert\,M=1\,\right)} \cdot
+%	{\color{deepGreen}P\!\left(\,\Gamma_{3}=1\,\vert\,M=1\,\right)}
+%\\
+%{\color{darkYellow}P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=0\,\vert\,M=1\,\right)}=
+%	{\color{orange}P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)} \cdot
+%	{\color{gcblue}P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)} \cdot
+%	{\color{lessDeepGreen}P\!\left(\,\Gamma_{3}=0\,\vert\,M=1\,\right)}
+%\\
+%P\!\left(\,\Gamma_{1}=1,\Gamma_{2}=1,\Gamma_{3}=1\,\vert\,M=1\,\right)=
+%	{\color{orange}P\!\left(\,\Gamma_{1}=1\,\vert\,M=1\,\right)} \cdot
+%	{\color{gcblue}P\!\left(\,\Gamma_{2}=1\,\vert\,M=1\,\right)} \cdot
+%	{\color{deepGreen}P\!\left(\,\Gamma_{3}=1\,\vert\,M=1\,\right)}
+%\\
+\end{array}
+\end{equation*}
+}
+\pause
+\vskip -0.2cm
+%Le nombre de param\`etres \og $M=1$ \fg\;diminue {\color{red}de $7$ \`a $3$}.
+%\; De m\^eme pour les param\`etres \og $M=0$ \fg.
+Number of ``$M=1$'' parameters reduces {\color{red}from $7$ to $3$}. Similarly for the ``$M=0$'' parameters.
+%\vskip 0.1cm
+%\scriptsize
+\pause
+%\; Sous l'hypoth\`ese d'ind\'ependance conditionnelle,
+Under conditional independence assumptions,
+\pause
+%avec 3 variables de comparaison,
+with three comparison variables,
+\pause
+\begin{center}
+\vskip 0.03cm
+\#(\,observation parameters\,) \,$=$\, $2^{3}-1$ $=$
+\;\;\textbf{\normalsize\color{red}$7$}\pause\textbf{\normalsize\color{red}\;\;$=$\;\;$7$}\;\;
+$=$ $1+2 \times\!(3)$ \,$=$\, \onslide<2->{\#(\,model parameters\,)}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{}
+
+\begin{center}
+\vskip 0.90cm
+\scriptsize
+%\#(\,comptes observ\'es\,) $=$ $2^{3}-1$ $=$
+%\;\;\textbf{\normalsize\color{red}$7$}\textbf{\normalsize\color{red}\;\;$=$\;\;$7$}\;\;
+%$=$ $1+2 \times\!(3)$ $=$ \onslide<2->{\#(\,param\`etres \`a estimer\,)}
+\#(\,observation parameters\,) $=$ $2^{3}-1$ $=$
+\;\;\textbf{\normalsize\color{red}$7$}
+\textbf{\normalsize\color{red}\;$=$\;$7$}\;\;
+$=$ $1+2 \times(3)$ $=$ \#(\,model parameters\,)
+
+\vskip 0.2cm
+\resizebox{0.70\textwidth}{0.70\textheight}{
+	\itshape\rotatebox{40}{\bf
+		%\bf\color{orange}Jackpot\,!
+		\alt<5->{
+			\color{bgOrange}Jackpot\,!
+			}{
+			\color{orange}Jackpot\,!
+			}
+		}
+	}
+
+\pause
+\normalsize
+\vskip -4.75cm
+\textbf{\color{titlefontblue}\Huge Do \pause \,NOT \pause \,Forget:\vskip 0.1cm
+\pause\large
+{\LARGE\#\scriptsize$\left(\!\begin{array}{c}\textbf{model} \\ \textbf{parameters}\end{array}\!\right)$}
+$>$
+{\LARGE\#\scriptsize$\left(\!\begin{array}{c}\textbf{observation} \\ \textbf{parameters}\end{array}\!\right)$}
+\;$\Rightarrow$\; {\small non-identifiable}
+\vskip 0.2cm
+\pause\large
+{\LARGE\#\scriptsize$\left(\!\begin{array}{c}\textbf{model} \\ \textbf{parameters}\end{array}\!\right)$}
+$\leq$
+{\LARGE\#\scriptsize$\left(\!\begin{array}{c}\textbf{observation} \\ \textbf{parameters}\end{array}\!\right)$}
+\;$\not\Rightarrow$\;
+{\small{\color{white}non-}identifiable}}
+\pause
+\vskip 0.8cm
+\textbf{\normalsize\color{titlefontblue}In the present case, we do have identifiability,\\ but the reason is subtle ...}
+\pause
+\vskip 0.5cm
+{\color{titlefontblue}and will come from \,...\, \pause \textbf{algebraic geometry}!}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{\vskip -0.2cm\small{\Large\#\scriptsize$\left(\!\begin{array}{c}\textbf{model} \\ \textbf{parameters}\end{array}\!\right)$}
+\;\;$\leq$\;\;
+{\Large\#\scriptsize$\left(\!\begin{array}{c}\textbf{observation} \\ \textbf{parameters}\end{array}\!\right)$}
+\LARGE\;\;$\not\Rightarrow$\;\;
+{\large identifiable}}
+
+\vskip 0.1cm
+
+Assume conditional independence:
+\vskip -0.1cm
+\scriptsize
+\begin{equation*}
+\begin{array}{ccl}
+P\!\left(\,\Gamma_{1},\Gamma_{2}\,\vert\,M\,\right)
+&=&
+	P\!\left(\,\Gamma_{1}\,\vert\,M\,\right)
+	\cdot
+	P\!\left(\,\Gamma_{2}\,\vert\,M\,\right)
+\\
+P\!\left(\,\Gamma_{1},\Gamma_{2},\Gamma_{3}\,\vert\,M\,\right)
+&=&
+	P\!\left(\,\Gamma_{1}\,\vert\,M\,\right)
+	\cdot
+	P\!\left(\,\Gamma_{2}\,\vert\,M\,\right)
+	\cdot
+	P\!\left(\,\Gamma_{3}\,\vert\,M\,\right)
+\end{array}
+\end{equation*}
+
+\scriptsize
+
+\begin{center}
+\vskip -0.25cm
+\begin{tabular}{
+	|c
+	||>{\columncolor{lightGray}}>{\centering}m{0.40cm}
+	|>{\columncolor{lightGray}}>{\centering}m{0.40cm}
+	||>{\centering}m{0.40cm}
+	|>{\centering}m{0.40cm}
+	|>{\centering}m{0.40cm}
+	|c|}
+\hline
+	\# levels of $\Gamma_{1}$ & 2 & 2 & 3 & 3 & 3 & 3 \\
+\hline
+	\# levels of $\Gamma_{2}$ & 2 & 2 & 4 & 5 & 6 & 7 \\
+\hline
+	\# levels of $\Gamma_{3}$ & $\cdot$ & 2 & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+\hline
+\hline
+	\rowcolor{customRed}
+	\cellcolor{white}\#(\,observation parameters) & \cellcolor{pink}3 & \cellcolor{white}7 & 11 & 14 & 17 & 20 \\
+\hline
+	\rowcolor{customRed}
+	\cellcolor{white}\#(\,model parameters\,) & \cellcolor{pink}5 & \cellcolor{white}7 & 11 & 13 & 15 & 17 \\
+\hline
+	\rowcolor{lightGray}``effective dimension'' & & & 9 & 11 & 13 & 15 \\
+\hline
+\hline
+identifiable & No & \alt<3>{\cellcolor{lightGreen}Yes$^{\ddag}$}{?} & \onslide<2->{No$^{\dagger}$} & \onslide<2->{No$^{\dagger}$} & \onslide<2->{No$^{\dagger}$} & \onslide<2->{No$^{\dagger}$} \\
+\hline
+\end{tabular}
+\end{center}
+
+\scriptsize
+
+\onslide<2->{$^{\dagger}$Proposition 2.3,\,
+M.V. Catalisano, A.V. Geramita and A. Gimigliano,\,
+Ranks of tensors, {\color{red}secant} varieties of {\color{red}Segre varieties} and fat points,\,
+\textit{Linear Algebra and its Applications}, \textbf{355}, 2002, 263--285}
+
+\vskip 0.3cm
+\onslide<3->{$^{\ddag}$Corollary 5,\,
+E.S. Allman, C. Matias and J.A. Rhodes,\,
+Identifiability of parameters in latent structure models with many observed variables,\,
+\textit{Annals of Statistics}, \textbf{37}, 2009, No. 6A, 3099--3132}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,60 @@
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.4cm \large Le probl\`eme d'optimisation derri\`ere les arbres de classification}
+
+\large
+\begin{itemize}
+\item
+	\vskip -0.2cm
+	\pause
+	Domaine ({\small c.-\`a-d. \,classe d'hypoth\`eses,\, c.-\`a-d. espace du mod\`ele})
+	\vskip -0.1cm
+	{\scriptsize\begin{equation*}
+	\pause
+	\left\{\begin{array}{c}
+		\overset{{\color{white}.}}{\textnormal{arbres binaires}} \\
+		\textnormal{r\'ecursifs}
+	\end{array}\right\}
+	\pause
+	\quad\sim\quad
+	\left\{\begin{array}{c}
+		\overset{{\color{white}.}}{\textnormal{fonctions constantes par morceaux}} \\
+		\textnormal{resultantes de} \\
+		\textnormal{partitionnement binaire r\'ecursif}
+	\end{array}\right\}
+	\end{equation*}}
+
+\item
+	\pause
+	Minimiser la fonction objective ({\small c.-\`a-d.} fonction de co\^ut)
+	\pause
+	\vskip -0.5cm
+	{\small\begin{equation*}
+	\textnormal{impuret\'e d'arbre}
+	\;=\;
+		\textnormal{moyenne pond\'er\'ee des impuret\'es de feuilles}
+	\end{equation*}}
+
+\item
+	\pause
+	\vskip -0.2cm
+	L'algorithme CART de Breiman-Friedman-Olshen-Stone\!\!\footnote{\tiny Breiman-Friedman-Olshen-Stone (1984),
+	\textit{{\color{red}C}lassification {\color{red}a}nd {\color{red}R}egression {\color{red}T}rees},
+	Taylor \& Francis}
+	\begin{itemize}
+	%\setlength{\itemindent}{-0.175in}
+	\item
+		\pause
+		{\footnotesize Croissance: \`a chaque \'etape, selectionner la ``meilleure'' fa\c{c}on
+		de partitionner les feuilles afin d'obtenir le prochain arbre}
+	\item
+		\pause
+		{\footnotesize \'Elagage: \'elaguer un arbre pleinement cr\^u pour mitiger le sur-apprentissage}
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

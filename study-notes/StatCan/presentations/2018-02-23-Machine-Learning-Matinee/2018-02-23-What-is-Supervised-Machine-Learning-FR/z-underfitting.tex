@@ -1,0 +1,81 @@
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.35cm\Large Mais, ce ne sont pas tous les ph\'enom\`enes qui sont lin\'eaires ...}
+
+\scriptsize
+\pause
+
+\begin{multicols}{2}
+
+	\begin{flushleft}
+	{\color{white}.}\vskip -0.2cm
+	\only<1-2|handout:0>{\includegraphics[width=5cm]{graphics/xy-quadratic.png}}
+	\only<3-3|handout:0>{\includegraphics[width=5cm]{graphics/qxy-straight-lines.png}}
+	\only<4-6>{\includegraphics[width=5cm]{graphics/qxy-quadratic-fit.png}}
+	\end{flushleft}
+
+\columnbreak
+
+	\begin{flushright}
+	\begin{minipage}{5.0cm}
+	\vskip -0.20cm
+
+	\pause
+	Lin\'eaire (toutes les fonctions affines de $x$):
+	\vskip -0.5cm
+	\begin{equation*}
+	\begin{array}{ccl}
+	Y & = & \beta_{0}  + \beta_{1} x + \textnormal{bruit}
+	\\
+	\overset{{\color{white}1}}{E}\!\left[\,Y\,\vert\,x\,\right] & = & \beta_{0}  + \beta_{1} x
+	\end{array},
+	\end{equation*}
+	\vskip -0.25cm
+	o\`u $(\beta_{0},\beta_{1})\in\Re^{2} =: \Theta$.
+
+	\pause
+	\vskip 0.3cm
+	Quadratique  (toutes les fonctions quadratiques de $x$):
+	\vskip -0.5cm
+	\begin{equation*}
+	\begin{array}{ccl}
+	Y & = & \beta_{0}  + \beta_{1} x + \beta_{2}x^{2} + \textnormal{bruit}
+	\\
+	\overset{{\color{white}1}}{E}\!\left[\,Y\,\vert\,x\,\right] & = & \beta_{0}  + \beta_{1} x + \beta_{2}x^{2}
+	\end{array},
+	\end{equation*}
+	\vskip -0.25cm
+	o\`u $(\beta_{0},\beta_{1},\beta_{2})\in\Re^{3} =: \Theta$.
+
+	\vskip 0.3cm
+	\pause
+	\textit{Il faut que le mod\`ele soit suffisamment complexe afin de pouvoir bien estimer
+	le vrai m\'echanisme sous-jacent de g\'en\'eration des donn\'ees.}
+	
+	\end{minipage}
+	\end{flushright}
+
+\end{multicols}
+
+\pause
+\begin{center}
+\vskip -0.15cm
+\large
+	\begin{minipage}{4.0cm}
+		\begin{center}
+		{\large complexit\'e du mod\`ele \vskip -0.05cm insuffisante}
+		\end{center}
+	\end{minipage}
+\;\;$\leadsto$\quad
+	\begin{minipage}{5.2cm}
+		\begin{center}
+		\textbf{\Large\color{red}sous-apprentissage} \vskip -0.1cm {\scriptsize biais \'elev\'e, erreur d'entra\^inement importante}
+		\end{center}
+	\end{minipage}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

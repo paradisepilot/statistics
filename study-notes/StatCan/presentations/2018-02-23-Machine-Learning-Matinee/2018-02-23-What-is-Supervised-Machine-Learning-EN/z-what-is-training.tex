@@ -1,0 +1,157 @@
+
+%%%%%%%%%%
+
+\begin{frame}{\Large What is \textit{training}?}
+
+\scriptsize
+
+\pause Want: a machine
+\pause to make prediction $\widehat{Y}$
+\pause of unknown $Y$
+\pause based on observed $X$
+
+\pause
+\vskip 0.10cm
+Training data:\;
+$(x_{1},y_{1})$, $(x_{2},y_{2})$, $(x_{3},y_{3})$, \,$\ldots$\;, $(x_{n},y_{n})$
+
+\small
+
+\pause
+\vskip 0.30cm
+\textbf{\large Assume:}\;
+True underlying \textit{random} data-generation mechanism
+\tikz{\node[fill=red!20,rounded corners=0.1cm,inner sep=1,outer sep=1]{\includegraphics[height=0.35cm,width=0.35cm]{graphics/freepik-grinder-512.png}};}
+belongs to a chosen class (the \textbf{\color{red}model}) of similar mechanisms .
+\begin{flushleft}
+\vskip -0.2cm
+\input{z-tikz-many-meat-grinders}
+\end{flushleft}
+
+\pause
+%\vskip -0.05cm
+\textbf{\large Training:}\;
+Find the member
+\tikz{\node[fill=gray!45,rounded corners=0.1cm,inner sep=1,outer sep=1]{\includegraphics[height=0.35cm,width=0.35cm]{graphics/freepik-grinder-512.png}};}
+in model that ``best'' fits training data.
+
+\pause
+%\scriptsize
+\begin{center}
+\vskip -0.2cm
+Need to solve the associated \textbf{\color{red}optimization} problem.
+\pause
+\vskip 0.0cm
+{\footnotesize(Choose \textbf{\color{red}cost function} defined on model. Minimize cost function.)}
+\end{center}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large Sounds familiar?\quad\only<2->{\normalsize\textit{Recall Simple Linear Regression}}}
+
+\scriptsize
+\pause
+
+\begin{multicols}{2}
+
+	\begin{flushleft}
+	\only<2-5|handout:0>{\includegraphics[width=5cm]{graphics/xy.png}}
+	\only<6-6|handout:0>{\includegraphics[width=5cm]{graphics/xy-randomLines.png}}
+	\only<7-7|handout:0>{\includegraphics[width=5cm]{graphics/xy-verticalDifferences.png}}
+	\only<8-8|handout:0>{\includegraphics[width=5cm]{graphics/xy-leastSquares.png}}
+	\only<9-9|handout:0>{\includegraphics[width=5cm]{graphics/xy-prediction.png}}
+	\only<10-10>{\includegraphics[width=5cm]{graphics/xy-trueValues.png}}
+	
+	\only<1-6|handout:0>{\color{white}
+	\begin{center}
+	Cost function: Root Mean Squared Error
+	\vskip -0.4cm
+	{\tiny\begin{equation*}
+	f(\beta_{0},\beta_{1})
+	\;=\; \sqrt{
+		\dfrac{1}{n}\,\overset{n}{\underset{i=1}{\sum}}
+		\left(\overset{{\color{white}.}}{y}_{i}-\beta_{0}-\beta_{1}x_{i}\right)^{2}
+		}
+	\end{equation*}}
+	\end{center}
+	}
+	
+	\only<7-10>{
+	\begin{center}
+	Cost function: Root Mean Squared Error
+	\vskip -0.4cm
+	{\tiny\begin{equation*}
+	f(\beta_{0},\beta_{1})
+	\;=\; \sqrt{
+		\dfrac{1}{n}\,\overset{n}{\underset{i=1}{\sum}}
+		\left(\overset{{\color{white}.}}{y}_{i}-\beta_{0}-\beta_{1}x_{i}\right)^{2}
+		}
+	\end{equation*}}
+	\end{center}
+	}
+	
+	\end{flushleft}
+
+\columnbreak
+
+	\begin{flushright}
+	\begin{minipage}{4.5cm}
+
+	\pause
+	{\small Model}
+	{\tiny$\left(\!\!\begin{array}{c}
+		\textnormal{class of admissible underlying}
+		\\
+		\textnormal{data-generation mechanisms}
+		\end{array}\!\!\right)$}:
+	\vskip -0.35cm
+	\begin{equation*}
+	\begin{array}{ccl}
+	Y & = & \beta_{0}  + \beta_{1} x + \textnormal{noise}
+	\\
+	\overset{{\color{white}1}}{E}\!\left[\,Y\,\vert\,x\,\right] & = & \beta_{0}  + \beta_{1} x
+	\end{array},
+	\end{equation*}
+	\vskip -0.25cm
+	where $(\beta_{0},\beta_{1})\in\Re^{2} =: \Theta$.
+
+	\pause
+	\begin{center}
+	Model is parametrized by \,$\Theta := \Re^{2}$.
+	\vskip 0.1cm
+	Model is $2$-dimensional.
+	\pause
+	\begin{equation*}
+	\textnormal{Model}
+	\,\sim\,
+	\left\{\!\!\!\begin{array}{c}
+	\textnormal{\tiny all straight} \\ \textnormal{\tiny lines in $\Re^{2}$}
+	\end{array}\!\!\!\right\}
+	\,\sim\,
+	\left\{\!\!\!\begin{array}{c}
+	\textnormal{\tiny all affine} \\ \textnormal{\tiny functions of $x$}
+	\end{array}\!\!\!\right\}
+	\end{equation*}
+	\end{center}
+
+	\pause\pause\pause
+	\begin{center}
+	\vskip 0.5cm
+	{\large Best fit: Least Squares}
+	\vskip 0.2cm
+	\pause
+	{\small(trained prediction machine)}
+	\end{center}
+
+	\end{minipage}
+	\end{flushright}
+
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

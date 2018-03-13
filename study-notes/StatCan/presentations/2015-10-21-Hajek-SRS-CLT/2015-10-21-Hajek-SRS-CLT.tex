@@ -1,0 +1,142 @@
+%This is the presentation template Christine P'ng made (and uses)
+%It uses a different theme and different fonts
+
+\documentclass{beamer}
+%\documentclass[handout]{beamer}
+
+%\usetheme{Rochester}
+
+\usepackage{libertine}
+\usepackage[T1]{fontenc}
+\usepackage{subfig}
+%\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{tikz}
+\usepackage{environ}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[ampersand]{easylist}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage{centernot}
+\usetikzlibrary{shapes,arrows,decorations.pathmorphing,decorations.pathreplacing,backgrounds,positioning,fit,petri}
+\usepackage{ulem}
+\usepackage{cancel}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\definecolor{gcblue}{RGB}{66,126,214} % sampled with Gimp
+%\definecolor{gcblue}{RGB}{79,150,255} % brighter
+%\definecolor{gcblue}{RGB}{59,113,193} % %darker
+
+\definecolor{faintred}{RGB}{255,175,175}
+
+\definecolor{faintblue}{RGB}{110,220,255}
+%\definecolor{faintblue}{RGB}{175,175,255}
+
+\definecolor{faintgray}{RGB}{225,225,225}
+
+\definecolor{oicr}{RGB}{57,121,59}
+\definecolor{titlefontcolour}{RGB}{75,75,75}
+\usecolortheme[named=titlefontcolour]{structure}
+\setbeamersize{text margin left=10mm}
+\setbeamertemplate{frametitle}{\vspace{1.5cm}\insertframetitle}
+\usefonttheme{serif} %serif
+
+%Setting a different font family for the title and frame titles
+%Short titles and headers are required because the font size is set to very large (feel free to change this based on presentation requirements)
+%\setbeamerfont{title}{family=\fontfamily{cmr}}
+\setbeamerfont{title}{family=\fontfamily{cmss}}
+\setbeamerfont{title}{family=\sffamily} %sffamily
+\setbeamerfont{title}{size=\fontsize{33}{33}\bfseries}%make this smaller if your title is too long (do the same for the frametitles, etc)
+\setbeamerfont{frametitle}{family=\sffamily}
+\setbeamerfont{frametitle}{size=\Huge\bfseries}
+\setbeamerfont{author}{size=\normalsize\scshape}
+\setbeamerfont{institute}{size=\small\scshape}
+\setbeamerfont{date}{size=\small\scshape}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{normal text}{size=\Huge}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]{}
+
+%Adding page numbers at the bottom of each frame
+%\setbeamertemplate{footline}
+%{%
+%  \leavevmode%
+%  \hbox{%
+%  \begin{beamercolorbox}[wd=1\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+%   % \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+%    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+
+% graphics path: IMPORTANT
+%\graphicspath{{gfx/}{/.mounts/labs/boutroslab/private/Resources/general/Latex/gfx/}{third_folder/}}
+%\logo{\includegraphics[width=15mm]{oicr.png}}
+
+%Header Info
+% information not capitalized because fonts are set to small caps (looks cleaner this way)
+\title[H\'{a}jek's SRSWOR CLT]{
+	\color{titlefontcolour}
+	\mbox{} \vskip 2.0cm
+	{\color{white}H\'{a}jek's SRSWOR}
+	\vskip -0.3cm
+	{\color{white}\Huge Central Limit Theorem}
+	}
+
+%\author{\color{titlefontcolour}Kenneth Chu}
+%\author{\color{titlefontcolour}Kenneth Chu}
+\author{\color{titlefontcolour}Kenneth Chu}
+
+\institute[oicr]{\scriptsize
+	\color{titlefontcolour}
+	\inst{}
+	Special Surveys, Transportation, Technology and Quality Assurance, BSMD
+	\vskip 0.0cm
+	Enqu\^{e}tes sp\'{e}ciales, transport, technologie et assurance de la qualit\'{e}, DMEE
+	}
+
+\date{\color{titlefontcolour}October 21, 2015} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Var}{\textnormal{Var}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\addtocounter{framenumber}{-1}
+{
+% Titlepage
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{StatCan-presentation-titlePage-background.jpg}}
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+}
+
+% Outline
+%\begin{frame}{Outline}
+%\tableofcontents
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usebackgroundtemplate{\includegraphics[width=\paperwidth,height=0.0825\paperwidth]{StatCan-presentation-body-topBanner.jpg}}
+\newcommand{\graphicsDir}{graphics}
+\newcommand*\rot{\rotatebox{90}}
+\renewcommand{\Re}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\d}{\textnormal{d}}
+
+\input{z-SRSWOR-CLT}
+\input{z-references}
+\input{z-thanks}
+\input{z-theorem-statement}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

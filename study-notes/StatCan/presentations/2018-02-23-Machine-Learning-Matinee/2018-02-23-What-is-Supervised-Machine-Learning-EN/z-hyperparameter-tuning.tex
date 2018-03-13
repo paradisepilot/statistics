@@ -1,0 +1,130 @@
+
+%%%%%%%%%%
+
+\begin{frame}{\Large What is \textit{hyperparameter tuning}?}
+
+\small
+
+\vskip -0.15cm
+\begin{itemize}
+\pause\item
+	For many models, there are no well established optimization methods that
+	can optimize on the full set of model parameters.
+\pause\item
+	{\scriptsize For example, the cost function of Ridge Regression can be written as:}
+	{\scriptsize\begin{equation*}
+	C(\beta_{0},\beta_{1},\ldots,\beta_{p-1},\lambda)
+	\;\; := \;\;
+		\dfrac{1}{n}\cdot
+		\overset{n}{\underset{i=1}{\sum}}\left(
+			y_{i} - \beta_{0} - \overset{p-1}{\underset{k=1}{\sum}}\,x_{ik}\beta_{k}
+			\right)^{2}
+		+\;\,
+		{\color{blue}\lambda\cdot\overset{p-1}{\underset{k=1}{\sum}}\left\vert\,\overset{{\color{white}.}}{\beta}_{i}\,\right\vert^{2}},
+	\end{equation*}}
+	{\scriptsize where $(\beta_{0},\beta_{1},\ldots,\beta_{p-1},\lambda) \in \Re^{p} \times [0,\infty) =: \Theta$.}
+\pause\item
+	{\scriptsize For each fixed $\lambda \in [0,\infty)$, convex programming (on the primal problem) yields:}
+	{\scriptsize\begin{equation*}
+	\widehat{\beta}(\lambda)
+	\; = \;
+		\underset{\beta \in \Re^{p}}{\textnormal{argmin}}\;C(\beta,\lambda)
+	\end{equation*}}
+\pause\item
+	\vskip -0.5cm
+	{\scriptsize But, we really want:
+	\;$\underset{(\beta,{\color{red}\lambda}) \,\in\, \Re^{p} \times {\color{red}[0,\infty)}}{\textnormal{argmin}}\,C(\beta,\lambda)$}
+\pause\item
+	Here, {\color{red}$\lambda$ is the hyperparameter}.\\
+	\pause {\scriptsize To optimize on $\lambda$, one can perform a ``grid search'' (or other similar approaches).}\\
+	\pause This is {\color{red}hyperparameter tuning}.
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+
+\begin{frame}{\Large What is \textit{hyperparameter tuning}?}
+
+\scriptsize
+\pause
+
+\begin{multicols}{2}
+
+	\begin{flushleft}
+	\only<1-2|handout:0>{\includegraphics[width=5cm]{graphics/xy-split-training-validation.png}}
+	\only<3-3|handout:0>{\includegraphics[width=5cm]{graphics/xy-poly-training.png}}
+	%\only<3-3|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0.png}}
+	%\only<3-3>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt001.png}}
+	%\only<4-4>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt01.png}}
+	%\only<5-5>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt1.png}}
+	\only<4-4|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-1e-06.png}}
+	\only<5-5|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-1e-05.png}}
+	\only<6-6|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-1e-04.png}}
+	\only<7-7|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt001.png}}
+	\only<8-8|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt01.png}}
+	\only<9-9|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt1.png}}
+	\only<10-10|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt2.png}}
+	\only<11-11|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt3.png}}
+	\only<12-12|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt4.png}}
+	\only<13-13|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt5.png}}
+	\only<14-14|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt525.png}}
+	\only<15-15>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt55.png}}
+	\only<16-16|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt575.png}}
+	\only<17-17|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt6.png}}
+	\only<18-18|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt7.png}}
+	\only<19-19|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt8.png}}
+	\only<20-20|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-0pt9.png}}
+	\only<21-21|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-1.png}}
+	\only<22-22|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-10.png}}
+	\only<23-23|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-100.png}}
+	\only<24-24|handout:0>{\includegraphics[width=5cm]{graphics/xy-LASSO-fit-lambda-1000.png}}
+	\end{flushleft}
+
+\columnbreak
+
+	\begin{flushright}
+	 \begin{minipage}{5.0cm}
+
+	\begin{center}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	                  & {\color{white}11}RMSE{\color{white}11} & {\color{white}11}RMSE{\color{white}11} \\
+	{\color{white}111}$\lambda${\color{white}111} & training & validation \\
+	\hline\hline
+	0 & 0.000 & 1.217 \\
+	1e-6 & 0.500 & 0.696 \\
+	1e-5 & 0.501 & 0.696 \\
+	1e-4 & 0.501 & 0.694 \\
+	1e-3 & 0.503 & 0.689 \\
+	0.01 & 0.509 & 0.682 \\
+	0.1 & 0.537 & 0.663 \\
+	0.2 & 0.570 & 0.648 \\
+	0.3 & 0.601 & 0.635 \\
+	0.4 & 0.630 & 0.629 \\
+	0.5 & 0.655 & 0.628 \\
+	{\color{red}0.55} & 0.667 & {\color{red}0.628} \\
+	0.6 & 0.677 & 0.628 \\
+	0.7 & 0.698 & 0.631 \\
+	0.8 & 0.716 & 0.634 \\
+	0.9 & 0.733 & 0.638 \\
+	1.0 & 0.750 & 0.643 \\
+	%{\color{white}1}750 & 0.816 & 0.687 \\
+	%{\color{white}1}850 & 0.818 & 0.685 \\
+	%1200 & 0.845 & 0.704 \\
+	%1500 & 0.850 & 0.714 \\
+	%3000 & 0.852 & 0.710 \\
+	\hline
+	\end{tabular}
+	\end{center}
+
+	\end{minipage}
+	\end{flushright}
+
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

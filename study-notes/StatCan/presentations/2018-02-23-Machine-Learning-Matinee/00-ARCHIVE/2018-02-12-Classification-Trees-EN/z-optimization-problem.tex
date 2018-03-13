@@ -1,0 +1,65 @@
+
+%%%%%%%%%%
+
+\begin{frame}{\vskip -0.2cm \large The optimization problem behind classification trees}
+
+%\Large
+%\begin{center}
+%\pause
+%Minimize objective function ({\small a.k.a.} cost function)
+%\end{center}
+
+\large
+\begin{itemize}
+\item
+	\pause
+	Domain ({\small a.k.a.} \,hypothesis class\, {\small a.k.a.} model space)
+	\vskip -0.1cm
+	{\scriptsize\begin{equation*}
+	\pause
+	\left\{\begin{array}{c}
+		\overset{{\color{white}.}}{\textnormal{recursive}} \\
+		\textnormal{binary trees}
+	\end{array}\right\}
+	\pause
+	\quad\sim\quad
+	\left\{\begin{array}{c}
+		\overset{{\color{white}.}}{\textnormal{piecewise constant functions}} \\
+		\textnormal{resulting from} \\
+		\textnormal{recursive binary partitioning}
+	\end{array}\right\}
+	\end{equation*}}
+
+\item
+	\pause
+	Minimize the objective function ({\small a.k.a} cost function)
+	\pause
+	\vskip -0.1cm
+	{\small\begin{equation*}
+	\textnormal{tree impurity}
+	\;=\;
+		\textnormal{weighted average of leaf impurities}
+	\end{equation*}}
+
+\item
+	\pause
+	\vskip -0.2cm
+	The Breiman-Friedman-Olshen-Stone CART
+	Algorithm\!\!\footnote{\tiny Breiman-Friedman-Olshen-Stone (1984),
+	\textit{{\color{red}C}lassification {\color{red}a}nd {\color{red}R}egression {\color{red}T}rees},
+	Taylor \& Francis}
+	\begin{itemize}
+	\setlength{\itemindent}{-0.175in}
+	\item
+		\pause
+		{\footnotesize Growing: at each step, select ``best'' way to split leaves to get the next tree.}
+	\item
+		\pause
+		{\footnotesize Pruning: prune back fully grown tree to mitigate for overfitting}
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%

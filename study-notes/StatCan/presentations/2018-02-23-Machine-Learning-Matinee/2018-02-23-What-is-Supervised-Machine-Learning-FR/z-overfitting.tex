@@ -1,0 +1,124 @@
+
+%%%%%%%%%%
+
+\begin{frame}{\Large Qu'est-ce que le \textit{surapprentissage}?}
+
+\scriptsize
+\pause
+
+\begin{multicols}{2}
+
+	\mbox{}
+	\begin{flushleft}
+	\vskip -0.5cm
+	\only<1-4|handout:0>{\includegraphics[width=5cm]{graphics/xy.png}}
+	\only<5-5|handout:0>{\includegraphics[width=5cm]{graphics/xy-overfitting.png}}
+	\only<6-6|handout:0>{\includegraphics[width=5cm]{graphics/xy-newdata.png}}
+	\only<7-10>{\includegraphics[width=5cm]{graphics/xy-newdata-with-errors.png}}
+	\end{flushleft}
+
+\columnbreak
+
+	\begin{flushright}
+	 \begin{minipage}{5.0cm}
+
+	\pause
+	\vskip -0.5cm
+	\begin{equation*}
+	\textnormal{Mod\`ele}
+	\,\sim\,
+	\left\{\!\!\begin{array}{c}
+	\textnormal{\scriptsize toutes les fonctions} \\ \textnormal{\scriptsize $\xcancel{\textnormal{affines}}$\; polynomiales de $x$}
+	\end{array}\!\!\right\}
+	\end{equation*}
+
+	\pause
+	\begin{center}
+	\vskip -0.2cm
+	Fonction de co\^ut: RMSE
+	\end{center}
+
+	\vskip -0.5cm
+	%\pause\pause\pause
+	%\begin{equation*}
+	%\textnormal{\tiny error}\!\left(\!\!\begin{array}{c}
+	%	\textnormal{\scriptsize new} \\ \textnormal{\scriptsize data}
+	%	\end{array}\!\!\right)
+	%\,>\, 0 \, = \,
+	%\textnormal{\tiny error}\!\left(\!\!\begin{array}{c}
+	%	\textnormal{\scriptsize training} \\ \textnormal{\scriptsize data}
+	%	\end{array}\!\!\right)
+	%\end{equation*}
+
+	\only<1-4|handout:0>{\color{white}
+	\begin{equation*}
+	\textnormal{\tiny RMSE}\!\left(\!\!\!\begin{array}{c}
+		\textnormal{\scriptsize nouvelles} \\ \textnormal{\scriptsize donn\'ees}
+		\end{array}\!\!\!\right)
+	\,>\, 0 \, = \,
+	\textnormal{\tiny RMSE}\!\left(\!\!\!\begin{array}{c}
+		\textnormal{\scriptsize donn\'ees} \\ \textnormal{\tiny d'entra\^inement}
+		\end{array}\!\!\!\right)
+	\end{equation*}
+	}
+
+	\only<5-6|handout:0>{
+	\begin{equation*}
+	{\color{white}\textnormal{\tiny RMSE}\!\left(\!\!\!\begin{array}{c}
+		\textnormal{\scriptsize nouvelles} \\ \textnormal{\scriptsize donn\'ees}
+		\end{array}\!\!\!\right)
+	\,>}\;\, 0 \, = \,
+	\textnormal{\tiny RMSE}\!\left(\!\!\!\begin{array}{c}
+		\textnormal{\scriptsize donn\'ees} \\ \textnormal{\tiny d'entra\^inement}
+		\end{array}\!\!\!\right)
+	\end{equation*}
+	}
+
+	\only<7-10>{
+	\begin{equation*}
+	\textnormal{\tiny RMSE}\!\left(\!\!\!\begin{array}{c}
+		\textnormal{\scriptsize nouvelles} \\ \textnormal{\scriptsize donn\'ees}
+		\end{array}\!\!\!\right)
+	\,>\, 0 \, = \,
+	\textnormal{\tiny RMSE}\!\left(\!\!\!\begin{array}{c}
+		\textnormal{\scriptsize donn\'ees} \\ \textnormal{\tiny d'entra\^inement}
+		\end{array}\!\!\!\right)
+	\end{equation*}
+	}
+
+	\vskip 0.3cm
+	\pause\pause\pause\pause
+	En g\'en\'eral, {\color{red}le surapprentissage m\`ene \`a
+	\vskip -0.5cm
+	\begin{equation*}
+	\textnormal{\tiny RMSE}\!\left(\!\!\!\begin{array}{c}
+		\textnormal{\scriptsize nouvelles} \\ \textnormal{\scriptsize donn\'ees}
+		\end{array}\!\!\!\right)
+	\;\gg\;
+	\textnormal{\tiny RMSE}\!\left(\!\!\!\begin{array}{c}
+		\textnormal{\scriptsize donn\'ees} \\ \textnormal{\tiny d'entra\^inement}
+		\end{array}\!\!\!\right)
+	\end{equation*}
+	}
+
+	\begin{itemize}
+	\item
+		\pause
+		%Overfitted machines give poor predictions on new values of $x$.
+		Les machines sur-optimis\'ees donnent des mauvaises pr\'evisions
+		\`a partir des nouvelles valeurs de $x$.
+	\item
+		\pause
+		%You won't even know it is happening (remember: $Y$ will be unknown).
+		On ne le saura m\^{e}me pas\\ (rappel: $Y$ sera inconnue).
+	\end{itemize}
+
+	\end{minipage}
+	\end{flushright}
+
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
