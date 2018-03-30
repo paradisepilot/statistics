@@ -1,0 +1,175 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The Strong Law of Large Numbers}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[The Strong Law of Large Numbers]
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X_{1}, X_{2}, \ldots : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$ are
+	independent and identically distributed random variables
+	defined on $(\Omega,\mathcal{A},\mu)$.
+\end{itemize}
+Then,
+\begin{enumerate}
+\item
+	\begin{equation*}
+	E\!\left[\,\vert\,\overset{{\color{white}.}}{X}_{1}\,\vert\,\right] \;<\; +\infty
+	\quad\quad\Longrightarrow\quad\quad
+	P\!\left(\;\,
+		\underset{n\rightarrow\infty}{\lim}\;
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}
+		\;\;\textnormal{exists and equals}\;\;
+		E[\,X_{1}\,]
+		\,\right)
+	\;\; = \;\; 1
+	\end{equation*}
+\item
+	\begin{equation*}
+	E\!\left[\,\vert\,\overset{{\color{white}.}}{X}_{1}\,\vert\,\right] \;=\; +\infty
+	\quad\quad\Longrightarrow\quad\quad
+	P\!\left(\;
+		{\color{white}1...}
+		\underset{n\rightarrow\infty}{\lim}\;
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}
+		\;\;\textnormal{does not exist in}\;\; \Re
+		{\color{white}1...}
+		\,\right)
+	\;\; = \;\; 1
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+\proof
+
+\begin{enumerate}
+\item
+
+For each $i \in \N$, define $Y_{i} \,:=\, X_{i} \cdot 1_{\{X_{i} \leq i\,\}}$.
+For each $n \in \N$, define
+\begin{equation*}
+S_{n} \;\; := \;\; \overset{n}{\underset{i=1}{\sum}} \;\, X_{i}
+\quad\;\;\textnormal{and}\quad\;\;
+T_{n} \;\; := \;\; \overset{n}{\underset{i=1}{\sum}} \;\, Y_{i}
+\end{equation*}
+
+Next, for each $\alpha > 1$ and each $n \in \N$, define
+\begin{equation*}
+k_{\alpha}(n)
+\;\; := \;\;
+	\lfloor\, \alpha^{n} \,\rfloor\,,
+\end{equation*}
+where $\lfloor\,x\,\rfloor$ is the round-down of $x \in \Re$; in other words,
+$\lfloor\,x\,\rfloor$ \;$:=$\; the greatest integer $\leq$ $x$, for $x \in \Re$.
+Note immediately that
+\begin{equation*}
+1 \;\;\leq\;\; k_{\alpha}(n) \;\;\leq\;\; \alpha^{n} \;\;\leq\;\; k_{\alpha}(n) + 1
+\;\;\leq\;\; k_{\alpha}(n) + k_{\alpha}(n) \;\;=\;\; 2\,k_{\alpha(n)}\,,
+\quad
+\textnormal{for each $n \in \N$}\,,
+\end{equation*}
+which implies that
+\begin{equation*}
+\dfrac{1}{{\color{white}.}2\,k_{\alpha}(n){\color{white}.}} \;\;\leq\;\; \dfrac{1}{\alpha^{n}}
+\quad
+\textnormal{for each $n \in \N$}\,,
+\end{equation*}
+which in turn is equivalent to
+\begin{equation*}
+\dfrac{1}{{\color{white}.}k_{\alpha}(n)^{2}{\color{white}.}} \;\;\leq\;\; \dfrac{4}{\alpha^{2n}}
+\quad
+\textnormal{for each $n \in \N$}\,,
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\quad\quad
+$P\!\left(\;
+	\underset{n\rightarrow\infty}{\lim}\;
+	\left\vert\;
+		\dfrac{{\color{white}.}\vert\;T_{k_{\alpha}(n)} - E[\,T_{k_{\alpha}(n)}\,]\;\vert{\color{white}.}}{k_{\alpha}(n)}
+		\;\right\vert
+	\;=\;0
+	\;\right)
+\;=\;1$\,, for each $\alpha > 1$.
+\vskip 0.3cm
+\noindent
+Proof of Claim 1:\quad Let $\varepsilon > 0$.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 2:}\quad\quad
+$P\!\left(\;
+	\underset{n\rightarrow\infty}{\lim}\,
+	\dfrac{{\color{white}.}T_{k_{\alpha}(n)}{\color{white}.}}{k_{\alpha}(n)} \;=\; E[\,X_{1}\,]
+	\;\right)
+\;=\;1$\,, for each $\alpha > 1$.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 3:}\quad\quad
+$P\!\left(\;
+	\underset{n\rightarrow\infty}{\lim}\,
+	\dfrac{{\color{white}.}S_{k_{\alpha}(n)}{\color{white}.}}{k_{\alpha}(n)} \;=\; E[\,X_{1}\,]
+	\;\right)
+\;=\;1$\,, for each $\alpha > 1$.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 4:}\quad\quad
+$P\!\left(\;\,
+	\dfrac{1}{\alpha^{2}} \cdot E[\,X_{1}\,]
+	\;\leq\;
+		\underset{n\rightarrow\infty}{\liminf}\;
+		\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+	\;\leq\;
+		\underset{n\rightarrow\infty}{\limsup}\;
+		\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+	\;\leq\;
+		\alpha^{2} \cdot E[\,X_{1}\,]
+	\;\right)
+\;=\;1$\,, for each $\alpha > 1$.
+
+\vskip 0.8cm
+\noindent
+\textbf{Claim 5:}\quad\quad
+$P\!\left(\;\,
+	E[\,X_{1}\,]
+	\;\leq\;
+		\underset{n\rightarrow\infty}{\liminf}\;
+		\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+	\;\leq\;
+		\underset{n\rightarrow\infty}{\limsup}\;
+		\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+	\;\leq\;
+		E[\,X_{1}\,]
+	\;\right)
+\;=\;1$\,.
+
+\end{enumerate}
+
+\qed
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
