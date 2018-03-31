@@ -15,7 +15,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{theorem}[The Strong Law of Large Numbers]
+\begin{theorem}[The Strong Law of Large Numbers (Theorem 8.3.5, p.263, \cite{Dudley2002})]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -110,7 +110,73 @@ $P\!\left(\;
 \;=\;1$\,, for each $\alpha > 1$.
 \vskip 0.3cm
 \noindent
-Proof of Claim 1:\quad Let $\varepsilon > 0$.
+Proof of Claim 1:\quad
+First, recall that
+\begin{eqnarray*}
+&&
+	P\!\left(\;
+	\underset{n\rightarrow\infty}{\lim}\;
+	\left\vert\;
+		\dfrac{{\color{white}.}\vert\;T_{k_{\alpha}(n)} - E[\,T_{k_{\alpha}(n)}\,]\;\vert{\color{white}.}}{k_{\alpha}(n)}
+		\;\right\vert
+	\;=\;0
+	\;\right)
+	\;=\;1
+\\
+&\Longleftrightarrow&
+	\textnormal{for each \,$\varepsilon > 0$}\,,\;
+	P\!\left(\;\,
+		\left\vert\;
+		\dfrac{{\color{white}.}\vert\;T_{k_{\alpha}(n)} - E[\,T_{k_{\alpha}(n)}\,]\;\vert{\color{white}.}}{k_{\alpha}(n)}
+		\;\right\vert
+		\;>\;\varepsilon\,,\;\textnormal{for infinitely many $n$}
+		\;\right)
+	\;=\;0
+%\\
+%&\Longleftrightarrow&
+%	\textnormal{for each \,$\varepsilon > 0$}\,,\;
+%	P\!\left(\;\,
+%		\left\vert\;
+%		\dfrac{{\color{white}.}\vert\;T_{k_{\alpha}(n)} - E[\,T_{k_{\alpha}(n)}\,]\;\vert{\color{white}.}}{k_{\alpha}(n)}
+%		\;\right\vert
+%		\;<\;\varepsilon\,,\;\textnormal{for all but finitely many $n$}
+%		\;\right)
+%	\;=\;1
+\end{eqnarray*}
+On the other hand, for each $\varepsilon > 0$, we have by the Borel-Cantelli Lemma:
+\begin{eqnarray*}
+&&
+	\overset{\infty}{\underset{n=1}{\sum}}\;
+		P\!\left(\;\,
+			\left\vert\;
+			\dfrac{{\color{white}.}\vert\;T_{k_{\alpha}(n)} - E[\,T_{k_{\alpha}(n)}\,]\;\vert{\color{white}.}}{k_{\alpha}(n)}
+			\;\right\vert
+			\;>\;\varepsilon
+			\;\right)
+	\;<\; \infty
+\\
+&\Longrightarrow&
+	P\!\left(\;\,
+		\left\vert\;
+		\dfrac{{\color{white}.}\vert\;T_{k_{\alpha}(n)} - E[\,T_{k_{\alpha}(n)}\,]\;\vert{\color{white}.}}{k_{\alpha}(n)}
+		\;\right\vert
+		\;>\;\varepsilon\,,\;\textnormal{for infinitely many $n$}
+		\;\right)
+	\;=\;0
+\end{eqnarray*}
+Thus, to prove Claim 1, it suffices to establish that
+\begin{equation*}
+\overset{\infty}{\underset{n=1}{\sum}}\;
+	P\!\left(\;\,
+		\left\vert\;
+		\dfrac{{\color{white}.}\vert\;T_{k_{\alpha}(n)} - E[\,T_{k_{\alpha}(n)}\,]\;\vert{\color{white}.}}{k_{\alpha}(n)}
+		\;\right\vert
+		\;>\;\varepsilon
+		\;\right)
+\;<\; \infty\,,
+\quad\textnormal{for each \,$\varepsilon > 0$}
+\end{equation*}
+To this end, let $\varepsilon > 0$.
 
 \vskip 0.8cm
 \noindent
