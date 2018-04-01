@@ -502,6 +502,7 @@ $P\!\left(\;
 \vskip 0.3cm
 \noindent
 Proof of Claim 3:\quad
+First, observe that
 \begin{eqnarray*}
 \left\vert\;\dfrac{{\color{white}.}S_{k_{\alpha}(n)}{\color{white}.}}{k_{\alpha}(n)} \,-\, E[\,X_{1}\,]\;\right\vert
 & = &
@@ -532,16 +533,188 @@ Proof of Claim 3:\quad
 		E[\,X_{1}\,]
 		\;\right\vert\,,
 \end{eqnarray*}
+which implies that
 \begin{eqnarray*}
-\left\vert\;
-	S_{k_{\alpha}(n)} \,\overset{{\color{white}.}}{-}\, T_{k_{\alpha}(n)}
+&&
+	P\!\left(\;
+		\left\{\;
+			\underset{n\rightarrow\infty}{\lim}\,
+			\dfrac{{\color{white}.}
+				\left\vert\;
+					S_{k_{\alpha}(n)} \,\overset{{\color{white}.}}{-}\, T_{k_{\alpha}(n)}
+					\;\right\vert
+				{\color{white}.}}{
+				k_{\alpha}(n)
+				}
+			\,=\, 0
+			\;\right\}
+	\;\bigcap\;
+		\left\{\;
+			\overset{{\color{white}\textnormal{\Large1}}}{\underset{n\rightarrow\infty}{\lim}}\,
+			\left\vert\;
+			\dfrac{{\color{white}.}T_{k_{\alpha}(n)}{\color{white}.}}{k_{\alpha}(n)}
+			\,-\,
+			E[\,X_{1}\,]
+			\;\right\vert
+			\,=\, 0
+			\;\right\}
+	\;\right)
+\\
+& \leq &
+	P\!\left(\;
+		\underset{n\rightarrow\infty}{\lim}\,
+		\left\vert\;\dfrac{{\color{white}.}S_{k_{\alpha}(n)}{\color{white}.}}{k_{\alpha}(n)} \,-\, E[\,X_{1}\,]\;\right\vert
+		\,=\, 0
+		\;\right)
+\end{eqnarray*}
+By Claim 2,
+\begin{equation*}
+P\!\left(\;
+	\overset{{\color{white}\textnormal{\Large1}}}{\underset{n\rightarrow\infty}{\lim}}\,
+	\left\vert\;
+	\dfrac{{\color{white}.}T_{k_{\alpha}(n)}{\color{white}.}}{k_{\alpha}(n)}
+	\,-\,
+	E[\,X_{1}\,]
 	\;\right\vert
+	\,=\, 0
+	\;\right)
+\;\; = \;\; 1\,,
+\end{equation*}
+and, recalling that the intersection of two events each having probability one itself has probability one,
+we see that Claim 3 follows once we establish
+\begin{equation*}
+P\!\left(\;
+	\underset{n\rightarrow\infty}{\lim}\,
+	\dfrac{{\color{white}.}
+		\left\vert\;
+		S_{k_{\alpha}(n)} \,\overset{{\color{white}.}}{-}\, T_{k_{\alpha}(n)}
+		\;\right\vert
+		{\color{white}.}}{
+		k_{\alpha}(n)
+		}
+		\,=\, 0
+	\;\right)
+\;\; = \;\; 1
+\end{equation*}
+To this end, we shall prove the following stronger statement:
+\begin{equation*}
+P\!\left(\;
+	\underset{n\rightarrow\infty}{\lim}\,
+	\dfrac{{\color{white}.}
+		\left\vert\;
+		S_{n} \,\overset{{\color{white}.}}{-}\, T_{n}
+		\;\right\vert
+		{\color{white}.}}{
+		n
+		}
+		\,=\, 0
+	\;\right)
+\;\; = \;\; 1
+\end{equation*}
+Now,
+\begin{equation*}
+\overset{\infty}{\underset{n=1}{\sum}}\;P\!\left(\,X_{n} \,\neq\, Y_{n}\,\right)
+\;\; = \;\;
+	\overset{\infty}{\underset{n=1}{\sum}}\;P\!\left(\,X_{n} \,>\, n\,\right) \cdot 1
+\;\; \leq \;\;
+	\int_{0}^{\infty}P(X_{1} > t)\,\d\,t
+\;\; = \;\;
+	E\!\left[\,X_{1}\,\right]
+\;\; < \;\;
+	\infty\,,
+\end{equation*}
+where the last equality follows by Lemma \ref{LemmaMomentsAndTails}.
+Thus, by the Borel-Cantelli Lemma again, we have
+\begin{equation*}
+P\!\left(\,\overset{{\color{white}.}}{X}_{n} \neq Y_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}\,\right)
+\;\; = \;\; 0\,,
+\end{equation*}
+which is equivalent to
+\begin{equation*}
+P\!\left(\,\overset{{\color{white}.}}{X}_{n} \neq Y_{n}\,,\;\textnormal{for at most finitely many \,$n\,\in\,\N$}\,\right)
+\;\; = \;\; 1\,,
+\end{equation*}
+which is in turn equivalent to
+\begin{equation*}
+P\!\left(\,\overset{{\color{white}.}}{X}_{n} = Y_{n}\,,\;\textnormal{for all but finitely many \,$n\,\in\,\N$}\,\right)
+\;\; = \;\; 1\,.
+\end{equation*}
+Now, for each
+\,$\omega \,\in\, \left\{\,\overset{{\color{white}.}}{X}_{n} = Y_{n}\,,\;\textnormal{for all but finitely many \,$n\,\in\,\N$}\,\right\}$\,, there exists \,$N(\omega) \in \N$\, such that \,$X_{n}(\omega) = Y_{n}(\omega)$\,,\, for each \,$n > N(\omega)$.
+Hence, for each
+\,$\omega \in \left\{\,\overset{{\color{white}.}}{X}_{n} = Y_{n}\,,\;\textnormal{for all but finitely many \,$n\,\in\,\N$}\,\right\}$\,
+and \,$n \geq N(\omega)+1$\,,\, we have
+\begin{eqnarray*}
+\dfrac{{\color{white}.}
+	\left\vert\;
+	S_{n}(\omega) \,\overset{{\color{white}.}}{-}\, T_{n}(\omega)
+	\;\right\vert
+	{\color{white}.}}{
+	n
+	}
 & = &
 	\left\vert\;\,
-		\overset{k_{\alpha}(n)}{\underset{i=1}{\sum}}
-		\left(\,X_{i} \,\overset{{\color{white}.}}{-}\, Y_{i}\,\right)
+		\dfrac{1}{n}\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\,X_{i}(\omega) \,\overset{{\color{white}.}}{-}\, Y_{i}(\omega)\,\right)
 		\;\,\right\vert
+\\
+& = &
+	\left\vert\;\,
+		\dfrac{1}{n}\cdot
+		\overset{N(\omega)}{\underset{i=1}{\sum}}
+		\left(\,X_{i}(\omega) \,\overset{{\color{white}.}}{-}\, Y_{i}(\omega)\,\right)
+		\,+\,
+		\dfrac{1}{n}\cdot
+		\overset{n}{\underset{i=N(\omega)+1}{\sum}}
+		\left(\,X_{i}(\omega) \,\overset{{\color{white}.}}{-}\, Y_{i}(\omega)\,\right)
+		\;\,\right\vert
+\\
+& = &
+	\left\vert\;\,
+		\dfrac{1}{n}\cdot
+		\overset{N(\omega)}{\underset{i=1}{\sum}}
+		\left(\,X_{i}(\omega) \,\overset{{\color{white}.}}{-}\, Y_{i}(\omega)\,\right)
+		\;\,\right\vert
+	\;\; \longrightarrow \;\; 0\,,
+	\quad\textnormal{as \,$n \, \longrightarrow \, \infty$}\,.
 \end{eqnarray*}
+It follows that
+\begin{equation*}
+1
+\;\; = \;\; 
+	P\!\left(\,\overset{{\color{white}.}}{X}_{n} = Y_{n}\,,\;\textnormal{for all but finitely many \,$n\,\in\,\N$}\,\right)
+\;\; \leq \;\;
+	P\!\left(\;
+		\underset{n\rightarrow\infty}{\lim}\,
+		\dfrac{{\color{white}.}
+			\left\vert\;
+			S_{n} \,\overset{{\color{white}.}}{-}\, T_{n}
+			\;\right\vert
+			{\color{white}.}}{
+			n
+			}
+			\,=\, 0
+		\;\right)\,,
+\end{equation*}
+which immediately implies:
+\begin{equation*}
+P\!\left(\;
+	\underset{n\rightarrow\infty}{\lim}\,
+	\dfrac{{\color{white}.}
+		\left\vert\;
+		S_{n} \,\overset{{\color{white}.}}{-}\, T_{n}
+		\;\right\vert
+		{\color{white}.}}{
+		n
+		}
+		\,=\, 0
+	\;\right)
+\;\; = \;\;
+	1\,,
+\end{equation*}
+as required.
+This completes the proof of Claim 3.
 
 \vskip 0.8cm
 \noindent
