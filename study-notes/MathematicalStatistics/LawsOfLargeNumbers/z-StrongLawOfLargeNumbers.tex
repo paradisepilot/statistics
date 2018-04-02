@@ -29,7 +29,7 @@ Suppose:
 \end{itemize}
 Then,
 \begin{enumerate}
-\item
+\item\label{FiniteExpectiationImpliesStrongLaw}
 	\begin{equation*}
 	E\!\left[\,\vert\,\overset{{\color{white}.}}{X}_{1}\,\vert\,\right] \;<\; +\infty
 	\quad\quad\Longrightarrow\quad\quad
@@ -38,7 +38,7 @@ Then,
 		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}
 		\;\;\textnormal{exists and equals}\;\;
 		E[\,X_{1}\,]
-		\,\right)
+		\;\right)
 	\;\; = \;\; 1
 	\end{equation*}
 \item
@@ -61,6 +61,83 @@ Then,
 \begin{enumerate}
 \item
 
+First, note that if \eqref{FiniteExpectiationImpliesStrongLaw} holds for non-negative random variables,
+then it also holds for general (i.e. not necessarily non-negative) random variables.
+Indeed, if \eqref{FiniteExpectiationImpliesStrongLaw} holds for non-negative random variables, then
+\begin{equation*}
+P\!\left(\;\,
+	\underset{n\rightarrow\infty}{\lim}\;
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}^{+} \;=\; E[\,X_{1}^{+}\,]
+	\,\right)
+\;\; = \;\;
+	P\!\left(\;\,
+		\underset{n\rightarrow\infty}{\lim}\;
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}^{-} \;=\; E[\,X_{1}^{-}\,]
+		\,\right)
+\;\; = \;\; 1\,,
+\end{equation*}
+whenever \,$E[\,X_{1}^{+}\,] \, < \infty$\, and \,$E[\,X_{1}^{-}\,] \, < \infty$\,.
+But, \,$E[\,X_{1}\,] \,<\, \infty$\, $\Longleftrightarrow$ \,$E[\,X_{1}^{+}\,] \, < \infty$\, and \,$E[\,X_{1}^{-}\,] \, < \infty$\,,
+and in that case, we have
+\begin{eqnarray*}
+&&
+	\underset{n\rightarrow\infty}{\lim}\;
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}
+		\;\;\textnormal{exists and equals}\;\;
+		E[\,X_{1}\,] \,=\, E[\,X_{1}^{+}\,] \, - \, E[\,X_{1}^{-}\,]
+\\
+& \Longleftrightarrow &
+	\left(\;
+		\underset{n\rightarrow\infty}{\lim}\;
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}^{+}
+		\;\;\textnormal{exists and equals}\;\;
+		E[\,X_{1}^{+}\,]
+		\;\right)
+	\quad\textnormal{and}\quad
+	\left(\;
+		\underset{n\rightarrow\infty}{\lim}\;
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}^{-}
+		\;\;\textnormal{exists and equals}\;\;
+		E[\,X_{1}^{-}\,]
+		\;\right)
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+&&
+	P\!\left(\;\,
+		\underset{n\rightarrow\infty}{\lim}\;
+		\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}
+		\;\;\textnormal{exists and equals}\;\;
+		E[\,X_{1}\,]
+		\;\right)
+\\
+& = &
+	P\!\left(\;\,
+		\left\{\;
+			\underset{n\rightarrow\infty}{\lim}\;
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}^{+}
+			\;\;\textnormal{exists and equals}\;\;
+			E[\,X_{1}^{+}\,]
+			\;\right\}
+	\;\,\bigcap\;
+		\left\{\;
+			\underset{n\rightarrow\infty}{\lim}\;
+			\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\;X_{i}^{-}
+			\;\;\textnormal{exists and equals}\;\;
+			E[\,X_{1}^{-}\,]
+			\;\right\}
+		\;\right)
+\\
+& = &
+	1\,,
+\end{eqnarray*}
+since the intersection of two events each having probability one itself has probability one.
+Thus, in order to prove \eqref{FiniteExpectiationImpliesStrongLaw},
+we may assume, without loss of generality, in the remainder of the proof that \,$X_{1}$\, is non-negative.
+
+\vskip 0.8cm
+\noindent
+Suppose \,$X_{1}$\, is non-negative.
 For each $i \in \N$, define $Y_{i} \,:=\, X_{i} \cdot 1_{\{X_{i} \leq i\,\}}$.
 For each $n \in \N$, define
 \begin{equation*}
@@ -731,6 +808,130 @@ $P\!\left(\;\,
 		\alpha^{2} \cdot E[\,X_{1}\,]
 	\;\right)
 \;=\;1$\,, for each $\alpha > 1$.
+\vskip 0.3cm
+\noindent
+Proof of Claim 4:\quad
+First, observe that, for each $\alpha > 1$,
+\begin{eqnarray*}
+\dfrac{k_{\alpha}(n+1)}{k_{\alpha}(n)}
+& = &
+	\dfrac{\lfloor\, \alpha^{n+1} \,\rfloor}{\lfloor\, \alpha^{n} \,\rfloor}
+\;\; = \;\;
+	\dfrac{
+		\alpha^{n+1} - \left(\alpha^{n+1} \overset{{\color{white}.}}{-} \lfloor\, \alpha^{n+1} \,\rfloor\right)
+	}{
+		\alpha^{n} - \left(\alpha^{n} \overset{{\color{white}.}}{-} \lfloor\, \alpha^{n} \,\rfloor\right)
+	}
+\;\; = \;\;
+	\dfrac{
+		\alpha^{n+1}/\,\alpha^{n} - \left(\alpha^{n+1} \overset{{\color{white}.}}{-} \lfloor\, \alpha^{n+1} \,\rfloor\right)/\,\alpha^{n}
+	}{
+		\alpha^{n}/\,\alpha^{n} - \left(\alpha^{n} \overset{{\color{white}.}}{-} \lfloor\, \alpha^{n} \,\rfloor\right)/\,\alpha^{n}
+	}
+\\
+& = &
+	\dfrac{
+		\alpha - \left(\alpha^{n+1} \overset{{\color{white}.}}{-} \lfloor\, \alpha^{n+1} \,\rfloor\right)/\,\alpha^{n}
+	}{
+		1 - \left(\alpha^{n} \overset{{\color{white}.}}{-} \lfloor\, \alpha^{n} \,\rfloor\right)/\,\alpha^{n}
+	}
+	\;\; \longrightarrow \;\; \alpha\,,
+	\quad
+	\textnormal{as \,$n \,\longrightarrow\, \infty$}
+\end{eqnarray*}
+In particular, for each \,$\alpha > 1$\,, there exists \,$M(\alpha) \in \N$\, such that
+\begin{equation*}
+\dfrac{k_{\alpha}(n+1)}{k_{\alpha}(n)}
+\;\; < \;\;
+	\alpha^{2}\,,
+\quad
+\textnormal{for each \,$n > M(\alpha)$}
+\end{equation*}
+Hence, for each \,$\alpha > 1$\, and \,$m, n \in\N$\,
+with \,$M(\alpha) < k_{\alpha}(n) < m \leq k_{\alpha}(n+1)$\,, we have
+\begin{eqnarray*}
+\dfrac{S_{k_{\alpha}(n)}}{k_{\alpha}(n)}
+& = &
+	\dfrac{k_{\alpha}(n+1)}{k_{\alpha}(n)} \cdot \dfrac{1}{k_{\alpha}(n+1)} \cdot S_{k_{\alpha}(n)}
+	\;\; \leq \;\;
+		\alpha^{2}\cdot\dfrac{1}{m} \cdot S_{m}
+\\
+& = &
+	\alpha^{2}\cdot\dfrac{S_{m}}{m}
+	\;\; \leq \;\;
+		\alpha^{2}\cdot\dfrac{S_{m}}{k_{\alpha}(n)}
+	\;\; = \;\;
+		\alpha^{2} \cdot \dfrac{k_{\alpha}(n+1)}{k_{\alpha}(n)} \cdot \dfrac{1}{k_{\alpha}(n+1)} \cdot S_{m}
+	\;\; \leq \;\;
+		\alpha^{2} \cdot \alpha^{2} \cdot \dfrac{1}{k_{\alpha}(n+1)} \cdot S_{k_{\alpha}(n+1)}
+\\
+& \leq &
+	\alpha^{4}\cdot\dfrac{S_{k_{\alpha}(n+1)}}{k_{\alpha}(n+1)}
+\end{eqnarray*}
+In summary, for each \,$\alpha > 1$\, and \,$m, n \in\N$\,
+with \,$M(\alpha) < k_{\alpha}(n) < m \leq k_{\alpha}(n+1)$\,, we have
+\begin{equation*}
+\dfrac{S_{k_{\alpha}(n)}}{k_{\alpha}(n)}
+\;\; \leq \;\;
+	\alpha^{2}\cdot\dfrac{S_{m}}{m}
+\;\; \leq \;\;
+	\alpha^{4}\cdot\dfrac{S_{k_{\alpha}(n+1)}}{k_{\alpha}(n+1)}\,,
+\end{equation*}
+which implies
+\begin{equation*}
+\dfrac{1}{\alpha^{2}} \cdot \dfrac{S_{k_{\alpha}(n)}}{k_{\alpha}(n)}
+\;\; \leq \;\;
+	\dfrac{S_{m}}{m}
+\;\; \leq \;\;
+	\alpha^{2}\cdot\dfrac{S_{k_{\alpha}(n+1)}}{k_{\alpha}(n+1)}\,,
+\quad
+\textnormal{for each $\alpha > 1$ and $m, n \in \N$ with $M(\alpha) < k_{\alpha}(n) < m \leq k_{\alpha}(n+1)$}\,.
+\end{equation*}
+Thus, for each \,$\alpha > 1$\, and 
+\,$\omega \in \left\{\;
+	\underset{n\rightarrow\infty}{\lim}\,
+	\dfrac{{\color{white}.}S_{k_{\alpha}(n)}{\color{white}.}}{k_{\alpha}(n)} \;=\; E[\,X_{1}\,]
+	\;\right\}$\,,
+we have
+\begin{eqnarray*}
+\dfrac{1}{\alpha^{2}} \cdot E\!\left[\,X_{1}\,\right]
+& = &
+	\dfrac{1}{\alpha^{2}} \cdot \underset{m\rightarrow\infty}{\lim}\;\,\dfrac{S_{k_{\alpha}(n)}(\omega)}{k_{\alpha}(n)}
+	\;\; = \;\;
+		\dfrac{1}{\alpha^{2}} \cdot \underset{m\rightarrow\infty}{\liminf}\;\,\dfrac{S_{k_{\alpha}(n)}(\omega)}{k_{\alpha}(n)}
+\\
+& \leq &
+	\underset{m\rightarrow\infty}{\liminf}\;\,\dfrac{S_{m}(\omega)}{m}
+	\;\; \leq \;\;
+		\underset{m\rightarrow\infty}{\limsup}\;\,\dfrac{S_{m}(\omega)}{m}
+\\
+& \leq &
+	\alpha^{2} \cdot \underset{m\rightarrow\infty}{\limsup}\;\,\dfrac{S_{k_{\alpha}(n+1)}(\omega)}{k_{\alpha}(n+1)}
+	\;\; = \;\;
+		\alpha^{2} \cdot \underset{m\rightarrow\infty}{\lim}\;\,\dfrac{S_{k_{\alpha}(n+1)}(\omega)}{k_{\alpha}(n+1)}
+	\;\; = \;\;
+		\alpha^{2} \cdot E\!\left[\,X_{1}\,\right]
+\end{eqnarray*}
+Thus, by Claim 3, it follows that, for each $\alpha > 1$, we have:
+\begin{equation*}
+1
+\;\; = \;\;
+	P\!\left(\;
+		\underset{n\rightarrow\infty}{\lim}\,
+		\dfrac{{\color{white}.}S_{k_{\alpha}(n)}{\color{white}.}}{k_{\alpha}(n)} \;=\; E[\,X_{1}\,]
+		\;\right)
+\;\; \leq \;\;
+	P\!\left(\;
+		\dfrac{1}{\alpha^{2}} \cdot E\!\left[\,X_{1}\,\right]
+		\; \leq \;
+			\underset{m\rightarrow\infty}{\liminf}\;\,\dfrac{S_{m}}{m}
+		\;\; \leq \;\;
+			\underset{m\rightarrow\infty}{\limsup}\;\,\dfrac{S_{m}}{m}
+		\; \leq \;
+			\alpha^{2} \cdot E\!\left[\,X_{1}\,\right]
+		\;\right),
+\end{equation*}
+from which Claim 4 immediately follows.
 
 \vskip 0.8cm
 \noindent
@@ -747,7 +948,92 @@ $P\!\left(\;\,
 		E[\,X_{1}\,]
 	\;\right)
 \;=\;1$\,.
-
+\vskip 0.3cm
+\noindent
+Proof of Claim 5:\quad
+For each \,$m \in \N$\,,\, let \,$\alpha_{m} \,:=\, \left(1 + \dfrac{1}{m}\right)$\,.
+Then, observe that
+\begin{eqnarray*}
+&&
+	\left\{\;
+		E[\,X_{1}\,]
+		\;\leq\;
+			\underset{n\rightarrow\infty}{\liminf}\;
+			\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+		\;\leq\;
+			\underset{n\rightarrow\infty}{\limsup}\;
+			\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+		\;\leq\;
+			E[\,X_{1}\,]
+		\;\right\}
+\\
+& \textnormal{\Large$=$} &
+	\overset{\infty}{\underset{m=1}{\bigcap}}\;
+	\left\{\;
+		\dfrac{1}{\alpha_{m}^{2}} \cdot E[\,X_{1}\,]
+		\;\leq\;
+			\underset{n\rightarrow\infty}{\liminf}\;
+			\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+		\;\leq\;
+			\underset{n\rightarrow\infty}{\limsup}\;
+			\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+		\;\leq\;
+			\alpha_{m}^{2} \cdot E[\,X_{1}\,]
+		\;\right\}
+\end{eqnarray*}
+By Claim 4,
+\begin{equation*}
+P\!\left(\;
+	\dfrac{1}{\alpha_{m}^{2}} \cdot E[\,X_{1}\,]
+	\;\leq\;
+		\underset{n\rightarrow\infty}{\liminf}\;
+		\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+	\;\leq\;
+		\underset{n\rightarrow\infty}{\limsup}\;
+		\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+	\;\leq\;
+		\alpha_{m}^{2} \cdot E[\,X_{1}\,]
+	\;\right)
+\;\; = \;\;
+	1\,,
+\quad
+\textnormal{for each \,$m \in \N$}.
+\end{equation*}
+Now, recall that the intersection of a countable family of events each having probability one itself has probability one.
+Thus, we may now conclude that
+\begin{eqnarray*}
+&&
+	P\!\left(\;\,
+		E[\,X_{1}\,]
+		\;\leq\;
+			\underset{n\rightarrow\infty}{\liminf}\;
+			\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+		\;\leq\;
+			\underset{n\rightarrow\infty}{\limsup}\;
+			\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+		\;\leq\;
+			E[\,X_{1}\,]
+		\;\right)
+\\
+& = &
+	P\!\left(\;
+		\overset{\infty}{\underset{m=1}{\bigcap}}\;
+		\left\{\;
+			\dfrac{1}{\alpha_{m}^{2}} \cdot E[\,X_{1}\,]
+			\;\leq\;
+				\underset{n\rightarrow\infty}{\liminf}\;
+				\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+			\;\leq\;
+				\underset{n\rightarrow\infty}{\limsup}\;
+				\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+			\;\leq\;
+				\alpha_{m}^{2} \cdot E[\,X_{1}\,]
+			\;\right\}
+		\;\right)
+\;\; = \;\;
+	1
+\end{eqnarray*}
+This proves Claim 5.
 \end{enumerate}
 
 \qed
