@@ -15,6 +15,176 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{theorem}[Borel-Cantelli Lemma]\label{theorem:BorelCantelli}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose \,$(\Omega,\mathcal{A},P)$\, is a probability space, and
+\,$A_{n} \in \mathcal{A}$\,,\, for each $n \in \N$.
+Then,
+\begin{enumerate}
+\item
+	\begin{equation*}
+	\overset{\infty}{\underset{n=1}{\sum}}\;P(A_{n}) \; < \; \infty
+	\quad\Longrightarrow\quad
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+			\;\right)
+		\;\; = \;\; 0
+	\end{equation*}
+\item
+	\begin{equation*}
+	\left.\begin{array}{c}
+		\underset{{\color{white}-}}{\textnormal{The $A_{n}$'s are independent, and}}
+		\\
+	\overset{\infty}{\underset{n=1}{\sum}}\;P(A_{n}) \; = \; \infty
+	\end{array}\;\right\}
+	\quad\Longrightarrow\quad
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+			\;\right)
+		\;\; = \;\; 1
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	First, note that
+	\begin{equation*}
+	\overset{\infty}{\underset{n=1}{\sum}}\;P(A_{n}) \; < \; \infty
+	\quad\Longrightarrow\quad
+		\underset{n\rightarrow\infty}{\lim}\;\,\overset{\infty}{\underset{i=n}{\sum}} \; P\!\left(\,A_{i}\,\right)
+		\; = \;
+			\underset{n\rightarrow\infty}{\lim}
+			\left(\;
+				\overset{\infty}{\underset{i=1}{\sum}} \; P\!\left(\,A_{i}\,\right)
+				\, - \,
+				\overset{n-1}{\underset{i=1}{\sum}} \; P\!\left(\,A_{i}\,\right)
+				\right)
+		\; = \;
+			0
+	\end{equation*}
+	Hence,
+	\begin{eqnarray*}
+	&&
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+			\;\right)
+	\\
+	& = &
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \;\in\; \overset{\infty}{\underset{n=1}{\bigcap}} \;\, \overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}
+			\;\right)
+		\;\; = \;\;
+		P\!\left(\;\,
+			\overset{\infty}{\underset{n=1}{\bigcap}} \;\, \overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}
+			\;\right)
+	\\
+	& \leq &
+		P\!\left(\;\,
+			\overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}
+			\;\right),
+		\quad
+		\textnormal{for each \,$n \,\in\, \N$}
+	\\
+	& \leq &
+		\overset{\infty}{\underset{i=n}{\sum}} \; P\!\left(\,A_{i}\,\right),
+		\quad
+		\textnormal{for each \,$n \,\in\, \N$}\,,
+	\end{eqnarray*}
+	which implies
+	\begin{eqnarray*}
+	0
+	& \leq &
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+			\;\right)
+		\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\lim}\;\; \overset{\infty}{\underset{i=n}{\sum}} \; P\!\left(\,A_{i}\,\right)
+		\;\; = \;\; 0
+	\end{eqnarray*}
+	which in turn implies
+	\begin{eqnarray*}
+	P\!\left(\,
+		\left.
+		\omega \in \overset{{\color{white}-}}{\Omega}
+		\,\;\right\vert\;
+		\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+		\;\right)
+	\;\; = \;\; 0\,,
+	\end{eqnarray*}
+	as required.
+	
+\item
+	First, note that
+	\begin{equation*}
+	\overset{\infty}{\underset{n=1}{\sum}}\;P(A_{n}) \; = \; \infty
+	\quad\Longrightarrow\quad
+		\overset{\infty}{\underset{i=n}{\sum}}\;P(A_{i}) \; = \; \infty\,,
+	\quad\textnormal{for each \,$n \,\in\, \N$}\,.
+	\end{equation*}
+	If the \,$A_{n}$'s\, are furthermore independent events, then for each $n \in \N$,
+	\begin{eqnarray*}
+	P\!\left(\left(\;\,\overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}\,\right)^{\!c}\,\right)
+	& = &
+		P\!\left(\;\,\overset{\infty}{\underset{i=n}{\bigcap}}\;A_{i}^{c}\;\right)
+		\;\; = \;\;
+			\overset{\infty}{\underset{i=n}{\prod}}\;\, P\!\left(\,A_{i}^{c}\,\right)
+		\;\; = \;\;
+			\overset{\infty}{\underset{i=n}{\prod}}\, \left(\,\overset{{\color{white}.}}{1} \,-\, P\!\left(\,A_{i}\,\right)\,\right)
+	\\
+	& \leq &
+		\overset{\infty}{\underset{i=n}{\prod}}\, \exp\left(\, -\,\overset{{\color{white}.}}{P}\!\left(\,A_{i}\,\right)\,\right)
+		\;\; = \;\;
+			\exp\!\left(\;
+				-\,\overset{\infty}{\underset{i=n}{\sum}}\;\overset{{\color{white}.}}{P}\!\left(\,A_{i}\,\right)
+				\;\right)
+		\;\; = \;\;
+			\exp\!\left(\; -\,\overset{{\color{white}\vert}}{\infty} \;\right)
+		\;\; = \;\;
+			0\,,
+	\end{eqnarray*}
+	where the equality above follows from the fact that \,$1 - x \leq e^{-x}$\,,\, for each $x \in [\,0,1\,]$.\,
+	Hence,
+	\begin{equation*}
+	P\!\left(\;\,\overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}\;\right) \;\; = \;\; 1\,,
+	\quad\textnormal{for each \,$n \,\in\, \N$}\,,
+	\end{equation*}
+	which implies
+	\begin{equation*}
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+			\;\right)
+	\;\; = \;\;
+		P\!\left(\;\,\overset{\infty}{\underset{n=1}{\bigcap}}\;\,\overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}\;\right)
+	\;\; = \;\;
+		1\,,
+	\end{equation*}
+	since the intersection of a countable family of events each having probability one itself has probability one.
+	This completes the proof of the Borel-Cantelli Lemma.
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \begin{lemma}\label{lemma:SequenceOfPartialMeans}
 \mbox{}\vskip 0.1cm
 \noindent
