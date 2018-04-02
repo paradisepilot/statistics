@@ -82,7 +82,10 @@ P\!\left(\;\,
 \;\; = \;\; 1\,,
 \end{equation*}
 whenever \,$E[\,X_{1}^{+}\,] \, < \infty$\, and \,$E[\,X_{1}^{-}\,] \, < \infty$\,.
-But, \,$E[\,X_{1}\,] \,<\, \infty$\, $\Longleftrightarrow$ \,$E[\,X_{1}^{+}\,] \, < \infty$\, and \,$E[\,X_{1}^{-}\,] \, < \infty$\,,
+But,
+\,$E\!\left[\,\vert\,\overset{{\color{white}.}}{X}_{1}\,\vert\,\right] \,<\, \infty$\,
+$\Longleftrightarrow$
+\,$E[\,X_{1}^{+}\,] \, < \infty$\, and \,$E[\,X_{1}^{-}\,] \, < \infty$\,,
 and in that case, we have
 \begin{eqnarray*}
 &&
@@ -1057,9 +1060,64 @@ This completes the proof of \eqref{FiniteExpectiationImpliesStrongLaw}.
 
 \item
 
+By Lemma \ref{lemma:EYIsFiniteIFFSumPYGTnIsFinite}, we have
+\begin{equation*}
+E\!\left[\,\vert\,\overset{{\color{white}.}}{X}_{1}\,\vert\,\right] \; = \; \infty
+\quad\Longrightarrow\quad\;
+	\overset{\infty}{\underset{n=1}{\sum}}\;P\!\left(\;\vert\,\overset{{\color{white}.}}{X}_{n}\,\vert \,>\, n\;\right) \; = \; \infty
+\end{equation*}
+Since the \,$X_{i}$'s\, are independent random variables,
+by the Borel-Cantelli Theorem (Theorem \ref{theorem:BorelCantelli}(ii)),
+\begin{equation*}
+P\!\left(\;\vert\,\overset{{\color{white}.}}{X}_{n}\,\vert > n\,,\;\textnormal{for infinitely many $n\,\in\,\N$}\;\right) \;\; = \;\; 1
+\end{equation*}
+But now, observe that, for each \,$\omega \,\in\, \Omega$,
+\begin{eqnarray*}
+&&
+	{\color{white}.}\vert\,\overset{{\color{white}.}}{X}_{n}(\omega)\,\vert \;>\; n\,,
+	\;\;\textnormal{for infinitely many $n\,\in\,\N$}
+\\
+& \Longleftrightarrow &
+	\dfrac{{\color{white}.}\vert\,\overset{{\color{white}.}}{X}_{n}(\omega)\,\vert{\color{white}.}}{n} \,>\, 1\,,
+	\;\;\textnormal{for infinitely many $n\,\in\,\N$}
+\\
+& \Longrightarrow &
+	\dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\;X_{i}(\omega)
+	\;\;\textnormal{cannot be a Cauchy sequence in \,$\Re$}
+\\
+& \Longleftrightarrow &
+	\dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\;X_{i}(\omega)
+	\;\;\textnormal{does not be converge in \,$\Re$}
+\end{eqnarray*}
+Thus, we see that
+\,$E\!\left[\,\vert\,\overset{{\color{white}.}}{X}_{1}\,\vert\,\right] \,= \, \infty$\,
+implies
+\begin{equation*}
+1
+\;\; = \;\;
+	P\!\left(\;\vert\,\overset{{\color{white}.}}{X}_{n}\,\vert > n\,,\;\textnormal{for infinitely many $n\,\in\,\N$}\;\right)
+\;\; \leq \;\;
+	P\!\left(\;
+		\dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\;X_{i}(\omega)
+		\;\;\textnormal{does not be converge in \,$\Re$}
+		\;\right)
+\;\; \leq \;\;
+	1\,,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+P\!\left(\;
+	\dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\;X_{i}(\omega)
+	\;\;\textnormal{does not be converge in \,$\Re$}
+	\;\right)
+\;\; = \;\;
+	1\,,
+\end{equation*}
+as required.
 \end{enumerate}
-
+This completes the proof of the Strong Law of Large Numbers.
 \qed
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 %\renewcommand{\theenumi}{\alph{enumi}}

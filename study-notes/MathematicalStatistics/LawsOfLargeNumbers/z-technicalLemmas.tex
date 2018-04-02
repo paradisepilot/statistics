@@ -324,6 +324,106 @@ The proof of the second inequality is analogous.
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{lemma}\label{lemma:EYIsFiniteIFFSumPYGTnIsFinite}
+\mbox{}
+\vskip 0.1cm
+\noindent
+For any non-negative random variable $Y$,
+\begin{equation*}
+E\!\left[\,Y\,\right]
+\;\; \leq \;\;
+	\overset{\infty}{\underset{n = 0}{\sum}}\;\,P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right)
+\;\; \leq \;\;
+	E\!\left[\,Y\,\right] \,+\, 1
+\end{equation*}
+In particular,
+\begin{equation*}
+E\!\left[\,Y\,\right] \; < \; \infty
+\quad \Longleftrightarrow \quad
+	\overset{\infty}{\underset{n = 0}{\sum}}\;P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right) \; < \; \infty
+\end{equation*}
+\end{lemma}
+\proof
+First, note that
+\begin{eqnarray*}
+\overset{\infty}{\underset{n = 0}{\sum}}\;P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right)
+& = &
+	\overset{\infty}{\underset{n = 0}{\sum}}\;\;
+	\overset{\infty}{\underset{i = n}{\sum}}\;
+	P\!\left(\, i \,<\, \overset{{\color{white}.}}{Y} \,\leq\, i+1 \,\right)
+\;\; = \;\;
+	\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+	\overset{i}{\underset{n = 0}{\sum}}\;
+	P\!\left(\, i \,<\, \overset{{\color{white}.}}{Y} \,\leq\, i+1 \,\right)
+\\
+& = &
+	\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+	(i+1) \cdot P\!\left(\, i \,<\, \overset{{\color{white}.}}{Y} \,\leq\, i+1 \,\right)
+\end{eqnarray*}
+Hence, it follows that
+\begin{eqnarray*}
+E\!\left[\,Y\,\right]
+&=&
+	\int_{0}^{\infty}\, y \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		\int_{i}^{i+1}\, y \;\d\,F(y)
+\\
+& \leq &
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		\int_{i}^{i+1}\, (i+1) \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		(i+1) \cdot \int_{i}^{i+1}\, 1 \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		(i+1) \cdot P\!\left(\; i \,<\, \overset{{\color{white}.}}{Y} \,\leq\, i+1 \;\right)
+\\
+& = &
+	\overset{\infty}{\underset{n = 0}{\sum}}\;\,
+	P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right),
+\end{eqnarray*}
+and
+\begin{eqnarray*}
+E\!\left[\,Y\,\right] \,+\, 1
+&=&
+	\int_{0}^{\infty}\, y \;\d\,F(y)
+		\; + \;
+		\int_{0}^{\infty}\, 1 \;\d\,F(y)
+	\;\; = \;\;
+		\int_{0}^{\infty}\, (y+1) \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		\int_{i}^{i+1}\, (y+1) \;\d\,F(y)
+\\
+& \geq &
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		\int_{i}^{i+1}\, (i+1) \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		(i+1) \cdot \int_{i}^{i+1}\, 1 \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		(i+1) \cdot P\!\left(\; i \,<\, \overset{{\color{white}.}}{Y} \,\leq\, i+1 \;\right)
+\\
+& = &
+	\overset{\infty}{\underset{n = 0}{\sum}}\;\,
+	P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right)
+\end{eqnarray*}
+Combining the above inequalities, we obtain:
+\begin{equation*}
+E\!\left[\,Y\,\right]
+\;\; \leq \;\;
+	\overset{\infty}{\underset{n = 0}{\sum}}\;\,P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right)
+\;\; \leq \;\;
+	E\!\left[\,Y\,\right] \,+\, 1\,,
+\end{equation*}
+as required.
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 %\renewcommand{\theenumi}{\alph{enumi}}
 %\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 \renewcommand{\theenumi}{\roman{enumi}}
