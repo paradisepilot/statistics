@@ -61,8 +61,13 @@ Then,
 \begin{enumerate}
 \item
 
-First, note that if \eqref{FiniteExpectiationImpliesStrongLaw} holds for non-negative random variables,
+\noindent
+\textbf{Claim 0:}\quad
+If \eqref{FiniteExpectiationImpliesStrongLaw} holds for non-negative random variables,
 then it also holds for general (i.e. not necessarily non-negative) random variables.
+\vskip 0.3cm
+\noindent
+Proof of Claim 0:\quad
 Indeed, if \eqref{FiniteExpectiationImpliesStrongLaw} holds for non-negative random variables, then
 \begin{equation*}
 P\!\left(\;\,
@@ -132,12 +137,14 @@ Hence,
 	1\,,
 \end{eqnarray*}
 since the intersection of two events each having probability one itself has probability one.
-Thus, in order to prove \eqref{FiniteExpectiationImpliesStrongLaw},
-we may assume, without loss of generality, in the remainder of the proof that \,$X_{1}$\, is non-negative.
+This proves Claim 0.
+%Thus, in order to prove \eqref{FiniteExpectiationImpliesStrongLaw},
+%we may assume, without loss of generality, in the remainder of the proof that \,$X_{1}$\, is non-negative.
 
 \vskip 0.8cm
 \noindent
-From now on, we suppose \,$X_{1}$\, is non-negative.
+We now proceed to prove \eqref{FiniteExpectiationImpliesStrongLaw}
+under the assumption that \,$X_{1}$\, is non-negative.
 For each $i \in \N$, define $Y_{i} \,:=\, X_{i} \cdot 1_{\{X_{i} \leq i\,\}}$.
 For each $n \in \N$, define
 \begin{equation*}
@@ -1034,6 +1041,31 @@ Thus, we may now conclude that
 	1
 \end{eqnarray*}
 This proves Claim 5.
+
+\vskip 0.5cm
+\noindent
+It immediately follows from Claim 5 that
+\eqref{FiniteExpectiationImpliesStrongLaw} is valid for non-negative random variables;
+in other words,
+\begin{equation*}
+X_{1} \, \geq \, 0 \;\;\textnormal{and}\;\; E\!\left[\,X_{1}\,\right] \,<\, \infty
+\quad\Longrightarrow\quad
+P\!\left(\;\,
+	\underset{n\rightarrow\infty}{\lim}\;
+	\dfrac{{\color{white}.}S_{n}{\color{white}.}}{n}
+	\;\; \textnormal{exists and equals} \;\;
+		E[\,X_{1}\,]
+	\;\right)
+\;=\;1\,.
+\end{equation*}
+This full statement of \eqref{FiniteExpectiationImpliesStrongLaw}
+(i.e. without the additional non-negativity assumption on $X_{1}$)
+now follows at once by Claim 0.
+
+This completes the proof of \eqref{FiniteExpectiationImpliesStrongLaw}.
+
+\item
+
 \end{enumerate}
 
 \qed
