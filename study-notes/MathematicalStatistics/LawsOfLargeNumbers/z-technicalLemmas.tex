@@ -185,6 +185,199 @@ Then,
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{lemma}\label{lemma:CharacterizationOfAlmostSureConvergence}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X, X_{1}, X_{2}, \,\ldots\,:\, (\Omega,\mathcal{A},\mu) \,\longrightarrow\,\Re$
+	are random variables defined on $(\Omega,\mathcal{A},\mu)$.
+\end{itemize}
+Then the following are equivalent:
+\begin{enumerate}
+\item
+	$X_{n} \,\longrightarrow\,X$ almost surely,
+	i.e. \,$P\!\left(\;\underset{n\rightarrow\infty}{\lim}\;X_{n} \,=\, X\,\right) \, = \, 1$.
+\item
+	\begin{equation*}
+	P\!\left(\;
+		\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\vert > \varepsilon\,,
+		{\color{white}....}
+		\;\textnormal{for infinitely many \,$n \,\in\, \N$}
+		{\color{white}.....}
+		\;\right)
+	\;\; = \;\; 0\,,
+	\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+	\end{equation*}
+\item
+	\begin{equation*}
+	P\!\left(\;
+		\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\vert \leq \varepsilon\,,
+		\;\textnormal{for all but finitely many \,$n \,\in\, \N$}
+		\;\right)
+	\;\; = \;\; 1\,,
+	\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+	\end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof
+First, note that it is trivial that \,(ii)\,$\Longleftrightarrow$\,(iii)\,.
+To complete the proof of the present Lemma, it therefore suffices to establish that \,(i)\,$\Longleftrightarrow$\,(iii)\,.
+
+\vskip 0.3cm
+\noindent
+Recall that, for each \,$\omega \in \Omega$\,,
+\begin{eqnarray*}
+&&
+	\underset{n\rightarrow\infty}{\lim}\,
+	\left\vert\,\overset{{\color{white}.}}{X}_{n}(\omega) - X(\omega)\,\right\vert
+	\;\; = \;\;0
+\\
+& \Longleftrightarrow &
+	\textnormal{for each $\varepsilon > 0$,\, there exists \,$N(\varepsilon) \in \N$\, such that
+	\,$\left\vert\,\overset{{\color{white}.}}{X}_{n}(\omega) - X(\omega)\,\right\vert \,\leq\, \varepsilon$,\,
+	for each \,$n > N(\varepsilon)$}
+\\
+& \Longleftrightarrow &
+	\textnormal{for each \,$\varepsilon > 0$,\,
+	\,$\left\vert\,\overset{{\color{white}.}}{X}_{n}(\omega) - X(\omega)\,\right\vert \,\leq\, \varepsilon$,\,
+	for all but finitely many \,$n \in \N$}
+\\
+& \Longleftrightarrow &
+	\textnormal{for each $k \in \N$,\,
+	\,$\left\vert\,\overset{{\color{white}.}}{X}_{n}(\omega) - X(\omega)\,\right\vert \,\leq\, \dfrac{1}{k}$,\,
+	for all but finitely many \,$n \in \N$}
+\end{eqnarray*}
+We therefore see that
+\begin{equation*}
+\!\left\{\;
+	\omega \in \Omega
+	\;\left\vert\;
+	\underset{n\rightarrow\infty}{\lim}\;X_{n}(\omega) \,=\, X(\omega)
+	\right.
+	\;\right\}
+\;\; = \;\;
+	\underset{\varepsilon\,>\,0}{\bigcap}\; A(\varepsilon)
+\;\; = \;\;
+	\overset{\infty}{\underset{k\,=\,1}{\bigcap}}\; A(1/k)\,,
+\end{equation*}
+where
+\begin{equation*}
+A(\varepsilon)
+\; := \;
+	\left\{\;
+		\omega \in \Omega
+		\;\left\vert\;
+		\left\vert\,\overset{{\color{white}.}}{X}_{n}(\omega) - X(\omega)\,\right\vert \,\leq\, \varepsilon\,,\;
+		\textnormal{for all but finitely many \,$n \in \N$}
+		\right.
+		\;\right\},
+\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\underline{(i)\;$\Longrightarrow$\;(iii)}
+\vskip 0.3cm
+\noindent
+Since
+\,$\!\left\{\;
+	\omega \in \Omega
+	\;\left\vert\;
+	\underset{n\rightarrow\infty}{\lim}\;X_{n}(\omega) \,=\, X(\omega)
+	\right.
+	\;\right\}
+\; \subset \; A(\varepsilon)$\,,
+for each \,$\varepsilon > 0$\,,
+we see that
+\begin{eqnarray*}
+&&
+	P\!\left(\;\underset{n\rightarrow\infty}{\lim}\;X_{n} \,=\, X\,\right)
+\\
+& \leq &
+	P\!\left(\,\overset{{\color{white}.}}A(\varepsilon)\,\right)
+	\;\; := \;\;
+		P\!\left(\;
+			\left\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\right\vert \,\leq\, \varepsilon\,,\;
+			\textnormal{for all but finitely many \,$n \in \N$}
+			\;\right),
+	\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+\textnormal{(i)}
+& \Longleftrightarrow  &
+	P\!\left(\;\underset{n\rightarrow\infty}{\lim}\;X_{n} \,=\, X\,\right) \, = \, 1
+\\
+& \Longrightarrow &
+	1
+	\;\; \leq \;\;
+		P\!\left(\;
+			\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\vert \leq \varepsilon\,,
+			\;\textnormal{for all but finitely many \,$n \,\in\, \N$}
+			\;\right)
+	\;\; = \;\;
+		1\,,
+	\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+\\
+& \Longrightarrow &
+	\overset{{\color{white}.}}{\textnormal{(iii)}}\,,
+\end{eqnarray*}
+as required.
+
+\vskip 0.8cm
+\noindent
+\underline{(i)\;$\Longleftarrow$\;(iii)}
+\vskip 0.3cm
+\noindent
+\begin{eqnarray*}
+\textnormal{(iii)}
+& \Longleftrightarrow  &
+	P\!\left(\;
+		\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\vert \leq \varepsilon\,,
+		\,\;\;\textnormal{for all but finitely many \,$n \,\in\, \N$}
+		\;\right)
+	\;\; = \;\; 1\,,
+	\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+\\
+& \Longrightarrow  &
+	P\!\left(\;
+		\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\vert \leq \dfrac{1}{k}\,,
+		\;\textnormal{for all but finitely many \,$n \,\in\, \N$}
+		\;\right)
+	\;\; = \;\; 1\,,
+	\quad\textnormal{for each \,$k \,\in\, \N$}\,.
+\\
+& \overset{{\color{white}-}}{\Longleftrightarrow}  &
+	P\!\left(\; \overset{{\color{white}.}}{A}(1/k) \;\right)
+	\;\; = \;\; 1\,,
+	\quad\textnormal{for each \,$k \,\in\, \N$}\,.
+\\
+& \overset{{\color{white}\vert}}{\Longrightarrow}  &
+	P\!\left(\;\underset{n\rightarrow\infty}{\lim}\;X_{n} \,=\, X\,\right)
+	\; = \;
+	P\!\left(\; \underset{\varepsilon\,>\,0}{\bigcap}\; A(\varepsilon) \right)
+	\; = \;
+	P\!\left(\; \overset{\infty}{\underset{k\,=\,1}{\bigcap}}\; A(1/k) \right)
+	\; = \;
+		1
+\\
+& \overset{{\color{white}\vert}}{\Longrightarrow}  &
+	\textnormal{(i)}\,,
+\end{eqnarray*}
+where the very last equality follows from the fact that the intersection of
+a countable family of events each having probability one itself has probability one.
+
+\vskip 0.5cm
+\noindent
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \begin{lemma}\label{lemma:SequenceOfPartialMeans}
 \mbox{}\vskip 0.1cm
 \noindent
