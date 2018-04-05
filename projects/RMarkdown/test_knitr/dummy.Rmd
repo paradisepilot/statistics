@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Why the Correction Factor Is Necessary for Variance Estimation Based on Mean Bootstrap Weights"
 output:
     word_document: default
     html_document: default
@@ -9,6 +9,10 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+## Abstract
+
+This documents explains why applying the standard variance estimation formula to mean bootstrap weights may lead to severe underestimation, hence a correction factor is needed to mitigate for the underestimation. When using statistical software such as SAS or SUDAAN, his mean bootstrap weight correction factor can be implemented via the Faye's Adjustment factor.
 
 ## R Markdown
 
@@ -24,8 +28,15 @@ summary(cars)
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
+```{r pressure, fig.align="center", echo=FALSE}
 plot(pressure)
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Adding a table
+```{r mtcars}
+require(knitr);
+kable(x=mtcars[1:5,],caption="Five rows of data");
+```
+
