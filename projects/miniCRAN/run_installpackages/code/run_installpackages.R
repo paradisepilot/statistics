@@ -21,6 +21,9 @@ Sys.time();
 start.proc.time <- proc.time();
 
 ###################################################
+default.libPaths <- setdiff(gsub(x=.libPaths(),pattern="^/Users/.+",replacement=""),c(""));
+.libPaths(default.libPaths);
+
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # copy the file of desired packages to output directory
 file.copy(
