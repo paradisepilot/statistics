@@ -1,18 +1,112 @@
 ---
-title: "Why the Correction Factor Is Necessary for Variance Estimation Based on Mean Bootstrap Weights"
+title: "Retailer Scanner Data NAPCS Autocoding via Xgboost/Linear: A Closer Look"
+author: Kenneth Chu (ICCSMD)
+date: "2018-04-13"
 output:
-    word_document: default
+    ioslides_presentation: default
     html_document: default
+    word_document: default
     pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE);
+require(tidyverse);
+require(knitr);
+require(kableExtra);
 ```
 
 ## Abstract
 
 This documents explains why applying the standard variance estimation formula to mean bootstrap weights may lead to severe underestimation, hence a correction factor is needed to mitigate for the underestimation. When using statistical software such as SAS or SUDAAN, his mean bootstrap weight correction factor can be implemented via the Faye's Adjustment factor.
+
+## Recap
+
+ESD has produced a first prototype NAPCS autocoding module for retailer scanner data:
+
+* based on Xgboost/Linear
+* trained on data from Retailer A
+* tested on data from Retailer A (accuracy: 99.4% by ESD)
+* further tested on data from Retailer B (accuracy: 80.1% by ESD)
+
+Xgboost/Linear = Linear Regression with Extreme Gradient Boosting (a recent, fast, very powerful supervised machine learning method)
+
+## Scanner data from Retailer A look like:
+
+```{r dataRetailA, echo=FALSE}
+DF.temp <- data.frame(
+    y1 = c(paste0(rep("a",50),collapse=""),paste0(rep("i",50),collapse="")),
+    y2 = c(paste0(rep("b",50),collapse=""),paste0(rep("j",50),collapse="")),
+    y4 = c(paste0(rep("c",50),collapse=""),paste0(rep("k",50),collapse="")),
+    y5 = c(paste0(rep("d",50),collapse=""),paste0(rep("l",50),collapse="")),
+    y6 = c(paste0(rep("e",50),collapse=""),paste0(rep("m",50),collapse="")),
+    y7 = c(paste0(rep("f",50),collapse=""),paste0(rep("n",50),collapse="")),
+    y8 = c(paste0(rep("g",50),collapse=""),paste0(rep("o",50),collapse="")),
+    y9 = c(paste0(rep("h",50),collapse=""),paste0(rep("p",50),collapse=""))
+);
+kable(x = DF.temp, caption="Retailer A scanner data");
+```
+
+Observations
+
+* does not come with NAPCS
+* does come with Retailer A's internal code: MCH0
+* also come with four "category description variables": AH_4_Desc_En, AH_5_Desc_En, AH_6_Desc_En, AH_7_Desc_En, AH_8_Desc_En
+
+## Prediction Accuracy
+
+```{r accuracy table, fig.align="center", echo=FALSE}
+DF.accuracy <- data.frame(
+    source            = c("Retailer A","Retailer A","Retailer B"),
+    eval.type         = c("train","test","test"),
+    all.variables     = c(99.99,99.10,81.00),
+    descriptions.only = c(90.99,85.00,75.00),
+    AH45678.only      = c(94.00,91.00,57.00)
+);
+rownames(DF.accuracy) <- NULL;
+colnames(DF.accuracy) <- c(
+    "source",
+    "Train/Test",
+    "All Variables (%)",
+    "Product Descriptions Only (%)",
+    "AH_45678 Only (%)"
+    );
+kable(x = DF.accuracy, caption="Prediction Accuracy", format="html") %>%
+    kable_styling(
+        bootstrap_options = "striped",
+        full_width        = FALSE
+        ) %>%
+#    column_spec(
+#        column = c(1,2,3,4),
+#        width  = c("10em",rep("3em",3))
+#        ) %>%
+    column_spec(column=1, width="7em") %>%
+    column_spec(column=2, width="7em") %>%
+    column_spec(column=3, width="3em") %>%
+    column_spec(column=4, width="3em") %>%
+    column_spec(column=5, width="3em") %>%
+    row_spec(
+        row   = 0,
+        align = "center",
+        bold  = TRUE
+        );
+```
+
+## Another table
+
+```{r longTable, echo=FALSE}
+DF.temp <- data.frame(
+    y1 = c(paste0(rep("a",50),collapse=""),paste0(rep("i",50),collapse="")),
+    y2 = c(paste0(rep("b",50),collapse=""),paste0(rep("j",50),collapse="")),
+    y4 = c(paste0(rep("c",50),collapse=""),paste0(rep("k",50),collapse="")),
+    y5 = c(paste0(rep("d",50),collapse=""),paste0(rep("l",50),collapse="")),
+    y6 = c(paste0(rep("e",50),collapse=""),paste0(rep("m",50),collapse="")),
+    y7 = c(paste0(rep("f",50),collapse=""),paste0(rep("n",50),collapse="")),
+    y8 = c(paste0(rep("g",50),collapse=""),paste0(rep("o",50),collapse="")),
+    y9 = c(paste0(rep("h",50),collapse=""),paste0(rep("p",50),collapse=""))
+);
+kable(x = DF.temp, caption="big character table");
+```
 
 ## R Markdown
 
@@ -35,8 +129,7 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 ## Adding a table
+
 ```{r mtcars}
-require(knitr);
 kable(x=mtcars[1:5,],caption="Five rows of data");
 ```
-
