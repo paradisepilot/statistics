@@ -1,10 +1,10 @@
 
-figure.02.02 <- function() {
+figure.02.03 <- function() {
     
     require(survey);
     
     cat("\n\n#######################################");
-    cat("\nfigure.02.02() starts ...\n");
+    cat("\nfigure.02.03() starts ...\n");
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     data(api);
@@ -13,26 +13,25 @@ figure.02.02 <- function() {
     print( str(apisrs) );
     
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    designSRS <- svydesign(id = ~1, fpc = ~fpc, data = apisrs);
+    design_SRS_noFPC <- svydesign(id = ~1, weights = ~pw, data = apisrs);
 
-    cat("\ndesignSRS\n");
-    print( designSRS );
-
-    cat("\nstr(designSRS)\n");
-    print( str(designSRS) );
+    cat("\ndesign_SRS_noFPC\n");
+    print( design_SRS_noFPC );
+    cat("\nstr(design_SRS_noFPC)\n");
+    print( str(design_SRS_noFPC) );
     
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    results.svytotal <- svytotal(x = ~enroll, design = designSRS);
+    results.svytotal <- svytotal(x = ~enroll, design = design_SRS_noFPC);
     cat("\nresults.svytotal\n");
     print( results.svytotal );
     
-    results.svymean <- svymean(x = ~enroll, design = designSRS);
+    results.svymean <- svymean(x = ~enroll, design = design_SRS_noFPC);
     cat("\nresults.svymean\n");
     print( results.svymean );
-
+    
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    cat("\n### figure.02.02() quits ...");
-    cat("\n#######################################");
+    cat("\n### figure.02.03() quits ...");
+    cat("\n#######################################\n");
     
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return(NULL);
