@@ -10,13 +10,15 @@ setwd(output.directory);
 source(file.path(code.directory,"figure-02-02.R"));
 source(file.path(code.directory,"figure-02-03.R"));
 source(file.path(code.directory,"figure-02-04.R"));
+source(file.path(code.directory,"figure-02-05.R"));
 
 resolution <- 300;
 
 ###################################################
-figure.02.02();
-figure.02.03();
-figure.02.04();
+#figure.02.02();
+#figure.02.03();
+#figure.02.04();
+figure.02.05();
 
 ###################################################
 cat("\n\n### warnings()\n");
