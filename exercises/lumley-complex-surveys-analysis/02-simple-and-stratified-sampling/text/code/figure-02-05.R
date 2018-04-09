@@ -14,6 +14,7 @@ figure.02.05 <- function() {
     
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     DF.temp <- unique(apistrat[,c("stype","fpc","pw")]);
+    DF.temp[,"fpc_by_pw"] <- DF.temp[,"fpc"] / DF.temp[,"pw"];
     
     cat("\n### unique(apistrat[,c('stype','fpc','pw')])\n");
     print( DF.temp );
