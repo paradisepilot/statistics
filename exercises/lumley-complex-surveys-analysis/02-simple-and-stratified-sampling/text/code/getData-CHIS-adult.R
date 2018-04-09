@@ -8,6 +8,21 @@ getData.CHIS.adult <- function(data.directory) {
     cat("\n### getData.CHIS.adult() starts ...\n");
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    cat("\n### data.directory\n");
+    print( data.directory );
+    
+    data.directory <- file.path(
+        gsub(
+            x           = data.directory,
+            pattern     = "lumley-complex-surveys-analysis.+",
+            replacement = "lumley-complex-surveys-analysis"
+            )
+        );
+    
+    cat("\n### data.directory\n");
+    print( data.directory );
+    
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     output.file <- file.path(data.directory,"CHIS-2005-adult.RData");
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
