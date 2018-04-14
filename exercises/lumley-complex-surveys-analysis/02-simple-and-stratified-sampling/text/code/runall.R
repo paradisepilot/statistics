@@ -11,6 +11,7 @@ source(file.path(code.directory,"figure-02-02.R"));
 source(file.path(code.directory,"figure-02-03.R"));
 source(file.path(code.directory,"figure-02-04.R"));
 source(file.path(code.directory,"figure-02-05.R"));
+source(file.path(code.directory,"figure-02-06.R"));
 source(file.path(code.directory,"figure-02-08.R"));
 source(file.path(code.directory,"getData-CHIS-adult.R"));
 
@@ -22,7 +23,8 @@ resolution <- 300;
 #figure.02.03();
 #figure.02.04();
 #figure.02.05();
-figure.02.08(data.directory = data.directory);
+figure.02.06();
+#figure.02.08(data.directory = data.directory);
 
 ###################################################
 cat("\n\n### warnings()\n");
