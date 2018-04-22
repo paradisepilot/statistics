@@ -1,0 +1,118 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Survival functions}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Survival random variable]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A \textbf{survival random variable} is a random variable whose codomain is $[0,\infty)$.
+\end{definition}
+
+\vskip 0.5cm
+\begin{definition}[Survival function of a survival random variable]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $Y : (\Omega,\mathcal{A},\mu) \longrightarrow [0,\infty)$ is a survival random variable,
+and $F_{Y} : [0,\infty) \longrightarrow [0,1] : y \longmapsto P(Y \leq y)$ is its cumulative distribution function.
+Then, the \textbf{survival function} $S_{Y}$ is defined to be:
+\begin{equation*}
+S_{Y} \;:\; [0,\infty] \;\longrightarrow\; [0,1] \;:\; y \;\longmapsto\; 1 - F_{Y}(y) \;=\; P(Y > y)
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{theorem}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$Y : (\Omega,\mathcal{A},\mu) \longrightarrow [0,\infty)$ is a survival random variable, and
+	$F_{Y} : [0,\infty) \longrightarrow [0,1] : y \longmapsto P(Y \leq y)$ is its cumulative distribution function.
+\item
+	The distribution on $[0,\infty)$ induced by $Y$ is {\color{red}absolutely continuous} with respect to
+	the Lebesgue measure $\lambda $on $[0,\infty)$; hence the probability density function
+	$f_{Y} : [0,\infty) \longrightarrow [0,\infty)$ of $Y$ with respect to $\lambda$ exists.
+\end{itemize}
+Then,
+\begin{enumerate}
+\item
+	The probability density function $f_{Y}$ and the survival function $S_{Y}$ of $Y$ satisfy the following relation:
+	\begin{equation*}
+	f_{Y}(y) \; = \; -\,\dfrac{\d}{\d y}\,S_{Y}(y)
+	\end{equation*}
+\item
+	$S_{Y}$ is non-increasing over $[0,\infty)$ and
+	\begin{equation*}
+	\underset{y \rightarrow 0^{+}}{\lim}\,S_{Y}(y) \;=\; 1
+	\quad\textnormal{and}\quad
+	\underset{y \rightarrow \infty}{\lim}\,S_{Y}(y) \;=\; 0 
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{definition}[Empirical survival function]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $Y : (\Omega,\mathcal{A},\mu) \longrightarrow [0,\infty)$ is a survival random variable,
+and $n \in \N$.
+Then, the \,\textbf{$n^{\textnormal{th}}$ empirical survival function}
+\,$\widehat{S}^{\,(n)}_{Y}$\, of \,$Y$ is defined to be:
+\begin{equation*}
+\widehat{S}^{\,(n)}_{Y} \;:\; \Omega \times [0,\infty) \;\longrightarrow\; [0,1] \;:\;
+	(\omega,y) \;\longmapsto\; \dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\;I_{\{Y_{i}(\omega) \,>\, y\}}\,,
+\end{equation*}
+where $Y_{1}, \ldots, Y_{n}$ are independent and identically distributed copies of $Y$.
+\end{definition}
+
+\vskip 0.5cm
+\begin{proposition}[Properties of empirical survival function]
+\mbox{}
+\vskip 0.1cm
+\noindent
+\begin{enumerate}
+\item
+	For each $n \in \N$ and each $y \in [0,\infty)$, the function
+	\begin{equation*}
+	\widehat{S}_{Y}^{\,(n)}\!(\,\cdot\,,y) \;:\; \Omega \;\longrightarrow\; [0,1] \;:\;
+		\omega \;\longrightarrow\; \widehat{S}^{\,(n)}_{Y}\!(\omega,y)
+		\;=\; \dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\;I_{\{Y_{i}(\omega) \,>\, y\}}
+	\end{equation*}
+	is a random variable defined on $(\Omega,\mathcal{A},\mu)$.
+\item
+	For each $n \in \N$ and each $y \in [0,\infty)$, we have
+	\begin{equation*}
+	E\!\left[\;\widehat{S}^{\,(n)}_{Y}\!(\,\cdot\,,y)\;\right] \; = \; S_{Y}(y)\,,
+	\quad\quad\textnormal{and}\quad\quad
+	\Var\!\left[\;\widehat{S}^{\,(n)}_{Y}\!(\,\cdot\,,y)\;\right] \; = \; \dfrac{1}{n} \cdot S_{Y}(y)\cdot\left(1\overset{{\color{white}.}}{-}S_{Y}(y)\right)
+	\end{equation*}
+\end{enumerate}
+\end{proposition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
