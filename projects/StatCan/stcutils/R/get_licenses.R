@@ -8,6 +8,7 @@
 #'     of the attached and loaded packages
 #' @examples
 #' get_licenses()
+#' @export
 get_licenses <- function() {
 
     DF.output <- data.frame(
