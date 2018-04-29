@@ -19,7 +19,7 @@ get_licenses <- function() {
         stringsAsFactors=FALSE
     );
 
-    my.sessionInfo <- sessionInfo();
+    my.sessionInfo <- utils::sessionInfo();
     temp.list <- intersect(c("otherPkgs","loadedOnly"),names(my.sessionInfo));
 
     for (temp.name in temp.list) {
