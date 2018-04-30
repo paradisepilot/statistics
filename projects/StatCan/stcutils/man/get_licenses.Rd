@@ -15,5 +15,21 @@ A data frame of the names, versions, licenses and repositories
 all the attached and loaded R packages in an R session.
 }
 \examples{
-get_licenses()
+# > library(ggplot2)
+# > library(stcutils)
+# > get_licenses()
+# package    version                     license repository
+# 1  colorspace      1.3-2 BSD_3_clause + file LICENSE       CRAN
+# 2        Rcpp    0.12.11                  GPL (>= 2)       CRAN
+# 3      gtable      0.2.0                       GPL-2       CRAN
+# 4     ggplot2      2.2.1        GPL-2 | file LICENSE       CRAN
+# 5    lazyeval      0.2.0                       GPL-3       CRAN
+# 6       rlang      0.1.6                       GPL-3       CRAN
+# 7    stcutils 0.0.0.9000                       GPL-3       <NA>
+# 8     munsell      0.4.3          MIT + file LICENSE       CRAN
+# 9        plyr      1.8.4          MIT + file LICENSE       CRAN
+# 10     scales      0.4.1          MIT + file LICENSE       CRAN
+# 11     tibble      1.3.3          MIT + file LICENSE       CRAN
+# 12   compiler      3.4.3             Part of R 3.4.3       <NA>
+# 13       grid      3.4.3             Part of R 3.4.3       <NA>
 }
