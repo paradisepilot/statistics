@@ -1,0 +1,96 @@
+---
+title: "2018 Methodology Branch Physical Activity Challenge"
+author: "1"
+date: "Défi sportif de la Direction de la méthodologie 2018"
+output:
+  revealjs::revealjs_presentation:
+    center: yes
+    theme: night
+    transition: fade
+    css: my-style.css
+  html_document: default
+  pdf_document: default
+  ioslides_presentation: default
+  word_document: default
+---
+
+```{r setup, echo=FALSE, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE);
+require(dplyr);
+require(ggplot2);
+require(kableExtra);
+require(knitr);
+require(RColorBrewer);
+require(readr);
+require(tidyr);
+
+DIR.data <- "./data";
+
+textsize.axis   = 18;
+textsize.legend = 18;
+textsize.title  = 25;
+
+my.palette <- brewer.pal(n=4,name="YlOrRd");
+names(my.palette) <- c("Week01","Week02","Week03","Week04");
+```
+
+```{r loadWideData, echo=FALSE, include=FALSE, message=FALSE}
+CSV.branch.wide <- file.path(DIR.data,"branch-wide.csv");
+DF.branch.wide  <- read_csv(file = CSV.branch.wide);
+DF.branch.wide  <- DF.branch.wide %>%
+    mutate(Section = paste0(Division,":",SectionChief));
+#str(DF.branch.wide);
+
+DF.branch.long <- as.data.frame(gather(
+    data  = DF.branch.wide,
+    key   = week,
+    value = hours,
+    c("Week01", "Week02", "Week03", "Week04")
+    ));
+```
+
+<!--
+## Week of May 28, 2018 {#showBarChart}
+-->
+```{r showBarChart, echo=FALSE, message=FALSE, fig.width=12, fig.height=6}
+my.ggplot <- ggplot(data = NULL) + theme_bw();
+
+my.ggplot <- my.ggplot + theme(
+    title             = element_text(size = textsize.title, face = "bold"),
+    plot.background   = element_rect(fill = "black", colour = "black"),
+    axis.title.x      = element_blank(),
+    axis.title.y      = element_blank(),
+    axis.text.x       = element_text(size=textsize.axis,face="bold",color="gray",angle=90),
+    axis.text.y       = element_text(size=textsize.axis,face="bold",color="gray"),
+    panel.background  = element_rect(fill = "black", colour = "black"),
+    panel.grid.major  = element_line(colour="gray", linetype=2, size=0.25),
+    panel.grid.minor  = element_line(colour="gray", linetype=2, size=0.25),
+    legend.position   = "bottom",
+    legend.title      = element_blank(),
+    legend.direction  = "horizontal",
+    legend.key        = element_rect(fill=alpha('white',0)),
+    legend.text       = element_text(size=textsize.legend,face="bold",color="gray",margin=margin(l=24,r=24,unit="pt")),
+    legend.background = element_rect(fill=alpha('white',0)),
+    legend.key.size   = unit(1,"cm"),
+    legend.spacing    = unit(1,"cm"),
+    legend.margin     = margin(t = 1, r = 1, b = 1, l = 1, unit = "pt"),
+    strip.text        = element_text(size=textsize.axis,colour="black")
+    );
+
+my.ggplot <- my.ggplot + scale_fill_manual(
+    values = my.palette,
+    labels = paste0(names(my.palette),paste0(rep(" ",10),collapse=""))
+    );
+
+my.ggplot <- my.ggplot + geom_col(
+    data     = DF.branch.long,
+    mapping  = aes(y=hours,x=SectionChief,fill=week),
+    position = position_stack(reverse = TRUE)
+    );
+
+my.ggplot <- my.ggplot + facet_grid( ~ Division, scales = "free_x");
+
+ggsave(filename="my-barchart.png",plot=my.ggplot,device="png")
+
+my.ggplot;
+```
