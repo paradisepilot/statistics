@@ -46,7 +46,7 @@ source(file.path(dir.code,"createTemplates.R"))
 set.seed(1234567);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-synthesizeData(FILE.sections = file.path(dir.data,"sections.xlsx"));
+createTemplates(FILE.sections = file.path(dir.data,"sections.xlsx"));
 
 ###################################################
 # print warning messages to log
