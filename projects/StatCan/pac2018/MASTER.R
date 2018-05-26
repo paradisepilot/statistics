@@ -39,18 +39,54 @@ cat(paste0("\n\n##### Sys.time(): ",Sys.time(),"\n"));
 start.proc.time <- proc.time();
 
 ###################################################
+require(rmarkdown);
+require(revealjs);
+
 source(file.path(dir.code,"createTemplates.R"))
-#source(file.path(dir.code,"synthesizeData.R"))
+source(file.path(dir.code,"synthesizeData.R"))
+source(file.path(dir.code,"getParticipantScores.R"))
+source(file.path(dir.code,"getDivisionScores.R"))
+source(file.path(dir.code,"getSectionScores.R"))
+
+file.copy(from = file.path(dir.code,"ds-pac-2018.Rmd"), to = dir.output);
+file.copy(from = file.path(dir.code,"my-style.css"),    to = dir.output);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 set.seed(1234567);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-createTemplates(FILE.sections = file.path(dir.data,"sections.xlsx"));
+#createTemplates(FILE.sections = file.path(dir.data,"sections.xlsx"));
+
+synthesizeData( FILE.sections = file.path(dir.data,"sections.xlsx"));
+
+dir.synthesized.microdata <- file.path(dir.output,"pac2018-microdata-synthesized");
+
+#DF.participant <- getScoresSingleParticipant(
+#    file.participant = file.path(dir.synthesized.microdata,"DMEE-BSMD","NH","pac2018_DMEE-BSMD_NH_1.csv"),
+#    max.date  = as.Date("2018-06-10"),
+#    max.score = 1500
+#    );
+
+DF.participantScores <- getParticipantScores(
+    microdata.directory = dir.synthesized.microdata,
+    max.date            = as.Date("2018-06-10"),
+    max.score           = 1500,
+    FILE.output         = "weekly-scores-participant.csv"
+    );
+
+DF.divisionScores <- getDivisionScores(
+    DF.participantScores = DF.participantScores,
+    FILE.output          = "weekly-scores-division.csv"
+    );
+
+DF.sectionScores <- getSectionScores(
+    DF.participantScores = DF.participantScores,
+    FILE.output          = "weekly-scores-section.csv"
+    );
 
 ###################################################
 # print warning messages to log
-cat("\n###################################################");
+cat("\n\n###################################################");
 cat("\n\n##### warnings():\n")
 print(warnings());
 

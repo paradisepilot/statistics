@@ -1,5 +1,5 @@
 
-createTemplates <- function(FILE.sections) {
+synthesizeData <- function(FILE.sections) {
 
     require(readxl);
 
@@ -60,7 +60,7 @@ createTemplates <- function(FILE.sections) {
         temp.sectionChief <- DF.sections[i,"SectionChief"];
 
         temp.directory <- file.path(
-            "pac2018-microdata-template",
+            "pac2018-microdata-synthesized",
             gsub(x = temp.division, pattern = "/", replacement = "-"),
             temp.sectionChief
             );
@@ -69,20 +69,28 @@ createTemplates <- function(FILE.sections) {
         
         DF.temp[,"division"] <- temp.division;
         DF.temp[,"chief"]    <- temp.sectionChief;
+
+        for (j in 1:sample(x=seq(3,5,1),size=1)) {
+            
+            DF.temp[,"minutes"]    <- floor(rnorm(n=nrow(DF.temp),mean=75,sd=10));
+            DF.temp[1:2,"minutes"] <- 7 * DF.temp[1:2,"minutes"];
+            
+            temp.file <- paste0(
+                "pac2018_",
+                gsub(x = temp.division, pattern = "/", replacement = "-"),"_",
+                temp.sectionChief,"_",
+                j,
+                ".csv"
+                );
+
+            write.csv(
+                x         = DF.temp,
+                file      = file.path(temp.directory,temp.file),
+                row.names = FALSE
+                );
         
-        temp.file <- paste0(
-            "pac2018_",
-            gsub(x = temp.division, pattern = "/", replacement = "-"),"_",
-            temp.sectionChief,
-            "_template.csv"
-            );
-
-        write.csv(
-            x         = DF.temp,
-            file      = file.path(temp.directory,temp.file),
-            row.names = FALSE
-            );
-
+            }
+        
         }
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
