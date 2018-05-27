@@ -62,7 +62,7 @@ dir.synthesized.microdata <- file.path(dir.output,"pac2018-microdata-synthesized
 
 DF.participantScores <- getParticipantScores(
     microdata.directory = dir.synthesized.microdata,
-    max.date            = as.Date("2018-06-10"),
+    max.date            = as.Date("2018-06-24"),
     max.score           = 1500,
     FILE.output         = "weekly-scores-participant.csv"
     );
