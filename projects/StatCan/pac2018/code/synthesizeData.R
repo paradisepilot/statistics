@@ -70,10 +70,10 @@ synthesizeData <- function(FILE.sections) {
         DF.temp[,"division"] <- temp.division;
         DF.temp[,"chief"]    <- temp.sectionChief;
 
-        section.mean <- rnorm(n = 1, mean = 75, sd = 15);
+        section.mean <- rnorm(n = 1, mean = 35, sd = 10);
         for (j in 1:sample(x=seq(3,5,1),size=1)) {
             
-            DF.temp[,"minutes"]    <- floor(rnorm(n = nrow(DF.temp), mean = section.mean, sd = 15));
+            DF.temp[,   "minutes"] <- floor(rnorm(n = nrow(DF.temp), mean = section.mean, sd = 2));
             DF.temp[1:2,"minutes"] <- 7 * DF.temp[1:2,"minutes"];
             
             temp.file <- paste0(

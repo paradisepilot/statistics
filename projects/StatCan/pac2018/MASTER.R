@@ -52,7 +52,7 @@ file.copy(from = file.path(dir.code,"ds-pac-2018.Rmd"), to = dir.output);
 file.copy(from = file.path(dir.code,"my-style.css"),    to = dir.output);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-set.seed(1234567);
+set.seed(7654321);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #createTemplates(FILE.sections = file.path(dir.data,"sections.xlsx"));
