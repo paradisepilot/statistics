@@ -58,14 +58,7 @@ set.seed(1234567);
 #createTemplates(FILE.sections = file.path(dir.data,"sections.xlsx"));
 
 synthesizeData( FILE.sections = file.path(dir.data,"sections.xlsx"));
-
 dir.synthesized.microdata <- file.path(dir.output,"pac2018-microdata-synthesized");
-
-#DF.participant <- getScoresSingleParticipant(
-#    file.participant = file.path(dir.synthesized.microdata,"DMEE-BSMD","NH","pac2018_DMEE-BSMD_NH_1.csv"),
-#    max.date  = as.Date("2018-06-10"),
-#    max.score = 1500
-#    );
 
 DF.participantScores <- getParticipantScores(
     microdata.directory = dir.synthesized.microdata,

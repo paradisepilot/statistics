@@ -23,6 +23,7 @@ require(tidyr);
 DIR.data <- ".";
 DIR.code <- "./code";
 
+source(file.path(DIR.code,"plotDivision.R"));
 source(file.path(DIR.code,"plotSection.R"));
 
 textsize.axis   = 18;
@@ -33,15 +34,28 @@ string.week <- "Semaine / Week";
 my.palette <- brewer.pal(n=4,name="YlOrRd");
 names(my.palette) <- paste0(string.week," ",seq(1,4,1));
 ```
-<!--
-## Week of May 28, 2018 {#showBarChart}
--->
-```{r showBarChart, echo=FALSE, message=FALSE, fig.width=12, fig.height=6}
+
+<!-- division barchart -->
+### Scores des divisions / Division Scores
+```{r divisionBarChart, echo=FALSE, message=FALSE, fig.width=12, fig.height=6}
+my.ggplot <- plotDivision(
+    CSV.input      = file.path(DIR.data,"weekly-scores-division.csv"),
+    custom.palette = my.palette
+    );
+
+ggsave(filename=file.path(DIR.data,"barchart-division.png"),plot=my.ggplot,device="png")
+my.ggplot;
+```
+
+<!-- section barchart -->
+----
+### Scores des sections / Section Scores
+```{r sectionBarChart, echo=FALSE, message=FALSE, fig.width=12, fig.height=6}
 my.ggplot <- plotSection(
     CSV.input      = file.path(DIR.data,"weekly-scores-section.csv"),
     custom.palette = my.palette
     );
 
-ggsave(filename=file.path(DIR.data,"barchart-sections.png"),plot=my.ggplot,device="png")
+ggsave(filename=file.path(DIR.data,"barchart-section.png"),plot=my.ggplot,device="png")
 my.ggplot;
 ```
