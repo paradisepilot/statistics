@@ -24,14 +24,12 @@ def wordTokenization():
     print("\n### tokenized with nltk.TreebankWordTokenizer().tokenize:")
     print( myWords )
 
-    myPattern = '\w+'
-    regexpTokenizer = nltk.RegexpTokenizer(pattern = myPattern, gaps = False)
+    regexpTokenizer = nltk.RegexpTokenizer(pattern = '\w+', gaps = False)
     myWords = regexpTokenizer.tokenize(text = mySentence)
     print("\n### tokenized with nltk.RegexpTokenizer(pattern = '\w+', gaps = False).tokenize:")
     print( myWords )
 
-    myPattern = '\s+'
-    regexpTokenizer = nltk.RegexpTokenizer(pattern = myPattern, gaps = True)
+    regexpTokenizer = nltk.RegexpTokenizer(pattern = '\s+', gaps = True)
     myWords = regexpTokenizer.tokenize(text = mySentence)
     print("\n### tokenized with nltk.RegexpTokenizer(pattern = '\s+', gaps = True).tokenize:")
     print( myWords )
@@ -40,6 +38,16 @@ def wordTokenization():
     print("\n### tokenized with nltk.RegexpTokenizer(pattern = '\s+', gaps = True).span_tokenize:")
     print( wordIndices )
     print( [ mySentence[start:end] for start, end in wordIndices ] )
+
+    wordPunctTokenizer = nltk.WordPunctTokenizer()
+    myWords = wordPunctTokenizer.tokenize(text = mySentence)
+    print("\n### tokenized with nltk.WordPunctTokenizer().tokenize:")
+    print( myWords )
+
+    whitespaceTokenizer = nltk.WhitespaceTokenizer()
+    myWords = whitespaceTokenizer.tokenize(text = mySentence)
+    print("\n### tokenized with nltk.WhitespaceTokenizer().tokenize:")
+    print( myWords )
 
 ###################################################
 def sentenceTokenization():
