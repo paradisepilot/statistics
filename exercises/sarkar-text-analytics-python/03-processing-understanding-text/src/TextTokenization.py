@@ -12,17 +12,34 @@ from pprint      import pprint
 def wordTokenization():
 
     mySentence = "The brown fox isn't that quick and he couldn't win the race."
+    print("\n### mySentence:")
+    print( mySentence )
 
     myWordTokenizer = nltk.word_tokenize
     myWords = myWordTokenizer(mySentence)
-    print("\n### myWords:")
+    print("\n### tokenized with nltk.word_tokenize:")
     print( myWords )
 
-    #myWordTokenizer = nltk.TreebankWordTokenizer()
-    #myWords = myWordTokenizer.tokenize(text = mySentence)
     myWords = nltk.TreebankWordTokenizer().tokenize(text = mySentence)
-    print("\n### Treebank Words:")
+    print("\n### tokenized with nltk.TreebankWordTokenizer().tokenize:")
     print( myWords )
+
+    myPattern = '\w+'
+    regexpTokenizer = nltk.RegexpTokenizer(pattern = myPattern, gaps = False)
+    myWords = regexpTokenizer.tokenize(text = mySentence)
+    print("\n### tokenized with nltk.RegexpTokenizer(pattern = '\w+', gaps = False).tokenize:")
+    print( myWords )
+
+    myPattern = '\s+'
+    regexpTokenizer = nltk.RegexpTokenizer(pattern = myPattern, gaps = True)
+    myWords = regexpTokenizer.tokenize(text = mySentence)
+    print("\n### tokenized with nltk.RegexpTokenizer(pattern = '\s+', gaps = True).tokenize:")
+    print( myWords )
+
+    wordIndices = list( regexpTokenizer.span_tokenize(text = mySentence) )
+    print("\n### tokenized with nltk.RegexpTokenizer(pattern = '\s+', gaps = True).span_tokenize:")
+    print( wordIndices )
+    print( [ mySentence[start:end] for start, end in wordIndices ] )
 
 ###################################################
 def sentenceTokenization():
