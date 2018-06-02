@@ -23,13 +23,19 @@ import seaborn as sns
 
 from InstallNLTKResources import installNLTKResources
 from TextTokenization     import sentenceTokenization, wordTokenization
+from TextNormalization    import textNormalization
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 installNLTKResources()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-sentenceTokenization()
-wordTokenization()
+### Text Tokenization
+# sentenceTokenization()
+# wordTokenization()
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+### Text Normalization
+textNormalization()
 
 #################################################
 #################################################
