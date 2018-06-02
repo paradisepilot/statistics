@@ -22,13 +22,14 @@ os.chdir(outDIR)
 import seaborn as sns
 
 from InstallNLTKResources import installNLTKResources
-from TextTokenization     import sentenceTokenization
+from TextTokenization     import sentenceTokenization, wordTokenization
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 installNLTKResources()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 sentenceTokenization()
+wordTokenization()
 
 #################################################
 #################################################

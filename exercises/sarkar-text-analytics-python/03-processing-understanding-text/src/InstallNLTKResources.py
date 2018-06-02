@@ -9,15 +9,21 @@ def installNLTKResources():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     try:
-        nltk.data.find('corpora/gutenberg')
+        nltk.data.find('corpora/europarl_raw')
     except LookupError:
-        nltk.download('gutenberg')
+        nltk.download('europarl_raw')
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     try:
         nltk.data.find('tokenizers/punkt')
     except LookupError:
         nltk.download('punkt')
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    try:
+        nltk.data.find('corpora/gutenberg')
+    except LookupError:
+        nltk.download('gutenberg')
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( None )
