@@ -20,16 +20,12 @@ os.chdir(outDIR)
 #################################################
 #################################################
 import seaborn as sns
-import nltk
 
-from TextTokenization import sentenceTokenization
+from InstallNLTKResources import installNLTKResources
+from TextTokenization     import sentenceTokenization
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# install gutenberg corpus if not yet installed
-try:
-    nltk.data.find('corpora/gutenberg')
-except LookupError:
-    nltk.download('gutenberg')
+installNLTKResources()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 sentenceTokenization()
