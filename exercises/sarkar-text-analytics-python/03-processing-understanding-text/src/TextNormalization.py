@@ -19,19 +19,19 @@ def textNormalization():
         "@@You'll (learn) a **lot** in the book. Python is an amazing language!@@"
         ]
 
-    print( "\n### corpus:" )
+    print( "\n\n### corpus:" )
     for temp in corpus:
-        print( "\n# ~~~~~~~~~ #\n" )
+        print( "# ~~~~~~~~~ #" )
         print( temp )
-    print( "\n# ~~~~~~~~~ #\n" )
+    print( "# ~~~~~~~~~ #\n" )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     token_list = [ tokenize_text(text) for text in corpus ]
-    print( "\n### tokenization:" )
+    print( "\n\n### tokenization:" )
     for temp in token_list:
-        print( "\n# ~~~~~~~~~ #\n" )
+        print( "# ~~~~~~~~~ #" )
         print( temp )
-    print( "\n# ~~~~~~~~~ #\n" )
+    print( "# ~~~~~~~~~ #\n" )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -40,10 +40,10 @@ def textNormalization():
         for sentence_tokens in token_list
         ]
 
-    print( "\n### tokenization -> removal of special characters:" )
+    print( "\n\n### tokenization -> removal of special characters:" )
     print( "string.punctuation: " + str(string.punctuation) )
     for temp in filteredList01:
-        print( "\n# ~~~~~~~~~ #\n" )
+        print( "# ~~~~~~~~~ #" )
         print( temp )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -55,18 +55,18 @@ def textNormalization():
         for sentence_tokens in token_list
         ]
 
-    print( "\n### tokenization -> removal of special characters -> filter(None,*):" )
+    print( "\n\n### tokenization -> removal of special characters -> filter(None,*):" )
     for temp in filteredList01:
-        print( "\n# ~~~~~~~~~ #\n" )
+        print( "# ~~~~~~~~~ #" )
         print( temp )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     filteredList02 = [ remove_special_characters_before_tokenization(sentence) for sentence in corpus ]
 
-    print( "\n### removal of special characters (keep_apostrophes = False):" )
+    print( "\n\n### removal of special characters (keep_apostrophes = False):" )
     for temp in filteredList02:
-        print( "\n# ~~~~~~~~~ #\n" )
+        print( "# ~~~~~~~~~ #" )
         print( temp )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -75,9 +75,9 @@ def textNormalization():
         for sentence in corpus
         ]
 
-    print( "\n### removal of special characters (keep_apostrophes = True):" )
+    print( "\n\n### removal of special characters (keep_apostrophes = True):" )
     for temp in cleaned_corpus:
-        print( "\n# ~~~~~~~~~ #\n" )
+        print( "# ~~~~~~~~~ #" )
         print( temp )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -86,9 +86,21 @@ def textNormalization():
         for sentence in cleaned_corpus
         ]
 
-    print( "\n### cleaned-then-expanded corpus:" )
+    print( "\n\n### cleaned-then-expanded corpus:" )
     for temp in expanded_corpus:
-        print( "\n# ~~~~~~~~~ #\n" )
+        print( "# ~~~~~~~~~ #" )
+        print( temp )
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    expanded_corpus_tokens = [ tokenize_text(text) for text in expanded_corpus ]
+    filtered_list_3 = [
+        [ remove_stopwords(tokens) for tokens in sentence_tokens ]
+        for sentence_tokens in expanded_corpus_tokens
+        ]
+
+    print( "\n\n### cleaned-then-expanded corpus, with stop words removed:" )
+    for temp in filtered_list_3:
+        print( "# ~~~~~~~~~ #" )
         print( temp )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -136,3 +148,10 @@ def expand_contractions(sentence, contraction_mapping):
     expanded_sentence = contractions_pattern.sub(expand_match,sentence)
 
     return( expanded_sentence )
+
+###################################################
+def remove_stopwords(tokens):
+    stopword_list   = nltk.corpus.stopwords.words('english')
+    filtered_tokens = [token for token in tokens if token not in stopword_list]
+    return( filtered_tokens )
+

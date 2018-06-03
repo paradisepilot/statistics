@@ -9,6 +9,12 @@ def installNLTKResources():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     try:
+        nltk.data.find('corpora/stopwords')
+    except LookupError:
+        nltk.download('stopwords')
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    try:
         nltk.data.find('corpora/europarl_raw')
     except LookupError:
         nltk.download('europarl_raw')
