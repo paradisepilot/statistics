@@ -5,8 +5,9 @@ dummy comment
 
 import nltk, re, string
 
-from nltk.corpus import gutenberg, europarl_raw
-from pprint      import pprint
+from nltk.corpus  import gutenberg, europarl_raw
+from pprint       import pprint
+from contractions import CONTRACTION_MAP
 
 ###################################################
 def textNormalization():
@@ -69,13 +70,24 @@ def textNormalization():
         print( temp )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    filteredList02 = [
+    cleaned_corpus = [
         remove_special_characters_before_tokenization(sentence, keep_apostrophes = True)
         for sentence in corpus
         ]
 
     print( "\n### removal of special characters (keep_apostrophes = True):" )
-    for temp in filteredList02:
+    for temp in cleaned_corpus:
+        print( "\n# ~~~~~~~~~ #\n" )
+        print( temp )
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    expanded_corpus = [
+        expand_contractions(sentence, CONTRACTION_MAP)
+        for sentence in cleaned_corpus
+        ]
+
+    print( "\n### cleaned-then-expanded corpus:" )
+    for temp in expanded_corpus:
         print( "\n# ~~~~~~~~~ #\n" )
         print( temp )
 
@@ -106,3 +118,21 @@ def remove_special_characters_after_tokenization(tokens):
     filteredTokens = list( filter(None,[myPattern.sub('',token) for token in tokens]) )
     return( filteredTokens )
 
+###################################################
+def expand_contractions(sentence, contraction_mapping):
+
+    contractions_pattern = re.compile(
+        '{}'.format('|'.join(contraction_mapping.keys())),
+        flags = re.IGNORECASE|re.DOTALL
+        )
+
+    def expand_match(contraction):
+        match = contraction.group(0)
+        first_char = match[0]
+        expanded_contraction = contraction_mapping.get(match) if contraction_mapping.get(match) else contraction_mapping.get(match.lower())
+        expanded_contraction = first_char + expanded_contraction[1:]
+        return(expanded_contraction)
+
+    expanded_sentence = contractions_pattern.sub(expand_match,sentence)
+
+    return( expanded_sentence )
