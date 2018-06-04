@@ -13,8 +13,9 @@ from contractions import CONTRACTION_MAP
 def correctRepeatCharacters():
 
     old_word = 'finalllyyy'
-    repeat_pattern = re.compile(r'(\w*)(\w)\2(\w*)')
-    match_substitution = r'\1\2\3'
+
+    repeat_pattern     = re.compile(r"(\w*)(\w)\2(\w*)")
+    match_substitution = r"\1\2\3"
 
     step = 1
     while True:
