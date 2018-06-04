@@ -5,6 +5,8 @@ dummy comment
 
 import re
 
+from nltk.corpus import wordnet
+
 ###################################################
 def correctRepeatCharacters():
 
@@ -29,6 +31,12 @@ def correctRepeatCharacters():
 
     step = 1
     while True:
+
+        # if old_word has correct spelling, break out of loop
+        if wordnet.synsets(old_word):
+            print( "Final correct word: " + old_word )
+            break
+
         # remove one repeated character
         new_word = repeat_pattern.sub(repl = replacement_pattern, string = old_word)
         if new_word != old_word:
