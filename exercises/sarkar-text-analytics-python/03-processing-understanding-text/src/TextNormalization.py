@@ -86,7 +86,9 @@ def textNormalization():
         for sentence in cleaned_corpus
         ]
 
-    print( "\n\n### cleaned-then-expanded corpus:" )
+    print( "\n")
+    print( "### (1) removed special characters," )
+    print( "### (2) expanded contractions," )
     for temp in expanded_corpus:
         print( "# ~~~~~~~~~ #" )
         print( temp )
@@ -98,7 +100,10 @@ def textNormalization():
         for sentence_tokens in expanded_corpus_tokens
         ]
 
-    print( "\n\n### cleaned-then-expanded corpus, with stop words removed:" )
+    print( "\n")
+    print( "### (1) removed special characters," )
+    print( "### (2) expanded contractions," )
+    print( "### (3) removed stop words" )
     for temp in filtered_list_3:
         print( "# ~~~~~~~~~ #" )
         print( temp )
