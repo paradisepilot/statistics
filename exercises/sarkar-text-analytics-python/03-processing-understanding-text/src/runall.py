@@ -36,11 +36,11 @@ installNLTKResources()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### Text Normalization
-# textNormalization()
+textNormalization()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### Correct Repeat Characters
-correctRepeatCharacters()
+# correctRepeatCharacters()
 
 #################################################
 #################################################

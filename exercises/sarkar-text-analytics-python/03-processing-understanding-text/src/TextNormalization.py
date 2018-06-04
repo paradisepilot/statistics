@@ -5,7 +5,7 @@ dummy comment
 
 import nltk, re, string
 
-from nltk.corpus  import gutenberg, europarl_raw
+from nltk.corpus  import gutenberg, europarl_raw, wordnet
 from pprint       import pprint
 from contractions import CONTRACTION_MAP
 
@@ -16,7 +16,7 @@ def textNormalization():
     corpus = [
         "The brown fox wasn't that quick and he couldn't win the race.",
         "Hey that's a great deal! I just bought a phone for $199.",
-        "@@You'll (learn) a **lot** in the book. Python is an amazing language!@@"
+        "@@You'll (learn) a **lot** in the book. Python is an amaaaaazing language!@@"
         ]
 
     print( "\n\n### corpus:" )
@@ -109,6 +109,21 @@ def textNormalization():
         print( temp )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    filtered_list_4 = [
+        [ remove_repeated_characters(tokens) for tokens in sentence_tokens ]
+        for sentence_tokens in filtered_list_3
+        ]
+
+    print( "\n")
+    print( "### (1) removed special characters," )
+    print( "### (2) expanded contractions," )
+    print( "### (3) removed stop words" )
+    print( "### (4) corrected repeat characters" )
+    for temp in filtered_list_4:
+        print( "# ~~~~~~~~~ #" )
+        print( temp )
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( None )
 
 ###################################################
@@ -159,4 +174,19 @@ def remove_stopwords(tokens):
     stopword_list   = nltk.corpus.stopwords.words('english')
     filtered_tokens = [token for token in tokens if token not in stopword_list]
     return( filtered_tokens )
+
+###################################################
+def remove_repeated_characters(tokens):
+
+    repeat_pattern      = re.compile(r'(\w*)(\w)\2(\w*)')
+    replacement_pattern = r'\1\2\3'
+
+    def replace(old_word):
+        if wordnet.synsets(old_word):
+            return old_word
+        new_word = repeat_pattern.sub(repl = replacement_pattern, string = old_word)
+        return replace(new_word) if new_word != old_word else new_word
+
+    correct_tokens = [ replace(word) for word in tokens ]
+    return correct_tokens
 
