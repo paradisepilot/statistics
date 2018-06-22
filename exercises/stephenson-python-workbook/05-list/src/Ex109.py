@@ -18,13 +18,7 @@ def ex109( n ):
         if all((i % k) != 0 for k in range(2,1+math.floor(math.sqrt(i)))):
             primes.append(i)
 
-    print( "\nprimes: " + str(primes) )
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    #prime_divisors = []
-    #return_list = [ prime_divisors.append(p) for p in primes if 0 == (n % p) ]
-
-    #print( "\nreturn_list: " + str(return_list) )
+    print( "\nlen(primes): " + str(len(primes)) )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     prime_divisors = []
