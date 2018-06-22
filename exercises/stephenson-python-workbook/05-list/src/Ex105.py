@@ -3,16 +3,16 @@
 dummy comment
 '''
 
-def ex104(input_list):
+def ex105(input_list):
 
-    print("\n### ~~~~~ Exercise 104 ~~~~~~~~");
+    print("\n### ~~~~~ Exercise 105 ~~~~~~~~");
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     print( "\ninput_list: " + str(input_list) + "\n" )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     sorted_list = input_list;
-    sorted_list.sort();
+    sorted_list.sort( reverse = True );
 
     for item in sorted_list:
         print( str(item) )

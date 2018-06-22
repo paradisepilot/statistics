@@ -3,9 +3,9 @@
 dummy comment
 '''
 
-def ex104(input_list):
+def ex106(input_list, nToRemove):
 
-    print("\n### ~~~~~ Exercise 104 ~~~~~~~~");
+    print("\n### ~~~~~ Exercise 106 ~~~~~~~~");
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     print( "\ninput_list: " + str(input_list) + "\n" )
@@ -13,6 +13,7 @@ def ex104(input_list):
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     sorted_list = input_list;
     sorted_list.sort();
+    sorted_list = sorted_list[nToRemove:len(sorted_list)-nToRemove];
 
     for item in sorted_list:
         print( str(item) )
