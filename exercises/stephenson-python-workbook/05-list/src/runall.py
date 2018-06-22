@@ -24,11 +24,18 @@ import seaborn as sns
 from Ex104 import ex104
 from Ex105 import ex105
 from Ex106 import ex106
+from Ex107 import ex107
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ex104(input_list = [10,9,8,7,6,5,4,3,2,1])
 ex105(input_list = [3,9,6,8,1,10,2,7,4,5])
 ex106(input_list = [3,9,6,8,1,10,2,7,4,5], nToRemove = 3)
+
+ex107(
+    input_list = [
+        'first','second','first','third','second'
+        ]
+    )
 
 #################################################
 #################################################
