@@ -28,6 +28,7 @@ from Ex107 import ex107
 from Ex108 import ex108
 from Ex109 import ex109
 from Ex110 import ex110
+from Ex111 import ex111
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #ex104(input_list = [10,9,8,7,6,5,4,3,2,1])
@@ -45,7 +46,9 @@ from Ex110 import ex110
 #ex109( n = 2 * (3**2) * 7 * 13 )
 #ex109( n = (5**2) * 7 * (19**2) * (29**3) )
 
-ex110( 10000 )
+#ex110( 10000 )
+
+ex111(  "Examples of contractions include: don’t, isn’t, and wouldn’t." )
 
 #################################################
 #################################################
