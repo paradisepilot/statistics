@@ -27,22 +27,25 @@ from Ex106 import ex106
 from Ex107 import ex107
 from Ex108 import ex108
 from Ex109 import ex109
+from Ex110 import ex110
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-ex104(input_list = [10,9,8,7,6,5,4,3,2,1])
-ex105(input_list = [3,9,6,8,1,10,2,7,4,5])
-ex106(input_list = [3,9,6,8,1,10,2,7,4,5], nToRemove = 3)
+#ex104(input_list = [10,9,8,7,6,5,4,3,2,1])
+#ex105(input_list = [3,9,6,8,1,10,2,7,4,5])
+#ex106(input_list = [3,9,6,8,1,10,2,7,4,5], nToRemove = 3)
 
-ex107(
-    input_list = [
-        'first','second','first','third','second'
-        ]
-    )
+#ex107(
+#    input_list = [
+#        'first','second','first','third','second'
+#        ]
+#    )
 
-ex108(input_list = [3, -4, 1, 0, -1, 0, -2])
+#ex108(input_list = [3, -4, 1, 0, -1, 0, -2])
+#
+#ex109( n = 2 * (3**2) * 7 * 13 )
+#ex109( n = (5**2) * 7 * (19**2) * (29**3) )
 
-ex109( n = 2 * (3**2) * 7 * 13 )
-ex109( n = (5**2) * 7 * (19**2) * (29**3) )
+ex110( 10000 )
 
 #################################################
 #################################################
