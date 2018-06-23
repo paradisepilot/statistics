@@ -3,9 +3,9 @@
 dummy comment
 '''
 
-def ex115( list_of_points ):
+def ex117( list_of_points ):
 
-    print("\n### ~~~~~ Exercise 115 ~~~~~~~~");
+    print("\n### ~~~~~ Exercise 117 ~~~~~~~~");
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     print( "list of points: " + str(list_of_points) )
