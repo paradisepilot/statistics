@@ -8,7 +8,7 @@ from random import sample
 def createDeck():
 
     suits  = ['S','H','D','C']
-    values = ['2','3','4','5','i6','7','8','9','T','J','Q','A']
+    values = ['2','3','4','5','6','7','8','9','T','J','Q','A']
 
     deck = []
     for suit in suits:
