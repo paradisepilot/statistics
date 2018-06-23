@@ -32,6 +32,7 @@ from Ex111 import ex111
 from Ex112 import ex112
 from Ex113 import ex113
 from Ex114 import ex114
+from Ex115 import ex115
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #ex104(input_list = [10,9,8,7,6,5,4,3,2,1])
@@ -57,7 +58,8 @@ from Ex114 import ex114
 #ex113( ['apples','ornages'] )
 #ex113( ['apples','ornages','pears','banannas','melons','berries'] )
 
-ex114()
+#ex114()
+ex115( [ [1,1], [2,2.1], [3,2.9] ] )
 
 #################################################
 #################################################
