@@ -5,9 +5,7 @@ dummy comment
 
 from random import sample
 
-def simulateCoinFlips( requiredLength ):
-
-    stateSpace = ['H','T']
+def simulateCoinFlips( stateSpace = ['H','T'] , requiredLength = 3 ):
 
     coinFlips = []
     for i in range(0,requiredLength):
@@ -30,7 +28,7 @@ def ex080():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     for i in range(0,10):
-        results = simulateCoinFlips( requiredLength = 3 )
+        results = simulateCoinFlips( stateSpace = ['A','B','C'], requiredLength = 3 )
         print( results )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
