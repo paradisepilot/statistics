@@ -21,7 +21,7 @@ def binary2Decimal( x ):
 
 def ex077():
 
-    print("\n### ~~~~~ Exercise 076 ~~~~~~~~");
+    print("\n### ~~~~~ Exercise 077 ~~~~~~~~");
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     myBinaryIntegers = [
