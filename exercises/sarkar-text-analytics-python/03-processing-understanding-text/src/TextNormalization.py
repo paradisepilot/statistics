@@ -3,14 +3,15 @@
 dummy comment
 '''
 
-import nltk, re, string
+import os, nltk, re, string, collections
 
 from nltk.corpus  import gutenberg, europarl_raw, wordnet
 from pprint       import pprint
 from contractions import CONTRACTION_MAP
+from GetBigTxt    import getBigTxt
 
 ###################################################
-def textNormalization():
+def textNormalization( datDIR ):
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     corpus = [
@@ -33,7 +34,6 @@ def textNormalization():
         print( temp )
     print( "# ~~~~~~~~~ #\n" )
 
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     filteredList01 = [
         [ remove_special_characters_after_tokenization(tokens) for tokens in sentence_tokens ]
@@ -60,7 +60,6 @@ def textNormalization():
         print( "# ~~~~~~~~~ #" )
         print( temp )
 
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     filteredList02 = [ remove_special_characters_before_tokenization(sentence) for sentence in corpus ]
 
@@ -95,7 +94,7 @@ def textNormalization():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     expanded_corpus_tokens = [ tokenize_text(text) for text in expanded_corpus ]
-    filtered_list_3 = [
+    filteredList03 = [
         [ remove_stopwords(tokens) for tokens in sentence_tokens ]
         for sentence_tokens in expanded_corpus_tokens
         ]
@@ -104,14 +103,14 @@ def textNormalization():
     print( "### (1) removed special characters," )
     print( "### (2) expanded contractions," )
     print( "### (3) removed stop words" )
-    for temp in filtered_list_3:
+    for temp in filteredList03:
         print( "# ~~~~~~~~~ #" )
         print( temp )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    filtered_list_4 = [
+    filteredList04 = [
         [ remove_repeated_characters(tokens) for tokens in sentence_tokens ]
-        for sentence_tokens in filtered_list_3
+        for sentence_tokens in filteredList03
         ]
 
     print( "\n")
@@ -119,9 +118,37 @@ def textNormalization():
     print( "### (2) expanded contractions," )
     print( "### (3) removed stop words" )
     print( "### (4) corrected repeat characters" )
-    for temp in filtered_list_4:
+    for temp in filteredList04:
         print( "# ~~~~~~~~~ #" )
         print( temp )
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    BigTxtFILE = os.path.join(datDIR,"big.txt")
+    getBigTxt( BigTxtFILE = BigTxtFILE )
+
+    print( "\n")
+    print( "###" )
+    with open(BigTxtFILE,'r') as f:
+        WORDS       = tokens( f.read() )
+        WORD_COUNTS = collections.Counter(WORDS)
+        print( "WORD_COUNTS.most_common(10):" )
+        print(  WORD_COUNTS.most_common(10)   )
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    #filteredList05 = [
+    #    [ remove_repeated_characters(tokens) for tokens in sentence_tokens ]
+    #    for sentence_tokens in filteredList04
+    #    ]
+
+    #print( "\n")
+    #print( "### (1) removed special characters," )
+    #print( "### (2) expanded contractions," )
+    #print( "### (3) removed stop words" )
+    #print( "### (4) corrected repeat characters" )
+    #print( "### (5) corrected repeat characters" )
+    #for temp in filteredList04:
+    #    print( "# ~~~~~~~~~ #" )
+    #    print( temp )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( None )
@@ -190,3 +217,6 @@ def remove_repeated_characters(tokens):
     correct_tokens = [ replace(word) for word in tokens ]
     return correct_tokens
 
+###################################################
+def tokens(text):
+    return( re.findall('[a-z]+',text.lower()) )

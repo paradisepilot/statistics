@@ -36,7 +36,7 @@ installNLTKResources()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### Text Normalization
-textNormalization()
+textNormalization( datDIR = datDIR )
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 ### Correct Repeat Characters
