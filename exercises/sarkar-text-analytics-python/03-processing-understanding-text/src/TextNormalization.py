@@ -127,12 +127,34 @@ def textNormalization( datDIR ):
     getBigTxt( BigTxtFILE = BigTxtFILE )
 
     print( "\n")
-    print( "###" )
+    print( "### Correcting spellings" )
     with open(BigTxtFILE,'r') as f:
-        WORDS       = tokens( f.read() )
-        WORD_COUNTS = collections.Counter(WORDS)
-        print( "WORD_COUNTS.most_common(10):" )
-        print(  WORD_COUNTS.most_common(10)   )
+        WORDS = tokens( f.read() )
+
+    WORD_COUNTS = collections.Counter(WORDS)
+    print( "WORD_COUNTS.most_common(10):" )
+    print(  WORD_COUNTS.most_common(10)   )
+
+    myWord = 'fianlly'
+    print( "myWord:                 " + myWord                                                      )
+    print( "edits0(myWord):        " + str(edits0(myWord))                                          )
+    print( "known(edits0(myWord)): " + str(known(words = edits0(myWord), wordCounts = WORD_COUNTS)) )
+    print( "len(edits1(myWord)):   " + str(len(edits1(myWord)))                                     )
+    print( "edits1(myWord):        " + str(edits1(myWord))                                          )
+    print( "known(edits1(myWord)): " + str(known(words = edits1(myWord), wordCounts = WORD_COUNTS)) )
+    print( "len(edits2(myWord)):   " + str(len(edits2(myWord)))                                     )
+    print( "known(edits2(myWord)): " + str(known(words = edits2(myWord), wordCounts = WORD_COUNTS)) )
+
+    candidates = (
+        known(words = edits0(myWord), wordCounts = WORD_COUNTS) or
+        known(words = edits1(myWord), wordCounts = WORD_COUNTS) or
+        known(words = edits2(myWord), wordCounts = WORD_COUNTS) or
+        [myWord]
+        )
+    print( "candidates           : " + str(candidates) )
+
+    print( "correct('fianlly'):  " + str(correct(word = 'fianlly', wordCounts = WORD_COUNTS)) )
+    print( "correct('FIANLLY'):  " + str(correct(word = 'FIANLLY', wordCounts = WORD_COUNTS)) )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     #filteredList05 = [
@@ -219,4 +241,58 @@ def remove_repeated_characters(tokens):
 
 ###################################################
 def tokens(text):
+    '''
+    Get all words from the corpus
+    '''
     return( re.findall('[a-z]+',text.lower()) )
+
+def edits0(word):
+    '''
+    Return all strings that are zero edits away
+    from the input word (i.e., the word itself).
+    '''
+    return( {word} )
+
+def edits1(word):
+    '''
+    Return all strings that are one edit away
+    from the input word.
+    '''
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    def splits(word):
+        return([ (word[:i],word[i:]) for i in range(len(word)+1) ])
+    pairs      = splits(word)
+    deletes    = [ a+b[1:]           for (a, b) in pairs if b                   ]
+    transposes = [ a+b[1]+b[0]+b[2:] for (a, b) in pairs if len(b) > 1          ]
+    replaces   = [ a+c+b[1:]         for (a, b) in pairs for c in alphabet if b ]
+    inserts    = [ a+c+b             for (a, b) in pairs for c in alphabet      ]
+    return set(deletes + transposes + replaces + inserts)
+
+def edits2(word):
+    '''
+    Return all strings that are two edits away
+    from the input word.
+    '''
+    return { e2 for e1 in edits1(word) for e2 in edits1(e1) }
+
+def known(words,wordCounts):
+    """
+    Return the subset of words that are actually
+    in our WORD_COUNTS dictionary.
+    """
+    return { w for w in words if w in wordCounts }
+
+def correct(word,wordCounts):
+    '''
+    Get the best correct spelling for the input word
+    '''
+    # Priority is for edit distance 0, then 1, then 2
+    # else defaults to the input word itself.
+    candidates = (
+        known(words = edits0(word), wordCounts = wordCounts) or
+        known(words = edits1(word), wordCounts = wordCounts) or
+        known(words = edits2(word), wordCounts = wordCounts) or
+        [word]
+        )
+    return max(candidates,key=wordCounts.get)
+
