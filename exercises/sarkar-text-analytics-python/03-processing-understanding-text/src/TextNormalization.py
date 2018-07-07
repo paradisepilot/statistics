@@ -151,10 +151,13 @@ def textNormalization( datDIR ):
         known(words = edits2(myWord), wordCounts = WORD_COUNTS) or
         [myWord]
         )
-    print( "candidates           : " + str(candidates) )
+    print( "candidates: " + str(candidates) )
 
-    print( "correct('fianlly'):  " + str(correct(word = 'fianlly', wordCounts = WORD_COUNTS)) )
-    print( "correct('FIANLLY'):  " + str(correct(word = 'FIANLLY', wordCounts = WORD_COUNTS)) )
+    print( "correct('fianlly'): " + str(correct(word = 'fianlly', wordCounts = WORD_COUNTS)) )
+    print( "correct('FIANLLY'): " + str(correct(word = 'FIANLLY', wordCounts = WORD_COUNTS)) )
+
+    print( "correct_text_generic('fianlly'): " + str(correct_text_generic(text = 'fianlly', wordCounts = WORD_COUNTS)) )
+    print( "correct_text_generic('FIANLLY'): " + str(correct_text_generic(text = 'FIANLLY', wordCounts = WORD_COUNTS)) )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     #filteredList05 = [
@@ -295,4 +298,34 @@ def correct(word,wordCounts):
         [word]
         )
     return max(candidates,key=wordCounts.get)
+
+def correct_match(match,wordCounts):
+    """
+    Spell-correct word in match,
+    and preserve proper upper/lower/title case.
+    """
+    word = match.group()
+    def case_of(text):
+        """
+        Return the case-function appropriate
+        for text: upper, lower, title, or just str.:
+        """
+        return (
+            str.upper if text.isupper() else
+            str.lower if text.islower() else
+            str.title if text.istitle() else
+            str
+            )
+
+    return case_of(word)(correct(word = word.lower(), wordCounts = wordCounts))
+
+def correct_text_generic(text,wordCounts):
+    """
+    Correct all the words within a text,
+    returning the corrected text.
+    """
+    def tempFUN(x):
+        return( correct_match(match = x, wordCounts = wordCounts) )
+
+    return re.sub(pattern = '[a-zA-Z]+', repl = tempFUN, string = text)
 
