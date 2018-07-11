@@ -3,6 +3,8 @@
 import datetime, sys, os, re
 
 #################################################
+nLines = 10
+
 def customExit():
     print( "\n###############################" )
     print( "\n#### system time: " + str(datetime.datetime.now()) + "\n" )
@@ -25,17 +27,20 @@ outDIR     = sys.argv[2]
 os.chdir(outDIR)
 
 #################################################
-
 if not os.path.isfile( inputFILE ):
     print( "Error: file not found: " + inputFILE )
     customExit()
 
 with open( file = inputFILE , mode = 'r' ) as f:
-    for i in range(0,10):
-        tempLine = f.readline()
-        tempLine = re.sub(string = tempLine, pattern = "\n$", repl = "")
-        print( "line %2d: " % (i+1) , end = "" )
+    i = 0
+    tempLine = f.readline()
+    while i < nLines and tempLine != "":
+        i += 1
+        # tempLine = re.sub(string = tempLine, pattern = "\n$", repl = "")
+        tempLine = tempLine.rstrip()
+        print( "line %2d: " % (i) , end = "" )
         print( tempLine )
+        tempLine = f.readline()
 
 #################################################
 customExit()
