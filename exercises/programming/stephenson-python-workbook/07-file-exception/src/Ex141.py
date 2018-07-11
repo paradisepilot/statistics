@@ -16,6 +16,10 @@ def ex141( datDIR ):
     getBigTxt( BigTxtFILE = BigTxtFILE )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    if not os.path.isfile( BigTxtFILE ):
+        print( "Error: file not found: " + BigTxtFILE )
+        return( None )
+
     with open( BigTxtFILE ) as f:
         for i in range(0,10):
             tempLine = f.readline()
