@@ -37,8 +37,8 @@ with open( file = inputFILE , mode = 'r' ) as inF:
         tempLine = tempLine.rstrip()
         tempLine = tempLine.lower()
 
-        tempLine = re.sub( string = tempLine, pattern = 'http://[/0-9a-z\.]+',           repl = "" )
-        tempLine = re.sub( string = tempLine, pattern = 'ftp://[/0-9a-z\.]+',            repl = "" )
+        tempLine = re.sub( string = tempLine, pattern = 'http://[/0-9a-z\.]+\s',         repl = "" )
+        tempLine = re.sub( string = tempLine, pattern = 'ftp://[/0-9a-z\.]+\s',          repl = "" )
         tempLine = re.sub( string = tempLine, pattern = 'www\.[/0-9a-z\.]+\.(net|org),', repl = "" )
         tempLine = re.sub( string = tempLine, pattern = 'EBOOKS\*Ver\.02/11/02\*END\*',  repl = "" )
         tempLine = re.sub( string = tempLine, pattern = "file\('big\.txt'\)\.read\(\)",  repl = "" )
