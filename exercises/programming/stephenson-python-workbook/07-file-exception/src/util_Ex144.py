@@ -29,6 +29,7 @@ os.chdir(outDIR)
 #################################################
 if not os.path.isfile( inputFILE ):
     print( "Error: file not found: " + inputFILE )
+    customExit()
 else:
     lineCount = 0
     with open( file = inputFILE , mode = 'r' ) as inF:
