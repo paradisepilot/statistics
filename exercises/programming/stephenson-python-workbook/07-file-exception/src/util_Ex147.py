@@ -43,9 +43,9 @@ with open( file = inputFILE , mode = 'r' ) as inF:
         tempLine = re.sub( string = tempLine, pattern = 'EBOOKS\*Ver\.02/11/02\*END\*',  repl = "" )
         tempLine = re.sub( string = tempLine, pattern = "file\('big\.txt'\)\.read\(\)",  repl = "" )
 
-        tempLine = re.sub( string = tempLine, pattern = "[^a-z'\s]", repl = " ")
+        tempLine = re.sub( string = tempLine, pattern = "[^a-z'\s]", repl = "" )
+        tempLine = re.sub( string = tempLine, pattern = "( '|' )",   repl = " ")
         tempLine = tempLine.strip()
-        tempLine = re.sub( string = tempLine, pattern = "^ $", repl = "")
 
         if len(tempLine) > 0:
             tempwords = tempLine.split(' ')
