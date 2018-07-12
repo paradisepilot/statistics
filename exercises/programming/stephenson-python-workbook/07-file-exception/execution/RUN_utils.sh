@@ -22,8 +22,8 @@ CAT3=${datDIR}/cat03.txt
 CAT4=${datDIR}/cat04.txt
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#for i in 141 142 143 145
-for i in 146
+#for i in 141 142 143 145 146
+for i in 147
 do
     myPyScript=${srcDIR}/util_Ex${i}.py
     stdoutFile=stdout.py.`basename ${myPyScript} .py`
