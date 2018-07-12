@@ -42,21 +42,27 @@ with open( file = inputFILE , mode = 'r' ) as inF:
         tempLine = re.sub( string = tempLine, pattern = 'www\.[/0-9a-z\.]+\.(net|org),', repl = "" )
         tempLine = re.sub( string = tempLine, pattern = 'EBOOKS\*Ver\.02/11/02\*END\*',  repl = "" )
         tempLine = re.sub( string = tempLine, pattern = "file\('big\.txt'\)\.read\(\)",  repl = "" )
-        tempLine = re.sub( string = tempLine, pattern = "(@|\+|-|_|/|\.|,|#)",           repl = " ")
-        tempLine = re.sub( string = tempLine, pattern = "\s+",                           repl = " ")
+
+        tempLine = re.sub( string = tempLine, pattern = "[^a-z'\s]", repl = " ")
         tempLine = tempLine.strip()
+        tempLine = re.sub( string = tempLine, pattern = "^ $", repl = "")
 
-        tempwords = tempLine.split(' ')
-        for tempword in tempwords:
-            if tempword in wordFrequencies.keys():
-                wordFrequencies[tempword] += 1
-            else:
-                wordFrequencies[tempword] = 1
+        if len(tempLine) > 0:
+            tempwords = tempLine.split(' ')
+            for tempword in tempwords:
+                if tempword != "":
+                    if tempword in wordFrequencies.keys():
+                        wordFrequencies[tempword] += 1
+                    else:
+                        wordFrequencies[tempword] = 1
 
-maxFrequency = max( [ tempvalue for tempvalue in wordFrequencies.values() ] )
-sorted_keys  = [ tempkey for tempkey in wordFrequencies.keys() if wordFrequencies[tempkey] == maxFrequency ]
+#maxFrequency = max( [ tempvalue for tempvalue in wordFrequencies.values() ] )
+#sorted_keys  = [ tempkey for tempkey in wordFrequencies.keys() if wordFrequencies[tempkey] == maxFrequency ]
+#for tempkey in sorted_keys:
+#    print( tempkey + ": " + str(wordFrequencies[tempkey]) )
 
-for tempkey in sorted_keys:
+wordFrequencies = { r:wordFrequencies[r] for r in sorted(wordFrequencies, key=wordFrequencies.get, reverse=True) }
+for tempkey in wordFrequencies.keys():
     print( tempkey + ": " + str(wordFrequencies[tempkey]) )
 
 #################################################
