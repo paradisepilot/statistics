@@ -33,7 +33,7 @@ class Book:
     def getLetterCounts( self , word_counts ):
         letter_counts = {}
         for tempword in word_counts.keys():
-            for templetter in list(tempword):
+            for templetter in set(tempword):
                 if templetter in letter_counts.keys():
                     letter_counts[templetter] += word_counts[tempword]
                 else:
@@ -46,7 +46,23 @@ def ex153( datDIR ):
     print("\n### ~~~~~ Exercise 153 ~~~~~~~~");
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    #myTxtfile = os.path.join( datDIR, 'the-great-gatsby.txt' )
+    myTxtfile = os.path.join( datDIR, 'the-great-gatsby.txt' )
+    myBook    = Book( txtfile = myTxtfile )
+
+    #for tempkey in myBook.word_counts.keys():
+    #    print( tempkey + ": " + str(myBook.word_counts[tempkey]) )
+
+    print( "total number of words: " + str(myBook.num_words) )
+
+    for tempkey in myBook.letter_counts.keys():
+        tempcount = myBook.letter_counts[tempkey]
+        tempprop  = tempcount / myBook.num_words
+        print( "%s: %7d, %6.3f" % (tempkey,tempcount,tempprop) )
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print("\n")
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     myTxtfile = os.path.join( datDIR, 'gadsby.txt' )
     myBook    = Book( txtfile = myTxtfile )
 
