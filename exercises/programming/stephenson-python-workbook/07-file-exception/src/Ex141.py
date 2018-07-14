@@ -5,7 +5,7 @@ dummy comment
 
 import os, re
 
-from GetBigTxt import getBigTxt
+from DownloadFiles import getBigTxt
 
 def ex141( datDIR ):
 
