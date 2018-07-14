@@ -17,8 +17,9 @@ class Book:
         with open( file = txtfile , mode = 'r' ) as inF:
             for i, tempLine in enumerate(inF):
                 tempLine = tempLine.strip().lower()
-                tempLine = re.sub(string = tempLine, pattern = "[^ A-Za-z]", repl = "" )
-                tempLine = re.sub(string = tempLine, pattern = " +",         repl = " ")
+                tempLine = re.sub(string = tempLine, pattern = "[^ A-Za-z]",  repl = "" )
+                tempLine = re.sub(string = tempLine, pattern = " +",          repl = " ")
+                tempLine = re.sub(string = tempLine, pattern = "g a d s b y", repl = " ")
                 tempList = tempLine.split(' ')
                 for tempword in tempList:
                     if len(tempword) > 0:
@@ -45,7 +46,8 @@ def ex153( datDIR ):
     print("\n### ~~~~~ Exercise 153 ~~~~~~~~");
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    myTxtfile = os.path.join( datDIR, 'the-great-gatsby.txt' )
+    #myTxtfile = os.path.join( datDIR, 'the-great-gatsby.txt' )
+    myTxtfile = os.path.join( datDIR, 'gadsby.txt' )
     myBook    = Book( txtfile = myTxtfile )
 
     #for tempkey in myBook.word_counts.keys():
