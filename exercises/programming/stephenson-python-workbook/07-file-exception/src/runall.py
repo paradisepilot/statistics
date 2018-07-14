@@ -23,13 +23,15 @@ import seaborn as sns
 
 from Ex141 import ex141
 from Ex150 import ex150
+from Ex151 import ex151
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #ex141( datDIR = datDIR )
-ex150(
-     inputFILE = os.path.join(outDIR,'src','runall.py'),
-    outputFILE = "runall-nocomments.py"
-    )
+#ex150(
+#     inputFILE = os.path.join(outDIR,'src','runall.py'),
+#    outputFILE = "runall-nocomments.py"
+#    )
+ex151()
 
 #################################################
 #################################################

@@ -5,8 +5,6 @@ dummy comment
 
 import os, re
 
-from GetBigTxt import getBigTxt
-
 def ex150( inputFILE , outputFILE ):
 
     print("\n### ~~~~~ Exercise 150 ~~~~~~~~");
