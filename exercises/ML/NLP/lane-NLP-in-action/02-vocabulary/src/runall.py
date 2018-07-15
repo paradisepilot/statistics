@@ -19,28 +19,10 @@ os.chdir(outDIR)
 
 #################################################
 #################################################
-import seaborn as sns
-
-#from InstallNLTKResources    import installNLTKResources
-#from TextTokenization        import sentenceTokenization, wordTokenization
-#from TextNormalization       import textNormalization
-#from CorrectRepeatCharacters import correctRepeatCharacters
+from Section_02_01 import section_02_01
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#installNLTKResources()
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### Text Tokenization
-# sentenceTokenization()
-# wordTokenization()
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### Text Normalization
-#textNormalization( datDIR = datDIR )
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-### Correct Repeat Characters
-# correctRepeatCharacters()
+section_02_01( datDIR = datDIR )
 
 #################################################
 #################################################
