@@ -29,6 +29,7 @@ from Ex153 import ex153
 from Ex154 import ex154
 from Ex155 import ex155
 from Ex156 import ex156
+from Ex157 import ex157
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #ex141( datDIR = datDIR )
@@ -41,7 +42,8 @@ from Ex156 import ex156
 #ex153( datDIR = datDIR )
 #ex154( datDIR = datDIR )
 #ex155( datDIR = datDIR )
-ex156( datDIR = datDIR , start_year = 1972 , end_year = 1989 )
+#ex156( datDIR = datDIR , start_year = 1972 , end_year = 1989 )
+ex157( datDIR = datDIR )
 
 #################################################
 #################################################
