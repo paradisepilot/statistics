@@ -126,7 +126,7 @@ This completes the proof of the Lemma.
 Suppose:
 \begin{itemize}
 \item
-	$\Theta \subset \Re^{p}$ is a convex open subset of \,$\Re^{p}$ with compact closure.
+	$\Theta \subset \Re^{p}$ is a bounded convex open subset of \,$\Re^{p}$.
 \item
 	For each $n\in\N$, the map $g_{n} : \Theta \longrightarrow \Re^{p}$ is continuously differentiable.
 \item
@@ -168,9 +168,8 @@ We need to show that, for each \,$\varepsilon > 0$,\, there exists \,$N(\varepsi
 \quad
 \textnormal{for each \,$\theta \,\in\, \Theta$\, and each \,$m\,,\,n \,>\, N(\varepsilon)$}\,.
 \end{equation*}
-First, note that, since $\Theta$ has compact closure, it is in particular a bounded subset of \,$\Re^{p}$.
-Hence, we may fix some $B > 0$ such that
-$\Vert\,\theta_{1} - \theta_{2}\,\Vert \leq B$, for each $\theta_{1}, \theta_{2}\in\Theta$.
+First, note that, since $\Theta$ is a bounded subset of \,$\Re^{p}$, there exists $B > 0$ such that
+$\Vert\,\theta_{1} - \theta_{2}\,\Vert < B$, for each $\theta_{1}, \theta_{2}\in\Theta$.
 Next, since $g_{n}(\theta_{0})$ converges and $D(g_{n})$ converges uniformly on $\Theta$,
 we see that for each $\varepsilon > 0$, there exists $N(\varepsilon) \in \N$ such that
 \begin{equation*}
@@ -197,10 +196,35 @@ which implies
 	\; + \;
 	\left\Vert\; g_{m}(\theta_{0}) \,\overset{{\color{white}.}}{-}\, g_{n}(\theta_{0}) \;\right\Vert
 \\
-& = &
+& < &
 	\left\Vert\; (g_{m} - g_{n})(\theta) \,\overset{{\color{white}.}}{-}\, (g_{m} - g_{n})(\theta_{0}) \;\right\Vert
 	\; + \;
-	\left\Vert\; g_{m}(\theta_{0}) \,\overset{{\color{white}.}}{-}\, g_{n}(\theta_{0}) \;\right\Vert
+	\dfrac{\varepsilon}{2}
+	%\left\Vert\; g_{m}(\theta_{0}) \,\overset{{\color{white}.}}{-}\, g_{n}(\theta_{0}) \;\right\Vert
+\\
+& = &
+	\left\Vert\;
+		\left(\,\int_{0}^{1}\,
+			D(g_{m} - g_{n})\!\left(\,(1-t)\cdot\theta \overset{{\color{white}.}}{+} t\cdot\theta_{0}\,\right)
+			\,\d t\,\right)
+		\cdot
+		(\theta - \theta_{0})
+		\;\right\Vert
+	\; + \;
+	\dfrac{\varepsilon}{2}
+	%\left\Vert\; g_{m}(\theta_{0}) \,\overset{{\color{white}.}}{-}\, g_{n}(\theta_{0}) \;\right\Vert
+\\
+& \leq &
+	\left(\,\int_{0}^{1}\,
+		\left\Vert\,
+			D(g_{m} - g_{n})\!\left(\,(1-t)\cdot\theta \overset{{\color{white}.}}{+} t\cdot\theta_{0}\,\right)
+			\,\right\Vert
+		\,\d t\,\right)
+	\cdot
+	\Vert\;\theta - \theta_{0}\,\Vert
+	\; + \;
+	\dfrac{\varepsilon}{2}
+	%\left\Vert\; g_{m}(\theta_{0}) \,\overset{{\color{white}.}}{-}\, g_{n}(\theta_{0}) \;\right\Vert
 \\
 & < &
 	\dfrac{\varepsilon}{2 B} \cdot \left\Vert\; \theta - \theta_{0} \;\right\Vert
@@ -214,7 +238,7 @@ which implies
 \end{eqnarray*}
 This proves Claim 2, and establishes the uniform convergence of $g_{n}$ on $\Theta$.
 
-\vskip 0.8cm
+\vskip 0.5cm
 \noindent
 By Claim 2, we may define $g : \Theta \longrightarrow \Re^{p}$ by
 \begin{equation*}
@@ -225,7 +249,7 @@ g(\theta)
 \textnormal{for each \,$\theta \in \Theta$}\,.
 \end{equation*}
 
-\vskip 0.8cm
+\vskip 0.5cm
 \noindent
 \textbf{Claim 3:}\quad $g : \Theta \longrightarrow \Re^{p}$\, is differentiable, and \,$D(g) = J$.
 \vskip 0.1cm
@@ -440,10 +464,10 @@ Suppose:
 		1
 	\end{equation*}
 \item
-	There exist an open subset \;$\Theta_{0} \subset \Theta$\, of \;$\Theta$ containing $\theta_{0}$,
+	There exist a bounded convex open subset \;$\Theta_{0} \subset \Theta$\, of \;$\Theta$ containing $\theta_{0}$,
 	and a measurable map
 	\,$J : \Theta_{0} \longrightarrow \Re^{p \times p}$\,
-	such that $J(\theta_{0}) \in \Re^{p \times p}$ is a nonsingular matrix, and
+	such that %$J(\theta_{0}) \in \Re^{p \times p}$ is a nonsingular matrix, and
 	\begin{equation*}
 	\mu\!\left(\;\left\{\;\;
 		\omega \in \Omega
@@ -461,7 +485,7 @@ Suppose:
 			\textnormal{and}\quad\;\;
 			\underset{n\,\rightarrow\,\infty}{\lim}\;\;
 			\underset{\theta\,\in\,\Theta_{0}}{\sup}\,
-			\left\Vert\;D_{\theta}\,G_{n}(\omega,\theta) \, \overset{{\color{white}.}}{-} \, J(\theta) \,\;\right\Vert
+			\left\Vert\;D_{\theta}\,G_{n}(\omega,\theta) \, \overset{{\color{white}.}}{-} \, J(\theta) \;\right\Vert
 			\; = \; 0{\color{white}\,,\quad\textnormal{and}}
 		\end{array}
 		\right.
