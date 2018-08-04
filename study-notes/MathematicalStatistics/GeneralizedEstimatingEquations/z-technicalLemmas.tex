@@ -120,7 +120,7 @@ This completes the proof of the Lemma.
 
 \clearpage
 
-\begin{lemma}
+\begin{lemma}[A generalization of Theorem 7.17, p.152, \cite{Rudin1976}, from $\Re$-valued to $\Re^{p}$-valued functions]
 \mbox{}\vskip 0.1cm
 \noindent
 Suppose:
@@ -145,16 +145,23 @@ itself converges uniformly to some continuously differentiable function
 \,$g : \Theta \longrightarrow \Re^{p}$\,
 such that $D(g) = J$.
 \end{lemma}
-\begin{remark}\;\;
-The above Lemma is a generalization of Theorem 7.17, p.152, \cite{Rudin1976}, from $\Re$-valued to $\Re^{p}$-valued functions.
-\end{remark}
 \proof
-\vskip 0.3cm
+
+\vskip 0.5cm
 \noindent
-\textbf{Claim 1:}\quad $g_{n}$ converges uniformly on $\Theta$.
+\textbf{Claim 1}:\quad $J : \Theta \longrightarrow \Re^{p \times p}$\, is continuous.
 \vskip 0.1cm
 \noindent
 Proof of Claim 1:\quad
+Immediate by the Uniform Limit Theorem (the uniform limit of a sequence of continuous functions is itself continuous);
+see, for example, Theorem 21.6, p. 132, \cite{Munkres2000}.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad $g_{n}$ converges uniformly on $\Theta$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 2:\quad
 We need to show that, for each \,$\varepsilon > 0$,\, there exists \,$N(\varepsilon) \in \N$\, such that
 \begin{equation*}
 \left\Vert\;g_{m}(\theta) \overset{{\color{white}.}}{-} g_{n}(\theta)\;\right\Vert \;\; < \;\; \varepsilon\,,
@@ -205,11 +212,11 @@ which implies
 	\quad
 	\textnormal{for each \,$\theta \,\in\, \Theta$\, and each \,$m\,,\,n \,>\, N(\varepsilon)$}\,.
 \end{eqnarray*}
-This proves Claim 1, and establishes the uniform convergence of $g_{n}$ on $\Theta$.
+This proves Claim 2, and establishes the uniform convergence of $g_{n}$ on $\Theta$.
 
-\vskip 0.5cm
+\vskip 0.8cm
 \noindent
-By Claim 1, we may define $g : \Theta \longrightarrow \Re^{p}$ by
+By Claim 2, we may define $g : \Theta \longrightarrow \Re^{p}$ by
 \begin{equation*}
 g(\theta)
 \;\, := \;\,
@@ -218,10 +225,178 @@ g(\theta)
 \textnormal{for each \,$\theta \in \Theta$}\,.
 \end{equation*}
 
+\vskip 0.8cm
+\noindent
+\textbf{Claim 3:}\quad $g : \Theta \longrightarrow \Re^{p}$\, is differentiable, and \,$D(g) = J$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 3:\quad
+By the definition of the derivative of an $\Re^{a} \longrightarrow \Re^{b}$ function,
+Claim 3 is equivalent to the following statement:
+\begin{equation*}
+\underset{\zeta\,\rightarrow\,\theta}{\lim}\;\,
+\dfrac{
+	{\color{white}.}
+	\left\Vert\;
+		g(\zeta) \, \overset{{\color{white}.}}{-} \, g(\theta) \, - \, J(\theta)\cdot(\zeta - \theta)
+		\;\right\Vert
+	{\color{white}.}
+	}{
+	\left\Vert\;
+		\zeta \, \overset{{\color{white}.}}{-} \, \theta
+		\;\right\Vert
+	}
+\;\; = \;\;
+	0\,,
+\quad
+\textnormal{for each \,$\theta \in \Theta$}\,,
+\end{equation*}
+which in turn is equivalent to:
+for each $\theta \in \Theta$ and each $\varepsilon > 0$,
+there exists $\delta > 0$ such that
+\begin{equation*}
+\dfrac{
+	{\color{white}.}
+	\left\Vert\;
+		g(\zeta) \, \overset{{\color{white}.}}{-} \, g(\theta) \, - \, J(\theta)\cdot(\zeta - \theta)
+		\;\right\Vert
+	{\color{white}.}
+	}{
+	\left\Vert\;
+		\zeta \, \overset{{\color{white}.}}{-} \, \theta
+		\;\right\Vert
+	}
+\;\; < \;\;
+	\varepsilon\,,
+\quad
+\textnormal{for each \,$\zeta \in B_{\delta}(\theta)\,\backslash\,\{\,0\,\}$}\,.
+\end{equation*}
+Now, let $\theta \in \Theta$ and $\varepsilon > 0$ be given and fixed.
+Recall that by Claim 1, $J : \Theta \longrightarrow \Re^{p \times p}$ is continuous.
+Consequently, there exists $\delta > 0$ such that
+\begin{equation*}
+\left\Vert\; J(\xi) \overset{{\color{white}.}}{-} J(\theta) \;\right\Vert
+\;\; < \;\;
+	\varepsilon\,,
+\quad
+\textnormal{for each \,$\xi \in B_{\delta}(\theta)$}
+\end{equation*}
+Next, observe that
+\begin{eqnarray*}
+g(\zeta) \, - \, g(\theta)
+& = &
+	\left(\,\underset{n\rightarrow\infty}{\lim}\; g_{n}(\zeta)\,\right)
+	\; - \;
+	\left(\,\underset{n\rightarrow\infty}{\lim}\; g_{n}(\theta)\,\right)
+\;\; = \;\;
+	\underset{n\rightarrow\infty}{\lim}\,
+	\left\{\; g_{n}(\zeta) \, \overset{{\color{white}.}}{-} \, g_{n}(\theta) \;\right\}
+\\
+& = &
+	\underset{n\rightarrow\infty}{\lim}\,
+	\left\{\;
+		\left[\;
+			\int_{0}^{1}\, D(g_{n})\left(\,(1-t)\cdot\zeta \overset{{\color{white}.}}{+} t \cdot \theta \,\right) \d t
+			\;\right]
+		\cdot
+		(\,\zeta - \theta\,)
+		\;\right\}\,,
+	\quad
+	\textnormal{by Lemma \ref{FTCRpRp}}
+\\
+& = &
+	\underset{n\rightarrow\infty}{\lim}\,
+	\left\{\;
+		\int_{0}^{1}\, D(g_{n})\left(\,(1-t)\cdot\zeta \overset{{\color{white}.}}{+} t \cdot \theta \,\right) \cdot (\,\zeta - \theta\,) \; \d t
+		\;\right\}
+\\
+& = &
+	\int_{0}^{1}\, 
+		\left[\;
+			\underset{n\rightarrow\infty}{\lim}\, D(g_{n})\left(\,(1-t)\cdot\zeta \overset{{\color{white}.}}{+} t \cdot \theta \,\right)
+			\;\right]
+		\cdot (\,\zeta - \theta\,)
+		\; \d t\,,
+	\quad
+	\textnormal{by uniform convergence of $D(g_{n})$}
+\\
+& = &
+	\int_{0}^{1}\, 
+		J\!\left(\,(1-t)\cdot\zeta \overset{{\color{white}.}}{+} t \cdot \theta \,\right)
+		\cdot (\,\zeta - \theta\,)
+		\; \d t
+\\
+& = &
+	\left[\;
+		\int_{0}^{1}\, 
+			J\!\left(\,(1-t)\cdot\zeta \overset{{\color{white}.}}{+} t \cdot \theta \,\right)
+			\; \d t
+		\;\right]
+		\cdot (\,\zeta - \theta\,)
+\end{eqnarray*}
+Now note that, for each $\zeta \in B_{\delta}(\theta)$, we also have
+$(1-t)\cdot\zeta + t \cdot \theta \in B_{\delta}(\theta)$.
+Hence, for each \,$\zeta \in B_{\delta}(\theta)\,\backslash\,\{\,0\,\}$,
+the above observations together imply:
+\begin{eqnarray*}
+\dfrac{
+	{\color{white}.}
+	\left\Vert\;
+		g(\zeta) \, \overset{{\color{white}.}}{-} \, g(\theta) \, - \, J(\theta)\cdot(\zeta - \theta)
+		\;\right\Vert
+	{\color{white}.}
+	}{
+	\left\Vert\;
+		\zeta \, \overset{{\color{white}.}}{-} \, \theta
+		\;\right\Vert
+	}
+& = &
+	\dfrac{1}{
+		{\color{white}.}
+		\Vert\;
+			\zeta \, \overset{{\color{white}.}}{-} \, \theta
+			\;\Vert
+		{\color{white}.}
+		}
+	\cdot
+	\left\Vert\;
+		\left[\;
+			\int_{0}^{1}\, 
+				J\!\left(\,(1-t)\cdot\zeta \overset{{\color{white}.}}{+} t \cdot \theta \,\right) - J(\theta)
+				\; \d t
+		\;\right]
+		\cdot (\,\zeta - \theta\,)
+		\;\right\Vert
+\\
+& \leq &
+	\left\Vert\;
+		\int_{0}^{1}\, 
+			J\!\left(\,(1-t)\cdot\zeta \overset{{\color{white}.}}{+} t \cdot \theta \,\right) - J(\theta)
+			\; \d t
+		\;\right\Vert
+\\
+& \leq &
+	\int_{0}^{1}\;
+		\left\Vert\;
+			J\!\left(\,(1-t)\cdot\zeta \overset{{\color{white}.}}{+} t \cdot \theta \,\right) - J(\theta)
+			\;\right\Vert
+		\; \d t
+\\
+& < &
+	\overset{{\color{white}1}}{\varepsilon}\,,
+\end{eqnarray*}
+as required. This proves Claim 3
+
+\vskip 0.5cm
+\noindent
+Since \,$J : \Theta \longrightarrow \Re^{p \times p}$\, is continuous and \,$D(g) = J$,\,
+we see that \,$g$\, is indeed continuously differentiable.
+This completes the proof of the present Lemma.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.5cm
 \begin{lemma}
 \mbox{}\vskip 0.1cm
 \noindent
