@@ -1,0 +1,123 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Estimating Equation Estimators: Zeros of Equations as Estimators}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}
+\mbox{}\vskip 0.1cm
+\noindent
+Setting:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$\Theta \subset \Re^{p}$ is an open subet of $\Re^{p}$.
+\item
+	For each $n \in \N$,
+	\begin{equation*}
+	G_{n} \, : \, \Omega \times \Theta \, \longrightarrow \, \Re^{p}
+	\end{equation*}
+	is an $\Re^{p}$-valued function such that, for each $\theta \in \Theta$,
+	the induced function $G_{n}(\,\cdot\,,\theta) : \Omega \longrightarrow \Re^{p}$
+	is $(\mathcal{A},\mathcal{O}(\Re^{p}))$-measurable, where
+	$\mathcal{O}(\Re^{p})$ is the completion of
+	the Borel $\sigma$-algebra on $\Re^{p}$.
+\end{itemize}
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+Suppose:
+\begin{enumerate}
+\item
+	$\theta_{0} \in \Theta$.
+\item
+	\,$G_{n}(\,\cdot\,,\theta_{0}) \longrightarrow 0\in\Re^{p}$\, with probability one; more precisely,
+	\begin{equation*}
+	P\!\left(\;
+		G_{n}(\,\cdot\,,\theta_{0}) \overset{{\color{white}-}}{\longrightarrow} 0
+		\;\right)
+	\;\; = \;\;
+		\mu\!\left(\;\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\;\;\right\vert\;
+			\underset{n\rightarrow\infty}{\lim}\,G_{n}(\omega,\theta_{0}) = 0
+			\;\right\}\;\right)
+	\;\; = \;\;
+		1
+	\end{equation*}
+\item
+	There exist an open subset \;$\Theta_{0} \subset \Theta$\, of \;$\Theta$ containing $\theta_{0}$,
+	and measurable maps
+	\,$H : \Theta_{0} \longrightarrow \Re^{p}$,\,
+	\,$J : \Theta_{0} \longrightarrow \Re^{p \times p}$\,
+	such that $J(\theta_{0}) \in \Re^{p \times p}$ is a nonsingular matrix, and
+	\begin{equation*}
+	\mu\!\left(\;\left\{\;\;
+		\omega \in \Omega
+		\;\;\left\vert\;
+		\begin{array}{c}
+			D_{\theta}\,G_{n}(\omega,\theta) \;\,\textnormal{exists and is continuous at each
+			$\overset{{\color{white}.}}{\underset{{\color{white}.}}{\theta \in \Theta_{0}}}$}\,,\;
+			\textnormal{for each \,$n\in\N$}\,,
+			\\
+			\underset{n\,\rightarrow\,\infty}{\lim}\;\;
+			\underset{\theta\,\in\,\Theta_{0}}{\sup}\,
+			\left\Vert\;{\color{white}D_{\theta}}\,G_{n}(\omega,\theta) \, \overset{{\color{white}.}}{-} \, H(\theta) \;\right\Vert
+			\; = \; 0\,,\quad\textnormal{and}
+			\\
+			\underset{n\,\rightarrow\,\infty}{\lim}\;\;
+			\underset{\theta\,\in\,\Theta_{0}}{\sup}\,
+			\left\Vert\;D_{\theta}\,G_{n}(\omega,\theta) \, \overset{{\color{white}.}}{-} \, J(\theta) \,\;\right\Vert
+			\; = \; 0{\color{white}\,,\quad\textnormal{and}}
+		\end{array}
+		\right.
+		\right\}\;\right)
+	\;\; = \;\; 1\,,
+	\end{equation*}	
+	where, for each $n \in \N$, the map
+	\begin{equation*}
+	D_{\theta}\,G_{n} \, : \, \Omega \times \Theta_{0} \, \longrightarrow \, \Re^{p \times p}
+	\end{equation*}
+	is defined as follows: For each $\omega \in \Omega$,
+	\,$D_{\theta}\,G_{n}(\omega,\theta)$\, is the Jacobian of
+	\;$G_{n}(\omega,\theta)$ with respect to \,$\theta \in \Theta_{0}$.
+\end{enumerate}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+Then,
+\begin{equation*}
+\mu\!\left(\;\left\{\;\;
+	\omega \in \Omega
+	\;\;\left\vert\;
+	\begin{array}{c}
+		\textnormal{for each \,$\varepsilon > 0$,\, there exists \,$N(\varepsilon) \in \overset{{\color{white}1}}{\N}$\, such that,}
+		\\
+		\textnormal{for each \,$n > \underset{{\color{white}1}}{\overset{{\color{white}1}}{N}}(\varepsilon)$,
+		\;$\exists\;\;\widehat{\theta}_{n}(\omega) \in B_{\varepsilon}(\theta_{0})$\,
+		satisfying \;$G_{n}\!\left(\,\widehat{\theta}_{n}(\omega)\right) = 0$}
+	\end{array}
+	\right.
+	\right\}\;\right)
+\;\; = \;\; 1\,.
+\end{equation*}	
+\end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

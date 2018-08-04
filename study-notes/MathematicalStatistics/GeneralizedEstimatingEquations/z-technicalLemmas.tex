@@ -1,0 +1,945 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}[A generalization of the Fundamental Theorem of Calculus for $\Re^{p} \longrightarrow \Re^{p}$ functions]
+\label{FTCRpRp}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\Omega \subset \Re^{p}$ is an open subset of \,$\Re^{p}$.
+\item
+	$\theta_{1}, \theta_{2} \in \Omega$ such that $(1-t) \cdot \theta_{1} + t \cdot \theta_{2} \in \Omega$, for each $t \in [0,1]$.
+\item
+	$f : \Omega \longrightarrow \Re^{p}$ is continuously differentiable.
+\end{itemize}
+Then,
+\begin{equation*}
+f(\theta_{2}) \, - \, f(\theta_{1})
+\;\; = \;\;
+	\left(\;\int_{0}^{1}\, D(f)\!\left(\,(1-t)\cdot \theta_{1} \overset{{\color{white}.}}{+} t \cdot \theta_{2} \,\right) \;\d t\,\right)
+	\cdot (\theta_{2} - \theta_{1})\,,
+\end{equation*}
+where \,$D(f) : \Theta \longrightarrow \Re^{p \times p}$\,
+is the Jacobian of $f : \Theta \longrightarrow \Re^{p}$.
+Furthermore, if there exists \,$M > 0$\, such that
+\,$\underset{\theta\,\in\,\Theta}{\sup}\,\left\Vert\;\overset{{\color{white}.}}{D}(f)(\theta)\;\right\Vert \;\leq\; M$\,,\,
+then
+\begin{equation*}
+\left\Vert\; f(\theta_{2}) \, \overset{{\color{white}.}}{-} \, f(\theta_{1}) \;\right\Vert
+\;\; \leq \;\;
+	M %\left(\;\int_{0}^{1}\, D(f)\!\left(\,(1-t)\cdot \theta_{1} \overset{{\color{white}.}}{+} t \cdot \theta_{2} \,\right) \;\d t\,\right)
+	\cdot
+	\left\Vert\; \theta_{2} \,\overset{{\color{white}.}}{-}\, \theta_{1} \;\right\Vert\,.
+\end{equation*}
+\end{lemma}
+\proof
+Write $f = (f_{1}, \ldots , f_{p}) : \Theta \longrightarrow \Re^{p}$.
+For each $i = 1, 2, \ldots, p$, define $g_{i} : [0,1] \longrightarrow \Re$ by
+\begin{equation*}
+g_{i}(t) \; := \; f_{i}\!\left(\,(1-t)\cdot \theta_{1} \overset{{\color{white}.}}{+} t \cdot \theta_{2}\,\right)
+\end{equation*}
+Then, by the Fundamental Theorem of Calculus, we have, for each $i = 1, 2, \ldots, p$,
+\begin{eqnarray*}
+f_{i}(\theta_{2}) - f_{i}(\theta_{1})
+& = &
+	g_{i}(1) - g_{i}(0)
+\;\; = \;\;
+	\int_{0}^{1}\; g_{i}^{\prime}(t) \;\d t
+\\
+& = &
+	\int_{0}^{1} \left(\;\,
+		\overset{p}{\underset{j=1}{\sum}}\;\,
+		\dfrac{\partial f_{i}}{\partial_{{\color{white}.}}\theta_{j}}
+		\!\left(\,(1-t)\cdot \theta_{1} \overset{{\color{white}.}}{+} t \cdot \theta_{2}\right)
+		\cdot
+		\left(\theta_{2} - \theta_{1}\right)_{j}
+		\right)\,\d t
+\\
+& = &
+	\overset{p}{\underset{j=1}{\sum}}\;
+	\left(\;\,
+		\int_{0}^{1}\,
+			\dfrac{\partial f_{i}}{\partial_{{\color{white}.}}\theta_{j}}
+			\!\left(\,(1-t)\cdot \theta_{1} \overset{{\color{white}.}}{+} t \cdot \theta_{2}\right)
+			\d t \;
+		\right)
+	\cdot
+	\left(\theta_{2} - \theta_{1}\right)_{j}
+\\
+& = &
+	\overset{p}{\underset{j=1}{\sum}}\;
+	\left(\;\,
+		\int_{0}^{1}\,
+			D(f)_{ij}
+			\!\left(\,(1-t)\cdot \theta_{1} \overset{{\color{white}.}}{+} t \cdot \theta_{2}\right)
+			\d t \;
+		\right)
+	\cdot
+	\left(\theta_{2} - \theta_{1}\right)_{j}
+\\
+& = &
+	\overset{p}{\underset{j=1}{\sum}}\;
+	\left(\;\,
+		\int_{0}^{1}\,
+			D(f)
+			\!\left(\,(1-t)\cdot \theta_{1} \overset{{\color{white}.}}{+} t \cdot \theta_{2}\right)
+			\d t \;
+		\right)_{ij}
+	\cdot
+	\left(\theta_{2} - \theta_{1}\right)_{j}
+\end{eqnarray*}
+Rewriting the above equations in vectorial form yields:
+\begin{equation*}
+f(\theta_{2}) \, - \, f(\theta_{1})
+\;\; = \;\;
+	\left(\;\int_{0}^{1}\, D(f)\!\left(\,(1-t)\cdot \theta_{1} \overset{{\color{white}.}}{+} t \cdot \theta_{2} \,\right) \;\d t\,\right)
+	\cdot (\theta_{2} - \theta_{1})\,,
+\end{equation*}
+which proves the equality in the conclusion of the Lemma.
+The inequality in the conclusion of the Lemma follows immediately from the equality therein.
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\clearpage
+
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\Theta \subset \Re^{p}$ is a convex open subset of \,$\Re^{p}$ with compact closure.
+\item
+	For each $n\in\N$, the map $g_{n} : \Theta \longrightarrow \Re^{p}$ is continuously differentiable.
+\item
+	The sequence of Jacobians
+	\,$D(g_{n}) : \Theta \longrightarrow \Re^{p \times p}$\,
+	converges uniformly to some function
+	\,$J : \Theta \longrightarrow \Re^{p \times p}$.
+\item
+	For some $\theta_{0} \in \Theta$, the limit
+	\,$\underset{n\rightarrow\infty}{\lim}\;g_{n}(\theta_{0})$\,
+	exists \,$\in \Re^{p}$.
+\end{itemize}
+Then, the sequence
+\,$g_{n} : \Theta \longrightarrow \Re^{p}$\,
+itself converges uniformly to some continuously differentiable function
+\,$g : \Theta \longrightarrow \Re^{p}$\,
+such that $D(g) = J$.
+\end{lemma}
+\begin{remark}\;\;
+The above Lemma is a generalization of Theorem 7.17, p.152, \cite{Rudin1976}, from $\Re$-valued to $\Re^{p}$-valued functions.
+\end{remark}
+\proof
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\quad $g_{n}$ converges uniformly on $\Theta$.
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\quad
+We need to show that, for each \,$\varepsilon > 0$,\, there exists \,$N(\varepsilon) \in \N$\, such that
+\begin{equation*}
+\left\Vert\;g_{m}(\theta) \overset{{\color{white}.}}{-} g_{n}(\theta)\;\right\Vert \;\; < \;\; \varepsilon\,,
+\quad
+\textnormal{for each \,$\theta \,\in\, \Theta$\, and each \,$m\,,\,n \,>\, N(\varepsilon)$}\,.
+\end{equation*}
+First, note that, since $\Theta$ has compact closure, it is in particular a bounded subset of \,$\Re^{p}$.
+Hence, we may fix some $B > 0$ such that
+$\Vert\,\theta_{1} - \theta_{2}\,\Vert \leq B$, for each $\theta_{1}, \theta_{2}\in\Theta$.
+Next, since $g_{n}(\theta_{0})$ converges and $D(g_{n})$ converges uniformly on $\Theta$,
+we see that for each $\varepsilon > 0$, there exists $N(\varepsilon) \in \N$ such that
+\begin{equation*}
+\left\Vert\;g_{m}(\theta_{0}) \overset{{\color{white}.}}{-} g_{n}(\theta_{0})\;\right\Vert \;\; < \;\; \dfrac{\varepsilon}{2}\,,
+\quad
+\textnormal{for each \,$m\,,\,n \,>\, N(\varepsilon)$}\,,
+\end{equation*}
+and
+\begin{equation*}
+\left\Vert\; D(g_{m} \overset{{\color{white}.}}{-} g_{n})(\zeta) \;\right\Vert
+\; = \;
+	\left\Vert\;D(g_{m})(\zeta) \overset{{\color{white}.}}{-} D(g_{n})(\zeta)\;\right\Vert
+\; < \;
+	\dfrac{\varepsilon}{2 B}\,,
+\quad
+\textnormal{for each \,$\zeta \,\in\, \Theta$\, and each \,$m\,,\,n \,>\, N(\varepsilon)$}\,.
+\end{equation*}
+By the convexity of \,$\Theta$\,,\, we may apply Lemma \ref{FTCRpRp} to \,$g_{m} - g_{n}$\,,\,
+which implies
+\begin{eqnarray*}
+\left\Vert\; g_{m}(\theta) \,\overset{{\color{white}.}}{-}\, g_{n}(\theta) \;\right\Vert
+& \leq &
+	\left\Vert\; g_{m}(\theta) \,\overset{{\color{white}.}}{-}\, g_{n}(\theta) \, - \, g_{m}(\theta_{0}) \,+\, g_{n}(\theta_{0}) \;\right\Vert
+	\; + \;
+	\left\Vert\; g_{m}(\theta_{0}) \,\overset{{\color{white}.}}{-}\, g_{n}(\theta_{0}) \;\right\Vert
+\\
+& = &
+	\left\Vert\; (g_{m} - g_{n})(\theta) \,\overset{{\color{white}.}}{-}\, (g_{m} - g_{n})(\theta_{0}) \;\right\Vert
+	\; + \;
+	\left\Vert\; g_{m}(\theta_{0}) \,\overset{{\color{white}.}}{-}\, g_{n}(\theta_{0}) \;\right\Vert
+\\
+& < &
+	\dfrac{\varepsilon}{2 B} \cdot \left\Vert\; \theta - \theta_{0} \;\right\Vert
+	\; + \;
+	\dfrac{\varepsilon}{2}
+\\
+& \leq &
+	\overset{{\color{white}1}}{\varepsilon}\,,
+	\quad
+	\textnormal{for each \,$\theta \,\in\, \Theta$\, and each \,$m\,,\,n \,>\, N(\varepsilon)$}\,.
+\end{eqnarray*}
+This proves Claim 1, and establishes the uniform convergence of $g_{n}$ on $\Theta$.
+
+\vskip 0.5cm
+\noindent
+By Claim 1, we may define $g : \Theta \longrightarrow \Re^{p}$ by
+\begin{equation*}
+g(\theta)
+\;\; := \;\;
+	\underset{n\rightarrow\infty}{\lim}\; g_{n}(\theta)\,,
+\quad
+\textnormal{for each \,$\theta \in \Theta$}\,.
+\end{equation*}
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\mbox{}\vskip 0.1cm
+\noindent
+Setting:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$\Theta \subset \Re^{p}$ is an open subet of $\Re^{p}$.
+\item
+	For each $n \in \N$,
+	\begin{equation*}
+	G_{n} \, : \, \Omega \times \Theta \, \longrightarrow \, \Re^{p}
+	\end{equation*}
+	is an $\Re^{p}$-valued function such that, for each $\theta \in \Theta$,
+	the induced function $G_{n}(\,\cdot\,,\theta) : \Omega \longrightarrow \Re^{p}$
+	is $(\mathcal{A},\mathcal{O}(\Re^{p}))$-measurable, where
+	$\mathcal{O}(\Re^{p})$ is the completion of
+	the Borel $\sigma$-algebra on $\Re^{p}$.
+\end{itemize}
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+Suppose:
+\begin{enumerate}
+\item
+	$\theta_{0} \in \Theta$.
+\item
+	\,$G_{n}(\,\cdot\,,\theta_{0}) \longrightarrow 0\in\Re^{p}$\, with probability one; more precisely,
+	\begin{equation*}
+	P\!\left(\;
+		G_{n}(\,\cdot\,,\theta_{0}) \overset{{\color{white}-}}{\longrightarrow} 0
+		\;\right)
+	\;\; = \;\;
+		\mu\!\left(\;\left\{\;
+			\left.
+			\omega \overset{{\color{white}.}}{\in} \Omega
+			\;\;\right\vert\;
+			\underset{n\rightarrow\infty}{\lim}\,G_{n}(\omega,\theta_{0}) = 0
+			\;\right\}\;\right)
+	\;\; = \;\;
+		1
+	\end{equation*}
+\item
+	There exist an open subset \;$\Theta_{0} \subset \Theta$\, of \;$\Theta$ containing $\theta_{0}$,
+	and a measurable map
+	\,$J : \Theta_{0} \longrightarrow \Re^{p \times p}$\,
+	such that $J(\theta_{0}) \in \Re^{p \times p}$ is a nonsingular matrix, and
+	\begin{equation*}
+	\mu\!\left(\;\left\{\;\;
+		\omega \in \Omega
+		\;\;\left\vert\;
+		\begin{array}{c}
+			D_{\theta}\,G_{n}(\omega,\theta) \;\,\textnormal{exists and is continuous at each
+			$\overset{{\color{white}.}}{\underset{{\color{white}.}}{\theta \in \Theta_{0}}}$}\,,\;
+			\textnormal{for each \,$n\in\N$}\,,
+			%\\
+			%\underset{n\,\rightarrow\,\infty}{\lim}\;\;
+			%\underset{\theta\,\in\,\Theta_{0}}{\sup}\,
+			%\left\Vert\;{\color{white}D_{\theta}}\,G_{n}(\omega,\theta) \, \overset{{\color{white}.}}{-} \, H(\theta) \;\right\Vert
+			%\; = \; 0\,,\quad\textnormal{and}
+			\\
+			\textnormal{and}\quad\;\;
+			\underset{n\,\rightarrow\,\infty}{\lim}\;\;
+			\underset{\theta\,\in\,\Theta_{0}}{\sup}\,
+			\left\Vert\;D_{\theta}\,G_{n}(\omega,\theta) \, \overset{{\color{white}.}}{-} \, J(\theta) \,\;\right\Vert
+			\; = \; 0{\color{white}\,,\quad\textnormal{and}}
+		\end{array}
+		\right.
+		\right\}\;\right)
+	\;\; = \;\; 1\,,
+	\end{equation*}	
+	where, for each $n \in \N$, the map
+	\begin{equation*}
+	D_{\theta}\,G_{n} \, : \, \Omega \times \Theta_{0} \, \longrightarrow \, \Re^{p \times p}
+	\end{equation*}
+	is defined as follows: For each $\omega \in \Omega$,
+	\,$D_{\theta}\,G_{n}(\omega,\theta)$\, is the Jacobian of
+	\;$G_{n}(\omega,\theta)$ with respect to \,$\theta \in \Theta_{0}$.
+\end{enumerate}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+Then, there exists a continuously differentiable map
+\,$G : \Theta_{0} \longrightarrow \Re^{p}$\,
+such that \,$G(\theta_{0}) = 0 \in \Re^{p}$\,,\; and
+	\begin{equation*}
+	\mu\!\left(\;\left\{\;\;
+		\omega \in \Omega
+		\;\;\left\vert\;
+		\begin{array}{c}
+			\underset{n\,\rightarrow\,\infty}{\lim}\;\;
+			\underset{\theta\,\in\,\Theta_{0}}{\sup}\,
+			\left\Vert\;G_{n}(\omega,\theta) \, \overset{{\color{white}.}}{-} \, G(\theta) \;\right\Vert
+			\; = \; 0\,,\;\;
+			\textnormal{and}
+			\\
+			\underset{n\,\rightarrow\,\infty}{\lim}\;\;
+			\underset{\theta\,\in\,\Theta_{0}}{\sup}\,
+			\left\Vert\;D_{\theta}\,G_{n}(\omega,\theta) \, \overset{{\color{white}.}}{-} \, D_{\theta}G(\theta) \;\right\Vert
+			\; = \; 0
+		\end{array}
+		\right.
+		\right\}\;\right)
+	\;\; = \;\; 1\,,
+	\end{equation*}	
+	where \,$D_{\theta}\,G : \Theta_{0} \longrightarrow \Re^{p \times p}$\,
+	is the Jacobian of \,$G : \Theta_{0} \longrightarrow \Re^{p}$.
+\end{lemma}
+\proof
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Borel-Cantelli Lemma]\label{theorem:BorelCantelli}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose \,$(\Omega,\mathcal{A},P)$\, is a probability space, and
+\,$A_{n} \in \mathcal{A}$\,,\, for each $n \in \N$.
+Then,
+\begin{enumerate}
+\item
+	\begin{equation*}
+	\overset{\infty}{\underset{n=1}{\sum}}\;P(A_{n}) \; < \; \infty
+	\quad\Longrightarrow\quad
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+			\;\right)
+		\;\; = \;\; 0
+	\end{equation*}
+\item
+	\begin{equation*}
+	\left.\begin{array}{c}
+		\underset{{\color{white}-}}{\textnormal{The $A_{n}$'s are independent, and}}
+		\\
+	\overset{\infty}{\underset{n=1}{\sum}}\;P(A_{n}) \; = \; \infty
+	\end{array}\;\right\}
+	\quad\Longrightarrow\quad
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+			\;\right)
+		\;\; = \;\; 1
+	\end{equation*}
+\end{enumerate}
+\end{theorem}
+\proof
+\begin{enumerate}
+\item
+	First, note that
+	\begin{equation*}
+	\overset{\infty}{\underset{n=1}{\sum}}\;P(A_{n}) \; < \; \infty
+	\quad\Longrightarrow\quad
+		\underset{n\rightarrow\infty}{\lim}\;\,\overset{\infty}{\underset{i=n}{\sum}} \; P\!\left(\,A_{i}\,\right)
+		\; = \;
+			\underset{n\rightarrow\infty}{\lim}
+			\left(\;
+				\overset{\infty}{\underset{i=1}{\sum}} \; P\!\left(\,A_{i}\,\right)
+				\, - \,
+				\overset{n-1}{\underset{i=1}{\sum}} \; P\!\left(\,A_{i}\,\right)
+				\right)
+		\; = \;
+			0
+	\end{equation*}
+	Hence,
+	\begin{eqnarray*}
+	&&
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+			\;\right)
+	\\
+	& = &
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \;\in\; \overset{\infty}{\underset{n=1}{\bigcap}} \;\, \overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}
+			\;\right)
+		\;\; = \;\;
+		P\!\left(\;\,
+			\overset{\infty}{\underset{n=1}{\bigcap}} \;\, \overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}
+			\;\right)
+	\\
+	& \leq &
+		P\!\left(\;\,
+			\overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}
+			\;\right),
+		\quad
+		\textnormal{for each \,$n \,\in\, \N$}
+	\\
+	& \leq &
+		\overset{\infty}{\underset{i=n}{\sum}} \; P\!\left(\,A_{i}\,\right),
+		\quad
+		\textnormal{for each \,$n \,\in\, \N$}\,,
+	\end{eqnarray*}
+	which implies
+	\begin{eqnarray*}
+	0
+	& \leq &
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+			\;\right)
+		\;\; \leq \;\;
+		\underset{n\rightarrow\infty}{\lim}\;\; \overset{\infty}{\underset{i=n}{\sum}} \; P\!\left(\,A_{i}\,\right)
+		\;\; = \;\; 0
+	\end{eqnarray*}
+	which in turn implies
+	\begin{eqnarray*}
+	P\!\left(\,
+		\left.
+		\omega \in \overset{{\color{white}-}}{\Omega}
+		\,\;\right\vert\;
+		\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+		\;\right)
+	\;\; = \;\; 0\,,
+	\end{eqnarray*}
+	as required.
+	
+\item
+	First, note that
+	\begin{equation*}
+	\overset{\infty}{\underset{n=1}{\sum}}\;P(A_{n}) \; = \; \infty
+	\quad\Longrightarrow\quad
+		\overset{\infty}{\underset{i=n}{\sum}}\;P(A_{i}) \; = \; \infty\,,
+	\quad\textnormal{for each \,$n \,\in\, \N$}\,.
+	\end{equation*}
+	If the \,$A_{n}$'s\, are furthermore independent events, then for each $n \in \N$,
+	\begin{eqnarray*}
+	P\!\left(\left(\;\,\overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}\,\right)^{\!c}\,\right)
+	& = &
+		P\!\left(\;\,\overset{\infty}{\underset{i=n}{\bigcap}}\;A_{i}^{c}\;\right)
+		\;\; = \;\;
+			\overset{\infty}{\underset{i=n}{\prod}}\;\, P\!\left(\,A_{i}^{c}\,\right)
+		\;\; = \;\;
+			\overset{\infty}{\underset{i=n}{\prod}}\, \left(\,\overset{{\color{white}.}}{1} \,-\, P\!\left(\,A_{i}\,\right)\,\right)
+	\\
+	& \leq &
+		\overset{\infty}{\underset{i=n}{\prod}}\, \exp\left(\, -\,\overset{{\color{white}.}}{P}\!\left(\,A_{i}\,\right)\,\right)
+		\;\; = \;\;
+			\exp\!\left(\;
+				-\,\overset{\infty}{\underset{i=n}{\sum}}\;\overset{{\color{white}.}}{P}\!\left(\,A_{i}\,\right)
+				\;\right)
+		\;\; = \;\;
+			\exp\!\left(\; -\,\overset{{\color{white}\vert}}{\infty} \;\right)
+		\;\; = \;\;
+			0\,,
+	\end{eqnarray*}
+	where the equality above follows from the fact that \,$1 - x \leq e^{-x}$\,,\, for each $x \in [\,0,1\,]$.\,
+	Hence,
+	\begin{equation*}
+	P\!\left(\;\,\overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}\;\right) \;\; = \;\; 1\,,
+	\quad\textnormal{for each \,$n \,\in\, \N$}\,,
+	\end{equation*}
+	which implies
+	\begin{equation*}
+		P\!\left(\,
+			\left.
+			\omega \in \overset{{\color{white}-}}{\Omega}
+			\,\;\right\vert\;
+			\omega \in A_{n}\,,\;\textnormal{for infinitely many \,$n\,\in\,\N$}
+			\;\right)
+	\;\; = \;\;
+		P\!\left(\;\,\overset{\infty}{\underset{n=1}{\bigcap}}\;\,\overset{\infty}{\underset{i=n}{\bigcup}}\;A_{i}\;\right)
+	\;\; = \;\;
+		1\,,
+	\end{equation*}
+	since the intersection of a countable family of events each having probability one itself has probability one.
+	This completes the proof of the Borel-Cantelli Lemma.
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{lemma:CharacterizationOfAlmostSureConvergence}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+\item
+	$X, X_{1}, X_{2}, \,\ldots\,:\, (\Omega,\mathcal{A},\mu) \,\longrightarrow\,\Re$
+	are random variables defined on $(\Omega,\mathcal{A},\mu)$.
+\end{itemize}
+Then the following are equivalent:
+\begin{enumerate}
+\item
+	$X_{n} \,\longrightarrow\,X$ almost surely,
+	i.e. \,$P\!\left(\;\underset{n\rightarrow\infty}{\lim}\;X_{n} \,=\, X\,\right) \, = \, 1$.
+\item
+	\begin{equation*}
+	P\!\left(\;
+		\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\vert > \varepsilon\,,
+		{\color{white}....}
+		\;\textnormal{for infinitely many \,$n \,\in\, \N$}
+		{\color{white}.....}
+		\;\right)
+	\;\; = \;\; 0\,,
+	\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+	\end{equation*}
+\item
+	\begin{equation*}
+	P\!\left(\;
+		\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\vert \leq \varepsilon\,,
+		\;\textnormal{for all but finitely many \,$n \,\in\, \N$}
+		\;\right)
+	\;\; = \;\; 1\,,
+	\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+	\end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof
+First, note that it is trivial that \,(ii)\,$\Longleftrightarrow$\,(iii)\,.
+To complete the proof of the present Lemma, it therefore suffices to establish that \,(i)\,$\Longleftrightarrow$\,(iii)\,.
+
+\vskip 0.3cm
+\noindent
+Recall that, for each \,$\omega \in \Omega$\,,
+\begin{eqnarray*}
+&&
+	\underset{n\rightarrow\infty}{\lim}\,
+	\left\vert\,\overset{{\color{white}.}}{X}_{n}(\omega) - X(\omega)\,\right\vert
+	\;\; = \;\;0
+\\
+& \Longleftrightarrow &
+	\textnormal{for each $\varepsilon > 0$,\, there exists \,$N(\varepsilon) \in \N$\, such that
+	\,$\left\vert\,\overset{{\color{white}.}}{X}_{n}(\omega) - X(\omega)\,\right\vert \,\leq\, \varepsilon$,\,
+	for each \,$n > N(\varepsilon)$}
+\\
+& \Longleftrightarrow &
+	\textnormal{for each \,$\varepsilon > 0$,\,
+	\,$\left\vert\,\overset{{\color{white}.}}{X}_{n}(\omega) - X(\omega)\,\right\vert \,\leq\, \varepsilon$,\,
+	for all but finitely many \,$n \in \N$}
+\\
+& \Longleftrightarrow &
+	\textnormal{for each $k \in \N$,\,
+	\,$\left\vert\,\overset{{\color{white}.}}{X}_{n}(\omega) - X(\omega)\,\right\vert \,\leq\, \dfrac{1}{k}$,\,
+	for all but finitely many \,$n \in \N$}
+\end{eqnarray*}
+We therefore see that
+\begin{equation*}
+\!\left\{\;
+	\omega \in \Omega
+	\;\left\vert\;
+	\underset{n\rightarrow\infty}{\lim}\;X_{n}(\omega) \,=\, X(\omega)
+	\right.
+	\;\right\}
+\;\; = \;\;
+	\underset{\varepsilon\,>\,0}{\bigcap}\; A(\varepsilon)
+\;\; = \;\;
+	\overset{\infty}{\underset{k\,=\,1}{\bigcap}}\; A(1/k)\,,
+\end{equation*}
+where
+\begin{equation*}
+A(\varepsilon)
+\; := \;
+	\left\{\;
+		\omega \in \Omega
+		\;\left\vert\;
+		\left\vert\,\overset{{\color{white}.}}{X}_{n}(\omega) - X(\omega)\,\right\vert \,\leq\, \varepsilon\,,\;
+		\textnormal{for all but finitely many \,$n \in \N$}
+		\right.
+		\;\right\},
+\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\underline{(i)\;$\Longrightarrow$\;(iii)}
+\vskip 0.3cm
+\noindent
+Since
+\,$\!\left\{\;
+	\omega \in \Omega
+	\;\left\vert\;
+	\underset{n\rightarrow\infty}{\lim}\;X_{n}(\omega) \,=\, X(\omega)
+	\right.
+	\;\right\}
+\; \subset \; A(\varepsilon)$\,,
+for each \,$\varepsilon > 0$\,,
+we see that
+\begin{eqnarray*}
+&&
+	P\!\left(\;\underset{n\rightarrow\infty}{\lim}\;X_{n} \,=\, X\,\right)
+\\
+& \leq &
+	P\!\left(\,\overset{{\color{white}.}}A(\varepsilon)\,\right)
+	\;\; := \;\;
+		P\!\left(\;
+			\left\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\right\vert \,\leq\, \varepsilon\,,\;
+			\textnormal{for all but finitely many \,$n \in \N$}
+			\;\right),
+	\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+\textnormal{(i)}
+& \Longleftrightarrow  &
+	P\!\left(\;\underset{n\rightarrow\infty}{\lim}\;X_{n} \,=\, X\,\right) \, = \, 1
+\\
+& \Longrightarrow &
+	1
+	\;\; \leq \;\;
+		P\!\left(\;
+			\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\vert \leq \varepsilon\,,
+			\;\textnormal{for all but finitely many \,$n \,\in\, \N$}
+			\;\right)
+	\;\; \leq \;\;
+		1\,,
+	\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+\\
+& \Longrightarrow &
+	\overset{{\color{white}.}}{\textnormal{(iii)}}\,,
+\end{eqnarray*}
+as required.
+
+\vskip 0.8cm
+\noindent
+\underline{(i)\;$\Longleftarrow$\;(iii)}
+\vskip 0.3cm
+\noindent
+\begin{eqnarray*}
+\textnormal{(iii)}
+& \Longleftrightarrow  &
+	P\!\left(\;
+		\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\vert \leq \varepsilon\,,
+		\,\;\;\textnormal{for all but finitely many \,$n \,\in\, \N$}
+		\;\right)
+	\;\; = \;\; 1\,,
+	\quad\textnormal{for each \,$\varepsilon \,>\, 0$}\,.
+\\
+& \Longrightarrow  &
+	P\!\left(\;
+		\vert\,\overset{{\color{white}.}}{X}_{n} - X\,\vert \leq \dfrac{1}{k}\,,
+		\;\textnormal{for all but finitely many \,$n \,\in\, \N$}
+		\;\right)
+	\;\; = \;\; 1\,,
+	\quad\textnormal{for each \,$k \,\in\, \N$}\,.
+\\
+& \overset{{\color{white}-}}{\Longleftrightarrow}  &
+	P\!\left(\; \overset{{\color{white}.}}{A}(1/k) \;\right)
+	\;\; = \;\; 1\,,
+	\quad\textnormal{for each \,$k \,\in\, \N$}\,.
+\\
+& \overset{{\color{white}\vert}}{\Longrightarrow}  &
+	P\!\left(\;\underset{n\rightarrow\infty}{\lim}\;X_{n} \,=\, X\,\right)
+	\; = \;
+	P\!\left(\; \underset{\varepsilon\,>\,0}{\bigcap}\; A(\varepsilon) \right)
+	\; = \;
+	P\!\left(\; \overset{\infty}{\underset{k\,=\,1}{\bigcap}}\; A(1/k) \right)
+	\; = \;
+		1
+\\
+& \overset{{\color{white}\vert}}{\Longrightarrow}  &
+	\textnormal{(i)}\,,
+\end{eqnarray*}
+where the very last equality follows from the fact that the intersection of
+a countable family of events each having probability one itself has probability one.
+
+\vskip 0.5cm
+\noindent
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{lemma:SequenceOfPartialMeans}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose \,$\left\{\,a_{n}\,\right\}_{n\in\N}\,\subset\,\Re$\, is a sequence of real numbers and let
+\,$b_{n} \, := \, \dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\;a_{i}$\,.
+Then,
+\begin{equation*}
+\underset{n\rightarrow\infty}{\lim}\;a_{n} \,=\, A \,\in\, \Re
+\quad\Longrightarrow\quad
+\underset{n\rightarrow\infty}{\lim}\;b_{n} \,=\, A
+\end{equation*}
+\end{lemma}
+\proof
+We need to show that, for each $\varepsilon > 0$, there exists $N(\varepsilon) \in \N$ such that
+\begin{equation*}
+\left\vert\;b_{n} - \overset{{\color{white}.}}{A}\;\right\vert \; < \; \varepsilon\,,
+\quad
+\textnormal{for each \,$n \,>\, N(\varepsilon)$}\,.
+\end{equation*}
+To this end, let \,$\varepsilon > 0$\, be given.
+Since \,$\underset{n\rightarrow\infty}{\lim}\;a_{n} \,=\, A \,\in\, \Re$\,,
+there exists \,$N_{1}(\varepsilon) \in \N$\, such that
+\begin{equation*}
+\left\vert\;a_{n} - \overset{{\color{white}.}}{A}\;\right\vert \; < \; \dfrac{\varepsilon}{2}\,,
+\quad
+\textnormal{for each \,$n \,>\, N_{1}(\varepsilon)$}\,.
+\end{equation*}
+Now, for each \,$n \geq N_{1}(\varepsilon)+1$,\, we have
+\begin{eqnarray*}
+\left\vert\;b_{n} - \overset{{\color{white}.}}{A}\;\right\vert
+&=&
+	\left\vert\;\dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\;a_{i} - \overset{{\color{white}.}}{A}\;\right\vert
+	\;\; = \;\;
+	\left\vert\;\dfrac{1}{n}\cdot\overset{n}{\underset{i=1}{\sum}}\left(\,a_{i} - \overset{{\color{white}.}}{A}\,\right)\;\right\vert
+	\;\; = \;\;
+	\left\vert\;
+		\dfrac{1}{n}\cdot\overset{N_{1}(\varepsilon)}{\underset{i=1}{\sum}}\left(\,a_{i} - \overset{{\color{white}.}}{A}\,\right)
+		\;+\;
+		\dfrac{1}{n}\cdot\overset{n}{\underset{i=N_{1}(\varepsilon)+1}{\sum}}\left(\,a_{i} - \overset{{\color{white}.}}{A}\,\right)
+		\;\right\vert
+\\
+&\leq&
+	\left\vert\;
+		\dfrac{1}{n}\cdot\overset{N_{1}(\varepsilon)}{\underset{i=1}{\sum}}\left(\,a_{i} - \overset{{\color{white}.}}{A}\,\right)
+		\;\right\vert
+	\;\,+\;\,
+	\left\vert\;
+		\dfrac{1}{n}\cdot\overset{n}{\underset{i=N_{1}(\varepsilon)+1}{\sum}}\left(\,a_{i} - \overset{{\color{white}.}}{A}\,\right)
+		\;\right\vert
+	\;\; \leq \;\;
+	\dfrac{1}{n} \cdot \overset{N_{1}(\varepsilon)}{\underset{i=1}{\sum}}
+		\left\vert\; a_{i} - \overset{{\color{white}.}}{A} \;\right\vert
+	\;\,+\;\,
+	\dfrac{1}{n} \cdot \overset{n}{\underset{i=N_{1}(\varepsilon)+1}{\sum}}
+		\left\vert\; a_{i} - \overset{{\color{white}.}}{A} \;\right\vert
+\\
+&<&
+	\dfrac{1}{n} \cdot \overset{N_{1}(\varepsilon)}{\underset{i=1}{\sum}}
+		\left\vert\; a_{i} - \overset{{\color{white}.}}{A} \;\right\vert
+	\;\,+\;\,
+	\dfrac{n - N_{1}(\varepsilon)}{n} \cdot \dfrac{\varepsilon}{2}
+	\;\; \leq \;\;
+	\dfrac{1}{n} \cdot \overset{N_{1}(\varepsilon)}{\underset{i=1}{\sum}}
+		\left\vert\; a_{i} - \overset{{\color{white}.}}{A} \;\right\vert
+	\;\,+\;\,
+	\dfrac{\varepsilon}{2}
+\end{eqnarray*}
+Next, observe that, since
+\,$\overset{N_{1}(\varepsilon)}{\underset{i=1}{\sum}}\left\vert\; a_{i} - \overset{{\color{white}.}}{A} \;\right\vert$\,
+is just a (finite) real number, we have
+\,$\underset{n\rightarrow\infty}{\lim}\;\dfrac{1}{n} \cdot \overset{N_{1}(\varepsilon)}{\underset{i=1}{\sum}}\left\vert\; a_{i} - \overset{{\color{white}.}}{A} \;\right\vert \,=\, 0$\,.
+In particular, there exists \,$N_{2}(\varepsilon) \in \N$ such that
+\begin{equation*}
+\dfrac{1}{n} \cdot \overset{N_{1}(\varepsilon)}{\underset{i=1}{\sum}}\left\vert\; a_{i} - \overset{{\color{white}.}}{A} \;\right\vert
+\;\; < \;\; \dfrac{\varepsilon}{2}\,,
+\quad
+\textnormal{for each \,$n > N_{2}(\varepsilon)$}
+\end{equation*}
+Now, define \,$N(\varepsilon) \,:=\, \max\!\left\{\,\overset{{\color{white}.}}{N}_{1}(\varepsilon),N_{2}(\varepsilon)\,\right\}$.\,
+Then,
+\begin{eqnarray*}
+\left\vert\;b_{n} - \overset{{\color{white}.}}{A}\;\right\vert
+\;\; < \;\;
+	\dfrac{1}{n} \cdot \overset{N_{1}(\varepsilon)}{\underset{i=1}{\sum}}
+		\left\vert\; a_{i} - \overset{{\color{white}.}}{A} \;\right\vert
+		\;\,+\;\,
+		\dfrac{\varepsilon}{2}
+\;\; < \;\;
+	\dfrac{\varepsilon}{2} \;\,+\;\, \dfrac{\varepsilon}{2}
+\;\; = \;\;
+	\varepsilon\,,
+\quad
+\textnormal{for each \,$n \,>\, N(\varepsilon)$}
+\end{eqnarray*}
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\label{LemmaMomentsAndTails}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $\left(\,\Omega,\mathcal{A},P\,\right)$ be any probability space.
+Then, for each $p > 0$ and
+for each non-negative random variable (i.e. measurable function) $f : \Omega \longrightarrow [0,\infty)$,
+we have:
+\begin{equation*}
+E\!\left[\,f^{p}\,\right]
+\;\; = \;\; p\,\int_{0}^{\infty}\,P\!\left(\,f > t\,\right)\cdot t^{p-1}\,\d t
+\;\; = \;\; p\,\int_{0}^{\infty}\,P\!\left(\,f \geq t\,\right)\cdot t^{p-1}\,\d t\,.
+\end{equation*}
+\end{lemma}
+
+\proof
+\vskip 0.1cm
+\noindent
+We first prove the first equality:
+By elementary Calculus (change of variable formula) and Fubini's Theorem, we have
+\begin{eqnarray*}
+E\!\left[\,f^{p}\,\right]
+&:=& \int_{\Omega}\,f(\omega)^{p}\,\d P(\omega)
+\;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{f(\omega)^{p}}\,1\,\d s\;\right]\,\d P(\omega)
+\;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0\,<\,s\,<\,f(\omega)^{p}\right\}}\,\d s\;\right]\,\d P(\omega)
+\\
+&=& \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0 \,\leq\, s^{1/p} \,<\, f(\omega)\,\right\}}\,\d s\;\right]\,\d P(\omega)
+\;\;=\;\; \int_{\Omega}\,\left[\;\int_{0}^{\infty}\,1_{\left\{\,0 \,\leq\, t \,<\, f(\omega)\,\right\}}\cdot p \cdot t^{p-1} \,\d t\;\right]\,\d P(\omega)
+\\
+&=& \int_{0}^{\infty}\,\left[\;\int_{\Omega}\,1_{\left\{\,0 \,\leq\, t \,<\, f(\omega)\,\right\}}\cdot p \cdot t^{p-1} \,\d P(\omega)\;\right]\,\d t
+\;\;=\;\; p \cdot \int_{0}^{\infty}\,\left[\;\int_{\Omega}\,1_{\left\{\,0 \,\leq\, t \,<\, f(\omega)\,\right\}}\,\d P(\omega)\;\right] \cdot t^{p-1} \,\d t
+\\
+&=& p \cdot \int_{0}^{\infty}\, P\!\left(\,f > t\,\right)\cdot t^{p-1} \,\d t.
+\end{eqnarray*}
+The proof of the second inequality is analogous.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{lemma:EYIsFiniteIFFSumPYGTnIsFinite}
+\mbox{}
+\vskip 0.1cm
+\noindent
+For any non-negative random variable $Y$,
+\begin{equation*}
+E\!\left[\,Y\,\right]
+\;\; \leq \;\;
+	\overset{\infty}{\underset{n = 0}{\sum}}\;\,P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right)
+\;\; \leq \;\;
+	E\!\left[\,Y\,\right] \,+\, 1
+\end{equation*}
+In particular,
+\begin{equation*}
+E\!\left[\,Y\,\right] \; < \; \infty
+\quad \Longleftrightarrow \quad
+	\overset{\infty}{\underset{n = 0}{\sum}}\;P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right) \; < \; \infty
+\end{equation*}
+\end{lemma}
+\proof
+First, note that
+\begin{eqnarray*}
+\overset{\infty}{\underset{n = 0}{\sum}}\;P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right)
+& = &
+	\overset{\infty}{\underset{n = 0}{\sum}}\;\;
+	\overset{\infty}{\underset{i = n}{\sum}}\;
+	P\!\left(\, i \,<\, \overset{{\color{white}.}}{Y} \,\leq\, i+1 \,\right)
+\;\; = \;\;
+	\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+	\overset{i}{\underset{n = 0}{\sum}}\;
+	P\!\left(\, i \,<\, \overset{{\color{white}.}}{Y} \,\leq\, i+1 \,\right)
+\\
+& = &
+	\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+	(i+1) \cdot P\!\left(\, i \,<\, \overset{{\color{white}.}}{Y} \,\leq\, i+1 \,\right)
+\end{eqnarray*}
+Hence, it follows that
+\begin{eqnarray*}
+E\!\left[\,Y\,\right]
+&=&
+	\int_{0}^{\infty}\, y \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		\int_{i}^{i+1}\, y \;\d\,F(y)
+\\
+& \leq &
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		\int_{i}^{i+1}\, (i+1) \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		(i+1) \cdot \int_{i}^{i+1}\, 1 \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		(i+1) \cdot P\!\left(\; i \,<\, \overset{{\color{white}.}}{Y} \,\leq\, i+1 \;\right)
+\\
+& = &
+	\overset{\infty}{\underset{n = 0}{\sum}}\;\,
+	P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right),
+\end{eqnarray*}
+and
+\begin{eqnarray*}
+E\!\left[\,Y\,\right] \,+\, 1
+&=&
+	\int_{0}^{\infty}\, y \;\d\,F(y)
+		\; + \;
+		\int_{0}^{\infty}\, 1 \;\d\,F(y)
+	\;\; = \;\;
+		\int_{0}^{\infty}\, (y+1) \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		\int_{i}^{i+1}\, (y+1) \;\d\,F(y)
+\\
+& \geq &
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		\int_{i}^{i+1}\, (i+1) \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		(i+1) \cdot \int_{i}^{i+1}\, 1 \;\d\,F(y)
+	\;\; = \;\;
+		\overset{\infty}{\underset{i = 0}{\sum}}\;\;
+		(i+1) \cdot P\!\left(\; i \,<\, \overset{{\color{white}.}}{Y} \,\leq\, i+1 \;\right)
+\\
+& = &
+	\overset{\infty}{\underset{n = 0}{\sum}}\;\,
+	P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right)
+\end{eqnarray*}
+Combining the above inequalities, we obtain:
+\begin{equation*}
+E\!\left[\,Y\,\right]
+\;\; \leq \;\;
+	\overset{\infty}{\underset{n = 0}{\sum}}\;\,P\!\left(\, \overset{{\color{white}.}}{Y} \,>\, n \,\right)
+\;\; \leq \;\;
+	E\!\left[\,Y\,\right] \,+\, 1\,,
+\end{equation*}
+as required.
+This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
