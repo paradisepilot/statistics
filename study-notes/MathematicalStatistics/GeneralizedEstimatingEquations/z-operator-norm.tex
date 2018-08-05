@@ -1,0 +1,285 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Operator norms of operators on normed spaces}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Operator norm]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let \,$(V,\Vert\,\cdot\,\Vert)$\, be a normed vector space over \,$\F = \Re \;\textnormal{or}\; \C$,\,
+and \,$A : V \longrightarrow V$\, a linear map.
+The operator norm \,$\Vert\,A\,\Vert$\, of \,$A$\, is defined as follows:
+\begin{equation*}
+\Vert\,A\,\Vert
+\;\; := \;\;
+	\sup\left\{\;
+		\Vert\, A \cdot v \,\Vert
+		\,\;\left\vert\;
+			\begin{array}{c}
+			v \in V
+			\\
+			\Vert\, v \,\Vert \leq 1
+			\end{array}
+			\right. 
+		\right\}
+\end{equation*}
+\end{definition}
+
+\begin{remark}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $(V,\Vert\,\cdot\,\Vert)$ be a normed vector space over \,$\F = \Re \;\textnormal{or}\; \C$,\,
+and \,$A : V \longrightarrow V$\, a linear map.
+The operator norm \,$\Vert\, A \,\Vert$\, has the following equivalent characterizations:
+\begin{eqnarray*}
+\Vert\,A\,\Vert
+& := &
+	\sup\left\{\;
+		\Vert\, A \cdot v \,\Vert
+		\,\;\left\vert\;
+			\begin{array}{c}
+			v \in V
+			\\
+			\Vert\, v \,\Vert \leq 1
+			\end{array}
+			\right. 
+		\right\}
+\\
+& = &
+	\sup\left\{\;
+		\Vert\, A \cdot v \,\Vert
+		\,\;\left\vert\;
+			\begin{array}{c}
+			v \in V
+			\\
+			\Vert\, v \,\Vert = 1
+			\end{array}
+			\right. 
+		\right\}
+\\
+& = &
+	\sup\left\{\;
+		\dfrac{ \Vert\, A \cdot v \,\Vert }{ \Vert\, v \,\Vert }
+		\,\;\left\vert\;
+			\begin{array}{c}
+			v \in V
+			\\
+			\Vert\, v \,\Vert > 0
+			\end{array}
+			\right. 
+		\right\}
+\\
+& = &
+	\inf\left\{\;
+		c \geq 0
+		\,\;\left\vert\;
+			\begin{array}{c}
+			\Vert\,A \cdot v\,\Vert \,\leq\, c \cdot \Vert\,v\,\Vert\,,
+			\\
+			\textnormal{for each \,$v \in V$}
+			\end{array}
+			\right.
+		\right\}
+\end{eqnarray*}
+The operator norm is indeed a norm, i.e. it satisfies the following:
+\begin{itemize}
+\item
+	$\Vert\, A \,\Vert \; \geq \; 0$.
+\item
+	$\Vert\, A \,\Vert \; = \; 0$ \; $\Longleftrightarrow$ \; $A \, = \, 0$.
+\item
+	$\Vert\, \alpha \cdot A \,\Vert \; = \; \vert\, \alpha \,\vert \cdot \Vert\, A \,\Vert$,\; for each $\alpha \in \F$.
+\item
+	$\Vert\, A_{1} + A_{2} \,\Vert \;\leq\; \Vert\, A_{1} \,\Vert \;+\; \Vert \, A_{2} \,\Vert$,\;
+	for each pair of linear maps \,$A_{1} \,,\, A_{2} \,:\, V \longrightarrow V$.
+\end{itemize}
+The operator norm trivially satisfies, by its very definition, the following:
+\begin{equation*}
+\Vert\, A \cdot v \,\Vert \;\; \leq \;\; \Vert\, A \,\Vert \cdot \Vert\, v \,\Vert\,,
+\quad
+\textnormal{for each \,$v \in V$}\,.
+\end{equation*}
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{vectorNormOfIntegralLessThanInteralOfNorm}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $v : [\,a,b\,] \longrightarrow \Re^{p}$ be continuous.
+Then,
+\begin{equation*}
+\left\Vert\;\, \int_{a}^{b}\; v(t) \;\d t \,\;\right\Vert
+\;\; \leq \;\;
+	\int_{a}^{b}\; \left\Vert\, v(t) \,\right\Vert \;\d t
+\end{equation*}
+\end{lemma}
+\proof
+First, note that if
+\begin{equation*}
+\left\Vert\;\, \int_{a}^{b}\; v(t) \;\d t \,\;\right\Vert \, = \, 0\,,
+\end{equation*}
+then the required inequality holds trivially.
+Next, assume
+\begin{equation*}
+\left\Vert\;\, \int_{a}^{b}\; v(t) \;\d t \,\;\right\Vert \, > \, 0\,,
+\end{equation*}
+and we show that the required inequality still holds.
+
+\vskip 0.5cm
+\noindent
+Write \,$v(t) \,=\, \left(\,v_{1}(t),\ldots,v_{p}(t)\right)$.
+Define
+\begin{equation*}
+z
+\;\; = \;\;
+	(\,z_{1},\ldots,z_{p}\,)
+\;\; := \;\;
+	\int_{a}^{b}\; v(t) \;\d t
+\;\; := \;\;
+	\left(\,
+		\int_{a}^{b}\; v_{1}(t) \;\d t\,,
+		\,\ldots\,,
+		\int_{a}^{b}\; v_{p}(t) \;\d t
+		\,\right)
+\end{equation*}
+Note that
+\begin{equation*}
+\Vert\, z \,\Vert
+\;\; = \;\;
+	\left\Vert\;\, \int_{a}^{b}\; v(t) \;\d t \,\;\right\Vert
+\;\; > \;\;
+	0
+\end{equation*}
+Then,
+\begin{eqnarray*}
+\Vert\, z \,\Vert \cdot \left\Vert\;\, \int_{a}^{b}\; v(t) \;\d t \,\;\right\Vert
+& = &
+	\left\Vert\;\, \int_{a}^{b}\; v(t) \;\d t \,\;\right\Vert^{2}
+\;\; = \;\;
+	\overset{p}{\underset{i\,=\,1}{\sum}}
+	\left(\;
+		\int_{a}^{b}\; v_{i}(t) \;\d t
+		\,\right)^{2}
+\\
+& = &
+	\overset{p}{\underset{i\,=\,1}{\sum}}\;\,
+	z_{i} \cdot \left(\; \int_{a}^{b}\; v_{i}(t) \;\d t \,\right)
+\;\; = \;\;
+	\overset{p}{\underset{i\,=\,1}{\sum}}
+	\left(\; \int_{a}^{b}\; z_{i} \cdot v_{i}(t) \;\d t \,\right)
+\;\; = \;\;
+	\int_{a}^{b}
+		\left(\;
+			\overset{p}{\underset{i\,=\,1}{\sum}}\;
+			z_{i} \cdot v_{i}(t)
+			\right)
+		\d t
+\\
+& = &
+	\int_{a}^{b}\; z \bullet v(t) \;\d t
+\\
+& \leq &
+	\int_{a}^{b}\; \Vert\,z\,\Vert \cdot \Vert\,v(t)\Vert \,\;\d t\,,
+	\quad
+	\textnormal{by the Cauchy-Schwarz Inequality}
+\\
+& \leq &
+	\Vert\,z\,\Vert \cdot \int_{a}^{b}\; \Vert\,v(t)\Vert \,\;\d t
+\end{eqnarray*}
+Cancelling \,$\Vert\,z\,\Vert \,>\, 0$\, on both sides of the above inequality yields:
+\begin{equation*}
+\left\Vert\;\, \int_{a}^{b}\; v(t) \;\d t \,\;\right\Vert
+\;\; \leq \;\;
+	\int_{a}^{b}\; \Vert\,v(t)\Vert \,\;\d t\,,
+\end{equation*}
+which completes the proof the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{proposition}\label{matrixNormOfIntegralLessThanInteralOfNorm}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let $L : [\,a,b\,] \longrightarrow \Re^{p \times p}$ be continuous.
+Then,
+\begin{equation*}
+\left\Vert\;\, \int_{a}^{b}\; L(t) \;\d t \,\;\right\Vert
+\;\; \leq \;\;
+	\int_{a}^{b}\; \left\Vert\, L(t) \,\right\Vert \;\d t
+\end{equation*}
+\end{proposition}
+\proof
+First, note that, for each \,$v \in \Re^{p}$\,,
+\begin{eqnarray*}
+\left\Vert\;\, \left(\,\int_{a}^{b}\; L(t) \;\d t\,\right) \cdot v \,\;\right\Vert
+& = &
+	\left\Vert\;\, \int_{a}^{b}\; L(t) \cdot v \;\d t \;\;\right\Vert
+\\
+& \leq &
+	\int_{a}^{b}\; \left\Vert\, L(t) \cdot v \,\right\Vert \;\d t\,,
+	\quad
+	\textnormal{by Lemma \ref{vectorNormOfIntegralLessThanInteralOfNorm}}
+\\
+& \leq &
+	\int_{a}^{b}\; \Vert\, L(t) \,\Vert \cdot \Vert\, v \,\Vert \;\d t\,,
+	\quad
+	\textnormal{by general properties of operation norms}
+\\
+& \leq &
+	\left(\, \int_{a}^{b}\; \Vert\, L(t) \,\Vert \;\d t \,\right)
+	\cdot \Vert\, v \,\Vert\,.
+\end{eqnarray*}
+Taking supremum of both sides of the preceding inequality
+over all \,$v \in \Re^{p}$\, with \,$\Vert\,v\,\Vert\,\leq\,1$\, yields:
+\begin{eqnarray*}
+\left\Vert\;\, \int_{a}^{b}\; L(t) \;\d t \,\;\right\Vert
+& := &
+	\underset{\Vert\,v\,\Vert \,\leq\, 1}{\sup}\;
+	\left\{\;\;
+		\left\Vert\;\, \left(\,\int_{a}^{b}\; L(t) \;\d t\,\right) \cdot v \,\;\right\Vert
+		\;\;\right\}
+\;\; \leq \;\;
+	\underset{\Vert\,v\,\Vert \,\leq\, 1}{\sup}\;
+	\left\{\;\;
+		\left(\, \int_{a}^{b}\; \Vert\, L(t) \,\Vert \;\d t \,\right)
+		\cdot \Vert\, v \,\Vert
+		\;\;\right\}
+\\
+& \leq &
+	\underset{\Vert\,v\,\Vert \,\leq\, 1}{\sup}\;
+	\left\{\;\;
+		\left(\, \int_{a}^{b}\; \Vert\, L(t) \,\Vert \;\d t \,\right)
+		\;\;\right\}
+\\
+& = &
+	\int_{a}^{b}\; \Vert\, L(t) \,\Vert \;\d t\,,
+\end{eqnarray*} 
+as required.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
