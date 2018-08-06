@@ -1,0 +1,239 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{$M$-Estimators and $Z$-Estimators}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[$M$-Estimators]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Setting:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$\, is a probability space.
+\item
+	$\Theta \subset \Re^{p}$\, is an open subset of $\Re^{p}$.
+\item
+	$M : \Theta \longrightarrow \Re$\, is an $\Re$-valued function defined on $\Theta$.
+\item
+	\begin{equation*}
+	\theta_{0}
+	\;\; \in \;\;
+		\underset{\theta\in\Theta}{\argmax}\; M(\theta)
+	\;\; = \;\;
+		\left\{\;\,
+			\theta \in \Theta
+			\,\;\left\vert\;\;
+				M(\theta) \,=\; \underset{\zeta\in\Theta}{\sup}\; M(\zeta)
+				\right.
+			\;\right\}
+	\end{equation*}
+\item
+	For each $n \in \N$, \,$M_{n} : \Omega \times \Theta \longrightarrow \Re$\,
+	is a function such that \,$M_{n}(\,\cdot\,,\theta)$\, is $\mathcal{A}$-measurable,
+	for each $\theta \in \Theta$.
+\end{itemize}
+Then,
+\begin{enumerate}
+\item
+	A sequence
+	\,$\widehat{\theta}_{n} : \Omega \longrightarrow \Theta$\,
+	of (not necessarily measurable) functions
+	is called a sequence of \underline{{\color{white}j}\textbf{$M$-estimators}{\color{white}j}}
+	if it satisfies:
+	\begin{equation*}
+	\widehat{\theta}_{n}(\omega)
+	\;\; \in \;\;
+		\underset{\theta\in\Theta}{\argmax}\; M_{n}(\omega,\theta)
+	\;\; = \;\;
+		\left\{\;\,
+			\theta \in \Theta
+			\,\;\left\vert\;\;
+				M_{n}(\omega,\theta) \,=\; \underset{\zeta\in\Theta}{\sup}\;\, M_{n}(\omega,\zeta)
+				\right.
+			\;\right\}
+	\end{equation*}
+\item
+	The sequence
+	\,$\widehat{\theta}_{n} : \Omega \longrightarrow \Theta$\,
+	of \,$M$-estimators is said to be
+	\underline{\textbf{weakly consistent}}\, for \,$\theta_{0} \in \Theta$\,
+	if
+	\begin{itemize}
+	\item
+		$\widehat{\theta}_{n}$\, is measurable for each $n\in\N$, and
+	\item
+		$\widehat{\theta}_{n} \,\longrightarrow\, \theta_{0}$\, in probability,
+		i.e.
+		\begin{equation*}
+		\underset{n\rightarrow\infty}{\lim}\;\;
+		\mu\!\left(\;\left\{\;\;
+			\omega \in \Omega
+			\;\,\left\vert\;\;
+				\left\vert\;\,\widehat{\theta}_{n}(\omega) \, - \, \theta_{0}\,\right\vert \; > \; \varepsilon
+				\right.
+			\;\right\}\;\right)
+		\;\; = \;\;
+			0\,,
+		\quad
+		\textnormal{for each \,$\varepsilon > 0$}
+		\end{equation*}
+	\end{itemize}
+\item
+	The sequence
+	\,$\widehat{\theta}_{n} : \Omega \longrightarrow \Theta$\,
+	of \,$M$-estimators is said to be
+	\,\underline{\textbf{strongly consistent}}\, for \,$\theta_{0} \in \Theta$\,
+	if
+	\begin{itemize}
+	\item
+		$\widehat{\theta}_{n}$\, is measurable for each $n\in\N$, and
+	\item
+		$\widehat{\theta}_{n} \,\longrightarrow\, \theta_{0}$\, almost surely,
+		i.e.
+		\begin{equation*}
+		\mu\!\left(\;\left\{\;\;
+			\omega \in \Omega
+			\;\,\left\vert\;
+				\underset{n\rightarrow\infty}{\lim}\, \widehat{\theta}_{n}(\omega) \, = \, \theta_{0}
+				\right.
+			\;\right\}\;\right)
+		\;\; = \;\;
+			1
+		\end{equation*}
+	\end{itemize}
+\end{enumerate}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[$Z$-Estimators]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Setting:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$\, is a probability space.
+\item
+	$\Theta \subset \Re^{p}$\, is an open subset of $\Re^{p}$.
+\item
+	$\Psi : \Theta \longrightarrow \Re^{p}$\, is an $\Re^{p}$-valued function defined on $\Theta$.
+\item
+	\begin{equation*}
+	\theta_{0}
+	\;\; \in \;\;
+		\underset{\theta\overset{{\color{white}.}}{\in}\Theta}{\zeros}\; M(\theta)
+	\;\; = \;\;
+		\left\{\;\,
+			\theta \in \Theta
+			\,\;\left\vert\;\;
+				\overset{{\color{white}1}}{\Psi}(\theta) \;=\; 0 \;\in\; \Re^{p}
+				\right.
+			\;\right\}
+	\end{equation*}
+\item
+	For each $n \in \N$, \,$\Psi_{n} : \Omega \times \Theta \longrightarrow \Re^{p}$\,
+	is a function such that \,$\Psi_{n}(\,\cdot\,,\theta)$\, is $\mathcal{A}$-measurable,
+	for each $\theta \in \Theta$.
+\end{itemize}
+Then,
+\begin{enumerate}
+\item
+	A sequence
+	\,$\widehat{\theta}_{n} : \Omega \longrightarrow \Theta$\,
+	of (not necessarily measurable) functions
+	is called a sequence of \underline{{\color{white}j}\textbf{$Z$-estimators}{\color{white}j}}
+	if it satisfies:
+	\begin{equation*}
+	\widehat{\theta}_{n}(\omega)
+	\;\; \in \;\;
+		\underset{\theta\overset{{\color{white}.}}{\in}\Theta}{\zeros}\; M_{n}(\omega,\theta)
+	\;\; = \;\;
+		\left\{\;\,
+			\theta \in \Theta
+			\,\;\left\vert\;\;
+				\overset{{\color{white}1}}{\Psi}_{n}(\omega,\theta) \;=\; 0 \;\in\; \Re^{p}
+				\right.
+			\;\right\}
+	\end{equation*}
+	The defining equation of a sequence of $Z$-estimators, namely,
+	\begin{equation*}
+	\Psi_{n}(\omega,\theta) \;=\; 0 \;\in\; \Re^{p}
+	\end{equation*}
+	is called the corresponding \,\underline{\textbf{estimating equation}}\,,
+	which is to be solved for \,$\theta \in \Theta$,\, given fixed \,$\omega \in \Omega$.\,
+\item
+	The sequence
+	\,$\widehat{\theta}_{n} : \Omega \longrightarrow \Theta$\,
+	of \,$Z$-estimators is said to be
+	\underline{\textbf{weakly consistent}}\, for \,$\theta_{0} \in \Theta$\,
+	if
+	\begin{itemize}
+	\item
+		$\widehat{\theta}_{n}$\, is measurable for each $n\in\N$, and
+	\item
+		$\widehat{\theta}_{n} \,\longrightarrow\, \theta_{0}$\, in probability,
+		i.e.
+		\begin{equation*}
+		\underset{n\rightarrow\infty}{\lim}\;\;
+		\mu\!\left(\;\left\{\;\;
+			\omega \in \Omega
+			\;\,\left\vert\;\;
+				\left\vert\;\,\widehat{\theta}_{n}(\omega) \, - \, \theta_{0}\,\right\vert \; > \; \varepsilon
+				\right.
+			\;\right\}\;\right)
+		\;\; = \;\;
+			0\,,
+		\quad
+		\textnormal{for each \,$\varepsilon > 0$}
+		\end{equation*}
+	\end{itemize}
+\item
+	The sequence
+	\,$\widehat{\theta}_{n} : \Omega \longrightarrow \Theta$\,
+	of \,$Z$-estimators is said to be
+	\,\underline{\textbf{strongly consistent}}\; for \,$\theta_{0} \in \Theta$\,
+	if
+	\begin{itemize}
+	\item
+		$\widehat{\theta}_{n}$\, is measurable for each $n\in\N$, and
+	\item
+		$\widehat{\theta}_{n} \,\longrightarrow\, \theta_{0}$\, almost surely,
+		i.e.
+		\begin{equation*}
+		\mu\!\left(\;\left\{\;\;
+			\omega \in \Omega
+			\;\,\left\vert\;
+				\underset{n\rightarrow\infty}{\lim}\, \widehat{\theta}_{n}(\omega) \, = \, \theta_{0}
+				\right.
+			\;\right\}\;\right)
+		\;\; = \;\;
+			1
+		\end{equation*}
+	\end{itemize}
+\end{enumerate}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

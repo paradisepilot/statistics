@@ -1,0 +1,155 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical lemmas: a generalization of the Inverse Function Theorem}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}
+\mbox{}\vskip 0.1cm
+\noindent
+Let $(X,d)$ and $(Y,\rho)$ be metric spaces, and $\varphi : X \longrightarrow Y$.
+$\varphi$ is called a \textbf{contraction} if there exists $c \in [\,0,1)$
+such that
+\begin{equation*}
+\rho\!\left(\,\overset{{\color{white}-}}{\varphi}(x_{1}) \,,\, \varphi(x_{2})\,\right)
+\;\; \leq \;\;
+	c \cdot d\!\left(\,\overset{{\color{white}-}}{x}_{1} \,,\, x_{2}\,\right)\,,
+\quad
+\textnormal{for each \,$x_{1}\,, x_{2} \in X$}.
+\end{equation*}
+
+\end{definition}
+
+\begin{theorem}[The Contraction Principle, Theorem 9.23, p.220, \cite{Rudin1976}]
+\mbox{}\vskip 0.1cm
+\noindent
+If $X$ is a complete metric space, and
+$\varphi : X \longrightarrow X$ is a contraction,
+then there exists one and only one $x \in X$ such that $\varphi(x) = x$.
+\end{theorem}
+
+\begin{corollary}[Corollary 1, p.229, \cite{Loomis1990}]
+\mbox{}\vskip 0.1cm
+\noindent
+Setting:
+\begin{itemize}
+\item
+	$(X,d)$ is a complete metric space.
+\item
+	$\overline{B_{r}(x_{0})}$\, be a closed ball in $(X,d)$ with centre $x_{0} \in X$ and radius $r > 0$.
+\item
+	$\varphi : \overline{B_{r}(x_{0})} \longrightarrow X$ is a contraction, and $c > 0$ satisfies:
+	\begin{equation*}
+	d\!\left(\,\overset{{\color{white}-}}{\varphi}(x_{1}) \,,\, \varphi(x_{2})\,\right)
+	\;\; \leq \;\;
+		c \cdot d\!\left(\,\overset{{\color{white}-}}{x}_{1} \,,\, x_{2}\,\right)\,,
+		\quad
+		\textnormal{for each \,$x_{1}\,, x_{2} \in \overline{B_{r}(x_{0})}$}.
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{equation*}
+d\!\left(\, \overset{{\color{white}.}}{K}(x_{0}) \,,\, x_{0} \,\right) \; \leq \; (1-c) \cdot r
+\quad\Longrightarrow\quad
+\textnormal{$\varphi$\, has a unique fixed point, and it is in \,$\overline{B_{r}(x_{0})}$}
+\end{equation*}
+\end{corollary}
+\proof
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+
+\begin{lemma}[A generalization of the Inverse Function Theorem]
+\mbox{}\vskip 0.1cm
+\noindent
+Setting:
+\begin{itemize}
+\item
+	$\Theta \subset \Re^{p}$\, is an open subset of \,$\Re^{p}$.
+\item
+	$f : \Theta \longrightarrow \Re^{p}$\, is continuously differentiable.
+\item
+	$A \in \Re^{p \times p}$\, is a nonsingular matrix, and let
+	\,$\lambda \, := \, \dfrac{1}{{\color{white}.}2\cdot\Vert\,A^{-1}\,\Vert{\color{white}.}} \, > \, 0$\,.
+\end{itemize}
+Then, for each \,$\theta_{0} \in \Theta$\, and
+each \,$r > 0$\, with \,$B_{r}(\theta_{0}) \subset \Theta$,\, we have:
+\begin{equation*}
+(Df)\!\left(\,\overset{{\color{white}.}}{B}_{r}(\theta_{0})\,\right)
+\,\subset\, B_{\lambda}(A) 
+\quad\Longrightarrow\quad
+	B_{\lambda r}\!\left(\,\overset{{\color{white}.}}{f}(\theta_{0})\,\right)
+	\; \subset \;
+	f\!\left(\,\overset{{\color{white}.}}{B}_{r}(\theta_{0})\,\right)
+\end{equation*}
+\end{lemma}
+\proof
+Suppose we are given
+\,$\theta_{0} \in \Theta$\, and \,$r > 0$\, with \,$B_{r}(\theta_{0}) \subset \Theta$, such that
+\begin{equation*}
+(Df)\!\left(\,\overset{{\color{white}.}}{B}_{r}(\theta_{0})\,\right)
+\,\subset\, B_{\lambda}(A) 
+\end{equation*}
+For each \,$y \in B_{\lambda r}\!\left(\,\overset{{\color{white}.}}{f}(\theta_{0})\,\right)$,
+define \,$\varphi_{y} : B_{r}(\theta_{0}) \longrightarrow \Re^{p}$\, by
+\begin{equation*}
+\varphi_{y}(\theta) \; := \; \theta + A^{-1} \cdot (\,y - f(\theta)\,)\,,
+\quad
+\textnormal{for each \,$\theta \in B_{r}(\theta_{0})$}
+\end{equation*}
+Now, observe that, in order to prove this Lemma, it suffices to show that
+\,$\varphi_{y}$\, has a fixed point, for each
+\,$y \in B_{\lambda r}\!\left(\,\overset{{\color{white}.}}{f}(\theta_{0})\,\right)$.
+
+\vskip 0.5cm
+\noindent
+Next, note that
+\begin{equation*}
+D(\varphi_{y})(\theta)
+\;\; = \;\;
+	I_{p} \; - A^{-1} \cdot (Df)(\theta)
+\;\; = \;\;
+	A^{-1} \cdot \left(\; A \,\overset{{\color{white}.}}{-}\, (Df)(\theta) \,\right),
+\quad
+\textnormal{for each \,$\theta \in B_{r}(\theta_{0})$}
+\end{equation*}
+Consequently, for each \,$\theta \in B_{r}(\theta_{0})$, we have
+\begin{equation*}
+\left\Vert\; \overset{{\color{white}.}}{D}(\varphi_{y})(\theta) \;\right\Vert
+\;\; \leq \;\;
+	\left\Vert\; A^{-1} \;\right\Vert
+	\cdot
+	\left\Vert\; A \,\overset{{\color{white}.}}{-}\, (Df)(\theta) \,\right\Vert
+\;\; = \;\;
+	\dfrac{1}{2\,\lambda}
+	\cdot
+	\left\Vert\; A \,\overset{{\color{white}.}}{-}\, (Df)(\theta) \,\right\Vert
+\;\; < \;\;
+	\dfrac{1}{2\,\lambda} \cdot \lambda
+\;\; = \;\;
+	\dfrac{1}{2}
+\end{equation*}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
