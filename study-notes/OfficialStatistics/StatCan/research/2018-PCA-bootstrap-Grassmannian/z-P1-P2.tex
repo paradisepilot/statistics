@@ -1,0 +1,245 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The difference of two projection operators has norm 1}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{proposition}
+\mbox{}\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$n \in \N$\, is a positive integer.
+\item
+	$\Re^{n}$\, is the $n$-dimensional inner product space over $\Re$ equipped with the standard Euclidean inner product.
+\item
+	$P_{1}, \, P_{2} \, : \, \Re^{n} \, \longrightarrow \, \Re^{n}$\,
+	are nonzero orthogonal projection operators on $\Re^{n}$.
+\item
+	$\left\Vert\; P_{1} \overset{{\color{white}.}}{-} P_{2} \;\right\Vert$\,
+	is the operator norm (induced by the Euclidean norm on $\Re^{n}$)
+	of the difference operator \,$P_{1} - P_{2}$, i.e.
+	\begin{equation*}
+	\left\Vert\; P_{1} \overset{{\color{white}.}}{-} P_{2} \;\right\Vert
+	\;\; := \;\;
+		\sup\,\left\{\;\;
+			\left\Vert\;(\,P_{1} \overset{{\color{white}.}}{-} P_{2}\,) \cdot v \;\right\Vert \,\geq\, 0
+			\;\;\left\vert\;
+			\begin{array}{c}
+				{\color{white}..}v \in \Re^{n} \\ \Vert\,v\,\Vert = 1
+				\end{array}
+			\right.\right\}
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{equation*}
+\left\Vert\; P_{1} \overset{{\color{white}.}}{-} P_{2} \;\right\Vert
+\;\; \leq \;\;
+	1
+\end{equation*}
+\end{proposition}
+\proof
+We need to establish that
+\begin{equation}\label{wantToProve}
+\left\Vert\;\, (\,P_{1} \,\overset{{\color{white}.}}{-}\, P_{2}\,)\cdot v \,\;\right\Vert
+\;\; \leq \;\;
+	1\,,
+\quad
+\textnormal{for each unit vector \,$v \in \Re^{n}$}\,.
+\end{equation}
+First, note that, for an arbitrary unit vector $v \in \Re^{n}$,
+if \,$P_{1} \cdot v = 0$\,,\, then
+\begin{equation*}
+\left\Vert\;\, (\,P_{1} \,\overset{{\color{white}.}}{-}\, P_{2}\,)\cdot v \,\;\right\Vert
+\;\; = \;\;
+	\left\Vert\;\, P_{2} \overset{{\color{white}.}}{\cdot} v \,\;\right\Vert
+\;\; \leq \;\;
+	\left\Vert\;\, P_{2} \,\;\right\Vert
+	\cdot
+	\left\Vert\, v \,\;\right\Vert
+\;\; = \;\;
+	1 \cdot 1
+\;\; = \;\;
+	1
+\end{equation*}
+Simillarly,
+\begin{equation*}
+P_{2} \cdot v = 0
+\quad\Longrightarrow\quad
+\left\Vert\;\, (\,P_{1} \,\overset{{\color{white}.}}{-}\, P_{2}\,)\cdot v \,\;\right\Vert
+\;\; = \;\;
+	\left\Vert\;\, P_{1} \overset{{\color{white}.}}{\cdot} v \,\;\right\Vert
+\;\; \leq \;\;
+	\left\Vert\;\, P_{1} \,\;\right\Vert
+	\cdot
+	\left\Vert\, v \,\;\right\Vert
+\;\; = \;\;
+	1 \cdot 1
+\;\; = \;\;
+	1
+\end{equation*}
+In other words, \eqref{wantToProve} holds whenever $P_{1}\cdot v = 0$ or $P_{2}\cdot v = 0$.
+Thus, it remains only to establish \eqref{wantToProve} for an arbitrary unit vector $v \in \Re^{n}$ satisfying:
+\begin{equation}\label{caseAssumption}
+P_{1} \cdot v \neq 0
+\quad\textnormal{and}\quad
+P_{2} \cdot v \neq 0\,.
+\end{equation}
+Hence, let \,$v \in \Re$\,, be an arbitrary such unit vector.
+The assumption \eqref{caseAssumption} then implies:
+\begin{equation*}
+1
+\;\; \leq \;\;
+	\dim\left(\,\span\left\{\,\overset{{\color{white}-}}{v} \,,\, P_{1}\cdot v \,,\, P_{2}\cdot v\,\right\}\,\right)
+\;\; \leq \;\;
+	3\,.
+\end{equation*}
+Hence, we may fix a $3$-dimensional vector subspace \,$V \subset \Re^{n}$\, such that
+\begin{equation*}
+\span\left\{\,\overset{{\color{white}-}}{v} \,,\, P_{1}\cdot v \,,\, P_{2}\cdot v\,\right\}
+\;\; \subset \;\;
+	V.
+\end{equation*}
+Note that \,$V$\, is isomorphic to \,$\Re^{3}$\, as an inner product space,
+and by applying a suitable isometry on \,$\Re^{3}$\, if necessary,
+we may furthermore fix an inner product isomorphism \,$\Phi : V \longrightarrow \Re^{3}$\,
+such that
+\begin{equation*}
+\Phi(v) = (\,0,0,1) \,\in\, \Re^{3}\,,
+\quad\textnormal{and}\quad
+\Phi(\,P_{1}\cdot v\,) \in \span\left\{\;(\,\overset{{\color{white}.}}{1},0,0) \,,\, (\,0,0,1)\;\right\}.
+\end{equation*}
+We therefore see that
+\begin{eqnarray*}
+\Phi(\,P_{1}\cdot v\,)
+& = &
+	\left(\;
+		-\,\cos\theta_{1}\cdot\sin\theta_{1}{\color{white}\cdot\cos\varphi.}
+		\; , \;
+		0{\color{white}\cos\theta_{1}\cdot\sin\theta_{1}........}
+		\; , \;
+		\cos\theta_{1}\overset{{\color{white}1}}{\cdot}\cos\theta_{1}
+		\;\right)
+	\,\in\, \Re^{3}
+\\
+\Phi(\,P_{2}\cdot v\,)
+& = &
+	\left(\;
+		{\color{white}-}\,\cos\theta_{2}\cdot\sin\theta_{2}\cdot{\color{red}\cos\varphi}
+		\; , \;
+		\cos\theta_{2}\cdot\sin\theta_{2}\cdot{\color{red}\sin\varphi}
+		\; , \;
+		\cos\theta_{2}\overset{{\color{white}1}}{\cdot}\cos\theta_{2}
+		\;\right)
+	\,\in\, \Re^{3}
+\end{eqnarray*}
+for some \,$(\,\theta_{1}, \theta_{2},\varphi\,)$ \,$\in$\,
+$\left[\,0\,,\dfrac{\pi}{2}\,\right) \times \left[\,0\,,\dfrac{\pi}{2}\,\right) \times \left[\,0\,,\overset{{\color{white}.}}{2\,\pi}\right)$.
+Note in particular that for these admissible values of \,$(\,\theta_{1}, \theta_{2},\varphi\,)$\,, we have:
+\begin{equation}\label{sineCosineRestrictions}
+0
+\;\; \leq \;\;
+	\cos\theta_{1} \; , \; \sin\theta_{1} \; , \; \cos\theta_{2} \; , \; \sin\theta_{2}
+\;\; \leq \;\;
+	1\,,
+\quad\quad\textnormal{and}\quad\quad
+-1
+\;\; \leq \;\;
+	\cos\varphi
+\;\; \leq \;\;
+	1
+\end{equation}
+Now, we calculate:
+\begin{eqnarray*}
+&&
+	\left\Vert\;\, P_{1}\cdot v \, \overset{{\color{white}1}}{-} \, P_{2}\cdot v \,\;\right\Vert^{2}
+\;\; = \;\;
+	\left\Vert\;\; \Phi(\,P_{1}\cdot v\,) \, \overset{{\color{white}1}}{-} \, \Phi(\,P_{2}\cdot v\,) \,\;\right\Vert^{2}
+\\
+& = &
+	\left(\;
+		-\,\cos\theta_{1}\overset{{\color{white}1}}{\cdot}\sin\theta_{1} \, - \, \cos\theta_{2}\cdot\sin\theta_{2}\cdot{\color{red}\cos\varphi}
+		\;\right)^{2}
+	\; + \;
+	\left(\,\cos\theta_{2}\overset{{\color{white}1}}{\cdot}\sin\theta_{2}\cdot{\color{red}\sin\varphi}\,\right)^{2}
+	\; + \;
+	\left(\;
+		\cos\theta_{1}\cdot\cos\theta_{1} \, - \, \cos\theta_{2}\overset{{\color{white}1}}{\cdot}\cos\theta_{2}
+		\;\right)^{2}
+\\
+& = &
+	\left(\,\cos\theta_{1}\overset{{\color{white}1}}{\cdot}\sin\theta_{1}\,\right)^{2}
+	\; + \;
+	2\cdot\cos\theta_{1}\cdot\sin\theta_{1}\cdot\cos\theta_{2}\cdot\sin\theta_{2}\cdot{\color{red}\cos\varphi}
+	\; + \;
+	\left(\,\cos\theta_{2}\overset{{\color{white}1}}{\cdot}\sin\theta_{2}\cdot{\color{red}\cos\varphi}\,\right)^{2}
+	\; + \;
+	\left(\,\cos\theta_{2}\overset{{\color{white}1}}{\cdot}\sin\theta_{2}\cdot{\color{red}\sin\varphi}\,\right)^{2}
+\\
+&&
+	\; + \;
+	\left(\; \cos^{2}\theta_{1} \, \overset{{\color{white}.}}{-} \, \cos^{2}\theta_{2} \;\right)^{2}
+\\
+& = &
+	\left(\,\cos\theta_{1}\overset{{\color{white}1}}{\cdot}\sin\theta_{1}\,\right)^{2}
+	\; + \;
+	2\cdot\cos\theta_{1}\cdot\sin\theta_{1}\cdot\cos\theta_{2}\cdot\sin\theta_{2}\cdot{\color{red}\cos\varphi}
+	\; + \;
+	\left(\,\cos\theta_{2}\overset{{\color{white}1}}{\cdot}\sin\theta_{2}\,\right)^{2}
+	\; + \;
+	\left(\; \cos^{2}\theta_{1} \, \overset{{\color{white}.}}{-} \, \cos^{2}\theta_{2} \;\right)^{2}
+\\
+& \leq &
+	\left(\,\cos\theta_{1}\overset{{\color{white}1}}{\cdot}\sin\theta_{1}\,\right)^{2}
+	\; + \;
+	2\cdot\cos\theta_{1}\cdot\sin\theta_{1}\cdot\cos\theta_{2}\cdot\sin\theta_{2}
+	\; + \;
+	\left(\,\cos\theta_{2}\overset{{\color{white}1}}{\cdot}\sin\theta_{2}\,\right)^{2}
+	\; + \;
+	\left(\; \cos^{2}\theta_{1} \, \overset{{\color{white}.}}{-} \, \cos^{2}\theta_{2} \;\right)^{2}\,,
+	\;\;\textnormal{by \eqref{sineCosineRestrictions}}
+\\
+& = &
+	\left(\,
+		\cos\theta_{1}\overset{{\color{white}1}}{\cdot}\sin\theta_{1}
+		\, + \,
+		\cos\theta_{2}\overset{{\color{white}1}}{\cdot}\sin\theta_{2}
+		\,\right)^{2}
+	\; + \;
+	\left(\; \cos^{2}\theta_{1} \, \overset{{\color{white}.}}{-} \, \cos^{2}\theta_{2} \;\right)^{2}
+\\
+& = &
+	\left(\,\sin(\,\theta_{1} \overset{{\color{white}.}}{+} \theta_{2}\,) \,\right)^{2}\,,
+	\quad\textnormal{by Lemma \ref{trigLemma}}
+\\
+& \overset{{\color{white}1}}{\leq} &
+	1\,,
+	\quad\textnormal{since the values of the sine function are bounded between \,$-1$\, and \,$1$}
+\end{eqnarray*}
+We have thus established that \eqref{wantToProve} indeed holds for each unit vector
+\,$v \in \Re^{n}$\, satisfying \eqref{caseAssumption}.
+This completes the proof of the Proposition.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
