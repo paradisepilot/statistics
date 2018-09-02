@@ -1,0 +1,244 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The propensity score approach}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{proposition}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Setting:
+\begin{itemize}
+\item
+	$(\Omega,\mathcal{A},\mu)$\, is a probability space.
+\item
+	$N \in \N$.
+\item
+	$R = (R_{1},\ldots,R_{N}): \Omega \longrightarrow \{0,1\}^{N}$\; and
+	$I  = (I_{1},\ldots,I_{N}): \Omega \longrightarrow \{0,1\}^{N}$
+	are random variables.
+\item
+	$Y : \Omega \longrightarrow \Re^{N}$\,,\; and\;
+	$X : \Omega \longrightarrow (\Re^{p})^{N}$
+	are random variables.
+\end{itemize}
+Suppose:
+\begin{itemize}
+\item
+	$P\!\left(\,\left.\overset{{\color{white}.}}{R}_{k}=1\;\right\vert\,Y,X\;\right)$
+	\,$=$\,
+	$P\!\left(\,\left.\overset{{\color{white}.}}{R}_{k}=1\;\right\vert\,X_{k}\;\right)$\,,\,
+	for each \,$k = 1, 2, \ldots, N$, and for each $\omega \in \Omega$.
+\item
+	$P\!\left(\,\left.\overset{{\color{white}.}}{R}_{k}=1\;\right\vert\,X_{k}\;\right) \, > \, 0$\,,\,
+	for each \,$k = 1, 2, \ldots, N$, and for each $\omega \in \Omega$.
+\end{itemize}
+\vskip 0.3cm
+\noindent
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	$\rho_{k} \; := \; P\!\left(\,\left.\overset{{\color{white}.}}{R}_{k}=1\;\right\vert\,X_{k}\,\right)$,\,
+	for each \,$k = 1, 2, \ldots, N$, and for each $\omega \in \Omega$.
+	\vskip 0.05cm
+	\noindent
+	Hence, we may define the random variable
+	\,$\widehat{\theta} : \Omega \longrightarrow \Re$\,
+	by
+	\begin{equation*}
+	\widehat{\theta}
+	\,\;\; := \;\;
+		\overset{N}{\underset{k\,=\,1}{\sum}}\;\,
+		\dfrac{1}{\rho_{k}} \cdot R_{k} \cdot Y_{k}
+	\end{equation*}
+	And, the random variable \,$\widehat{\theta}$\, simplifies to:
+	\begin{equation*}
+	\widehat{\theta}({\color{red}\omega})
+	\;\; = \;\;
+		\underset{k\vert R_{k}({\color{red}\omega})=1}{\sum}\;\,
+		\dfrac{1}{\rho_{k}({\color{red}\omega})} \cdot Y_{k}({\color{red}\omega})
+	\;\; = \;\;
+		\underset{k\vert R_{k}({\color{red}\omega})=1}{\sum}\;\,
+		\dfrac{
+			1
+			}{
+			P\!\left(\,
+				\left.\overset{{\color{white}.}}{R}_{k}=1
+				\;\right\vert\,
+				X_{k}({\color{red}\omega})
+				\,\right)
+			}
+		\cdot
+		Y_{k}({\color{red}\omega})
+	\end{equation*}
+	Hence, in order to evaluate \,$\widehat{\theta}$\, based on observed data,
+	the observed data must contain observed values for
+	\begin{itemize}
+	\item
+		$R_{1}, \ldots, R_{N}$, and
+	\item
+		$(\,Y_{k},X_{k})$\,,\, for each \,$k \in \{1,2,\ldots,N\}$\, with \,$R_{k} = 1$,
+	\end{itemize}
+	and we must have a priori knowledge of 
+	\,$P\!\left(\,\left.\overset{{\color{white}.}}{R}_{k}=1\;\right\vert\,X_{k}\right)$\,,\,
+	for each \,$k \in \{1,2,\ldots,N\}$\, with \,$R_{k} = 1$.
+\item
+	\begin{equation*}
+	E\!\left[\;\,\left.\widehat{\theta}\;\;\right\vert\;Y,X\;\right]
+	\;\; = \;\;
+		\overset{N}{\underset{k\,=\,1}{\sum}}\;\, Y_{k}	
+	\end{equation*}
+\item
+	Under the following two additional assumptions:
+	\begin{itemize}
+	\item
+		\begin{equation*}
+		P\!\left(\,\left.\overset{{\color{white}.}}{R}_{1},\ldots,R_{N} \;\right\vert\, X\,\right)
+		\;\; = \;\;
+		P\!\left(\,\left.\overset{{\color{white}.}}{R}_{1} \;\right\vert\, X_{1}\,\right)
+		\cdot
+		P\!\left(\,\left.\overset{{\color{white}.}}{R}_{2} \;\right\vert\, X_{2}\,\right)
+		\cdot
+		P\!\left(\,\left.\overset{{\color{white}.}}{R}_{N} \;\right\vert\, X_{N}\,\right)
+		\end{equation*}
+	\item
+		There exist \,$\beta \in \Re^{p}$\, such that
+		\begin{eqnarray*}
+		\pi_{k}(\,\beta\;\vert\,X_{k}\,)
+		& := &
+			P\!\left(\; R_{k} = 1 \;\vert\, X_{k} \;\right)
+		\;\; = \;\;
+			E\!\left[\; R^{k}  = 1 \;\vert\, X_{k} \;\right]
+		\\
+		& = &
+			\dfrac{
+				\exp\!\left(\,\beta^{T} \cdot \overset{{\color{white}.}}{X}_{k} \,\right)
+				}{
+				1 \,+\, \exp\!\left(\,\beta^{T} \cdot \overset{{\color{white}.}}{X}_{k} \,\right)
+				}\,,
+		\quad
+		\textnormal{for each \,$k = 1,2,\ldots,N$}\,.
+		\end{eqnarray*}
+	\end{itemize}
+	Then, the Maximum Likelihood Estimator (MLE) for the parameter \,$\beta \,\in\, \Re^{p}$\,
+	can be obtained by solving the following score equation for \,$\beta \,\in\, \Re^{p}$:
+	\begin{equation*}
+	\overset{N}{\underset{k=1}{\sum}}\;\,
+	\left(\,\overset{{\color{white}-}}{\pi}_{k}(\,\beta\;\vert\,X_{k}\,) - R_{k}\,\right)
+	\cdot X_{k}
+	\;\; = \;\; 0\,,
+	\end{equation*}
+	or equivalently but more explicitly,
+	\begin{equation*}
+	\overset{N}{\underset{k=1}{\sum}}\;\,
+	\dfrac{X_{k}}{1 \,+\, \exp\!\left({\color{red}-}\,\beta^{T} \cdot \overset{{\color{white}.}}{X}_{k}\,\right)}
+	%\;\; = \;\;
+	%\overset{N}{\underset{k=1}{\sum}}\;\, R _{k} \cdot X_{k}
+	\;\; = \;\;
+	\overset{N}{\underset{k\vert R_{k}=1}{\sum}}\; X_{k}
+	\end{equation*}
+\end{enumerate}
+\end{proposition}
+\proof
+\begin{enumerate}
+\item
+	Simply observe that:
+	\begin{eqnarray*}
+	\widehat{\theta}
+	& := &
+		\overset{N}{\underset{k\,=\,1}{\sum}}\;\;
+		\dfrac{1}{\rho_{k}} \cdot R_{k} \cdot Y_{k}
+	\;\; = \;\;
+		\underset{k\vert R_{k}=1}{\sum}\;\; \dfrac{1}{\rho_{k}} \cdot R_{k} \cdot Y_{k}
+		\; + \;
+		\underset{k\vert R_{k}=0}{\sum}\;\; \dfrac{1}{\rho_{k}} \cdot R_{k} \cdot Y_{k}
+	\\
+	& = &
+		\underset{k\vert R_{k}=1}{\sum}\; \dfrac{1}{\rho_{k}} \cdot 1 \cdot Y_{k}
+		\; + \;
+		\underset{k\vert R_{k}=0}{\sum}\;\, \dfrac{1}{\rho_{k}} \cdot 0 \cdot Y_{k}
+	\\
+	& = &
+		\underset{k\vert R_{k}=1}{\sum}\;\, \dfrac{1}{\rho_{k}} \cdot Y_{k}\,,
+	\end{eqnarray*}
+	as required.
+\item
+	\begin{eqnarray*}
+	E\!\left[\;\,\left.\widehat{\theta}\;\;\right\vert\;Y,X\;\right]
+	& = &
+		E\!\left[\;\,
+			\left.
+			\overset{N}{\underset{k\,=\,1}{\sum}}\;\;
+			\dfrac{1}{\rho_{k}} \cdot R_{k} \cdot Y_{k}
+			\,\;\right\vert\;
+			Y,X
+			\;\right]
+	\;\; = \;\;
+		\overset{N}{\underset{k\,=\,1}{\sum}}\;\;
+		\dfrac{1}{\rho_{k}}
+		\cdot
+		E\!\left[\;
+			\left.
+			\overset{{\color{white}.}}{R}_{k} 
+			\,\;\right\vert\;
+			Y,X
+			\;\right]
+		\cdot Y_{k}
+	\\
+	& = &
+		\overset{N}{\underset{k\,=\,1}{\sum}}\;\;
+		\dfrac{1}{\rho_{k}}
+		\cdot
+		P\!\left(\,
+			\left.
+			\overset{{\color{white}.}}{R}_{k}=1
+			\,\;\right\vert\;
+			Y,X
+			\;\right)
+		\cdot Y_{k}
+	\;\; = \;\;
+		\overset{N}{\underset{k\,=\,1}{\sum}}\;\;
+		\dfrac{1}{\rho_{k}}
+		\cdot
+		P\!\left(\,
+			\left.
+			\overset{{\color{white}.}}{R}_{k}=1
+			\,\;\right\vert\;
+			X_{k}
+			\;\right)
+		\cdot Y_{k}
+	\\
+	& = &
+		\overset{N}{\underset{k\,=\,1}{\sum}}\;\;
+		\dfrac{1}{\rho_{k}} \cdot \rho_{k} \cdot Y_{k}
+	\;\; = \;\;
+		\overset{N}{\underset{k\,=\,1}{\sum}}\;\, Y_{k}
+	\end{eqnarray*}
+\item
+	Immediate by the standard theory of logistic regression.
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
