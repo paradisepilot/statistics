@@ -1,0 +1,91 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{One estimation procedure}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+Let \,$U \,=\, \left\{\,1,2,\ldots,N\,\right\}$\, denote the population of interest.
+\begin{enumerate}
+\item
+	Obtain a non-probability sample \,$s_{NP}\,\subset\,U$\,
+	to measure \,$(\,Y_{k},X_{k},R_{k}\,)$,
+	where \,$R_{k}$\, is the binary indicator variable indicating whether
+	unit $k \in U$ self-selects ($R_{k} = 1$) to respond to the non-probability sample,
+	or not ($R_{k} = 0$).
+\item
+	Obtain a probability sample \,$s_{P} \,\subset\, U$\,
+	to measure \,$X_{k}$, for units \,$k \in U$\, selected in probability sample.
+	Here, we denote by \,$I_{k}$\, the binary indicator variable indicating whether unit \,$k \in U$\, is selected
+	in the probability sample. 
+\item
+	Solve (numerically) the following equation for \,$\alpha\,\in\,\Re^{p}$\,:
+	\begin{equation*}
+	\underset{k\,\in\,s_{P}}{\sum}\;\,
+	\dfrac{1}{\pi_{k}}
+	\cdot
+	\dfrac{x_{k}}{1 \,+\, \exp\!\left({\color{red}-}\,\alpha^{T} \cdot \overset{{\color{white}-}}{x}_{k}\,\right)}
+	\;\; = \;\;
+		\underset{k\,\in\,s_{NP}}{\sum}\, x_{k}\,,
+	\end{equation*}
+	where \,$\pi_{k} \,:=\, P(\,I_{k} = 1\,) \,>\, 0$.\,
+	Denote by \,$\widehat{\alpha} \,\in\, \Re^{p}$\, the resulting estimate for \,$\alpha \in \Re^{p}$.
+\item
+	Using the estimate \,$\widehat{\alpha} \,\in\, \Re^{p}$\, above,
+	for each unit \,$k \in s_{NP}\,\cup\,s_{P}$,\, compute its propensity score estimate as follows:
+	\begin{eqnarray*}
+	\widehat{\rho}_{k}\!\left(\,\alpha\;\vert\,X_{k}=x_{k}\,\right)
+	& = &
+		\dfrac{
+			\exp\!\left(\,\widehat{\alpha}^{T} \cdot \overset{{\color{white}-}}{x}_{k} \,\right)
+			}{
+			1 \,+\, \exp\!\left(\,\widehat{\alpha}^{T} \cdot \overset{{\color{white}-}}{x}_{k} \,\right)
+			}\,,
+	\quad
+	\textnormal{for each \,$k \,\in\, s_{NP} \,\cup\, s_{P}$}.
+	\end{eqnarray*}
+	In other words, we compute the propensity score estimate
+	\,$\widehat{\rho}_{k}(\,\alpha\;\vert\,X_{k} = x_{k}\,)$\,
+	for each unit \,$k$\, self-selected in the non-probability sample, or selected in the probability sample.
+\item
+	Partition \,$s \,=\, s_{NP} \,\cup\, s_{P}$\, into \,$C$\, propensity score homogeneity classes
+	based on values of \,$\widehat{\rho}_{k}\!\left(\,\alpha\;\vert\,X_{k}=x_{k}\,\right)$.\,
+	For each resulting homogeneity class \,$c$,\, compute
+	\begin{equation*}
+	\widehat{w}_{c}
+	\;\; = \;\;
+		\left. \left(\,\underset{k\,\in\,c\,\cap\,s_{P}}{\sum}\,\dfrac{1}{\pi_{k}}\,\right) \right\slash
+		\!\#\!\left(\,c\,\overset{{\color{white}.}}{\cap}\,s_{NP}\,\right)
+	\end{equation*}
+\item
+	The final estimate is now defined/computed by:
+	\begin{equation*}
+	\widehat{\theta}
+	\;\; := \;
+		\underset{k\,\in\,s_{NP}}{\sum}\;
+		\widehat{w}_{c(k)} \cdot y_{k}\,,
+	\end{equation*}
+	where \,$c(k)$\, is the propensity score homogeneity class containing \,$k \in s_{NP}$.
+\end{enumerate}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
