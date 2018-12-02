@@ -3,14 +3,14 @@ import random
 
 class Node:
     def __init__(self,t,L,R,D,S,V,M,X):
-        self.t=t  
-        self.L=L
-        self.R=R
-        self.D=D
-        self.S=S
-        self.V=V
-        self.M=M
-        self.X=X
+        self.t = t
+        self.L = L
+        self.R = R
+        self.D = D
+        self.S = S
+        self.V = V
+        self.M = M
+        self.X = X
 
 #t Index of Node
 #L Index of Left child
@@ -42,22 +42,20 @@ def Build(Tr):
     Tree.append(Node(Tr.R,"L","R",Tr.D+1,"S","V",Tr.M[Tr.M[:,Tr.V]>Tr.S],"X"))
 
 ##Main function##########################################################################
-def TT(depth):
+def TT(depth,Tree):
 
-	temp=[]
-
-    for index,node in enumerate(Tree):
-        temp.append(Tree[index].D)
+	#temp = []
+    #for index,node in enumerate(Tree):
+    #    temp.append(Tree[index].D)
 
     #Expand tree, using last node to compute split
     for index,node in enumerate(Tree):
-
         #Depth condition
-        if (node.D==temp[-1] and node.D<=depth):
-            if node.X<>1:
-                if len(Tree[index].M)>1:
+        if (node.D == temp[-1] and node.D <= depth):
+            if node.X <> 1:
+                if len(Tree[index].M) > 1:
                     ginisplit(Tree[index].M)
-                    if sum(maxgini[:,2]) > 0 :
+                    if sum(maxgini[:,2]) > 0:
                         Build(Tree[index])
                         TT(depth)
 
@@ -68,7 +66,7 @@ def split(v,a):
 
     sp=np.sort(np.unique(a[:,v]))
 
-    Temp1=np.zeros([len(sp)-1, 3])
+    Temp1 = np.zeros([len(sp)-1, 3])
 
     #If no split because one unique value on data, avoid nan error for mean calculus
     if len(sp) == 1:

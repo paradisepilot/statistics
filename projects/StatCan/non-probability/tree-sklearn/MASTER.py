@@ -147,7 +147,7 @@ import random
 from sklearn import tree
 
 # import custom-built Python modules
-import cartAlfard
+import treeCustomized
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 np.random.seed(42)
