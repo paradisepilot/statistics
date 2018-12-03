@@ -92,12 +92,14 @@ def printtree(tree,indent=''):
         print( str(tree.results) )
     else:
         # Print the criteria
-        print( 'Column ' + str(tree.col) + ' : ' + str(tree.value) + '? ' )
+        print( 'Column ' + str(tree.col) + ' : ' + str(tree.value) + '?' )
 
         # Print the branches
         print( indent + 'True --> ',  end = '' )
-        print( printtree(tree.tb, indent + '  ') )
+        print( printtree(tree.tb, indent + '  '), end = '' )
 
         print( indent + 'False --> ', end = '' )
-        print( printtree(tree.fb, indent + '  ') )
+        print( printtree(tree.fb, indent + '  '), end = '' )
+
+    return ''
 
