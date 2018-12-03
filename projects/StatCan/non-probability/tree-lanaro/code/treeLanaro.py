@@ -50,7 +50,6 @@ def recursive_split(x, y):
     for k, v in sets.items():
         y_subset = y.take(v, axis=0)
         x_subset = x.take(v, axis=0)
-
         res["x_%d = %d" % (selected_attr, k)] = recursive_split(x_subset, y_subset)
 
     return res
