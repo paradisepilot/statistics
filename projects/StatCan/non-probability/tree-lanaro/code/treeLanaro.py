@@ -5,9 +5,11 @@ def partition(a):
     return {c: (a==c).nonzero()[0] for c in np.unique(a)}
 
 def entropy(s):
-    res = 0
+
     val, counts = np.unique(s, return_counts=True)
     freqs = counts.astype('float') / len(s)
+
+    res = 0
     for p in freqs:
         if p != 0.0:
             res -= p * np.log2(p)
