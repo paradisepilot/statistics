@@ -43,7 +43,6 @@ def recursive_split(x, y):
     if np.all(gain < 1e-6):
         return y
 
-
     # We split using the selected attribute
     sets = partition(x[:, selected_attr])
 
