@@ -16,14 +16,12 @@ def entropy(s):
     return res
 
 def mutual_information(y, x):
-
-    res = entropy(y)
-
     # We partition x, according to attribute values x_i
     val, counts = np.unique(x, return_counts=True)
     freqs = counts.astype('float') / len(x)
 
     # We calculate a weighted average of the entropy
+    res = entropy(y)
     for p, v in zip(freqs, val):
         res -= p * entropy(y[x == v])
 
