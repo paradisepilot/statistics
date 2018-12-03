@@ -19,7 +19,7 @@ def mutual_information(y, x):
 
     # We partition x, according to attribute values x_i
     val, counts = np.unique(x, return_counts=True)
-    freqs = counts.astype('float')/len(x)
+    freqs = counts.astype('float') / len(x)
 
     # We calculate a weighted average of the entropy
     for p, v in zip(freqs, val):
