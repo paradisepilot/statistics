@@ -34,8 +34,7 @@ def _get_bias(avPair, dataRowIndexes, data, outcomeIndex):
 
     numNonPureRows = len(dataRowIndexes) - numPureRows
     percentNonPure = 1 - percentPure
-    split = 1 - abs(len(matchIndexes) - len(nonMatchIndexes)) / len(
-        dataRowIndexes) - .001
+    split = 1 - abs(len(matchIndexes) - len(nonMatchIndexes)) / len(dataRowIndexes) - .001
     splitBias = split * percentNonPure if numNonPureRows > 0 else 0
     return splitBias + percentPure
 
@@ -43,7 +42,10 @@ def _get_bias(avPair, dataRowIndexes, data, outcomeIndex):
 def build(data, outcomeLabel, continuousAttributes=None):
 
     attrIndexes = [index for index, label in enumerate(data[0]) if label != outcomeLabel]
+    print( "attrIndexes: " + str(attrIndexes) )
+
     outcomeIndex = data[0].index(outcomeLabel)
+    print( "outcomeIndex: "+ str(outcomeIndex) )
 
     continuousAttrIndexes = set()
     if continuousAttributes is not None:
@@ -60,10 +62,17 @@ def build(data, outcomeLabel, continuousAttributes=None):
     nodes = []
     lastNodeNumber = 0
 
-    workQueue = [(-1, lastNodeNumber, set(i for i in range(1, len(data))))]
+    workQueue = [ (-1, lastNodeNumber, set(i for i in range(1, len(data)))) ]
     while len(workQueue) > 0:
 
+        print( "~~~~~~~~~~" )
+
         parentNodeId, nodeId, dataRowIndexes = workQueue.pop()
+        print(
+            "parentNodeId: "   + str(parentNodeId)        + ", " +
+            "nodeId: "         + str(nodeId)              + ", " +
+            "dataRowIndexes: " + str(dataRowIndexes)
+            )
 
         uniqueOutcomes = set(data[i][outcomeIndex] for i in dataRowIndexes)
         if len(uniqueOutcomes) == 1:
@@ -71,29 +80,42 @@ def build(data, outcomeLabel, continuousAttributes=None):
             continue
 
         potentials = _get_potentials(
-            attrIndexes,
-            continuousAttrIndexes,
-            data,
-            dataRowIndexes,
-            outcomeIndex
+            attrIndexes           = attrIndexes,
+            continuousAttrIndexes = continuousAttrIndexes,
+            data                  = data,
+            dataRowIndexes        = dataRowIndexes,
+            outcomeIndex          = outcomeIndex
             )
 
         attrIndex, attrValue, isMatch = potentials[0][1:]
-        matches = {rowIndex for rowIndex in dataRowIndexes if isMatch(data[rowIndex][attrIndex], attrValue)}
+        print(
+            "attrIndex: " + str(attrIndex) + ", " +
+            "attrValue: " + str(attrValue) + ", " +
+            "isMatch: "   + str(isMatch)
+            )
+
+        matches = {
+            rowIndex for rowIndex in dataRowIndexes
+            if isMatch(data[rowIndex][attrIndex],attrValue)
+            }
+
         nonMatches = dataRowIndexes - matches
 
         lastNodeNumber += 1
         matchId = lastNodeNumber
         workQueue.append((nodeId, matchId, matches))
+        print( "    match: " + str( (nodeId, matchId, matches) ) )
 
         lastNodeNumber += 1
         nonMatchId = lastNodeNumber
         workQueue.append((nodeId, nonMatchId, nonMatches))
+        print( "non-match: " + str( (nodeId, nonMatchId, nonMatches) ) )
 
         nodes.append(
             (nodeId, attrIndex, attrValue, isMatch, matchId, nonMatchId, len(matches), len(nonMatches))
             )
 
+    print( "~~~~~~~~~~" )
     nodes = sorted(nodes, key = lambda n: n[0])
     return DTree(nodes, data[0])
 
