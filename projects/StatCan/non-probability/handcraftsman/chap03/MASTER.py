@@ -84,6 +84,8 @@ from pprint  import pprint
 import dtree
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+outcomeLabel = 'Born'
+
 data = [
     ['Name'   , 'Gender', 'Marital Status', 'Age', 'Born'   ],
     ['William', 'male'  , 'Married'       , 37   , 'Germany'],
@@ -91,17 +93,27 @@ data = [
     ['Minnie' , 'female', 'Single'        , 16   , 'Texas'  ],
     ['Emma'   , 'female', 'Single'        , 14   , 'Texas'  ],
     ['Henry'  , 'male'  , 'Married'       , 47   , 'Germany'],
-    ['Theo'   , 'male'  , 'Single'        , 17   , 'Texas'  ]
+    ['Theo'   , 'male'  , 'Single'        , 17   , 'Texas'  ],
+    ['Bill'   , 'male'  , 'Single'        , 37   , 'Ontario'],
+    ['Mary'   , 'female', 'Single'        , 18   , 'BC'     ]
     ]
 
-outcomeLabel = 'Born'
-
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 tree = dtree.build(data, outcomeLabel)
-print(tree)
+print( tree )
 
 testData = ['Sophie', 'female', 'Single', 17]
 predicted = tree.get_prediction(testData)
 print("predicted: {}".format(predicted))
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+#potentials = _get_potentials(
+#    attrIndexes           = attrIndexes,
+#    continuousAttrIndexes = continuousAttrIndexes,
+#    data                  = data,
+#    dataRowIndexes        = dataRowIndexes,
+#    outcomeIndex          = outcomeIndex
+#    )
 
 ##################################################
 print("\n####################\n")

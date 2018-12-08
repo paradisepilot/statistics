@@ -20,25 +20,6 @@ import operator
 import math
 
 
-def _get_bias(avPair, dataRowIndexes, data, outcomeIndex):
-    attrIndex, attrValue, isMatch = avPair
-    matchIndexes = {i for i in dataRowIndexes if
-                    isMatch(data[i][attrIndex], attrValue)}
-    nonMatchIndexes = dataRowIndexes - matchIndexes
-    matchOutcomes = {data[i][outcomeIndex] for i in matchIndexes}
-    nonMatchOutcomes = {data[i][outcomeIndex] for i in nonMatchIndexes}
-    numPureRows = (len(matchIndexes) if len(matchOutcomes) == 1 else 0) \
-                  + (len(nonMatchIndexes) if len(nonMatchOutcomes) == 1
-                     else 0)
-    percentPure = numPureRows / len(dataRowIndexes)
-
-    numNonPureRows = len(dataRowIndexes) - numPureRows
-    percentNonPure = 1 - percentPure
-    split = 1 - abs(len(matchIndexes) - len(nonMatchIndexes)) / len(dataRowIndexes) - .001
-    splitBias = split * percentNonPure if numNonPureRows > 0 else 0
-    return splitBias + percentPure
-
-
 def build(data, outcomeLabel, continuousAttributes=None):
 
     attrIndexes = [index for index, label in enumerate(data[0]) if label != outcomeLabel]
@@ -120,20 +101,34 @@ def build(data, outcomeLabel, continuousAttributes=None):
     return DTree(nodes, data[0])
 
 
-def _get_potentials(attrIndexes, continuousAttrIndexes, data,
-                    dataRowIndexes, outcomeIndex):
+def _get_potentials(
+    attrIndexes,
+    continuousAttrIndexes,
+    data,
+    dataRowIndexes,
+    outcomeIndex
+    ):
+
     uniqueAttributeValuePairs = {
         (attrIndex, data[rowIndex][attrIndex], operator.eq)
-        for attrIndex in attrIndexes
-        if attrIndex not in continuousAttrIndexes
-        for rowIndex in dataRowIndexes}
+        for attrIndex     in attrIndexes
+        if  attrIndex not in continuousAttrIndexes
+        for rowIndex      in dataRowIndexes
+        }
+
     continuousAttributeValuePairs = _get_continuous_av_pairs(
-        continuousAttrIndexes, data, dataRowIndexes)
+        continuousAttrIndexes,
+        data,
+        dataRowIndexes
+        )
+
     uniqueAttributeValuePairs |= continuousAttributeValuePairs
-    potentials = sorted((-_get_bias(avPair, dataRowIndexes, data,
-                                    outcomeIndex),
-                         avPair[0], avPair[1], avPair[2])
-                        for avPair in uniqueAttributeValuePairs)
+
+    potentials = sorted(
+        (-_get_bias(avPair, dataRowIndexes, data, outcomeIndex), avPair[0], avPair[1], avPair[2])
+        for avPair in uniqueAttributeValuePairs
+        )
+
     return potentials
 
 
@@ -177,6 +172,23 @@ def _generate_discontinuity_indexes_center_out(sortedAttrValues):
             right += 1
 
 
+def _get_bias(avPair, dataRowIndexes, data, outcomeIndex):
+    attrIndex, attrValue, isMatch = avPair
+    matchIndexes = {i for i in dataRowIndexes if isMatch(data[i][attrIndex], attrValue)}
+    nonMatchIndexes = dataRowIndexes - matchIndexes
+    matchOutcomes = {data[i][outcomeIndex] for i in matchIndexes}
+    nonMatchOutcomes = {data[i][outcomeIndex] for i in nonMatchIndexes}
+    numPureRows =   (len(matchIndexes)    if len(   matchOutcomes) == 1 else 0) \
+                  + (len(nonMatchIndexes) if len(nonMatchOutcomes) == 1 else 0)
+    percentPure = numPureRows / len(dataRowIndexes)
+
+    numNonPureRows = len(dataRowIndexes) - numPureRows
+    percentNonPure = 1 - percentPure
+    split = 1 - abs(len(matchIndexes) - len(nonMatchIndexes)) / len(dataRowIndexes) - .001
+    splitBias = split * percentNonPure if numNonPureRows > 0 else 0
+    return splitBias + percentPure
+
+
 class DTree:
     def __init__(self, nodes, attrNames):
         self._nodes = nodes
@@ -209,3 +221,4 @@ class DTree:
                 nodeIdIfNonMatch = currentNode[:6]
             currentNode = self._nodes[nodeIdIfMatch if
                 isMatch(data[attrIndex], attrValue) else nodeIdIfNonMatch]
+
