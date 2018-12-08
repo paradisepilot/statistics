@@ -148,14 +148,14 @@ def _get_potentials(
 def _get_continuous_av_pairs(continuousAttrIndexes, data, dataRowIndexes):
     avPairs = set()
     for attrIndex in continuousAttrIndexes:
-        sortedAttrValues = [i for i in sorted(
-            data[rowIndex][attrIndex] for rowIndex in dataRowIndexes)]
+        sortedAttrValues = [i for i in sorted(data[rowIndex][attrIndex] for rowIndex in dataRowIndexes)]
         indexes = _get_discontinuity_indexes(
-            sortedAttrValues,
-            max(math.sqrt(
-                len(sortedAttrValues)),
-                min(10,
-                    len(sortedAttrValues))))
+            sortedAttrValues = sortedAttrValues,
+            maxIndexes = max(
+                math.sqrt(len(sortedAttrValues)),
+                min(10,len(sortedAttrValues))
+                )
+            )
         for index in indexes:
             avPairs.add((attrIndex, sortedAttrValues[index], operator.gt))
     return avPairs
@@ -171,16 +171,29 @@ def _get_discontinuity_indexes(sortedAttrValues, maxIndexes):
 
 
 def _generate_discontinuity_indexes_center_out(sortedAttrValues):
+    print( "sortedAttrValues: " + str(sortedAttrValues) )
     center = len(sortedAttrValues) // 2
-    left = center - 1
+    left  = center - 1
     right = center + 1
     while left >= 0 or right < len(sortedAttrValues):
         if left >= 0:
             if sortedAttrValues[left] != sortedAttrValues[left + 1]:
+                print(
+                    "center: " + str(center) + ", " +
+                    "left: "   + str(left)   + ", " +
+                    "right: "  + str(right)  + "; " +
+                    "yield: "  + str(left)
+                    )
                 yield left
             left -= 1
         if right < len(sortedAttrValues):
             if sortedAttrValues[right - 1] != sortedAttrValues[right]:
+                print(
+                    "center: " + str(center) + ", " +
+                    "left: "   + str(left)   + ", " +
+                    "right: "  + str(right)  + "; " +
+                    "yield: "  + str(right - 1)
+                    )
                 yield right - 1
             right += 1
 
