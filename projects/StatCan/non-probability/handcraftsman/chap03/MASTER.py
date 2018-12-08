@@ -107,19 +107,19 @@ data = [
 #print("predicted: {}".format(predicted))
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#potentials = dtree._get_potentials(
-#    attrIndexes           = [0, 1, 2, 3],
-#    continuousAttrIndexes = {3},
-#    data                  = data,
-#    dataRowIndexes        = {1, 2, 3, 4, 5, 6, 7, 8},
-#    outcomeIndex          = 4
-#    )
-
-discontinuityIndexes = dtree._get_discontinuity_indexes(
-    sortedAttrValues = [1.1,2.2,3.3,3.3,4.4,5.5,5.5,6.6,7.7],
-    maxIndexes       = 100
+myPotentials = dtree._get_potentials(
+    attrIndexes           = [0, 1, 2, 3],
+    continuousAttrIndexes = {3},
+    data                  = data,
+    dataRowIndexes        = {1, 2, 3, 4, 5, 6, 7, 8},
+    outcomeIndex          = 4
     )
-print( "discontinuityIndexes: " + str(discontinuityIndexes) )
+
+#discontinuityIndexes = dtree._get_discontinuity_indexes(
+#    sortedAttrValues = [1.1,2.2,3.3,3.3,4.4,5.5,5.5,6.6,7.7],
+#    maxIndexes       = 100
+#    )
+#print( "discontinuityIndexes: " + str(discontinuityIndexes) )
 
 ##################################################
 print("\n####################\n")

@@ -171,47 +171,54 @@ def _get_discontinuity_indexes(sortedAttrValues, maxIndexes):
 
 
 def _generate_discontinuity_indexes_center_out(sortedAttrValues):
-    print( "sortedAttrValues: " + str(sortedAttrValues) )
+    # print( "sortedAttrValues: " + str(sortedAttrValues) )
     center = len(sortedAttrValues) // 2
     left  = center - 1
     right = center + 1
     while left >= 0 or right < len(sortedAttrValues):
         if left >= 0:
             if sortedAttrValues[left] != sortedAttrValues[left + 1]:
-                print(
-                    "center: " + str(center) + ", " +
-                    "left: "   + str(left)   + ", " +
-                    "right: "  + str(right)  + "; " +
-                    "yield: "  + str(left)
-                    )
+                #print(
+                #    "center: " + str(center) + ", " +
+                #    "left: "   + str(left)   + ", " +
+                #    "right: "  + str(right)  + "; " +
+                #    "yield: "  + str(left)
+                #    )
                 yield left
             left -= 1
         if right < len(sortedAttrValues):
             if sortedAttrValues[right - 1] != sortedAttrValues[right]:
-                print(
-                    "center: " + str(center) + ", " +
-                    "left: "   + str(left)   + ", " +
-                    "right: "  + str(right)  + "; " +
-                    "yield: "  + str(right - 1)
-                    )
+                #print(
+                #    "center: " + str(center) + ", " +
+                #    "left: "   + str(left)   + ", " +
+                #    "right: "  + str(right)  + "; " +
+                #    "yield: "  + str(right - 1)
+                #    )
                 yield right - 1
             right += 1
 
 
 def _get_bias(avPair, dataRowIndexes, data, outcomeIndex):
+
     attrIndex, attrValue, isMatch = avPair
+
     matchIndexes = {i for i in dataRowIndexes if isMatch(data[i][attrIndex], attrValue)}
     nonMatchIndexes = dataRowIndexes - matchIndexes
+
     matchOutcomes = {data[i][outcomeIndex] for i in matchIndexes}
     nonMatchOutcomes = {data[i][outcomeIndex] for i in nonMatchIndexes}
+
     numPureRows =   (len(matchIndexes)    if len(   matchOutcomes) == 1 else 0) \
                   + (len(nonMatchIndexes) if len(nonMatchOutcomes) == 1 else 0)
+
     percentPure = numPureRows / len(dataRowIndexes)
 
     numNonPureRows = len(dataRowIndexes) - numPureRows
     percentNonPure = 1 - percentPure
+
     split = 1 - abs(len(matchIndexes) - len(nonMatchIndexes)) / len(dataRowIndexes) - .001
     splitBias = split * percentNonPure if numNonPureRows > 0 else 0
+
     return splitBias + percentPure
 
 
