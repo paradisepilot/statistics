@@ -41,22 +41,19 @@ def _get_bias(avPair, dataRowIndexes, data, outcomeIndex):
 
 
 def build(data, outcomeLabel, continuousAttributes=None):
-    attrIndexes = [index for index, label in enumerate(data[0]) if
-                   label != outcomeLabel]
+
+    attrIndexes = [index for index, label in enumerate(data[0]) if label != outcomeLabel]
     outcomeIndex = data[0].index(outcomeLabel)
+
     continuousAttrIndexes = set()
     if continuousAttributes is not None:
-        continuousAttrIndexes = {data[0].index(label) for label in
-                                 continuousAttributes}
+        continuousAttrIndexes = {data[0].index(label) for label in continuousAttributes}
         if len(continuousAttrIndexes) != len(continuousAttributes):
-            raise Exception(
-                'One or more continuous column names are duplicates.')
+            raise Exception('One or more continuous column names are duplicates.')
     else:
         for attrIndex in attrIndexes:
-            uniqueValues = {row[attrIndex] for rowIndex, row in
-                            enumerate(data) if rowIndex > 0}
-            numericValues = {value for value in uniqueValues if
-                             isinstance(value, Number)}
+            uniqueValues  = {row[attrIndex] for rowIndex, row in enumerate(data) if rowIndex > 0}
+            numericValues = {value for value in uniqueValues if isinstance(value, Number)}
             if len(uniqueValues) == len(numericValues):
                 continuousAttrIndexes.add(attrIndex)
 
@@ -65,26 +62,39 @@ def build(data, outcomeLabel, continuousAttributes=None):
 
     workQueue = [(-1, lastNodeNumber, set(i for i in range(1, len(data))))]
     while len(workQueue) > 0:
+
         parentNodeId, nodeId, dataRowIndexes = workQueue.pop()
+
         uniqueOutcomes = set(data[i][outcomeIndex] for i in dataRowIndexes)
         if len(uniqueOutcomes) == 1:
             nodes.append((nodeId, uniqueOutcomes.pop()))
             continue
-        potentials = _get_potentials(attrIndexes, continuousAttrIndexes,
-                                     data, dataRowIndexes, outcomeIndex)
+
+        potentials = _get_potentials(
+            attrIndexes,
+            continuousAttrIndexes,
+            data,
+            dataRowIndexes,
+            outcomeIndex
+            )
+
         attrIndex, attrValue, isMatch = potentials[0][1:]
-        matches = {rowIndex for rowIndex in dataRowIndexes if
-                   isMatch(data[rowIndex][attrIndex], attrValue)}
+        matches = {rowIndex for rowIndex in dataRowIndexes if isMatch(data[rowIndex][attrIndex], attrValue)}
         nonMatches = dataRowIndexes - matches
+
         lastNodeNumber += 1
         matchId = lastNodeNumber
         workQueue.append((nodeId, matchId, matches))
+
         lastNodeNumber += 1
         nonMatchId = lastNodeNumber
         workQueue.append((nodeId, nonMatchId, nonMatches))
-        nodes.append((nodeId, attrIndex, attrValue, isMatch, matchId,
-                      nonMatchId, len(matches), len(nonMatches)))
-    nodes = sorted(nodes, key=lambda n: n[0])
+
+        nodes.append(
+            (nodeId, attrIndex, attrValue, isMatch, matchId, nonMatchId, len(matches), len(nonMatches))
+            )
+
+    nodes = sorted(nodes, key = lambda n: n[0])
     return DTree(nodes, data[0])
 
 
