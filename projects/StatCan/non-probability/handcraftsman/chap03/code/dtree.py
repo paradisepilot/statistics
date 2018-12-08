@@ -39,6 +39,7 @@ def build(data, outcomeLabel, continuousAttributes=None):
             numericValues = {value for value in uniqueValues if isinstance(value, Number)}
             if len(uniqueValues) == len(numericValues):
                 continuousAttrIndexes.add(attrIndex)
+    print( "continuousAttrIndexes: "+ str(continuousAttrIndexes) )
 
     nodes = []
     lastNodeNumber = 0
