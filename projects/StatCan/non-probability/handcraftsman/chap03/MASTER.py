@@ -99,21 +99,21 @@ data = [
     ]
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-tree = dtree.build(data, outcomeLabel)
-print( tree )
+#tree = dtree.build(data, outcomeLabel)
+#print( tree )
 
-testData = ['Sophie', 'female', 'Single', 17]
-predicted = tree.get_prediction(testData)
-print("predicted: {}".format(predicted))
+#testData = ['Sophie', 'female', 'Single', 17]
+#predicted = tree.get_prediction(testData)
+#print("predicted: {}".format(predicted))
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#potentials = _get_potentials(
-#    attrIndexes           = attrIndexes,
-#    continuousAttrIndexes = continuousAttrIndexes,
-#    data                  = data,
-#    dataRowIndexes        = dataRowIndexes,
-#    outcomeIndex          = outcomeIndex
-#    )
+potentials = dtree._get_potentials(
+    attrIndexes           = [0, 1, 2, 3],
+    continuousAttrIndexes = {3},
+    data                  = data,
+    dataRowIndexes        = {1, 2, 3, 4, 5, 6, 7, 8},
+    outcomeIndex          = 4
+    )
 
 ##################################################
 print("\n####################\n")

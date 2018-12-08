@@ -116,19 +116,31 @@ def _get_potentials(
         if  attrIndex not in continuousAttrIndexes
         for rowIndex      in dataRowIndexes
         }
+    print( "uniqueAttributeValuePairs: " + str(uniqueAttributeValuePairs) )
+    print( "len(uniqueAttributeValuePairs) = " + str(len(uniqueAttributeValuePairs)) )
+    print()
 
     continuousAttributeValuePairs = _get_continuous_av_pairs(
         continuousAttrIndexes,
         data,
         dataRowIndexes
         )
+    print( "continuousAttributeValuePairs: " + str(continuousAttributeValuePairs) )
+    print( "len(continuousAttributeValuePairs) = " + str(len(continuousAttributeValuePairs)) )
+    print()
 
     uniqueAttributeValuePairs |= continuousAttributeValuePairs
+    print( "uniqueAttributeValuePairs: " + str(uniqueAttributeValuePairs) )
+    print( "len(uniqueAttributeValuePairs) = " + str(len(uniqueAttributeValuePairs)) )
+    print()
 
     potentials = sorted(
         (-_get_bias(avPair, dataRowIndexes, data, outcomeIndex), avPair[0], avPair[1], avPair[2])
         for avPair in uniqueAttributeValuePairs
         )
+    print( "potentials: " + str(potentials) )
+    print( "len(potentials) = " + str(len(potentials)) )
+    print()
 
     return potentials
 
