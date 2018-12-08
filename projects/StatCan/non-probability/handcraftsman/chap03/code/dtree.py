@@ -26,7 +26,7 @@ def build(data, outcomeLabel, continuousAttributes=None):
     print( "attrIndexes: " + str(attrIndexes) )
 
     outcomeIndex = data[0].index(outcomeLabel)
-    print( "outcomeIndex: "+ str(outcomeIndex) )
+    print( "outcomeIndex: " + str(outcomeIndex) )
 
     continuousAttrIndexes = set()
     if continuousAttributes is not None:
@@ -39,7 +39,7 @@ def build(data, outcomeLabel, continuousAttributes=None):
             numericValues = {value for value in uniqueValues if isinstance(value, Number)}
             if len(uniqueValues) == len(numericValues):
                 continuousAttrIndexes.add(attrIndex)
-    print( "continuousAttrIndexes: "+ str(continuousAttrIndexes) )
+    print( "continuousAttrIndexes: " + str(continuousAttrIndexes) )
 
     nodes = []
     lastNodeNumber = 0
