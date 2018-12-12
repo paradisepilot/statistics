@@ -110,6 +110,12 @@ myCART  <- R6Class(
         push = function(list, x, i = length(list)) {
             stopifnot(inherits(list, "list"));
             return( c(list,list(x)) );
+            },
+        get_best_split = function() {
+            #temp1 <- rnorm(5);
+            #temp1 <- sort(temp1);
+            #apply(X=data.frame(c1=temp1[2:length(temp1)],c2=temp1[1:(length(temp1)-1)]),MARGIN=1,FUN=mean)
+            return( NULL );
             }
         )
 
