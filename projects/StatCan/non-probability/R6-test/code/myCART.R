@@ -8,18 +8,26 @@ myCART  <- R6Class(
 
         formula = NULL,
         data    = NULL,
-        nodes   = list(),
+
+        response           = NULL,
+        predictors_factor  = NULL,
+        predictors_numeric = NULL,
+
+        nodes = list(),
 
         initialize = function(formula, data) {
             self$formula <- as.formula(formula);
             self$data    <- data;
 
             temp <- all.vars(self$formula);
-            colname.response   <- temp[1];
-            colname.predictors <- temp[2];
-            if (identical(".",colname.predictors)) {
-                colname.predictors <- setdiff(colnames(self$data),c(colname.response));
+            self$response      <- temp[1];
+            colname_predictors <- temp[2];
+            if (identical(".",colname_predictors)) {
+                colname_predictors <- setdiff(colnames(self$data),c(self$response));
                 }
+
+            self$predictors_factor  <- colname_predictors[sapply(X=data[1,colname_predictors],FUN=is.factor )]
+            self$predictors_numeric <- colname_predictors[sapply(X=data[1,colname_predictors],FUN=is.numeric)]
 
             cat( "\nself$formula:\n" )
             print(  self$formula     )
@@ -27,11 +35,16 @@ myCART  <- R6Class(
             cat( "\nstr(self$formula):\n" )
             print(  str(self$formula)     )
 
-            cat( "\ncolname.response\n" );
-            print(  colname.response    );
+            cat( "\nself$response\n" );
+            print(  self$response    );
 
-            cat( "\ncolname.predictors\n" );
-            print(  colname.predictors    );
+            cat( "\nself$predictors_factor\n" );
+            print(  self$predictors_factor    );
+
+            cat( "\nself$predictors_numeric\n" );
+            print(  self$predictors_numeric    );
+
+            remove(temp);
 
             },
 
