@@ -13,6 +13,7 @@ setwd(output.directory);
 library(R6);
 
 source(paste0(code.directory,'/myCART.R'));
+source(paste0(code.directory,'/myNode.R'));
 
 ###################################################
 data(iris);
@@ -25,6 +26,8 @@ myTree <- myCART$new(
     data    = iris
     );
 print( str(myTree) );
+
+myTree$grow();
 
 ###################################################
 # print warning messages to log

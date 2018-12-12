@@ -29,27 +29,68 @@ myCART  <- R6Class(
             self$predictors_factor  <- colname_predictors[sapply(X=data[1,colname_predictors],FUN=is.factor )]
             self$predictors_numeric <- colname_predictors[sapply(X=data[1,colname_predictors],FUN=is.numeric)]
 
-            cat( "\nself$formula:\n" )
-            print(  self$formula     )
+            cat("\nself$formula:\n")
+            print( self$formula    )
 
-            cat( "\nstr(self$formula):\n" )
-            print(  str(self$formula)     )
+            cat("\nstr(self$formula):\n")
+            print( str(self$formula)    )
 
-            cat( "\nself$response\n" );
-            print(  self$response    );
+            cat("\nself$response\n");
+            print( self$response   );
 
-            cat( "\nself$predictors_factor\n" );
-            print(  self$predictors_factor    );
+            cat("\nself$predictors_factor\n");
+            print( self$predictors_factor   );
 
-            cat( "\nself$predictors_numeric\n" );
-            print(  self$predictors_numeric    );
+            cat("\nself$predictors_numeric\n");
+            print( self$predictors_numeric   );
 
             remove(temp);
 
             },
 
         grow = function() {
+
+            nodes      <- list();
+            lastNodeID <- 0;
+
+            workQueue <- list(
+                myNode$new(parentID = -1, nodeID = lastNodeID, rowIndexes = seq(1,nrow(self$data)))
+                );
+
+            cat("\nworkQueue (initial)\n");
+            print( workQueue );
+
+            while (0 < length(workQueue)) {
+
+                currentNode       <- private$pop(workQueue,env=environment());
+                cat("\nworkQueue (while)\n");
+                print( workQueue );
+
+                currentNodeID     <- currentNode$nodeID;
+                currentParentID   <- currentNode$parentID;
+                currentRowIndexes <- currentNode$rowIndexes;
+
+                deduplicatedOutcomes <- unique(self$data[currentNode$rowIndexes,self$response]);
+                cat("\ndeduplicatedOutcomes\n");
+                print( deduplicatedOutcomes   );
+                
+                if (1 == length(deduplicatedOutcomes)) {
+                    nodes <- push(
+                        list = nodes,
+                        x    = myNode$new(
+                            nodeID     = currentNodeID,
+                            parentID   = currentParentID,
+                            rowIndexes = currentRowIndexes
+                            )
+                        );
+                    }
+                else {
+                    }
+                } 
+
+            print( "ZZZ" );
             return( NULL );
+
             },
 
         predict = function() {
@@ -59,11 +100,11 @@ myCART  <- R6Class(
         ),
 
     private = list(
-        pop = function(list, i = length(list)) {
+        pop = function(list, i = length(list), envir) {
             stopifnot(inherits(list, "list"))
             if (0 == length(list)) { return(NULL); }
             result <- list[[i]];
-            assign(deparse(substitute(list)), list[-i], envir = .GlobalEnv);
+            assign(x = deparse(substitute(list)), value = list[-i], envir = envir);
             return( result );
             },
         push = function(list, x, i = length(list)) {
@@ -72,5 +113,5 @@ myCART  <- R6Class(
             }
         )
 
-    )
+    );
 
