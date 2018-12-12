@@ -7,20 +7,25 @@ command.arguments <- commandArgs(trailingOnly = TRUE);
 cat(paste0("##### Sys.time(): ",Sys.time(),"\n"));
 start.proc.time <- proc.time();
 
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-library(R6);
-# library(ggmap);
-# library(RColorBrewer);
-# library(VennDiagram);
-
-#source(paste0(package.directory,'/linkAdjust-logistic.R'));
-#source(paste0(package.directory,'/make-synthetic-data.R'));
-
 setwd(output.directory);
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+library(R6);
+
+source(paste0(code.directory,'/list-utils.R'));
+source(paste0(code.directory,'/myCART.R'));
+
 ###################################################
+data(iris);
+print( str( iris) );
+print( head(iris) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+myTree <- myCART$new(
+    formula = Species ~ .,
+    data    = iris
+    );
+print( str(myTree) );
 
 ###################################################
 # print warning messages to log
