@@ -16,6 +16,7 @@ myCART  <- R6Class(
         nodes = list(),
 
         initialize = function(formula, data) {
+
             self$formula <- as.formula(formula);
             self$data    <- data;
 
@@ -62,7 +63,7 @@ myCART  <- R6Class(
 
             while (0 < length(workQueue)) {
 
-                currentNode       <- private$pop(workQueue,env=environment());
+                currentNode       <- private$pop(workQueue, envir = environment());
                 cat("\nworkQueue (while)\n");
                 print( workQueue );
 
@@ -85,6 +86,7 @@ myCART  <- R6Class(
                         );
                     }
                 else {
+                    bestSplit <- private$get_best_split(currentRowIndexes = currentRowIndexes);
                     }
                 } 
 
@@ -100,7 +102,7 @@ myCART  <- R6Class(
         ),
 
     private = list(
-        pop = function(list, i = length(list), envir) {
+        pop = function(list, i = length(list), envir = NULL) {
             stopifnot(inherits(list, "list"))
             if (0 == length(list)) { return(NULL); }
             result <- list[[i]];
@@ -111,11 +113,34 @@ myCART  <- R6Class(
             stopifnot(inherits(list, "list"));
             return( c(list,list(x)) );
             },
-        get_best_split = function() {
-            #temp1 <- rnorm(5);
-            #temp1 <- sort(temp1);
-            #apply(X=data.frame(c1=temp1[2:length(temp1)],c2=temp1[1:(length(temp1)-1)]),MARGIN=1,FUN=mean)
+        get_best_split = function(currentRowIndexes) {
+            if (length(self$predictors_factor) > 0) {
+                uniqueVarValuePairs_factor <- apply(
+                    X      = self$data[currentRowIndexes,self$predictors_factor],
+                    MARGIN = 2,
+                    FUN    = function(x) { return( sort(unique(x)) ); }
+                    );
+                cat("\nuniqueVarValuePairs_factor\n")
+                print( uniqueVarValuePairs_factor   );
+                };
+            if (length(self$predictors_numeric) > 0) {
+                uniqueVarValuePairs_numeric <- apply(
+                    X      = self$data[currentRowIndexes,self$predictors_numeric],
+                    MARGIN = 2,
+                    FUN    = function(x) { return( private$get_midpoints(sort(unique(x))) ); }
+                    );
+                cat("\nuniqueVarValuePairs_numeric\n")
+                print( uniqueVarValuePairs_numeric   );
+                }
             return( NULL );
+            },
+        get_midpoints = function(x) {
+            if (is.character(x)) {
+                return(x);
+                }
+            else {
+                return( apply(X=data.frame(c1=x[2:length(x)],c2=x[1:(length(x)-1)]),MARGIN=1,FUN=mean) );
+                }
             }
         )
 
