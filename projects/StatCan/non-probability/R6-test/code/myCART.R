@@ -115,20 +115,26 @@ myCART  <- R6Class(
             },
         get_best_split = function(currentRowIndexes) {
             if (length(self$predictors_factor) > 0) {
-                uniqueVarValuePairs_factor <- private$get_var_value_pairs(apply(
-                    X      = self$data[currentRowIndexes,self$predictors_factor],
-                    MARGIN = 2,
-                    FUN    = function(x) { return( sort(unique(x)) ); }
-                    ));
+                uniqueVarValuePairs_factor <- private$get_var_value_pairs(
+                    x = apply(
+                        X      = self$data[currentRowIndexes,self$predictors_factor],
+                        MARGIN = 2,
+                        FUN    = function(x) { return( sort(unique(x)) ); }
+                        ),
+                    comparison = private$is_equal_to
+                    );
                 cat("\nuniqueVarValuePairs_factor\n")
                 print( uniqueVarValuePairs_factor   );
                 };
             if (length(self$predictors_numeric) > 0) {
-                uniqueVarValuePairs_numeric <- private$get_var_value_pairs(apply(
-                    X      = self$data[currentRowIndexes,self$predictors_numeric],
-                    MARGIN = 2,
-                    FUN    = function(x) { return( private$get_midpoints(sort(unique(x))) ); }
-                    ));
+                uniqueVarValuePairs_numeric <- private$get_var_value_pairs(
+                    x = apply(
+                        X      = self$data[currentRowIndexes,self$predictors_numeric],
+                        MARGIN = 2,
+                        FUN    = function(x) { return( private$get_midpoints(sort(unique(x))) ); }
+                        ),
+                    comparison = private$is_greater_than
+                    );
                 cat("\nuniqueVarValuePairs_numeric\n")
                 print( uniqueVarValuePairs_numeric   );
                 }
@@ -142,26 +148,34 @@ myCART  <- R6Class(
                 return( apply(X=data.frame(c1=x[2:length(x)],c2=x[1:(length(x)-1)]),MARGIN=1,FUN=mean) );
                 }
             },
-        get_var_value_pairs = function(x) {
+        get_var_value_pairs = function(x = NULL, comparison = NULL) {
             templist <- list();
             for (i in seq(1,length(x))) {
                 for (j in seq(1,length(x[[i]]))) {
                     templist <- private$push(
                         list = templist,
-                        x    = private$criterion$new(varname = names(x)[i], value = x[[i]][j])
+                        x    = private$criterion$new(
+                            varname    = names(x)[i],
+                            value      = x[[i]][j],
+                            comparison = comparison
+                            )
                         );
                     }
                 }
             return( templist );
             },
+        is_greater_than = function(x,y) { return(x >  y) },
+        is_equal_to     = function(x,y) { return(x == y) },
         criterion = R6Class(
             classname  = "criterion",
             public = list(
                 varname    = NULL,
                 value      = NULL,
-                initialize = function(varname = NULL, value = NULL) {
-                    self$varname = varname;
-                    self$value   = value;
+                comparison = NULL,
+                initialize = function(varname = NULL, value = NULL, comparison = NULL) {
+                    self$varname    = varname;
+                    self$value      = value;
+                    self$comparison = comparison;
                     }
                 )
             )
