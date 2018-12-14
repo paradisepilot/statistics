@@ -13,7 +13,7 @@ myCART  <- R6Class(
         predictors_factor  = NULL,
         predictors_numeric = NULL,
 
-        nodes = list(),
+        nodes = NULL,
 
         initialize = function(formula, data) {
 
@@ -51,7 +51,7 @@ myCART  <- R6Class(
 
         grow = function() {
 
-            nodes      <- list();
+            self$nodes <- list();
             lastNodeID <- 0;
 
             workQueue <- list(
@@ -64,31 +64,32 @@ myCART  <- R6Class(
             while (0 < length(workQueue)) {
 
                 currentNode       <- private$pop(workQueue, envir = environment());
-                cat("\nworkQueue (while)\n");
-                print( workQueue );
+                #cat("\nworkQueue (while)\n");
+                #print( workQueue );
 
                 currentNodeID     <- currentNode$nodeID;
                 currentParentID   <- currentNode$parentID;
                 currentRowIndexes <- currentNode$rowIndexes;
 
                 deduplicatedOutcomes <- unique(self$data[currentNode$rowIndexes,self$response]);
-                cat("\ndeduplicatedOutcomes\n");
-                print( deduplicatedOutcomes   );
+                #cat("\ndeduplicatedOutcomes\n");
+                #print( deduplicatedOutcomes   );
                 
                 if (1 == length(deduplicatedOutcomes)) {
-                    nodes <- private$push(
-                        list = nodes,
+                    self$nodes <- private$push(
+                        list = self$nodes,
                         x    = private$node$new(
                             nodeID     = currentNodeID,
                             parentID   = currentParentID,
                             rowIndexes = currentRowIndexes
                             )
                         );
+                    cat( paste0("\ncurrentNodeID: ",currentNodeID) );
                     }
                 else {
                     bestSplit <- private$get_best_split(currentRowIndexes = currentRowIndexes);
-                    cat("\nbestSplit:\n");
-                    print( bestSplit );
+                    #cat("\nbestSplit:\n");
+                    #print( bestSplit );
 
                     satisfied    <- which(
                         bestSplit$comparison(self$data[currentRowIndexes,bestSplit$varname],bestSplit$threshold)
@@ -107,7 +108,7 @@ myCART  <- R6Class(
                         );
 
                     lastNodeID          <- lastNodeID + 1;
-                    nonSatisfiedChildId <- lastNodeID;
+                    nonSatisfiedChildID <- lastNodeID;
                     workQueue           <- private$push(
                         list = workQueue,
                         x    = private$node$new(
@@ -117,15 +118,18 @@ myCART  <- R6Class(
                             )
                         );
 
-                    nodes <- private$push(
-                        list = nodes,
+                    self$nodes <- private$push(
+                        list = self$nodes,
                         x = private$node$new(
                             nodeID     = currentNodeID,
                             parentID   = currentParentID,
                             rowIndexes = currentRowIndexes,
-                            criterion  = bestSplit
+                            criterion  = bestSplit,
+                            satisfiedChildID    =    satisfiedChildID,
+                            nonSatisfiedChildID = nonSatisfiedChildID
                             )
                         );
+                    cat( paste0("\ncurrentNodeID: ",currentNodeID) );
                     }
                 } 
 
@@ -162,8 +166,6 @@ myCART  <- R6Class(
                         ),
                     comparison = private$is_equal_to
                     );
-                #cat("\nuniqueVarValuePairs_factor\n")
-                #print( uniqueVarValuePairs_factor   );
                 }
             else {
                 uniqueVarValuePairs_factor  <- list();
@@ -177,8 +179,6 @@ myCART  <- R6Class(
                         ),
                     comparison = private$is_less_than
                     );
-                cat("\nuniqueVarValuePairs_numeric\n")
-                print( uniqueVarValuePairs_numeric   );
                 }
             else {
                 uniqueVarValuePairs_numeric <- list();
@@ -196,8 +196,6 @@ myCART  <- R6Class(
                     return( p1 * g1 + p2 * g2 );
                     }
                 );
-            cat("\ntemp\n")
-            print( temp   );
             return( uniqueVarValuePairs[[ which.min(temp) ]] );
             },
         get_midpoints = function(x) {
