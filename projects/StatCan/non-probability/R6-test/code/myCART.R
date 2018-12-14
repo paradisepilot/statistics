@@ -125,6 +125,9 @@ myCART  <- R6Class(
                     );
                 cat("\nuniqueVarValuePairs_factor\n")
                 print( uniqueVarValuePairs_factor   );
+                }
+            else {
+                uniqueVarValuePairs_factor  <- list();
                 };
             if (length(self$predictors_numeric) > 0) {
                 uniqueVarValuePairs_numeric <- private$get_var_value_pairs(
@@ -133,11 +136,29 @@ myCART  <- R6Class(
                         MARGIN = 2,
                         FUN    = function(x) { return( private$get_midpoints(sort(unique(x))) ); }
                         ),
-                    comparison = private$is_greater_than
+                    comparison = private$is_less_than
                     );
                 cat("\nuniqueVarValuePairs_numeric\n")
                 print( uniqueVarValuePairs_numeric   );
                 }
+            else {
+                uniqueVarValuePairs_numeric <- list();
+                }
+            uniqueVarValuePairs <- c(uniqueVarValuePairs_factor,uniqueVarValuePairs_numeric);
+            temp <- lapply(
+                X   = uniqueVarValuePairs,
+                FUN = function(x) {
+                    satisfied    <- which(x$comparison(self$data[currentRowIndexes,x$varname],x$threshold));
+                    notSatisfied <- sort(setdiff(currentRowIndexes,satisfied));
+                    p1 <- length(   satisfied) / length(currentRowIndexes);
+                    p2 <- length(notSatisfied) / length(currentRowIndexes);
+                    g1 <- private$gini_impurity(self$data[   satisfied,self$response]);
+                    g2 <- private$gini_impurity(self$data[notSatisfied,self$response]);
+                    return( p1 * g1 + p2 * g2 );
+                    }
+                );
+            cat("\ntemp\n")
+            print( temp   );
             return( NULL );
             },
         get_midpoints = function(x) {
@@ -156,7 +177,7 @@ myCART  <- R6Class(
                         list = templist,
                         x    = private$criterion$new(
                             varname    = names(x)[i],
-                            value      = x[[i]][j],
+                            threshold  = x[[i]][j],
                             comparison = comparison
                             )
                         );
@@ -164,17 +185,25 @@ myCART  <- R6Class(
                 }
             return( templist );
             },
-        is_greater_than = function(x,y) { return(x >  y) },
-        is_equal_to     = function(x,y) { return(x == y) },
+        is_less_than = function(x,y) {
+            return(x < y)
+            },
+        is_equal_to = function(x,y) {
+            return(x == y)
+            },
+        gini_impurity = function(x){
+            p <- as.numeric(table(x) / length(x));
+            return( sum(p * (1 - p)) );
+            },
         criterion = R6Class(
             classname  = "criterion",
             public = list(
                 varname    = NULL,
-                value      = NULL,
+                threshold  = NULL,
                 comparison = NULL,
-                initialize = function(varname = NULL, value = NULL, comparison = NULL) {
+                initialize = function(varname = NULL, threshold = NULL, comparison = NULL) {
                     self$varname    = varname;
-                    self$value      = value;
+                    self$threshold  = threshold;
                     self$comparison = comparison;
                     }
                 )
