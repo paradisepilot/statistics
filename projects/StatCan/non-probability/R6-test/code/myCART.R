@@ -63,10 +63,11 @@ myCART  <- R6Class(
 
             while (0 < length(workQueue)) {
 
-                currentNode       <- private$pop(workQueue, envir = environment());
-                #cat("\nworkQueue (while)\n");
-                #print( workQueue );
+                cat( "\n### ~~~~~~~~~~ ###" );
+                cat( paste0("\nlength(workQueue): ",length(workQueue),"\n") );
+                print( workQueue );
 
+                currentNode       <- private$pop(workQueue, envir = environment());
                 currentNodeID     <- currentNode$nodeID;
                 currentParentID   <- currentNode$parentID;
                 currentRowIndexes <- currentNode$rowIndexes;
@@ -84,7 +85,7 @@ myCART  <- R6Class(
                             rowIndexes = currentRowIndexes
                             )
                         );
-                    cat( paste0("\ncurrentNodeID: ",currentNodeID) );
+                    #cat( paste0("\ncurrentNodeID: ",currentNodeID) );
                     }
                 else {
                     bestSplit <- private$get_best_split(currentRowIndexes = currentRowIndexes);
@@ -129,7 +130,7 @@ myCART  <- R6Class(
                             nonSatisfiedChildID = nonSatisfiedChildID
                             )
                         );
-                    cat( paste0("\ncurrentNodeID: ",currentNodeID) );
+                    #cat( paste0("\ncurrentNodeID: ",currentNodeID) );
                     }
                 } 
 
