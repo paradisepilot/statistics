@@ -87,6 +87,8 @@ myCART  <- R6Class(
                     }
                 else {
                     bestSplit <- private$get_best_split(currentRowIndexes = currentRowIndexes);
+                    cat("\nbestSplit:\n");
+                    print( bestSplit );
                     }
                 } 
 
@@ -123,8 +125,8 @@ myCART  <- R6Class(
                         ),
                     comparison = private$is_equal_to
                     );
-                cat("\nuniqueVarValuePairs_factor\n")
-                print( uniqueVarValuePairs_factor   );
+                #cat("\nuniqueVarValuePairs_factor\n")
+                #print( uniqueVarValuePairs_factor   );
                 }
             else {
                 uniqueVarValuePairs_factor  <- list();
@@ -159,7 +161,7 @@ myCART  <- R6Class(
                 );
             cat("\ntemp\n")
             print( temp   );
-            return( NULL );
+            return( uniqueVarValuePairs[[ which.min(temp) ]] );
             },
         get_midpoints = function(x) {
             if (is.character(x)) {
