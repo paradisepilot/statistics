@@ -55,7 +55,7 @@ myCART  <- R6Class(
             lastNodeID <- 0;
 
             workQueue <- list(
-                myNode$new(parentID = -1, nodeID = lastNodeID, rowIndexes = seq(1,nrow(self$data)))
+                private$node$new(parentID = -1, nodeID = lastNodeID, rowIndexes = seq(1,nrow(self$data)))
                 );
 
             cat("\nworkQueue (initial)\n");
@@ -76,9 +76,9 @@ myCART  <- R6Class(
                 print( deduplicatedOutcomes   );
                 
                 if (1 == length(deduplicatedOutcomes)) {
-                    nodes <- push(
+                    nodes <- private$push(
                         list = nodes,
-                        x    = myNode$new(
+                        x    = private$node$new(
                             nodeID     = currentNodeID,
                             parentID   = currentParentID,
                             rowIndexes = currentRowIndexes
@@ -89,6 +89,43 @@ myCART  <- R6Class(
                     bestSplit <- private$get_best_split(currentRowIndexes = currentRowIndexes);
                     cat("\nbestSplit:\n");
                     print( bestSplit );
+
+                    satisfied    <- which(
+                        bestSplit$comparison(self$data[currentRowIndexes,bestSplit$varname],bestSplit$threshold)
+                        );
+                    notSatisfied <- sort(setdiff(currentRowIndexes,satisfied));
+
+                    lastNodeID       <- lastNodeID + 1;
+                    satisfiedChildID <- lastNodeID;
+                    workQueue        <- private$push(
+                        list = workQueue,
+                        x    = private$node$new(
+                            parentID   = currentNodeID,
+                            nodeID     = lastNodeID,
+                            rowIndexes = satisfied
+                            )
+                        );
+
+                    lastNodeID          <- lastNodeID + 1;
+                    nonSatisfiedChildId <- lastNodeID;
+                    workQueue           <- private$push(
+                        list = workQueue,
+                        x    = private$node$new(
+                            parentID   = currentNodeID,
+                            nodeID     = lastNodeID,
+                            rowIndexes = notSatisfied
+                            )
+                        );
+
+                    nodes <- private$push(
+                        list = nodes,
+                        x = private$node$new(
+                            nodeID     = currentNodeID,
+                            parentID   = currentParentID,
+                            rowIndexes = currentRowIndexes,
+                            criterion  = bestSplit
+                            )
+                        );
                     }
                 } 
 
@@ -207,6 +244,37 @@ myCART  <- R6Class(
                     self$varname    = varname;
                     self$threshold  = threshold;
                     self$comparison = comparison;
+                    }
+                )
+            ),
+        node = R6Class(
+            classname = "node",
+
+            public = list(
+
+                nodeID     = NULL,
+                rowIndexes = NULL,
+                parentID   = NULL,
+                criterion  = NULL,
+
+                satisfiedChildID    = NULL,
+                nonSatisfiedChildID = NULL,
+
+                initialize = function(
+                    nodeID          = NULL,
+                    rowIndexes      = NULL,
+                    parentID        = NULL,
+                    criterion       = NULL,
+                    satisfiedChildID    = NULL,
+                    nonSatisfiedChildID = NULL
+                    ) {
+                        self$nodeID     <- nodeID;
+                        self$rowIndexes <- rowIndexes;
+                        self$parentID   <- parentID;
+                        self$criterion  <- criterion;
+
+                        self$satisfiedChildID    <- satisfiedChildID;
+                        self$nonSatisfiedChildID <- nonSatisfiedChildID;
                     }
                 )
             )

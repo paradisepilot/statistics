@@ -13,7 +13,7 @@ setwd(output.directory);
 library(R6);
 
 source(paste0(code.directory,'/myCART.R'));
-source(paste0(code.directory,'/myNode.R'));
+#source(paste0(code.directory,'/myNode.R'));
 
 ###################################################
 data(iris);
