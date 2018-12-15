@@ -217,7 +217,7 @@ myCART  <- R6Class(
                     );
                 }
             uniqueVarValuePairs <- c(uniqueVarValuePairs_factor,uniqueVarValuePairs_numeric);
-            gini_impurities <- lapply(
+            impurities <- lapply(
                 X   = uniqueVarValuePairs,
                 FUN = function(x) {
                     satisfied    <- which(
@@ -226,12 +226,12 @@ myCART  <- R6Class(
                     notSatisfied <- sort(setdiff(currentRowIDs,satisfied));
                     p1 <- length(   satisfied) / length(currentRowIDs);
                     p2 <- length(notSatisfied) / length(currentRowIDs);
-                    g1 <- private$gini_impurity(self$data[   satisfied,self$response]);
-                    g2 <- private$gini_impurity(self$data[notSatisfied,self$response]);
+                    g1 <- private$impurity(self$data[   satisfied,self$response]);
+                    g2 <- private$impurity(self$data[notSatisfied,self$response]);
                     return( p1 * g1 + p2 * g2 );
                     }
                 );
-            output <- uniqueVarValuePairs[[ which.min(gini_impurities) ]];
+            output <- uniqueVarValuePairs[[ which.min(impurities) ]];
             return( output );
             },
         get_midpoints = function(x) {
@@ -265,7 +265,8 @@ myCART  <- R6Class(
         is_equal_to = function(x,y) {
             return(x == y)
             },
-        gini_impurity = function(x){
+        impurity = function(x){
+            # Gini impurity
             p <- as.numeric(table(x) / length(x));
             return( sum(p * (1 - p)) );
             },
