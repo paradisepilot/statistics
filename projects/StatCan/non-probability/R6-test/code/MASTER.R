@@ -1,8 +1,7 @@
 
 command.arguments <- commandArgs(trailingOnly = TRUE);
-   RLib.directory <- normalizePath(command.arguments[1]);
-   code.directory <- normalizePath(command.arguments[2]);
- output.directory <- normalizePath(command.arguments[3]);
+   code.directory <- normalizePath(command.arguments[1]);
+ output.directory <- normalizePath(command.arguments[2]);
 
 cat(paste0("##### Sys.time(): ",Sys.time(),"\n"));
 start.proc.time <- proc.time();
@@ -16,7 +15,6 @@ require(RColorBrewer);
 
 require(R6);
 source(paste0(code.directory,'/myCART.R'));
-#source(paste0(code.directory,'/myNode.R'));
 
 ###################################################
 data(iris);
