@@ -13,7 +13,8 @@ myCART  <- R6Class(
         predictors_factor  = NULL,
         predictors_numeric = NULL,
 
-        nodes = NULL,
+        syntheticID = NULL,
+        nodes       = NULL,
 
         initialize = function(formula, data) {
 
@@ -29,6 +30,10 @@ myCART  <- R6Class(
 
             self$predictors_factor  <- colname_predictors[sapply(X=data[1,colname_predictors],FUN=is.factor )]
             self$predictors_numeric <- colname_predictors[sapply(X=data[1,colname_predictors],FUN=is.numeric)]
+
+            # add custom row ID:
+            self$syntheticID <- paste0(sample(x=letters,size=10,replace=TRUE),collapse="");
+            self$data[,self$syntheticID] <- seq(1,nrow(self$data));
 
             cat("\nself$formula:\n")
             print( self$formula    )
@@ -55,7 +60,11 @@ myCART  <- R6Class(
             lastNodeID <- 0;
 
             workQueue <- list(
-                private$node$new(parentID = -1, nodeID = lastNodeID, rowIndexes = seq(1,nrow(self$data)))
+                private$node$new(
+                    parentID = -1,
+                    nodeID   = lastNodeID,
+                    rowIDs   = self$data[,self$syntheticID]
+                    )
                 );
 
             cat("\nworkQueue (initial)\n");
@@ -65,14 +74,17 @@ myCART  <- R6Class(
 
                 cat( "\n### ~~~~~~~~~~ ###" );
                 cat( paste0("\nlength(workQueue): ",length(workQueue),"\n") );
-                print( workQueue );
+                # print( workQueue );
 
-                currentNode       <- private$pop(workQueue, envir = environment());
-                currentNodeID     <- currentNode$nodeID;
-                currentParentID   <- currentNode$parentID;
-                currentRowIndexes <- currentNode$rowIndexes;
+                currentNode     <- private$pop(workQueue, envir = environment());
+                currentNodeID   <- currentNode$nodeID;
+                currentParentID <- currentNode$parentID;
+                currentRowIDs   <- currentNode$rowIDs;
 
-                deduplicatedOutcomes <- unique(self$data[currentNode$rowIndexes,self$response]);
+                cat("\ncurrentNode:");
+                print( currentNode );
+
+                deduplicatedOutcomes <- unique(self$data[currentNode$rowIDs,self$response]);
                 #cat("\ndeduplicatedOutcomes\n");
                 #print( deduplicatedOutcomes   );
                 
@@ -80,31 +92,47 @@ myCART  <- R6Class(
                     self$nodes <- private$push(
                         list = self$nodes,
                         x    = private$node$new(
-                            nodeID     = currentNodeID,
-                            parentID   = currentParentID,
-                            rowIndexes = currentRowIndexes
+                            nodeID   = currentNodeID,
+                            parentID = currentParentID,
+                            rowIDs   = currentRowIDs
                             )
                         );
                     #cat( paste0("\ncurrentNodeID: ",currentNodeID) );
                     }
                 else {
-                    bestSplit <- private$get_best_split(currentRowIndexes = currentRowIndexes);
-                    #cat("\nbestSplit:\n");
-                    #print( bestSplit );
 
-                    satisfied    <- which(
-                        bestSplit$comparison(self$data[currentRowIndexes,bestSplit$varname],bestSplit$threshold)
-                        );
-                    notSatisfied <- sort(setdiff(currentRowIndexes,satisfied));
+                    cat("\ncurrentRowIDs:\n");
+                    print( currentRowIDs    );
+                    print( str(currentRowIDs)    );
+
+                    bestSplit <- private$get_best_split(currentRowIDs = currentRowIDs);
+                    cat("\nbestSplit:\n");
+                    print( bestSplit );
+
+                    #print( self$data[self$data[,self$syntheticID] %in% currentRowIDs,c(bestSplit$varname,self$response)] );
+
+                    satisfied <- self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$syntheticID][
+                        bestSplit$comparison(
+                            self$data[self$data[,self$syntheticID] %in% currentRowIDs,bestSplit$varname],
+                            bestSplit$threshold
+                            )
+                        ];
+                    notSatisfied <- sort(setdiff(currentRowIDs,satisfied));
+
+                    cat("\nsatisfied:\n");
+                    print( satisfied    );
+
+                    cat("\nnonSatisfied:\n");
+                    print( notSatisfied    );
 
                     lastNodeID       <- lastNodeID + 1;
                     satisfiedChildID <- lastNodeID;
                     workQueue        <- private$push(
                         list = workQueue,
                         x    = private$node$new(
-                            parentID   = currentNodeID,
-                            nodeID     = lastNodeID,
-                            rowIndexes = satisfied
+                            parentID = currentNodeID,
+                            nodeID   = lastNodeID,
+                            rowIDs   = satisfied
                             )
                         );
 
@@ -113,19 +141,19 @@ myCART  <- R6Class(
                     workQueue           <- private$push(
                         list = workQueue,
                         x    = private$node$new(
-                            parentID   = currentNodeID,
-                            nodeID     = lastNodeID,
-                            rowIndexes = notSatisfied
+                            parentID = currentNodeID,
+                            nodeID   = lastNodeID,
+                            rowIDs   = notSatisfied
                             )
                         );
 
                     self$nodes <- private$push(
                         list = self$nodes,
                         x = private$node$new(
-                            nodeID     = currentNodeID,
-                            parentID   = currentParentID,
-                            rowIndexes = currentRowIndexes,
-                            criterion  = bestSplit,
+                            nodeID    = currentNodeID,
+                            parentID  = currentParentID,
+                            rowIDs    = currentRowIDs,
+                            criterion = bestSplit,
                             satisfiedChildID    =    satisfiedChildID,
                             nonSatisfiedChildID = nonSatisfiedChildID
                             )
@@ -157,47 +185,54 @@ myCART  <- R6Class(
             stopifnot(inherits(list, "list"));
             return( c(list,list(x)) );
             },
-        get_best_split = function(currentRowIndexes) {
+        get_best_split = function(currentRowIDs) {
+            uniqueVarValuePairs_factor  <- list();
+            uniqueVarValuePairs_numeric <- list();
             if (length(self$predictors_factor) > 0) {
+                DF.temp           <- self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$predictors_factor];
+                colnames(DF.temp) <- self$predictors_numeric;
+                nUniqueValues     <- apply(X = DF.temp, MARGIN = 2, FUN = function(x) { return(length(unique(x))) } );
+                DF.temp           <- DF.temp[,nUniqueValues > 1];
                 uniqueVarValuePairs_factor <- private$get_var_value_pairs(
                     x = apply(
-                        X      = self$data[currentRowIndexes,self$predictors_factor],
+                        X      = DF.temp,
                         MARGIN = 2,
                         FUN    = function(x) { return( sort(unique(x)) ); }
                         ),
                     comparison = private$is_equal_to
                     );
                 }
-            else {
-                uniqueVarValuePairs_factor  <- list();
-                };
             if (length(self$predictors_numeric) > 0) {
+                DF.temp           <- self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$predictors_numeric];
+                colnames(DF.temp) <- self$predictors_numeric;
+                nUniqueValues     <- apply(X = DF.temp, MARGIN = 2, FUN = function(x) { return(length(unique(x))) } );
+                DF.temp           <- DF.temp[,nUniqueValues > 1];
                 uniqueVarValuePairs_numeric <- private$get_var_value_pairs(
                     x = apply(
-                        X      = self$data[currentRowIndexes,self$predictors_numeric],
+                        X      = DF.temp,
                         MARGIN = 2,
                         FUN    = function(x) { return( private$get_midpoints(sort(unique(x))) ); }
                         ),
                     comparison = private$is_less_than
                     );
                 }
-            else {
-                uniqueVarValuePairs_numeric <- list();
-                }
             uniqueVarValuePairs <- c(uniqueVarValuePairs_factor,uniqueVarValuePairs_numeric);
-            temp <- lapply(
+            gini_impurities <- lapply(
                 X   = uniqueVarValuePairs,
                 FUN = function(x) {
-                    satisfied    <- which(x$comparison(self$data[currentRowIndexes,x$varname],x$threshold));
-                    notSatisfied <- sort(setdiff(currentRowIndexes,satisfied));
-                    p1 <- length(   satisfied) / length(currentRowIndexes);
-                    p2 <- length(notSatisfied) / length(currentRowIndexes);
+                    satisfied    <- which(
+                        x$comparison(self$data[self$data[,self$syntheticID] %in% currentRowIDs,x$varname],x$threshold)
+                        );
+                    notSatisfied <- sort(setdiff(currentRowIDs,satisfied));
+                    p1 <- length(   satisfied) / length(currentRowIDs);
+                    p2 <- length(notSatisfied) / length(currentRowIDs);
                     g1 <- private$gini_impurity(self$data[   satisfied,self$response]);
                     g2 <- private$gini_impurity(self$data[notSatisfied,self$response]);
                     return( p1 * g1 + p2 * g2 );
                     }
                 );
-            return( uniqueVarValuePairs[[ which.min(temp) ]] );
+            output <- uniqueVarValuePairs[[ which.min(gini_impurities) ]];
+            return( output );
             },
         get_midpoints = function(x) {
             if (is.character(x)) {
@@ -208,13 +243,14 @@ myCART  <- R6Class(
                 }
             },
         get_var_value_pairs = function(x = NULL, comparison = NULL) {
-            templist <- list();
+            colnames_x <- ifelse(is.null(names(x)),colnames(x),names(x));
+            templist   <- list();
             for (i in seq(1,length(x))) {
                 for (j in seq(1,length(x[[i]]))) {
                     templist <- private$push(
                         list = templist,
                         x    = private$criterion$new(
-                            varname    = names(x)[i],
+                            varname    = colnames_x[i],
                             threshold  = x[[i]][j],
                             comparison = comparison
                             )
@@ -251,26 +287,26 @@ myCART  <- R6Class(
 
             public = list(
 
-                nodeID     = NULL,
-                rowIndexes = NULL,
-                parentID   = NULL,
-                criterion  = NULL,
+                nodeID    = NULL,
+                rowIDs    = NULL,
+                parentID  = NULL,
+                criterion = NULL,
 
                 satisfiedChildID    = NULL,
                 nonSatisfiedChildID = NULL,
 
                 initialize = function(
-                    nodeID          = NULL,
-                    rowIndexes      = NULL,
-                    parentID        = NULL,
-                    criterion       = NULL,
+                    nodeID    = NULL,
+                    rowIDs    = NULL,
+                    parentID  = NULL,
+                    criterion = NULL,
                     satisfiedChildID    = NULL,
                     nonSatisfiedChildID = NULL
                     ) {
-                        self$nodeID     <- nodeID;
-                        self$rowIndexes <- rowIndexes;
-                        self$parentID   <- parentID;
-                        self$criterion  <- criterion;
+                        self$nodeID    <- nodeID;
+                        self$rowIDs    <- rowIDs;
+                        self$parentID  <- parentID;
+                        self$criterion <- criterion;
 
                         self$satisfiedChildID    <- satisfiedChildID;
                         self$nonSatisfiedChildID <- nonSatisfiedChildID;
