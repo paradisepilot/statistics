@@ -74,9 +74,6 @@ myCART  <- R6Class(
                     )
                 );
 
-            cat("\nworkQueue (initial)\n");
-            print( workQueue );
-
             while (0 < length(workQueue)) {
 
                 cat( "\n### ~~~~~~~~~~ ###" );
@@ -110,7 +107,6 @@ myCART  <- R6Class(
 
                     cat("\ncurrentRowIDs:\n");
                     print( currentRowIDs    );
-                    print( str(currentRowIDs)    );
 
                     bestSplit <- private$get_best_split(currentRowIDs = currentRowIDs);
                     cat("\nbestSplit:\n");
