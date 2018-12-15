@@ -197,7 +197,7 @@ myCART  <- R6Class(
             uniqueVarValuePairs_numeric <- list();
             if (length(self$predictors_factor) > 0) {
                 DF.temp           <- self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$predictors_factor];
-                colnames(DF.temp) <- self$predictors_numeric;
+                colnames(DF.temp) <- self$predictors_factor;
                 nUniqueValues     <- apply(X = DF.temp, MARGIN = 2, FUN = function(x) { return(length(unique(x))) } );
                 DF.temp           <- DF.temp[,nUniqueValues > 1];
                 uniqueVarValuePairs_factor <- private$get_var_value_pairs(
