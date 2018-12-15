@@ -88,11 +88,7 @@ myCART  <- R6Class(
                 cat("\ncurrentNode:");
                 print( currentNode );
 
-                deduplicatedOutcomes <- unique(self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$response]);
-                #cat("\ndeduplicatedOutcomes\n");
-                #print( deduplicatedOutcomes   );
-                
-                if (1 == length(deduplicatedOutcomes)) {
+                if (private$stoppingCriterionSatisfied(currentRowIDs)) {
                     self$nodes <- private$push(
                         list = self$nodes,
                         x    = private$node$new(
@@ -101,7 +97,6 @@ myCART  <- R6Class(
                             rowIDs   = currentRowIDs
                             )
                         );
-                    #cat( paste0("\ncurrentNodeID: ",currentNodeID) );
                     }
                 else {
 
@@ -185,6 +180,10 @@ myCART  <- R6Class(
         push = function(list, x, i = length(list)) {
             stopifnot(inherits(list, "list"));
             return( c(list,list(x)) );
+            },
+        stoppingCriterionSatisfied = function(currentRowIDs = NULL) {
+            deduplicatedOutcomes <- unique(self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$response]);
+            return( 1 == length(deduplicatedOutcomes) );
             },
         get_best_split = function(currentRowIDs) {
             uniqueVarValuePairs_factor  <- list();
