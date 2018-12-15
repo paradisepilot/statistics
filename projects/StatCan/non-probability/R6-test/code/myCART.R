@@ -42,21 +42,6 @@ myCART  <- R6Class(
             self$syntheticID <- paste0(sample(x=letters,size=10,replace=TRUE),collapse="");
             self$data[,self$syntheticID] <- seq(1,nrow(self$data));
 
-            cat("\nself$formula:\n")
-            print( self$formula    )
-
-            cat("\nstr(self$formula):\n")
-            print( str(self$formula)    )
-
-            cat("\nself$response\n");
-            print( self$response   );
-
-            cat("\nself$predictors_factor\n");
-            print( self$predictors_factor   );
-
-            cat("\nself$predictors_numeric\n");
-            print( self$predictors_numeric   );
-
             remove(temp);
 
             },
@@ -190,12 +175,12 @@ myCART  <- R6Class(
             uniqueVarValuePairs_numeric <- list();
             if (length(self$predictors_factor) > 0) {
                 uniqueVarValuePairs_factor <- private$get_var_value_pairs(
-                    x = apply(
-                        X = private$get_non_constant_columns(
+                    x = lapply(
+                        X = as.list(private$get_non_constant_columns(
                             DF.input       = self$data,
                             currentRowIDs  = currentRowIDs,
                             input.colnames = self$predictors_factor
-                            ),
+                            )),
                         MARGIN = 2,
                         FUN    = function(x) { return( private$get_midpoints(x) ); }
                         ),
@@ -203,20 +188,6 @@ myCART  <- R6Class(
                     );
                 }
             if (length(self$predictors_numeric) > 0) {
-
-                temp1 <- private$get_non_constant_columns(
-                    DF.input       = self$data,
-                    currentRowIDs  = currentRowIDs,
-                    input.colnames = self$predictors_numeric
-                    );
-
-                temp2 <- lapply(
-                    X   = as.list(temp1),
-                    FUN = function(x) { return( private$get_midpoints(x) ); }
-                    );
-                cat("\ntemp2 (get_best_split):\n");
-                print( temp2 );
-
                 uniqueVarValuePairs_numeric <- private$get_var_value_pairs(
                     x = lapply(
                         X = as.list(private$get_non_constant_columns(
