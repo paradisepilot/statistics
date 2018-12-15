@@ -203,15 +203,28 @@ myCART  <- R6Class(
                     );
                 }
             if (length(self$predictors_numeric) > 0) {
+
+                temp1 <- private$get_non_constant_columns(
+                    DF.input       = self$data,
+                    currentRowIDs  = currentRowIDs,
+                    input.colnames = self$predictors_numeric
+                    );
+
+                temp2 <- lapply(
+                    X   = as.list(temp1),
+                    FUN = function(x) { return( private$get_midpoints(x) ); }
+                    );
+                cat("\ntemp2 (get_best_split):\n");
+                print( temp2 );
+
                 uniqueVarValuePairs_numeric <- private$get_var_value_pairs(
-                    x = apply(
-                        X = private$get_non_constant_columns(
+                    x = lapply(
+                        X = as.list(private$get_non_constant_columns(
                             DF.input       = self$data,
                             currentRowIDs  = currentRowIDs,
                             input.colnames = self$predictors_numeric
-                            ),
-                        MARGIN = 2,
-                        FUN    = function(x) { return( private$get_midpoints(x) ); }
+                            )),
+                        FUN = function(x) { return( private$get_midpoints(x) ); }
                         ),
                     comparison = private$is_less_than
                     );
@@ -257,14 +270,14 @@ myCART  <- R6Class(
                 }
             },
         get_var_value_pairs = function(x = NULL, comparison = NULL) {
-            colnames_x <- ifelse(is.null(names(x)),colnames(x),names(x));
-            templist   <- list();
-            for (i in seq(1,length(x))) {
+            names_x  <- names(x);
+            templist <- list();
+            for (i in seq(1,length(names_x))) {
                 for (j in seq(1,length(x[[i]]))) {
                     templist <- private$push(
                         list = templist,
                         x    = private$criterion$new(
-                            varname    = colnames_x[i],
+                            varname    = names_x[i],
                             threshold  = x[[i]][j],
                             comparison = comparison
                             )
