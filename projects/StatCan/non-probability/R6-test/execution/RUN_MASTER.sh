@@ -11,6 +11,7 @@ if [ ! -d ${outputDIR} ]; then
 fi
 
 cp -r ${codeDIR} ${outputDIR}
+cp    $0         ${outputDIR}/code
 
 ##################################################
 myRscript=${codeDIR}/MASTER.R
