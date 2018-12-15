@@ -196,13 +196,13 @@ myCART  <- R6Class(
             uniqueVarValuePairs_factor  <- list();
             uniqueVarValuePairs_numeric <- list();
             if (length(self$predictors_factor) > 0) {
-                DF.temp           <- self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$predictors_factor];
-                colnames(DF.temp) <- self$predictors_factor;
-                nUniqueValues     <- apply(X = DF.temp, MARGIN = 2, FUN = function(x) { return(length(unique(x))) } );
-                DF.temp           <- DF.temp[,nUniqueValues > 1];
                 uniqueVarValuePairs_factor <- private$get_var_value_pairs(
                     x = apply(
-                        X      = DF.temp,
+                        X = private$get_non_constant_columns(
+                            DF.input       = self$data,
+                            currentRowIDs  = currentRowIDs,
+                            input.colnames = self$predictors_factor
+                            ),
                         MARGIN = 2,
                         FUN    = function(x) { return( private$get_midpoints(x) ); }
                         ),
@@ -210,13 +210,13 @@ myCART  <- R6Class(
                     );
                 }
             if (length(self$predictors_numeric) > 0) {
-                DF.temp           <- self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$predictors_numeric];
-                colnames(DF.temp) <- self$predictors_numeric;
-                nUniqueValues     <- apply(X = DF.temp, MARGIN = 2, FUN = function(x) { return(length(unique(x))) } );
-                DF.temp           <- DF.temp[,nUniqueValues > 1];
                 uniqueVarValuePairs_numeric <- private$get_var_value_pairs(
                     x = apply(
-                        X      = DF.temp,
+                        X = private$get_non_constant_columns(
+                            DF.input       = self$data,
+                            currentRowIDs  = currentRowIDs,
+                            input.colnames = self$predictors_numeric
+                            ),
                         MARGIN = 2,
                         FUN    = function(x) { return( private$get_midpoints(x) ); }
                         ),
@@ -240,6 +240,13 @@ myCART  <- R6Class(
                 );
             output <- uniqueVarValuePairs[[ which.min(impurities) ]];
             return( output );
+            },
+        get_non_constant_columns = function(DF.input = NULL, currentRowIDs = NULL, input.colnames = NULL) {
+            DF.output           <- DF.input[DF.input[,self$syntheticID] %in% currentRowIDs,input.colnames];
+            colnames(DF.output) <- input.colnames;
+            nUniqueValues       <- apply(X = DF.output, MARGIN = 2, FUN = function(x) { return(length(unique(x))) } );
+            DF.output           <- DF.output[,nUniqueValues > 1];
+            return( DF.output );
             },
         get_midpoints = function(x) {
             if (is.numeric(x)) {
