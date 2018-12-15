@@ -29,6 +29,9 @@ print( str(myTree) );
 
 myTree$grow();
 
+cat("\nmyTree$nodes\n" );
+print( myTree$nodes    );
+
 ###################################################
 # print warning messages to log
 cat("\n##### warnings()\n")

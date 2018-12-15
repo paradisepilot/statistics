@@ -169,7 +169,7 @@ myCART  <- R6Class(
                     }
                 } 
 
-            print( "ZZZ" );
+            private$order_nodes();
             return( NULL );
 
             },
@@ -301,6 +301,13 @@ myCART  <- R6Class(
                     }
                 )
             ),
+        order_nodes = function() {
+            if (length(self$nodes) > 0) {
+                nodeIDs <- as.integer(lapply(X = self$nodes, FUN = function(x) { return( x$nodeID ); } ))
+                self$nodes <- self$nodes[order(nodeIDs)];
+                return( NULL );
+                }
+            },
         node = R6Class(
             classname = "node",
 
