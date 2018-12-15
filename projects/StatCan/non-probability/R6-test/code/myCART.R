@@ -91,7 +91,7 @@ myCART  <- R6Class(
                 cat("\ncurrentNode:");
                 print( currentNode );
 
-                deduplicatedOutcomes <- unique(self$data[currentNode$rowIDs,self$response]);
+                deduplicatedOutcomes <- unique(self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$response]);
                 #cat("\ndeduplicatedOutcomes\n");
                 #print( deduplicatedOutcomes   );
                 
@@ -115,8 +115,6 @@ myCART  <- R6Class(
                     bestSplit <- private$get_best_split(currentRowIDs = currentRowIDs);
                     cat("\nbestSplit:\n");
                     print( bestSplit );
-
-                    #print( self$data[self$data[,self$syntheticID] %in% currentRowIDs,c(bestSplit$varname,self$response)] );
 
                     satisfied <- self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$syntheticID][
                         bestSplit$comparison(
@@ -227,14 +225,17 @@ myCART  <- R6Class(
             impurities <- lapply(
                 X   = uniqueVarValuePairs,
                 FUN = function(x) {
-                    satisfied    <- which(
-                        x$comparison(self$data[self$data[,self$syntheticID] %in% currentRowIDs,x$varname],x$threshold)
-                        );
+                    satisfied <- self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$syntheticID][
+                        x$comparison(
+                            self$data[self$data[,self$syntheticID] %in% currentRowIDs,x$varname],
+                            x$threshold
+                            )
+                        ];
                     notSatisfied <- sort(setdiff(currentRowIDs,satisfied));
                     p1 <- length(   satisfied) / length(currentRowIDs);
                     p2 <- length(notSatisfied) / length(currentRowIDs);
-                    g1 <- private$impurity(self$data[   satisfied,self$response]);
-                    g2 <- private$impurity(self$data[notSatisfied,self$response]);
+                    g1 <- private$impurity(self$data[self$data[,self$syntheticID] %in%    satisfied,self$response]);
+                    g2 <- private$impurity(self$data[self$data[,self$syntheticID] %in% notSatisfied,self$response]);
                     return( p1 * g1 + p2 * g2 );
                     }
                 );
