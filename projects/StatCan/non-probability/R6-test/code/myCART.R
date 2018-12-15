@@ -10,6 +10,7 @@ myCART  <- R6Class(
         data    = NULL,
 
         response           = NULL,
+        predictors         = NULL,
         predictors_factor  = NULL,
         predictors_numeric = NULL,
 
@@ -22,14 +23,20 @@ myCART  <- R6Class(
             self$data    <- data;
 
             temp <- all.vars(self$formula);
-            self$response      <- temp[1];
-            colname_predictors <- temp[2];
-            if (identical(".",colname_predictors)) {
-                colname_predictors <- setdiff(colnames(self$data),c(self$response));
+            self$response   <- temp[1];
+            self$predictors <- temp[2];
+            if (identical(".",self$predictors)) {
+                self$predictors <- setdiff(colnames(self$data),c(self$response));
                 }
 
-            self$predictors_factor  <- colname_predictors[sapply(X=data[1,colname_predictors],FUN=is.factor )]
-            self$predictors_numeric <- colname_predictors[sapply(X=data[1,colname_predictors],FUN=is.numeric)]
+            for (temp.colname in self$predictors) {
+                if (is.character(self$data[,temp.colname])) {
+                    self$data[,temp.colname] <- as.factor(self$data[,temp.colname]);
+                    }
+                }
+
+            self$predictors_factor  <- self$predictors[sapply(X=data[1,self$predictors],FUN=is.factor )]
+            self$predictors_numeric <- self$predictors[sapply(X=data[1,self$predictors],FUN=is.numeric)]
 
             # add custom row ID:
             self$syntheticID <- paste0(sample(x=letters,size=10,replace=TRUE),collapse="");
@@ -197,7 +204,7 @@ myCART  <- R6Class(
                     x = apply(
                         X      = DF.temp,
                         MARGIN = 2,
-                        FUN    = function(x) { return( sort(unique(x)) ); }
+                        FUN    = function(x) { return( private$get_midpoints(x) ); }
                         ),
                     comparison = private$is_equal_to
                     );
@@ -211,7 +218,7 @@ myCART  <- R6Class(
                     x = apply(
                         X      = DF.temp,
                         MARGIN = 2,
-                        FUN    = function(x) { return( private$get_midpoints(sort(unique(x))) ); }
+                        FUN    = function(x) { return( private$get_midpoints(x) ); }
                         ),
                     comparison = private$is_less_than
                     );
@@ -235,11 +242,15 @@ myCART  <- R6Class(
             return( output );
             },
         get_midpoints = function(x) {
-            if (is.character(x)) {
-                return(x);
+            if (is.numeric(x)) {
+                y <- sort(unique(x));
+                return( apply(X=data.frame(c1=y[2:length(y)],c2=y[1:(length(y)-1)]),MARGIN=1,FUN=mean) );
+                }
+            else if (is.factor(x)) {
+                return( levels(x) );
                 }
             else {
-                return( apply(X=data.frame(c1=x[2:length(x)],c2=x[1:(length(x)-1)]),MARGIN=1,FUN=mean) );
+                return( sort(unique(x)) );
                 }
             },
         get_var_value_pairs = function(x = NULL, comparison = NULL) {

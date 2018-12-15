@@ -10,6 +10,8 @@ if [ ! -d ${outputDIR} ]; then
 	mkdir -p ${outputDIR}
 fi
 
+cp -r ${codeDIR} ${outputDIR}
+
 ##################################################
 myRscript=${codeDIR}/MASTER.R
 stdoutFile=${outputDIR}/stdout.R.`basename ${myRscript} .R`
