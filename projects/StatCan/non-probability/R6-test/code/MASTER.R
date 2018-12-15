@@ -10,8 +10,11 @@ start.proc.time <- proc.time();
 setwd(output.directory);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-library(R6);
+require(rpart);
+require(rpart.plot);
+require(RColorBrewer);
 
+require(R6);
 source(paste0(code.directory,'/myCART.R'));
 #source(paste0(code.directory,'/myNode.R'));
 
@@ -31,6 +34,33 @@ myTree$grow();
 
 cat("\nmyTree$nodes\n" );
 print( myTree$nodes    );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+results.rpart <- rpart(
+    formula = Species ~ .,
+    data    = iris,
+    control = list(
+        minsplit  = 1,
+        minbucket = 1
+        )
+    );
+
+palette.iris <- brewer.pal(3,"Set1")[c(3,2,1)]; # c("green","blue","red");
+names(palette.iris) <- c("setosa","versicolor","virginica");
+
+palette.iris.light        <- c("#99ff99","#99ccff","#ffad99");
+names(palette.iris.light) <- c("setosa","versicolor","virginica");
+
+FILE.ggplot <- "plot-rpart.png";
+png(filename = FILE.ggplot, height = 12, width = 8.0, units = "in", res = 300);
+prp(
+    x           = results.rpart,
+    extra       = 101,
+    cex         = 3.5, # 3.5,
+    legend.cex  = 3.5,
+    box.palette = as.list(palette.iris.light)
+    );
+dev.off();
 
 ###################################################
 # print warning messages to log
