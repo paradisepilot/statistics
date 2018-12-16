@@ -41,8 +41,8 @@ results.rpart <- rpart(
     data    = iris,
     control = list(
         minsplit  = 1,
-        minbucket = 2,
-        cp        = 1e-6
+        minbucket = 1,
+        cp        = 0
         )
     );
 
