@@ -62,8 +62,8 @@ myCART  <- R6Class(
 
             while (0 < length(workQueue)) {
 
-                cat( "\n### ~~~~~~~~~~ ###" );
-                cat( paste0("\nlength(workQueue): ",length(workQueue),"\n") );
+                #cat( "\n### ~~~~~~~~~~ ###" );
+                #cat( paste0("\nlength(workQueue): ",length(workQueue),"\n") );
                 # print( workQueue );
 
                 currentNode <- private$pop(workQueue, envir = environment());
@@ -74,8 +74,8 @@ myCART  <- R6Class(
                 currentRowIDs          <- currentNode$rowIDs;
                 current_birthCriterion <- currentNode$birthCriterion;
 
-                cat("\ncurrentNode:");
-                print( currentNode );
+                #cat("\ncurrentNode:");
+                #print( currentNode );
 
                 if (private$stoppingCriterionSatisfied(currentRowIDs)) {
                     self$nodes <- private$push(
@@ -91,12 +91,12 @@ myCART  <- R6Class(
                     }
                 else {
 
-                    cat("\ncurrentRowIDs:\n");
-                    print( currentRowIDs    );
+                    #cat("\ncurrentRowIDs:\n");
+                    #print( currentRowIDs    );
 
                     bestSplit <- private$get_best_split(currentRowIDs = currentRowIDs);
-                    cat("\nbestSplit:\n");
-                    print( bestSplit );
+                    #cat("\nbestSplit:\n");
+                    #print( bestSplit );
 
                     satisfied <- self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$syntheticID][
                         bestSplit$comparison(
@@ -106,12 +106,13 @@ myCART  <- R6Class(
                         ];
                     notSatisfied <- sort(setdiff(currentRowIDs,satisfied));
 
-                    cat("\nsatisfied:\n");
-                    print( satisfied    );
+                    #cat("\nsatisfied:\n");
+                    #print( satisfied    );
 
-                    cat("\nnonSatisfied:\n");
-                    print( notSatisfied    );
+                    #cat("\nnonSatisfied:\n");
+                    #print( notSatisfied    );
 
+                    # adding 2 here to make ordering of nodeID agree with that of self$nodes
                     lastNodeID          <- lastNodeID + 2;
                     nonSatisfiedChildID <- lastNodeID;
                     workQueue           <- private$push(
@@ -129,6 +130,7 @@ myCART  <- R6Class(
                             )
                         );
 
+                    # subtracting 1 here to make ordering of nodeID agree with that of self$nodes
                     lastNodeID       <- lastNodeID - 1;
                     satisfiedChildID <- lastNodeID;
                     workQueue        <- private$push(
@@ -145,7 +147,7 @@ myCART  <- R6Class(
                                 ),
                             )
                         );
-
+                    # adding 1 here to make ordering of nodeID agree with that of self$nodes
                     lastNodeID <- lastNodeID + 1;
 
                     self$nodes <- private$push(
@@ -166,7 +168,7 @@ myCART  <- R6Class(
                 } 
 
             # private$order_nodes();
-            return( NULL );
+            #return( NULL );
 
             },
 

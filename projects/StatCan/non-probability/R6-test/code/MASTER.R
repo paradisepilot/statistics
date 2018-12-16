@@ -26,12 +26,11 @@ myTree <- myCART$new(
     formula = Species ~ .,
     data    = iris
     );
-print( str(myTree) );
+#print( str(myTree) );
 
 myTree$grow();
-
-cat("\nmyTree$nodes\n" );
-print( myTree$nodes    );
+#cat("\nmyTree$nodes\n" );
+#print( myTree$nodes    );
 
 myTree$print();
 
