@@ -112,7 +112,7 @@ myCART  <- R6Class(
                     cat("\nnonSatisfied:\n");
                     print( notSatisfied    );
 
-                    lastNodeID          <- lastNodeID + 1;
+                    lastNodeID          <- lastNodeID + 2;
                     nonSatisfiedChildID <- lastNodeID;
                     workQueue           <- private$push(
                         list = workQueue,
@@ -129,7 +129,7 @@ myCART  <- R6Class(
                             )
                         );
 
-                    lastNodeID       <- lastNodeID + 1;
+                    lastNodeID       <- lastNodeID - 1;
                     satisfiedChildID <- lastNodeID;
                     workQueue        <- private$push(
                         list = workQueue,
@@ -145,6 +145,8 @@ myCART  <- R6Class(
                                 ),
                             )
                         );
+
+                    lastNodeID <- lastNodeID + 1;
 
                     self$nodes <- private$push(
                         list = self$nodes,
