@@ -112,7 +112,7 @@ myCART  <- R6Class(
                     #cat("\nnonSatisfied:\n");
                     #print( notSatisfied    );
 
-                    # adding 2 here to make ordering of nodeID agree with that of self$nodes
+                    # adding 2 here to make ordering of nodeID agree with the order of appearance in self$nodes
                     lastNodeID          <- lastNodeID + 2;
                     nonSatisfiedChildID <- lastNodeID;
                     workQueue           <- private$push(
@@ -130,7 +130,7 @@ myCART  <- R6Class(
                             )
                         );
 
-                    # subtracting 1 here to make ordering of nodeID agree with that of self$nodes
+                    # subtracting 1 here to make ordering of nodeID agree with the order of appearance in self$nodes
                     lastNodeID       <- lastNodeID - 1;
                     satisfiedChildID <- lastNodeID;
                     workQueue        <- private$push(
@@ -147,7 +147,7 @@ myCART  <- R6Class(
                                 ),
                             )
                         );
-                    # adding 1 here to make ordering of nodeID agree with that of self$nodes
+                    # adding 1 here to make ordering of nodeID agree with the order of appearance in self$nodes
                     lastNodeID <- lastNodeID + 1;
 
                     self$nodes <- private$push(
