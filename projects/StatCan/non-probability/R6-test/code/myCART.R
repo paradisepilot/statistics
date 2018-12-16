@@ -112,23 +112,6 @@ myCART  <- R6Class(
                     cat("\nnonSatisfied:\n");
                     print( notSatisfied    );
 
-                    lastNodeID       <- lastNodeID + 1;
-                    satisfiedChildID <- lastNodeID;
-                    workQueue        <- private$push(
-                        list = workQueue,
-                        x    = private$node$new(
-                            parentID = currentNodeID,
-                            nodeID   = lastNodeID,
-                            depth    = currentDepth + 1,
-                            rowIDs   = satisfied,
-                            birthCriterion = private$birthCriterion$new(
-                                varname    = bestSplit$varname,
-                                threshold  = bestSplit$threshold,
-                                comparison = ifelse(bestSplit$varname %in% self$predictors_numeric,"<","=")
-                                ),
-                            )
-                        );
-
                     lastNodeID          <- lastNodeID + 1;
                     nonSatisfiedChildID <- lastNodeID;
                     workQueue           <- private$push(
@@ -143,6 +126,23 @@ myCART  <- R6Class(
                                 threshold  = bestSplit$threshold,
                                 comparison = ifelse(bestSplit$varname %in% self$predictors_numeric,">=","!=")
                                 )
+                            )
+                        );
+
+                    lastNodeID       <- lastNodeID + 1;
+                    satisfiedChildID <- lastNodeID;
+                    workQueue        <- private$push(
+                        list = workQueue,
+                        x    = private$node$new(
+                            parentID = currentNodeID,
+                            nodeID   = lastNodeID,
+                            depth    = currentDepth + 1,
+                            rowIDs   = satisfied,
+                            birthCriterion = private$birthCriterion$new(
+                                varname    = bestSplit$varname,
+                                threshold  = bestSplit$threshold,
+                                comparison = ifelse(bestSplit$varname %in% self$predictors_numeric,"<","=")
+                                ),
                             )
                         );
 
