@@ -33,6 +33,8 @@ myTree$grow();
 cat("\nmyTree$nodes\n" );
 print( myTree$nodes    );
 
+myTree$print();
+
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 results.rpart <- rpart(
     formula = Species ~ .,
@@ -43,6 +45,9 @@ results.rpart <- rpart(
         cp        = 1e-6
         )
     );
+
+cat("\nresults.rpart\n");
+print( results.rpart   );
 
 palette.iris <- brewer.pal(3,"Set1")[c(3,2,1)]; # c("green","blue","red");
 names(palette.iris) <- c("setosa","versicolor","virginica");

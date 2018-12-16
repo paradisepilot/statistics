@@ -55,6 +55,7 @@ myCART  <- R6Class(
                 private$node$new(
                     parentID = -1,
                     nodeID   = lastNodeID,
+                    depth    = 0,
                     rowIDs   = self$data[,self$syntheticID]
                     )
                 );
@@ -65,10 +66,13 @@ myCART  <- R6Class(
                 cat( paste0("\nlength(workQueue): ",length(workQueue),"\n") );
                 # print( workQueue );
 
-                currentNode     <- private$pop(workQueue, envir = environment());
-                currentNodeID   <- currentNode$nodeID;
-                currentParentID <- currentNode$parentID;
-                currentRowIDs   <- currentNode$rowIDs;
+                currentNode <- private$pop(workQueue, envir = environment());
+
+                currentNodeID          <- currentNode$nodeID;
+                currentParentID        <- currentNode$parentID;
+                currentDepth           <- currentNode$depth;
+                currentRowIDs          <- currentNode$rowIDs;
+                current_birthCriterion <- currentNode$birthCriterion;
 
                 cat("\ncurrentNode:");
                 print( currentNode );
@@ -77,9 +81,11 @@ myCART  <- R6Class(
                     self$nodes <- private$push(
                         list = self$nodes,
                         x    = private$node$new(
-                            nodeID   = currentNodeID,
-                            parentID = currentParentID,
-                            rowIDs   = currentRowIDs
+                            nodeID         = currentNodeID,
+                            parentID       = currentParentID,
+                            depth          = currentDepth,
+                            rowIDs         = currentRowIDs,
+                            birthCriterion = current_birthCriterion
                             )
                         );
                     }
@@ -113,7 +119,13 @@ myCART  <- R6Class(
                         x    = private$node$new(
                             parentID = currentNodeID,
                             nodeID   = lastNodeID,
-                            rowIDs   = satisfied
+                            depth    = currentDepth + 1,
+                            rowIDs   = satisfied,
+                            birthCriterion = private$birthCriterion$new(
+                                varname    = bestSplit$varname,
+                                threshold  = bestSplit$threshold,
+                                comparison = ifelse(bestSplit$varname %in% self$predictors_numeric,"<","=")
+                                ),
                             )
                         );
 
@@ -124,17 +136,25 @@ myCART  <- R6Class(
                         x    = private$node$new(
                             parentID = currentNodeID,
                             nodeID   = lastNodeID,
-                            rowIDs   = notSatisfied
+                            depth    = currentDepth + 1,
+                            rowIDs   = notSatisfied,
+                            birthCriterion = private$birthCriterion$new(
+                                varname    = bestSplit$varname,
+                                threshold  = bestSplit$threshold,
+                                comparison = ifelse(bestSplit$varname %in% self$predictors_numeric,">=","!=")
+                                )
                             )
                         );
 
                     self$nodes <- private$push(
                         list = self$nodes,
                         x = private$node$new(
-                            nodeID    = currentNodeID,
-                            parentID  = currentParentID,
-                            rowIDs    = currentRowIDs,
-                            criterion = bestSplit,
+                            nodeID   = currentNodeID,
+                            parentID = currentParentID,
+                            depth    = currentDepth,
+                            rowIDs   = currentRowIDs,
+                            splitCriterion = bestSplit,
+                            birthCriterion = current_birthCriterion,
                             satisfiedChildID    =    satisfiedChildID,
                             nonSatisfiedChildID = nonSatisfiedChildID
                             )
@@ -143,15 +163,26 @@ myCART  <- R6Class(
                     }
                 } 
 
-            private$order_nodes();
+            # private$order_nodes();
             return( NULL );
 
             },
 
         predict = function() {
             return( NULL );
-            }
+            },
 
+        print = function() {
+            if ( 0 == length(self$nodes) ) {
+                cat("\nlist of nodes is empty.\n")
+                }
+            else {
+                for ( i in seq(1,length(self$nodes)) ) {
+                    self$nodes[[i]]$print_node();
+                    }
+                cat("\n");
+                }
+            }
         ),
 
     private = list(
@@ -247,7 +278,7 @@ myCART  <- R6Class(
                 for (j in seq(1,length(x[[i]]))) {
                     templist <- private$push(
                         list = templist,
-                        x    = private$criterion$new(
+                        x    = private$splitCriterion$new(
                             varname    = names_x[i],
                             threshold  = x[[i]][j],
                             comparison = comparison
@@ -268,8 +299,21 @@ myCART  <- R6Class(
             p <- as.numeric(table(x) / length(x));
             return( sum(p * (1 - p)) );
             },
-        criterion = R6Class(
-            classname  = "criterion",
+        splitCriterion = R6Class(
+            classname  = "splitCriterion",
+            public = list(
+                varname    = NULL,
+                threshold  = NULL,
+                comparison = NULL,
+                initialize = function(varname = NULL, threshold = NULL, comparison = NULL) {
+                    self$varname    = varname;
+                    self$threshold  = threshold;
+                    self$comparison = comparison;
+                    }
+                )
+            ),
+        birthCriterion = R6Class(
+            classname  = "birthCriterion",
             public = list(
                 varname    = NULL,
                 threshold  = NULL,
@@ -293,31 +337,58 @@ myCART  <- R6Class(
 
             public = list(
 
-                nodeID    = NULL,
-                rowIDs    = NULL,
-                parentID  = NULL,
-                criterion = NULL,
+                nodeID   = NULL,
+                parentID = NULL,
+                depth    = NULL,
+                rowIDs   = NULL,
+
+                splitCriterion = NULL,
+                birthCriterion = NULL,
 
                 satisfiedChildID    = NULL,
                 nonSatisfiedChildID = NULL,
 
                 initialize = function(
                     nodeID    = NULL,
-                    rowIDs    = NULL,
                     parentID  = NULL,
-                    criterion = NULL,
+                    depth     = NULL,
+                    rowIDs    = NULL,
+
+                    splitCriterion = NULL,
+                    birthCriterion = NULL,
+
                     satisfiedChildID    = NULL,
                     nonSatisfiedChildID = NULL
                     ) {
-                        self$nodeID    <- nodeID;
-                        self$rowIDs    <- rowIDs;
-                        self$parentID  <- parentID;
-                        self$criterion <- criterion;
+                        self$nodeID   <- nodeID;
+                        self$parentID <- parentID;
+                        self$depth    <- depth;
+                        self$rowIDs   <- rowIDs;
+
+                        self$splitCriterion <- splitCriterion;
+                        self$birthCriterion <- birthCriterion;
 
                         self$satisfiedChildID    <- satisfiedChildID;
                         self$nonSatisfiedChildID <- nonSatisfiedChildID;
+                    },
+
+                print_node = function() {
+                    cat("\n");
+                    cat(paste0(rep('  ',self$depth),collapse="") );
+                    cat(paste0("(",self$nodeID,") "));
+                    if (0 == self$nodeID) {
+                        cat("[root]");
+                        }
+                    else {
+                        cat(paste0("[",
+                            self$birthCriterion$varname,   " ",
+                            self$birthCriterion$comparison," ",
+                            self$birthCriterion$threshold,
+                            "]"));
+                        }
                     }
                 )
+
             )
 
         )
