@@ -34,6 +34,8 @@ myTree$grow();
 
 myTree$print();
 
+print( myTree$get_cp_table() );
+
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 results.rpart <- rpart(
     formula = Species ~ .,

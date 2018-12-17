@@ -81,10 +81,13 @@ myCART  <- R6Class(
                     self$nodes <- private$push(
                         list = self$nodes,
                         x    = private$node$new(
-                            nodeID         = currentNodeID,
-                            parentID       = currentParentID,
-                            depth          = currentDepth,
-                            rowIDs         = currentRowIDs,
+                            nodeID   = currentNodeID,
+                            parentID = currentParentID,
+                            depth    = currentDepth,
+                            rowIDs   = currentRowIDs,
+                            impurity = private$impurity(
+                                self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$response]
+                                ),
                             birthCriterion = current_birthCriterion
                             )
                         );
@@ -109,12 +112,12 @@ myCART  <- R6Class(
                     #cat("\nsatisfied:\n");
                     #print( satisfied    );
 
-                    #cat("\nnonSatisfied:\n");
+                    #cat("\nnotSatisfied:\n");
                     #print( notSatisfied    );
 
                     # adding 2 here to make ordering of nodeID agree with the order of appearance in self$nodes
                     lastNodeID          <- lastNodeID + 2;
-                    nonSatisfiedChildID <- lastNodeID;
+                    notSatisfiedChildID <- lastNodeID;
                     workQueue           <- private$push(
                         list = workQueue,
                         x    = private$node$new(
@@ -157,10 +160,13 @@ myCART  <- R6Class(
                             parentID = currentParentID,
                             depth    = currentDepth,
                             rowIDs   = currentRowIDs,
+                            impurity = private$impurity(
+                                self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$response]
+                                ),
                             splitCriterion = bestSplit,
                             birthCriterion = current_birthCriterion,
                             satisfiedChildID    =    satisfiedChildID,
-                            nonSatisfiedChildID = nonSatisfiedChildID
+                            notSatisfiedChildID = notSatisfiedChildID
                             )
                         );
                     #cat( paste0("\ncurrentNodeID: ",currentNodeID) );
@@ -186,6 +192,42 @@ myCART  <- R6Class(
                     }
                 cat("\n");
                 }
+            },
+
+        get_cp_table = function() {
+            if ( 0 == length(self$nodes) ) {
+                cat("\nlist of nodes is empty.\n")
+                return( NULL );
+                }
+            nrow.output <- length(self$nodes);
+            DF.output <- data.frame(
+                nodeID   = numeric(length = nrow.output),
+                nRecords = numeric(length = nrow.output),
+                impurity = numeric(length = nrow.output),
+                parentID = numeric(length = nrow.output),
+                   satisfiedChildID = numeric(length = nrow.output),
+                notSatisfiedChildID = numeric(length = nrow.output)
+                );
+            for ( i in seq(1,nrow.output) ) {
+                DF.output[i,'nodeID'  ] <- self$nodes[[i]]$nodeID;
+                DF.output[i,'nRecords'] <- length(self$nodes[[i]]$rowIDs);
+                DF.output[i,'impurity'] <- self$nodes[[i]]$impurity;
+                DF.output[i,'parentID'] <- self$nodes[[i]]$parentID;
+                DF.output[i,'satisfiedChildID'] <- ifelse(
+                    is.null(self$nodes[[i]]$satisfiedChildID),
+                    NA,
+                    self$nodes[[i]]$satisfiedChildID
+                    );
+                DF.output[i,'notSatisfiedChildID'] <- ifelse(
+                    is.null(self$nodes[[i]]$notSatisfiedChildID),
+                    NA,
+                    self$nodes[[i]]$notSatisfiedChildID
+                    );
+                }
+            DF.temp <- DF.output[is.na(DF.output[,'satisfiedChildID']),];
+            cat("\nDF.temp\n");
+            print( DF.temp   );    
+            return( DF.output );
             }
         ),
 
@@ -345,40 +387,43 @@ myCART  <- R6Class(
                 parentID = NULL,
                 depth    = NULL,
                 rowIDs   = NULL,
+                impurity = NULL,
 
                 splitCriterion = NULL,
                 birthCriterion = NULL,
 
                 satisfiedChildID    = NULL,
-                nonSatisfiedChildID = NULL,
+                notSatisfiedChildID = NULL,
 
                 initialize = function(
-                    nodeID    = NULL,
-                    parentID  = NULL,
-                    depth     = NULL,
-                    rowIDs    = NULL,
+                    nodeID   = NULL,
+                    parentID = NULL,
+                    depth    = NULL,
+                    rowIDs   = NULL,
+                    impurity = NULL,
 
                     splitCriterion = NULL,
                     birthCriterion = NULL,
 
                     satisfiedChildID    = NULL,
-                    nonSatisfiedChildID = NULL
+                    notSatisfiedChildID = NULL
                     ) {
                         self$nodeID   <- nodeID;
                         self$parentID <- parentID;
                         self$depth    <- depth;
                         self$rowIDs   <- rowIDs;
+                        self$impurity <- impurity;
 
                         self$splitCriterion <- splitCriterion;
                         self$birthCriterion <- birthCriterion;
 
                         self$satisfiedChildID    <- satisfiedChildID;
-                        self$nonSatisfiedChildID <- nonSatisfiedChildID;
+                        self$notSatisfiedChildID <- notSatisfiedChildID;
                     },
 
-                print_node = function() {
+                print_node = function(indent = '  ') {
                     cat("\n");
-                    cat(paste0(rep('  ',self$depth),collapse="") );
+                    cat(paste0(rep(indent,self$depth),collapse="") );
                     cat(paste0("(",self$nodeID,") "));
                     if (0 == self$nodeID) {
                         cat("[root]");
@@ -390,6 +435,7 @@ myCART  <- R6Class(
                             self$birthCriterion$threshold,
                             "]"));
                         }
+                    cat(paste0(", impurity = ",self$impurity));
                     }
                 )
 
