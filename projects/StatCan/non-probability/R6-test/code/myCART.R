@@ -26,7 +26,7 @@ myCART  <- R6Class(
             self$response   <- temp[1];
             self$predictors <- temp[2];
             if (identical(".",self$predictors)) {
-                self$predictors <- setdiff(colnames(self$data),c(self$response));
+                self$predictors <- base::setdiff(colnames(self$data),c(self$response));
                 }
 
             for (temp.colname in self$predictors) {
@@ -107,7 +107,7 @@ myCART  <- R6Class(
                             bestSplit$threshold
                             )
                         ];
-                    notSatisfied <- sort(setdiff(currentRowIDs,satisfied));
+                    notSatisfied <- sort(base::setdiff(currentRowIDs,satisfied));
 
                     #cat("\nsatisfied:\n");
                     #print( satisfied    );
@@ -287,7 +287,7 @@ myCART  <- R6Class(
                             x$threshold
                             )
                         ];
-                    notSatisfied <- sort(setdiff(currentRowIDs,satisfied));
+                    notSatisfied <- sort(base::setdiff(currentRowIDs,satisfied));
                     p1 <- length(   satisfied) / length(currentRowIDs);
                     p2 <- length(notSatisfied) / length(currentRowIDs);
                     g1 <- private$impurity(self$data[self$data[,self$syntheticID] %in%    satisfied,self$response]);
