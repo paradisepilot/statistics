@@ -36,7 +36,7 @@ myTree$print(
     FUN.format = function(x) {return( round(x,digits=3) )} 
     );
 
-print( myTree$get_cp_table() );
+print( myTree$get_pruning_sequence() );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #results.rpart <- rpart(
