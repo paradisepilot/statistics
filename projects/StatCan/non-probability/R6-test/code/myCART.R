@@ -219,10 +219,14 @@ myCART  <- R6Class(
                 nodes_retained_table = DF.node_table
                 );
 
-            output_list <- list( alpha_subtree );
+            output_list <- list();
+            nAlphas     <- 1;
+
+            output_list[[nAlphas]] <- alpha_subtree;
             while (1 < base::length(alpha_subtree$nodes_retained)) {
+                nAlphas       <- 1 + nAlphas;
                 alpha_subtree <- private$get_alpha_subtree(DF.input = alpha_subtree$nodes_retained_table);
-                output_list   <- c( output_list , alpha_subtree );
+                output_list[[nAlphas]] <- alpha_subtree;
                 }
 
             return( output_list );
