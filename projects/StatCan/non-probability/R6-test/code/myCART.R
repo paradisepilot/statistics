@@ -396,10 +396,6 @@ myCART  <- R6Class(
             #cat("\nDF.internalNodes\n");
             #print( DF.internalNodes   );
 
-            temp.descendants <- private$get_descendants(nodeIDs = DF.input[,'nodeID'], nodeID = 3);
-            #cat("\ntemp.descendants:\n");
-            #print( temp.descendants    )
-
             min.alpha    <- min(DF.internalNodes[,'alpha']);
             nodesToPrune <- DF.internalNodes[DF.internalNodes[,'alpha'] == min.alpha,'nodeID'];
             #cat("\nnodesToPrune:\n");
