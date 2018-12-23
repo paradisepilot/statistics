@@ -210,12 +210,14 @@ myCART  <- R6Class(
                 }
 
             DF.node_table <- private$nodes_to_table(nodes = nodes);
-            #cat("\nDF.node_table\n");
-            #print( DF.node_table   );
 
-            alpha_subtree <- private$get_alpha_subtree(DF.input = DF.node_table);
-            #cat("\nalpha_subtree:\n");
-            #print( alpha_subtree    );
+            alpha_subtree <- list(
+                alpha                = 0,
+                nodes_retained       = DF.node_table[,"nodeID"],
+                nodes_pruned         = c(),
+                nodes_removed        = c(),
+                nodes_retained_table = DF.node_table
+                );
 
             output_list <- list( alpha_subtree );
             while (1 < base::length(alpha_subtree$nodes_retained)) {
