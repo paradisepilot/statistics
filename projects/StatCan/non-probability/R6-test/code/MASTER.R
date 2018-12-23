@@ -32,7 +32,9 @@ myTree$grow();
 #cat("\nmyTree$nodes\n" );
 #print( myTree$nodes    );
 
-myTree$print();
+myTree$print(
+    FUN.format = function(x) {return( round(x,digits=3) )} 
+    );
 
 print( myTree$get_cp_table() );
 

@@ -1,5 +1,6 @@
 
 require(R6);
+require(dplyr);
 
 myCART  <- R6Class(
     classname = "myCART",
@@ -88,6 +89,9 @@ myCART  <- R6Class(
                             impurity = private$impurity(
                                 self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$response]
                                 ),
+                            risk = private$risk(
+                                self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$response]
+                                ),
                             birthCriterion = current_birthCriterion
                             )
                         );
@@ -163,6 +167,9 @@ myCART  <- R6Class(
                             impurity = private$impurity(
                                 self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$response]
                                 ),
+                            risk = private$risk(
+                                self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$response]
+                                ),
                             splitCriterion = bestSplit,
                             birthCriterion = current_birthCriterion,
                             satisfiedChildID    =    satisfiedChildID,
@@ -182,13 +189,15 @@ myCART  <- R6Class(
             return( NULL );
             },
 
-        print = function() {
+        print = function(
+            FUN.format = function(x) { return(x) }
+            ) {
             if ( 0 == length(self$nodes) ) {
                 cat("\nlist of nodes is empty.\n")
                 }
             else {
                 for ( i in seq(1,length(self$nodes)) ) {
-                    self$nodes[[i]]$print_node();
+                    self$nodes[[i]]$print_node(FUN.format = FUN.format);
                     }
                 cat("\n");
                 }
@@ -201,18 +210,31 @@ myCART  <- R6Class(
                 }
             nrow.output <- length(self$nodes);
             DF.output <- data.frame(
-                nodeID   = numeric(length = nrow.output),
-                nRecords = numeric(length = nrow.output),
-                impurity = numeric(length = nrow.output),
-                parentID = numeric(length = nrow.output),
+                nodeID     = numeric(length = nrow.output),
+                depth      = numeric(length = nrow.output),
+                nRecords   = numeric(length = nrow.output),
+                prop       = numeric(length = nrow.output),
+                #impurity  = numeric(length = nrow.output),
+                risk       = numeric(length = nrow.output),
+                riskWgtd   = numeric(length = nrow.output),
+                riskLeaves = numeric(length = nrow.output),
+                nLeaves    = numeric(length = nrow.output),
+                parentID   = numeric(length = nrow.output),
                    satisfiedChildID = numeric(length = nrow.output),
                 notSatisfiedChildID = numeric(length = nrow.output)
                 );
+            totalNumRecords <- length(self$nodes[[1]]$rowIDs);
             for ( i in seq(1,nrow.output) ) {
-                DF.output[i,'nodeID'  ] <- self$nodes[[i]]$nodeID;
-                DF.output[i,'nRecords'] <- length(self$nodes[[i]]$rowIDs);
-                DF.output[i,'impurity'] <- self$nodes[[i]]$impurity;
-                DF.output[i,'parentID'] <- self$nodes[[i]]$parentID;
+                DF.output[i,'nodeID'  ]   <- self$nodes[[i]]$nodeID;
+                DF.output[i,'depth'   ]   <- self$nodes[[i]]$depth;
+                DF.output[i,'nRecords']   <- length(self$nodes[[i]]$rowIDs);
+                DF.output[i,'prop'    ]   <- DF.output[i,'nRecords'] / totalNumRecords;
+                #DF.output[i,'impurity']  <- self$nodes[[i]]$impurity;
+                DF.output[i,'risk']       <- self$nodes[[i]]$risk;
+                DF.output[i,'riskWgtd']   <- DF.output[i,'risk'] * DF.output[i,'prop'];
+                DF.output[i,'riskLeaves'] <- 0;
+                DF.output[i,'nLeaves']    <- 0;
+                DF.output[i,'parentID']   <- self$nodes[[i]]$parentID;
                 DF.output[i,'satisfiedChildID'] <- ifelse(
                     is.null(self$nodes[[i]]$satisfiedChildID),
                     NA,
@@ -224,9 +246,99 @@ myCART  <- R6Class(
                     self$nodes[[i]]$notSatisfiedChildID
                     );
                 }
-            DF.temp <- DF.output[is.na(DF.output[,'satisfiedChildID']),];
-            cat("\nDF.temp\n");
-            print( DF.temp   );    
+
+            cat("\nDF.output\n");
+            print( DF.output   );
+
+            hasNoChildren <- is.na(DF.output[,'satisfiedChildID']) & is.na(DF.output[,'notSatisfiedChildID']);
+
+            DF.leaves <- DF.output[hasNoChildren,];
+            DF.leaves <- DF.leaves %>%
+                rename( riskWgtd_child = riskWgtd ) %>%
+                rename( nLeaves_child  = nLeaves  ) %>%
+                select( - c( riskLeaves , satisfiedChildID , notSatisfiedChildID ) ) %>%
+                mutate( nLeaves_child = 1 )
+                ;
+            cat("\nDF.leaves\n");
+            print( DF.leaves   );    
+
+            retainedColumns <- c("nodeID","riskWgtd_child","nLeaves_child");
+            DF.internalNodes <- DF.output[!hasNoChildren,] %>%
+                left_join(DF.leaves[,retainedColumns], by = c(   "satisfiedChildID" = "nodeID")) %>%
+                rename( riskWgtd_s  = riskWgtd_child ) %>%
+                rename( nLeaves_s   = nLeaves_child  ) %>%
+
+                left_join(DF.leaves[,retainedColumns], by = c("notSatisfiedChildID" = "nodeID")) %>%
+                rename( riskWgtd_ns = riskWgtd_child ) %>%
+                rename( nLeaves_ns  = nLeaves_child  ) %>%
+
+                mutate( riskWgtd_s  = ifelse(is.na(riskWgtd_s ),0,riskWgtd_s ) ) %>%
+                mutate( riskWgtd_ns = ifelse(is.na(riskWgtd_ns),0,riskWgtd_ns) ) %>%
+                mutate( riskLeaves  = riskLeaves + riskWgtd_s + riskWgtd_ns )    %>%
+
+                mutate( nLeaves_s   = ifelse(is.na(nLeaves_s  ),0,nLeaves_s  ) ) %>%
+                mutate( nLeaves_ns  = ifelse(is.na(nLeaves_ns ),0,nLeaves_ns ) ) %>%
+                mutate( nLeaves     = nLeaves + nLeaves_s + nLeaves_ns         ) %>%
+
+                select( - c(riskWgtd_s,riskWgtd_ns,nLeaves_s,nLeaves_ns) )
+                #mutate( myTest0 = is.na(riskWgtd_s) & is.na(riskWgtd_ns) ) %>%
+                #mutate( myTest1 = is.na(riskWgtd_s)  ) %>%
+                #mutate( myTest2 = is.na(riskWgtd_ns) ) %>%
+                #mutate( riskLeaves = ifelse(is.na(riskWgtd_s) & is.na(riskWgtd_ns),NA,temp_s+temp_ns) ) %>%
+                #select( - c(riskWgtd_s,riskWgtd_ns,temp_s,temp_ns) )
+                ;
+            cat("\nDF.internalNodes\n");
+            print( DF.internalNodes   );    
+
+            #DF.output <- DF.output %>%
+            #    left_join(DF.leaves[,c("nodeID","riskWgtd_child")], by = c(   "satisfiedChildID" = "nodeID")) %>%
+            #    rename( riskWgtd_s  = riskWgtd_child ) %>%
+            #    left_join(DF.leaves[,c("nodeID","riskWgtd_child")], by = c("notSatisfiedChildID" = "nodeID")) %>%
+            #    rename( riskWgtd_ns = riskWgtd_child ) 
+            #    ;
+
+            retainedColumns <- c("nodeID","riskLeaves_child","nLeaves_child");
+            for (temp.depth in seq(max(DF.internalNodes[,"depth"]),1,-1)) {
+                DF.depth <- DF.internalNodes %>%
+                    filter( depth == temp.depth ) %>%
+                    rename( riskLeaves_child = riskLeaves ) %>%
+                    rename( nLeaves_child    = nLeaves    ) %>%
+                    select( - c( satisfiedChildID , notSatisfiedChildID ) )
+                    ;
+                cat("\nDF.depth\n");
+                print( DF.depth   );
+                DF.internalNodes <- DF.internalNodes %>%
+                    left_join(DF.depth[,retainedColumns], by = c(   "satisfiedChildID" = "nodeID")) %>%
+                    rename( riskLeaves_s  = riskLeaves_child ) %>%
+                    rename( nLeaves_s     = nLeaves_child    ) %>%
+
+                    left_join(DF.depth[,retainedColumns], by = c("notSatisfiedChildID" = "nodeID")) %>%
+                    rename( riskLeaves_ns = riskLeaves_child ) %>%
+                    rename( nLeaves_ns    = nLeaves_child    ) %>%
+
+                    mutate( riskLeaves_s  = ifelse(is.na(riskLeaves_s ),0,riskLeaves_s ) ) %>%
+                    mutate( riskLeaves_ns = ifelse(is.na(riskLeaves_ns),0,riskLeaves_ns) ) %>%
+                    mutate( riskLeaves    = riskLeaves + riskLeaves_s + riskLeaves_ns    ) %>%
+
+                    mutate( nLeaves_s     = ifelse(is.na(nLeaves_s    ),0,nLeaves_s    ) ) %>%
+                    mutate( nLeaves_ns    = ifelse(is.na(nLeaves_ns   ),0,nLeaves_ns   ) ) %>%
+                    mutate( nLeaves       = nLeaves + nLeaves_s + nLeaves_ns             ) %>%
+
+                    select( - c(riskLeaves_s,riskLeaves_ns,nLeaves_s,nLeaves_ns) )
+                    ;
+                cat("\nDF.internalNodes\n");
+                print( DF.internalNodes   );
+                }
+            DF.internalNodes <- DF.internalNodes %>%
+                mutate( alpha = (risk - riskLeaves) / (nLeaves - 1) );
+            cat("\nDF.internalNodes\n");
+            print( DF.internalNodes   );
+
+            temp.descendants <- private$get_descendants(nodeID = 3);
+
+            cat("\ntemp.descendants:\n");
+            print( temp.descendants    )
+
             return( DF.output );
             }
         ),
@@ -246,6 +358,31 @@ myCART  <- R6Class(
         stoppingCriterionSatisfied = function(currentRowIDs = NULL) {
             deduplicatedOutcomes <- unique(self$data[self$data[,self$syntheticID] %in% currentRowIDs,self$response]);
             return( 1 == length(deduplicatedOutcomes) );
+            },
+        get_descendants = function(nodes = self$nodes, nodeID) {
+            temp <- unlist(lapply(X = nodes, FUN = function(x) { return( nodeID == x$nodeID ) }));
+            output.list <- list();
+            if (1 == sum(temp)){
+                targetNode  <- nodes[temp][[1]];
+                descendants <- c();
+                if (!is.null(targetNode$satisfiedChildID)) {
+                    descendants <- c(
+                        descendants,
+                        targetNode$satisfiedChildID,
+                        private$get_descendants(nodes = nodes, nodeID = targetNode$satisfiedChildID)
+                        );
+                    }
+                if (!is.null(targetNode$notSatisfiedChildID)) {
+                    descendants <- c(
+                        descendants,
+                        targetNode$notSatisfiedChildID,
+                        private$get_descendants(nodes = nodes, nodeID = targetNode$notSatisfiedChildID)
+                        );
+                    }
+                return( sort(descendants) );
+                } else {
+                return( c() );
+                }
             },
         get_best_split = function(currentRowIDs) {
             uniqueVarValuePairs_factor  <- list();
@@ -345,6 +482,11 @@ myCART  <- R6Class(
             p <- as.numeric(table(x) / length(x));
             return( sum(p * (1 - p)) );
             },
+        risk = function(x){
+            # Gini impurity
+            p <- as.numeric(table(x) / length(x));
+            return( sum(p * (1 - p)) );
+            },
         splitCriterion = R6Class(
             classname  = "splitCriterion",
             public = list(
@@ -388,6 +530,7 @@ myCART  <- R6Class(
                 depth    = NULL,
                 rowIDs   = NULL,
                 impurity = NULL,
+                risk     = NULL,
 
                 splitCriterion = NULL,
                 birthCriterion = NULL,
@@ -401,6 +544,7 @@ myCART  <- R6Class(
                     depth    = NULL,
                     rowIDs   = NULL,
                     impurity = NULL,
+                    risk     = NULL,
 
                     splitCriterion = NULL,
                     birthCriterion = NULL,
@@ -413,6 +557,7 @@ myCART  <- R6Class(
                         self$depth    <- depth;
                         self$rowIDs   <- rowIDs;
                         self$impurity <- impurity;
+                        self$risk     <- risk;
 
                         self$splitCriterion <- splitCriterion;
                         self$birthCriterion <- birthCriterion;
@@ -421,7 +566,10 @@ myCART  <- R6Class(
                         self$notSatisfiedChildID <- notSatisfiedChildID;
                     },
 
-                print_node = function(indent = '  ') {
+                print_node = function(
+                    indent     = '  ',
+                    FUN.format = function(x) { return(x) }
+                    ) {
                     cat("\n");
                     cat(paste0(rep(indent,self$depth),collapse="") );
                     cat(paste0("(",self$nodeID,") "));
@@ -435,7 +583,8 @@ myCART  <- R6Class(
                             self$birthCriterion$threshold,
                             "]"));
                         }
-                    cat(paste0(", impurity = ",self$impurity));
+                    cat(paste0(", impurity = ",FUN.format(self$impurity)));
+                    cat(paste0(", risk = ",    FUN.format(self$risk    )));
                     }
                 )
 
