@@ -1,0 +1,408 @@
+
+R version 3.5.1 (2018-07-02) -- "Feather Spray"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> 
+> command.arguments <- commandArgs(trailingOnly = TRUE);
+>    code.directory <- normalizePath(command.arguments[1]);
+>  output.directory <- normalizePath(command.arguments[2]);
+> 
+> cat(paste0("##### Sys.time(): ",Sys.time(),"\n"));
+##### Sys.time(): 2019-01-06 19:19:51
+> start.proc.time <- proc.time();
+> 
+> setwd(output.directory);
+> 
+> ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+> library(rpart);
+> library(rpart.plot);
+> library(RColorBrewer);
+> 
+> library(R6);
+> source(paste0(code.directory,'/myCART.R'));
+> 
+> ###################################################
+> data(iris);
+> print( str( iris) );
+'data.frame':	150 obs. of  5 variables:
+ $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+ $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+ $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+ $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+ $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+NULL
+> print( head(iris) );
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+> 
+> ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+> myTree <- myCART$new(
++     formula = Species ~ .,
++     data    = iris
++     );
+> #print( str(myTree) );
+> 
+> myTree$grow();
+> #cat("\nmyTree$nodes\n" );
+> #print( myTree$nodes    );
+> 
+> myTree$print(
++     FUN.format = function(x) {return( round(x,digits=3) )} 
++     );
+
+(0) [root], impurity = 0.667, risk = 0.667
+  (1) [Petal.Length < 2.45], impurity = 0, risk = 0
+  (2) [Petal.Length >= 2.45], impurity = 0.5, risk = 0.5
+    (3) [Petal.Width < 1.75], impurity = 0.168, risk = 0.168
+      (5) [Petal.Length < 4.95], impurity = 0.041, risk = 0.041
+        (7) [Petal.Width < 1.65], impurity = 0, risk = 0
+        (8) [Petal.Width >= 1.65], impurity = 0, risk = 0
+      (6) [Petal.Length >= 4.95], impurity = 0.444, risk = 0.444
+        (9) [Petal.Width < 1.55], impurity = 0, risk = 0
+        (10) [Petal.Width >= 1.55], impurity = 0.444, risk = 0.444
+          (11) [Sepal.Length < 6.95], impurity = 0, risk = 0
+          (12) [Sepal.Length >= 6.95], impurity = 0, risk = 0
+    (4) [Petal.Width >= 1.75], impurity = 0.043, risk = 0.043
+      (13) [Petal.Length < 4.85], impurity = 0.444, risk = 0.444
+        (15) [Sepal.Length < 5.95], impurity = 0, risk = 0
+        (16) [Sepal.Length >= 5.95], impurity = 0, risk = 0
+      (14) [Petal.Length >= 4.85], impurity = 0, risk = 0
+> 
+> myPruningSequence <- myTree$get_pruning_sequence();
+> print( length(myPruningSequence) );
+[1] 5
+> print( myPruningSequence );
+[[1]]
+[[1]]$alpha
+[1] 0
+
+[[1]]$nodes_retained
+ [1]  0  1  2  3  5  7  8  6  9 10 11 12  4 13 15 16 14
+
+[[1]]$nodes_pruned
+NULL
+
+[[1]]$nodes_removed
+NULL
+
+[[1]]$nodes_retained_table
+   nodeID depth nRecords        prop       risk    riskWgtd riskLeaves nLeaves
+1       0     0      150 1.000000000 0.66666667 0.666666667          0       0
+2       1     1       50 0.333333333 0.00000000 0.000000000          0       0
+3       2     1      100 0.666666667 0.50000000 0.333333333          0       0
+4       3     2       54 0.360000000 0.16803841 0.060493827          0       0
+5       5     3       48 0.320000000 0.04079861 0.013055556          0       0
+6       7     4       47 0.313333333 0.00000000 0.000000000          0       0
+7       8     4        1 0.006666667 0.00000000 0.000000000          0       0
+8       6     3        6 0.040000000 0.44444444 0.017777778          0       0
+9       9     4        3 0.020000000 0.00000000 0.000000000          0       0
+10     10     4        3 0.020000000 0.44444444 0.008888889          0       0
+11     11     5        2 0.013333333 0.00000000 0.000000000          0       0
+12     12     5        1 0.006666667 0.00000000 0.000000000          0       0
+13      4     2       46 0.306666667 0.04253308 0.013043478          0       0
+14     13     3        3 0.020000000 0.44444444 0.008888889          0       0
+15     15     4        1 0.006666667 0.00000000 0.000000000          0       0
+16     16     4        2 0.013333333 0.00000000 0.000000000          0       0
+17     14     3       43 0.286666667 0.00000000 0.000000000          0       0
+   parentID satisfiedChildID notSatisfiedChildID
+1        -1                1                   2
+2         0               NA                  NA
+3         0                3                   4
+4         2                5                   6
+5         3                7                   8
+6         5               NA                  NA
+7         5               NA                  NA
+8         3                9                  10
+9         6               NA                  NA
+10        6               11                  12
+11       10               NA                  NA
+12       10               NA                  NA
+13        2               13                  14
+14        4               15                  16
+15       13               NA                  NA
+16       13               NA                  NA
+17        4               NA                  NA
+
+
+[[2]]
+[[2]]$alpha
+[1] 0.02126654
+
+[[2]]$nodes_retained
+ [1]  0  1  2  3  5  7  8  6  9 10 11 12  4
+
+[[2]]$nodes_pruned
+[1] 4
+
+[[2]]$nodes_removed
+[1] 13 14 15 16
+
+[[2]]$nodes_retained_table
+   nodeID depth nRecords        prop       risk    riskWgtd riskLeaves nLeaves
+1       0     0      150 1.000000000 0.66666667 0.666666667          0       0
+2       1     1       50 0.333333333 0.00000000 0.000000000          0       0
+3       2     1      100 0.666666667 0.50000000 0.333333333          0       0
+4       3     2       54 0.360000000 0.16803841 0.060493827          0       0
+5       5     3       48 0.320000000 0.04079861 0.013055556          0       0
+6       7     4       47 0.313333333 0.00000000 0.000000000          0       0
+7       8     4        1 0.006666667 0.00000000 0.000000000          0       0
+8       6     3        6 0.040000000 0.44444444 0.017777778          0       0
+9       9     4        3 0.020000000 0.00000000 0.000000000          0       0
+10     10     4        3 0.020000000 0.44444444 0.008888889          0       0
+11     11     5        2 0.013333333 0.00000000 0.000000000          0       0
+12     12     5        1 0.006666667 0.00000000 0.000000000          0       0
+13      4     2       46 0.306666667 0.04253308 0.013043478          0       0
+   parentID satisfiedChildID notSatisfiedChildID
+1        -1                1                   2
+2         0               NA                  NA
+3         0                3                   4
+4         2                5                   6
+5         3                7                   8
+6         5               NA                  NA
+7         5               NA                  NA
+8         3                9                  10
+9         6               NA                  NA
+10        6               11                  12
+11       10               NA                  NA
+12       10               NA                  NA
+13        2               NA                  NA
+
+
+[[3]]
+[[3]]$alpha
+[1] 0.04079861
+
+[[3]]$nodes_retained
+ [1]  0  1  2  3  5  6  9 10 11 12  4
+
+[[3]]$nodes_pruned
+[1] 5
+
+[[3]]$nodes_removed
+[1] 7 8
+
+[[3]]$nodes_retained_table
+   nodeID depth nRecords        prop       risk    riskWgtd riskLeaves nLeaves
+1       0     0      150 1.000000000 0.66666667 0.666666667          0       0
+2       1     1       50 0.333333333 0.00000000 0.000000000          0       0
+3       2     1      100 0.666666667 0.50000000 0.333333333          0       0
+4       3     2       54 0.360000000 0.16803841 0.060493827          0       0
+5       5     3       48 0.320000000 0.04079861 0.013055556          0       0
+8       6     3        6 0.040000000 0.44444444 0.017777778          0       0
+9       9     4        3 0.020000000 0.00000000 0.000000000          0       0
+10     10     4        3 0.020000000 0.44444444 0.008888889          0       0
+11     11     5        2 0.013333333 0.00000000 0.000000000          0       0
+12     12     5        1 0.006666667 0.00000000 0.000000000          0       0
+13      4     2       46 0.306666667 0.04253308 0.013043478          0       0
+   parentID satisfiedChildID notSatisfiedChildID
+1        -1                1                   2
+2         0               NA                  NA
+3         0                3                   4
+4         2                5                   6
+5         3               NA                  NA
+8         3                9                  10
+9         6               NA                  NA
+10        6               11                  12
+11       10               NA                  NA
+12       10               NA                  NA
+13        2               NA                  NA
+
+
+[[4]]
+[[4]]$alpha
+[1] 0.05166095
+
+[[4]]$nodes_retained
+[1] 0 1 2 3 4
+
+[[4]]$nodes_pruned
+[1] 3
+
+[[4]]$nodes_removed
+[1]  5  6  9 10 11 12
+
+[[4]]$nodes_retained_table
+   nodeID depth nRecords      prop       risk   riskWgtd riskLeaves nLeaves
+1       0     0      150 1.0000000 0.66666667 0.66666667          0       0
+2       1     1       50 0.3333333 0.00000000 0.00000000          0       0
+3       2     1      100 0.6666667 0.50000000 0.33333333          0       0
+4       3     2       54 0.3600000 0.16803841 0.06049383          0       0
+13      4     2       46 0.3066667 0.04253308 0.01304348          0       0
+   parentID satisfiedChildID notSatisfiedChildID
+1        -1                1                   2
+2         0               NA                  NA
+3         0                3                   4
+4         2               NA                  NA
+13        2               NA                  NA
+
+
+[[5]]
+[[5]]$alpha
+[1] 0.2965647
+
+[[5]]$nodes_retained
+[1] 0
+
+[[5]]$nodes_pruned
+[1] 0
+
+[[5]]$nodes_removed
+[1] 1 2 3 4
+
+[[5]]$nodes_retained_table
+  nodeID depth nRecords prop      risk  riskWgtd riskLeaves nLeaves parentID
+1      0     0      150    1 0.6666667 0.6666667          0       0       -1
+  satisfiedChildID notSatisfiedChildID
+1               NA                  NA
+
+
+> 
+> ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+> results.rpart <- rpart(
++     formula = Species ~ .,
++     data    = iris,
++     control = list(
++         minsplit  = 1,
++         minbucket = 1,
++         cp        = 0
++         )
++     );
+> 
+> cat("\nresults.rpart\n");
+
+results.rpart
+> print( results.rpart   );
+n= 150 
+
+node), split, n, loss, yval, (yprob)
+      * denotes terminal node
+
+ 1) root 150 100 setosa (0.33333333 0.33333333 0.33333333)  
+   2) Petal.Length< 2.45 50   0 setosa (1.00000000 0.00000000 0.00000000) *
+   3) Petal.Length>=2.45 100  50 versicolor (0.00000000 0.50000000 0.50000000)  
+     6) Petal.Width< 1.75 54   5 versicolor (0.00000000 0.90740741 0.09259259)  
+      12) Petal.Length< 4.95 48   1 versicolor (0.00000000 0.97916667 0.02083333)  
+        24) Petal.Width< 1.65 47   0 versicolor (0.00000000 1.00000000 0.00000000) *
+        25) Petal.Width>=1.65 1   0 virginica (0.00000000 0.00000000 1.00000000) *
+      13) Petal.Length>=4.95 6   2 virginica (0.00000000 0.33333333 0.66666667)  
+        26) Petal.Width>=1.55 3   1 versicolor (0.00000000 0.66666667 0.33333333)  
+          52) Sepal.Length< 6.95 2   0 versicolor (0.00000000 1.00000000 0.00000000) *
+          53) Sepal.Length>=6.95 1   0 virginica (0.00000000 0.00000000 1.00000000) *
+        27) Petal.Width< 1.55 3   0 virginica (0.00000000 0.00000000 1.00000000) *
+     7) Petal.Width>=1.75 46   1 virginica (0.00000000 0.02173913 0.97826087)  
+      14) Petal.Length< 4.85 3   1 virginica (0.00000000 0.33333333 0.66666667)  
+        28) Sepal.Length< 5.95 1   0 versicolor (0.00000000 1.00000000 0.00000000) *
+        29) Sepal.Length>=5.95 2   0 virginica (0.00000000 0.00000000 1.00000000) *
+      15) Petal.Length>=4.85 43   0 virginica (0.00000000 0.00000000 1.00000000) *
+> printcp( x = results.rpart, digits = 3 );
+
+Classification tree:
+rpart(formula = Species ~ ., data = iris, control = list(minsplit = 1, 
+    minbucket = 1, cp = 0))
+
+Variables actually used in tree construction:
+[1] Petal.Length Petal.Width  Sepal.Length
+
+Root node error: 100/150 = 0.667
+
+n= 150 
+
+     CP nsplit rel error xerror   xstd
+1 0.500      0      1.00   1.22 0.0477
+2 0.440      1      0.50   0.77 0.0612
+3 0.020      2      0.06   0.09 0.0291
+4 0.010      3      0.04   0.09 0.0291
+5 0.005      6      0.01   0.08 0.0275
+6 0.000      8      0.00   0.09 0.0291
+> 
+> palette.iris <- brewer.pal(3,"Set1")[c(3,2,1)]; # c("green","blue","red");
+> names(palette.iris) <- c("setosa","versicolor","virginica");
+> 
+> palette.iris.light        <- c("#99ff99","#99ccff","#ffad99");
+> names(palette.iris.light) <- c("setosa","versicolor","virginica");
+> 
+> FILE.ggplot <- "plot-rpart.png";
+> png(filename = FILE.ggplot, height = 12, width = 30, units = "in", res = 300);
+> prp(
++     x           = results.rpart,
++     extra       = 101,
++     cex         = 3.5, # 3.5,
++     legend.cex  = 3.5,
++     box.palette = as.list(palette.iris.light)
++     );
+> dev.off();
+null device 
+          1 
+> 
+> ###################################################
+> # print warning messages to log
+> cat("\n##### warnings()\n")
+
+##### warnings()
+> print(warnings());
+NULL
+> 
+> # print session info to log
+> cat("\n##### sessionInfo()\n")
+
+##### sessionInfo()
+> print( sessionInfo() );
+R version 3.5.1 (2018-07-02)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS High Sierra 10.13.6
+
+Matrix products: default
+BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_CA.UTF-8/en_CA.UTF-8/en_CA.UTF-8/C/en_CA.UTF-8/en_CA.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] bindrcpp_0.2.2     dplyr_0.7.8        R6_2.3.0           RColorBrewer_1.1-2
+[5] rpart.plot_3.0.6   rpart_4.1-13      
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.0       crayon_1.3.4     assertthat_0.2.0 magrittr_1.5    
+ [5] pillar_1.3.0     rlang_0.3.0.1    tools_3.5.1      glue_1.3.0      
+ [9] purrr_0.2.5      compiler_3.5.1   pkgconfig_2.0.2  bindr_0.1.1     
+[13] tidyselect_0.2.5 tibble_1.4.2    
+> 
+> # print system time to log
+> cat(paste0("\n##### Sys.time(): ",Sys.time(),"\n"));
+
+##### Sys.time(): 2019-01-06 19:20:04
+> 
+> # print elapsed time to log
+> stop.proc.time <- proc.time();
+> cat("\n##### start.proc.time() - stop.proc.time()\n");
+
+##### start.proc.time() - stop.proc.time()
+> print( stop.proc.time - start.proc.time );
+   user  system elapsed 
+  2.603   0.318  11.414 
+> 
+> q();
