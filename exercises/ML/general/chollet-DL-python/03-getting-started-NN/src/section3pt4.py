@@ -101,7 +101,7 @@ def section3pt4():
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
-    plt.savefig(filename = outputFILE, dpi = 600, bbox_inches = 'tight', pad_inches = 0.2)
+    plt.savefig(fname = outputFILE, dpi = 600, bbox_inches = 'tight', pad_inches = 0.2)
     plt.clf()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -109,13 +109,13 @@ def section3pt4():
     val_acc_values = fitting_history_dict['val_acc']
 
     outputFILE = 'plot-train-validation-accuracy.png'
-    plt.plot(epochs, acc, 'bo', label='Training acc')
-    plt.plot(epochs, val_acc, 'b', label='Validation acc')
+    plt.plot(epochs,     acc_values, 'bo', label='Training accuracy'  )
+    plt.plot(epochs, val_acc_values, 'b',  label='Validation accuracy')
     plt.title('Training and validation accuracy')
     plt.xlabel('Epochs')
     plt.ylabel('Loss')
     plt.legend()
-    plt.savefig(filename = outputFILE, dpi = 600, bbox_inches = 'tight', pad_inches = 0.2)
+    plt.savefig(fname = outputFILE, dpi = 600, bbox_inches = 'tight', pad_inches = 0.2)
     plt.clf()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
