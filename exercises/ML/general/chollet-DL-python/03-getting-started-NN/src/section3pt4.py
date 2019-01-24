@@ -40,6 +40,8 @@ def section3pt4():
     word_index = imdb.get_word_index()
     reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])
     decoded_review = ' '.join([reverse_word_index.get(i - 3, '?') for i in train_data[0]])
+    # Note that the indices are offset by 3 because 0, 1, and 2 are reserved
+    # indices for “padding,” “start of sequence,” and “unknown.”
     print('\ndecoded_review')
     print(   decoded_review )
 
