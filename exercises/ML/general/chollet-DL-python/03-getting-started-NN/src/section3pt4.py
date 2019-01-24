@@ -15,7 +15,7 @@ from vectorizeSequences import vectorize_sequences
 def section3pt4():
 
     print('\n##############################')
-    print('\nstarting: section3pt4()')
+    print('starting: section3pt4()')
 
     (train_data, train_labels), (test_data, test_labels) = imdb.load_data(num_words=10000)
 
@@ -151,7 +151,7 @@ def section3pt4():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     print('\nexiting: section3pt4()')
-    print('\n##############################')
+    print('##############################')
 
     return( None )
 
