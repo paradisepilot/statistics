@@ -50,18 +50,14 @@ def section3pt6():
     test_data  /= std
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    # define model
-    model = build_model(train_data = train_data)
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    k = 4
+    k = 4 # number of fold (in k-fold cross-validation)
     num_val_samples = len(train_data) // k
 
-    num_epochs = 500
+    num_epochs        = 500
     all_mae_histories = []
     for i in range(k):
         print('processing fold #', i)
-        val_data = train_data[i * num_val_samples: (i + 1) * num_val_samples]
+        val_data    = train_data[   i * num_val_samples: (i + 1) * num_val_samples]
         val_targets = train_targets[i * num_val_samples: (i + 1) * num_val_samples]
 
         partial_train_data = np.concatenate(
@@ -74,14 +70,14 @@ def section3pt6():
             axis = 0
             )
 
-        model = build_model(partial_train_data)
+        model = build_model(train_data = partial_train_data)
         history = model.fit(
             partial_train_data,
             partial_train_targets,
             validation_data = (val_data, val_targets),
-            epochs = num_epochs,
+            epochs     = num_epochs,
             batch_size = 1,
-            verbose = 0
+            verbose    = 2
             )
         mae_history = history.history['val_mean_absolute_error']
         all_mae_histories.append(mae_history)
