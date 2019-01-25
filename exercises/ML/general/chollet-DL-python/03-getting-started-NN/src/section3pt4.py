@@ -111,7 +111,8 @@ def section3pt4():
     fitting_history = model.fit(
         partial_x_train,
         partial_y_train,
-        epochs          = 20,
+        verbose         =   2,
+        epochs          =  20,
         batch_size      = 512,
         validation_data = (x_val, y_val)
         )
