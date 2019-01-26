@@ -60,10 +60,15 @@ def section3pt4():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print('\n### starting: fitting model with 4 epochs ...')
+
     model = models.Sequential()
     model.add(layers.Dense(16, activation='relu', input_shape=(10000,)))
     model.add(layers.Dense(16, activation='relu'))
     model.add(layers.Dense( 1, activation='sigmoid'))
+
+    print('\nmodel.summary()')
+    print(   model.summary() )
 
     model.compile(
         optimizer = 'rmsprop',
@@ -80,6 +85,9 @@ def section3pt4():
     predictions = model.predict(x_test)
     print('\npredictions (4 epochs)')
     print(   predictions )
+
+    print('\n### finished: fitting model with 4 epochs')
+    print('\n')
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###

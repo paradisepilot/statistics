@@ -50,6 +50,39 @@ def section3pt6():
     test_data  /= std
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print('\n### starting: fitting model with 80 epochs ...')
+    model = build_model(train_data = train_data)
+
+    print('\nmodel.summary()')
+    print(   model.summary() )
+
+    model.fit(
+        train_data,
+        train_targets,
+        epochs     = 80,
+        batch_size = 16,
+        verbose    =  2
+        )
+
+    test_mse_score, test_mae_score = model.evaluate(test_data, test_targets)
+
+    print('\ntest_mse_score:',test_mse_score)
+    print('\ntest_mae_score:',test_mae_score)
+
+    print('\n### finished: fitting model with 80 epochs')
+    print('\n')
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    # return( None )
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print('\n### starting: training with k-fold cross-validation ...')
+
     k = 4 # number of fold (in k-fold cross-validation)
     num_val_samples = len(train_data) // k
 
@@ -71,6 +104,7 @@ def section3pt6():
             )
 
         model = build_model(train_data = partial_train_data)
+
         history = model.fit(
             partial_train_data,
             partial_train_targets,
@@ -83,6 +117,9 @@ def section3pt6():
         all_mae_histories.append(mae_history)
 
     average_mae_history = [ np.mean([x[i] for x in all_mae_histories]) for i in range(num_epochs) ]
+
+    print('\n### finished: training with k-fold cross-validation')
+    print('\n')
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     outputFILE = 'plot-housing-validation.png'

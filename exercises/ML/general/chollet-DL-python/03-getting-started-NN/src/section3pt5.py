@@ -62,10 +62,15 @@ def section3pt5():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print('\n### starting: fitting model with 9 epochs ...')
+
     model = models.Sequential()
     model.add(layers.Dense(64, activation='relu', input_shape=(10000,)))
     model.add(layers.Dense(64, activation='relu'   ))
     model.add(layers.Dense(46, activation='softmax'))
+
+    print('\nmodel.summary()')
+    print(   model.summary() )
 
     model.compile(
         optimizer = 'rmsprop',
@@ -82,6 +87,9 @@ def section3pt5():
     predictions = model.predict(x_test)
     print('\npredictions (9 epochs)')
     print(   predictions )
+
+    print('\n### finished: fitting model with 9 epochs')
+    print('\n')
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
