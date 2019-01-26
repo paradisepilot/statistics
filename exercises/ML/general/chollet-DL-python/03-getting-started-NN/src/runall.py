@@ -23,14 +23,14 @@ if seaborn_spec is not None:
     import seaborn as sns
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#from section3pt4 import section3pt4
-#section3pt4()
+from section3pt4 import section3pt4
+section3pt4()
 
 #from section3pt5 import section3pt5
 #section3pt5()
 
-from section3pt6 import section3pt6
-section3pt6()
+#from section3pt6 import section3pt6
+#section3pt6()
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 
