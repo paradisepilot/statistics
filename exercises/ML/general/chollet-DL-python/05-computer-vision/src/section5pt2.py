@@ -94,7 +94,7 @@ def section5pt2(dir_original, dir_derived):
         generator        = generator_training,
         verbose          =   2,
         steps_per_epoch  = 100,
-        epochs           =   2, # 30,
+        epochs           =  30,
         validation_data  = generator_validation,
         validation_steps =  50
         )
