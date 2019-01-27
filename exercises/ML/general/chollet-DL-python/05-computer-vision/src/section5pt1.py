@@ -20,14 +20,19 @@ def get_untrained_MLP():
 def get_untrained_CNN():
     model = models.Sequential()
 
-    model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+    nFilters1 = 16 #32
+    nFilters2 = 32 #64
+    nFilters3 = 32 #64
+    nFilters4 = 32 #64
+
+    model.add(layers.Conv2D(nFilters1, (3, 3), activation='relu', input_shape=(28, 28, 1)))
     model.add(layers.MaxPooling2D((2, 2)))
-    model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+    model.add(layers.Conv2D(nFilters2, (3, 3), activation='relu'))
     model.add(layers.MaxPooling2D((2, 2)))
-    model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+    model.add(layers.Conv2D(nFilters3, (3, 3), activation='relu'))
 
     model.add(layers.Flatten())
-    model.add(layers.Dense(64, activation='relu'))
+    model.add(layers.Dense(nFilters4, activation='relu'))
     model.add(layers.Dense(10, activation='softmax'))
 
     model.compile(optimizer = 'rmsprop', loss = 'categorical_crossentropy', metrics = ['accuracy'])
@@ -78,14 +83,19 @@ def section5pt1():
     print(   myMLP.summary() )
 
     myMLP.fit(
-        train_images,
-        train_labels,
+        x          = train_images,
+        y          = train_labels,
         epochs     =  5,
         batch_size = 64,
         verbose    =  2
         )
 
-    test_loss, test_acc = myMLP.evaluate(test_images, test_labels)
+    test_loss, test_acc = myMLP.evaluate(
+        x       = test_images,
+        y       = test_labels,
+        verbose = 2
+        )
+
     print('\ntest_acc')
     print(   test_acc )
 
@@ -131,67 +141,31 @@ def section5pt1():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    print('\n### starting: fitting CNN ...')
-    myCNN = get_untrained_CNN()
-
-    print('\nmyCNN.summary()')
-    print(   myCNN.summary() )
-
-    myCNN.fit(
-        train_images,
-        train_labels,
-        epochs     =  5,
-        batch_size = 64,
-        verbose    =  2
-        )
-
-    test_loss, test_acc = myCNN.evaluate(test_images, test_labels)
-    print('\ntest_acc')
-    print(   test_acc )
-
-    print('\n### finished: fitting CNN')
-    print('\n')
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    return( None )
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    # normalize data
-    mean        = train_data.mean(axis=0)
-    train_data -= mean
-    std         = train_data.std(axis=0)
-    train_data /= std
-
-    test_data  -= mean
-    test_data  /= std
-
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    print('\n### starting: fitting model with 80 epochs ...')
-    model = build_model(train_data = train_data)
-
-    print('\nmodel.summary()')
-    print(   model.summary() )
-
-    model.fit(
-        train_data,
-        train_targets,
-        epochs     = 80,
-        batch_size = 16,
-        verbose    =  2
-        )
-
-    test_mse_score, test_mae_score = model.evaluate(test_data, test_targets)
-
-    print('\ntest_mse_score:',test_mse_score)
-    print('\ntest_mae_score:',test_mae_score)
-
-    print('\n### finished: fitting model with 80 epochs')
-    print('\n')
+    #print('\n### starting: fitting CNN ...')
+    #myCNN = get_untrained_CNN()
+    #
+    #print('\nmyCNN.summary()')
+    #print(   myCNN.summary() )
+    #
+    #myCNN.fit(
+    #    train_images,
+    #    train_labels,
+    #    epochs     =  5, # 5
+    #    batch_size = 64,
+    #    verbose    =  2
+    #    )
+    #
+    #test_loss, test_acc = myCNN.evaluate(
+    #    x       = test_images,
+    #    y       = test_labels,
+    #    verbose = 2
+    #    )
+    #
+    #print('\ntest_acc')
+    #print(   test_acc )
+    #
+    #print('\n### finished: fitting CNN')
+    #print('\n')
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -204,31 +178,31 @@ def section5pt1():
     print('\n### starting: training with k-fold cross-validation ...')
 
     k = 4 # number of fold (in k-fold cross-validation)
-    num_val_samples = len(train_data) // k
+    num_val_samples = len(train_images) // k
 
-    num_epochs        = 500
+    num_epochs        = 80
     all_mae_histories = []
     for i in range(k):
         print('processing fold #', i)
-        val_data    = train_data[   i * num_val_samples: (i + 1) * num_val_samples]
-        val_targets = train_targets[i * num_val_samples: (i + 1) * num_val_samples]
+        val_images = train_images[i * num_val_samples: (i + 1) * num_val_samples]
+        val_labels = train_labels[i * num_val_samples: (i + 1) * num_val_samples]
 
-        partial_train_data = np.concatenate(
-            [train_data[:i * num_val_samples], train_data[(i + 1) * num_val_samples:]],
+        partial_train_images = np.concatenate(
+            [train_images[:i * num_val_samples], train_images[(i + 1) * num_val_samples:]],
             axis = 0
             )
 
-        partial_train_targets = np.concatenate(
-            [train_targets[:i * num_val_samples], train_targets[(i + 1) * num_val_samples:]],
+        partial_train_labels = np.concatenate(
+            [train_labels[:i * num_val_samples], train_labels[(i + 1) * num_val_samples:]],
             axis = 0
             )
 
-        model = build_model(train_data = partial_train_data)
+        model = get_untrained_CNN()
 
         history = model.fit(
-            partial_train_data,
-            partial_train_targets,
-            validation_data = (val_data, val_targets),
+            partial_train_images,
+            partial_train_labels,
+            validation_data = (val_images, val_labels),
             epochs     = num_epochs,
             batch_size = 1,
             verbose    = 2
@@ -242,7 +216,7 @@ def section5pt1():
     print('\n')
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    outputFILE = 'plot-housing-validation.png'
+    outputFILE = 'plot-mnist-validation.png'
     plt.plot(range(1, len(average_mae_history) + 1), average_mae_history)
     plt.title('Validation MAE by epoch')
     plt.xlabel('Epochs')
@@ -252,10 +226,10 @@ def section5pt1():
     plt.clf()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    outputFILE = 'plot-housing-validation-exclude-first-ten.png'
+    outputFILE = 'plot-mnist-validation-smoothed-exclude-first-ten.png'
     smooth_mae_history = smooth_curve(average_mae_history[10:])
     plt.plot(range(1, len(smooth_mae_history) + 1), smooth_mae_history)
-    plt.title('Validation MAE by epoch, excluding first 10 data points')
+    plt.title('Validation MAE by epoch, smoothed, excluding first 10 data points')
     plt.xlabel('Epochs')
     plt.ylabel('Validation MAE')
     plt.savefig(fname = outputFILE, dpi = 600, bbox_inches = 'tight', pad_inches = 0.2)
