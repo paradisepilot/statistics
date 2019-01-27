@@ -20,10 +20,10 @@ def get_untrained_MLP():
 def get_untrained_CNN():
     model = models.Sequential()
 
-    nFilters1 = 16 #32
-    nFilters2 = 32 #64
-    nFilters3 = 32 #64
-    nFilters4 = 32 #64
+    nFilters1 = 32
+    nFilters2 = 64
+    nFilters3 = 64
+    nFilters4 = 64
 
     model.add(layers.Conv2D(nFilters1, (3, 3), activation='relu', input_shape=(28, 28, 1)))
     model.add(layers.MaxPooling2D((2, 2)))
@@ -180,8 +180,8 @@ def section5pt1():
     k = 4 # number of fold (in k-fold cross-validation)
     num_val_samples = len(train_images) // k
 
-    num_epochs        = 80
-    all_mae_histories = []
+    num_epochs        = 20
+    val_acc_histories = []
     for i in range(k):
         print('processing fold #', i)
         val_images = train_images[i * num_val_samples: (i + 1) * num_val_samples]
@@ -204,34 +204,39 @@ def section5pt1():
             partial_train_labels,
             validation_data = (val_images, val_labels),
             epochs     = num_epochs,
-            batch_size = 1,
-            verbose    = 2
+            batch_size = 64,
+            verbose    =  2
             )
-        mae_history = history.history['val_mean_absolute_error']
-        all_mae_histories.append(mae_history)
 
-    average_mae_history = [ np.mean([x[i] for x in all_mae_histories]) for i in range(num_epochs) ]
+        history_dict = history.history
+        print('\nhistory_dict.keys()')
+        print(   history_dict.keys() )
+
+        val_acc_history = history.history['val_acc']
+        val_acc_histories.append(val_acc_history)
+
+    avg_val_acc_history = [ np.mean([x[i] for x in val_acc_histories]) for i in range(num_epochs) ]
 
     print('\n### finished: training with k-fold cross-validation')
     print('\n')
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     outputFILE = 'plot-mnist-validation.png'
-    plt.plot(range(1, len(average_mae_history) + 1), average_mae_history)
-    plt.title('Validation MAE by epoch')
-    plt.xlabel('Epochs')
-    plt.ylabel('Validation MAE')
+    plt.plot(range(1, len(avg_val_acc_history) + 1), avg_val_acc_history)
+    plt.title('')
+    plt.xlabel('epoch')
+    plt.ylabel('mean 4-fold cross validation Accuracy')
     plt.legend()
     plt.savefig(fname = outputFILE, dpi = 600, bbox_inches = 'tight', pad_inches = 0.2)
     plt.clf()
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     outputFILE = 'plot-mnist-validation-smoothed-exclude-first-ten.png'
-    smooth_mae_history = smooth_curve(average_mae_history[10:])
-    plt.plot(range(1, len(smooth_mae_history) + 1), smooth_mae_history)
-    plt.title('Validation MAE by epoch, smoothed, excluding first 10 data points')
-    plt.xlabel('Epochs')
-    plt.ylabel('Validation MAE')
+    smooth_val_acc_history = smooth_curve(avg_val_acc_history[10:])
+    plt.plot(range(1, len(smooth_val_acc_history) + 1), smooth_val_acc_history)
+    plt.title('smoothed, excluding first 10 data points')
+    plt.xlabel('epoch')
+    plt.ylabel('mean 4-fold cross validation Accuracy')
     plt.savefig(fname = outputFILE, dpi = 600, bbox_inches = 'tight', pad_inches = 0.2)
     plt.clf()
 
