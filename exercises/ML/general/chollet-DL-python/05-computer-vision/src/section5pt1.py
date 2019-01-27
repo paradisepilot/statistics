@@ -67,6 +67,8 @@ def section5pt1():
     print(   train_images[0][0][0] )
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    print('\n### starting: fitting MLP ...')
+
     train_images = train_images.reshape((60000, 28 * 28))
     train_images = train_images.astype('float32') / 255
 
@@ -76,7 +78,6 @@ def section5pt1():
     train_labels = to_categorical(train_labels)
     test_labels  = to_categorical(test_labels)
 
-    print('\n### starting: fitting MLP ...')
     myMLP = get_untrained_MLP()
 
     print('\nmyMLP.summary()')
@@ -141,31 +142,31 @@ def section5pt1():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    #print('\n### starting: fitting CNN ...')
-    #myCNN = get_untrained_CNN()
-    #
-    #print('\nmyCNN.summary()')
-    #print(   myCNN.summary() )
-    #
-    #myCNN.fit(
-    #    train_images,
-    #    train_labels,
-    #    epochs     =  5, # 5
-    #    batch_size = 64,
-    #    verbose    =  2
-    #    )
-    #
-    #test_loss, test_acc = myCNN.evaluate(
-    #    x       = test_images,
-    #    y       = test_labels,
-    #    verbose = 2
-    #    )
-    #
-    #print('\ntest_acc')
-    #print(   test_acc )
-    #
-    #print('\n### finished: fitting CNN')
-    #print('\n')
+    print('\n### starting: fitting CNN ...')
+    myCNN = get_untrained_CNN()
+
+    print('\nmyCNN.summary()')
+    print(   myCNN.summary() )
+
+    myCNN.fit(
+        train_images,
+        train_labels,
+        epochs     =  8, # 5
+        batch_size = 64,
+        verbose    =  2
+        )
+
+    test_loss, test_acc = myCNN.evaluate(
+        x       = test_images,
+        y       = test_labels,
+        verbose = 2
+        )
+
+    print('\ntest_acc')
+    print(   test_acc )
+
+    print('\n### finished: fitting CNN')
+    print('\n')
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
@@ -181,9 +182,10 @@ def section5pt1():
     num_val_samples = len(train_images) // k
 
     num_epochs        = 20
+    acc_histories     = []
     val_acc_histories = []
     for i in range(k):
-        print('processing fold #', i)
+        print('\n#~~~ processing fold #', i)
         val_images = train_images[i * num_val_samples: (i + 1) * num_val_samples]
         val_labels = train_labels[i * num_val_samples: (i + 1) * num_val_samples]
 
@@ -211,10 +213,15 @@ def section5pt1():
         history_dict = history.history
         print('\nhistory_dict.keys()')
         print(   history_dict.keys() )
+        print('\n')
+
+        acc_history = history.history['acc']
+        acc_histories.append(acc_history)
 
         val_acc_history = history.history['val_acc']
         val_acc_histories.append(val_acc_history)
 
+    avg_acc_history     = [ np.mean([x[i] for x in     acc_histories]) for i in range(num_epochs) ]
     avg_val_acc_history = [ np.mean([x[i] for x in val_acc_histories]) for i in range(num_epochs) ]
 
     print('\n### finished: training with k-fold cross-validation')
@@ -222,10 +229,11 @@ def section5pt1():
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     outputFILE = 'plot-mnist-validation.png'
-    plt.plot(range(1, len(avg_val_acc_history) + 1), avg_val_acc_history)
-    plt.title('')
+    plt.plot(range(1, len(    avg_acc_history) + 1),     avg_acc_history, 'bo', label = 'training'  )
+    plt.plot(range(1, len(avg_val_acc_history) + 1), avg_val_acc_history, 'b',  label = 'validation')
+    plt.title("Accuracy (avg across cross-validation folds)")
     plt.xlabel('epoch')
-    plt.ylabel('mean 4-fold cross validation Accuracy')
+    plt.ylabel('averaged accuracy')
     plt.legend()
     plt.savefig(fname = outputFILE, dpi = 600, bbox_inches = 'tight', pad_inches = 0.2)
     plt.clf()
