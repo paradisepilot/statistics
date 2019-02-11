@@ -436,13 +436,6 @@ myCART  <- R6Class(
             uniqueVarValuePairs_factor  <- list();
             uniqueVarValuePairs_numeric <- list();
             if (length(self$predictors_factor) > 0) {
-                #DF.temp <- self$data;
-                #DF.temp <- DF.temp[currentRowIDs,self$predictors_factor];
-                #temp <- as.list(private$get_non_constant_columns(
-                #    DF.input       = self$data,
-                #    currentRowIDs  = currentRowIDs,
-                #    input.colnames = self$predictors_factor
-                #    ));
                 temp.list <- as.list(private$get_non_constant_columns(
                     DF.input       = self$data,
                     currentRowIDs  = currentRowIDs,
