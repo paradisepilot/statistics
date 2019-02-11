@@ -101,7 +101,7 @@ palette.iris.light        <- c("#99ff99","#99ccff","#ffad99");
 names(palette.iris.light) <- c("setosa","versicolor","virginica");
 
 FILE.ggplot <- "plot-rpart.png";
-png(filename = FILE.ggplot, height = 12, width = 30, units = "in", res = 300);
+png(filename = FILE.ggplot, height = 30, width = 30, units = "in", res = 300);
 prp(
     x           = results.rpart,
     extra       = 101,
