@@ -22,6 +22,43 @@ print( str( iris) );
 print( head(iris) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+print( summary(iris) )
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+DF.iris <- iris;
+DF.iris[,"factor.Petal.Length"] <- character(nrow(DF.iris))
+
+myQuantiles <- quantile(
+    x     = DF.iris[,"Petal.Length"],
+    probs = c(1,2,3)/3
+    );
+
+is.short  <- ifelse(DF.iris[,"Petal.Length"] <  myQuantiles[1],TRUE,FALSE);
+is.long   <- ifelse(DF.iris[,"Petal.Length"] >= myQuantiles[3],TRUE,FALSE);
+is.medium <- !( is.short | is.long );
+
+DF.iris[is.short, "factor.Petal.Length"] <- "short";
+DF.iris[is.medium,"factor.Petal.Length"] <- "medium";
+DF.iris[is.long,  "factor.Petal.Length"] <- "long";
+
+DF.iris[,"factor.Petal.Length"] <- factor(
+    x      = DF.iris[,"factor.Petal.Length"],
+    levels = c("short","medium","long")
+    );
+
+DF.iris <- DF.iris[,setdiff(colnames(DF.iris),"Petal.Length")];
+colnames(DF.iris) <- gsub(
+    x           = colnames(DF.iris),
+    pattern     = "factor.Petal.Length",
+    replacement = "Petal.Length"
+    );
+
+iris <- DF.iris;
+remove(DF.iris);
+
+print( summary(iris) );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 myTree <- myCART$new(
     formula = Species ~ .,
     data    = iris

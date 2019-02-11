@@ -65,7 +65,7 @@ myCART  <- R6Class(
 
                 #cat( "\n### ~~~~~~~~~~ ###" );
                 #cat( paste0("\nlength(workQueue): ",length(workQueue),"\n") );
-                # print( workQueue );
+                #print( workQueue );
 
                 currentNode <- private$pop(workQueue, envir = environment());
 
@@ -181,7 +181,7 @@ myCART  <- R6Class(
                 } 
 
             # private$order_nodes();
-            #return( NULL );
+            # return( NULL );
 
             },
 
@@ -436,27 +436,37 @@ myCART  <- R6Class(
             uniqueVarValuePairs_factor  <- list();
             uniqueVarValuePairs_numeric <- list();
             if (length(self$predictors_factor) > 0) {
-                uniqueVarValuePairs_factor <- private$get_var_value_pairs(
-                    x = lapply(
-                        X = as.list(private$get_non_constant_columns(
-                            DF.input       = self$data,
-                            currentRowIDs  = currentRowIDs,
-                            input.colnames = self$predictors_factor
-                            )),
-                        MARGIN = 2,
-                        FUN    = function(x) { return( private$get_midpoints(x) ); }
-                        ),
-                    comparison = private$is_equal_to
-                    );
+                DF.temp <- self$data;
+                DF.temp <- DF.temp[currentRowIDs,self$predictors_factor];
+                temp <- as.list(private$get_non_constant_columns(
+                    DF.input       = self$data,
+                    currentRowIDs  = currentRowIDs,
+                    input.colnames = self$predictors_factor
+                    ));
+                temp.list <- as.list(private$get_non_constant_columns(
+                    DF.input       = self$data,
+                    currentRowIDs  = currentRowIDs,
+                    input.colnames = self$predictors_factor
+                    ));
+                if (length(temp.list) > 0) {
+                    uniqueVarValuePairs_factor <- private$get_var_value_pairs(
+                        x = lapply(
+                            X   = temp.list,
+                            FUN = function(x) { return( private$get_midpoints(x) ); }
+                            ),
+                        comparison = private$is_equal_to
+                        );
+                    }
                 }
             if (length(self$predictors_numeric) > 0) {
+                temp.list <- as.list(private$get_non_constant_columns(
+                    DF.input       = self$data,
+                    currentRowIDs  = currentRowIDs,
+                    input.colnames = self$predictors_numeric
+                    ));
                 uniqueVarValuePairs_numeric <- private$get_var_value_pairs(
                     x = lapply(
-                        X = as.list(private$get_non_constant_columns(
-                            DF.input       = self$data,
-                            currentRowIDs  = currentRowIDs,
-                            input.colnames = self$predictors_numeric
-                            )),
+                        X   = temp.list,
                         FUN = function(x) { return( private$get_midpoints(x) ); }
                         ),
                     comparison = private$is_less_than
@@ -484,10 +494,15 @@ myCART  <- R6Class(
             return( output );
             },
         get_non_constant_columns = function(DF.input = NULL, currentRowIDs = NULL, input.colnames = NULL) {
-            DF.output           <- DF.input[DF.input[,self$syntheticID] %in% currentRowIDs,input.colnames];
+            DF.output <- DF.input[DF.input[,self$syntheticID] %in% currentRowIDs,input.colnames];
+
+            # If length(input.colnames) == 1, then DF.output will be a vector.
+            # In that case, cast DF.output into a data frame.
+            DF.output <- as.data.frame(DF.output);
+
             colnames(DF.output) <- input.colnames;
             nUniqueValues       <- apply(X = DF.output, MARGIN = 2, FUN = function(x) { return(length(unique(x))) } );
-            DF.output           <- DF.output[,nUniqueValues > 1];
+            DF.output           <- as.data.frame(DF.output[,nUniqueValues > 1]);
             return( DF.output );
             },
         get_midpoints = function(x) {
