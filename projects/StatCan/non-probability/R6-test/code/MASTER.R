@@ -18,11 +18,9 @@ source(paste0(code.directory,'/myCART.R'));
 
 ###################################################
 data(iris);
-print( str( iris) );
-print( head(iris) );
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-print( summary(iris) )
+print( str(    iris) );
+print( summary(iris) );
+print( head(   iris) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 DF.iris <- iris;
@@ -53,10 +51,14 @@ colnames(DF.iris) <- gsub(
     replacement = "Petal.Length"
     );
 
+DF.iris <- DF.iris[,colnames(iris)];
+
 iris <- DF.iris;
 remove(DF.iris);
 
+print( str(    iris) );
 print( summary(iris) );
+print( head(   iris) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 myTree <- myCART$new(
