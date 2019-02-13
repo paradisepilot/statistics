@@ -14,8 +14,49 @@ library(rpart.plot);
 library(RColorBrewer);
 
 library(R6);
+source(paste0(code.directory,'/getPopulation.R'));
+source(paste0(code.directory,'/getSamples.R'));
 source(paste0(code.directory,'/pnpCART.R'));
 
+###################################################
+###################################################
+
+my.population <- getPopulation(N = 100);
+
+cat("\nsummary(my.population)");
+print( summary(my.population) );
+
+cat("\nmy.population");
+print( my.population );
+
+LIST.samples <- getSamples(
+    DF.population  = my.population,
+    prob.selection = 0.1
+    );
+
+cat("\nLIST.samples");
+print( LIST.samples );
+
+###################################################
+# print warning messages to log
+cat("\n##### warnings()\n")
+print(warnings());
+
+# print session info to log
+cat("\n##### sessionInfo()\n")
+print( sessionInfo() );
+
+# print system time to log
+cat(paste0("\n##### Sys.time(): ",Sys.time(),"\n"));
+
+# print elapsed time to log
+stop.proc.time <- proc.time();
+cat("\n##### start.proc.time() - stop.proc.time()\n");
+print( stop.proc.time - start.proc.time );
+
+quit();
+
+###################################################
 ###################################################
 data(iris);
 print( str(    iris) );
@@ -128,5 +169,5 @@ stop.proc.time <- proc.time();
 cat("\n##### start.proc.time() - stop.proc.time()\n");
 print( stop.proc.time - start.proc.time );
 
-q();
+quit();
 
