@@ -111,7 +111,10 @@ pnpCART  <- R6Class(
                     #cat("\nnp.currentRowIDs:\n");
                     #print( np.currentRowIDs    );
 
-                    bestSplit <- private$get_best_split(np.currentRowIDs = np.currentRowIDs);
+                    bestSplit <- private$get_best_split(
+                        np.currentRowIDs = np.currentRowIDs,
+                         p.currentRowIDs =  p.currentRowIDs,
+                        );
                     #cat("\nbestSplit:\n");
                     #print( bestSplit );
 
@@ -453,7 +456,7 @@ pnpCART  <- R6Class(
 
             return( output_list );
             },
-        get_best_split = function(np.currentRowIDs) {
+        get_best_split = function(np.currentRowIDs,p.currentRowIDs) {
             #print("AAA")
             uniqueVarValuePairs_factor  <- list();
             uniqueVarValuePairs_numeric <- list();
