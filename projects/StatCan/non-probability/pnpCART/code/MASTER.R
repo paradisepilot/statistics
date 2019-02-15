@@ -20,41 +20,40 @@ source(paste0(code.directory,'/pnpCART.R'));
 
 ###################################################
 ###################################################
+#my.population <- getPopulation(N = 100);
 
-my.population <- getPopulation(N = 100);
+#cat("\nsummary(my.population)");
+#print( summary(my.population) );
 
-cat("\nsummary(my.population)");
-print( summary(my.population) );
+#cat("\nmy.population");
+#print( my.population );
 
-cat("\nmy.population");
-print( my.population );
+#LIST.samples <- getSamples(
+#    DF.population  = my.population,
+#    prob.selection = 0.1
+#    );
 
-LIST.samples <- getSamples(
-    DF.population  = my.population,
-    prob.selection = 0.1
-    );
-
-cat("\nLIST.samples");
-print( LIST.samples );
+#cat("\nLIST.samples");
+#print( LIST.samples );
 
 ###################################################
 # print warning messages to log
-cat("\n##### warnings()\n")
-print(warnings());
+#cat("\n##### warnings()\n")
+#print(warnings());
 
 # print session info to log
-cat("\n##### sessionInfo()\n")
-print( sessionInfo() );
+#cat("\n##### sessionInfo()\n")
+#print( sessionInfo() );
 
 # print system time to log
-cat(paste0("\n##### Sys.time(): ",Sys.time(),"\n"));
+#cat(paste0("\n##### Sys.time(): ",Sys.time(),"\n"));
 
 # print elapsed time to log
-stop.proc.time <- proc.time();
-cat("\n##### start.proc.time() - stop.proc.time()\n");
-print( stop.proc.time - start.proc.time );
+#stop.proc.time <- proc.time();
+#cat("\n##### start.proc.time() - stop.proc.time()\n");
+#print( stop.proc.time - start.proc.time );
 
-quit();
+#quit();
 
 ###################################################
 ###################################################
@@ -102,11 +101,18 @@ print( summary(iris) );
 print( head(   iris) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+np.iris <- iris;
+ p.iris <- iris[,setdiff(colnames(iris),"Species")];
+
+p.iris[,"weight"] <- 1;
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 myTree <- pnpCART$new(
     formula = Species ~ .,
-    data    = iris
+    np.data = np.iris,
+    p.data  =  p.iris
     );
-#print( str(myTree) );
+print( str(myTree) );
 
 myTree$grow();
 #cat("\nmyTree$nodes\n" );
@@ -115,6 +121,29 @@ myTree$grow();
 myTree$print(
     FUN.format = function(x) {return( round(x,digits=3) )} 
     );
+
+###################################################
+###################################################
+# print warning messages to log
+cat("\n##### warnings()\n")
+print(warnings());
+
+# print session info to log
+cat("\n##### sessionInfo()\n")
+print( sessionInfo() );
+
+# print system time to log
+cat(paste0("\n##### Sys.time(): ",Sys.time(),"\n"));
+
+# print elapsed time to log
+stop.proc.time <- proc.time();
+cat("\n##### start.proc.time() - stop.proc.time()\n");
+print( stop.proc.time - start.proc.time );
+
+quit();
+
+###################################################
+###################################################
 
 myPruningSequence <- myTree$get_pruning_sequence();
 print( length(myPruningSequence) );
