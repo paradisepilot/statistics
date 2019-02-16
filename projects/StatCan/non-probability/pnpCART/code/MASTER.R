@@ -16,6 +16,7 @@ library(RColorBrewer);
 library(R6);
 source(paste0(code.directory,'/getPopulation.R'));
 source(paste0(code.directory,'/getSamples.R'));
+source(paste0(code.directory,'/myCART.R'));
 source(paste0(code.directory,'/pnpCART.R'));
 
 ###################################################
@@ -58,9 +59,17 @@ source(paste0(code.directory,'/pnpCART.R'));
 ###################################################
 ###################################################
 data(iris);
+iris <- iris[iris[,"Species"] %in% c("versicolor","virginica"),]
+
+iris[,"SelfSelected"] <- rep(x = "no",times = nrow(iris));
+iris["versicolor" == iris[,"Species"],"SelfSelected"] <- "yes";
+iris[,"SelfSelected"] <- factor(iris[,"SelfSelected"],levels=c("yes","no"));
+iris <- iris[,setdiff(colnames(iris),"Species")];
+
 print( str(    iris) );
 print( summary(iris) );
-print( head(   iris) );
+#print( head(   iris) );
+print( iris );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 DF.iris <- iris;
@@ -102,25 +111,69 @@ print( head(   iris) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 np.iris <- iris;
- p.iris <- iris[,setdiff(colnames(iris),"Species")];
 
+#p.iris <- iris[,setdiff(colnames(iris),"Species")];
+ p.iris <- iris;
 p.iris[,"weight"] <- 1;
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-myTree <- pnpCART$new(
-    formula = Species ~ .,
+pnpTree <- pnpCART$new(
+    formula = SelfSelected ~ .,
     np.data = np.iris,
-    p.data  =  p.iris
+    p.data  =  p.iris,
+    weight  = "weight"
+    );
+print( str(pnpTree) );
+
+pnpTree$grow();
+
+pnpTree$print(
+    FUN.format = function(x) {return( round(x,digits=3) )} 
+    );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+myTree <- myCART$new(
+    formula = SelfSelected ~ .,
+    data    = iris
     );
 print( str(myTree) );
 
 myTree$grow();
-#cat("\nmyTree$nodes\n" );
-#print( myTree$nodes    );
 
 myTree$print(
     FUN.format = function(x) {return( round(x,digits=3) )} 
     );
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+results.rpart <- rpart(
+    formula = SelfSelected ~ .,
+    data    = iris,
+    control = list(
+        minsplit  = 1,
+        minbucket = 1,
+        cp        = 0
+        )
+    );
+
+cat("\nresults.rpart\n");
+print( results.rpart   );
+printcp( x = results.rpart, digits = 3 );
+
+palette.iris <- brewer.pal(3,"Set1")[c(3,2,1)]; # c("green","blue","red");
+names(palette.iris) <- c("setosa","versicolor","virginica");
+
+palette.iris.light        <- c("#99ff99","#99ccff","#ffad99");
+names(palette.iris.light) <- c("setosa","versicolor","virginica");
+
+FILE.ggplot <- "plot-rpart.png";
+png(filename = FILE.ggplot, height = 30, width = 30, units = "in", res = 300);
+prp(
+    x           = results.rpart,
+    extra       = 101,
+    cex         = 3.5, # 3.5,
+    legend.cex  = 3.5,
+    box.palette = as.list(palette.iris.light)
+    );
+dev.off();
 
 ###################################################
 ###################################################
