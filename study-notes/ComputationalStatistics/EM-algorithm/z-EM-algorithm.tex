@@ -111,18 +111,18 @@ E_{Z|X,\theta_{t}}\!\left\{\,\overset{{\color{white}.}}{\log}\left(p(Z\,|\,X,\th
 \\
 \log\,p(X\,|\,\theta)
 & = &
-Q(\theta\,|\,\theta_{t}) + H(\theta\,|\,\theta_{t})
+Q(\theta\,|\,\theta_{t},X) + H(\theta\,|\,\theta_{t},X)
 \end{eqnarray*}
-where $H(\theta\,|\,\theta_{t})$ is defined as follows:
+where $H(\theta\,|\,\theta_{t},X)$ is defined as follows:
 \begin{equation*}
-H(\theta\,|\,\theta_{t})
+H(\theta\,|\,\theta_{t},X)
 \;\; := \;\;
 - \int\left\{\overset{{\color{white}.}}{\log}\;p(Z\,|\,X,\theta)\right\}p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
 \end{equation*}
 
 \vskip 0.5cm
 \noindent
-\textbf{CLAIM 1}:\;\; $H(\theta\,|\,\theta_{t}) \;\geq\; H(\theta_{t}\,|\,\theta_{t})$,\;\; for any $\theta$.
+\textbf{CLAIM 1}:\;\; $H(\theta\,|\,\theta_{t},X) \;\geq\; H(\theta_{t}\,|\,\theta_{t},X)$,\;\; for any $\theta$.
 \vskip 0.3cm
 \noindent
 Note that \textbf{CLAIM 1} is an immediate consequence of Gibbs' Inequality (see Appendix).
@@ -134,35 +134,36 @@ Now, the following equality
 \label{EM:pf:theta}
 \log\,p(X\,|\,\theta)
 \;\; = \;\;
-Q(\theta\,|\,\theta_{t}) + H(\theta\,|\,\theta_{t})
+	Q(\theta\,|\,\theta_{t},X) + H(\theta\,|\,\theta_{t},X)
 \end{equation}
 holds for any value of $\theta$; in particular, it holds for $\theta_{t}$:
 \begin{equation}
 \label{EM:pf:thetat}
 \log\,p(X\,|\,\theta_{t})
 \;\; = \;\;
-Q(\theta_{t}\,|\,\theta_{t}) + H(\theta_{t}\,|\,\theta_{t})
+Q(\theta_{t}\,|\,\theta_{t},X) + H(\theta_{t}\,|\,\theta_{t},X)
 \end{equation}
 Subtracting \eqref{EM:pf:thetat} from \eqref{EM:pf:theta} yields:
 \begin{equation}
 \log\,p(X\,|\,\theta) \,-\, \log\,p(X\,|\,\theta_{t})
 \;\; = \;\;
-\left(\,Q(\theta\,|\,\theta_{t}) \overset{{\color{white}\vert}}{-} Q(\theta_{t}\,|\,\theta_{t})\,\right)
+\left(\,Q(\theta\,|\,\theta_{t}) \overset{{\color{white}\vert}}{-} Q(\theta_{t}\,|\,\theta_{t},X)\,\right)
 \;+\;
-\left(\,H(\theta\,|\,\theta_{t}) \overset{{\color{white}\vert}}{-} H(\theta_{t}\,|\,\theta_{t})\,\right)
+\left(\,H(\theta\,|\,\theta_{t}) \overset{{\color{white}\vert}}{-} H(\theta_{t}\,|\,\theta_{t},X)\,\right)
 \end{equation}
 Thus, \textbf{CLAIM 1} implies:
 \begin{equation}
 \log\,p(X\,|\,\theta) \,-\, \log\,p(X\,|\,\theta_{t})
 \;\; \geq \;\;
-Q(\theta\,|\,\theta_{t}) \,-\, Q(\theta_{t}\,|\,\theta_{t})
+Q(\theta\,|\,\theta_{t},X) \,-\, Q(\theta_{t}\,|\,\theta_{t},X)
 \end{equation}
-Since, by definition, $\theta_{t+1} := \underset{\theta}{\textnormal{argmax}}\left\{\,Q(\theta\,|\,\theta_{t})\,\right\}$,
+Since, by definition,
+\,$\theta_{t+1} := \underset{\theta}{\textnormal{argmax}}\left\{\,Q(\theta\,|\,\theta_{t},X)\,\right\}$,\,
 we therefore have:
 \begin{equation}
 \log\,p(X\,|\,\theta_{t+1}) \,-\, \log\,p(X\,|\,\theta_{t})
 \;\; \geq \;\;
-Q(\theta_{t+1}\,|\,\theta_{t}) \,-\, Q(\theta_{t}\,|\,\theta_{t})
+Q(\theta_{t+1}\,|\,\theta_{t},X) \,-\, Q(\theta_{t}\,|\,\theta_{t},X)
 \;\; \geq \;\;
 0
 \end{equation}
