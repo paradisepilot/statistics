@@ -34,21 +34,23 @@ Choose (arbitrarily) a termination threshold $\tau > 0$.
 Generate the sequence $\{\,\theta_{t}\,\}$, for $t = 1, 2, 3, \ldots$, by iterating through the following
 two-step procedure:
 \begin{enumerate}
-\item	\textbf{Expectation Step:}\quad Compute the following expectation value (as a function of $\theta$):
+\item
+	\textbf{Expectation Step:}\quad Compute the following expectation value (as a function of $\theta$):
 		\begin{equation}
 		\label{EM:ExpectationStep}
-		Q(\theta\,|\,\theta_{t})
+		Q(\theta\,|\,\theta_{t},X)
 		\; := \;
 		E_{Z|X,\theta_{t}}\!\left\{\,\overset{{\color{white}.}}{\log}\,L(\theta\,;\,X,Z)\,\right\}
 		\; = \;
 		\int \left[\,\overset{{\color{white}.}}{\log}\,L(\theta\,;\,X,Z)\,\right] p(Z\,|\,X,\theta_{t})\,\textnormal{d}Z
 		\end{equation}
-\item	\textbf{Maximization Step:}\quad Solve the following optimization (maximization) problem to obtain
+\item
+	\textbf{Maximization Step:}\quad Solve the following optimization (maximization) problem to obtain
 		$\theta_{t+1}$:
 		\begin{equation}
 		\label{EM:MaximizationStep}
 		\theta_{t+1} \; := \;
-		\underset{\theta}{\textnormal{argmax}}\left\{\,Q(\theta\,|\,\theta_{t})\,\right\}
+		\underset{\theta}{\textnormal{argmax}}\left\{\,Q(\theta\,|\,\theta_{t},X)\,\right\}
 		\end{equation}
 \end{enumerate}
 Terminate the EM Algorithm when
@@ -79,14 +81,14 @@ satisfies the following:
 \begin{eqnarray*}
 \log\,p(X\,|\,\theta)
 & = &
-	\log\left(\,\dfrac{p(X\,\vert\,\theta)}{p(X,Z\,\vert\,\theta)} \cdot P(X,Z\,\vert\,\theta)\,\right)
+	\log\left(\,\dfrac{p(X\,\vert\,\theta)}{p(X,Z\,\vert\,\theta)} \cdot p(X,Z\,\vert\,\theta)\,\right)
 \;\;=\;\;
-	\log\left(\,P(X,Z\,\vert\,\theta) \cdot \left(\dfrac{p(X,Z\,\vert\,\theta)}{p(X\,\vert\,\theta)}\right)^{-1} \,\right)
+	\log\left(\,p(X,Z\,\vert\,\theta) \cdot \left(\dfrac{p(X,Z\,\vert\,\theta)}{p(X\,\vert\,\theta)}\right)^{-1} \,\right)
 \\
 &=&
-	\log\left(\,P(X,Z\,\vert\,\theta) \cdot \left(\overset{{\color{white}.}}{p}(Z\,\vert\,X,\theta)\right)^{-1} \,\right)
+	\log\left(\,p(X,Z\,\vert\,\theta) \cdot \left(\overset{{\color{white}.}}{p}(Z\,\vert\,X,\theta)\right)^{-1} \,\right)
 \;\;=\;\;
-	\log\left(\,\dfrac{P(X,Z\,\vert\,\theta)}{p(Z\,\vert\,X,\theta)}\,\right)
+	\log\left(\,\dfrac{p(X,Z\,\vert\,\theta)}{p(Z\,\vert\,X,\theta)}\,\right)
 \\
 &&
 \\
@@ -127,7 +129,7 @@ Note that \textbf{CLAIM 1} is an immediate consequence of Gibbs' Inequality (see
 
 \vskip 0.3cm
 \noindent
-Now, the following equation
+Now, the following equality
 \begin{equation}
 \label{EM:pf:theta}
 \log\,p(X\,|\,\theta)
@@ -141,7 +143,7 @@ holds for any value of $\theta$; in particular, it holds for $\theta_{t}$:
 \;\; = \;\;
 Q(\theta_{t}\,|\,\theta_{t}) + H(\theta_{t}\,|\,\theta_{t})
 \end{equation}
-Subtracting Equation \eqref{EM:pf:thetat} from Equation \eqref{EM:pf:theta} yields:
+Subtracting \eqref{EM:pf:thetat} from \eqref{EM:pf:theta} yields:
 \begin{equation}
 \log\,p(X\,|\,\theta) \,-\, \log\,p(X\,|\,\theta_{t})
 \;\; = \;\;
