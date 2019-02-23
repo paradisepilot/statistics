@@ -113,7 +113,6 @@ print( head(   iris) );
 np.iris <- iris;
 
 p.iris <- iris[,setdiff(colnames(iris),"SelfSelected")];
-p.iris <- iris;
 p.iris[,"weight"] <- 1;
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###

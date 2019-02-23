@@ -91,6 +91,20 @@ pnpCART  <- R6Class(
                 current_birthCriterion <- currentNode$birthCriterion;
 
                 if (private$stoppingCriterionSatisfied(np.rowIDs = np.currentRowIDs,p.rowIDs = p.currentRowIDs)) {
+
+                    cat("\n# ~~~~~~~~~~ #")
+                    cat("\ncurrentNodeID\n");
+                    print( currentNodeID   );
+                    np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,];
+                     p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.currentRowIDs,];
+                    cat("\nnp.subset\n");
+                    print( np.subset   );
+                    cat("\np.subset\n");
+                    print( p.subset   );
+                    cat("\npnp_impurity\n");
+                    print( private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs) )
+                    cat("# ~~~~~~~~~~ #\n")
+
                     self$nodes <- private$push(
                         list = self$nodes,
                         x    = private$node$new(
