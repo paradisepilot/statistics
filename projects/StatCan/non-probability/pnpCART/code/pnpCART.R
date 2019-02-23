@@ -7,15 +7,17 @@ pnpCART  <- R6Class(
 
     public = list(
 
-        formula = NULL,
-        np.data = NULL,
-         p.data = NULL,
+        formula       = NULL,
+        np.data       = NULL,
+         p.data       = NULL,
+        weight        = NULL,
+        min.cell.size = NULL,
+        min.impurity  = NULL,
 
         response           = NULL,
         predictors         = NULL,
         predictors_factor  = NULL,
         predictors_numeric = NULL,
-        weight             = NULL,
 
         nodes = NULL,
 
@@ -24,12 +26,14 @@ pnpCART  <- R6Class(
 
         estimatedPopulationSize = NULL,
 
-        initialize = function(formula, np.data, p.data, weight) {
+        initialize = function(formula, np.data, p.data, weight, min.cell.size = 10, min.impurity = 0.095) {
 
-            self$formula <- stats::as.formula(formula);
-            self$np.data <- np.data;
-            self$p.data  <-  p.data;
-            self$weight  <- weight;
+            self$formula       <- stats::as.formula(formula);
+            self$np.data       <- np.data;
+            self$p.data        <-  p.data;
+            self$weight        <- weight;
+            self$min.cell.size <- min.cell.size;
+            self$min.impurity  <- min.impurity;
 
             temp <- base::all.vars(self$formula);
             self$response   <- temp[1];
@@ -86,7 +90,7 @@ pnpCART  <- R6Class(
                  p.currentRowIDs       <- currentNode$p.rowIDs;
                 current_birthCriterion <- currentNode$birthCriterion;
 
-                if (private$stoppingCriterionSatisfied(np.currentRowIDs)) {
+                if (private$stoppingCriterionSatisfied(np.rowIDs = np.currentRowIDs,p.rowIDs = p.currentRowIDs)) {
                     self$nodes <- private$push(
                         list = self$nodes,
                         x    = private$node$new(
@@ -95,9 +99,7 @@ pnpCART  <- R6Class(
                             depth     = currentDepth,
                             np.rowIDs = np.currentRowIDs,
                              p.rowIDs =  p.currentRowIDs,
-                            impurity  = private$impurity(
-                                self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,self$response]
-                                ),
+                            impurity  = private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs),
                             risk = private$risk(
                                 self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,self$response]
                                 ),
@@ -168,6 +170,19 @@ pnpCART  <- R6Class(
                     # adding 1 here to make ordering of nodeID agree with the order of appearance in self$nodes
                     lastNodeID <- lastNodeID + 1;
 
+                    cat("\n# ~~~~~~~~~~ #")
+                    cat("\ncurrentNodeID\n");
+                    print( currentNodeID   );
+                    np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,];
+                     p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.currentRowIDs,];
+                    cat("\nnp.subset\n");
+                    print( np.subset   );
+                    cat("\np.subset\n");
+                    print( p.subset   );
+                    cat("\npnp_impurity\n");
+                    print( private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs) )
+                    cat("# ~~~~~~~~~~ #\n")
+
                     self$nodes <- private$push(
                         list = self$nodes,
                         x = private$node$new(
@@ -176,9 +191,7 @@ pnpCART  <- R6Class(
                             depth     = currentDepth,
                             np.rowIDs = np.currentRowIDs,
                              p.rowIDs =  p.currentRowIDs,
-                            impurity = private$impurity(
-                                self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,self$response]
-                                ),
+                            impurity = private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs),
                             risk = private$risk(
                                 self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,self$response]
                                 ),
@@ -256,9 +269,20 @@ pnpCART  <- R6Class(
             stopifnot(inherits(list, "list"));
             return( c(list,list(x)) );
             },
-        stoppingCriterionSatisfied = function(currentRowIDs = NULL) {
-            deduplicatedOutcomes <- unique(self$np.data[self$np.data[,self$np.syntheticID] %in% currentRowIDs,self$response]);
-            return( 1 == length(deduplicatedOutcomes) );
+        stoppingCriterionSatisfied = function(np.rowIDs = NULL, p.rowIDs = NULL) {
+
+            if ( length(np.rowIDs) < self$min.cell.size ) { return(TRUE); }
+
+            estimatedCellPopulationSize <- sum(self$p.data[self$p.data[,self$p.syntheticID] %in%  p.rowIDs,self$weight]);
+            if ( estimatedCellPopulationSize < length(np.rowIDs) ) { return(TRUE); }
+
+            impurity = private$pnp_impurity(np.rowIDs = np.rowIDs, p.rowIDs = p.rowIDs);
+            if ( impurity < self$min.impurity ) { return(TRUE); }
+ 
+            #deduplicatedOutcomes <- unique(self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,self$response]);
+            #return( 1 == length(deduplicatedOutcomes) );
+            return( FALSE);
+
             },
         get_descendants = function(nodeIDs = NULL, nodeID = NULL) {
             nodes <- self$nodes[unlist(lapply(
@@ -481,14 +505,8 @@ pnpCART  <- R6Class(
 
                     p1 <- length(   np.satisfied) / self$estimatedPopulationSize;
                     p2 <- length(np.notSatisfied) / self$estimatedPopulationSize;
-                    g1 <- private$pnp_impurity(
-                        np.subset = self$np.data[self$np.data[,self$np.syntheticID] %in% np.satisfied,self$response],
-                         p.subset =  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.satisfied,self$weight]
-                        );
-                    g2 <- private$pnp_impurity(
-                        np.subset = self$np.data[self$np.data[,self$np.syntheticID] %in% np.notSatisfied,self$response],
-                         p.subset =  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.notSatisfied,self$weight]
-                        );
+                    g1 <- private$pnp_impurity(np.rowIDs = np.satisfied,    p.rowIDs =  p.satisfied   );
+                    g2 <- private$pnp_impurity(np.rowIDs = np.notSatisfied, p.rowIDs =  p.notSatisfied);
                     return( p1 * g1 + p2 * g2 );
                     }
                 );
@@ -547,8 +565,13 @@ pnpCART  <- R6Class(
             p <- as.numeric(table(x) / length(x));
             return( sum(p * (1 - p)) );
             },
-        pnp_impurity = function(np.subset,p.subset) {
-            p <- sum("yes" == np.subset) / sum(p.subset);
+        pnp_impurity = function(np.rowIDs,p.rowIDs) {
+            # p <- sum("yes" == np.subset) / sum(p.subset);
+            #cat("\nnp.subset\n");
+            #print( np.subset   );
+            np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.rowIDs,];
+             p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.rowIDs,];
+            p <- nrow(np.subset) / sum(p.subset[,self$weight]);
             return( 2 * p * (1 - p) )
             },
         risk = function(x){

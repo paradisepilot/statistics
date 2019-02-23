@@ -119,7 +119,7 @@ p.iris[,"weight"] <- 1;
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 pnpTree <- pnpCART$new(
     formula = SelfSelected ~ .,
-    np.data = np.iris,
+    np.data = np.iris["yes" == np.iris[,"SelfSelected"],],
     p.data  =  p.iris,
     weight  = "weight"
     );
@@ -130,6 +130,29 @@ pnpTree$grow();
 pnpTree$print(
     FUN.format = function(x) {return( round(x,digits=3) )} 
     );
+
+###################################################
+###################################################
+# print warning messages to log
+cat("\n##### warnings()\n")
+print(warnings());
+
+# print session info to log
+cat("\n##### sessionInfo()\n")
+print( sessionInfo() );
+
+# print system time to log
+cat(paste0("\n##### Sys.time(): ",Sys.time(),"\n"));
+
+# print elapsed time to log
+stop.proc.time <- proc.time();
+cat("\n##### start.proc.time() - stop.proc.time()\n");
+print( stop.proc.time - start.proc.time );
+
+quit();
+
+###################################################
+###################################################
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 myTree <- myCART$new(
