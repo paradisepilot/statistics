@@ -7,15 +7,13 @@ pnpCART  <- R6Class(
 
     public = list(
 
-        formula       = NULL,
+        predictors    = NULL,
         np.data       = NULL,
          p.data       = NULL,
         weight        = NULL,
         min.cell.size = NULL,
         min.impurity  = NULL,
 
-        response           = NULL,
-        predictors         = NULL,
         predictors_factor  = NULL,
         predictors_numeric = NULL,
 
@@ -26,21 +24,14 @@ pnpCART  <- R6Class(
 
         estimatedPopulationSize = NULL,
 
-        initialize = function(formula, np.data, p.data, weight, min.cell.size = 10, min.impurity = 0.095) {
+        initialize = function(predictors = colnames(np.data), np.data, p.data, weight, min.cell.size = 10, min.impurity = 0.095) {
 
-            self$formula       <- stats::as.formula(formula);
+            self$predictors    <- predictors;
             self$np.data       <- np.data;
             self$p.data        <-  p.data;
             self$weight        <- weight;
             self$min.cell.size <- min.cell.size;
             self$min.impurity  <- min.impurity;
-
-            temp <- base::all.vars(self$formula);
-            self$response   <- temp[1];
-            self$predictors <- temp[2];
-            if (base::identical(".",self$predictors)) {
-                self$predictors <- base::setdiff(colnames(self$np.data),c(self$response));
-                }
 
             for (temp.colname in self$predictors) {
                 if (is.character(self$data[,temp.colname])) {
@@ -59,8 +50,6 @@ pnpCART  <- R6Class(
             self$p.data[,self$p.syntheticID] <- seq(1,nrow(self$p.data));
 
             self$estimatedPopulationSize <- sum(self$p.data[,self$weight]);
-
-            remove(temp);
 
             },
 
@@ -319,8 +308,6 @@ pnpCART  <- R6Class(
             impurity = private$pnp_impurity(np.rowIDs = np.rowIDs, p.rowIDs = p.rowIDs);
             if ( impurity < self$min.impurity ) { return(TRUE); }
  
-            #deduplicatedOutcomes <- unique(self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,self$response]);
-            #return( 1 == length(deduplicatedOutcomes) );
             return( FALSE);
 
             },

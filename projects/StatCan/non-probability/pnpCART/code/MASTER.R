@@ -110,19 +110,22 @@ print( summary(iris) );
 print( head(   iris) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-np.iris <- iris["yes" == iris[,"SelfSelected"],];
-np.iris <- np.iris[,setdiff(colnames(np.iris),"SelfSelected")];
+np.iris            <- iris["yes" == iris[,"SelfSelected"],];
+np.iris            <- np.iris[,setdiff(colnames(np.iris),"SelfSelected")];
+np.iris[,'ID']     <- as.character(paste0('x',seq(1,nrow(np.iris))));
+np.iris[,'height'] <- rnorm(n = nrow(np.iris), mean = 175, sd = 10);
+np.iris <- np.iris[,c("ID","height",setdiff(colnames(np.iris),c("ID","height")))];
+print( str(np.iris) );
 
 p.iris <- iris[,setdiff(colnames(iris),"SelfSelected")];
 p.iris[,"weight"] <- 1;
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 pnpTree <- pnpCART$new(
-    formula = SelfSelected ~ .,
-    #formula = ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width,
-    np.data = np.iris,
-    p.data  =  p.iris,
-    weight  = "weight"
+    predictors = c("Sepal.Length","Sepal.Width","Petal.Length","Petal.Width"),
+    np.data    = np.iris,
+    p.data     =  p.iris,
+    weight     = "weight"
     );
 print( str(pnpTree) );
 
