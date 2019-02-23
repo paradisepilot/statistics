@@ -114,9 +114,6 @@ pnpCART  <- R6Class(
                             np.rowIDs = np.currentRowIDs,
                              p.rowIDs =  p.currentRowIDs,
                             impurity  = private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs),
-                            risk = private$risk(
-                                self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,self$response]
-                                ),
                             birthCriterion = current_birthCriterion
                             )
                         );
@@ -206,9 +203,6 @@ pnpCART  <- R6Class(
                             np.rowIDs = np.currentRowIDs,
                              p.rowIDs =  p.currentRowIDs,
                             impurity = private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs),
-                            risk = private$risk(
-                                self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,self$response]
-                                ),
                             splitCriterion = bestSplit,
                             birthCriterion = current_birthCriterion,
                             satisfiedChildID    =    satisfiedChildID,
@@ -640,11 +634,6 @@ pnpCART  <- R6Class(
             p <- nrow(np.subset) / sum(p.subset[,self$weight]);
             return( 2 * p * (1 - p) )
             },
-        risk = function(x){
-            # Gini impurity
-            p <- as.numeric(table(x) / length(x));
-            return( sum(p * (1 - p)) );
-            },
         splitCriterion = R6Class(
             classname  = "splitCriterion",
             public = list(
@@ -689,7 +678,6 @@ pnpCART  <- R6Class(
                 np.rowIDs = NULL,
                  p.rowIDs = NULL,
                 impurity  = NULL,
-                risk      = NULL,
 
                 splitCriterion = NULL,
                 birthCriterion = NULL,
@@ -704,7 +692,6 @@ pnpCART  <- R6Class(
                     np.rowIDs = NULL,
                      p.rowIDs = NULL,
                     impurity  = NULL,
-                    risk      = NULL,
 
                     splitCriterion = NULL,
                     birthCriterion = NULL,
@@ -718,7 +705,6 @@ pnpCART  <- R6Class(
                         self$np.rowIDs <- np.rowIDs;
                         self$p.rowIDs  <-  p.rowIDs;
                         self$impurity  <- impurity;
-                        self$risk      <- risk;
 
                         self$splitCriterion <- splitCriterion;
                         self$birthCriterion <- birthCriterion;
@@ -747,7 +733,6 @@ pnpCART  <- R6Class(
                     cat(paste0(", impurity = ",FUN.format(self$impurity)));
                     cat(paste0(", np.count = ",FUN.format(length(self$np.rowIDs))));
                     cat(paste0(", p.count = ", FUN.format(length(self$p.rowIDs))));
-                    #cat(paste0(", risk = ",    FUN.format(self$risk    )));
                     }
                 )
 

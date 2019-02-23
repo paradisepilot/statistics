@@ -119,6 +119,7 @@ p.iris[,"weight"] <- 1;
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 pnpTree <- pnpCART$new(
     formula = SelfSelected ~ .,
+    #formula = ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width,
     np.data = np.iris,
     p.data  =  p.iris,
     weight  = "weight"
