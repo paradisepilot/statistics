@@ -92,18 +92,18 @@ pnpCART  <- R6Class(
 
                 if (private$stoppingCriterionSatisfied(np.rowIDs = np.currentRowIDs,p.rowIDs = p.currentRowIDs)) {
 
-                    cat("\n# ~~~~~~~~~~ #")
-                    cat("\ncurrentNodeID\n");
-                    print( currentNodeID   );
-                    np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,];
-                     p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.currentRowIDs,];
-                    cat("\nnp.subset\n");
-                    print( np.subset   );
-                    cat("\np.subset\n");
-                    print( p.subset   );
-                    cat("\npnp_impurity\n");
-                    print( private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs) )
-                    cat("# ~~~~~~~~~~ #\n")
+                    #cat("\n# ~~~~~~~~~~ #")
+                    #cat("\ncurrentNodeID\n");
+                    #print( currentNodeID   );
+                    #np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,];
+                    # p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.currentRowIDs,];
+                    #cat("\nnp.subset\n");
+                    #print( np.subset   );
+                    #cat("\np.subset\n");
+                    #print( p.subset   );
+                    #cat("\npnp_impurity\n");
+                    #print( private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs) )
+                    #cat("# ~~~~~~~~~~ #\n")
 
                     self$nodes <- private$push(
                         list = self$nodes,
@@ -184,18 +184,18 @@ pnpCART  <- R6Class(
                     # adding 1 here to make ordering of nodeID agree with the order of appearance in self$nodes
                     lastNodeID <- lastNodeID + 1;
 
-                    cat("\n# ~~~~~~~~~~ #")
-                    cat("\ncurrentNodeID\n");
-                    print( currentNodeID   );
-                    np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,];
-                     p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.currentRowIDs,];
-                    cat("\nnp.subset\n");
-                    print( np.subset   );
-                    cat("\np.subset\n");
-                    print( p.subset   );
-                    cat("\npnp_impurity\n");
-                    print( private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs) )
-                    cat("# ~~~~~~~~~~ #\n")
+                    #cat("\n# ~~~~~~~~~~ #")
+                    #cat("\ncurrentNodeID\n");
+                    #print( currentNodeID   );
+                    #np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,];
+                    # p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.currentRowIDs,];
+                    #cat("\nnp.subset\n");
+                    #print( np.subset   );
+                    #cat("\np.subset\n");
+                    #print( p.subset   );
+                    #cat("\npnp_impurity\n");
+                    #print( private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs) )
+                    #cat("# ~~~~~~~~~~ #\n")
 
                     self$nodes <- private$push(
                         list = self$nodes,
@@ -225,6 +225,38 @@ pnpCART  <- R6Class(
 
         predict = function() {
             return( NULL );
+            },
+
+        get_npdata_with_propensity = function(nodes = self$nodes) {
+
+            DF.leaf_table <- private$nodes_to_table(nodes = nodes);
+            DF.leaf_table <- DF.leaf_table[is.na(DF.leaf_table[,'satisfiedChildID']),];
+            #cat("\nDF.leaf_table\n");
+            #print( DF.leaf_table   );
+
+            DF.nprow_to_leaf <- private$nprow_to_leafID(nodes = nodes);
+            #cat("\nDF.nprow_to_leaf\n");
+            #print( DF.nprow_to_leaf   );
+
+
+            DF.nprow_to_leaf <- merge(
+                x  = DF.nprow_to_leaf,
+                y  = DF.leaf_table[,c("nodeID","propensity","np.count","p.weight","impurity")],
+                by = "nodeID"
+                );
+            #cat("\nDF.nprow_to_leaf\n");
+            #print( DF.nprow_to_leaf   );
+
+            DF.output <- merge(
+                x  = self$np.data,
+                y  = DF.nprow_to_leaf,
+                by = self$np.syntheticID
+                );
+            DF.output <- DF.output[,setdiff(colnames(DF.output),self$np.syntheticID)];
+            #cat("\nDF.output\n");
+            #print( DF.output   );
+
+            return( DF.output );
             },
 
         print = function(
@@ -326,6 +358,26 @@ pnpCART  <- R6Class(
                 return( c() );
                 }
             },
+        nprow_to_leafID = function(nodes = self$nodes) {
+            if ( 0 == length(nodes) ) {
+                cat("\nThe supplied list of nodes is empty.\n")
+                return( NULL );
+                }
+            nNodes <- length(nodes);
+            DF.output <- data.frame(x = numeric(0), y = numeric(0));
+            colnames(DF.output) <- c(self$np.syntheticID,"nodeID");
+            for ( i in seq(1,nNodes) ) {
+                if ( is.null(nodes[[i]]$satisfiedChildID) ) {
+                    DF.temp <- data.frame(
+                        x = nodes[[i]]$np.rowIDs,
+                        y = rep(x = nodes[[i]]$nodeID, times = length(nodes[[i]]$np.rowIDs))
+                        );
+                    colnames(DF.temp) <- c(self$np.syntheticID,"nodeID");
+                    DF.output <- rbind(DF.output,DF.temp);
+                    }
+                }
+            return( DF.output );
+            },
         nodes_to_table = function(nodes = self$nodes) {
             if ( 0 == length(nodes) ) {
                 cat("\nThe supplied list of nodes is empty.\n")
@@ -335,28 +387,28 @@ pnpCART  <- R6Class(
             DF.output <- data.frame(
                 nodeID     = numeric(length = nrow.output),
                 depth      = numeric(length = nrow.output),
-                nRecords   = numeric(length = nrow.output),
-                prop       = numeric(length = nrow.output),
-                #impurity  = numeric(length = nrow.output),
-                risk       = numeric(length = nrow.output),
-                riskWgtd   = numeric(length = nrow.output),
-                riskLeaves = numeric(length = nrow.output),
-                nLeaves    = numeric(length = nrow.output),
+                np.count   = numeric(length = nrow.output),
+                p.weight   = numeric(length = nrow.output),
+                impurity   = numeric(length = nrow.output),
+                propensity = numeric(length = nrow.output),
+                #riskWgtd   = numeric(length = nrow.output),
+                #riskLeaves = numeric(length = nrow.output),
+                #nLeaves    = numeric(length = nrow.output),
                 parentID   = numeric(length = nrow.output),
                    satisfiedChildID = numeric(length = nrow.output),
                 notSatisfiedChildID = numeric(length = nrow.output)
                 );
-            totalNumRecords <- length(nodes[[1]]$rowIDs);
+            totalNumRecords <- length(nodes[[1]]$np.rowIDs);
             for ( i in seq(1,nrow.output) ) {
                 DF.output[i,'nodeID'  ]   <- nodes[[i]]$nodeID;
                 DF.output[i,'depth'   ]   <- nodes[[i]]$depth;
-                DF.output[i,'nRecords']   <- length(nodes[[i]]$rowIDs);
-                DF.output[i,'prop'    ]   <- DF.output[i,'nRecords'] / totalNumRecords;
-                #DF.output[i,'impurity']  <- nodes[[i]]$impurity;
-                DF.output[i,'risk']       <- nodes[[i]]$risk;
-                DF.output[i,'riskWgtd']   <- DF.output[i,'risk'] * DF.output[i,'prop'];
-                DF.output[i,'riskLeaves'] <- 0;
-                DF.output[i,'nLeaves']    <- 0;
+                DF.output[i,'np.count']   <- length(nodes[[i]]$np.rowIDs);
+                DF.output[i,'p.weight']   <- sum(self$p.data[self$p.data[,self$p.syntheticID] %in% nodes[[i]]$p.rowIDs,self$weight]);
+                DF.output[i,'impurity']   <- nodes[[i]]$impurity;
+                DF.output[i,'propensity'] <- DF.output[i,'np.count'] / DF.output[i,'p.weight'];
+                #DF.output[i,'riskWgtd']   <- DF.output[i,'risk'] * DF.output[i,'prop'];
+                #DF.output[i,'riskLeaves'] <- 0;
+                #DF.output[i,'nLeaves']    <- 0;
                 DF.output[i,'parentID']   <- nodes[[i]]$parentID;
                 DF.output[i,'satisfiedChildID'] <- ifelse(
                     is.null(nodes[[i]]$satisfiedChildID),
@@ -693,7 +745,9 @@ pnpCART  <- R6Class(
                             "]"));
                         }
                     cat(paste0(", impurity = ",FUN.format(self$impurity)));
-                    cat(paste0(", risk = ",    FUN.format(self$risk    )));
+                    cat(paste0(", np.count = ",FUN.format(length(self$np.rowIDs))));
+                    cat(paste0(", p.count = ", FUN.format(length(self$p.rowIDs))));
+                    #cat(paste0(", risk = ",    FUN.format(self$risk    )));
                     }
                 )
 

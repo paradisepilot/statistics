@@ -110,7 +110,8 @@ print( summary(iris) );
 print( head(   iris) );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-np.iris <- iris;
+np.iris <- iris["yes" == iris[,"SelfSelected"],];
+np.iris <- np.iris[,setdiff(colnames(np.iris),"SelfSelected")];
 
 p.iris <- iris[,setdiff(colnames(iris),"SelfSelected")];
 p.iris[,"weight"] <- 1;
@@ -118,7 +119,7 @@ p.iris[,"weight"] <- 1;
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 pnpTree <- pnpCART$new(
     formula = SelfSelected ~ .,
-    np.data = np.iris["yes" == np.iris[,"SelfSelected"],],
+    np.data = np.iris,
     p.data  =  p.iris,
     weight  = "weight"
     );
@@ -129,6 +130,9 @@ pnpTree$grow();
 pnpTree$print(
     FUN.format = function(x) {return( round(x,digits=3) )} 
     );
+
+DF.npdata_with_propensity <- pnpTree$get_npdata_with_propensity();
+print( DF.npdata_with_propensity );
 
 ###################################################
 ###################################################
