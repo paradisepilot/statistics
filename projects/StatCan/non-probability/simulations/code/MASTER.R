@@ -21,7 +21,7 @@ source(paste0(code.directory,'/pnpCART.R'));
 
 ###################################################
 ###################################################
-my.population <- getPopulation(N = 2000);
+my.population <- getPopulation(N = 10000);
 print( str(    my.population) );
 print( summary(my.population) );
 

@@ -114,90 +114,108 @@ pnpCART  <- R6Class(
                          p.currentRowIDs =  p.currentRowIDs
                         );
 
-                    np.satisfied <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,self$np.syntheticID][
-                        bestSplit$comparison(
-                            self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,bestSplit$varname],
-                            bestSplit$threshold
-                            )
-                        ];
-                    np.notSatisfied <- base::sort(base::setdiff(np.currentRowIDs,np.satisfied));
-
-                    p.satisfied <- self$p.data[self$p.data[,self$p.syntheticID] %in% p.currentRowIDs,self$p.syntheticID][
-                        bestSplit$comparison(
-                            self$p.data[self$p.data[,self$p.syntheticID] %in% p.currentRowIDs,bestSplit$varname],
-                            bestSplit$threshold
-                            )
-                        ];
-                    p.notSatisfied <- base::sort(base::setdiff(p.currentRowIDs,p.satisfied));
-
-                    # adding 2 here to make ordering of nodeID agree with the order of appearance in self$nodes
-                    lastNodeID          <- lastNodeID + 2;
-                    notSatisfiedChildID <- lastNodeID;
-                    workQueue           <- private$push(
-                        list = workQueue,
-                        x    = private$node$new(
-                            parentID  = currentNodeID,
-                            nodeID    = lastNodeID,
-                            depth     = currentDepth + 1,
-                            np.rowIDs = np.notSatisfied,
-                             p.rowIDs =  p.notSatisfied,
-                            birthCriterion = private$birthCriterion$new(
-                                varname    = bestSplit$varname,
-                                threshold  = bestSplit$threshold,
-                                comparison = ifelse(bestSplit$varname %in% self$predictors_numeric,">=","!=")
+                    if ( is.null(bestSplit) ) {
+                        self$nodes <- private$push(
+                            list = self$nodes,
+                            x = private$node$new(
+                                nodeID    = currentNodeID,
+                                parentID  = currentParentID,
+                                depth     = currentDepth,
+                                np.rowIDs = np.currentRowIDs,
+                                 p.rowIDs =  p.currentRowIDs,
+                                impurity  = private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs),
+                                birthCriterion = current_birthCriterion
                                 )
                             )
-                        );
+                        }
+                    else {
 
-                    # subtracting 1 here to make ordering of nodeID agree with the order of appearance in self$nodes
-                    lastNodeID       <- lastNodeID - 1;
-                    satisfiedChildID <- lastNodeID;
-                    workQueue        <- private$push(
-                        list = workQueue,
-                        x    = private$node$new(
-                            parentID  = currentNodeID,
-                            nodeID    = lastNodeID,
-                            depth     = currentDepth + 1,
-                            np.rowIDs = np.satisfied,
-                             p.rowIDs =  p.satisfied,
-                            birthCriterion = private$birthCriterion$new(
-                                varname    = bestSplit$varname,
-                                threshold  = bestSplit$threshold,
-                                comparison = ifelse(bestSplit$varname %in% self$predictors_numeric,"<","=")
-                                ),
-                            )
-                        );
-                    # adding 1 here to make ordering of nodeID agree with the order of appearance in self$nodes
-                    lastNodeID <- lastNodeID + 1;
+                        np.satisfied <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,self$np.syntheticID][
+                            bestSplit$comparison(
+                                self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,bestSplit$varname],
+                                bestSplit$threshold
+                                )
+                            ];
+                        np.notSatisfied <- base::sort(base::setdiff(np.currentRowIDs,np.satisfied));
 
-                    #cat("\n# ~~~~~~~~~~ #")
-                    #cat("\ncurrentNodeID\n");
-                    #print( currentNodeID   );
-                    #np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,];
-                    # p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.currentRowIDs,];
-                    #cat("\nnp.subset\n");
-                    #print( np.subset   );
-                    #cat("\np.subset\n");
-                    #print( p.subset   );
-                    #cat("\npnp_impurity\n");
-                    #print( private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs) )
-                    #cat("# ~~~~~~~~~~ #\n")
+                        p.satisfied <- self$p.data[self$p.data[,self$p.syntheticID] %in% p.currentRowIDs,self$p.syntheticID][
+                            bestSplit$comparison(
+                                self$p.data[self$p.data[,self$p.syntheticID] %in% p.currentRowIDs,bestSplit$varname],
+                                bestSplit$threshold
+                                )
+                            ];
+                        p.notSatisfied <- base::sort(base::setdiff(p.currentRowIDs,p.satisfied));
 
-                    self$nodes <- private$push(
-                        list = self$nodes,
-                        x = private$node$new(
-                            nodeID    = currentNodeID,
-                            parentID  = currentParentID,
-                            depth     = currentDepth,
-                            np.rowIDs = np.currentRowIDs,
-                             p.rowIDs =  p.currentRowIDs,
-                            impurity = private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs),
-                            splitCriterion = bestSplit,
-                            birthCriterion = current_birthCriterion,
-                            satisfiedChildID    =    satisfiedChildID,
-                            notSatisfiedChildID = notSatisfiedChildID
-                            )
-                        );
+                        # adding 2 here to make ordering of nodeID agree with the order of appearance in self$nodes
+                        lastNodeID          <- lastNodeID + 2;
+                        notSatisfiedChildID <- lastNodeID;
+                        workQueue           <- private$push(
+                            list = workQueue,
+                            x    = private$node$new(
+                                parentID  = currentNodeID,
+                                nodeID    = lastNodeID,
+                                depth     = currentDepth + 1,
+                                np.rowIDs = np.notSatisfied,
+                                 p.rowIDs =  p.notSatisfied,
+                                birthCriterion = private$birthCriterion$new(
+                                    varname    = bestSplit$varname,
+                                    threshold  = bestSplit$threshold,
+                                    comparison = ifelse(bestSplit$varname %in% self$predictors_numeric,">=","!=")
+                                    )
+                                )
+                            );
+
+                        # subtracting 1 here to make ordering of nodeID agree with the order of appearance in self$nodes
+                        lastNodeID       <- lastNodeID - 1;
+                        satisfiedChildID <- lastNodeID;
+                        workQueue        <- private$push(
+                            list = workQueue,
+                            x    = private$node$new(
+                                parentID  = currentNodeID,
+                                nodeID    = lastNodeID,
+                                depth     = currentDepth + 1,
+                                np.rowIDs = np.satisfied,
+                                 p.rowIDs =  p.satisfied,
+                                birthCriterion = private$birthCriterion$new(
+                                    varname    = bestSplit$varname,
+                                    threshold  = bestSplit$threshold,
+                                    comparison = ifelse(bestSplit$varname %in% self$predictors_numeric,"<","=")
+                                    ),
+                                )
+                            );
+                        # adding 1 here to make ordering of nodeID agree with the order of appearance in self$nodes
+                        lastNodeID <- lastNodeID + 1;
+
+                        #cat("\n# ~~~~~~~~~~ #")
+                        #cat("\ncurrentNodeID\n");
+                        #print( currentNodeID   );
+                        #np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.currentRowIDs,];
+                        # p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.currentRowIDs,];
+                        #cat("\nnp.subset\n");
+                        #print( np.subset   );
+                        #cat("\np.subset\n");
+                        #print( p.subset   );
+                        #cat("\npnp_impurity\n");
+                        #print( private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs) )
+                        #cat("# ~~~~~~~~~~ #\n")
+
+                        self$nodes <- private$push(
+                            list = self$nodes,
+                            x = private$node$new(
+                                nodeID    = currentNodeID,
+                                parentID  = currentParentID,
+                                depth     = currentDepth,
+                                np.rowIDs = np.currentRowIDs,
+                                 p.rowIDs =  p.currentRowIDs,
+                                impurity  = private$pnp_impurity(np.rowIDs = np.currentRowIDs, p.rowIDs = p.currentRowIDs),
+                                splitCriterion = bestSplit,
+                                birthCriterion = current_birthCriterion,
+                                satisfiedChildID    =    satisfiedChildID,
+                                notSatisfiedChildID = notSatisfiedChildID
+                                )
+                            );
+
+                        }
                     }
                 } 
 
@@ -557,6 +575,7 @@ pnpCART  <- R6Class(
                     return( p1 * g1 + p2 * g2 );
                     }
                 );
+            if ( Inf == min(unique(as.numeric(impurities))) ) { return(NULL); }
             output <- uniqueVarValuePairs[[ which.min(impurities) ]];
             return( output );
             },
@@ -615,6 +634,9 @@ pnpCART  <- R6Class(
         pnp_impurity = function(np.rowIDs,p.rowIDs) {
             np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.rowIDs,];
              p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.rowIDs,];
+
+            if ( nrow(np.subset) < self$min.cell.size ) { return(Inf); }
+            if ( nrow( p.subset) < self$min.cell.size ) { return(Inf); }
 
             estimatedPopulationSize <- sum(p.subset[,self$weight]);
             if ( 0 == estimatedPopulationSize ) { return( Inf ); }
