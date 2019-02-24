@@ -12,26 +12,73 @@ setwd(output.directory);
 library(rpart);
 library(rpart.plot);
 library(RColorBrewer);
-
 library(R6);
+
+source(paste0(code.directory,'/doSimulations.R'));
 source(paste0(code.directory,'/getPopulation.R'));
 source(paste0(code.directory,'/getSamples.R'));
 source(paste0(code.directory,'/myCART.R'));
 source(paste0(code.directory,'/pnpCART.R'));
 source(paste0(code.directory,'/visualizePopulation.R'));
 source(paste0(code.directory,'/visualizePropensity.R'));
+source(paste0(code.directory,'/visualizeSimulations.R'));
 
 ###################################################
 ###################################################
-set.seed(1234567);
+set.seed(7654321);
 
 my.population <- getPopulation(N = 10000);
 print( str(    my.population) );
 print( summary(my.population) );
 #print( head(my.population,n=20) );
 
+Y_total <- sum(my.population[,"y"]);
+print( Y_total );
+
 visualizePopulation(population = my.population);
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+FILE.results   <- "results-simulations.csv";
+n.iterations   <- 100;
+prob.selection <- 0.1;
+
+DF.results <- doSimulations(
+    FILE.results   = FILE.results,
+    n.iterations   = n.iterations,
+    DF.population  = my.population,
+    prob.selection = prob.selection
+    );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+visualizeSimulations(
+    DF.input         = DF.results,
+    vline_xintercept = Y_total
+    );
+
+###################################################
+###################################################
+# print warning messages to log
+cat("\n##### warnings()\n")
+print(warnings());
+
+# print session info to log
+cat("\n##### sessionInfo()\n")
+print( sessionInfo() );
+
+# print system time to log
+cat(paste0("\n##### Sys.time(): ",Sys.time(),"\n"));
+
+# print elapsed time to log
+stop.proc.time <- proc.time();
+cat("\n##### start.proc.time() - stop.proc.time()\n");
+print( stop.proc.time - start.proc.time );
+
+quit();
+
+###################################################
+###################################################
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 LIST.samples <- getSamples(
     DF.population  = my.population,
     prob.selection = 0.1
@@ -86,6 +133,13 @@ print(
         y = DF.npdata_with_propensity[,"propensity"]
         )
     );
+
+Y_hat <- sum(
+    DF.npdata_with_propensity[,"y"] / DF.npdata_with_propensity[,"propensity"]
+    );
+
+print( Y_total );
+print( Y_hat   );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 visualizePropensity(
