@@ -619,7 +619,8 @@ pnpCART  <- R6Class(
             np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.rowIDs,];
              p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.rowIDs,];
             p <- nrow(np.subset) / sum(p.subset[,self$weight]);
-            return( 2 * p * (1 - p) )
+            impurity <- 2 * p * (1 - p);
+            return( abs(impurity) );
             },
         splitCriterion = R6Class(
             classname  = "splitCriterion",
