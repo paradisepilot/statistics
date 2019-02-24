@@ -715,7 +715,7 @@ pnpCART  <- R6Class(
                         cat(paste0("[",
                             self$birthCriterion$varname,   " ",
                             self$birthCriterion$comparison," ",
-                            self$birthCriterion$threshold,
+                            FUN.format(self$birthCriterion$threshold),
                             "]"));
                         }
                     cat(paste0(", impurity = ",FUN.format(self$impurity)));
