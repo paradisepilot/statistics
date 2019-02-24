@@ -16,10 +16,11 @@ getPopulation <- function(N = 10000) {
     epsilon <- rnorm(n = N, mean = 0, sd = 0.5)
     y       <- b0 + b1 * x1 + b2 * x2 + epsilon^2; 
 
-    w <- 5 * (x1 - x2);
+    w <- 10 * (x1 - x2);
     propensity <- e1071::sigmoid(w);
 
     DF.output <- data.frame(
+        ID = seq(1,N),
         y  = y,
         x1 = x1,
         x2 = x2,

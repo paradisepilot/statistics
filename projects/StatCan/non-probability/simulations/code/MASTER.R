@@ -24,13 +24,17 @@ source(paste0(code.directory,'/pnpCART.R'));
 my.population <- getPopulation(N = 10000);
 print( str(    my.population) );
 print( summary(my.population) );
+#print( head(my.population,n=20) );
 
 LIST.samples <- getSamples(
     DF.population  = my.population,
     prob.selection = 0.1
     );
+
 print( str(    LIST.samples[['non.probability.sample']]) );
 print( summary(LIST.samples[['non.probability.sample']]) );
+print( head(   LIST.samples[['non.probability.sample']],n=20) );
+
 print( str(    LIST.samples[['probability.sample']]) );
 print( summary(LIST.samples[['probability.sample']]) );
 
@@ -50,7 +54,25 @@ pnpTree$print(
     );
 
 DF.npdata_with_propensity <- pnpTree$get_npdata_with_propensity();
-print( DF.npdata_with_propensity );
+colnames(DF.npdata_with_propensity) <- gsub(
+    x           = colnames(DF.npdata_with_propensity),
+    pattern     = "propensity",
+    replacement = "p_hat"
+    );
+DF.npdata_with_propensity <- merge(
+    x  = DF.npdata_with_propensity,
+    y  = my.population[,c("ID","propensity")],
+    by = "ID"
+    );
+DF.npdata_with_propensity <- DF.npdata_with_propensity[order(DF.npdata_with_propensity[,"ID"]),];
+print( DF.npdata_with_propensity, digits = 3 );
+
+print(
+    cor(
+        x = DF.npdata_with_propensity[,"p_hat"],
+        y = DF.npdata_with_propensity[,"propensity"]
+        )
+    );
 
 ###################################################
 # print warning messages to log

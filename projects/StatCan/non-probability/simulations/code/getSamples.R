@@ -19,7 +19,7 @@ getSamples <- function(DF.population = NULL, prob.selection = 0.1) {
         FUN = function(x) { sample(x=c(0,1),size=1,prob=c(1-x,x)) }
         );
 
-    DF.non.probability <- DF.non.probability[1 == DF.non.probability[,"self.select"],c("y","x1","x2")]
+    DF.non.probability <- DF.non.probability[1 == DF.non.probability[,"self.select"],c("ID","y","x1","x2")]
 
     # ~~~~~~~~~~ #
     LIST.output <- list(
