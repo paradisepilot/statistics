@@ -28,12 +28,14 @@ visualizePropensity <- function(
         axis.title.x     = element_blank(),
         axis.title.y     = element_blank(),
         panel.grid.major = element_line(colour="gray", linetype=2, size=0.25),
-        panel.grid.minor = element_line(colour="gray", linetype=2, size=0.25)
+        panel.grid.minor = element_line(colour="gray", linetype=2, size=0.25),
+        legend.position  = "bottom",
+        legend.key.width = ggplot2::unit(0.75,"in")
         );
 
     my.ggplot <- my.ggplot + labs(
         title    = "Predictors",
-        subtitle = "non-probability sample"
+        subtitle = "(non-probability sample)"
         );
 
     my.ggplot <- my.ggplot + geom_hline(yintercept = 0,colour="gray",size=0.75);
@@ -49,12 +51,14 @@ visualizePropensity <- function(
         alpha   = 0.2
         );
 
+    my.ggplot <- my.ggplot + geom_abline(slope=1, intercept=0, colour="gray", size=0.75);
+
     ggsave(
         file   = FILE.output,
         plot   = my.ggplot,
         dpi    = 300,
-        height =   8,
-        width  =  10,
+        height =   9,
+        width  =   8,
         units  = 'in'
         );
 
@@ -70,10 +74,14 @@ visualizePropensity <- function(
         axis.title.x     = element_blank(),
         axis.title.y     = element_blank(),
         panel.grid.major = element_line(colour="gray", linetype=2, size=0.25),
-        panel.grid.minor = element_line(colour="gray", linetype=2, size=0.25)
+        panel.grid.minor = element_line(colour="gray", linetype=2, size=0.25),
+        legend.position  = "bottom"
         );
 
-    my.ggplot <- my.ggplot + labs(title = "P_hat vs Propensity");
+    my.ggplot <- my.ggplot + labs(
+        title    = "P_hat vs Propensity",
+        subtitle = "(non-probability sample)"
+        );
 
     my.ggplot <- my.ggplot + geom_hline(yintercept = 0,colour="gray",size=0.75);
     my.ggplot <- my.ggplot + geom_vline(xintercept = 0,colour="gray",size=0.75);

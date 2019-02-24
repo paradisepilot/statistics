@@ -7,15 +7,6 @@ visualizePopulation <- function(
 
     require(ggplot2);
 
-    #DF.output <- data.frame(
-    #    ID = seq(1,N),
-    #    y  = y,
-    #    x1 = x1,
-    #    x2 = x2,
-    #    w  = w,
-    #    propensity = propensity
-    #    );
-
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     FILE.output <- 'plot-population-propensity.png'
 
@@ -32,7 +23,7 @@ visualizePopulation <- function(
 
     my.ggplot <- my.ggplot + labs(
         title    = "Self-selection Propensity",
-        subtitle = "population"
+        subtitle = "(population)"
         );
 
     #my.ggplot <- my.ggplot + geom_hline(yintercept = 0,colour="gray",size=0.75);
@@ -49,7 +40,7 @@ visualizePopulation <- function(
         file   = FILE.output,
         plot   = my.ggplot,
         dpi    = 300,
-        height =   6,
+        height =   8,
         width  =  12,
         units  = 'in'
         );
@@ -65,12 +56,14 @@ visualizePopulation <- function(
         axis.title.x     = element_blank(),
         axis.title.y     = element_blank(),
         panel.grid.major = element_line(colour="gray", linetype=2, size=0.25),
-        panel.grid.minor = element_line(colour="gray", linetype=2, size=0.25)
+        panel.grid.minor = element_line(colour="gray", linetype=2, size=0.25),
+        legend.position  = "bottom",
+        legend.key.width = ggplot2::unit(0.75,"in")
         );
 
     my.ggplot <- my.ggplot + labs(
         title    = "Predictors",
-        subtitle = "population"
+        subtitle = "(population)"
         );
 
     my.ggplot <- my.ggplot + geom_hline(yintercept = 0,colour="gray",size=0.75);
@@ -86,12 +79,14 @@ visualizePopulation <- function(
         alpha   = 0.2
         );
 
+    my.ggplot <- my.ggplot + geom_abline(slope=1, intercept=0, colour="gray", size=0.75);
+
     ggsave(
         file   = FILE.output,
         plot   = my.ggplot,
         dpi    = 300,
-        height =   8,
-        width  =  10,
+        height =   9,
+        width  =   8,
         units  = 'in'
         );
 
