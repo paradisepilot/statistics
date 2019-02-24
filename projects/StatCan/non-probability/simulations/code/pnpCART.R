@@ -613,14 +613,17 @@ pnpCART  <- R6Class(
             return( sum(p * (1 - p)) );
             },
         pnp_impurity = function(np.rowIDs,p.rowIDs) {
-            # p <- sum("yes" == np.subset) / sum(p.subset);
-            #cat("\nnp.subset\n");
-            #print( np.subset   );
             np.subset <- self$np.data[self$np.data[,self$np.syntheticID] %in% np.rowIDs,];
              p.subset <-  self$p.data[ self$p.data[, self$p.syntheticID] %in%  p.rowIDs,];
-            p <- nrow(np.subset) / sum(p.subset[,self$weight]);
+
+            estimatedPopulationSize <- sum(p.subset[,self$weight]);
+            if ( 0 == estimatedPopulationSize ) { return( Inf ); }
+
+            p <- nrow(np.subset) / estimatedPopulationSize;
+            if ( 1 < p ) { return(Inf); }
+
             impurity <- 2 * p * (1 - p);
-            return( abs(impurity) );
+            return( impurity );
             },
         splitCriterion = R6Class(
             classname  = "splitCriterion",
