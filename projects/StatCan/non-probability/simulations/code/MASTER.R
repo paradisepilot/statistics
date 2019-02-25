@@ -19,6 +19,7 @@ source(paste0(code.directory,'/getPopulation.R'));
 source(paste0(code.directory,'/getSamples.R'));
 source(paste0(code.directory,'/myCART.R'));
 source(paste0(code.directory,'/pnpCART.R'));
+source(paste0(code.directory,'/postVisualization.R'));
 source(paste0(code.directory,'/visualizePopulation.R'));
 source(paste0(code.directory,'/visualizePropensity.R'));
 source(paste0(code.directory,'/visualizeSimulations.R'));
@@ -38,20 +39,25 @@ print( Y_total );
 visualizePopulation(population = my.population);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-FILE.results   <- "results-simulations.csv";
-n.iterations   <- 100;
-prob.selection <- 0.1;
-
-DF.results <- doSimulations(
-    FILE.results   = FILE.results,
-    n.iterations   = n.iterations,
-    DF.population  = my.population,
-    prob.selection = prob.selection
-    );
+#FILE.results   <- "results-simulations.csv";
+#n.iterations   <- 100;
+#prob.selection <- 0.1;
+#
+#DF.results <- doSimulations(
+#    FILE.results   = FILE.results,
+#    n.iterations   = n.iterations,
+#    DF.population  = my.population,
+#    prob.selection = prob.selection
+#    );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-visualizeSimulations(
-    DF.input         = DF.results,
+#visualizeSimulations(
+#    DF.input         = DF.results,
+#    vline_xintercept = Y_total
+#    );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+postVisualization(
     vline_xintercept = Y_total
     );
 
