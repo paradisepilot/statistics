@@ -9,7 +9,12 @@ postVisualization <- function(
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     DF.input <- read.csv(file = 'results-simulations.csv');
-    print( str(DF.input) );
+
+    cat("\nstr(DF.output)\n");
+    print( str(DF.input)    );
+
+    cat("\nsummary(DF.input)\n");
+    print( summary(DF.input)   );
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     FILE.output <- 'plot-simulations-Y-total.png'
