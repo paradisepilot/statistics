@@ -39,16 +39,16 @@ print( Y_total );
 visualizePopulation(population = my.population);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#FILE.results   <- "results-simulations.csv";
-#n.iterations   <- 100;
-#prob.selection <- 0.1;
-#
-#DF.results <- doSimulations(
-#    FILE.results   = FILE.results,
-#    n.iterations   = n.iterations,
-#    DF.population  = my.population,
-#    prob.selection = prob.selection
-#    );
+FILE.results   <- "results-simulations.csv";
+n.iterations   <- 200;
+prob.selection <- 0.1;
+
+DF.results <- doSimulations(
+    FILE.results   = FILE.results,
+    n.iterations   = n.iterations,
+    DF.population  = my.population,
+    prob.selection = prob.selection
+    );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #visualizeSimulations(
@@ -57,9 +57,9 @@ visualizePopulation(population = my.population);
 #    );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-postVisualization(
-    vline_xintercept = Y_total
-    );
+#postVisualization(
+#    vline_xintercept = Y_total
+#    );
 
 ###################################################
 ###################################################

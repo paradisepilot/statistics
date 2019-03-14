@@ -7,10 +7,14 @@ doSimulations <- function(
     ) {
 
     DF.results <- data.frame(
-        index       = seq(1,n.iterations),
-        correlation = as.numeric(rep(NA,n.iterations)),
-        Y_total_hat = as.numeric(rep(NA,n.iterations))
+        index                  = seq(1,n.iterations),
+        Y_total                = as.numeric(rep(NA,n.iterations)),
+        Y_total_hat_propensity = as.numeric(rep(NA,n.iterations)),
+        Y_total_hat_tree       = as.numeric(rep(NA,n.iterations)),
+        correlation            = as.numeric(rep(NA,n.iterations))
         );
+
+    Y_total <- sum(DF.population[,"y"]);
 
     for (i in seq(1,n.iterations)) {
 
@@ -51,16 +55,23 @@ doSimulations <- function(
         DF.npdata_with_propensity <- DF.npdata_with_propensity[order(DF.npdata_with_propensity[,"ID"]),];
         #print( DF.npdata_with_propensity, digits = 3 );
 
+        ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
         cor_phat_propensity <- cor(
             x = DF.npdata_with_propensity[,"p_hat"],
             y = DF.npdata_with_propensity[,"propensity"]
             );
 
-        Y_total_hat <- sum(
+        ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+        Y_total_hat_propensity <- sum(
             DF.npdata_with_propensity[,"y"] / DF.npdata_with_propensity[,"propensity"]
             );
 
-        DF.results[i,] <- c(i,cor_phat_propensity,Y_total_hat);
+        Y_total_hat_tree <- sum(
+            DF.npdata_with_propensity[,"y"] / DF.npdata_with_propensity[,"p_hat"]
+            );
+
+        ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+        DF.results[i,] <- c(i,Y_total,Y_total_hat_propensity,Y_total_hat_tree,cor_phat_propensity);
 
         write.csv(
             x         = DF.results,
@@ -70,6 +81,7 @@ doSimulations <- function(
 
         }
 
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return(DF.results);
 
     }
