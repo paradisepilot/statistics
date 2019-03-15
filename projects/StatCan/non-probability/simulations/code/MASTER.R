@@ -26,7 +26,8 @@ source(paste0(code.directory,'/visualizeSimulations.R'));
 
 ###################################################
 ###################################################
-set.seed(7654321);
+#set.seed(7654321);
+set.seed(1234567);
 
 my.population <- getPopulation(N = 10000);
 print( str(    my.population) );
@@ -43,12 +44,12 @@ FILE.results   <- "results-simulations.csv";
 n.iterations   <- 200;
 prob.selection <- 0.1;
 
-#DF.results <- doSimulations(
-#    FILE.results   = FILE.results,
-#    n.iterations   = n.iterations,
-#    DF.population  = my.population,
-#    prob.selection = prob.selection
-#    );
+DF.results <- doSimulations(
+    FILE.results   = FILE.results,
+    n.iterations   = n.iterations,
+    DF.population  = my.population,
+    prob.selection = prob.selection
+    );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #visualizeSimulations(
