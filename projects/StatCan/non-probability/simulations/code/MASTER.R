@@ -43,12 +43,12 @@ FILE.results   <- "results-simulations.csv";
 n.iterations   <- 200;
 prob.selection <- 0.1;
 
-DF.results <- doSimulations(
-    FILE.results   = FILE.results,
-    n.iterations   = n.iterations,
-    DF.population  = my.population,
-    prob.selection = prob.selection
-    );
+#DF.results <- doSimulations(
+#    FILE.results   = FILE.results,
+#    n.iterations   = n.iterations,
+#    DF.population  = my.population,
+#    prob.selection = prob.selection
+#    );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #visualizeSimulations(
@@ -57,9 +57,10 @@ DF.results <- doSimulations(
 #    );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#postVisualization(
-#    vline_xintercept = Y_total
-#    );
+postVisualization(
+    FILE.input       = FILE.results,
+    vline_xintercept = Y_total
+    );
 
 ###################################################
 ###################################################
