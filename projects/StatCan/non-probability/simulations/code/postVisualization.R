@@ -18,23 +18,34 @@ postVisualization <- function(
     print( summary(DF.input)   );
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-    plotOneHistogram(
-        DF.input         = DF.input,
-        target.variable  = 'Y_total_hat_tree',
-        FILE.output      = 'plot-histogram-Y-total-hat-tree.png',
-        plot.title       = "Estimated Population Total of Y",
-        plot.subtitle    = "(non-probability sample, tree-based propensity estimation)",
-        vline_xintercept = vline_xintercept,
-        textsize.title   = textsize.title,
-        textsize.axis    = textsize.axis
-        );
+    #plotOneHistogram(
+    #    DF.input         = DF.input,
+    #    target.variable  = 'Y_total_hat_propensity',
+    #    FILE.output      = 'plot-histogram-Y-total-hat-propensity.png',
+    #    plot.title       = "Estimated Population Total of Y",
+    #    plot.subtitle    = "(non-probability sample, true propensity)",
+    #    vline_xintercept = vline_xintercept,
+    #    textsize.title   = textsize.title,
+    #    textsize.axis    = textsize.axis
+    #    );
+
+    #plotOneHistogram(
+    #    DF.input         = DF.input,
+    #    target.variable  = 'Y_total_hat_tree',
+    #    FILE.output      = 'plot-histogram-Y-total-hat-tree.png',
+    #    plot.title       = "Estimated Population Total of Y",
+    #    plot.subtitle    = "(non-probability sample, tree-based propensity estimation)",
+    #    vline_xintercept = vline_xintercept,
+    #    textsize.title   = textsize.title,
+    #    textsize.axis    = textsize.axis
+    #    );
 
     plotOneHistogram(
         DF.input         = DF.input,
-        target.variable  = 'Y_total_hat_propensity',
-        FILE.output      = 'plot-histogram-Y-total-hat-propensity.png',
+        target.variable  = 'Y_total_hat_calibration',
+        FILE.output      = 'plot-histogram-Y-total-hat-calibration.png',
         plot.title       = "Estimated Population Total of Y",
-        plot.subtitle    = "(non-probability sample, true propensity)",
+        plot.subtitle    = "(non-probability sample, calibration)",
         vline_xintercept = vline_xintercept,
         textsize.title   = textsize.title,
         textsize.axis    = textsize.axis
