@@ -10,10 +10,10 @@ getPopulation <- function(N = 10000) {
     x1    <- exp(sigma * z1);
     x2    <- exp(sigma * z2);
 
-    b0 <- 11;
-    b1 <- 13;
-    b2 <- 17;
-    epsilon <- rnorm(n = N, mean = 0, sd = 0.5)
+    b0 <-   11;
+    b1 <-   13;
+    b2 <- - 17;
+    epsilon <- rnorm(n = N, mean = 0, sd = 5.0)
     y       <- b0 + b1 * x1 + b2 * x2 + epsilon^2; 
 
     w <- 10 * (x1 - x2);

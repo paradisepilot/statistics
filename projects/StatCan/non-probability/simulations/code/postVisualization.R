@@ -18,27 +18,27 @@ postVisualization <- function(
     print( summary(DF.input)   );
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-    #plotOneHistogram(
-    #    DF.input         = DF.input,
-    #    target.variable  = 'Y_total_hat_propensity',
-    #    FILE.output      = 'plot-histogram-Y-total-hat-propensity.png',
-    #    plot.title       = "Estimated Population Total of Y",
-    #    plot.subtitle    = "(non-probability sample, true propensity)",
-    #    vline_xintercept = vline_xintercept,
-    #    textsize.title   = textsize.title,
-    #    textsize.axis    = textsize.axis
-    #    );
+    plotOneHistogram(
+        DF.input         = DF.input,
+        target.variable  = 'Y_total_hat_propensity',
+        FILE.output      = 'plot-histogram-Y-total-hat-propensity.png',
+        plot.title       = "Estimated Population Total of Y",
+        plot.subtitle    = "(non-probability sample, true propensity)",
+        vline_xintercept = vline_xintercept,
+        textsize.title   = textsize.title,
+        textsize.axis    = textsize.axis
+        );
 
-    #plotOneHistogram(
-    #    DF.input         = DF.input,
-    #    target.variable  = 'Y_total_hat_tree',
-    #    FILE.output      = 'plot-histogram-Y-total-hat-tree.png',
-    #    plot.title       = "Estimated Population Total of Y",
-    #    plot.subtitle    = "(non-probability sample, tree-based propensity estimation)",
-    #    vline_xintercept = vline_xintercept,
-    #    textsize.title   = textsize.title,
-    #    textsize.axis    = textsize.axis
-    #    );
+    plotOneHistogram(
+        DF.input         = DF.input,
+        target.variable  = 'Y_total_hat_tree',
+        FILE.output      = 'plot-histogram-Y-total-hat-tree.png',
+        plot.title       = "Estimated Population Total of Y",
+        plot.subtitle    = "(non-probability sample, tree-based propensity estimation)",
+        vline_xintercept = vline_xintercept,
+        textsize.title   = textsize.title,
+        textsize.axis    = textsize.axis
+        );
 
     plotOneHistogram(
         DF.input         = DF.input,
@@ -102,8 +102,8 @@ plotOneHistogram <- function(
     my.ggplot <- my.ggplot + geom_hline(yintercept = 0,colour="gray",size=0.75);
 
     my.ggplot <- my.ggplot + scale_x_continuous(
-        limits = 100000 *   c(0,5.5),
-        breaks = 100000 * seq(0,5.0,1)
+        limits = 100000 *   c(0,6.5),
+        breaks = 100000 * seq(0,6.0,1)
         );
     #my.ggplot <- my.ggplot + scale_y_continuous(limits=c(0,3),breaks=seq(0,3,0.5));
 
