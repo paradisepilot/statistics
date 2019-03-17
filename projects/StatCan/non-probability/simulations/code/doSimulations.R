@@ -6,6 +6,7 @@ doSimulations <- function(
     prob.selection = 0.1
     ) {
 
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     population.totals <- c(
         "(Intercept)" = nrow(DF.population),
         x1            = sum(DF.population[,"x1"]),
@@ -18,6 +19,7 @@ doSimulations <- function(
         Y_total_hat_propensity  = as.numeric(rep(NA,n.iterations)),
         Y_total_hat_tree        = as.numeric(rep(NA,n.iterations)),
         Y_total_hat_calibration = as.numeric(rep(NA,n.iterations)),
+        Y_total_hat_naive       = as.numeric(rep(NA,n.iterations)),
         correlation             = as.numeric(rep(NA,n.iterations))
         );
 
@@ -28,6 +30,7 @@ doSimulations <- function(
     Y_total_hat_tree        <- NA;
     cor_phat_propensity     <- NA;
     Y_total_hat_calibration <- NA;
+    Y_total_hat_naive       <- NA;
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     for (i in seq(1,n.iterations)) {
@@ -88,12 +91,17 @@ doSimulations <- function(
             );
 
         ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+        naive.factor      <- nrow(DF.population) / nrow(LIST.samples[['non.probability.sample']]);
+        Y_total_hat_naive <- naive.factor * sum(LIST.samples[['non.probability.sample']][,"y"]);
+
+        ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
         DF.results[i,] <- c(
             i,
             Y_total,
             Y_total_hat_propensity,
             Y_total_hat_tree,
             Y_total_hat_calibration,
+            Y_total_hat_naive,
             cor_phat_propensity
             );
 

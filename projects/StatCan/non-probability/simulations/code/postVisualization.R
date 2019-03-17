@@ -51,6 +51,17 @@ postVisualization <- function(
         textsize.axis    = textsize.axis
         );
 
+    plotOneHistogram(
+        DF.input         = DF.input,
+        target.variable  = 'Y_total_hat_naive',
+        FILE.output      = 'plot-histogram-Y-total-hat-naive.png',
+        plot.title       = "Estimated Population Total of Y",
+        plot.subtitle    = "(non-probability sample, naive)",
+        vline_xintercept = vline_xintercept,
+        textsize.title   = textsize.title,
+        textsize.axis    = textsize.axis
+        );
+
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     return(NULL);
 
