@@ -17,6 +17,7 @@ library(survey);
 
 source(paste0(code.directory,'/doSimulations.R'));
 source(paste0(code.directory,'/getCalibrationEstimate.R'));
+source(paste0(code.directory,'/getChenLiWuEstimate.R'));
 source(paste0(code.directory,'/getPopulation.R'));
 source(paste0(code.directory,'/getSamples.R'));
 source(paste0(code.directory,'/myCART.R'));
@@ -45,19 +46,19 @@ apply(
     FUN = function(x) { sum(x) }
     )
 
-visualizePopulation(population = my.population);
+#visualizePopulation(population = my.population);
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-FILE.results   <- "results-simulations.csv";
-n.iterations   <- 200;
-prob.selection <- 0.1;
-
-DF.results <- doSimulations(
-    FILE.results   = FILE.results,
-    n.iterations   = n.iterations,
-    DF.population  = my.population,
-    prob.selection = prob.selection
-    );
+#FILE.results   <- "results-simulations.csv";
+#n.iterations   <- 200;
+#prob.selection <- 0.1;
+#
+#DF.results <- doSimulations(
+#    FILE.results   = FILE.results,
+#    n.iterations   = n.iterations,
+#    DF.population  = my.population,
+#    prob.selection = prob.selection
+#    );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #visualizeSimulations(
@@ -66,10 +67,10 @@ DF.results <- doSimulations(
 #    );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-postVisualization(
-    FILE.input       = FILE.results,
-    vline_xintercept = Y_total
-    );
+#postVisualization(
+#    FILE.input       = FILE.results,
+#    vline_xintercept = Y_total
+#    );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 #set.seed(2);
@@ -92,6 +93,30 @@ postVisualization(
 #    DF.input          = LIST.samples[['non.probability.sample']],
 #    population.totals = population.totals
 #    );
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+set.seed(3);
+LIST.samples <- getSamples(
+    DF.population  = my.population,
+    prob.selection = 0.1
+    );
+
+#print( str(LIST.samples) );
+
+#population.totals <- c(
+#    "(Intercept)" = nrow(my.population),
+#    x1            = sum(my.population[,"x1"]),
+#    x2            = sum(my.population[,"x2"])
+#    );
+
+#print( population.totals );
+
+getChenLiWuEstimate(
+    LIST.input = LIST.samples,
+    formula    = y ~ x1 + x2,
+    weight     = "weight",
+    population = my.population
+    );
 
 ###################################################
 ###################################################

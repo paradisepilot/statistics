@@ -9,7 +9,7 @@ getSamples <- function(DF.population = NULL, prob.selection = 0.1) {
         prob    = c(prob.selection,1-prob.selection)
         );
 
-    DF.probability <- DF.population[is.selected,c("x1","x2")];
+    DF.probability <- DF.population[is.selected,c("ID","x1","x2")];
     DF.probability[,"weight"] <- 1 / prob.selection;
 
     # ~~~~~~~~~~ #
