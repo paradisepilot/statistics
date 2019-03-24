@@ -16,7 +16,7 @@ getPopulation <- function(N = 10000) {
 
     #epsilon <- rnorm(n = N, mean = 0, sd = 5.0)
     #y       <- b0 + b1 * x1 + b2 * x2 + epsilon^2; 
-    epsilon <- rnorm(n = N, mean = 0, sd = 1.0)
+    epsilon <- rnorm(n = N, mean = 0, sd = 2.0)
     y       <- b0 + b1 * x1 + b2 * x2 + epsilon; 
 
     w <- 10 * (x1 - x2);

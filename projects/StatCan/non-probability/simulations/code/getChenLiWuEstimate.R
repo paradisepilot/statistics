@@ -8,20 +8,18 @@ getChenLiWuEstimate <- function(
 
     require(stats);
 
-    cat("\nstr(LIST.input)\n");
-    print( str(LIST.input)   );
+    #cat("\nstr(LIST.input)\n");
+    #print( str(LIST.input)   );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    #formula <- as.formula(formula);
-
     temp       <- all.vars(as.formula(formula));
     response   <- temp[1];
     predictors <- base::setdiff(temp,c(response));
 
-    cat("\nresponse\n");
-    print( response   );
-    cat("\npredictors\n");
-    print( predictors   );
+    #cat("\nresponse\n");
+    #print( response   );
+    #cat("\npredictors\n");
+    #print( predictors   );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     DF.nonprob <- LIST.input[['non.probability.sample']];
@@ -32,45 +30,45 @@ getChenLiWuEstimate <- function(
 
     beta.hat <- coef(results.lm);
 
-    cat("\nresults.lm\n");
-    print( results.lm   );
+    #cat("\nresults.lm\n");
+    #print( results.lm   );
 
-    cat("\nbeta.hat\n");
-    print( beta.hat   );
+    #cat("\nbeta.hat\n");
+    #print( beta.hat   );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     X.nonprob <- as.matrix(cbind(
         intercept = rep(1,nrow(LIST.input[['non.probability.sample']])),
         LIST.input[['non.probability.sample']][,predictors]
         ));
-    cat("\nhead(X.nonprob)\n");
-    print( head(X.nonprob)   );
+    #cat("\nhead(X.nonprob)\n");
+    #print( head(X.nonprob)   );
 
     X.prob <- as.matrix(cbind(
         intercept = rep(1,nrow(LIST.input[['probability.sample']])),
         LIST.input[['probability.sample']][,predictors]
         ));
-    cat("\nhead(X.prob)\n");
-    print( head(X.prob)   );
+    #cat("\nhead(X.prob)\n");
+    #print( head(X.prob)   );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     X.prob_beta.hat <- X.prob %*% beta.hat;
-    cat("\nstr(X.prob_beta.hat)\n");
-    print( str(X.prob_beta.hat)   );
+    #cat("\nstr(X.prob_beta.hat)\n");
+    #print( str(X.prob_beta.hat)   );
 
     weights <- LIST.input[['probability.sample']][,weight];
-    cat("\nstr(weights)\n");
-    print( str(weights)   ); 
+    #cat("\nstr(weights)\n");
+    #print( str(weights)   ); 
 
     T.prob  <- sum( weights * X.prob_beta.hat );
-    cat("\nT.prob\n");
-    print( T.prob   );
+    #cat("\nT.prob\n");
+    #print( T.prob   );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     minus_logL <- function(theta) {
 
-        cat("\ntheta\n");
-        print( theta   );
+        #cat("\ntheta\n");
+        #print( theta   );
 
         X.nonprob_theta   <- X.nonprob %*% theta;
         X.prob_theta      <- X.prob    %*% theta;
@@ -98,25 +96,25 @@ getChenLiWuEstimate <- function(
         #print( temp.Hessian );
 
         new.theta <- theta - solve(temp.Hessian,temp.gradient);
-        cat("\nnew.theta\n");
-        print( new.theta   );
+        #cat("\nnew.theta\n");
+        #print( new.theta   );
 
         attr(minus_logL.out,"gradient") <- temp.gradient;
         attr(minus_logL.out,"hessian" ) <- temp.Hessian;
 
-        cat("\n~~~~~~~~~~\n")
+        #cat("\n~~~~~~~~~~\n")
         return(minus_logL.out);
 
         }
 
-    cat("\n~~~~~~~~~~\n")
+    #cat("\n~~~~~~~~~~\n")
     theta0 <- rep(0,ncol(X.prob));
     results.nlm <- stats::nlm(
         f = minus_logL,
         p = theta0
         );
-    cat("\nresults.nlm\n");
-    print( results.nlm   );
+    #cat("\nresults.nlm\n");
+    #print( results.nlm   );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     theta.hat            <- results.nlm[["estimate"]];
@@ -127,29 +125,34 @@ getChenLiWuEstimate <- function(
 
     X.nonprob_beta.hat <- X.nonprob %*% beta.hat;
     T.nonprob <- sum( weights.nonprob * (LIST.input[['non.probability.sample']][,response] - X.nonprob_beta.hat) );
-
-    temp.correlation <- cor( LIST.input[['non.probability.sample']][,response] , X.nonprob_beta.hat );
-    cat("\ntemp.correlation\n");
-    print( temp.correlation   );
+    #cat("\nT.nonprob\n");
+    #print( T.nonprob   );
 
     temp <- merge(
         x = LIST.input[['non.probability.sample']],
         y = population,
         by = "ID"
         );
-    cat("\ncor( temp[,'propensity'] , 1/weights.nonprob )\n");
-    print( cor( temp[,"propensity"] , 1/weights.nonprob )   );
+    cor.propensity <- cor( temp[,"propensity"] , 1/weights.nonprob );
+    #cat("\ncor.propensity\n");
+    #print( cor.propensity   );
 
-    cat("\nT.nonprob\n");
-    print( T.nonprob   );
+    cor.response <- cor( LIST.input[['non.probability.sample']][,response] , X.nonprob_beta.hat );
+    #cat("\ncor.response\n");
+    #print( cor.response   );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     Y_total_hat_CLW <- T.nonprob + T.prob;
-    cat("\nY_total_hat_CLW\n");
-    print( Y_total_hat_CLW   );
+    #cat("\nY_total_hat_CLW\n");
+    #print( Y_total_hat_CLW   );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    return( Y_total_hat_CLW );
+    LIST.output <- list(
+        estimate       = Y_total_hat_CLW,
+        cor.propensity = cor.propensity,
+        cor.response   = cor.response
+        );
+    return( LIST.output );
 
     }
 

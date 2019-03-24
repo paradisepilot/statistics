@@ -18,6 +18,10 @@ postVisualization <- function(
     print( summary(DF.input)   );
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+    temp.limits <- 100000 *   c(0, 2.1     );
+    temp.breaks <- 100000 * seq(0, 2.0, 0.4);
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     plotOneHistogram(
         DF.input         = DF.input,
         target.variable  = 'Y_total_hat_propensity',
@@ -26,7 +30,9 @@ postVisualization <- function(
         plot.subtitle    = "(non-probability sample, true propensity)",
         vline_xintercept = vline_xintercept,
         textsize.title   = textsize.title,
-        textsize.axis    = textsize.axis
+        textsize.axis    = textsize.axis,
+        limits           = temp.limits,
+        breaks           = temp.breaks
         );
 
     plotOneHistogram(
@@ -37,7 +43,9 @@ postVisualization <- function(
         plot.subtitle    = "(non-probability sample, tree-based propensity estimation)",
         vline_xintercept = vline_xintercept,
         textsize.title   = textsize.title,
-        textsize.axis    = textsize.axis
+        textsize.axis    = textsize.axis,
+        limits           = temp.limits,
+        breaks           = temp.breaks
         );
 
     plotOneHistogram(
@@ -48,7 +56,9 @@ postVisualization <- function(
         plot.subtitle    = "(non-probability sample, calibration)",
         vline_xintercept = vline_xintercept,
         textsize.title   = textsize.title,
-        textsize.axis    = textsize.axis
+        textsize.axis    = textsize.axis,
+        limits           = temp.limits,
+        breaks           = temp.breaks
         );
 
     plotOneHistogram(
@@ -59,7 +69,22 @@ postVisualization <- function(
         plot.subtitle    = "(non-probability sample, naive)",
         vline_xintercept = vline_xintercept,
         textsize.title   = textsize.title,
-        textsize.axis    = textsize.axis
+        textsize.axis    = textsize.axis,
+        limits           = temp.limits,
+        breaks           = temp.breaks
+        );
+
+    plotOneHistogram(
+        DF.input         = DF.input,
+        target.variable  = 'Y_total_hat_CLW',
+        FILE.output      = 'plot-histogram-Y-total-hat-CLW.png',
+        plot.title       = "Estimated Population Total of Y",
+        plot.subtitle    = "(non-probability sample, Chen-Li-Wu)",
+        vline_xintercept = vline_xintercept,
+        textsize.title   = textsize.title,
+        textsize.axis    = textsize.axis,
+        limits           = temp.limits,
+        breaks           = temp.breaks
         );
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -76,7 +101,9 @@ plotOneHistogram <- function(
     plot.subtitle    = NULL,
     vline_xintercept = NULL,
     textsize.title   = NULL,
-    textsize.axis    = NULL
+    textsize.axis    = NULL,
+    limits           = NULL,
+    breaks           = NULL
     ) {
 
     my.ggplot <- ggplot(data = NULL) + theme_bw();
@@ -102,8 +129,8 @@ plotOneHistogram <- function(
     my.ggplot <- my.ggplot + geom_hline(yintercept = 0,colour="gray",size=0.75);
 
     my.ggplot <- my.ggplot + scale_x_continuous(
-        limits = 100000 *   c(0,6.5),
-        breaks = 100000 * seq(0,6.0,1)
+        limits = limits,
+        breaks = breaks
         );
     #my.ggplot <- my.ggplot + scale_y_continuous(limits=c(0,3),breaks=seq(0,3,0.5));
 
