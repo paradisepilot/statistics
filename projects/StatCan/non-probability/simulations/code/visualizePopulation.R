@@ -31,6 +31,8 @@ visualizePopulation <- function(
     #my.ggplot <- my.ggplot + scale_x_continuous(limits=c(-0.2,10.2),breaks=seq(0,10,2));
     #my.ggplot <- my.ggplot + scale_y_continuous(limits=c(-0.2,10.2),breaks=seq(0,10,2));
 
+    my.ggplot <- my.ggplot + scale_x_continuous(limits=c(-0.05,1.05),breaks=seq(0,1,0.2));
+
     my.ggplot <- my.ggplot + geom_density(
         data    = population,
         mapping = aes(x = propensity)
