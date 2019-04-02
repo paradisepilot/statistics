@@ -29,17 +29,14 @@ source(paste0(code.directory,'/visualizeSimulations.R'));
 
 ###################################################
 ###################################################
-#set.seed(7654321);
-#set.seed(1234567);
-
 my.seed         <- 1234567;
-#population.size <- 10000;
+population.size <- 10000;
 alpha0          <- 0.25;
-#n.iterations    <- 200;
+n.iterations    <- 200;
 prob.selection  <- 0.1;
 
-population.size <- 1000;
-n.iterations    <-    3;
+#population.size <- 1000;
+#n.iterations    <-    3;
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 population.flags <- c("01","02","03");
