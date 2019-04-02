@@ -22,6 +22,14 @@ visualizeSimulations <- function(
     temp.limits <- 100000 *   c(0, 2.1     );
     temp.breaks <- 100000 * seq(0, 2.0, 0.4);
 
+    if ( "02" == population.flag ) {
+        temp.limits <- 100000 *   c( 0, 6.5   );
+        temp.breaks <- 100000 * seq( 0, 6.0, 1);
+    } else if ( "03" == population.flag ) {
+        temp.limits <- 1000000 *   c( 0, 1.3     );
+        temp.breaks <- 1000000 * seq( 0, 1.3, 0.2);
+    }
+
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     plotOneHistogram(
         DF.input         = DF.input,
@@ -145,6 +153,23 @@ plotOneHistogram <- function(
         );
 
     my.ggplot <- my.ggplot + geom_vline(xintercept = vline_xintercept,colour="orange",size=1.00);
+
+    MCRelBias <- (DF.input[,target.variable] - vline_xintercept) / vline_xintercept;
+    MCRelBias <- mean( MCRelBias );
+    MCRelBias <- round(MCRelBias,3);
+
+    MCRelRMSE <- (DF.input[,target.variable] - vline_xintercept)^2 / (vline_xintercept^2) ;
+    MCRelRMSE <- sqrt(mean( MCRelRMSE ));
+    MCRelRMSE <- round(MCRelRMSE,3);
+
+    my.ggplot <- my.ggplot + annotate(
+        geom  = "text",
+        label = c(paste0("MC Rel.Bias   = ",MCRelBias),paste0("MC Rel.RMSE = ",MCRelRMSE)),
+        x     = limits[2] * c(0.80,0.80),
+        y     = limits[2] * c(0.95,0.88),
+        size  = 10,
+        color = "black"
+        );
 
     ggsave(
         file   = FILE.output,
