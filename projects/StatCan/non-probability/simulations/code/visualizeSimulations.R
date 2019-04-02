@@ -164,7 +164,7 @@ plotOneHistogram <- function(
 
     my.ggplot <- my.ggplot + annotate(
         geom  = "text",
-        label = c(paste0("MC Rel.Bias   = ",MCRelBias),paste0("MC Rel.RMSE = ",MCRelRMSE)),
+        label = c(paste0("MC Rel.BIAS   = ",MCRelBias),paste0("MC Rel.RMSE = ",MCRelRMSE)),
         x     = limits[2] * c(0.80,0.80),
         y     = limits[2] * c(0.95,0.88),
         size  = 10,
