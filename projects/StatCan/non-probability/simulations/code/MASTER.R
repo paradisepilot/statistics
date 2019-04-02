@@ -105,39 +105,6 @@ for (population.flag in population.flags) {
     }
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#my.population <- getPopulation(N = 10000);
-#print( str(    my.population) );
-#print( summary(my.population) );
-#print( head(my.population,n=20) );
-
-#Y_total <- sum(my.population[,"y"]);
-#print( Y_total );
-
-#apply(
-#    X = my.population[,c("y","x1","x2")],
-#    MARGIN = 2,
-#    FUN = function(x) { sum(x) }
-#    )
-
-#visualizePopulation(population = my.population);
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#FILE.results   <- "results-simulations.csv";
-#n.iterations   <- 200;
-#prob.selection <- 0.1;
-
-#DF.results <- doSimulations(
-#    FILE.results   = FILE.results,
-#    n.iterations   = n.iterations,
-#    DF.population  = my.population,
-#    prob.selection = prob.selection
-#    );
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-#postVisualization(
-#    FILE.input       = FILE.results,
-#    vline_xintercept = Y_total
-#    );
 
 ###################################################
 ###################################################
