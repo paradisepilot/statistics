@@ -171,6 +171,9 @@ plotOneHistogram <- function(
         color = "black"
         );
 
+    # layer_scales(my.ggplot, i = 1L, j = 1L)
+    # my.ggplot$coordinates$limits
+
     ggsave(
         file   = FILE.output,
         plot   = my.ggplot,
