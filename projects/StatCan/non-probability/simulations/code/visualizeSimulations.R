@@ -167,11 +167,19 @@ plotOneHistogram <- function(
     temp.xmax <- max(layer_scales(my.ggplot,i=1L,j=1L)[['x']]$get_limits())
     temp.ymax <- max(layer_scales(my.ggplot,i=1L,j=1L)[['y']]$get_limits())
 
+    temp.min  <- format(min(DF.input[,target.variable]),digits=3,scientific=TRUE);
+    temp.max  <- format(max(DF.input[,target.variable]),digits=3,scientific=TRUE);
+
     my.ggplot <- my.ggplot + annotate(
         geom  = "text",
-        label = c(paste0("MC Rel.BIAS = ",MCRelBias),paste0("MC Rel.RMSE = ",MCRelRMSE)),
-        x     = temp.xmax * c(0.80,0.80),
-        y     = temp.ymax * c(0.98,0.91),
+        label = c(
+            paste0("MC Rel.BIAS = ",MCRelBias),
+            paste0("MC Rel.RMSE = ",MCRelRMSE),
+            paste0("min(Ty_hat) = ",temp.min),
+            paste0("max(Ty_hat) = ",temp.max)
+            ),
+        x     = temp.xmax * 0.8 * c(1,1,1,1),
+        y     = temp.ymax * c(0.98,0.91,0.81,0.74),
         size  = 10,
         color = "black"
         );
