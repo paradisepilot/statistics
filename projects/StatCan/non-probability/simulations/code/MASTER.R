@@ -32,12 +32,12 @@ source(paste0(code.directory,'/visualizeSimulations.R'));
 my.seed         <- 1234567;
 population.size <- 10000;
 alpha0          <- 0.25;
-#n.iterations    <- 200;
+n.iterations    <- 200;
 prob.selection  <- 0.1;
 
 #population.size <- 1000;
 #n.iterations    <-    3;
-n.iterations    <- 100;
+#n.iterations    <-  100;
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 population.flags <- c("01","02","03");
@@ -77,21 +77,21 @@ for (population.flag in population.flags) {
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    #doOneSimulation(
-    #    population.flag = population.flag,
-    #    DF.population   = my.population,
-    #    prob.selection  = prob.selection
-    #    );
+    doOneSimulation(
+        population.flag = population.flag,
+        DF.population   = my.population,
+        prob.selection  = prob.selection
+        );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     FILE.results <- paste0("simulation-results-",population.flag,".csv");
 
-    #DF.results <- doSimulations(
-    #    FILE.results   = FILE.results,
-    #    n.iterations   = n.iterations,
-    #    DF.population  = my.population,
-    #    prob.selection = prob.selection
-    #    );
+    DF.results <- doSimulations(
+        FILE.results   = FILE.results,
+        n.iterations   = n.iterations,
+        DF.population  = my.population,
+        prob.selection = prob.selection
+        );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     visualizeSimulations(
