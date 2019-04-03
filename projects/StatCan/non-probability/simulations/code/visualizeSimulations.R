@@ -154,25 +154,27 @@ plotOneHistogram <- function(
 
     my.ggplot <- my.ggplot + geom_vline(xintercept = vline_xintercept,colour="orange",size=1.00);
 
+    MCRelBias <- NA;
     MCRelBias <- (DF.input[,target.variable] - vline_xintercept) / vline_xintercept;
-    MCRelBias <- mean( MCRelBias );
+    MCRelBias <- mean( MCRelBias  );
     MCRelBias <- round(MCRelBias,3);
 
-    MCRelRMSE <- (DF.input[,target.variable] - vline_xintercept)^2 / (vline_xintercept^2) ;
+    MCRelRMSE <- NA;
+    MCRelRMSE <- ((DF.input[,target.variable] - vline_xintercept)^2) / (vline_xintercept^2) ;
     MCRelRMSE <- sqrt(mean( MCRelRMSE ));
     MCRelRMSE <- round(MCRelRMSE,3);
+
+    temp.xmax <- max(layer_scales(my.ggplot,i=1L,j=1L)[['x']]$get_limits())
+    temp.ymax <- max(layer_scales(my.ggplot,i=1L,j=1L)[['y']]$get_limits())
 
     my.ggplot <- my.ggplot + annotate(
         geom  = "text",
         label = c(paste0("MC Rel.BIAS = ",MCRelBias),paste0("MC Rel.RMSE = ",MCRelRMSE)),
-        x     = limits[2] * c(0.80,0.80),
-        y     = limits[2] * c(0.95,0.88),
+        x     = temp.xmax * c(0.80,0.80),
+        y     = temp.ymax * c(0.98,0.91),
         size  = 10,
         color = "black"
         );
-
-    # layer_scales(my.ggplot, i = 1L, j = 1L)
-    # my.ggplot$coordinates$limits
 
     ggsave(
         file   = FILE.output,

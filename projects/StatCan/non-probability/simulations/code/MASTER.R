@@ -77,21 +77,21 @@ for (population.flag in population.flags) {
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    doOneSimulation(
-        population.flag = population.flag,
-        DF.population   = my.population,
-        prob.selection  = prob.selection
-        );
+    #doOneSimulation(
+    #    population.flag = population.flag,
+    #    DF.population   = my.population,
+    #    prob.selection  = prob.selection
+    #    );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     FILE.results <- paste0("simulation-results-",population.flag,".csv");
 
-    DF.results <- doSimulations(
-        FILE.results   = FILE.results,
-        n.iterations   = n.iterations,
-        DF.population  = my.population,
-        prob.selection = prob.selection
-        );
+    #DF.results <- doSimulations(
+    #    FILE.results   = FILE.results,
+    #    n.iterations   = n.iterations,
+    #    DF.population  = my.population,
+    #    prob.selection = prob.selection
+    #    );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     visualizeSimulations(
