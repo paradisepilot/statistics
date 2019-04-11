@@ -16,6 +16,7 @@ A nonparametric EM algorithm for multiscale Hawkes processes.
 .. _preprint, 1-16: http://paleo.sscnet.ucla.edu/Lewis-Molher-EM_Preprint.pdf
 """
 
+import random
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -26,7 +27,7 @@ from tick.plot   import plot_hawkes_kernels
 def test_HawkesEM():
 
     print('\n##############################')
-    print('\nstarting: test_HawkesEM()')
+    print('\nstarting: test_HawkesEM()\n')
 
     run_time = 30000
 
@@ -45,30 +46,41 @@ def test_HawkesEM():
 
     baseline = np.array([0.1, 0.3])
 
-    hawkes = SimuHawkes(
-        baseline = baseline,
-        end_time = run_time,
-        verbose  = False,
-        seed     = 2334
-        )
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    realizations = list()
+    for i in range(0, 3):
 
-    hawkes.set_kernel(0, 0, kernel1)
-    hawkes.set_kernel(0, 1, HawkesKernelExp(.5, .7))
-    hawkes.set_kernel(1, 1, kernel2)
+        print( '' )
 
-    hawkes.simulate()
+        temp_seed = int(1000 + 1000 * random.random())
+        print('i = ' + str(i) + ', temp_seed = ' + str(temp_seed));
 
-    print('hawkes.timestamps');
-    print( hawkes.timestamps );
+        hawkes = SimuHawkes(
+            baseline = baseline,
+            end_time = run_time,
+            verbose  = False,
+            seed     = temp_seed
+            )
+        hawkes.set_kernel(0, 0, kernel1)
+        hawkes.set_kernel(0, 1, HawkesKernelExp(.5, .7))
+        hawkes.set_kernel(1, 1, kernel2)
+        hawkes.simulate()
 
-    print('len(hawkes.timestamps[0])');
-    print( len(hawkes.timestamps[0]) );
+        temp_realization = hawkes.timestamps;
+        print(
+            'i = ' + str(i) + ', ' +
+            'event counts = ('
+                + str(len(temp_realization[0])) + ','
+                + str(len(temp_realization[1])) +
+                ')'
+            );
+        print( temp_realization )
 
-    print('len(hawkes.timestamps[1])');
-    print( len(hawkes.timestamps[1]) );
+        realizations.append( temp_realization );
 
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     em = HawkesEM(4, kernel_size=16, n_threads=8, verbose=False, tol=1e-3)
-    em.fit(hawkes.timestamps)
+    em.fit(events = realizations)
 
     fig = plot_hawkes_kernels(em, hawkes=hawkes, show=False)
 
