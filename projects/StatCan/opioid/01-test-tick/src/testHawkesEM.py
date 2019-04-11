@@ -40,8 +40,8 @@ def test_HawkesEM():
 
     t_values2 = np.linspace(0, 4, 20)
     y_values2 = np.maximum(0., np.sin(t_values2) / 4)
-    tf2 = TimeFunction([t_values2, y_values2])
-    kernel2 = HawkesKernelTimeFunc(tf2)
+    tf2       = TimeFunction([t_values2, y_values2])
+    kernel2   = HawkesKernelTimeFunc(tf2)
 
     baseline = np.array([0.1, 0.3])
 
@@ -57,6 +57,15 @@ def test_HawkesEM():
     hawkes.set_kernel(1, 1, kernel2)
 
     hawkes.simulate()
+
+    print('hawkes.timestamps');
+    print( hawkes.timestamps );
+
+    print('len(hawkes.timestamps[0])');
+    print( len(hawkes.timestamps[0]) );
+
+    print('len(hawkes.timestamps[1])');
+    print( len(hawkes.timestamps[1]) );
 
     em = HawkesEM(4, kernel_size=16, n_threads=8, verbose=False, tol=1e-3)
     em.fit(hawkes.timestamps)
