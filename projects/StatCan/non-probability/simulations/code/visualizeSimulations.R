@@ -44,18 +44,18 @@ visualizeSimulations <- function(
         breaks           = temp.breaks
         );
 
-    plotOneHistogram(
-        DF.input         = DF.input,
-        target.variable  = 'Y_total_hat_tree',
-        FILE.output      = paste0('histogram-Ty-hat-tree-',population.flag,'.png'),
-        plot.title       = paste0("non-probability sample ",population.flag,",  tree-based IPW"),
-        plot.subtitle    = NULL,
-        vline_xintercept = vline_xintercept,
-        textsize.title   = textsize.title,
-        textsize.axis    = textsize.axis,
-        limits           = temp.limits,
-        breaks           = temp.breaks
-        );
+    #plotOneHistogram(
+    #    DF.input         = DF.input,
+    #    target.variable  = 'Y_total_hat_tree',
+    #    FILE.output      = paste0('histogram-Ty-hat-tree-',population.flag,'.png'),
+    #    plot.title       = paste0("non-probability sample ",population.flag,",  tree-based IPW"),
+    #    plot.subtitle    = NULL,
+    #    vline_xintercept = vline_xintercept,
+    #    textsize.title   = textsize.title,
+    #    textsize.axis    = textsize.axis,
+    #    limits           = temp.limits,
+    #    breaks           = temp.breaks
+    #    );
 
     plotOneHistogram(
         DF.input         = DF.input,
@@ -156,30 +156,39 @@ plotOneHistogram <- function(
 
     MCRelBias <- NA;
     MCRelBias <- (DF.input[,target.variable] - vline_xintercept) / vline_xintercept;
-    MCRelBias <- mean( MCRelBias  );
+    MCRelBias <- mean( MCRelBias, na.rm = TRUE );
     MCRelBias <- round(MCRelBias,3);
 
     MCRelRMSE <- NA;
-    MCRelRMSE <- ((DF.input[,target.variable] - vline_xintercept)^2) / (vline_xintercept^2) ;
+    temp.vect <- DF.input[!is.na(DF.input[,target.variable]),target.variable];
+    MCRelRMSE <- ((temp.vect - vline_xintercept)^2) / (vline_xintercept^2) ;
     MCRelRMSE <- sqrt(mean( MCRelRMSE ));
     MCRelRMSE <- round(MCRelRMSE,3);
 
     temp.xmax <- max(layer_scales(my.ggplot,i=1L,j=1L)[['x']]$get_limits())
     temp.ymax <- max(layer_scales(my.ggplot,i=1L,j=1L)[['y']]$get_limits())
 
-    temp.min  <- format(min(DF.input[,target.variable]),digits=3,scientific=TRUE);
-    temp.max  <- format(max(DF.input[,target.variable]),digits=3,scientific=TRUE);
+    temp.min  <- min(DF.input[,target.variable], na.rm = TRUE);
+    temp.min  <- format(temp.min, digits = 3, scientific = TRUE);
+
+    temp.max  <- max(DF.input[,target.variable], na.rm = TRUE);
+    temp.max  <- format(temp.max, digits = 3, scientific = TRUE);
+
+    temp.iter <- nrow( DF.input );
+    temp.NA   <- sum(is.na( DF.input[,target.variable] ));
 
     my.ggplot <- my.ggplot + annotate(
         geom  = "text",
         label = c(
             paste0("MC Rel.BIAS = ",MCRelBias),
             paste0("MC Rel.RMSE = ",MCRelRMSE),
-            paste0("min(Ty_hat) = ",temp.min),
-            paste0("max(Ty_hat) = ",temp.max)
+            paste0("min(Ty_hat) = ",temp.min ),
+            paste0("max(Ty_hat) = ",temp.max ),
+            paste0("   #(iters) = ",temp.iter),
+            paste0("      #(NA) = ",temp.NA  )
             ),
-        x     = temp.xmax * 0.8 * c(1,1,1,1),
-        y     = temp.ymax * c(0.98,0.91,0.81,0.74),
+        x     = temp.xmax * 0.8 * c(1,1,1,1,1,1),
+        y     = temp.ymax * c(0.98,0.91,0.81,0.74,0.64,0.57),
         size  = 10,
         color = "black"
         );

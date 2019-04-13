@@ -29,10 +29,10 @@ source(paste0(code.directory,'/visualizeSimulations.R'));
 
 ###################################################
 ###################################################
-my.seed         <- 1234567;
+my.seed         <- 7654321; #1234567;
 population.size <- 10000;
 alpha0          <- 0.25;
-n.iterations    <- 200;
+n.iterations    <- 3;
 prob.selection  <- 0.1;
 
 #population.size <- 1000;
@@ -93,7 +93,6 @@ for (population.flag in population.flags) {
         prob.selection = prob.selection
         );
 
-    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     visualizeSimulations(
         population.flag  = population.flag,
         FILE.input       = FILE.results,

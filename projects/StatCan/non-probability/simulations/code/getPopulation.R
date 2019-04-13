@@ -30,7 +30,7 @@ getPopulation <- function(
     }
 
 ##################################################
-getPopulation.01 <- function(
+getPopulation.01.00 <- function(
     N      = 10000,
     alpha0 = 0.25
     ) {
@@ -54,6 +54,102 @@ getPopulation.01 <- function(
     w <- 10 * (x1 - x2);
     propensity <- e1071::sigmoid(w);
     propensity <- alpha0 + (1 - alpha0) * propensity;
+
+    DF.output <- data.frame(
+        ID = seq(1,N),
+        y  = y,
+        x1 = x1,
+        x2 = x2,
+        w  = w,
+        propensity = propensity
+        );
+
+    return(DF.output);
+
+    }
+
+my.transform <- function(x) {
+
+    if ( x[1] >= x[2] ) {
+
+        return( x ); 
+
+    } else {
+
+        theta <- pi / 4;
+        R_minus_theta <- matrix(
+            data  = c(cos(-theta),-sin(-theta),sin(-theta),cos(-theta)),
+            nrow  = 2,
+            byrow = TRUE
+            );
+
+        M <- matrix(
+            data = c(1,0,0,1/8),
+            nrow  = 2,
+            byrow = TRUE
+            );
+
+        R_theta <- matrix(
+            data  = c(cos(theta),-sin(theta),sin(theta),cos(theta)),
+            nrow  = 2,
+            byrow = TRUE
+            );
+
+        x0 <- matrix(data=c(1,1.00),ncol=1);
+        w0 <- matrix(data=c(0,0.05),ncol=1);
+
+        #w <- x - x0;
+        #w <- x0 + R_theta %*% M %*% R_minus_theta %*% w;
+
+        #w <- x - x0;
+        #w <- w0 + M %*% R_minus_theta %*% w;
+        #w <- x0 + R_theta %*% w;
+
+        #w    <- x - x0;
+        #w    <- M %*% R_minus_theta %*% w;
+        #w[2] <- (0.3) * sqrt(w[2]);
+        #w    <- x0 + R_theta %*% w;
+
+        w    <- x;
+        w    <- M %*% R_minus_theta %*% w;
+        w[2] <- (0.3) * sqrt(w[2]);
+        w    <- R_theta %*% w;
+
+        return( c(w[1],w[2]) );
+    
+        }
+
+    }
+
+getPopulation.01 <- function(
+    N      = 10000,
+    alpha0 = 0.25
+    ) {
+
+    require(e1071);
+
+    z1 <- rnorm(n = N);
+    z2 <- rnorm(n = N);
+
+    sigma <- 0.25;
+    x1    <- exp(sigma * z1);
+    x2    <- exp(sigma * z2);
+
+    X <- rbind(x1,x2);
+    X <- apply(X = X, MARGIN = 2, FUN = my.transform);
+
+    x1 <- X[1,];
+    x2 <- X[2,];
+
+    b0 <-   11;
+    b1 <-   13;
+    b2 <- - 17;
+
+    epsilon <- rnorm(n = N, mean = 0, sd = 2.0)
+    y       <- b0 + b1 * x1 + b2 * x2 + epsilon;
+
+    w <- 10 * (x1 - x2);
+    propensity <- e1071::sigmoid(w);
 
     DF.output <- data.frame(
         ID = seq(1,N),
