@@ -68,6 +68,44 @@ getPopulation.01.00 <- function(
 
     }
 
+getPopulation.02.00 <- function(
+    N      = 10000,
+    alpha0 = 0.25
+    ) {
+
+    require(e1071);
+
+    z1 <- rnorm(n = N);
+    z2 <- rnorm(n = N);
+
+    sigma <- 0.25;
+    x1    <- exp(sigma * z1);
+    x2    <- exp(sigma * z2);
+
+    b0 <-   11;
+    b1 <-   13;
+    b2 <- - 17;
+
+    epsilon <- rnorm(n = N, mean = 0, sd = 5.0)
+    y       <- b0 + b1 * x1 + b2 * x2 + epsilon^2;
+
+    w <- 10 * (x1 - x2);
+    propensity <- e1071::sigmoid(w);
+    propensity <- alpha0 + (1 - alpha0) * propensity;
+
+    DF.output <- data.frame(
+        ID = seq(1,N),
+        y  = y,
+        x1 = x1,
+        x2 = x2,
+        w  = w,
+        propensity = propensity
+        );
+
+    return(DF.output);
+
+    }
+
 my.transform <- function(x) {
 
     if ( x[1] >= x[2] ) {
@@ -163,6 +201,12 @@ getPopulation.02 <- function(
     x1    <- exp(sigma * z1);
     x2    <- exp(sigma * z2);
 
+    X <- rbind(x1,x2);
+    X <- apply(X = X, MARGIN = 2, FUN = my.transform);
+
+    x1 <- X[1,];
+    x2 <- X[2,];
+
     b0 <-   11;
     b1 <-   13;
     b2 <- - 17;
@@ -172,7 +216,6 @@ getPopulation.02 <- function(
 
     w <- 10 * (x1 - x2);
     propensity <- e1071::sigmoid(w);
-    propensity <- alpha0 + (1 - alpha0) * propensity;
 
     DF.output <- data.frame(
         ID = seq(1,N),
