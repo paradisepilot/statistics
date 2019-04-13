@@ -95,21 +95,6 @@ my.transform <- function(x) {
             byrow = TRUE
             );
 
-        x0 <- matrix(data=c(1,1.00),ncol=1);
-        w0 <- matrix(data=c(0,0.05),ncol=1);
-
-        #w <- x - x0;
-        #w <- x0 + R_theta %*% M %*% R_minus_theta %*% w;
-
-        #w <- x - x0;
-        #w <- w0 + M %*% R_minus_theta %*% w;
-        #w <- x0 + R_theta %*% w;
-
-        #w    <- x - x0;
-        #w    <- M %*% R_minus_theta %*% w;
-        #w[2] <- (0.3) * sqrt(w[2]);
-        #w    <- x0 + R_theta %*% w;
-
         w    <- x;
         w    <- M %*% R_minus_theta %*% w;
         w[2] <- (0.3) * sqrt(w[2]);
