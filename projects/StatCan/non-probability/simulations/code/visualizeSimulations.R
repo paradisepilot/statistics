@@ -44,18 +44,18 @@ visualizeSimulations <- function(
         breaks           = temp.breaks
         );
 
-    #plotOneHistogram(
-    #    DF.input         = DF.input,
-    #    target.variable  = 'Y_total_hat_tree',
-    #    FILE.output      = paste0('histogram-Ty-hat-tree-',population.flag,'.png'),
-    #    plot.title       = paste0("non-probability sample ",population.flag,",  tree-based IPW"),
-    #    plot.subtitle    = NULL,
-    #    vline_xintercept = vline_xintercept,
-    #    textsize.title   = textsize.title,
-    #    textsize.axis    = textsize.axis,
-    #    limits           = temp.limits,
-    #    breaks           = temp.breaks
-    #    );
+    plotOneHistogram(
+        DF.input         = DF.input,
+        target.variable  = 'Y_total_hat_tree',
+        FILE.output      = paste0('histogram-Ty-hat-tree-',population.flag,'.png'),
+        plot.title       = paste0("non-probability sample ",population.flag,",  tree-based IPW"),
+        plot.subtitle    = NULL,
+        vline_xintercept = vline_xintercept,
+        textsize.title   = textsize.title,
+        textsize.axis    = textsize.axis,
+        limits           = temp.limits,
+        breaks           = temp.breaks
+        );
 
     plotOneHistogram(
         DF.input         = DF.input,
