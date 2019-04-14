@@ -1,7 +1,7 @@
 
 getEventHistories <- function(
     seed            = 1234567,
-    DateTime.start  = lubridate::ymd_hms("2014-01-01 00:00:00", quiet = TRUE, tz = "America/Vancouver"),
+    DateTime.start  = lubridate::ymd_hms("2004-01-01 00:00:00", quiet = TRUE, tz = "America/Vancouver"),
     DateTime.end    = lubridate::ymd_hms("2016-12-31 23:59:59", quiet = TRUE, tz = "America/Vancouver"),
     N               = 10000,
     alpha0          = 0.25,

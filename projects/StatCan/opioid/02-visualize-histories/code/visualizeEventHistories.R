@@ -3,10 +3,10 @@ visualizeEventHistories <- function(
     event.histories = NULL,
     FILE.output     = 'event-histories.png',
     textsize.title  =  30,
-    textsize.axis   =  20,
+    textsize.axis   =  15,
     dpi             = 300,
     height          =   1,
-    width           =  18,
+    width           =  30,
     units           = 'in'
     ) {
 
@@ -41,11 +41,17 @@ visualizeEventHistories <- function(
         title              = element_text(size = textsize.title, face = "bold"),
         axis.title.x       = element_blank(),
         axis.title.y       = element_blank(),
-        axis.text.x        = element_text(size = textsize.axis, face = "bold"),
+        axis.text.x        = element_text(
+            size   = textsize.axis,
+            face   = "bold"
+            #angle  = -90,
+            #hjust  = -1,
+            #margin = margin(t = 5, b = 0, l = 0, r = 0)
+            ),
         axis.text.y        = element_blank(),
         strip.text.y       = element_text(size = textsize.axis, face = "bold", angle = 0),
-        panel.grid.major   = element_line(colour="gray", linetype=2, size=0.25),
-        panel.grid.minor.x = element_line(colour="gray", linetype=2, size=0.25),
+        panel.grid.major   = element_line(colour="gray50", linetype=2, size=0.25),
+        panel.grid.minor.x = element_line(colour="gray80", linetype=3, size=0.25),
         panel.grid.minor.y = element_blank(),
         legend.title       = element_text(size = textsize.axis,  face = "bold")
         );
@@ -61,6 +67,7 @@ visualizeEventHistories <- function(
     #my.ggplot <- my.ggplot + scale_y_continuous(limits=c(-0.2,10.2),breaks=seq(0,10,2));
 
     #my.ggplot <- my.ggplot + scale_x_continuous(limits=c(-0.05,1.05),breaks=seq(0,1,0.2));
+    my.ggplot <- my.ggplot + scale_x_datetime(date_breaks = "1 year", date_labels = "%Y");
     my.ggplot <- my.ggplot + scale_y_continuous(limits=c(0,1),breaks=seq(0,1));
 
     my.ggplot <- my.ggplot + geom_bar(
