@@ -49,7 +49,12 @@ visualizeEventHistories <- function(
             #margin = margin(t = 5, b = 0, l = 0, r = 0)
             ),
         axis.text.y        = element_blank(),
-        strip.text.y       = element_text(size = textsize.axis, face = "bold", angle = 0),
+        strip.text.y       = element_text(
+            size   = textsize.axis,
+            face   = "bold",
+            angle  = 0,
+            margin = margin(t = 0, b = 0, l = 5, r = 5)
+            ),
         panel.grid.major   = element_line(colour="gray50", linetype=2, size=0.25),
         panel.grid.minor.x = element_line(colour="gray80", linetype=3, size=0.25),
         panel.grid.minor.y = element_blank(),
