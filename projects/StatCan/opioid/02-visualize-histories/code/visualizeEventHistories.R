@@ -2,12 +2,12 @@
 visualizeEventHistories <- function(
     event.histories = NULL,
     FILE.output     = 'event-histories.png',
-    textsize.title  =  30,
-    textsize.axis   =  15,
-    dpi             = 300,
-    height          =   1,
-    width           =  30,
-    units           = 'in'
+    aspect.ratio    = 1/25,
+    textsize.title  =   30,
+    textsize.axis   =   10,
+    dpi             =  300,
+    width           =   10,
+    units           =  'in'
     ) {
 
     require(ggplot2);
@@ -38,6 +38,8 @@ visualizeEventHistories <- function(
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
     my.ggplot <- ggplot(data = NULL) + theme_bw();
     my.ggplot <- my.ggplot + theme(
+        aspect.ratio       = aspect.ratio,
+        plot.margin        = unit(c(5,5,5,5), "pt"),
         title              = element_text(size = textsize.title, face = "bold"),
         axis.title.x       = element_blank(),
         axis.title.y       = element_blank(),
@@ -88,10 +90,10 @@ visualizeEventHistories <- function(
     ggsave(
         file   = FILE.output,
         plot   = my.ggplot,
-        dpi    = 300,
-        height =   4,
-        width  =  12,
-        units  = 'in'
+        dpi    = dpi,
+        height = ceiling(length(event.histories) * aspect.ratio * width),
+        width  = width,
+        units  = units
         );
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
