@@ -57,8 +57,10 @@ visualizeEventHistories <- function(
             angle  = 0,
             margin = margin(t = 0, b = 0, l = 5, r = 5)
             ),
-        panel.grid.major   = element_line(colour="gray50", linetype=2, size=0.25),
+        panel.grid.major.x = element_line(colour="gray50", linetype=2, size=0.25),
         panel.grid.minor.x = element_line(colour="gray80", linetype=3, size=0.25),
+        axis.ticks.y       = element_blank(),
+        panel.grid.major.y = element_blank(),
         panel.grid.minor.y = element_blank(),
         legend.title       = element_text(size = textsize.axis,  face = "bold")
         );
