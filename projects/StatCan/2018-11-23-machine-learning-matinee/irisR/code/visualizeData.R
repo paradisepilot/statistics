@@ -39,7 +39,7 @@ visualizeData <- function(DF.input, palette.iris) {
         mapping = aes(
             x     = Sepal.Width,
             y     = Sepal.Length,
-            color = Species
+            color = Self.Selected
             ),
         size  = 3.5,
         alpha = 0.75
@@ -73,9 +73,9 @@ visualizeData <- function(DF.input, palette.iris) {
     my.ggplot <- my.ggplot + geom_point(
         data    = DF.input,
         mapping = aes(
-            x     = Petal.Width,
-            y     = Petal.Length,
-            color = Species
+            x     = x1,
+            y     = x2,
+            color = Self.Selected
             ),
         size  = 3.5,
         alpha = 0.75
@@ -94,6 +94,7 @@ visualizeData <- function(DF.input, palette.iris) {
         legend.key.size  = unit(x=0.1,units="in"),
         legend.position  = "bottom",
         legend.direction = "horizontal",
+        legend.spacing.x = unit(20, 'pt'),
         axis.title       = element_text(size = textsize.axis.title,     face = "bold"),
         axis.text        = element_text(size = textsize.axis.tickLabel, face = "bold"),
         panel.grid.major = element_line(colour="gray", linetype=2, size=0.25),
@@ -107,9 +108,9 @@ visualizeData <- function(DF.input, palette.iris) {
     my.ggplot <- my.ggplot + geom_point(
         data    = DF.input,
         mapping = aes(
-            x     = Petal.Width,
-            y     = Petal.Length,
-            color = Species
+            x     = x1,
+            y     = x2,
+            color = Self.Selected
             ),
         size  = 3.5,
         alpha = 0.75
