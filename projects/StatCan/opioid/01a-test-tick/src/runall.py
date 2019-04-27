@@ -14,12 +14,6 @@ os.chdir(outDIR)
 
 #################################################
 #################################################
-# import seaborn (for improved graphics) if available
-import importlib
-from importlib.util import find_spec
-seaborn_spec = importlib.util.find_spec(name="seaborn")
-if seaborn_spec is not None:
-    import seaborn as sns
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 from testHawkesEM import test_HawkesEM
