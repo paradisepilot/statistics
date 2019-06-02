@@ -133,6 +133,15 @@ test.fda <- function(
         }
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    results.inprod <- inprod(
+        fdobj1 = smoothlist[["fd"]],
+        fdobj2 = daytemppcaobj[["harmonics"]]
+        );
+
+    cat("\nstr(results.inprod):\n");
+    print( str(results.inprod)    );
+
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( NULL );
 
     }
