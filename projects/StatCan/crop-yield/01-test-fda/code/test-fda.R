@@ -133,8 +133,24 @@ test.fda <- function(
         }
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    tempav.centered <- tempav;
+    tempav.centered <- apply(
+        X      = tempav.centered,
+        MARGIN = 2,
+        FUN    = function(x) { return(x - my.00) }
+        );
+
+    cat("\nstr(tempav.centered):\n");
+    print( str(tempav.centered)    );
+
+    smoothlist.centered <- smooth.basis(
+        argvals  = daytime,
+        y        = tempav.centered,
+        fdParobj = fdParobj
+        );
+
     results.inprod <- inprod(
-        fdobj1 = smoothlist[["fd"]],
+        fdobj1 = smoothlist.centered[["fd"]],
         fdobj2 = daytemppcaobj[["harmonics"]]
         );
 
