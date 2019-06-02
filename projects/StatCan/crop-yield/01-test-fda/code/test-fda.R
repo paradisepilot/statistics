@@ -25,6 +25,9 @@ test.fda <- function(
         period   = period
         );
 
+    cat("\nstr(daybasis)\n");
+    print( str(daybasis)   );
+
     harmaccelLfd <- vec2Lfd(
         bwtvec   = c(0,(2*pi/365)^2,0),
         rangeval = rangeval
