@@ -18,6 +18,9 @@ test.fda <- function(
     nbasis   <- 365;
     nharm    <- 300; #150;
 
+    lambda   <- 100  #  minimum GCV estimate, corresponding to 255 df
+    # lambda <-   0  #  minimum GCV estimate, corresponding to 255 df
+
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     daybasis <- create.fourier.basis(
         rangeval = rangeval,
@@ -39,7 +42,6 @@ test.fda <- function(
     precav   <- daily[["precav"]];
     station  <- daily[["place"]];
 
-    lambda   <- 100  #  minimum GCV estimate, corresponding to 255 df
     fdParobj <- fdPar(
         fdobj  = daybasis,
         Lfdobj = harmaccelLfd,
@@ -133,29 +135,16 @@ test.fda <- function(
         }
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    tempav.centered <- tempav;
-    tempav.centered <- apply(
-        X      = tempav.centered,
-        MARGIN = 2,
-        FUN    = function(x) { return(x - my.00) }
-        );
-
-    cat("\nstr(tempav.centered):\n");
-    print( str(tempav.centered)    );
-
-    smoothlist.centered <- smooth.basis(
-        argvals  = daytime,
-        y        = tempav.centered,
-        fdParobj = fdParobj
-        );
-
     results.inprod <- inprod(
-        fdobj1 = smoothlist.centered[["fd"]],
-        fdobj2 = daytemppcaobj[["harmonics"]]
+        fdobj1 = center.fd(smoothlist[['fd']]),
+        fdobj2 = daytemppcaobj[['harmonics']]
         );
 
     cat("\nstr(results.inprod):\n");
     print( str(results.inprod)    );
+
+    cat("\nmax(abs(results.inprod - daytemppcaobj[['scores']])):\n");
+    print( max(abs(results.inprod - daytemppcaobj[['scores']]))    );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     return( NULL );
