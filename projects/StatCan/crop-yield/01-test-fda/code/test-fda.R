@@ -140,25 +140,11 @@ test.fda <- function(
     temp.row.means <- apply(
         X      = smoothlist[['fd']][['coefs']],
         MARGIN = 1,
-        FUN    = function(x) { - mean(x) }
+        FUN    = function(x) { mean(x) }
         );
-
-    minus.smoothlist.mean <- fd(
-        coef     = matrix(rep(temp.row.means,temp.ncols), ncol = temp.ncols),
-        basisobj = smoothlist[['fd']][['basis']],
-        fdnames  = NULL
-        );
-    attr(minus.smoothlist.mean[['coefs']],"dimnames") <- NULL;
-
-    cat("\nstr(minus.smoothlist.mean):\n");
-    print( str(minus.smoothlist.mean)    );
-
-    #temp <- sum( smoothlist[['fd']][['coefs']] , minus.smoothlist.mean );
-    #cat("\nstr(temp):\n");
-    #print( str(temp)    );
 
     smoothlist.centered <- fd(
-        coef     = smoothlist[['fd']][['coefs']] - matrix(rep(temp.row.means,temp.ncols), ncol = temp.ncols),
+        coef     = smoothlist[['fd']][['coefs']] - matrix(rep(temp.row.means,temp.ncols),ncol=temp.ncols),
         basisobj = smoothlist[['fd']][['basis']],
         fdnames  = NULL
         );
@@ -166,9 +152,6 @@ test.fda <- function(
 
     cat("\nstr(smoothlist.centered):\n");
     print( str(smoothlist.centered)    );
-
-    cat("\nstr(sum(smoothlist.centered,minus.smoothlist.mean))\n");
-    print( str(sum(smoothlist.centered,minus.smoothlist.mean))   );
 
     results.inprod <- inprod(
         fdobj1 = smoothlist.centered,
