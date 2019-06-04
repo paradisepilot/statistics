@@ -148,16 +148,30 @@ test.fda <- function(
         basisobj = smoothlist[['fd']][['basis']],
         fdnames  = NULL
         );
+    attr(minus.smoothlist.mean[['coefs']],"dimnames") <- NULL;
 
     cat("\nstr(minus.smoothlist.mean):\n");
     print( str(minus.smoothlist.mean)    );
 
-    temp <- sum( smoothlist[['fd']] , minus.smoothlist.mean );
-    cat("\nstr(temp):\n");
-    print( str(temp)    );
+    #temp <- sum( smoothlist[['fd']][['coefs']] , minus.smoothlist.mean );
+    #cat("\nstr(temp):\n");
+    #print( str(temp)    );
+
+    smoothlist.centered <- fd(
+        coef     = smoothlist[['fd']][['coefs']] - matrix(rep(temp.row.means,temp.ncols), ncol = temp.ncols),
+        basisobj = smoothlist[['fd']][['basis']],
+        fdnames  = NULL
+        );
+    attr(smoothlist.centered[['coefs']],"dimnames") <- NULL;
+
+    cat("\nstr(smoothlist.centered):\n");
+    print( str(smoothlist.centered)    );
+
+    cat("\nstr(sum(smoothlist.centered,minus.smoothlist.mean))\n");
+    print( str(sum(smoothlist.centered,minus.smoothlist.mean))   );
 
     results.inprod <- inprod(
-        fdobj1 = sum( smoothlist[['fd']] , minus.smoothlist.mean ),
+        fdobj1 = smoothlist.centered,
         fdobj2 = daytemppcaobj[['harmonics']]
         );
 
