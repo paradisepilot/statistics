@@ -135,10 +135,36 @@ test.fda <- function(
         }
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    temp.ncols <- ncol(smoothlist[['fd']][['coefs']]);
+
+    temp.row.means <- apply(
+        X      = smoothlist[['fd']][['coefs']],
+        MARGIN = 1,
+        FUN    = function(x) { - mean(x) }
+        );
+
+    minus.smoothlist.mean <- fd(
+        coef     = matrix(rep(temp.row.means,temp.ncols), ncol = temp.ncols),
+        basisobj = smoothlist[['fd']][['basis']],
+        fdnames  = NULL
+        );
+
+    cat("\nstr(minus.smoothlist.mean):\n");
+    print( str(minus.smoothlist.mean)    );
+
+    temp <- sum( smoothlist[['fd']] , minus.smoothlist.mean );
+    cat("\nstr(temp):\n");
+    print( str(temp)    );
+
     results.inprod <- inprod(
-        fdobj1 = center.fd(smoothlist[['fd']]),
+        fdobj1 = sum( smoothlist[['fd']] , minus.smoothlist.mean ),
         fdobj2 = daytemppcaobj[['harmonics']]
         );
+
+    #results.inprod <- inprod(
+    #    fdobj1 = center.fd(smoothlist[['fd']]),
+    #    fdobj2 = daytemppcaobj[['harmonics']]
+    #    );
 
     cat("\nstr(results.inprod):\n");
     print( str(results.inprod)    );
