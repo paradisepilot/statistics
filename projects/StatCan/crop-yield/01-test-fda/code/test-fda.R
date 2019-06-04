@@ -170,15 +170,15 @@ test.fda <- function(
     cat("\nstr(sum(smoothlist.centered,minus.smoothlist.mean))\n");
     print( str(sum(smoothlist.centered,minus.smoothlist.mean))   );
 
-    #results.inprod <- inprod(
-    #    fdobj1 = center.fd(smoothlist[['fd']]),
-    #    fdobj2 = daytemppcaobj[['harmonics']]
-    #    );
-
     results.inprod <- inprod(
         fdobj1 = smoothlist.centered,
         fdobj2 = daytemppcaobj[['harmonics']]
         );
+
+    #results.inprod <- inprod(
+    #    fdobj1 = center.fd(smoothlist[['fd']]),
+    #    fdobj2 = daytemppcaobj[['harmonics']]
+    #    );
 
     cat("\nstr(results.inprod):\n");
     print( str(results.inprod)    );
