@@ -568,13 +568,32 @@ pnpCART  <- R6Class(
                         ];
                     p.notSatisfied <- base::sort(base::setdiff(p.currentRowIDs,p.satisfied));
 
-                    p1 <- length(   np.satisfied) / self$estimatedPopulationSize;
-                    p2 <- length(np.notSatisfied) / self$estimatedPopulationSize;
+                    #p1 <- length(   np.satisfied) / self$estimatedPopulationSize;
+                    #p2 <- length(np.notSatisfied) / self$estimatedPopulationSize;
+                    p1 <- sum(self$p.data[self$p.data[,self$p.syntheticID] %in% p.satisfied,   self$weight]);
+                    p2 <- sum(self$p.data[self$p.data[,self$p.syntheticID] %in% p.notSatisfied,self$weight]);
+                    p1 <- p1 / self$estimatedPopulationSize;
+                    p2 <- p2 / self$estimatedPopulationSize;
+
                     g1 <- private$pnp_impurity(np.rowIDs = np.satisfied,    p.rowIDs =  p.satisfied   );
                     g2 <- private$pnp_impurity(np.rowIDs = np.notSatisfied, p.rowIDs =  p.notSatisfied);
-                    return( p1 * g1 + p2 * g2 );
+
+                    #if ( is.na( p1 * g1 + p2 * g2 ) ) {
+                    #    cat("\nc(p1,p2,g1,g2)\n");
+                    #    print( c(p1,p2,g1,g2)   );
+                    #    }
+
+                    output <- p1 * g1 + p2 * g2;
+                    if ( is.na(output) ) { return( Inf ); } 
+
+                    return( output );
+
                     }
                 );
+
+            #cat("\nunique(as.numeric(impurities))\n");
+            #print( unique(as.numeric(impurities))   );
+
             if ( Inf == min(unique(as.numeric(impurities))) ) { return(NULL); }
             output <- uniqueVarValuePairs[[ which.min(impurities) ]];
             return( output );

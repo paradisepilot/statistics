@@ -77,10 +77,13 @@ for (population.flag in population.flags) {
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    FILE.oneSimulation <- paste0("one-simulation-",population.flag,".csv");
+
     doOneSimulation(
-        population.flag = population.flag,
-        DF.population   = my.population,
-        prob.selection  = prob.selection
+        population.flag    = population.flag,
+        DF.population      = my.population,
+        prob.selection     = prob.selection,
+        FILE.oneSimulation = FILE.oneSimulation
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
