@@ -65,7 +65,7 @@ doOneSimulation <- function(
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    if ( population.flag %in% c("01","02") ) {
+    if ( population.flag %in% c("01","03") ) {
         scale_fill_gradient_limits <- 500 * c(  0,4);
         scale_fill_gradient_breaks <- 500 * seq(0,4,1);
     } else {

@@ -61,7 +61,7 @@ visualizePropensity <- function(
         alpha   = 0.2
         );
 
-    if (population.flag %in% c("01","02")) {
+    if (population.flag %in% c("01","03")) {
         my.ggplot <- my.ggplot + geom_abline(slope=1, intercept=0, colour="gray", size=0.75);
         }
 

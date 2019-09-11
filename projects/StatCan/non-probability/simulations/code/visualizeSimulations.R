@@ -22,10 +22,10 @@ visualizeSimulations <- function(
     temp.limits <- 100000 *   c(0, 2.1     );
     temp.breaks <- 100000 * seq(0, 2.0, 0.4);
 
-    if ( "02" == population.flag ) {
+    if ( "03" == population.flag ) {
         temp.limits <- 100000 *   c( 0, 6.5   );
         temp.breaks <- 100000 * seq( 0, 6.0, 1);
-    } else if ( "03" == population.flag ) {
+    } else if ( "02" == population.flag ) {
         temp.limits <- 1000000 *   c( 0, 1.3     );
         temp.breaks <- 1000000 * seq( 0, 1.3, 0.2);
     }
@@ -180,15 +180,19 @@ plotOneHistogram <- function(
     my.ggplot <- my.ggplot + annotate(
         geom  = "text",
         label = c(
-            paste0("MC Rel.BIAS = ",MCRelBias),
-            paste0("MC Rel.RMSE = ",MCRelRMSE),
-            paste0("min(Ty_hat) = ",temp.min ),
-            paste0("max(Ty_hat) = ",temp.max ),
-            paste0("   #(iters) = ",temp.iter),
-            paste0("      #(NA) = ",temp.NA  )
+            paste0("MC Rel.BIAS = ",100*MCRelBias,"%"),
+            paste0("MC Rel.RMSE = ",100*MCRelRMSE,"%")
+            #paste0("MC Rel.BIAS = ",MCRelBias),
+            #paste0("MC Rel.RMSE = ",MCRelRMSE),
+            #paste0("min(Ty_hat) = ",temp.min ),
+            #paste0("max(Ty_hat) = ",temp.max ),
+            #paste0("   #(iters) = ",temp.iter),
+            #paste0("      #(NA) = ",temp.NA  )
             ),
-        x     = temp.xmax * 0.8 * c(1,1,1,1,1,1),
-        y     = temp.ymax * c(0.98,0.91,0.81,0.74,0.64,0.57),
+        #x     = temp.xmax * 0.8 * c(1,1,1,1,1,1),
+        #y     = temp.ymax * c(0.98,0.91,0.81,0.74,0.64,0.57),
+        x     = temp.xmax * 0.8 * c(1,1),
+        y     = temp.ymax * c(0.98,0.91),
         size  = 10,
         color = "black"
         );

@@ -68,7 +68,7 @@ getPopulation.01.00 <- function(
 
     }
 
-getPopulation.02.00 <- function(
+getPopulation.03.00 <- function(
     N      = 10000,
     alpha0 = 0.25
     ) {
@@ -187,7 +187,7 @@ getPopulation.01 <- function(
 
     }
 
-getPopulation.02 <- function(
+getPopulation.03 <- function(
     N      = 10000,
     alpha0 = 0.25
     ) {
@@ -230,7 +230,7 @@ getPopulation.02 <- function(
 
     }
 
-getPopulation.03 <- function(
+getPopulation.02 <- function(
     N      = 10000,
     alpha0 = 0.25
     ) {
