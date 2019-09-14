@@ -15,96 +15,130 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\noindent
-\textbf{Problem}
-\vskip 0.2cm
-\noindent
-Let
-\begin{equation*}
-f\!\left(\,\bm{\theta}\,\right)
-\;\; = \;\;
-	\left(\,F_{N} \circ F_{N-1} \circ \cdots \circ F_{2} \circ F_{1}\,\right)\left(\,\bm{\theta}\,\right)
-\end{equation*}
-Compute \;$\nabla f\!\left(\,\bm{\theta}\,\right)$.
-
+\begin{center}
 \vskip 0.5cm
-\noindent
-\textbf{Solution}
-\vskip 0.2cm
-\noindent
-By the Multivariate Chain Rule,
-\begin{equation*}
-\nabla f\!\left(\,\bm{\theta}\,\right)
-\;\; = \;\;
-	J_{F_{N}}\!\left(\,F_{N-1} \circ \cdots \circ F_{1}\,(\,\overset{{\color{white}.}}{\bm{\theta}}\,)\,\right)
-	\cdot
-	J_{F_{N-1}}\!\left(\,F_{N-2} \circ \cdots \circ F_{1}\,(\,\overset{{\color{white}.}}{\bm{\theta}}\,)\,\right)
-	\;\cdots\;
-	J_{F_{2}}\!\left(\,F_{1}\,(\,\overset{{\color{white}.}}{\bm{\theta}}\,)\,\right)
-	\cdot
-	J_{F_{1}}\!\left(\,\overset{{\color{white}.}}{\bm{\theta}}\,\right)
-\end{equation*}
-
-\vskip 0.5cm
-\noindent
-\textbf{Forward Pass:}
-\begin{itemize}
-\item
-	Let \;$\mathbf{a}$\; be given.
-\item
-	Evaluate in order: \;
-	$F_{1}(\,\mathbf{a}\,),\;
-	(\,F_{2}\circ F_{1}\,)\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right),\;
-	\ldots,\;
-	(\,F_{N-1}\circ \cdots \circ F_{1}\,)\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)
-	$.
-\end{itemize}
+\begin{tcolorbox}[width=0.95\linewidth,colback=white,colframe=gray]
+\begin{minipage}{1.0\linewidth}
+	\vskip 0.6cm
+	\begin{center}
+	\textbf{\Large Reverse-mode Algorithmic Differentiation Algorithm}
+	\vskip 0.6cm
+	\begin{minipage}{0.95\linewidth}
+		\textbf{Input:}
+		\begin{itemize}
+		\item
+			A composite function \,$f : \Re^{p} \longrightarrow \Re$\, of the form:
+			\begin{equation*}
+			f\!\left(\,\bm{\theta}\,\right)
+			\;\; = \;\;
+				\left(\,F_{N} \circ F_{N-1} \circ \,\cdots\, \circ F_{2} \circ F_{1}\,\right)\left(\,\bm{\theta}\,\right)
+			\end{equation*}
+			such that, for each $i \in \{1,2,\ldots,N\}$, the Jacobian $J_{F_{i}}(\,\cdot\,)$
+			can be computed (as a function of its respective argument)
+			without knowledge of $F_{j}$ or $J_{F_{j}}$, for any $j \neq i$.
+		\item
+			A point \,$\mathbf{a} \in \Re^{p}$.
+		\end{itemize}
+		\vskip 0.3cm
+		\textbf{Output:}
+		\begin{itemize}
+		\item
+			The gradient
+			\begin{equation*}
+			\nabla f\!\left(\,\mathbf{a}\,\right)
+			\; = \;
+				J_{F_{N}}\!\left(\,
+					\overset{{\color{white}.}}{(\,F_{N-1}\circ \cdots \circ F_{1}\,)
+					\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
+					\,\right)
+				\cdot
+				J_{F_{N-1}}\!\left(\,
+					\overset{{\color{white}.}}{(\,F_{N-2}\circ \cdots \circ F_{1}\,)
+					\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
+					\,\right)
+				\cdot
+				\,
+				\cdots
+				\,
+				%J_{F_{2}}\!\left(\,F_{1}(\,\mathbf{a}\,)\,\right)
+				\cdot
+				J_{F_{1}}\!\left(\,\mathbf{a}\,\right)
+			\end{equation*}
+			of $f$ evaluated at $\mathbf{a} \in \Re^{p}$.
+		\end{itemize}
+		\vskip 0.3cm
+		\textbf{Pseudocode:}
+		\begin{enumerate}
+		\item
+			Preparation:
+			\begin{itemize}
+			\item
+				Compute:\,
+				$J_{F_{N}}\!\left(\,\cdot\,\right),\,
+				J_{F_{N-1}}\!\left(\,\cdot\,\right),\,
+				\,\ldots\,,\,
+				J_{F_{2}}\!\left(\,\cdot\,\right),\,
+				J_{F_{1}}\!\left(\,\cdot\,\right)$.
+			\end{itemize}
+		\item
+			Forward Pass:
+			\begin{itemize}
+			\item
+				Evaluate in order:\,
+				$F_{1}(\,\mathbf{a}\,),\;
+				(\,F_{2}\circ F_{1}\,)\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right),
+				\;\ldots\;,\;
+				(\,F_{N-1}\circ \cdots \circ F_{1}\,)\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)
+				$.
+			\end{itemize}
+		\item
+			Reverse Pass:
+			\begin{itemize}
+			\item
+				Evaluate:
+				\begin{equation*}
+				J_{F_{N}}\!\left(\,
+					\overset{{\color{white}.}}{(\,F_{N-1}\circ \cdots \circ F_{1}\,)
+					\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
+					\,\right),
+				\;
+				J_{F_{N-1}}\!\left(\,
+					\overset{{\color{white}.}}{(\,F_{N-2}\circ \cdots \circ F_{1}\,)
+					\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
+					\,\right),
+				\;\ldots\;,\;
+				%J_{F_{2}}\!\left(\,F_{1}(\,\mathbf{a}\,)\,\right),
+				J_{F_{1}}\!\left(\,\mathbf{a}\,\right).
+				\end{equation*}
+			\item
+				Compute the matrix product and return:
+				\begin{equation*}
+				J_{F_{N}}\!\left(\,
+					\overset{{\color{white}.}}{(\,F_{N-1}\circ \cdots \circ F_{1}\,)
+					\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
+					\,\right)
+				\cdot
+				J_{F_{N-1}}\!\left(\,
+					\overset{{\color{white}.}}{(\,F_{N-2}\circ \cdots \circ F_{1}\,)
+					\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
+					\,\right)
+				\cdot
+				\,
+				\cdots
+				\,
+				%J_{F_{2}}\!\left(\,F_{1}(\,\mathbf{a}\,)\,\right)
+				\cdot
+				J_{F_{1}}\!\left(\,\mathbf{a}\,\right)
+				\end{equation*}
+			\end{itemize}
+		\end{enumerate}
+	\end{minipage}
+	\end{center}
+\end{minipage}
 \vskip 0.3cm
-\noindent
-\textbf{Reverse Pass:}
-\begin{itemize}
-\item
-	Compute:\;
-	$J_{F_{N}}\!\left(\,\cdot\,\right),\,
-	J_{F_{N-1}}\!\left(\,\cdot\,\right),\,
-	\,\ldots\,,\,
-	J_{F_{2}}\!\left(\,\cdot\,\right),\,
-	J_{F_{1}}\!\left(\,\cdot\,\right)$.
-\item
-	Evaluate:\;
-	$J_{F_{N}}\!\left(\,
-		\overset{{\color{white}.}}{(\,F_{N-1}\circ \cdots \circ F_{1}\,)
-		\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
-		\,\right)$,
-	$J_{F_{N-1}}\!\left(\,
-		\overset{{\color{white}.}}{(\,F_{N-2}\circ \cdots \circ F_{1}\,)
-		\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
-		\,\right)$,
-	\,$\ldots$\;,
-	$J_{F_{2}}\!\left(\,F_{1}(\,\mathbf{a}\,)\,\right)$,
-	and
-	$J_{F_{1}}\!\left(\,\mathbf{a}\,\right)$.
-\item
-	Compute and return:
-	\begin{equation*}
-	J_{F_{N}}\!\left(\,
-		\overset{{\color{white}.}}{(\,F_{N-1}\circ \cdots \circ F_{1}\,)
-		\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
-		\,\right)
-	\cdot
-	J_{F_{N-1}}\!\left(\,
-		\overset{{\color{white}.}}{(\,F_{N-2}\circ \cdots \circ F_{1}\,)
-		\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
-		\,\right)
-	\;
-	\cdots
-	\;
-	J_{F_{2}}\!\left(\,F_{1}(\,\mathbf{a}\,)\,\right)
-	\cdot
-	J_{F_{1}}\!\left(\,\mathbf{a}\,\right)
-	\end{equation*}
-\end{itemize}
-
+\mbox{}
+\end{tcolorbox}
+\end{center}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
