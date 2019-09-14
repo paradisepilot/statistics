@@ -1,0 +1,116 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Reverse-mode Algorithmic Differentiation: General Vectorial Form}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\noindent
+\textbf{Problem}
+\vskip 0.2cm
+\noindent
+Let
+\begin{equation*}
+f\!\left(\,\bm{\theta}\,\right)
+\;\; = \;\;
+	\left(\,F_{N} \circ F_{N-1} \circ \cdots \circ F_{2} \circ F_{1}\,\right)\left(\,\bm{\theta}\,\right)
+\end{equation*}
+Compute \;$\nabla f\!\left(\,\bm{\theta}\,\right)$.
+
+\vskip 0.5cm
+\noindent
+\textbf{Solution}
+\vskip 0.2cm
+\noindent
+By the Multivariate Chain Rule,
+\begin{equation*}
+\nabla f\!\left(\,\bm{\theta}\,\right)
+\;\; = \;\;
+	J_{F_{N}}\!\left(\,F_{N-1} \circ \cdots \circ F_{1}\,(\,\overset{{\color{white}.}}{\bm{\theta}}\,)\,\right)
+	\cdot
+	J_{F_{N-1}}\!\left(\,F_{N-2} \circ \cdots \circ F_{1}\,(\,\overset{{\color{white}.}}{\bm{\theta}}\,)\,\right)
+	\;\cdots\;
+	J_{F_{2}}\!\left(\,F_{1}\,(\,\overset{{\color{white}.}}{\bm{\theta}}\,)\,\right)
+	\cdot
+	J_{F_{1}}\!\left(\,\overset{{\color{white}.}}{\bm{\theta}}\,\right)
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\textbf{Forward Pass:}
+\begin{itemize}
+\item
+	Let \;$\mathbf{a}$\; be given.
+\item
+	Evaluate in order: \;
+	$F_{1}(\,\mathbf{a}\,),\;
+	(\,F_{2}\circ F_{1}\,)\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right),\;
+	\ldots,\;
+	(\,F_{N-1}\circ \cdots \circ F_{1}\,)\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)
+	$.
+\end{itemize}
+\vskip 0.3cm
+\noindent
+\textbf{Reverse Pass:}
+\begin{itemize}
+\item
+	Compute:\;
+	$J_{F_{N}}\!\left(\,\cdot\,\right),\,
+	J_{F_{N-1}}\!\left(\,\cdot\,\right),\,
+	\,\ldots\,,\,
+	J_{F_{2}}\!\left(\,\cdot\,\right),\,
+	J_{F_{1}}\!\left(\,\cdot\,\right)$.
+\item
+	Evaluate:\;
+	$J_{F_{N}}\!\left(\,
+		\overset{{\color{white}.}}{(\,F_{N-1}\circ \cdots \circ F_{1}\,)
+		\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
+		\,\right)$,
+	$J_{F_{N-1}}\!\left(\,
+		\overset{{\color{white}.}}{(\,F_{N-2}\circ \cdots \circ F_{1}\,)
+		\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
+		\,\right)$,
+	\,$\ldots$\;,
+	$J_{F_{2}}\!\left(\,F_{1}(\,\mathbf{a}\,)\,\right)$,
+	and
+	$J_{F_{1}}\!\left(\,\mathbf{a}\,\right)$.
+\item
+	Compute and return:
+	\begin{equation*}
+	J_{F_{N}}\!\left(\,
+		\overset{{\color{white}.}}{(\,F_{N-1}\circ \cdots \circ F_{1}\,)
+		\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
+		\,\right)
+	\cdot
+	J_{F_{N-1}}\!\left(\,
+		\overset{{\color{white}.}}{(\,F_{N-2}\circ \cdots \circ F_{1}\,)
+		\!\left(\,\overset{{\color{white}.}}{\mathbf{a}}\,\right)}
+		\,\right)
+	\;
+	\cdots
+	\;
+	J_{F_{2}}\!\left(\,F_{1}(\,\mathbf{a}\,)\,\right)
+	\cdot
+	J_{F_{1}}\!\left(\,\mathbf{a}\,\right)
+	\end{equation*}
+\end{itemize}
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
