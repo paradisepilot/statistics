@@ -27,9 +27,11 @@ Suppose:
 \item
 	$g = (g_{1},g_{2},\ldots,g_{r}) : \Re^{n} \longrightarrow \Re^{r}$ is an arbitrary function.
 \item
-	$\Omega(c) \, := \,
+	$X \subset \Re^{n}$ is an arbitrary subset of $\Re^{n}$.
+\item
+	$\Omega(X,g) \, := \,
 	\left\{\;\,
-	x \overset{{\color{white}.}}{\in} \Re^{n}
+	x \overset{{\color{white}.}}{\in} X
 	\;\;\left\vert\;
 		\begin{array}{c}
 			g_{j}(x) \leq 0,
@@ -41,11 +43,13 @@ Suppose:
 \end{itemize}
 The \textbf{Primal Problem}:
 \begin{equation*}
-f^{*}
-\;\; := \;\;
-	\underset{x\,\in\,\Omega(c)}{\inf}\left\{\;
+\textnormal{Find an element of:}
+\quad\;\;
+\underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;
 	\overset{{\color{white}.}}{f(x)}
 	\;\right\}
+\;\; \subset \;\;
+	\Omega(X,g)
 \end{equation*}
 
 \vskip 0.5cm
@@ -60,15 +64,36 @@ The \textbf{dual objective function} \,$Q_{f,g} : \Re^{r} \longrightarrow \Re$\,
 \begin{equation*}
 Q_{f,g}(\,\mu\,)
 \;\; := \;\;
-	\underset{x\,\in\,\Re^{n}}{\inf}\;L(x,\mu)
+	\underset{x\,\in X}{\inf}\;L(x,\mu)
 \;\; = \;\;
-	\underset{x\,\in\,\Re^{n}}{\inf}\,\left\{\;f(x) \,\overset{{\color{white}.}}{+}\, \mu^{T}\cdot g(x)\;\right\}
+	\underset{x\,\in X}{\inf}\,\left\{\;f(x) \,\overset{{\color{white}.}}{+}\, \mu^{T}\cdot g(x)\;\right\}
 \end{equation*}
 
 \vskip 0.5cm
 \noindent
 The \textbf{Dual Problem}:
 \begin{equation*}
+\textnormal{Find an element of:}
+\quad
+	\underset{\mu\,\geq\,0}{\argmax}\left\{\;
+	\overset{{\color{white}.}}{Q_{f,g}(\mu)}
+	\;\right\}
+\;\; \subset \;\;
+	\Re^{r}_{\geq 0}
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\textbf{Notations}:
+\begin{equation*}
+f^{*}
+\;\; := \;\;
+	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\},
+\quad\quad
+\textnormal{and}
+\quad\quad
 Q_{f,g}^{*}
 \;\; := \;\;
 	\underset{\mu\,\geq\,0}{\sup}\left\{\;
@@ -78,11 +103,112 @@ Q_{f,g}^{*}
 \end{definition}
 
 \vskip 0.5cm
+\begin{definition}[Geometric Multiplier]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A element \,$\mu^{*} = (\mu_{1}^{*},\mu_{2}^{*},\ldots,\mu_{r}^{*}) \in \Re^{r}$,\,
+with $\mu_{j}^{*} \geq 0$, for each $j = 1,2,\ldots,r$,
+is called a \textbf{geometric multiplier} if
+\begin{equation*}
+	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})
+\;\; = \;\;
+	f^{*}
+\;\; := \;\;
+	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\}
+\end{equation*}
+\end{definition}
+
+\vskip 0.5cm
+\begin{theorem}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let \,$\mu^{*} \in \Re^{r}_{\geq 0}$\, be a geometric multiplier.
+Then, $x^{*} \in X$ is a solution of the Primal Problem, i.e.
+\begin{equation*}
+x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{white}.}}{f(x)}\;\right\}
+\end{equation*}
+if and only if
+\begin{equation*}
+x^{*} \,\in\; \Omega(X,g) \,\bigcap\; \underset{\xi\in X}{\argmin}\;L(\xi,\mu^{*})\,,\;\;
+\quad\textnormal{and}\quad\;\;
+\mu_{j}^{*} \cdot g_{j}(x^{*}) = 0, \;\;\textnormal{for each \,$j = 1,2,\ldots,r$}.
+\end{equation*}
+\end{theorem}
+\proof
+\mbox{}
+\vskip 0.1cm
+\noindent
+\underline{($\Longrightarrow$)}
+\quad
+First, note that we immediately have:
+\begin{equation*}
+x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{white}.}}{f(x)}\;\right\}
+\quad\Longrightarrow\quad
+x^{*} \in \Omega(X,g)
+\quad\textnormal{and}\quad
+f(x^{*})
+\; = \;
+	f^{*}
+\; := \;
+	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\}
+\end{equation*}
+Next observe:
+\begin{eqnarray*}
+f^{*}
+& = &
+	f(x^{*})\,,
+	\quad\textnormal{by observation above}
+\\
+& \geq &
+	f(x^{*}) \,+\, \overset{r}{\underset{j=1}{\sum}}\;\mu_{j}^{*} \cdot g_{j}(x^{*})\,,
+	\quad\textnormal{by hypothesis that \,$\mu^{*} \in \Re^{r}_{\geq 0}$\, and \,$x^{*} \in \Omega(X,g)$}
+\\
+& =: &
+	L(x^{*},\mu^{*})
+\;\; \geq \;\;
+	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})
+\\
+& = &
+	f^{*}\,,
+	\quad\textnormal{by hypothesis that \,$\mu^{*}$\, is a geometric multiplier}
+\end{eqnarray*}
+which implies:
+\begin{equation*}
+f(x^{*})
+\;\; = \;\;
+	f(x^{*}) \,+\, \overset{r}{\underset{j=1}{\sum}}\;\mu_{j}^{*} \cdot g_{j}(x^{*})\,,
+\quad\textnormal{and}\quad
+L(x^{*},\mu^{*})
+\;\; = \;\;
+	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})\,,
+\end{equation*}
+which in turn implies (recalling that \,$\mu^{*} \in \Re^{r}_{\geq 0}$\, and \,$x^{*} \in \Omega(X,g)$):
+\begin{equation*}
+\mu_{j}^{*} \cdot g_{j}(x^{*}) \; = \; 0\,,\;\,\textnormal{for each \,$i = 1,2,\ldots, r$}\,,
+\;\;\quad\textnormal{and}\quad\;\;
+x^{*} \,\in\; \underset{\xi\in X}{\argmin}\;L(\xi,\mu^{*})\,,
+\end{equation*}
+as required.
+
+\vskip 0.3cm
+\noindent
+\underline{($\Longleftarrow$)}
+\quad
+Conversely, 
+\qed
+
+\vskip 0.5cm
 \begin{theorem}[Weak Duality]
 \mbox{}
 \vskip 0.1cm
 \noindent
-For any \,$x \in \Omega(c)$\, and \,$\mu \geq 0$ (i.e. $\mu_{i} \geq 0$, for each $i =1,2,\ldots,m$)\,,
+For any \,$x \in \Omega(X,g)$\, and \,$\mu \geq 0$\, (i.e. $\mu_{i} \geq 0$, for each $i =1,2,\ldots,m$)\,,
 we have:
 \begin{equation*}
 Q_{f,g}\!\left(\,\mu\,\right)
@@ -93,7 +219,7 @@ Q_{f,g}\!\left(\,\mu\,\right)
 		\overset{{\color{white}.}}{Q_{f,g}(\mu)}
 		\;\right\}
 \;\; \leq \;\;
-	\underset{x\,\in\,\Omega(c)}{\inf}\left\{\;
+	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
 		\overset{{\color{white}.}}{f(x)}
 		\;\right\}
 \;\; =: \;\;
@@ -107,13 +233,15 @@ First, note that
 \begin{equation*}
 Q_{f,g}\!\left(\,\mu\,\right)
 \;\; := \;\;
-	\underset{\xi\,\in\,\Re^{n}}{\inf}\,\left\{\;f(\xi) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(\xi)\;\right\}
+	\underset{\xi\,\in\,X}{\inf}\,\left\{\;f(\xi) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(\xi)\;\right\}
+\;\; \leq \;\;
+	\underset{\xi\,\in\,\Omega(X,g)}{\inf}\,\left\{\;f(\xi) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(\xi)\;\right\}
 \;\; \leq \;\;
 	f(x) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(x)
 \;\; \leq \;\;
 	f(\,x\,)\,,
 \end{equation*}
-where the last inequality follows from the hypothesis that $x \in \Omega(c)$ and $\mu \geq 0$.
+where the last inequality follows from the hypothesis that $x \in \Omega(X,g)$ and $\mu \geq 0$.
 The Theorem now follows immediately from standard properties of suprema and infima.
 \qed
 
