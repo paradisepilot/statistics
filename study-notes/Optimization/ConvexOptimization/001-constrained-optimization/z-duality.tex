@@ -16,172 +16,209 @@
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \noindent
-\textbf{The Primal Problem}
-\vskip 0.2cm
+\begin{definition}[The Primal Problem and the Dual Problem]
+\mbox{}
+\vskip 0.1cm
 \noindent
 Suppose:
 \begin{itemize}
 \item
-	$f : \Re^{n} \longrightarrow \Re$ is smooth.
+	$f : \Re^{n} \longrightarrow \Re$ is an arbitrary function.
 \item
-	$c = (c_{1},c_{2},\ldots,c_{m}) : \Re^{n} \longrightarrow \Re^{m}$ is smooth and
-	$c_{i}$ is concave for each $i = 1,2,\ldots,m$.
+	$g = (g_{1},g_{2},\ldots,g_{r}) : \Re^{n} \longrightarrow \Re^{r}$ is an arbitrary function.
 \item
 	$\Omega(c) \, := \,
 	\left\{\;\,
 	x \overset{{\color{white}.}}{\in} \Re^{n}
 	\;\;\left\vert\;
 		\begin{array}{c}
-			c_{i}(x) \geq 0,
+			g_{j}(x) \leq 0,
 			\\
-			i = 1,2,\ldots,m
+			j = 1,2,\ldots,r
 		\end{array}
 		\right.
 	\;\right\}$
 \end{itemize}
+The \textbf{Primal Problem}:
 \begin{equation*}
-\underset{x\,\in\,\Omega(c)}{\min}\left\{\;
+f^{*}
+\;\; := \;\;
+	\underset{x\,\in\,\Omega(c)}{\inf}\left\{\;
 	\overset{{\color{white}.}}{f(x)}
 	\;\right\}
 \end{equation*}
 
 \vskip 0.5cm
 \noindent
-The \textbf{dual objective function} \,$Q_{f,c} : \Re^{m} \longrightarrow \Re$\, is defined as:
+The \textbf{Lagrangian function} \,$L : \Re^{n+r} \longrightarrow \Re$\, is defined as:
 \begin{equation*}
-Q_{f,c}(\,\lambda\,)
+L(\,x,\mu\,)
 \;\; := \;\;
-	\underset{x\,\in\,\Re^{n}}{\inf}\;\mathcal{L}(x,\lambda)
+	f(x) \,\overset{{\color{white}.}}{+}\, \mu^{T}\cdot g(x)
+\end{equation*}
+The \textbf{dual objective function} \,$Q_{f,g} : \Re^{r} \longrightarrow \Re$\, is defined as:
+\begin{equation*}
+Q_{f,g}(\,\mu\,)
+\;\; := \;\;
+	\underset{x\,\in\,\Re^{n}}{\inf}\;L(x,\mu)
 \;\; = \;\;
-	\underset{x\,\in\,\Re^{n}}{\inf}\,\left\{\;f(x) \overset{{\color{white}.}}{-} \lambda^{T}\cdot c(x)\;\right\}
+	\underset{x\,\in\,\Re^{n}}{\inf}\,\left\{\;f(x) \,\overset{{\color{white}.}}{+}\, \mu^{T}\cdot g(x)\;\right\}
 \end{equation*}
 
 \vskip 0.5cm
-\begin{theorem}
-\mbox{}
-\vskip 0.1cm
 \noindent
-The dual objection function \,$Q_{f,c} : \Re^{m} \longrightarrow \Re$\, is concave,
-and the set
+The \textbf{Dual Problem}:
 \begin{equation*}
-\mathcal{D}(\,Q_{f,c}\,)
-\;\; = \;\;
-	\left\{\;\,
-		\lambda \in \Re^{m}
-		\;\left\vert\;\;
-		Q_{f,c}(\lambda) \,\overset{{\color{white}.}}{>}\, -\infty
-		\right.
-		\;\right\}
+Q_{f,g}^{*}
+\;\; := \;\;
+	\underset{\mu\,\geq\,0}{\sup}\left\{\;
+	\overset{{\color{white}.}}{Q_{f,g}(\mu)}
+	\;\right\}
 \end{equation*}
-is a convex subset of \,$\Re^{n}$.
-\end{theorem}
-\proof
-For any $\lambda_{0}, \lambda_{1} \in \Re^{m}$, $x \in \Re^{n}$, and $\alpha \in [0,1]$, we have
-\begin{eqnarray*}
-\mathcal{L}\!\left(\,x\,,\,(1-\alpha)\cdot\lambda_{0}\overset{{\color{white}.}}{+}\alpha\cdot\lambda_{1}\,\right)
-& = &
-	f(x) \;+\; \left(\,(1-\alpha)\cdot\lambda_{0}\overset{{\color{white}.}}{+}\alpha\cdot\lambda_{1}\,\right)^{T} \cdot c(x)
-\\
-& = &
-	(1-\alpha)\cdot
-	\left(\,f(x) \overset{{\color{white}.}}{+} \lambda_{0}^{T}\cdot c(x)\,\right)
-	\;+\;
-	\alpha\cdot
-	\left(\,f(x) \overset{{\color{white}.}}{+}\lambda_{1}^{T} \cdot c(x)\,\right)
-\\
-& = &
-	(1-\alpha) \cdot \mathcal{L}(x,\lambda_{0})
-	\;+\;
-	\alpha \cdot \mathcal{L}(x,\lambda_{1})
-\end{eqnarray*}
-Hence,
-\begin{eqnarray*}
-Q_{f,c}\!\left(\,(1-\alpha)\cdot\lambda_{0}\overset{{\color{white}.}}{+}\alpha\cdot\lambda_{1}\,\right)
-& = &
-	\underset{x\in\Re^{m}}{\inf}\;
-	\mathcal{L}\!\left(\,x\,,\,(1-\alpha)\cdot\lambda_{0}\overset{{\color{white}.}}{+}\alpha\cdot\lambda_{1}\,\right)
-\\
-& = &
-	\underset{x\in\Re^{m}}{\inf}\;\left\{\;
-		(1-\alpha) \cdot \mathcal{L}(x,\lambda_{0})
-		\;\overset{{\color{white}.}}{+}\;
-		\alpha \cdot \mathcal{L}(x,\lambda_{1})
-		\;\right\}
-\\
-& \geq &
-	\underset{x\in\Re^{m}}{\inf}\left\{\,
-		(1-\alpha) \cdot
-		\overset{{\color{white}.}}{\mathcal{L}(x,\lambda_{0})}
-		\,\right\}
-	\; + \;
-	\underset{x\in\Re^{m}}{\inf}\left\{\,
-		\alpha \cdot
-		\overset{{\color{white}.}}{\mathcal{L}(x,\lambda_{1})}
-		\,\right\}
-\\
-& = &
-	(1-\alpha) \cdot
-	\underset{x\in\Re^{m}}{\inf}\left\{\,
-		\overset{{\color{white}.}}{\mathcal{L}(x,\lambda_{0})}
-		\,\right\}
-	\; + \;
-	\alpha \cdot
-	\underset{x\in\Re^{m}}{\inf}\left\{\,
-		\overset{{\color{white}.}}{\mathcal{L}(x,\lambda_{1})}
-		\,\right\}
-\\
-& \overset{{\color{white}1}}{=} &
-	(1-\alpha) \cdot Q_{f,c}(\,\lambda_{0}\,)
-	\; + \;
-	\alpha \cdot Q_{f,c}(\,\lambda_{1}\,)
-\end{eqnarray*}
-This proves concavity of $Q_{f,c} : \Re^{m} \longrightarrow \Re$.
-\vskip 0.2cm
-\noindent
-Next, we prove the convexity of $\mathcal{D}(\,Q_{f,c}\,)$.
-In other words, we need to prove that,
-for any $\lambda_{0}, \lambda_{1} \in \mathcal{D}(\,Q_{f,c}\,)$, and $\alpha\in[0,1]$,
-we also have $(1-\alpha)\cdot\lambda_{0}+\alpha\cdot\lambda_{1}\in\mathcal{D}(\,Q_{f,c}\,)$.
-To this end, note that:
-\begin{eqnarray*}
-\lambda_{0}\,, \lambda_{1} \in \mathcal{D}(\,Q_{f,c}\,)
-& \Longleftrightarrow &
-	Q_{f,c}(\,\lambda_{0}\,)\,, Q_{f,c}(\,\lambda_{1}\,) \, > \, -\infty 
-\\
-& \Longrightarrow &
-	Q_{f,c}\!\left(\,(1-\alpha)\cdot\lambda_{0}\overset{{\color{white}.}}{+}\alpha\cdot\lambda_{1}\,\right)
-	\, > \, -\infty\,,\;\;
-	\textnormal{by concavity of \,$Q_{f,c}$\, established above}
-\\
-& \Longrightarrow &
-	(1-\alpha)\cdot\lambda_{0}\overset{{\color{white}.}}{+}\alpha\cdot\lambda_{1}
-	\;\in\, \mathcal{D}(\,Q_{f,c}\,)
-\end{eqnarray*}
-This proves convexity of \,$\mathcal{D}(\,Q_{f,c}\,)$.
-\qed
+\end{definition}
 
 \vskip 0.5cm
 \begin{theorem}[Weak Duality]
 \mbox{}
 \vskip 0.1cm
 \noindent
-For any \,$x \in \Omega(c)$\, and \,$\lambda \geq 0$ (i.e. $\lambda_{i} \geq 0$, for each $i =1,2,\ldots,m$)\,,
+For any \,$x \in \Omega(c)$\, and \,$\mu \geq 0$ (i.e. $\mu_{i} \geq 0$, for each $i =1,2,\ldots,m$)\,,
 we have:
 \begin{equation*}
-Q_{f,c}\!\left(\,\lambda\,\right) \;\; \leq \;\; f(\,x\,)\,.
+Q_{f,g}\!\left(\,\mu\,\right)
+\;\; \leq \;\;
+	Q_{f,g}^{*}
+\;\; := \;\;
+	\underset{\mu\,\geq\,0}{\sup}\left\{\;
+		\overset{{\color{white}.}}{Q_{f,g}(\mu)}
+		\;\right\}
+\;\; \leq \;\;
+	\underset{x\,\in\,\Omega(c)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\}
+\;\; =: \;\;
+	f^{*}
+\;\; \leq \;\;
+	f(\,x\,)\,.
 \end{equation*}
 \end{theorem}
 \proof
+First, note that
 \begin{equation*}
-Q_{f,c}\!\left(\,\lambda\,\right)
+Q_{f,g}\!\left(\,\mu\,\right)
 \;\; := \;\;
-	\underset{\xi\,\in\,\Re^{n}}{\inf}\,\left\{\;f(\xi) \overset{{\color{white}.}}{-} \lambda^{T}\cdot c(\xi)\;\right\}
+	\underset{\xi\,\in\,\Re^{n}}{\inf}\,\left\{\;f(\xi) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(\xi)\;\right\}
 \;\; \leq \;\;
-	f(x) \overset{{\color{white}.}}{-} \lambda^{T}\cdot c(x)
+	f(x) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(x)
 \;\; \leq \;\;
 	f(\,x\,)\,,
 \end{equation*}
-where the last inequality follows from the hypothesis that $x \in \Omega(c)$ and $\lambda \geq 0$.
+where the last inequality follows from the hypothesis that $x \in \Omega(c)$ and $\mu \geq 0$.
+The Theorem now follows immediately from standard properties of suprema and infima.
+\qed
+
+\vskip 0.5cm
+\begin{theorem}
+\mbox{}
+\vskip 0.1cm
+\noindent
+The dual objection function \,$Q_{f,g} : \Re^{m} \longrightarrow \Re$\, is concave,
+and the set
+\begin{equation*}
+\mathcal{D}(\,Q_{f,g}\,)
+\;\; = \;\;
+	\left\{\;\,
+		\mu \in \Re^{m}
+		\;\left\vert\;\;
+		Q_{f,g}(\mu) \,\overset{{\color{white}.}}{>}\, -\infty
+		\right.
+		\;\right\}
+\end{equation*}
+is a convex subset of \,$\Re^{n}$.
+\end{theorem}
+\proof
+For any $\mu_{0}, \mu_{1} \in \Re^{m}$, $x \in \Re^{n}$, and $\alpha \in [0,1]$, we have
+\begin{eqnarray*}
+\mathcal{L}\!\left(\,x\,,\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
+& = &
+	f(x) \;+\; \left(\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)^{T} \cdot g(x)
+\\
+& = &
+	(1-\alpha)\cdot
+	\left(\,f(x) \overset{{\color{white}.}}{+} \mu_{0}^{T}\cdot g(x)\,\right)
+	\;+\;
+	\alpha\cdot
+	\left(\,f(x) \overset{{\color{white}.}}{+}\mu_{1}^{T} \cdot g(x)\,\right)
+\\
+& = &
+	(1-\alpha) \cdot \mathcal{L}(x,\mu_{0})
+	\;+\;
+	\alpha \cdot \mathcal{L}(x,\mu_{1})
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+Q_{f,g}\!\left(\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
+& = &
+	\underset{x\in\Re^{m}}{\inf}\;
+	\mathcal{L}\!\left(\,x\,,\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
+\\
+& = &
+	\underset{x\in\Re^{m}}{\inf}\;\left\{\;
+		(1-\alpha) \cdot \mathcal{L}(x,\mu_{0})
+		\;\overset{{\color{white}.}}{+}\;
+		\alpha \cdot \mathcal{L}(x,\mu_{1})
+		\;\right\}
+\\
+& \geq &
+	\underset{x\in\Re^{m}}{\inf}\left\{\,
+		(1-\alpha) \cdot
+		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{0})}
+		\,\right\}
+	\; + \;
+	\underset{x\in\Re^{m}}{\inf}\left\{\,
+		\alpha \cdot
+		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{1})}
+		\,\right\}
+\\
+& = &
+	(1-\alpha) \cdot
+	\underset{x\in\Re^{m}}{\inf}\left\{\,
+		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{0})}
+		\,\right\}
+	\; + \;
+	\alpha \cdot
+	\underset{x\in\Re^{m}}{\inf}\left\{\,
+		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{1})}
+		\,\right\}
+\\
+& \overset{{\color{white}1}}{=} &
+	(1-\alpha) \cdot Q_{f,g}(\,\mu_{0}\,)
+	\; + \;
+	\alpha \cdot Q_{f,g}(\,\mu_{1}\,)
+\end{eqnarray*}
+This proves concavity of $Q_{f,g} : \Re^{m} \longrightarrow \Re$.
+\vskip 0.2cm
+\noindent
+Next, we prove the convexity of $\mathcal{D}(\,Q_{f,g}\,)$.
+In other words, we need to prove that,
+for any $\mu_{0}, \mu_{1} \in \mathcal{D}(\,Q_{f,g}\,)$, and $\alpha\in[0,1]$,
+we also have $(1-\alpha)\cdot\mu_{0}+\alpha\cdot\mu_{1}\in\mathcal{D}(\,Q_{f,g}\,)$.
+To this end, note that:
+\begin{eqnarray*}
+\mu_{0}\,, \mu_{1} \in \mathcal{D}(\,Q_{f,g}\,)
+& \Longleftrightarrow &
+	Q_{f,g}(\,\mu_{0}\,)\,, Q_{f,g}(\,\mu_{1}\,) \, > \, -\infty 
+\\
+& \Longrightarrow &
+	Q_{f,g}\!\left(\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
+	\, > \, -\infty\,,\;\;
+	\textnormal{by concavity of \,$Q_{f,g}$\, established above}
+\\
+& \Longrightarrow &
+	(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}
+	\;\in\, \mathcal{D}(\,Q_{f,g}\,)
+\end{eqnarray*}
+This proves convexity of \,$\mathcal{D}(\,Q_{f,g}\,)$.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
