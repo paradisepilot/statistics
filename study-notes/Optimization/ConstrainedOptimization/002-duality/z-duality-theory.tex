@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Duality}
+\section{Duality Theory}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -75,7 +75,7 @@ The \textbf{Dual Problem}:
 \begin{equation*}
 \textnormal{Find an element of:}
 \quad
-	\underset{\mu\,\geq\,0}{\argmax}\left\{\;
+	\underset{\mu\,\in\,\Re_{\geq 0}^{r}}{\argmax}\left\{\;
 	\overset{{\color{white}.}}{Q_{f,g}(\mu)}
 	\;\right\}
 \;\; \subset \;\;
@@ -107,8 +107,8 @@ Q_{f,g}^{*}
 \mbox{}
 \vskip 0.1cm
 \noindent
-A element \,$\mu^{*} = (\mu_{1}^{*},\mu_{2}^{*},\ldots,\mu_{r}^{*}) \in \Re^{r}$,\,
-with $\mu_{j}^{*} \geq 0$, for each $j = 1,2,\ldots,r$,
+A element
+\,$\mu^{*} = (\mu_{1}^{*},\mu_{2}^{*},\ldots,\mu_{r}^{*}) \in \Re_{\geq 0}^{r}$\,
 is called a \textbf{geometric multiplier} if
 \begin{equation*}
 	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})
@@ -122,7 +122,202 @@ is called a \textbf{geometric multiplier} if
 \end{definition}
 
 \vskip 0.5cm
-\begin{theorem}
+\begin{lemma}[Geometric characterization of geometric multipliers]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Notations:
+\begin{itemize}
+\item
+	\begin{equation*}
+	S(X,g,f)
+	\;\; := \;\;
+		\left\{\;\left.
+			\left(\,g(x)\overset{{\color{white}1}}{,}f(x)\,\right) \in \Re^{r} \overset{{\color{white}.}}{\times} \Re
+			\;\;\right\vert\;
+				x \in X
+			\;\right\}
+	\;\; \subset \;\;
+		\Re^{r+1}
+	\end{equation*}
+\item
+	Let \,$\mu \in \Re^{r}$.
+	Denote by \,$H^{(\mu,1)}_{\,(y,z)}$\, the hyperplane in \,$\Re^{r+1} = \Re^{r} \times \Re$\,
+	with normal vector \,$(\mu,1) \in \Re^{r+1}$\, and containing the point \,$(y,z) \in \Re^{r+1}$, i.e.
+	\begin{equation*}
+	H^{(\mu,1)}_{\,(y,z)}
+	\;\; := \;\;
+		\left\{\,\left.
+			(\xi,\zeta) \in \Re^{r}\times\overset{{\color{white}.}}{\Re}
+			\,\;\right\vert\;
+			\zeta + \mu^{T} \cdot \xi \,=\,  z + \mu^{T} \cdot y
+			\;\right\}
+	\;\; \subset \;\;
+		\Re^{r+1}
+	\end{equation*}
+\item
+	The ``vertical'' intercept of the hyperplane \,$H^{(\mu,1)}_{\,(y,z)}$ is denoted by:
+	\begin{equation*}
+	H^{(\mu,1)}_{\,(y,z)} \,\bigwedge\, (\,\mathbf{0}_{r},1\,)
+	\;\; := \;\;
+		H^{(\mu,1)}_{\,(y,z)}
+			\;\bigcap\;
+			\span_{\,\Re}\!\left\{\,\overset{{\color{white}.}}{(\,\mathbf{0}_{r}\,,1\,)}\,\right\}
+	\end{equation*}
+	Note, in particular, that
+	\begin{equation*}
+	H^{(\mu,1)}_{\,(\mathbf{0}_{r},z)} \,\bigwedge\, (\,\mathbf{0}_{r},1\,)
+	\;\; = \;\;
+		z
+	\end{equation*}
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	The ``vertical'' intercept of the hyperplane \,$H^{(\mu,1)}_{\,(g(x),f(x))}$\, is \,$L(x,\mu)$, i.e.
+	\begin{equation*}
+	H^{(\mu,1)}_{\,(g(x),f(x))} \;\bigwedge\; (\,\mathbf{0}_{r},1\,)
+	\;\; = \;\;
+		\overset{{\color{white}.}}{L}(x,\mu)
+	\end{equation*}
+\item
+	For each \,$\mu \in \Re_{\geq 0}^{r}$\,,
+	\begin{equation*}
+	\max\left\{\;
+		H^{(\mu,1)}_{\,(y,z)} \;\bigwedge\; (\,\mathbf{0}_{r},1\,) \in \Re
+		\;\,\left\vert\,
+		\begin{array}{c}
+			\left(H^{(\mu,1)}_{\,(y,z)}\right)^{+} \supset\, S(X,g,f)\,,
+			\\
+			(y,z) \in \Re^{r} \times \Re
+			\end{array}
+		\!\right.\right\}
+	\;\; = \;\;
+		Q_{f,g}(\mu)
+	\;\; := \;\,
+		\underset{x\,\in X}{\inf}\;L(x,\mu)
+	\end{equation*}
+\item
+	$\mu^{*} \in \Re_{\geq 0}^{r}$\, is a geometric multiplier if and only if
+	\begin{equation*}
+	\max\left\{\;
+		H^{(\mu^{*},1)}_{\,(y,z)} \;\bigwedge\; (\,\mathbf{0}_{r},1\,) \in \Re
+		\;\,\left\vert\,
+		\begin{array}{c}
+			\left(H^{(\mu^{*},1)}_{\,(y,z)}\right)^{+} \supset\, S(X,g,f)\,,
+			\\
+			(y,z) \in \Re^{r} \times \Re
+			\end{array}
+		\!\right.\right\}
+	\;\; = \;\;
+		f^{*}
+	\;\; := \;\,
+		\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+			\overset{{\color{white}.}}{f(x)}
+			\;\right\}
+	\end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+	Let \,$z \,:=\, H^{(\mu,1)}_{\,(g(x),f(x))} \,\bigwedge\, (\,\mathbf{0}_{r},1\,) \,\in\, \Re$,\,
+	i.e. the desired intercept is \,$(\,\mathbf{0}_{r},z\,)$.\, 
+	Then, \,$z \in \Re$\, satisfies
+	\begin{equation*}
+	z
+	\;\; = \;\;
+		z \,+\, \mu^{T} \cdot \mathbf{0}_{r}
+	\;\; = \;\;
+		f(x) \,+\, \mu^{T} \cdot g(x)
+	\;\; =: \;\;
+		L(x,\mu)\,,
+	\end{equation*}
+	as required.
+\item
+	Note that the set of hyperplanes in \,$\Re^{r+1}$\,
+	with normal \,$(\mu,1)\in\Re^{r+1}$\, is a one-parameter family
+	parametrized by the ``vertical'' intercept;
+	in other words, this set of hyperplanes is given by:
+	\,$\left\{\,H^{(\mu,1)}_{\,(\mathbf{0}_{r},z)}\,\right\}_{z\in\Re}$.
+	Next, observe that:
+	\begin{eqnarray*}
+	\left(H^{(\mu,1)}_{\,(\mathbf{0}_{r},z)}\right)^{+} \supset\, S(X,g,f)
+	& \Longrightarrow &
+		z \;=\; z + \mu^{T} \cdot \mathbf{0}_{r} \;\leq\; f(x) \,+\, \mu^{T} \cdot g(x) \;=:\; L(x,\mu)\,,
+		\;\;\textnormal{for each \,$x \in X$}
+	\\
+	& \Longrightarrow &
+		H^{(\mu,1)}_{\,(\mathbf{0}_{r},z)} \,\bigwedge\, (\,\mathbf{0}_{r},1\,)
+		\; = \; z \; \leq \; \underset{x\,\in X}{\inf}\; L(x,\mu)
+	\end{eqnarray*}
+	It follows that
+	\begin{equation*}
+	\sup\left\{\;
+		H^{(\mu,1)}_{\,(\mathbf{0}_{r},z)} \;\bigwedge\; (\,\mathbf{0}_{r},1\,) \in \Re
+		\;\,\left\vert\,
+		\begin{array}{c}
+			\left(H^{(\mu,1)}_{\,(\mathbf{0}_{r},z)}\right)^{+} \supset\, S(X,g,f)\,,
+			\\
+			z \in \Re
+			\end{array}
+		\!\right.\right\}
+	\;\; \leq \;\;
+		Q_{f,g}(\mu)
+	\;\; := \;\,
+		\underset{x\,\in X}{\inf}\;L(x,\mu)
+	\end{equation*}
+	Lastly, we may further replace the supremum above with maximum, and the inequality with equality,
+	because, for \,$z^{*} := Q_{f,g}(\mu)$,\, we have
+	\begin{equation*}
+	H^{(\mu,1)}_{\,(\mathbf{0}_{r},z^{*})} \;\bigwedge\; (\,\mathbf{0}_{r},1\,)
+	\;\; = \;\;
+		z^{*}
+	\;\; = \;\;
+		Q_{f,g}(\mu)\,,
+	\end{equation*}
+	i.e. the supremum is in fact \,$Q_{f,g}(\mu)$\, and it is attained.
+\item
+	Recall that, by definition, \,$\mu^{*} \in \Re_{\geq 0}^{r}$\, being a geometric multiplier means that
+	\begin{equation*}
+		\underset{x\,\in X}{\inf}\;L(x,\mu^{*})
+	\;\; = \;\;
+		f^{*}
+	\;\; := \;\;
+		\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+			\overset{{\color{white}.}}{f(x)}
+			\;\right\}
+	\end{equation*}
+	Hence, by the preceding (already established) part of the Lemma, we have
+	\begin{eqnarray*}
+	\max\left\{\;
+		H^{(\mu^{*},1)}_{\,(y,z)} \;\bigwedge\; (\,\mathbf{0}_{r},1\,) \in \Re
+		\;\,\left\vert\,
+		\begin{array}{c}
+			\left(H^{(\mu^{*},1)}_{\,(y,z)}\right)^{+} \supset\, S(X,g,f)\,,
+			\\
+			(y,z) \in \Re^{r} \times \Re
+			\end{array}
+		\!\right.\right\}
+	& = &
+		Q_{f,g}(\mu^{*})
+	\;\; := \;\;
+		\underset{x\,\in X}{\inf}\;L(x,\mu^{*})
+	\\
+	& = &
+		f^{*}
+	\;\; := \;\,
+		\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+			\overset{{\color{white}.}}{f(x)}
+			\;\right\}
+	\end{eqnarray*}
+\end{enumerate}
+This completes the proof of the Lemma.
+\qed
+
+
+\vskip 0.5cm
+\begin{theorem}[Existence of a geometric multiplier gives characterization of Primal Problem solution]
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -229,7 +424,7 @@ as required.
 \qed
 
 \vskip 1.0cm
-\begin{theorem}[Weak Duality]
+\begin{theorem}[Weak Duality/Duality Gap]
 \mbox{}
 \vskip 0.1cm
 \noindent
