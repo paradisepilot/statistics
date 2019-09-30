@@ -112,16 +112,60 @@ A element
 is called a \textbf{geometric multiplier} if
 \begin{equation*}
 	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})
-\;\; = \;\;
+\;\; =: \;\;
+	Q_{f,g}(\mu^{*})
+\quad\textnormal{\Large$=$}\quad
+	f^{*}
+\;\; := \;\;
+	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\}\,.
+\end{equation*}
+\end{definition}
+
+\vskip 0.5cm
+\begin{theorem}[Weak Duality/Duality Gap]
+\mbox{}
+\vskip 0.1cm
+\noindent
+For any \,$x \in \Omega(X,g)$\, and \,$\mu \geq 0$\, (i.e. $\mu_{i} \geq 0$, for each $i =1,2,\ldots,m$)\,,
+we have:
+\begin{equation*}
+Q_{f,g}\!\left(\,\mu\,\right)
+\;\; \leq \;\;
+	\underset{\mu\,\geq\,0}{\sup}\left\{\;
+		\overset{{\color{white}.}}{Q_{f,g}(\mu)}
+		\;\right\}
+\;\; =: \;\;
+	Q_{f,g}^{*}
+\quad\textnormal{\large$\leq$}\quad
 	f^{*}
 \;\; := \;\;
 	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
 		\overset{{\color{white}.}}{f(x)}
 		\;\right\}
+\;\; \leq \;\;
+	f(\,x\,)\,.
 \end{equation*}
-\end{definition}
+\end{theorem}
+\proof
+First, note that
+\begin{equation*}
+Q_{f,g}\!\left(\,\mu\,\right)
+\;\; := \;\;
+	\underset{\xi\,\in\,X}{\inf}\,\left\{\;f(\xi) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(\xi)\;\right\}
+\;\; \leq \;\;
+	\underset{\xi\,\in\,\Omega(X,g)}{\inf}\,\left\{\;f(\xi) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(\xi)\;\right\}
+\;\; \leq \;\;
+	f(x) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(x)
+\;\; \leq \;\;
+	f(\,x\,)\,,
+\end{equation*}
+where the last inequality follows from the hypothesis that $x \in \Omega(X,g)$ and $\mu \geq 0$.
+The Theorem now follows immediately from standard properties of suprema and infima.
+\qed
 
-\vskip 0.5cm
+\vskip 1.0cm
 \begin{lemma}[Geometric characterization of geometric multipliers]
 \mbox{}
 \vskip 0.1cm
@@ -421,48 +465,6 @@ f(x^{*})
 which implies that
 $x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{white}.}}{f(x)}\;\right\}$\,,
 as required.
-\qed
-
-\vskip 1.0cm
-\begin{theorem}[Weak Duality/Duality Gap]
-\mbox{}
-\vskip 0.1cm
-\noindent
-For any \,$x \in \Omega(X,g)$\, and \,$\mu \geq 0$\, (i.e. $\mu_{i} \geq 0$, for each $i =1,2,\ldots,m$)\,,
-we have:
-\begin{equation*}
-Q_{f,g}\!\left(\,\mu\,\right)
-\;\; \leq \;\;
-	Q_{f,g}^{*}
-\;\; := \;\;
-	\underset{\mu\,\geq\,0}{\sup}\left\{\;
-		\overset{{\color{white}.}}{Q_{f,g}(\mu)}
-		\;\right\}
-\;\; \leq \;\;
-	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
-		\overset{{\color{white}.}}{f(x)}
-		\;\right\}
-\;\; =: \;\;
-	f^{*}
-\;\; \leq \;\;
-	f(\,x\,)\,.
-\end{equation*}
-\end{theorem}
-\proof
-First, note that
-\begin{equation*}
-Q_{f,g}\!\left(\,\mu\,\right)
-\;\; := \;\;
-	\underset{\xi\,\in\,X}{\inf}\,\left\{\;f(\xi) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(\xi)\;\right\}
-\;\; \leq \;\;
-	\underset{\xi\,\in\,\Omega(X,g)}{\inf}\,\left\{\;f(\xi) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(\xi)\;\right\}
-\;\; \leq \;\;
-	f(x) \overset{{\color{white}.}}{+} \mu^{T}\cdot g(x)
-\;\; \leq \;\;
-	f(\,x\,)\,,
-\end{equation*}
-where the last inequality follows from the hypothesis that $x \in \Omega(X,g)$ and $\mu \geq 0$.
-The Theorem now follows immediately from standard properties of suprema and infima.
 \qed
 
 \vskip 0.5cm
