@@ -168,16 +168,126 @@ is called a \textbf{geometric multiplier} if
 \vskip 0.5cm
 \begin{remark}
 \mbox{}
-\vskip 0.2cm
-\noindent
-Observe:
+\vskip 0.0cm
 \begin{itemize}
 \item
-	The existence of a geometric multiplier implies the Duality Gap is zero.
+	The quantity \,$f^{*} - Q_{f,g}^{*}\,\geq\,0$\, is called the \textbf{duality gap}.
 \item
-	Conversely, if the Duality Gap is strictly positive, then there are no geometric multipliers.
+	If the duality gap is strictly positive, then there are no geometric multipliers.
+\item
+	On the other hand, the existence of a geometric multiplier implies the duality gap is zero.
+\item
+	If the duality gap is zero, then the set of geometric multipliers equals the set of Dual Problem solutions
+	(though either, hence both, may be empty).
 \end{itemize}
 \end{remark}
+
+\vskip 0.5cm
+\begin{theorem}[Existence of a geometric multiplier gives characterization of Primal Problem solution]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let \,$\mu^{*} \in \Re^{r}_{\geq 0}$\, be a geometric multiplier.
+Then, $x^{*} \in X$ is a solution of the Primal Problem, i.e.
+\begin{equation*}
+x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{white}.}}{f(x)}\;\right\}
+\end{equation*}
+if and only if
+\begin{equation*}
+x^{*} \,\in\; \Omega(X,g) \,\bigcap\; \underset{\xi\,\in X}{\argmin}\;L(\xi,\mu^{*})\,,\;\;
+\quad\textnormal{and}\quad\;\;
+\mu_{j}^{*} \cdot g_{j}(x^{*}) = 0, \;\;\textnormal{for each \,$j = 1,2,\ldots,r$}.
+\end{equation*}
+\end{theorem}
+\proof
+\mbox{}
+\vskip 0.1cm
+\noindent
+\underline{($\Longrightarrow$)}
+\quad
+First, note that we immediately have:
+\begin{equation*}
+x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{white}.}}{f(x)}\;\right\}
+\quad\Longrightarrow\quad
+x^{*} \in \Omega(X,g)
+\quad\textnormal{and}\quad
+f(x^{*})
+\; = \;
+	f^{*}
+\; := \;
+	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\}
+\end{equation*}
+Next observe:
+\begin{eqnarray*}
+f^{*}
+& = &
+	f(x^{*})\,,
+	\quad\textnormal{by observation above}
+\\
+& \geq &
+	f(x^{*}) \,+\, \overset{r}{\underset{j=1}{\sum}}\;\,\mu_{j}^{*} \cdot g_{j}(x^{*})\,,
+	\quad\textnormal{by hypothesis that \,$\mu^{*} \in \Re^{r}_{\geq 0}$\, and \,$x^{*} \in \Omega(X,g)$}
+\\
+& =: &
+	L(x^{*},\mu^{*})
+\;\; \geq \;\;
+	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})
+\\
+& = &
+	f^{*}\,,
+	\quad\textnormal{by hypothesis that \,$\mu^{*}$\, is a geometric multiplier}
+\end{eqnarray*}
+which implies:
+\begin{equation*}
+f(x^{*})
+\;\; = \;\;
+	f(x^{*}) \,+\, \overset{r}{\underset{j=1}{\sum}}\;\,\mu_{j}^{*} \cdot g_{j}(x^{*})\,,
+\quad\textnormal{and}\quad
+L(x^{*},\mu^{*})
+\;\; = \;\;
+	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})\,,
+\end{equation*}
+which in turn implies (recalling that \,$\mu^{*} \in \Re^{r}_{\geq 0}$\, and \,$x^{*} \in \Omega(X,g)$):
+\begin{equation*}
+\mu_{j}^{*} \cdot g_{j}(x^{*}) \; = \; 0\,,\;\,\textnormal{for each \,$i = 1,2,\ldots, r$}\,,
+\;\;\quad\textnormal{and}\quad\;\;
+x^{*} \,\in\; \underset{\xi\in X}{\argmin}\;L(\xi,\mu^{*})\,,
+\end{equation*}
+as required.
+
+\vskip 0.3cm
+\noindent
+\underline{($\Longleftarrow$)}
+\quad
+Conversely,
+\begin{eqnarray*}
+f(x^{*})
+& = &
+	f(x^{*}) \,+\, \overset{r}{\underset{j=1}{\sum}}\;\,\mu_{j}^{*} \cdot g_{j}(x^{*})\,,
+	\quad\textnormal{by hypothesis that \,$\mu_{j}^{*}\cdot g_{j}(x^{*}) = 0$, for each $i = 1,2,\ldots,r$}
+\\
+& =: &
+	L(x^{*},\mu^{*})
+\\
+& = &
+	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})\,,
+	\quad\textnormal{by hypothesis that \,$x^{*} \in\, \underset{\xi\,\in X}{\argmin}\;L(\xi,\mu^{*})$}
+\\
+& = &
+	f^{*}\,,
+	\quad\textnormal{by hypothesis that \,$\mu^{*}$\, is a geometric multiplier}
+\\
+& := &
+	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\},
+\end{eqnarray*}
+which implies that
+$x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{white}.}}{f(x)}\;\right\}$\,,
+as required.
+\qed
 
 \vskip 0.5cm
 \begin{lemma}[Geometric characterization of geometric multipliers]
@@ -373,113 +483,6 @@ Then, the following statements hold:
 This completes the proof of the Lemma.
 \qed
 
-
-\vskip 0.5cm
-\begin{theorem}[Existence of a geometric multiplier gives characterization of Primal Problem solution]
-\mbox{}
-\vskip 0.1cm
-\noindent
-Let \,$\mu^{*} \in \Re^{r}_{\geq 0}$\, be a geometric multiplier.
-Then, $x^{*} \in X$ is a solution of the Primal Problem, i.e.
-\begin{equation*}
-x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{white}.}}{f(x)}\;\right\}
-\end{equation*}
-if and only if
-\begin{equation*}
-x^{*} \,\in\; \Omega(X,g) \,\bigcap\; \underset{\xi\,\in X}{\argmin}\;L(\xi,\mu^{*})\,,\;\;
-\quad\textnormal{and}\quad\;\;
-\mu_{j}^{*} \cdot g_{j}(x^{*}) = 0, \;\;\textnormal{for each \,$j = 1,2,\ldots,r$}.
-\end{equation*}
-\end{theorem}
-\proof
-\mbox{}
-\vskip 0.1cm
-\noindent
-\underline{($\Longrightarrow$)}
-\quad
-First, note that we immediately have:
-\begin{equation*}
-x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{white}.}}{f(x)}\;\right\}
-\quad\Longrightarrow\quad
-x^{*} \in \Omega(X,g)
-\quad\textnormal{and}\quad
-f(x^{*})
-\; = \;
-	f^{*}
-\; := \;
-	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
-		\overset{{\color{white}.}}{f(x)}
-		\;\right\}
-\end{equation*}
-Next observe:
-\begin{eqnarray*}
-f^{*}
-& = &
-	f(x^{*})\,,
-	\quad\textnormal{by observation above}
-\\
-& \geq &
-	f(x^{*}) \,+\, \overset{r}{\underset{j=1}{\sum}}\;\,\mu_{j}^{*} \cdot g_{j}(x^{*})\,,
-	\quad\textnormal{by hypothesis that \,$\mu^{*} \in \Re^{r}_{\geq 0}$\, and \,$x^{*} \in \Omega(X,g)$}
-\\
-& =: &
-	L(x^{*},\mu^{*})
-\;\; \geq \;\;
-	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})
-\\
-& = &
-	f^{*}\,,
-	\quad\textnormal{by hypothesis that \,$\mu^{*}$\, is a geometric multiplier}
-\end{eqnarray*}
-which implies:
-\begin{equation*}
-f(x^{*})
-\;\; = \;\;
-	f(x^{*}) \,+\, \overset{r}{\underset{j=1}{\sum}}\;\,\mu_{j}^{*} \cdot g_{j}(x^{*})\,,
-\quad\textnormal{and}\quad
-L(x^{*},\mu^{*})
-\;\; = \;\;
-	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})\,,
-\end{equation*}
-which in turn implies (recalling that \,$\mu^{*} \in \Re^{r}_{\geq 0}$\, and \,$x^{*} \in \Omega(X,g)$):
-\begin{equation*}
-\mu_{j}^{*} \cdot g_{j}(x^{*}) \; = \; 0\,,\;\,\textnormal{for each \,$i = 1,2,\ldots, r$}\,,
-\;\;\quad\textnormal{and}\quad\;\;
-x^{*} \,\in\; \underset{\xi\in X}{\argmin}\;L(\xi,\mu^{*})\,,
-\end{equation*}
-as required.
-
-\vskip 0.3cm
-\noindent
-\underline{($\Longleftarrow$)}
-\quad
-Conversely,
-\begin{eqnarray*}
-f(x^{*})
-& = &
-	f(x^{*}) \,+\, \overset{r}{\underset{j=1}{\sum}}\;\,\mu_{j}^{*} \cdot g_{j}(x^{*})\,,
-	\quad\textnormal{by hypothesis that \,$\mu_{j}^{*}\cdot g_{j}(x^{*}) = 0$, for each $i = 1,2,\ldots,r$}
-\\
-& =: &
-	L(x^{*},\mu^{*})
-\\
-& = &
-	\underset{x\,\in X}{\inf}\;L(x,\mu^{*})\,,
-	\quad\textnormal{by hypothesis that \,$x^{*} \in\, \underset{\xi\,\in X}{\argmin}\;L(\xi,\mu^{*})$}
-\\
-& = &
-	f^{*}\,,
-	\quad\textnormal{by hypothesis that \,$\mu^{*}$\, is a geometric multiplier}
-\\
-& := &
-	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
-		\overset{{\color{white}.}}{f(x)}
-		\;\right\},
-\end{eqnarray*}
-which implies that
-$x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{white}.}}{f(x)}\;\right\}$\,,
-as required.
-\qed
 
 \vskip 0.5cm
 \begin{theorem}
