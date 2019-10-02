@@ -102,8 +102,8 @@ Q_{f,g}^{*}
 \end{equation*}
 \end{definition}
 
-\vskip 0.5cm
-\begin{theorem}[Weak Duality/Duality Gap]
+\vskip 1.0cm
+\begin{theorem}[Weak Duality/Duality Gap]\label{WeakDuality}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -144,7 +144,7 @@ where the last inequality follows from the hypothesis that $x \in \Omega(X,g)$ a
 The Theorem now follows immediately from standard properties of suprema and infima.
 \qed
 
-\vskip 0.5cm
+\vskip 1.0cm
 \begin{definition}[Geometric Multiplier]
 \mbox{}
 \vskip 0.1cm
@@ -163,9 +163,20 @@ is called a \textbf{geometric multiplier} if
 		\overset{{\color{white}.}}{f(x)}
 		\;\right\}\,.
 \end{equation*}
+Furthermore, we denote the set of all geometric multipliers with:
+\begin{equation*}
+\mathcal{G}(f,g)
+\;\; := \;\;
+	\left\{\;\,
+		\left.
+		\overset{{\color{white}1}}{\mu} \in \Re_{\geq 0}^{r}
+		\;\;\right\vert\;
+			Q_{f,g}(\mu) \; = \; f^{*}
+		\;\right\}
+\end{equation*}
 \end{definition}
 
-\vskip 0.5cm
+\vskip 1.0cm
 \begin{remark}
 \mbox{}
 \vskip 0.0cm
@@ -182,10 +193,11 @@ is called a \textbf{geometric multiplier} if
 \end{itemize}
 \end{remark}
 
-\vskip 0.5cm
-\begin{theorem}[Existence of a geometric multiplier gives characterization of Primal Problem solution]
+\vskip 1.0cm
+\begin{proposition}[Existence of geometric multipliers gives characterization of Primal Problem solutions]
+\label{GeometricMultipliersCharacterizePrimalSolutions}
 \mbox{}
-\vskip 0.1cm
+\vskip -0.3cm
 \noindent
 Let \,$\mu^{*} \in \Re^{r}_{\geq 0}$\, be a geometric multiplier.
 Then, $x^{*} \in X$ is a solution of the Primal Problem, i.e.
@@ -198,7 +210,7 @@ x^{*} \,\in\; \Omega(X,g) \,\bigcap\; \underset{\xi\,\in X}{\argmin}\;L(\xi,\mu^
 \quad\textnormal{and}\quad\;\;
 \mu_{j}^{*} \cdot g_{j}(x^{*}) = 0, \;\;\textnormal{for each \,$j = 1,2,\ldots,r$}.
 \end{equation*}
-\end{theorem}
+\end{proposition}
 \proof
 \mbox{}
 \vskip 0.1cm
@@ -289,111 +301,102 @@ $x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{whit
 as required.
 \qed
 
-\vskip 0.5cm
-\begin{theorem}[The Dual Problem is convex]
+
+\vskip 1.0cm
+\begin{theorem}[(Primal Solution, Geometric multiplier)-pairs]
 \mbox{}
 \vskip 0.1cm
 \noindent
-The dual objection function \,$Q_{f,g} : \Re^{m} \longrightarrow \Re$\, is concave,
-and the set
+Suppose \,$(x^{*},\mu^{*}) \,\in\, X \times \Re_{\geq 0}^{r}$.
+Then,
 \begin{equation*}
-\mathcal{D}(\,Q_{f,g}\,)
-\;\; = \;\;
-	\left\{\;\,
-		\mu \in \Re^{m}
-		\;\left\vert\;\;
-		Q_{f,g}(\mu) \,\overset{{\color{white}.}}{>}\, -\infty
-		\right.
-		\;\right\}
+(x^{*},\mu^{*})
+	\,\in
+	\underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\,\overset{{\color{white}.}}{f}(x)\,\right\}
+	\,\times\,
+	\mathcal{G}(f,g)
+\quad\Longleftrightarrow\;\;\;
+	\left\{\;\;\begin{array}{cl}
+		x^{*} \,\in\,\Omega(X,g)\;\bigcap\;\underset{x\,\in X}{\argmin}\;L(x,\mu^{*})\,, & \;\textnormal{and}
+		\\
+		\overset{{\color{white}\textnormal{\large1}}}{\mu_{j}^{*}} \cdot g(x_{j}^{*}) \,=\, 0\,, & \;\textnormal{for each \,$j = 1,2,\ldots,r$}
+		\end{array}\right.
 \end{equation*}
-is a convex subset of \,$\Re^{n}$.
 \end{theorem}
 \proof
-For any $\mu_{0}, \mu_{1} \in \Re^{m}$, $x \in \Re^{n}$, and $\alpha \in [0,1]$, we have
-\begin{eqnarray*}
-\mathcal{L}\!\left(\,x\,,\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
-& = &
-	f(x) \;+\; \left(\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)^{T} \cdot g(x)
-\\
-& = &
-	(1-\alpha)\cdot
-	\left(\,f(x) \overset{{\color{white}.}}{+} \mu_{0}^{T}\cdot g(x)\,\right)
-	\;+\;
-	\alpha\cdot
-	\left(\,f(x) \overset{{\color{white}.}}{+}\mu_{1}^{T} \cdot g(x)\,\right)
-\\
-& = &
-	(1-\alpha) \cdot \mathcal{L}(x,\mu_{0})
-	\;+\;
-	\alpha \cdot \mathcal{L}(x,\mu_{1})
-\end{eqnarray*}
-Hence,
-\begin{eqnarray*}
-Q_{f,g}\!\left(\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
-& = &
-	\underset{x\in\Re^{m}}{\inf}\;
-	\mathcal{L}\!\left(\,x\,,\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
-\\
-& = &
-	\underset{x\in\Re^{m}}{\inf}\;\left\{\;
-		(1-\alpha) \cdot \mathcal{L}(x,\mu_{0})
-		\;\overset{{\color{white}.}}{+}\;
-		\alpha \cdot \mathcal{L}(x,\mu_{1})
-		\;\right\}
-\\
-& \geq &
-	\underset{x\in\Re^{m}}{\inf}\left\{\,
-		(1-\alpha) \cdot
-		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{0})}
-		\,\right\}
-	\; + \;
-	\underset{x\in\Re^{m}}{\inf}\left\{\,
-		\alpha \cdot
-		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{1})}
-		\,\right\}
-\\
-& = &
-	(1-\alpha) \cdot
-	\underset{x\in\Re^{m}}{\inf}\left\{\,
-		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{0})}
-		\,\right\}
-	\; + \;
-	\alpha \cdot
-	\underset{x\in\Re^{m}}{\inf}\left\{\,
-		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{1})}
-		\,\right\}
-\\
-& \overset{{\color{white}1}}{=} &
-	(1-\alpha) \cdot Q_{f,g}(\,\mu_{0}\,)
-	\; + \;
-	\alpha \cdot Q_{f,g}(\,\mu_{1}\,)
-\end{eqnarray*}
-This proves concavity of $Q_{f,g} : \Re^{m} \longrightarrow \Re$.
-\vskip 0.2cm
+\mbox{}
+\vskip 0.1cm
 \noindent
-Next, we prove the convexity of $\mathcal{D}(\,Q_{f,g}\,)$.
-In other words, we need to prove that,
-for any $\mu_{0}, \mu_{1} \in \mathcal{D}(\,Q_{f,g}\,)$, and $\alpha\in[0,1]$,
-we also have $(1-\alpha)\cdot\mu_{0}+\alpha\cdot\mu_{1}\in\mathcal{D}(\,Q_{f,g}\,)$.
-To this end, note that:
-\begin{eqnarray*}
-\mu_{0}\,, \mu_{1} \in \mathcal{D}(\,Q_{f,g}\,)
-& \Longleftrightarrow &
-	Q_{f,g}(\,\mu_{0}\,)\,, Q_{f,g}(\,\mu_{1}\,) \, > \, -\infty 
-\\
-& \Longrightarrow &
-	Q_{f,g}\!\left(\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
-	\, > \, -\infty\,,\;\;
-	\textnormal{by concavity of \,$Q_{f,g}$\, established above}
-\\
-& \Longrightarrow &
-	(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}
-	\;\in\, \mathcal{D}(\,Q_{f,g}\,)
-\end{eqnarray*}
-This proves convexity of \,$\mathcal{D}(\,Q_{f,g}\,)$.
-\qed
+\underline{($\Longrightarrow$)}
+\quad
+The implication follows immediately from Proposition \ref{GeometricMultipliersCharacterizePrimalSolutions}
+and the hypothesis that \,$\mu^{*} \,\in\, \mathcal{G}(f,g)$.
 
 \vskip 0.5cm
+\noindent
+\underline{($\Longleftarrow$)}
+\quad
+Conversely, observe that
+\vskip -0.45cm
+\begin{eqnarray*}
+f^{*}
+& := &
+	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\}
+\;\;\; \leq \;\;\;
+	\underset{x\,\in X}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\}
+\;\;\; \leq \;\;\;
+	f(x^{*})
+\\
+& = &
+	L(x^{*},\mu^{*})\,,
+	\quad\textnormal{since, by hypothesis, \,$\mu_{j}^{*} \cdot g(x_{j}^{*}) = 0$\,, \,for each \,$j = 1,2,\ldots,r$}
+\\
+& = &
+	\underset{x\,\in X}{\inf}\left\{\;\overset{{\color{white}.}}{L}(x,\mu^{*})\;\right\}\,,
+	\quad\textnormal{by hypothesis that \,$x^{*} \in \underset{x\,\in X}{\argmin}\,\left\{\;\overset{{\color{white}.}}{L}(x,\mu^{*})\;\right\}$}
+\\
+& =: &
+	Q_{f,g}(\mu^{*})
+	\quad\textnormal{by definition of \,$Q_{f,g}(\,\cdot\,)$}
+\\
+& \leq &
+	\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\;\overset{{\color{white}.}}{Q}_{f,g}(\mu)\;\right\}
+\;\; =: \;\;
+	Q_{f,g}^{*}
+\\
+& \leq &
+	f^{*}\,,
+	\quad\textnormal{by Theorem \ref{WeakDuality} (Weak Duality)}
+\end{eqnarray*}
+We thus see that the inequalities above are in fact all equalities throughout.
+In particular, we have:
+\begin{equation*}
+f(x^{*}) \,=\, f^{*} \,:=\,
+	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\}
+\;\;\quad\textnormal{and}\quad\;\;
+Q_{f,g}(\mu^{*}) \; = \; f^{*}\,;
+\end{equation*}
+equivalently,
+\begin{equation*}
+(x^{*},\mu^{*})
+	\;\; \in \;\;
+	\underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\,\overset{{\color{white}.}}{f}(x)\,\right\}
+	\,\times\,
+	\mathcal{G}(f,g)\,,
+\end{equation*}
+as required.
+(Incidentally, in this case, the duality gap is zero, and \,$\mu^{*}$\, is a Dual Problem solution.)
+This completes the proof of the Theorem.
+\qed
+
+
+\vskip 1.0cm
 \begin{lemma}[Geometric characterization of geometric multipliers]
 \mbox{}
 \vskip 0.1cm
@@ -585,6 +588,111 @@ Then, the following statements hold:
 	\end{eqnarray*}
 \end{enumerate}
 This completes the proof of the Lemma.
+\qed
+
+
+\vskip 1.0cm
+\begin{theorem}[The Dual Problem is convex]
+\mbox{}
+\vskip 0.1cm
+\noindent
+The dual objection function \,$Q_{f,g} : \Re^{m} \longrightarrow \Re$\, is concave,
+and the set
+\begin{equation*}
+\mathcal{D}(\,Q_{f,g}\,)
+\;\; = \;\;
+	\left\{\;\,
+		\mu \in \Re^{m}
+		\;\left\vert\;\;
+		Q_{f,g}(\mu) \,\overset{{\color{white}.}}{>}\, -\infty
+		\right.
+		\;\right\}
+\end{equation*}
+is a convex subset of \,$\Re^{n}$.
+\end{theorem}
+\proof
+For any $\mu_{0}, \mu_{1} \in \Re^{m}$, $x \in \Re^{n}$, and $\alpha \in [0,1]$, we have
+\begin{eqnarray*}
+\mathcal{L}\!\left(\,x\,,\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
+& = &
+	f(x) \;+\; \left(\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)^{T} \cdot g(x)
+\\
+& = &
+	(1-\alpha)\cdot
+	\left(\,f(x) \overset{{\color{white}.}}{+} \mu_{0}^{T}\cdot g(x)\,\right)
+	\;+\;
+	\alpha\cdot
+	\left(\,f(x) \overset{{\color{white}.}}{+}\mu_{1}^{T} \cdot g(x)\,\right)
+\\
+& = &
+	(1-\alpha) \cdot \mathcal{L}(x,\mu_{0})
+	\;+\;
+	\alpha \cdot \mathcal{L}(x,\mu_{1})
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+Q_{f,g}\!\left(\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
+& = &
+	\underset{x\in\Re^{m}}{\inf}\;
+	\mathcal{L}\!\left(\,x\,,\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
+\\
+& = &
+	\underset{x\in\Re^{m}}{\inf}\;\left\{\;
+		(1-\alpha) \cdot \mathcal{L}(x,\mu_{0})
+		\;\overset{{\color{white}.}}{+}\;
+		\alpha \cdot \mathcal{L}(x,\mu_{1})
+		\;\right\}
+\\
+& \geq &
+	\underset{x\in\Re^{m}}{\inf}\left\{\,
+		(1-\alpha) \cdot
+		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{0})}
+		\,\right\}
+	\; + \;
+	\underset{x\in\Re^{m}}{\inf}\left\{\,
+		\alpha \cdot
+		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{1})}
+		\,\right\}
+\\
+& = &
+	(1-\alpha) \cdot
+	\underset{x\in\Re^{m}}{\inf}\left\{\,
+		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{0})}
+		\,\right\}
+	\; + \;
+	\alpha \cdot
+	\underset{x\in\Re^{m}}{\inf}\left\{\,
+		\overset{{\color{white}.}}{\mathcal{L}(x,\mu_{1})}
+		\,\right\}
+\\
+& \overset{{\color{white}1}}{=} &
+	(1-\alpha) \cdot Q_{f,g}(\,\mu_{0}\,)
+	\; + \;
+	\alpha \cdot Q_{f,g}(\,\mu_{1}\,)
+\end{eqnarray*}
+This proves concavity of $Q_{f,g} : \Re^{m} \longrightarrow \Re$.
+\vskip 0.2cm
+\noindent
+Next, we prove the convexity of $\mathcal{D}(\,Q_{f,g}\,)$.
+In other words, we need to prove that,
+for any $\mu_{0}, \mu_{1} \in \mathcal{D}(\,Q_{f,g}\,)$, and $\alpha\in[0,1]$,
+we also have $(1-\alpha)\cdot\mu_{0}+\alpha\cdot\mu_{1}\in\mathcal{D}(\,Q_{f,g}\,)$.
+To this end, note that:
+\begin{eqnarray*}
+\mu_{0}\,, \mu_{1} \in \mathcal{D}(\,Q_{f,g}\,)
+& \Longleftrightarrow &
+	Q_{f,g}(\,\mu_{0}\,)\,, Q_{f,g}(\,\mu_{1}\,) \, > \, -\infty 
+\\
+& \Longrightarrow &
+	Q_{f,g}\!\left(\,(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}\,\right)
+	\, > \, -\infty\,,\;\;
+	\textnormal{by concavity of \,$Q_{f,g}$\, established above}
+\\
+& \Longrightarrow &
+	(1-\alpha)\cdot\mu_{0}\overset{{\color{white}.}}{+}\alpha\cdot\mu_{1}
+	\;\in\, \mathcal{D}(\,Q_{f,g}\,)
+\end{eqnarray*}
+This proves convexity of \,$\mathcal{D}(\,Q_{f,g}\,)$.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
