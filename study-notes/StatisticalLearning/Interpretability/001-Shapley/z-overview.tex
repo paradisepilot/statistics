@@ -1,0 +1,167 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Overview}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{itemize}
+\item
+	The Shapley decomposition is a notion
+	in game theory\footnote{more precisely, cooperative game theory, a.k.a. coalitional game theory}
+	first introduced by Shapley in 1953 \cite{Shapley1953}.
+\item
+	The intuitive idea behind the Shapley decomposition is as follows:
+
+	Suppose:
+	\begin{itemize}
+	\item
+		$U$ is a finite population of ``players''.
+	\item
+		A \textit{coalition} is a subset of players from $U$.
+		(Think: a coalition is just a team of players chosen from $U$.)
+	\item
+		There is a (coalition-level) \textit{score} assigned to every possible coalition
+		and the score of the ``empty coalition'' (the coalition with zero players) is zero.
+	\end{itemize}
+	
+	The objective of the Shapley decomposition is to ``distribute'' the coalition-level score above
+	to each of the individual players in a manner
+	that
+	\begin{itemize}
+	\item
+		is compatible with the given coalition-level score, and
+	\item
+		accounts for all interactions among the players.
+	\end{itemize}
+	
+	Shapley proves in \cite{Shapley1953} the following (rather remarkable) result:
+	If we insist that the Shapley decomposition possess certain ``natural/desirable properties'',
+	then, given any coalition-level score, its Shapley decomposition exists and is unique
+	(or, intuitively speaking, there is {\color{red}one and only one} way to distribute
+	the coalition-level score to the individual players in a reasonable manner).
+	See Definition \ref{definition:ShapleyDecomposition} (for the ``desirable'' properties) and
+	Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
+	(for the existence, uniqueness, and explicit formula of the Shapley decomposition).
+
+	A look at Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness} shows
+	that the Shapley decomposition essentially works by,
+	for each given player, {\color{red}suitably averaging} his/her {\color{red}marginal scores}
+	over all possible coalitions containing that given player
+	(in other words, very clever bookkeeping).
+
+\item
+	\v{S}trumbelj and Kononenko \cite{Strumbelj2010}
+	introduced the use of the Shapley decomposition
+	in order to {\color{red}explain individual predictions}:
+	\begin{itemize}
+	\item
+		Given a trained prediction machine $f(X_{1},\ldots,X_{p})$
+		based on a set of features $(X_{1},\ldots,X_{p})$, and
+		an unlabelled observation $x = (x_{1},\ldots,x_{p})$,
+		assign a ``contribution score'' $R_{i}(x;f)$ to each feature $X_{i}$.
+		
+		The feature-specific contribution score $R_{i}(x;f)$ is supposed to
+		explain the ``{\color{red}contribution}'' to the prediction
+		$f(x) = f(x_{1},\ldots,x_{p})$ --- made by $f$ on $x$ ---
+		due to the $i^{\textnormal{th}}$ feature value $X_{i} = x_{i}$,
+		in relation to all the other feature values
+		$X_{1} = x_{1}$, \,$\ldots$\;, $X_{p} = x_{p}$.
+		More precisely, the following identify holds for each unlabelled observation $x$:
+		\begin{equation*}
+		f(x)
+		%\;\; = \;\;
+		%f(x_{1},\ldots,x_{p})
+		\;\; = \;\;
+			R_{0}(f)
+			\, + \,
+			\overset{p}{\underset{i=1}{\sum}}\;
+			R_{i}(x;f)\,,
+		\end{equation*}
+		where $R_{0}(f)$ is the average of the predictions by $f$
+		over all possible combinations of feature values.
+
+	\item
+		Here, each feature is assumed to be a categorical variable
+		with finitely many levels;
+		in particular, the entire feature space is finite.
+		The population $U$ of players is the set of features, i.e. $U = \{X_{1},\ldots,X_{p}\}$.
+		A coalition is thus a (sub-)selection $S$ of features from $U$.
+		The coalition-level score $\nu(S;x,f)$ is chosen to be the difference
+		$A_{1}(S;x,f) - A_{0}(f)$
+		of two averages of predictions, where $A_{0}(f)$ is the average of the predictions by $f$
+		over all possible combinations of feature values,
+		whereas $A_{1}(S;x,f)$ is the average of the predictions by $f$ over only those combinations
+		$(z_{1},\ldots,z_{p})$ such that $z_{i} = x_{i}$ for each $i \in S$.
+		\v{S}trumbelj-Kononenko \cite{Strumbelj2010} simply applies
+		the Shapley decomposition to these choices of $U$ and $\nu(S;x,f)$ 
+		in order to obtain their importance scores $R_{i}(x,f)$.
+		See \cite{Strumbelj2010} for precise mathematical formulation.
+%		\begin{equation*}
+%		\nu(S;f,x)
+%		\;\; = \;\;
+%			\dfrac{1}{{\color{white}.}\vert\,\mathcal{F_{\,U\,\backslash S}}\,\vert{\color{white}.}}
+%			\cdot
+%			\underset{\xi\,\in\,\mathcal{F}_{U \backslash S}}{\sum}\;f(\tau(x,\xi;S))
+%			\; - \;
+%			\dfrac{1}{{\color{white}.}\vert\,\mathcal{F}\,\vert{\color{white}.}}
+%			\cdot
+%			\underset{\xi \in \mathcal{F}}{\sum}\;f(y)
+%		\end{equation*}
+%		where
+%		\begin{equation*}
+%		\tau(x,\xi;S) \;\; = \;\; (z_{1},\ldots,z_{p})\,,
+%		\quad\quad
+%		z_{i}
+%		\; = \;
+%			\left\{\begin{array}{cl}
+%			x_{i}, & i \in S
+%			\\
+%			\xi_{i}, & i \notin S
+%			\end{array}\right.
+%		\end{equation*}
+
+	\item
+		A look at
+		Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
+		reveals that a straightforward implementation of the Shapley decomposition
+		requires exponential computation time.
+		One of the main contributions in \cite{Strumbelj2010} is
+		an effective and efficient procedure to approximate
+		the Shapley decomposition in their given context.
+
+	\item
+		The {\color{red}R package} 
+		\texttt{iml} \cite{Molnar2018} %(\texttt{https://CRAN.R-project.org/package=iml})
+		provides implementations for a number of interpretability methods
+		including the \v{S}trumbelj-Kononenko approximation method \cite{Strumbelj2010}.
+
+	\end{itemize}
+
+\item
+	There are, of course, variations to the interpretation method described in in \cite{Strumbelj2010};
+	see for example, \cite{Lipovestsky2001} and \cite{Lundberg2017}. 
+	For a more comprehensive discussion on interpretable machine learning,
+	see the online book \cite{Molnar2019}.
+
+\end{itemize}
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

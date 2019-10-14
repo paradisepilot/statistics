@@ -1,0 +1,146 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Shapley Decomposition}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Characteristic function on a non-empty finite set]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $U$ is a non-empty finite set, and
+$\mathcal{P}(U)$ is its power set
+(i.e. $\mathcal{P}(U)$ is the set of all subsets of $U$).
+A \textbf{characteristic function} on $U$ is an $\Re$-valued function
+\,$\nu : \mathcal{P}(U) \longrightarrow \Re$\,
+such that \,$\nu(\varemptyset) = 0$.
+We denote the set of all characteristic functions on $U$ with $\mathcal{C}(U)$.
+\end{definition}
+
+\begin{definition}[Cooperative game]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A \textbf{cooperative game} is an ordered pair $(U,\nu)$,
+where $U$ is a non-empty finite set, and $\nu \in \mathcal{C}(U)$,
+i.e. $\nu$ is a characteristic function on $U$.
+\end{definition}
+
+\begin{notation}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $U$ is a non-empty finite set.
+\begin{itemize}
+\item
+	$\Re^{U}$ denotes the set of all $\Re$-valued functions defined on $U$.
+\item
+	For each \,$i \in U$\, and each function
+	\,$\varphi : \mathcal{C}(U) \longrightarrow \Re^{U}$,\,
+	$\varphi_{i}$ denotes the component function of $\varphi$ corresponding to $i \in U$, i.e.
+	\begin{equation*}
+	\varphi_{i}(\nu) \; = \; \varphi(\nu)(\,i\,)\,,
+	\quad
+	\textnormal{for each \,$i \in U$,\, each \,$\nu \in \mathcal{C}(U)$}
+	\end{equation*}
+\end{itemize}
+\end{notation}
+
+\begin{definition}[Shapley decomposition]
+\label{definition:ShapleyDecomposition}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $U$ is a non-empty finite set.
+A \textbf{Shapley decomposition} on $U$ is a function
+\,$\varphi : \mathcal{C}(U) \longrightarrow \Re^{U}$\,
+satisfying the following properties:
+\begin{itemize}
+\item
+	efficiency:
+	\begin{equation*}
+	\underset{i \,\in U}{\sum}\; \varphi_{i}(\nu) \; = \; \nu(U)\,,
+	\quad
+	\textnormal{for each \,$\nu \in \mathcal{C}(U)$}
+	\end{equation*}
+\item
+	symmetry:\;\;
+	\begin{equation*}
+		\left.\begin{array}{c}
+			\nu\!\left(S\cup\{i\}\right) \; = \; \nu\!\left(S\cup\{j\}\right)
+			\\
+			\textnormal{for each $\overset{{\color{white}.}}{S} \subseteq U\,\backslash \{i,j\}$}
+		\end{array}
+		\;\;\right\}\!\!\Longrightarrow\;\;
+		\varphi_{i}(\nu) \; = \; \varphi_{j}(\nu)\,,
+	\quad
+		\textnormal{for each \,$i,j \in U$, each $\nu \in \mathcal{C}(U)$}
+	\end{equation*}
+\item
+	dummy player:\;\;
+	\begin{equation*}
+		\left.\begin{array}{c}
+			\nu\!\left(S\cup\{i\}\right) \; = \; \nu\!\left(S\right)
+			\\
+			\textnormal{for each $\overset{{\color{white}.}}{S} \subseteq U\,\backslash \{i\}$}
+		\end{array}
+		\;\;\right\}\!\!\Longrightarrow\;\;
+		\varphi_{i}(\nu) \; = \; 0\,,
+	\quad
+		\textnormal{for each \,$i \in U$, each $\nu \in \mathcal{C}(U)$}
+	\end{equation*}
+\item
+	additivity:\;\;
+	\begin{equation*}
+		\varphi(\nu_{1}+\nu_{2}) \; = \; \varphi(\nu_{1}) \, + \, \varphi(\nu_{2})\,,
+	\quad
+		\textnormal{for each $\nu_{1}, \nu_{2} \,\in\, \mathcal{C}(U)$}
+	\end{equation*}
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Existence and uniqueness of Shapley decomposition]
+\label{theorem:ShapleyDecompositionExistenceUniqueness}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $U$ is a non-empty finite set.
+A \textbf{Shapley decomposition}
+\,$\varphi : \mathcal{C}(U) \longrightarrow \Re^{U}$\,
+on $U$ exists, is unique, and is given by:
+\begin{equation*}
+\varphi_{i}(\nu)
+\;\; = \;\;
+	\dfrac{1}{{\color{white}.}\vert\, U \,\vert{\color{white}.}}
+	\cdot
+	\overset{\vert U \vert-1}{\underset{s\,=\,0}{\sum}}\;\;
+	\dfrac{1}{\left(\!\!\begin{array}{c} \vert\,U \vert-1 \\ s \end{array}\!\!\right)}
+	\cdot
+	\underset{S \not\ni\,i}{\underset{\vert S \vert = s}{\sum}}
+		\left\{\;
+			\nu\!\left(\,S\cup\{i\}\,\right) \overset{{\color{white}1}}{-}\, \nu\!\left(\,S\,\right)
+			\;\right\},
+\quad
+\textnormal{for each \,$i \in U$, each $\nu \in \mathcal{C}(U)$}
+\end{equation*}
+\end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
