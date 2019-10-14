@@ -35,13 +35,15 @@
 		and the score of the ``empty coalition'' (the coalition with zero players) is zero.
 	\end{itemize}
 	
-	The objective of the Shapley decomposition is to ``distribute'' the coalition-level score above
+	The objective of the Shapley decomposition is to ``distribute'' the population score
+	(the coalition-level score for the whole population of players)
 	to each of the individual players such that
 	\begin{itemize}
 	\item
-		the individual scores always simply just add back up to the population score, and
+		the individual scores always simply just {\color{red}add back up} to the population score, and
 	\item
-		all interactions among the players are taken into account.
+		all the (possibly extremely complicated) {\color{red}interactions}
+		among the players are taken into account.
 	\end{itemize}
 	
 	Shapley proves in \cite{Shapley1953} the following (rather remarkable) result:
@@ -50,14 +52,14 @@
 	(see Definition \ref{definition:ShapleyDecomposition}),
 	then, given any coalition-level score, its Shapley decomposition exists and is unique
 	(or, intuitively speaking, there is {\color{red}one and only one} way to distribute
-	the coalition-level score to the individual players in a ``natural'' manner).
+	the population score to the individual players in a ``natural'' manner).
 	See Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
 	(for the existence, uniqueness, and explicit formula of the Shapley decomposition).
 
 	The explicit formula in
 	Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
 	shows that the Shapley decomposition takes into account
-	the {\color{red}interactions} among all players by,
+	the interactions among all players by,
 	for each given player, {\color{red}suitably averaging} his/her {\color{red}marginal scores}
 	over all possible coalitions containing that given player
 	(in other words, the Shapley decomposition does this by very clever bookkeeping).
@@ -76,12 +78,8 @@
 		one can assign a ``contribution score'' $R_{i}(x;f)$ to each feature $X_{i}$
 		such that the following equality holds:
 		\begin{equation*}
-		f(x)
-		%\;\; = \;\;
-		%f(x_{1},\ldots,x_{p})
+		f(x) \, - \, A_{0}(f)
 		\;\; = \;\;
-			A_{0}(f)
-			\, + \,
 			\overset{p}{\underset{i=1}{\sum}}\;
 			R_{i}(x;f)\,,
 		\end{equation*}
@@ -89,8 +87,8 @@
 		over all possible combinations of feature values.
 
 		Thus, the feature-specific contribution score $R_{i}(x;f)$ can be interpreted
-		as the ``{\color{red}contribution}'' %on top of the mean prediction $A_{0}(f)$
-		to the prediction $f(x) = f(x_{1},\ldots,x_{p})$ --- made by $f$ on $x$ ---
+		as the ``{\color{red}contribution}'' to the quantity \,$f(x) - A_{0}(f)$\,
+		 --- the prediction made by $f$ on $x$ minus the average prediction of $f$ ---
 		due to the $i^{\textnormal{th}}$ feature value $X_{i} = x_{i}$,
 		in relation to all the other feature values
 		$X_{1} = x_{1}$, \,$\ldots$\;, $X_{p} = x_{p}$.
