@@ -17,11 +17,86 @@
 
 \begin{itemize}
 \item
+	Background (interpretability of linear models):
+	
+	Linear models have the following form:
+	\begin{equation*}
+	f(\,x\,;\,\beta\,)
+	\;\; = \;\;
+		f(\,x_{1},\ldots,x_{p}\,;\,\beta_{0},\beta_{1},\ldots,\beta_{p}\,)
+	\;\; = \;\;
+		\beta_{0} \,+\, \beta_{1}\cdot x_{1} \,+\, \cdots \,+\, \beta_{p}\cdot x_{p}
+	\end{equation*}
+	Linear models are deemed ``interpretable'' in at least two ways:
+	\begin{enumerate}
+	\item
+		\label{additiveModelDecomposition}
+		The quantity
+		\,$\left(\,f(x;\beta) \overset{{\color{white}.}}{-} \beta_{0}\,\right)$\,
+		--- the prediction made by the model $f$ on the unlabelled observation $x$
+		minus the intercept term $\beta_{0}$ --- is a sum of $p$ summands,
+		with each summand $\beta_{i}\cdot x_{i}$ being interpreted as the contribution to 
+		\,$\left(\,f(x;\beta) \overset{{\color{white}.}}{-} \beta_{0}\,\right)$\,
+		due to the $i^{\textnormal{th}}$ predictor variable, for $i = 1,\ldots,p$.
+	\item
+		\label{beteInterpretability}
+		$\beta_{0} = f(\,0,\ldots,0\,;\,\beta\,)$ is the prediction by $f$ on $x = (0,\ldots,0)$,
+		while each $\beta_{i}$ can be interpreted as the change in $f(\,x\,;\,\beta\,)$
+		caused by each unit change in $x_{i}$, for $i = 1,\ldots,p$.
+	\end{enumerate}
+\item
+	What about nonlinear models?
+	
+	For a model $f(\,x\,;\,\beta\,)$ nonlinear in $\beta$, interpretability in the sense of
+	\eqref{beteInterpretability} above is obviously highly nontrivial, if not impossible.
+	
+	But, it begs the question: Even for nonlinear models, can \eqref{additiveModelDecomposition}
+	be achieved in some (hopefully satisfying/useful) sense?
+
+\item
+	An example of using the Shapley decomposition to achieve \eqref{additiveModelDecomposition}
+	for arbitrary models (including nonlinear models):
+	
+	\v{S}trumbelj-Kononenko \cite{Strumbelj2010}
+	introduced a method to {\color{red}explain individual predictions}:
+	\begin{itemize}
+	\item
+		Given a trained prediction model $f(X_{1},\ldots,X_{p})$
+		based on a set of predictor variables $(X_{1},\ldots,X_{p})$, and
+		an unlabelled observation $x = (x_{1},\ldots,x_{p})$,
+		\v{S}trumbelj-Kononenko \cite{Strumbelj2010} shows that
+		one can assign a ``contribution score'' $R_{i}(x;f)$
+		to each predictor variable $X_{i}$
+		such that the following equality holds:
+		\begin{equation*}
+		f(x) \, - \, A_{0}(f)
+		\;\; = \;\;
+			\overset{p}{\underset{i=1}{\sum}}\;
+			R_{i}(x;f)\,,
+		\end{equation*}
+		where $A_{0}(f)$ is the average of the predictions by $f$
+		over all possible combinations of predictor values.
+
+		\vskip 0.2cm
+		\textbf{Thus, the feature-specific contribution score $R_{i}(x;f)$ can be interpreted
+		as the ``{\color{red}contribution}'' to the quantity \,$\left(\,f(x) - A_{0}(f)\,\right)$\,
+		 --- the prediction made by $f$ on $x$ minus the average prediction of $f$ ---
+		due to the $i^{\textnormal{th}}$ predictor value $X_{i} = x_{i}$,
+		in relation to all the other predictor values
+		$X_{1} = x_{1}$, \,$\ldots$\;, $X_{p} = x_{p}$.}
+		\vskip 0.2cm
+		
+	\item
+		The $i^{\textnormal{th}}$ contribution score $R_{i}(x;f)$ above
+		turns out to be the $i^{\textnormal{th}}$ Shapley value of
+		the Shapley decomposition of a certain characteristic function.
+	\end{itemize}
+
+\item
 	The Shapley decomposition is a notion
 	in game theory\footnote{more precisely, cooperative game theory, a.k.a. coalitional game theory}
 	first introduced by Shapley in 1953 \cite{Shapley1953}.
-\item
-	The intuitive idea behind the Shapley decomposition is as follows:
+	Its underlying intuitive idea is as follows:
 
 	Suppose:
 	\begin{itemize}
@@ -65,42 +140,15 @@
 	(in other words, the Shapley decomposition does this by very clever bookkeeping).
 
 \item
-	As an example of how the Shapley decomposition can be used
-	to help interpret predictive models in machine learning,
-	\v{S}trumbelj and Kononenko \cite{Strumbelj2010}
-	introduced its use in order to {\color{red}explain individual predictions}:
+	Returning to \v{S}trumbelj-Kononenko \cite{Strumbelj2010}:
+
 	\begin{itemize}
-	\item
-		Given a trained prediction machine $f(X_{1},\ldots,X_{p})$
-		based on a set of features $(X_{1},\ldots,X_{p})$, and
-		an unlabelled observation $x = (x_{1},\ldots,x_{p})$,
-		\v{S}trumbelj-Kononenko \cite{Strumbelj2010} show that
-		one can assign a ``contribution score'' $R_{i}(x;f)$ to each feature $X_{i}$
-		such that the following equality holds:
-		\begin{equation*}
-		f(x) \, - \, A_{0}(f)
-		\;\; = \;\;
-			\overset{p}{\underset{i=1}{\sum}}\;
-			R_{i}(x;f)\,,
-		\end{equation*}
-		where $A_{0}(f)$ is the average of the predictions by $f$
-		over all possible combinations of feature values.
-
-		\large
-		\vskip 0.3cm
-		\textbf{Thus, the feature-specific contribution score $R_{i}(x;f)$ can be interpreted
-		as the ``{\color{red}contribution}'' to the quantity \,$f(x) - A_{0}(f)$\,
-		 --- the prediction made by $f$ on $x$ minus the average prediction of $f$ ---
-		due to the $i^{\textnormal{th}}$ feature value $X_{i} = x_{i}$,
-		in relation to all the other feature values
-		$X_{1} = x_{1}$, \,$\ldots$\;, $X_{p} = x_{p}$.}
-		\normalsize
-		\vskip 0.2cm
-
 	\item
 		\v{S}trumbelj-Kononenko \cite{Strumbelj2010} applies
 		the Shapley decomposition %to these choices of $U$ and $\nu(S;x,f)$ 
 		in order to obtain their contribution scores $R_{i}(x,f)$.
+
+	\item
 		In \cite{Strumbelj2010},
 		each feature is assumed to be a categorical variable with finitely many levels;
 		in particular, the entire feature space is finite.
@@ -115,30 +163,35 @@
 		%\v{S}trumbelj-Kononenko \cite{Strumbelj2010} applies
 		%the Shapley decomposition to these choices of $U$ and $\nu(S;x,f)$ 
 		%in order to obtain their contribution scores $R_{i}(x,f)$.
-		See \cite{Strumbelj2010} for precise mathematical formulation.
-%		\begin{equation*}
-%		\nu(S;f,x)
-%		\;\; = \;\;
-%			\dfrac{1}{{\color{white}.}\vert\,\mathcal{F_{\,U\,\backslash S}}\,\vert{\color{white}.}}
-%			\cdot
-%			\underset{\xi\,\in\,\mathcal{F}_{U \backslash S}}{\sum}\;f(\tau(x,\xi;S))
-%			\; - \;
-%			\dfrac{1}{{\color{white}.}\vert\,\mathcal{F}\,\vert{\color{white}.}}
-%			\cdot
-%			\underset{\xi \in \mathcal{F}}{\sum}\;f(y)
-%		\end{equation*}
-%		where
-%		\begin{equation*}
-%		\tau(x,\xi;S) \;\; = \;\; (z_{1},\ldots,z_{p})\,,
-%		\quad\quad
-%		z_{i}
-%		\; = \;
-%			\left\{\begin{array}{cl}
-%			x_{i}, & i \in S
-%			\\
-%			\xi_{i}, & i \notin S
-%			\end{array}\right.
-%		\end{equation*}
+		%See \cite{Strumbelj2010} for precise mathematical formulation.
+
+	\item
+		For completeness, we show the definition of $\nu(S;f,x)$ here:
+		\begin{equation*}
+		\nu(S;f,x)
+		\;\; := \;\;
+			\dfrac{1}{{\color{white}.}\vert\,\mathcal{F_{\,U\,\backslash S}}\,\vert{\color{white}.}}
+			\cdot
+			\underset{\xi\,\in\,\mathcal{F}_{U \backslash S}}{\sum}f(\tau(x,\xi;S))
+			\; - \;
+			\dfrac{1}{{\color{white}.}\vert\,\mathcal{F}\,\vert{\color{white}.}}
+			\cdot
+			\underset{\xi \in \mathcal{F}}{\sum}\;f(y)
+		\end{equation*}
+		where $\mathcal{F}$ is the feature space, and
+		\begin{equation*}
+		\tau(x,\xi;S) \;\; = \;\; (z_{1},\ldots,z_{p})\,,
+		\quad\quad
+		z_{i}
+		\; = \;
+			\left\{\begin{array}{cl}
+			x_{i}, & i \in S
+			\\
+			\xi_{i}, & i \notin S
+			\end{array}\right.
+		\end{equation*}
+		However, we refer the reader to \cite{Strumbelj2010} for full mathematical details;
+		in particular, the definition of $\mathcal{F}_{U\,\backslash S}$ above.
 
 	\item
 		The explicit formula in
@@ -160,12 +213,13 @@
 \item
 	There are, of course, variations to the interpretability method described in \cite{Strumbelj2010};
 	see for example, \cite{Lipovestsky2001} and \cite{Lundberg2017}. 
+
+\item
 	For a more comprehensive discussion on interpretable machine learning
 	(including approaches other than those based on the Shapley decomposition),
 	see the {\color{red}online book} \cite{Molnar2019}.
 
 \end{itemize}
-
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
