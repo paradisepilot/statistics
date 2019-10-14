@@ -61,23 +61,18 @@
 	(in other words, the Shapley decomposition works by very clever bookkeeping).
 
 \item
+	As an example of how the Shapley decomposition can be used
+	to help interpret predictive models in machine learning,
 	\v{S}trumbelj and Kononenko \cite{Strumbelj2010}
-	introduced the use of the Shapley decomposition
-	in order to {\color{red}explain individual predictions}:
+	introduced its use in order to {\color{red}explain individual predictions}:
 	\begin{itemize}
 	\item
 		Given a trained prediction machine $f(X_{1},\ldots,X_{p})$
 		based on a set of features $(X_{1},\ldots,X_{p})$, and
 		an unlabelled observation $x = (x_{1},\ldots,x_{p})$,
 		assign a ``contribution score'' $R_{i}(x;f)$ to each feature $X_{i}$.
-		
-		The feature-specific contribution score $R_{i}(x;f)$ is supposed to
-		explain the ``{\color{red}contribution}'' to the prediction
-		$f(x) = f(x_{1},\ldots,x_{p})$ --- made by $f$ on $x$ ---
-		due to the $i^{\textnormal{th}}$ feature value $X_{i} = x_{i}$,
-		in relation to all the other feature values
-		$X_{1} = x_{1}$, \,$\ldots$\;, $X_{p} = x_{p}$.
-		More precisely, the following identify holds for each unlabelled observation $x$:
+
+		The following identity holds for each unlabelled observation $x$:
 		\begin{equation*}
 		f(x)
 		%\;\; = \;\;
@@ -91,6 +86,13 @@
 		where $R_{0}(f)$ is the average of the predictions by $f$
 		over all possible combinations of feature values.
 
+		Thus, the feature-specific contribution score $R_{i}(x;f)$ is supposed to
+		explain the ``{\color{red}contribution}'' to the prediction
+		$f(x) = f(x_{1},\ldots,x_{p})$ --- made by $f$ on $x$ ---
+		due to the $i^{\textnormal{th}}$ feature value $X_{i} = x_{i}$,
+		in relation to all the other feature values
+		$X_{1} = x_{1}$, \,$\ldots$\;, $X_{p} = x_{p}$.
+
 	\item
 		Here, each feature is assumed to be a categorical variable
 		with finitely many levels;
@@ -103,9 +105,9 @@
 		over all possible combinations of feature values,
 		whereas $A_{1}(S;x,f)$ is the average of the predictions by $f$ over only those combinations
 		$(z_{1},\ldots,z_{p})$ such that $z_{i} = x_{i}$ for each $i \in S$.
-		\v{S}trumbelj-Kononenko \cite{Strumbelj2010} simply applies
+		\v{S}trumbelj-Kononenko \cite{Strumbelj2010} applies
 		the Shapley decomposition to these choices of $U$ and $\nu(S;x,f)$ 
-		in order to obtain their importance scores $R_{i}(x,f)$.
+		in order to obtain their contribution scores $R_{i}(x,f)$.
 		See \cite{Strumbelj2010} for precise mathematical formulation.
 %		\begin{equation*}
 %		\nu(S;f,x)
@@ -138,13 +140,13 @@
 		requires exponential computation time.
 		One of the main contributions in \cite{Strumbelj2010} is
 		an effective and efficient procedure to approximate
-		the Shapley decomposition in their given context.
+		the Shapley decomposition in the given context.
 
 	\item
 		The {\color{red}R package} 
 		\texttt{iml} \cite{Molnar2018} %(\texttt{https://CRAN.R-project.org/package=iml})
-		provides implementations for a number of interpretability methods
-		including the \v{S}trumbelj-Kononenko approximation method \cite{Strumbelj2010}.
+		provides implementations for a number of interpretability methods,
+		including that of \v{S}trumbelj-Kononenko \cite{Strumbelj2010}.
 
 	\end{itemize}
 
@@ -152,7 +154,7 @@
 	There are, of course, variations to the interpretation method described in in \cite{Strumbelj2010};
 	see for example, \cite{Lipovestsky2001} and \cite{Lundberg2017}. 
 	For a more comprehensive discussion on interpretable machine learning,
-	see the online book \cite{Molnar2019}.
+	see the {\color{red}online book} \cite{Molnar2019}.
 
 \end{itemize}
 
