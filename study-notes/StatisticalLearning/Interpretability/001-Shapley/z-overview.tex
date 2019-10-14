@@ -88,14 +88,15 @@
 		
 	\item
 		The $i^{\textnormal{th}}$ contribution score $R_{i}(x;f)$ above
-		turns out to be the $i^{\textnormal{th}}$ Shapley value of
-		the Shapley decomposition of a certain characteristic function.
+		turns out to be the $i^{\textnormal{th}}$ {\color{red}Shapley value} of
+		a certain {\color{red}Shapley decomposition}.
+		See Definition \eqref{definition:ShapleyDecomposition}.
 	\end{itemize}
 
 \item
 	The Shapley decomposition is a notion
 	in game theory\footnote{more precisely, cooperative game theory, a.k.a. coalitional game theory}
-	first introduced by Shapley in 1953 \cite{Shapley1953}.
+	first introduced in \cite{Shapley1953}.
 	Its underlying intuitive idea is as follows:
 
 	Suppose:
@@ -140,21 +141,35 @@
 	(in other words, the Shapley decomposition does this by very clever bookkeeping).
 
 \item
-	Returning to \v{S}trumbelj-Kononenko \cite{Strumbelj2010}:
+	We now give an outline of \v{S}trumbelj-Kononenko \cite{Strumbelj2010}:
 
 	\begin{itemize}
 	\item
 		\v{S}trumbelj-Kononenko \cite{Strumbelj2010} applies
 		the Shapley decomposition %to these choices of $U$ and $\nu(S;x,f)$ 
 		to define their contribution scores $R_{i}(x,f)$.
+		
+		More precisely, \v{S}trumbelj-Kononenko \cite{Strumbelj2010}
+		chooses the population $U$ of players to be the set of features (predictor variables),
+		i.e. $U = \{X_{1},\ldots,X_{p}\}$.
+		A coalition is thus a (sub-)selection $S$ of features from $U$.
+		By Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness},
+		the Shapley decomposition $\varphi$ on $U$ exists and is unique.
+
+		It now remains only to choose a suitable coalition-level score $\nu(S;x,f)$.
+		Once that choice is made, we can define the $i^{\textnormal{th}}$ contribution score
+		$R_{i}(x;f)$ simply to be the $i^{\textnormal{th}}$ Shapely value of
+		$\varphi\left(\,\nu(\,\cdot\,;\,x,f)\,\right)$.
 
 	\item
+		Choice of coalition-level score $\nu(S;x,f)$:
+		
 		In \cite{Strumbelj2010},
-		each feature (predictor variable) is assumed to be a categorical variable
+		each feature is assumed to be a categorical variable
 		with finitely many levels;
 		in particular, the entire feature space is finite.
-		The population $U$ of players is the set of features, i.e. $U = \{X_{1},\ldots,X_{p}\}$.
-		A coalition is thus a (sub-)selection $S$ of features from $U$.
+
+		
 		The coalition-level score $\nu(S;x,f)$ is chosen to be the difference
 		$A(S;x,f) - A_{0}(f)$
 		of two averages of predictions, where $A_{0}(f)$ is as before
