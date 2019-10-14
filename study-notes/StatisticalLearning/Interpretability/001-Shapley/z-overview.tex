@@ -36,29 +36,31 @@
 	\end{itemize}
 	
 	The objective of the Shapley decomposition is to ``distribute'' the coalition-level score above
-	to each of the individual players in a manner
-	that
+	to each of the individual players such that
 	\begin{itemize}
 	\item
-		is compatible with the given coalition-level score, and
+		the individual scores always simply just add back up to the population score, and
 	\item
-		accounts for all interactions among the players.
+		all interactions among the players are taken into account.
 	\end{itemize}
 	
 	Shapley proves in \cite{Shapley1953} the following (rather remarkable) result:
-	If we insist that the Shapley decomposition possess certain ``natural/desirable properties'',
+	If we insist that the Shapley decomposition should possess
+	certain ``natural/desirable'' properties
+	(see Definition \ref{definition:ShapleyDecomposition}),
 	then, given any coalition-level score, its Shapley decomposition exists and is unique
 	(or, intuitively speaking, there is {\color{red}one and only one} way to distribute
-	the coalition-level score to the individual players in a reasonable manner).
-	See Definition \ref{definition:ShapleyDecomposition} (for the ``desirable'' properties) and
-	Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
+	the coalition-level score to the individual players in a ``natural'' manner).
+	See Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
 	(for the existence, uniqueness, and explicit formula of the Shapley decomposition).
 
-	A look at Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness} shows
-	that the Shapley decomposition essentially works by,
+	The explicit formula in
+	Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
+	shows that the Shapley decomposition takes into account
+	the {\color{red}interactions} among all players by,
 	for each given player, {\color{red}suitably averaging} his/her {\color{red}marginal scores}
 	over all possible coalitions containing that given player
-	(in other words, the Shapley decomposition works by very clever bookkeeping).
+	(in other words, the Shapley decomposition does this by very clever bookkeeping).
 
 \item
 	As an example of how the Shapley decomposition can be used
@@ -70,9 +72,9 @@
 		Given a trained prediction machine $f(X_{1},\ldots,X_{p})$
 		based on a set of features $(X_{1},\ldots,X_{p})$, and
 		an unlabelled observation $x = (x_{1},\ldots,x_{p})$,
-		assign a ``contribution score'' $R_{i}(x;f)$ to each feature $X_{i}$.
-
-		The following identity holds for each unlabelled observation $x$:
+		\v{S}trumbelj-Kononenko \cite{Strumbelj2010} show that
+		one can assign a ``contribution score'' $R_{i}(x;f)$ to each feature $X_{i}$
+		such that the following equality holds:
 		\begin{equation*}
 		f(x)
 		%\;\; = \;\;
@@ -103,10 +105,10 @@
 		The population $U$ of players is the set of features, i.e. $U = \{X_{1},\ldots,X_{p}\}$.
 		A coalition is thus a (sub-)selection $S$ of features from $U$.
 		The coalition-level score $\nu(S;x,f)$ is chosen to be the difference
-		$A_{1}(S;x,f) - A_{0}(f)$
+		$A(S;x,f) - A_{0}(f)$
 		of two averages of predictions, where $A_{0}(f)$ is as before
 		the average of the predictions by $f$ over all possible combinations of feature values,
-		while $A_{1}(S;x,f)$ is the average of the predictions by $f$ over only those combinations
+		while $A(S;x,f)$ is the average of the predictions by $f$ over only those combinations
 		$(z_{1},\ldots,z_{p})$ such that $z_{i} = x_{i}$ for each $i \in S$.
 		%\v{S}trumbelj-Kononenko \cite{Strumbelj2010} applies
 		%the Shapley decomposition to these choices of $U$ and $\nu(S;x,f)$ 
@@ -137,7 +139,7 @@
 %		\end{equation*}
 
 	\item
-		A look at
+		The explicit formula in
 		Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
 		reveals that a straightforward implementation of the Shapley decomposition
 		requires exponential computation time.
@@ -154,7 +156,7 @@
 	\end{itemize}
 
 \item
-	There are, of course, variations to the interpretation method described in \cite{Strumbelj2010};
+	There are, of course, variations to the interpretability method described in \cite{Strumbelj2010};
 	see for example, \cite{Lipovestsky2001} and \cite{Lundberg2017}. 
 	For a more comprehensive discussion on interpretable machine learning
 	(including approaches other than those based on the Shapley decomposition),
