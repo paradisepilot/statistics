@@ -57,7 +57,7 @@
 	\end{center}
 
 \item
-	An example of using the Shapley decomposition to achieve \eqref{additiveModelDecomposition}
+	An example of using the Shapley additive decomposition to achieve \eqref{additiveModelDecomposition}
 	for arbitrary models (including nonlinear models):
 	
 	\v{S}trumbelj-Kononenko \cite{Strumbelj2010}
@@ -92,12 +92,12 @@
 	\item
 		The $i^{\textnormal{th}}$ contribution score $R_{i}(x;f)$ above
 		turns out to be the $i^{\textnormal{th}}$ {\color{red}Shapley value} of
-		a certain {\color{red}Shapley decomposition}.
+		a certain {\color{red}Shapley additive decomposition}.
 		See Definition \eqref{definition:ShapleyDecomposition}.
 	\end{itemize}
 
 \item
-	The Shapley decomposition is a notion
+	The Shapley additive decomposition is a notion
 	in game theory\footnote{more precisely, cooperative game theory, a.k.a. coalitional game theory}
 	first introduced in \cite{Shapley1953}.
 	Its underlying intuitive idea is as follows:
@@ -114,7 +114,7 @@
 		and the score of the ``empty coalition'' (the coalition with zero players) is zero.
 	\end{itemize}
 	
-	The objective of the Shapley decomposition is to ``distribute'' the population score
+	The objective of the Shapley additive decomposition is to ``distribute'' the population score
 	(the coalition-level score for the whole population of players)
 	to each of the individual players such that
 	\begin{itemize}
@@ -126,22 +126,22 @@
 	\end{itemize}
 	
 	Shapley proves in \cite{Shapley1953} the following (rather remarkable) result:
-	If we insist that the Shapley decomposition should possess
+	If we insist that the Shapley additive decomposition should possess
 	certain ``natural/desirable'' properties
 	(see Definition \ref{definition:ShapleyDecomposition}),
-	then, given any coalition-level score, its Shapley decomposition exists and is unique
+	then, given any coalition-level score, its Shapley additive decomposition exists and is unique
 	(or, intuitively speaking, there is {\color{red}one and only one} way to distribute
 	the population score to the individual players in a ``natural'' manner).
 	See Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
-	(for the existence, uniqueness, and explicit formula of the Shapley decomposition).
+	(for the existence, uniqueness, and explicit formula of the Shapley additive decomposition).
 
 	The explicit formula in
 	Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
-	shows that the Shapley decomposition takes into account
+	shows that the Shapley additive decomposition takes into account
 	the interactions among all players by,
 	for each given player, {\color{red}suitably averaging} his/her {\color{red}marginal scores}
 	over all possible coalitions containing that given player
-	(in other words, the Shapley decomposition does this by very clever bookkeeping).
+	(in other words, the Shapley additive decomposition does this by very clever bookkeeping).
 
 \item
 	We now give an outline of \v{S}trumbelj-Kononenko \cite{Strumbelj2010}:
@@ -149,7 +149,7 @@
 	\begin{itemize}
 	\item
 		\v{S}trumbelj-Kononenko \cite{Strumbelj2010} applies
-		the Shapley decomposition %to these choices of $U$ and $\nu(S;x,f)$ 
+		the Shapley additive decomposition %to these choices of $U$ and $\nu(S;x,f)$ 
 		to define their contribution scores $R_{i}(x,f)$.
 		
 		More precisely, \v{S}trumbelj-Kononenko \cite{Strumbelj2010}
@@ -157,7 +157,7 @@
 		i.e. $U = \{X_{1},\ldots,X_{p}\}$.
 		A coalition is thus a (sub-)selection $S$ of features from $U$.
 		By Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness},
-		the Shapley decomposition $\varphi$ on $U$ exists and is unique.
+		the Shapley additive decomposition $\varphi$ on $U$ exists and is unique.
 
 		It now remains only to choose a suitable coalition-level score $\nu(S;x,f)$.
 		Once that choice is made, we can define the $i^{\textnormal{th}}$ contribution score
@@ -180,7 +180,7 @@
 		while $A(S;x,f)$ is the average of the predictions by $f$ over only those combinations
 		$(z_{1},\ldots,z_{p})$ such that $z_{i} = x_{i}$ for each $i \in S$.
 		%\v{S}trumbelj-Kononenko \cite{Strumbelj2010} applies
-		%the Shapley decomposition to these choices of $U$ and $\nu(S;x,f)$ 
+		%the Shapley additive decomposition to these choices of $U$ and $\nu(S;x,f)$ 
 		%in order to obtain their contribution scores $R_{i}(x,f)$.
 		%See \cite{Strumbelj2010} for precise mathematical formulation.
 
@@ -215,11 +215,11 @@
 	\item
 		The explicit formula in
 		Theorem \ref{theorem:ShapleyDecompositionExistenceUniqueness}
-		shows that a straightforward implementation of the Shapley decomposition
+		shows that a straightforward implementation of the Shapley additive decomposition
 		has exponential computational complexity.
 		One of the main contributions in \cite{Strumbelj2010} is
 		an effective and efficient procedure to approximate
-		the Shapley decomposition in the given context.
+		the Shapley additive decomposition in the given context.
 
 	\item
 		The {\color{red}R package} 
@@ -235,7 +235,7 @@
 
 \item
 	For a more comprehensive discussion on interpretable machine learning
-	(including approaches other than those based on the Shapley decomposition),
+	(including approaches other than those based on the Shapley additive decomposition),
 	see the {\color{red}online book} \cite{Molnar2019}.
 
 \end{itemize}
