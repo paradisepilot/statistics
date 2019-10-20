@@ -75,22 +75,26 @@ y_{i} \in \{\,-1,\,1\,\}
 \textbf{The Primal Problem of the linearly separable case:}
 \begin{eqnarray*}
 &&
-	\underset{\mathbf{n}\,,\,\mathbf{z}}{\argmax}
+	\argmax
 	\left\{\;
-		\left.
+		{\color{white}........1}
 		\underset{1\leq i \leq m}{\min}\left\{\,\dist(\,\mathbf{x}_{i}\overset{{\color{white}1}}{,}H_{\mathbf{n},\mathbf{z}}\,)\,\right\}
-		\;\;\right\vert
+		{\color{white}........}
+		\;\;\left\vert
 		\begin{array}{c}
-			\textnormal{$H_{\mathbf{n},\mathbf{z}}$ is a separating hyperplane}
+			\mathbf{n} \in \Re^{d},\; \mathbf{z} \in \Re^{d}
 			\\
+			\textnormal{$H_{\mathbf{n},\mathbf{z}}$ is a separating hyperplane}
+			\;
 			\textnormal{for $(\mathbf{x}_{1},y_{1}),\ldots,(\mathbf{x}_{m},y_{m})$}
 			\end{array}
+			\right.
 		\right\}
 \\
 & = &
-	\underset{\mathbf{n}\,,\,\mathbf{z}}{\argmax}
+	\argmax
 	\left\{\;
-		\left.
+		{\color{white}.......1}\!
 		\underset{1\leq i \leq m}{\min}\left\{\,
 			\dfrac{
 				\vert\,\langle\,\mathbf{x}_{i}-\mathbf{z}\,,\,\mathbf{n}\,\rangle\,\vert
@@ -98,125 +102,151 @@ y_{i} \in \{\,-1,\,1\,\}
 				\Vert\,\mathbf{n}\,\Vert
 				}
 			\,\right\}
-		\;\;\right\vert
+		{\color{white}.......}
+		\;\;\left\vert
 		\begin{array}{c}
-			y_{i}\cdot\langle\,\mathbf{x}_{i} - \mathbf{z}\,,\,\mathbf{n}\,\rangle > 0\,,
+			\mathbf{n} \in \Re^{d},\; \mathbf{z} \in \Re^{d}
 			\\
+			y_{i}\cdot\langle\,\mathbf{x}_{i} - \mathbf{z}\,,\,\mathbf{n}\,\rangle > 0\,,
+			\;
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\end{array}
+			\right.
 		\right\}
 \\
 & = &
-	\underset{\mathbf{n}\,,\,\mathbf{z}}{\argmax}
+	\argmax
 	\left\{\;
-		\left.
+		{\color{white}...}
 		\dfrac{1}{\Vert\,\mathbf{n}\,\Vert}
 		\cdot
 		\underset{1\leq i \leq m}{\min}\left\{\,
 			\left\vert\,\langle\,\mathbf{x}_{i}\overset{{\color{white}.}}{-}\mathbf{z}\,,\,\mathbf{n}\,\rangle\,\right\vert
 			\,\right\}
-		\;\;\right\vert
+		{\color{white}...}
+		\;\;\left\vert
 		\begin{array}{c}
+			\mathbf{n} \in \Re^{d},\; \mathbf{z} \in \Re^{d}
+			\\
 			y_{i}\cdot\left(\langle\,\mathbf{x}_{i}\,,\,\mathbf{n}\,\rangle - \langle\,\mathbf{z}\,,\,\mathbf{n}\,\rangle\right) > 0\,,
-			\\
+			\;
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\end{array}
+			\right.
 		\right\}
 \\
 & = &
-	\underset{\mathbf{n}\,,\,b}{\argmax}
+	\argmax
 	\left\{\;
-		\left.
+		{\color{white}....}
 		\dfrac{1}{\Vert\,\mathbf{n}\,\Vert}
 		\cdot
 		\underset{1\leq i \leq m}{\min}\left\{\,
-			\left\vert\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} b\,\right\vert
+			\left\vert\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} {\color{red}b}\,\right\vert
 			\,\right\}
-		\;\;\right\vert
+		{\color{white}...}
+		\;\;\left\vert
 		\begin{array}{c}
-			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) > 0\,,
+			\mathbf{n} \in \Re^{d},\; {\color{red}b \in \Re}
 			\\
+			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) > 0\,,
+			\;
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\end{array}
+			\right.
 		\right\}
 \\
 & = &
-	\underset{\mathbf{n}\,,\,b}{\argmax}
+	\argmax
 	\left\{\;
-		\left.
 		\dfrac{1}{\Vert\,\mathbf{n}\,\Vert}
 		\cdot
 		\underset{1\leq i \leq m}{\min}\left\{\,
 			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} b\,\right)
 			\,\right\}
-		\;\;\right\vert
+		\;\;\left\vert
 		\begin{array}{c}
-			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) > 0\,,
+			\mathbf{n} \in \Re^{d},\; b \in \Re
 			\\
+			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) > 0\,,
+			\;
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\end{array}
+			\right.
 		\right\}
 \\
 & = &
-	\underset{\mathbf{n}\,,\,b}{\argmax}
+	\argmax
 	\left\{\;
-		\left.
 		\dfrac{1}{\Vert\,\mathbf{n}\,\Vert}
 		\cdot
 		\underset{1\leq i \leq m}{\min}\left\{\,
 			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} b\,\right)
 			\,\right\}
-		\;\;\right\vert
+		\;\;\left\vert
 		\begin{array}{c}
+			\mathbf{n} \in \Re^{d},\; b \in \Re
+			\\
 			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) > 0\,,\;
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\\
-			\underset{1\leq i \leq m}{\min}\left\{\,
-			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} b\,\right)
-			\,\right\}
-			\; = \; 1
+			{\color{red}\underset{1\leq i \leq m}{\min}\left\{\,
+				y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} b\,\right)
+				\,\right\}
+				\; = \; 1}
 			\end{array}
+			\right.
 		\right\}
 \\
 & = &
-	\underset{\mathbf{n}\,,\,b}{\argmax}
-	\left\{\;
-		\left.
+	\argmax
+	\left\{\;\;\,
+		{\color{white}..}
 		\dfrac{1}{\Vert\,\mathbf{n}\,\Vert}
-		\;\;\right\vert
+		{\color{white}...}
+		\;\;\left\vert\;
 		\begin{array}{c}
+			\mathbf{n} \in \Re^{d},\; b \in \Re
+			\\
 			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) > 0\,,\;
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\\
-			y_{i}\overset{{\color{white}.}}{\cdot}\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) \geq 1\,,\;
+			y_{i}\overset{{\color{white}.}}{\cdot}\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right)\,{\color{red}\geq}\,1\,,\;
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\end{array}
+			\right.
 		\right\}
 \\
 & = &
-	\underset{\mathbf{n}\,,\,b}{\argmax}
-	\left\{\;
-		\left.
+	\argmax
+	\left\{\;\;\,
+		{\color{white}...}
 		\dfrac{1}{\Vert\,\mathbf{n}\,\Vert}
-		\;\;\right\vert
+		{\color{white}...}\!
+		\;\;\left\vert\;
 		\begin{array}{c}
+			\mathbf{n} \in \Re^{d},\; b \in \Re
+			\\
 			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) \geq 1\,,
-			\\
+			\;
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\end{array}
+			\right.
 		\right\}
 \\
 & = &
-	\underset{\mathbf{n}\,,\,b}{\argmin}
-	\left\{\;
-		\left.
+	{\color{red}\argmin}\,
+	\left\{\;\;\,
 		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
-		\;\;\right\vert
+		\;\,\left\vert\;
 		\begin{array}{c}
-			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) \geq 1\,,
+			\mathbf{n} \in \Re^{d},\; b \in \Re
 			\\
+			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) \geq 1\,,
+			\;
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\end{array}
+			\right.
 		\right\}
 \end{eqnarray*}
 
