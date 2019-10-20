@@ -2,14 +2,6 @@
 \section{Support Vector Machines for Binary Classification}
 \setcounter{theorem}{0}
 
-\begin{equation*}
-\mathcal{D} \;\; = \;\; \left\{\,(\mathbf{x}_{1},y_{1})\,,\,(\mathbf{x}_{2},y_{2})\,,\,\ldots\,,\,(\mathbf{x}_{m},y_{m})\,\right\},
-\quad\quad
-\mathbf{x}_{i} \in \Re^{d},
-\quad\quad
-y_{i} \in \{\,-1,\,1\,\}
-\end{equation*}
-
 \vskip 0.3cm
 \noindent
 \textbf{Reminder:}
@@ -48,17 +40,24 @@ y_{i} \in \{\,-1,\,1\,\}
 	Let $\mathbf{x} \in \Re^{d}$.  The distance between $\mathbf{x}$ and the hyperplane $H_{\mathbf{n},\mathbf{z}}$
 	is given by:
 	\begin{equation*}
-	\dist\!\left(\mathbf{x},H_{\mathbf{n},\mathbf{z}}\right) \;\; = \;\;
-	\left\vert
-	\left\langle\,\mathbf{x}-\mathbf{z}\,,\,\dfrac{\mathbf{n}}{\Vert\mathbf{n}\Vert}\,\right\rangle
-	\right\vert
+	\dist\!\left(\mathbf{x},H_{\mathbf{n},\mathbf{z}}\right)
+	\;\; = \;\;
+		\left\vert
+		\left\langle\,\mathbf{x}-\mathbf{z}\,,\,\dfrac{\mathbf{n}}{\Vert\mathbf{n}\Vert}\,\right\rangle
+		\right\vert
+	\;\; = \;\;
+		\dfrac{1}{{\color{white}.}\Vert\,\mathbf{n}\,\Vert{\color{white}.}}
+		\cdot
+		\left\vert
+		\left\langle\,\mathbf{x}-\mathbf{z}\,,\,\overset{{\color{white}.}}{\mathbf{n}}\,\right\rangle
+		\right\vert
 	\end{equation*}
-	This implies:
-	\begin{equation*}
-	\Vert\,\mathbf{n}\,\Vert
-	\cdot\dist\!\left(\mathbf{x},H_{\mathbf{n},\mathbf{z}}\right) \;\; = \;\;
-	\left\vert\left\langle\,\mathbf{x}-\mathbf{z}\,,\,\mathbf{n}\,\right\rangle\right\vert
-	\end{equation*}
+	%This implies:
+	%\begin{equation*}
+	%\Vert\,\mathbf{n}\,\Vert
+	%\cdot\dist\!\left(\mathbf{x},H_{\mathbf{n},\mathbf{z}}\right) \;\; = \;\;
+	%\left\vert\left\langle\,\mathbf{x}-\mathbf{z}\,,\,\mathbf{n}\,\right\rangle\right\vert
+	%\end{equation*}
 \item
 	Note that
 	$\dist\!\left(\mathbf{x},H_{\mathbf{n},\mathbf{z}}\right)$ is well-defined,
@@ -67,6 +66,54 @@ y_{i} \in \{\,-1,\,1\,\}
 	of the normal vector $\mathbf{n}$ and the point
 	$\mathbf{z} \in H_{\mathbf{n},\mathbf{z}}$. 
 \end{itemize}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.3cm
+\noindent
+\textbf{Linearly separable data}
+\vskip 0.1cm
+\noindent
+A data set
+\begin{equation*}
+\mathcal{D}
+\;\; = \;\;
+	\left\{\,
+		(\overset{{\color{white}-}}{\mathbf{x}}_{1},y_{1})\,,\,(\mathbf{x}_{2},y_{2})\,,\,\ldots\,,\,(\mathbf{x}_{m},y_{m})
+		\,\right\},
+\quad\quad
+\mathbf{x}_{i} \in \Re^{d},
+\quad\quad
+y_{i} \in \{\,-1,\,1\,\}
+\end{equation*}
+is said to be \textit{linearly separable} if
+\begin{equation*}
+	\left\{\;\;
+		(\mathbf{n},\mathbf{z}) \in \Re^{d} \times \Re^{d}
+		\;\;\left\vert
+		\begin{array}{c}
+			\textnormal{$H_{\mathbf{n},\mathbf{z}}$ is a}
+			\\
+			\textnormal{separating hyperplane}
+			\\
+			\textnormal{for $(\mathbf{x}_{1},y_{1}),\ldots,(\mathbf{x}_{m},y_{m})$}
+			\end{array}
+			\right.
+		\!\right\}
+\;\; = \;\;
+	\left\{\;
+		(\mathbf{n},\mathbf{z}) \in \Re^{d} \times \Re^{d}
+		\;\;\left\vert
+		\begin{array}{c}
+			y_{i}\cdot\langle\,\mathbf{x}_{i} - \mathbf{z}\,,\,\mathbf{n}\,\rangle > 0\,,
+			\\
+			\textnormal{for each \,$i = 1,2,\ldots,m$}
+			\end{array}
+			\right.
+		\right\}
+\;\; \neq \;\;
+	\varemptyset
+\end{equation*}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -256,19 +303,24 @@ y_{i} \in \{\,-1,\,1\,\}
 \noindent
 \textbf{The Primal Problem of the linearly non-separable case:}
 \begin{eqnarray*}
-	\underset{\mathbf{n}\,,\,b\,,\,\xi}{\argmin}
-	\left\{\;
-		\left.
+	\argmin
+	\left\{\;\;
 		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2} + \lambda\cdot\Vert\,\xi\,\Vert_{p}^{p}
-		\;\;\right\vert
+		\;\;\,\left\vert\;
 		\begin{array}{c}
+			\mathbf{n} \in \Re^{d} \,,\;\, b \in \Re \,,\;\, \xi \in \Re^{d}
+			\\
 			\xi_{i} \geq 0,\;\,\textnormal{and}\;\, y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) \geq 1 - \xi_{i}\,,
 			\\
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\end{array}
+			\right.
 		\right\}
 \end{eqnarray*}
 
-
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\noindent
+\textbf{The Dual Problem of the linearly non-separable case:}
 
