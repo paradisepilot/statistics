@@ -68,57 +68,6 @@ y_{i} \in \{\,-1,\,1\,\}
 	$\mathbf{z} \in H_{\mathbf{n},\mathbf{z}}$. 
 \end{itemize}
 
-\vskip 0.5cm
-\begin{lemma}
-\mbox{}
-\vskip 0.1cm
-\noindent
-Let $\mathbf{x}_{1},\ldots,\mathbf{x}_{m}\in\Re^{d}$ and a hyperplane $H_{\mathbf{n},\mathbf{z}} \subset \Re^{d}$ be given, with $\mathbf{x}_{i} \notin H_{\mathbf{n},\mathbf{z}}$, for each $i = 1,\ldots,m$.  Without loss of generality, we may assume (by rescaling $\mathbf{n}$, if necessary) that the normal vector $\mathbf{n}$ satisfies
-\begin{equation*}
-\underset{1\leq i \leq m}{\min}\,
-\left\vert\,\langle\,\mathbf{x}_{i} \overset{{\color{white}.}}{-} \mathbf{z} \,,\, \mathbf{n}\,\rangle\,\right\vert
-\;\; = \;\; 1
-\end{equation*}
-\end{lemma}
-\proof
-Without loss of generality, we may assume (by rescaling $\mathbf{n}$, if necessary, while leaving $\mathbf{z}$ unchanged) that the normal vector $\mathbf{n}$ satisfies
-\begin{equation*}
-\Vert\,\mathbf{n}\,\Vert \;\; = \;\; \dfrac{1}{\underset{1\leq i \leq m}{\min}\left\{\,\dist\!\left(\,\mathbf{x}_{i},H_{\mathbf{n},\mathbf{z}}\right)\,\right\}}
-\end{equation*}
-With this choice of normal vector $\mathbf{n}$, we have
-\begin{equation*}
-\underset{1\leq i \leq m}{\min}\left\vert\,\langle\,\mathbf{x}_{i} - \mathbf{z} \,,\, \mathbf{n}\,\rangle\,\right\vert
-\;\; = \;\;
-\underset{1\leq i \leq m}{\min}\left\{\,||\,\mathbf{n}\,||\cdot\dist\!\left(\mathbf{x}_{i},H_{\mathbf{n},\mathbf{z}}\right)\,\right\}
-\;\; = \;\;
-||\,\mathbf{n}\,||\cdot\underset{1\leq i \leq m}{\min}\left\{\,\dist\!\left(\mathbf{x}_{i},H_{\mathbf{n},\mathbf{z}}\right)\,\right\}
-\;\; = \;\; 1
-\end{equation*}
-\qed
-
-\begin{definition}
-\mbox{}
-\vskip 0.1cm
-\noindent
-Let $\mathcal{D}_{0} := \left\{\,\mathbf{x}_{1},\ldots,\mathbf{x}_{m}\,\right\} \subset \Re^{d}$, and $H \subset \Re^{d}$ be a hyperplane, with $\mathbf{x}_{1}, \ldots, \mathbf{x}_{m} \notin H$.  A representation $H_{\mathbf{n},\mathbf{z}} = H$ of $H$ is said to be in $\mathcal{D}_{0}$-canonical form if
-\begin{equation*}
-\underset{1\leq i \leq m}{\min}\left\vert\,\langle\,\mathbf{x}_{i} - \mathbf{z} \,,\, \mathbf{n}\,\rangle\,\right\vert \;\; = \;\; 1
-\end{equation*}
-\end{definition}
-
-\vskip 0.5cm
-\begin{corollary}
-\mbox{}
-\vskip 0.1cm
-\noindent
-A $\mathcal{D}$-separating hyperplane $H_{\mathbf{n},\mathbf{z}}$ in $\mathcal{D}_{0}$-canonical form satisfies:
-\begin{equation*}
-y_{i}\cdot\langle\,\mathbf{x}_{i}-\mathbf{z}\,,\,\mathbf{n}\,\rangle \;\; \geq \;\; 1,
-\quad\quad
-\textnormal{for each} \;\; i = 1, \ldots, m.
-\end{equation*}
-\end{corollary}
-
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \begin{eqnarray*}
@@ -249,30 +198,6 @@ y_{i}\cdot\langle\,\mathbf{x}_{i}-\mathbf{z}\,,\,\mathbf{n}\,\rangle \;\; \geq \
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\end{array}
 		\right\}
-%\\
-%& = &
-%	\underset{\widehat{\mathbf{n}}\,,\,b}{\argmax}
-%	\left\{\;
-%		\underset{1\leq i \leq m}{\min}\left\{\,
-%			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\widehat{\mathbf{n}}\,\rangle
-%			\overset{{\color{white}.}}{+}
-%			b\,\right)
-%			\,\right\}
-%		\,\right\}
 \end{eqnarray*}
-
-
-\begin{equation*}
-	\underset{\mathbf{n}\,,\,b}{\argmin}
-	\left\{\;
-		\Vert\,\mathbf{n}\,\Vert^{2}
-		\;\;\left\vert
-		\begin{array}{c}
-			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\,\mathbf{n}\,\rangle+b\,\right) \geq 1\,,
-			\\
-			\textnormal{for each \,$i = 1,2,\ldots,m$}
-			\end{array}
-		\right.\right\}
-\end{equation*}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
