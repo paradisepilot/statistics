@@ -10,7 +10,7 @@
 y_{i} \in \{\,-1,\,1\,\}
 \end{equation*}
 
-\vskip 0.5cm
+\vskip 0.3cm
 \noindent
 \textbf{Reminder:}
 \begin{itemize}
@@ -70,6 +70,9 @@ y_{i} \in \{\,-1,\,1\,\}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.5cm
+\noindent
+\textbf{The Primal Problem of the linearly separable case:}
 \begin{eqnarray*}
 &&
 	\underset{\mathbf{n}\,,\,\mathbf{z}}{\argmax}
@@ -144,7 +147,24 @@ y_{i} \in \{\,-1,\,1\,\}
 		\dfrac{1}{\Vert\,\mathbf{n}\,\Vert}
 		\cdot
 		\underset{1\leq i \leq m}{\min}\left\{\,
-			\left\vert\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} b\,\right\vert
+			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} b\,\right)
+			\,\right\}
+		\;\;\right\vert
+		\begin{array}{c}
+			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) > 0\,,
+			\\
+			\textnormal{for each \,$i = 1,2,\ldots,m$}
+			\end{array}
+		\right\}
+\\
+& = &
+	\underset{\mathbf{n}\,,\,b}{\argmax}
+	\left\{\;
+		\left.
+		\dfrac{1}{\Vert\,\mathbf{n}\,\Vert}
+		\cdot
+		\underset{1\leq i \leq m}{\min}\left\{\,
+			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} b\,\right)
 			\,\right\}
 		\;\;\right\vert
 		\begin{array}{c}
@@ -152,7 +172,7 @@ y_{i} \in \{\,-1,\,1\,\}
 			\textnormal{for each \,$i = 1,2,\ldots,m$}
 			\\
 			\underset{1\leq i \leq m}{\min}\left\{\,
-			\left\vert\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} b\,\right\vert
+			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle \overset{{\color{white}.}}{+} b\,\right)
 			\,\right\}
 			\; = \; 1
 			\end{array}
@@ -201,3 +221,24 @@ y_{i} \in \{\,-1,\,1\,\}
 \end{eqnarray*}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\noindent
+\textbf{The Primal Problem of the linearly non-separable case:}
+\begin{eqnarray*}
+	\underset{\mathbf{n}\,,\,b\,,\,\xi}{\argmin}
+	\left\{\;
+		\left.
+		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2} + \lambda\cdot\Vert\,\xi\,\Vert_{p}^{p}
+		\;\;\right\vert
+		\begin{array}{c}
+			\xi_{i} \geq 0,\;\,\textnormal{and}\;\, y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) \geq 1 - \xi_{i}\,,
+			\\
+			\textnormal{for each \,$i = 1,2,\ldots,m$}
+			\end{array}
+		\right\}
+\end{eqnarray*}
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
