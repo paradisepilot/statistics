@@ -1,7 +1,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Duality Theory}
+\section{Duality Theory for Optimization with Inequality Constraints}
 \setcounter{theorem}{0}
 \setcounter{equation}{0}
 
@@ -16,7 +16,7 @@
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \noindent
-\begin{definition}[The Primal Problem and the Dual Problem]
+\begin{definition}[The Primal Problem]
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -51,9 +51,125 @@ The \textbf{Primal Problem}:
 \;\; \subset \;\;
 	\Omega(X,g)
 \end{equation*}
+\end{definition}
 
-\vskip 0.5cm
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.3cm
 \noindent
+\textbf{Motivation/Derivation of the Lagrangian function and the Dual Problem}
+\vskip 0.2cm
+\noindent
+Define:
+\begin{equation*}
+B_{f,g}(x)
+\;\; := \;\;
+	\underset{\mu\,\in\,\Re_{\geq 0}^{r}}{\sup}
+	\left\{\;
+		\mu^{T} \cdot \overset{{\color{white}.}}{g(x)}
+		\;\right\}
+\;\; = \;\;
+	\underset{\mu\,\in\,\Re_{\geq 0}^{r}}{\sup}
+	\left\{\;
+		\overset{r}{\underset{j=1}{\sum}}\;\,\mu_{j} \cdot \overset{{\color{white}.}}{g_{j}(x)}
+		\,\right\}
+\;\; = \;\;
+	\left\{\begin{array}{cc}
+		0, & \textnormal{if \,$g(x) \leq 0$}
+		\\
+		+\infty, & \textnormal{otherwise}
+		\end{array}\right.
+\end{equation*}
+Then, observe that
+\begin{eqnarray*}
+{\color{red}\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+	\overset{{\color{white}.}}{f(x)}
+	\;\right\}}
+& = &
+	\inf
+	\left\{\;\,
+		\overset{{\color{white}.}}{f(x)}
+		\,\;\left\vert\;
+		\begin{array}{c}
+			x \in X,
+			\\
+			g(x) \leq 0
+			\end{array}
+			\right.
+		\;\right\}
+\;\; = \;\;
+	\inf
+	\left\{\;\,
+		\overset{{\color{white}.}}{f(x)} + B_{f,g}(x)
+		\,\;\left\vert\;\,
+			\overset{{\color{white}1}}{x} \in X
+			\right.
+		\;\right\}
+\\
+& = &
+	\underset{x\,\in\,X}{\inf}
+	\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\; +  
+		\underset{\mu\,\in\,\Re_{\geq 0}^{r}}{\sup}
+			\left\{\;
+			\mu^{T} \cdot \overset{{\color{white}.}}{g(x)}
+			\;\right\}
+		\;\right\}
+\\
+& = &
+	\underset{x\,\in\,X}{\inf}
+	\left\{\;
+		 \underset{\mu\,\in\,\Re_{\geq 0}^{r}}{\sup}
+			\left\{\;
+			\overset{{\color{white}.}}{f(x)}
+			\, + \,
+			\mu^{T} \cdot \overset{{\color{white}.}}{g(x)}
+			\;\right\}
+		\;\right\}
+\\
+& {\color{red}\geq} &
+	{\color{red}\underset{\mu\,\in\,\Re_{\geq 0}^{r}}{\sup}
+	\left\{\;\,
+		\underset{x\,\in\,X}{\inf}
+			\left\{\;
+			\overset{{\color{white}.}}{f(x)}
+			\, + \,
+			\mu^{T} \cdot \overset{{\color{white}.}}{g(x)}
+			\;\right\}
+		\;\right\}},
+		\quad
+		\textnormal{by Theorem \ref{WeakDuality}}
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\noindent
+\begin{definition}[The Lagrangian function and the Dual Problem]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$f : \Re^{n} \longrightarrow \Re$ is an arbitrary function.
+\item
+	$g = (g_{1},g_{2},\ldots,g_{r}) : \Re^{n} \longrightarrow \Re^{r}$ is an arbitrary function.
+\item
+	$X \subset \Re^{n}$ is an arbitrary subset of $\Re^{n}$.
+\item
+	$\Omega(X,g) \, := \,
+	\left\{\;\,
+	x \overset{{\color{white}.}}{\in} X
+	\;\;\left\vert\;
+		\begin{array}{c}
+			g_{j}(x) \leq 0,
+			\\
+			j = 1,2,\ldots,r
+		\end{array}
+		\right.
+	\;\right\}$
+\end{itemize}
 The \textbf{Lagrangian function} \,$L : \Re^{n+r} \longrightarrow \Re$\, is defined as:
 \begin{equation*}
 L(\,x,\mu\,)
