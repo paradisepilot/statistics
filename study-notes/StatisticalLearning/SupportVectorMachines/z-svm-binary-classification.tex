@@ -305,7 +305,9 @@ is said to be \textit{linearly separable} if
 \begin{eqnarray*}
 	\argmin
 	\left\{\;\;
-		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2} + \dfrac{\lambda}{p}\cdot\Vert\,\xi\,\Vert_{p}^{p}
+		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+		+
+		\lambda\cdot\overset{m}{\underset{i=1}{\sum}}\;\xi_{i}
 		\;\;\,\left\vert\;
 		\begin{array}{c}
 			\mathbf{n} \in \Re^{d} \,,\;\, b \in \Re \,,\;\, \xi \in \Re^{m}
@@ -328,7 +330,7 @@ L(\,\mathbf{n},b,\xi\,;\,\alpha,\beta\,)
 \;\; := \;\;
 	\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
 	\; + \;
-	\dfrac{\lambda}{p}\cdot\Vert\,\xi\,\Vert_{p}^{p}
+	\lambda\cdot\overset{m}{\underset{i=1}{\sum}}\;\xi_{i}
 	\; + \;
 	\overset{m}{\underset{i = 1}{\sum}}\;\,
 		\alpha_{i}
@@ -351,7 +353,9 @@ L(\,\mathbf{n},b,\xi\,;\,\alpha,\beta\,)
 &&
 	\inf
 	\left\{\;\;
-		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2} + \dfrac{\lambda}{p}\cdot\Vert\,\xi\,\Vert_{p}^{p}
+		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+		+
+		\lambda\cdot\overset{m}{\underset{i=1}{\sum}}\;\xi_{i}
 		\;\;\,\left\vert\;
 		\begin{array}{c}
 			\mathbf{n} \in \Re^{d} \,,\;\, b \in \Re \,,\;\, \xi \in \Re^{m}
@@ -379,7 +383,7 @@ L(\,\mathbf{n},b,\xi\,;\,\alpha,\beta\,)
 		\left\{\;
 			\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
 			\; + \;
-			\dfrac{\lambda}{p}\cdot\Vert\,\xi\,\Vert_{p}^{p}
+			\lambda\cdot\overset{m}{\underset{i=1}{\sum}}\;\xi_{i}
 			\; + \;
 			\overset{m}{\underset{i = 1}{\sum}}\;\,
 				\alpha_{i}
@@ -411,7 +415,7 @@ The Karush-Kuhn-Tucker Optimality Necessary Conditions for the inner minimizatio
 \\
 \nabla_{\xi}\,L
 & = &
-	\lambda\cdot\xi^{\,p-1} \, - \, \alpha \, - \, \beta
+	\lambda\cdot\mathbf{1}_{m} \, - \, (\alpha \, + \, \beta)
 \end{eqnarray*}
 
 
