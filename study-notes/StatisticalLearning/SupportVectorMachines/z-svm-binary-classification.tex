@@ -305,10 +305,10 @@ is said to be \textit{linearly separable} if
 \begin{eqnarray*}
 	\argmin
 	\left\{\;\;
-		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2} + \lambda\cdot\Vert\,\xi\,\Vert_{p}^{p}
+		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2} + \dfrac{\lambda}{p}\cdot\Vert\,\xi\,\Vert_{p}^{p}
 		\;\;\,\left\vert\;
 		\begin{array}{c}
-			\mathbf{n} \in \Re^{d} \,,\;\, b \in \Re \,,\;\, \xi \in \Re^{d}
+			\mathbf{n} \in \Re^{d} \,,\;\, b \in \Re \,,\;\, \xi \in \Re^{m}
 			\\
 			\xi_{i} \geq 0,\;\,\textnormal{and}\;\, y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) \geq 1 - \xi_{i}\,,
 			\\
@@ -323,4 +323,95 @@ is said to be \textit{linearly separable} if
 \vskip 0.5cm
 \noindent
 \textbf{The Dual Problem of the linearly non-separable case:}
+\begin{equation*}
+L(\,\mathbf{n},b,\xi\,;\,\alpha,\beta\,)
+\;\; := \;\;
+	\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+	\; + \;
+	\dfrac{\lambda}{p}\cdot\Vert\,\xi\,\Vert_{p}^{p}
+	\; + \;
+	\overset{m}{\underset{i = 1}{\sum}}\;\,
+		\alpha_{i}
+		\cdot
+		\left(\,
+			1 - \xi_{i}
+			-
+			y_{i}\overset{{\color{white}1}}{\cdot}\left(\,
+				\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b
+				\,\right)
+			\,\right)
+	\; - \;
+	\overset{m}{\underset{i = 1}{\sum}}\;
+		\beta_{i}
+		\cdot
+		\xi_{i}
+\end{equation*}
+
+\begin{eqnarray*}
+&&
+	\inf
+	\left\{\;\;
+		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2} + \dfrac{\lambda}{p}\cdot\Vert\,\xi\,\Vert_{p}^{p}
+		\;\;\,\left\vert\;
+		\begin{array}{c}
+			\mathbf{n} \in \Re^{d} \,,\;\, b \in \Re \,,\;\, \xi \in \Re^{m}
+			\\
+			\xi_{i} \geq 0,\;\,\textnormal{and}\;\, y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) \geq 1 - \xi_{i}\,,
+			\\
+			\textnormal{for each \,$i = 1,2,\ldots,m$}
+			\end{array}
+			\right.
+		\right\}
+\\
+& = &
+	\underset{\alpha,\beta\,\in\,\Re_{\geq 0}^{m}}{\sup}
+	\left\{\;
+		\underset{(\mathbf{n},b,\xi)\,\in\,\Re^{d}\times\Re\times\Re^{m}}{\inf}\;\;
+		L(\,\mathbf{n},b,\xi\,;\,\alpha,\beta\,)
+		\right\},
+	\quad
+	\textnormal{by Strong Duality}
+\\
+& = &
+	\underset{\alpha,\beta\,\in\,\Re_{\geq 0}^{m}}{\sup}
+	\left\{\;
+		\underset{(\mathbf{n},b,\xi)\,\in\,\Re^{d}\times\Re\times\Re^{m}}{\inf}\;
+		\left\{\;
+			\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+			\; + \;
+			\dfrac{\lambda}{p}\cdot\Vert\,\xi\,\Vert_{p}^{p}
+			\; + \;
+			\overset{m}{\underset{i = 1}{\sum}}\;\,
+				\alpha_{i}
+				\cdot
+				\left(\,
+					1 - \xi_{i}
+					-
+					y_{i}\overset{{\color{white}1}}{\cdot}\left(\,
+						\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b
+						\,\right)
+					\,\right)
+			\; - \;
+			\overset{m}{\underset{i = 1}{\sum}}\;
+				\beta_{i}
+				\cdot
+				\xi_{i}
+			\;\right\}
+		\right\}
+\end{eqnarray*}
+The Karush-Kuhn-Tucker Optimality Necessary Conditions for the inner minimization problem are:
+\begin{eqnarray*}
+\nabla_{\mathbf{n}}\,L
+& = &
+	\mathbf{n} \, - \, \overset{m}{\underset{i\,=\,1}{\sum}}\;\alpha_{i}y_{i}\cdot\mathbf{x}_{i}
+\\
+\nabla_{b}\,L
+& = &
+	\overset{m}{\underset{i\,=\,1}{\sum}}\;\alpha_{i}y_{i}
+\\
+\nabla_{\xi}\,L
+& = &
+	\lambda\cdot\xi^{\,p-1} \, - \, \alpha \, - \, \beta
+\end{eqnarray*}
+
 
