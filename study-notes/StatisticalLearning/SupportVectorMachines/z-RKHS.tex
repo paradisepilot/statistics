@@ -1,0 +1,269 @@
+
+\section{Reproducing Kernel Hilbert Spaces}
+\setcounter{theorem}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Reproducing Kernel Hilbert Space]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A \,\textbf{reproducing kernel Hilbert space}\, is an ordered pair
+\,$\left(\,H\,,\,\langle\,\overset{{\color{white}1}}{\cdot}\,,\cdot\,\rangle\,\right)$,\,
+where
+
+\begin{itemize}
+\item
+	$H$ is a set of \,$\Re$-valued functions defined on a non-empty set $X$,
+\item
+	$H$ forms a vector space with respect to pointwise addition and pointwise scalar multiplication,
+\item
+	$\langle\,\cdot\,,\,\cdot\,\rangle : H \times H \longrightarrow \Re$\, defines an inner product on $H$,
+\item
+	$\left(\,H\,,\,\langle\,\overset{{\color{white}1}}{\cdot}\,,\cdot\,\rangle\,\right)$\,
+	forms a Hilbert space, and
+\item
+	for each $x \in X$, the evaluation map \,$\ev_{x} : H \longrightarrow \Re$,\, defined by
+	\begin{equation*}
+	\ev_{x}(f) \;\; := \;\; f(x)\,,
+	\quad
+	\textnormal{for each \,$f \in H$}
+	\end{equation*}
+	is a continuous linear functional on $H$, i.e. \,$\ev_{x} \in H^{*}$.
+\end{itemize}
+Then, by the Riesz Representation Theorem, for each \,$x \in X$,\,
+\,$\ev_{x} : H \longrightarrow \Re$\,
+can be represented by a unique element in $H$,
+i.e. there exists a unique \,$K^{(H)}_{x} \in H$\, such that
+\begin{equation*}
+f(x)
+\;\; =: \;\;
+	\ev_{x}(f)
+\;\; = \;\;
+	\left\langle\,f\,,\,K^{(H)}_{x}\,\right\rangle,
+\quad
+\textnormal{for each \,$f \in H$}.
+\end{equation*}
+Define the map
+\,$\Phi_{H} : X \longrightarrow H$\,
+as follows:
+\begin{equation*}
+\Phi_{H}(x) \;\; := \;\; K^{(H)}_{x}\,,
+\quad
+\textnormal{for each \,$x\in X$}.
+\end{equation*}
+The \textbf{reproducing kernel} of
+\,$\left(\,H\,,\,\langle\,\overset{{\color{white}1}}{\cdot}\,,\cdot\,\rangle\,\right)$\,
+is, by definition, the map
+\,$K_{H} : X \times X \longrightarrow \Re$\, defined as follows:
+\begin{equation*}
+K_{H}(x,y)
+\;\; := \;\;
+	\left\langle\,\overset{{\color{white}.}}{\Phi_{H}(x)}\;,\,\Phi_{H}(y)\,\right\rangle
+\;\; = \;\;
+	\left\langle\,K^{(H)}_{x}\,,\,K^{(H)}_{y}\,\right\rangle,
+\quad
+\textnormal{for each \,$f \in H$}.
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{definition}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose \,$X$\, is a non-empty set.
+A map \,$K : X \times X \longrightarrow \Re$\, is said to be \textbf{positive semi-definite}
+if the matrix 
+\begin{equation*}
+\left[\;\, \overset{{\color{white}-}}{K}(x_{i},x_{j}) \,\;\right]_{i,j\,\in\{1,\ldots,n\}}
+\; \in \;\; \Re^{n \times n}
+\;\;\,\textnormal{is positive semi-definite},
+\quad
+\textnormal{for each \,$x_{1},\ldots,x_{n} \in X$},
+\end{equation*}
+i.e.
+\begin{equation*}
+\overset{n}{\underset{i\,=\,1}{\sum}}\;
+\overset{n}{\underset{j\,=\,1}{\sum}}\;\,
+K(x_{i},x_{j}) \cdot \alpha_{i} \cdot \alpha_{j}
+\;\; \geq \;\; 0\,,
+\quad
+\textnormal{for each \,$x_{1},\ldots,x_{n} \in X$\, and for each \,$\alpha = (\alpha_{1},\ldots,\alpha_{n})\in\Re^{n}$}
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{theorem}[Moore-Aronszajn]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$X \subset \Re^{d}$ is a non-empty subset of \,$\Re^{d}$,
+\item
+	the map \,$K : X \times X \longrightarrow \Re$\, is symmetric and positive semi-definite.
+\end{itemize}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	There exists a unique reproducing kernel Hilbert space $H$ such that
+	$K$ is the reproducing kernel of $H$.
+\item
+	The subspace
+	\begin{equation*}
+	H_{0}
+	\;\; := \;\;
+		\span_{\,\Re}\!\left\{\,\overset{{\color{white}.}}{\Phi_{H}(x)}\,\right\}_{x \in X}
+	\;\; = \;\;
+		\span_{\,\Re}\!\left\{\,K^{(H)}_{x}\,\right\}_{x \in X}
+	\;\; \subset \;\;
+		H
+	\end{equation*}
+	is dense in $H$.
+\end{enumerate}
+\end{theorem}
+\proof
+For each $x \in X$, define the map $K_{x} : X \longrightarrow \Re$ as follows:
+\begin{equation*}
+K_{x}(y) \;\; := \;\; K(x,y)
+\end{equation*}
+Define
+\begin{equation*}
+H_{0}
+\;\; := \;\;
+	\span_{\,\Re}\!\left\{\,\overset{{\color{white}.}}{K_{x}}\,\right\}_{x \in X}
+\end{equation*}
+Then, $H_{0}$ is a vector space of \,$\Re$-valued functions defined on $X$.
+Next, define
+\,$\langle\,\cdot\,,\cdot\,\rangle_{H_{0}} : H_{0} \times H_{0} \longrightarrow \Re$\,
+as follows:
+\begin{equation*}
+\left\langle\;
+	\overset{m}{\underset{i\,=\,1}{\sum}}\; \alpha_{i} \cdot K_{x_{i}}
+	\,,\,
+	\overset{n}{\underset{j\,=\,1}{\sum}}\; \beta_{j} \cdot K_{y_{j}}
+	\;\right\rangle_{\!\!H_{0}}
+%\;\; = \;\;
+%	\overset{m}{\underset{i\,=\,1}{\sum}}\;
+%	\overset{m}{\underset{j\,=\,1}{\sum}}\;
+%	\alpha_{i} \cdot \beta_{j}^{*} \cdot 
+%	\left\langle\;K_{x_{i}} \,,\,K_{y_{j}} \;\right\rangle
+\;\; := \;\;\;
+	\overset{m}{\underset{i\,=\,1}{\sum}}\;
+	\overset{n}{\underset{j\,=\,1}{\sum}}\;\,
+	\alpha_{i} \cdot \beta_{j} \cdot K(x_{i},y_{j})
+\end{equation*}
+\vskip 0.3cm
+\noindent
+\textbf{Claim 1:}\quad
+For each \,$f \in H_{0}$\, and \,$y \in X$,\, we have:
+\begin{equation*}
+\left\vert\;f(\overset{{\color{white}-}}{y})\;\right\vert^{2}
+\;\; \leq \;\;
+	\left\langle\; \overset{{\color{white}.}}{f} \,,\, f \;\right\rangle_{\!H_{0}}
+	\cdot
+	K(y,y)
+\end{equation*}
+\underline{Proof of Claim{\color{white}j}1:}\quad
+Let
+\,$f = \overset{m}{\underset{i\,=\,1}{\sum}}\, \alpha_{i} \cdot K_{x_{i}} \in H_{0}$\,
+and
+\,$y \in X$.\,
+Define \,$x_{0} := y \in X$,\, $\alpha_{0} := 0$\, and
+\,$\beta = (\beta_{0},\beta_{1},\ldots,\beta_{n}) = (1,0,0,\ldots,0) \in \Re^{m+1}$.
+Then, note that
+\begin{eqnarray*}
+\left\vert\;f(\overset{{\color{white}-}}{y})\;\right\vert^{2}
+& = &
+	\left(
+		\left(\,\overset{m}{\underset{i\,=\,1}{\sum}}\; \alpha_{i} \cdot K_{x_{i}}\right)\!(y)
+		\right)^{2}
+\;\; = \;\;
+	\left(\;
+		\overset{m}{\underset{i\,=\,1}{\sum}}\; \alpha_{i} \cdot K_{x_{i}}(y)
+		\right)^{2}
+\;\; = \;\;
+	\left(\;
+		\overset{m}{\underset{i\,=\,1}{\sum}}\; \alpha_{i} \cdot K(x_{i},y)
+		\right)^{2}
+\\
+& = &
+	\left(\;
+		\overset{m}{\underset{i\,=\,1}{\sum}}\; \alpha_{i} \cdot K(x_{i},x_{0})
+		\right)^{2}
+\;\; = \;\;
+	\left(\;
+		\overset{m}{\underset{i\,=\,0}{\sum}}\;\,
+		\overset{m}{\underset{j\,=\,0}{\sum}}\;
+		\alpha_{i} \cdot \beta_{j} \cdot K(x_{i},x_{j})
+		\right)^{2}
+\\
+& \leq &
+	\left(\;
+		\overset{m}{\underset{i\,=\,0}{\sum}}\;
+		\overset{m}{\underset{j\,=\,0}{\sum}}\;
+		\alpha_{i} \cdot \alpha_{j} \cdot K(x_{i},x_{j})
+		\right)
+	\cdot
+	\left(\;
+		\overset{m}{\underset{i\,=\,0}{\sum}}\;\,
+		\overset{m}{\underset{j\,=\,0}{\sum}}\;
+		\beta_{i} \cdot \beta_{j} \cdot K(x_{i},x_{j})
+		\right),
+	\quad
+	\textnormal{by Lemma \ref{CauchySchwarzInequality}}
+\\
+& = &
+	\left\langle\;
+		\overset{m}{\underset{i\,=\,0}{\sum}}\; \alpha_{i} \cdot K_{x_{i}}
+		\;,\,
+		\overset{m}{\underset{j\,=\,0}{\sum}}\; \alpha_{j} \cdot K_{x_{j}}
+		\right\rangle_{\!\!H_{0}}
+	\cdot
+	K(x_{0},x_{0})
+\;\; = \;\;
+	\left\langle\;
+		\overset{m}{\underset{i\,=\,1}{\sum}}\; \alpha_{i} \cdot K_{x_{i}}
+		\,,\,
+		\overset{m}{\underset{i\,=\,1}{\sum}}\; \alpha_{i} \cdot K_{x_{i}}
+		\;\right\rangle_{\!\!H_{0}}
+	\cdot
+	K(y,y)
+\\
+& = &
+	\left\langle\; \overset{{\color{white}.}}{f} \,,\, f \;\right\rangle_{\!H_{0}}
+	\cdot
+	K(y,y)
+\end{eqnarray*}
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+$\left(\,\overset{{\color{white}.}}{H_{0}}\;,\,\langle\,\cdot\,,\cdot\,\rangle_{H_{0}}\,\right)$\,
+is an inner product space.
+\vskip 0.2cm
+\noindent
+\underline{Proof of Claim{\color{white}j}2:}\quad
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
