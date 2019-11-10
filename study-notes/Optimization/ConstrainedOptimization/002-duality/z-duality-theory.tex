@@ -218,6 +218,8 @@ Q_{f,g}^{*}
 \end{equation*}
 \end{definition}
 
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \vskip 1.0cm
 \begin{theorem}[Weak Duality/Duality Gap]\label{WeakDuality}
 \mbox{}
@@ -309,6 +311,7 @@ Furthermore, we denote the set of all geometric multipliers with:
 \end{itemize}
 \end{remark}
 
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 1.0cm
 \begin{proposition}[Existence of geometric multipliers gives characterization of Primal Problem solutions]
@@ -418,9 +421,11 @@ $x^{*} \in \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\;\overset{{\color{whit
 as required.
 \qed
 
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 1.0cm
 \begin{theorem}[(Primal Problem Solution, Geometric multiplier)-pairs]
+\label{PrimalSolutionGeometricMultiplierPairs}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -508,6 +513,217 @@ as required.
 This completes the proof of the Theorem.
 \qed
 
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
+\begin{theorem}[Saddle Point Theorem]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose \,$(x^{*},\mu^{*}) \,\in\, X \times \Re_{\geq 0}^{r}$.
+Then,
+\begin{equation*}
+(x^{*}\!,\mu^{*})
+	\,\in
+	\underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\,\overset{{\color{white}.}}{f}(x)\,\right\}
+	\,\times\,
+	\mathcal{G}(f,g)
+\quad\Longleftrightarrow\quad\;
+	\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\,\overset{{\color{white}.}}{L(x^{*}\!,\mu)}\,\right\}
+	\;\; = \;\;
+	L(x^{*}\!,\mu^{*})
+	\;\; = \;\;
+	\underset{x\,\in\,X}{\inf}\left\{\,\overset{{\color{white}.}}{L(x,\mu^{*})}\,\right\}
+\end{equation*}
+\end{theorem}
+\proof
+\mbox{}
+\vskip 0.1cm
+\noindent
+\underline{($\Longrightarrow$)}
+\quad
+Suppose
+\,$(x^{*}\!,\mu^{*})
+	\,\in
+	\underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\,\overset{{\color{white}.}}{f}(x)\,\right\}
+	\,\times\,
+	\mathcal{G}(f,g)
+$,\,
+which, by Theorem \ref{PrimalSolutionGeometricMultiplierPairs}, is equivalent to
+\begin{equation}
+\label{PSGMPCharacterization}
+	\left\{\;\;\begin{array}{cl}
+		x^{*} \,\in\,\Omega(X,g)\;\bigcap\;\underset{x\,\in X}{\argmin}\;L(x,\mu^{*})\,,
+		& \;\textnormal{and}
+		\\
+		\overset{{\color{white}\textnormal{\large1}}}{\mu_{j}^{*}} \cdot g(x_{j}^{*}) \,=\, 0\,,
+		& \;\textnormal{for each \,$j = 1,2,\ldots,r$}
+		\end{array}\right.
+\end{equation}
+Hence, we immediately have
+\begin{equation*}
+L(x^{*}\!,\mu^{*}) \;\; = \;\; \underset{x\,\in\,X}{\inf}\left\{\,\overset{{\color{white}.}}{L(x,\mu^{*})}\,\right\}
+\end{equation*}
+Secondly, \,\eqref{PSGMPCharacterization}\, implies
+\begin{equation*}
+L(x^{*}\!,\mu)
+\;\; := \;\;
+	f(x^{*}) \, + \,  \mu^{T} \cdot g(x^{*})
+\;\; \leq \;\;
+	f(x^{*})
+\;\; = \;\;
+	f(x^{*}) \, + \,  (\mu^{*})^{T} \cdot g(x^{*})
+\;\; =: \;\;
+L(x^{*}\!,\mu^{*})\,,
+\quad
+\textnormal{for each \,$\mu \in \Re^{r}_{\geq 0}$}\,,
+\end{equation*}
+which in turn implies
+\begin{equation*}
+\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\,\overset{{\color{white}.}}{L(x^{*}\!,\mu)}\,\right\}
+\;\; \leq \;\;
+L(x^{*}\!,\mu^{*})
+\end{equation*}
+This completes the proof of the forward implication.
+
+\vskip 0.5cm
+\noindent
+\underline{($\Longleftarrow$)}
+\quad
+Suppose
+\begin{equation}
+\label{SaddleCondition}
+	\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\,\overset{{\color{white}.}}{L(x^{*}\!,\mu)}\,\right\}
+	\;\; = \;\;
+	L(x^{*}\!,\mu^{*})
+	\;\; = \;\;
+	\underset{x\,\in\,X}{\inf}\left\{\,\overset{{\color{white}.}}{L(x,\mu^{*})}\,\right\}
+\end{equation}
+which trivially implies
+\begin{eqnarray*}
+\underset{x\,\in X}{\inf}\left\{\,\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\,\overset{{\color{white}.}}{L(x,\mu)}\,\right\}
+& \leq &
+	\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\,\overset{{\color{white}.}}{L(x^{*}\!,\mu)}\,\right\}
+	\;\; = \;\;
+	L(x^{*}\!,\mu^{*})
+	\;\; = \;\;
+	\underset{x\,\in\,X}{\inf}\left\{\,\overset{{\color{white}.}}{L(x,\mu^{*})}\,\right\}
+\\
+& \leq &
+	\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\,\underset{x\,\in\,X}{\inf}\;\overset{{\color{white}.}}{L(x,\mu^{*})}\,\right\}
+\\
+& \leq &
+	\underset{x\,\in X}{\inf}\left\{\,\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\,\overset{{\color{white}.}}{L(x,\mu)}\,\right\},
+	\quad
+	\textnormal{by Theorem \ref{WeakDuality} (Weak Duality)}
+\end{eqnarray*}
+It follows that
+\begin{equation*}
+	\underset{x\,\in\,X}{\inf}\left\{\,\overset{{\color{white}.}}{L(x,\mu^{*})}\,\right\}
+\;\; = \;\;
+	\underset{x\,\in X}{\inf}\left\{\,\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\,\overset{{\color{white}.}}{L(x,\mu)}\,\right\}
+\;\; = \;\;
+	\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\}
+\;\; =: \;\;
+	f^{*}\,,
+\end{equation*}
+which is equivalent to \,$\mu^{*} \,\in\, \mathcal{G}(f,g)$,\, i.e. \,$\mu^{*}$\, is a geometric multiplier.
+It now remains only to show that
+\begin{equation*}
+x^{*} \;\;\in\;\; \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\,\overset{{\color{white}.}}{f}(x)\,\right\}
+\end{equation*}
+We shall establish this via the following two Claims.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\quad$x^{*} \,\in\, \underset{x\,\in X}{\argmin}\;L(x,\mu^{*})$.
+\vskip 0.0cm
+\noindent
+Proof of Claim 1:\quad
+Immediately by the hypothesis
+\,$L(x^{*}\!,\mu^{*}) \, = \, \underset{x\,\in\,X}{\inf}\left\{\,\overset{{\color{white}.}}{L(x,\mu^{*})}\,\right\}$.
+This proves Claim 1.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+$x^{*} \,\in\, \Omega(X,g)$,\, and
+\;$\mu_{j}^{*} \cdot g_{j}(x^{*}) \, = \, 0$,\, for each \,$j = 1,2,\ldots,r$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 2:\quad
+Note that, for each \,$x \,\in\, X$,\, we have
+\begin{equation*}
+\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\,\overset{{\color{white}.}}{L(x,\mu)}\,\right\}
+\;\; = \;\;
+	\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\
+		\overset{{\color{white}.}}{f(x)}
+		\, + \,
+		\mu^{T} \cdot g(x)
+		\,\right\}
+\;\; = \;\;
+	\left\{\begin{array}{cc}
+		f(x)\,, & \textnormal{if \,$g(x) \,\leq\, 0$}
+		\\
+		\overset{{\color{white}1}}{+\infty}\,, & \textnormal{otherwise}
+		\end{array}\right.
+\end{equation*}
+Hence, the hypothesis \eqref{SaddleCondition} implies
+\begin{equation*}
+\left.\begin{array}{ccccc}
+	L(x^{*}\!,\mu^{*})
+	& = &
+	{\color{white}.}\underset{x\,\in\,X}{\inf}\;\left\{\,\overset{{\color{white}.}}{L(x,\mu^{*})}\,\right\}
+	& < &
+	+\infty
+\\
+	L(x^{*}\!,\mu^{*})
+	& = &
+	\overset{{\color{white}1}}{\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\,\overset{{\color{white}.}}{L(x^{*}\!,\mu)}\,\right\}}
+\end{array}
+\;\;\right\}\!\!\Longrightarrow\quad
+g(x^{*}) \,\leq\, 0
+\;\;\textnormal{and}\;\;
+L(x^{*}\!,\mu^{*}) \,=\, f(x^{*})
+\end{equation*}
+In particular, we see that \,$x^{*} \,\in\, \Omega(X,g)$.
+Furthermore, recall that \,$L(x^{*}\!,\mu^{*}) \, := \, f(x^{*}) \,+\, (\mu^{*})^{T} \cdot g(x^{*})$,\,
+which, together with \,$L(x^{*}\!,\mu^{*}) \,=\, f(x^{*})$,\,
+implies that \,$(\mu^{*})^{T} \cdot g(x^{*})$.\,
+Next, observe that
+\begin{equation*}
+\left.\begin{array}{ccl}
+	L(x^{*}\!,\mu^{*}) &:=& f(x^{*}) \,+\, (\mu^{*})^{T} \cdot g(x^{*})
+	\\
+	\overset{{\color{white}1}}{L(x^{*}\!,\mu^{*})} &=& f(x^{*})
+\end{array}
+\quad\right\}\!\!\Longrightarrow\quad
+0
+\;\;=\;\;
+	(\mu^{*})^{T} \cdot g(x^{*})
+\;\;=\;\;
+	\overset{r}{\underset{j=1}{\sum}}\;\, \mu_{j}^{*} \cdot g_{j}(x^{*})
+\end{equation*}
+Recalling that \,$\mu^{*} \,\geq\, 0$\, and \,$g(^{*}) \,\leq\, 0$,\, we see that
+\begin{equation*}
+\mu_{j}^{*} \cdot g_{j}(x^{*}) \;\; = \;\; 0\,,
+\quad
+\textnormal{for each \,$j = 1,2,\ldots,r$}
+\end{equation*}
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+By Theorem \ref{PrimalSolutionGeometricMultiplierPairs}, Claim 1 and Claim 2 together imply
+\begin{equation*}
+x^{*} \;\;\in\;\; \underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\,\overset{{\color{white}.}}{f}(x)\,\right\}
+\end{equation*}
+This completes the proof of the reverse implication, as well as that of the Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 1.0cm
 \begin{lemma}[Geometric characterization of geometric multipliers]
@@ -703,6 +919,7 @@ Then, the following statements hold:
 This completes the proof of the Lemma.
 \qed
 
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 1.0cm
 \begin{theorem}[The Dual Problem is convex]
