@@ -1,0 +1,452 @@
+
+\section{Lasso (Least Absolute Shrinkage and Selection Operator)}
+\setcounter{theorem}{0}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%``Lasso'' stands ``Least Absolute Shrinkage and Selection Operator''.
+Suppose that
+\,$Y = (y_{1},\ldots,y_{n})^{T} \in \Re^{n}$,\,
+\,$X \in \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\, and
+\,$\tau > 0$.\,
+The \textbf{Lasso estimator} is given by:
+\begin{equation*}
+\widehat{Y}^{\textnormal{(Lasso)}}
+\;\; := \;\;
+	X \cdot \widehat{\beta}^{\,\textnormal{(Lasso)}}\,,
+\end{equation*}
+where
+\begin{eqnarray*}
+\widehat{\beta}^{\,\textnormal{(Lasso)}}
+& \in &
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\argmin}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\left\Vert\;\, y \overset{{\color{white}.}}{-} \beta_{0}\cdot\mathbf{1}_{n} - X\cdot\beta \,\;\right\Vert_{2}^{2}
+		\;\;\,\right\vert\;\;
+		\Vert\;\beta\,\Vert_{1} \, - \, \tau \, \leq \, 0
+		\;\;\right\}
+\\
+& = &
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\argmin}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{proposition}[Translations yield equivalent optimization problems]
+\label{translationsYieldEquivalent}
+\mbox{}
+\vskip 0.0cm
+\noindent
+Suppose that
+\,$Y = (y_{1},\ldots,y_{n})^{T} \in \Re^{n}$,\,
+\,$X \in \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\, and
+\,$\tau > 0$.\,
+Then, for any
+\,$c = (c_{0},c_{1},\ldots,c_{p}) \in \Re^{p+1}$,\,
+the following two optimization problems:
+\begin{equation*}
+\Gamma
+\;\; := \;\;
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\argmin}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\end{equation*}
+and
+\begin{equation*}
+\Gamma(c)
+\;\; := \;\;
+	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\argmin}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; (y_{i} - c_{0}) - \gamma_{0} - \overset{p}{\underset{j=1}{\sum}}\, (x_{ij}-c_{j})\cdot\gamma_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\end{equation*}
+are equivalent in the sense that
+\begin{eqnarray*}
+&&
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\\
+& = &
+	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; (y_{i} - c_{0}) - \gamma_{0} - \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-c_{j})\cdot\gamma_{j}\;\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\},
+\end{eqnarray*}
+and furthermore
+\begin{equation*}
+\left\{\begin{array}{lcl}
+	\left(\;\overset{{\color{white}.}}{\gamma_{0}}\;,\;\gamma\,\right) \,\in\, \Gamma(c)
+	&\Longleftrightarrow&
+	\left(\,\gamma_{0}+c_{0}-\overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\gamma_{j}\;,\,\gamma\,\right) \,\in\, \Gamma
+	\\ \\
+	\left(\,\overset{{\color{white}.}}{\beta_{0}}\;,\,\beta\,\right) \,\in\, \Gamma
+	&\Longleftrightarrow&
+	\left(\,\beta_{0}-c_{0}+\overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\beta_{j}\;,\,\beta\,\right) \,\in\, \Gamma(c)
+\end{array}\right.
+\end{equation*}
+\end{proposition}
+\proof
+Observe that
+\begin{eqnarray*}
+&&
+	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; (y_{i} - c_{0}) - \gamma_{0} - \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-c_{j})\cdot\gamma_{j}\;\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\\
+& = &
+	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} -
+		\left({\color{orange}\gamma_{0} + c_{0} - \overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\gamma_{j}}\right)
+		- \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot{\color{red}\gamma_{j}}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\\
+& = &
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - {\color{orange}\beta_{0}} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot{\color{red}\beta_{j}}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\end{eqnarray*}
+Hence,
+\begin{equation*}
+(\,\gamma_{0}^{*}\,,\gamma^{*}\,) \,\in\, \Gamma(c)
+\quad\Longrightarrow\quad
+\left(\,\gamma_{0}^{*}+c_{0} - \overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\gamma_{j}^{*}\;\,,\;\gamma^{*}\,\right)
+\,\in\,\Gamma{\color{white}(c)}
+\end{equation*}
+and conversely,
+\begin{equation*}
+(\,\beta_{0}^{*}\,,\beta^{*}\,) \,\in\, \Gamma{\color{white}(c)}
+\quad\Longrightarrow\quad
+\left(\,\beta_{0}^{*} - c_{0} + \overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\beta_{j}^{*}\;\,,\;\beta^{*}\,\right)
+\,\in\, \Gamma(c)
+\end{equation*}
+This proves the Proposition.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{theorem}[Centering all variables yields equivalent optimization problem]
+\mbox{}
+\vskip 0.0cm
+\noindent
+Suppose that
+\,$Y = (y_{1},\ldots,y_{n})^{T} \in \Re^{n}$,\,
+\,$X \in \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\, and
+\,$\tau > 0$.\,
+Then, the corresponding ``centered'' Lasso optimization problem is equivalent to
+the original Lasso optimization problem in the sense that
+\begin{eqnarray*}
+&&
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\\
+& = &
+	\underset{\gamma\,\in\,\Re^{p}}{\inf}
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; (y_{i} - \overline{y}) \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\end{eqnarray*}
+\end{theorem}
+\proof
+\begin{eqnarray*}
+&&
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\\
+& = &
+	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \gamma_{0} \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\},
+	\quad
+	\textnormal{by Proposition \ref{translationsYieldEquivalent}}
+\\
+& = &
+	\underset{\gamma\,\in\,\Re^{p}}{\inf}
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; (y_{i} - \overline{y}) \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\},
+\end{eqnarray*}
+where the last equality follows from the fact that the pertinent Lagrangian function
+\,$L : \Re \times \Re^{p} \times [\,0,\infty) \longrightarrow \Re$\,
+is:
+\begin{equation*}
+L(\,\gamma_{0},\gamma,\mu\,)
+\;\; = \;\;
+	\dfrac{1}{2}\cdot
+	\overset{n}{\underset{i=1}{\sum}}
+	\left(\; y_{i} - \gamma_{0} \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
+	\, + \,
+	\mu\cdot\left(\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\,-\, \tau 
+		\,\right)
+\end{equation*}
+hence
+\begin{equation*}
+\dfrac{\partial L}{\partial\gamma_{0}}
+\;\; = \;\;
+	\overset{n}{\underset{i=1}{\sum}}
+	\left(\; y_{i} - \gamma_{0} \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)
+	\cdot\left(\,\overset{{\color{white}.}}{-1}\,\right)
+\end{equation*}
+Consequently, \,$\dfrac{\partial L}{\partial\gamma_{0}} \, = \, 0$\, implies
+\begin{eqnarray*}
+n\cdot\gamma_{0}
+& = &
+	\left(\, \overset{n}{\underset{i=1}{\sum}}\; y_{i} \right)
+	\;-\;\;
+	\overset{n}{\underset{i=1}{\sum}}\;
+	\overset{p}{\underset{j=1}{\sum}}\;
+	(x_{ij}-\overline{x}_{j})\cdot\gamma_{j}
+\;\; = \;\;
+	\left(\, \overset{n}{\underset{i=1}{\sum}}\; y_{i} \right)
+	\;-\;\;
+	\overset{p}{\underset{j=1}{\sum}}\;\,
+	\gamma_{j}\cdot
+	\underset{0}{\underbrace{\overset{n}{\underset{i=1}{\sum}}\,(x_{ij}-\overline{x}_{j})}}
+\;\; = \;\;
+	\overset{n}{\underset{i=1}{\sum}}\; y_{i}\,,
+\end{eqnarray*}
+which in turn implies
+\begin{eqnarray*}
+\gamma_{0}
+& = &
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\; y_{i}
+\;\; =: \;\;
+	\overline{y}
+\end{eqnarray*}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{eqnarray*}
+&&
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \,\;\right\Vert_{2}^{2}
+		\;\;\,\right\vert\;\;
+		\Vert\;\beta\,\Vert_{1} \, - \, \tau \, \leq \, 0
+		\;\;\right\}
+\\
+& \geq &
+	\underset{\mu\,\geq\,0}{\sup}\,
+	\left\{\;
+		\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\,
+		\left\{\;\,
+			\dfrac{1}{2}
+			\cdot
+			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \,\;\right\Vert_{2}^{2}
+			\; + \,
+			\mu
+			\cdot
+			\left(\, \Vert\;\beta\,\Vert_{1} \, \overset{{\color{white}.}}{-} \, \tau \,\right)
+			\,\right\}
+		\;\right\}
+\\
+& = &
+	\underset{\mu\,\geq\,0}{\sup}\,
+	\left\{\;
+		\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\,
+		\left\{\;\,
+			\dfrac{1}{2}
+			\cdot
+			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \,\;\right\Vert_{2}^{2}
+			\; + \,
+			\mu\cdot\Vert\;\beta\,\Vert_{1} \, - \, \mu\cdot\tau
+			\,\right\}
+		\;\right\}
+\\
+& = &
+	\underset{\mu\,\geq\,0}{\sup}\,
+	\left\{\;
+		\, - \, \mu\cdot\tau
+		\;\, + \,
+		\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\,
+		\left\{\;\,
+			\dfrac{1}{2}
+			\cdot
+			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \,\;\right\Vert_{2}^{2}
+			\; + \,
+			\mu\cdot\Vert\;\beta\,\Vert_{1}
+			\,\right\}
+		\;\right\}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+&&
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\argmin}\;
+	\left\{\;\;
+		\dfrac{1}{2}
+		\cdot
+		\left\Vert\;\, y \overset{{\color{white}.}}{-} \beta_{0}\cdot\mathbf{1}_{n} - X\cdot\beta \,\;\right\Vert_{2}^{2}
+		\, + \,
+		\lambda\cdot\Vert\,\beta\,\Vert_{1}
+		\;\;\right\}
+\\
+& = &
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\argmin}\;
+	\left\{\;\;
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\;x_{ij}\beta_{j}\,\right)^{2}
+		\, + \,
+		\lambda\cdot
+		\overset{p}{\underset{j=1}{\sum}}\;	
+		\vert\;\beta_{j}\,\vert
+		\;\;\right\}
+\end{eqnarray*}
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

@@ -1,0 +1,167 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical lemmas}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{comment}
+\begin{lemma}[Cauchy-Schwarz inequality]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose \,$X$\, is a non-empty set, and the map
+\,$K : X \times X \longrightarrow \Re$\, is symmetric and positive semi-definite.
+Then
+\begin{equation*}
+K(x,y)^{2} \;\; \leq \;\; K(x,x) \cdot K(y,y)\,,
+\quad
+\textnormal{for each \,$x,y \in X$}
+\end{equation*}
+\end{lemma}
+\proof
+Since \,$K : X \times X \longrightarrow \Re$\,
+is symmetric and positive semi-definite, the matrix
+\begin{equation*}
+M
+\;\; := \;\;
+	\left[\begin{array}{cc}
+	K(x,x) & K(x,y)
+	\\
+	K(y,x) & \overset{{\color{white}-}}{K(y,y)}
+	\end{array}\right]
+\;\; \in \;\;
+	\Re^{2 \times 2}
+\end{equation*}
+is symmetric and positive semi-definite.
+Hence, \,$M$\, is orthogonally diagonalizable
+with non-negative eigenvalues.
+It follows that the determinant of \,$M$\,
+is non-negative.
+Now, note that
+\begin{equation*}
+K(x,x) \cdot K(y,y) - K(x,y)^{2}
+\;\; =: \;\;
+	\det\!\left(\,M\,\right)
+\;\; \geq \;\;
+	0\,,
+\end{equation*}
+which completes the proof of the Lemma.
+\qed
+\end{comment}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{lemma}[Cauchy-Schwarz Inequality for symmetric positive semi-definite matrices]
+\label{CauchySchwarzInequality}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose
+\,$K \,=\, \left[\;\;\overset{{\color{white}1}}{K_{ij}}\;\;\right]_{i,j\,\in\{1,\ldots,d\}} \,\in\, \Re^{d \times d}$\,
+is a symmetric positive semi-definite matrix.
+Then, we have:
+\begin{equation*}
+\left(\;
+	\alpha^{T} \overset{{\color{white}1}}{\cdot} K \cdot \beta
+	\,\right)^{2}
+\;\; \leq \;\;
+	\left(\;
+		\alpha^{T} \overset{{\color{white}1}}{\cdot} K \cdot \alpha
+		\,\right)
+	\cdot
+	\left(\;
+		\beta^{T} \overset{{\color{white}1}}{\cdot} K \cdot \beta
+		\,\right),
+\quad
+\textnormal{for each \,$\alpha, \beta \in \Re^{d}$}\,,
+\end{equation*}
+i.e.,
+\begin{equation*}
+\left(\;
+	\overset{d}{\underset{i\,=\,1}{\sum}}\;\,
+	\overset{d}{\underset{j\,=\,1}{\sum}}\;
+	\alpha_{i} \cdot \beta_{j} \cdot K_{ij}
+	\right)^{2}
+\;\; \leq \;\;
+	\left(\;
+		\overset{d}{\underset{i\,=\,1}{\sum}}\;
+		\overset{d}{\underset{j\,=\,1}{\sum}}\;
+		\alpha_{i} \cdot \alpha_{j} \cdot K_{ij}
+		\right)
+	\cdot
+	\left(\;
+		\overset{d}{\underset{i\,=\,1}{\sum}}\;\,
+		\overset{d}{\underset{j\,=\,1}{\sum}}\;
+		\beta_{i} \cdot \beta_{j} \cdot K_{ij}
+		\right),
+\end{equation*}
+for each \,$\alpha \,=\, (\alpha_{1},\ldots,\alpha_{d}), \;\,\beta \,=\, (\beta_{1},\ldots,\beta_{d}) \,\in\,\Re^{d}$.
+\end{lemma}
+\proof
+First, note that if \,$K \in \Re^{d \times d}$\, is in fact symmetric positive definite, then the map
+\begin{equation*}
+\Re^{d} \,\times\, \Re^{d} \,\longrightarrow\, \Re
+\,:\,
+(\alpha,\beta) \,\longmapsto\, \alpha^{T} \cdot K \cdot \beta
+\end{equation*}
+defines an inner product on $\Re^{d}$, and the desired inequality is simply the Cauchy-Schwarz Inequality
+for inner product spaces.
+
+Next, suppose $K \in \Re^{d \times d}$ is symmetric positive semi-definite.
+Then, there exists an orthogonal matrix $U \in \Re^{d \times d}$ such that
+\,$D \, := \, U^{T} \cdot K \cdot U$\, is a diagonal matrix.
+Write \,$D = \diag(\lambda_{1},\ldots,\lambda_{d})$,
+where $\lambda_{1},\ldots,\lambda_{d}$ are the eigenvalues of $K$.
+By positive semi-definiteness of $K$, we have: $\lambda_{1}, \ldots, \lambda_{d} \,\geq\, 0$.
+Now, let $\varepsilon > 0$ be arbitrary.
+Observe that
+\begin{eqnarray*}
+U^{T}\cdot(\,K + \varepsilon \cdot I_{d}\,) \cdot U
+& = &
+	U^{T} \cdot K \cdot U \, + \, \varepsilon \cdot I_{d}
+\;\; = \;\;
+	\diag(\lambda_{1},\ldots,\lambda_{d}) \, + \, \varepsilon \cdot I_{d}
+\\
+& = &
+	\diag\!\left(\,\lambda_{1} \overset{{\color{white}.}}{+} \varepsilon\,,\,\ldots\,,\lambda_{d} + \varepsilon\,\right)
+\end{eqnarray*}
+We therefore see that \,$K + \varepsilon \cdot I_{d}$\, is symmetric positive definite.
+By the preceding paragraph, we therefore have
+\begin{equation*}
+\left[\; \alpha^{T}\cdot\!\left(\,K \overset{{\color{white}.}}{+} \varepsilon \cdot I_{d}\,\right) \cdot \beta \;\right]^{2}
+\;\; \leq \;\;
+	\left[\; \alpha^{T}\cdot\!\left(\,K \overset{{\color{white}.}}{+} \varepsilon \cdot I_{d}\,\right) \cdot \alpha \;\right]
+	\, \cdot \,
+	\left[\; \beta^{T}\cdot\!\left(\,K \overset{{\color{white}.}}{+} \varepsilon \cdot I_{d}\,\right) \cdot \beta \;\right]
+\end{equation*}
+Taking the limit on both sides as \,$\varepsilon \longrightarrow 0^{+}$, we have:
+\begin{equation*}
+\left[\;\alpha^{T}\cdot\overset{{\color{white}.}}{K} \cdot\beta\;\right]^{2}
+\;\; \leq \;\;
+	\left[\;\alpha^{T}\cdot\overset{{\color{white}.}}{K}\cdot\alpha\;\right]
+	\, \cdot \,
+	\left[\;\beta^{T}\cdot\overset{{\color{white}.}}{K}\cdot\beta\;\right],
+\end{equation*}
+as desired. This completes the proof of the Lemma.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
