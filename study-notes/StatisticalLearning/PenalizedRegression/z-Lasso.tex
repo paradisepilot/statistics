@@ -12,7 +12,7 @@
 %``Lasso'' stands ``Least Absolute Shrinkage and Selection Operator''.
 Suppose that
 \,$Y = (y_{1},\ldots,y_{n})^{T} \in \Re^{n}$,\,
-\,$X \in \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\, and
+\,$X = \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\, and
 \,$\tau > 0$.\,
 The \textbf{Lasso estimator} is given by:
 \begin{equation*}
@@ -215,7 +215,7 @@ This proves the Proposition.
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{theorem}[Centering variables \& removing intercept yields equivalent optimization problem]
+\begin{theorem}[WLOG, can centre each predictor variable and remove intercept term]
 \mbox{}
 \vskip 0.0cm
 \noindent
@@ -310,13 +310,13 @@ where the last equality follows from the fact that the pertinent Lagrangian func
 \,$L : \Re \times \Re^{p} \times [\,0,\infty) \longrightarrow \Re$\,
 is:
 \begin{equation*}
-L(\,\gamma_{0},\gamma,\mu\,)
+L(\,\gamma_{0},\gamma,\lambda\,)
 \;\; = \;\;
 	\dfrac{1}{2}\cdot
 	\overset{n}{\underset{i=1}{\sum}}
 	\left(\; y_{i} - \gamma_{0} \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
 	\, + \,
-	\mu\cdot\left(\;
+	\lambda\cdot\left(\;
 		\overset{p}{\underset{j=1}{\sum}}\;
 		\vert\;\gamma_{j}\,\vert
 		\,-\, \tau 
@@ -360,6 +360,19 @@ which in turn implies
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.5cm
+\noindent
+Via centering if necessary, we may now assume \,$y \,\in\, \Re^{n}$\, and
+\,$X \,=\, \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right) \,\in\, \Re^{n \times p}$\,
+satisfy
+\begin{equation*}
+\overset{n}{\underset{i=1}{\sum}}\;y_{i} \; = \; 0\,,
+\quad\textnormal{and}\quad\quad
+\overset{n}{\underset{i=1}{\sum}}\;x_{ij} \; = \; 0\,,
+\;\;
+\textnormal{for each \,$j = 1,\ldots,p$}
+\end{equation*}
+The Lasso optimization then becomes:
 \begin{eqnarray*}
 &&
 	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
@@ -367,53 +380,70 @@ which in turn implies
 		\left.
 		\dfrac{1}{2}
 		\cdot
-		\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \,\;\right\Vert_{2}^{2}
+		\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
 		\;\;\,\right\vert\;\;
 		\Vert\;\beta\,\Vert_{1} \, - \, \tau \, \leq \, 0
 		\;\;\right\}
 \\
-& \geq &
-	\underset{\mu\,\geq\,0}{\sup}\,
+& = &
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\,
 	\left\{\;
-		\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\,
+		\underset{\lambda\,\geq\,0}{\sup}\,
 		\left\{\;\,
 			\dfrac{1}{2}
 			\cdot
-			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \,\;\right\Vert_{2}^{2}
+			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
 			\; + \,
-			\mu
+			\lambda
 			\cdot
 			\left(\, \Vert\;\beta\,\Vert_{1} \, \overset{{\color{white}.}}{-} \, \tau \,\right)
 			\,\right\}
 		\;\right\}
 \\
-& = &
-	\underset{\mu\,\geq\,0}{\sup}\,
+& \geq &
+	\underset{\lambda\,\geq\,0}{\sup}\,
 	\left\{\;
 		\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\,
 		\left\{\;\,
 			\dfrac{1}{2}
 			\cdot
-			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \,\;\right\Vert_{2}^{2}
+			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
 			\; + \,
-			\mu\cdot\Vert\;\beta\,\Vert_{1} \, - \, \mu\cdot\tau
-			\,\right\}
-		\;\right\}
-\\
-& = &
-	\underset{\mu\,\geq\,0}{\sup}\,
-	\left\{\;
-		\, - \, \mu\cdot\tau
-		\;\, + \,
-		\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\,
-		\left\{\;\,
-			\dfrac{1}{2}
+			\lambda
 			\cdot
-			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \,\;\right\Vert_{2}^{2}
-			\; + \,
-			\mu\cdot\Vert\;\beta\,\Vert_{1}
+			\left(\, \Vert\;\beta\,\Vert_{1} \, \overset{{\color{white}.}}{-} \, \tau \,\right)
 			\,\right\}
-		\;\right\}
+		\;\right\},
+	\quad
+	\textnormal{by Weak Duality}
+%\\
+%& = &
+%	\underset{\lambda\,\geq\,0}{\sup}\,
+%	\left\{\;
+%		\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\,
+%		\left\{\;\,
+%			\dfrac{1}{2}
+%			\cdot
+%			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
+%			\; + \,
+%			\lambda\cdot\Vert\;\beta\,\Vert_{1} \, - \, \lambda\cdot\tau
+%			\,\right\}
+%		\;\right\}
+%\\
+%& = &
+%	\underset{\lambda\,\geq\,0}{\sup}\,
+%	\left\{\;
+%		\, - \, \lambda\cdot\tau
+%		\;\, + \,
+%		\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\,
+%		\left\{\;\,
+%			\dfrac{1}{2}
+%			\cdot
+%			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
+%			\; + \,
+%			\lambda\cdot\Vert\;\beta\,\Vert_{1}
+%			\,\right\}
+%		\;\right\}
 \end{eqnarray*}
 
 \begin{eqnarray*}
@@ -422,7 +452,7 @@ which in turn implies
 	\left\{\;\;
 		\dfrac{1}{2}
 		\cdot
-		\left\Vert\;\, y \overset{{\color{white}.}}{-} \beta_{0}\cdot\mathbf{1}_{n} - X\cdot\beta \,\;\right\Vert_{2}^{2}
+		\left\Vert\;\, y \overset{{\color{white}.}}{-} \beta_{0}\cdot\mathbf{1}_{n} - X\cdot\beta \;\right\Vert_{2}^{2}
 		\, + \,
 		\lambda\cdot\Vert\,\beta\,\Vert_{1}
 		\;\;\right\}
@@ -433,7 +463,7 @@ which in turn implies
 		\dfrac{1}{2}
 		\cdot
 		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\;x_{ij}\beta_{j}\,\right)^{2}
+		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\;x_{ij}\beta_{j}\right)^{2}
 		\, + \,
 		\lambda\cdot
 		\overset{p}{\underset{j=1}{\sum}}\;	
