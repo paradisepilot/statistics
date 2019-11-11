@@ -518,6 +518,7 @@ This completes the proof of the Theorem.
 
 \vskip 1.0cm
 \begin{theorem}[Saddle Point Theorem]
+\label{TheoremSaddlePoint}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -537,7 +538,55 @@ Then,
 	\underset{x\,\in\,X}{\inf}\left\{\,\overset{{\color{white}.}}{L(x,\mu^{*})}\,\right\}
 \end{equation*}
 \end{theorem}
-\proof
+
+\vskip 0.3cm
+\begin{remark}
+\mbox{}
+\vskip 0.2cm
+\noindent
+	The Saddle Point Theorem (Theorem \ref{TheoremSaddlePoint}) illustrates that,
+	for each (Primal Solution, Geometric Multiplier) pair \,$(x^{*},\mu^{*})$,\,
+	the Primal Solution \;$x^{*}$ in fact also solves
+	\begin{center}
+	the inner unconstrained minimization problem of the Dual Problem corresponding to \,$\mu^{*}$.
+	\end{center}
+	We explain in more details: Note that Theorem \ref{TheoremSaddlePoint} states that
+	\,$(x^{*},\mu^{*}) \,\in\, X \times \Re_{\geq 0}^{r}$\,
+	is a (Primal Solution, Geometric Multiplier) pair if and only if
+	equality in fact holds throughout the following series of inequalities:
+	\begin{eqnarray*}
+		{\color{red}\underset{x\,\in\,\Omega(X,g)}{\inf}\left\{\;
+		\overset{{\color{white}.}}{f(x)}
+		\;\right\}}
+	& = &
+		\underset{x\,\in X}{\inf}\left\{\,\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\,\overset{{\color{white}.}}{L(x,\mu)}\,\right\}
+	\\
+	& \leq &
+		\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\,\overset{{\color{white}.}}{L(x^{*}\!,\mu)}\,\right\}
+		\;\; = \;\;
+		L(x^{*}\!,\mu^{*})
+		\;\; = \;\;
+		{\color{red}\underset{x\,\in\,X}{\inf}\left\{\,\overset{{\color{white}.}}{L(x,\mu^{*})}\,\right\}}
+	\\
+	& \leq &
+		\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\left\{\,\underset{x\,\in\,X}{\inf}\;\overset{{\color{white}.}}{L(x,\mu)}\,\right\}
+	\;\; \leq \;\;
+		\underset{x\,\in X}{\inf}\left\{\,\underset{\mu\,\in\Re_{\geq 0}^{r}}{\sup}\,\overset{{\color{white}.}}{L(x,\mu)}\,\right\},
+	\end{eqnarray*}
+	where the last equality is Weak Duality (Theorem \ref{WeakDuality}).
+	In particular, Strong Duality holds for each (Primal Solution, Geometric Multiplier) pair
+	\,$(x^{*},\mu^{*})$,\, and
+	\begin{equation*}
+	x^{*}
+	\;\; \in \;\;
+		\underset{x\,\in\,\Omega(X,g)}{\argmin}\left\{\,\overset{{\color{white}.}}{f}(x)\,\right\}
+		\;\, \bigcap \;\;
+		\underset{x\,\in\,X}{\argmin}\left\{\,\overset{{\color{white}.}}{L}(x,\mu^{*})\,\right\}
+	\end{equation*}
+\end{remark}
+
+\vskip 0.3cm
+\proofof Theorem \ref{TheoremSaddlePoint} (Saddle Point Theorem)
 \mbox{}
 \vskip 0.1cm
 \noindent
