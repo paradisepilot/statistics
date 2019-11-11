@@ -576,6 +576,134 @@ Then,
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.5cm
+\begin{theorem}[Strong Duality]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$Y = (y_{1},\ldots,y_{n})^{T} \in \Re^{n}$\,
+	such that
+	\,$\overset{n}{\underset{i=1}{\sum}}\;y_{i} \; = \; 0$,\,
+\item
+	$X \in \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\,
+	such that
+	\,$\overset{n}{\underset{i=1}{\sum}}\, x_{ij} \, = \, 0$,\,
+	for each \,$j = 1,\ldots,p$, and
+\item
+	$\tau > 0$\, and \,$\lambda \,\geq\, 0$.
+\end{itemize}
+Define the Lagrangian function
+\,$L : \Re^{p} \times [\,0,\infty) \longrightarrow \Re$\,
+as follows:
+\begin{equation*}
+L(\beta,\lambda)
+\;\; := \;\;
+	\dfrac{1}{2}
+	\cdot
+	\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
+	\; + \,
+	\lambda\cdot\left(\,\Vert\,\beta\,\Vert_{1} \overset{{\color{white}.}}{-} \tau\,\right)
+\end{equation*}
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	Suppose \,$\beta^{*}$\, solves the Lasso Primal Problem, i.e.
+	\begin{equation*}
+	\beta^{*}
+	\;\; \in \;\;
+		\underset{\beta\,\in\,\Re^{p}}{\argmin}\,
+		\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
+		\;\;\,\right\vert\;\;
+		\Vert\;\beta\,\Vert_{1} \, - \, \tau \, \leq \, 0
+		\;\;\right\}
+	\end{equation*}
+	and \,$\lambda^{*} \,\geq\, 0$\, is the corresponding Lagrangian multiplier;
+	in other words,
+	\begin{equation*}
+	\lambda^{*}
+	\;\; = \;\;
+		\dfrac{
+			\left(\,y - X\cdot\beta^{*}\right)^{T} \cdot X \cdot \beta^{*}
+			}{
+			\overset{{\color{white}.}}{\left\Vert\;\beta^{*}\,\right\Vert_{1}}
+			}.
+	\end{equation*}
+	Then, \,$\lambda^{*}$\, solves the Lasso Dual Problem, i.e.
+	\begin{eqnarray*}
+	\lambda^{*}
+	& \in &
+		\underset{\lambda\,\geq\,0}{\argmax}
+		\left\{\;
+			\underset{\beta\,\in\,\Re^{p}}{\inf}\; L(\beta,\lambda)
+			\;\right\}
+	\\
+	& = &
+		\underset{\lambda\,\geq\,0}{\argmax}\,
+		\left\{\;
+			\underset{\beta\,\in\,\Re^{p}}{\inf}\,
+			\left\{\;\,
+				\dfrac{1}{2}
+				\cdot
+				\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
+				\; + \,
+				\lambda
+				\cdot
+				\left(\, \Vert\;\beta\,\Vert_{1} \, \overset{{\color{white}.}}{-} \, \tau \,\right)
+				\,\right\}
+			\;\right\}
+	\\
+	& = &
+		\underset{\lambda\,\geq\,0}{\argmax}\,
+		\left\{\;
+			-\,\lambda\cdot\tau
+			\; + \,
+			\underset{\beta\,\in\,\Re^{p}}{\inf}\,
+			\left\{\;\,
+				\dfrac{1}{2}
+				\cdot
+				\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
+				\; + \,
+				\lambda \cdot \Vert\;\beta\,\Vert_{1} 
+				\,\right\}
+			\;\right\}
+	\end{eqnarray*}
+	Furthermore,
+	\begin{eqnarray*}
+	\underset{\lambda\,\geq\,0}{\sup}
+	\left\{\;
+		\underset{\beta\,\in\,\Re^{p}}{\inf}\; L(\beta,\lambda)
+		\;\right\}
+	& = &
+		L(\beta^{*},\lambda^{*})
+	\\
+	& = &
+		\underset{\beta\,\in\,\Re^{p}}{\inf}
+		\left\{\;
+			\underset{\lambda\,\geq\,0}{\sup}\; L(\beta,\lambda)
+			\;\right\}
+	\;\; = \;\;
+		\underset{\beta\,\in\,\Re^{p}}{\inf}
+		\left\{\;\;
+			\left.
+			\dfrac{1}{2}
+			\cdot
+			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
+			\;\;\,\right\vert\;\;
+			\Vert\;\beta\,\Vert_{1} \, - \, \tau \, \leq \, 0
+			\;\;\right\}
+	\end{eqnarray*}
+\end{enumerate}
+\end{theorem}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 %\renewcommand{\theenumi}{\alph{enumi}}
 %\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
 \renewcommand{\theenumi}{\roman{enumi}}
