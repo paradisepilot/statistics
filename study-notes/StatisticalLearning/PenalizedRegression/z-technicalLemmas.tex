@@ -15,146 +15,320 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{comment}
-\begin{lemma}[Cauchy-Schwarz inequality]
+\vskip 0.2cm
+\begin{proposition}[Translations yield equivalent optimization problems]
+\label{translationsYieldEquivalent}
 \mbox{}
-\vskip 0.1cm
+\vskip 0.0cm
 \noindent
-Suppose \,$X$\, is a non-empty set, and the map
-\,$K : X \times X \longrightarrow \Re$\, is symmetric and positive semi-definite.
-Then
+Suppose that
+\,$Y = (y_{1},\ldots,y_{n})^{T} \in \Re^{n}$,\,
+\,$X \in \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\, and
+\,$\tau > 0$.\,
+Then, for any
+\,$c = (c_{0},c_{1},\ldots,c_{p}) \in \Re^{p+1}$,\,
+the following two optimization problems:
 \begin{equation*}
-K(x,y)^{2} \;\; \leq \;\; K(x,x) \cdot K(y,y)\,,
-\quad
-\textnormal{for each \,$x,y \in X$}
-\end{equation*}
-\end{lemma}
-\proof
-Since \,$K : X \times X \longrightarrow \Re$\,
-is symmetric and positive semi-definite, the matrix
-\begin{equation*}
-M
+\Gamma
 \;\; := \;\;
-	\left[\begin{array}{cc}
-	K(x,x) & K(x,y)
-	\\
-	K(y,x) & \overset{{\color{white}-}}{K(y,y)}
-	\end{array}\right]
-\;\; \in \;\;
-	\Re^{2 \times 2}
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\argmin}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
 \end{equation*}
-is symmetric and positive semi-definite.
-Hence, \,$M$\, is orthogonally diagonalizable
-with non-negative eigenvalues.
-It follows that the determinant of \,$M$\,
-is non-negative.
-Now, note that
+and
 \begin{equation*}
-K(x,x) \cdot K(y,y) - K(x,y)^{2}
-\;\; =: \;\;
-	\det\!\left(\,M\,\right)
-\;\; \geq \;\;
-	0\,,
+\Gamma(c)
+\;\; := \;\;
+	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\argmin}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; (y_{i} - c_{0}) - \gamma_{0} - \overset{p}{\underset{j=1}{\sum}}\, (x_{ij}-c_{j})\cdot\gamma_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
 \end{equation*}
-which completes the proof of the Lemma.
+are equivalent in the sense that
+\begin{eqnarray*}
+&&
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\\
+& = &
+	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; (y_{i} - c_{0}) - \gamma_{0} - \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-c_{j})\cdot\gamma_{j}\;\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\},
+\end{eqnarray*}
+and furthermore
+\begin{equation*}
+\left\{\begin{array}{lcl}
+	\left(\;\overset{{\color{white}.}}{\gamma_{0}}\;,\;\gamma\,\right) \,\in\, \Gamma(c)
+	&\Longleftrightarrow&
+	\left(\,\gamma_{0}+c_{0}-\overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\gamma_{j}\;,\,\gamma\,\right) \,\in\, \Gamma
+	\\ \\
+	\left(\,\overset{{\color{white}.}}{\beta_{0}}\;,\,\beta\,\right) \,\in\, \Gamma
+	&\Longleftrightarrow&
+	\left(\,\beta_{0}-c_{0}+\overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\beta_{j}\;,\,\beta\,\right) \,\in\, \Gamma(c)
+\end{array}\right.
+\end{equation*}
+\end{proposition}
+\proof
+Observe that
+\begin{eqnarray*}
+&&
+	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; (y_{i} - c_{0}) - \gamma_{0} - \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-c_{j})\cdot\gamma_{j}\;\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\\
+& = &
+	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} -
+		\left({\color{orange}\gamma_{0} + c_{0} - \overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\gamma_{j}}\right)
+		- \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot{\color{red}\gamma_{j}}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\\
+& = &
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - {\color{orange}\beta_{0}} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot{\color{red}\beta_{j}}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\end{eqnarray*}
+Hence,
+\begin{equation*}
+(\,\gamma_{0}^{*}\,,\gamma^{*}\,) \,\in\, \Gamma(c)
+\quad\Longrightarrow\quad
+\left(\,\gamma_{0}^{*}+c_{0} - \overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\gamma_{j}^{*}\;\,,\;\gamma^{*}\,\right)
+\,\in\,\Gamma{\color{white}(c)}
+\end{equation*}
+and conversely,
+\begin{equation*}
+(\,\beta_{0}^{*}\,,\beta^{*}\,) \,\in\, \Gamma{\color{white}(c)}
+\quad\Longrightarrow\quad
+\left(\,\beta_{0}^{*} - c_{0} + \overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\beta_{j}^{*}\;\,,\;\beta^{*}\,\right)
+\,\in\, \Gamma(c)
+\end{equation*}
+This proves the Proposition.
 \qed
-\end{comment}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{lemma}[Cauchy-Schwarz Inequality for symmetric positive semi-definite matrices]
-\label{CauchySchwarzInequality}
+\begin{theorem}[WLOG, can centre each predictor variable and remove intercept term]
+\label{CanCenterAndRemoveIntercept}
 \mbox{}
-\vskip 0.1cm
+\vskip 0.0cm
 \noindent
-Suppose
-\,$K \,=\, \left[\;\;\overset{{\color{white}1}}{K_{ij}}\;\;\right]_{i,j\,\in\{1,\ldots,d\}} \,\in\, \Re^{d \times d}$\,
-is a symmetric positive semi-definite matrix.
-Then, we have:
-\begin{equation*}
-\left(\;
-	\alpha^{T} \overset{{\color{white}1}}{\cdot} K \cdot \beta
-	\,\right)^{2}
-\;\; \leq \;\;
-	\left(\;
-		\alpha^{T} \overset{{\color{white}1}}{\cdot} K \cdot \alpha
-		\,\right)
-	\cdot
-	\left(\;
-		\beta^{T} \overset{{\color{white}1}}{\cdot} K \cdot \beta
-		\,\right),
-\quad
-\textnormal{for each \,$\alpha, \beta \in \Re^{d}$}\,,
-\end{equation*}
-i.e.,
-\begin{equation*}
-\left(\;
-	\overset{d}{\underset{i\,=\,1}{\sum}}\;\,
-	\overset{d}{\underset{j\,=\,1}{\sum}}\;
-	\alpha_{i} \cdot \beta_{j} \cdot K_{ij}
-	\right)^{2}
-\;\; \leq \;\;
-	\left(\;
-		\overset{d}{\underset{i\,=\,1}{\sum}}\;
-		\overset{d}{\underset{j\,=\,1}{\sum}}\;
-		\alpha_{i} \cdot \alpha_{j} \cdot K_{ij}
-		\right)
-	\cdot
-	\left(\;
-		\overset{d}{\underset{i\,=\,1}{\sum}}\;\,
-		\overset{d}{\underset{j\,=\,1}{\sum}}\;
-		\beta_{i} \cdot \beta_{j} \cdot K_{ij}
-		\right),
-\end{equation*}
-for each \,$\alpha \,=\, (\alpha_{1},\ldots,\alpha_{d}), \;\,\beta \,=\, (\beta_{1},\ldots,\beta_{d}) \,\in\,\Re^{d}$.
-\end{lemma}
-\proof
-First, note that if \,$K \in \Re^{d \times d}$\, is in fact symmetric positive definite, then the map
-\begin{equation*}
-\Re^{d} \,\times\, \Re^{d} \,\longrightarrow\, \Re
-\,:\,
-(\alpha,\beta) \,\longmapsto\, \alpha^{T} \cdot K \cdot \beta
-\end{equation*}
-defines an inner product on $\Re^{d}$, and the desired inequality is simply the Cauchy-Schwarz Inequality
-for inner product spaces.
-
-Next, suppose $K \in \Re^{d \times d}$ is symmetric positive semi-definite.
-Then, there exists an orthogonal matrix $U \in \Re^{d \times d}$ such that
-\,$D \, := \, U^{T} \cdot K \cdot U$\, is a diagonal matrix.
-Write \,$D = \diag(\lambda_{1},\ldots,\lambda_{d})$,
-where $\lambda_{1},\ldots,\lambda_{d}$ are the eigenvalues of $K$.
-By positive semi-definiteness of $K$, we have: $\lambda_{1}, \ldots, \lambda_{d} \,\geq\, 0$.
-Now, let $\varepsilon > 0$ be arbitrary.
-Observe that
+Suppose that
+\,$Y = (y_{1},\ldots,y_{n})^{T} \in \Re^{n}$,\,
+\,$X \in \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\, and
+\,$\tau > 0$.\,
+Then, the corresponding ``centered and zero-intercept'' Lasso optimization problem is equivalent to
+the original Lasso optimization problem in the sense that
 \begin{eqnarray*}
-U^{T}\cdot(\,K + \varepsilon \cdot I_{d}\,) \cdot U
-& = &
-	U^{T} \cdot K \cdot U \, + \, \varepsilon \cdot I_{d}
-\;\; = \;\;
-	\diag(\lambda_{1},\ldots,\lambda_{d}) \, + \, \varepsilon \cdot I_{d}
+&&
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\;
+			{\color{white}.}y_{i} - \beta_{0}{\color{white}.}
+			-\,
+			\overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}
+			\,\right)^{\!\!2}
+		{\color{white}..........}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
 \\
 & = &
-	\diag\!\left(\,\lambda_{1} \overset{{\color{white}.}}{+} \varepsilon\,,\,\ldots\,,\lambda_{d} + \varepsilon\,\right)
+	\underset{{\color{white}......}\gamma\,\in\,\Re^{p}{\color{white}......}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\;
+			(y_{i} - \overline{y})
+			\;-\,
+			\overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}
+			\,\right)^{\!\!2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
 \end{eqnarray*}
-We therefore see that \,$K + \varepsilon \cdot I_{d}$\, is symmetric positive definite.
-By the preceding paragraph, we therefore have
+\end{theorem}
+\proof
+\begin{eqnarray*}
+&&
+	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\beta_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\}
+\\
+& = &
+	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; y_{i} - \gamma_{0} \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\},
+	\quad
+	\textnormal{by Proposition \ref{translationsYieldEquivalent}}
+\\
+& = &
+	\underset{\gamma\,\in\,\Re^{p}}{\inf}
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\overset{n}{\underset{i=1}{\sum}}
+		\left(\; (y_{i} - \overline{y}) \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
+		\;\;\,\right\vert\;\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\, - \,
+		\tau \, \leq \, 0
+		\;\;\right\},
+\end{eqnarray*}
+where the last equality follows from the fact that the pertinent Lagrangian function
+\,$L : \Re \times \Re^{p} \times [\,0,\infty) \longrightarrow \Re$\,
+is:
 \begin{equation*}
-\left[\; \alpha^{T}\cdot\!\left(\,K \overset{{\color{white}.}}{+} \varepsilon \cdot I_{d}\,\right) \cdot \beta \;\right]^{2}
-\;\; \leq \;\;
-	\left[\; \alpha^{T}\cdot\!\left(\,K \overset{{\color{white}.}}{+} \varepsilon \cdot I_{d}\,\right) \cdot \alpha \;\right]
-	\, \cdot \,
-	\left[\; \beta^{T}\cdot\!\left(\,K \overset{{\color{white}.}}{+} \varepsilon \cdot I_{d}\,\right) \cdot \beta \;\right]
+L(\,\gamma_{0},\gamma,\lambda\,)
+\;\; = \;\;
+	\dfrac{1}{2}\cdot
+	\overset{n}{\underset{i=1}{\sum}}
+	\left(\; y_{i} - \gamma_{0} \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
+	\, + \,
+	\lambda\cdot\left(\;
+		\overset{p}{\underset{j=1}{\sum}}\;
+		\vert\;\gamma_{j}\,\vert
+		\,-\, \tau 
+		\,\right)
 \end{equation*}
-Taking the limit on both sides as \,$\varepsilon \longrightarrow 0^{+}$, we have:
+hence
 \begin{equation*}
-\left[\;\alpha^{T}\cdot\overset{{\color{white}.}}{K} \cdot\beta\;\right]^{2}
-\;\; \leq \;\;
-	\left[\;\alpha^{T}\cdot\overset{{\color{white}.}}{K}\cdot\alpha\;\right]
-	\, \cdot \,
-	\left[\;\beta^{T}\cdot\overset{{\color{white}.}}{K}\cdot\beta\;\right],
+\dfrac{\partial L}{\partial\gamma_{0}}
+\;\; = \;\;
+	\overset{n}{\underset{i=1}{\sum}}
+	\left(\; y_{i} - \gamma_{0} \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)
+	\cdot\left(\,\overset{{\color{white}.}}{-1}\,\right)
 \end{equation*}
-as desired. This completes the proof of the Lemma.
+Consequently, \,$\dfrac{\partial L}{\partial\gamma_{0}} \, = \, 0$\, implies
+\begin{eqnarray*}
+n\cdot\gamma_{0}
+& = &
+	\left(\, \overset{n}{\underset{i=1}{\sum}}\; y_{i} \right)
+	\;-\;\;
+	\overset{n}{\underset{i=1}{\sum}}\;
+	\overset{p}{\underset{j=1}{\sum}}\;
+	(x_{ij}-\overline{x}_{j})\cdot\gamma_{j}
+\;\; = \;\;
+	\left(\, \overset{n}{\underset{i=1}{\sum}}\; y_{i} \right)
+	\;-\;\;
+	\overset{p}{\underset{j=1}{\sum}}\;\,
+	\gamma_{j}\cdot
+	\underset{0}{\underbrace{\overset{n}{\underset{i=1}{\sum}}\,(x_{ij}-\overline{x}_{j})}}
+\;\; = \;\;
+	\overset{n}{\underset{i=1}{\sum}}\; y_{i}\,,
+\end{eqnarray*}
+which in turn implies
+\begin{eqnarray*}
+\gamma_{0}
+& = &
+	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\; y_{i}
+\;\; =: \;\;
+	\overline{y}
+\end{eqnarray*}
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

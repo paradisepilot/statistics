@@ -9,7 +9,10 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-%``Lasso'' stands ``Least Absolute Shrinkage and Selection Operator''.
+\vskip 0.3cm
+\subsection{Lasso -- general formulation}
+\vskip 0.0cm
+\noindent
 Suppose that
 \,$Y = (y_{1},\ldots,y_{n})^{T} \in \Re^{n}$,\,
 \,$X = \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\, and
@@ -53,326 +56,7 @@ where
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{proposition}[Translations yield equivalent optimization problems]
-\label{translationsYieldEquivalent}
-\mbox{}
-\vskip 0.0cm
-\noindent
-Suppose that
-\,$Y = (y_{1},\ldots,y_{n})^{T} \in \Re^{n}$,\,
-\,$X \in \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\, and
-\,$\tau > 0$.\,
-Then, for any
-\,$c = (c_{0},c_{1},\ldots,c_{p}) \in \Re^{p+1}$,\,
-the following two optimization problems:
-\begin{equation*}
-\Gamma
-\;\; := \;\;
-	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\argmin}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\beta_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\}
-\end{equation*}
-and
-\begin{equation*}
-\Gamma(c)
-\;\; := \;\;
-	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\argmin}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; (y_{i} - c_{0}) - \gamma_{0} - \overset{p}{\underset{j=1}{\sum}}\, (x_{ij}-c_{j})\cdot\gamma_{j}\,\right)^{2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\gamma_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\}
-\end{equation*}
-are equivalent in the sense that
-\begin{eqnarray*}
-&&
-	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\beta_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\}
-\\
-& = &
-	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; (y_{i} - c_{0}) - \gamma_{0} - \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-c_{j})\cdot\gamma_{j}\;\right)^{2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\gamma_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\},
-\end{eqnarray*}
-and furthermore
-\begin{equation*}
-\left\{\begin{array}{lcl}
-	\left(\;\overset{{\color{white}.}}{\gamma_{0}}\;,\;\gamma\,\right) \,\in\, \Gamma(c)
-	&\Longleftrightarrow&
-	\left(\,\gamma_{0}+c_{0}-\overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\gamma_{j}\;,\,\gamma\,\right) \,\in\, \Gamma
-	\\ \\
-	\left(\,\overset{{\color{white}.}}{\beta_{0}}\;,\,\beta\,\right) \,\in\, \Gamma
-	&\Longleftrightarrow&
-	\left(\,\beta_{0}-c_{0}+\overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\beta_{j}\;,\,\beta\,\right) \,\in\, \Gamma(c)
-\end{array}\right.
-\end{equation*}
-\end{proposition}
-\proof
-Observe that
-\begin{eqnarray*}
-&&
-	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; (y_{i} - c_{0}) - \gamma_{0} - \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-c_{j})\cdot\gamma_{j}\;\right)^{2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\gamma_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\}
-\\
-& = &
-	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; y_{i} -
-		\left({\color{orange}\gamma_{0} + c_{0} - \overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\gamma_{j}}\right)
-		- \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot{\color{red}\gamma_{j}}\,\right)^{2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\gamma_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\}
-\\
-& = &
-	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; y_{i} - {\color{orange}\beta_{0}} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot{\color{red}\beta_{j}}\,\right)^{2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\beta_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\}
-\end{eqnarray*}
-Hence,
-\begin{equation*}
-(\,\gamma_{0}^{*}\,,\gamma^{*}\,) \,\in\, \Gamma(c)
-\quad\Longrightarrow\quad
-\left(\,\gamma_{0}^{*}+c_{0} - \overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\gamma_{j}^{*}\;\,,\;\gamma^{*}\,\right)
-\,\in\,\Gamma{\color{white}(c)}
-\end{equation*}
-and conversely,
-\begin{equation*}
-(\,\beta_{0}^{*}\,,\beta^{*}\,) \,\in\, \Gamma{\color{white}(c)}
-\quad\Longrightarrow\quad
-\left(\,\beta_{0}^{*} - c_{0} + \overset{p}{\underset{j=1}{\sum}}\,c_{j}\cdot\beta_{j}^{*}\;\,,\;\beta^{*}\,\right)
-\,\in\, \Gamma(c)
-\end{equation*}
-This proves the Proposition.
-\qed
-
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\vskip 0.5cm
-\begin{theorem}[WLOG, can centre each predictor variable and remove intercept term]
-\label{CanCenterAndRemoveIntercept}
-\mbox{}
-\vskip 0.0cm
-\noindent
-Suppose that
-\,$Y = (y_{1},\ldots,y_{n})^{T} \in \Re^{n}$,\,
-\,$X \in \left(\,\overset{{\color{white}-}}{x_{ij}}\,\right)\in\Re^{n \times p}$\, and
-\,$\tau > 0$.\,
-Then, the corresponding ``centered and zero-intercept'' Lasso optimization problem is equivalent to
-the original Lasso optimization problem in the sense that
-\begin{eqnarray*}
-&&
-	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\;
-			{\color{white}.}y_{i} - \beta_{0}{\color{white}.}
-			-\,
-			\overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}
-			\,\right)^{\!\!2}
-		{\color{white}..........}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\beta_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\}
-\\
-& = &
-	\underset{{\color{white}......}\gamma\,\in\,\Re^{p}{\color{white}......}}{\inf}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\;
-			(y_{i} - \overline{y})
-			\;-\,
-			\overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}
-			\,\right)^{\!\!2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\gamma_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\}
-\end{eqnarray*}
-\end{theorem}
-\proof
-\begin{eqnarray*}
-&&
-	\underset{(\beta_{0},\beta)\,\in\,\Re\times\Re^{p}}{\inf}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; y_{i} - \beta_{0} - \overset{p}{\underset{j=1}{\sum}}\; x_{ij}\cdot\beta_{j}\,\right)^{2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\beta_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\}
-\\
-& = &
-	\underset{(\gamma_{0},\gamma)\,\in\,\Re\times\Re^{p}}{\inf}\;
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; y_{i} - \gamma_{0} \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\gamma_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\},
-	\quad
-	\textnormal{by Proposition \ref{translationsYieldEquivalent}}
-\\
-& = &
-	\underset{\gamma\,\in\,\Re^{p}}{\inf}
-	\left\{\;\;
-		\left.
-		\dfrac{1}{2}
-		\cdot
-		\overset{n}{\underset{i=1}{\sum}}
-		\left(\; (y_{i} - \overline{y}) \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
-		\;\;\,\right\vert\;\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\gamma_{j}\,\vert
-		\, - \,
-		\tau \, \leq \, 0
-		\;\;\right\},
-\end{eqnarray*}
-where the last equality follows from the fact that the pertinent Lagrangian function
-\,$L : \Re \times \Re^{p} \times [\,0,\infty) \longrightarrow \Re$\,
-is:
-\begin{equation*}
-L(\,\gamma_{0},\gamma,\lambda\,)
-\;\; = \;\;
-	\dfrac{1}{2}\cdot
-	\overset{n}{\underset{i=1}{\sum}}
-	\left(\; y_{i} - \gamma_{0} \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)^{2}
-	\, + \,
-	\lambda\cdot\left(\;
-		\overset{p}{\underset{j=1}{\sum}}\;
-		\vert\;\gamma_{j}\,\vert
-		\,-\, \tau 
-		\,\right)
-\end{equation*}
-hence
-\begin{equation*}
-\dfrac{\partial L}{\partial\gamma_{0}}
-\;\; = \;\;
-	\overset{n}{\underset{i=1}{\sum}}
-	\left(\; y_{i} - \gamma_{0} \;-\, \overset{p}{\underset{j=1}{\sum}}\; (x_{ij}-\overline{x}_{j})\cdot\gamma_{j}\,\right)
-	\cdot\left(\,\overset{{\color{white}.}}{-1}\,\right)
-\end{equation*}
-Consequently, \,$\dfrac{\partial L}{\partial\gamma_{0}} \, = \, 0$\, implies
-\begin{eqnarray*}
-n\cdot\gamma_{0}
-& = &
-	\left(\, \overset{n}{\underset{i=1}{\sum}}\; y_{i} \right)
-	\;-\;\;
-	\overset{n}{\underset{i=1}{\sum}}\;
-	\overset{p}{\underset{j=1}{\sum}}\;
-	(x_{ij}-\overline{x}_{j})\cdot\gamma_{j}
-\;\; = \;\;
-	\left(\, \overset{n}{\underset{i=1}{\sum}}\; y_{i} \right)
-	\;-\;\;
-	\overset{p}{\underset{j=1}{\sum}}\;\,
-	\gamma_{j}\cdot
-	\underset{0}{\underbrace{\overset{n}{\underset{i=1}{\sum}}\,(x_{ij}-\overline{x}_{j})}}
-\;\; = \;\;
-	\overset{n}{\underset{i=1}{\sum}}\; y_{i}\,,
-\end{eqnarray*}
-which in turn implies
-\begin{eqnarray*}
-\gamma_{0}
-& = &
-	\dfrac{1}{n}\;\overset{n}{\underset{i=1}{\sum}}\; y_{i}
-\;\; =: \;\;
-	\overline{y}
-\end{eqnarray*}
-\qed
-
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\vskip 1.0cm
-\noindent
-\textbf{Lasso for centered variables, without intercept term}
+\subsection{Lasso -- with centered variables and without intercept term}
 \vskip 0.0cm
 \noindent
 By Theorem \ref{CanCenterAndRemoveIntercept}, upon centering variables if necessary,
@@ -387,6 +71,139 @@ satisfy
 \textnormal{for each \,$j = 1,\ldots,p$}
 \end{equation*}
 The Lasso optimization then becomes:
+\begin{equation}
+\label{LassoCenteredVariablesNoIntercept}
+	\underset{\beta\,\in\,\Re^{p}}{\inf}
+	\left\{\;\;
+		\left.
+		\dfrac{1}{2}
+		\cdot
+		\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
+		\;\;\,\right\vert\;\;
+		\Vert\;\beta\,\Vert_{1} \, - \, \tau \, \leq \, 0
+		\;\;\right\}
+\end{equation}
+\textbf{Observations}
+\begin{itemize}
+\item
+	The minimization problem \eqref{LassoCenteredVariablesNoIntercept}
+	has a compact domain and continuous objective function.
+	Hence, \eqref{LassoCenteredVariablesNoIntercept} has a finite infimum value,
+	and the infimum value is attained at some point(s) in its domain.
+\item
+	The collection of least-squares solutions of the corresponding unconstrained problem is
+	\begin{equation*}
+	\mathcal{LS}(X,y)
+	\;\; := \;\;
+	\left\{\;
+		\left.
+		\overset{{\color{white}.}}{\beta} \in \Re^{p}
+		\;\;\right\vert\;
+		X^{T} \cdot (\,y - X\cdot\beta\,) \,=\, 0
+		\,\;\right\}
+	\;\; = \;\;
+	\left\{\;
+		\left.
+		\overset{{\color{white}.}}{\beta} \in \Re^{p}
+		\;\;\right\vert\;
+		X^{T} \cdot X \cdot \beta \, = \, X^{T} \cdot y
+		\,\;\right\}
+	\end{equation*}
+\item
+	Consider the case where \,$p \,>\, n$.
+	
+	\vskip 0.2cm
+	The least-squares solution is then non-unique;
+	in other words, \,$\mathcal{LS}(X,y)$\, contains more than one element.
+
+	\vskip 0.2cm
+	Recall that
+	\,$\ker(X^{T} \cdot X) \,=\, \ker(X)$.\,
+	Indeed, it is immediate that
+	\,$\ker(X) \,\subset\, \ker(X^{T} \cdot X)$.\,
+	Conversely, \,$v \,\in\, \ker(X^{T} \cdot X)$\,
+	\,$\Longleftrightarrow$\, \,$X^{T} \cdot X \cdot v \,=\, 0$\,
+	\,$\Longrightarrow$\, \,$\Vert\,X \cdot v\,\Vert^{2} \,=\, v^{T} \cdot X^{T} \cdot X \cdot v \,=\, 0$\,
+	\,$\Longrightarrow$\, \,$X \cdot v \,=\, 0$,\,
+	i.e. \,$v \in \ker(X)$.
+	This proves the reverse inclusion that
+	\,$\ker(X^{T} \cdot X) \subset \ker(X)$.
+
+	\vskip 0.2cm
+	Next, note that
+	\begin{equation*}
+	\mathcal{LS}(X,y)
+	\;\; = \;\;
+		\beta^{*} \,+\, \ker(X^{T}\cdot X)
+	\;\; = \;\;
+		\beta^{*} \,+\, \ker(X),
+	\quad
+	\textnormal{for each \,$\beta^{*} \,\in\, \mathcal{LS}(X,y)$}
+	\end{equation*}
+	We thus see that
+	\,{\color{red}$\mathcal{LS}(X,y) \,\subset\, \Re^{p}$\,
+	is a translate of the subspace
+	\,$\ker(X) \,\subset\, \Re^{p}$.}
+	
+\item
+	Consider still the case where \,{\color{red}$p \,>\, n$}.
+	
+	\vskip 0.2cm
+	Define:
+	\begin{equation*}
+	\tau_{0}
+	\;\; := \;\;
+		\underset{\beta\,\in\,\mathcal{LS}(X,y)}{\min}
+		\left\{\;
+			\Vert\; \overset{{\color{white}.}}{\beta} \;\Vert_{1}
+			\;\right\}
+	\;\; = \;\;
+		\underset{\beta\,\in\,\ker(X)}{\min}
+		\left\{\;
+			\Vert\; \beta^{*} + \overset{{\color{white}.}}{\beta} \;\Vert_{1}
+			\;\right\},
+	\end{equation*}
+	where \,$\beta^{*}$\, is an arbitrary element of \,$\mathcal{LS}(X,y)$.
+	
+	\vskip 0.2cm
+	We see that, for \,$\tau \,\geq\, \tau_{0}$,\, the minimization problem
+	\,\eqref{LassoCenteredVariablesNoIntercept}\,
+	is equivalent to its unconstrained counterpart.
+
+	\vskip 0.2cm
+	On the other hand, for \,$\tau \,<\, \tau_{0}$,\, each solution of the minimization problem
+	\,\eqref{LassoCenteredVariablesNoIntercept}\,
+	must lie on the boundary of it domain
+	since \,$\tau \,<\, \tau_{0}$\, implies all critical points of the objective function lie strictly
+	outside of the domain of \,\eqref{LassoCenteredVariablesNoIntercept}.
+	In other words,
+	{\color{red}\begin{equation*}
+	\tau \,<\, \tau_{0}
+	\quad\Longrightarrow\quad
+		\underset{\beta\,\in\,\Re^{p}}{\argmin}
+		\left\{\;\,
+			\left.
+			\dfrac{1}{2}
+			\cdot
+			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
+			\;\;\,\right\vert\;\;
+			\Vert\;\beta\,\Vert_{1} \, - \, \tau \, \leq \, 0
+			\,\;\right\}
+		\;\;\textnormal{\large$\subset$}\;\;
+		\left\{\;
+			\left.
+			\overset{{\color{white}1}}{\beta} \in \Re^{p}
+			\;\,\right\vert\;\,
+			\Vert\;\beta\,\Vert_{1} \, = \, \tau
+			\;\right\}
+	\end{equation*}}
+\end{itemize}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Dual Problem of the Lasso with centered variables and without intercept term}
+\vskip 0.0cm
+\noindent
 \begin{eqnarray*}
 &&
 	\underset{\beta\,\in\,\Re^{p}}{\inf}
