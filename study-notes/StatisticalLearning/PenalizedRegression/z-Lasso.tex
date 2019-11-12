@@ -92,25 +92,33 @@ The Lasso optimization then becomes:
 	and the infimum value is attained at some point(s) in its domain.
 \item
 	The collection of least-squares solutions of the corresponding unconstrained problem is
-	\begin{equation*}
+	\begin{eqnarray*}
 	\mathcal{LS}(X,y)
-	\;\; := \;\;
-	\left\{\;
-		\left.
-		\overset{{\color{white}.}}{\beta} \in \Re^{p}
-		\;\;\right\vert\;
-		X^{T} \cdot (\,y - X\cdot\beta\,) \,=\, 0
-		\,\;\right\}
-	\;\; = \;\;
-	\left\{\;
-		\left.
-		\overset{{\color{white}.}}{\beta} \in \Re^{p}
-		\;\;\right\vert\;
-		X^{T} \cdot X \cdot \beta \, = \, X^{T} \cdot y
-		\,\;\right\}
-	\end{equation*}
+	& := &
+		\underset{\beta\,\in\,\Re^{p}}{\argmin}
+		\left\{\;\;
+			\dfrac{1}{2}
+			\cdot
+			\left\Vert\;\, y \overset{{\color{white}.}}{-} X\cdot\beta \;\right\Vert_{2}^{2}
+			\;\;\right\}
+	\\
+	& = &
+		\left\{\;
+			\left.
+			\overset{{\color{white}.}}{\beta} \in \Re^{p}
+			\;\;\right\vert\;
+			X^{T} \cdot (\,y - X\cdot\beta\,) \,=\, 0
+			\,\;\right\}
+		\;\; = \;\;
+		\left\{\;
+			\left.
+			\overset{{\color{white}.}}{\beta} \in \Re^{p}
+			\;\;\right\vert\;
+			X^{T} \cdot X \cdot \beta \, = \, X^{T} \cdot y
+			\,\;\right\}
+	\end{eqnarray*}
 \item
-	Consider the case where \,$p \,>\, n$.
+	Consider the case where \,{\color{red}$p \,>\, n$}.
 	
 	\vskip 0.2cm
 	The least-squares solution is then non-unique;
@@ -173,9 +181,10 @@ The Lasso optimization then becomes:
 	\vskip 0.2cm
 	On the other hand, for \,$\tau \,<\, \tau_{0}$,\, each solution of the minimization problem
 	\,\eqref{LassoCenteredVariablesNoIntercept}\,
-	must lie on the boundary of it domain
-	since \,$\tau \,<\, \tau_{0}$\, implies all critical points of the objective function lie strictly
-	outside of the domain of \,\eqref{LassoCenteredVariablesNoIntercept}.
+	must lie on the boundary of its domain,
+	since \,$\tau \,<\, \tau_{0}$\, implies that
+	all critical points of the objective function lie strictly outside
+	of the domain of \,\eqref{LassoCenteredVariablesNoIntercept}.
 	In other words,
 	{\color{red}\begin{equation*}
 	\tau \,<\, \tau_{0}
