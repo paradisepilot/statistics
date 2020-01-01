@@ -74,6 +74,25 @@ myLibrary <- file.path(".","library",current.version,"library");
 if(!dir.exists(myLibrary)) { dir.create(path = myLibrary, recursive = TRUE); }
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+print("\n##### installation of BiocManager starts ...");
+install.packages(
+    pkgs         = c("BiocManager"),
+    lib          = myLibrary,
+    repos        = myRepoURL,
+    dependencies = TRUE # c("Depends", "Imports", "LinkingTo", "Suggests")
+    );
+print("\n##### installation of BiocManager complete ...");
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+print("\n##### installation of Bioconductor packages starts ...");
+BiocManager::install(
+    pkgs         = c("BiocVersion","BiocStyle","graph","Rgraphviz","ComplexHeatmap"),
+    lib          = myLibrary,
+    dependencies = TRUE
+    );
+print("\n##### installation of Bioconductor packages complete ...");
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 # install desired R packages to
 # user-specified library
 print("\n##### installation of packages starts ...");
@@ -84,17 +103,6 @@ install.packages(
     dependencies = TRUE # c("Depends", "Imports", "LinkingTo", "Suggests")
     );
 print("\n##### installation of packages complete ...");
-
-### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-# install desired R packages to
-# user-specified library
-print("\n##### installation of Bioconductor packages starts ...");
-BiocManager::install(
-    pkgs         = c("ComplexHeatmap"),
-    lib          = myLibrary,
-    dependencies = TRUE
-    );
-print("\n##### installation of Bioconductor packages complete ...");
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 my.colnames <- c("Package","Version","License","License_restricts_use","NeedsCompilation","Built");
