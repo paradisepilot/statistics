@@ -86,6 +86,13 @@ install.packages(
 print("\n##### installation of packages complete ...");
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+if ( !requireNamespace("BiocManager", quietly = TRUE) ) {
+    install.packages("BiocManager")
+    }
+
+BiocManager::install("ComplexHeatmap");
+
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 my.colnames <- c("Package","Version","License","License_restricts_use","NeedsCompilation","Built");
 DF.installed.packages <- as.data.frame(installed.packages(lib = myLibrary)[,my.colnames]);
 
