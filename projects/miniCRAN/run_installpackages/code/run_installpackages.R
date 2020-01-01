@@ -83,6 +83,12 @@ install.packages(
     );
 print("\n##### installation of BiocManager complete ...");
 
+library(
+    package        = "BiocManager",
+    character.only = TRUE,
+    lib.loc        = myLibrary
+    );
+
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 print("\n##### installation of Bioconductor packages starts ...");
 BiocManager::install(
