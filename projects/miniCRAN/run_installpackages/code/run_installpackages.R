@@ -86,11 +86,15 @@ install.packages(
 print("\n##### installation of packages complete ...");
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-if ( !requireNamespace("BiocManager", quietly = TRUE) ) {
-    install.packages("BiocManager")
-    }
-
-BiocManager::install("ComplexHeatmap");
+# install desired R packages to
+# user-specified library
+print("\n##### installation of Bioconductor packages starts ...");
+BiocManager::install(
+    pkgs         = c("ComplexHeatmap"),
+    lib          = myLibrary,
+    dependencies = TRUE
+    );
+print("\n##### installation of Bioconductor packages complete ...");
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 my.colnames <- c("Package","Version","License","License_restricts_use","NeedsCompilation","Built");
