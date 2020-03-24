@@ -130,7 +130,76 @@ P\!\left(\, \xi_{n} \,\overset{{\color{white}.}}{>}\, t \,\right)
 \vskip 0.2cm
 \noindent
 Proof of Claim 1:\quad
-
+\begin{eqnarray*}
+P\!\left(\, \xi_{n+1} \,\overset{{\color{white}.}}{>}\, t \,\right)
+& = &
+	P\!\left(\, \xi_{n} + \eta_{n+1} \,\overset{{\color{white}.}}{>}\, t \,\right)
+\;\; = \;\;
+	P\!\left(\, \xi_{n} + \eta_{n+1} \,\overset{{\color{white}.}}{>}\, t \,,\, \eta_{n+1} \,>\, t \,\right)
+	\, + \,
+	P\!\left(\, \xi_{n} + \eta_{n+1} \,\overset{{\color{white}.}}{>}\, t \,,\, \eta_{n+1} \,\leq\, t \,\right)
+\\
+& = &
+	P\!\left(\, \eta_{n+1} \,\overset{{\color{white}.}}{>}\, t \,\right)
+	\, + \,
+	P\!\left(\, \xi_{n} \,\overset{{\color{white}.}}{>}\, t - \eta_{n+1} \,,\, t \,\geq\, \eta_{n+1} \,\right)
+\\
+& = &
+	\exp(\,-\lambda t\,)
+	\, + \,
+	\int_{0}^{t}\int_{t-\eta}^{\infty}\; f_{\xi_{n},\,\eta_{n+1}}(\xi,\eta) \;\,\d\xi\,\d\eta
+\\
+& = &
+	\exp(\,-\lambda t\,)
+	\, + \,
+	\int_{0}^{t}\int_{t-\eta}^{\infty}\; f_{\xi_{n}}(\xi) \cdot f_{\eta_{n+1}}(\eta) \;\,\d\xi\,\d\eta,
+	\quad
+	\textnormal{by independence of \,$\xi_{n}$\, and \,$\eta_{n+1}$}
+\\
+& = &
+	\exp(\,-\lambda t\,)
+	\, + \,
+	\int_{0}^{t}\left(\int_{t-\eta}^{\infty}\; f_{\xi_{n}}(\xi) \;\d\xi \right) \cdot f_{\eta_{n+1}}(\eta)\;\d\eta
+\\
+& = &
+	\exp(\,-\lambda t\,)
+	\, + \,
+	\int_{0}^{t}\,P(\,\xi_{n}>t-\eta\,) \cdot f_{\eta_{n+1}}(\eta)\;\d\eta
+\\
+& = &
+	\exp(\,-\lambda t\,)
+	\, + \,
+	\int_{0}^{t}\,
+		\exp(\,-\,\lambda (t-\eta)\,)
+		\cdot
+		\overset{n-1}{\underset{k=0}{\sum}}\;
+		\dfrac{\lambda^{k}(t-\eta)^{k}}{k!}
+		\cdot
+		\lambda\cdot\exp(-\lambda\eta)
+		\;\d\eta,
+	\;\;
+	\textnormal{by induction hypothesis}
+\\
+& = &
+	\exp(\,-\lambda t\,)
+	\, + \,
+	\exp(\,-\,\lambda t\,)
+	\cdot
+	\overset{n-1}{\underset{k=0}{\sum}}\;\;
+	\dfrac{\lambda^{k+1}}{k!}
+	\int_{0}^{t}\,
+		(t-\eta)^{k}
+		\,\d\eta
+\\
+& = &
+	\cdots
+\;\; = \;\;
+	\exp(\,-\,\lambda t\,)
+	\cdot
+	\overset{n}{\underset{k=0}{\sum}}\;
+	\dfrac{(\lambda t)^{k}}{k!},
+\end{eqnarray*}
+as desired.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
