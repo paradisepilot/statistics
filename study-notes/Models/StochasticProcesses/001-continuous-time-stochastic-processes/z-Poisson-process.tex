@@ -18,23 +18,27 @@
 Suppose:
 \begin{itemize}
 \item
-	$(\Omega,\mathcal{A},\mu)$ is a probability space.
+	$(\Omega,\mathcal{A},\mu)$\, is a probability space.
 \item
-	$\eta_{1}\,, \eta_{2}\,, \,\ldots : \Omega \longrightarrow [\,0,\infty)$
+	$\eta_{1}\,, \eta_{2}\,, \,\ldots : \Omega \longrightarrow [\,0,\infty)$\,
 	form a sequence of independent and identically distributed
-	exponential random variables defined on $(\Omega,\mathcal{A},\mu)$.
+	exponential random variables with rate \,$\lambda > 0$\,
+	defined on \,$(\Omega,\mathcal{A},\mu)$.
 \item
-	$\xi_{0} : \Omega \longrightarrow [\,0,\infty)$ is the identically zero function on $\Omega$. 
+	$\xi_{0} : \Omega \longrightarrow [\,0,\infty)$\, is the identically zero function on $\Omega$. 
 \item
-	$\xi_{1}\,, \xi_{2}\,, \,\ldots : \Omega \longrightarrow [\,0,\infty)$
-	denote the sequence of random variables on $(\Omega,\mathcal{A},\mu)$ defined by:
+	$\xi_{1}\,, \xi_{2}\,, \,\ldots : \Omega \longrightarrow [\,0,\infty)$\,
+	denote the sequence of random variables on
+	\,$(\Omega,\mathcal{A},\mu)$\, defined by:
 	\begin{equation*}
 	\xi_{n}(\omega) \; := \; \eta_{1}(\omega) + \cdots + \eta_{n}(\omega),
 	\quad
 	\textnormal{for each \,$n \in \N$,\, $\omega \in \Omega$}
 	\end{equation*}
 \end{itemize}
-Define the stochastic process \,$\{\,N_{t} : \Omega \longrightarrow \Re\,\}_{t\in[\,0,\infty)}$\, as follows:
+Define the stochastic process
+\,$\{\,N_{t} : \Omega \longrightarrow \Re\,\}_{t\in[\,0,\infty)}$\,
+as follows:
 \begin{equation*}
 N_{t}(\omega)
 \;\; := \;\;
@@ -46,6 +50,88 @@ N_{t}(\omega)
 \quad
 \textnormal{for each \,$t \in [\,0,\infty)$,\, $\omega \in \Omega$}
 \end{equation*}
+We will call \,$\{\,N_{t}\,\}_{t\in[\,0,\infty)}$\, a \textbf{Poisson process with intensity $\lambda > 0$}.
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{proposition}
+\mbox{}
+\vskip 0.15cm
+\noindent
+Suppose \,$\{\,N_{t}\,\}_{t\in[\,0,\infty)}$\, is a Poisson process with intensity $\lambda > 0$.
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	$P\!\left(\,\overset{{\color{white}.}}{N}_{0} = 0\,\right)\,=\,1$.
+\item
+	For each $t > 0$, the random variable \,$N_{t}$\,
+	follows the Poisson distribution with rate $\lambda t$, i.e.
+	\begin{equation*}
+	P\!\left(\,\overset{{\color{white}.}}{N}_{t} = n\,\right)
+	\;\; = \;\;
+		\exp(-\,\lambda t)\cdot\dfrac{(\lambda\,t)^{n}}{n!}\,,
+	\quad
+	\textnormal{for each \,$n = 0, 1, 2, \ldots$}
+	\end{equation*}
+\end{enumerate}
+\end{proposition}
+\proof
+Observe that
+\begin{eqnarray*}
+N_{t}(\omega) < n
+& \Longleftrightarrow &
+	\max\left\{\,\left.
+		k \overset{{\color{white}.}}{\in} \N\cup\{0\}
+		\,\;\right\vert\;
+		\xi_{k}(\omega) \,\leq\, t
+		\,\right\}
+	\;<\; n
+\\
+& \Longleftrightarrow &
+	n \,\notin\,
+	\left\{\,\left.
+		k \overset{{\color{white}.}}{\in} \N\cup\{0\}
+		\,\;\right\vert\;
+		\xi_{k}(\omega) \,\leq\, t
+		\,\right\}
+\\
+& \overset{{\color{white}1}}{\Longleftrightarrow} &
+	\xi_{n}(\omega) \,>\, t
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+P\!\left(\,N_{t} = n\,\right)
+& = &
+	P\!\left(\,n \,\overset{{\color{white}.}}{\leq}\, N_{t} \,<\, n+1\,\right)
+\;\; = \;\;
+	P\!\left(\, N_{t} \,\overset{{\color{white}.}}{<}\, n+1 \,\right)
+	\; - \;
+	P\!\left(\, N_{t} \,\overset{{\color{white}.}}{<}\, n \,\right)
+\\
+& = &
+	P\!\left(\, \xi_{n+1} \,\overset{{\color{white}.}}{>}\, t \,\right)
+	\; - \;
+	P\!\left(\, \xi_{n} \,\overset{{\color{white}.}}{>}\, t \,\right)
+\end{eqnarray*}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\quad
+For each $n \in \N$ and $t > 0$, we have:
+\begin{equation*}
+P\!\left(\, \xi_{n} \,\overset{{\color{white}.}}{>}\, t \,\right)
+\;\; = \;\;
+	\exp(\,-\,\lambda t\,)
+	\cdot
+	\overset{n-1}{\underset{k=0}{\sum}}\;
+	\dfrac{(\lambda t)^{k}}{k!}
+\end{equation*}
+\vskip 0.2cm
+\noindent
+Proof of Claim 1:\quad
+
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
