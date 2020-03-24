@@ -225,11 +225,150 @@ This proves Claim 1, and completes the proof of the Proposition.
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{theorem}[A Poisson process has independent and stationary increments]
+\begin{definition}[Independence and stationarity of increments of a stochastic process]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A stochastic process
+\,$\left\{\,\overset{{\color{white}.}}{X}_{t} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in T}$\,
+is said to have:
+\begin{itemize}
+\item
+	\textbf{independent increments}, if
+	\begin{equation*}
+	X_{t_{1}} - X_{t_{0}}\,,\;
+	X_{t_{2}} - X_{t_{1}}\,,\;
+	\ldots\,,\;
+	X_{t_{n}} - X_{t_{n-1}}
+	\end{equation*}
+	are independent, for each \,$t_{0}, t_{1}, \ldots, t_{n} \in T$\,
+	with \,$t_{0} < t_{1} < \cdots < t_{n}$.
+\item
+	\textbf{stationary increments}, if,
+	for each $t_{1},\, t_{2} \in T$, the probability distribution of
+	\begin{equation*}
+	X_{t_{1}+h} \,-\, X_{t_{2}+h}
+	\end{equation*}
+	is independent of $h$, as long as \,$t_{1} + h,\, t_{2} + h \in T$.
+\end{itemize}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{theorem}
 \mbox{}
 \vskip 0.15cm
 \noindent
+Suppose:
+\begin{itemize}
+\item
+	$\left\{\,N_{t} : (\Omega,\mathcal{A},\mu) \overset{{\color{white}-}}{\longrightarrow} \Re \;\right\}_{t \in [\,0,\infty)}$\,
+	is a Poisson process.
+\item
+	For each fixed $t \in [\,0,\infty)$,
+	$\left\{\,N^{(t)}_{s} : (\Omega,\mathcal{A},\mu) \overset{{\color{white}-}}{\longrightarrow} \Re \;\right\}_{s \in [\,0,\infty)}$\;
+	is the stochastic process defined by:
+	\begin{equation*}
+	N^{(t)}_{s} \;\; := \;\; N_{t+s} \,-\, N_{t}\,,
+	\quad
+	\textnormal{for each \,$s \in [\,0,\infty)$}
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{enumerate}
+\item
+	$\left\{\,N^{(t)}_{s}\right\}_{s \in [\,0,\infty)}$\, is a Poisson process.
+\item
+	$N^{(t)}_{s}$\, and \,$N_{t}$\, are independent random variables, for each \,$s, t \in [\,0,\infty)$.
+\item
+	The probability distributions of \,$N^{(t)}_{s}$\, and \,$N_{s}$\, are equal, for each \,$s, t \in [\,0,\infty)$.
+\end{enumerate}
 \end{theorem}
+\proof
+Recall that
+\begin{equation*}
+N_{t}(\omega)
+\;\; := \;\;
+	\max\left\{\,\left.
+		n \overset{{\color{white}.}}{\in} \N\cup\{0\}
+		\,\;\right\vert\;
+		\xi_{n}(\omega) \,\leq\, t
+		\,\right\},
+\quad
+\textnormal{for each \,$t \in [\,0,\infty)$,\, $\omega \in \Omega$}
+\end{equation*}
+where
+\begin{itemize}
+\item
+	$\xi_{0} : \Omega \longrightarrow [\,0,\infty)$\, is the almost-surely zero function on $\Omega$,\,
+and
+\item
+	$\xi_{1}\,, \xi_{2}\,, \,\ldots : \Omega \longrightarrow [\,0,\infty)$\,
+	denote the sequence of random variables on
+	\,$(\Omega,\mathcal{A},\mu)$\, defined by:
+	\begin{equation*}
+	\xi_{n}(\omega) \; := \; \eta_{1}(\omega) + \cdots + \eta_{n}(\omega),
+	\quad
+	\textnormal{for each \,$n \in \N$,\, $\omega \in \Omega$},
+	\end{equation*}
+	where
+	\,$\eta_{1}\,, \eta_{2}\,, \,\ldots : \Omega \longrightarrow [\,0,\infty)$\,
+	form a sequence of independent and identically distributed
+	exponential random variables with rate \,$\lambda > 0$\,
+	defined on \,$(\Omega,\mathcal{A},\mu)$.
+\end{itemize}
+Define
+\begin{equation*}
+\eta^{(t)}_{1} \; := \; \xi_{N(t)+1} \,-\, t\,,
+\quad\textnormal{and}\quad
+\eta^{(t)}_{n} \; := \; \eta_{N(t)+n}\,,
+\quad\textnormal{for \,$n = 2, 3, \ldots$}
+\end{equation*}
+Next, define:
+\begin{equation*}
+\xi^{(t)}_{n} \; := \; \eta^{(t)}_{1} \,+\, \eta^{(t)}_{2} \,+\, \cdots \,+\, \eta^{(t)}_{n}\,,
+\quad\textnormal{for \,$n = 1, 2, \ldots$}
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\quad $N^{(t)}_{s} \; = \; \max\left\{\,n\in\N\cup\{0\}\;\left\vert\;\,\xi^{(t)}_{n} \leq s\right.\,\right\}$ 
+
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+$P\!\left(\,\left.\eta^{(t)}_{1} > s \;\,\right\vert\; N_{t}\,\right)$\;
+$=$
+\;$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}\,\right)$
+
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}\quad
+$P\!\left(\,\left.\eta^{(t)}_{1} > s_{1}, \ldots ,\eta^{(t)}_{k} > s_{k} \,\;\right\vert\; N_{t}\;\right)$\;
+$=$
+\;$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \cdot \cdots \cdot P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)$
+
+
+\begin{enumerate}
+\item
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{corollary}[Every Poisson process has independent and stationary increments]
+\mbox{}
+\vskip 0.15cm
+\noindent
+Every Poisson process has independent and stationary increments.
+\end{corollary}
+\proof
+
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
