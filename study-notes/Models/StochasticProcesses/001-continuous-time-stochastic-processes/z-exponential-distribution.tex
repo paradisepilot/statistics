@@ -1,0 +1,199 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{The exponential distribution and its memoryless property}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.3cm
+\begin{definition}[The family of exponential distributions]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A $[\,0,\infty)$-valued random variable
+\,$\eta : (\Omega,\mathcal{A},\mu) \longrightarrow [\,0,\infty)$\,
+is said to follow the \textbf{exponential distribution of rate $\lambda > 0$} if
+\begin{equation*}
+P\!\left(\,\eta > t\,\right) \;\; = \;\; \exp(-\lambda\,t)
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{proposition}[Exponential random variables are memoryless]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose $\eta : (\Omega,\mathcal{A},\mu) \longrightarrow [\,0,\infty)$
+is an exponential random variable.
+Then, the following statements are true:
+\begin{enumerate}
+\item
+	\begin{equation*}
+	P\!\left(\,\eta > t + s\,\right) \;\; = \;\; P\!\left(\,\eta > t \,\right) \cdot P\!\left(\,\eta > s\,\right),
+	\quad
+	\textnormal{for each \,$s,\, t \geq 0$}.
+	\end{equation*}
+\item
+	\begin{equation*}
+	P\!\left(\,\left.\eta \overset{{\color{white}.}}{>} t + s \;\,\right\vert\,\eta > s\,\right)
+	\;\; = \;\;
+		P\!\left(\,\eta > t \,\right),
+	\quad
+	\textnormal{for each \,$s,\, t \geq 0$}.
+	\end{equation*}
+\end{enumerate}
+\end{proposition}
+\proof
+Let \,$\lambda > 0$\, denote the rate of \,$\eta$.
+\begin{enumerate}
+\item
+	\begin{eqnarray*}
+	P\!\left(\,\eta \overset{{\color{white}.}}{>} t + s \,\right)
+	& = &
+		\exp\!\left(\,\overset{{\color{white}.}}{-}\,\lambda\cdot(t+s)\,\right)
+	\;\; = \;\;
+		\exp\!\left(\,\overset{{\color{white}.}}{-}\,\lambda \cdot t\,\right)
+		\cdot
+		\exp\!\left(\,\overset{{\color{white}.}}{-}\,\lambda \cdot s\,\right)
+	\;\; = \;\;
+		P\!\left(\,\eta \overset{{\color{white}.}}{>} t \,\right)
+		\cdot
+		P\!\left(\,\eta \overset{{\color{white}.}}{>} s \,\right)
+	\end{eqnarray*}
+\item
+	\begin{eqnarray*}
+	P\!\left(\,\left.\eta \overset{{\color{white}.}}{>} t + s \;\,\right\vert\,\eta > s\,\right)
+	& := &
+		\dfrac{
+			P\!\left(\, \eta \overset{{\color{white}.}}{>} t + s \;\,,\,\eta > s\,\right)
+			}{
+			P\!\left(\, \eta \overset{{\color{white}.}}{>} s \,\right)
+			}
+	\;\; = \;\;
+		\dfrac{
+			P\!\left(\, \eta \overset{{\color{white}.}}{>} t + s \,\right)
+			}{
+			P\!\left(\, \eta \overset{{\color{white}.}}{>} s \,\right)
+			}
+	\;\; = \;\;
+		\dfrac{
+			P\!\left(\,\eta \overset{{\color{white}.}}{>} t \,\right)
+			\cdot
+			P\!\left(\,\eta \overset{{\color{white}.}}{>} s \,\right)
+			}{
+			P\!\left(\, \eta \overset{{\color{white}.}}{>} s \,\right)
+			}
+	\\
+	& = &
+		P\!\left(\,\eta \overset{{\color{white}.}}{>} t \,\right)
+	\end{eqnarray*}
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{theorem}[Memoryless random variables are exponential]
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose $\eta : (\Omega,\mathcal{A},\mu) \longrightarrow [\,0,\infty)$
+is a ``memoryless'' random variable, in the sense that \,$\eta$\, satisfies:
+\begin{equation}\label{memoryless}
+P\!\left(\,\eta > t + s\,\right) \;\; = \;\; P\!\left(\,\eta > t \,\right) \cdot P\!\left(\,\eta > s\,\right),
+\quad
+\textnormal{for each \,$s,\, t \geq 0$}.
+\end{equation}
+Then, \,$\eta$\, follows an exponential distribution.
+\end{theorem}
+\proof
+Define \,$g : [\,0,\infty) \longrightarrow [0,1]$\, by
+\,$g(t) \, := \, P\!\left(\,\eta \overset{{\color{white}.}}{>} t\,\right)$.\,
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1:}\quad $g(t)$\, is differentiable and solves the following initial value problem:
+\begin{equation}\label{IVP:exponential}
+\left\{\begin{array}{ccl}
+g^{\prime}(t) & = & g^{\prime}(0) \cdot g(t),
+\\
+\overset{{\color{white}1}}{g(0)} & = & 1
+\end{array}\right.
+\end{equation}
+\vskip 0.2cm
+\noindent
+Proof of Claim 1:\quad
+First, note that \,$g(0) \,=\, P(\,\eta > 0\,) \,=\, 1$,\,
+and the memoryless property \eqref{memoryless} immediately translates to:
+\,$g(t+s) \,=\, g(t) \cdot g(s)$.
+Next,
+\begin{eqnarray*}
+g^{\prime}(t)
+& := &
+	\underset{h \rightarrow 0}{\lim}\;\,
+	\dfrac{1}{h}\cdot\left(\,g(t+h) \overset{{\color{white}.}}{-} g(t)\,\right)
+\;\; = \;\;
+	\underset{h \rightarrow 0}{\lim}\;\,
+	\dfrac{1}{h}\cdot\left(\,g(t) \cdot g(h) \overset{{\color{white}.}}{-} g(t)\,\right)
+\;\; = \;\;
+	g(t) \cdot
+	\underset{h \rightarrow 0}{\lim}\;\,
+	\dfrac{1}{h}\cdot\left(\,g(h) \overset{{\color{white}.}}{-} 1\,\right)
+\\
+& = &
+	g(t) \cdot
+	\underset{h \rightarrow 0}{\lim}\;\,
+	\dfrac{1}{h}\cdot\left(\,g(h) \overset{{\color{white}.}}{-} g(0)\,\right)
+\;\; = \;\;
+	g(t) \cdot g^{\prime}(0)
+\end{eqnarray*}
+This proves Claim 1.
+
+\vskip 0.3cm
+\noindent
+By ordinary differential equation theory, the solution to the initial value problem \eqref{IVP:exponential}
+exists, is unique, and is given by:
+\begin{equation*}
+g(t) \; = \; \exp\left(\,\overset{{\color{white}.}}{-}\,\lambda \cdot t\,\right),
+\end{equation*}
+where \,$\lambda \, := \, -\,g^{\prime}(0) \, \in \, \Re$.
+The proof of the Theorem will complete once we establish that $\lambda > 0$.
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad $\lambda \, := \, -\,g^{\prime}(0) \, > \, 0$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 2:\quad
+First, note that \,$\lambda$\, cannot be zero.
+Indeed, \,$\lambda \, = \, 0$\, would imply
+\,$P\!\left(\,\eta \overset{{\color{white}.}}{>} t\,\right) \,=:\, g(t) \,=\, \exp\left(\,\overset{{\color{white}.}}{-}\;0 \cdot t\,\right) \,=\, 1$,\,
+for each \,$t \in [\,0,\infty)$, which contradicts the hypothesis that \,$\eta$\, is $[\,0,\infty)$-valued.
+Secondly, note that \,$\lambda$\, cannot be strictly negative either.
+Indeed, \,$\lambda \, < \, 0$\, would imply that
+\,$P\!\left(\,\eta \overset{{\color{white}.}}{>} t\,\right) \,=:\, g(t) \,=\, \exp\left(\,\overset{{\color{white}.}}{-}\,\lambda \cdot t\,\right) \,>\, 1$,\,
+for each \,$t > 0$, which is a contradiction since probabilities cannot exceed 1.
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+This completes the proof of the Theorem.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

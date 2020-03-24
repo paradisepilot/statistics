@@ -1,0 +1,105 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Stochastic processes, filtrations and martingales}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Stochastic process]
+\mbox{}
+\vskip -0.2cm
+\noindent
+\begin{itemize}
+\item
+	A \,\textbf{stochastic process}\, is a one-parameter family
+	\,$\left\{\,\overset{{\color{white}.}}{X}_{t} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in T}$\,
+	of random variables, defined on a common domain probability space
+	\,$(\Omega,\mathcal{A},\mu)$\, and indexed by a subset $T \subset \Re$.
+\item
+	When $T = \{1,2,\ldots\,\}$,
+	\,$\left\{\,X_{t}\,\right\}_{t \in T}$\,
+	is called a \textbf{discrete-time} stochastic process.
+	When $T \subset \Re$ is an interval,
+	\,$\left\{\,X_{t}\,\right\}_{t \in T}$\,
+	is called a \textbf{continuous-time} stochastic process.
+\item
+	For each $\omega \in \Omega$, the function
+	\,$T \longrightarrow \Re : t \longmapsto X_{t}(\omega)$\,
+	is called a \textbf{sample path} of the stochastic process
+	\,$\left\{\,X_{t}\,\right\}_{t \in T}$.	
+\end{itemize}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Filtration]
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose $(\Omega,\mathcal{A})$ is a measurable space,
+i.e. $\Omega$ is a non-empty set and $\mathcal{A}$ is a $\sigma$-algebra
+of subsets of \,$\Omega$.
+A \textbf{filtration} on \,$(\Omega,\mathcal{A})$\,
+is a one-parameter family
+$\left\{\,\mathcal{A}_{t}\,\right\}_{t \in T}$, with $T \subset \Re$,
+of sub-$\sigma$-algebras of $\mathcal{A}$
+such that, for any $s, t \in T$,
+\begin{equation*}
+s \,\leq\, t
+\quad\Longrightarrow\quad
+\mathcal{A}_{s} \; \subset \; \mathcal{A}_{t} \; \subset \; \mathcal{A}
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Martingale, {\color{red}sub-}martingale, {\color{red}super-}martingale]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A stochastic process
+\,$\left\{\,\overset{{\color{white}.}}{X}_{t} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in T}$\,
+is called a \textbf{martingale}
+with respect to a filtration
+\,$\left\{\,\mathcal{A}_{t}\,\right\}_{t \in T}$\, on \,$(\Omega,\mathcal{A})$,\,
+if
+\begin{itemize}
+\item
+	$X_{t}$ is integrable, for each $t \in T$,
+\item
+	$X_{t}$ is $\mathcal{A}_{t}$-measurable, for each $t \in T$, and
+\item
+	$X_{s} \; {\color{red}=} \; E\!\left[\,X_{t}\,\vert\,\mathcal{A}_{s}\,\right]$,\,
+	for each $s, t \in T$ with $s \leq t$.
+\end{itemize}
+$\left\{\,X_{t}\,\right\}_{t \in T}$\, is called a \textbf{{\color{red}sub-}martingale}
+if the equality above is replaced with \,{\color{red}$\leq$}\,,
+i.e. if \,$\left\{\,X_{t}\,\right\}_{t \in T}$\, satisfies instead:
+\begin{equation*}
+X_{s} \;\; {\color{red}\leq} \;\; E\!\left[\,X_{t}\,\vert\,\mathcal{A}_{s}\,\right],
+\quad
+\textnormal{for each \,$s, t \in T$ with $s \leq t$}.
+\end{equation*}
+\vskip 0.1cm
+\noindent
+$\left\{\,X_{t}\,\right\}_{t \in T}$\, is called a \textbf{{\color{red}super-}martingale}
+if the equality above is replaced with \,{\color{red}$\geq$}\,,
+i.e. if \,$\left\{\,X_{t}\,\right\}_{t \in T}$\, satisfies instead:
+\begin{equation*}
+X_{s} \;\; {\color{red}\geq} \;\; E\!\left[\,X_{t}\,\vert\,\mathcal{A}_{s}\,\right],
+\quad
+\textnormal{for each \,$s, t \in T$ with $s \leq t$}.
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
