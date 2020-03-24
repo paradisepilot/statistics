@@ -320,9 +320,9 @@ and
 \end{itemize}
 Define
 \begin{equation*}
-\eta^{(t)}_{1} \; := \; \xi_{N(t)+1} \,-\, t\,,
+\eta^{(t)}_{1} \; := \; \xi_{N_{t}+1} \,-\, t\,,
 \quad\textnormal{and}\quad
-\eta^{(t)}_{n} \; := \; \eta_{N(t)+n}\,,
+\eta^{(t)}_{n} \; := \; \eta_{N_{t}+n}\,,
 \quad\textnormal{for \,$n = 2, 3, \ldots$}
 \end{equation*}
 Next, define:
@@ -333,23 +333,108 @@ Next, define:
 
 \vskip 0.5cm
 \noindent
-\textbf{Claim 1:}\quad $N^{(t)}_{s} \; = \; \max\left\{\,n\in\N\cup\{0\}\;\left\vert\;\,\xi^{(t)}_{n} \leq s\right.\,\right\}$ 
-
+\textbf{Claim 1:}\quad $N^{(t)}_{s} \; = \; \max\left\{\,n\in\N\cup\{0\}\;\left\vert\;\,\xi^{(t)}_{n} \leq s\right.\,\right\}$
+\vskip 0.2cm
+\noindent
+Proof of Claim 1:\quad
+For notational convenience, we define
+$M^{(t)}_{s} \; := \; \max\left\{\,n\in\N\cup\{0\}\;\left\vert\;\,\xi^{(t)}_{n} \leq s\right.\,\right\}$.
+We need to show that:
+\begin{equation*}
+\max\left\{\,n\in\N\cup\{0\}\;\left\vert\;\,\xi^{(t)}_{n} \leq s\right.\,\right\}
+\;\; =: \;\;
+	M^{(t)}_{s}
+\;\; = \;\;
+	N_{t+s} \,-\, N_{t}
+\;\; =: \;\;
+	N^{(t)}_{s}
+\end{equation*}
+To this end, first note that
+\begin{equation}\label{xitn}
+\xi^{(t)}_{n} \;\; := \;\; \xi_{N_{t}+n} \;-\; t.
+\end{equation}
+Indeed,
+\begin{eqnarray*}
+\xi^{(t)}_{n}
+& := &
+	\eta^{(t)}_{1} + \eta^{(t)}_{2} + \cdots + \eta^{(t)}_{n}
+\;\; = \;\;
+	\left(\,\xi_{N_{t}+1} \,\overset{{\color{white}.}}{-}\, t\,\right)
+	\, + \,
+	\eta_{N_{t}+2}
+	\, + \,
+	\cdots
+	\, + \,
+	\eta_{N_{t}+n}
+\\
+& = &
+	\left(\,\eta_{1} + \cdots +  \eta_{N_{t}} +\eta_{N_{t}+1} \,\overset{{\color{white}.}}{-}\, t\,\right)
+	\, + \,
+	\eta_{N_{t}+2}
+	\, + \,
+	\cdots
+	\, + \,
+	\eta_{N_{t}+n}
+\\
+& = &
+	\left(\,\eta_{1} \,\overset{{\color{white}.}}{+}\, \cdots \,+\,  \eta_{N_{t}}
+	\,+\, \eta_{N_{t}+1} \,+\, \eta_{N_{t}+2} \,+\, \cdots\,+\, \eta_{N_{t}+n}
+	\,\right)
+	\, - \,
+	t
+\;\; = \;\;
+	\xi_{N_{t}+n} \,-\, t\,,
+	\quad
+	\textnormal{as desired}
+\end{eqnarray*}
+Next, note:
+\begin{eqnarray*}
+M^{(t)}_{s} \; := \; \max\left\{\,n\in\N\cup\{0\}\;\left\vert\;\,\xi^{(t)}_{n} \leq s\right.\,\right\}
+& \Longleftrightarrow &
+	\xi^{(t)}_{M^{(t)}_{s}} \;\leq\; s \;<\; \xi^{(t)}_{M^{(t)}_{s}+1}
+\\
+& \Longleftrightarrow &
+	\xi_{N_{t}+M^{(t)}_{s}} \,-\, t \;\;\leq\;\; s \;\;<\;\; \xi_{N_{t}+M^{(t)}_{s}+1} \,-\, t\,,
+	\quad
+	\textnormal{by \eqref{xitn}}
+\\
+& \Longleftrightarrow &
+	\xi_{N_{t}+M^{(t)}_{s}} \;\;\leq\;\; t + s \;\;<\;\; \xi_{N_{t}+M^{(t)}_{s}+1}
+\\
+& \Longleftrightarrow &
+	N_{t+s}
+	\;\; := \;\;
+		\max\left\{\,\left.\overset{{\color{white}1}}{n}\in\N\cup\{0\}\,\;\right\vert\;\xi_{n} \leq t+s \,\right\}
+	\;\; = \;\;
+		N_{t} + M^{(t)}_{s}
+\\
+& \Longleftrightarrow &
+	M^{(t)}_{s}
+	\;\; = \;\;
+		N_{t+s} \, - \,N_{t}
+\end{eqnarray*}
+This proves Claim 1.
 
 \vskip 0.5cm
 \noindent
 \textbf{Claim 2:}\quad
-$P\!\left(\,\left.\eta^{(t)}_{1} > s \;\,\right\vert\; N_{t}\,\right)$\;
+$P\!\left(\,\left.\eta^{(t)}_{1} > s \;\,\right\vert\, N_{t}\,\right)$\;
 $=$
 \;$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}\,\right)$
+\vskip 0.2cm
+\noindent
+Proof of Claim 2:\quad
 
 
 \vskip 0.5cm
 \noindent
 \textbf{Claim 3:}\quad
-$P\!\left(\,\left.\eta^{(t)}_{1} > s_{1}, \ldots ,\eta^{(t)}_{k} > s_{k} \,\;\right\vert\; N_{t}\;\right)$\;
+$P\!\left(\,\left.\eta^{(t)}_{1} > s_{1}, \,\ldots\, ,\eta^{(t)}_{k} > s_{k} \,\;\right\vert\; N_{t}\;\right)$\;
 $=$
 \;$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \cdot \cdots \cdot P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)$
+\vskip 0.2cm
+\noindent
+Proof of Claim 3:\quad
 
 
 \begin{enumerate}
