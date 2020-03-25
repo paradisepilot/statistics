@@ -424,18 +424,253 @@ $=$
 \vskip 0.2cm
 \noindent
 Proof of Claim 2:\quad
-
+First, note that
+\begin{equation*}
+N_{t}\,=\,n
+\quad\Longleftrightarrow\quad
+	\max\left\{\,\left.
+	n \overset{{\color{white}.}}{\in} \N\cup\{0\}
+	\,\;\right\vert\;
+	\xi_{n} \,\leq\, t
+	\,\right\}
+	\;=\; n
+\quad\Longleftrightarrow\quad
+	\xi_{n} \,\overset{{\color{white}.}}{\leq}\, t \,<\, \xi_{n+1}
+\end{equation*}
+Hence,
+\begin{equation*}
+P(\,N_{t}\,=\,n\,)
+\;\; = \;\;
+	P\!\left(\; \xi_{n} \,\overset{{\color{white}.}}{\leq}\, t \,<\, \xi_{n+1} \,\right)
+\end{equation*}
+On the other hand,
+\begin{eqnarray*}
+P\!\left(\,\eta^{(t)}_{1}\,>\,s\,,\,N_{t}\,=\,n\,\right)
+& = &
+	P\!\left(\;
+		\xi_{n+1}-t\,>\,s
+		\,,\,
+		\xi_{n} \,\overset{{\color{white}.}}{\leq}\, t \,<\, \xi_{n+1}
+		\,\right)
+\;\; = \;\;
+	P\!\left(\;
+		t+s\,<\,\xi_{n+1}
+		\,,\,
+		\xi_{n} \,\overset{{\color{white}.}}{\leq}\, t
+		\,,\,
+		t \,<\, \xi_{n+1}
+		\,\right)
+\\
+& = &
+	P\!\left(\;
+		t+s\,<\,\xi_{n+1}
+		\,,\,
+		\xi_{n} \,\overset{{\color{white}.}}{\leq}\, t
+		\,\right)
+\;\; = \;\;
+	P\!\left(\;
+		t+s\,<\,\xi_{n} + \eta_{n+1}
+		\,,\,
+		\xi_{n} \,\overset{{\color{white}.}}{\leq}\, t
+		\,\right)
+\\
+& = &
+	P\!\left(\;
+		t-\xi_{n}+s\,<\,\eta_{n+1}
+		\,,\,
+		\xi_{n} \,\overset{{\color{white}.}}{\leq}\, t
+		\,\right)
+\;\; = \;\;
+	\int_{0}^{t}\int_{t-\xi+s}^{\infty}\;
+		f_{\xi_{n},\eta_{n+1}}(\xi,\eta)
+		\;\d\,\eta\;\d\,\xi
+\\
+& = &
+	\int_{0}^{t}\int_{t-\xi+s}^{\infty}\;
+		f_{\xi_{n}}(\xi) \cdot f_{\eta_{n+1}}(\eta)
+		\;\d\,\eta\;\d\,\xi\,,
+	\quad
+	\textnormal{by independence of \,$\xi_{n}$\, and \,$\eta_{n+1}$}
+\\
+& = &
+	\int_{0}^{t}
+		\left(\,\int_{t-\xi+s}^{\infty}\; f_{\eta_{n+1}}(\eta) \;\d\,\eta \,\right)
+		f_{\xi_{n}}(\xi)
+		\;\d\,\xi
+\;\; = \;\;
+	\int_{0}^{t}
+		P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} t-\xi+s\,\right)
+		\cdot
+		f_{\xi_{n}}(\xi)
+		\;\d\,\xi
+\\
+& = &
+	\int_{0}^{t}
+		P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} t-\xi\,\right)
+		\cdot
+		P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s\,\right)
+		\cdot
+		f_{\xi_{n}}(\xi)
+		\;\d\,\xi\,,
+		\quad
+		\textnormal{by Theorem \ref{ExponentialMemoryless}}
+\\
+& = &
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s\,\right)
+	\cdot
+	\int_{0}^{t}
+		P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} t-\xi\,\right)
+		\cdot
+		f_{\xi_{n}}(\xi)
+		\;\d\,\xi
+\\
+& = &
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s\,\right)
+	\cdot
+	\int_{0}^{t}
+		\left(\,\int_{t-\xi}^{\infty}\;
+		f_{\eta_{n+1}}(\eta)
+		\,\d\,\eta
+		\right)
+		\cdot
+		f_{\xi_{n}}(\xi)
+		\;\d\,\xi
+\\
+& = &
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s\,\right)
+	\cdot
+	\int_{0}^{t}\int_{t-\xi}^{\infty}\;
+		f_{\eta_{n+1}}(\eta) \cdot f_{\xi_{n}}(\xi)
+		\;\d\,\eta\;\d\,\xi
+\\
+& = &
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s\,\right)
+	\cdot
+	\int_{0}^{t}\int_{t-\xi}^{\infty}\;
+		f_{\xi_{n},\eta_{n+1}}(\xi,\eta)
+		\;\d\,\eta\;\d\,\xi
+\\
+& = &
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s\,\right)
+	\cdot
+	P\!\left(\;
+		t-\xi_{n}\,<\,\eta_{n+1}
+		\,,\,
+		\xi_{n} \,\overset{{\color{white}.}}{\leq}\, t
+		\,\right)
+\\
+& = &
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s\,\right)
+	\cdot
+	P\!\left(\;
+		\xi_{n} \,\overset{{\color{white}.}}{\leq}\, t
+		\,,\,
+		t\,<\,\xi_{n}+\eta_{n+1}
+		\,\right)
+\\
+& = &
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s\,\right)
+	\cdot
+	P\!\left(\;
+		\xi_{n} \,\overset{{\color{white}.}}{\leq}\, t \,<\,\xi_{n+1}
+		\,\right)
+\\
+& = &
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s\,\right)
+	\cdot
+	P\!\left(\,N_{t} \overset{{\color{white}-}}{=} n \,\right),
+\end{eqnarray*}
+which implies:
+\begin{eqnarray*}
+P\!\left(\,\left.\eta^{(t)}_{1}\,>\,s\;\,\right\vert\;N_{t}\,=\,n\,\right)
+& = &
+	\dfrac{
+		P\!\left(\,\eta^{(t)}_{1}\,>\,s\,,\,N_{t}\,=\,n\,\right)
+		}{
+		P\!\left(\,N_{t} \overset{{\color{white}-}}{=} n \,\right)
+		}
+\;\; = \;\;
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s\,\right)
+\;\; = \;\;
+	P\!\left(\,\eta_{1} \overset{{\color{white}.}}{>} s\,\right),
+\end{eqnarray*}
+where the last equality follows from the fact that the $\eta_{i}$'s
+are identically distributed.
+This proves Claim 2.
 
 \vskip 0.5cm
 \noindent
 \textbf{Claim 3:}\quad
 $P\!\left(\,\left.\eta^{(t)}_{1} > s_{1}, \,\ldots\, ,\eta^{(t)}_{k} > s_{k} \,\;\right\vert\; N_{t}\;\right)$\;
 $=$
-\;$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \cdot \cdots \cdot P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)$
+\;$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \,\cdots\, P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)$
 \vskip 0.2cm
 \noindent
 Proof of Claim 3:\quad
-
+\begin{eqnarray*}
+&&
+	P\!\left(\,\eta^{(t)}_{1} > s_{1} \;,\; \eta^{(t)}_{2} > s_{2} \;,\; \ldots \;,\; \eta^{(t)}_{k} > s_{k} \;,\; N_{t} = n\,\right)
+\\
+&=&
+	P\!\left(\,
+		\xi_{n+1} - t \overset{{\color{white}.}}{>} s_{1} \;,\; N_{t} = n \;,\; \eta_{n+2} > s_{2} \;,\; \ldots \;,\; \eta_{n+k} > s_{k}
+		\,\right)
+\\
+&=&
+	P\!\left(\,
+		\eta^{(t)}_{1} \overset{{\color{white}.}}{>} s_{1} \;,\; N_{t} = n
+		\,\right)
+	\cdot
+	P\!\left(\,
+		\eta_{n+2} \overset{{\color{white}.}}{>} s_{2}
+		\,\right)
+	\,\cdots\,
+	P\!\left(\,
+		\eta_{n+k} \overset{{\color{white}.}}{>} s_{k}
+		\,\right)
+\\
+&=&
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s_{1}\,\right)
+	\cdot
+	P\!\left(\,N_{t} \overset{{\color{white}-}}{=} n \,\right)
+	\cdot
+	P\!\left(\,
+		\eta_{n+2} \overset{{\color{white}.}}{>} s_{2}
+		\,\right)
+	\,\cdots\,
+	P\!\left(\,
+		\eta_{n+k} \overset{{\color{white}.}}{>} s_{k}
+		\,\right),
+	\quad
+	\textnormal{by proof of Claim 2}
+\\
+&=&
+	P\!\left(\,\eta_{n+1} \overset{{\color{white}.}}{>} s_{1}\,\right)
+	\cdot
+	P\!\left(\,
+		\eta_{n+2} \overset{{\color{white}.}}{>} s_{2}
+		\,\right)
+	\,\cdots\,
+	P\!\left(\,
+		\eta_{n+k} \overset{{\color{white}.}}{>} s_{k}
+		\,\right)
+	\cdot
+	P\!\left(\,N_{t} \overset{{\color{white}-}}{=} n \,\right)
+\\
+&=&
+	P\!\left(\,\eta_{1} \overset{{\color{white}.}}{>} s_{1}\,\right)
+	\cdot
+	P\!\left(\,
+		\eta_{2} \overset{{\color{white}.}}{>} s_{2}
+		\,\right)
+	\,\cdots\,
+	P\!\left(\,
+		\eta_{k} \overset{{\color{white}.}}{>} s_{k}
+		\,\right)
+	\cdot
+	P\!\left(\,N_{t} \overset{{\color{white}-}}{=} n \,\right),
+\end{eqnarray*}
+from which Claim 3 immediately follows. This completes the proof of Claim 3.
 
 \begin{enumerate}
 \item
