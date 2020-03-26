@@ -37,8 +37,8 @@ Suppose:
 	\textnormal{for each \,$n \in \N$,\, $\omega \in \Omega$}
 	\end{equation*}
 \end{itemize}
-Define the stochastic process
-\,$\{\,N_{t} : \Omega \longrightarrow \Re\,\}_{t\in[\,0,\infty)}$\,
+Define the $(\N\cup\{\,0\,\})$-valued stochastic process
+\,$\left\{\,N_{t} : \Omega \overset{{\color{white}-}}{\longrightarrow} \N\cup\{0\}\,\right\}_{t\in[\,0,\infty)}$\,
 as follows:
 \begin{equation*}
 N_{t}(\omega)
@@ -263,7 +263,7 @@ is said to have:
 Suppose:
 \begin{itemize}
 \item
-	$\left\{\,N_{t} : (\Omega,\mathcal{A},\mu) \overset{{\color{white}-}}{\longrightarrow} \Re \;\right\}_{t \in [\,0,\infty)}$\,
+	$\left\{\,N_{t} : (\Omega,\mathcal{A},\mu) \overset{{\color{white}-}}{\longrightarrow} \N\cup\{0\} \;\right\}_{t \in [\,0,\infty)}$\,
 	is a Poisson process.
 \item
 	For each fixed $t \in [\,0,\infty)$,
@@ -278,7 +278,7 @@ Suppose:
 Then,
 \begin{enumerate}
 \item
-	$\left\{\,N^{(t)}_{s}\right\}_{s \in [\,0,\infty)}$\, is a Poisson process, for each $t \in [\,0,\infty)$.
+	$\left\{\,N^{(t)}_{s}\right\}_{s \in [\,0,\infty)}$\, is a Poisson process, for each fixed $t \in [\,0,\infty)$.
 \item
 	$N^{(t)}_{s}$\, and \,$N_{t}$\, are independent random variables, for each \,$s, t \in [\,0,\infty)$.
 \item
@@ -330,6 +330,10 @@ Next, define:
 \xi^{(t)}_{n} \; := \; \eta^{(t)}_{1} \,+\, \eta^{(t)}_{2} \,+\, \cdots \,+\, \eta^{(t)}_{n}\,,
 \quad\textnormal{for \,$n = 1, 2, \ldots$}
 \end{equation*}
+
+\vskip 0.5cm
+\noindent
+We now state and prove a series of Claims, from which the Theorem will follow readily.
 
 \vskip 0.5cm
 \noindent
@@ -420,8 +424,7 @@ This proves Claim 1.
 \textbf{Claim 2:}\quad
 $P\!\left(\,\left.\eta^{(t)}_{1} > s \;\,\right\vert\, N_{t} = n\,\right)$\;
 $=$
-\;$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}\,\right)$,
-\quad
+\;$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}\,\right)$,\;\;
 for any \,$n = 0, 1, 2, \ldots$\,.
 \vskip 0.2cm
 \noindent
@@ -605,9 +608,8 @@ This proves Claim 2.
 \textbf{Claim 3:}\quad
 $P\!\left(\,\left.\eta^{(t)}_{1} > s_{1}, \,\ldots\, ,\eta^{(t)}_{k} > s_{k} \,\;\right\vert\; N_{t} = n\;\right)$\;
 $=$
-\;$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \,\cdots\, P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)$,
-\quad
-for any \,$n = 0, 1, 2, \ldots$\,.
+\;$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \,\cdots\, P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)$,\;\;
+for each \,$n = 0, 1, 2, \ldots$\,.
 \vskip 0.2cm
 \noindent
 Proof of Claim 3:\quad
@@ -676,7 +678,121 @@ Proof of Claim 3:\quad
 \end{eqnarray*}
 from which Claim 3 immediately follows. This completes the proof of Claim 3.
 
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4:}\quad
+For each $t \in [\,0,\infty)$,
+\,$\eta^{(t)}_{1}$\, has the same probability distribution as \,$\eta_{1}$;\,
+in particular, \,$\eta^{(t)}_{1}$\, follows the exponential distribution with rate $\lambda > 0$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 4:\quad
+\begin{eqnarray*}
+P\!\left(\,\eta^{(t)}_{1} > s\,\right)
+&=&
+	\overset{\infty}{\underset{n = 0}{\sum}}\;P\!\left(\,\eta^{(t)}_{1} > s\,,\,N_{t} = n\,\right)
+\;\; = \;\;
+	\overset{\infty}{\underset{n = 0}{\sum}}\;
+	P\!\left(\,\left.\eta^{(t)}_{1} > s\,\;\right\vert\, N_{t} = n\,\right)
+	\cdot
+	P\!\left(\,N_{t} = n\,\right)
+\\
+&=&
+	\overset{\infty}{\underset{n = 0}{\sum}}\;
+	P\!\left(\,\eta_{1} > s\,\right)
+	\cdot
+	P\!\left(\,N_{t} = n\,\right),
+	\quad
+	\textnormal{by Claim 2}
+\\
+&=&
+	P\!\left(\,\eta_{1} > s\,\right)
+	\cdot
+	\overset{\infty}{\underset{n = 0}{\sum}}\; P\!\left(\,N_{t} = n\,\right)
+\;\; = \;\;
+	P\!\left(\,\eta_{1} > s\,\right) \cdot 1
+\;\; = \;\;
+	P\!\left(\,\eta_{1} > s\,\right)
+\end{eqnarray*}
+This proves Claim 4.
+
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 5:}\quad
+$P\!\left(\;\eta^{(t)}_{1} > s_{1} \,,\, \ldots \,,\, \eta^{(t)}_{k} > s_{k} \,\right)$
+\,$=$\,
+$P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \,\cdots\, P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)$,\;\;
+for each \,$k = 1, 2, \ldots$\,.
+\vskip 0.2cm
+\noindent
+Proof of Claim 5:\quad
+\begin{eqnarray*}
+P\!\left(\;\eta^{(t)}_{1} > s_{1} \,,\, \ldots \,,\, \eta^{(t)}_{k} > s_{k} \,\right)
+& = &
+	\overset{\infty}{\underset{n=0}{\sum}}\;
+	P\!\left(\;\eta^{(t)}_{1} > s_{1} \,,\, \ldots \,,\, \eta^{(t)}_{k} > s_{k} \,,\, N_{t} = n\;\right)
+\\
+& = &
+	\overset{\infty}{\underset{n=0}{\sum}}\;
+	P\!\left(\,\left.\eta^{(t)}_{1} > s_{1} \,,\, \ldots \,,\, \eta^{(t)}_{k} > s_{k} \,\;\right\vert\; N_{t} = n\;\right)
+	\cdot
+	P\!\left(\,N_{t} = n\;\right)
+\\
+& = &
+	\overset{\infty}{\underset{n=0}{\sum}}\;
+	P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \,\cdots\, P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)
+	\cdot
+	P\!\left(\,N_{t} = n\;\right),
+	\quad
+	\textnormal{by Claim 3}
+\\
+& = &
+	P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \,\cdots\, P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)
+	\cdot
+	\overset{\infty}{\underset{n=0}{\sum}}\; P\!\left(\,N_{t} = n\;\right)
+\\
+& = &
+	P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \,\cdots\, P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)
+	\cdot 1
+\\
+& = &
+	P\!\left(\,\eta_{1} > \overset{{\color{white}-}}{s}_{1}\,\right) \,\cdots\, P\!\left(\,\eta_{k} > \overset{{\color{white}-}}{s}_{k}\,\right)
+\end{eqnarray*}
+This proves Claim 5.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 6:}\quad
+$P\!\left(\,\left.N^{(t)}_{s} = a \;\,\right\vert\, N_{t} = b\,\right)$\;
+$=$
+\;$P\!\left(\,N_{s} \overset{{\color{white}1}}{=} a \,\right)$,\;\;
+for each \,$s,\, t \in [\,0,\infty)$\, and each \,$a, b = 0, 1, 2, \ldots$\,.
+\vskip 0.2cm
+\noindent
+Proof of Claim 6:\quad
+
+
+\vskip 0.5cm
+\noindent
+We now return the proof of the three statements of the Theorem:
 \begin{enumerate}
+\item
+	By Claim 5, the random variables
+	\;$\eta^{(t)}_{1}$, $\eta^{(t)}_{2}$, \,$\ldots$\;
+	are independent.
+	By Claim 4, \;$\eta^{(t)}_{1}$\; follows an exponential distribution with rate \,$\lambda > 0$.\,
+	Claim 4 and Claim 5 together imply that \;$\eta^{(t)}_{n}$\;
+	also follows an exponential distribution with rate \,$\lambda > 0$,\,
+	for each $n = 2, 3, \ldots$\,.
+	By Claim 1, we have, for each \,$t \in [\,0,\infty)$,
+	\,$N^{(t)}_{s} \; = \; \max\left\{\,n\in\N\cup\{0\}\;\left\vert\;\,\xi^{(t)}_{n} \leq s\right.\,\right\}$,\,
+	where \,$\xi^{(t)}_{n} \,:=\, \eta^{(t)}_{1} + \cdots + \eta^{(t)}_{n}$.
+	We may now conclude that
+	\,$\left\{\,N^{(t)}_{s}\,\right\}_{s\in[\,0,\infty)}$\, is indeed a Poisson process
+	with intensity \,$\lambda > 0$.
+\item
+	
 \item
 \end{enumerate}
 \qed
