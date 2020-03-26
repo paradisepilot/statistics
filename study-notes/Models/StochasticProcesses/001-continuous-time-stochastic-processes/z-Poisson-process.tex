@@ -225,38 +225,7 @@ This proves Claim 1, and completes the proof of the Proposition.
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{definition}[Independence and stationarity of increments of a stochastic process]
-\mbox{}
-\vskip 0.1cm
-\noindent
-A stochastic process
-\,$\left\{\,\overset{{\color{white}.}}{X}_{t} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in T}$\,
-is said to have:
-\begin{itemize}
-\item
-	\textbf{independent increments}, if
-	\begin{equation*}
-	X_{t_{1}} - X_{t_{0}}\,,\;
-	X_{t_{2}} - X_{t_{1}}\,,\;
-	\ldots\,,\;
-	X_{t_{n}} - X_{t_{n-1}}
-	\end{equation*}
-	are independent, for each \,$t_{0}, t_{1}, \ldots, t_{n} \in T$\,
-	with \,$t_{0} < t_{1} < \cdots < t_{n}$.
-\item
-	\textbf{stationary increments}, if,
-	for each $t_{1},\, t_{2} \in T$, the probability distribution of
-	\begin{equation*}
-	X_{t_{1}+h} \,-\, X_{t_{2}+h}
-	\end{equation*}
-	is independent of $h$, as long as \,$t_{1} + h,\, t_{2} + h \in T$.
-\end{itemize}
-\end{definition}
-
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\vskip 0.5cm
-\begin{theorem}
+\begin{theorem}\label{TimeTranslatedPoissonProcessIsItselfPoissonProcess}
 \mbox{}
 \vskip 0.15cm
 \noindent
@@ -853,17 +822,16 @@ Proof of Claim 8:\quad
 \end{eqnarray*}
 This proves Claim 8.
 
-\vskip 0.5cm
-\noindent
-\textbf{Claim 9:}\quad
-$P\!\left(\,\left.N^{(t)}_{s} = a \;\,\right\vert\, N_{t} = b\,\right)$\;
-$=$
-\;$P\!\left(\,N_{s} \overset{{\color{white}1}}{=} a \,\right)$,\;\;
-for each \,$s,\, t \in [\,0,\infty)$\, and each \,$a, b = 0, 1, 2, \ldots$\,.
-\vskip 0.2cm
-\noindent
-Proof of Claim 9:\quad
-
+%\vskip 0.5cm
+%\noindent
+%\textbf{Claim 9:}\quad
+%$P\!\left(\,\left.N^{(t)}_{s} = a \;\,\right\vert\, N_{t} = b\,\right)$\;
+%$=$
+%\;$P\!\left(\,N_{s} \overset{{\color{white}1}}{=} a \,\right)$,\;\;
+%for each \,$s,\, t \in [\,0,\infty)$\, and each \,$a, b = 0, 1, 2, \ldots$\,.
+%\vskip 0.2cm
+%\noindent
+%Proof of Claim 9:\quad
 
 \vskip 0.5cm
 \noindent
@@ -902,6 +870,135 @@ We now return the proof of the two statements of the Theorem:
 	This implies in particular that \,$N^{(t)}_{s}$\, and \,$N_{t}$\, are independent random variables.
 \end{enumerate}
 \qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{theorem}
+\mbox{}
+\vskip 0.15cm
+\noindent
+Let
+\,$\left\{\,N_{t} : (\Omega,\mathcal{A},\mu) \overset{{\color{white}-}}{\longrightarrow} \N\cup\{0\} \;\right\}_{t \in [\,0,\infty)}$\,
+be a Poisson process.
+Then, for each \,$0 = t_{0} \leq t_{1} \leq t_{2} \leq \cdots \leq t_{n} \in [\,0,\infty)$,\,
+the increments
+\begin{equation*}
+N_{t_{1}} = N_{t_{1}} - N_{t_{0}},\;
+N_{t_{2}} - N_{t_{1}},\;
+\,\ldots\,,\;
+N_{t_{n}} - N_{t_{n-1}}
+\end{equation*}
+are independent random variables, and have respectively the same probability distributions as
+\begin{equation*}
+N_{t_{1}},\;
+N_{t_{2} - t_{1}},\;
+\,\ldots\,,\;
+N_{t_{n} - t_{n-1}}
+\end{equation*}
+\end{theorem}
+\proof
+First, recall that \,$N_{t_{0}} = N_{0} = 0$\, almost surely;
+i.e. \,$P(\,N_{t_{0}} = 0\,) = P(\,N_{0} = 0\,) = 1$.\,
+Next, by Theorem \ref{TimeTranslatedPoissonProcessIsItselfPoissonProcess},
+we immediately have that:
+\begin{equation*}
+N_{t_{i}} - N_{t_{i-1}}
+\;\;\textnormal{and}\;\;
+N_{t_{i} \,-\, t_{i-1}}
+\;\;\textnormal{follow the same probability distribution, for each \,$i = 2, 3, \ldots, n$}.
+\end{equation*}
+It remains to establish independence.
+We proceed by induction on the length $n = 2, 3, \ldots $ of an arbitrary initial sequence of
+increments of an arbitrary Poisson process.
+For $n = 2$, the required independence (of $N_{t_{2}} - N_{t_{1}}$ and $N_{t_{1}}$)
+follows again from Theorem \ref{TimeTranslatedPoissonProcessIsItselfPoissonProcess}.
+Next, the induction hypothesis states that
+an arbitrary initial sequence of increments of length \,$n$\, of an arbitrary Poisson process
+%the sequence of the first \,$n$\, increments of an arbitrary Poisson process
+consists of independent random variables.
+To complete the proof, we need to show that 
+the sequence of the first \,$n+1$\, increments
+\begin{equation*}
+N_{t_{1}} = N_{t_{1}} - N_{t_{0}},\;
+N_{t_{2}} - N_{t_{1}},\;
+\,\ldots\,,\;
+N_{t_{n}} - N_{t_{n-1}},\;
+N_{t_{n+1}} - N_{t_{n}}
+\end{equation*}
+of an arbitrary Poisson process are also independent random variables.
+Now, note that, for \,$i = 2, 3, \ldots, n$,
+\begin{equation*}
+N_{t_{i+1}} - N_{t_{i}}
+\;\; = \;\;
+	\left(\,N_{t_{i+1}}-N_{t_{1}}\right) \;-\; \left(\,N_{t_{i}} - N_{t_{1}}\right)
+\;\; = \;\;
+	N^{(t_{1})}_{t_{i+1}\,-\,t_{1}}
+	\;-\;
+	N^{(t_{1})}_{t_{i}\,-\,t_{1}}
+\;\; = \;\;
+	N^{(t_{1})}_{s_{i}}
+	\;-\;
+	N^{(t_{1})}_{s_{i-1}}
+\end{equation*}
+where \,$s_{i} \,:=\, t_{i+1} - t_{1} \,\geq 0\,$,\,
+for \,$i = 1, 2, \ldots, n-1$.\,
+Hence, letting \,$s_{0} \,:=\, 0$,\, we see that, by the induction hypothesis,
+\begin{equation*}
+N_{t_{2}} - N_{t_{1}} = N^{(t_{1})}_{s_{1}} - N^{(t_{1})}_{s_{0}}\,,\;
+\quad\ldots\;\;,\quad
+N_{t_{n}} - N_{t_{n-1}} = N^{(t_{1})}_{s_{n-1}} - N^{(t_{1})}_{s_{n-2}}\,,\;
+\quad
+N_{t_{n+1}} - N_{t_{n}} = N^{(t_{1})}_{s_{n}} - N^{(t_{1})}_{s_{n-1}}
+\end{equation*}
+are independent random variables, since they form
+an initial sequence of length $n$ of increments of
+\,$\left\{\,N^{(t_{1})}_{s}\,\right\}_{s\in[\,0,\infty)}$,
+which is a Poisson process,
+by Theorem \ref{TimeTranslatedPoissonProcessIsItselfPoissonProcess}.
+
+
+\begin{equation*}
+N_{t_{1}},\;
+N_{t_{2}} - N_{t_{1}},\;
+\,\ldots\,,\;
+N_{t_{n}} - N_{t_{n-1}}
+\end{equation*}
+are independent random variables.
+We need to show that
+are also independent random variables.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{definition}[Independence and stationarity of increments of a stochastic process]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A stochastic process
+\,$\left\{\,\overset{{\color{white}.}}{X}_{t} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in T}$\,
+is said to have:
+\begin{itemize}
+\item
+	\textbf{independent increments}, if
+	\begin{equation*}
+	X_{t_{1}} - X_{t_{0}}\,,\;
+	X_{t_{2}} - X_{t_{1}}\,,\;
+	\ldots\,,\;
+	X_{t_{n}} - X_{t_{n-1}}
+	\end{equation*}
+	are independent, for each \,$t_{0}, t_{1}, \ldots, t_{n} \in T$\,
+	with \,$t_{0} < t_{1} < \cdots < t_{n}$.
+\item
+	\textbf{stationary increments}, if,
+	for each $t_{1},\, t_{2} \in T$, the probability distribution of
+	\begin{equation*}
+	X_{t_{1}+h} \,-\, X_{t_{2}+h}
+	\end{equation*}
+	is independent of $h$, as long as \,$t_{1} + h,\, t_{2} + h \in T$.
+\end{itemize}
+\end{definition}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
