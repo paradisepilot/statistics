@@ -761,16 +761,108 @@ P\!\left(\;\eta^{(t)}_{1} > s_{1} \,,\, \ldots \,,\, \eta^{(t)}_{k} > s_{k} \,\r
 \end{eqnarray*}
 This proves Claim 5.
 
+
 \vskip 0.5cm
 \noindent
 \textbf{Claim 6:}\quad
+$\eta^{(t)}_{k}$\, follows an exponential distribution of rate \,$\lambda > 0$,\,
+for each \,$k \in \N$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 6:\quad
+\begin{eqnarray*}
+P\!\left(\;\eta^{(t)}_{k} > s \,\right)
+&=&
+	P\!\left(\;\eta^{(t)}_{1} > 0 \,,\, \ldots \,,\, \eta^{(t)}_{k-1} > 0 \,,\, \eta^{(t)}_{k} > s \,\right)
+\\
+&=&
+	P\!\left(\,\eta_{1} \overset{{\color{white}.}}{>} 0\,\right)
+	\,\cdots\,
+	P\!\left(\,\eta_{k-1} \overset{{\color{white}.}}{>} 0\,\right)
+	\,\cdot\,
+	P\!\left(\,\eta_{k} \overset{{\color{white}.}}{>} s\,\right),
+	\quad
+	\textnormal{by Claim 5}
+\\
+&=&
+	P\!\left(\,\eta_{k} \overset{{\color{white}.}}{>} s\,\right)
+\end{eqnarray*}
+Thus, \,$\eta^{(t)}_{k}$\, has the same probability distribution as \,$\eta_{k}$,\,
+namely, the exponential distribution of rate \,$\lambda > 0$.\,
+This proves Claim 6.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 7:}\quad
+$\eta^{(t)}_{1}$,\, $\eta^{(t)}_{2}$\, $\ldots$\, are independent random variables.
+\vskip 0.2cm
+\noindent
+Proof of Claim 7:\quad
+By Claim 5 and Claim 6, we have, for any $k \in \N$,
+\begin{eqnarray*}
+P\!\left(\;\eta^{(t)}_{1} > s_{1} \,,\, \ldots \,,\, \eta^{(t)}_{k} > s_{k} \,\right)
+&=&
+	P\!\left(\,{\color{white}.} \eta_{1} {\color{white}.} > \overset{{\color{white}-}}{s}_{1}\,\right)
+	\,\cdots\,
+	P\!\left(\,{\color{white}.} \eta_{k} {\color{white}.} > \overset{{\color{white}-}}{s}_{k}\,\right),
+	\quad
+	\textnormal{by Claim 5}
+\\
+&=&
+	P\!\left(\,\eta^{(t)}_{1} > \overset{{\color{white}-}}{s}_{1}\,\right)
+	\,\cdots\,
+	P\!\left(\,\eta^{(t)}_{k} > \overset{{\color{white}-}}{s}_{k}\,\right),
+	\quad
+	\textnormal{by Claim 6}
+\end{eqnarray*}
+This proves the independence of
+$\eta^{(t)}_{1}$,\, $\eta^{(t)}_{2}$\, $\ldots$\,
+and completes the proof of Claim 7.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 8:}\quad
+$\eta^{(t)}_{1}$\,,\;$\ldots$\;, $\eta^{(t)}_{k}$\, and \,$N_{t}$\, are independent random variables,
+for each \,$t \in [\,0,\infty)$\, and each \,$k \in \N$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 8:\quad
+\begin{eqnarray*}
+&&
+	P\!\left(\,\eta^{(t)}_{1} > s_{1} \;,\; \ldots \;,\; \eta^{(t)}_{k} > s_{k} \;,\; N_{t} = n\,\right)
+\\
+&=&
+	P\!\left(\,{\color{white}.}\eta_{1}{\color{white}.} \overset{{\color{white}.}}{>} s_{1}\,\right)
+	\cdots
+	P\!\left(\,{\color{white}.}\eta_{k}{\color{white}.} \overset{{\color{white}.}}{>} s_{k}\,\right)
+	\cdot
+	P\!\left(\,N_{t} \overset{{\color{white}-}}{=} n \,\right),
+	\quad
+	\textnormal{by (proof of) Claim 3}
+\\
+&=&
+	P\!\left(\,\eta^{(t)}_{1} \overset{{\color{white}.}}{>} s_{1}\,\right)
+	\cdots
+	P\!\left(\,
+		\eta^{(t)}_{k} \overset{{\color{white}.}}{>} s_{k}
+		\,\right)
+	\cdot
+	P\!\left(\,N_{t} \overset{{\color{white}-}}{=} n \,\right),
+	\quad
+	\textnormal{by Claim 6}
+\end{eqnarray*}
+This proves Claim 8.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 9:}\quad
 $P\!\left(\,\left.N^{(t)}_{s} = a \;\,\right\vert\, N_{t} = b\,\right)$\;
 $=$
 \;$P\!\left(\,N_{s} \overset{{\color{white}1}}{=} a \,\right)$,\;\;
 for each \,$s,\, t \in [\,0,\infty)$\, and each \,$a, b = 0, 1, 2, \ldots$\,.
 \vskip 0.2cm
 \noindent
-Proof of Claim 6:\quad
+Proof of Claim 9:\quad
 
 
 \vskip 0.5cm
@@ -778,13 +870,11 @@ Proof of Claim 6:\quad
 We now return the proof of the three statements of the Theorem:
 \begin{enumerate}
 \item
-	By Claim 5, the random variables
+	By Claim 7, the random variables
 	\;$\eta^{(t)}_{1}$, $\eta^{(t)}_{2}$, \,$\ldots$\;
 	are independent.
-	By Claim 4, \;$\eta^{(t)}_{1}$\; follows an exponential distribution with rate \,$\lambda > 0$.\,
-	Claim 4 and Claim 5 together imply that \;$\eta^{(t)}_{n}$\;
-	also follows an exponential distribution with rate \,$\lambda > 0$,\,
-	for each $n = 2, 3, \ldots$\,.
+	By Claim 6, \;$\eta^{(t)}_{k}$\; follows an exponential distribution of rate \,$\lambda > 0$,\,
+	for each \,$k \in \N$.\,
 	By Claim 1, we have, for each \,$t \in [\,0,\infty)$,
 	\,$N^{(t)}_{s} \; = \; \max\left\{\,n\in\N\cup\{0\}\;\left\vert\;\,\xi^{(t)}_{n} \leq s\right.\,\right\}$,\,
 	where \,$\xi^{(t)}_{n} \,:=\, \eta^{(t)}_{1} + \cdots + \eta^{(t)}_{n}$.
@@ -792,7 +882,9 @@ We now return the proof of the three statements of the Theorem:
 	\,$\left\{\,N^{(t)}_{s}\,\right\}_{s\in[\,0,\infty)}$\, is indeed a Poisson process
 	with intensity \,$\lambda > 0$.
 \item
+	By Claim 1, the random variable \,$N^{(t)}_{s}$\, is a (deterministic) function
 	
+	and Claim 8.	
 \item
 \end{enumerate}
 \qed
