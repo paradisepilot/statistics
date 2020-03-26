@@ -881,7 +881,7 @@ We now return the proof of the two statements of the Theorem:
 Let
 \,$\left\{\,N_{t} : (\Omega,\mathcal{A},\mu) \overset{{\color{white}-}}{\longrightarrow} \N\cup\{0\} \;\right\}_{t \in [\,0,\infty)}$\,
 be a Poisson process.
-Then, for each \,$0 = t_{0} \leq t_{1} \leq t_{2} \leq \cdots \leq t_{n} \in [\,0,\infty)$,\,
+Then, for each \,$0 = t_{0} < t_{1} < t_{2} < \cdots < t_{n} \in [\,0,\infty)$,\,
 the increments
 \begin{equation*}
 N_{t_{1}} = N_{t_{1}} - N_{t_{0}},\;
@@ -916,17 +916,20 @@ For $n = 2$, the required independence (of $N_{t_{2}} - N_{t_{1}}$ and $N_{t_{1}
 follows again from Theorem \ref{TimeTranslatedPoissonProcessIsItselfPoissonProcess}.
 Next, the induction hypothesis states that
 an arbitrary initial sequence of increments of length \,$n$\, of an arbitrary Poisson process
-%the sequence of the first \,$n$\, increments of an arbitrary Poisson process
 consists of independent random variables.
 To complete the proof, we need to show that 
-an arbitrary initial sequence of increments of length \,$n+1$\,
-\begin{equation*}
+an arbitrary initial sequence of increments of length \,$n+1$
+\begin{equation}\label{initialIncrementSequenceLengthNplusOne}
 N_{t_{1}} = N_{t_{1}} - N_{t_{0}},\;
+\quad
 N_{t_{2}} - N_{t_{1}},\;
+\quad
 \,\ldots\,,\;
+\quad
 N_{t_{n}} - N_{t_{n-1}},\;
+\quad
 N_{t_{n+1}} - N_{t_{n}}
-\end{equation*}
+\end{equation}
 of an arbitrary Poisson process also consists of independent random variables.
 To this end, note that, for \,$i = 2, 3, \ldots, n$,
 \begin{equation*}
@@ -948,8 +951,6 @@ Hence, letting \,$s_{0} \,:=\, 0$,\, we see that, by the induction hypothesis,
 \begin{equation*}
 N_{t_{2}} - N_{t_{1}} = N^{(t_{1})}_{s_{1}} - N^{(t_{1})}_{s_{0}}\,,\;
 \quad\ldots\;\;,\quad
-N_{t_{n}} - N_{t_{n-1}} = N^{(t_{1})}_{s_{n-1}} - N^{(t_{1})}_{s_{n-2}}\,,\;
-\quad
 N_{t_{n+1}} - N_{t_{n}} = N^{(t_{1})}_{s_{n}} - N^{(t_{1})}_{s_{n-1}}
 \end{equation*}
 are independent random variables, since they form
@@ -957,22 +958,34 @@ an initial sequence of length $n$ of increments of
 \,$\left\{\,N^{(t_{1})}_{s}\,\right\}_{s\in[\,0,\infty)}$,
 which is a Poisson process,
 by Theorem \ref{TimeTranslatedPoissonProcessIsItselfPoissonProcess}.
-
-
+And, by the Theorem \ref{TimeTranslatedPoissonProcessIsItselfPoissonProcess} again,
 \begin{equation*}
-N_{t_{1}},\;
-N_{t_{2}} - N_{t_{1}},\;
-\,\ldots\,,\;
-N_{t_{n}} - N_{t_{n-1}}
+N_{t_{1}}
+\quad\textnormal{and}\quad
+N^{(t_{1})}_{s_{i}}
+\quad
+\textnormal{are independent, for each \,$i = 1,2,\ldots, n$},
 \end{equation*}
-are independent random variables.
-We need to show that
-are also independent random variables.
+which in turn implies that
+\begin{equation*}
+N_{t_{1}}
+\quad\textnormal{and}\quad
+N^{(t_{1})}_{s_{i}} - N^{(t_{1})}_{s_{i-1}}
+\quad
+\textnormal{are independent, for each \,$i = 1,2,\ldots, n$},
+\end{equation*}
+We may now conclude that all random variables in
+\eqref{initialIncrementSequenceLengthNplusOne}
+are indeed independent of each other.
+
+\vskip 0.3cm
+\noindent
+This completes the proof by induction, as well as the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.5cm
+\vskip 1.0cm
 \begin{definition}[Independence and stationarity of increments of a stochastic process]
 \mbox{}
 \vskip 0.1cm
