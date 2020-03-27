@@ -1,0 +1,131 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Exercises}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\noindent
+\underline{{\color{white}.}\textbf{Exercise 6.7, p.144, \cite{Brzezniak1999}}{\color{white}.}}
+\vskip 0.3cm
+\noindent
+Suppose \,$\left\{\,\overset{{\color{white}.}}{N}_{t}\,\right\}_{t\in[\,0,\infty)}$\, is a Poisson process
+with intensity \,$\lambda > 0$.
+\vskip 0.2cm
+\noindent
+For \,$s < t$,\, compute \,$P\!\left(\,N_{s} \overset{{\color{white}-}}{=} 1\,,\,N_{t} = 2\,\right)$\, in terms of \,$s,\,t$\, and \,$\lambda$.
+
+\vskip 0.5cm
+\noindent
+\textit{Solution}\quad
+First, note that
+\begin{equation*}
+\left\{\, N_{s} \overset{{\color{white}-}}{=} 1 \,,\, N_{t} = 2 \,\right\}
+\;\; = \;\;
+	\left\{\; \eta_{1} \,\leq\, s \,\overset{{\color{white}.}}{<}\, \eta_{1} + \eta_{2} \,\leq\, t \,<\, \eta_{1} + \eta_{2} + \eta_{3} \;\right\}
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+&&
+	P\!\left(\, N_{s} \overset{{\color{white}-}}{=} 1 \,,\, N_{t} = 2 \,\right)
+\;\; = \;\;
+	P\!\left(\; \eta_{1} \,\leq\, s \,\overset{{\color{white}.}}{<}\, \eta_{1} + \eta_{2} \,\leq\, t \,<\, \eta_{1} + \eta_{2} + \eta_{3} \;\right)
+\\
+& = &
+	\int_{0}^{s}\; \int_{s-u_{1}}^{t-u_{1}} \int_{t-u_{1}-u_{2}}^{\infty}\;
+	f_{\eta_{1},\eta_{2},\eta_{3}}(u_{1},u_{2},u_{3})
+	\;\d\,u_{3}\;\d\,u_{2}\;\d\,u_{1}
+\\
+& = &
+	\int_{0}^{s}\; \int_{s-u_{1}}^{t-u_{1}} \int_{t-u_{1}-u_{2}}^{\infty}\;
+	f_{\eta_{1}}(u_{1}) \cdot f_{\eta_{2}}(u_{2}) \cdot f_{\eta_{3}}(u_{3})
+	\;\d\,u_{3}\;\d\,u_{2}\;\d\,u_{1}\,,
+	\quad
+	\textnormal{by independence of \,$\eta_{1},\,\eta_{2},\,\eta_{3}$}
+\\
+& = &
+	\int_{0}^{s}\; \int_{s-u_{1}}^{t-u_{1}}
+		f_{\eta_{1}}(u_{1}) \cdot f_{\eta_{2}}(u_{2})
+		\cdot
+		\left(\;\int_{t-u_{1}-u_{2}}^{\infty}\; f_{\eta_{3}}(u_{3}) \;\d\,u_{3}\right)
+		\;\d\,u_{2}\;\d\,u_{1}
+\\
+& = &
+	\int_{0}^{s}\; \int_{s-u_{1}}^{t-u_{1}}
+		f_{\eta_{1}}(u_{1}) \cdot f_{\eta_{2}}(u_{2})
+		\cdot
+		P\!\left(\,t\overset{{\color{white}.}}{-}u_{1}-u_{2}<\eta_{3}\,\right)
+		\;\d\,u_{2}\;\d\,u_{1}
+\\
+& = &
+	\int_{0}^{s}\; \int_{s-u_{1}}^{t-u_{1}}
+		f_{\eta_{1}}(u_{1}) \cdot f_{\eta_{2}}(u_{2})
+		\cdot
+		\exp\!\left(\overset{{\color{white}.}}{-}\lambda(t-u_{1}-u_{2})\right)
+		\;\d\,u_{2}\;\d\,u_{1}
+\\
+& = &
+	\int_{0}^{s}\;
+		f_{\eta_{1}}(u_{1}) \cdot 
+		\left(\;\int_{s-u_{1}}^{t-u_{1}}
+			f_{\eta_{2}}(u_{2})
+			\cdot
+			\exp\!\left(\overset{{\color{white}.}}{-}\lambda(t-u_{1}-u_{2})\right)
+			\d\,u_{2}\right)
+		\,\d\,u_{1}
+\\
+& = &
+	\int_{0}^{s}\;
+		f_{\eta_{1}}(u_{1}) \cdot \exp\!\left(\overset{{\color{white}.}}{-}\lambda(t-u_{1})\right)
+		\left(\;\int_{s-u_{1}}^{t-u_{1}}
+			\lambda\cdot\exp\!\left(\overset{{\color{white}.}}{-}\lambda u_{2}\right)
+			\cdot
+			\exp\!\left(\overset{{\color{white}.}}{+}\lambda u_{2}\right)
+			\d\,u_{2}\right)
+		\,\d\,u_{1}
+\\
+& = &
+	\int_{0}^{s}\;
+		f_{\eta_{1}}(u_{1}) \cdot \exp\!\left(\overset{{\color{white}.}}{-}\lambda(t-u_{1})\right)
+		\cdot
+		\lambda\cdot\left[\,(t-u_{1})\overset{{\color{white}.}}{-}(s-u_{1})\,\right]
+		\,\d\,u_{1}
+\\
+& = &
+	\lambda \cdot (t-s) \cdot \exp\!\left(\overset{{\color{white}.}}{-}\lambda t\right)
+	\cdot
+	\int_{0}^{s}\;
+		\lambda \cdot \exp\!\left(\overset{{\color{white}.}}{-}\lambda u_{1}\right)
+		\cdot
+		\exp\!\left(\overset{{\color{white}.}}{+}\lambda u_{1}\right)
+		\cdot
+		\,\d\,u_{1}
+\\
+& \overset{{\color{white}1}}{=} &
+	\lambda \cdot (t-s) \cdot \exp\!\left(\overset{{\color{white}.}}{-}\lambda t\right)
+	\cdot
+	\lambda \cdot s
+\\
+& \overset{{\color{white}1}}{=} &
+	\lambda^{2} \cdot s \cdot (t-s) \cdot \exp\!\left(\overset{{\color{white}.}}{-}\lambda t\right)
+\end{eqnarray*}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
