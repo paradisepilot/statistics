@@ -874,7 +874,7 @@ We now return the proof of the two statements of the Theorem:
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{theorem}
+\begin{theorem}\label{PoissonProcessHasIndependentIncrements}
 \mbox{}
 \vskip 0.15cm
 \noindent
@@ -1046,7 +1046,93 @@ where
 for each \,$t \in [\,0,\infty)$.
 \end{theorem}
 \proof
-
+We need to show that
+\begin{equation*}
+E\!\left[\;\left. N_{t}\,\overset{{\color{white}.}}{-}\,\lambda t\;\,\right\vert\;\mathcal{F}_{s}\,\right]
+\;\; = \;\;
+	N_{s} \,-\, \lambda s\,,
+\quad
+\textnormal{for each \,$s,\, t \in [\,0,\infty)$,\, with \,$s \leq t$}
+\end{equation*}
+First, note that the desired equality trivially holds when \,$s = t$.\,
+Hence, we assume hereafter that \,$s < t$.
+Now, observe that:
+\begin{equation*}
+N_{t}\,-\,\lambda t
+\;\; = \;\;
+	N_{t} \,-\, N_{s} \,+\, N_{s} \,-\, \lambda t \,+\, \lambda s \,-\, \lambda s
+\;\; = \;\;
+	\left(N_{t} \overset{{\color{white}.}}{-} N_{s}\right)
+	\;+\;
+	\left(N_{s} \overset{{\color{white}.}}{-} \lambda s\right)
+	\;-\;
+	\lambda\cdot(t - s)
+\end{equation*}
+Next, note that \,$N_{t} - N_{s}$\, and \,$\mathcal{F}_{s}$\, are independent, for each \,$s < t$.
+Indeed, by Theorem \ref{PoissonProcessHasIndependentIncrements},
+\begin{equation*}
+N_{\tau}\,,\;\; N_{s-\tau}\,,\;\; N_{t-s}
+\;\;\;\textnormal{are independent},
+\quad\textnormal{for each \,$0 \leq \tau \leq s < t$}.
+\end{equation*}
+In particular,
+\begin{equation*}
+N_{\tau} \;\;\textnormal{and}\;\; N_{t-s}\;\;\textnormal{are independent},
+\quad\textnormal{for each \,$0 \leq \tau \leq s < t$},
+\end{equation*}
+which in turn implies
+\begin{equation*}
+N_{t} - N_{s}
+\;\;\;\textnormal{and}\;\;\;
+\mathcal{F}_{s} \,:=\, \sigma\!\left(\,\{\,\overset{{\color{white}.}}{N}_{\tau}\,\}_{\tau\in[\,0,s]}\,\right)
+\;\;\textnormal{are independent},
+\quad\textnormal{for each \,$s < t$}
+\end{equation*}
+Hence,
+\begin{eqnarray*}
+E\!\left[\;\left. N_{t}\,\overset{{\color{white}.}}{-}\,\lambda t\;\,\right\vert\;\mathcal{F}_{s}\,\right]
+& = &
+	E\!\left[\;\left.
+		\left(N_{t} \overset{{\color{white}.}}{-} N_{s}\right)
+		\;+\;
+		\left(N_{s} \overset{{\color{white}.}}{-} \lambda s\right)
+		\;-\;
+		\lambda\cdot(t - s)
+	\;\,\right\vert\;
+		\mathcal{F}_{s}
+		\,\right]
+\\
+& = &
+	E\!\left[\;\left.
+		\left(N_{t} \overset{{\color{white}.}}{-} N_{s}\right)
+	\;\,\right\vert\;
+		\mathcal{F}_{s}
+		\,\right]
+	\;+\;
+	\left(N_{s} \overset{{\color{white}.}}{-} \lambda s\right)
+	\;-\;
+	\lambda\cdot(t - s)
+\\
+& = &
+	E\!\left[\; N_{t} \overset{{\color{white}.}}{-} N_{s} \,\right]
+	\;+\;
+	\left(N_{s} \overset{{\color{white}.}}{-} \lambda s\right)
+	\;-\;
+	\lambda\cdot(t - s)\,,
+	\quad
+	\textnormal{by independence of \,$N_{t} - N_{s}$\, and \,$\mathcal{F}_{s}$}
+\\
+& = &
+	\lambda t - \lambda s
+	\;+\;
+	\left(N_{s} \overset{{\color{white}.}}{-} \lambda s\right)
+	\;-\;
+	\lambda\cdot(t - s)
+\\
+& \overset{{\color{white}1}}{=} &
+	N_{s} \, - \, \lambda s
+\end{eqnarray*}
+This completes the proof of the Theorem.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
