@@ -15,7 +15,6 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.5cm
 \begin{proposition}[Two martingales associated to a Wiener process]
 \label{WienerProcessMartingales}
 \mbox{}
@@ -30,6 +29,8 @@ be a Wiener process, and let
 	\sigma\!\left(\;\left\{\,
 		\overset{{\color{white}.}}{W}(\tau)
 		\,\right\}_{\tau \in [\,0,t\,]}\,\right),
+	\quad
+	\textnormal{for \,$t \in [\,0,\infty)$}
 \end{equation*}	
 Then, the following statements hold:
 \begin{enumerate}
@@ -121,5 +122,68 @@ Then, the following statements hold:
 	from which the required equality immediately follows.
 	\qed
 \end{enumerate}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{theorem}[L\'{e}vy's characterization of Wiener processes via martingales]
+\mbox{}
+\vskip 0.2cm
+\noindent
+Let
+\,$\left\{\,\overset{{\color{white}.}}{W}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in[\,0,\infty)}$\,
+be a stochastic process, and let
+\begin{equation*}
+\mathcal{F}_{t}
+\;\; := \;\;
+	\sigma\!\left(\;\left\{\,
+		\overset{{\color{white}.}}{W}(\tau)
+		\,\right\}_{\tau \in [\,0,t\,]}\,\right),
+	\quad
+	\textnormal{for \,$t \in [\,0,\infty)$}
+\end{equation*}	
+Then,
+\,$\left\{\,\overset{{\color{white}.}}{W}(t)\,\right\}_{t \in[\,0,\infty)}$\,
+is a Wiener process if and only if the following statements are true:
+\begin{enumerate}
+\item
+	$P\!\left(\,W(0) \overset{{\color{white}-}}{=} 0 \;\right) \, = \, 1$.
+\item
+	The map
+	\,$[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)(\omega)$\,
+	is continuous, for almost every \,$\omega \in \Omega$,\, i.e.
+	\begin{equation*}
+	P\!\left(
+		\begin{array}{c}
+		[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)
+		\\
+		\overset{{\color{white}.}}{\textnormal{is continuous in \,$t$}}
+		\end{array}
+		\right)
+	\;\; = \;\;
+	\mu\!\left(\,\left\{\;\,
+		\omega \in \Omega
+		\;\left\vert
+		\begin{array}{c}
+		[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)(\omega)
+		\\
+		\overset{{\color{white}.}}{\textnormal{is continuous in \,$t$}}
+		\end{array}
+		\right.
+		\!\!\right\}\,\right)
+	\;\; = \;\; 1.
+	\end{equation*}
+\item
+	$\left\{\,\overset{{\color{white}.}}{W}(t)\,\right\}_{t \in[\,0,\infty)}$\,
+	is a martingale with respect to the filtration
+	\,$\left\{\;\overset{{\color{white}.}}{\mathcal{F}}_{t}\;\right\}_{t\in[\,0,\infty)}$.
+\item
+	$\left\{\; \overset{{\color{white}.}}{W}(t)^{2} - t \;\right\}_{t \in[\,0,\infty)}$\,
+	is a martingale with respect to the filtration
+	\,$\left\{\;\overset{{\color{white}.}}{\mathcal{F}}_{t}\;\right\}_{t\in[\,0,\infty)}$.
+\end{enumerate}
+\end{theorem}
+\proof
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
