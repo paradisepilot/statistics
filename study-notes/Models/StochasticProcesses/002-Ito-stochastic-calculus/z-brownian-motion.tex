@@ -103,7 +103,7 @@ Then, the following statements hold:
 	for each \,$t \in (\,0,\infty)$.
 \item
 	$E\!\left[\;\overset{{\color{white}.}}{W(s)} \cdot W(t)\;\right] \; = \; \min\{\,s\,,\,t\,\}$,\,
-	for each \,$s,\, t \in (\,0,\infty)$.
+	for each \,$s,\, t \in [\,0,\infty)$.
 \item
 	$E\!\left[\;\left\vert\,\overset{{\color{white}.}}{W(s)}\,-\,W(t)\,\right\vert^{2}\;\right]$
 	\;$=$\;
@@ -141,16 +141,21 @@ Then, the following statements hold:
 	\end{equation*}
 	which is the probability density of the Gaussian distribution with mean zero of variance $t > 0$, as required.
 \item
-	For $t = s > 0$, we already know that
+	If either \,$s$\, or \,$t$\, is zero, then both sides of the required equality is zero, and the statement trivially holds.
+	Hence, we need only establish the required equality for \,$s,\, t > 0$.
+	\vskip 0.2cm
+	\noindent
+	For $s = t > 0$, we already know that
 	\begin{equation*}
 	E\!\left[\;\overset{{\color{white}.}}{W(s)} \cdot W(t)\;\right]
-	\;=\; E\!\left[\;\,\overset{{\color{white}.}}{W(t)}^{2}\;\right]
-	\;=\; \Var\!\left[\;\overset{{\color{white}.}}{W(t)} \;\right]
-	\;=\; \Var\!\left[\; \overset{{\color{white}.}}{N\!\left(\,\mu = 0 \,\overset{{\color{white}1}}{,}\, \sigma = \sqrt{t}\,\right)} \;\right]
-	\;=\; t
+	\;=\; E\!\left[\;\,\overset{{\color{white}.}}{W(s)}^{2}\;\right]
+	\;=\; \Var\!\left[\;\overset{{\color{white}.}}{W(s)} \;\right]
+	\;=\; \Var\!\left[\; \overset{{\color{white}.}}{N\!\left(\,\mu = 0 \,\overset{{\color{white}1}}{,}\, \sigma = \sqrt{s}\,\right)} \;\right]
+	\;=\; s
 	\;=\; \min\{\,s,\,t\,\}
 	\end{equation*}
-	Next, without loss of generality, assume \,$s < t$.\,
+	It now remains only to establish the required equality for \,$s,\, t >0$,\, with \,$s \neq t$.\,
+	Without loss of generality, assume \,$0< s < t$.\,
 	Then, observe:
 	\begin{eqnarray*}
 	E\!\left[\;\overset{{\color{white}.}}{W(s)} \cdot W(t)\;\right]
