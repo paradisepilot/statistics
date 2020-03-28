@@ -54,6 +54,66 @@ Then, the following statements hold:
 \proof
 \begin{enumerate}
 \item
+	By definition of a Wiener process
+	\,$\{\,\overset{{\color{white}.}}{W}(t)\,\}_{t\in[\,0,\infty)}$,\,
+	the joint probability density of \,$W(s)$\, and \,$W(t)$,\, for \,$s < t$\,
+	is given by:
+	\begin{equation*}
+	f_{W(s),W(t)}(x,y)
+	\;\; = \;\;
+		\phi(s,0,x) \cdot \phi(t - s,x,y)
+	\;\; = \;\;
+		\dfrac{1}{\sqrt{2\pi s{\color{white}.}}} \cdot \exp\!\left(-\,\dfrac{x^{2}}{2 s}\,\right)
+		\cdot
+		\dfrac{1}{\sqrt{2\pi(t-s){\color{white}.}}} \cdot \exp\!\left(-\,\dfrac{(x-y)^{2}}{2(t-s)}\,\right)
+	\end{equation*}
+	Hence, for any Borel set \,$B \in \mathcal{O}(\Re)$,\, we have
+	\begin{eqnarray*}
+	P\!\left(\, W(t) - W(s) \overset{{\color{white}.}}{\in} B \,\right)
+	& = &
+		\int_{\Re}\,\int_{B}\; f_{W(s),W(t)}(x,x+u) \;\d u\;\d x
+	\\
+	& = &
+		\int_{\Re}\,\int_{B}\;
+			\phi(s,0,x) \cdot \phi(t - s,x,x+u)
+			\;\d u\;\d x
+	\\
+	& = &
+		\int_{\Re}\;\,
+			\phi(s,0,x)
+			\cdot
+			\left(\,\int_{B}\; \phi(t - s,x,x+u)\,\d u\right)
+			\,\d x
+	\\
+	& = &
+		\int_{\Re}\;\,
+			\dfrac{1}{\sqrt{2\pi s{\color{white}.}}} \cdot \exp\!\left(-\,\dfrac{x^{2}}{2 s}\,\right)
+			\cdot
+			\left(\int_{B}\;
+				\dfrac{1}{\sqrt{2\pi(t-s){\color{white}.}}} \cdot \exp\!\left(-\,\dfrac{(x-x-u)^{2}}{2(t-s)}\,\right)
+				\;\d u\right)
+			\,\d x
+	\\
+	& = &
+		\left(\int_{B}\,
+			\dfrac{1}{\sqrt{2\pi(t-s){\color{white}.}}} \cdot \exp\!\left(-\,\dfrac{u^{2}}{2(t-s)}\,\right)
+			\d u\right)
+		\cdot
+		\left(\int_{\Re}\;\,
+			\dfrac{1}{\sqrt{2\pi s{\color{white}.}}} \cdot \exp\!\left(-\,\dfrac{x^{2}}{2 s}\,\right)
+			\d x\right)
+	\\
+	& = &
+		\int_{B}\,
+			\dfrac{1}{\sqrt{2\pi(t-s){\color{white}.}}} \cdot \exp\!\left(-\,\dfrac{u^{2}}{2(t-s)}\,\right)
+			\d u
+	\\
+	& \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
+		P\!\left(\;N\!\left(\,\mu\overset{{\color{white}1}}{=}0\,,\,\sigma = \sqrt{t-s}\,\right) \in B\;\right)
+	\end{eqnarray*}
+	This proves that
+	\,$W(t) - W(s) \,\sim\, N\!\left(\,\mu\overset{{\color{white}1}}{=}0\,,\,\sigma = \sqrt{t-s}\,\right)$,\,
+	as required.
 \item
 \item
 \end{enumerate}
