@@ -115,7 +115,69 @@ Then, the following statements hold:
 	\,$W(t) - W(s) \,\sim\, N\!\left(\,\mu\overset{{\color{white}1}}{=}0\,,\,\sigma = \sqrt{t-s}\,\right)$,\,
 	as required.
 \item
+	By (i), we know that \,$W(t_{i}) - W(t_{i-1})$\, is a Gaussian random variable, for each \,$i = 1, 2, \ldots, n$.\,
+	Recall that Gaussian random variables (defined on a common probability space) are independent
+	if and only if they are uncorrelated.
+	Hence, it suffices to establish that
+	\begin{equation*}
+	E\!\left[\;
+		\left(W(u) \overset{{\color{white}.}}{-} W(t)\right)
+		\overset{{\color{white}1}}{\cdot}
+		\left(W(s) \overset{{\color{white}.}}{-} W(r)\right)
+		\;\right]
+	\;\; = \;\;
+		0\,,
+	\quad
+	\textnormal{for each \,$0 \leq r < s < t < u < \infty$}
+	\end{equation*}
+	To this end, observe that
+	\begin{eqnarray*}
+	&&
+		E\!\left[\;
+			\left(W(u) \overset{{\color{white}.}}{-} W(t)\right)
+			\overset{{\color{white}1}}{\cdot}
+			\left(W(s) \overset{{\color{white}.}}{-} W(r)\right)
+			\;\right]
+	\\
+	& = &
+		E\!\left[\; W(u) \overset{{\color{white}1}}{\cdot} W(s) \;\right]
+		\; - \;
+		E\!\left[\; W(u) \overset{{\color{white}1}}{\cdot} W(r) \;\right]
+		\; - \;
+		E\!\left[\; W(t) \overset{{\color{white}1}}{\cdot} W(s) \;\right]
+		\; + \;
+		E\!\left[\; W(t) \overset{{\color{white}1}}{\cdot} W(r) \;\right]
+	\\
+	& \overset{{\color{white}\textnormal{$1$}}}{=} &
+		\min\{\,u\,,\,s\,\}
+		\; - \;
+		\min\{\,u\,,\,r\,\}
+		\; - \;
+		\min\{\,t\,,\,s\,\}
+		\; + \;
+		\min\{\,t\,,\,r\,\}\,,
+		\quad
+		\textnormal{by Proposition \ref{WienerProcessBasicProperties}}
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		s \; - \; r \; - \; s \; + \; r
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		0,
+	\end{eqnarray*}
+	as required.
 \item
+	By (ii), \,$W(t) - W(s)$\, is independent of \,$W(r) = W(r) - W(0)$,\,
+	for each \,$r \in [\,0,s\,]$.\,
+	Hence, \,$W(t) - W(s)$\, is independent of
+	\begin{equation*}
+	\mathcal{F}_{s}
+	\;\; := \;\;
+		\sigma\!\left(\;\left\{\,
+			\overset{{\color{white}.}}{W}(\tau)
+			\,\right\}_{\tau \in [\,0,s]}\,\right),
+	\end{equation*}	
+	as required.
 \end{enumerate}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
