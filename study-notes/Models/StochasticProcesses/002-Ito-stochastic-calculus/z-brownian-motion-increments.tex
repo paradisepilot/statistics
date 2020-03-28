@@ -29,7 +29,7 @@ Then, the following statements hold:
 	For each \,$0 \leq s < t < \infty$,
 	\,$W(t) - W(s)$\, follows the Gaussian distribution with mean zero and variance \,$t-s$.
 	In particular,
-	\,$\left\{\,\overset{{\color{white}.}}{W}(t)\;\right\}_{t \in[\,0,\infty)}$\,
+	\,$\left\{\,\overset{{\color{white}.}}{W}(t)\,\right\}_{t \in[\,0,\infty)}$\,
 	has stationary increments.
 \item
 	For each finite sequence \,$0 = t_{0} < t_{1} < t_{2} < \cdots < t_{n} < \infty$,\,
@@ -50,7 +50,7 @@ Then, the following statements hold:
 	\;\; := \;\;
 		\sigma\!\left(\;\left\{\,
 			\overset{{\color{white}.}}{W}(\tau)
-			\,\right\}_{\tau \in [\,0,s]}\,\right).
+			\,\right\}_{\tau \in [\,0,s\,]}\,\right).
 	\end{equation*}
 \end{enumerate}
 \end{proposition}
@@ -178,9 +178,119 @@ Then, the following statements hold:
 	\;\; := \;\;
 		\sigma\!\left(\;\left\{\,
 			\overset{{\color{white}.}}{W}(\tau)
-			\,\right\}_{\tau \in [\,0,s]}\,\right),
+			\,\right\}_{\tau \in [\,0,s\,]}\,\right),
 	\end{equation*}	
 	as required.
+	\qed
+\end{enumerate}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{proposition}[Two martingales associated to a Wiener process]
+\label{WienerProcessMartingales}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Let
+\,$\left\{\,\overset{{\color{white}.}}{W}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in[\,0,\infty)}$\,
+be a Wiener process, and let
+\begin{equation*}
+\mathcal{F}_{t}
+\;\; := \;\;
+	\sigma\!\left(\;\left\{\,
+		\overset{{\color{white}.}}{W}(\tau)
+		\,\right\}_{\tau \in [\,0,t\,]}\,\right),
+\end{equation*}	
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	$\left\{\,\overset{{\color{white}.}}{W}(t)\,\right\}_{t \in[\,0,\infty)}$\,
+	is a martingale with respect to the filtration
+	\,$\left\{\;\overset{{\color{white}.}}{\mathcal{F}}_{t}\;\right\}_{t\in[\,0,\infty)}$.
+\item
+	$\left\{\; \overset{{\color{white}.}}{W}(t)^{2} - t \;\right\}_{t \in[\,0,\infty)}$\,
+	is a martingale with respect to the filtration
+	\,$\left\{\;\overset{{\color{white}.}}{\mathcal{F}}_{t}\;\right\}_{t\in[\,0,\infty)}$.
+\end{enumerate}
+\end{proposition}
+\proof
+\begin{enumerate}
+\item
+	We need to show that \,$E[\,W(t) \;\vert\, \mathcal{F}_{s}\,] \,=\, W(s)$,\,
+	for each \,$0 \leq s < t < \infty$.
+	To this end, observe:
+	\begin{eqnarray*}
+	E[\,W(t) \;\vert\, \mathcal{F}_{s}\,]
+	& = &
+		E[\, W(t) \,-\, W(s) \,+\, W(s) \;\vert\, \mathcal{F}_{s} \,]
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		E[\, W(t) \,-\, W(s) \;\vert\, \mathcal{F}_{s}\,] \,+\, E[\, W(s) \;\vert\, \mathcal{F}_{s} \,]
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		E[\, W(t) \,-\, W(s) \,] \,+\, W(s)\,,
+		\quad
+		\textnormal{since \,$W(t) - W(s)$\, is independent of \,$\mathcal{F}_{s}$,\, by Proposition \ref{WienerProcessIncrements}}
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		0 \,+\, W(s)\,,
+		\quad
+		\textnormal{again by Proposition \ref{WienerProcessIncrements}}
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		W(s),
+	\end{eqnarray*}
+	as required.
+\item
+	We need to show that
+	\,$E\!\left[\;\left. W(t)^{2} \overset{{\color{white}.}}{-} t \,\;\right\vert\, \mathcal{F}_{s}\;\right]$
+	\,$=$\,
+	$W(s)^{2} - s $,\,
+	for each \,$0 \leq s < t < \infty$.
+	To this end, observe:
+	\begin{eqnarray*}
+	&&
+		E\!\left[\;\left. W(t)^{2} \,\;\right\vert\, \mathcal{F}_{s}\;\right]
+	\\
+	& = &
+		E\!\left[\,\left. \left(\,W(t) \overset{{\color{white}.}}{-} W(s) + W(s)\,\right)^{2} \,\right\vert\, \mathcal{F}_{s}\;\right]
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		E\!\left[\;\left. \left(\,W(t) \overset{{\color{white}.}}{-} W(s)\,\right)^{2} \,\;\right\vert\, \mathcal{F}_{s}\;\right]
+		\; + \;
+		2 \cdot E\!\left[\left. \left(\,W(t) \overset{{\color{white}.}}{-} W(s) \right) \cdot W(s) \,\right\vert\, \mathcal{F}_{s}\;\right]
+		\; + \;
+		E\!\left[\,\left. W(s)^{2} \;\right\vert\, \mathcal{F}_{s}\;\right]
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		E\!\left[\; \left(\,W(t) \overset{{\color{white}.}}{-} W(s)\,\right)^{2} \;\right]
+		\; + \;
+		2 \cdot E\!\left[\left.\, W(t) \overset{{\color{white}.}}{-} W(s) \,\right\vert\, \mathcal{F}_{s}\;\right] \cdot W(s)
+		\; + \;
+		W(s)^{2}
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		E\!\left[\; \left(\,W(t) \overset{{\color{white}.}}{-} W(s)\,\right)^{2} \;\right]
+		\; + \;
+		2 \cdot E\!\left[\; W(t) \overset{{\color{white}.}}{-} W(s) \;\right] \cdot W(s)
+		\; + \;
+		W(s)^{2}
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		(t-s)
+		\; + \;
+		2 \cdot 0 \cdot W(s)
+		\; + \;
+		W(s)^{2}\,,
+		\quad
+		\textnormal{by Proposition \ref{WienerProcessBasicProperties}, Proposition \ref{WienerProcessIncrements}}
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		t \; + \; W(s)^{2} \; - \; s\,,
+	\end{eqnarray*}
+	from which the required equality immediately follows.
+	\qed
 \end{enumerate}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
