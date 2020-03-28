@@ -1,0 +1,275 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Brownian motion}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Brownian motion / Wiener process]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A \textbf{Wiener process} (or \textbf{Brownian motion}) is a stochastic proces
+\,$\left\{\,\overset{{\color{white}.}}{W}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in[\,0,\infty)}$\,
+satisfying:
+\begin{itemize}
+\item
+	$P\!\left(\,W(0) \overset{{\color{white}-}}{=} 0 \;\right) \, = \, 1$
+\item
+	The map
+	\,$[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)(\omega)$\,
+	is continuous, for almost every \,$\omega \in \Omega$,\, i.e.
+	\begin{equation*}
+	P\!\left(
+		\begin{array}{c}
+		[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)
+		\\
+		\overset{{\color{white}.}}{\textnormal{is continuous in \,$t$}}
+		\end{array}
+		\right)
+	\;\; = \;\;
+	\mu\!\left(\,\left\{\;\,
+		\omega \in \Omega
+		\;\left\vert
+		\begin{array}{c}
+		[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)(\omega)
+		\\
+		\overset{{\color{white}.}}{\textnormal{is continuous in \,$t$}}
+		\end{array}
+		\right.
+		\!\!\right\}\,\right)
+	\;\; = \;\; 1
+	\end{equation*}
+\item
+	For any finite sequence \,$0 < t_{1} < t_{2} < \cdots < t_{n} < \infty$,\,
+	and Borel sets \,$B_{1}, B_{2}, \ldots, B_{n} \in \mathcal{O}(\Re)$,\,
+	\begin{eqnarray*}
+	&&
+		P\!\left(\,
+			W(t_{1}) \overset{{\color{white}.}}{\in} B_{1}
+			\,,\, \ldots \,,\,
+			W(t_{n}) \in B_{n}
+			\,\right)
+	\\
+	& = &
+		\int_{B_{1}} \cdots \int_{B_{n}}\;
+			\phi(t_{1},0,x_{1})
+			\cdot
+			\phi(t_{2} - t_{1},x_{1},x_{2})
+			\cdot
+			\,\cdots\,
+			\cdot
+			\phi(t_{n} - t_{n-1},x_{n-1},x_{n})
+		\;\;\d x_{1}\,\cdots\,\d x_{n}\,,
+	\end{eqnarray*}
+	where
+	\,$\phi : [\,0,\infty) \times \Re \times \Re \longrightarrow [\,0,\infty)$\,
+	is called the \textbf{transition density} and is defined by
+	\begin{equation*}
+	\phi(t,x,y)
+	\;\; := \;\;
+		\dfrac{1}{\sqrt{2\pi t{\color{white}.}}}
+		\cdot
+		\exp\!\left(\,-\,\dfrac{(x-y)^{2}}{2 t}\,\right)
+	\end{equation*}
+\end{itemize}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
+\begin{proposition}[Basic properties of Wiener processes]
+\label{WienerProcessBasicProperties}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Let
+\,$\left\{\,\overset{{\color{white}.}}{W}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in[\,0,\infty)}$\,
+be a Wiener process.
+Then, the following statements hold:
+\begin{enumerate}
+\item
+	$W(t)$ follows the Gaussian probability distribution with mean zero and variance \,$t$,\,
+	for each \,$t \in (\,0,\infty)$.
+\item
+	$E\!\left[\;\overset{{\color{white}.}}{W(s)} \cdot W(t)\;\right] \; = \; \min\{\,s\,,\,t\,\}$,\,
+	for each \,$s,\, t \in (\,0,\infty)$.
+\item
+	$E\!\left[\;\left\vert\,\overset{{\color{white}.}}{W(s)}\,-\,W(t)\,\right\vert^{2}\;\right]$
+	\;$=$\;
+	$\left\vert\,s\,\overset{{\color{white}.}}{-}\,t\,\right\vert$,\,
+	for each \,$s,\, t \in [\,0,\infty)$.
+\item
+	$E\!\left[\; W(\overset{{\color{white}.}}{t})^{4} \,\right]$
+	\;$=$\;
+	$3\,t^{2}$,\,
+	for each \,$t \in [\,0,\infty)$.
+\end{enumerate}
+\end{proposition}
+\proof
+\begin{enumerate}
+\item
+	Let \,$B \in \mathcal{O}(\Re)$ be a Borel set in $\Re$.
+	\begin{eqnarray*}
+	P\!\left(\,W(t) \overset{{\color{white}.}}{\in} B\,\right)
+	& = &
+		\int_{B}\;\;
+			\phi(t,0,x)
+		\;\,\d x
+	\;\; = \;\;
+		\int_{B}\;\;
+			\dfrac{1}{\sqrt{2\pi t{\color{white}.}}}
+			\cdot
+			\exp\!\left(\,-\,\dfrac{x^{2}}{2 t}\,\right)
+		\;\,\d x\,,
+	\end{eqnarray*}
+	which implies that the probability density function of \,$W(t)$,\, for \,$t > 0$,\, is
+	\begin{equation*}
+		\dfrac{1}{\sqrt{2\pi t{\color{white}.}}}
+		\cdot
+		\exp\!\left(\,-\,\dfrac{x^{2}}{2 t}\,\right),
+	\end{equation*}
+	which is the probability density of the Gaussian distribution with mean zero of variance $t > 0$, as required.
+\item
+	For $t = s > 0$, we already know that
+	\begin{equation*}
+	E\!\left[\;\overset{{\color{white}.}}{W(s)} \cdot W(t)\;\right]
+	\;=\; E\!\left[\;\,\overset{{\color{white}.}}{W(t)}^{2}\;\right]
+	\;=\; \Var\!\left[\;\overset{{\color{white}.}}{W(t)} \;\right]
+	\;=\; \Var\!\left[\; \overset{{\color{white}.}}{N\!\left(\,\mu = 0 \,\overset{{\color{white}1}}{,}\, \sigma = \sqrt{t}\,\right)} \;\right]
+	\;=\; t
+	\;=\; \min\{\,s,\,t\,\}
+	\end{equation*}
+	Next, without loss of generality, assume \,$s < t$.\,
+	Then, observe:
+	\begin{eqnarray*}
+	E\!\left[\;\overset{{\color{white}.}}{W(s)} \cdot W(t)\;\right]
+	& = &
+		\int_{\Re} \; \int_{\Re}\;
+			x_{1} \cdot x_{2} 
+			\cdot
+			\phi(s,0,x_{1})
+			\cdot
+			\phi(t - s,x_{1},x_{2})
+		\;\;\d x_{1}\,\d x_{2}
+	\\
+	& = &
+		\int_{\Re} \; \int_{\Re}\;
+			x_{1} \cdot x_{2} 
+			\cdot
+			\dfrac{1}{\sqrt{2\pi s}}\exp\!\left(-\,\dfrac{x_{1}^{2}}{2s}\right)
+			\cdot
+			\dfrac{1}{\sqrt{2\pi(t-s)}}\exp\!\left(-\,\dfrac{(x_{2}-x_{1})^{2}}{2(t-s)}\right)
+		\;\;\d x_{1}\,\d x_{2}
+	\\
+	& = &
+		\int_{\Re}\;\;
+			x_{1} \cdot
+			\dfrac{1}{\sqrt{2\pi s}}\exp\!\left(-\,\dfrac{x_{1}^{2}}{2s}\right)
+			\left(\,\int_{\Re}\;
+				 x_{2} 
+				\cdot
+				\dfrac{1}{\sqrt{2\pi(t-s)}}\exp\!\left(-\,\dfrac{(x_{2}-x_{1})^{2}}{2(t-s)}\right)
+				\,\d x_{2}\,\right)
+			\,\d x_{1}
+	\\
+	& = &
+		\int_{\Re}\;\;
+			x_{1} \cdot
+			\dfrac{1}{\sqrt{2\pi s}}\exp\!\left(-\,\dfrac{x_{1}^{2}}{2s}\right)
+			\cdot
+			E\!\left[\,\overset{{\color{white}.}}{N}\!\left(\,\mu=x_{1}\,,\,\sigma=\sqrt{t-s}\,\right)\,\right]
+			\,\d x_{1}
+	\\
+	& = &
+		\int_{\Re}\;\;
+			x_{1} \cdot
+			\dfrac{1}{\sqrt{2\pi s}}\exp\!\left(-\,\dfrac{x_{1}^{2}}{2s}\right)
+			\cdot
+			x_{1}
+			\,\d x_{1}
+	\;\; = \;\;
+		\int_{\Re}\;\;
+			x_{1}^{2} \cdot
+			\dfrac{1}{\sqrt{2\pi s}}\exp\!\left(-\,\dfrac{x_{1}^{2}}{2s}\right)
+			\,\d x_{1}
+	\\
+	& \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
+		\Var\!\left[\,\overset{{\color{white}.}}{N}\!\left(\,\mu=0\,,\,\sigma=\sqrt{s}\,\right)\,\right]
+	\;\; = \;\;
+		s
+	\\
+	& \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
+		\min\{\,s\,,\,t\,\},
+	\end{eqnarray*}
+	where the last equality follows since the preceding calculation
+	was carried out under the assumption that \,$s < t$.
+\item
+	\begin{eqnarray*}
+	E\!\left[\;\left\vert\,\overset{{\color{white}.}}{W(s)}\,-\,W(t)\,\right\vert^{2}\;\right]
+	& = &
+		E\!\left[\;
+			W(s)^{2}
+			\,-\,
+			2 \cdot \overset{{\color{white}.}}{W(s)} \cdot W(t)
+			\,+\,
+			W(t)^{2}
+			\;\right]
+	\\
+	& = &
+		E\!\left[\;W(s)^{2}\;\right]
+		\,-\,
+		2 \cdot E\!\left[\;\overset{{\color{white}.}}{W(s)} \cdot W(t)\;\right]
+		\,+\,
+		E\!\left[\;W(t)^{2}\;\right]
+	\\
+	& \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+		s \,-\, 2 \cdot \min\{\,s\,,\,t\,\} \,+\, t
+	\end{eqnarray*}
+	Now, note
+	\begin{equation*}
+	s + t \,-\, 2 \cdot \min\{\,s\,,\,t\,\}
+	\;\; = \;\;
+		\left\{\begin{array}{cl}
+			s + t - 2s, & \textnormal{for \,$s \leq t$},
+			\\ 
+			s + t - 2t, & \textnormal{for \,$s > t$} 
+			\end{array}\right.
+	\; = \;\;
+		\left\{\begin{array}{cl}
+			t - s, & \textnormal{for \,$s \leq t$},
+			\\ 
+			s - t, & \textnormal{for \,$s > t$} 
+			\end{array}\right.
+	\; = \;\;
+		\left\vert\; s \overset{{\color{white}.}}{-} t \;\right\vert\,,
+	\end{equation*}
+	as required.
+
+\item
+	\begin{equation*}
+	E\!\left[\; W(\overset{{\color{white}.}}{t})^{4} \,\right]
+	\;\; = \;\;
+		m_{4}\!\left[\; N\!\left(\,\overset{{\color{white}.}}{\mu = 0}\,,\,\sigma = \sqrt{t}\,\right) \,\right]
+	\;\; = \;\;
+		3\cdot\left(\sqrt{t}\,\right)^{4}
+	\;\; = \;\;
+		3\,t^{2},
+	\end{equation*}
+	where
+	\,$m_{4}\!\left[\; N\!\left(\,\overset{{\color{white}.}}{\mu = 0}\,,\,\sigma = \sqrt{t}\,\right) \,\right]$\,
+	denotes the fourth moment of the Gaussian distribution with mean zero and variance $t > 0$.
+	\qed
+\end{enumerate}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
