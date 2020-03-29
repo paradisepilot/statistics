@@ -1,0 +1,486 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Properties of sample paths of Wiener processes}
+\setcounter{theorem}{0}
+\setcounter{equation}{0}
+
+%\cite{vanDerVaart1996}
+%\cite{Kosorok2008}
+
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\textnormal{(\theenumi)}$\;\;$}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{lemmaLTwo}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$\left\{\,\overset{{\color{white}.}}{W}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in[\,0,\infty)}$\,
+	is a Wiener process.
+\item
+	$T\in (0,\infty)$.
+\item
+	For each \,$n \in \N$, \;$t^{(n)}_{i} \, := \, \dfrac{i}{n} \cdot T$,\, for \,$i = 0, 1, \ldots, n$.
+	\vskip 0.1cm
+	\noindent
+	And, \,$\Delta^{(n)}_{i}W : \Omega \longrightarrow \Re$\, is the random variable defined by:
+	\begin{equation*}
+	\Delta^{(n)}_{i}W
+	\;\; := \;\;
+		W\!\left(t^{(n)}_{i+1}\right) \, - \, W\!\left(t^{(n)}_{i}\right)\,,
+	\quad
+	\textnormal{for \,$i = 0, 1, \ldots, n-1$}.
+	\end{equation*}
+\end{itemize}
+Then,
+\begin{equation*}
+\underset{n \rightarrow \infty}{\lim}\;\;
+\overset{n-1}{\underset{i=0}{\sum}}
+\left(\Delta^{(n)}_{i}W\right)^{2}
+\;\; = \;\;
+	T\,,
+\quad
+\textnormal{in \,$L^{2}$}.
+\end{equation*}
+\end{lemma}
+\proof
+We need to show:
+\begin{equation*}
+\underset{n \rightarrow \infty}{\lim}\;
+E\!\left[\,
+	\left(\;\overset{n-1}{\underset{i=0}{\sum}} \left(\Delta^{(n)}_{i}W\right)^{2} \; - \; T\;\right)^{2}
+	\,\right]
+\;\; = \;\;
+	0
+\end{equation*}
+To this end, first observe:
+\begin{eqnarray*}
+&&
+	\left(\;\overset{n-1}{\underset{i=0}{\sum}} \left(\Delta^{(n)}_{i}W\right)^{2} \; - \; T\;\right)^{2}
+\;\; = \;\;
+	\left[\,\overset{n-1}{\underset{i=0}{\sum}} \left(\left(\Delta^{(n)}_{i}W\right)^{2} \; - \; \dfrac{T}{n}\;\right)\right]
+	\cdot
+	\left[\,\overset{n-1}{\underset{j=0}{\sum}} \left(\left(\Delta^{(n)}_{j}W\right)^{2} \; - \; \dfrac{T}{n}\;\right)\right]
+\\
+& = &
+	\overset{n-1}{\underset{i=0}{\sum}}\;\;
+	\overset{n-1}{\underset{j=0}{\sum}}\;\;
+	\left[\,\left(\left(\Delta^{(n)}_{i}W\right)^{2} \; - \; \dfrac{T}{n}\;\right)\right]
+	\cdot
+	\left[\,\left(\left(\Delta^{(n)}_{j}W\right)^{2} \; - \; \dfrac{T}{n}\;\right)\right]
+\\
+& = &
+	\overset{n-1}{\underset{i=0}{\sum}}\;\;
+	\overset{n-1}{\underset{j=0}{\sum}}\;\;
+	\left[\,
+		\left(\Delta^{(n)}_{i}W\right)^{2} \cdot \left(\Delta^{(n)}_{j}W\right)^{2}
+		\; - \;
+		\dfrac{T}{n} \cdot \left(\, \left(\Delta^{(n)}_{i}W\right)^{2} \,+\, \left(\Delta^{(n)}_{j}W\right)^{2}\,\right)
+		 \; + \; \dfrac{T^{2}}{n^{2}}
+		\;\right]
+\\
+& = &
+	\overset{n-1}{\underset{i=0}{\sum}}\;\;
+	\overset{n-1}{\underset{j=0}{\sum}}\,
+	\left(\Delta^{(n)}_{i}W\right)^{2} \cdot \left(\Delta^{(n)}_{j}W\right)^{2}
+	\; - \;
+		2\,T \cdot \overset{n-1}{\underset{i=0}{\sum}}\left(\Delta^{(n)}_{i}W\right)^{2}
+	\; + \;
+		T^{2}
+\\
+& = &
+	\overset{n-1}{\underset{i=0}{\sum}}
+	\left(\Delta^{(n)}_{i}W\right)^{4}
+	\; + \;
+		\underset{i \neq j}{\sum\;\sum}
+		\left(\Delta^{(n)}_{i}W\right)^{2} \cdot \left(\Delta^{(n)}_{j}W\right)^{2}
+	\; - \;
+		2\,T \cdot \overset{n-1}{\underset{i=0}{\sum}}\left(\Delta^{(n)}_{i}W\right)^{2}
+	\; + \;
+		T^{2}
+\end{eqnarray*}
+Now, by Proposition \ref{WienerProcessBasicProperties}, we have
+\begin{equation*}
+\Delta^{(n)}_{i}W
+\; :=\;
+	W(t^{(n)}_{i+1}) \,-\, W(t^{(n)}_{i})
+\;\sim\;
+	N\!\left(\,\mu=0\,,\,\sigma=\sqrt{t^{(n)}_{i+1}-t^{(n)}_{i}}\,\right)
+\; =\;
+	N\!\left(\,\mu=0\,,\,\sigma=\sqrt{T/n}\,\right)
+\end{equation*}
+Next, recall that the fourth moment of a Gaussian distribution is given by:
+\begin{equation*}
+m_{4}\!\left[\;\overset{{\color{white}.}}{N}(\mu = 0,\sigma)\;\right]
+\;\; = \;\;
+	E\!\left[\;\overset{{\color{white}.}}{N}(\mu = 0,\sigma)^{4}\;\right]
+\;\; = \;\;
+	3\,\sigma^{4}
+\end{equation*}
+Hence, we see that
+\begin{equation*}
+E\!\left[\,\left(\Delta^{(n)}_{i}W\right)^{4}\,\right]
+\;\; = \;\;
+	3\cdot\left\vert\,t^{(n)}_{i+1} - t^{(n)}_{i}\,\right\vert^{2}
+\;\; = \;\;
+	\dfrac{3\,T^{2}}{n^{2}}
+\end{equation*}
+On the other hand,
+\begin{eqnarray*}
+E\!\left[\, \left(\Delta^{(n)}_{i}W\right)^{2} \cdot \left(\Delta^{(n)}_{j}W\right)^{2} \,\right]
+& = &
+	E\!\left[\, \left(\Delta^{(n)}_{i}W\right)^{2} \,\right]
+	\cdot
+	E\!\left[\, \left(\Delta^{(n)}_{j}W\right)^{2} \,\right],
+	\quad
+	\textnormal{for \,$i \neq j$,\, by Proposition \ref{WienerProcessIncrements}(ii)}
+\\
+& = &
+	\left(\,\dfrac{t^{(n)}_{i+1}}{n} \,-\, \dfrac{t^{(n)}_{i}}{n}\,\right)
+	\cdot
+	\left(\,\dfrac{t^{(n)}_{j+1}}{n} \,-\, \dfrac{t^{(n)}_{j}}{n}\,\right),
+	\quad
+	\textnormal{by Proposition \ref{WienerProcessIncrements}(i)}
+\\
+& = &
+	\dfrac{T^{2}}{n^{2}}
+\end{eqnarray*}
+and
+\begin{eqnarray*}
+E\!\left[\, \left(\Delta^{(n)}_{i}W\right)^{2} \,\right]
+& = &
+	\dfrac{t^{(n)}_{i+1}}{n} \,-\, \dfrac{t^{(n)}_{i}}{n}\,,
+	\quad
+	\textnormal{by Proposition \ref{WienerProcessIncrements}(i)}
+\\
+& = &
+	\dfrac{T}{n}
+\end{eqnarray*}
+Consequently,
+\begin{eqnarray*}
+&&
+	E\!\left[\; \left(\;\overset{n-1}{\underset{i=0}{\sum}} \left(\Delta^{(n)}_{i}W\right)^{2} \; - \; T\;\right)^{2} \;\right]
+\\
+& = &
+	\overset{n-1}{\underset{i=0}{\sum}}\;
+		E\!\left[\;\left(\Delta^{(n)}_{i}W\right)^{4}\;\right]
+	\; + \;
+		\underset{i \neq j}{\sum\;\sum}\;
+		E\!\left[\;\left(\Delta^{(n)}_{i}W\right)^{2} \cdot \left(\Delta^{(n)}_{j}W\right)^{2}\;\right]
+	\; - \;
+		2\,T \cdot \overset{n-1}{\underset{i=0}{\sum}}\; E\!\left[\; \left(\Delta^{(n)}_{i}W\right)^{2} \;\right]
+	\; + \;
+		T^{2}
+\\
+& \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
+	n \cdot \dfrac{3\,T^{2}}{n^{2}}
+	\; + \;
+	(n^{2}-n) \cdot \dfrac{T^{2}}{n^{2}}
+	\; - \;
+	2\,T \cdot n \cdot \dfrac{T}{n}
+	\; + \;
+	T^{2}
+\;\; = \;\;
+	\dfrac{3\,T^{2}}{n}
+	\; + \;
+	\left(1-\dfrac{1}{n}\right) \cdot T^{2}
+	\; - \;
+	2\,T^{2}
+	\; + \;
+	T^{2}
+\\
+& \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
+	\dfrac{2\,T^{2}}{n}
+	\;\longrightarrow\; 0\,,
+	\quad
+	\textnormal{as \,$n \longrightarrow \infty$}\,,
+\end{eqnarray*}
+as required.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
+\begin{definition}[Total variation, bounded variation, infinite variation]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$f : D(f) \longrightarrow \Re$\, is an $\Re$-valued function
+	whose domain \,$D(f) \subset \Re$\, is a non-empty subset of \,$\Re$.
+\item
+	The closed and bounded interval \,$[\,a,b\,] \,\subset\, D(f) \,\subset\, \Re$.
+\end{itemize}
+\vskip 0.1cm
+\noindent
+The \textbf{total variation} \,$V^{b}_{a}(f)$\, of \,$f$\,
+over the interval \,$[\,a,b\,]$\, is defined to be:
+\begin{equation*}
+V^{b}_{a}(f)
+\;\; := \;\;
+	\sup
+	\left\{\;
+		\left.
+		\overset{n-1}{\underset{i=0}{\sum}}\,
+		\left\vert\,f\!\left(t_{i+1}\right)-f\!\left(t_{i}\right)\,\right\vert
+		\;\;\right\vert\;
+		\begin{array}{c}
+			a = t_{0} < t_{1} < \;\cdots\; < t_{n} = b
+			\\
+			\textnormal{is a finite partition of \,$[\,a,b\,]$}
+			\end{array}
+		\right\}
+\end{equation*}
+The function \,$f$\, is said to be of \textbf{bounded variation} over \,$[\,a,b\,]$,\,
+if \,$V^{b}_{a}(f) < \infty$;\,
+otherwise, it is said to be of \textbf{infinite variation} over \,$[\,a,b\,]$.
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{theorem}[Sample paths of Wiener process are of infinite variation almost surely]
+\label{WienerProcessHasInfiniteVariationSamplePaths}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose
+\,$\left\{\,\overset{{\color{white}.}}{W}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in[\,0,\infty)}$\,
+is a Wiener process,
+and \,$T \in (\,0,\infty\,)$.\,
+Then, for almost every \,$\omega \in \Omega$,
+\begin{equation*}
+\textnormal{the map}\;\;
+[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)(\omega)
+\;\;\textnormal{is of infinite variation over \,$[\,0,T\,]$},
+\end{equation*}
+more precisely,
+\begin{equation*}
+P\!\left(
+	\begin{array}{c}
+	[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)
+	\\
+	\overset{{\color{white}.}}{\textnormal{is of infinite variation}}
+	\\
+	\overset{{\color{white}.}}{\textnormal{over $[\,0,T\,]$}}
+	\end{array}
+	\right)
+\;\; = \;\;
+	\mu\!\left(\,\left\{\;\;
+		\omega \in \Omega
+		\,\;\left\vert
+		\begin{array}{c}
+			[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)(\omega)
+			\\
+			\overset{{\color{white}.}}{\textnormal{is of infinite variation}}
+			\\
+			\overset{{\color{white}.}}{\textnormal{over $[\,0,T\,]$}}
+			\end{array}
+			\right.
+		\!\!\right\}\,\right)
+\;\; = \;\;
+	1
+\end{equation*}
+\end{theorem}
+\proof
+First, we introduction some notation to be used throughout the proof.
+For each \,$\omega \in \Omega$, \,$n \in \N$,\, let
+\begin{equation*}
+\Delta^{(n)}_{i}W(\omega)
+\;\; := \;\;
+	W\!\left(\frac{(i+1) \cdot T}{n}\right)\!(\omega)
+	\,-\,
+	W\!\left(\frac{i \cdot T}{n}\right)\!(\omega)\,,
+\quad
+\textnormal{for \,$i = 0, 1, \ldots, n-1$}.
+\end{equation*}
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1}:\quad
+There exists a subsequence \,$\{\,n_{k}\,\}_{k\in\N} \subset \N$\, such that
+\,$P(A_{1}) \,=\, \mu(A_{1}) \,=\, 1$,\, where
+\begin{equation*}
+A_{1}
+\;\; := \;\;
+	\left\{\;\,
+		\omega \in \Omega
+		\;\,\left\vert\;\,
+		\underset{k\rightarrow\infty}{\lim}\;\,
+		\overset{n_{k}-1}{\underset{i=0}{\sum}}\left(\Delta^{(n_{k})}_{i}W(\omega)\right)^{2}
+		\, = \, T
+		\right.
+		\,\right\}
+\end{equation*}
+Proof of Claim 1:\quad
+By Lemma \ref{lemmaLTwo}, we have:
+\begin{equation*}
+\underset{n \rightarrow \infty}{\lim}\;\;
+\overset{n-1}{\underset{i=0}{\sum}}
+\left(\Delta^{(n)}_{i}W\right)^{2}
+\;\; = \;\;
+	T\,,
+\quad
+\textnormal{in \,$L^{2}$}.
+\end{equation*}
+Next, recall (see, for example, Theorem 1 and Theorem 2 in \cite{Ferguson1996})
+that, for random variables $X, X_{1}, X_{2}, \ldots$\,,
+\begin{equation*}
+X_{n} \longrightarrow X \;\; \textnormal{in \,$L^{2}$}
+\quad\Longrightarrow\quad
+X_{n} \longrightarrow X \;\; \textnormal{in probability}
+\quad\Longrightarrow
+\left\{\;\begin{array}{c}
+	\textnormal{there exists a subsequence}
+	\\
+	\textnormal{$\{\,n_{k}\,\}_{k \in \N}$\, of \,$\N$\; such that}\; X_{n_{k}} \overset{\textnormal{a.s.}}{\longrightarrow}\; X
+\end{array}\right.
+\end{equation*}
+Claim 1 follows immediately from the preceding two observations.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2}:\quad
+$P(A_{2}) \,=\, \mu(A_{2}) \,=\, 1$,\, where
+\begin{eqnarray*}
+A_{2}
+& := &
+	\left\{\;\,
+		\omega \in \Omega
+		\;\,\left\vert\;\,
+		\underset{k\rightarrow\infty}{\lim}
+		\left(\;\underset{0\,\leq\,i\,\leq n_{k}-1}{\max}\,
+			\left\vert\,
+				\Delta^{(n_{k})}_{i}W(\omega)
+				\,\right\vert
+			\;\right)
+		\,=\,0
+		\right.
+		\,\right\}
+\end{eqnarray*}
+Proof of Claim 2:\quad
+Define:
+\begin{eqnarray*}
+A_{0}
+& := &
+	\left\{\;\,
+		\omega \in \Omega
+		\;\,\left\vert
+		\begin{array}{c}
+		[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)(\omega)
+		\\
+		\overset{{\color{white}.}}{\textnormal{is continuous in \,$t$}}
+		\end{array}
+		\right.
+		\!\!\right\}
+\end{eqnarray*}
+Recall that, by definition of Wiener processes, we have \,$P(A_{0}) = \mu(A_{0}) = 1$.
+Now, note that \,$A_{2} \supset A_{0}$\,, hence, we must also have \,$P(A_{2}) = \mu(A_{2}) = 1$.
+This proves Claim 2.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3}:\quad
+\begin{eqnarray*}
+A_{1} \cap A_{2}
+\;\; \subset \;\;
+A_{3}
+\;\; := \;\;
+	\left\{\;\,
+		\omega \in \Omega
+		\;\,\left\vert\;\,
+		\underset{k\rightarrow\infty}{\lim}
+			\left(\;
+				\overset{n_{k}-1}{\underset{i=0}{\sum}}
+				\left\vert\,\Delta^{(n_{k})}_{i}W(\omega)\,\right\vert
+				\,\right)
+		\, = \, \infty
+		\right.
+		\,\right\}
+\end{eqnarray*}
+Proof of Claim 3:\quad
+First, note that the following inequality holds for each \,$\omega \in \Omega$,
+\begin{equation*}
+\overset{n_{k}-1}{\underset{i=0}{\sum}}\left(\Delta^{(n_{k})}_{i}W(\omega)\right)^{2}
+\;\; \leq \;\;
+	\left(\;\underset{0\,\leq\,i\,\leq\,n_{k}-1}{\max}\left\vert\,\Delta^{(n_{k})}_{i}W(\omega)\,\right\vert\;\right)
+	\cdot
+	\left(\;\overset{n_{k}-1}{\underset{i=0}{\sum}}\left\vert\,\Delta^{(n_{k})}_{i}W(\omega)\,\right\vert\;\right)
+\end{equation*}
+However, for \,$\omega \in A_{1} \cap A_{2}$,\, the left-hand side of the above inequality
+tends to \,$T > 0$\, as $k \longrightarrow \infty$ by Claim 1,
+while the first factor of its right-hand side tends to zero by Claim 2.
+Hence, we see that the second factor of the right-hand side must tend to \,$+\infty$\,
+as \,$k \longrightarrow \infty$. This proves Claim 3.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 4}:\quad
+\begin{eqnarray*}
+A_{3}
+\;\; \subset \;\;
+	\left\{\;\;
+		\omega \in \Omega
+		\,\;\left\vert
+		\begin{array}{c}
+			[\,0,\infty) \longrightarrow \Re : t \longmapsto W(t)(\omega)
+			\\
+			\overset{{\color{white}.}}{\textnormal{is of infinite variation}}
+			\\
+			\overset{{\color{white}.}}{\textnormal{over $[\,0,T\,]$}}
+			\end{array}
+			\right.
+		\!\!\right\}
+\end{eqnarray*}
+Proof of Claim 4:\quad Immediate by definition of infinite variation.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 5}:\quad $P(\,A_{3}\,) \,=\, 1$
+\vskip 0.2cm
+\noindent
+Proof of Claim 5:\quad
+\begin{equation*}
+P(\,A_{3}^{c}\,)
+\;\; = \;\;
+	P\!\left(\,(A_{1} \overset{{\color{white}.}}{\cap} A_{2})^{c}\,\right)
+\;\; = \;\;
+	P\!\left(\, A_{1}^{c} \,\overset{{\color{white}.}}{\cup} A_{2}^{c} \,\right)
+\;\; \leq \;\;
+	P\!\left(\, A_{1}^{c} \,\right)
+	\, + \,
+	P\!\left(\, A_{2}^{c} \,\right)
+\;\; = \;\;
+	0 \,+\, 0
+\;\; = \;\;
+	0\,,
+\end{equation*}
+Hence, \,$P(\,A_{3}\,) \,=\, 1$.\, This proves Claim 5.
+
+\vskip 0.5cm
+\noindent
+Lastly, the Theorem now follows immediately from Claim 4 and Claim 5.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
+\begin{remark}
+\mbox{}
+\vskip 0.1cm
+\noindent
+The significance of Theorem \ref{WienerProcessHasInfiniteVariationSamplePaths} is that
+it informs us that thestochastic integral with respect to a Wiener process cannot be defined
+sample-path by sample-path via the Lebesgue–Stieltjes integral.
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
