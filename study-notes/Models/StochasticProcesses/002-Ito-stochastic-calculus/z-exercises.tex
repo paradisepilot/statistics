@@ -44,12 +44,100 @@ Find the following limits in \,$L^{2}(\Omega,\mathcal{A},\mu)$:
 	W(t^{(n)}_{{\color{red}i+1}})\cdot\left(\,W(t^{(n)}_{i+1}) \,-\, W(t^{(n)}_{i})\,\right)
 	\end{equation*}
 \end{enumerate}
-\vskip 0.5cm
-\noindent
 \textit{Solution}\quad
+We will make use of these two identities:
+\begin{eqnarray}
+\label{FirstIdentity}
+a\cdot(b-a)
+& \equiv &
+	\dfrac{1}{2}\cdot(b^{2}-a^{2}) \, - \, \dfrac{1}{2}\cdot(a-b)^{2}
+\\
+\label{SecondIdentity}
+b\cdot(b-a)
+& \equiv &
+	\dfrac{1}{2}\cdot(b^{2}-a^{2}) \, + \, \dfrac{1}{2}\cdot(a-b)^{2}
+\end{eqnarray}
 \begin{enumerate}
 \item
-	
+	In view of \eqref{FirstIdentity},
+	\begin{eqnarray*}
+	W(t^{(n)}_{{\color{red}i}})\cdot\left(\,W(t^{(n)}_{i+1}) \,-\, W(t^{(n)}_{i})\,\right)
+	& = &
+		\dfrac{1}{2} \cdot \left(\,W(t^{(n)}_{i+1})^{2} \,-\, W(t^{(n)}_{i})^{2}\,\right)
+		\; - \;
+		\dfrac{1}{2} \cdot \left(\,W(t^{(n)}_{i+1}) \,-\, W(t^{(n)}_{i})\,\right)^{2}
+	\end{eqnarray*}
+	Now,
+	\begin{equation*}
+	\overset{n-1}{\underset{i=0}{\sum}}\,
+	\left(\,W(t^{(n)}_{i+1}) \,-\, W(t^{(n)}_{i})\,\right)^{2}
+	\quad
+	\overset{L^{2}}{\longrightarrow}
+	\quad
+	T\,,
+	\quad
+	\textnormal{by Exercise 6.29, p.157, \cite{Brzezniak1999}}
+	\end{equation*}
+	Secondly,
+	\begin{eqnarray*}
+	&&
+		\overset{n-1}{\underset{i=0}{\sum}}\,
+		\left(\,W(t^{(n)}_{i+1})^{2} \,-\, W(t^{(n)}_{i})^{2}\,\right)
+	\\
+	& = &
+		\left(\,W(t^{(n)}_{n})^{2} \,-\, W(t^{(n)}_{n-1})^{2}\,\right)
+		\; + \;
+		\left(\,W(t^{(n)}_{n-1})^{2} \,-\, W(t^{(n)}_{i})^{n-2}\,\right)
+		\; + \;
+		\;\cdots\;
+		\; + \;
+		\left(\,W(t^{(n)}_{1})^{2} \,-\, W(t^{(n)}_{0})^{2}\,\right)
+	\\
+	& \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
+		W(t^{(n)}_{n})^{2} \,-\, W(t^{(n)}_{0})^{2}
+	\;\; = \;\;
+		W(T)^{2} \,-\, W(0)^{2}
+	\;\; = \;\;
+		W(T)^{2}
+	\end{eqnarray*}
+	Hence, we see that
+	\begin{eqnarray*}
+	\overset{n-1}{\underset{i=0}{\sum}}\;\,
+	W(t^{(n)}_{{\color{red}i}})\cdot\left(\,W(t^{(n)}_{i+1}) \,-\, W(t^{(n)}_{i})\,\right)
+	& = &
+		\dfrac{1}{2}
+		\cdot
+		\overset{n-1}{\underset{i=0}{\sum}}\;
+		\left(\,W(t^{(n)}_{i+1})^{2} \,-\, W(t^{(n)}_{i})^{2}\,\right)
+		\; - \;
+		\dfrac{1}{2}
+		\cdot
+		\overset{n-1}{\underset{i=0}{\sum}}\;
+		\left(\,W(t^{(n)}_{i+1}) \,-\, W(t^{(n)}_{i})\,\right)^{2}
+	\\
+	& = &
+		\dfrac{1}{2} \cdot W(T)^{2}
+		\; - \;
+		\dfrac{1}{2}
+		\cdot
+		\overset{n-1}{\underset{i=0}{\sum}}\;
+		\left(\,W(t^{(n)}_{i+1}) \,-\, W(t^{(n)}_{i})\,\right)^{2}
+	\\
+	& \overset{L^{2}}{\longrightarrow} &
+		\dfrac{1}{2} \cdot W(T)^{2}
+		\;\,{\color{red}-}\;\,
+		\dfrac{1}{2} \cdot T
+	\end{eqnarray*}
+\item
+	Similarly,
+	\begin{eqnarray*}
+	\overset{n-1}{\underset{i=0}{\sum}}\;\,
+	W(t^{(n)}_{{\color{red}i+1}})\cdot\left(\,W(t^{(n)}_{i+1}) \,-\, W(t^{(n)}_{i})\,\right)
+	& \overset{L^{2}}{\longrightarrow} &
+		\dfrac{1}{2} \cdot W(T)^{2}
+		\;\,{\color{red}+}\;\,
+		\dfrac{1}{2} \cdot T
+	\end{eqnarray*}
 \end{enumerate}
 \qed
 
