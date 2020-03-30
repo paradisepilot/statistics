@@ -15,101 +15,213 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{definition}[Random step process]
+\begin{definition}[Filtered probability space]
 \mbox{}
 \vskip 0.1cm
 \noindent
-A stochastic process
-\,$\left\{\,\overset{{\color{white}.}}{f}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in T}$\,
-is called a \textbf{random step process} if there exists a finite sequence
-\,$0 = t_{0} < t_{1} < t_{2} < \;\cdots\; < t_{n} < \infty$\,
-and square-integrable random variables
-\,$\eta_{0}, \eta_{1}, \eta_{2}, \;\ldots\; ,\eta_{n-1} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\,
-such that
+A \textbf{filtered probability space} is a $4$-tuple
+\,$\left(\,\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T} \,\right)$,\,
+where
+\begin{itemize}
+\item
+	$\left(\,\Omega \,,\, \mathcal{A} \,,\, \mu \,\right)$\, is a probability space, i.e.
+	$\Omega$ is a non-empty set, $\mathcal{A}$ is a $\sigma$-algebra of subsets of \,$\Omega$,
+	$\mu$ is a probability measure defined on $\mathcal{A}$, and
+\item
+	$\{\,\mathcal{F}_{t}\,\}_{t \in T}$\, is a filtration on the measurable space $(\Omega,\mathcal{A})$, i.e.
+	\,$\left\{\,\mathcal{F}_{t}\,\right\}_{t \in T} \,\subset\, \mathcal{A}$,\,
+	is a one-parameter family of sub-$\sigma$-algebras of \,$\mathcal{A}$,\,
+	parametrized by \,$T \subset \Re$,\,
+	such that, for any \,$s,\, t \in T$,
+	\begin{equation*}
+	s \,\leq\, t
+	\quad\Longrightarrow\quad
+	\mathcal{F}_{s} \; \subset \; \mathcal{F}_{t} \; \subset \; \mathcal{A}
+	\end{equation*}
+\end{itemize}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.3cm
+\begin{definition}[Stochastic step process]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A \textbf{stochastic step process} defined on a filtered probability space
+\,$\left(\,\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)} \,\right)$\,
+is a stochastic process
+\,$\left\{\,\overset{{\color{white}.}}{f}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in[\,0,\infty)}$\,
+that can be expressed as follows:
 \begin{equation*}
 f(t)(\omega)
 \;\; = \;\;
-	\overset{n-1}{\underset{i=0}{\sum}}\;\;
-	\eta_{i}(\omega) \cdot 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)
+	\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\;
+	\eta_{i}(\omega) \cdot 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)\,,
 \end{equation*}
+where
+\begin{itemize}
+\item
+	$0 = t_{0} < t_{1} < t_{2} < \;\cdots\; < t_{n} < \infty$\,
+	constitute a finite sequence of non-negative real numbers, 
+\item
+	$\eta_{0},\, \eta_{1},\, \eta_{2},\, \;\ldots\; ,\, \eta_{n-1} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\,
+	are square-integrable random variables, and
+\item
+	$\eta_{i}$\, is \,$\mathcal{F}_{t_{i}}$-measurable, for each \,$i = 0, 1, \ldots\,, n-1$.
+\end{itemize}
+The collection of all stochastic step processes defined on
+the filtered probability space
+\,$\left(\,\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)} \,\right)$\,
+is denoted by:
+\,$M^{2}_{\textnormal{step}}\!
+\left(\,
+	\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+	\,\right)$.
 \end{definition}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{definition}[Filtration]
+\vskip 0.5cm
+\begin{remark}
+\mbox{}
+\vskip 0.2cm
+\begin{itemize}
+\item
+	$M^{2}_{\textnormal{step}}\!
+	\left(\,
+		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+		\,\right)$\,
+	is a vector space over $\Re$.
+\item
+	Each
+	\,$\left\{\,\overset{{\color{white}.}}{f}(t)\,\right\}_{t\in[0,\infty)}$
+	$\in$
+	$M^{2}_{\textnormal{step}}\!
+	\left(\,
+		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+		\,\right)$\,
+	is adapted to the filtration
+	\,$\{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}$.
+\item
+	Each
+	\,$\left\{\,\overset{{\color{white}.}}{f}(t)\,\right\}_{t\in[0,\infty)}$
+	$\in$
+	$M^{2}_{\textnormal{step}}\!
+	\left(\,
+		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+		\,\right)$\,
+	is square-integrable for each \,$t \in [\,0,\infty)$, i.e.
+	\begin{equation*}
+	f(t) \; \in \; L^{2}(\Omega,\mathcal{A},\mu),
+	\quad
+	\textnormal{for each \,$t \in [\,0,\infty)$.}
+	\end{equation*}
+\end{itemize}
+\end{remark}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{definition}[It\^{o} stochastic integral for stochastic step processes]
 \mbox{}
 \vskip 0.2cm
 \noindent
-Suppose $(\Omega,\mathcal{A})$ is a measurable space,
-i.e. $\Omega$ is a non-empty set and $\mathcal{A}$ is a $\sigma$-algebra
-of subsets of \,$\Omega$.
-A \textbf{filtration} on \,$(\Omega,\mathcal{A})$\,
-is a one-parameter family
-$\left\{\,\mathcal{F}_{t}\,\right\}_{t \in T}$, with $T \subset \Re$,
-of sub-$\sigma$-algebras of $\mathcal{A}$
-such that, for any $s, t \in T$,
+Suppose:
+\begin{itemize}
+\item
+	$\left\{\,\overset{{\color{white}.}}{W}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in[\,0,\infty)}$\,
+	is a Wiener process.
+\item
+	$\left\{\;\overset{{\color{white}.}}{\mathcal{F}}_{t}\;\right\}_{t\in[\,0,\infty)}$\,
+	is the filtration on \,$(\Omega,\mathcal{A})$\, induced by
+	\,$\left\{\;\overset{{\color{white}.}}{W}(t)\;\right\}_{t\in[\,0,\infty)}$,\,
+	more precisely,
+	\begin{equation*}
+	\mathcal{F}_{t}
+	\;\; := \;\;
+		\sigma\!\left(\;\left\{\,\overset{{\color{white}.}}{W}(\tau)\,\right\}_{\tau\in[\,0,\,t\,]}\,\right),
+	\quad
+	\textnormal{for each \,$t \in [\,0,\infty)$}.
+	\end{equation*}
+\end{itemize}
+For each
+\,$\left\{\,\overset{{\color{white}.}}{f}(t)\,\right\}_{t\in[\,0,\infty)}$\,
+$\in$
+\,$M^{2}_{\textnormal{step}}\!
+	\left(\,
+		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
+		\,\right)$,\,
+expressed as follows
 \begin{equation*}
-s \,\leq\, t
-\quad\Longrightarrow\quad
-\mathcal{F}_{s} \; \subset \; \mathcal{F}_{t} \; \subset \; \mathcal{A}
+f(t)(\omega)
+\;\; = \;\;
+	\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+	\eta_{i}(\omega) \cdot 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)\,,
+\end{equation*}
+its \textbf{It\^{o} stochastic integral}
+\,$I(f) : \Omega \longrightarrow \Re$\,
+is an $\Re$-valued function defined on \,$\Omega$\, by:
+\begin{equation*}
+I(f)(\omega)
+\;\; = \;\;
+	\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+	\eta_{i}(\omega) \cdot \left(\, W(t_{i+1})(\omega) \,\overset{{\color{white}.}}{-}\, W(t_{i})(\omega) \,\right)
 \end{equation*}
 \end{definition}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{definition}[Martingale, sub-martingale, super-martingale]
+\vskip 0.5cm
+\begin{proposition}
 \mbox{}
-\vskip 0.1cm
+\vskip 0.2cm
 \noindent
-A stochastic process
-\,$\left\{\,\overset{{\color{white}.}}{X}_{t} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in T}$\,
-is called a \textbf{martingale}
-with respect to a filtration
-\,$\left\{\,\mathcal{A}_{t}\,\right\}_{t \in T}$\, on \,$(\Omega,\mathcal{A})$,\,
-if
+Suppose:
 \begin{itemize}
 \item
-	$X_{t}$ is integrable, for each $t \in T$,
+	$\left\{\,\overset{{\color{white}.}}{W}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in[\,0,\infty)}$\,
+	is a Wiener process.
 \item
-	$X_{t}$ is $\mathcal{A}_{t}$-measurable, for each $t \in T$, and
-\item
-	$X_{s} \; {\color{red}=} \; E\!\left[\,X_{t}\,\vert\,\mathcal{A}_{s}\,\right]$,\,
-	for each $s, t \in T$ with $s \leq t$.
+	$\left\{\;\overset{{\color{white}.}}{\mathcal{F}}_{t}\;\right\}_{t\in[\,0,\infty)}$\,
+	is the filtration on \,$(\Omega,\mathcal{A})$\, induced by
+	\,$\left\{\;\overset{{\color{white}.}}{W}(t)\;\right\}_{t\in[\,0,\infty)}$,\,
+	more precisely,
+	\begin{equation*}
+	\mathcal{F}_{t}
+	\;\; := \;\;
+		\sigma\!\left(\;\left\{\,\overset{{\color{white}.}}{W}(\tau)\,\right\}_{\tau\in[\,0,\,t\,]}\,\right),
+	\quad
+	\textnormal{for each \,$t \in [\,0,\infty)$}.
+	\end{equation*}
 \end{itemize}
-$\left\{\,X_{t}\,\right\}_{t \in T}$\, is called a \textbf{{\color{red}sub-}martingale}
-if the equality above is replaced with \,{\color{red}$\leq$}\,,
-i.e. if \,$\left\{\,X_{t}\,\right\}_{t \in T}$\, satisfies instead:
-\begin{equation*}
-X_{s} \;\; {\color{red}\leq} \;\; E\!\left[\,X_{t}\,\vert\,\mathcal{A}_{s}\,\right],
-\quad
-\textnormal{for each \,$s, t \in T$ with $s \leq t$}.
-\end{equation*}
-\vskip 0.1cm
-\noindent
-$\left\{\,X_{t}\,\right\}_{t \in T}$\, is called a \textbf{{\color{red}super-}martingale}
-if the equality above is replaced with \,{\color{red}$\geq$}\,,
-i.e. if \,$\left\{\,X_{t}\,\right\}_{t \in T}$\, satisfies instead:
-\begin{equation*}
-X_{s} \;\; {\color{red}\geq} \;\; E\!\left[\,X_{t}\,\vert\,\mathcal{A}_{s}\,\right],
-\quad
-\textnormal{for each \,$s, t \in T$ with $s \leq t$}.
-\end{equation*}
-\end{definition}
-
+For each
+\,$\left\{\,\overset{{\color{white}.}}{f}(t)\,\right\}_{t\in[\,0,\infty)}$\,
+$\in$
+\,$M^{2}_{\textnormal{step}}\!
+	\left(\,
+		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
+		\,\right)$,\,
+the following statements hold:
+\begin{enumerate}
+\item
+	$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$.
+\item
+	\begin{equation*}
+	E\!\left(\; \left\vert\, I(f) \,\right\vert^{2} \;\right)
+	\;\; = \;\;
+		E\!\left(\; \int_{0}^{\infty}\; f(t)^{2} \;\d t \;\right)
+	\end{equation*}
+\end{enumerate}
+\end{proposition}
+\proof
+\begin{enumerate}
+\item
+\item
+\end{enumerate}
+\qed
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{remark}[Mnemonic aid]
-\mbox{}
-\vskip -0.1cm
-\noindent
-\begin{itemize}
-\item
-	A {\color{red}sub-}martingale {\color{red}sub}ceeds its own expectation value given history.
-\item
-	A super-martingale exceeds its own expectation value given history.
-\item
-	A martingale equals its own expectation value given history.
-\end{itemize}
-\end{remark}
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
