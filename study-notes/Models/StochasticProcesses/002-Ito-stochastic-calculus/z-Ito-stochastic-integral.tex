@@ -15,29 +15,23 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{definition}[Stochastic process]
+\begin{definition}[Random step process]
 \mbox{}
-\vskip -0.2cm
+\vskip 0.1cm
 \noindent
-\begin{itemize}
-\item
-	A \,\textbf{stochastic process}\, is a one-parameter family
-	\,$\left\{\,\overset{{\color{white}.}}{X}_{t} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in T}$\,
-	of random variables, defined on a common domain probability space
-	\,$(\Omega,\mathcal{A},\mu)$\, and indexed by a subset $T \subset \Re$.
-\item
-	When $T = \{1,2,\ldots\,\}$,
-	\,$\left\{\,X_{t}\,\right\}_{t \in T}$\,
-	is called a \textbf{discrete-time} stochastic process.
-	When $T \subset \Re$ is an interval,
-	\,$\left\{\,X_{t}\,\right\}_{t \in T}$\,
-	is called a \textbf{continuous-time} stochastic process.
-\item
-	For each $\omega \in \Omega$, the function
-	\,$T \longrightarrow \Re : t \longmapsto X_{t}(\omega)$\,
-	is called a \textbf{sample path} of the stochastic process
-	\,$\left\{\,X_{t}\,\right\}_{t \in T}$.	
-\end{itemize}
+A stochastic process
+\,$\left\{\,\overset{{\color{white}.}}{f}(t) : (\Omega,\mathcal{A},\mu) \longrightarrow \Re \;\right\}_{t \in T}$\,
+is called a \textbf{random step process} if there exists a finite sequence
+\,$0 = t_{0} < t_{1} < t_{2} < \;\cdots\; < t_{n} < \infty$\,
+and square-integrable random variables
+\,$\eta_{0}, \eta_{1}, \eta_{2}, \;\ldots\; ,\eta_{n-1} : (\Omega,\mathcal{A},\mu) \longrightarrow \Re$\,
+such that
+\begin{equation*}
+f(t)(\omega)
+\;\; = \;\;
+	\overset{n-1}{\underset{i=0}{\sum}}\;\;
+	\eta_{i}(\omega) \cdot 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)
+\end{equation*}
 \end{definition}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
