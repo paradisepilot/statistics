@@ -210,16 +210,179 @@ the following statements hold:
 	\begin{equation*}
 	E\!\left(\; \left\vert\, I(f) \,\right\vert^{2} \;\right)
 	\;\; = \;\;
-		E\!\left(\; \int_{0}^{\infty}\; f(t)^{2} \;\d t \;\right)
+		E\!\left(\; \int_{0}^{\infty} f(t)^{2} \;\d t \;\right)
 	\end{equation*}
 \end{enumerate}
 \end{proposition}
 \proof
+For notational simplicity, we introduce the following:
+\begin{equation*}
+\begin{array}{lcl}
+\Delta_{i}t & := & t_{i+1} \, - \, t_{i}
+\\
+\Delta_{i}W & \overset{{\color{white}1}}{:=} & W(t_{i+1}) \,\overset{{\color{white}.}}{-}\, W(t_{i})
+\end{array}
+\end{equation*}
+By Proposition \ref{WienerProcessBasicProperties}, we have:
+\begin{equation*}
+E\!\left[\,\Delta_{i}W\,\right] \; = \; 0
+\quad\textnormal{and}\quad
+E\!\left[\,(\Delta_{i}W)^{2}\,\right] \; = \; \Delta_{i}t
+\end{equation*}
+Let \,$f(t)$\, be expressed as follows:
+\begin{equation*}
+f(t)(\omega)
+\;\; = \;\;
+	\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+	\eta_{i}(\omega) \cdot 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)
+\end{equation*}
 \begin{enumerate}
 \item
+	\begin{eqnarray*}
+	\vert\, I(f) \,\vert^{2}
+	& = &
+		\left(\;
+			\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+			\eta_{i} \cdot \left(\, W(t_{i+1}) \,\overset{{\color{white}.}}{-}\, W(t_{i}) \right)
+			\right)^{2}
+	\;\; = \;\;
+		\left(\;
+			\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+			\eta_{i} \cdot \Delta_{i}W
+			\right)^{2}
+	\\
+	& = &
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		\overset{n-1}{\underset{j\,=\,0}{\sum}}\;\,
+		\eta_{i} \cdot \eta_{j} \cdot \Delta_{i}W \cdot \Delta_{j}W
+	\\
+	& = &
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		\eta_{i}^{2} \cdot (\Delta_{i}W)^{2}
+		\; + \;
+		2 \cdot
+		\underset{0 \,\leq\, i \,<\, j \,\leq\, n-1}{\sum\;\sum}\;\,
+		\eta_{i} \cdot \eta_{j} \cdot \Delta_{i}W \cdot \Delta_{j}W
+	\end{eqnarray*}
+	Now, note that \,$\eta_{i}$\, and \,$\Delta_{i}W$\, are independent, and
+	for \,$i < j$, \,$(\,\eta_{i}\cdot\eta_{j}\cdot\Delta_{i}W\,)$\, and \,$\Delta_{j}W$\, are independent.
+	Hence,
+	\begin{eqnarray*}
+	E\!\left[\;\, \overset{{\color{white}.}}{\vert\, I(f) \,\vert^{2}} \;\right]
+	& = &
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		E\!\left[\; \overset{{\color{white}.}}{\eta_{i}^{2}} \cdot (\Delta_{i}W)^{2} \,\right]
+		\; + \;
+		2 \cdot
+		\underset{0 \,\leq\, i \,<\, j \,\leq\, n-1}{\sum\;\sum}\;\,
+		E\!\left[\; \overset{{\color{white}1}}{\eta_{i}} \cdot \eta_{j} \cdot \Delta_{i}W \cdot \Delta_{j}W \;\right]
+	\\
+	& = &
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		E\!\left[\; \overset{{\color{white}.}}{\eta_{i}^{2}} \;\right] \cdot E\!\left[\; \overset{{\color{white}.}}{(\Delta_{i}W)^{2}} \,\right]
+		\; + \;
+		2 \cdot
+		\underset{0 \,\leq\, i \,<\, j \,\leq\, n-1}{\sum\;\sum}\;\,
+		E\!\left[\; \overset{{\color{white}1}}{\eta_{i}} \cdot \eta_{j} \cdot \Delta_{i}W \;\right]
+		\cdot
+		E\!\left[\; \overset{{\color{white}.}}{\Delta_{j}W} \;\right]
+	\\
+	& = &
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		E\!\left[\; \overset{{\color{white}.}}{\eta_{i}^{2}} \;\right] \cdot \Delta_{i}t
+		\; + \;
+		2 \cdot
+		\underset{0 \,\leq\, i \,<\, j \,\leq\, n-1}{\sum\;\sum}\;\,
+		E\!\left[\; \overset{{\color{white}1}}{\eta_{i}} \cdot \eta_{j} \cdot \Delta_{i}W \;\right]
+		\cdot
+		0
+	\\
+	& = &
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		E\!\left[\; \overset{{\color{white}.}}{\eta_{i}^{2}} \;\right] \cdot \Delta_{i}t
+	\\
+	& < &
+		\infty\,,
+		\quad\textnormal{since \,$\eta \,\in\, L^2(\Omega,\mathcal{A},\mu)$}
+	\end{eqnarray*}
+	This proves that indeed \,$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$.
 \item
+	Observe that
+	\begin{eqnarray*}
+	f(t)^{2}
+	& = &
+		\left(\;
+			\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+			\eta_{i} \cdot 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)
+			\;\right)
+		\cdot
+		\left(\;
+			\overset{n-1}{\underset{j\,=\,0}{\sum}}\;\,
+			\eta_{j} \cdot 1_{[\,t_{j}\,,\,t_{j+1}\,)}(t)
+			\;\right)
+	\\
+	& = &
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		\eta_{i}^{2} \cdot 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)^{2}
+		\; + \;
+		2 \cdot
+		\underset{0\,\leq\,i\,<\,j\,\leq\,n-1}{\sum\;\sum}\;\,
+		\eta_{i} \cdot \eta_{j}
+		\cdot
+		1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)
+		\cdot
+		1_{[\,t_{j}\,,\,t_{j+1}\,)}(t)
+	\\
+	& = &
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		\eta_{i}^{2} \cdot 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)
+		\; + \;
+		2 \cdot
+		\underset{0\,\leq\,i\,<\,j\,\leq\,n-1}{\sum\;\sum}\;\,
+		\eta_{i} \cdot \eta_{j}
+		\cdot
+		0
+	\\
+	& = &
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		\eta_{i}^{2} \cdot 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)
+	\end{eqnarray*}
+	Hence,
+	\begin{eqnarray*}
+	\int_{0}^{\infty} f(t)^{2} \;\d t
+	& = &
+		\int_{0}^{\infty}
+			\left(\;
+				\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+				\eta_{i}^{2} \cdot 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t)
+				\right)
+		 	\d t
+	\;\; = \;\;
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		\eta_{i}^{2} \cdot
+		\int_{0}^{\infty} 1_{[\,t_{i}\,,\,t_{i+1}\,)}(t) \;\d t
+	\;\; = \;\;
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		\eta_{i}^{2} \cdot \Delta_{i}t
+	\end{eqnarray*}
+	which in turn implies
+	\begin{eqnarray*}
+	E\!\left(\; \int_{0}^{\infty} f(t)^{2} \;\d t \;\right)
+	& = &
+		E\!\left(\;\,
+			\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+			\eta_{i}^{2} \cdot \Delta_{i}t
+			\,\right)
+	\;\; = \;\;
+		\overset{n-1}{\underset{i\,=\,0}{\sum}}\;\,
+		E\!\left[\; \overset{{\color{white}.}}{\eta_{i}^{2}} \;\right] \cdot \Delta_{i}t
+	\;\; = \;\;
+		E\!\left[\;\, \overset{{\color{white}.}}{\vert\, I(f) \,\vert^{2}} \;\right],
+	\end{eqnarray*}
+	as required.
+	\qed
 \end{enumerate}
-\qed
+
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
