@@ -414,7 +414,7 @@ We define:
 	\begin{equation*}
 	M^{2}\!
 		\left(\,
-			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
 			\,\right)
 	\; := \;
 		\left\{\;\;
@@ -422,22 +422,23 @@ We define:
 			\;\;\left\vert\;
 			\begin{array}{c}
 				\left\{\,f(t) : (\Omega,\mathcal{A},\mu) \overset{{\color{white}1}}{\longrightarrow} \Re\,\right\}_{t\in[\,0,\infty)}
-					\;\;\textnormal{is a stochastic process}
 				\\
-				\;\;\textnormal{such that
-					\,$\overset{{\color{white}.}}{E\!\left(\,\displaystyle\int_{0}^{\infty} f(t)^{2}\,\d t\,\right) \,<\, \infty}$,\,
-					and there exists}
+				\overset{{\color{white}1}}{\textnormal{is a stochastic process such that}}
 				\\
-				\;\;\textnormal{a sequence
-					\,$\overset{{\color{white}1}}{f_{1}}, f_{2}, \,\ldots\, \in M^{2}_{\textnormal{step}}\!\left(\,
-					\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
-					\,\right)$}
+				\overset{{\color{white}.}}{E\!\left(\,\displaystyle\int_{0}^{\infty} f(t)^{2}\,\d t\,\right) \,<\, \infty},
+				\;\;\textnormal{and}
+				\\
+				\overset{{\color{white}1}}{\textnormal{there exists a sequence}}
+				\\
+				\overset{{\color{white}1}}{f_{1}}, f_{2}, \,\ldots\, \in M^{2}_{\textnormal{step}}\!\left(\,
+					\overset{{\color{white}.}}{\Omega},\mathcal{A},\mu,\{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+					\,\right)
 				\\
 				\textnormal{such that}
-				\;\;
+				\;\;\,
 				\underset{n\rightarrow\infty}{\lim}\;
 				E\!\left(\;\displaystyle\int_{0}^{\infty}\left(\,f(t) \overset{{\color{white}.}}{-} f_{n}(t)\,\right)^{2}\d t\;\right)
-				\; = \; 0
+				= \, 0
 			\end{array}
 			\right.\;\right\}
 	\end{equation*}
@@ -445,10 +446,31 @@ We define:
 	of stochastic steps functions \,$f_{1},\, f_{2},\, \ldots$\,
 	\textbf{approximates} the stochastic process \,$f$.
 \item
-	For \,$f \,\in\, M^{2}\!
+	Given \,$f \,\in\, M^{2}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)$,\,
+	an element \,$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$\,
+	is called an \textbf{It\^{o} stochastic integral} of \,$f$\, if
+	\begin{equation*}
+	\underset{n\rightarrow\infty}{\lim}\;\,E\!\left[\;
+		\left(\,I(f) \,\overset{{\color{white}.}}{-}\, I(f_{n})\,\right)^{2}
+		\;\right]
+	\;\; = \;\;
+		0\,,
+	\end{equation*}
+	for each sequence
+	\,$f_{1},\, f_{2},\, \ldots\, \in
+	M^{2}_{\textnormal{step}}\!
 		\left(\,
 			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
 			\,\right)$\,
+	that approximates \,$f$.\,
+	We will also use the notation
+	\begin{equation*}
+	\int_{0}^{\infty} f(t)\;\d W(t)
+	\end{equation*}
+	in place of \,$I(f)$.
 \end{enumerate}
 \end{definition}
 
