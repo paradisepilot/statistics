@@ -781,37 +781,116 @@ the following statements are true:
 	\vskip 0.2cm
 	\noindent
 	Proof of Claim 2:\quad
-	Suppose \,$g_{1}, g_{2}, \,\ldots$\; is another sequence of stochastic step processes
-	approximating \,$f$,\, and \,$g_{\star}$\, is its limit in \,$L^{2}(\Omega,\mathcal{A},\mu)$.\,
+	Suppose
+	\,$f_{1}, f_{2}, \,\ldots$\, and \,$g_{1}, g_{2}, \,\ldots$\; are two sequences of stochastic step processes
+	that each approximate \,$f$.
+	By Claim 1, the image sequence under \,$I(\,\cdot\,)$\, of each of these two sequences
+	is Cauchy in the Hilbert space \,$L^{2}(\Omega,\mathcal{A},\mu)$,\,
+	and hence converges to an element in \,$L^{2}(\Omega,\mathcal{A},\mu)$.\,
+	Thus, we may define
+	\begin{equation*}
+	f_{\star} \; := \; \underset{n\rightarrow\infty}{\lim}\,I(f_{n})
+	\quad\textnormal{and}\quad
+	g_{\star} \; := \; \underset{n\rightarrow\infty}{\lim}\,I(g_{n})
+	\;\; \in \;\; L^{2}(\Omega,\mathcal{A},\mu)
+	\end{equation*}
 	We need to show that \,$f_{\star} \, = \, g_{\star}$.\,
-	To this end, observe that
+	To this end, define the ``interlaced'' sequence
+	\,$h_{1} := f_{1},\, h_{2} := g_{1},\, h_{3} := f_{2},\, h_{4} := g_{2},\;\ldots\;$;\,
+	more precisely,
+	\begin{equation*}
+	h_{n} \;\; := \;\;
+		\left\{\begin{array}{cl}
+		f_{(n+1)/2}\,, & \textnormal{if \,$n$\, is odd}\,,
+		\\
+		g_{n/2}\,, & \textnormal{if \,$n$\, is even}
+		\end{array}\right.
+	\end{equation*}
+	We claim that \,$I(h_{1}), I(h_{2}), \;\ldots$\, form a Cauchy sequence in \,$L^{2}(\Omega,\mathcal{A},\mu)$.\,
+	Hence, let \,$\varepsilon \, > \, 0$\, be given. We need to find \,$n(\varepsilon) \in \N$\, such that
+	\begin{equation*}
+	\left\Vert\;\, I(h_{m}) \overset{{\color{white}.}}{-} I(h_{n}) \,\;\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+	\;\; < \;\; \varepsilon\,,
+	\quad\textnormal{for each \,$m,\, n > n(\varepsilon)$}.
+	\end{equation*}
+	Now, since each of the sequences $\{\,f_{n}\,\}$ and $\{g_{n}\}$ approximates $f$ in $M^{2}$,
+	there exists \,$n(\varepsilon) \in \N$\, such that
+	\begin{equation*}
+	\left\Vert\; f_{n} \overset{{\color{white}.}}{-} f \;\right\Vert_{M^{2}} \; < \; \dfrac{\varepsilon}{2}
+	\quad\textnormal{and}\quad
+	\left\Vert\; g_{n} \overset{{\color{white}.}}{-} f \;\right\Vert_{M^{2}} \; < \; \dfrac{\varepsilon}{2}\,,
+	\quad\textnormal{for each \,$n \,> \dfrac{n(\varepsilon)}{3}$}
+	\end{equation*}
+	Note that:
 	\begin{eqnarray*}
-	\left\Vert\; I(f_{m}) \overset{{\color{white}.}}{-} I(g_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+	n \,>\, n(\varepsilon)
+	& \Longrightarrow &
+		\dfrac{n}{2} \,>\, \dfrac{n(\varepsilon)}{2} \,>\, \dfrac{n(\varepsilon)}{3}\,,
+		\quad\textnormal{and}\quad
+	\\
+	n \,>\, n(\varepsilon)
+	& \Longrightarrow &
+		\dfrac{n+1}{2}
+		\,>\, \dfrac{n(\varepsilon)+1}{2}
+		\,=\, \dfrac{1}{3}\cdot\dfrac{3 \cdot n(\varepsilon)+3}{2}
+		\,>\, \dfrac{1}{3}\cdot\dfrac{2 \cdot n(\varepsilon)}{2} 
+		\,>\, \dfrac{n(\varepsilon)}{3}
+	\end{eqnarray*}
+	Therefore, we see that, for \,$n > n(\varepsilon)$,\, we have:
+	\begin{equation*}
+	\left\Vert\; h_{n} \overset{{\color{white}.}}{-} f \;\right\Vert_{M^{2}}
+	\;\; = \;\;
+		\left\{\begin{array}{ll}
+		\left\Vert\;
+			f_{(n+1)/2} \overset{{\color{white}.}}{-} f
+			\;\right\Vert_{M^{2}}
+		\;<\; \dfrac{\varepsilon}{2}\,, & \textnormal{if \,$n$\, is odd}\,,
+		\\
+		\overset{{\color{white}1}}{\left\Vert\;
+			{\color{white}...}g_{n/2}{\color{white}...} \overset{{\color{white}.}}{-} f
+			\;\right\Vert_{M^{2}}}
+		\;<\; \dfrac{\varepsilon}{2}\,, & \textnormal{if \,$n$\, is even}
+		\end{array}\right.
+	\end{equation*}
+	which implies that, for each \,$m,\, n > n(\varepsilon)$,\, we have
+	\begin{eqnarray*}
+	\left\Vert\; I(h_{m}) \overset{{\color{white}.}}{-} I(h_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
 	& = &
-		\left\Vert\; I(f_{m} \overset{{\color{white}.}}{-} g_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)},
+		\left\Vert\; I(h_{m} \overset{{\color{white}.}}{-} h_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)},
 		\quad
 		\textnormal{by linearity of \,$I(\,\cdot\,)$\, on stochastic step processes}
 	\\
 	& = &
-		\left\Vert\; f_{m} \overset{{\color{white}.}}{-} g_{n} \;\right\Vert_{M^{2}},
+		\left\Vert\; h_{m} \overset{{\color{white}.}}{-} h_{n} \;\right\Vert_{M^{2}},
 		\quad
 		\textnormal{by Proposition \ref{ItoIsometryForStepProcesses}}
 	\\
 	& \leq &
-		\left\Vert\; f_{m} \overset{{\color{white}.}}{-} f \;\right\Vert_{M^{2}}
+		\left\Vert\; h_{m} \overset{{\color{white}.}}{-} f \;\right\Vert_{M^{2}}
 		\; + \;
-		\left\Vert\; f \overset{{\color{white}.}}{-} g_{n} \;\right\Vert_{M^{2}},
+		\left\Vert\; f \overset{{\color{white}.}}{-} h_{n} \;\right\Vert_{M^{2}},
 		\quad
 		\textnormal{by Proposition \ref{MTwoIsNormedVectorSpace}},
+	\\
+	& < &
+		\dfrac{\varepsilon}{2} \; + \; \dfrac{\varepsilon}{2}
+	\;\; = \;\; \varepsilon
 	\end{eqnarray*}
-	which readily implies that the images under \,$I(\,\cdot\,)$\, of the elements of the ``interlaced'' sequence
-	\,$h_{1} := f_{1},\, h_{2} := g_{1},\, h_{3} := f_{2},\, h_{4} := g_{2},\;\ldots$\; also form a Cauchy sequence in
-	\,$L^{2}(\Omega,\mathcal{A},\mu)$,\, which admits the original two sequences as subsequences.
-	This implies that
+	This proves that \,$\left\{\,\overset{{\color{white}.}}{I(h_{n})}\,\right\}$\,
+	is indeed a Cauchy sequence in \,$L^{2}(\Omega,\mathcal{A},\mu)$.
+	However,
+	\,$\left\{\,\overset{{\color{white}.}}{I(h_{n})}\,\right\}$\,
+	admits the original two sequences
+	\,$\left\{\,\overset{{\color{white}.}}{I(f_{n})}\,\right\}$\,
+	and
+	\,$\left\{\,\overset{{\color{white}.}}{I(g_{n})}\,\right\}$\,
+	as subsequences, which implies that
 	\begin{equation*}
 	f_{\star} \; = \; h_{\star} \; = \; g_{\star}\,,
 	\end{equation*}
-	where \,$h_{\star}$\, is the limit of \,$I(h_{1}), I(h_{2}), \,\ldots$\; in \,$L^{2}(\Omega,\mathcal{A},\mu)$.\,
+	where \,$h_{\star}$\, is the limit of
+	\,$\left\{\,\overset{{\color{white}.}}{I(h_{n})}\,\right\}$\,
+	in \,$L^{2}(\Omega,\mathcal{A},\mu)$.\,
 	This proves Claim 2.
 	
 	\vskip 0.5cm
