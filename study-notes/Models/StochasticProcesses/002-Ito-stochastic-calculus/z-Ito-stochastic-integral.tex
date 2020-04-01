@@ -698,7 +698,7 @@ the following statements are true:
 	$I(f_{1})\,,\, I(f_{2})\,,\; \ldots\, \in L^{2}(\Omega,\mathcal{A},\mu)$\, is a Cauchy sequence
 	in the Hilbert space \,$L^{2}(\Omega,\mathcal{A},\mu)$.\;
 	Hence, the \,sequence $I(f_{1})\,,\, I(f_{2})\,,\; \ldots\,$\, admits a unique limit
-	\,$I(f) \in L^{2}(\Omega,\mathcal{A},\mu)$.
+	\,$f_{\star} \in L^{2}(\Omega,\mathcal{A},\mu)$.
 	\vskip 0.2cm
 	\noindent
 	Proof of Claim 1:\quad
@@ -757,10 +757,44 @@ the following statements are true:
 	
 	\vskip 0.3cm
 	\textbf{Claim 2:}\quad
-	$I(f) \in L^{2}(\Omega,\mathcal{A},\mu)$\, is an It\^{o} stochastic integral of \,$f$.
+	$f_{\star} \in L^{2}(\Omega,\mathcal{A},\mu)$\, in Claim 1 is fully determined by \,$f$,\, and
+	independent of the specific choice of the the sequence \,$f_{1}, f_{2},\;\ldots$
 	\vskip 0.2cm
 	\noindent
 	Proof of Claim 2:\quad
+	Suppose \,$g_{1}, g_{2}, \,\ldots$\; is another sequence of stochastic step processes
+	approximating \,$f$,\, and \,$g_{\star}$\, is its limit in \,$L^{2}(\Omega,\mathcal{A},\mu)$.\,
+	We need to show that \,$f_{\star} \, = \, g_{\star}$.\,
+	To this end, observe that
+	\begin{eqnarray*}
+	\left\Vert\; I(f_{m}) \overset{{\color{white}.}}{-} I(g_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+	& = &
+		\left\Vert\; I(f_{m} \overset{{\color{white}.}}{-} g_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)},
+		\quad
+		\textnormal{by linearity of \,$I(\,\cdot\,)$\, on stochastic step processes}
+	\\
+	& = &
+		\left\Vert\; f_{m} \overset{{\color{white}.}}{-} g_{n} \;\right\Vert_{M^{2}},
+		\quad
+		\textnormal{by Proposition \ref{ItoIsometryForStepProcesses}}
+	\\
+	& \leq &
+		\left\Vert\; f_{m} \overset{{\color{white}.}}{-} f \;\right\Vert_{M^{2}}
+		\; + \;
+		\left\Vert\; f \overset{{\color{white}.}}{-} g_{n} \;\right\Vert_{M^{2}},
+		\quad
+		\textnormal{by Proposition \ref{MTwoIsNormedVectorSpace}},
+	\end{eqnarray*}
+	which readily implies that the ``interlaced'' sequence
+	\,$h_{1} := f_{1},\, h_{2} := g_{1},\, h_{3} := f_{2},\, h_{4} := g_{2},\;\ldots$\; is also a Cauchy sequence in
+	\,$L^{2}(\Omega,\mathcal{A},\mu)$,\, admitting the original two sequences as subsequences.
+	This implies that
+	\begin{equation*}
+	f_{\star} \; = \; h_{\star} \; = \; g_{\star}\,,
+	\end{equation*}
+	where \,$h_{\star}$\, is the limit of \,$h_{1}, h_{2}, \,\ldots$\; in \,$L^{2}(\Omega,\mathcal{A},\mu)$.\,
+	This proves Claim 2.
+	
 	
 \end{enumerate}
 \qed
