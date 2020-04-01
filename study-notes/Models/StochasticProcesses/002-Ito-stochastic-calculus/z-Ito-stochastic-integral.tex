@@ -1202,8 +1202,79 @@ Then, the following statements are true:
 	follows immediately by Claim 1 and Claim 2.
 
 \item
-
+	Recall that, by the triangle inequality for a normed vector space, we have
+	\begin{eqnarray*}
+	\Vert\,x\,\Vert - \Vert\,y\,\Vert
+	\;\; = \;\;
+		\Vert\,x - y + y\,\Vert \,-\, \Vert\,y\,\Vert
+	\;\; \leq \;\;
+		\Vert\,x - y\,\Vert \,+\, \Vert\,y\,\Vert \,-\, \Vert\,y\,\Vert
+	\;\; = \;\;
+		\Vert\,x - y\,\Vert
+	\end{eqnarray*}
+	Interchanging \,$x$\, and \,$y$\, above yields:
+	\begin{eqnarray*}
+	\left\vert\; \Vert\,x\,\Vert \overset{{\color{white}1}}{-} \Vert\,y\,\Vert \;\right\vert
+	\;\; \leq \;\;
+		\Vert\,x - y\,\Vert
+	\end{eqnarray*}
+	It follows immediately that, for
+	\,$f_{1},\, f_{2},\;\ldots$
+	\,$\in$\,
+	$M^{2}_{\textnormal{step}}\!\left(\,
+		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+		\,\right)$,\,
+	we have
+	\begin{equation}\label{NormfEqualsLimitNormfn}
+		\underset{n\rightarrow\infty}{\lim}\;
+		\left\Vert\; f \overset{{\color{white}.}}{-} f_{n} \,\right\Vert_{M^{2}}
+		\; = \; 0
+	\quad\Longrightarrow\quad
+		\left\Vert\;\, \overset{{\color{white}.}}{I(f)} \,\;\right\Vert_{M^{2}}
+		\; = \;
+		\underset{n\rightarrow\infty}{\lim}\;
+		\left\Vert\;\, \overset{{\color{white}.}}{I(f_{n})} \,\;\right\Vert_{M^{2}}
+	\end{equation}
+	and
+	\begin{equation}\label{NormIfEqualsLimitNormIfn}
+		\underset{n\rightarrow\infty}{\lim}\;
+		\left\Vert\; I(f) \overset{{\color{white}.}}{-} I(f_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+		\; = \; 0
+	\quad\Longrightarrow\quad
+		\left\Vert\;\, \overset{{\color{white}.}}{I(f)} \,\;\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+		\; = \;
+		\underset{n\rightarrow\infty}{\lim}\;
+		\left\Vert\;\, \overset{{\color{white}.}}{I(f_{n})} \,\;\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+	\end{equation}
+	Hence, for a sequence
+	\,$f_{1},\, f_{2},\;\ldots$\,
+	of stochastic step processes that approximates \,$f$,\,
+	 we have
+	\begin{eqnarray*}
+	\left\Vert\;\, \overset{{\color{white}.}}{I(f)} \,\;\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+	& = &
+		\underset{n\rightarrow\infty}{\lim}\;
+		\left\Vert\;\, \overset{{\color{white}.}}{I(f_{n})} \,\;\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}\,,
+		\quad
+		\textnormal{by \eqref{NormIfEqualsLimitNormIfn}}
+	\\
+	& = &
+		\overset{{\color{white}.}}{
+			\underset{n\rightarrow\infty}{\lim}\;
+			\left\Vert\;\, \overset{{\color{white}.}}{f_{n}} \,\;\right\Vert_{M^{2}}\,,
+			}
+		\quad
+		\textnormal{by Proposition \ref{ItoIsometryForStepProcesses}}
+	\\
+	& = &
+		\overset{{\color{white}.}}{\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}}\,,
+		\quad
+		\textnormal{by \eqref{NormfEqualsLimitNormfn}}
+	\end{eqnarray*}
+	as required.
 \end{enumerate}
+This completes the proof of the Theorem.
 \qed
+
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
