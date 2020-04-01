@@ -43,7 +43,210 @@ where
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.3cm
+\vskip 0.5cm
+\begin{proposition}[\,$\widetilde{M}^{2}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)$\, is a normed vector space\,]
+\label{MTwoTildeIsNormedVectorSpace}
+\mbox{}
+\vskip 0.2cm
+\noindent
+Suppose
+\,$\left(\,\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T} \,\right)$,\,
+is a filtered probability space.
+Define:
+\begin{itemize}
+\item
+	the set
+	\begin{equation*}
+	\widetilde{M}^{2}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)
+	\;\; := \;\;
+		\left\{\;\;
+			\left\{\,\overset{{\color{white}.}}{f(t)}\,\right\}_{t\in[\,0,\infty)}
+			\;\;\left\vert\;
+			\begin{array}{c}
+				\left\{\,f(t) : (\Omega,\mathcal{A},\mu) \overset{{\color{white}1}}{\longrightarrow} \Re\,\right\}_{t\in[\,0,\infty)}
+				\\
+				\overset{{\color{white}1}}{\textnormal{is a stochastic process such that}}
+				\\
+				\overset{{\color{white}.}}{E\!\left(\,\displaystyle\int_{0}^{\infty} f(t)^{2}\,\d t\,\right) \,<\, \infty}
+			\end{array}
+			\right.\;\right\},
+		\quad
+		\textnormal{and}
+	\end{equation*}
+
+\item
+	the non-negative function
+	\begin{equation*}
+	\Vert\;\cdot\;\Vert_{M^{2}} \,:\,
+	\widetilde{M}^{2}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)
+	\;\; \longrightarrow \;\;
+	[\,0,\infty)
+	\end{equation*}
+	by
+	\begin{equation*}
+	\left\Vert\;\, \overset{{\color{white}}}{f} \,\;\right\Vert_{M^{2}}
+	\;\; := \;\;
+		\sqrt{E\!\left[\;
+			\int_{0}^{\infty} f(t)^{2} \,\d t
+			\;\right]},
+	\quad
+	\textnormal{for each \,$f \in \widetilde{M}^{2}\!
+			\left(\,
+				\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+				\,\right)$}
+	\end{equation*}
+
+\end{itemize}
+Then,
+\,$\left(\;
+	\widetilde{M}^{2}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)
+	\;,\;
+	\Vert\;\cdot\;\Vert_{M^{2}}
+	\;\right)$\,
+is a normed vector space over \,$\Re$.
+\end{proposition}
+\proof
+%$M^{2}\!\left(\,
+%	\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+%	\,\right)$\,
+%is trivially a vector space of \,$\Re$.\,
+%It is also clear that
+%\,$\Vert\;\cdot\;\Vert_{M^{2}}$\, is non-negative, and
+Clearly,
+\begin{equation*}
+\left\Vert\;\, \alpha\cdot\overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}
+\;\; = \;\;
+	\vert\,\alpha\,\vert \cdot \left\Vert\;\, \overset{{\color{white}}}{f} \,\;\right\Vert_{M^{2}},
+\quad
+\textnormal{for each \,$\alpha \in \Re$\, and \,$f \in \widetilde{M}^{2}\!\left(\,
+	\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+	\,\right)$}
+\end{equation*}
+In particular, we see that
+\,$\widetilde{M}^{2}\!\left(\,
+	\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+	\,\right)$\,
+is closed under scalar multiplication.
+Next, we establish the triangle inequality,
+which follows readily from the Cauchy-Schwarz inequality, as we now show:
+\begin{eqnarray*}
+&&
+	\left\Vert\;\, \overset{{\color{white}.}}{f} + \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}^{2}
+\;\; = \;\;
+	E\!\left[\; \int_{0}^{\infty} \left(f(t) \overset{{\color{white}.}}{+} g(t)\right)^{2} \,\d t \;\right]
+\;\; = \;\;
+	E\!\left[\; \int_{0}^{\infty}
+		\left(\,f(t)^{2}
+		\overset{{\color{white}.}}{+}
+		2 \cdot f(t) \cdot g(t)
+		\overset{{\color{white}.}}{+}
+		g(t)^{2}\,\right)
+		\,\d t \;\right]
+\\
+& = &
+	E\!\left[\; \int_{0}^{\infty} f(t)^{2} \,\d t \;\right]
+	\; + \;
+	2 \cdot
+	E\!\left[\; \int_{0}^{\infty}
+		f(t) \cdot g(t)
+		\,\d t \;\right]
+	\; + \;
+	E\!\left[\; \int_{0}^{\infty} g(t)^{2} \,\d t \;\right]
+\\
+& \leq &
+	\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}
+	\; + \;
+	2 \cdot
+	E\!\left[\; \int_{0}^{\infty}
+		\vert\,f(t) \cdot g(t)\,\vert
+		\,\d t \;\right]
+	\; + \;
+	\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}^{2}
+\\
+& \leq &
+	\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}
+	\; + \;
+	2 \cdot
+	E\!\left[\;
+		\sqrt{\int_{0}^{\infty} f(t)^{2} \,\d t{\color{white}.}}
+		\cdot
+		\sqrt{\int_{0}^{\infty} g(t)^{2} \,\d t{\color{white}.}}
+		\;\right]
+	\; + \;
+	\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}^{2},
+	\quad
+	\textnormal{by the Cauchy-Schwarz inequality}
+\\
+& \leq &
+	\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}
+	\; + \;
+	2 \cdot
+	\sqrt{E\!\left[\;
+		\int_{0}^{\infty} f(t)^{2} \,\d t
+		\;\right]{\color{white}.}}
+	\cdot
+	\sqrt{E\!\left[\;
+		\int_{0}^{\infty} g(t)^{2} \,\d t
+		\;\right]{\color{white}.}}
+	\; + \;
+	\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}^{2},
+	\quad
+	\textnormal{by the Cauchy-Schwarz inequality}
+\\
+& = &
+	\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}
+	\; + \;
+	2 \cdot
+		\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}
+		\cdot
+		\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}
+	\; + \;
+	\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}^{2}
+\\
+& = &
+	\left(\;
+		\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}
+		\; + \;
+		\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}
+		\;\right)^{2},
+\end{eqnarray*}
+which immediately implies:
+\begin{equation*}
+\left\Vert\;\, \overset{{\color{white}.}}{f} + \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}
+\;\; \leq \;\;
+	\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}
+	\; + \;
+	\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}
+\end{equation*}
+This proves the triangle inequality, as well as the fact that
+\,$\widetilde{M}^{2}\!\left(\,
+	\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+	\,\right)$\,
+is closed under addition.
+We may now conclude that that
+\,$\widetilde{M}^{2}\!\left(\,
+	\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+	\,\right)$\,
+is a vector space over \,$\Re$,\, and
+\,$\left\Vert\;\, \overset{{\color{white}.}}{\cdot} \,\;\right\Vert_{M^{2}}$\,
+is a norm defined on it.
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
 \begin{definition}[Stochastic step process]
 \mbox{}
 \vskip 0.1cm
@@ -92,7 +295,11 @@ is denoted by:
 	\left(\,
 		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
 		\,\right)$\,
-	is a vector space over $\Re$.
+	is a vector subspace of
+	\;$\widetilde{M}^{2}\!
+	\left(\,
+		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+		\,\right)$.
 \item
 	Each
 	\,$\left\{\,\overset{{\color{white}.}}{f}(t)\,\right\}_{t\in[0,\infty)}$
@@ -150,7 +357,7 @@ For each
 $\in$
 \,$M^{2}_{\textnormal{step}}\!
 	\left(\,
-		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
+		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
 		\,\right)$,\,
 expressed as follows
 \begin{equation*}
@@ -173,7 +380,7 @@ I(f)(\omega)
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{proposition}[The It\^{o} isometry for stochastic step processes]
+\begin{proposition}[The It\^{o} stochastic integral on stochastic step processes is norm-preserving]
 \label{ItoIsometryForStepProcesses}
 \mbox{}
 \vskip 0.2cm
@@ -196,18 +403,28 @@ Suppose:
 	\textnormal{for each \,$t \in [\,0,\infty)$}.
 	\end{equation*}
 \end{itemize}
-For each
-\,$\left\{\,\overset{{\color{white}.}}{f}(t)\,\right\}_{t\in[\,0,\infty)}$\,
-$\in$
-\,$M^{2}_{\textnormal{step}}\!
-	\left(\,
-		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
-		\,\right)$,\,
-the following statements hold:
+Then, the following statements hold:
 \begin{enumerate}
 \item
-	$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$.
+	$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$,\,
+	for each
+	\,$\left\{\,\overset{{\color{white}.}}{f}(t)\,\right\}_{t\in[\,0,\infty)}$\,
+	$\in$
+	\,$M^{2}_{\textnormal{step}}\!
+	\left(\,
+		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+		\,\right)$.
 \item
+	The It\^{o} stochastic integral defined on the stochastic step functions
+	\begin{equation*}
+	I : M^{2}_{\textnormal{step}}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)
+	\; \longrightarrow \;
+	L^{2}(\Omega,\mathcal{A},\mu)
+	\end{equation*}
+	is norm-preserving linear maps between normed vector spaces, i.e.
 	\begin{equation*}
 	\left\Vert\;\, \overset{{\color{white}.}}{I(f)} \,\;\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}^{2}
 	\;\; := \;\;
@@ -215,11 +432,8 @@ the following statements hold:
 	\;\; = \;\;
 		E\!\left(\; \int_{0}^{\infty} f(t)^{2} \;\d t \;\right)
 	\;\; =: \;\;
-		\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2},
+		\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}
 	\end{equation*}
-	where the definition of
-	\,$\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}$\,
-	will be introduced below in Definition \ref{MTwoIsNormedVectorSpace}.
 \end{enumerate}
 \end{proposition}
 \proof
@@ -315,7 +529,9 @@ f(t)(\omega)
 	\end{eqnarray*}
 	This proves that indeed \,$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$.
 \item
-	Observe that
+	It is clear that the map \,$I(\,\cdot\,)$\, on the stochastic step processes linear.
+	It remains only to prove that it preserves norms.
+	To this end, note that
 	\begin{eqnarray*}
 	f(t)^{2}
 	& = &
@@ -416,9 +632,28 @@ Suppose:
 	\textnormal{for each \,$t \in [\,0,\infty)$}.
 	\end{equation*}
 \end{itemize}
-We define:
+Then,
 \begin{enumerate}
 \item
+	We define
+	\,$M^{2}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)$\,
+	to be
+	\begin{equation*}
+	\textnormal{the closure of}\;\;\,
+	M^{2}_{\textnormal{step}}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)\,	
+	\;\;\textnormal{in}\;\;\,
+	\widetilde{M}^{2}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right),
+	\end{equation*}	
+	Equivalently but more explicitly, 
 	\begin{equation*}
 	M^{2}\!
 		\left(\,
@@ -445,7 +680,8 @@ We define:
 				\textnormal{such that}
 				\;\;\,
 				\underset{n\rightarrow\infty}{\lim}\;
-				E\!\left(\;\displaystyle\int_{0}^{\infty}\left(\,f(t) \overset{{\color{white}.}}{-} f_{n}(t)\,\right)^{2}\d t\;\right)
+				%E\!\left(\;\displaystyle\int_{0}^{\infty}\left(\,f(t) \overset{{\color{white}.}}{-} f_{n}(t)\,\right)^{2}\d t\;\right)
+				\left\Vert\;\, f \overset{{\color{white}.}}{-} f_{n} \,\;\right\Vert_{M^{2}}
 				= \, 0
 			\end{array}
 			\right.\;\right\}
@@ -460,184 +696,33 @@ We define:
 			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
 			\,\right)$,\,
 	an element \,$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$\,
-	is called an \textbf{It\^{o} stochastic integral} of \,$f$\, if
-	\begin{equation*}
-		\underset{n\rightarrow\infty}{\lim}\;\,
-		\left\Vert\; I(f) \,\overset{{\color{white}.}}{-}\, I(f_{n}) \;\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}^{2}
-	\;\; = \;\;
-		\underset{n\rightarrow\infty}{\lim}\;\,E\!\left[\;
-		\left(\,I(f) \,\overset{{\color{white}.}}{-}\, I(f_{n})\,\right)^{2}
-		\;\right]
-	\;\; = \;\;
-		0\,,
-	\end{equation*}
+	is called an \textbf{It\^{o} stochastic integral} of \,$f$\, if,
 	for each sequence
 	\,$f_{1},\, f_{2},\, \ldots\, \in
 	M^{2}_{\textnormal{step}}\!
 		\left(\,
-			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
-			\,\right)$\,
-	that approximates \,$f$.\,
-	We will also use the notation
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)$,\,
+	we have:
+	\begin{equation*}
+		\underset{n\rightarrow\infty}{\lim}\;\,
+		\left\Vert\; f \,\overset{{\color{white}.}}{-}\, f_{n} \;\right\Vert_{M^{2}}
+		\; = \;
+		0
+	\quad\Longrightarrow\quad
+		\underset{n\rightarrow\infty}{\lim}\;\,
+		\left\Vert\; I(f) \,\overset{{\color{white}.}}{-}\, I(f_{n}) \;\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+		\; = \;
+		0\,,
+	\end{equation*}
+\item
+	When a It\^{o} stochastic integral \,$I(f)$\, exists, we will also sometimes use the notation
 	\begin{equation*}
 	\int_{0}^{\infty} f(t)\;\d W(t)
 	\end{equation*}
 	in place of \,$I(f)$.
 \end{enumerate}
 \end{definition}
-
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\vskip 0.5cm
-\begin{proposition}[$M^{2}\!
-		\left(\,
-			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
-			\,\right)$\, is a normed vector space]
-\label{MTwoIsNormedVectorSpace}
-\mbox{}
-\vskip 0.2cm
-\noindent
-$\left(\;
-	M^{2}\!
-		\left(\,
-			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
-			\,\right)
-	\;,\;
-	\Vert\;\cdot\;\Vert_{M^{2}}
-	\;\right)$\,
-is a normed vector space over \,$\Re$,\, where
-\begin{equation*}
-\Vert\;\cdot\;\Vert_{M^{2}} \,:\,
-M^{2}\!
-	\left(\,
-		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
-		\,\right)
-\;\; \longrightarrow \;\;
-[\,0,\infty)
-\end{equation*}
-is defined by:
-\begin{equation*}
-\left\Vert\;\, \overset{{\color{white}}}{f} \,\;\right\Vert_{M^{2}}
-\;\; := \;\;
-	\sqrt{E\!\left[\;
-		\int_{0}^{\infty} f(t)^{2} \,\d t
-		\;\right]},
-\quad
-\textnormal{for each \,$f \in M^{2}\!
-		\left(\,
-			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
-			\,\right)$}
-\end{equation*}
-\end{proposition}
-\proof
-$M^{2}\!\left(\,
-	\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
-	\,\right)$\,
-is trivially a vector space of \,$\Re$.\,
-It is also clear that
-\,$\Vert\;\cdot\;\Vert_{M^{2}}$\, is non-negative, and
-\begin{equation*}
-\left\Vert\;\, \alpha\cdot\overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}
-\;\; = \;\;
-	\vert\,\alpha\,\vert \cdot \left\Vert\;\, \overset{{\color{white}}}{f} \,\;\right\Vert_{M^{2}},
-\quad
-\textnormal{for each \,$\alpha \in \Re$\, and \,$f \in M^{2}\!\left(\,
-	\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in T}
-	\,\right)$}
-\end{equation*}
-Thus, it remains only to establish the triangle inequality,
-which follows readily from the Cauchy-Schwarz inequality, as we now show:
-\begin{eqnarray*}
-&&
-	\left\Vert\;\, \overset{{\color{white}.}}{f} + \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}^{2}
-\;\; = \;\;
-	E\!\left[\; \int_{0}^{\infty} \left(f(t) \overset{{\color{white}.}}{+} g(t)\right)^{2} \,\d t \;\right]
-\;\; = \;\;
-	E\!\left[\; \int_{0}^{\infty}
-		\left(\,f(t)^{2}
-		\overset{{\color{white}.}}{+}
-		2 \cdot f(t) \cdot g(t)
-		\overset{{\color{white}.}}{+}
-		g(t)^{2}\,\right)
-		\,\d t \;\right]
-\\
-& = &
-	E\!\left[\; \int_{0}^{\infty} f(t)^{2} \,\d t \;\right]
-	\; + \;
-	2 \cdot
-	E\!\left[\; \int_{0}^{\infty}
-		f(t) \cdot g(t)
-		\,\d t \;\right]
-	\; + \;
-	E\!\left[\; \int_{0}^{\infty} g(t)^{2} \,\d t \;\right]
-\\
-& \leq &
-	\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}
-	\; + \;
-	2 \cdot
-	E\!\left[\; \int_{0}^{\infty}
-		\vert\,f(t) \cdot g(t)\,\vert
-		\,\d t \;\right]
-	\; + \;
-	\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}^{2}
-\\
-& \leq &
-	\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}
-	\; + \;
-	2 \cdot
-	E\!\left[\;
-		\sqrt{\int_{0}^{\infty} f(t)^{2} \,\d t{\color{white}.}}
-		\cdot
-		\sqrt{\int_{0}^{\infty} g(t)^{2} \,\d t{\color{white}.}}
-		\;\right]
-	\; + \;
-	\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}^{2},
-	\quad
-	\textnormal{by the Cauchy-Schwarz inequality}
-\\
-& \leq &
-	\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}
-	\; + \;
-	2 \cdot
-	\sqrt{E\!\left[\;
-		\int_{0}^{\infty} f(t)^{2} \,\d t
-		\;\right]{\color{white}.}}
-	\cdot
-	\sqrt{E\!\left[\;
-		\int_{0}^{\infty} g(t)^{2} \,\d t
-		\;\right]{\color{white}.}}
-	\; + \;
-	\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}^{2},
-	\quad
-	\textnormal{by the Cauchy-Schwarz inequality}
-\\
-& = &
-	\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}
-	\; + \;
-	2 \cdot
-		\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}
-		\cdot
-		\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}
-	\; + \;
-	\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}^{2}
-\\
-& = &
-	\left(\;
-		\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}
-		\; + \;
-		\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}
-		\;\right)^{2},
-\end{eqnarray*}
-which immediately implies:
-\begin{equation*}
-\left\Vert\;\, \overset{{\color{white}.}}{f} + \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}
-\;\; \leq \;\;
-	\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}
-	\; + \;
-	\left\Vert\;\, \overset{{\color{white}.}}{g} \,\;\right\Vert_{M^{2}}
-\end{equation*}
-as required.
-\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -664,27 +749,33 @@ Suppose:
 	\textnormal{for each \,$t \in [\,0,\infty)$}.
 	\end{equation*}
 \end{itemize}
-Then, for each 
-\,$f \,\in\, M^{2}\!
-	\left(\,
-		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
-		\,\right)$,
-the following statements are true:
+Then, the following statements are true:
 \begin{enumerate}
 \item
-	An It\^{o} stochastic integral \,$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$\, of \,$f$\, exists.
+	For each 
+	\,$f \,\in\, M^{2}\!
+	\left(\,
+		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+		\,\right)$,\,
+	an It\^{o} stochastic integral \,$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$\, of \,$f$\, exists,
+	and it is unique.
 \item
-	$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$\, is unique.
-\item
-	The It\^{o} stochastic integral \,$I(f) \,\in\, L^{2}(\Omega,\mathcal{A},\mu)$\, satisfies the following equality:
+	The It\^{o} stochastic integral
+	\begin{equation*}
+	I : M^{2}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)
+	\; \longrightarrow \;
+	L^{2}(\Omega,\mathcal{A},\mu)
+	\end{equation*}
+	is norm-preserving linear maps between normed vector spaces, i.e.
 	\begin{equation*}
 	\left\Vert\;\, \overset{{\color{white}.}}{I(f)} \,\;\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}^{2}
 	\;\; := \;\;
-		E\!\left[\;\, \overset{{\color{white}.}}{I(f)^{2}} \,\;\right]
+		E\!\left(\; \left\vert\, I(f) \,\right\vert^{2} \;\right)
 	\;\; = \;\;
-		E\!\left[\;\,
-			\int_{0}^{\infty} f(t)^{2} \;\d t
-			\,\;\right]
+		E\!\left(\; \int_{0}^{\infty} f(t)^{2} \;\d t \;\right)
 	\;\; =: \;\;
 		\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}
 	\end{equation*}
@@ -776,8 +867,6 @@ the following statements are true:
 		\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
 		\,\right)\longrightarrow L^{2}(\Omega,\mathcal{A},\mu)$\,
 	have the same limit in the Hilbert space \,$L^{2}(\Omega,\mathcal{A},\mu)$.
-	%$f_{\star} \in L^{2}(\Omega,\mathcal{A},\mu)$\, in Claim 1 is fully determined by \,$f$,\, and
-	%independent of the specific choice of the the sequence \,$f_{1}, f_{2},\;\ldots$
 	\vskip 0.2cm
 	\noindent
 	Proof of Claim 2:\quad
@@ -897,16 +986,129 @@ the following statements are true:
 	
 	\vskip 0.5cm
 	\noindent
-	By Claim 2, it is justified to use the notation \,$I(f)$\, for \,$f_{\star}$\, in Claim 1.
+	By Claim 1, we may define \,$I(f) \in L^{2}(\Omega,\mathcal{A},\mu)$\,
+	to be the limit in \,$L^{2}(\Omega,\mathcal{A},\mu)$\, of an arbitrary
+	sequence of stochastic step processes that approximates \,$f$.\,
+	By Claim 2, the limit \,$I(f)$\, is fully determined by \,$f$;\, in particular,
+	it is independent of the particular choice of the approximating sequence.
 
 	\vskip 0.5cm
 	\textbf{Claim 3:}\quad
-	$I(f) \in L^{2}(\Omega,\mathcal{A},\mu)$\, in Claim 1 is an It\^{o} stochastic integral of \,$f$.\,
+	$I(f) \in L^{2}(\Omega,\mathcal{A},\mu)$\, is an It\^{o} stochastic integral of \,$f$.\,
 	\vskip 0.2cm
 	\noindent
 	Proof of Claim 3:\quad
+	Let $g_{1},\, g_{2},\;\ldots$\; be a sequence of stochastic random processes
+	that approximates \,$f$,\, distinct from \,$f_{1},\, f_{2},\;\ldots$\;.\,
+	Then,
+	\begin{eqnarray*}
+	\left\Vert\; I(f) \overset{{\color{white}.}}{-} I(g_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+	& \leq &
+		\left\Vert\; I(f) \overset{{\color{white}.}}{-} I(f_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+		\; + \;
+		\left\Vert\; I(f_{n}) \overset{{\color{white}.}}{-} I(g_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+	\end{eqnarray*}
+	But,
+	\,$\underset{n\rightarrow\infty}{\lim}
+		\left\Vert\; I(f) \overset{{\color{white}.}}{-} I(f_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)} = 0$,\,
+	because \,$I(f)$\, is by definition the limit of \,$I(f_{n})$\, in \,$L^{2}(\Omega,\mathcal{A},\mu)$.\,
+	On the other hand,
+	\,$\underset{n\rightarrow\infty}{\lim}
+		\left\Vert\; I(f_{n}) \overset{{\color{white}.}}{-} I(g_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)} = 0$,\,
+	because \,$I(f_{n})$\, and \,$I(g_{n})$\, are consecutive terms in the ``interlaced'' sequence
+	\,$I(f_{1}),\, I(g_{1}), I(f_{2}),\, I(g_{2}),\;\ldots$\,, which is itself a Cauchy sequence in
+	\,$L^{2}(\Omega,\mathcal{A},\mu)$;\, see proof of Claim 2.
+	We may now conclude:
+	\begin{eqnarray*}
+	\underset{n\rightarrow\infty}{\lim}\;
+	\left\Vert\; I(f) \overset{{\color{white}.}}{-} I(g_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+	& \leq &
+		\underset{n\rightarrow\infty}{\lim}\;
+		\left\Vert\; I(f) \overset{{\color{white}.}}{-} I(f_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+		\; + \;
+		\underset{n\rightarrow\infty}{\lim}\;
+		\left\Vert\; I(f_{n}) \overset{{\color{white}.}}{-} I(g_{n}) \,\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}
+	\\
+	& \overset{{\color{white}\textnormal{\large$.$}}}{\leq} &
+		0 \; + \; 0
+	\;\; = \;\;
+		0
+	\end{eqnarray*}
+	This proves Claim 3.
+
+	\vskip 0.3cm
+	\noindent
+	Lastly, the uniqueness of \,$I(f) \,\in L^{2}(\Omega,\mathcal{A},\mu)$\,
+	follows immediately by Claim 1 and Claim 2.
+
+\item
 
 \end{enumerate}
 \qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 1.0cm
+\begin{remark}[Summary: functional-analytic structure of preceding definitions and results]
+\mbox{}
+\vskip 0.2cm
+\noindent
+\begin{itemize}
+\item
+	The collection
+	\,$\left(\;
+		M^{2}_{\textnormal{step}}\!\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)
+		\,,\,
+		\left\Vert\;\cdot\;\right\Vert_{M^{2}}
+		\;\right)$\,
+	of stochastic step processes, equipped with the non-negative function
+	\,$\left\Vert\;\cdot\;\right\Vert_{M^{2}}$\,
+	defined by:
+	\begin{equation*}
+	\left\Vert\;\, \overset{{\color{white}}}{f} \,\;\right\Vert_{M^{2}}
+	\;\; := \;\;
+		\sqrt{E\!\left[\;
+			\int_{0}^{\infty} f(t)^{2} \,\d t
+			\;\right]},
+		\quad
+		\textnormal{for each \,$f \in M^{2}_{\textnormal{step}}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)$},
+	\end{equation*}
+	is a normed vector space.
+
+\item
+	The It\^{o} stochastic integral defined on the stochastic step functions
+	\begin{equation*}
+	I : M^{2}_{\textnormal{step}}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)
+	\; \longrightarrow \;
+	L^{2}(\Omega,\mathcal{A},\mu)
+	\end{equation*}
+	is an isometry of normed vector spaces, i.e.
+	\begin{equation*}
+	\left\Vert\;\, \overset{{\color{white}.}}{I(f)} \,\;\right\Vert_{L^{2}(\Omega,\mathcal{A},\mu)}^{2}
+	\;\; := \;\;
+		E\!\left[\;\, \overset{{\color{white}.}}{I(f)^{2}} \,\;\right]
+	\;\; = \;\;
+		E\!\left[\;\,
+			\int_{0}^{\infty} f(t)^{2} \;\d t
+			\,\;\right]
+	\;\; =: \;\;
+		\left\Vert\;\, \overset{{\color{white}.}}{f} \,\;\right\Vert_{M^{2}}^{2}\,,
+	\end{equation*}
+	for each
+	\,$f \in M^{2}_{\textnormal{step}}\!
+		\left(\,
+			\overset{{\color{white}.}}{\Omega} \,,\, \mathcal{A} \,,\, \mu \,,\, \{\,\mathcal{F}_{t}\,\}_{t \in [\,0,\infty)}
+			\,\right)$.
+
+\end{itemize}
+\end{remark}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
