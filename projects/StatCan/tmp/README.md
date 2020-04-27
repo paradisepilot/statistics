@@ -12,7 +12,7 @@ An experiment is a series of tests to identify the factors that have the signifi
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;d_{m,t}\;=\;\sum_{\tau=0}^{t-1}\,c_{m,\tau}\cdot\pi_{m,t-\tau}"/>
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;Y_{m,t}\;=\;\sum_{\tau=0}^{t-1}\,c_{m,\tau}\cdot\pi_{m,t-\tau}"/>
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;Y_{ijk}\;=\;\sum_{\tau=0}^{t-1}\,c_{m,\tau}\cdot\pi_{m,t-\tau}"/>
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;Y_{ijk}"/>
 
