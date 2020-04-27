@@ -10,12 +10,6 @@ This work has been done according to the article to reproduce the results for Ra
 # General description of the Design of Experiments and some of its method
 An experiment is a series of tests to identify the factors that have the significant effect on the response. Design of Experiment is a method in which the number of factors, their ranges of values and number of times to run the experiments are determined to identify the relationship between the factors and the response variable. Sometimes the effect of several factors on a response variable can be measured by testing one factor at a time at their different levels which is useful only when there is not an interaction among those factors. However, since sometimes factors have interactions with each other, it is more efficient to do the experiments by including all the factors in the design. The method of Factorial Design from DoE is one of the methods that is very useful to evaluate the effect of several factors on the response variable at the same time. The general form of Factorial design can be represented as:
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;d_{m,t}\;=\;\sum_{\tau=0}^{t-1}\,c_{m,\tau}\cdot\pi_{m,t-\tau}"/>
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;Y_{ijk}\;=\;\sum_{\tau=0}^{t-1}\,c_{m,\tau}\cdot\pi_{m,t-\tau}"/>
-
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;Y_{ijk}"/>
-
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;Y_{ijk}=\tau_{i}+\beta_{j}+(\tau\beta)_{ij}+\epsilon_{ijk}"/>
 
 for ![eq2](https://latex.codecogs.com/gif.latex?i%20%3D%201%2C2%2C%5Cldots%2Ca), ![eq3](https://latex.codecogs.com/gif.latex?j%20%3D%201%2C2%2C%5Cldots%2Cb) and ![eq4](https://latex.codecogs.com/gif.latex?k%20%3D%201%2C2%2C%5Cldots%2Cn), where ![eq5](https://latex.codecogs.com/gif.latex?%5Cmu) is the overal mean effec, and ![eq6](https://latex.codecogs.com/gif.latex?%5Ctau_%7Bi%7D) is the effect of ``i-th``  level of factor ``A``, ![eq7](https://latex.codecogs.com/gif.latex?%5Cbeta_%7Bj%7D) is the effect of ``j-th``  level of factor ``B``, ![eq8](https://latex.codecogs.com/gif.latex?%28%5Ctau%5Cbeta%29_%7Bij%7D) is the interaction effect of factors ``A`` and ``B`` and ![eq9](https://latex.codecogs.com/gif.latex?%5Cepsilon_%7Bijk%7D) is the random error. 
