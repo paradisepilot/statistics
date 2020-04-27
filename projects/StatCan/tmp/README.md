@@ -16,7 +16,7 @@ An experiment is a series of tests to identify the factors that have the signifi
 
 <img src="https://latex.codecogs.com/svg.latex?\Large&space;Y_{ijk}"/>
 
-<img src="https://latex.codecogs.com/svg.latex?\Large&space;Y_{ijk} = \tau_{i}+\beta_{j}+(\tau\beta)_{ij}+\epsilon_{ijk}"/>
+<img src="https://latex.codecogs.com/svg.latex?\Large&space;Y_{ijk}=\tau_{i}+\beta_{j}+(\tau\beta)_{ij}+\epsilon_{ijk}"/>
 
 for ![eq2](https://latex.codecogs.com/gif.latex?i%20%3D%201%2C2%2C%5Cldots%2Ca), ![eq3](https://latex.codecogs.com/gif.latex?j%20%3D%201%2C2%2C%5Cldots%2Cb) and ![eq4](https://latex.codecogs.com/gif.latex?k%20%3D%201%2C2%2C%5Cldots%2Cn), where ![eq5](https://latex.codecogs.com/gif.latex?%5Cmu) is the overal mean effec, and ![eq6](https://latex.codecogs.com/gif.latex?%5Ctau_%7Bi%7D) is the effect of ``i-th``  level of factor ``A``, ![eq7](https://latex.codecogs.com/gif.latex?%5Cbeta_%7Bj%7D) is the effect of ``j-th``  level of factor ``B``, ![eq8](https://latex.codecogs.com/gif.latex?%28%5Ctau%5Cbeta%29_%7Bij%7D) is the interaction effect of factors ``A`` and ``B`` and ![eq9](https://latex.codecogs.com/gif.latex?%5Cepsilon_%7Bijk%7D) is the random error. 
 ## Two-level Factorial Designs
