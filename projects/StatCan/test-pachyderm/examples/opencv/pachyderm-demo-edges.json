@@ -1,0 +1,14 @@
+{
+  "pipeline": { "name": "pachyderm-demo-edges" },
+  "description": "A pipeline that performs image edge detection by using the OpenCV library.",
+  "transform": {
+    "image": "paradisepilot/pachyderm-demo-edges:1.1",
+    "cmd": [ "python3",   "/pachyderm-demo-edges.py" ]
+  },
+  "input": {
+    "pfs": {
+      "repo": "pachyderm-demo-images",
+      "glob": "/*"
+    }
+  }
+}
