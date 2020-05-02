@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# echo '{"pachd_address": "grpcs://grpc-hub-c0-702w4d9r4z.clusters.pachyderm.io:31400", "source": 2}' | pachctl config set context test1-nnpeyxj9oc
+# echo '{"pachd_address": "grpcs://grpc-hub-c0-be9jiqri9p.clusters.pachyderm.io:31400", "source": 2}' | pachctl config set context pachyderm-demo-cluster-x01kmpjlpz && pachctl config set active-context pachyderm-demo-cluster-x01kmpjlpz
 
-# pachctl config set active-context test1-nnpeyxj9oc
+# pachctl auth login --one-time-password
 
+### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 pachctl create repo pachyderm-demo-images
 
 pachctl put file pachyderm-demo-images@master:liberty.png -f http://imgur.com/46Q8nDz.png
