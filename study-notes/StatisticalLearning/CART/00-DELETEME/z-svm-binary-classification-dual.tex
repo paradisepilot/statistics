@@ -1,0 +1,265 @@
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\noindent
+\textbf{The Dual Problem of the linearly non-separable case}
+\vskip 0.1cm
+\noindent
+The Lagrangian function of the Primal Problem is given by
+\begin{equation*}
+L(\,\mathbf{n},b,\xi\,;\,\alpha,\beta\,)
+\;\; := \;\;
+	\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+	\; + \;
+	\lambda\cdot\overset{m}{\underset{i=1}{\sum}}\;\xi_{i}
+	\; + \;
+	\overset{m}{\underset{i = 1}{\sum}}\;\,
+		\alpha_{i}
+		\cdot
+		\left(\,
+			1 - \xi_{i}
+			-
+			y_{i}\overset{{\color{white}1}}{\cdot}\left(\,
+				\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b
+				\,\right)
+			\,\right)
+	\; - \;
+	\overset{m}{\underset{i = 1}{\sum}}\;
+		\beta_{i}
+		\cdot
+		\xi_{i}
+\end{equation*}
+The corresponding Dual Problem is given by the right-hand-side of the following:
+\begin{eqnarray*}
+&&
+	\inf
+	\left\{\;\;
+		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+		+
+		\lambda\cdot\overset{m}{\underset{i=1}{\sum}}\;\xi_{i}
+		\;\;\,\left\vert\;
+		\begin{array}{c}
+			\mathbf{n} \in \Re^{d} \,,\;\, b \in \Re \,,\;\, \xi \in \Re^{m}
+			\\
+			\xi_{i} \geq 0,\;\,\textnormal{and}\;\,
+			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) \geq 1 - \xi_{i}\,,
+			\\
+			\textnormal{for each \,$i = 1,2,\ldots,m$}
+			\end{array}
+			\right.
+		\right\}
+\\
+& = &
+	\underset{\alpha,\,\beta\,\in\,\Re_{\geq 0}^{m}}{\sup}
+	\left\{\;
+		\underset{(\mathbf{n},b,\xi)\,\in\,\Re^{d}\times\Re\times\Re^{m}}{\inf}\;\;
+		L(\,\mathbf{n},b,\xi\,;\,\alpha,\beta\,)
+		\right\},
+	\quad
+	\textnormal{by Strong Duality}
+\\
+& = &
+	\underset{\alpha,\,\beta\,\in\,\Re_{\geq 0}^{m}}{\sup}
+	\left\{\;
+		\underset{(\mathbf{n},b,\xi)\,\in\,\Re^{d}\times\Re\times\Re^{m}}{\inf}\;
+		\left\{\;
+			\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+			\; + \;
+			\lambda\cdot\overset{m}{\underset{i=1}{\sum}}\;\xi_{i}
+			\; + \;
+			\overset{m}{\underset{i = 1}{\sum}}\;\,
+				\alpha_{i}
+				\cdot
+				\left(\,
+					1 - \xi_{i}
+					-
+					y_{i}\overset{{\color{white}1}}{\cdot}\left(\,
+						\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b
+						\,\right)
+					\,\right)
+			\; - \;
+			\overset{m}{\underset{i = 1}{\sum}}\;
+				\beta_{i}
+				\cdot
+				\xi_{i}
+			\;\right\}
+		\right\}
+\end{eqnarray*}
+%The Karush-Kuhn-Tucker Optimality Necessary Conditions for the inner minimization problem are:
+Next, we simplify the inner minimization problem.
+First of all, note that the inner minimization problem is unconstrained
+with a differentiable objective function; hence, the gradient 
+\,$\nabla_{(\mathbf{n},b,\xi)}\,L(\,\mathbf{n},b,\xi\,;\,\alpha,\beta\,)$\,
+of the objective function
+\,$L(\,\mathbf{n},b,\xi\,;\,\alpha,\beta\,)$\,
+of the inner minimization problem equals zero at each of its optima.
+Now,
+\begin{eqnarray}
+\label{nablanL}
+\nabla_{\mathbf{n}}\,L
+& = &
+	\mathbf{n} \, - \, \overset{m}{\underset{i\,=\,1}{\sum}}\;\alpha_{i}\,y_{i}\cdot\mathbf{x}_{i}
+\\
+\label{nablabL}
+\nabla_{b}\,L
+& = &
+	\overset{m}{\underset{i\,=\,1}{\sum}}\;\alpha_{i}\,y_{i}
+\\
+\label{nablaxiL}
+\nabla_{\xi}\,L
+& = &
+	\lambda\cdot\mathbf{1}_{m} \, - \, (\alpha \, + \, \beta)
+\end{eqnarray}
+Setting the three expressions above to zero and
+substituting into the objective function of the inner minimization problem yields:
+\begin{eqnarray*}
+&&
+	\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+	\; + \;
+	\lambda\cdot\overset{m}{\underset{i=1}{\sum}}\;\xi_{i}
+	\; + \;
+	\overset{m}{\underset{i = 1}{\sum}}\;\,
+		\alpha_{i}
+		\cdot
+		\left(\,
+			1 - \xi_{i}
+			-
+			y_{i}\overset{{\color{white}1}}{\cdot}\left(\,
+				\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b
+				\,\right)
+			\,\right)
+	\; - \;
+	\overset{m}{\underset{i = 1}{\sum}}\;
+		\beta_{i}
+		\cdot
+		\xi_{i}
+\\
+& = &
+	\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+	\; + \;
+	\left(\,\overset{m}{\underset{i=1}{\sum}}\;(\lambda-\alpha_{i}-\beta_{i})\cdot\xi_{i}\right)
+	\; - \;
+	b\cdot\left(\,\overset{m}{\underset{i = 1}{\sum}}\;\alpha_{i}\,y_{i}\right)
+	\; + \;
+	\left(\,\overset{m}{\underset{i = 1}{\sum}}\;\alpha_{i}\right)
+	\; - \;
+	\left\langle\;\,
+		\overset{m}{\underset{i = 1}{\sum}}\;
+			\alpha_{i}\,y_{i}\overset{{\color{white}1}}{\cdot}
+					\mathbf{x}_{i}\,
+		\,,\,
+		\mathbf{n}
+		\;\right\rangle
+\\
+& = &
+	\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+	\; + \;
+	\left(\,\overset{m}{\underset{i = 1}{\sum}}\;\alpha_{i}\right)
+	\; - \;
+	\left\langle\; \mathbf{n}\,,\mathbf{n} \,\right\rangle,
+	\quad\textnormal{by \eqref{nablanL}, \eqref{nablabL} and \eqref{nablaxiL}}
+\\
+& = &
+	-\,
+	\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+	\; + \;
+	\overset{m}{\underset{i = 1}{\sum}}\;\alpha_{i}
+\;\; = \;\;
+	-\,
+	\dfrac{1}{2}\cdot\left\Vert\;
+		\overset{m}{\underset{i\,=\,1}{\sum}}\;\alpha_{i}y_{i}\cdot\mathbf{x}_{i}
+		\;\right\Vert^{2}
+	\; + \;
+	\overset{m}{\underset{i = 1}{\sum}}\;\alpha_{i}\,,
+	\quad\textnormal{by \eqref{nablanL}}
+\\
+& = &
+	-\;\dfrac{1}{2}\cdot
+	\overset{m}{\underset{i=1}{\sum}}\,
+	\overset{m}{\underset{j=1}{\sum}}\;
+	\alpha_{i}\,\alpha_{j}\,y_{i}\,y_{j}\,\langle\,\mathbf{x}_{i}\,,\,\mathbf{x}_{j}\,\rangle
+	\; + \;
+	\overset{m}{\underset{i = 1}{\sum}}\;\alpha_{i}
+\end{eqnarray*}
+Hence, the Dual Problem simplifies to the right-hand-side of the following:
+\begin{eqnarray*}
+&&
+	\inf
+	\left\{\;\;
+		\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+		+
+		\lambda\cdot\overset{m}{\underset{i=1}{\sum}}\;\xi_{i}
+		\;\;\,\left\vert\;
+		\begin{array}{c}
+			\mathbf{n} \in \Re^{d} \,,\;\, b \in \Re \,,\;\, \xi \in \Re^{m}
+			\\
+			\xi_{i} \geq 0,\;\,\textnormal{and}\;\,
+			y_{i}\cdot\left(\,\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b\,\right) \geq 1 - \xi_{i}\,,
+			\\
+			\textnormal{for each \,$i = 1,2,\ldots,m$}
+			\end{array}
+			\right.
+		\right\}
+\\
+& = &
+	\underset{\alpha,\,\beta\,\in\,\Re_{\geq 0}^{m}}{\sup}
+	\left\{\;
+		\underset{(\mathbf{n},b,\xi)\,\in\,\Re^{d}\times\Re\times\Re^{m}}{\inf}\;
+		\left\{\;
+			\dfrac{1}{2}\cdot\Vert\,\mathbf{n}\,\Vert^{2}
+			\; + \;
+			\lambda\cdot\overset{m}{\underset{i=1}{\sum}}\;\xi_{i}
+			\; + \;
+			\overset{m}{\underset{i = 1}{\sum}}\;\,
+				\alpha_{i}
+				\cdot
+				\left(\,
+					1 - \xi_{i}
+					-
+					y_{i}\overset{{\color{white}1}}{\cdot}\left(\,
+						\langle\,\mathbf{x}_{i}\,,\mathbf{n}\,\rangle + b
+						\,\right)
+					\,\right)
+			\; - \;
+			\overset{m}{\underset{i = 1}{\sum}}\;
+				\beta_{i}
+				\cdot
+				\xi_{i}
+			\;\right\}
+		\right\}
+\\
+& = &
+	\sup
+	\left\{\,
+	\left.
+		-\;\dfrac{1}{2}\cdot
+		\overset{m}{\underset{i=1}{\sum}}\,
+		\overset{m}{\underset{j=1}{\sum}}\;
+		\alpha_{i}\,\alpha_{j}\,y_{i}\,y_{j}\,\langle\,\mathbf{x}_{i}\,,\,\mathbf{x}_{j}\,\rangle
+		\; + \;
+		\overset{m}{\underset{i = 1}{\sum}}\;\alpha_{i}
+	\;\;\,\right\vert\,
+		\begin{array}{c}
+			0 \leq \alpha_{i} \leq \lambda,\;\forall\;i =1,\ldots,m\,,
+			\\
+			%\overset{m}{\underset{i\,=\,1}{\sum}}\,\alpha_{i}\,y_{i} \,=\, 0
+			\sum_{i=1}^{m}\alpha_{i}\,y_{i} \,=\, \overset{{\color{white}.}}{0}
+		\end{array}
+		\right\}
+\end{eqnarray*}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\noindent
+\textbf{Computing solution \,$(\mathbf{n}^{*},b^{*},\xi^{*})$\, to the Primal Problem, given solution \,$\alpha^{*}$\, to the Dual Problem}
+\vskip 0.1cm
+\noindent
+Suppose \,$\alpha^{*} \in \Re_{\geq 0}^{m}$\, is a solution to the Dual Problem.
+We wish to show that one can derive the solution \,$(\mathbf{n}^{*},b^{*},\xi^{*})$\, to the Primal Problem
+from \,$\alpha^{*}$.
+But, recall that we have in fact already done that:
+the KKT necessary conditions on the Primal Problem yields expressions
+for \,$(\mathbf{n}^{*},b^{*},\xi^{*})$,\, given \,$\alpha^{*}$.
+

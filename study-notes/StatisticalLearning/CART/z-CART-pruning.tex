@@ -1,0 +1,166 @@
+
+\section{Cost-Complexity Pruning in the CART Algorithm}
+\setcounter{theorem}{0}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{proposition}[$C_{\alpha}$-minimizing Pruning Algorithm]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+	$T_{0}$ is a tree.
+\item
+	$C$ is a leaf-level cost function, i.e.
+	\begin{equation*}
+	C \,:\,
+	\left\{\begin{array}{c}
+		\textnormal{all leaves (terminal nodes)}
+		\\
+		\textnormal{of all sub-trees of \,$T_{0}$}
+		\end{array}\right\}
+	\,\longrightarrow\,
+	[\,0,\infty)
+	\end{equation*}
+	We adopt the slight abuse of notation and denote also by $C$
+	the cost function induced on the set of sub-trees of $T_{0}$, i.e.
+	\begin{equation*}
+	C(\,T\,)
+	\;\; := \;\;
+		\underset{l \in \mathcal{L}(T)}{\sum}\, C(\,l\,)\,,
+	\quad
+	\textnormal{for each sub-tree \,$T \subset T_{0}$}
+	\end{equation*}
+\item
+	For each $\alpha \in [\,0,\infty)$, define 
+	\begin{equation*}
+	C_{\alpha} \,:\, \left\{\begin{array}{c} \textnormal{all sub-trees} \\ \textnormal{of $T_{0}$} \end{array}\right\}
+	\,\longrightarrow\,
+	[\,0,\infty)
+	\end{equation*}
+	by
+	\begin{equation*}
+	C_{\alpha}(\,T\,)
+	\;\; := \;\;
+		C(\,T\,) + \alpha \cdot \vert\;T\,\vert
+	\;\; = \;
+		\underset{l \in \mathcal{L}(T)}{\sum}\left(\,C(\,l\,) \overset{{\color{white}.}}{+} \alpha\,\right)\,,
+	\quad
+	\textnormal{for each sub-tree \,$T \subset T_{0}$}
+	\end{equation*}
+\item
+	For each $\alpha \in [\,0,\infty)$, let $T(\alpha) \subset T_{0}$ be the sub-tree
+	which is the output of the \textbf{$C_{\alpha}$-minimizing Pruning Algorithm}.
+\end{itemize}
+Then, $T(\alpha)$ is the unique
+{\color{red}minimal $C_{\alpha}$-minimizing} sub-tree $T(\alpha) \subset T_{0}$;
+more precisely, $T(\alpha)$ possesses the following two properties:
+\begin{equation*}
+C_{\alpha}\!\left(\,\overset{{\color{white}.}}{T}(\alpha)\,\right)
+\;\; = \;\;
+	\underset{T^{\prime} \overset{{\color{white}.}}{\subset} T_{0}}{\min}\;
+	C_{\alpha}\!\left(\;\overset{{\color{white}.}}{T^{\prime}}\,\right),
+\quad
+\textnormal{and}
+\end{equation*}
+\begin{equation*}
+T(\alpha) \; \subset \; T\,,
+\quad
+\textnormal{for each sub-tree \;$T \subset T_{0}$\;\, satisfying}\;\;\;
+C_{\alpha}(\,T\,)
+\; = \;
+	\underset{T^{\prime} \overset{{\color{white}.}}{\subset} T_{0}}{\min}\;
+	C_{\alpha}\!\left(\;\overset{{\color{white}.}}{T^{\prime}}\,\right).
+\end{equation*}
+\end{proposition}
+\proof
+First, we fix an enumeration of the nodes of $T_{0}$ such that
+each node of $T_{0}$ precedes each of its parents.
+Let $T(\alpha)$ be obtained as follows:
+Visit the nodes of $T_{0}$ according to the fixed chosen ordering.
+At each node $t \in T$, prune at $t$ if $C_{\alpha}(t) \leq C_{\alpha}(T_{t})$
+Claim: When each node is visited each node $t$
+
+We proceed by induction on the resulting index on the nodes of $T_{0}$.
+
+Initialization step: 
+
+\qed
+
+\begin{center}
+\begin{tcolorbox}[width=0.90\linewidth,colback=white,colframe=gray]
+\begin{center}
+\vskip 0.2cm
+\underline{{\color{white}.}\textbf{\large$C_{\alpha}$-minimizing Pruning Algorithm}{\color{white}.}}
+\end{center}
+\vskip 0.5cm
+INPUT:
+\begin{itemize}
+\item
+	A tree \,$T_{0}$, with an ordering on the nodes of $T_{0}$
+	such that each node of $T_{0}$ precedes each of its parents.
+\item
+	$\alpha \in [\,0,\infty)$.
+\end{itemize}
+\vskip 0.3cm
+INITIALIZATION:
+\begin{itemize}
+\item
+	$T \; := \; T_{0}$.
+\item
+	$\mathcal{S}_{0}$ \;$:=$\; $\varemptyset$.
+\item
+	$\mathcal{S}_{1}$
+	\;$:=$\;
+		\textnormal{ordered sequence of nodes of $T$}
+	\;$=$\;
+		$\left(\;t_{1}, t_{2}, \ldots, t_{\vert\,T\,\vert}\,\right)$.
+\end{itemize}
+\vskip 0.3cm
+NOTATION:
+\vskip 0.1cm
+For each sub-tree $T \subset T_{0}$ and each node $t \in T$,
+$T\vert_{t}$ is the sub-tree of $T$ obtained by making $t$ a terminal node,
+i.e. $T\vert_{t}$ is obtained from $T$ by replacing the branch of $T$ rooted at node $t$
+with just the node $t$ (thereby making the node $t$ terminal).
+\vskip 0.3cm
+LOOP:
+\vskip 0.1cm
+\begin{center}
+\begin{minipage}{0.85\linewidth}
+WHILE \;$\mathcal{S}_{1} \neq \varemptyset$\; DO
+\begin{itemize}
+\item
+	Let \,$t$ \,$:=$\, $\min\!\left\{\,\mathcal{S}_{1}\,\right\}$.
+\item
+	\begin{equation*}
+	T \;\; := \;\;
+	\left\{\begin{array}{ll}
+		T\vert_{t}\,, & \textnormal{if}\;\; C_{\alpha}(\,t\,) \,\leq\, C_{\alpha}(\,T\vert_{t}\,)
+		\\
+		T\,, & \overset{{\color{white}1}}{\textnormal{otherwise}}
+		\end{array}\right.
+	\end{equation*}
+\item
+	$\mathcal{S}_{0} \; := \; \mathcal{S}_{0} \cup \{\,t\,\}$.
+\item
+	$\mathcal{S}_{1}$
+	\;$:=$\;
+		$\left\{\,\textnormal{ordered sequence of nodes of $T$}\,\right\} \backslash \, \mathcal{S}_{0}$.
+\end{itemize}
+END
+\end{minipage}
+\end{center}
+\vskip 0.3cm
+OUTPUT
+\begin{itemize}
+\item
+	$T$
+\end{itemize}
+\vskip 0.1cm
+\end{tcolorbox}
+\end{center}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
