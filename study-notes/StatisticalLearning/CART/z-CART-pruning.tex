@@ -83,7 +83,7 @@ C_{\alpha}(\,T\,)
 \noindent
 \textbf{Claim 1}:\quad
 At Step 1 of each iteration of the WHILE loop of the $C_{\alpha}$-minimizing Pruning Algorithm,
-each branch \,$B$\, rooted at the node \,$t = \min\{\,\mathcal{S}_{1}\,\}$\, is $C_{\alpha}$-optimally pruned.
+each branch \,$B \subsetneq T^{(t)}$\, at the node \,$t = \min\{\,\mathcal{S}_{1}\,\}$\, is $C_{\alpha}$-optimally pruned.
 \vskip 0.2cm
 \noindent
 Proof of Claim 1:\quad
@@ -92,26 +92,34 @@ We proceed by induction on the iteration of the WHILE loop.
 \vskip 0.2cm
 \noindent
 Initial step:\;
-At the initial step, Claim 1 is true since the algorithm starts at a leaf (terminal node)
-and Claim 1 trivially holds for each leaf (since, at a leaf, there is only one (trivial) branch, namely, the leaf itself).
+At the initial step, Claim 1 is vacuously true, since the algorithm starts at a leaf (terminal node)
+and Claim 1 vacuously holds for each leaf (since there are no non-empty proper branches at a leaf).
 
 \vskip 0.2cm
 \noindent
 Induction hypothesis:\;
 Claim 1 holds for every node of $T$ strictly preceding $t$,
-i.e. every branch rooted at every node of $T$ strictly preceding $t$ is optimally pruned.
+i.e. every branch at every node of $T$ strictly preceding $t$ is optimally pruned.
 
 \vskip 0.2cm
 \noindent
 We need to show:\;
 Claim 1 holds for $t$;
-i.e. every branch rooted at $t$ is optimally pruned.
+i.e. every branch at $t$ is optimally pruned.
 To this end, suppose, on the contrary, that
-there exists a branch $B \subset T$ rooted at $t$
+there exists a branch $B \subset T$ at $t$
 such that
 $C_{\alpha}(B) > C_{\alpha}(B^{\prime})$,
 for some sub-branch $B^{\prime} \subset B \subset T$
 obtained by pruning $B$.
+Now, let $r_{B}$ be the root node of the branch $B$.
+Then, $r_{B}$ is a node that precedes $t$.
+But, $C_{\alpha}(B) > C_{\alpha}(B^{\prime})$
+now implies that there must be a branch at
+$r_{B}$ which is not optimally pruned.
+But this contradicts the induction hypothesis.
+Thus, Claim 1 must hold for $t$.
+This proves Claim 1.
 
 \vskip 1.5cm
 First, we fix an enumeration of the nodes of $T_{0}$ such that
