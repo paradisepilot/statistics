@@ -13,13 +13,13 @@ Suppose:
 \item
 	$T_{0}$ is a tree.
 \item
-	$C$ is a leaf-level cost function, i.e.
+	$C$ is a node-level cost function, i.e.
 	\begin{equation*}
 	C \,:\,
 	\left\{\begin{array}{c}
-		\textnormal{all leaves (terminal nodes)}
+		\textnormal{all nodes}
 		\\
-		\textnormal{of all sub-trees of \,$T_{0}$}
+		\textnormal{of \,$T_{0}$}
 		\end{array}\right\}
 	\,\longrightarrow\,
 	[\,0,\infty)
@@ -29,10 +29,11 @@ Suppose:
 	\begin{equation*}
 	C(\,T\,)
 	\;\; := \;\;
-		\underset{l \in \mathcal{L}(T)}{\sum}\, C(\,l\,)\,,
+		\underset{l \,\in\, \mathcal{L}(T)}{\sum}\, C(\,l\,)\,,
 	\quad
-	\textnormal{for each sub-tree \,$T \subset T_{0}$}
+	\textnormal{for each sub-tree \,$T \subset T_{0}$},
 	\end{equation*}
+	where \,$\mathcal{L}(T)$\, is the set of leaves (terminal nodes) of the tree \,$T$.
 \item
 	For each $\alpha \in [\,0,\infty)$, define 
 	\begin{equation*}
@@ -46,21 +47,22 @@ Suppose:
 	\;\; := \;\;
 		C(\,T\,) + \alpha \cdot \vert\;T\,\vert
 	\;\; = \;
-		\underset{l \in \mathcal{L}(T)}{\sum}\left(\,C(\,l\,) \overset{{\color{white}.}}{+} \alpha\,\right)\,,
+		\underset{l \,\in\, \mathcal{L}(T)}{\sum}\left(\,C(\,l\,) \overset{{\color{white}.}}{+} \alpha\,\right)\,,
 	\quad
 	\textnormal{for each sub-tree \,$T \subset T_{0}$}
 	\end{equation*}
 \item
 	For each $\alpha \in [\,0,\infty)$, let $T(\alpha) \subset T_{0}$ be the sub-tree
-	which is the output of the \textbf{$C_{\alpha}$-minimizing Pruning Algorithm}.
+	returned by the \textbf{$C_{\alpha}$-minimizing Pruning Algorithm} when
+	given $\alpha$ and $T_{0}$ as input.
 \end{itemize}
-Then, $T(\alpha)$ is the unique
-{\color{red}minimal $C_{\alpha}$-minimizing} sub-tree $T(\alpha) \subset T_{0}$;
+Then, \,$T(\alpha) \subset T_{0}$\, is the unique
+{\color{red}minimal $C_{\alpha}$-minimizing} sub-tree \,$T_{0}$;\,
 more precisely, $T(\alpha)$ possesses the following two properties:
 \begin{equation*}
 C_{\alpha}\!\left(\,\overset{{\color{white}.}}{T}(\alpha)\,\right)
 \;\; = \;\;
-	\underset{T^{\prime} \overset{{\color{white}.}}{\subset} T_{0}}{\min}\;
+	\underset{T^{\prime} \,\overset{{\color{white}.}}{\subset}\, T_{0}}{\min}\;
 	C_{\alpha}\!\left(\;\overset{{\color{white}.}}{T^{\prime}}\,\right),
 \quad
 \textnormal{and}
@@ -71,11 +73,47 @@ T(\alpha) \; \subset \; T\,,
 \textnormal{for each sub-tree \;$T \subset T_{0}$\;\, satisfying}\;\;\;
 C_{\alpha}(\,T\,)
 \; = \;
-	\underset{T^{\prime} \overset{{\color{white}.}}{\subset} T_{0}}{\min}\;
+	\underset{T^{\prime} \,\overset{{\color{white}.}}{\subset}\, T_{0}}{\min}\;
 	C_{\alpha}\!\left(\;\overset{{\color{white}.}}{T^{\prime}}\,\right).
 \end{equation*}
 \end{proposition}
 \proof
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 1}:\quad
+At Step 1 of each iteration of the WHILE loop of the $C_{\alpha}$-minimizing Pruning Algorithm,
+each branch \,$B$\, rooted at the node \,$t = \min\{\,\mathcal{S}_{1}\,\}$\, is $C_{\alpha}$-optimally pruned.
+\vskip 0.2cm
+\noindent
+Proof of Claim 1:\quad
+We proceed by induction on the iteration of the WHILE loop.
+
+\vskip 0.2cm
+\noindent
+Initial step:\;
+At the initial step, Claim 1 is true since the algorithm starts at a leaf (terminal node)
+and Claim 1 trivially holds for each leaf (since, at a leaf, there is only one (trivial) branch, namely, the leaf itself).
+
+\vskip 0.2cm
+\noindent
+Induction hypothesis:\;
+Claim 1 holds for every node of $T$ strictly preceding $t$,
+i.e. every branch rooted at every node of $T$ strictly preceding $t$ is optimally pruned.
+
+\vskip 0.2cm
+\noindent
+We need to show:\;
+Claim 1 holds for $t$;
+i.e. every branch rooted at $t$ is optimally pruned.
+To this end, suppose, on the contrary, that
+there exists a branch $B \subset T$ rooted at $t$
+such that
+$C_{\alpha}(B) > C_{\alpha}(B^{\prime})$,
+for some sub-branch $B^{\prime} \subset B \subset T$
+obtained by pruning $B$.
+
+\vskip 1.5cm
 First, we fix an enumeration of the nodes of $T_{0}$ such that
 each node of $T_{0}$ precedes each of its parents.
 Let $T(\alpha)$ be obtained as follows:
@@ -105,6 +143,18 @@ INPUT:
 	$\alpha \in [\,0,\infty)$.
 \end{itemize}
 \vskip 0.3cm
+NOTATION:
+\vskip 0.2cm
+For each sub-tree $T \subset T_{0}$ and each node $t \in T$,
+\begin{itemize}
+\item
+	$T^{(t)}$ denotes the branch (sub-tree) of $T$ rooted at the node $t$,
+\item
+	$T_{(t)}$ denotes the sub-tree of $T$ obtained by making $t$ a terminal node,
+	i.e. $T_{(t)}$ is obtained from $T$ by replacing $T^{(t)}$
+	with just the node $t$ (thereby making the node $t$ terminal).
+\end{itemize}
+\vskip 0.3cm
 INITIALIZATION:
 \begin{itemize}
 \item
@@ -119,26 +169,20 @@ INITIALIZATION:
 		$\left(\;t_{1}, t_{2}, \ldots, t_{\vert\,T\,\vert}\,\right)$.
 \end{itemize}
 \vskip 0.3cm
-NOTATION:
-\vskip 0.1cm
-For each sub-tree $T \subset T_{0}$ and each node $t \in T$,
-$T\vert_{t}$ is the sub-tree of $T$ obtained by making $t$ a terminal node,
-i.e. $T\vert_{t}$ is obtained from $T$ by replacing the branch of $T$ rooted at node $t$
-with just the node $t$ (thereby making the node $t$ terminal).
-\vskip 0.3cm
 LOOP:
 \vskip 0.1cm
 \begin{center}
 \begin{minipage}{0.85\linewidth}
 WHILE \;$\mathcal{S}_{1} \neq \varemptyset$\; DO
-\begin{itemize}
+\begin{enumerate}
 \item
 	Let \,$t$ \,$:=$\, $\min\!\left\{\,\mathcal{S}_{1}\,\right\}$.
 \item
+	Determine whether or not to prune at \,$t$,\, i.e. update \,$T$\, as follows:
 	\begin{equation*}
 	T \;\; := \;\;
 	\left\{\begin{array}{ll}
-		T\vert_{t}\,, & \textnormal{if}\;\; C_{\alpha}(\,t\,) \,\leq\, C_{\alpha}(\,T\vert_{t}\,)
+		T_{(t)}\,, & \textnormal{if}\;\; {\color{red}C(\,t\,) + \alpha \,\leq\, C_{\alpha}(\,T^{(t)})}
 		\\
 		T\,, & \overset{{\color{white}1}}{\textnormal{otherwise}}
 		\end{array}\right.
@@ -149,7 +193,7 @@ WHILE \;$\mathcal{S}_{1} \neq \varemptyset$\; DO
 	$\mathcal{S}_{1}$
 	\;$:=$\;
 		$\left\{\,\textnormal{ordered sequence of nodes of $T$}\,\right\} \backslash \, \mathcal{S}_{0}$.
-\end{itemize}
+\end{enumerate}
 END
 \end{minipage}
 \end{center}
