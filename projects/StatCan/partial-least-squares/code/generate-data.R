@@ -48,11 +48,12 @@ generate.data <- function(
     DF.data <- as.data.frame(DF.data);
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    DF.data <- as.data.frame(apply(
-        X      = DF.data,
+    DF.data[,c('x1','x2')] <- as.data.frame(apply(
+        X      = DF.data[,c('x1','x2')],
         MARGIN = 2,
         FUN    = function(x) { return(x - mean(x)) }
         ));
+    DF.data <- as.data.frame(DF.data);
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     my.colour.palette <- RColorBrewer::brewer.pal(n = 3, name = "Set1")[c(1,2)];
