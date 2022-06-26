@@ -74,12 +74,13 @@ print( results.PCA   );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 visualize.data(
-    DF.input       = DF.data,
-    results.OPLS   = results.OPLS,
-    results.PCA    = results.PCA,
-    textsize.title = 35,
-    textsize.axis  = 35,
-    PNG.output     = "plot-OPLS-vs-PCA.png"
+    DF.input        = DF.data,
+    results.OPLS    = results.OPLS,
+    results.PCA     = results.PCA,
+    textsize.title  = 35,
+    textsize.axis   = 35,
+    PNG.OPLS.vs.PCA = "plot-OPLS-vs-PCA.png",
+    PNG.PCA         = "plot-PCA.png"
     );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###

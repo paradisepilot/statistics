@@ -1,12 +1,13 @@
 
 visualize.data <- function(
-    DF.input       = NULL,
-    results.OPLS   = NULL,
-    results.PCA    = NULL,
-    textsize.title = 35,
-    textsize.axis  = 35,
-    dots.per.inch  = 300,
-    PNG.output     = "plot-data.png"
+    DF.input        = NULL,
+    results.OPLS    = NULL,
+    results.PCA     = NULL,
+    textsize.title  = 35,
+    textsize.axis   = 35,
+    dots.per.inch   = 300,
+    PNG.OPLS.vs.PCA = "plot-OPLS-vs-PCA.png",
+    PNG.PCA         = "plot-PCA.png"
     ) {
 
     thisFunctionName <- "visualize.data";
@@ -54,15 +55,15 @@ visualize.data <- function(
         );
 
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
-    my.ggplot <- initializePlot(
+    my.ggplot.0 <- initializePlot(
         textsize.title = textsize.title,
         textsize.axis  = textsize.axis
         );
 
-    # my.ggplot <- my.ggplot + ggplot2::scale_fill_manual( 'y', values = my.colour.palette);
-    # my.ggplot <- my.ggplot + ggplot2::scale_color_manual('y', values = my.colour.palette);
+    my.ggplot.0 <- my.ggplot.0 + ggplot2::scale_x_continuous(limits = 50 * c(-1,1));
+    my.ggplot.0 <- my.ggplot.0 + ggplot2::scale_y_continuous(limits = 50 * c(-1,1));
 
-    my.ggplot <- my.ggplot + ggplot2::geom_point(
+    my.ggplot.0 <- my.ggplot.0 + ggplot2::geom_point(
         data    = DF.input,
         mapping = ggplot2::aes(
             x      = x1,
@@ -72,34 +73,64 @@ visualize.data <- function(
         size = 0.5
         );
 
-    my.ggplot <- my.ggplot + ggplot2::geom_segment(
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    my.ggplot.1 <- my.ggplot.0;
+
+    my.ggplot.1 <- my.ggplot.1 + ggplot2::geom_segment(
         mapping = ggplot2::aes(x = 0, y = 0, xend = xend.OPLS, yend = yend.OPLS),
         arrow   = ggplot2::arrow(length = unit(1, "cm")),
-        size    = 3
+        size    = 3,
+        color    = "red"
         );
 
-    my.ggplot <- my.ggplot + ggplot2::geom_segment(
+    my.ggplot.1 <- my.ggplot.1 + ggplot2::geom_segment(
         mapping  = ggplot2::aes(x = 0, y = 0, xend = xend.PCA, yend = yend.PCA),
         arrow    = ggplot2::arrow(length = unit(1, "cm")),
         size     = 3,
-        linetype = "dashed"
+        color    = "black"
         );
 
-    my.ggplot <- my.ggplot + ggplot2::geom_segment(
+    my.ggplot.1 <- my.ggplot.1 + ggplot2::geom_segment(
         mapping = ggplot2::aes(x = 0.85 * xend.PCA, y = 0.85 * yend.PCA, xend = xend.PCA, yend = yend.PCA),
         arrow   = ggplot2::arrow(length = unit(1, "cm")),
         size    = 3
         );
 
-    my.ggplot <- my.ggplot + ggplot2::scale_x_continuous(limits = 50 * c(-1,1));
-    my.ggplot <- my.ggplot + ggplot2::scale_y_continuous(limits = 50 * c(-1,1));
+    ggplot2::ggsave(
+        filename = PNG.OPLS.vs.PCA,
+        plot     = my.ggplot.1,
+        # scale  = 1,
+        width    = 16,
+        height   = 16,
+        units    = "in",
+        dpi      = dots.per.inch
+        );
 
-    # my.ggplot <- my.ggplot + ggplot2::labs(fill = 'y');
-    # my.ggplot <- my.ggplot + ggplot2::theme(legend.position = "none");
+    ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
+    my.ggplot.2 <- my.ggplot.0;
+
+    my.ggplot.2 <- my.ggplot.2 + ggplot2::geom_segment(
+        mapping = ggplot2::aes(x = 0, y = 0, xend = xend.OPLS, yend = yend.OPLS),
+        arrow   = ggplot2::arrow(length = unit(1, "cm")),
+        size    = 3,
+        linetype = "dashed"
+        );
+
+    my.ggplot.2 <- my.ggplot.2 + ggplot2::geom_segment(
+        mapping = ggplot2::aes(x = 0.85 * xend.OPLS, y = 0.85 * yend.OPLS, xend = xend.OPLS, yend = yend.OPLS),
+        arrow   = ggplot2::arrow(length = unit(1, "cm")),
+        size    = 3
+        );
+
+    my.ggplot.2 <- my.ggplot.2 + ggplot2::geom_segment(
+        mapping  = ggplot2::aes(x = 0, y = 0, xend = xend.PCA, yend = yend.PCA),
+        arrow    = ggplot2::arrow(length = unit(1, "cm")),
+        size     = 3
+        );
 
     ggplot2::ggsave(
-        filename = PNG.output,
-        plot     = my.ggplot,
+        filename = PNG.PCA,
+        plot     = my.ggplot.2,
         # scale  = 1,
         width    = 16,
         height   = 16,
