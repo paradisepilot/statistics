@@ -66,7 +66,8 @@ print( results.OPLS   );
 
 ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
 results.PCA <- do.PCA(
-    DF.input = DF.data
+    DF.input     = DF.data,
+    scale.or.not = FALSE
     );
 
 cat("\nresults.PCA\n");

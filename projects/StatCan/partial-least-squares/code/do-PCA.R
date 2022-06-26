@@ -1,6 +1,7 @@
 
 do.PCA <- function(
-    DF.input = NULL
+    DF.input     = NULL,
+    scale.or.not = FALSE
     ) {
 
     thisFunctionName <- "do.PCA";
@@ -14,7 +15,8 @@ do.PCA <- function(
     ### ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ###
     results.prcomp <- stats::prcomp(
         formula = ~ x1 + x2,
-        data    = DF.input
+        data    = DF.input,
+        scale.  = scale.or.not
         );
 
     cat("\nresults.prcomp\n");
