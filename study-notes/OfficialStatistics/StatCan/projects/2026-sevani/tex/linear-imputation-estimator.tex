@@ -1,0 +1,127 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Linear imputation estimators}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Linear imputation estimators}
+
+\begin{eqnarray*}
+\widehat{\theta}_{\textnormal{I}}(s,s_{r})
+& = &
+    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \,+\,
+    \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
+\\
+& = &
+    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \,+\,
+    \overset{J}{\underset{j=1}{\sum}}\;
+    \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+    w_{k}\,d_{k}\,y_{k}^{*}
+\end{eqnarray*}
+Assume:
+\begin{eqnarray*}
+y_{k}^{*}
+& = &
+    \varphi^{(j)}_{0k}
+    \,+\,
+    \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+\end{eqnarray*}
+Then,
+\begin{eqnarray*}
+\widehat{\theta}_{\textnormal{I}}(s,s_{r})
+& = &
+    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \,+\,
+    \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
+\;\; = \;\;
+    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \,+\,
+    \overset{J}{\underset{j=1}{\sum}}\;
+    \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+    w_{k}\,d_{k}\,y_{k}^{*}
+\\
+& = &
+    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \,+\,
+    \overset{J}{\underset{j=1}{\sum}}\;
+    \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+    w_{k}\,d_{k}\left(\,
+        \varphi^{(j)}_{0k}
+        \,+\,
+        \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+        \right)
+\\
+& = &
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+        \,\right)
+    \,+\,
+    \left(\;
+        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \,+\,
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+        w_{k}\,d_{k}\left(\,
+            \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+            \right)
+        \,\right)
+\\
+& = &
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+        \,\right)
+    \,+\,
+    \left(\;
+        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \,+\,
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{{\color{red}l}\,\in\,s_{m}^{(j)}}{\sum}\,
+        w_{{\color{red}l}}\,d_{{\color{red}l}}\left(\,
+            \underset{{\color{red}k}\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{{\color{red}kl}}\,y_{{\color{red}k}}
+            \right)
+        \,\right)
+\\
+& = &
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+        \,\right)
+    \,+\,
+    \left(\;
+        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \,+\,
+        \underset{k\,\in\,s_{r}}{\sum}\!\left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+            \right)
+        y_{k}
+        \right)
+\\
+& = &
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+        \,\right)
+    \,+\,
+    \underset{k\,\in\,s_{r}}{\sum}
+    \left(\;
+        w_{k}\,d_{k}
+        \,+\,
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+            \right)
+        \right)
+    y_{k}
+\end{eqnarray*}
+ 
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
