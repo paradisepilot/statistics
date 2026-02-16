@@ -54,6 +54,56 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{lemma}[Conditional bias of \,$\widetilde{T}_{Y}$]
+\label{biasTtilde}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Assume that
+\,$Y = (Y_{1},\ldots,Y_{N})$\,
+and
+\,$(I,\rho) = (I_{1},\ldots,I_{N},\rho_{1},\ldots,\rho_{N})$\,
+are conditionally independent given
+\,$\Xobs$.\,
+Then,
+\begin{eqnarray*}
+\bias\!\left(\;
+    \left.
+    \widetilde{T}_{Y}
+    \;\right\vert\,
+    \Xobs
+    \,\right)
+& = &
+    E_{I\rho}\!\left[\;
+        \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,w_{i}\,
+        E_{Y}\!\left[\;
+            \left.
+            Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+        \,\right]
+\end{eqnarray*}
+\end{lemma}
+\begin{remark}
+\mbox{}
+\vskip 0.1cm
+\noindent
+In practice, we therefore would like to choose an imputation strategy such that
+\begin{equation*}
+E_{Y}\!\left[\;
+    \left.
+    Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
+    \;\right\vert\,
+    s,s_{R},\Xobs
+    \,\right]
+\;\; \approx \;\;
+    0,
+\quad
+\textnormal{for each \,$i \in s_{M}$}
+\end{equation*}
+\end{remark}
+\proofof Lemma \ref{biasTtilde}
 \begin{eqnarray*}
 \bias\!\left(\;
     \left.
@@ -221,6 +271,9 @@
             \,\right]
         \,\right]
 \end{eqnarray*}
+\qed
+
+
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
