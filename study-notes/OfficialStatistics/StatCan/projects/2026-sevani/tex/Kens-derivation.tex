@@ -7,23 +7,62 @@
 
 \subsection{Linear imputation estimators}
 
+\begin{definition}[Imputation estimator \,$\widetilde{T}_{Y}$]
+\mbox{}
+\vskip 0.1cm
+\noindent
 \begin{eqnarray*}
 \widetilde{T}_{Y}
 & := &
     \underset{i\,\in\,s}{\sum}\;w_{i}\,\widetilde{Y}_{i}
-\\
-& = &
+\;\; = \;\;
     \underset{i\,\in\,s}{\sum}\;w_{i}\left(\,
         \rho_{i}\,Y_{i}
         \overset{{\color{white}.}}{+}
         (1-\rho_{i})\,Y^{*}_{i}
         \,\right)
+\end{eqnarray*}
+\end{definition}
+
+\begin{lemma}[A formula for \,$\widetilde{T}_{Y}$]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Assume ...
+\begin{eqnarray*}
+\widetilde{T}_{Y}
+% & := &
+%     \underset{i\,\in\,s}{\sum}\;w_{i}\,\widetilde{Y}_{i}
+% \;\; = \;\;
+%     \underset{i\,\in\,s}{\sum}\;w_{i}\left(\,
+%         \rho_{i}\,Y_{i}
+%         \overset{{\color{white}.}}{+}
+%         (1-\rho_{i})\,Y^{*}_{i}
+%         \,\right)
+% \\
+& = &
+    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+    \;\overset{{\color{white}.}}{+}\;
+    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-\rho_{i})\,(Y^{*}_{i}-Y_{i})
+\end{eqnarray*}
+\end{lemma}
+\proof
+\begin{eqnarray*}
+\widetilde{T}_{Y}
+& := &
+    \underset{i\,\in\,s}{\sum}\;w_{i}\,\widetilde{Y}_{i}
 \;\; = \;\;
+    \underset{i\,\in\,s}{\sum}\;w_{i}\left(\,
+        \rho_{i}\,Y_{i}
+        \overset{{\color{white}.}}{+}
+        (1-\rho_{i})\,Y^{*}_{i}
+        \,\right)
+\\
+& = &
     \underset{i\,\in\,s}{\sum}\;w_{i}\,\rho_{i}\,Y_{i}
     \;\overset{{\color{white}.}}{+}\;
     \underset{i\,\in\,s}{\sum}\;w_{i}\,(1-\rho_{i})\,Y^{*}_{i}
-\\
-& = &
+\;\; = \;\;
     \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,\rho_{i}\,Y_{i}
     \;\overset{{\color{white}.}}{+}\;
     \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-\rho_{i})\,Y^{*}_{i}
@@ -51,6 +90,7 @@
     \;\overset{{\color{white}.}}{+}\;
     \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-\rho_{i})\,(Y^{*}_{i}-Y_{i})
 \end{eqnarray*}
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
