@@ -94,7 +94,7 @@ Assume ...
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{lemma}[Conditional bias of \,$\widetilde{T}_{Y}$]
+\begin{lemma}[Overall conditional bias of \,$\widetilde{T}_{Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
 \label{biasTtilde}
 \mbox{}
 \vskip 0.1cm
@@ -127,21 +127,28 @@ Then,
 \end{lemma}
 \begin{remark}
 \mbox{}
-\vskip 0.1cm
+\vskip -0.1cm
 \noindent
-In practice, we therefore would like to choose an imputation strategy such that
-\begin{equation*}
-E_{Y}\!\left[\;
-    \left.
-    Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-    \;\right\vert\,
-    s,s_{R},\Xobs
-    \,\right]
-\;\; \approx \;\;
-    0,
-\quad
-\textnormal{for each \,$i \in s_{M}$}
-\end{equation*}
+\begin{itemize}
+\item
+    In practice, we therefore would like to choose an imputation strategy such that
+    \begin{equation*}
+    E_{Y}\!\left[\;
+        \left.
+        Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    \;\; \approx \;\;
+        0,
+    \quad
+    \textnormal{for each \,$i \in s_{M}$}
+    \end{equation*}
+    See the paragraph after Equation (5.2), p.175, \cite{Beaumont2011}.
+\item
+    The conditioning on \,$\Xobs$\, is largely suppressed in \cite{Beaumont2011} for notational brevity.
+    We have restored it in our notation in these study notes to help avoid ambiguity.
+\end{itemize}
 \end{remark}
 \proofof Lemma \ref{biasTtilde}
 \begin{eqnarray*}
