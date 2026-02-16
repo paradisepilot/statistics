@@ -8,7 +8,7 @@
 \subsection{Linear imputation estimators}
 
 \begin{eqnarray*}
-\widehat{T}_{Y}
+\widetilde{T}_{Y}
 & := &
     \underset{i\,\in\,s}{\sum}\;w_{i}\,\widetilde{Y}_{i}
 \\
@@ -57,28 +57,28 @@
 \begin{eqnarray*}
 \bias\!\left(\;
     \left.
-    \widehat{T}_{Y}
+    \widetilde{T}_{Y}
     \;\right\vert\,
     \Xobs
     \,\right)
 & := &
     E\!\left[\;
         \left.
-        \widehat{T}_{Y} - T_{Y}
+        \widetilde{T}_{Y} - T_{Y}
         \,\right\vert\,
         \Xobs
         \,\right]
 \;\; = \;\;
     E_{YI\rho}\!\left[\;
         \left.
-        \widehat{T}_{Y} - T_{Y}
+        \widetilde{T}_{Y} - T_{Y}
         \,\right\vert\,
         \Xobs
         \,\right]
 \;\; = \;\;
     E_{YI\rho}\!\left[\;
         \left.
-        \widehat{T}_{Y}
+        \widetilde{T}_{Y}
         \,\right\vert\,
         \Xobs
         \,\right]
@@ -219,6 +219,105 @@
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right]
+        \,\right]
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{eqnarray*}
+\MSE\!\left(\;
+    \left.
+    \widetilde{T}_{Y}
+    \;\right\vert\,
+    \Xobs
+    \,\right)
+& := &
+    E\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
+        \,\right\vert\,
+        \Xobs
+        \,\right]
+\;\; = \;\;
+    E_{YI\rho}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
+        \,\right\vert\,
+        \Xobs
+        \,\right]
+\\
+& = &
+    E_{YI\rho}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} \;{\color{red}-\; \widehat{T}_{Y} \;+\; \widehat{T}_{Y}} \,-\, T_{Y}\,)^{2}
+        \,\right\vert\,
+        \Xobs
+        \,\right]
+\\
+& = &
+    E_{YI\rho}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        \,+\,
+        2\,(\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        \,+\,
+        (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+        \,\right\vert\,
+        \Xobs
+        \,\right]
+\\
+& = &
+    E_{YI\rho}\!\left[\,
+        \left.
+        (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+        \,\right\vert\,
+        \Xobs
+        \,\right]
+    \;+\;
+    E_{YI\rho}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        \,\right\vert\,
+        \Xobs
+        \,\right]
+\\
+&&
+    +\;
+    2\,E_{YI\rho}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        \,\right\vert\,
+        \Xobs
+        \,\right]
+\\
+& = &
+    E_{Y}\!\left[\,
+    E_{I\rho}\!\left[\,
+        \left.
+        (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+        \,\right\vert\,
+        \Xobs
+        \,\right]
+        \,\right]
+    \;+\;
+    E_{I\rho}\!\left[\,
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+        \,\right]
+\\
+&&
+    +\;2\,
+    E_{I\rho}\!\left[\,
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
         \,\right]
 \end{eqnarray*}
 
