@@ -335,6 +335,58 @@ Then,
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+
+\begin{lemma}[Decomposition of \,$\MSE(\widetilde{T}_{Y})$; see Equation (5.3) in \cite{Beaumont2011}]
+\label{DecompositionMSETtilde}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Assume that
+\,$Y = (Y_{1},\ldots,Y_{N})$\,
+and
+\,$(I,\rho) = (I_{1},\ldots,I_{N},\rho_{1},\ldots,\rho_{N})$\,
+are conditionally independent given
+\,$\Xobs$.\,
+Then,
+\begin{eqnarray*}
+\MSE\!\left(\;
+    \left.
+    \widetilde{T}_{Y}
+    \;\right\vert\,
+    \Xobs
+    \,\right)
+& = &
+    E_{Y}\!\left[\,
+    E_{I\rho}\!\left[\,
+        \left.
+        (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+        \,\right\vert\,
+        \Xobs
+        \,\right]
+        \,\right]
+    \;+\;
+    E_{I\rho}\!\left[\,
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+        \,\right]
+\\
+&&
+    +\;2\,
+    E_{I\rho}\!\left[\,
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+        \,\right]
+\end{eqnarray*}
+\end{lemma}
+\proof
 \begin{eqnarray*}
 \MSE\!\left(\;
     \left.
@@ -431,9 +483,13 @@ Then,
         \,\right]
         \,\right]
 \end{eqnarray*}
+\vskip -0.5cm
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.5cm
+\noindent
 The first term above
 \,--\,
 i.e.,
