@@ -676,12 +676,13 @@ Then,
     \,\right)
 & = &
     E_{Y}\!\left[\,
-    E_{IR}\!\left[\,
+    \Var_{IR}\!\left(\,
         \left.
-        (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+        \widehat{T}_{Y}
         \,\right\vert\,
+        \Ydot,
         \Xobs
-        \,\right]
+        \,\right)
         \,\right]
     \;+\;
     E_{IR}\!\left[\,
@@ -781,6 +782,37 @@ Then,
         \Ydot,
         \Xobs
         \,\right]
+        \,\right]
+    \;+\;
+    E_{IR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+        \,\right]
+\\
+&&
+    +\;2\,
+    E_{IR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+        \,\right]
+\\
+& = &
+    E_{Y}\!\left[\,
+    \Var_{IR}\!\left(\,
+        \left.
+        \widehat{T}_{Y}
+        \,\right\vert\,
+        \Ydot,
+        \Xobs
+        \,\right)
         \,\right]
     \;+\;
     E_{IR}\!\left[\,
