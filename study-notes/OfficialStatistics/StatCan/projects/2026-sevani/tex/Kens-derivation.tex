@@ -904,3 +904,91 @@ E_{IR}\!\left[\,
 See \cite{Beaumont2009} as well as Equation (5.5), p.175, \cite{Beaumont2011}.
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{lemma}[Formula for sampling variance; Equation (5.5) in \cite{Beaumont2011}]
+\label{DecompositionMSETtilde}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Assume that
+\,$Y = (Y_{1},\ldots,Y_{N})$\,
+and
+\,$(I,\rho) = (I_{1},\ldots,I_{N},\rho_{1},\ldots,\rho_{N})$\,
+are conditionally independent given
+\,$\Xobs$.\,
+We have:
+\begin{eqnarray*}
+E_{Y}\!\left[\,
+    \Var_{IR}\!\left(\,
+        \left.
+        \widehat{T}_{Y}
+        \,\right\vert\,
+        \Ydot,
+        \Xobs
+        \,\right)
+        \,\right]
+& \approx &
+    E_{Y}\!\left[\,
+        v(\,s\,;y_{\bullet}\,)
+        \left\vert\,
+        s,s_{R},\mathbf{Y}_{R},\Xobs
+        \right.
+        \right]
+\;\; = \;\;
+    v(\,y^{\mu}_{\bullet}\,)
+    \;+\;
+    \underset{k\,\in\,s_{M}}{\sum}
+    \left(1-\dfrac{1}{w_{k}}\right)
+    w_{k}^{2}\,\sigma_{k}^{2}\,,
+\end{eqnarray*}
+where
+\,$v(\,s\,;y_{\bullet}\,)$\,
+is the (design-unbiased) Horvitz-Thompson estimator for the sampling variance:
+\begin{equation*}
+v(\,s\,;y_{\bullet}\,)
+\;\; := \;\;
+    \underset{k \in s}{\sum}\,
+    \underset{l \in s}{\sum}\,
+    \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+    (w_{k}y_{k})\,(w_{l}y_{l})
+\end{equation*}
+\end{lemma}
+\proof
+The design-unbiasedness of
+\,$v(\,s\,;y_{\bullet}\,)$\,
+means
+\begin{equation*}
+E_{I}\!\left[\;\overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}\,\right]
+\;\; = \;\;
+    E_{I}\!\left[\,
+        \left.
+        \overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}
+        \,\right\vert\,
+        \Ydot,
+        \Xobs
+        \,\right]
+\;\; = \;\;
+    \Var_{IR}\!\left(\,
+        \left.
+        \widehat{T}_{Y}
+        \,\right\vert\,
+        \Ydot,
+        \Xobs
+        \,\right)
+\end{equation*}
+At this point, we use the estimator:
+\begin{equation*}
+\Var_{IR}\!\left(\,
+    \left.
+    \widehat{T}_{Y}
+    \,\right\vert\,
+    \Ydot,
+    \Xobs
+    \,\right)
+\;\; \approx \;\;
+    \overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}
+\end{equation*}
+\qed
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
