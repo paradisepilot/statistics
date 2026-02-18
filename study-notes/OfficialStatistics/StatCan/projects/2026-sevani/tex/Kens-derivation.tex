@@ -36,7 +36,7 @@
     $\mathbf{X}_{\bullet\bullet} \,=\, \left(\,\overset{{\color{white}.}}{X_{ij}}\,\right) : \Omega \longrightarrow \Re^{N \times r}$\,
     is an $\Re^{N \times r}$-valued random variable defined on \,$\Omega$.
 \item
-    $\Idot \,=\, (I_{1},I_{2},\ldots,I_{N})^{T} : \mathcal{P}(U) \longrightarrow \{0,1\}^{N \times 1}$\,
+    $\Sdot \,=\, (S_{1},S_{2},\ldots,S_{N})^{T} : \mathcal{P}(U) \longrightarrow \{0,1\}^{N \times 1}$\,
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\mathcal{P}(U)$,\,
     i.e., $\mathcal{P}(\mathcal{P}(U))$-measurable map.
 \item
@@ -50,14 +50,14 @@
 \textbf{Probabilistic assumptions}
 \begin{itemize}
 \item
-    $P(\,I_{i} = 1\,) \,:=\, \pi\!\left(\,\left\{\,\left. s \overset{{\color{white}.}}{\subset} U \,\right\vert\, i \in s\,\right\}\,\right) \,>\, 0$,\,
+    $P(\,S_{i} = 1\,) \,:=\, \pi\!\left(\,\left\{\,\left. s \overset{{\color{white}.}}{\subset} U \,\right\vert\, i \in s\,\right\}\,\right) \,>\, 0$,\,
     for each \,$i \in U$,\,
     and
-    \,$w_{i} \,:=\, \dfrac{1}{P(\,I_{i} = 1\,)}$,\, for each \,$i \in U$.
+    \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
 \item
-    $\left(\,\Ydot\,,\Xobs\,\right)$\, and \,$\Idot$\, are (unconditionally) independent.
+    $\left(\,\Ydot\,,\Xobs\,\right)$\, and \,$\Sdot$\, are (unconditionally) independent.
 \item
-    $\Ydot$\, and \,$(\,\Idot\,,\Rdot\,)$\, are {\color{red}conditionally independent} given \,$\Xobs$.
+    $\Ydot$\, and \,$(\,\Sdot\,,\Rdot\,)$\, are {\color{red}conditionally independent} given \,$\Xobs$.
 \end{itemize}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -77,13 +77,13 @@
     \widetilde{T}_{Y}(\,
         \Ydot,
         \Xobs,
-        \Idot,
+        \Sdot,
         \Rdot
         \,)
 & := &
     \underset{i\,\in\,s}{\sum}\;w_{i}\,\widetilde{Y}_{i}
 \;\; = \;\;
-    \underset{i\,\in\,U}{\sum}\;w_{i}\,I_{i}\left(\,
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\left(\,
         R_{i}\,Y_{i}
         \overset{{\color{white}.}}{+}
         (1-R_{i})\,Y^{*}_{i}
@@ -97,19 +97,10 @@
 \noindent
 \begin{eqnarray*}
 \widetilde{T}_{Y}
-% & := &
-%     \underset{i\,\in\,s}{\sum}\;w_{i}\,\widetilde{Y}_{i}
-% \;\; = \;\;
-%     \underset{i\,\in\,s}{\sum}\;w_{i}\left(\,
-%         R_{i}\,Y_{i}
-%         \overset{{\color{white}.}}{+}
-%         (1-R_{i})\,Y^{*}_{i}
-%         \,\right)
-% \\
 & = &
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
     \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 \end{eqnarray*}
 \end{lemma}
 \proof
@@ -129,32 +120,32 @@
     \;\overset{{\color{white}.}}{+}\;
     \underset{i\,\in\,s}{\sum}\;w_{i}\,(1-R_{i})\,Y^{*}_{i}
 \;\; = \;\;
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,R_{i}\,Y_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,R_{i}\,Y_{i}
     \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,Y^{*}_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
 \\
 & = &
     {\color{red}
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
     \;\overset{{\color{white}.}}{-}\;
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
     }
     \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,R_{i}\,Y_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,R_{i}\,Y_{i}
     \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,Y^{*}_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
 \\
 & = &
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
     \;\overset{{\color{white}.}}{-}\;
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,Y_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,Y_{i}
     \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,Y^{*}_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
 \\
 & = &
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
     \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 \end{eqnarray*}
 \vskip -0.5cm
 \qed
@@ -169,7 +160,7 @@
 Assume that
 \,$Y = (Y_{1},\ldots,Y_{N})$\,
 and
-\,$(I,\rho) = (I_{1},\ldots,I_{N},\rho_{1},\ldots,\rho_{N})$\,
+\,$(I,\rho) = (S_{1},\ldots,S_{N},\rho_{1},\ldots,\rho_{N})$\,
 are conditionally independent given
 \,$\Xobs$.\,
 Then,
@@ -238,7 +229,7 @@ We prove the Lemma by establishing a series of claims.
 \; = \;
     E_{YIR}\!\left[\,
         \left.
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
         \;\right\vert\,
         \Xobs
         \right]
@@ -248,7 +239,7 @@ We prove the Lemma by establishing a series of claims.
     \;-\;
     E_{YIR}\!\left[\,
         \left.
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
         \;\right\vert\,
         \Xobs
         \right]
@@ -288,9 +279,9 @@ Proof of Claim 1:\;\;
 & = &
     E_{YIR}\!\left[\;
         \left.
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
         \;\overset{{\color{white}.}}{+}\;
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
         \,\;\right\vert\,
         \Xobs
         \,\right]
@@ -307,7 +298,7 @@ Proof of Claim 1:\;\;
 & = &
     E_{YIR}\!\left[\;
         \left.
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
         \;\right\vert\,
         \Xobs
         \,\right]
@@ -321,7 +312,7 @@ Proof of Claim 1:\;\;
     +\;
     E_{YIR}\!\left[\;
         \left.
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
         \;\right\vert\,
         \Xobs
         \,\right]
@@ -334,7 +325,7 @@ This completes the proof of Claim 1.
 $
 E_{YIR}\!\left[\;
     \left.
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
     \;\right\vert\,
     \Xobs
     \,\right]
@@ -347,14 +338,14 @@ Proof of Claim 2:\;\;
 \begin{eqnarray*}
 E_{YIR}\!\left[\;
     \left.
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
     \;\right\vert\,
     \Xobs
     \,\right]
 & = &
     E_{YI}\!\left[\;
         \left.
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
         \;\right\vert\,
         \Xobs
         \,\right],
@@ -364,35 +355,35 @@ E_{YIR}\!\left[\;
 & = &
     E_{I}\!\left[\,E_{Y}\!\left[\;
         \left.
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
         \;\right\vert\,
         s, s_{R}, \Xobs
         \right]\,\right]
 \;\; = \;\;
     E_{I}\!\left[\,
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,
         E_{Y}\!\left[\,Y_{i}\,\left\vert\,s,s_{R},\Xobs\right.\right]
         \,\right]
 \\
 & = &
     E_{I}\!\left[\,
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,
         E_{Y}\!\left[\,Y_{i}\,\left\vert\,\Xobs\right.\right]
         \,\right],
     \;\;
-    \textnormal{since \,$Y_{i} \perp (I_{\bullet},R_{\bullet}) \,\vert\, \Xobs$\,}
+    \textnormal{since \,$Y_{i} \perp (S_{\bullet},R_{\bullet}) \,\vert\, \Xobs$\,}
 \\
 & = &
     \underset{i\,\in\,U}{\sum}\;
-    E_{I}\!\left[\,I_{i}\,\right]\,
     w_{i}\,
+    E_{I}\!\left[\,S_{i}\,\right]\,
     E_{Y}\!\left[\,Y_{i}\,\left\vert\,\Xobs\right.\right]
 \\
 & = &
     \underset{i\,\in\,U}{\sum}\;
     E_{Y}\!\left[\,Y_{i}\,\left\vert\,\Xobs\right.\,\right],
     \;\;
-    \textnormal{since \,$w_{i} \,=\, \dfrac{1}{P(I_{i}=1)} \,=\, \dfrac{1}{E_{I}[\,I_{i}\,]}$}
+    \textnormal{since \,$w_{i} \,=\, \dfrac{1}{P(S_{i}=1)} \,=\, \dfrac{1}{E_{I}[\,S_{i}\,]}$}
 \end{eqnarray*}
 This completes the proof of Claim 2.
 
@@ -402,7 +393,7 @@ This completes the proof of Claim 2.
 $
 E_{YIR}\!\left[\;
     \left.
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
     \;\right\vert\,
     \Xobs
     \,\right]
@@ -423,7 +414,7 @@ Proof of Claim 3:\;\;
 \begin{eqnarray*}
 E_{YIR}\!\left[\;
     \left.
-    \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+    \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
     \;\right\vert\,
     \Xobs
     \,\right]
@@ -431,7 +422,7 @@ E_{YIR}\!\left[\;
     E_{IR}\!\left[\;
     E_{Y}\!\left[\;
         \left.
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -439,7 +430,7 @@ E_{YIR}\!\left[\;
 \\
 & = &
     E_{IR}\!\left[\;
-        \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,
+        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,
         E_{Y}\!\left[\;
             \left.
             Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
@@ -507,9 +498,9 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 % & = &
 %     E_{YIR}\!\left[\;
 %         \left.
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
 %         \;\overset{{\color{white}.}}{+}\;
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \,\;\right\vert\,
 %         \Xobs
 %         \,\right]
@@ -524,7 +515,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 % & = &
 %     E_{YIR}\!\left[\;
 %         \left.
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right]
@@ -540,7 +531,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %     +\;
 %     E_{YIR}\!\left[\;
 %         \left.
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right]
@@ -548,7 +539,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 % & = &
 %     E_{IR}\!\left[\,E_{Y}\!\left[\;
 %         \left.
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,Y_{i}
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
 %         \;\right\vert\,
 %         s, s_{R}, \Xobs
 %         \,\right]\,\right]
@@ -559,28 +550,28 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %     +\;
 %     E_{YIR}\!\left[\;
 %         \left.
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right]
 % \\
 % & = &
 %     E_{IR}\!\left[\,
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,
 %         E_{Y}\!\left[\,\left.Y_{i}\,\right\vert s,s_{R},\Xobs\,\right]
 %         \,\right]
 %     \;-\;
 %     \underset{i\,\in\,U}{\sum}\;E\!\left[\;Y_{i}\,\vert\,\Xobs\,\right]
 %     % \,+\,
 %     % E_{YIR}\!\left[\;
-%     %     \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%     %     \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %     %     \,\right]
 % \\
 % &&
 %     +\;
 %     E_{YIR}\!\left[\;
 %         \left.
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right]
@@ -592,7 +583,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %     \;+\;
 %     E_{YIR}\!\left[\;
 %         \left.
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right]
@@ -604,7 +595,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %     \;+\;
 %     E_{YIR}\!\left[\;
 %         \left.
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right]
@@ -612,7 +603,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 % & = &
 %     E_{YIR}\!\left[\;
 %         \left.
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right]
@@ -621,7 +612,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %     E_{IR}\!\left[\;
 %     E_{Y}\!\left[\;
 %         \left.
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
 %         s,s_{R},\Xobs
 %         \,\right]
@@ -629,7 +620,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 % \\
 % & = &
 %     E_{IR}\!\left[\;
-%         \underset{i\,\in\,U}{\sum}\;I_{i}\,w_{i}\,(1-R_{i})\,
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,
 %         E_{Y}\!\left[\;
 %             \left.
 %             Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
@@ -663,7 +654,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 Assume that
 \,$Y = (Y_{1},\ldots,Y_{N})$\,
 and
-\,$(I,\rho) = (I_{1},\ldots,I_{N},\rho_{1},\ldots,\rho_{N})$\,
+\,$(I,\rho) = (S_{1},\ldots,S_{N},\rho_{1},\ldots,\rho_{N})$\,
 are conditionally independent given
 \,$\Xobs$.\,
 Then,
