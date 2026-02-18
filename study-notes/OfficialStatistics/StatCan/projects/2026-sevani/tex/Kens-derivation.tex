@@ -172,7 +172,7 @@ Then,
     \Xobs
     \,\right)
 & = &
-    E_{IR}\!\left[\;
+    E_{SR}\!\left[\;
         \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,w_{i}\,
         E_{Y}\!\left[\;
             \left.
@@ -227,7 +227,7 @@ We prove the Lemma by establishing a series of claims.
     \Xobs
     \right)
 \; = \;
-    E_{YIR}\!\left[\,
+    E_{YSR}\!\left[\,
         \left.
         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
         \;\right\vert\,
@@ -237,7 +237,7 @@ We prove the Lemma by establishing a series of claims.
         \underset{i\,\in\,U}{\sum}\;
         E_{Y}\!\left[\,Y_{i}\left\vert\,\Xobs\right.\right]
     \;-\;
-    E_{YIR}\!\left[\,
+    E_{YSR}\!\left[\,
         \left.
         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
         \;\right\vert\,
@@ -262,14 +262,14 @@ Proof of Claim 1:\;\;
         \Xobs
         \,\right]
 \;\; = \;\;
-    E_{YIR}\!\left[\;
+    E_{YSR}\!\left[\;
         \left.
         \widetilde{T}_{Y}
         \,\right\vert\,
         \Xobs
         \,\right]
     \,-\,
-    E_{YIR}\!\left[\;
+    E_{YSR}\!\left[\;
         \left.
         T_{Y}
         \,\right\vert\,
@@ -277,7 +277,7 @@ Proof of Claim 1:\;\;
         \,\right]
 \\
 & = &
-    E_{YIR}\!\left[\;
+    E_{YSR}\!\left[\;
         \left.
         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
         \;\overset{{\color{white}.}}{+}\;
@@ -287,7 +287,7 @@ Proof of Claim 1:\;\;
         \,\right]
     \,-\,
     {\color{blue}
-    E_{YIR}\!\left[\;
+    E_{YSR}\!\left[\;
         \left.
         \underset{i\,\in\,U}{\sum}\;Y_{i}
         \;\right\vert\,
@@ -296,7 +296,7 @@ Proof of Claim 1:\;\;
     }
 \\
 & = &
-    E_{YIR}\!\left[\;
+    E_{YSR}\!\left[\;
         \left.
         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
         \;\right\vert\,
@@ -310,7 +310,7 @@ Proof of Claim 1:\;\;
 \\
 &&
     +\;
-    E_{YIR}\!\left[\;
+    E_{YSR}\!\left[\;
         \left.
         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
         \;\right\vert\,
@@ -323,7 +323,7 @@ This completes the proof of Claim 1.
 \noindent
 \textbf{Claim 2:}\quad
 $
-E_{YIR}\!\left[\;
+E_{YSR}\!\left[\;
     \left.
     \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
     \;\right\vert\,
@@ -336,7 +336,7 @@ $
 \noindent
 Proof of Claim 2:\;\;
 \begin{eqnarray*}
-E_{YIR}\!\left[\;
+E_{YSR}\!\left[\;
     \left.
     \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
     \;\right\vert\,
@@ -353,20 +353,20 @@ E_{YIR}\!\left[\;
     \textnormal{since \,$R_{\bullet}$\, does not appear inside the expectation}
 \\
 & = &
-    E_{I}\!\left[\,E_{Y}\!\left[\;
+    E_{S}\!\left[\,E_{Y}\!\left[\;
         \left.
         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
         \;\right\vert\,
         s, s_{R}, \Xobs
         \right]\,\right]
 \;\; = \;\;
-    E_{I}\!\left[\,
+    E_{S}\!\left[\,
         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,
         E_{Y}\!\left[\,Y_{i}\,\left\vert\,s,s_{R},\Xobs\right.\right]
         \,\right]
 \\
 & = &
-    E_{I}\!\left[\,
+    E_{S}\!\left[\,
         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,
         E_{Y}\!\left[\,Y_{i}\,\left\vert\,\Xobs\right.\right]
         \,\right],
@@ -376,14 +376,14 @@ E_{YIR}\!\left[\;
 & = &
     \underset{i\,\in\,U}{\sum}\;
     w_{i}\,
-    E_{I}\!\left[\,S_{i}\,\right]\,
+    E_{S}\!\left[\,S_{i}\,\right]\,
     E_{Y}\!\left[\,Y_{i}\,\left\vert\,\Xobs\right.\right]
 \\
 & = &
     \underset{i\,\in\,U}{\sum}\;
     E_{Y}\!\left[\,Y_{i}\,\left\vert\,\Xobs\right.\,\right],
     \;\;
-    \textnormal{since \,$w_{i} \,=\, \dfrac{1}{P(S_{i}=1)} \,=\, \dfrac{1}{E_{I}[\,S_{i}\,]}$}
+    \textnormal{since \,$w_{i} \,=\, \dfrac{1}{P(S_{i}=1)} \,=\, \dfrac{1}{E_{S}[\,S_{i}\,]}$}
 \end{eqnarray*}
 This completes the proof of Claim 2.
 
@@ -391,14 +391,14 @@ This completes the proof of Claim 2.
 \noindent
 \textbf{Claim 3:}\quad
 $
-E_{YIR}\!\left[\;
+E_{YSR}\!\left[\;
     \left.
     \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
     \;\right\vert\,
     \Xobs
     \,\right]
 \; = \;
-    E_{IR}\!\left[\;
+    E_{SR}\!\left[\;
         \underset{i\,\in\,{\color{black}s_{M}}}{\sum}\,w_{i}\,
         E_{Y}\!\left[\;
             \left.
@@ -412,14 +412,14 @@ $
 \noindent
 Proof of Claim 3:\;\;
 \begin{eqnarray*}
-E_{YIR}\!\left[\;
+E_{YSR}\!\left[\;
     \left.
     \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
     \;\right\vert\,
     \Xobs
     \,\right]
 & = &
-    E_{IR}\!\left[\;
+    E_{SR}\!\left[\;
     E_{Y}\!\left[\;
         \left.
         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
@@ -429,7 +429,7 @@ E_{YIR}\!\left[\;
         \,\right]
 \\
 & = &
-    E_{IR}\!\left[\;
+    E_{SR}\!\left[\;
         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,
         E_{Y}\!\left[\;
             \left.
@@ -440,7 +440,7 @@ E_{YIR}\!\left[\;
         \,\right]
 \\
 & = &
-    E_{IR}\!\left[\;
+    E_{SR}\!\left[\;
         \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,w_{i}\,
         E_{Y}\!\left[\;
             \left.
@@ -472,7 +472,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %         \Xobs
 %         \,\right]
 % % \;\; = \;\;
-% %     E_{YIR}\!\left[\;
+% %     E_{YSR}\!\left[\;
 % %         \left.
 % %         \widetilde{T}_{Y} - T_{Y}
 % %         \,\right\vert\,
@@ -481,14 +481,14 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 % % \\
 % % & = &
 % \;\; = \;\;
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         \widetilde{T}_{Y}
 %         \,\right\vert\,
 %         \Xobs
 %         \,\right]
 %     \,-\,
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         T_{Y}
 %         \,\right\vert\,
@@ -496,7 +496,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %         \,\right]
 % \\
 % & = &
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
 %         \;\overset{{\color{white}.}}{+}\;
@@ -505,7 +505,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %         \Xobs
 %         \,\right]
 %     \,-\,
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;Y_{i}
 %         \;\right\vert\,
@@ -513,7 +513,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %         \,\right]
 % \\
 % & = &
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
 %         \;\right\vert\,
@@ -529,7 +529,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 % \\
 % &&
 %     +\;
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
@@ -537,7 +537,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %         \,\right]
 % \\
 % & = &
-%     E_{IR}\!\left[\,E_{Y}\!\left[\;
+%     E_{SR}\!\left[\,E_{Y}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
 %         \;\right\vert\,
@@ -548,7 +548,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 % \\
 % &&
 %     +\;
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
@@ -556,20 +556,20 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %         \,\right]
 % \\
 % & = &
-%     E_{IR}\!\left[\,
+%     E_{SR}\!\left[\,
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,
 %         E_{Y}\!\left[\,\left.Y_{i}\,\right\vert s,s_{R},\Xobs\,\right]
 %         \,\right]
 %     \;-\;
 %     \underset{i\,\in\,U}{\sum}\;E\!\left[\;Y_{i}\,\vert\,\Xobs\,\right]
 %     % \,+\,
-%     % E_{YIR}\!\left[\;
+%     % E_{YSR}\!\left[\;
 %     %     \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %     %     \,\right]
 % \\
 % &&
 %     +\;
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
@@ -581,7 +581,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %     \;-\;
 %     \underset{i\,\in\,U}{\sum}\;E\!\left[\;Y_{i}\,\vert\,\Xobs\,\right]
 %     \;+\;
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
@@ -593,7 +593,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %     \;-\;
 %     \underset{i\,\in\,U}{\sum}\;E\!\left[\;Y_{i}\,\vert\,\Xobs\,\right]
 %     \;+\;
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
@@ -601,7 +601,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %         \,\right]
 % \\
 % & = &
-%     E_{YIR}\!\left[\;
+%     E_{YSR}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 %         \;\right\vert\,
@@ -609,7 +609,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %         \,\right]
 % \\
 % & = &
-%     E_{IR}\!\left[\;
+%     E_{SR}\!\left[\;
 %     E_{Y}\!\left[\;
 %         \left.
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
@@ -619,7 +619,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %         \,\right]
 % \\
 % & = &
-%     E_{IR}\!\left[\;
+%     E_{SR}\!\left[\;
 %         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,
 %         E_{Y}\!\left[\;
 %             \left.
@@ -630,7 +630,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 %         \,\right]
 % \\
 % & = &
-%     E_{IR}\!\left[\;
+%     E_{SR}\!\left[\;
 %         \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,w_{i}\,
 %         E_{Y}\!\left[\;
 %             \left.
@@ -667,7 +667,7 @@ Then,
     \,\right)
 & = &
     E_{Y}\!\left[\,
-    \Var_{IR}\!\left(\,
+    \Var_{SR}\!\left(\,
         \left.
         \widehat{T}_{Y}
         \,\right\vert\,
@@ -676,7 +676,7 @@ Then,
         \,\right)
         \,\right]
     \;+\;
-    E_{IR}\!\left[\,
+    E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
@@ -687,7 +687,7 @@ Then,
 \\
 &&
     +\;2\,
-    E_{IR}\!\left[\,
+    E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
@@ -713,7 +713,7 @@ Then,
         \Xobs
         \,\right]
 \;\; = \;\;
-    E_{YIR}\!\left[\,
+    E_{YSR}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
         \,\right\vert\,
@@ -721,7 +721,7 @@ Then,
         \,\right]
 \\
 & = &
-    E_{YIR}\!\left[\,
+    E_{YSR}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} \;{\color{red}-\; \widehat{T}_{Y} \;+\; \widehat{T}_{Y}} \,-\, T_{Y}\,)^{2}
         \,\right\vert\,
@@ -729,7 +729,7 @@ Then,
         \,\right]
 \\
 & = &
-    E_{YIR}\!\left[\,
+    E_{YSR}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
         \,+\,
@@ -741,14 +741,14 @@ Then,
         \,\right]
 \\
 & = &
-    E_{YIR}\!\left[\,
+    E_{YSR}\!\left[\,
         \left.
         (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
         \,\right\vert\,
         \Xobs
         \,\right]
     \;+\;
-    E_{YIR}\!\left[\,
+    E_{YSR}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
         \,\right\vert\,
@@ -757,7 +757,7 @@ Then,
 \\
 &&
     +\;
-    2\,E_{YIR}\!\left[\,
+    2\,E_{YSR}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
         \,\right\vert\,
@@ -766,7 +766,7 @@ Then,
 \\
 & = &
     E_{Y}\!\left[\,
-    E_{IR}\!\left[\,
+    E_{SR}\!\left[\,
         \left.
         (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
         \,\right\vert\,
@@ -775,7 +775,7 @@ Then,
         \,\right]
         \,\right]
     \;+\;
-    E_{IR}\!\left[\,
+    E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
@@ -786,7 +786,7 @@ Then,
 \\
 &&
     +\;2\,
-    E_{IR}\!\left[\,
+    E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
@@ -797,7 +797,7 @@ Then,
 \\
 & = &
     E_{Y}\!\left[\,
-    \Var_{IR}\!\left(\,
+    \Var_{SR}\!\left(\,
         \left.
         \widehat{T}_{Y}
         \,\right\vert\,
@@ -806,7 +806,7 @@ Then,
         \,\right)
         \,\right]
     \;+\;
-    E_{IR}\!\left[\,
+    E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
@@ -817,7 +817,7 @@ Then,
 \\
 &&
     +\;2\,
-    E_{IR}\!\left[\,
+    E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
@@ -838,7 +838,7 @@ The first term above
 i.e.,
 $
 E_{Y}\!\left[\,
-E_{IR}\!\left[\,
+E_{SR}\!\left[\,
     \left.
     (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
     \,\right\vert\,
@@ -852,7 +852,7 @@ is called the \textit{sampling variance} in \cite{Beaumont2011}.
 First, note that
 \begin{eqnarray*}
 E_{Y}\!\left[\,
-E_{IR}\!\left[\,
+E_{SR}\!\left[\,
     \left.
     (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
     \,\right\vert\,
@@ -862,7 +862,7 @@ E_{IR}\!\left[\,
     \,\right]
 & = &
     E_{Y}\!\left[\,
-    \Var_{IR}\!\left(\,
+    \Var_{SR}\!\left(\,
         \left.
         \widehat{T}_{Y}
         \,\right\vert\,
@@ -874,7 +874,7 @@ E_{IR}\!\left[\,
 It is asserted that
 \begin{eqnarray*}
 E_{Y}\!\left[\,
-E_{IR}\!\left[\,
+E_{SR}\!\left[\,
     \left.
     (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
     \,\right\vert\,
@@ -884,7 +884,7 @@ E_{IR}\!\left[\,
     \,\right]
 & \approx &
     E_{Y}\!\left[\,
-    E_{IR}\!\left[\,
+    E_{SR}\!\left[\,
         \left.
         (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
         \,\right\vert\,
@@ -911,14 +911,14 @@ The following statements are true:
     \;$v(\,s\,;y_{\bullet}\,)$\,
     is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
     \begin{equation*}
-    E_{I}\!\left[\;
+    E_{S}\!\left[\;
         v(\,s\,;\Ydot\,)
         \,\left\vert\;
         \Ydot,\Xobs
         \right.
         \,\right]
     \;\; = \;\;
-        \Var_{IR}\!\left(\,
+        \Var_{SR}\!\left(\,
             \left.
             \widehat{T}_{Y}
             \,\right\vert\,
@@ -938,7 +938,7 @@ The following statements are true:
     is an unbiased estimator for
     \,$
     E_{Y}\!\left[\,
-        \Var_{IR}\!\left(\,
+        \Var_{SR}\!\left(\,
             \left.
             \widehat{T}_{Y}
             \,\right\vert\,
@@ -949,7 +949,7 @@ The following statements are true:
     $,\,
     i.e.,
     \begin{equation*}
-    E_{IR}\,
+    E_{SR}\,
     E_{Y_{R}}\,
     E_{Y_{M}}\!\left[\,
         v(\,s\,;\Ydot\,)
@@ -959,7 +959,7 @@ The following statements are true:
         \,\right]
     \;\; = \;\;
         E_{Y}\!\left[\,
-            \Var_{IR}\!\left(\,
+            \Var_{SR}\!\left(\,
                 \left.
                 \widehat{T}_{Y}
                 \,\right\vert\,
@@ -1034,7 +1034,7 @@ The following statements are true:
 % We have:
 % \begin{eqnarray*}
 % E_{Y}\!\left[\,
-%     \Var_{IR}\!\left(\,
+%     \Var_{SR}\!\left(\,
 %         \left.
 %         \widehat{T}_{Y}
 %         \,\right\vert\,
@@ -1065,7 +1065,7 @@ The following statements are true:
 \item
     We simply compute:
     \begin{eqnarray*}
-    E_{IR}\,
+    E_{SR}\,
     E_{Y_{R}}\,
     E_{Y_{M}}\!\left[\,
         v(\,s\,;\Ydot\,)
@@ -1074,7 +1074,7 @@ The following statements are true:
         \right.
         \,\right]
     & = &
-        E_{IR}\,
+        E_{SR}\,
         E_{Y}\!\left[\,
             v(\,s\,;\Ydot\,)
             \,\left\vert\;
@@ -1084,7 +1084,7 @@ The following statements are true:
     \\
     & = &
         E_{Y}\,
-        E_{IR}\!\left[\,
+        E_{SR}\!\left[\,
             v(\,s\,;\Ydot\,)
             \,\left\vert\;
             \Ydot,\Xobs
@@ -1093,7 +1093,7 @@ The following statements are true:
     \\
     & = &
         E_{Y}\,
-        E_{I}\!\left[\,
+        E_{S}\!\left[\,
             v(\,s\,;\Ydot\,)
             \,\left\vert\;
             \Ydot,\Xobs
@@ -1102,7 +1102,7 @@ The following statements are true:
     \\
     & = &
         E_{Y}\!\left[\,
-            \Var_{IR}\!\left(\,
+            \Var_{SR}\!\left(\,
                 \left.
                 \widehat{T}_{Y}
                 \,\right\vert\,
@@ -1210,9 +1210,9 @@ The design-unbiasedness of
 \,$v(\,s\,;y_{\bullet}\,)$\,
 means
 \begin{equation*}
-E_{I}\!\left[\;\overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}\,\right]
+E_{S}\!\left[\;\overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}\,\right]
 \;\; = \;\;
-    E_{I}\!\left[\,
+    E_{S}\!\left[\,
         \left.
         \overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}
         \,\right\vert\,
@@ -1220,7 +1220,7 @@ E_{I}\!\left[\;\overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}\,\right]
         \Xobs
         \,\right]
 \;\; = \;\;
-    \Var_{IR}\!\left(\,
+    \Var_{SR}\!\left(\,
         \left.
         \widehat{T}_{Y}
         \,\right\vert\,
@@ -1230,7 +1230,7 @@ E_{I}\!\left[\;\overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}\,\right]
 \end{equation*}
 At this point, we use the estimator:
 \begin{equation*}
-\Var_{IR}\!\left(\,
+\Var_{SR}\!\left(\,
     \left.
     \widehat{T}_{Y}
     \,\right\vert\,
@@ -1244,7 +1244,7 @@ At this point, we use the estimator:
 
 \begin{eqnarray*}
 E_{Y}\!\left[\,
-    \Var_{IR}\!\left(\,
+    \Var_{SR}\!\left(\,
         \left.
         \widehat{T}_{Y}
         \,\right\vert\,
