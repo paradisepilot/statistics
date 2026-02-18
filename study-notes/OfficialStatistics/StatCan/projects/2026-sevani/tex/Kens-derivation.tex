@@ -699,13 +699,16 @@ Then,
 \end{lemma}
 \proof
 \begin{eqnarray*}
+&&
 \MSE\!\left(\;
     \left.
     \widetilde{T}_{Y}
     \;\right\vert\,
     \Xobs
     \,\right)
-& := &
+% \\
+% & := &
+\;\; := \;\;
     E\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
@@ -741,22 +744,26 @@ Then,
         \,\right]
 \\
 & = &
+    {\color{blue}
     E_{YSR}\!\left[\,
         \left.
         (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
         \,\right\vert\,
         \Xobs
         \,\right]
+    }
     \;+\;
+    {\color{blue}
     E_{YSR}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
         \,\right\vert\,
         \Xobs
         \,\right]
-\\
-&&
-    +\;
+    }
+% \\
+% &&
+    \;+\;
     2\,E_{YSR}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
@@ -765,6 +772,7 @@ Then,
         \,\right]
 \\
 & = &
+    {\color{blue}
     E_{Y}\!\left[\,
     E_{SR}\!\left[\,
         \left.
@@ -774,7 +782,9 @@ Then,
         \Xobs
         \,\right]
         \,\right]
+    }
     \;+\;
+    {\color{blue}
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
@@ -783,6 +793,7 @@ Then,
         s,s_{R},\Xobs
         \,\right]
         \,\right]
+    }
 \\
 &&
     +\;2\,
@@ -797,6 +808,7 @@ Then,
 \\
 & = &
     E_{Y}\!\left[\,
+    {\color{blue}
     \Var_{SR}\!\left(\,
         \left.
         \widehat{T}_{Y}
@@ -804,6 +816,7 @@ Then,
         \Ydot,
         \Xobs
         \,\right)
+        }
         \,\right]
     \;+\;
     E_{SR}\!\left[\,
