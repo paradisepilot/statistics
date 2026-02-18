@@ -1131,10 +1131,22 @@ The following statements are true:
         \underset{l \in s}{\sum}\;
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
         w_{k}w_{l}\;
-        E_{Y_{M}}\!\left[\,
+        E_{Y_{M}}\!\left[\;
             y_{k}y_{l}
-            \,\left\vert\,
+            \left\vert\,
             s,s_{R},\mathbf{Y}_{R},\Xobs
+            \right.
+            \right]
+    \\
+    & = &
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+        w_{k}w_{l}\;
+        E_{Y_{M}}\!\left[\;
+            y_{k}y_{l}
+            \left\vert\,
+            \mathbf{Y}_{R},\Xobs
             \right.
             \right]
     \\
@@ -1148,6 +1160,20 @@ The following statements are true:
         \left(1-\dfrac{1}{w_{k}}\right)
         w_{k}^{2}\,\sigma_{k}^{2}\,,
     \end{eqnarray*}
+    \begin{equation*}
+    E_{Y_{M}}\!\left[\;
+        Y_{k}Y_{l}
+        \,\left\vert\,
+        \mathbf{Y}_{R},\Xobs
+        \right.
+        \right]
+    \;\; = \;\;
+        \left\{\begin{array}{ccl}
+            \Var(Y_{k}) + E[\,Y_{k}\,]^{2}, & \textnormal{for \,$k = l \in s_{M}$}
+            \\
+            E[\,Y_{k}\,]\,E[\,Y_{l}\,], & \textnormal{otherwise}
+            \end{array}\right.
+    \end{equation*}
 \end{enumerate}
 The design-unbiasedness of
 \,$v(\,s\,;y_{\bullet}\,)$\,
