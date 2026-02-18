@@ -911,15 +911,6 @@ See \cite{Beaumont2009} as well as Equation (5.5), p.175, \cite{Beaumont2011}.
 \mbox{}
 \vskip 0.1cm
 \noindent
-% Assume that
-% \,$Y = (Y_{1},\ldots,Y_{N})$\,
-% and
-% \,$(I,\rho) = (I_{1},\ldots,I_{N},\rho_{1},\ldots,\rho_{N})$\,
-% are conditionally independent given
-% \,$\Xobs$.\,
-% \vskip 0.1cm
-% \noindent
-% Let
 The following statements are true:
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
@@ -947,7 +938,7 @@ The following statements are true:
     then
     \,$
     E_{Y_{M}}\!\left[\,
-        v(\,s\,;y_{\bullet}\,)
+        v(\,s\,;y_{R},\Ydot\,)
         \left\vert\,
         s,s_{R},\mathbf{Y}_{R},\Xobs
         \right.
@@ -1001,29 +992,53 @@ The following statements are true:
     then
     \,$
     E_{Y_{M}}\!\left[\,
-        v(\,s\,;y_{\bullet}\,)
+        v(\,s\,;\Ydot\,)
         \left\vert\,
-        s,s_{R},\mathbf{Y}_{R},\Xobs
+        s,s_{R},\mathbf{Y}_{R} = y_{R},\Xobs
         \right.
         \right]
     $\,
     can be expressed as follows:
     \begin{equation*}
     E_{Y_{M}}\!\left[\,
-        v(\,s\,;y_{\bullet}\,)
+        v(\,s\,;\Ydot\,)
         \left\vert\,
-        s,s_{R},\mathbf{Y}_{R},\Xobs
+        s,s_{R},\mathbf{Y}_{R}=y_{R},\Xobs
         \right.
         \right]
     \;\; = \;\;
-        v(\,y^{\mu}_{\bullet}\,)
+        v(\,s\,;\,\widetilde{y}_{\bullet}\,)
         \;+\;
         \underset{k\,\in\,s_{M}}{\sum}
         \left(1-\dfrac{1}{w_{k}}\right)
         w_{k}^{2}\,\sigma_{k}^{2}\,,
     \end{equation*}
     where
-    \,$y^{\mu}_{\bullet} = ???$\,
+    \,$\widetilde{y}_{\bullet}$\,
+    is given by:
+    \begin{equation*}
+    \widetilde{y}_{k}
+    \;\; := \;\;
+        \left\{\begin{array}{cl}
+            y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+            \\
+            \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \backslash s_{R}$}
+            \end{array}\right.
+    \end{equation*}
+    and
+    \,$\sigma_{k}^{2}$\,
+    (for $k \in s_{M}$),
+    is given by:
+    \begin{equation*}
+    \sigma_{k}^{2}
+    \;\; := \;\;
+        \Var_{Y}\!\left[\;
+            Y_{k}
+            \,\left\vert\;
+            \Xobs
+            \right.
+            \right]
+    \end{equation*}
 \end{enumerate}
 % We have:
 % \begin{eqnarray*}
@@ -1110,9 +1125,9 @@ The following statements are true:
 \item
     \begin{eqnarray*}
     E_{Y_{M}}\!\left[\,
-        v(\,s\,;y_{\bullet}\,)
+        v(\,s\,;\Ydot\,)
         \left\vert\,
-        s,s_{R},\mathbf{Y}_{R},\Xobs
+        s,s_{R},\mathbf{Y}_{R}=y_{R},\Xobs
         \right.
         \right]
     & = &
@@ -1121,9 +1136,9 @@ The following statements are true:
             \underset{k \in s}{\sum}\,
             \underset{l \in s}{\sum}\,
             \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-            (w_{k}y_{k})\,(w_{l}y_{l})
+            (w_{k}Y_{k})\,(w_{l}Y_{l})
             \;\right\vert\,
-            s,s_{R},\mathbf{Y}_{R},\Xobs
+            s,s_{R},\mathbf{Y}_{R}=y_{R},\Xobs
             \right]
     \\
     & = &
@@ -1132,9 +1147,9 @@ The following statements are true:
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
         w_{k}w_{l}\;
         E_{Y_{M}}\!\left[\;
-            y_{k}y_{l}
-            \left\vert\,
-            s,s_{R},\mathbf{Y}_{R},\Xobs
+            Y_{k}Y_{l}
+            \,\left\vert\,
+            s,s_{R},\mathbf{Y}_{R}=y_{R},\Xobs
             \right.
             \right]
     \\
@@ -1144,9 +1159,9 @@ The following statements are true:
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
         w_{k}w_{l}\;
         E_{Y_{M}}\!\left[\;
-            y_{k}y_{l}
-            \left\vert\,
-            \mathbf{Y}_{R},\Xobs
+            Y_{k}Y_{l}
+            \,\left\vert\,
+            \mathbf{Y}_{R}=y_{R},\Xobs
             \right.
             \right]
     \\
@@ -1154,26 +1169,47 @@ The following statements are true:
         \cdots
     \\
     & = &
-        v(\,s\,;y^{\mu}_{\bullet}\,)
+        v(\,s\,;\widetilde{y}_{\bullet}\,)
         \;+\;
         \underset{k\,\in\,s_{M}}{\sum}
         \left(1-\dfrac{1}{w_{k}}\right)
         w_{k}^{2}\,\sigma_{k}^{2}\,,
     \end{eqnarray*}
-    \begin{equation*}
+    \begin{eqnarray*}
     E_{Y_{M}}\!\left[\;
         Y_{k}Y_{l}
         \,\left\vert\,
-        \mathbf{Y}_{R},\Xobs
+        \mathbf{Y}_{R}=y_{R},\Xobs
         \right.
         \right]
-    \;\; = \;\;
-        \left\{\begin{array}{ccl}
-            \Var(Y_{k}) + E[\,Y_{k}\,]^{2}, & \textnormal{for \,$k = l \in s_{M}$}
+    & = &
+        \left\{\begin{array}{cl}
+            y_{k} \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{R}$}}
             \\
-            E[\,Y_{k}\,]\,E[\,Y_{l}\,], & \textnormal{otherwise}
+            y_{k} \cdot E[\,Y_{l}\,\vert\,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{R}$,\, $l \in s_{M}$}}
+            \\
+            E[\,Y_{k}\vert\,\Xobs\,] \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{M}$,\, $l \in s_{R}$}}
+            \\
+            E[\,Y_{k}\vert\,\Xobs\,] \cdot E[\,Y_{l}\vert\,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{M}$,\, $k \neq l$}}
+            \\
+            \Var(\,Y_{k}\,\vert\,\Xobs) + E[\,Y_{k}\,\vert\,\Xobs\,]^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
             \end{array}\right.
-    \end{equation*}
+    \end{eqnarray*}
+    Equivalently but more compactly,
+    \begin{eqnarray*}
+    E_{Y_{M}}\!\left[\;
+        Y_{k}Y_{l}
+        \,\left\vert\,
+        \mathbf{Y}_{R}=y_{R},\Xobs
+        \right.
+        \right]
+    & = &
+        \left\{\begin{array}{cl}
+            \sigma_{k}^{k} \,+\, \widetilde{y}_{k}^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+            \\
+            \widetilde{y}_{k} \cdot \widetilde{y}_{l}\,, & \overset{{\color{white}.}}{\textnormal{otherwise}}
+            \end{array}\right.
+    \end{eqnarray*}
 \end{enumerate}
 The design-unbiasedness of
 \,$v(\,s\,;y_{\bullet}\,)$\,
