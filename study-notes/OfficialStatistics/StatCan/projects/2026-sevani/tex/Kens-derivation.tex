@@ -1216,85 +1216,382 @@ The following statements are true:
     \vskip -0.7cm
     \qed
 \end{enumerate}
+% \vskip 1.0cm
+% \noindent
+% The design-unbiasedness of
+% \,$v(\,s\,;y_{\bullet}\,)$\,
+% means
+% \begin{equation*}
+% E_{S}\!\left[\;\overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}\,\right]
+% \;\; = \;\;
+%     E_{S}\!\left[\,
+%         \left.
+%         \overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}
+%         \,\right\vert\,
+%         \Ydot,
+%         \Xobs
+%         \,\right]
+% \;\; = \;\;
+%     \Var_{SR}\!\left(\,
+%         \left.
+%         \widehat{T}_{Y}
+%         \,\right\vert\,
+%         \Ydot,
+%         \Xobs
+%         \,\right)
+% \end{equation*}
+% At this point, we use the estimator:
+% \begin{equation*}
+% \Var_{SR}\!\left(\,
+%     \left.
+%     \widehat{T}_{Y}
+%     \,\right\vert\,
+%     \Ydot,
+%     \Xobs
+%     \,\right)
+% \;\; \approx \;\;
+%     \overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}
+% \end{equation*}
+% \begin{eqnarray*}
+% E_{Y}\!\left[\,
+%     \Var_{SR}\!\left(\,
+%         \left.
+%         \widehat{T}_{Y}
+%         \,\right\vert\,
+%         \Ydot,
+%         \Xobs
+%         \,\right)
+%     \,\right]
+% & \approx &
+%     E_{Y}\!\left[\,
+%         v(\,s\,;\Ydot\,)
+%         \,\left\vert\;
+%         s,\Xobs
+%         \right.
+%         \,\right]
+% \;\; = \;\;
+%     E_{Y}\!\left[\,
+%         v(\,s\,;\Ydot\,)
+%         \,\left\vert\;
+%         s,{\color{blue}s_{R}},\Xobs
+%         \right.
+%         \,\right]
+% \\
+% & = &
+%     E_{Y_{R}}\,E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\Ydot\,)
+%         \,\left\vert\;
+%         s,s_{R},\Xobs
+%         \right.
+%         \,\right]
+% \\
+% & \approx &
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\Ydot\,)
+%         \,\left\vert\;
+%         s,s_{R},\mathbf{Y}_{R},\Xobs
+%         \right.
+%         \,\right]
+% \end{eqnarray*}
 
-\vskip 1.0cm
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{lemma}[Handy formula for \,$\widetilde{T}_{Y} - \widehat{T}_{Y}$;\, see Equation (5.8) in \cite{Beaumont2011}]
+\mbox{}
+\vskip 0.1cm
 \noindent
-The design-unbiasedness of
-\,$v(\,s\,;y_{\bullet}\,)$\,
-means
-\begin{equation*}
-E_{S}\!\left[\;\overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}\,\right]
-\;\; = \;\;
-    E_{S}\!\left[\,
-        \left.
-        \overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}
-        \,\right\vert\,
-        \Ydot,
-        \Xobs
-        \,\right]
-\;\; = \;\;
-    \Var_{SR}\!\left(\,
-        \left.
-        \widehat{T}_{Y}
-        \,\right\vert\,
-        \Ydot,
-        \Xobs
-        \,\right)
-\end{equation*}
-At this point, we use the estimator:
-\begin{equation*}
-\Var_{SR}\!\left(\,
-    \left.
-    \widehat{T}_{Y}
-    \,\right\vert\,
-    \Ydot,
-    \Xobs
-    \,\right)
-\;\; \approx \;\;
-    \overset{{\color{white}.}}{v(\,s\,;\Ydot\,)}
-\end{equation*}
-
-
+Let \,$s \subset U = \{1,2,\ldots,N\}$\, and \,$s_{R} \subset s$\, be given.
+\vskip 0.1cm
+\noindent
+Suppose that, for each $k \in s_{M} := s \backslash s_{R}$, there exist
+\,$\varphi^{(j)}_{0k} = \varphi^{(j)}_{0k}(s,s_{R})$\,
+and
+\,$\varphi^{(j)}_{lk} = \varphi^{(j)}_{lk}(s,s_{R})$\,
+such that
 \begin{eqnarray*}
-E_{Y}\!\left[\,
-    \Var_{SR}\!\left(\,
-        \left.
-        \widehat{T}_{Y}
-        \,\right\vert\,
-        \Ydot,
-        \Xobs
-        \,\right)
-    \,\right]
-& \approx &
-    E_{Y}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \,\left\vert\;
-        s,\Xobs
-        \right.
-        \,\right]
-\;\; = \;\;
-    E_{Y}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \,\left\vert\;
-        s,{\color{blue}s_{R}},\Xobs
-        \right.
-        \,\right]
-\\
+y_{k}^{*}
 & = &
-    E_{Y_{R}}\,E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \,\left\vert\;
-        s,s_{R},\Xobs
-        \right.
-        \,\right]
-\\
-& \approx &
-    E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \,\left\vert\;
-        s,s_{R},\mathbf{Y}_{R},\Xobs
-        \right.
-        \,\right]
+    \varphi^{(j)}_{0k}
+    \,+\,
+    \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+% \\
+% \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+% & = &
+%     \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+%     \,+\,
+%     \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
+% \\
+% \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,){\color{white}...}
+% & = &
+%     \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,y_{k}
 \end{eqnarray*}
+where \,$j \in \{\,1,2,\ldots,J\,\}$.\,
+\vskip 0.2cm
+\noindent
+Recall:
+\begin{itemize}
+\item
+    $
+    \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+    \;\; = \;\;
+        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \;+\,
+        \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
+    $
+\item
+    $
+    \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,)
+    \;\; = \;\;
+        \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    $
+\end{itemize}
+Then, the following equalities hold:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    $
+    \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+    \;\; = \;\;
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \;+\;
+        \underset{k\,\in\,s_{r}}{\sum}
+        \left(\;
+            w_{k}\,d_{k}
+            \,+\,
+            \left(\;
+                \overset{J}{\underset{j=1}{\sum}}\;
+                \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+                \right)
+            \right)
+        y_{k}
+    $
+\item
+    $
+    \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+    \;-\;
+    \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,)
+    \;\; = \;\;
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \;+\;
+        \underset{k\,\in\,s_{r}}{\sum}\!
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+            \right)
+        y_{k}
+        \;-\;
+        \underset{k\,\in\,s_{M}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    $
+\end{enumerate}
+% \begin{eqnarray*}
+% \widetilde{T}_{Y}{\color{white}....}
+% & = &
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+%         w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+%         \,\right)
+%     \;+\;
+%     \underset{k\,\in\,s_{r}}{\sum}
+%     \left(\;
+%         w_{k}\,d_{k}
+%         \,+\,
+%         \left(\;
+%             \overset{J}{\underset{j=1}{\sum}}\;
+%             \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+%             \right)
+%         \right)
+%     y_{k}
+% \\
+% \widetilde{T}_{Y}
+% \,-\,
+% \widehat{T}_{Y}
+% & = &
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+%         \,\right)
+%     \;+\;
+%     \underset{k\,\in\,s_{r}}{\sum}\!
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+%         \right)
+%     y_{k}
+%     \;-\;
+%     \underset{k\,\in\,s_{M}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+% \end{eqnarray*}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+    Straightforward algebra:
+    \begin{eqnarray*}
+    \widetilde{T}_{Y}
+    \;\; = \;\;
+    \widetilde{T}_{Y}\!\left(\,s,s_{R}\,;\,y\,\right)
+    & = &
+        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \,+\,
+        \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
+    \;\; = \;\;
+        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \,+\,
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+        w_{k}\,d_{k}\,y_{k}^{*}
+    \\
+    & = &
+        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \,+\,
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+        w_{k}\,d_{k}\left(\,
+            \varphi^{(j)}_{0k}
+            \,+\,
+            \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+            \right)
+    \\
+    & = &
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \,+\,
+        \left(\;
+            \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+            \,+\,
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+            w_{k}\,d_{k}\left(\,
+                \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+                \right)
+            \,\right)
+    \\
+    & = &
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \,+\,
+        \left(\;
+            \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+            \,+\,
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{{\color{red}l}\,\in\,s_{m}^{(j)}}{\sum}\,
+            w_{{\color{red}l}}\,d_{{\color{red}l}}\left(\,
+                \underset{{\color{red}k}\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{{\color{red}kl}}\,y_{{\color{red}k}}
+                \right)
+            \,\right)
+    \\
+    & = &
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \,+\,
+        \left(\;
+            \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+            \,+\,
+            \underset{k\,\in\,s_{r}}{\sum}\!\left(\;
+                \overset{J}{\underset{j=1}{\sum}}\;
+                \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+                \right)
+            y_{k}
+            \right)
+    \\
+    & = &
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \,+\,
+        \underset{k\,\in\,s_{r}}{\sum}
+        \left(\;
+            w_{k}\,d_{k}
+            \,+\,
+            \left(\;
+                \overset{J}{\underset{j=1}{\sum}}\;
+                \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+                \right)
+            \right)
+        y_{k}
+    \end{eqnarray*}
+\item
+    We again compute:
+    \begin{eqnarray*}
+    \widetilde{T}_{Y}
+    \,-\,
+    \widehat{T}_{Y}
+    & = &
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \;+\;
+        \underset{k\,\in\,s_{r}}{\sum}
+        \left(\;
+            w_{k}\,d_{k}
+            \,+\,
+            \left(\;
+                \overset{J}{\underset{j=1}{\sum}}\;
+                \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+                \right)
+            \right)
+        y_{k}
+        \;-\;
+        \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \\
+    & = &
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \;+\;
+        \underset{k\,\in\,s_{r}}{\sum}\,
+        w_{k}\,d_{k}\,y_{k}
+        \;+\;
+        \underset{k\,\in\,s_{r}}{\sum}\!
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+            \right)
+        y_{k}
+        \;-\;
+        \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \\
+    & = &
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \;+\;
+        \underset{k\,\in\,s_{r}}{\sum}\!
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+            \right)
+        y_{k}
+        \;-\;
+        \underset{k\,\in\,s_{M}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \end{eqnarray*}
+    \vskip -0.6cm
+    \qed
+\end{enumerate}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
