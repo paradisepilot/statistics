@@ -911,7 +911,7 @@ See \cite{Beaumont2009} as well as Equation (5.5), p.175, \cite{Beaumont2011}.
 
 \vskip 0.5cm
 \begin{lemma}[Formula for sampling variance; Equation (5.5) in \cite{Beaumont2011}]
-\label{DecompositionMSETtilde}
+\label{SamplingVariance}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -1013,7 +1013,7 @@ The following statements are true:
     \;\; = \;\;
         v(\,s\,;\,\widetilde{y}_{\bullet}\,)
         \;+\;
-        \underset{k\,\in\,s_{M}}{\sum}
+        \underset{k \in s_{M}}{\sum}
         \left(1-\dfrac{1}{w_{k}}\right)
         w_{k}^{2}\,\sigma_{k}^{2}\,,
     \end{equation*}
@@ -1069,7 +1069,7 @@ The following statements are true:
 % \;\; = \;\;
 %     v(\,y^{\mu}_{\bullet}\,)
 %     \;+\;
-%     \underset{k\,\in\,s_{M}}{\sum}
+%     \underset{k \in s_{M}}{\sum}
 %     \left(1-\dfrac{1}{w_{k}}\right)
 %     w_{k}^{2}\,\sigma_{k}^{2}\,,
 % \end{eqnarray*}
@@ -1177,7 +1177,7 @@ The following statements are true:
     & = &
         v(\,s\,;\widetilde{y}_{\bullet}\,)
         \;+\;
-        \underset{k\,\in\,s_{M}}{\sum}
+        \underset{k \in s_{M}}{\sum}
         \left(1-\dfrac{1}{w_{k}}\right)
         w_{k}^{2}\,\sigma_{k}^{2}\,,
     \end{eqnarray*}
@@ -1301,11 +1301,31 @@ The following statements are true:
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{lemma}[Handy formula for \,$\widetilde{T}_{Y} - \widehat{T}_{Y}$;\, see Equation (5.8) in \cite{Beaumont2011}]
+\begin{lemma}[$\widetilde{T}_{Y} - \widehat{T}_{Y}$ as sum of conditionally indepdent summands;\, see Equation (5.8) in \cite{Beaumont2011}]
+\label{EqnFivePtEight}
 \mbox{}
 \vskip 0.1cm
 \noindent
-Let \,$s \subset U = \{1,2,\ldots,N\}$\, and \,$s_{R} \subset s$\, be given.
+Recall:
+\begin{itemize}
+\item
+    $
+    \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+    \;\; = \;\;
+        \underset{k \in s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \;+\,
+        \underset{k \in s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
+    $
+\item
+    $
+    \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,)
+    \;\; = \;\;
+        \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    $
+\end{itemize}
+\vskip 0.2cm
+\noindent
+Let \,$s \subset U = \{1,2,\ldots,N\}$\, and \,$s_{R} \subset s$\, be given and fixed.
 \vskip 0.1cm
 \noindent
 Suppose that, for each $k \in s_{M} := s \backslash s_{R}$, there exist
@@ -1318,13 +1338,13 @@ y_{k}^{*}
 & = &
     \varphi^{(j)}_{0k}
     \,+\,
-    \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+    \underset{l \in s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
 % \\
 % \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
 % & = &
-%     \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+%     \underset{k \in s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
 %     \,+\,
-%     \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
+%     \underset{k \in s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
 % \\
 % \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,){\color{white}...}
 % & = &
@@ -1333,67 +1353,84 @@ y_{k}^{*}
 where \,$j \in \{\,1,2,\ldots,J\,\}$.\,
 \vskip 0.2cm
 \noindent
-Recall:
-\begin{itemize}
-\item
-    $
-    \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
-    \;\; = \;\;
-        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
-        \;+\,
-        \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
-    $
-\item
-    $
-    \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,)
-    \;\; = \;\;
-        \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,y_{k}
-    $
-\end{itemize}
+Define:
+\begin{equation*}
+W^{(+)}_{{\color{red}0}}
+\;\; := \;\;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+        \,\right),
+\quad\quad
+W^{(+)}_{{\color{red}k}}
+\;\; := \;\;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}k}l}
+        \,\right)
+\end{equation*}
 Then, the following equalities hold:
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
 \begin{enumerate}
 \item
+    % $
+    % \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+    % \;\; = \;\;
+    %     \left(\;
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{k \in s_{m}^{(j)}}{\sum}\;
+    %         w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+    %         \,\right)
+    %     \;+\;
+    %     \underset{k \in s_{r}}{\sum}
+    %     \left(\;
+    %         w_{k}\,d_{k}
+    %         \,+\,
+    %         \left(\;
+    %             \overset{J}{\underset{j=1}{\sum}}\;
+    %             \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+    %             \right)
+    %         \right)
+    %     y_{k}
+    % $
     $
     \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
     \;\; = \;\;
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
-            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
-            \,\right)
+        W^{(+)}_{0}
         \;+\;
-        \underset{k\,\in\,s_{r}}{\sum}
-        \left(\;
-            w_{k}\,d_{k}
-            \,+\,
-            \left(\;
-                \overset{J}{\underset{j=1}{\sum}}\;
-                \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
-                \right)
-            \right)
-        y_{k}
+        \underset{k \in s_{r}}{\sum}\!\left(\,w_{k}d_{k} \,+\, W^{(+)}_{k}\,\right)y_{k}
     $
 \item
+    % $
+    % \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+    % \;-\;
+    % \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,)
+    % \;\; = \;\;
+    %     \left(\;
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{k \in s_{m}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+    %         \,\right)
+    %     \;+\;
+    %     \underset{k \in s_{r}}{\sum}\!
+    %     \left(\;
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+    %         \right)
+    %     y_{k}
+    %     \;-\;
+    %     \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    % $
     $
     \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
     \;-\;
     \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,)
     \;\; = \;\;
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
-            \,\right)
+        W^{(+)}_{0}
         \;+\;
-        \underset{k\,\in\,s_{r}}{\sum}\!
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
-            \right)
-        y_{k}
+        \underset{k \in s_{r}}{\sum}W^{(+)}_{k}\,y_{k}
         \;-\;
-        \underset{k\,\in\,s_{M}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \underset{k \in s_{M}}{\sum}w_{k}\,d_{k}\,y_{k}
     $
 \end{enumerate}
 % \begin{eqnarray*}
@@ -1401,17 +1438,17 @@ Then, the following equalities hold:
 % & = &
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+%         \underset{k \in s_{m}^{(j)}}{\sum}\;
 %         w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
 %         \,\right)
 %     \;+\;
-%     \underset{k\,\in\,s_{r}}{\sum}
+%     \underset{k \in s_{r}}{\sum}
 %     \left(\;
 %         w_{k}\,d_{k}
 %         \,+\,
 %         \left(\;
 %             \overset{J}{\underset{j=1}{\sum}}\;
-%             \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+%             \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
 %             \right)
 %         \right)
 %     y_{k}
@@ -1422,17 +1459,17 @@ Then, the following equalities hold:
 % & = &
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+%         \underset{k \in s_{m}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
 %         \,\right)
 %     \;+\;
-%     \underset{k\,\in\,s_{r}}{\sum}\!
+%     \underset{k \in s_{r}}{\sum}\!
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+%         \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
 %         \right)
 %     y_{k}
 %     \;-\;
-%     \underset{k\,\in\,s_{M}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+%     \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,y_{k}
 % \end{eqnarray*}
 \end{lemma}
 \proof
@@ -1444,53 +1481,53 @@ Then, the following equalities hold:
     \;\; = \;\;
     \widetilde{T}_{Y}\!\left(\,s,s_{R}\,;\,y\,\right)
     & = &
-        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \underset{k \in s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
         \,+\,
-        \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
+        \underset{k \in s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
     \;\; = \;\;
-        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \underset{k \in s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
         \,+\,
         \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+        \underset{k \in s_{m}^{(j)}}{\sum}\,
         w_{k}\,d_{k}\,y_{k}^{*}
     \\
     & = &
-        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \underset{k \in s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
         \,+\,
         \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+        \underset{k \in s_{m}^{(j)}}{\sum}\,
         w_{k}\,d_{k}\left(\,
             \varphi^{(j)}_{0k}
             \,+\,
-            \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+            \underset{l \in s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
             \right)
     \\
     & = &
         \left(\;
             \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            \underset{k \in s_{m}^{(j)}}{\sum}\;
             w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
             \,\right)
         \,+\,
         \left(\;
-            \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+            \underset{k \in s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
             \,+\,
             \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+            \underset{k \in s_{m}^{(j)}}{\sum}\,
             w_{k}\,d_{k}\left(\,
-                \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+                \underset{l \in s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
                 \right)
             \,\right)
     \\
     & = &
         \left(\;
             \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            \underset{k \in s_{m}^{(j)}}{\sum}\;
             w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
             \,\right)
         \,+\,
         \left(\;
-            \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+            \underset{k \in s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
             \,+\,
             \overset{J}{\underset{j=1}{\sum}}\;
             \underset{{\color{red}l}\,\in\,s_{m}^{(j)}}{\sum}\,
@@ -1502,16 +1539,16 @@ Then, the following equalities hold:
     & = &
         \left(\;
             \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            \underset{k \in s_{m}^{(j)}}{\sum}\;
             w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
             \,\right)
         \,+\,
         \left(\;
-            \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+            \underset{k \in s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
             \,+\,
-            \underset{k\,\in\,s_{r}}{\sum}\!\left(\;
+            \underset{k \in s_{r}}{\sum}\!\left(\;
                 \overset{J}{\underset{j=1}{\sum}}\;
-                \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+                \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
                 \right)
             y_{k}
             \right)
@@ -1519,20 +1556,25 @@ Then, the following equalities hold:
     & = &
         \left(\;
             \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+            \underset{k \in s_{m}^{(j)}}{\sum}\;
             w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
             \,\right)
         \,+\,
-        \underset{k\,\in\,s_{r}}{\sum}
+        \underset{k \in s_{r}}{\sum}
         \left(\;
             w_{k}\,d_{k}
             \,+\,
             \left(\;
                 \overset{J}{\underset{j=1}{\sum}}\;
-                \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+                \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
                 \right)
             \right)
         y_{k}
+    \\
+    & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
+        W^{(+)}_{0}
+        \;+\;
+        \underset{k \in s_{r}}{\sum}\left(\,w_{k}d_{k} \,+\, W^{(+)}_{k}\,\right)y_{k}
     \end{eqnarray*}
 \item
     We again compute:
@@ -1540,62 +1582,290 @@ Then, the following equalities hold:
     \widetilde{T}_{Y}
     \,-\,
     \widehat{T}_{Y}
+    % & = &
+    %     \left(\;
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{k \in s_{m}^{(j)}}{\sum}\;
+    %         w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+    %         \,\right)
+    %     \;+\;
+    %     \underset{k \in s_{r}}{\sum}
+    %     \left(\;
+    %         w_{k}\,d_{k}
+    %         \,+\,
+    %         \left(\;
+    %             \overset{J}{\underset{j=1}{\sum}}\;
+    %             \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+    %             \right)
+    %         \right)
+    %     y_{k}
+    %     \;-\;
+    %     \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,y_{k}
     & = &
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
-            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
-            \,\right)
+        W^{(+)}_{0}
         \;+\;
-        \underset{k\,\in\,s_{r}}{\sum}
+        \underset{k \in s_{r}}{\sum}\!
         \left(\;
             w_{k}\,d_{k}
             \,+\,
-            \left(\;
-                \overset{J}{\underset{j=1}{\sum}}\;
-                \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
-                \right)
+            W^{(+)}_{k}
             \right)
         y_{k}
         \;-\;
         \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,y_{k}
     \\
     & = &
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
-            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
-            \,\right)
+        W^{(+)}_{0}
         \;+\;
-        \underset{k\,\in\,s_{r}}{\sum}\,
-        w_{k}\,d_{k}\,y_{k}
+        \underset{k \in s_{r}}{\sum}\,w_{k}\,d_{k}\,y_{k}
         \;+\;
-        \underset{k\,\in\,s_{r}}{\sum}\!
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
-            \right)
-        y_{k}
+        \underset{k \in s_{r}}{\sum}\,W^{(+)}_{k}\,y_{k}
         \;-\;
         \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,y_{k}
     \\
     & = &
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
-            \,\right)
+        W^{(+)}_{0}
         \;+\;
-        \underset{k\,\in\,s_{r}}{\sum}\!
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
-            \right)
-        y_{k}
+        \underset{k \in s_{r}}{\sum} W^{(+)}_{k}\,y_{k}
         \;-\;
-        \underset{k\,\in\,s_{M}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,y_{k}
     \end{eqnarray*}
     \vskip -0.6cm
     \qed
+\end{enumerate}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{lemma}[Formula for non-response variance; Equations (5.9) \& (5.10) in \cite{Beaumont2011}]
+\label{NonresponseVariance}
+\mbox{}
+\vskip 0.1cm
+\noindent
+The following statements are true:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    $
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    $\,
+    is an unbiased estimator for the non-response variance\\
+    \,$
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+        \,\right]
+    $.
+    % i.e.,
+    % \begin{equation*}
+    % E_{SR}\!\left[\,
+    % E_{Y}\!\left[\,
+    %     \left.
+    %     (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+    %     \,\right\vert\,
+    %     s,s_{R},\Xobs
+    %     \,\right]
+    %     \,\right]
+    % \end{equation*}
+\item
+    $
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    $\,
+    can be expressed in explicit computable form as follows:
+    \begin{eqnarray*}
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    & = &
+        \left(\,
+            \underset{k \in s_{r}}{\sum}\,
+                \left(W^{(+)}_{k}\right)^{2}\sigma_{k}^{2}
+            \,+\,
+            \underset{k \in s_{M}}{\sum}\,
+                d_{k}\,w_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+    \\
+    &&
+        +\;
+        \left(\,
+            W^{(+)}_{0}
+            \,+\,
+            \underset{k \in s_{r}}{\sum}\;W^{(+)}_{k}\,\mu_{k}
+            \,-\,
+            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
+            \,\right)^{2}
+    \end{eqnarray*}
+    where
+    \begin{equation*}
+    W^{(+)}_{{\color{red}0}}
+    \;\; := \;\;
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+            \,\right),
+    \quad\quad
+    W^{(+)}_{{\color{red}k}}
+    \;\; := \;\;
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l \in s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}k}l}
+            \,\right)
+    \end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+    Nothing to prove.
+\item
+    First, recall that, in general, we have:
+    \begin{equation*}
+    \Var[\,X\,]
+    \; := \;
+        E\!\left[\,\overset{{\color{white}.}}{(X - \mu_{X})^{2}}\,\right]
+    \; = \;
+        E\!\left[\,\overset{{\color{white}.}}{X^{2} - 2\,\mu_{X}\,X + \mu_{X}^{2}}\,\right]
+    \; = \;
+        \cdots
+    \; = \;
+        E\!\left[\,X^{2}\,\right] \,-\, \mu_{X}^{2}\,,
+    \end{equation*}
+    which implies
+    \,$E\!\left[\,X^{2}\,\right] \,=\, \Var[\,X\,] \,+\,\mu_{X}^{2}$.\,
+    Hence,
+    \begin{eqnarray*}
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    & = &
+        \Var_{Y}\!\left[\,
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+        \,+\,
+        E_{Y}\!\left[\,
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]^{2}
+    \end{eqnarray*}
+    \begin{eqnarray*}
+    &&
+        \Var_{Y}\!\left[\,
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+    \\
+    & = &
+        \Var_{Y}\!\left[\,
+            \left.
+            W^{(+)}_{0}
+            \,+\,
+            \underset{k \in s_{r}}{\sum}\,W^{(+)}_{k}\,Y_{k}
+            \,-\,
+            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right],
+        \;\;
+        \textnormal{by Lemma \ref{EqnFivePtEight}(ii)}
+    \\
+    & = &
+        \Var_{Y}\!\left[\;
+            \left.
+            \underset{k \in s_{r}}{\sum}\,W^{(+)}_{k}\,Y_{k}
+            \,-\,
+            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right],
+        \;\;
+        \textnormal{since $W^{(+)}_{0}$ is constant upon conditioning on $s, s_{R}$}
+    \\
+    & = &
+        \underset{k \in s_{r}}{\sum}
+        \!\left(W^{(+)}_{k}\right)^{2}
+        \cdot
+        \Var_{Y}\!\left[\;
+            Y_{k}
+            \,\left\vert\,
+            s,s_{R},\Xobs
+            \right.
+            \right]
+        \,\;+\;
+        \underset{k \in s_{M}}{\sum}
+        \!\left(w_{k}\,d_{k}\right)^{2}
+        \cdot
+        \Var_{Y}\!\left[\;Y_{k}
+            \,\left\vert\,
+            s,s_{R},\Xobs
+            \right.
+            \,\right],
+        \;\;
+        \textnormal{since \,$Y_{k} \perp Y_{l} \;\;\vert\;\, \Xobs$}
+    \\
+    & = &
+        \underset{k \in s_{r}}{\sum}
+        \!\left(W^{(+)}_{k}\right)^{2}
+        \cdot
+        \Var_{Y}\!\left[\;
+            Y_{k}
+            \,\left\vert\,
+            \Xobs
+            \right.
+            \right]
+        \,\;+\;
+        \underset{k \in s_{M}}{\sum}\,
+        w_{k}^{2}\,d_{k}
+        \cdot
+        \Var_{Y}\!\left[\;Y_{k}
+            \,\left\vert\,
+            \Xobs
+            \right.
+            \,\right],
+        \;\;
+        \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Xobs$}
+    \\
+    & = &
+        \underset{k \in s_{r}}{\sum}
+            \left(W^{(+)}_{k}\right)^{2}\sigma_{k}^{2}
+        \,\;+\;
+        \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}^{2}\,\sigma_{k}^{2}\,,
+        \;\;
+        \textnormal{by definition of
+            \,$\sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+                \,\left\vert\,
+                \Xobs
+                \right.
+                \,\right]$}
+    \end{eqnarray*}
 \end{enumerate}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
