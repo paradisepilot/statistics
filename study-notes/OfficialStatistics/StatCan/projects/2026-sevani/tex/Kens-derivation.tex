@@ -1711,9 +1711,24 @@ The following statements are true:
             \underset{k \in s_{r}}{\sum}\;W^{(+)}_{k}\,\mu_{k}
             \,-\,
             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
-            \,\right)^{2}
+            \,\right)^{2},
     \end{eqnarray*}
     where
+    \,$
+    \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+        \,\left\vert\,
+        \Xobs
+        \right.
+        \,\right]
+    $,\,
+    \,$
+    \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+        \,\left\vert\,
+        \Xobs
+        \right.
+        \,\right]
+    $,\,
+    and
     \begin{equation*}
     W^{(+)}_{{\color{red}0}}
     \;\; := \;\;
@@ -1736,29 +1751,15 @@ The following statements are true:
 \item
     Nothing to prove.
 \item
-    First, recall that, in general, we have:
+    \textbf{Claim 1:}\quad
     \begin{equation*}
-    \Var[\,X\,]
-    \; := \;
-        E\!\left[\,\overset{{\color{white}.}}{(X - \mu_{X})^{2}}\,\right]
-    \; = \;
-        E\!\left[\,\overset{{\color{white}.}}{X^{2} - 2\,\mu_{X}\,X + \mu_{X}^{2}}\,\right]
-    \; = \;
-        \cdots
-    \; = \;
-        E\!\left[\,X^{2}\,\right] \,-\, \mu_{X}^{2}\,,
-    \end{equation*}
-    which implies
-    \,$E\!\left[\,X^{2}\,\right] \,=\, \Var[\,X\,] \,+\,\mu_{X}^{2}$.\,
-    Hence,
-    \begin{eqnarray*}
     E_{Y}\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
-    & = &
+    \;\; = \;\;
         \Var_{Y}\!\left[\,
             \left.
             \widetilde{T}_{Y} - \widehat{T}_{Y}
@@ -1772,7 +1773,68 @@ The following statements are true:
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]^{2}
-    \end{eqnarray*}
+    \end{equation*}
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 1:\;\;
+    Claim 1 follows immediately from the following well-known equality:
+    \begin{equation*}
+    \Var[\,X\,]
+    \; := \;
+        E\!\left[\,\overset{{\color{white}.}}{(X - \mu_{X})^{2}}\,\right]
+    \; = \;
+        E\!\left[\,\overset{{\color{white}.}}{X^{2} - 2\,\mu_{X}\,X + \mu_{X}^{2}}\,\right]
+    \; = \;
+        \cdots
+    \; = \;
+        E\!\left[\,X^{2}\,\right] \,-\, \mu_{X}^{2}\,,
+    \end{equation*}
+    This completes the proof of Claim 1.
+
+    \vskip 0.5cm
+    \textbf{Claim 2:}\quad
+    \begin{equation*}
+    \Var_{Y}\!\left[\,
+        \left.
+        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    \;\; = \;\;
+        \underset{k \in s_{r}}{\sum}
+            \left(W^{(+)}_{k}\right)^{2}\sigma_{k}^{2}
+        \,\;+\;
+        \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}^{2}\,\sigma_{k}^{2}
+    \end{equation*}
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 2:\;\;
+    % which implies
+    % \,$E\!\left[\,X^{2}\,\right] \,=\, \Var[\,X\,] \,+\,\mu_{X}^{2}$.\,
+    % Hence,
+    % \begin{eqnarray*}
+    % E_{Y}\!\left[\,
+    %     \left.
+    %     (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+    %     \,\right\vert\,
+    %     s,s_{R},\Xobs
+    %     \,\right]
+    % & = &
+    %     \Var_{Y}\!\left[\,
+    %         \left.
+    %         \widetilde{T}_{Y} - \widehat{T}_{Y}
+    %         \,\right\vert\,
+    %         s,s_{R},\Xobs
+    %         \,\right]
+    %     \,+\,
+    %     E_{Y}\!\left[\,
+    %         \left.
+    %         \widetilde{T}_{Y} - \widehat{T}_{Y}
+    %         \,\right\vert\,
+    %         s,s_{R},\Xobs
+    %         \,\right]^{2}
+    % \end{eqnarray*}
     \begin{eqnarray*}
     &&
         \Var_{Y}\!\left[\,
@@ -1866,6 +1928,117 @@ The following statements are true:
                 \right.
                 \,\right]$}
     \end{eqnarray*}
+    This completes the proof of Claim 2.
+
+    \vskip 0.5cm
+    \textbf{Claim 3:}\quad
+    \begin{equation*}
+    E_{Y}\!\left[\,
+        \left.
+        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \,\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    \;\; = \;\;
+        W^{(+)}_{0}
+        \,\;+\;
+        \underset{k \in s_{r}}{\sum}\;W^{(+)}_{k}\,\mu_{k}
+        \,\;-\;
+        \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
+    \end{equation*}
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 3:\;\;
+    \begin{eqnarray*}
+    &&
+        E_{Y}\!\left[\,
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+    \\
+    & = &
+        E_{Y}\!\left[\,
+            \left.
+            W^{(+)}_{0}
+            \,+\,
+            \underset{k \in s_{r}}{\sum}\,W^{(+)}_{k}\,Y_{k}
+            \,-\,
+            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right],
+        \quad
+        \textnormal{by Lemma \ref{EqnFivePtEight}(ii)}
+    \\
+    & = &
+        W^{(+)}_{0}
+        \;+\;
+        \underset{k \in s_{r}}{\sum}\;
+        W^{(+)}_{k}
+        \cdot
+        E_{Y}\!\left[\;
+            Y_{k}
+            \,\left\vert\,
+            s,s_{R},\Xobs
+            \right.
+            \right]
+        \,\;-\;
+        \underset{k \in s_{M}}{\sum}\;
+        w_{k}\,d_{k}
+        \cdot
+        E_{Y}\!\left[\;Y_{k}
+            \,\left\vert\,
+            s,s_{R},\Xobs
+            \right.
+            \,\right]
+    \\
+    & = &
+        W^{(+)}_{0}
+        \;+\;
+        \underset{k \in s_{r}}{\sum}\;
+        W^{(+)}_{k}
+        \cdot
+        E_{Y}\!\left[\;
+            Y_{k}
+            \,\left\vert\,
+            \Xobs
+            \right.
+            \right]
+        \,\;-\;
+        \underset{k \in s_{M}}{\sum}\;
+        w_{k}\,d_{k}
+        \cdot
+        E_{Y}\!\left[\;Y_{k}
+            \,\left\vert\,
+            \Xobs
+            \right.
+            \,\right],
+        \;\;
+        \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Xobs$}
+    \\
+    & = &
+        W^{(+)}_{0}
+        \;+\;
+        \underset{k \in s_{r}}{\sum}\;W^{(+)}_{k}\,\mu_{k}
+        \,\;-\;
+        \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}\,\mu_{k}\,,
+        \;\;
+        \textnormal{by definition of
+            \,$\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+                \,\left\vert\,
+                \Xobs
+                \right.
+                \,\right]$}
+    \end{eqnarray*}
+    This completes the proof of Claim 3.
+
+    \vskip 0.3cm
+    \noindent
+    The required result now follows immediately from Claim 1, Claim 2, and Claim 3.
+    \qed
 \end{enumerate}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
