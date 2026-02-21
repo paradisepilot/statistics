@@ -1252,7 +1252,7 @@ The following statements are true:
             \underset{k \in s}{\sum}\,
             \underset{l \in s}{\sum}\,
             \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-            (d_{k}w_{k}Y_{k})\,(d_{l}w_{l}Y_{l})
+            (d_{k}w_{k}y_{k})\,(d_{l}w_{l}Y_{l})
             \;\right\vert\,
             s,s_{R},\YsubR=y_{R},\Xobs
             \right]
@@ -1418,11 +1418,11 @@ The following statements are true:
 \noindent
 An imputation estimator
 \begin{equation*}
-\widetilde{T}_{Y}(\,s,s_{R},y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+\widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;\,X_{\bullet\bullet},\dbullet\,)
 \;\; = \;\;
-    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
     \;+\,
-    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,y_{k}^{*}
+    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
 \end{equation*}
 is called a \textbf{composite linear imputation estimator}
 if there exists \,$J \in \N$\, such that
@@ -1439,44 +1439,43 @@ there exist
 \end{equation*}
 such that
 \begin{equation*}
-y_{k}^{*}
+Y_{k}^{*}
 \;\; = \;\;
     \varphi^{(j)}_{0k}
     \,+\,
-    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}\,,
+    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
 \quad
 \textnormal{for some \,$j \in \{1,2,\ldots,J\}$\, depending on \,$s,\,s_{R},\,\Xobs$}
 \end{equation*}
 \end{minipage}
 \end{center}
-
 \end{definition}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{lemma}[$\widetilde{T}_{Y} - \widehat{T}_{Y}$ as sum of \,$\Xobs$-conditionally indepdent summands;\, see Equation (5.8) in \cite{Beaumont2011}]
+\begin{lemma}[$\widetilde{T}_{Y} - \widehat{T}_{Y}$ as sum of \,$\Xobs$-conditionally independent summands;\, Equation (5.8) in \cite{Beaumont2011}]
 \label{EqnFivePtEight}
 \mbox{}
 \vskip 0.1cm
 \noindent
 Let
 \begin{equation*}
-\widetilde{T}_{Y}(\,s,s_{R},y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+\widetilde{T}_{Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
 \;\; = \;\;
-    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
     \;+\,
-    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,y_{k}^{*}
+    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
 \end{equation*}
 be a composite linear imputation estimator for the domain total
-\,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}y_{k}$,\,
+\,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
 with
 \begin{equation*}
-y_{k}^{*}
+Y_{k}^{*}
 \;\; = \;\;
     \varphi^{(j)}_{0k}
     \,+\,
-    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
 \end{equation*}
 Define:
 \begin{equation*}
@@ -1517,14 +1516,14 @@ Then, the following equalities hold:
     %             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
     %             \right)
     %         \right)
-    %     y_{k}
+    %     Y_{k}
     % $
     $
-    \widetilde{T}_{Y}(\,s,s_{R},y_{\bullet}\,;X_{\bullet\bullet},\dbullet\,)
+    \widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet},\dbullet\,)
     \;\; = \;\;
         W^{(+)}_{0}
         \;+\;
-        \underset{k \in s_{R}}{\sum}\!\left(\,d_{k}\,w_{k} \,+\, W^{(+)}_{k}\,\right)y_{k}
+        \underset{k \in s_{R}}{\sum}\!\left(\,d_{k}\,w_{k} \,+\, W^{(+)}_{k}\,\right)Y_{k}
     $
 \item
     % $
@@ -1542,26 +1541,26 @@ Then, the following equalities hold:
     %         \overset{J}{\underset{j=1}{\sum}}\;
     %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
     %         \right)
-    %     y_{k}
+    %     Y_{k}
     %     \;-\;
-    %     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+    %     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
     % $
     $
-    \widetilde{T}_{Y}(\,s,s_{R},y_{\bullet}\,;X_{\bullet\bullet}\,\dbullet\,)
+    \widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet}\,\dbullet\,)
     \;-\;
-    \widehat{T}_{Y}(\,s,y_{\bullet}\,;\,\dbullet\,)
+    \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
     \;\; = \;\;
         W^{(+)}_{0}
         \;+\;
-        \underset{k \in s_{R}}{\sum}W^{(+)}_{k}\,y_{k}
+        \underset{k \in s_{R}}{\sum}W^{(+)}_{k}\,Y_{k}
         \;-\;
-        \underset{k \in s_{M}}{\sum}d_{k}\,w_{k}\,y_{k}
+        \underset{k \in s_{M}}{\sum}d_{k}\,w_{k}\,Y_{k}
     $,\\
     where
     \,$
-    \widehat{T}_{Y}(\,s,y_{\bullet}\,;\,\dbullet\,)
+    \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
     \;\; = \;\;
-        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,y_{k}
+        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
     $\,
     is the Horvitz-Thompson estimator.
 \end{enumerate}
@@ -1583,7 +1582,7 @@ Then, the following equalities hold:
 %             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
 %             \right)
 %         \right)
-%     y_{k}
+%     Y_{k}
 % \\
 % \widetilde{T}_{Y}
 % \,-\,
@@ -1599,9 +1598,9 @@ Then, the following equalities hold:
 %         \overset{J}{\underset{j=1}{\sum}}\;
 %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
 %         \right)
-%     y_{k}
+%     Y_{k}
 %     \;-\;
-%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
 % \end{eqnarray*}
 \end{lemma}
 \proof
@@ -1611,27 +1610,27 @@ Then, the following equalities hold:
     \begin{eqnarray*}
     \widetilde{T}_{Y}
     \;\; = \;\;
-    \widetilde{T}_{Y}\!\left(\,s,s_{R}\,;\,y\,\right)
+    \widetilde{T}_{Y}\!\left(\,s,s_{R},\Ydot\,;\,\dbullet\,\right)
     & = &
-        \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+        \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
         \,+\,
-        \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,y_{k}^{*}
+        \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
     \;\; = \;\;
-        \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+        \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
         \,+\,
         \overset{J}{\underset{j=1}{\sum}}\;
         \underset{k \in s_{M}^{(j)}}{\sum}\,
-        d_{k}\,w_{k}\,y_{k}^{*}
+        d_{k}\,w_{k}\,Y_{k}^{*}
     \\
     & = &
-        \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+        \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
         \,+\,
         \overset{J}{\underset{j=1}{\sum}}\;
         \underset{k \in s_{M}^{(j)}}{\sum}\,
         d_{k}\,w_{k}\left(\,
             \varphi^{(j)}_{0k}
             \,+\,
-            \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+            \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
             \right)
     \\
     & = &
@@ -1642,12 +1641,12 @@ Then, the following equalities hold:
             \,\right)
         \,+\,
         \left(\;
-            \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+            \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
             \,+\,
             \overset{J}{\underset{j=1}{\sum}}\;
             \underset{k \in s_{M}^{(j)}}{\sum}\,
             d_{k}\,w_{k}\left(\,
-                \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+                \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
                 \right)
             \,\right)
     \\
@@ -1659,12 +1658,12 @@ Then, the following equalities hold:
             \,\right)
         \,+\,
         \left(\;
-            \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+            \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
             \,+\,
             \overset{J}{\underset{j=1}{\sum}}\;
             \underset{{\color{red}l}\,\in\,s_{M}^{(j)}}{\sum}\,
             w_{{\color{red}l}}\,d_{{\color{red}l}}\left(\,
-                \underset{{\color{red}k}\,\in\,s_{R}}{\sum}\,\varphi^{(j)}_{{\color{red}kl}}\,y_{{\color{red}k}}
+                \underset{{\color{red}k}\,\in\,s_{R}}{\sum}\,\varphi^{(j)}_{{\color{red}kl}}\,Y_{{\color{red}k}}
                 \right)
             \,\right)
     \\
@@ -1676,13 +1675,13 @@ Then, the following equalities hold:
             \,\right)
         \,+\,
         \left(\;
-            \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+            \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
             \,+\,
             \underset{k \in s_{R}}{\sum}\!\left(\;
                 \overset{J}{\underset{j=1}{\sum}}\;
                 \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
                 \right)
-            y_{k}
+            Y_{k}
             \right)
     \\
     & = &
@@ -1701,12 +1700,12 @@ Then, the following equalities hold:
                 \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
                 \right)
             \right)
-        y_{k}
+        Y_{k}
     \\
     & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
         W^{(+)}_{0}
         \;+\;
-        \underset{k \in s_{R}}{\sum}\left(\,w_{k}d_{k} \,+\, W^{(+)}_{k}\,\right)y_{k}
+        \underset{k \in s_{R}}{\sum}\left(\,w_{k}d_{k} \,+\, W^{(+)}_{k}\,\right)Y_{k}
     \end{eqnarray*}
 \item
     We again compute:
@@ -1730,9 +1729,9 @@ Then, the following equalities hold:
     %             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
     %             \right)
     %         \right)
-    %     y_{k}
+    %     Y_{k}
     %     \;-\;
-    %     \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,y_{k}
+    %     \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
     & = &
         W^{(+)}_{0}
         \;+\;
@@ -1742,25 +1741,25 @@ Then, the following equalities hold:
             \,+\,
             W^{(+)}_{k}
             \right)
-        y_{k}
+        Y_{k}
         \;-\;
-        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,y_{k}
+        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
     \\
     & = &
         W^{(+)}_{0}
         \;+\;
-        \underset{k \in s_{R}}{\sum}\,d_{k}\,w_{k}\,y_{k}
+        \underset{k \in s_{R}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
         \;+\;
-        \underset{k \in s_{R}}{\sum}\,W^{(+)}_{k}\,y_{k}
+        \underset{k \in s_{R}}{\sum}\,W^{(+)}_{k}\,Y_{k}
         \;-\;
-        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,y_{k}
+        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
     \\
     & = &
         W^{(+)}_{0}
         \;+\;
-        \underset{k \in s_{R}}{\sum} W^{(+)}_{k}\,y_{k}
+        \underset{k \in s_{R}}{\sum} W^{(+)}_{k}\,Y_{k}
         \;-\;
-        \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+        \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
     \end{eqnarray*}
     \vskip -0.6cm
     \qed
