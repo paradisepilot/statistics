@@ -156,6 +156,7 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.2cm
 \begin{definition}[Imputation estimator \,$\widetilde{T}_{Y}$]
 \mbox{}
 \vskip 0.1cm
@@ -188,6 +189,7 @@ and
 \;$Y^{*}_{i} \,=\, Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)$.\,
 \end{definition}
 
+\vskip 0.3cm
 \begin{lemma}[A formula for \,$\widetilde{T}_{Y}$]
 \mbox{}
 \vskip 0.1cm
@@ -249,18 +251,41 @@ and
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.3cm
 \begin{lemma}[Overall conditional bias of \,$\widetilde{T}_{Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
 \label{biasTtilde}
 \mbox{}
 \vskip 0.1cm
 \noindent
-% Assume that
-% \,$Y = (Y_{1},\ldots,Y_{N})$\,
-% and
-% \,$(I,\rho) = (S_{1},\ldots,S_{N},\rho_{1},\ldots,\rho_{N})$\,
-% are conditionally independent given
-% \,$\Xobs$.\,
-% Then,
+Let
+\begin{eqnarray*}
+\widetilde{T}_{Y}
+\;\; = \;\;
+    \widetilde{T}_{Y}(\,
+        \Sdot\,,\,
+        \Rdot\,,\,
+        \Ydot\,,\,
+        \Xdotdot\,;\,
+        \dbullet
+        \,)
+& := &
+    \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+\;\; = \;\;
+    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+        R_{i}\,Y_{i}
+        \overset{{\color{white}.}}{+}
+        (1-R_{i})\,Y^{*}_{i}
+        \,\right)
+\end{eqnarray*}
+be an imputation estimator for the domain total
+\;$T_{Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
+where
+\begin{equation*}
+\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}
+\quad\;\;\textnormal{and}\quad\;
+Y^{*}_{i} \;=\; Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+\end{equation*}
+Then,
 \begin{eqnarray*}
 \bias\!\left(\;
     \left.
@@ -757,11 +782,41 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.3cm
 \begin{lemma}[Decomposition of \,$\MSE(\,\widetilde{T}_{Y}\,\vert\,\Xobs\,)$; see Equation (5.3) in \cite{Beaumont2011}]
 \label{DecompositionMSETtilde}
 \mbox{}
 \vskip 0.1cm
 \noindent
+Let
+\begin{eqnarray*}
+\widetilde{T}_{Y}
+\;\; = \;\;
+    \widetilde{T}_{Y}(\,
+        \Sdot\,,\,
+        \Rdot\,,\,
+        \Ydot\,,\,
+        \Xdotdot\,;\,
+        \dbullet
+        \,)
+& := &
+    \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+\;\; = \;\;
+    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+        R_{i}\,Y_{i}
+        \overset{{\color{white}.}}{+}
+        (1-R_{i})\,Y^{*}_{i}
+        \,\right)
+\end{eqnarray*}
+be an imputation estimator for the domain total
+\;$T_{Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
+where
+\begin{equation*}
+\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}
+\quad\;\;\textnormal{and}\quad\;
+Y^{*}_{i} \;=\; Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+\end{equation*}
+Then,
 \begin{eqnarray*}
 \MSE\!\left(\;
     \left.
@@ -1027,6 +1082,7 @@ See \cite{Beaumont2009} as well as Equation (5.5), p.175, \cite{Beaumont2011}.
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.3cm
 \begin{lemma}[Unbiased estimator for sampling variance; Equation (5.5) in \cite{Beaumont2011}]
 \label{SamplingVariance}
 \mbox{}
@@ -1424,6 +1480,7 @@ The following statements are true:
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.3cm
 \begin{definition}[Composite linear imputation estimator;\, see \S3 in \cite{Beaumont2011}]
 \label{LinearImputationEstimator}
 \mbox{}
@@ -1791,7 +1848,55 @@ Then, the following equalities hold:
 \mbox{}
 \vskip 0.1cm
 \noindent
-The following statements are true:
+Let
+\begin{equation*}
+\widetilde{T}_{Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+\;\; = \;\;
+    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+    \;+\,
+    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+\end{equation*}
+be a composite linear imputation estimator for the domain total
+\,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
+with
+\begin{equation*}
+Y_{k}^{*}
+\;\; = \;\;
+    \varphi^{(j)}_{0k}
+    \,+\,
+    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
+\end{equation*}
+Define:
+\,$
+\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+    \,\left\vert\,
+    \Xobs
+    \right.
+    \,\right]
+$,\,
+\,$
+\sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+    \,\left\vert\,
+    \Xobs
+    \right.
+    \,\right]
+$,\,
+\begin{equation*}
+W^{(+)}_{{\color{red}0}}
+\;\; := \;\;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+        \,\right),
+\quad\;\;\textnormal{and}\quad\;\;
+W^{(+)}_{{\color{red}k}}
+\;\; := \;\;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}k}l}
+        \,\right)
+\end{equation*}
+Then, the following statements are true:
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
 \begin{enumerate}
@@ -1860,39 +1965,39 @@ The following statements are true:
             \underset{k \in s_{R}}{\sum}\;W^{(+)}_{k}\,\mu_{k}
             \,-\,
             \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,\mu_{k}
-            \,\right)^{2},
+            \,\right)^{2}
     \end{eqnarray*}
-    where
-    \,$
-    \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
-        \,\left\vert\,
-        \Xobs
-        \right.
-        \,\right]
-    $,\,
-    \,$
-    \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
-        \,\left\vert\,
-        \Xobs
-        \right.
-        \,\right]
-    $,\,
-    and
-    \begin{equation*}
-    W^{(+)}_{{\color{red}0}}
-    \;\; := \;\;
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
-            \,\right),
-    \quad\quad
-    W^{(+)}_{{\color{red}k}}
-    \;\; := \;\;
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}k}l}
-            \,\right)
-    \end{equation*}
+    % where
+    % \,$
+    % \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+    %     \,\left\vert\,
+    %     \Xobs
+    %     \right.
+    %     \,\right]
+    % $,\,
+    % \,$
+    % \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+    %     \,\left\vert\,
+    %     \Xobs
+    %     \right.
+    %     \,\right]
+    % $,\,
+    % and
+    % \begin{equation*}
+    % W^{(+)}_{{\color{red}0}}
+    % \;\; := \;\;
+    %     \left(\;
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+    %         \,\right),
+    % \quad\quad
+    % W^{(+)}_{{\color{red}k}}
+    % \;\; := \;\;
+    %     \left(\;
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}k}l}
+    %         \,\right)
+    % \end{equation*}
 \end{enumerate}
 \end{lemma}
 \proof
@@ -2192,7 +2297,8 @@ The following statements are true:
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.5cm
+% \vskip 0.5cm
+\clearpage
 \subsection{Unbiased estimator for the mixed component of
 \,$\MSE\!\left(\,\widetilde{T}_{Y}\left\vert\,\Xobs\right.\right)$}
 
@@ -2203,7 +2309,55 @@ The following statements are true:
 \mbox{}
 \vskip 0.1cm
 \noindent
-The following statements are true:
+Let
+\begin{equation*}
+\widetilde{T}_{Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+\;\; = \;\;
+    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+    \;+\,
+    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+\end{equation*}
+be a composite linear imputation estimator for the domain total
+\,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
+with
+\begin{equation*}
+Y_{k}^{*}
+\;\; = \;\;
+    \varphi^{(j)}_{0k}
+    \,+\,
+    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
+\end{equation*}
+Define:
+\,$
+\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+    \,\left\vert\,
+    \Xobs
+    \right.
+    \,\right]
+$,\,
+\,$
+\sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+    \,\left\vert\,
+    \Xobs
+    \right.
+    \,\right]
+$,\,
+\begin{equation*}
+W^{(+)}_{{\color{red}0}}
+\;\; := \;\;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+        \,\right),
+\quad\;\;\textnormal{and}\quad\;\;
+W^{(+)}_{{\color{red}k}}
+\;\; := \;\;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}k}l}
+        \,\right)
+\end{equation*}
+Then, the following statements are true:
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
 \begin{enumerate}
