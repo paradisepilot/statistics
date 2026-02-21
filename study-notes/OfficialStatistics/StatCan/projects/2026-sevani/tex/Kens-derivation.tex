@@ -1,11 +1,12 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Ken's derivation}
+\section{Variance estimation methodology for composite linear imputation described in \cite{Beaumont2011}}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \subsection{Probabilistic framework}
+\setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -153,6 +154,7 @@
 
 \vskip 0.5cm
 \subsection{Imputation estimator}
+\setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -780,6 +782,7 @@ The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
 % \vskip 0.5cm
 \clearpage
 \subsection{Decomposition of the MSE of the imputation estimator}
+\setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -1012,36 +1015,35 @@ Then,
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.5cm
+\vskip 0.75cm
 \noindent
-The first term above
-\,--\,
-i.e.,
-$
-E_{Y}\!\left[\,
-E_{SR}\!\left[\,
+To refer to the three summands in the above decomposition of
+\,$
+\MSE\!\left(\;
     \left.
-    (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
-    \,\right\vert\,
-    \Ydot,
+    \widetilde{T}_{Y}
+    \;\right\vert\,
     \Xobs
-    \,\right]
-    \,\right]
-$
-\,--\,
-is called the \textit{sampling variance} in \cite{Beaumont2011}.
-First, note that
+    \,\right)
+\, := \,
+    E\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
+        \,\right\vert\,
+        \Xobs
+        \,\right]
+$,\,
+we will use the following nomenclature:
+\vskip 0.01cm
 \begin{eqnarray*}
-E_{Y}\!\left[\,
-E_{SR}\!\left[\,
-    \left.
-    (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
-    \,\right\vert\,
-    \Ydot,
-    \Xobs
-    \,\right]
-    \,\right]
-& = &
+\left(\begin{array}{c}
+    \textnormal{sampling}
+    \\
+    \textnormal{variance}
+    \\
+    \textnormal{{\color{white}..}component{\color{white}..}}
+    \end{array}\right)
+& := &
     E_{Y}\!\left[\,
     \Var_{SR}\!\left(\,
         \left.
@@ -1051,41 +1053,117 @@ E_{SR}\!\left[\,
         \Xobs
         \,\right)
         \,\right]
-\end{eqnarray*}
-It is asserted that
-\begin{eqnarray*}
-E_{Y}\!\left[\,
-E_{SR}\!\left[\,
-    \left.
-    (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
-    \,\right\vert\,
-    \Ydot,
-    \Xobs
-    \,\right]
-    \,\right]
-& \approx &
-    E_{Y}\!\left[\,
+\\
+\left(\begin{array}{c}
+    \textnormal{non-response}
+    \\
+    \textnormal{variance}
+    \\
+    \textnormal{{\color{white}..}component{\color{white}..}}
+    \end{array}\right)
+& := &
     E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
         \left.
-        (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
         \,\right\vert\,
-        s,s_{R},\YsubR,\Xobs
+        s,s_{R},\Xobs
+        \,\right]
+        \,\right]
+\\
+\left(\begin{array}{c}
+    \textnormal{mixed}
+    \\
+    \textnormal{variance}
+    \\
+    \textnormal{{\color{white}..}component{\color{white}..}}
+    \end{array}\right)
+& := &
+    2\,
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        \,\right\vert\,
+        s,s_{R},\Xobs
         \,\right]
         \,\right]
 \end{eqnarray*}
-See \cite{Beaumont2009} as well as Equation (5.5), p.175, \cite{Beaumont2011}.
+% \vskip 0.5cm
+% \noindent
+% The first term above
+% \,--\,
+% i.e.,
+% $
+% E_{Y}\!\left[\,
+% E_{SR}\!\left[\,
+%     \left.
+%     (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+%     \,\right\vert\,
+%     \Ydot,
+%     \Xobs
+%     \,\right]
+%     \,\right]
+% $
+% \,--\,
+% is called the \textit{sampling variance} in \cite{Beaumont2011}.
+% First, note that
+% \begin{eqnarray*}
+% E_{Y}\!\left[\,
+% E_{SR}\!\left[\,
+%     \left.
+%     (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+%     \,\right\vert\,
+%     \Ydot,
+%     \Xobs
+%     \,\right]
+%     \,\right]
+% & = &
+%     E_{Y}\!\left[\,
+%     \Var_{SR}\!\left(\,
+%         \left.
+%         \widehat{T}_{Y}
+%         \,\right\vert\,
+%         \Ydot,
+%         \Xobs
+%         \,\right)
+%         \,\right]
+% \end{eqnarray*}
+% It is asserted that
+% \begin{eqnarray*}
+% E_{Y}\!\left[\,
+% E_{SR}\!\left[\,
+%     \left.
+%     (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+%     \,\right\vert\,
+%     \Ydot,
+%     \Xobs
+%     \,\right]
+%     \,\right]
+% & \approx &
+%     E_{Y}\!\left[\,
+%     E_{SR}\!\left[\,
+%         \left.
+%         (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+%         \,\right\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \,\right]
+%         \,\right]
+% \end{eqnarray*}
+% See \cite{Beaumont2009} as well as Equation (5.5), p.175, \cite{Beaumont2011}.
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 % \vskip 0.5cm
 \clearpage
-\subsection{Unbiased estimator for the sampling component of
+\subsection{Unbiased estimator for the sampling variance component of
 \,$\MSE\!\left(\,\widetilde{T}_{Y}\left\vert\,\Xobs\right.\right)$}
+\setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.3cm
-\begin{lemma}[Unbiased estimator for sampling variance; Equation (5.5) in \cite{Beaumont2011}]
+\begin{lemma}[Unbiased estimator for sampling variance component; Equation (5.5) in \cite{Beaumont2011}]
 \label{SamplingVariance}
 \mbox{}
 \vskip 0.1cm
@@ -1480,6 +1558,7 @@ The following statements are true:
 %\vskip 0.5cm
 \clearpage
 \subsection{Composite linear imputation estimator}
+\setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -1842,12 +1921,13 @@ Then, the following equalities hold:
 
 % \vskip 0.5cm
 \clearpage
-\subsection{Unbiased estimator for the non-response component of
+\subsection{Unbiased estimator for the non-response variance component of
 \,$\MSE\!\left(\,\widetilde{T}_{Y}\left\vert\,\Xobs\right.\right)$}
+\setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{lemma}[Unbiased estimator for non-response variance; see Equations (5.9) \& (5.10) in \cite{Beaumont2011}]
+\begin{lemma}[Unbiased estimator for non-response variance; Equations (5.9) \& (5.10) in \cite{Beaumont2011}]
 \label{NonresponseVariance}
 \mbox{}
 \vskip 0.1cm
@@ -1953,8 +2033,8 @@ Then, the following statements are true:
         s,s_{R},\Xobs
         \,\right]
     & = &
-        \left(\,
-            \underset{k \in s_{R}}{\sum}\,
+        \left(\;
+            \underset{k \in s_{R}}{\sum}
                 \left(W^{(+)}_{k}\right)^{2}\sigma_{k}^{2}
             \,+\,
             \underset{k \in s_{M}}{\sum}\,
@@ -2305,6 +2385,7 @@ Then, the following statements are true:
 \clearpage
 \subsection{Unbiased estimator for the mixed component of
 \,$\MSE\!\left(\,\widetilde{T}_{Y}\left\vert\,\Xobs\right.\right)$}
+\setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -2625,5 +2706,360 @@ Then, the following statements are true:
     This completes the proof of the Lemma.
     \qed
 \end{enumerate}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+% \vskip 0.5cm
+\clearpage
+\subsection{Summary: variance estimation for composite linear imputation estimators in practice}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.1cm
+\noindent
+Let
+\begin{equation*}
+\widetilde{T}_{Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+\;\; = \;\;
+    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+    \;+\,
+    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+\end{equation*}
+be a composite linear imputation estimator for the domain total
+\,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
+with
+\begin{equation*}
+Y_{k}^{*}
+\;\; = \;\;
+    \varphi^{(j)}_{0k}
+    \,+\,
+    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
+\end{equation*}
+Define:
+\,$
+\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+    \,\left\vert\,
+    \Xobs
+    \right.
+    \,\right]
+$,\,
+\,$
+\sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+    \,\left\vert\,
+    \Xobs
+    \right.
+    \,\right]
+$,\,
+\begin{equation*}
+W^{(+)}_{{\color{red}0}}
+\;\; := \;\;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+        \,\right),
+\quad\;\;\textnormal{and}\quad\;\;
+W^{(+)}_{{\color{red}k}}
+\;\; := \;\;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}k}l}
+        \,\right)
+\end{equation*}
+Then, the following summarizes the results in \cite{Beaumont2011}:
+\begin{itemize}
+\item
+    By Lemma \ref{DecompositionMSETtilde}, we have the following decomposition:
+    \begin{eqnarray*}
+    \MSE\!\left(\;
+        \left.
+        \widetilde{T}_{Y}
+        \;\right\vert\,
+        \Xobs
+        \,\right)
+    & := &
+        E\!\left[\,
+            \left.
+            (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
+            \,\right\vert\,
+            \Xobs
+            \,\right]
+    \\
+    & = &
+        E_{Y}\!\left[\,
+        \Var_{SR}\!\left(\,
+            \left.
+            \widehat{T}_{Y}
+            \,\right\vert\,
+            \Ydot,
+            \Xobs
+            \,\right)
+            \,\right]
+        \;+\;
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            \left.
+            (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+            \,\right]
+    \\
+    &&
+        +\;2\,
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            \left.
+            (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+            \,\right]
+    \end{eqnarray*}
+    % We use the following nomenclature to refer the three summands in the right-hand side:
+    % \begin{eqnarray*}
+    % \left(\begin{array}{c}
+    %     \textnormal{sampling}
+    %     \\
+    %     \textnormal{variance}
+    %     \\
+    %     \textnormal{{\color{white}..}component{\color{white}..}}
+    %     \end{array}\right)
+    % & := &
+    %     E_{Y}\!\left[\,
+    %     \Var_{SR}\!\left(\,
+    %         \left.
+    %         \widehat{T}_{Y}
+    %         \,\right\vert\,
+    %         \Ydot,
+    %         \Xobs
+    %         \,\right)
+    %         \,\right]
+    % \\
+    % \left(\begin{array}{c}
+    %     \textnormal{non-response}
+    %     \\
+    %     \textnormal{variance}
+    %     \\
+    %     \textnormal{{\color{white}..}component{\color{white}..}}
+    %     \end{array}\right)
+    % & := &
+    %     E_{SR}\!\left[\,
+    %     E_{Y}\!\left[\,
+    %         \left.
+    %         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+    %         \,\right\vert\,
+    %         s,s_{R},\Xobs
+    %         \,\right]
+    %         \,\right]
+    % \\
+    % \left(\begin{array}{c}
+    %     \textnormal{mixed}
+    %     \\
+    %     \textnormal{variance}
+    %     \\
+    %     \textnormal{{\color{white}..}component{\color{white}..}}
+    %     \end{array}\right)
+    % & := &
+    %     2\,
+    %     E_{SR}\!\left[\,
+    %     E_{Y}\!\left[\,
+    %         \left.
+    %         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+    %         \,\right\vert\,
+    %         s,s_{R},\Xobs
+    %         \,\right]
+    %         \,\right]
+    % \end{eqnarray*}
+\item
+    By Lemma \ref{SamplingVariance}, the sampling variance component can be estimated as follows:
+    \begin{eqnarray*}
+    \left(\!\!\!\!\begin{array}{c}
+        \textnormal{sampling}
+        \\
+        \textnormal{variance}
+        \\
+        \textnormal{{\color{white}..}component{\color{white}..}}
+        \end{array}\!\!\!\!\right)
+    & := &
+        E_{Y}\!\left[\,
+        \Var_{SR}\!\left(\,
+            \left.
+            \widehat{T}_{Y}
+            \,\right\vert\,
+            \Ydot,
+            \Xobs
+            \,\right)
+            \,\right]
+    \;\; = \;\;
+        E_{SR}\,
+        E_{Y_{R}}\,
+        E_{Y_{M}}\!\left[\,
+            v(\,s\,;\Ydot\,)
+            \,\left\vert\;
+            s,s_{R},\YsubR,\Xobs
+            \right.
+            \,\right]
+    \\
+    & {\color{red}\approx} &
+    E_{Y_{M}}\!\left[\,
+        v(\,s\,;\Ydot\,)
+        \left\vert\,
+        s,s_{R},\YsubR=y_{R},\Xobs
+        \right.
+        \right]
+    \;\; = \;\;
+        {\color{blue}
+        v(\,s\,;\widetilde{y}_{\bullet}\,)
+        \;+\;
+        \underset{k \in s_{M}}{\sum}\;
+        d_{k}
+        \left(1-\dfrac{1}{w_{k}}\right)
+        w_{k}^{2}\,\sigma_{k}^{2}
+        }\,,
+    \end{eqnarray*}
+    where
+    \,$v(\,s\,;y_{\bullet}\,)$\,
+    is the (design-unbiased) Horvitz-Thompson estimator for sampling variance, i.e.,
+    \begin{equation*}
+    v(\,s\,;y_{\bullet}\,)
+    \;\; := \;\;
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        (d_{k}w_{k}y_{k})\,(d_{l}w_{l}y_{l})\,,
+    \end{equation*}
+    and
+    \begin{equation*}
+    \widetilde{y}_{k}
+    \;\; := \;\;
+        \left\{\begin{array}{cl}
+            y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+            \\
+            % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+            \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+            \end{array}\right.
+    \end{equation*}
+\item
+    By Lemma \ref{NonresponseVariance}, the non-response variance component can be estimated as follows:
+    \begin{eqnarray*}
+    \left(\!\begin{array}{c}
+        \textnormal{non-response}
+        \\
+        \textnormal{variance}
+        \\
+        \textnormal{{\color{white}..}component{\color{white}..}}
+        \end{array}\!\right)
+    & := &
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            \left.
+            (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+            \,\right]
+    \;\; {\color{red}\approx} \;\;
+        E_{Y}\!\left[\,
+            \left.
+            (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+    \\
+    & = &
+        \left(\;
+            \underset{k \in s_{R}}{\sum}
+                \left(W^{(+)}_{k}\right)^{2}\sigma_{k}^{2}
+            \,+\,
+            \underset{k \in s_{M}}{\sum}\,
+                d_{k}\,w_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        \;+\;
+        \left(\,
+            W^{(+)}_{0}
+            \,+\,
+            \underset{k \in s_{R}}{\sum}\;W^{(+)}_{k}\,\mu_{k}
+            \,-\,
+            \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,\mu_{k}
+            \,\right)^{2}
+    \end{eqnarray*}
+\item
+    By Lemma \ref{MixedVariance}, the mixed variance component can be estimated as follows:
+    \begin{eqnarray*}
+    \left(\!\!\!\!\begin{array}{c}
+        \textnormal{mixed}
+        \\
+        \textnormal{variance}
+        \\
+        \textnormal{{\color{white}..}component{\color{white}..}}
+        \end{array}\!\!\!\!\right)
+    & := &
+        2\,
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            \left.
+            (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+            \,\right]
+    \\
+    & \approx &
+        2\,
+        E_{Y}\!\left[\,
+            \left.
+            (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+            \,\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+    \\
+    & = &
+        2\cdot
+        \Cov_{Y}\!\left(\,
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,,\,
+            \widehat{T}_{Y} - T_{Y}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right)
+    \\
+    &&
+        +\;
+        2\cdot
+        E_{Y}\!\left[\;
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+        \cdot
+        {\color{red}E_{Y}\!\left[\;
+            \left.
+            \widehat{T}_{Y} - T_{Y}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]}
+    \\
+    & {\color{red}\approx} &
+        2\cdot
+        \Cov_{Y}\!\left(\,
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,,\,
+            \widehat{T}_{Y} - T_{Y}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right)
+    \\
+    & = &
+        \underset{k \in s_{R}}{\sum}\,
+            d_{k}\,W^{(+)}_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+        \;\;-\,
+        \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}\,(w_{1}-1)\,\sigma_{k}^{2}
+    \end{eqnarray*}
+\end{itemize}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
