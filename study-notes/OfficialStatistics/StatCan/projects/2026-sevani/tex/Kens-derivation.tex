@@ -1457,53 +1457,24 @@ y_{k}^{*}
 \mbox{}
 \vskip 0.1cm
 \noindent
-Recall:
-\begin{itemize}
-\item
-    $
-    \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
-    \;\; = \;\;
-        \underset{k \in s_{r}}{\sum}\;d_{k}\,w_{k}\,y_{k}
-        \;+\,
-        \underset{k \in s_{m}}{\sum}\;d_{k}\,w_{k}\,y_{k}^{*}
-    $
-\item
-    $
-    \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,)
-    \;\; = \;\;
-        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,y_{k}
-    $
-\end{itemize}
-\vskip 0.2cm
-\noindent
-Let \,$s \subset U = \{1,2,\ldots,N\}$\, and \,$s_{R} \subset s$\, be given and fixed.
-\vskip 0.1cm
-\noindent
-Suppose that, for each $k \in s_{M} := s \,\backslash\, s_{R}$, there exist
-\,$\varphi^{(j)}_{0k} = \varphi^{(j)}_{0k}(s,s_{R})$\,
-and
-\,$\varphi^{(j)}_{lk} = \varphi^{(j)}_{lk}(s,s_{R})$\,
-such that
-\begin{eqnarray*}
+Let
+\begin{equation*}
+\widetilde{T}_{Y}(\,s,s_{R},y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+\;\; = \;\;
+    \underset{k \in s_{r}}{\sum}\;d_{k}\,w_{k}\,y_{k}
+    \;+\,
+    \underset{k \in s_{m}}{\sum}\;d_{k}\,w_{k}\,y_{k}^{*}
+\end{equation*}
+be a composite linear imputation estimator for the domain total
+\,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}y_{k}$,\,
+with
+\begin{equation*}
 y_{k}^{*}
-& = &
+\;\; = \;\;
     \varphi^{(j)}_{0k}
     \,+\,
     \underset{l \in s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
-% \\
-% \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
-% & = &
-%     \underset{k \in s_{r}}{\sum}\;d_{k}\,w_{k}\,y_{k}
-%     \,+\,
-%     \underset{k \in s_{m}}{\sum}\;d_{k}\,w_{k}\,y_{k}^{*}
-% \\
-% \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,){\color{white}...}
-% & = &
-%     \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,y_{k}
-\end{eqnarray*}
-where \,$j \in \{\,1,2,\ldots,J\,\}$.\,
-\vskip 0.2cm
-\noindent
+\end{equation*}
 Define:
 \begin{equation*}
 W^{(+)}_{{\color{red}0}}
@@ -1582,7 +1553,14 @@ Then, the following equalities hold:
         \underset{k \in s_{r}}{\sum}W^{(+)}_{k}\,y_{k}
         \;-\;
         \underset{k \in s_{M}}{\sum}d_{k}\,w_{k}\,y_{k}
-    $
+    $,\\
+    where
+    \,$
+    \widehat{T}_{Y}(\,s,y_{\bullet}\,;\,\dbullet\,)
+    \;\; = \;\;
+        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,y_{k}
+    $\,
+    is the Horvitz-Thompson estimator.
 \end{enumerate}
 % \begin{eqnarray*}
 % \widetilde{T}_{Y}{\color{white}....}
@@ -1788,7 +1766,7 @@ Then, the following equalities hold:
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{lemma}[Unbiased estimator for non-response variance; Equations (5.9) \& (5.10) in \cite{Beaumont2011}]
+\begin{lemma}[Unbiased estimator for non-response variance; see Equations (5.9) \& (5.10) in \cite{Beaumont2011}]
 \label{NonresponseVariance}
 \mbox{}
 \vskip 0.1cm
