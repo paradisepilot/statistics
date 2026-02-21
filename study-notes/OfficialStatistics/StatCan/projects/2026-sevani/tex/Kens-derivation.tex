@@ -13,15 +13,18 @@
 \textbf{Probability spaces}
 \begin{itemize}
 \item
-    Let \,$\left(\,\Omega,\mathscr{A},\lambda\,\right)$\, a probability space.
-\item
+    Let
+    \,$U \,=\, \{1,2,\ldots,N\}$.\,
+    Let
+    \,$\mathcal{P}(U) \,=\, \mathcal{P}(\{1,2,\ldots,N\})$\,
+    denote the power set (set of all subsets) of \,$U$.\,
     Let
     \,$\left(\,\mathcal{P}(U)\,,\mathcal{P}(\mathcal{P}(U))\,,\overset{{\color{white}-}}{\pi}\,\right)$\,
     be the probability space induced by a sampling design, i.e.,
     a probability mass function defined on
-    \,$\mathcal{P}(U) \,:=\, \mathcal{P}(\{1,2,\ldots,N\})$,\,
-    where
-    \,$U \,=\, \{1,2,\ldots,N\}$.
+    \,$\mathcal{P}(U)$.\,
+\item
+    Let \,$\left(\,\Omega,\mathscr{A},\lambda\,\right)$\, be a probability space.
 \end{itemize}
 
 \vskip 0.3cm
@@ -33,7 +36,7 @@
     is an $\Re^{N \times 1}$-valued random variable defined on \,$\Omega$,\,
     i.e., $\mathscr{A}$-measurable map).
 \item
-    $\mathbf{X}_{\bullet\bullet} \,=\, \left(\,\overset{{\color{white}.}}{X_{ij}}\,\right) : \Omega \longrightarrow \Re^{N \times r}$\,
+    $\Xdotdot\,=\,\left(\,\overset{{\color{white}.}}{X_{ij}}\,\right) : \Omega \longrightarrow \Re^{N \times r}$\,
     is an $\Re^{N \times r}$-valued random variable defined on \,$\Omega$.
 \item
     $\Sdot \,=\, (S_{1},S_{2},\ldots,S_{N})^{T} : \mathcal{P}(U) \longrightarrow \{0,1\}^{N \times 1}$\,
@@ -43,6 +46,80 @@
     $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\Omega \times \mathcal{P}(U)$,\,
     i.e., $\left(\mathscr{A} \overset{{\color{white}.}}{\times} \mathcal{P}(\mathcal{P}(U))\right)$-measurable map.
+    % that satisfies:
+    % \begin{equation*}
+    % \mu\!\left(\left\{\;
+    %     \omega \in \Omega
+    %     \;\left\vert\;
+    %     S_{k}(s) = 0
+    %     \,\overset{{\color{white}1}}{\Longrightarrow}\,
+    %     R_{k}(\omega,s_{R}) = 0
+    %     \right.
+    %     \;\right\}\right)
+    % \; = \;
+    %     1\,,
+    % \quad
+    % \textnormal{for each \,$k \in U$,\, and each \,$s_{R} \subset s \subset U$}
+    % \end{equation*}
+\end{itemize}
+
+\vskip 0.3cm
+\noindent
+\textbf{Interpretation}
+\begin{itemize}
+\item
+    $U = \{1,2,\ldots,N\}$
+    \,--\,
+    index set of the target (finite) population of interest,
+    and \,$N$\, is the (finite) size of the target population.
+\item
+    $\left(\,\Omega,\mathscr{A},\lambda\,\right)$
+    \,--\,
+    underlying source of stochasticity of the imputation model (or superpopulation model).
+\item
+    $\Ydot$
+    \,--\,
+    $\Re$-valued target variable (population characteristic).
+\item
+    $\Xdotdot$
+    \,--\,
+    $\Re^{r}$-valued auxiliary variable.
+\item
+    $\Sdot$
+    \,--\,
+    $\{0,1\}$-valued binary variable indicating, for each \,$s \subset U$,\,
+    whether a population unit \,$k \in U$\, is selected in \,$s$.\,
+    More precisely, for each \,$s \subset U$,\, we have:
+    \begin{equation*}
+    S_{k}(s)
+    \;\; = \;\;
+        \left\{\begin{array}{cl}
+            1\,, & \textnormal{if \,$k \in s$},
+            \\
+            0\,, & \textnormal{otherwise}.
+            \end{array}\right.
+    \end{equation*}
+\item
+    $\Rdot$
+    \,--\,
+    $\{0,1\}$-valued binary variable indicating, for almost every outcome
+    \,$\omega \in \Omega$\,
+    and each
+    \,$(s,s_{R}) \in \mathcal{P}(U) \times \mathcal{P}(U)$\,
+    satisfying
+    \,$s_{R} \subset s$,\,
+    whether a selected population unit \,$ k \in s$\,
+    is a respondent or not.
+    % More precisely, for each \,$s \subset U$ and each \,$k \in s$,\, we have:
+    % \begin{equation*}
+    % R_{k}(\omega,s_{R})
+    % \;\; = \;\;
+    %     \left\{\begin{array}{cl}
+    %         1\,, & \textnormal{if \,$k \in s_{R}$},
+    %         \\
+    %         0\,, & \textnormal{otherwise}.
+    %         \end{array}\right.
+    % \end{equation*}
 \end{itemize}
 
 \vskip 0.3cm
@@ -55,9 +132,9 @@
     and
     \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
 \item
-    $\left(\,\Ydot\,,\Xobs\,\right)$\, and \,$\Sdot$\, are (unconditionally) independent.
+    $\left(\,\Ydot\,,\Xdotdot\,\right)$\, and \,$\Sdot$\, are (unconditionally) independent.
 \item
-    $\Ydot$\, and \,$(\,\Sdot\,,\Rdot\,)$\, are {\color{red}conditionally independent} given \,$\Xobs$.
+    $\Ydot$\, and \,$(\,\Sdot\,,\Rdot\,)$\, are {\color{red}conditionally independent} given \,$\Xdotdot$.
 \end{itemize}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -75,9 +152,9 @@
 \widetilde{T}_{Y}
 \;\; = \;\;
     \widetilde{T}_{Y}(\,
-        \Ydot,
-        \Xobs,
-        \Sdot,
+        \Ydot\,,\,
+        \Xdotdot\,,\,
+        \Sdot\,,\,
         \Rdot
         \,)
 & := &
