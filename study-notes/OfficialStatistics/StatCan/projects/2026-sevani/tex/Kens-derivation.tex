@@ -254,7 +254,7 @@ and
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.3cm
-\begin{lemma}[Overall conditional bias of \,$\widetilde{T}_{Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
+\begin{lemma}[Conditional bias of \,$\widetilde{T}_{Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
 \label{biasTtilde}
 \mbox{}
 \vskip 0.1cm
@@ -300,23 +300,75 @@ $\,
 satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFramework}.
 \vskip 0.2cm
 \noindent
-Then,
-\begin{eqnarray*}
-\bias\!\left(\;
-    \left.
-    \widetilde{T}_{Y}
-    \;\right\vert\,
-    \Xobs
-    \,\right)
-& := &
-    E\!\left[\;
+Then, the following statements are true:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    The \textbf{overall bias}
+    \,$
+    \bias\!\left(\;
         \left.
-        \widetilde{T}_{Y} - T_{Y}
-        \,\right\vert\,
+        \widetilde{T}_{Y}
+        \;\right\vert\,
         \Xobs
+        \,\right)
+    $\,
+    of
+    \,$\widetilde{T}_{Y}$\,
+    satisfies:
+    \begin{eqnarray*}
+    \bias\!\left(\;
+        \left.
+        \widetilde{T}_{Y}
+        \;\right\vert\,
+        \Xobs
+        \,\right)
+    & := &
+        E\!\left[\;
+            \left.
+            \widetilde{T}_{Y} - T_{Y}
+            \,\right\vert\,
+            \Xobs
+            \,\right]
+    \;\; = \;\;
+        E_{SR}\!\left(\;
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \left.
+                \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+                \;\right\vert\,
+                s,s_{R},\Xobs
+                \,\right]}
+            \;\right),
+    \end{eqnarray*}
+    where
+    \,$
+    \widehat{T}_{Y}
+    \; = \;
+        \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
+    \; = \;
+        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+    $\,
+    is the Horvitz-Thompson estimator for the domain total.
+\item
+    The \textbf{conditional model bias}
+    \,$
+    E_{Y}\!\left[\;
+        \left.
+        \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+        \;\right\vert\,
+        s,s_{R},\Xobs
         \,\right]
-\;\; = \;\;
-    E_{SR}\!\left[\;
+    $\,
+    can be expressed as follows:
+    \begin{eqnarray*}
+    E_{Y}\!\left[\;
+        \left.
+        \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    & = &
         \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,d_{i}\,w_{i}\,
         E_{Y}\!\left[\;
             \left.
@@ -324,8 +376,45 @@ Then,
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right]
-        \,\right]
-\end{eqnarray*}
+    \end{eqnarray*}
+\item
+    Consequently, we have the following alternative expression for the overall bias:
+    \begin{eqnarray*}
+    \bias\!\left(\;
+        \left.
+        \widetilde{T}_{Y}
+        \;\right\vert\,
+        \Xobs
+        \,\right)
+    & := &
+        E\!\left[\;
+            \left.
+            \widetilde{T}_{Y} - T_{Y}
+            \,\right\vert\,
+            \Xobs
+            \,\right]
+    \;\; = \;\;
+        E_{SR}\!\left(\;
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \left.
+                \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+                \;\right\vert\,
+                s,s_{R},\Xobs
+                \,\right]}
+            \;\right)
+    \\
+    & = &
+        E_{SR}\!\left[\;
+            \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,d_{i}\,w_{i}\,
+            E_{Y}\!\left[\;
+                \left.
+                Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
+                \;\right\vert\,
+                s,s_{R},\Xobs
+                \,\right]
+            \,\right]
+    \end{eqnarray*}
+\end{enumerate}
 \end{lemma}
 %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 \begin{remark}
@@ -357,438 +446,142 @@ Then,
 %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 \proofof Lemma \ref{biasTtilde}
 \vskip 0.1cm
-\noindent
-We prove the Lemma by establishing a series of claims.
-
-\vskip 0.3cm
-\noindent
-\textbf{Claim 1:}\quad
-\begin{eqnarray*}
-\bias\!\left(\,
-    \left.
-    \widetilde{T}_{Y}
-    \;\right\vert\,
-    \Xobs
-    \right)
-& = &
-    E_{YSR}\!\left[\,
-        \left.
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-        \;\right\vert\,
-        \Xobs
-        \right]
-    \;-\;
-        \underset{i\,\in\,U}{\sum}\;
-        d_{i}\,E_{Y}\!\left[\,Y_{i}\left\vert\,\Xobs\right.\right]
-\\
-&&
-    +\;
-    E_{YSR}\!\left[\,
-        \left.
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-        \;\right\vert\,
-        \Xobs
-        \right]
-\end{eqnarray*}
-\vskip 0.1cm
-\noindent
-Proof of Claim 1:\;\;
-\begin{eqnarray*}
-\bias\!\left(\;
-    \left.
-    \widetilde{T}_{Y}
-    \;\right\vert\,
-    \Xobs
-    \,\right)
-& := &
-    E\!\left[\;
-        \left.
-        \widetilde{T}_{Y} - T_{Y}
-        \,\right\vert\,
-        \Xobs
-        \,\right]
-\;\; = \;\;
-    E_{YSR}\!\left[\;
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    We compute:
+    \begin{eqnarray*}
+    \bias\!\left(\;
         \left.
         \widetilde{T}_{Y}
-        \,\right\vert\,
-        \Xobs
-        \,\right]
-    \,-\,
-    E_{YSR}\!\left[\;
-        \left.
-        T_{Y}
-        \,\right\vert\,
-        \Xobs
-        \,\right]
-\\
-& = &
-    E_{YSR}\!\left[\;
-        \left.
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-        \;\overset{{\color{white}.}}{+}\;
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-        \,\;\right\vert\,
-        \Xobs
-        \,\right]
-    \,-\,
-    {\color{blue}
-    E_{YSR}\!\left[\;
-        \left.
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,Y_{i}
         \;\right\vert\,
         \Xobs
-        \,\right]
-    }
-\\
-& = &
-    E_{YSR}\!\left[\;
-        \left.
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-        \;\right\vert\,
-        \Xobs
-        \,\right]
-    \;-\;
-    {\color{blue}
-    \underset{i\,\in\,U}{\sum}\;
-    d_{i}\,E_{Y}\!\left[\,Y_{i}\left\vert\,\Xobs\right.\right]
-    }
-\\
-&&
-    +\;
-    E_{YSR}\!\left[\;
-        \left.
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-        \;\right\vert\,
-        \Xobs
-        \,\right]
-\end{eqnarray*}
-This completes the proof of Claim 1.
-
-\vskip 0.3cm
-\noindent
-\textbf{Claim 2:}\quad
-$
-E_{YSR}\!\left[\;
-    \left.
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-    \;\right\vert\,
-    \Xobs
-    \,\right]
-\; = \;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,E\!\left[\;Y_{i}\,\left\vert\;\Xobs\right.\,\right]
-$
-\vskip 0.1cm
-\noindent
-Proof of Claim 2:\;\;
-\begin{eqnarray*}
-E_{YSR}\!\left[\;
-    \left.
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-    \;\right\vert\,
-    \Xobs
-    \,\right]
-& = &
-    E_{YI}\!\left[\;
-        \left.
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-        \;\right\vert\,
-        \Xobs
-        \,\right],
-    \;\;
-    \textnormal{since \,$R_{\bullet}$\, does not appear inside the expectation}
-\\
-& = &
-    E_{S}\!\left[\,E_{Y}\!\left[\;
-        \left.
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-        \;\right\vert\,
-        s, s_{R}, \Xobs
-        \right]\,\right]
-\\
-& = &
-    E_{S}\!\left[\,
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,
-        E_{Y}\!\left[\,Y_{i}\,\left\vert\,s,s_{R},\Xobs\right.\right]
-        \,\right]
-\\
-& = &
-    E_{S}\!\left[\,
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,
-        E_{Y}\!\left[\,Y_{i}\,\left\vert\,\Xobs\right.\right]
-        \,\right],
-    \;\;
-    \textnormal{since \,$Y_{i} \perp (S_{\bullet},R_{\bullet}) \,\vert\, \Xobs$\,}
-\\
-& = &
-    \underset{i\,\in\,U}{\sum}\;\,
-    d_{i}\,w_{i}\,
-    E_{S}\!\left[\,S_{i}\,\right]\,
-    E_{Y}\!\left[\,Y_{i}\,\left\vert\,\Xobs\right.\right]
-\\
-& = &
-    \underset{i\,\in\,U}{\sum}\;\,
-    d_{i}\,E_{Y}\!\left[\,Y_{i}\,\left\vert\,\Xobs\right.\,\right],
-    \;\;
-    \textnormal{since \,$w_{i} \,=\, \dfrac{1}{P(S_{i}=1)} \,=\, \dfrac{1}{E_{S}[\,S_{i}\,]}$}
-\end{eqnarray*}
-This completes the proof of Claim 2.
-
-\vskip 0.3cm
-\noindent
-\textbf{Claim 3:}\quad
-$
-E_{YSR}\!\left[\;
-    \left.
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-    \;\right\vert\,
-    \Xobs
-    \,\right]
-\; = \;
-    E_{SR}\!\left[\;
-        \underset{i\,\in\,{\color{black}s_{M}}}{\sum}\,d_{i}\,w_{i}\,
+        \,\right)
+    & := &
+        E\!\left[\;
+            \left.
+            \widetilde{T}_{Y} - T_{Y}
+            \,\right\vert\,
+            \Xobs
+            \,\right]
+    \;\; = \;\;
+        E\!\left[\;
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y} + \widehat{T}_{Y} - T_{Y}
+            \,\right\vert\,
+            \Xobs
+            \,\right]
+    \\
+    & = &
+        E_{SRY}\!\left[\,
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,\right\vert\,
+            \Xobs
+            \,\right]
+        \; + \;
+        E_{YSR}\!\left[\,
+            \left.
+            \widehat{T}_{Y} - T_{Y}
+            \,\right\vert\,
+            \Xobs
+            \,\right]
+    \\
+    & = &
+        E_{SR}\!\left(\,
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \left.
+                \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+                \;\right\vert\,
+                s,s_{R},\Xobs
+                \,\right]}
+            \;\right)
+        \; + \;
+        E_{Y}\!\left(\,
+            \overset{{\color{white}.}}{E_{SR}\!\left[\;
+                \left.
+                \widehat{T}_{Y} \overset{{\color{white}.}}{-} T_{Y}
+                \;\right\vert\,
+                \Ydot,\Xobs
+                \,\right]}
+            \;\right)
+    \\
+    & = &
+        E_{SR}\!\left(\,
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \left.
+                \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+                \;\right\vert\,
+                s,s_{R},\Xobs
+                \,\right]}
+            \;\right)
+        \; + \;
+        E_{Y}\!\left(\;\overset{{\color{white}.}}{0}\;\right),
+        \;\;
+        \textnormal{by design-unbiasedness of \,$\widehat{T}_{Y}$}
+    \\
+    & = &
+        E_{SR}\!\left(\,
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \left.
+                \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+                \;\right\vert\,
+                s,s_{R},\Xobs
+                \,\right]}
+            \;\right),
+    \end{eqnarray*}
+    as required.
+\item
+    We compute:
+    \begin{eqnarray*}
+    &&
         E_{Y}\!\left[\;
             \left.
-            Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
+            \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right]
-        \,\right]
-$
-\vskip 0.1cm
-\noindent
-Proof of Claim 3:\;\;
-\begin{eqnarray*}
-E_{YSR}\!\left[\;
-    \left.
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-    \;\right\vert\,
-    \Xobs
-    \,\right]
-& = &
-    E_{SR}\!\left[\;
-    E_{Y}\!\left[\;
-        \left.
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
-        \,\right]
-\\
-& = &
-    E_{SR}\!\left[\;
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,
+    \\
+    & = &
         E_{Y}\!\left[\;
             \left.
-            Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
+            \left(\,
+                \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+                \overset{{\color{white}.}}{+}
+                \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+                \,\right)
+            \,\overset{{\color{white}.}}{-}\,
+            \left(\,
+                \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+                \overset{{\color{white}.}}{+}
+                \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+                \,\right)
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right]
-        \,\right]
-\\
-& = &
-    E_{SR}\!\left[\;
-        \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,d_{i}\,w_{i}\,
-        E_{Y}\!\left[\;
+    \\
+    & = &
+        E_{Y}\!\left[\;\,
             \left.
-            Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-            \;\right\vert\,
+            \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,(Y_{k}^{*}-Y_{k})
+            \;\,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
-        \,\right]
-\end{eqnarray*}
-This completes the proof of Claim 3.
-
-\vskip 0.5cm
-\noindent
-The Lemma now follows immediately from Claim 1, Claim 2, and Claim 3.
-\qed
-
-% \begin{eqnarray*}
-% \bias\!\left(\;
-%     \left.
-%     \widetilde{T}_{Y}
-%     \;\right\vert\,
-%     \Xobs
-%     \,\right)
-% & := &
-%     E\!\left[\;
-%         \left.
-%         \widetilde{T}_{Y} - T_{Y}
-%         \,\right\vert\,
-%         \Xobs
-%         \,\right]
-% % \;\; = \;\;
-% %     E_{YSR}\!\left[\;
-% %         \left.
-% %         \widetilde{T}_{Y} - T_{Y}
-% %         \,\right\vert\,
-% %         \Xobs
-% %         \,\right]
-% % \\
-% % & = &
-% \;\; = \;\;
-%     E_{YSR}\!\left[\;
-%         \left.
-%         \widetilde{T}_{Y}
-%         \,\right\vert\,
-%         \Xobs
-%         \,\right]
-%     \,-\,
-%     E_{YSR}\!\left[\;
-%         \left.
-%         T_{Y}
-%         \,\right\vert\,
-%         \Xobs
-%         \,\right]
-% \\
-% & = &
-%     E_{YSR}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
-%         \;\overset{{\color{white}.}}{+}\;
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-%         \,\;\right\vert\,
-%         \Xobs
-%         \,\right]
-%     \,-\,
-%     E_{YSR}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;Y_{i}
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right]
-% \\
-% & = &
-%     E_{YSR}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right]
-%     \;-\;
-%     E_{Y}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;Y_{i}
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right]
-% \\
-% &&
-%     +\;
-%     E_{YSR}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right]
-% \\
-% & = &
-%     E_{SR}\!\left[\,E_{Y}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,Y_{i}
-%         \;\right\vert\,
-%         s, s_{R}, \Xobs
-%         \,\right]\,\right]
-%     \;-\;
-%     \underset{i\,\in\,U}{\sum}\;E\!\left[\;Y_{i}\,\vert\,\Xobs\,\right]
-% \\
-% &&
-%     +\;
-%     E_{YSR}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right]
-% \\
-% & = &
-%     E_{SR}\!\left[\,
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,
-%         E_{Y}\!\left[\,\left.Y_{i}\,\right\vert s,s_{R},\Xobs\,\right]
-%         \,\right]
-%     \;-\;
-%     \underset{i\,\in\,U}{\sum}\;E\!\left[\;Y_{i}\,\vert\,\Xobs\,\right]
-%     % \,+\,
-%     % E_{YSR}\!\left[\;
-%     %     \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-%     %     \,\right]
-% \\
-% &&
-%     +\;
-%     E_{YSR}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right]
-% \\
-% & = &
-%     \underset{i\,\in\,U}{\sum}\;E_{Y}\!\left[\,\left.Y_{i}\,\right\vert s,s_{R},\Xobs\,\right]
-%     \;-\;
-%     \underset{i\,\in\,U}{\sum}\;E\!\left[\;Y_{i}\,\vert\,\Xobs\,\right]
-%     \;+\;
-%     E_{YSR}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right]
-% \\
-% & = &
-%     \underset{i\,\in\,U}{\sum}\;E_{Y}\!\left[\,\left.Y_{i}\,\right\vert\Xobs\,\right]
-%     \;-\;
-%     \underset{i\,\in\,U}{\sum}\;E\!\left[\;Y_{i}\,\vert\,\Xobs\,\right]
-%     \;+\;
-%     E_{YSR}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right]
-% \\
-% & = &
-%     E_{YSR}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right]
-% \\
-% & = &
-%     E_{SR}\!\left[\;
-%     E_{Y}\!\left[\;
-%         \left.
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-%         \;\right\vert\,
-%         s,s_{R},\Xobs
-%         \,\right]
-%         \,\right]
-% \\
-% & = &
-%     E_{SR}\!\left[\;
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,(1-R_{i})\,
-%         E_{Y}\!\left[\;
-%             \left.
-%             Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-%             \;\right\vert\,
-%             s,s_{R},\Xobs
-%             \,\right]
-%         \,\right]
-% \\
-% & = &
-%     E_{SR}\!\left[\;
-%         \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,w_{i}\,
-%         E_{Y}\!\left[\;
-%             \left.
-%             Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-%             \;\right\vert\,
-%             s,s_{R},\Xobs
-%             \,\right]
-%         \,\right]
-% \end{eqnarray*}
-% \vskip -0.8cm
-% \qed
+    \;\; = \;\;
+        \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}^{*}-Y_{k}
+            \,\left\vert\;
+            s,s_{R},\Xobs
+            \right.
+            \,\right],
+    \end{eqnarray*}
+    as required.
+\item
+    Immediate by the preceding statements.
+    \qed
+\end{enumerate}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
