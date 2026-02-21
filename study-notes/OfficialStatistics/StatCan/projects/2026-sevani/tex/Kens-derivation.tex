@@ -1796,7 +1796,7 @@ The following statements are true:
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
-        \,\right]
+        \right]
     $.
     % i.e.,
     % \begin{equation*}
@@ -2170,6 +2170,271 @@ The following statements are true:
     \vskip 0.3cm
     \noindent
     The required result now follows immediately from Claim 1, Claim 2, and Claim 3.
+    \qed
+\end{enumerate}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{lemma}[Unbiased estimator for mixed variance; see Equations (5.11) \& (5.12) in \cite{Beaumont2011}]
+\label{NonresponseVariance}
+\mbox{}
+\vskip 0.1cm
+\noindent
+The following statements are true:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    $
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)
+        (\,  \widehat{T}_{Y} - T_{Y}\,)
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    $\,
+    is an $(\Sdot,\Rdot)$-unbiased estimator for the mixed variance\\
+    \,$
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)
+        (\,  \widehat{T}_{Y} - T_{Y}\,)
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+        \right]
+    $.
+\item
+    The above estimator
+    % \,$
+    % E_{Y}\!\left[\,
+    %     \left.
+    %     (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)
+    %     (\,  \widehat{T}_{Y} - T_{Y}\,)
+    %     \;\right\vert\,
+    %     s,s_{R},\Xobs
+    %     \,\right]
+    % $\,
+    can be expressed as follows:
+    \begin{eqnarray*}
+    E_{Y}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)
+        (\,  \widehat{T}_{Y} - T_{Y}\,)
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    & = &
+        \Cov_{Y}\!\left(\,
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,,\,
+            \widehat{T}_{Y} - T_{Y}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right)
+    \\
+    &&
+        +\;
+        E_{Y}\!\left[\;
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+        \cdot
+        {\color{red}E_{Y}\!\left[\;
+            \left.
+            \widehat{T}_{Y} - T_{Y}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]}
+    \end{eqnarray*}
+\item
+    The above covarince term
+    % \,$
+    % \Cov_{Y}\!\left(\,
+    %     \left.
+    %     \widetilde{T}_{Y} - \widehat{T}_{Y}
+    %     \,,\,
+    %     \widehat{T}_{Y} - T_{Y}
+    %     \;\right\vert\,
+    %     s,s_{R},\Xobs
+    %     \,\right)
+    % $\,
+    can be expressed in explicit computable form as follows:
+    \begin{eqnarray*}
+    \Cov_{Y}\!\left(\,
+        \left.
+        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \,,\,
+        \widehat{T}_{Y} - T_{Y}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right)
+    & = &
+        \underset{k \in s_{r}}{\sum}\,
+            d_{k}\,W^{(+)}_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+        \,-\,
+        \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}\,(w_{1}-1)\,\sigma_{k}^{2}\,,
+    \end{eqnarray*}
+    where
+    \,$
+    \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+        \,\left\vert\,
+        \Xobs
+        \right.
+        \,\right]
+    $,\,
+    \,$
+    \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+        \,\left\vert\,
+        \Xobs
+        \right.
+        \,\right]
+    $,\,
+    and
+    \begin{equation*}
+    W^{(+)}_{{\color{red}0}}
+    \;\; := \;\;
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l \in s_{m}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+            \,\right),
+    \quad\quad
+    W^{(+)}_{{\color{red}k}}
+    \;\; := \;\;
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l \in s_{m}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}k}l}
+            \,\right)
+    \end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+    Nothing to prove.
+\item
+    The required result follows from the following general fact:
+    \begin{equation*}
+    \Cov(\,X,Y\,)
+    \;\; := \;\;
+        E\!\left[\,\overset{{\color{white}.}}{(X - \mu_{X})(Y - \mu_{Y})}\,\right]
+    \;\; = \;\;
+        \cdots
+    \;\; = \;\;
+        E\!\left[\,\overset{{\color{white}.}}{XY}\,\right]
+        \; - \;
+        \mu_{X}\,\mu_{Y}\,,
+    \end{equation*}
+    which implies
+    \begin{equation*}
+    E\!\left[\,\overset{{\color{white}.}}{XY}\,\right]
+    \;\; = \;\;
+        \Cov(\,X,Y\,)
+        \; + \;
+        \mu_{X}\,\mu_{Y}
+    \end{equation*}
+\item
+    We compute:
+    \begin{eqnarray*}
+    &&
+        \Cov_{Y}\!\left(\,
+            \left.
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,,\,
+            \widehat{T}_{Y} - T_{Y}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right)
+    \\
+    & = &
+        \Cov_{Y}\!\left(\,
+            \left.
+            W^{(+)}_{0}
+            \,+\,
+            \underset{k \in s_{R}}{\sum}\,W^{(+)}_{k}\,Y_{k}
+            \;-
+            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
+            \;,\;
+            \underset{k \in s}{\sum}\;d_{k}w_{k}Y_{k}
+            \;-
+            \underset{k \in U}{\sum}\;d_{k}Y_{k}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right),
+            \quad
+            \textnormal{by Lemma \ref{EqnFivePtEight}(ii)}
+    \\
+    & = &
+        \Cov_{Y}\!\left(\;
+            \left.
+            \underset{k \in s_{R}}{\sum}\,W^{(+)}_{k}\,Y_{k}
+            \;-
+            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
+            \;,\;
+            \underset{k \in s}{\sum}\;d_{k}(w_{k}-1)Y_{k}
+            \;-
+            \underset{k \in U \backslash s}{\sum}d_{k}Y_{k}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right)
+    \\
+    & = &
+        \underset{k \in s_{R}}{\sum}\,
+        d_{k}\,W^{(+)}_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\;\,
+            Y_{k}
+            \,\left\vert\;
+            s,s_{R},\Xobs
+            \right.
+            \,\right]
+        \;-\;
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\;\,
+            Y_{k}
+            \,\left\vert\;
+            s,s_{R},\Xobs
+            \right.
+            \,\right]
+    \\
+    & = &
+        \underset{k \in s_{R}}{\sum}\,
+        d_{k}\,W^{(+)}_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\;\,
+            Y_{k}
+            \,\left\vert\;
+            \Xobs
+            \right.
+            \,\right]
+        \;-\;
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\;\,
+            Y_{k}^{2}
+            \,\left\vert\;
+            \Xobs
+            \right.
+            \,\right]
+        % \;\;
+        % \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Xobs$}
+    \\
+    & = &
+        \underset{k \in s_{R}}{\sum}\,
+        d_{k}\,W^{(+)}_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+        \;\;-\;
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}\,,
+    \end{eqnarray*}
+    where the third equality follows from the conditional independence
+    \,$Y_{k} \perp Y_{l} \;\,\vert\; \Xobs$ whenever \,$k \neq l$,\,
+    while the fourth equality follows from the conditional independence
+    \,$\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Xobs$.\,
+    \vskip 0.1cm
+    \noindent
+    This completes the proof of the Lemma.
     \qed
 \end{enumerate}
 
