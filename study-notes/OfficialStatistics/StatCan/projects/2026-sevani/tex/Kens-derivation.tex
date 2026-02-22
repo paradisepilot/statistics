@@ -417,7 +417,7 @@ Then, the following statements are true:
 \end{enumerate}
 \end{lemma}
 %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-\begin{remark}
+\begin{remark}\label{remarkSmallUnitBias}
 \mbox{}
 \vskip -0.1cm
 \noindent
@@ -2965,6 +2965,106 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
             d_{k}\,w_{k}\,(w_{1}-1)\,\sigma_{k}^{2}
         }
     \end{eqnarray*}
+\item
+    \textbf{Important Remark:}
+    \vskip 0.05cm
+    \noindent
+    Note that the above estimation/approximation of the mixed variance component
+    disregards the following term:
+    \begin{equation*}
+    2\,\cdot E_{Y}\!\left[\;
+        \left.
+        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    \cdot
+    {\color{red}E_{Y}\!\left[\;
+        \left.
+        \widehat{T}_{Y} - T_{Y}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]}
+    \end{equation*}
+    The reason this has to be done in practice is that, in practice,
+    there is usually insufficient data/information to compute or estimate
+    the quantity
+    \,$
+    E_{Y}\!\left[\;
+        \left.
+        \widehat{T}_{Y} - T_{Y}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    $\,
+    (indicated in red above), as \,$T_{Y}$\, involves population units
+    that are not selected in the sample.
+    \vskip 0.1cm
+    \noindent
+    Obviously, the above estimation/approximation of the mixed variance component
+    is acceptable only if the quantity
+    \,$
+    2\,\cdot E_{Y}\!\left[\;
+        \left.
+        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    \cdot
+    {\color{black}E_{Y}\!\left[\;
+        \left.
+        \widehat{T}_{Y} - T_{Y}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]}
+    $\,
+    is small.
+    \vskip 0.1cm
+    \noindent
+    For this, in practice, we thus {\color{red}tacitly assume} that the quantity
+    \,$
+    E_{Y}\!\left[\;
+        \left.
+        \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    $\,
+    is small;
+    recall that this quantity is called the \textbf{conditional model bias}
+    (see Lemma \ref{biasTtilde}), and
+    it can be expressed as follows:
+    \begin{eqnarray*}
+    E_{Y}\!\left[\;
+        \left.
+        \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    & = &
+        \underset{k\in{\color{red}s_{M}}}{\sum}\,d_{k}\,w_{k}\,
+        E_{Y}\!\left[\;
+            \left.
+            Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+            \;\right\vert\,
+            s,s_{R},\Xobs
+            \,\right]
+    \end{eqnarray*}
+    This harks back to our earlier remark (Remark \ref{remarkSmallUnitBias}) that,
+    in practice, we would like to choose an imputation strategy such that
+    \begin{equation*}
+    E_{Y}\!\left[\;
+        \left.
+        Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+        \;\right\vert\,
+        s,s_{R},\Xobs
+        \,\right]
+    \;\; \approx \;\;
+        0,
+    \quad
+    \textnormal{for each \,$k \in s_{M}$}
+    \end{equation*}
+    See the paragraph after Equation (5.2), p.175, \cite{Beaumont2011}.
 \end{itemize}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
