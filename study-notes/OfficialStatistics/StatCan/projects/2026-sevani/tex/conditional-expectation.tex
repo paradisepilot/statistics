@@ -24,9 +24,11 @@ Suppose:
 Without loss of generality (see definition below), we assume that
 \begin{itemize}
 \item
+    $P(Y = y_{i}) > 0$\, for each admissible value \,$y_{i}$\, of \,$Y$,\,
+\item
     $P(Z = z_{k}) > 0$\, for each admissible value \,$z_{k}$\, of \,$Z$,\, and
 \item
-    $P(X = x_{k}) > 0$\, for each admissible value \,$x_{k}$\, of \,$X$.\,
+    $P(X = x_{l}) > 0$\, for each admissible value \,$x_{l}$\, of \,$X$.\,
 \end{itemize}
 \vskip 0.01cm
 \noindent
@@ -36,7 +38,7 @@ as follows:
 \begin{equation*}
 E\!\left[\, Y \,\vert\, Z = z_{k} \,\right]
 \;\; :=: \;\;
-    E_{Z}[\,E[Y \vert Z]\,]
+    E_{Z}[\,Y\,\vert\,Z\,]
 \;\; := \;\;
     \overset{\infty}{\underset{i = 1}{\sum}}\;\,
     y_{i} \cdot P(\,Y=y_{i} \,\vert\, Z = z_{k}\,)
@@ -48,18 +50,28 @@ whenever the above summation is absolutely convergent.
 
 \vskip 0.5cm
 \noindent
-\textbf{Observations on and properties of conditional expectations}
+\textbf{Observations on conditional expectations}
 \begin{itemize}
 \item
-    $E[\,Y \vert\, Z\,]$\, is a function of $Z$, i.e.,
-    $z_{k} \longmapsto E[\,Y \vert\, Z = z_{k}\,]$,\,
+    $E[\,Y\,\vert\, Z\,]$\, is a function of $Z$, i.e.,
+    $z_{k} \longmapsto E[\,Y\,\vert\, Z = z_{k}\,]$,\,
     for each admissible value \,$z_{k}$\, of \,$Z$.\,
+\end{itemize}
+
+\vskip 0.5cm
+\noindent
+\textbf{Properties of conditional expectations}
+\begin{itemize}
+% \item
+%     $E[\,Y\,\vert\, Z\,]$\, is a function of $Z$, i.e.,
+%     $z_{k} \longmapsto E[\,Y\,\vert\, Z = z_{k}\,]$,\,
+%     for each admissible value \,$z_{k}$\, of \,$Z$.\,
 \item
-    If \,$E[\,Y\vert\,Z\,]$\, exists and
+    If \,$E[\,Y\,\vert\,Z\,]$\, exists and
     \,$f(Z)$\, is a function of \,$Z$\, such that \,$E[\,Yf(Z)\,\vert Z\,]$\, exists,
     then
     \begin{equation*}
-    E[\,Yf(Z)\,\vert\,Z\,] \;\;=\;\; f(Z) \cdot [\,E[\,Y\vert\,Z]\,]
+    E[\,Yf(Z)\,\vert\,Z\,] \;\;=\;\; f(Z) \cdot [\,E[\,Y\,\vert\,Z\,]\,]
     \end{equation*}
     \proof
     \begin{eqnarray*}
@@ -96,7 +108,7 @@ whenever the above summation is absolutely convergent.
         y_{i} \cdot \dfrac{P(\,Y = y_{i} \,, Z = z_{{\color{black}k}}\,)}{P(\,Z = z_{k}\,)}
     \\
     & \overset{{\color{white}\textnormal{\large$1$}}}{=} &
-        f(z_{k}) \cdot E[\,Y\vert\,Z=z_{k}\,]
+        f(z_{k}) \cdot E[\,Y\,\vert\,Z=z_{k}\,]
     \end{eqnarray*}
     \vskip -0.7cm
     \qed
@@ -108,14 +120,14 @@ whenever the above summation is absolutely convergent.
     \end{equation*}
     In particular, taking \,$f(Z) \equiv 1$, we have :
     \begin{equation*}
-    E[\,E[Y\vert\,Z]\,] \;\;=\;\; E_{Z}[\,E[Y \vert Z]\,] \;\;=\;\; E[\,Y]
+    E[\,E[\,Y\,\vert\,Z\,]\,] \;\;=\;\; E_{Z}[\,E[\,Y\,\vert Z\,]\,] \;\;=\;\; E[\,Y]
     \end{equation*}
     \proof
     % \begin{eqnarray*}
-    % E[\,E[Y\,\vert\,Z]\,]
+    % E[\,E[\,Y\,\vert\,Z\,]\,]
     % & = &
     %     \overset{\infty}{\underset{k = 1}{\sum}}\;
-    %     E[\,Y\vert\,Z\,] \cdot P(\,Z = z_{k}\,)
+    %     E[\,Y\,\vert\,Z\,] \cdot P(\,Z = z_{k}\,)
     % \;\; = \;\;
     %     \overset{\infty}{\underset{k = 1}{\sum}}
     %     \left(\,
@@ -204,13 +216,13 @@ whenever the above summation is absolutely convergent.
     \end{equation*}
     then
     \begin{equation*}
-    E[\,Y\vert\,X,Z\,]
+    E[\,Y\,\vert\,X,Z\,]
     \; = \;
-        E[\,Y\vert\,Z\,]
+        E[\,Y\,\vert\,Z\,]
     \end{equation*}
     \proof
     \begin{eqnarray*}
-    E[\,Y\vert\,X = x_{k},Z = z_{l}\,]
+    E[\,Y\,\vert\,X = x_{k},Z = z_{l}\,]
     & = &
         \overset{\infty}{\underset{i = 1}{\sum}}\;\,
         y_{i} \cdot \dfrac{P(\,Y = y_{i} \,, X = x_{k} \,, Z = z_{l}\,)}{P(\,X = x_{k},Z = z_{l}\,)}
@@ -258,7 +270,7 @@ whenever the above summation is absolutely convergent.
         P(Y = y_{i}\,\vert\,Z=z_{l}\,)
     \\
     & \overset{{\color{white}\textnormal{\large$1$}}}{=:} &
-        E[\,Y\vert\,Z = z_{l}\,]
+        E[\,Y\,\vert\,Z = z_{l}\,]
     \end{eqnarray*}
     \vskip -0.7cm
     \qed
