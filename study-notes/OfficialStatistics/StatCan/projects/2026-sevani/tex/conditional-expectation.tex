@@ -1,0 +1,286 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Conditional expectations}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{The simpler case of random variables with at most countably many values}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+Suppose:
+\begin{itemize}
+\item
+    $Y$\, is an $\Re$-valued random variable with countably many distinct values
+    \,$\{\,y_{1}, y_{2}, \ldots\,\}$.\,
+\item
+    $Z$\, is an $\Re$-valued random variable with countably many distinct values
+    \,$\{\,z_{1}, z_{2}, \ldots\,\}$.\,
+\item
+    $X$\, is an $\Re$-valued random variable with countably many distinct values
+    \,$\{\,x_{1}, x_{2}, \ldots\,\}$.\,
+\end{itemize}
+Without loss of generality (see definition below), we assume that
+\begin{itemize}
+\item
+    $P(Z = z_{k}) > 0$\, for each admissible value \,$z_{k}$\, of \,$Z$,\, and
+\item
+    $P(X = x_{k}) > 0$\, for each admissible value \,$x_{k}$\, of \,$X$.\,
+\end{itemize}
+\vskip 0.01cm
+\noindent
+Then, we may define the
+\textbf{conditional expectation \,$E[\,Y\,\vert\,Z\,]$\, of \,$Y$\, given \,$Z$\,}
+as follows:
+\begin{equation*}
+E\!\left[\, Y \,\vert\, Z = z_{k} \,\right]
+\;\; :=: \;\;
+    E_{Z}[\,E[Y \vert Z]\,]
+\;\; := \;\;
+    \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+    y_{i} \cdot P(\,Y=y_{i} \,\vert\, Z = z_{k}\,)
+\;\; = \;\;
+    \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+    y_{i} \cdot \dfrac{P(\,Y = y_{i} \,, Z = z_{k}\,)}{P(\,Z = z_{k}\,)}\,,
+\end{equation*}
+whenever the above summation is absolutely convergent.
+
+\vskip 0.5cm
+\noindent
+\textbf{Observations on and properties of conditional expectations}
+\begin{itemize}
+\item
+    $E[\,Y \vert\, Z\,]$\, is a function of $Z$, i.e.,
+    $z_{k} \longmapsto E[\,Y \vert\, Z = z_{k}\,]$,\,
+    for each admissible value \,$z_{k}$\, of \,$Z$.\,
+\item
+    If \,$E[\,Y\vert\,Z\,]$\, exists and
+    \,$f(Z)$\, is a function of \,$Z$\, such that \,$E[\,Yf(Z)\,\vert Z\,]$\, exists,
+    then
+    \begin{equation*}
+    E[\,Yf(Z)\,\vert\,Z\,] \;\;=\;\; f(Z) \cdot [\,E[\,Y\vert\,Z]\,]
+    \end{equation*}
+    \proof
+    \begin{eqnarray*}
+    E[\,Yf(Z)\,\vert\,Z=z_{k}\,]
+    & = &
+        \overset{\infty}{\underset{i = 1}{\sum}}\;
+        \overset{\infty}{\underset{l = 1}{\sum}}\;\,
+        y_{i}f(z_{l}) \cdot \dfrac{P(\,Y = y_{i} \,, Z = z_{l} \,, Z = z_{k}\,)}{P(\,Z = z_{k}\,)}
+    \\
+    & = &
+        \dfrac{1}{P(\,Z = z_{k}\,)}
+        \cdot
+        \overset{\infty}{\underset{i = 1}{\sum}}\;
+        \overset{\infty}{\underset{l = 1}{\sum}}\;\,
+        y_{i}f(z_{l}) \cdot P(\,Y = y_{i} \,, Z = z_{l} \,, Z = z_{k}\,)
+    \\
+    & = &
+        \dfrac{1}{P(\,Z = z_{k}\,)}
+        \cdot
+        \overset{\infty}{\underset{i = 1}{\sum}}\;
+        \overset{\infty}{\underset{l = 1}{\sum}}\;\,
+        y_{i}f(z_{l}) \cdot P(\,Y = y_{i} \,, Z = z_{l}\,)\cdot\delta_{lk}
+    \\
+    & = &
+        \dfrac{1}{P(\,Z = z_{k}\,)}
+        \cdot
+        \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+        y_{i}f(z_{{\color{red}k}}) \cdot P(\,Y = y_{i} \,, Z = z_{{\color{red}k}}\,)
+    \\
+    & = &
+        f(z_{{\color{black}k}})
+        \cdot
+        \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+        y_{i} \cdot \dfrac{P(\,Y = y_{i} \,, Z = z_{{\color{black}k}}\,)}{P(\,Z = z_{k}\,)}
+    \\
+    & = &
+    \\
+    & \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+        f(z_{k}) \cdot E[\,Y\vert\,Z=z_{k}\,]
+    \end{eqnarray*}
+    \vskip -0.7cm
+    \qed
+\item
+    If \,$Y$\, and a function \,$f(Z)$\, of \,$Z$\, are such that both
+    \,$E[\,Yf(Z)\,]$\, and \,$E[\,Yf(Z)\,\vert\,Z\,]$\, exist, then
+    \begin{equation*}
+    E[\,E[\,Yf(Z)\,\vert\,Z\,]\,] \;\;=\;\; E_{Z}[\,E[\,Yf(Z)\,\vert\,Z\,]\,] \;\;=\;\; E[\,Yf(Z)\,]
+    \end{equation*}
+    In particular, taking \,$f(Z) \equiv 1$, we have :
+    \begin{equation*}
+    E[\,E[Y\vert\,Z]\,] \;\;=\;\; E_{Z}[\,E[Y \vert Z]\,] \;\;=\;\; E[\,Y]
+    \end{equation*}
+    \proof
+    % \begin{eqnarray*}
+    % E[\,E[Y\,\vert\,Z]\,]
+    % & = &
+    %     \overset{\infty}{\underset{k = 1}{\sum}}\;
+    %     E[\,Y\vert\,Z\,] \cdot P(\,Z = z_{k}\,)
+    % \;\; = \;\;
+    %     \overset{\infty}{\underset{k = 1}{\sum}}
+    %     \left(\,
+    %         \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+    %         y_{i} \cdot \dfrac{P(\,Y = y_{i} \,, Z = z_{k}\,)}{P(\,Z = z_{k}\,)}
+    %         \,\right)
+    %     \cdot P(\,Z = z_{k}\,)
+    % \\
+    % & = &
+    %     \overset{\infty}{\underset{k = 1}{\sum}}
+    %     \left(\,
+    %         \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+    %         y_{i} \cdot \dfrac{P(\,Y = y_{i} \,, Z = z_{k}\,)}{P(\,Z = z_{k}\,)}
+    %         \,\right)
+    %     \cdot P(\,Z = z_{k}\,)
+    % \\
+    % & = &
+    %     \overset{\infty}{\underset{k = 1}{\sum}}\;
+    %     \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+    %     y_{i} \cdot P(\,Y = y_{i} \,, Z = z_{k}\,)
+    % \;\; = \;\;
+    %     \overset{\infty}{\underset{i = 1}{\sum}}\;
+    %     \overset{\infty}{\underset{k = 1}{\sum}}\;\,
+    %     y_{i} \cdot P(\,Y = y_{i} \,, Z = z_{k}\,)
+    % \\
+    % & = &
+    %     \overset{\infty}{\underset{i = 1}{\sum}}\;\;
+    %     y_{i} \cdot \left(\;
+    %         \overset{\infty}{\underset{k = 1}{\sum}}\;\,
+    %          P(\,Y = y_{i} \,, Z = z_{k}\,)
+    %         \right)
+    % \;\; = \;\;
+    %     \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+    %     y_{i} \cdot P(\,Y = y_{i}\,)
+    % \\
+    % & \overset{{\color{white}\textnormal{\large$1$}}}{=:} &
+    %     E[\,Y]
+    % \end{eqnarray*}
+    \begin{eqnarray*}
+    E[\,E[\,Yf(Z)\,\vert\,Z\,]\,]
+    & = &
+        \overset{\infty}{\underset{k = 1}{\sum}}\;
+        E[\,Yf(Z)\,\vert\,Z\,] \cdot P(\,Z = z_{k}\,)
+    \\
+    & = &
+        \overset{\infty}{\underset{k = 1}{\sum}}
+        \left(\,
+            \overset{\infty}{\underset{i = 1}{\sum}}\;
+            \overset{\infty}{\underset{l = 1}{\sum}}\;\,
+            y_{i}f(z_{l}) \cdot \dfrac{P(\,Y = y_{i} \,, Z = z_{l} \,, Z = z_{k}\,)}{P(\,Z = z_{k}\,)}
+            \,\right)
+        \cdot P(\,Z = z_{k}\,)
+    \\
+    & = &
+        \overset{\infty}{\underset{k = 1}{\sum}}
+        \left(\,
+            \overset{\infty}{\underset{i = 1}{\sum}}\;
+            \overset{\infty}{\underset{l = 1}{\sum}}\;\,
+            y_{i}f(z_{l}) \cdot P(\,Y = y_{i} \,, Z = z_{l}\,) \cdot \delta_{lk}
+            \,\right)
+    \\
+    & = &
+        \overset{\infty}{\underset{k = 1}{\sum}}
+        \left(\,
+            \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+            y_{i}f(z_{{\color{red}k}}) \cdot P(\,Y = y_{i} \,, Z = z_{{\color{red}k}}\,)
+            \,\right)
+    \;\; = \;\;
+        \overset{\infty}{\underset{k = 1}{\sum}}\;
+        \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+        y_{i}f(z_{{\color{black}k}}) \cdot P(\,Y = y_{i} \,, Z = z_{{\color{black}k}}\,)
+    \\
+    & \overset{{\color{white}\textnormal{\large$1$}}}{=:} &
+        E[\,Yf(Z)\,]
+    \end{eqnarray*}
+    \vskip -0.7cm
+    \qed
+\item
+    If \,$X$\, are \,$Y$\, conditionally independent given \,$Z$,\, i.e.,
+    \begin{equation*}
+    P(Y = y_{i}, X = x_{k}\,\vert\,Z = z_{l}\,)
+    \; = \;
+        P(Y = y_{i}\,\vert\,Z=z_{l}\,)
+        \cdot
+        P(X = x_{k}\,\vert\,Z=z_{l}\,)\,,
+    \end{equation*}
+    then
+    \begin{equation*}
+    E[\,Y\vert\,X,Z\,]
+    \; = \;
+        E[\,Y\vert\,Z\,]
+    \end{equation*}
+    \proof
+    \begin{eqnarray*}
+    E[\,Y\vert\,X = x_{k},Z = z_{l}\,]
+    & = &
+        \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+        y_{i} \cdot \dfrac{P(\,Y = y_{i} \,, X = x_{k} \,, Z = z_{l}\,)}{P(\,X = x_{k},Z = z_{l}\,)}
+    \\
+    & = &
+        \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+        y_{i}
+        \cdot
+        \dfrac{P(\,Y = y_{i} \,, X = x_{k} \,, Z = z_{l}\,)}{P(\,Z = z_{l}\,)}
+        \cdot
+        \dfrac{P(\,Z = z_{l}\,)}{P(\,X = x_{k},Z = z_{l}\,)}
+    \\
+    & = &
+        \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+        y_{i}
+        \cdot
+        P(Y = y_{i}, X = x_{k}\,\vert\,Z = z_{l}\,)
+        \cdot
+        \dfrac{P(\,Z = z_{l}\,)}{P(\,X = x_{k},Z = z_{l}\,)}
+    \\
+    & = &
+        \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+        y_{i}
+        \cdot
+        P(Y = y_{i}\,\vert\,Z=z_{l}\,)
+        \cdot
+        P(X = x_{k}\,\vert\,Z=z_{l}\,)
+        \cdot
+        \dfrac{P(\,Z = z_{l}\,)}{P(\,X = x_{k},Z = z_{l}\,)}
+    \\
+    & = &
+        \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+        y_{i}
+        \cdot
+        P(Y = y_{i}\,\vert\,Z=z_{l}\,)
+        \cdot
+        \dfrac{P(\,X = x_{k},Z = z_{l}\,)}{P(\,Z = z_{l}\,)}
+        \cdot
+        \dfrac{P(\,Z = z_{l}\,)}{P(\,X = x_{k},Z = z_{l}\,)}
+    \\
+    & = &
+        \overset{\infty}{\underset{i = 1}{\sum}}\;\,
+        y_{i}
+        \cdot
+        P(Y = y_{i}\,\vert\,Z=z_{l}\,)
+    \\
+    & \overset{{\color{white}\textnormal{\large$1$}}}{=:} &
+        E[\,Y\vert\,Z = z_{l}\,]
+    \end{eqnarray*}
+    \vskip -0.7cm
+    \qed
+\end{itemize}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{The general case}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{itemize}
+\item
+    The definition of conditional expectation can be generalized to the scenario where \,$Y$\, is an $\Re$-valued random variable (instead of admitting at most countably many values in $\Re$).
+\item
+    The properties of conditional expectations established in the last subsection also generalize
+    to the scenario where \,$Y$\, is an $\Re$-valued random variable.
+\item
+    These generalizations require the use of probability theory (measure and integration theory).
+\end{itemize}
+See Chapter 21, \cite{Jacod2004} or Section 1.4, \cite{Shao2003}.
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
