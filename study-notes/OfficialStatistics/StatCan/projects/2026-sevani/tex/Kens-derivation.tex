@@ -44,24 +44,57 @@
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\mathcal{P}(U)$,\,
     i.e., $\mathcal{P}(\mathcal{P}(U))$-measurable map.
 \item
-    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
+    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \otimes \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\Omega \times \mathcal{P}(U)$,\,
     i.e., $\left(\mathscr{A} \overset{{\color{white}.}}{\times} \mathcal{P}(\mathcal{P}(U))\right)$-measurable map
     that satisfies:
+    % \begin{equation*}
+    % \mu\!\left(\left\{\;
+    %     \omega \in \Omega
+    %     \;\left\vert\;
+    %     S_{k}(s) = 0
+    %     \,\overset{{\color{white}1}}{\Longrightarrow}\,
+    %     R_{k}(\omega,s_{R}) = 0
+    %     \right.
+    %     \;\right\}\right)
+    % \; = \;
+    %     1\,,
+    % \quad
+    % \textnormal{for each \,$k \in U$,\, and each \,$s_{R} \subset s \subset U$}
+    % \end{equation*}
+    % \begin{equation*}
+    % (\,\mu\times\pi\,)\!\left(\left\{\;
+    %     (\omega,s) \in \Omega
+    %     \;\left\vert\;
+    %     \begin{array}{c}
+    %     S_{k}(s) = 0, \,\textnormal{and}\; R_{k}(\omega,s) = 1,
+    %     \\
+    %     \overset{{\color{white}.}}{\textnormal{for one or more $k \in U$}}
+    %     \end{array}
+    %     \right.
+    %     \;\right\}\right)
+    % \; = \;
+    %     0
+    % \end{equation*}
     \begin{equation*}
-    \mu\!\left(\left\{\;
-        \omega \in \Omega
-        \;\left\vert\;
-        S_{k}(s) = 0
-        \,\overset{{\color{white}1}}{\Longrightarrow}\,
-        R_{k}(\omega,s_{R}) = 0
-        \right.
-        \;\right\}\right)
+    (\,\mu\times\pi\,)\!\left(\;\,
+        \underset{k \in U}{\bigcup}\left\{\;
+            (\omega,s) \in \Omega\times\mathcal{P}(U)
+            \;\left\vert
+            \begin{array}{c}
+            S_{k}(s) = 0, %\,\textnormal{and}\;
+            \\
+            \overset{{\color{white}.}}{R_{k}(\omega,s) = 1}
+            \end{array}
+            \right.
+            \!\!\right\}
+        \;\right)
     \; = \;
-        1\,,
-    \quad
-    \textnormal{for each \,$k \in U$,\, and each \,$s_{R} \subset s \subset U$}
+        0
     \end{equation*}
+    Note that this condition stipulates that,
+    whenver a population unit \,$k \in U$\, is not selected in the (random) sample \,$s \subset U$,\,
+    then it is not a respondent either.
 \end{itemize}
 
 \vskip 0.2cm
