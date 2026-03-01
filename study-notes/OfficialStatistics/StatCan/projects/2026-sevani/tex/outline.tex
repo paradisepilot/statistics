@@ -1,238 +1,110 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Outline of these study notes}
+\section{Operational objective of SEVANI \cite{Beaumont2011}}
 
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+SEVANI \cite{Beaumont2011} proposes, for a specific class of imputation estimators,
+a probabilistic framework wihtin which the variability of such estimators can be quantified.
 
-\subsection{Linear imputation estimators}
-
-\begin{eqnarray*}
-\widehat{\theta}_{\textnormal{I}}(s,s_{r})
-& = &
-    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
-    \,+\,
-    \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
-\\
-& = &
-    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
-    \,+\,
-    \overset{J}{\underset{j=1}{\sum}}\;
-    \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
-    w_{k}\,d_{k}\,y_{k}^{*}
-\end{eqnarray*}
-Assume:
-\begin{eqnarray*}
-y_{k}^{*}
-& = &
-    \varphi^{(j)}_{0k}
-    \,+\,
-    \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
-\end{eqnarray*}
-Then,
-\begin{eqnarray*}
-\widehat{\theta}_{\textnormal{I}}(s,s_{r})
-& = &
-    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
-    \,+\,
-    \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
-\;\; = \;\;
-    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
-    \,+\,
-    \overset{J}{\underset{j=1}{\sum}}\;
-    \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
-    w_{k}\,d_{k}\,y_{k}^{*}
-\\
-& = &
-    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
-    \,+\,
-    \overset{J}{\underset{j=1}{\sum}}\;
-    \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
-    w_{k}\,d_{k}\left(\,
-        \varphi^{(j)}_{0k}
-        \,+\,
-        \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
-        \right)
-\\
-& = &
-    \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
-        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
-        \,\right)
-    \,+\,
-    \left(\;
-        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
-        \,+\,
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
-        w_{k}\,d_{k}\left(\,
-            \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
-            \right)
-        \,\right)
-\\
-& = &
-    \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
-        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
-        \,\right)
-    \,+\,
-    \left(\;
-        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
-        \,+\,
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{{\color{red}l}\,\in\,s_{m}^{(j)}}{\sum}\,
-        w_{{\color{red}l}}\,d_{{\color{red}l}}\left(\,
-            \underset{{\color{red}k}\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{{\color{red}kl}}\,y_{{\color{red}k}}
-            \right)
-        \,\right)
-\\
-& = &
-    \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
-        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
-        \,\right)
-    \,+\,
-    \left(\;
-        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
-        \,+\,
-        \underset{k\,\in\,s_{r}}{\sum}\!\left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
-            \right)
-        y_{k}
-        \right)
-\\
-& = &
-    \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
-        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
-        \,\right)
-    \,+\,
-    \underset{k\,\in\,s_{r}}{\sum}
-    \left(\;
-        w_{k}\,d_{k}
-        \,+\,
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
-            \right)
-        \right)
-    y_{k}
-\end{eqnarray*}
- 
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\subsection{Imputation model assumptions}
-
-\begin{equation*}
-\left\{\begin{array}{ccc}
-    F\!\left(\,\mathbf{Y}\;\vert\;\mathbf{X}^{\textbf{obs}},\mathbf{Z},\mathbf{D},s,s_{r}\,\right)
-    & = &
-        F\!\left(\,\mathbf{Y}\;\vert\;\mathbf{X}^{\textbf{obs}}\,\right)
-    \\
-    \Cov\!\left(\,
-        y_{k}
-        \,,\,
-        y_{l}
-        \,\right)
-    & \overset{{\color{white}\textnormal{\large$1$}}}{=} &
-        0
-    \end{array}\right.
-\end{equation*}
-
-\begin{eqnarray*}
-\mu_{k}
-& := &
-    E_{m}\!\left(\;
-        y_{k}
-        \,\vert\,
-        \mathbf{X}^{\textbf{obs}}
-        \,\right)
-\\
-\sigma^{2}_{k}
-& := &
-    V_{m}\!\left(\;
-        y_{k}
-        \,\vert\,
-        \mathbf{X}^{\textbf{obs}}
-        \,\right)
-\end{eqnarray*}
-
-          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\subsection{Decomposition of the MSE of \,$\widehat{\theta}_{I}$}
-
-\begin{eqnarray*}
-\widehat{\theta}_{\textnormal{I}} - \theta
-& = &
-    \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)
-    \,-\,
-    \left(\,\widehat{\theta} - \theta\,\right),
-\end{eqnarray*}
-where
-\,$\widehat{\theta}$\,
-is the Horvitz-Thompson estimator.
-
-\begin{eqnarray*}
-\MSE\!\left(\;
-    \widehat{\theta}_{\textnormal{I}}
-    \;\right)
-& := &
-    E_{mpq}\!\left(\,
-        \left(\,\widehat{\theta}_{\textnormal{I}} - \theta\,\right)^{2}
-        \,\right)
-\;\; = \;\;
-    E_{mpq}\!\left(\,
-        \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)^{2}
-        \,+\,
-        2\left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)
-        \left(\,\widehat{\theta} - \theta\,\right)
-        \,+\,
-        \left(\,\widehat{\theta} - \theta\,\right)^{2}
-        \,\right)
-\\
-& = &
-    E_{mpq}\!\left[\,
-        \left(\,\widehat{\theta} - \theta\,\right)^{2}
-        \,\right]
-    \,+\,
-    E_{mpq}\!\left[\,
-        \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)^{2}
-        \,\right]
-    \,+\,
-    2 \cdot E_{mpq}\!\left[\,
-        \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)
-        \left(\,\widehat{\theta} - \theta\,\right)
-        \,\right]
-\\
-& = &
-    E_{m}\!\left[\,
-        {\color{red}\widehat{{\color{black}\Var}}}_{p}\!  \left(\,\widehat{\theta}\,\right)
-        \,\right]
-    \,+\,
-    E_{pq}\!\left[\,
-        E_{m}\!\left[\,
-            \left.
-            \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)^{2}
-            \,\right\vert\,
-            s, s_{r}
-            \,\right]
-        \,\right]
-    \,+\,
-    2 \cdot E_{pq}\!\left[\,
-        E_{m}\!\left[\,
-            \left.
-            \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)
-            \left(\,\widehat{\theta} - \theta\,\right)
-            \,\right\vert\,
-            s, s_{r}
-            \,\right]
-        \,\right]
-\end{eqnarray*}
-
+\vskip 0.3cm
+\noindent
+\textbf{Premise:}
+\begin{itemize}
+\item
+    We would like to estimate -- based on data from for a probability sample --
+    a domain total
+    \,$T_{Y} \,=\, \underset{k \in U}{\sum}\;d_{k}y_{k}$\,
+    of a population characteristic \,$y$\,
+    defined on the finite population \,$U = \{\,1,2,\ldots,N\,\}$,\,
+    where
+    \,$N \in \N$\,
+    and
+    \,$d_{k} \in \{0,1\}$,\, $k \in U$,\, is the domain membership indicator.
+    \vskip 0.01cm
+    Assume that the sampling design satisfies:
+    \begin{itemize}
+    \item         
+        $\pi_{k} > 0$,\, for each \,$k \in U$,\,
+        where \,$\pi_{k}$\, is the selection probability of population unit
+        \,$k \in U$,\, and
+    \item         
+        $\pi_{kl} > 0$,\, for each \,$k, l \in U$,\, $k \neq l$,\,
+        where \,$\pi_{kl}$\, is the joint selection probability of the distinct population units
+        \,$k,l \in U$.\,
+    \end{itemize}
+    \vskip 0.01cm
+    If the selected sample \,$s \subset U$\, contains no nonrespondents,
+    then the \textit{Horvitz-Thompson estimator}
+    \begin{equation*}
+    \widehat{T}_{Y}(s)
+    \;\; := \;\;
+        \underset{k \in s}{\sum}\;\dfrac{d_{k}y_{k}}{\pi_{k}}
+    \end{equation*}
+    is a design-unbiased estimator for the domain total \,$T_{Y}$,\, and
+    its sampling variance
+    \,$\Var(\,\widehat{T}_{Y}\,)$\,
+    is given by
+    \begin{equation*}
+    \Var(\,\widehat{T}_{Y}\,)
+    \;\; = \;\;
+        \underset{k \in U}{\sum}\;
+        \underset{l \in U}{\sum}
+        \left(\,\pi_{kl} - \pi_{k}\pi_{l}\,\right)
+        \dfrac{d_{k}y_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}y_{l}}{\pi_{l}}\,,
+    \end{equation*}
+    which in turn admits the following design-unbiased estimator:
+    \begin{equation*}
+    \widehat{\Var}(\,\widehat{T}_{Y}\,)
+    \;\; = \;\;
+        \underset{k \in s}{\sum}\;
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        \dfrac{d_{k}y_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}y_{l}}{\pi_{l}}\,,
+    \end{equation*}
+    where we have used the notational convention that
+    \,$\pi_{kk} \,:=\, \pi_{k}$.\,
+\item
+    However, if there are nonrespondents (i.e., for whom observed values of \,$y$\, are not available)
+    in the selected sample \,$s \subset U$,\, then the Horvitz-Thompson estimator
+    \begin{equation*}
+    \widehat{T}_{Y}(s)
+    \;\; := \;\;
+        \underset{k \in s}{\sum}\;\dfrac{d_{k}y_{k}}{\pi_{k}}
+    \end{equation*}
+    is not computable at estimation time.
+    \vskip 0.01cm
+    In that case, we replace the Horvitz-Thompson estimator with an \textit{imputation estimator}
+    \begin{equation*}
+    \widetilde{T}_{Y}
+    \;\; := \;\;
+        \underset{l \in s_{R}}{\sum}\;\dfrac{d_{l}y_{l}}{\pi_{l}}
+        \;+\;
+        \underset{k \in s_{M}}{\sum}\;\dfrac{d_{k}y_{k}^{*}}{\pi_{k}}\,,
+    \end{equation*}
+    where
+    \,$s_{R}, s_{M} \subset s$\,
+    are, respectively, the respondent and nonrespondent subsamples of
+    \,$s = s_{R} \sqcup s_{M}$,\,
+    and \,$y_{k}^{*}$\, is the imputed value of \,$y$\, for the nonresponding unit
+    \,$k \in s_{M} \subset s$.\,
+    \vskip 0.01cm
+    The imputed values \,$y_{k}^{*}$,\, $k \in s_{M}$,\, will be generated
+    via some imputation procedure.
+\end{itemize}
+For a specific class of imputation estimators
+(more precisely, those that are
+\textit{\color{red}composite} and \textit{\color{red}linear}, see \cite{Beaumont2011}),
+SEVANI \cite{Beaumont2011} proposes a probabilistic (hybrid design/model-based) framework within which
+the variability of \,$\widetilde{T}_{Y}$\, can be quantified.
+\vskip 0.2cm
+\noindent
+We emphasize that the variance of \,$\widetilde{T}_{Y}$\, is induced by
+the sampling design, the nonreponse mechanism, the imputation model
+(i.e., probabilistic relation between the target variable and auxiliary variables),
+as well as possibly the imputation procedure itself should the latter
+contain random components (i.e., donor imputation).
+The SEVANI framework takes into account {\color{red}all four sources of stochasticity}.
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
