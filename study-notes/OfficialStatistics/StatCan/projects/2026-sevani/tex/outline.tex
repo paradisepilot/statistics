@@ -1,0 +1,238 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Outline of these study notes}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Linear imputation estimators}
+
+\begin{eqnarray*}
+\widehat{\theta}_{\textnormal{I}}(s,s_{r})
+& = &
+    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \,+\,
+    \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
+\\
+& = &
+    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \,+\,
+    \overset{J}{\underset{j=1}{\sum}}\;
+    \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+    w_{k}\,d_{k}\,y_{k}^{*}
+\end{eqnarray*}
+Assume:
+\begin{eqnarray*}
+y_{k}^{*}
+& = &
+    \varphi^{(j)}_{0k}
+    \,+\,
+    \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+\end{eqnarray*}
+Then,
+\begin{eqnarray*}
+\widehat{\theta}_{\textnormal{I}}(s,s_{r})
+& = &
+    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \,+\,
+    \underset{k\,\in\,s_{m}}{\sum}\;w_{k}\,d_{k}\,y_{k}^{*}
+\;\; = \;\;
+    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \,+\,
+    \overset{J}{\underset{j=1}{\sum}}\;
+    \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+    w_{k}\,d_{k}\,y_{k}^{*}
+\\
+& = &
+    \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+    \,+\,
+    \overset{J}{\underset{j=1}{\sum}}\;
+    \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+    w_{k}\,d_{k}\left(\,
+        \varphi^{(j)}_{0k}
+        \,+\,
+        \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+        \right)
+\\
+& = &
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+        \,\right)
+    \,+\,
+    \left(\;
+        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \,+\,
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\,
+        w_{k}\,d_{k}\left(\,
+            \underset{l\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{lk}\,y_{l}
+            \right)
+        \,\right)
+\\
+& = &
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+        \,\right)
+    \,+\,
+    \left(\;
+        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \,+\,
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{{\color{red}l}\,\in\,s_{m}^{(j)}}{\sum}\,
+        w_{{\color{red}l}}\,d_{{\color{red}l}}\left(\,
+            \underset{{\color{red}k}\,\in\,s_{r}}{\sum}\,\varphi^{(j)}_{{\color{red}kl}}\,y_{{\color{red}k}}
+            \right)
+        \,\right)
+\\
+& = &
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+        \,\right)
+    \,+\,
+    \left(\;
+        \underset{k\,\in\,s_{r}}{\sum}\;w_{k}\,d_{k}\,y_{k}
+        \,+\,
+        \underset{k\,\in\,s_{r}}{\sum}\!\left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+            \right)
+        y_{k}
+        \right)
+\\
+& = &
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k\,\in\,s_{m}^{(j)}}{\sum}\;
+        w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+        \,\right)
+    \,+\,
+    \underset{k\,\in\,s_{r}}{\sum}
+    \left(\;
+        w_{k}\,d_{k}
+        \,+\,
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{l\,\in\,s_{m}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+            \right)
+        \right)
+    y_{k}
+\end{eqnarray*}
+ 
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Imputation model assumptions}
+
+\begin{equation*}
+\left\{\begin{array}{ccc}
+    F\!\left(\,\mathbf{Y}\;\vert\;\mathbf{X}^{\textbf{obs}},\mathbf{Z},\mathbf{D},s,s_{r}\,\right)
+    & = &
+        F\!\left(\,\mathbf{Y}\;\vert\;\mathbf{X}^{\textbf{obs}}\,\right)
+    \\
+    \Cov\!\left(\,
+        y_{k}
+        \,,\,
+        y_{l}
+        \,\right)
+    & \overset{{\color{white}\textnormal{\large$1$}}}{=} &
+        0
+    \end{array}\right.
+\end{equation*}
+
+\begin{eqnarray*}
+\mu_{k}
+& := &
+    E_{m}\!\left(\;
+        y_{k}
+        \,\vert\,
+        \mathbf{X}^{\textbf{obs}}
+        \,\right)
+\\
+\sigma^{2}_{k}
+& := &
+    V_{m}\!\left(\;
+        y_{k}
+        \,\vert\,
+        \mathbf{X}^{\textbf{obs}}
+        \,\right)
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Decomposition of the MSE of \,$\widehat{\theta}_{I}$}
+
+\begin{eqnarray*}
+\widehat{\theta}_{\textnormal{I}} - \theta
+& = &
+    \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)
+    \,-\,
+    \left(\,\widehat{\theta} - \theta\,\right),
+\end{eqnarray*}
+where
+\,$\widehat{\theta}$\,
+is the Horvitz-Thompson estimator.
+
+\begin{eqnarray*}
+\MSE\!\left(\;
+    \widehat{\theta}_{\textnormal{I}}
+    \;\right)
+& := &
+    E_{mpq}\!\left(\,
+        \left(\,\widehat{\theta}_{\textnormal{I}} - \theta\,\right)^{2}
+        \,\right)
+\;\; = \;\;
+    E_{mpq}\!\left(\,
+        \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)^{2}
+        \,+\,
+        2\left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)
+        \left(\,\widehat{\theta} - \theta\,\right)
+        \,+\,
+        \left(\,\widehat{\theta} - \theta\,\right)^{2}
+        \,\right)
+\\
+& = &
+    E_{mpq}\!\left[\,
+        \left(\,\widehat{\theta} - \theta\,\right)^{2}
+        \,\right]
+    \,+\,
+    E_{mpq}\!\left[\,
+        \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)^{2}
+        \,\right]
+    \,+\,
+    2 \cdot E_{mpq}\!\left[\,
+        \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)
+        \left(\,\widehat{\theta} - \theta\,\right)
+        \,\right]
+\\
+& = &
+    E_{m}\!\left[\,
+        {\color{red}\widehat{{\color{black}\Var}}}_{p}\!  \left(\,\widehat{\theta}\,\right)
+        \,\right]
+    \,+\,
+    E_{pq}\!\left[\,
+        E_{m}\!\left[\,
+            \left.
+            \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)^{2}
+            \,\right\vert\,
+            s, s_{r}
+            \,\right]
+        \,\right]
+    \,+\,
+    2 \cdot E_{pq}\!\left[\,
+        E_{m}\!\left[\,
+            \left.
+            \left(\,\widehat{\theta}_{\textnormal{I}} - \widehat{\theta}\,\right)
+            \left(\,\widehat{\theta} - \theta\,\right)
+            \,\right\vert\,
+            s, s_{r}
+            \,\right]
+        \,\right]
+\end{eqnarray*}
+
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
