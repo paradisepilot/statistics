@@ -101,12 +101,21 @@ E\!\left[\;
     \dfrac{
         \underset{l\,\in\,C(k)}{\sum}\;
         \rho_{k}
-        \left(\,y^{\prime}_{k} - \widehat{\mu}^{\prime}_{k}\,\right)^{2}
+        \left(\,y^{\prime}_{l} - \widehat{\mu}^{\prime}_{l}\,\right)^{2}
         }{
-        \underset{l\,\in\,\textnormal{MOD}(c)}{\sum}\;
-        \rho_{k}\cdot\nu_{k}
+        \underset{l\,\in\,C(k)}{\sum}\;
+        \rho_{l}\cdot\nu_{l}
         }
 \end{eqnarray*}
+where
+\begin{itemize}
+\item
+    $\alpha_{k}$\, is the \textit{adjustment variable},
+\item
+    $\nu_{k}$\, ``user-specified imputation model error variance'', and
+\item
+    $\rho_{k}$\, is \textit{modelling weight}.
+\end{itemize}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -144,12 +153,12 @@ where
 & = &
     \alpha_{k}^{2}\cdot\nu_{k}\cdot
     \dfrac{
-        \underset{k\,\in\,\textnormal{MOD}(c)}{\sum}\;
-        \omega^{\textnormal{MOD}}_{k}
-        \left(\,\dfrac{y_{k}}{\alpha_{k}} - \dfrac{\widehat{\mu}_{k}}{\alpha_{k}}\,\right)^{2}
+        \underset{l\,\in\,C(k)}{\sum}\;
+        \omega^{\textnormal{MOD}}_{l}
+        \left(\,\dfrac{y_{l}}{\alpha_{l}} - \dfrac{\widehat{\mu}_{l}}{\alpha_{l}}\,\right)^{2}
         }{
-        \underset{k\,\in\,\textnormal{MOD}(c)}{\sum}\;
-        \omega^{\textnormal{MOD}}_{k}\cdot\nu_{k}
+        \underset{l\,\in\,C(k))}{\sum}\;
+        \omega^{\textnormal{MOD}}_{l}\cdot\nu_{l}
         }
 \end{eqnarray*}
 
