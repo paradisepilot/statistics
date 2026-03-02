@@ -31,3 +31,126 @@ We give a summary of how these quantities are estimated in practice,
 according to the SEVANI Methodology Guide.
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{itemize}
+\item
+    The selected sample
+    \,$s = s_{R} \sqcup s_{M} \subset U$\,
+    is divided into \,$J$\, ordered imputation classes
+    during the imputation step.
+\item
+    A modelling method is chosen for each imputation class.
+\item
+    For each imputation class, the collection of \textit{modelling contributors} is determined.
+    The collection of modelling contributors will be used as training data for the imputation class.
+    \vskip 0.01cm
+    \noindent
+    The collection of modelling contributors is first initialized to the subset of respondents
+    within the corresponding collection of \textit{imputation contributors}.
+    (Recall that, for each imputation step, the collection of imputation contributors
+    may contain nonrespondents for which the target variable has been imputed in preceding imputation steps.)
+    If the collection of modelling contributors is not sufficiently large
+    (to be used as training data), then it is enlarged by appropriately collapsing suitable imputation classes.
+\end{itemize}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{equation*}
+E\!\left[\;
+    Y^{\prime}_{k}
+    \,\left\vert\;
+    \mathbf{x}^{\textnormal{(obs)}}_{k}
+    \right.
+    \,\right]
+\;\; = \;\;
+    E\!\left[\;
+        \left.
+        \dfrac{Y_{k}}{\alpha_{k}}
+        \;\right\vert\;
+        \mathbf{x}^{\textnormal{(obs)}}_{k}
+        \,\right]
+\;\; = \;\;
+    \dfrac{\mu_{k}}{\alpha_{k}}
+\;\; = \;\;
+    \mu^{\prime}_{k}
+\end{equation*}
+
+\begin{equation*}
+\Var\!\left[\;
+    Y^{\prime}_{k}
+    \;\left\vert\;
+    \mathbf{x}^{\textnormal{(obs)}}_{k}
+    \right.
+    \,\right]
+\;\; = \;\;
+    \Var\!\left[\;
+        \left.
+        \dfrac{Y_{k}}{\alpha_{k}}
+        \;\right\vert\;
+        \mathbf{x}^{\textnormal{(obs)}}_{k}
+        \,\right]
+\;\; = \;\;
+    \dfrac{\sigma_{k}^{2}}{\alpha_{k}^{2}}
+\;\; = \;\;
+    \left(\,\sigma^{\prime}_{C(k)}\,\right)^{2}
+\end{equation*}
+
+\begin{eqnarray*}
+\left(\,\widehat{\sigma}^{\prime}_{C(k)}\,\right)^{2}
+& = &
+    \dfrac{
+        \underset{l\,\in\,C(k)}{\sum}\;
+        \rho_{k}
+        \left(\,y^{\prime}_{k} - \widehat{\mu}^{\prime}_{k}\,\right)^{2}
+        }{
+        \underset{l\,\in\,\textnormal{MOD}(c)}{\sum}\;
+        \rho_{k}\cdot\nu_{k}
+        }
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Parametric estimation: auxiliary value imputation}
+
+\begin{equation*}
+\begin{array}{ccccc}
+\widehat{\mu}_{k}
+& = &
+    \widehat{E_{Y}}\!\left[\,Y_{k}\left\vert\,\Xobs\right.\right]
+& = &
+    \alpha_{k} \cdot x_{k}
+\\ \\
+\widehat{\sigma}_{k}^{2}
+& = &
+    \widehat{\Var_{Y}}\!\left[\,Y_{k}\left\vert\,\Xobs\right.\right]
+& = &
+    \alpha_{k}^{2} \cdot x_{k}
+\end{array}
+\end{equation*}
+where
+\,$\alpha_{k}$\, is the adjustment variable.
+
+\begin{eqnarray*}
+\widehat{\sigma}_{k}^{2}
+& = &
+    \widehat{\Var_{Y}}\!\left[\,Y_{k}\left\vert\,\Xobs\right.\right]
+\\
+& = &
+    \alpha_{k}^{2}\cdot\widehat{\sigma}_{a,k}^{2}
+\\
+& = &
+    \alpha_{k}^{2}\cdot\nu_{k}\cdot\widehat{\sigma}_{c}^{2}
+\\
+& = &
+    \alpha_{k}^{2}\cdot\nu_{k}\cdot
+    \dfrac{
+        \underset{k\,\in\,\textnormal{MOD}(c)}{\sum}\;
+        \omega^{\textnormal{MOD}}_{k}
+        \left(\,\dfrac{y_{k}}{\alpha_{k}} - \dfrac{\widehat{\mu}_{k}}{\alpha_{k}}\,\right)^{2}
+        }{
+        \underset{k\,\in\,\textnormal{MOD}(c)}{\sum}\;
+        \omega^{\textnormal{MOD}}_{k}\cdot\nu_{k}
+        }
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
