@@ -43,17 +43,38 @@ by the SAS implementation of SEVANI, according to its Methodology Guide.
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.5cm
+\noindent
+\textbf{Computations of
+\,$\widehat{\mu}_{k}$\,
+and
+\,$\widehat{\sigma}_{k}^{2}$\,
+in the SAS implementation of SEVANI}
 \begin{itemize}
 \item
-    The selected sample
+    Prior to invoking SEVANI:
+    \vskip 0.01cm
+    \noindent
+    The input sample data set should have undergone the imputation procedure by BANFF.
+    The user specifies to BANFF the collection of imputation methods to apply and
+    the order in which these methods are to be applied.
+    During the BANFF imputation procedure, the selected sample
     \,$s = s_{R} \sqcup s_{M} \subset U$\,
-    is divided into \,$J$\, ordered imputation classes
-    during the imputation step.
+    is divided into \,$J$\, ordered imputation classes.
 \item
-    A modelling method is chosen for each imputation class.
+    Estimation of
+    \;$\mu_{k} := E_{Y}\!\left[\,Y_{k}\left\vert\,\Xobs\right.\right]$\;
+    and
+    \;$\sigma_{k}^{2} := \Var_{Y}\!\left[\,Y_{k}\left\vert\,\Xobs\right.\right]$,\;
+    for \,$k \in s = s_{R} \sqcup s_{M}$,\,
+    is performed one imputation class at a time, and the order
+    in which the estimation is performed follows that of the 
+    imputation procedure upstream of SEVANI.
 \item
-    For each imputation class, the collection of \textit{modelling contributors} is determined.
-    The collection of modelling contributors will be used as training data for the imputation class.
+    For each given imputation class (equivalently, at each modelling step),
+    the collection of \textit{modelling contributors} is determined.
+    The collection of modelling contributors will be used as training data
+    for the given imputation class.
     \vskip 0.01cm
     \noindent
     The collection of modelling contributors is first initialized to the subset of respondents
@@ -62,53 +83,114 @@ by the SAS implementation of SEVANI, according to its Methodology Guide.
     may contain nonrespondents for which the target variable has been imputed in preceding imputation steps.)
     If the collection of modelling contributors is not sufficiently large
     (to be used as training data), then it is enlarged by appropriately collapsing suitable imputation classes.
+    \vskip 0.01cm
+    \noindent
+    Once the collection of modelling contributors has been determined,
+    a predictive model
+    -- based on the user-specified prediction technique for this imputation class/modelling step --
+    is fitted to the \textit{adjusted data} (see next paragraph for more details)
+    of the modelling contributors of this modelling step. 
+    \vskip 0.01cm
+    \noindent
+    The SEVANI user may prescribe for each unit
+    \,$k \in s = s_{R} \sqcup s_{M}$\,
+    the following three modelling parameters:
+    \begin{itemize}
+    \item
+        $\alpha_{k}$\, is the \textit{adjustment variable},
+    \item
+        $\nu_{k}$\, ``user-specified imputation model error variance'', and
+    \item
+        $\rho_{k}$\, is \textit{modelling weight}.
+    \end{itemize}
+    For each modelling contributor \,$k$,\, the \textit{adjusted target variable}
+    \,$Y^{\prime}_{k}$\,
+    is defined to be:
+    \begin{equation*}
+    Y^{\prime}_{k}
+    \;\; := \;\;
+        \dfrac{Y_{k}}{\alpha_{k}}
+    \end{equation*}
+    A predictive model is fitted to the following data:
+    \begin{equation*}
+    \left\{\;
+        \left.
+        (\,y^{\prime}_{k}\,,\,\mathbf{x}^{\textnormal{(obs)}}_{k}\,)
+        \;\right\vert\;
+        k \in \textnormal{Contrib}(C)
+        \;\right\}
+    \end{equation*}
 \end{itemize}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \begin{equation*}
-E\!\left[\;
+\left.\begin{array}{rcl}
+Y_{k}
+& = &
+    \alpha_{k} \cdot Y^{\prime}_{k}
+\\
+\overset{{\color{white}1}}{E\!\left[\;
     Y^{\prime}_{k}
     \,\left\vert\;
     \mathbf{x}^{\textnormal{(obs)}}_{k}
     \right.
+    \,\right]}
+& = &
+        \widehat{\mu}^{\prime}_{k}
+\end{array}
+\;\;\right\}
+\textnormal{\large$\Longrightarrow$}\quad
+E\!\left[\;
+    \left.
+    \overset{{\color{white}.}}{Y_{k}}
+    \;\right\vert\;
+    \mathbf{x}^{\textnormal{(obs)}}_{k}
     \,\right]
 \;\; = \;\;
-    E\!\left[\;
-        \left.
-        \dfrac{Y_{k}}{\alpha_{k}}
-        \;\right\vert\;
-        \mathbf{x}^{\textnormal{(obs)}}_{k}
-        \,\right]
-\;\; = \;\;
-    \dfrac{\mu_{k}}{\alpha_{k}}
-\;\; = \;\;
-    \mu^{\prime}_{k}
+    \alpha_{k} \cdot \widehat{\mu}^{\prime}_{k}
 \end{equation*}
 
+% \begin{equation*}
+% \Var\!\left[\;
+%     Y^{\prime}_{k}
+%     \;\left\vert\;
+%     \mathbf{x}^{\textnormal{(obs)}}_{k}
+%     \right.
+%     \,\right]
+% \;\; = \;\;
+%     \Var\!\left[\;
+%         \left.
+%         \dfrac{Y_{k}}{\alpha_{k}}
+%         \;\right\vert\;
+%         \mathbf{x}^{\textnormal{(obs)}}_{k}
+%         \,\right]
+% \;\; = \;\;
+%     \dfrac{\sigma_{k}^{2}}{\alpha_{k}^{2}}
+% \;\; = \;\;
+%     \left(\,\sigma^{\prime}_{C(k)}\,\right)^{2}
+% \end{equation*}
+
 \begin{equation*}
+\left.\begin{array}{rcl}
+Y_{k}
+& = &
+    \alpha_{k} \cdot Y^{\prime}_{k}
+\\
 \Var\!\left[\;
     Y^{\prime}_{k}
     \;\left\vert\;
     \mathbf{x}^{\textnormal{(obs)}}_{k}
     \right.
     \,\right]
-\;\; = \;\;
-    \Var\!\left[\;
-        \left.
-        \dfrac{Y_{k}}{\alpha_{k}}
-        \;\right\vert\;
-        \mathbf{x}^{\textnormal{(obs)}}_{k}
-        \,\right]
-\;\; = \;\;
-    \dfrac{\sigma_{k}^{2}}{\alpha_{k}^{2}}
-\;\; = \;\;
-    \left(\,\sigma^{\prime}_{C(k)}\,\right)^{2}
-\end{equation*}
-
-\begin{eqnarray*}
+& = &
+    \overset{{\color{white}\textnormal{\large$1$}}}{
+    \nu_{k}\cdot\left(\,\widehat{\sigma}^{\prime}_{C(k)}\,\right)^{2}
+    }
+\\
 \left(\,\widehat{\sigma}^{\prime}_{C(k)}\,\right)^{2}
 & = &
+    \overset{{\color{white}\textnormal{\large$1$}}}{
     \dfrac{
         \underset{l\,\in\,C(k)}{\sum}\;
         \rho_{k}
@@ -117,7 +199,45 @@ E\!\left[\;
         \underset{l\,\in\,C(k)}{\sum}\;
         \rho_{l}\cdot\nu_{l}
         }
-\end{eqnarray*}
+    }
+\end{array}
+\;\;\right\}
+\Longrightarrow
+\left\{\;\;
+\begin{array}{ccl}
+\Var\!\left[\;
+    \left.
+    \overset{{\color{white}.}}{Y_{k}}
+    \;\right\vert\;
+    \mathbf{x}^{\textnormal{(obs)}}_{k}
+    \,\right]
+& = &
+    \alpha_{k}^{2}
+    \cdot
+    \nu_{k}
+    \cdot 
+    \left(\,\widehat{\sigma}^{\prime}_{C(k)}\,\right)^{2}
+\\
+& = &
+    \overset{{\color{white}\textnormal{\small$1$}}}{
+    \alpha_{k}^{2}
+    \cdot
+    \nu_{k}
+    \cdot 
+    \left(\,
+    \dfrac{
+        \underset{l\,\in\,C(k)}{\sum}\;
+        \rho_{k}
+        \left(\,y^{\prime}_{l} - \widehat{\mu}^{\prime}_{l}\,\right)^{2}
+        }{
+        \underset{l\,\in\,C(k)}{\sum}\;
+        \rho_{l}\cdot\nu_{l}
+        }
+        \,\right)
+    }
+\end{array}
+\right.
+\end{equation*}
 where
 \begin{itemize}
 \item
