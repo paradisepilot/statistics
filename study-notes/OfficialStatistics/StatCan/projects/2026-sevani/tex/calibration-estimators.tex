@@ -9,6 +9,238 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{equation*}
+\underset{w^{\textnormal{(cal)}}_{i}}{\argmin}
+\left\{\;\,
+    \left.
+    \chi^{2}(w^{\textnormal{(cal)}}_{\bullet},w_{\bullet})
+    \;:=\;
+        \underset{i \in s}{\sum}\,
+        \dfrac{(w^{\textnormal{(cal)}}_{i}-w_{i})^{2}}{q_{i}w_{i}}
+    \;\;\right\vert\;\;
+        \underset{i \in s}{\sum}\;
+        w^{\textnormal{(cal)}}_{i}\,\mathbf{x}_{i}
+        \,=\,
+        T_{\mathbf{x}}
+    \;\,\right\}
+\end{equation*}
+
+\begin{equation*}
+w^{\textnormal{(cal)}}_{i}
+\;\; = \;\;
+    w_{i}\cdot\left\{\;
+        1
+        \,+\,
+        \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+        \cdot
+        \left(\;
+            \underset{k \in S}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+            \,\right)^{\!-1}
+        \mathbf{x}_{i}q_{i}
+        \,\right\}
+\end{equation*}
+
+\begin{eqnarray*}
+\widehat{T}_{y}^{\textnormal{(cal)}}
+& := &
+    \underset{i \in S}{\sum}\;
+    w^{\textnormal{(cal)}}_{i}\,y_{i}
+\;\; = \;\;
+    \underset{i \in S}{\sum}\;\,
+    w_{i}\cdot\left\{\;
+        1
+        \,+\,
+        \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+        \cdot
+        \left(\;
+            \underset{k \in S}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+            \,\right)^{\!-1}
+        \mathbf{x}_{i}q_{i}
+        \,\right\}
+    y_{i}
+\\
+& = &
+    \left(\,\underset{i \in S}{\sum}\;w_{i} \cdot y_{i}\,\right)
+    \; + \;
+    \left(\,
+        \underset{i \in S}{\sum}\;\,
+        w_{i}\cdot
+            \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+            \cdot
+            \left(\;
+                \underset{k \in S}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+                \,\right)^{\!-1}
+            \mathbf{x}_{i}q_{i}
+        y_{i}
+        \,\right)
+\\
+& = &
+    \widehat{T}^{\textnormal{(HT)}}_{y}
+    \; + \;
+    \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+    \cdot
+    \left(\;
+        \underset{k \in S}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+        \,\right)^{\!-1}
+    \cdot
+    \left(\;\,
+        \underset{i \in S}{\sum}\;
+        w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+        \,\right)
+\\
+& = &
+    \widehat{T}^{\textnormal{(HT)}}_{y}
+    \; + \;
+    \left(
+        \left(\;
+            \underset{k \in S}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+            \,\right)^{\!-1}
+        \cdot
+        \underset{i \in S}{\sum}\;
+        w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+        \,\right)^{\!\!T}
+    \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)
+\end{eqnarray*}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\begin{eqnarray*}
+\Var\!\left(\,\widehat{T}_{y}^{\textnormal{(cal)}}\,\right)
+& = &
+    \Var\!\left(\,
+        \widehat{T}^{\textnormal{(HT)}}_{y}
+        \; - \;
+        \left(
+            \left(\;
+                \underset{k \in {\color{red}U}}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+                \,\right)^{\!-1}
+            \cdot
+            \underset{i \in {\color{red}U}}{\sum}\;
+            w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+            \,\right)^{\!\!T}
+        \cdot\,
+        \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}
+        \,\right)
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\\
+& = &
+    \Var\!\left(\,
+        \widehat{T}^{\textnormal{(HT)}}_{y}
+        \; - \;
+        \left(\,\mathbf{B}^{\textnormal{(cal)}}(q_{\bullet},w_{\bullet},x_{\bullet},y_{\bullet})\,\right)^{T}
+        \!\cdot
+        \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}
+        \,\right)
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\\
+& = &
+    \Var\!\left[\;\,
+        \underset{i \in s}{\sum}\;
+        w_{i}
+        \left(\,
+            y_{i}
+            \, - \,
+            \left(\,\mathbf{B}^{\textnormal{(cal)}}(q_{\bullet},w_{\bullet},x_{\bullet},y_{\bullet})\,\right)^{T}
+            \!\cdot
+            \mathbf{x}_{i}
+            \,\right)
+        \,\right]
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\\
+& = &
+    \Var\!\left[\;\,
+        \underset{i \in s}{\sum}\;w_{i}\,e_{i}
+        \,\right]
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\;\; = \;\;
+    \Var\!\left[\;\,
+        \widehat{T}^{\textnormal{(cal)}}_{e}
+        \;\right]
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\\
+& = &
+    \underset{i \in U}{\sum}\;
+    \underset{j \in U}{\sum}\;
+    \left(\,\pi_{ij} - \pi_{i}\pi_{j}\,\right)
+    \dfrac{e_{i}}{\pi_{i}}\,
+    \dfrac{e_{j}}{\pi_{j}}
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\\
+& \approx &
+    \underset{i \in {\color{red}s}}{\sum}\;
+    \underset{j \in {\color{red}s}}{\sum}\;
+    \dfrac{\left(\,\pi_{ij} - \pi_{i}\pi_{j}\,\right)}{\pi_{ij}}
+    \dfrac{e_{i}}{\pi_{i}}\,
+    \dfrac{e_{j}}{\pi_{j}}
+\\
+\widehat{\Var}\!\left(\,\widehat{T}_{y}^{\textnormal{(cal)}}\,\right)
+& := &
+    \underset{i \in {\color{black}s}}{\sum}\;
+    \underset{j \in {\color{black}s}}{\sum}\;
+    \dfrac{\left(\,\pi_{ij} - \pi_{i}\pi_{j}\,\right)}{\pi_{ij}}
+    \dfrac{\widehat{e}_{i}}{\pi_{i}}\,
+    \dfrac{\widehat{e}_{j}}{\pi_{j}}
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+e_{i}
+& := &
+    y_{i}
+    \, - \,
+    \left(\,\mathbf{B}^{\textnormal{(cal)}}(q_{\bullet},w_{\bullet},x_{\bullet},y_{\bullet})\,\right)^{T}
+    \!\cdot\,
+    \mathbf{x}_{i}
+\\
+\widehat{e}_{i}
+& := &
+    y_{i}
+    \, - \,
+    \left(\;\widehat{\mathbf{B}}_{s}^{\textnormal{(cal)}}\,\right)^{T}
+    \!\cdot\,
+    \mathbf{x}_{i}
+\;\; = \;\;
+    y_{i}
+    \, - \,
+    \left(
+        \left(\;
+            \underset{k \in {\color{red}s}}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+            \,\right)^{\!-1}
+        \cdot
+        \underset{i \in {\color{red}s}}{\sum}\;
+        w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+        \,\right)^{\!\!T}
+    \!\cdot\,
+    \mathbf{x}_{i}
+\\
+\mathbf{B}^{\textnormal{(cal)}}(q_{\bullet},w_{\bullet},x_{\bullet},y_{\bullet})
+& := &
+    \left(\;
+        \underset{k \in {\color{red}U}}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+        \,\right)^{\!-1}
+    \cdot\;
+    \underset{i \in {\color{red}U}}{\sum}\;
+    w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+\\
+\widehat{\mathbf{B}}_{s}^{\textnormal{(cal)}}
+& := &
+    \left(\;
+        \underset{k \in {\color{red}s}}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+        \,\right)^{\!-1}
+    \cdot\;
+    \underset{i \in {\color{red}s}}{\sum}\;
+    w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+\end{eqnarray*}
+\end{lemma}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 Suppose:
 \begin{itemize}
 \item
