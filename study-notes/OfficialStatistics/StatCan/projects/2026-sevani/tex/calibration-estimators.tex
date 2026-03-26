@@ -128,67 +128,73 @@ is a solution to the following optimization problem:
 \end{enumerate}
 \end{lemma}
 \proof
-\begin{eqnarray*}
-\widehat{T}_{y}^{\textnormal{(cal)}}
-& := &
-    \underset{i \in S}{\sum}\;
-    w^{\textnormal{(cal)}}_{i}\,y_{i}
-\;\; = \;\;
-    \underset{i \in S}{\sum}\;\,
-    w_{i}\cdot\left\{\;
-        1
-        \,+\,
-        \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
-        \cdot
-        \left(\;
-            \underset{k \in S}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
-            \,\right)^{\!-1}
-        \mathbf{x}_{i}q_{i}
-        \,\right\}
-    y_{i}
-\\
-& = &
-    \left(\,\underset{i \in S}{\sum}\;w_{i} \cdot y_{i}\,\right)
-    \; + \;
-    \left(\,
+\begin{enumerate}
+\item
+    We proceed by the Method of Lagrange Multipliers.
+\item
+    This is a straightforward computations:
+    \begin{eqnarray*}
+    \widehat{T}_{y}^{\textnormal{(cal)}}
+    & := &
+        \underset{i \in S}{\sum}\;
+        w^{\textnormal{(cal)}}_{i}\,y_{i}
+    \;\; = \;\;
         \underset{i \in S}{\sum}\;\,
-        w_{i}\cdot
+        w_{i}\cdot\left\{\;
+            1
+            \,+\,
             \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
             \cdot
             \left(\;
                 \underset{k \in S}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
                 \,\right)^{\!-1}
             \mathbf{x}_{i}q_{i}
+            \,\right\}
         y_{i}
-        \,\right)
-\\
-& = &
-    \widehat{T}^{\textnormal{(HT)}}_{y}
-    \; + \;
-    \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
-    \cdot
-    \left(\;
-        \underset{k \in S}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
-        \,\right)^{\!-1}
-    \cdot
-    \left(\;\,
-        \underset{i \in S}{\sum}\;
-        w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
-        \,\right)
-\\
-& = &
-    \widehat{T}^{\textnormal{(HT)}}_{y}
-    \; + \;
-    \left(
+    \\
+    & = &
+        \left(\,\underset{i \in S}{\sum}\;w_{i} \cdot y_{i}\,\right)
+        \; + \;
+        \left(\,
+            \underset{i \in S}{\sum}\;\,
+            w_{i}\cdot
+                \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+                \cdot
+                \left(\;
+                    \underset{k \in S}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+                    \,\right)^{\!-1}
+                \mathbf{x}_{i}q_{i}
+            y_{i}
+            \,\right)
+    \\
+    & = &
+        \widehat{T}^{\textnormal{(HT)}}_{y}
+        \; + \;
+        \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+        \cdot
         \left(\;
-            \underset{k \in S}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+            \underset{k \in S}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
             \,\right)^{\!-1}
         \cdot
-        \underset{i \in S}{\sum}\;
-        w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
-        \,\right)^{\!\!T}
-    \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)
-\end{eqnarray*}
+        \left(\;\,
+            \underset{i \in S}{\sum}\;
+            w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+            \,\right)
+    \\
+    & = &
+        \widehat{T}^{\textnormal{(HT)}}_{y}
+        \; + \;
+        \left(
+            \left(\;
+                \underset{k \in S}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+                \,\right)^{\!-1}
+            \cdot
+            \underset{i \in S}{\sum}\;
+            w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+            \,\right)^{\!\!T}
+        \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)
+    \end{eqnarray*}
+\end{enumerate}
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
