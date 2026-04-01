@@ -1,0 +1,191 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Ratio estimators}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Definition of ratio estimators}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}
+\mbox{}
+\vskip 0.05cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+    $p : \mathcal{P}(U) \longrightarrow [0,1]$\,
+    is a sampling design satisfying:
+    For each unit \,$i \in U$,\,
+    its probability of selection
+    \,$\pi_{i} \,:=\, \underset{s \ni i}{\sum}\;p(s)$\,
+    is strictly greatly than zero.
+    For each unit \,$i \in U$,\,
+    its design weight is, by definition,
+    \,$w_{i} \,:=\, \dfrac{1}{\pi_{i}}$.\,
+\item
+    $y : U \longrightarrow \Re$\,
+    $z : U \longrightarrow \Re$\,
+    are two population characteristics and
+    \,$T_{y} \,:=\, \underset{i \in U}{\sum}\;y_{i}$\,
+    \,$T_{z} \,:=\, \underset{i \in U}{\sum}\;z_{i}$\,
+    are their respective population totals.
+% \item
+%     $X^{(1)}$,\, $X^{(2)}$,\, $\ldots$\;,\, $X^{(q)}$\,
+%     are a (finite) collection of ($\Re$-valued) population characteristics
+%     whose respective population totals are known,
+%     i.e., the following vector of population totals is known:
+%     \begin{equation*}
+%     T_{\mathbf{x}}
+%     \;\; := \;\;
+%         \left(\;\,
+%             \underset{i \in U}{\sum}\,x_{i}^{(1)}
+%             \,,\,
+%             \underset{i \in U}{\sum}\,x_{i}^{(2)}
+%             \,,\,
+%             \ldots
+%             \,,\,
+%             \underset{i \in U}{\sum}\,x_{i}^{(q)}
+%             \;\,\right)
+%     \end{equation*}
+% \item
+%     $q_{i} > 0$,\, for each \,$i \in U$,\, has been prescribed.
+\end{itemize}
+The \textbf{ratio estimator} for the population ratio
+\,$R_{y/z} \,:=\, \dfrac{{\color{white}.}T_{y}{\color{white}.}}{T_{z}}$\,
+is defined as follows:
+\begin{eqnarray*}
+\widehat{R}_{y/z}(s)
+& := &
+    \dfrac{{\color{white}..}
+        \underset{i \in s}{\sum}\;w_{i}\,y_{i}
+        {\color{white}..}}{
+        \underset{i \in s}{\sum}\;w_{i}\,z_{i}
+        }
+\end{eqnarray*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\subsection{Explicit formulas for ratio estimators}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\mbox{}
+\vskip 0.01cm
+\noindent
+\begin{enumerate}
+\item
+    See last equation in \S6.4, p.234, \cite{Wolter2006} for the following formula:
+    \begin{eqnarray*}
+    \Var\!\left(\,\widehat{R}_{y/z}\,\right)
+    & \approx &
+        (\widehat{R}_{y/z})^{2}\!\left(\,
+            \dfrac{\widehat{\sigma}_{\widehat{T}_{y}}}{\widehat{T}_{y}^{2}}
+            \,+\,
+            \dfrac{\widehat{\sigma}_{\widehat{T}_{z}}}{\widehat{T}_{z}^{2}}
+            \,-\,
+            2\cdot
+            \dfrac{\widehat{\sigma}_{\widehat{T}_{y}\widehat{T}_{z},}}{\widehat{T}_{y}\widehat{T}_{z}}
+            \,\right)
+    \\
+    & = &
+        \left(\,
+            \dfrac{{\color{white}.}
+            \widehat{T}_{y}
+            {\color{white}.}}{{\color{white}.}
+            \widehat{T}_{z}
+            {\color{white}.}}
+            \,\right)^{\!2}\!\left(\,
+            \dfrac{\widehat{\sigma}_{\widehat{T}_{y}}}{\widehat{T}_{y}^{2}}
+            \,+\,
+            \dfrac{\widehat{\sigma}_{\widehat{T}_{z}}}{\widehat{T}_{z}^{2}}
+            \,-\,
+            2\cdot
+            \dfrac{\widehat{\sigma}_{\widehat{T}_{y}\widehat{T}_{z},}}{\widehat{T}_{y}\widehat{T}_{z}}
+            \,\right)
+    % \\
+    % & = &
+    %     \left(\,
+    %         \dfrac{{\color{white}.}
+    %         \widehat{T}_{y}
+    %         {\color{white}.}}{{\color{white}.}
+    %         \widehat{T}_{z}
+    %         {\color{white}.}}
+    %         \,\right)^{\!2}\!\left(\,
+    %         \dfrac{\widehat{\sigma}_{\widehat{T}_{y}}}{\widehat{T}_{y}^{2}}
+    %         \,+\,
+    %         \dfrac{\widehat{\sigma}_{\widehat{T}_{z}}}{\widehat{T}_{z}^{2}}
+    %         \,-\,
+    %         2\cdot
+    %         \dfrac{\widehat{\sigma}_{\widehat{T}_{y}\widehat{T}_{z},}}{\widehat{T}_{y}\widehat{T}_{z}}
+    %         \,\right)
+    \end{eqnarray*}
+    If the sampling design is SRSWOR, the above formula simplifies to:
+    \begin{eqnarray*}
+    \Var\!\left(\,\widehat{R}_{y/z}\,\right)
+    & \approx &
+        \dfrac{1}{\widehat{T}_{z}^{2}}\cdot\left(\,
+            1 - \dfrac{n}{N}
+            \,\right)
+        \dfrac{1}{n}
+        \left(\,
+            \widehat{\Var}(\widehat{T}_{y})
+            \,+\,
+            \widehat{R}_{y/z}^{2}\cdot\widehat{\Var}(\widehat{T}_{z})
+            \,-\,
+            2\cdot\widehat{R}_{y/z}\cdot\widehat{\Cov}(\widehat{T}_{y},\widehat{T}_{z})
+            \,\right)
+    \end{eqnarray*}
+\item
+    Assume the sampling design is SRSWOR.
+    \begin{eqnarray*}
+    \widehat{R}_{y/z}(s)
+    & = &
+        \dfrac{\mu_{y}}{\mu_{z}}
+        \,+\,
+        \dfrac{1}{\mu_{z}}\!\left(\,
+            \overline{y}(s)
+            \overset{{\color{white}.}}{-}
+            R\cdot\overline{z}(s)
+            \right)
+        \,+\,
+        o_{P}\!\left(\dfrac{1}{\sqrt{n}}\right),
+    \quad\;\;
+    \textnormal{see Equation (5.3), p.97, \cite{Wu2020}}
+    \\
+    & = &
+        \dfrac{T_{y}}{T_{z}}
+        \,+\,
+        \dfrac{1}{T_{z}}\!\left(\,
+            \widehat{T}_{y}(s)
+            \overset{{\color{white}.}}{-}
+            R\cdot\widehat{T}_{z}(s)
+            \right)
+        \,+\,
+        o_{P}\!\left(\dfrac{1}{\sqrt{n}}\right)
+    \\
+    & = &
+        \dfrac{T_{y}}{T_{z}}
+        \,+\,
+        \dfrac{1}{T_{z}}\cdot
+        \underset{i \in s}{\sum}\;w_{i}\left(\,
+            y_{i} - R \cdot z_{i}
+            \,\right)
+        \,+\,
+        o_{P}\!\left(\dfrac{1}{\sqrt{n}}\right)
+    \end{eqnarray*}
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+\item
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
