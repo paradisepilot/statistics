@@ -203,7 +203,7 @@
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.2cm
-\begin{definition}[Imputation ratio estimator \,$\widetilde{T}_{Y}$]
+\begin{definition}[Imputation ratio estimator \,$\widetilde{R}_{Y/Z}$]
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -375,7 +375,7 @@ Then, the following statements are true:
         \left.
         \widetilde{T}_{Y}
         \;\right\vert\,
-        \Xobs\,,\Zdot
+        \Zdot,\Xobs
         \,\right)
     $\,
     of
@@ -386,14 +386,14 @@ Then, the following statements are true:
         \left.
         \widetilde{T}_{Y}
         \;\right\vert\,
-        \Xobs\,,\Zdot
+        \Zdot,\Xobs
         \,\right)
     & := &
         E\!\left[\;
             \left.
             \widetilde{T}_{Y} - T_{Y}
             \,\right\vert\,
-            \Xobs\,,\Zdot
+            \Zdot,\Xobs
             \,\right]
     \;\; = \;\;
         E_{SR}\!\left(\;
@@ -401,7 +401,7 @@ Then, the following statements are true:
                 \left.
                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
                 \;\right\vert\,
-                s,s_{R},\Xobs\,,\Zdot
+                s,s_{R},\Zdot,\Xobs
                 \,\right]}
             \;\right),
     \end{eqnarray*}
@@ -657,33 +657,68 @@ Then, the following statements are true:
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.3cm
-\begin{lemma}[Decomposition of \,$\MSE(\,\widetilde{T}_{Y}\,\vert\,\Xobs\,)$; see Equation (5.3) in \cite{Beaumont2011}]
+\begin{lemma}[Decomposition of \,$\MSE(\,\widetilde{R}_{Y/Z}\,\vert\,\Zdot,\Xobs\,)$; see Equation (5.3) in \cite{Beaumont2011}]
 \label{DecompositionMSETtilde}
 \mbox{}
 \vskip 0.1cm
 \noindent
 Let
 \begin{eqnarray*}
-\widetilde{T}_{Y}
+\widetilde{R}_{Y/Z}
 \;\; = \;\;
-    \widetilde{T}_{Y}(\,
+    \widetilde{R}_{Y/Z}(\,
         \Sdot\,,\,
         \Rdot\,,\,
         \Ydot\,,\,
+        \Zdot\,,\,
         \Xdotdot\,;\,
         \dbullet
         \,)
 & := &
-    \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+    \dfrac{
+        \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+        }{
+        \overset{{\color{white}.}}{\underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}}
+        }
 \;\; = \;\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
-        R_{i}\,Y_{i}
-        \overset{{\color{white}.}}{+}
-        (1-R_{i})\,Y^{*}_{i}
-        \,\right)
+    \dfrac{
+        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+            R_{i}\,Y_{i}
+            \overset{{\color{white}.}}{+}
+            (1-R_{i})\,Y^{*}_{i}
+            \,\right)
+        }{
+        \overset{{\color{white}.}}{\underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}}
+        }
+% \widetilde{R}_{Y/Z}
+% \;\; = \;\;
+%     \widetilde{R}_{Y/Z}(\,
+%         \Sdot\,,\,
+%         \Rdot\,,\,
+%         \Ydot\,,\,
+%         \Zdot\,,\,
+%         \Xdotdot\,;\,
+%         \dbullet
+%         \,)
+% & := &
+%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+% \;\; = \;\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+%         R_{i}\,Y_{i}
+%         \overset{{\color{white}.}}{+}
+%         (1-R_{i})\,Y^{*}_{i}
+%         \,\right)
 \end{eqnarray*}
-be an imputation estimator for the domain total
-\;$T_{Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
+be an imputation ratio estimator for the domain ratio
+\begin{equation*}
+\dfrac{T_{Y}}{\overset{{\color{white}.}}{T_{Z}}}
+\;\; = \;\;
+    \dfrac{
+        \underset{i \in U}{\sum}\,d_{i}Y_{i}
+        }{
+        \overset{{\color{white}.}}{\underset{i \in U}{\sum}\,d_{i}Z_{i}}
+        }
+\end{equation*}
 where
 \begin{equation*}
 \widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}
@@ -697,26 +732,27 @@ Suppose the quantities
 \Sdot\,,\,
 \Rdot\,,\,
 \Ydot\,,\,
+\Zdot\,,\,
 \Xdotdot\,,\,
 \dbullet
 $\,
-satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFramework}.
+satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFrameworkDomainRatio}.
 \vskip 0.2cm
 \noindent
 Then,
 \begin{eqnarray*}
 \MSE\!\left(\;
     \left.
-    \widetilde{T}_{Y}
+    \widetilde{R}_{Y/Z}
     \;\right\vert\,
-    \Xobs
+    \Zdot,\Xobs
     \,\right)
 & := &
     E\!\left[\,
         \left.
         (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
         \,\right\vert\,
-        \Xobs
+        \Zdot,\Xobs
         \,\right]
 \\
 & = &
@@ -726,7 +762,7 @@ Then,
         \widehat{T}_{Y}
         \,\right\vert\,
         \Ydot,
-        \Xobs
+        \Zdot,\Xobs
         \,\right)
         \,\right]
     \;+\;
@@ -735,7 +771,7 @@ Then,
         \left.
         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
         \,\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
         \,\right]
 \\
@@ -746,7 +782,7 @@ Then,
         \left.
         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
         \,\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
         \,\right]
 \end{eqnarray*}
@@ -756,73 +792,75 @@ Then,
 &&
 \MSE\!\left(\;
     \left.
-    \widetilde{T}_{Y}
+    \widetilde{R}_{Y/Z}
     \;\right\vert\,
-    \Xobs
+    \Zdot,\Xobs
     \,\right)
 % \\
 % & := &
 \;\; := \;\;
     E\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
+        (\,\widetilde{R}_{Y/Z} - R_{Y/Z}\,)^{2}
         \,\right\vert\,
-        \Xobs
+        \Zdot,\Xobs
         \,\right]
 \;\; = \;\;
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
+        (\,\widetilde{R}_{Y/Z} - R_{Y/Z}\,)^{2}
         \,\right\vert\,
-        \Xobs
+        \Zdot,\Xobs
         \,\right]
 \\
 & = &
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} \;{\color{red}-\; \widehat{T}_{Y} \;+\; \widehat{T}_{Y}} \,-\, T_{Y}\,)^{2}
+        (\,\widetilde{R}_{Y/Z} \;{\color{red}-\; \widehat{R}_{Y/Z} \;+\; \widehat{R}_{Y/Z}}
+        \,-\,
+        R_{Y/Z}\,)^{2}
         \,\right\vert\,
-        \Xobs
+        \Zdot,\Xobs
         \,\right]
 \\
 & = &
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)^{2}
         \,+\,
-        2\,(\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        2\,(\,\widetilde{R}_{Y/Z} \,-\, \widehat{R}_{Y/Z}\,)(\,\widehat{R}_{Y/Z} \,-\, R_{Y/Z}\,)
         \,+\,
-        (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+        (\,\widehat{R}_{Y/Z} - R_{Y/Z}\,)^{2}
         \,\right\vert\,
-        \Xobs
+        \Zdot,\Xobs
         \,\right]
 \\
 & = &
     {\color{blue}
     E_{YSR}\!\left[\,
         \left.
-        (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+        (\,\widehat{R}_{Y/Z} - R_{Y/Z}\,)^{2}
         \,\right\vert\,
-        \Xobs
+        \Zdot,\Xobs
         \,\right]
     }
     \;+\;
     {\color{blue}
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)^{2}
         \,\right\vert\,
-        \Xobs
+        \Zdot,\Xobs
         \,\right]
     }
-% \\
-% &&
-    \;+\;
+\\
+&&
+    +\;
     2\,E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        (\,\widetilde{R}_{Y/Z} \,-\, \widehat{R}_{Y/Z}\,)(\,\widehat{R}_{Y/Z} \,-\, R_{Y/Z}\,)
         \,\right\vert\,
-        \Xobs
+        \Zdot,\Xobs
         \,\right]
 \\
 & = &
@@ -830,10 +868,10 @@ Then,
     E_{Y}\!\left[\,
     E_{SR}\!\left[\,
         \left.
-        (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+        (\,\widehat{R}_{Y/Z} - R_{Y/Z}\,)^{2}
         \,\right\vert\,
         \Ydot,
-        \Xobs
+        \Zdot,\Xobs
         \,\right]
         \,\right]
     }
@@ -842,9 +880,9 @@ Then,
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)^{2}
         \,\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
         \,\right]
     }
@@ -854,9 +892,9 @@ Then,
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        (\,\widetilde{R}_{Y/Z} \,-\, \widehat{R}_{Y/Z}\,)(\,\widehat{R}_{Y/Z} \,-\, R_{Y/Z}\,)
         \,\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
         \,\right]
 \\
@@ -865,10 +903,10 @@ Then,
     {\color{blue}
     \Var_{S}\!\left(\,
         \left.
-        \widehat{T}_{Y}
+        \widehat{R}_{Y/Z}
         \,\right\vert\,
         \Ydot,
-        \Xobs
+        \Zdot,\Xobs
         \,\right)
         }
         \,\right]
@@ -876,9 +914,9 @@ Then,
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)^{2}
         \,\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
         \,\right]
 \\
@@ -887,9 +925,9 @@ Then,
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        (\,\widetilde{R}_{Y/Z} \,-\, \widehat{R}_{Y/Z}\,)(\,\widehat{R}_{Y/Z} \,-\, R_{Y/Z}\,)
         \,\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
         \,\right]
 \end{eqnarray*}
@@ -902,18 +940,18 @@ Then,
 \noindent
 To refer to the three summands in the above decomposition of
 \,$
-\MSE\!\left(\;
+\MSE\!\left(\,
     \left.
-    \widetilde{T}_{Y}
+    \widetilde{R}_{Y/Z}
     \;\right\vert\,
-    \Xobs
+    \Zdot,\Xobs
     \,\right)
 \, := \,
     E\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
+        (\,\widetilde{R}_{Y/Z} - R_{Y/Z}\,)^{2}
         \,\right\vert\,
-        \Xobs
+        \Zdot,\Xobs
         \,\right]
 $,\,
 we will use the following nomenclature:
@@ -930,10 +968,10 @@ we will use the following nomenclature:
     E_{Y}\!\left[\,
     \Var_{S}\!\left(\,
         \left.
-        \widehat{T}_{Y}
+        \widehat{R}_{Y/Z}
         \,\right\vert\,
         \Ydot,
-        \Xobs
+        \Zdot,\Xobs
         \,\right)
         \,\right]
 \\ \\
@@ -948,9 +986,9 @@ we will use the following nomenclature:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+        (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)^{2}
         \,\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
         \,\right]
 \\ \\
@@ -966,9 +1004,9 @@ we will use the following nomenclature:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+        (\,\widetilde{R}_{Y/Z} \,-\, \widehat{R}_{Y/Z}\,)(\,\widehat{R}_{Y/Z} \,-\, R_{Y/Z}\,)
         \,\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
         \,\right]
 \end{eqnarray*}
@@ -1040,7 +1078,7 @@ we will use the following nomenclature:
 % \vskip 0.5cm
 \clearpage
 \subsection{Unbiased estimator for the sampling variance component of
-\,$\MSE\!\left(\,\widetilde{T}_{Y}\left\vert\,\Xobs\right.\right)$}
+\,$\MSE\!\left(\,\widetilde{R}_{Y/Z}\left\vert\,\Zdot,\Xobs\,\right.\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -1053,13 +1091,14 @@ we will use the following nomenclature:
 \noindent
 Let
 \begin{eqnarray*}
-\widetilde{T}_{Y}
+\widetilde{R}_{Y/Z}
 \;\; = \;\;
-    \widetilde{T}_{Y}(\,
+    \widetilde{R}_{Y/Z}(\,
         \Sdot\,,\,
         \Rdot\,,\,
         \Ydot\,,\,
-        \Xdotdot\,;\,
+        \Zdot\,;\,
+        \Xdotdot\,,\,
         \dbullet
         \,)
 & := &
@@ -1071,8 +1110,18 @@ Let
         (1-R_{i})\,Y^{*}_{i}
         \,\right)
 \end{eqnarray*}
-be an imputation estimator for the domain total
-\;$T_{Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
+be an imputation estimator for the domain ratio
+\;$
+R_{Y/Z}
+\, := \,
+    \dfrac{T_{Y}}{\overset{{\color{white}.}}{T_{Z}}}
+\, = \,
+    \dfrac{
+        {\color{white}.}\underset{i \in U}{\sum}\,d_{i}Y_{i}{\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\underset{i \in U}{\sum}\,d_{i}Z_{i}}
+        }
+$,\;
 where
 \begin{equation*}
 \widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}
@@ -1086,10 +1135,11 @@ Suppose the quantities
 \Sdot\,,\,
 \Rdot\,,\,
 \Ydot\,,\,
+\Zdot\,,\,
 \Xdotdot\,,\,
 \dbullet
 $\,
-satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFramework}.
+satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFrameworkDomainRatio}.
 \vskip 0.2cm
 \noindent
 Then, the following statements are true:
@@ -1098,21 +1148,22 @@ Then, the following statements are true:
 \begin{enumerate}
 \item
     If
-    \;$v(\,s\,;y_{\bullet}\,)$\,
+    \;$v(\,s\,;y_{\bullet},z_{\bullet}\,)$\,
     is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
     \begin{equation*}
     E_{S}\!\left[\;
-        v(\,s\,;\Ydot\,)
+        v(\,s\,;\Ydot,\Zdot\,)
         \,\left\vert\;
-        \Ydot,\Xobs
+        \Ydot,\Zdot,\Xobs
         \right.
         \,\right]
     \;\; = \;\;
         \Var_{S}\!\left(\,
             \left.
-            \widehat{T}_{Y}
+            \widehat{R}_{Y/Z}
             \,\right\vert\,
             \Ydot,
+            \Zdot,
             \Xobs
             \,\right),
     \end{equation*}
@@ -1163,7 +1214,7 @@ Then, the following statements are true:
     \,$v(\,s\,;y_{\bullet}\,)$\,
     is taken to be the (design-unbiased) Horvitz-Thompson estimator for the sampling variance, i.e.,
     \begin{equation*}
-    v(\,s\,;y_{\bullet}\,)
+    v(\,s\,;y_{\bullet},z_{\bullet}\,)
     \;\; := \;\;
         \underset{k \in s}{\sum}\,
         \underset{l \in s}{\sum}\,
@@ -1258,38 +1309,40 @@ Then, the following statements are true:
 \item
     We simply compute:
     \begin{eqnarray*}
-    E_{SR}\,
-    E_{Y_{R}}\,
-    E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \,\left\vert\;
-        s,s_{R},\YsubR,\Xobs
-        \right.
-        \,\right]
+    &&
+        E_{SR}\,
+        E_{Y_{R}}\,
+        E_{Y_{M}}\!\left[\,
+            v(\,s\,;\Ydot,\Zdot\,)
+            \,\left\vert\;
+            s,s_{R},\YsubR,\Zdot,\Xobs
+            \right.
+            \,\right]
+    \\
     & = &
         E_{SR}\,
         E_{Y}\!\left[\,
-            v(\,s\,;\Ydot\,)
+            v(\,s\,;\Ydot,\Zdot\,)
             \,\left\vert\;
-            s,s_{R},\Xobs
+            s,s_{R},\Zdot,\Xobs
             \right.
             \,\right]
     \\
     & = &
         E_{Y}\,
         E_{SR}\!\left[\,
-            v(\,s\,;\Ydot\,)
+            v(\,s\,;\Ydot,\Zdot\,)
             \,\left\vert\;
-            \Ydot,\Xobs
+            \Ydot,\Zdot,\Xobs
             \right.
             \,\right]
     \\
     & = &
         E_{Y}\,
         E_{S}\!\left[\,
-            v(\,s\,;\Ydot\,)
+            v(\,s\,;\Ydot,\Zdot\,)
             \,\left\vert\;
-            \Ydot,\Xobs
+            \Ydot,\Zdot,\Xobs
             \right.
             \,\right]
     \\
@@ -1297,14 +1350,15 @@ Then, the following statements are true:
         E_{Y}\!\left[\,
             \Var_{S}\!\left(\,
                 \left.
-                \widehat{T}_{Y}
+                \widehat{R}_{Y/Z}
                 \,\right\vert\,
                 \Ydot,
+                \Zdot,
                 \Xobs
                 \,\right)
             \,\right],
     \;\;
-    \textnormal{by hypothesis on \,$v(\,s\,;y_{\bullet}\,)$}
+    \textnormal{by hypothesis on \,$v(\,s\,;y_{\bullet},z_{\bullet}\,)$}
     \end{eqnarray*}
 \item
     We compute:
