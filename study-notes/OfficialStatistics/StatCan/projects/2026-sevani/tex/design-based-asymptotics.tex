@@ -1,0 +1,275 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Design-based asymptotics}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Stochastic order notation}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}[Stochastic order notations]
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+    $\left(\,\Omega,\mathscr{A},\mu\,\right)$\,
+    is a probability space,
+\item
+    $X_{1}, X_{2}, \ldots : \Omega \longrightarrow \Re^{p}$
+    form a sequence of $\Re^{p}$-valued random variables, and
+\item
+    $Y_{1}, Y_{2}, \ldots : \Omega \longrightarrow \Re$
+    form a sequence of $\Re$-valued random variables.
+\end{itemize}
+Then, we define the following \textbf{stochastic order notations}:
+\begin{enumerate}
+\item
+    $X_{n} \,=\,O(Y_{n})$\, almost surely if
+    \begin{equation*}
+    P\!\left(\,X_{n} = O(Y_{n})\,\right) \;=\; 1\,;
+    \quad\quad\textnormal{equivalently,}\quad\quad
+    \mu\!\left(\,\left\{\;\,
+        \omega \overset{{\color{white}.}}{\in} \Omega
+        \;\;\left\vert\;
+        \begin{array}{c}
+        \exists\;\, C_{\omega} > 0 \;\,\textnormal{such that}
+        \\
+        \Vert\,X_{n}(\omega)\,\Vert \leq C_{\omega}\vert\,Y_{n}(\omega))\,\vert,
+        \\
+        \textnormal{for each \,$n \in \N$}
+        \end{array}
+        \right.
+        \;\right\}\,\right) \;=\; 1
+    \end{equation*}
+\item
+    $X_{n} \,=\,o(Y_{n})$\, almost surely if
+    \begin{equation*}
+    P\!\left(\,\underset{n\rightarrow\infty}{\lim}\,\dfrac{X_{n}}{Y_{n}} = 0\,\right) \;=\; 1\,;
+    \quad\quad\textnormal{equivalently,}\quad\quad
+    \mu\!\left(\,\left\{\;\,
+        \left.
+        \omega \overset{{\color{white}1}}{\in} \Omega
+        \;\;\right\vert\;
+        \underset{n\rightarrow\infty}{\lim}\,\dfrac{X_{n}(\omega)}{Y_{n}(\omega)} = 0
+        \;\right\}\,\right) \;=\; 1
+    \end{equation*}
+\item
+    $X_{n} \,=\,O_{p}(Y_{n})$\, if, for each \,$\varepsilon > 0$\,,
+    there exists \,$C_{\epsilon} > 0$\, such that    
+    \begin{equation*}
+    P\!\left(\,
+        \Vert\,X_{n}\,\Vert
+        \,\overset{{\color{white}1}}{<}\,
+        C_{\varepsilon}\vert\,Y_{n}\,\vert
+        \,\right)
+    \;\; = \;\;
+    \mu\!\left(\,\left\{\;\,
+        \omega \in \Omega
+        \,\;\left\vert\;\;
+        \Vert\,X_{n}(\omega)\,\Vert
+        \,\overset{{\color{white}1}}{<}\,
+        C_{\varepsilon}\vert\,Y_{n}(\omega)\,\vert
+        \right.
+        \;\right\}\,\right)
+    \;\; > \;\;
+        1 - \varepsilon\,,
+    \quad
+    \textnormal{for each \,$n = 1, 2, \ldots$}
+    \end{equation*}
+\item
+    $X_{n} \,=\,o_{p}(Y_{n})$\, if
+    \,$X_{n}/Y_{n}$\,
+    converges to \,$0$\, in probability, i.e.,
+    for each \,$\varepsilon > 0$,\,
+    \begin{equation*}
+    \underset{n\rightarrow\infty}{\lim}\;
+    P\!\left(\;
+        \dfrac{\Vert\,X_{n}\,\Vert}{\vert\,Y_{n}\,\vert}
+        \,<\,
+        \varepsilon
+        \;\right)
+    \;\; = \;\;
+    \underset{n\rightarrow\infty}{\lim}\;
+    \mu\!\left(\,\left\{\;\;
+        \omega \in \Omega
+        \,\;\left\vert\,\;
+        \dfrac{\Vert\,X_{n}(\omega)\,\Vert}{\vert\,Y_{n}(\omega)\,\vert}
+        \,<\,
+        \varepsilon
+        \right.
+        \;\right\}\,\right)
+    \;\; = \;\;
+        1
+    \end{equation*}
+\end{enumerate}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\vskip 0.5cm
+\clearpage
+\subsection{Design-consistency of the Horvitz-Thompson estimator for population totals in terms of stochastic order notations}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{theorem}
+\mbox{}
+\vskip 0.05cm
+\noindent
+\textbf{Setting}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+    $\left\{\;\overset{{\color{white}.}}{U_{\nu}}\;\right\}_{\nu=1}^{\infty}$\,
+    is a sequence of (nonempty) finite populations whose sequence
+    $\left\{\,N_{\nu} \overset{{\color{white}-}}{:=} \vert\,U_{\nu}\,\vert\,\right\}_{\nu=1}^{\infty}$\,
+    of population sizes tends to infinity as $\nu \rightarrow \infty$, i.e.,
+    \,$\underset{\nu\rightarrow\infty}{\lim}\,N_{\nu} \,=\, \infty$.\,
+\item
+    For each \,$\nu \in \N$,\,
+    \,$p_{\nu} : \mathcal{P}(U_{\nu}) \longrightarrow [\,0,1)$\,
+    is a sampling design on \,$U_{\nu}$\,
+    such that
+    \begin{equation*}
+    \pi^{(\nu)}_{i}
+    \;\; := \;\;
+        \underset{s\,\ni\,i}{\sum}\;\,
+        p_{\nu}\!\left(\,s\,\right)
+    \;\; > \;\;
+        0\,,
+    \quad
+    \textnormal{for each \,$i \in U_{\nu}$,\, and for each \,$\nu\in\N$}
+    \end{equation*}
+\item
+    For each \,$\nu \in \N$,\,
+    \,$y^{(\nu)} : U_{\nu} \longrightarrow \Re$\,
+    is an $\Re$-valued population characteristic defined on \,$U_{\nu}$.\,
+\end{itemize}
+\vskip 0.2cm
+\noindent
+\textbf{Notations}
+\begin{itemize}
+\item
+    For each \,$\nu\in\N$,\,
+    \,$Y_{\nu}$\, is the population total of \,$y^{(\nu)}$,\, i.e.,
+    \;$
+    Y_{\nu}
+    \;\, := \,
+        \underset{i \in U_{\nu}}{\sum}\,y^{(\nu)}_{i}
+    $.\,
+\item
+    For each \,$\nu\in\N$,\,
+    \,$\widehat{Y}^{\textnormal{(HT)}}_{\nu}$\,
+    is the Horvitz-Thompson estimator for the population total \,$Y_{\nu}$,\, i.e.,
+    \begin{equation*}
+    \widehat{Y}^{\textnormal{(HT)}}_{\nu}(\,s\,)
+    \;\; := \;\;
+        \underset{i \in s}{\sum}\;
+        \dfrac{ y^{(\nu)}_{i} }{ \pi^{(\nu)}_{i} }
+    \end{equation*}
+\end{itemize}
+\vskip 0.2cm
+\noindent
+\textbf{Hypotheses (``regularity conditions'')}
+\vskip 0.1cm
+\noindent
+Suppose the entities above satisfy the following hypotheses (``regularity conditions''):
+\begin{enumerate}
+\item
+    Inclusion Probability Bound:
+    There exists \,$\lambda > 0$\,
+    such that
+    \,$\pi^{(\nu)}_{i} \,\geq\, \lambda\cdot\dfrac{n_{\nu}}{N_{\nu}}$,\,
+    for each
+    $i \in U_{\nu}$,\,
+    for each
+    $\nu \in \N$.\,
+\item
+    Moment Condition on \,$y^{(\nu)}_{i}$:\,
+    There exists \,$M > 0$\, such that
+    \begin{equation*}
+    \dfrac{1}{N_{\nu}}\cdot\underset{i\,\in\,U_{\nu}}{\sum}\!\left(\,y^{(\nu)}_{i}\,\right)^{2}
+    \,\leq\,M\,<\,\infty\,,
+    \quad
+    \textnormal{for each \,$\nu\in\N$}
+    \end{equation*}
+\item
+    Covariance Bound:
+    There exists a constant \,$C > 0$\, such that,
+    for all \,$i \neq j$,\,
+    \begin{equation*}
+    \left\vert\; \pi^{(\nu)}_{ij} - \pi^{(\nu)}_{i}\,\pi^{(\nu)}_{j} \;\right\vert
+    \;\; \leq \;\;
+        C\cdot\dfrac{n_{\nu}}{N_{\nu}^{2}}\,,
+    \quad
+    \textnormal{for each \,$i,j \in U_{\nu}$ with $i \neq j$,\, for each \,$\nu\in\N$}
+    \end{equation*}
+\end{enumerate}
+\vskip 0.2cm
+\noindent
+\textbf{Conclusions}
+\vskip 0.1cm
+\noindent
+Then, we have:
+\begin{equation*}
+\dfrac{
+    {\color{white}.}
+    \widehat{Y}^{\textnormal{(HT)}}_{\nu} \,-\, Y_{\nu}
+    {\color{white}.}
+    }{
+    N_{\nu}
+    }
+\;\; = \;\;
+    O_{p}\!\left(\,\dfrac{1}{\sqrt{n_{\nu}}}\,\right)
+\end{equation*}
+equivalently, but more explicitly,
+for each \,$\varepsilon > 0$,\, there exists \,$C_{\varepsilon} > 0$\, such that
+\begin{equation*}
+P\!\left(\,
+    \dfrac{
+        {\color{white}.}
+        \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu} \,-\, Y_{\nu}\,\right\vert
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{N_{\nu}}
+        }
+    \,<\,
+    \dfrac{C_{\varepsilon}}{\sqrt{n_{\nu}}}
+    \;\right)
+\;\; = \;\;
+\mu_{\nu}\!\left(\left\{\;\;
+    s \in \mathcal{P}(U_{\nu})
+    \;\;\left\vert\;\;
+    \dfrac{
+        {\color{white}.}
+        \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}(s) \,-\, Y_{\nu}\,\right\vert
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{N_{\nu}}
+        }
+    \,<\,
+    \dfrac{C_{\varepsilon}}{\sqrt{n_{\nu}}}
+    \right.
+    \;\right\}\right)
+\;\; > \;\;
+    1 \,-\, \varepsilon\,,
+\quad
+\textnormal{for each \,$\nu \in \N$}
+\end{equation*}
+\end{theorem}
+\proof
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
