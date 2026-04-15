@@ -135,7 +135,7 @@ Suppose:
 \item
     For each \,$\nu \in \N$,\,
     \,$p_{\nu} : \mathcal{P}(U_{\nu}) \longrightarrow [\,0,1)$\,
-    is a sampling design on \,$U_{\nu}$\,
+    is a {\color{red}fixed-sample-size} sampling design on \,$U_{\nu}$\,
     such that
     \begin{equation*}
     \pi^{(\nu)}_{i}
@@ -156,6 +156,19 @@ Suppose:
 \noindent
 \textbf{Notations}
 \begin{itemize}
+\item
+    For each \,$\nu\in\N$,\,
+    \,$n_{\nu}$\, is the fixed sample size of the sampling design \,$p_{\nu}$, i.e.,\,
+    \begin{equation*}
+    n_{\nu}
+    \;\; := \;\;
+        \underset{k\,\in\,U_{\nu}}{\sum}\,I^{(\nu)}_{i}(s)\,,
+    \quad
+    \textnormal{for each sample \,$s \subset U_{\nu}$\, with \,$p_{\nu}(s) > 0$}
+    \end{equation*}
+    Note that left-hand side \,$n_{\nu}$\, is indeed well-defined
+    since the right-hand side is independent of the sample \,$s$ (as long as $p_{\nu}(s) > 0$),\,
+    by the fixed-sample-size assumption on the sampling design \,$p_{\nu}$.
 \item
     For each \,$\nu\in\N$,\,
     \,$Y_{\nu}$\, is the population total of \,$y^{(\nu)}$,\, i.e.,
@@ -268,6 +281,8 @@ P\!\left(\,
 \textnormal{for each \,$\nu \in \N$}
 \end{equation*}
 \end{theorem}
+
+\vskip 0.5cm
 \proof
 \vskip 0.1cm
 \noindent
