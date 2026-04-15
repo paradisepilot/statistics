@@ -183,16 +183,20 @@ Suppose:
 Suppose the entities above satisfy the following hypotheses (``regularity conditions''):
 \begin{enumerate}
 \item
-    Inclusion Probability Bound:
+    Uniform dominance of design weights:
     There exists \,$\lambda > 0$\,
     such that
-    \,$\pi^{(\nu)}_{i} \,\geq\, \lambda\cdot\dfrac{n_{\nu}}{N_{\nu}}$,\,
-    for each
-    $i \in U_{\nu}$,\,
-    for each
-    $\nu \in \N$.\,
+    \begin{equation*}
+    \dfrac{1}{\pi^{(\nu)}_{i}}
+    \;\leq\;
+        \dfrac{1}{\lambda}
+        \cdot
+        \dfrac{N_{\nu}}{n_{\nu}}\,,
+    \quad
+    \textnormal{for each \,$i \in U_{\nu}$,\; and for each \,$\nu \in \N$}
+    \end{equation*}
 \item
-    Moment Condition on \,$y^{(\nu)}_{i}$:\,
+    Uniform boundededness of moments of \,$y^{(\nu)}_{i}$:\,
     There exists \,$M > 0$\, such that
     \begin{equation*}
     \dfrac{1}{N_{\nu}}\cdot\underset{i\,\in\,U_{\nu}}{\sum}\!\left(\,y^{(\nu)}_{i}\,\right)^{2}
@@ -265,7 +269,498 @@ P\!\left(\,
 \end{equation*}
 \end{theorem}
 \proof
+\vskip 0.1cm
+\noindent
+\textbf{Claim 1:}\quad
+$
+\Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)
+\,=\,
+O\!\left(\,\dfrac{N_{\nu}^{2}}{n_{\nu}}\,\right)
+$
+\vskip 0.1cm
+\noindent
+Proof of Claim 1:\;\;
+Recall that
+\begin{eqnarray*}
+\Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)
+& = &
+    \underset{k \in U}{\sum}\;
+    \underset{l \in U}{\sum}
+    \left(\,
+        \pi^{(\nu)}_{kl}
+        \, - \,
+        \pi^{(\nu)}_{k}\pi^{(\nu)}_{l}
+        \,\right)
+    \dfrac{y^{(\nu)}_{k}}{\pi^{(\nu)}_{k}}
+    \,
+    \dfrac{y^{(\nu)}_{l}}{\pi^{(\nu)}_{l}}
+\\
+& = &
+    \underset{k \in U}{\sum}
+    \left(\,
+        \dfrac{
+            1 \,-\, \pi^{(\nu)}_{k}
+            }{
+            \pi^{(\nu)}_{k}
+            }
+        \,\right)
+    \left(y^{(\nu)}_{k}\right)^{2}
+    \; + \;
+    \underset{k\,\neq\,l}{\underset{k,l\,\in\,U}{\sum\sum}}
+    \left(\,
+        \pi^{(\nu)}_{kl}
+        \, - \,
+        \pi^{(\nu)}_{k}\pi^{(\nu)}_{l}
+        \,\right)
+    \dfrac{y^{(\nu)}_{k}}{\pi^{(\nu)}_{k}}
+    \,
+    \dfrac{y^{(\nu)}_{l}}{\pi^{(\nu)}_{l}}
+\end{eqnarray*}
+Now, observe:
+\begin{eqnarray*}
+\left(\,\begin{array}{c}
+    \textnormal{first summand of}
+    \\
+    \Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)
+    \end{array}\,\right)
+& = &
+    \underset{k \in U}{\sum}
+    \left(\,
+        \dfrac{
+            1 \,-\, \pi^{(\nu)}_{k}
+            }{
+            \pi^{(\nu)}_{k}
+            }
+        \,\right)
+    \left(y^{(\nu)}_{k}\right)^{2}
+\;\; \leq \;\;
+    \underset{k \in U}{\sum}
+    \left(\,
+        \dfrac{ 1 }{ \pi^{(\nu)}_{k} }
+        \,\right)
+    \left(y^{(\nu)}_{k}\right)^{2}
+\\
+& \leq &
+    \underset{k \in U}{\sum}
+    \left(\,
+        \dfrac{1}{\lambda} \cdot \dfrac{ N_{\nu} }{ n_{\nu} }
+        \,\right)
+    \left(y^{(\nu)}_{k}\right)^{2}\,,
+% \\
+% &&
+    \quad
+    \textnormal{by regularity conditions (uniform dominance of design weights)}
+\\
+& \leq &
+    \left(\,
+        \dfrac{1}{\lambda} \cdot \dfrac{ N_{\nu} }{ n_{\nu} }
+        \,\right)
+    \cdot
+    \underset{k \in U}{\sum}
+    \left(y^{(\nu)}_{k}\right)^{2}
+\;\; = \;\;
+    \left(\,
+        \dfrac{1}{\lambda} \cdot \dfrac{ N_{\nu}^{2} }{ n_{\nu} }
+        \,\right)
+    \left(\,
+        \dfrac{1}{N_{\nu}}
+            \cdot
+        \underset{k \in U}{\sum}
+        \left(y^{(\nu)}_{k}\right)^{2}
+        \,\right)
+\\
+& \leq &
+    \left(\,
+        \dfrac{1}{\lambda} \cdot \dfrac{ N_{\nu}^{2} }{ n_{\nu} }
+        \,\right)
+    \cdot
+    M\,,
+    \quad
+    \textnormal{by regularity conditions (uniform boundedness of moments)},
+\end{eqnarray*}
+from which it follows that
+\begin{equation*}
+\left(\,\begin{array}{c}
+    \textnormal{first summand of}
+    \\
+    \Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)
+    \end{array}\,\right)
+\;\; = \;\;
+    \underset{k \in U}{\sum}
+    \left(\,
+        \dfrac{
+            1 \,-\, \pi^{(\nu)}_{k}
+            }{
+            \pi^{(\nu)}_{k}
+            }
+        \,\right)
+    \left(y^{(\nu)}_{k}\right)^{2}
+\;\; = \;\;
+    O\!\left(\,\dfrac{N_{\nu}^{2}}{n_{\nu}}\,\right)
+\end{equation*}
+Next, observe:
+\begin{eqnarray*}
+\left\vert\,\begin{array}{c}
+    \textnormal{second summand of}
+    \\
+    \Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)
+    \end{array}\,\right\vert
+& \leq &
+    \underset{k\,\neq\,l}{\underset{k,l\,\in\,U}{\sum\sum}}\;
+    \left\vert\,
+        \pi^{(\nu)}_{kl}
+        \, - \,
+        \pi^{(\nu)}_{k}\pi^{(\nu)}_{l}
+        \,\right\vert
+    \cdot
+    \dfrac{\left\vert\,y^{(\nu)}_{k}\,\right\vert}{\pi^{(\nu)}_{k}}
+    \cdot
+    \dfrac{\left\vert\,y^{(\nu)}_{l}\,\right\vert}{\pi^{(\nu)}_{l}}
+% \\
+% & \leq &
+%     \underset{k\,\neq\,l}{\underset{k,l\,\in\,U}{\sum\sum}}\;
+%     \dfrac{C \cdot n_{\nu}}{N_{\nu}^{2}}
+%     \cdot
+%     \dfrac{\left\vert\,y^{(\nu)}_{k}\,\right\vert}{\pi^{(\nu)}_{k}}
+%     \cdot
+%     \dfrac{\left\vert\,y^{(\nu)}_{l}\,\right\vert}{\pi^{(\nu)}_{l}}\,,
+%     \quad
+%     \textnormal{by regularity conditions (covariance bound)}
+\\
+& \leq &
+    \underset{k\,\neq\,l}{\underset{k,l\,\in\,U}{\sum\sum}}\;
+    \dfrac{C \cdot n_{\nu}}{N_{\nu}^{2}}
+    \cdot
+    \left(\,\dfrac{1}{\lambda}\,\dfrac{N_{\nu}}{n_{\nu}}\,\right)^{2}
+    \left\vert\,y^{(\nu)}_{k}\,\right\vert
+    \cdot
+    \left\vert\,y^{(\nu)}_{l}\,\right\vert\,,
+\\
+&&
+    \textnormal{by regularity conditions (covariance bound, uniform dominance of design weights)}
+\\
+& = &
+    \dfrac{C}{\lambda^{2} \cdot n_{\nu}}
+    \cdot
+    \underset{k\,\neq\,l}{\underset{k,l\,\in\,U}{\sum\sum}}\;
+    \left\vert\,y^{(\nu)}_{k}\,\right\vert
+    \cdot
+    \left\vert\,y^{(\nu)}_{l}\,\right\vert
+\;\; \leq \;\;
+    \dfrac{C}{\lambda^{2} \cdot n_{\nu}}
+    \cdot
+    \underset{k,l\,\in\,U}{\sum\sum}\;
+    \left\vert\,y^{(\nu)}_{k}\,\right\vert
+    \cdot
+    \left\vert\,y^{(\nu)}_{l}\,\right\vert
+\\
+& = &
+    \dfrac{C}{\lambda^{2} \cdot n_{\nu}}
+    \cdot
+    \left(\,
+        \underset{k\,\in\,U}{\sum}\,
+        \left\vert\,y^{(\nu)}_{k}\,\right\vert
+        \,\right)^{2}
+\;\; = \;\;
+    \dfrac{C \cdot N_{\nu}^{2}}{\lambda^{2} \cdot n_{\nu}}
+    \cdot
+    \left(\,
+        \dfrac{1}{N_{\nu}}
+        \cdot
+        \underset{k\,\in\,U}{\sum}\,
+        \left\vert\,y^{(\nu)}_{k}\,\right\vert
+        \,\right)^{2}
+\\
+& \leq &
+    \dfrac{C \cdot N_{\nu}^{2}}{\lambda^{2} \cdot n_{\nu}}
+    \cdot
+    \left(\,
+        \dfrac{1}{N_{\nu}}
+        \cdot
+        \underset{k\,\in\,U}{\sum}\,
+        \left\vert\,y^{(\nu)}_{k}\,\right\vert^{2}
+        \,\right),
+    \quad
+    \textnormal{by Jensen's inequality}
+\\
+& \leq &
+    \dfrac{C \cdot N_{\nu}^{2}}{\lambda^{2} \cdot n_{\nu}}
+    \cdot
+    M\,,
+    \quad
+    \textnormal{by regularity conditions (nniform boundededness of moments)},
+\end{eqnarray*}
+from which it follows that
+\begin{equation*}
+\left\vert\,\begin{array}{c}
+    \textnormal{second summand of}
+    \\
+    \Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)
+    \end{array}\,\right\vert
+\;\; = \;\;
+    \left\vert\;\;
+        \underset{k\,\neq\,l}{\underset{k,l\,\in\,U}{\sum\sum}}
+        \left(\,
+            \pi^{(\nu)}_{kl}
+            \, - \,
+            \pi^{(\nu)}_{k}\pi^{(\nu)}_{l}
+            \,\right)
+        \dfrac{y^{(\nu)}_{k}}{\pi^{(\nu)}_{k}}
+        \,
+        \dfrac{y^{(\nu)}_{l}}{\pi^{(\nu)}_{l}}
+        \;\;\right\vert
+\;\; = \;\;
+    O\!\left(\,
+        \dfrac{N_{\nu}^{2}}{n_{\nu}}
+        \,\right)
+\end{equation*}
+Claim 1 now follows immediately from the preceding two observations.
+This completes the proof of Claim 1.
 
+\vskip 0.5cm
+\noindent
+\textbf{Claim 2:}\quad
+$
+P\!\left(\;
+    \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,-\,Y_{\nu}\,\right\vert
+    \,\geq\,
+    \delta\cdot\dfrac{N_{\nu}}{\sqrt{n_{\nu}}}
+    \;\right)
+\;\;\leq\;\;
+    \dfrac{
+        {\color{white}.}
+        \Var\!\left(\,\widehat{Y}_{\nu}^{\textnormal{(HT)}}\,\right)
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\delta^{2} \cdot N_{\nu}^{2}\,\slash\,n_{\nu}}
+        }
+$,\;\;
+for each $\delta > 0$,\, $\nu\in\N$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 2:\;\;
+Let \,$\nu\in\N$\, and \,$\delta > 0$\, be fixed. 
+Recall Chebyshev's inequality:
+For any random variable \,$X$\, with finite variance \,$\sigma_{X}^{2}$\,
+(hence, finite expectation $\mu_{X}$ as well), we have:
+\begin{equation*}
+P\!\left(\,
+    \left\vert\,X \overset{{\color{white}.}}{-} \mu_{X}\,\right\vert
+    \,\geq\,
+    k\cdot\sigma_{X}
+    \,\right)
+\;\; \leq \;\;
+    \dfrac{1}{k^{2}}\,,
+\quad
+\textnormal{for each \,$k > 0$}
+\end{equation*}
+Now, for each \,$\nu \in \N$,\, choose
+\;$
+k_{\nu}
+\; := \;
+    \dfrac{\delta}{\sqrt{\Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)}}
+    \cdot
+    \dfrac{N_{\nu}}{\sqrt{n_{\nu}}}
+$.\;
+It follows that:
+\;$
+k_{\nu}\cdot\sqrt{\Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)}
+\; = \;
+    \dfrac{\delta \cdot N_{\nu}}{\sqrt{n_{\nu}}}
+$.\;
+Hence,
+\begin{eqnarray*}
+P\!\left(\;
+    \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,-\,Y_{\nu}\,\right\vert
+    \,\geq\,
+    \delta\cdot\dfrac{N_{\nu}}{\sqrt{n_{\nu}}}
+    \;\right)
+& = &
+    P\!\left(\;
+        \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,-\,Y_{\nu}\,\right\vert
+        \,\geq\,
+        k_{\nu}\cdot\sqrt{\Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)}
+        \;\right)
+\\
+& \leq &
+    \dfrac{1}{{\color{white}.}k_{\nu}^{2}{\color{white}.}}\,,
+    \quad
+    \textnormal{by Chebyshev's inequality}
+\\
+& = &
+    \dfrac{
+        {\color{white}.}
+        n_{\nu} \cdot \Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\delta^{2} \cdot N_{\nu}^{2}}
+        }
+\;\; = \;\;
+    \dfrac{
+        {\color{white}.}
+        \Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\delta^{2} \cdot N_{\nu}^{2} \,\slash\, n_{\nu}}
+        }
+\end{eqnarray*}
+This completes the proof of Claim 2.
+
+\vskip 0.5cm
+\noindent
+\textbf{Claim 3:}\quad
+There exists \,$K > 0$\, such that
+\;$
+P\!\left(\;
+    \dfrac{
+        {\color{white}.}
+        \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,-\,Y_{\nu}\,\right\vert
+        {\color{white}.}
+        }{
+        N_{\nu}
+        }
+    \,<\,
+    \dfrac{\delta}{\sqrt{n_{\nu}}}
+    \;\right)
+\; \geq \;
+    1
+    \,-\,
+    \dfrac{
+        {\color{white}.}
+        K
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\delta^{2}}
+        }
+$,\;\;
+for each $\delta > 0$,\, $\nu\in\N$.
+\vskip 0.2cm
+\noindent
+Proof of Claim 3:\;\;
+This follows from Claim 1 and Claim 2.
+Indeed, by Claim 1, there exists \,$K$\, such that
+\begin{equation*}
+\Var\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,\right)
+\;\leq\;
+    K\cdot\dfrac{N_{\nu}^{2}}{n_{\nu}}\,,
+\quad
+\textnormal{for each \,$\nu \in \N$}
+\end{equation*}
+Hence, by Claim 2, we have, for each \,$\delta > 0$\, and each \,$\nu \in \N$,\,
+\begin{equation*}
+P\!\left(\;
+    \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,-\,Y_{\nu}\,\right\vert
+    \,\geq\,
+    \delta\cdot\dfrac{N_{\nu}}{\sqrt{n_{\nu}}}
+    \;\right)
+\;\;\leq\;\;
+    \dfrac{
+        {\color{white}.}
+        \Var\!\left(\,\widehat{Y}_{\nu}^{\textnormal{(HT)}}\,\right)
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\delta^{2} \cdot N_{\nu}^{2}\,\slash\,n_{\nu}}
+        }
+\;\;\leq\;\;
+    \dfrac{
+        {\color{white}.}
+        K \cdot N_{\nu}^{2} \,\slash\, n_{\nu} 
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\delta^{2} \cdot N_{\nu}^{2}\,\slash\,n_{\nu}}
+        }
+\;\;\leq\;\;
+    \dfrac{
+        {\color{white}.}
+        K
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\delta^{2}}
+        }\,,
+\end{equation*}
+which is equivalent to:
+\begin{equation*}
+1
+\;-\;
+P\!\left(\;
+    \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,-\,Y_{\nu}\,\right\vert
+    \,<\,
+    \delta\cdot\dfrac{N_{\nu}}{\sqrt{n_{\nu}}}
+    \;\right)
+\;\; \leq \;\;
+    \dfrac{
+        {\color{white}.}
+        K
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\delta^{2}}
+        }\,,
+\end{equation*}
+which is in turn equivalent to:
+\begin{equation*}
+P\!\left(\;
+    \dfrac{
+        {\color{white}.}
+        \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,-\,Y_{\nu}\,\right\vert
+        {\color{white}.}
+        }{
+        N_{\nu}
+        }
+    \,<\,
+    \dfrac{\delta}{\sqrt{n_{\nu}}}
+    \;\right)
+\;\; \geq \;\;
+    1
+    \;-\;
+    \dfrac{
+        {\color{white}.}
+        K
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\delta^{2}}
+        }
+\end{equation*}
+This completes the proof of Claim 3.
+
+\vskip 0.5cm
+\noindent
+The Proposition now follows readily from Claim 3.
+Let \,$\varepsilon > 0$\, be given.
+Choose \,$\delta(\varepsilon) > 0$\, such that \,$\dfrac{K}{\delta(\varepsilon)^{2}} \,<\, \varepsilon$.\,
+By Claim 3, we have:
+\begin{equation*}
+P\!\left(\;
+    \dfrac{
+        {\color{white}.}
+        \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,-\,Y_{\nu}\,\right\vert
+        {\color{white}.}
+        }{
+        N_{\nu}
+        }
+    \,<\,
+    \dfrac{\delta(\varepsilon)}{\sqrt{n_{\nu}}}
+    \;\right)
+% \;\; = \;\;
+% P\!\left(\;
+%     \left\vert\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}\,-\,Y_{\nu}\,\right\vert
+%     \,<\,
+%     \delta(\varepsilon)\cdot\dfrac{N_{\nu}}{\sqrt{n_{\nu}}}
+%     \;\right)
+\;\; \geq \;\;
+    1
+    \,-\,
+    \dfrac{
+        {\color{white}.}
+        K
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\delta(\varepsilon)^{2}}
+        }
+\;\; > \;\;
+    1 \,-\, \varepsilon\,,
+\end{equation*}
+as required.
+This completes the proof of the Proposition.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
