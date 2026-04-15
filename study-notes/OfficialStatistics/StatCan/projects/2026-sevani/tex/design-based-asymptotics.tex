@@ -112,7 +112,7 @@ Then, we define the following \textbf{stochastic order notations}:
 
 %\vskip 0.5cm
 \clearpage
-\subsection{Design-consistency of the Horvitz-Thompson estimator for population totals in terms of stochastic order notations}
+\subsection{Some asymptotics of the Horvitz-Thompson estimator for population totals in terms of stochastic order notations}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -194,9 +194,9 @@ Suppose:
 \vskip 0.1cm
 \noindent
 Suppose the entities above satisfy the following hypotheses (``regularity conditions''):
-\begin{enumerate}
+\begin{itemize}
 \item
-    Uniform dominance of design weights:
+    Design weight condition:
     There exists \,$\lambda > 0$\,
     such that
     \begin{equation*}
@@ -209,16 +209,7 @@ Suppose the entities above satisfy the following hypotheses (``regularity condit
     \textnormal{for each \,$i \in U_{\nu}$,\; and for each \,$\nu \in \N$}
     \end{equation*}
 \item
-    Uniform boundededness of moments of \,$y^{(\nu)}_{i}$:\,
-    There exists \,$M > 0$\, such that
-    \begin{equation*}
-    \dfrac{1}{N_{\nu}}\cdot\underset{i\,\in\,U_{\nu}}{\sum}\!\left(\,y^{(\nu)}_{i}\,\right)^{2}
-    \,\leq\,M\,<\,\infty\,,
-    \quad
-    \textnormal{for each \,$\nu\in\N$}
-    \end{equation*}
-\item
-    Covariance Bound:
+    Sampling covariance condition:
     There exists a constant \,$C > 0$\, such that,
     for all \,$i \neq j$,\,
     \begin{equation*}
@@ -228,7 +219,16 @@ Suppose the entities above satisfy the following hypotheses (``regularity condit
     \quad
     \textnormal{for each \,$i,j \in U_{\nu}$ with $i \neq j$,\, for each \,$\nu\in\N$}
     \end{equation*}
-\end{enumerate}
+\item
+    Moment condition:\,
+    There exists \,$M > 0$\, such that
+    \begin{equation*}
+    \dfrac{1}{N_{\nu}}\cdot\underset{i\,\in\,U_{\nu}}{\sum}\!\left(\,y^{(\nu)}_{i}\,\right)^{2}
+    \;\; \leq \;\; M \;\; < \;\; \infty\,,
+    \quad
+    \textnormal{for each \,$\nu\in\N$}
+    \end{equation*}
+\end{itemize}
 \vskip 0.2cm
 \noindent
 \textbf{Conclusions}
@@ -364,7 +364,7 @@ Now, observe:
 % \\
 % &&
     \quad
-    \textnormal{by regularity conditions (uniform dominance of design weights)}
+    \textnormal{by the design weight regularity condition}
 \\
 & \leq &
     \left(\,
@@ -391,7 +391,7 @@ Now, observe:
     \cdot
     M\,,
     \quad
-    \textnormal{by regularity conditions (uniform boundedness of moments)},
+    \textnormal{by the moment regularity condition},
 \end{eqnarray*}
 from which it follows that
 \begin{equation*}
@@ -452,7 +452,7 @@ Next, observe:
     \left\vert\,y^{(\nu)}_{l}\,\right\vert\,,
 \\
 &&
-    \textnormal{by regularity conditions (covariance bound, uniform dominance of design weights)}
+    \textnormal{by the sampling covariance and design weight regularity conditions}
 \\
 & = &
     \dfrac{C}{\lambda^{2} \cdot n_{\nu}}
@@ -503,7 +503,7 @@ Next, observe:
     \cdot
     M\,,
     \quad
-    \textnormal{by regularity conditions (nniform boundededness of moments)},
+    \textnormal{by the moment regularity condition},
 \end{eqnarray*}
 from which it follows that
 \begin{equation*}
@@ -779,6 +779,274 @@ This completes the proof of the Proposition.
 \qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\vskip 0.5cm
+\clearpage
+\subsection{Some asymptotics of the ratio estimator}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\begin{theorem}
+\mbox{}
+\vskip 0.05cm
+\noindent
+\textbf{Setting}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+    $\left\{\;\overset{{\color{white}.}}{U_{\nu}}\;\right\}_{\nu=1}^{\infty}$\,
+    is a sequence of (nonempty) finite populations whose sequence
+    $\left\{\,N_{\nu} \overset{{\color{white}-}}{:=} \vert\,U_{\nu}\,\vert\,\right\}_{\nu=1}^{\infty}$\,
+    of population sizes tends to infinity as $\nu \rightarrow \infty$, i.e.,
+    \,$\underset{\nu\rightarrow\infty}{\lim}\,N_{\nu} \,=\, \infty$.\,
+\item
+    For each \,$\nu \in \N$,\,
+    \,$p_{\nu} : \mathcal{P}(U_{\nu}) \longrightarrow [\,0,1)$\,
+    is a {\color{red}fixed-sample-size} sampling design on \,$U_{\nu}$\,
+    such that
+    \begin{equation*}
+    \pi^{(\nu)}_{i}
+    \;\; := \;\;
+        \underset{s\,\ni\,i}{\sum}\;\,
+        p_{\nu}\!\left(\,s\,\right)
+    \;\; > \;\;
+        0\,,
+    \quad
+    \textnormal{for each \,$i \in U_{\nu}$,\, and for each \,$\nu\in\N$}
+    \end{equation*}
+\item
+    For each \,$\nu \in \N$,\,
+    \,$x^{(\nu)} : U_{\nu} \longrightarrow \Re$\,
+    and
+    \,$y^{(\nu)} : U_{\nu} \longrightarrow \Re$\,
+    are two $\Re$-valued population characteristic defined on \,$U_{\nu}$.\,
+\end{itemize}
+\vskip 0.2cm
+\noindent
+\textbf{Notations}
+\begin{itemize}
+\item
+    For each \,$\nu\in\N$,\,
+    \,$n_{\nu}$\, is the fixed sample size of the sampling design \,$p_{\nu}$, i.e.,\,
+    \begin{equation*}
+    n_{\nu}
+    \;\; := \;\;
+        \underset{k\,\in\,U_{\nu}}{\sum}\,I^{(\nu)}_{i}(s)\,,
+    \quad
+    \textnormal{for each sample \,$s \subset U_{\nu}$\, with \,$p_{\nu}(s) > 0$}
+    \end{equation*}
+    Note that left-hand side \,$n_{\nu}$\, is indeed well-defined
+    since the right-hand side is independent of the sample \,$s$ (as long as $p_{\nu}(s) > 0$),\,
+    by the fixed-sample-size assumption on the sampling design \,$p_{\nu}$.
+\item
+    For each \,$\nu\in\N$,\,
+    \,$X_{\nu}$\, and \,$Y_{\nu}$\,
+    are respectively the population totals of
+    \,$x^{(\nu)}$\, and \,$y^{(\nu)}$,\, i.e.,
+    \begin{equation*}
+    X_{\nu}
+    \;\, := \,
+        \underset{i \in U_{\nu}}{\sum}\,x^{(\nu)}_{i}\,,
+    \quad\quad
+    \textnormal{and}
+    \quad\quad
+    Y_{\nu}
+    \;\, := \,
+        \underset{i \in U_{\nu}}{\sum}\,y^{(\nu)}_{i}
+    \end{equation*}
+    Furthermore, for each \,$\nu \in \N$,\, we define:
+    \begin{equation*}
+    R_{\nu}
+    \;\; := \;\;
+        \dfrac{
+            {\color{white}.}
+            Y_{\nu}
+            {\color{white}.}
+            }{
+            X_{\nu}
+            }
+    \end{equation*}
+\item
+    For each \,$\nu\in\N$,\,
+    \,$\widehat{X}^{\textnormal{(HT)}}_{\nu}$\,
+    and
+    \,$\widehat{Y}^{\textnormal{(HT)}}_{\nu}$\,
+    are respectively the Horvitz-Thompson estimators for the population totals
+    \,$X_{\nu}$\, and \,$Y_{\nu}$,\, i.e.,
+    \begin{equation*}
+    \widehat{X}^{\textnormal{(HT)}}_{\nu}(\,s\,)
+    \;\; := \;\;
+        \underset{i \in s}{\sum}\;
+        \dfrac{ x^{(\nu)}_{i} }{ \pi^{(\nu)}_{i} }\,,
+    \quad\quad
+    \textnormal{and}
+    \quad\quad
+    \widehat{Y}^{\textnormal{(HT)}}_{\nu}(\,s\,)
+    \;\; := \;\;
+        \underset{i \in s}{\sum}\;
+        \dfrac{ y^{(\nu)}_{i} }{ \pi^{(\nu)}_{i} }\,,
+    \quad\quad
+    \textnormal{for each \,$s \subset U_{\nu}$\, with \,$p_{\nu}(s) > 0$}
+    \end{equation*}
+    Furthermore, for each \,$\nu \in \N$,\, we define:
+    \begin{equation*}
+    \widehat{R}_{\nu}(\,s\,)
+    \;\; := \;\;
+        \dfrac{
+            {\color{white}.}
+            \widehat{Y}^{\textnormal{(HT)}}_{\nu}(\,s\,)
+            {\color{white}.}
+            }{
+            \widehat{X}^{\textnormal{(HT)}}_{\nu}(\,s\,)
+            }\,,
+    \quad\quad
+    \textnormal{for each \,$s \subset U_{\nu}$\, with \,$p_{\nu}(s) > 0$}
+    \end{equation*}
+\end{itemize}
+\vskip 0.2cm
+\noindent
+\textbf{Hypotheses (``regularity conditions'')}
+\vskip 0.1cm
+\noindent
+Suppose the entities above satisfy the following hypotheses (``regularity conditions''):
+\begin{itemize}
+\item
+    Design weight condition:
+    There exists \,$\lambda > 0$\,
+    such that
+    \begin{equation*}
+    \dfrac{1}{\pi^{(\nu)}_{i}}
+    \;\leq\;
+        \dfrac{1}{\lambda}
+        \cdot
+        \dfrac{N_{\nu}}{n_{\nu}}\,,
+    \quad
+    \textnormal{for each \,$i \in U_{\nu}$,\; and for each \,$\nu \in \N$}
+    \end{equation*}
+\item
+    Sampling covariance condition:
+    There exists a constant \,$C > 0$\, such that,
+    for all \,$i \neq j$,\,
+    \begin{equation*}
+    \left\vert\; \pi^{(\nu)}_{ij} - \pi^{(\nu)}_{i}\,\pi^{(\nu)}_{j} \;\right\vert
+    \;\; \leq \;\;
+        C\cdot\dfrac{n_{\nu}}{N_{\nu}^{2}}\,,
+    \quad
+    \textnormal{for each \,$i,j \in U_{\nu}$ with $i \neq j$,\, for each \,$\nu\in\N$}
+    \end{equation*}
+\item
+    Moment condition:\;
+    There exists \,$M > 0$\, such that
+    \begin{equation*}
+    \max\left\{\;
+        \dfrac{1}{N_{\nu}}\cdot\underset{i\,\in\,U_{\nu}}{\sum}\!\left(\,x^{(\nu)}_{i}\,\right)^{2}
+        \,,\;
+        \dfrac{1}{N_{\nu}}\cdot\underset{i\,\in\,U_{\nu}}{\sum}\!\left(\,y^{(\nu)}_{i}\,\right)^{2}
+        \;\right\}
+    \;\; \leq \;\;M \;\; < \;\; \infty\,,
+    \quad
+    \textnormal{for each \,$\nu\in\N$}
+    \end{equation*}
+\item
+    Denominator positivity condition:\;
+    There exists \,$c > 0$\, such that
+    \begin{equation*}
+    \dfrac{
+        {\color{white}.}
+        \left\vert\,X_{\nu}\,\right\vert
+        {\color{white}.}
+        }{
+        N_{\nu}
+        }
+    \;\; \geq \;\; c \;\; > \;\; 0\,,
+    \quad
+    \textnormal{for each \,$\nu\in\N$}
+    \end{equation*}
+\end{itemize}
+\vskip 0.2cm
+\noindent
+\textbf{Conclusions}
+\vskip 0.1cm
+\noindent
+Then, the following statements are true:
+\begin{enumerate}
+\item
+    The first-order Taylor approximation at
+    \,$(X_{\nu},Y_{\nu})$\,
+    of
+    \;$
+    \widehat{R}_{\nu}
+    \, := \,
+        \dfrac{
+            \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            }{
+            \widehat{X}^{\textnormal{(HT)}}_{\nu}
+            }
+    $\;
+    is given by:
+    \begin{equation*}
+    L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+    \;\; := \;\;
+        \dfrac{ Y_{\nu} }{ X_{\nu} }
+        \; - \;
+        \dfrac{Y_{\nu}}{X_{\nu}^{2}}\!\left(\,\widehat{X}^{\textnormal{(HT)}}_{\nu} - X_{\nu} \,\right)
+        \; + \;
+        \dfrac{1}{X_{\nu}}\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu} - Y_{\nu} \,\right)
+    \end{equation*}
+\item
+    The residual of the first-order Taylor approximation at
+    \,$(X_{\nu},Y_{\nu})$\,
+    of
+    \;$
+    \widehat{R}_{\nu}
+    \, := \,
+        \dfrac{
+            \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            }{
+            \widehat{X}^{\textnormal{(HT)}}_{\nu}
+            }
+    $\;
+    is of stochastic order
+    \,$O_{p}\!\left(\,\dfrac{1}{n_{\nu}}\,\right)$;\,
+    more precisely,
+    \begin{eqnarray*}
+    \widehat{R}_{\nu}
+    & = &
+        L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+        \; + \;
+        O_{p}\!\left(\,\dfrac{1}{n_{\nu}}\,\right)
+    \\
+    & = &
+        \dfrac{ Y_{\nu} }{ X_{\nu} }
+        \; - \;
+        \dfrac{Y_{\nu}}{X_{\nu}^{2}}\!\left(\,\widehat{X}^{\textnormal{(HT)}}_{\nu} - X_{\nu} \,\right)
+        \; + \;
+        \dfrac{1}{X_{\nu}}\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu} - Y_{\nu} \,\right)
+        \; + \;
+        O_{p}\!\left(\,\dfrac{1}{n_{\nu}}\,\right)
+    \end{eqnarray*}
+\item
+    The sequence of differences
+    \,$
+    \Var\!\left(\,\widehat{R}_{\nu}\,\right)
+    \,-\,
+    \Var\!\left(\,L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)\,\right)
+    $\,
+    is of stochastic order
+    \,$O_{p}\!\left(\,\dfrac{1}{n_{\nu}}\,\right)$;\,
+    more precisely,
+    \begin{equation*}
+    \Var\!\left(\,\widehat{R}_{\nu}\,\right)
+    \;\; = \;\;
+        \Var\!\left(\,L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)\,\right)
+        \; + \;
+        O\!\left(\,\dfrac{1}{n_{\nu}^{2}}\,\right)
+    \end{equation*}
+\end{enumerate}
+\end{theorem}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
