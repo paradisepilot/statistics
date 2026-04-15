@@ -989,7 +989,7 @@ Then, the following statements are true:
     is given by:
     \begin{equation*}
     L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
-    \;\; := \;\;
+    \;\; = \;\;
         \dfrac{ Y_{\nu} }{ X_{\nu} }
         \; - \;
         \dfrac{Y_{\nu}}{X_{\nu}^{2}}\!\left(\,\widehat{X}^{\textnormal{(HT)}}_{\nu} - X_{\nu} \,\right)
@@ -1049,5 +1049,65 @@ Then, the following statements are true:
 \end{theorem}
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\noindent
+\proof
+\begin{enumerate}
+\item
+    Let \,$f(x,y) \,:=\, \dfrac{y}{x}$.\,
+    Then,
+    \;\;$
+    \dfrac{\partial\,f}{\partial x}(x,y)
+    \, = \,
+        -\,\dfrac{y}{x^{2}}\,,
+    \;\,
+    \textnormal{and}
+    \;\;
+    \dfrac{\partial\,f}{\partial y}(x,y)
+    \, = \,
+        +\,\dfrac{1}{x}
+    $.\;\;
+    Hence, the first-order Taylor approximation at \,$(x_{0},y_{0})$\, of \,$f(x,y)$\, is given by:
+    \begin{eqnarray*}
+    f(x,y)
+    & \approx &
+        f(x_{0},y_{0})
+        \; + \;
+        \dfrac{\partial\,f}{\partial x}(x_{0},y_{0})\cdot\left(\,x - x_{0}\,\right)
+        \; + \;
+        \dfrac{\partial\,f}{\partial y}(x_{0},y_{0})\cdot\left(\,y - y_{0}\,\right)
+    \\
+    & = &
+        \dfrac{ y_{0} }{ x_{0} }
+        \; - \;
+        \dfrac{y_{0}}{x_{0}^{2}}\cdot\left(\,x - x_{0}\,\right)
+        \; + \;
+        \dfrac{1}{x_{0}}\cdot\left(\,y - y_{0}\,\right)
+    \end{eqnarray*}
+    The observation immediately implies that the first-order Taylor approximation at
+    \,$(X_{\nu},Y_{\nu})$\,
+    of
+    \;$
+    \widehat{R}_{\nu}
+    \, := \,
+        \dfrac{
+            \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            }{
+            \widehat{X}^{\textnormal{(HT)}}_{\nu}
+            }
+    $\;
+    is given by:
+    \begin{equation*}
+    L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+    \;\; = \;\;
+        \dfrac{ Y_{\nu} }{ X_{\nu} }
+        \; - \;
+        \dfrac{Y_{\nu}}{X_{\nu}^{2}}\!\left(\,\widehat{X}^{\textnormal{(HT)}}_{\nu} - X_{\nu} \,\right)
+        \; + \;
+        \dfrac{1}{X_{\nu}}\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu} - Y_{\nu} \,\right)
+    \end{equation*}
+\end{enumerate}
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
