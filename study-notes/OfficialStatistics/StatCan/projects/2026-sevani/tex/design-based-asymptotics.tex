@@ -117,7 +117,7 @@ Then, we define the following \textbf{stochastic order notations}:
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\begin{theorem}
+\begin{theorem}\label{AsymptoticsHTForDomainTotal}
 \mbox{}
 \vskip 0.05cm
 \noindent
@@ -364,7 +364,7 @@ Now, observe:
 % \\
 % &&
     \quad
-    \textnormal{by the design weight regularity condition}
+    \textnormal{by the Design Weight regularity condition}
 \\
 & \leq &
     \left(\,
@@ -391,7 +391,7 @@ Now, observe:
     \cdot
     M\,,
     \quad
-    \textnormal{by the moment regularity condition},
+    \textnormal{by the Moment regularity condition},
 \end{eqnarray*}
 from which it follows that
 \begin{equation*}
@@ -452,7 +452,7 @@ Next, observe:
     \left\vert\,y^{(\nu)}_{l}\,\right\vert\,,
 \\
 &&
-    \textnormal{by the sampling covariance and design weight regularity conditions}
+    \textnormal{by the Sampling Covariance and Design Weight regularity conditions}
 \\
 & = &
     \dfrac{C}{\lambda^{2} \cdot n_{\nu}}
@@ -503,7 +503,7 @@ Next, observe:
     \cdot
     M\,,
     \quad
-    \textnormal{by the moment regularity condition},
+    \textnormal{by the Moment regularity condition},
 \end{eqnarray*}
 from which it follows that
 \begin{equation*}
@@ -987,15 +987,29 @@ Then, the following statements are true:
             }
     $\;
     is given by:
-    \begin{equation*}
+    \begin{eqnarray*}
     L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
-    \;\; = \;\;
-        \dfrac{ Y_{\nu} }{ X_{\nu} }
+    & = &
+        R_{\nu}
+        {\color{white}.}
         \; - \;
         \dfrac{Y_{\nu}}{X_{\nu}^{2}}\!\left(\,\widehat{X}^{\textnormal{(HT)}}_{\nu} - X_{\nu} \,\right)
         \; + \;
         \dfrac{1}{X_{\nu}}\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu} - Y_{\nu} \,\right)
-    \end{equation*}
+    \\
+    & = &
+        \dfrac{ Y_{\nu} }{ X_{\nu} }
+        \; + \;
+        \dfrac{1}{X_{\nu}}
+        \cdot
+        \left(\;
+            \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            \,-\,
+            \dfrac{ Y_{\nu} }{ X_{\nu} }
+            \,
+            \widehat{X}^{\textnormal{(HT)}}_{\nu}
+            \,\right)
+    \end{eqnarray*}
 \item
     The residual of the first-order Taylor approximation at
     \,$(X_{\nu},Y_{\nu})$\,
@@ -1021,10 +1035,20 @@ Then, the following statements are true:
     \\
     & = &
         \dfrac{ Y_{\nu} }{ X_{\nu} }
-        \; - \;
-        \dfrac{Y_{\nu}}{X_{\nu}^{2}}\!\left(\,\widehat{X}^{\textnormal{(HT)}}_{\nu} - X_{\nu} \,\right)
         \; + \;
-        \dfrac{1}{X_{\nu}}\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu} - Y_{\nu} \,\right)
+        \dfrac{1}{X_{\nu}}
+        \cdot
+        \left(\;
+            \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            \,-\,
+            \dfrac{ Y_{\nu} }{ X_{\nu} }
+            \,
+            \widehat{X}^{\textnormal{(HT)}}_{\nu}
+            \,\right)
+        % \; - \;
+        % \dfrac{Y_{\nu}}{X_{\nu}^{2}}\!\left(\,\widehat{X}^{\textnormal{(HT)}}_{\nu} - X_{\nu} \,\right)
+        % \; + \;
+        % \dfrac{1}{X_{\nu}}\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu} - Y_{\nu} \,\right)
         \; + \;
         O_{p}\!\left(\,\dfrac{1}{n_{\nu}}\,\right)
     \end{eqnarray*}
@@ -1098,15 +1122,408 @@ Then, the following statements are true:
             }
     $\;
     is given by:
-    \begin{equation*}
+    \begin{eqnarray*}
     L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
-    \;\; = \;\;
-        \dfrac{ Y_{\nu} }{ X_{\nu} }
+    & = &
+        R_{\nu}
+        {\color{white}.}
         \; - \;
         \dfrac{Y_{\nu}}{X_{\nu}^{2}}\!\left(\,\widehat{X}^{\textnormal{(HT)}}_{\nu} - X_{\nu} \,\right)
         \; + \;
         \dfrac{1}{X_{\nu}}\!\left(\,\widehat{Y}^{\textnormal{(HT)}}_{\nu} - Y_{\nu} \,\right)
+    \\
+    & = &
+        \dfrac{ Y_{\nu} }{ X_{\nu} }
+        \; + \;
+        \dfrac{1}{X_{\nu}}
+        \cdot
+        \left(\;
+            \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            \,-\,
+            \dfrac{ Y_{\nu} }{ X_{\nu} }
+            \,
+            \widehat{X}^{\textnormal{(HT)}}_{\nu}
+            \,\right)
+    \end{eqnarray*}
+\item
+    First, we state and prove two claims.
+
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 1:}\quad
+    $\dfrac{X_{\nu}}{N_{\nu}} \,=\, O(1)$\;\,
+    and
+    \;\,$\dfrac{Y_{\nu}}{N_{\nu}} \,=\, O(1)$\,
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 1:\;\;
+    By the Cauchy-Schwarz inequality, we have:
+    \begin{eqnarray*}
+    \left\vert\;
+        \underset{k\,\in\,U_{\nu}}{\sum}\,
+        y^{(\nu)}_{k} \cdot 1
+        \;\right\vert^{2}
+    \;\; \leq \;\;
+        \left(\;
+            \underset{k\,\in\,U_{\nu}}{\sum}
+            (y^{(\nu)}_{k})^{2}
+            \;\right)
+        \cdot
+        \left(\;
+            \underset{k\,\in\,U_{\nu}}{\sum}
+            (\,1\,)^{2}
+            \;\right)
+    \;\; = \;\;
+        N_{\nu}
+        \cdot
+        \left(\;
+            \underset{k\,\in\,U_{\nu}}{\sum}
+            (y^{(\nu)}_{k})^{2}
+            \;\right),
+    \end{eqnarray*}
+    which in turn implies
+    \begin{eqnarray*}
+    \left\vert\;\,
+        \dfrac{Y_{\nu}}{N_{\nu}}
+        \;\right\vert^{2}
+    \;\; = \;\;
+        \left\vert\;\,
+            \dfrac{1}{N_{\nu}}
+            \cdot
+            \underset{k\,\in\,U_{\nu}}{\sum}\,
+            y^{(\nu)}_{k}
+            \;\right\vert^{2}
+    \;\; \leq \;\;
+        \dfrac{1}{N_{\nu}}
+        \cdot
+        \underset{k\,\in\,U_{\nu}}{\sum}
+        (y^{(\nu)}_{k})^{2}
+    \;\; \leq \;\;
+        M\,,
+    \end{eqnarray*}
+    where the last inequality follows by the Moment regularity condition.
+    We therefore have:
+    \begin{eqnarray*}
+    \left\vert\;\,
+        \dfrac{Y_{\nu}}{N_{\nu}}
+        \;\right\vert
+    \;\; \leq \;\;
+        \sqrt{{\color{white}.}M{\color{white}.}}\,;
+    \end{eqnarray*}
+    equivalently,
+    \,$
+    \dfrac{Y_{\nu}}{N_{\nu}} \,=\, O(1)
+    $.\,
+    Similarly for \,$X_{\nu} \slash N_{\nu}$.\,
+    This completes the proof of Claim 1.
+
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 2:}\quad
+    $
+    \dfrac{
+        1
+        }{
+        (\left. X_{\nu}\right\slash N_{\nu}\,)^{2}
+        \cdot
+        \overset{{\color{white}.}}{
+            \left(\left.\widehat{X}^{\textnormal{(HT)}}_{\nu}\right\slash N_{\nu}\right)
+            }            
+        }
+    \; = \;
+        O_{p}(1)
+    $
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 2:\;\;
+    Recall that, by Theorem \ref{AsymptoticsHTForDomainTotal}, we have
+    \;$
+    \dfrac{
+        {\color{white}.}
+        \widehat{X}^{\textnormal{(HT)}}_{\nu}
+        \, - \,
+        X_{\nu}
+        {\color{white}.}
+        }{
+        N_{\nu}
+        }
+    \, = \,
+    O_{p}\!\left(\,\dfrac{1}{\sqrt{n_{\nu}}}\,\right)
+    $;\;
+    hence,
+    \begin{equation*}
+    \dfrac{
+        {\color{white}.}
+        \widehat{X}^{\textnormal{(HT)}}_{\nu}
+        {\color{white}.}
+        }{
+        N_{\nu}
+        }
+    \;\; = \;\;
+    \dfrac{
+        {\color{white}.}
+        X_{\nu}
+        {\color{white}.}
+        }{
+        N_{\nu}
+        }
+    \; + \;
+    O_{p}\!\left(\,\dfrac{1}{\sqrt{n_{\nu}}}\,\right)
     \end{equation*}
+    which in turn implies
+    \begin{eqnarray*}
+    \left(\,
+        \dfrac{X_{\nu}}{N_{\nu}}
+        \,\right)^{\!2}
+    \cdot
+    \left(\,\dfrac{
+        {\color{white}.}
+        \widehat{X}^{\textnormal{(HT)}}_{\nu}
+        {\color{white}.}
+        }{
+        N_{\nu}
+        }\,\right)
+    & = &
+        \left(\,
+            \dfrac{X_{\nu}}{N_{\nu}}
+            \,\right)^{\!2}
+        \cdot
+        \dfrac{
+            {\color{white}.}
+            X_{\nu}
+            {\color{white}.}
+            }{
+            N_{\nu}
+            }
+        \; + \;
+        \left(\,
+            \dfrac{X_{\nu}}{N_{\nu}}
+            \,\right)^{\!2}
+        \cdot
+        O_{p}\!\left(\,\dfrac{1}{\sqrt{n_{\nu}}}\,\right)
+    \;\; = \;\;
+        \left(\,
+            \dfrac{X_{\nu}}{N_{\nu}}
+            \,\right)^{\!3}
+        \; + \;
+        O\!\left(\,1\,\right)
+        \cdot
+        O_{p}\!\left(\,\dfrac{1}{\sqrt{n_{\nu}}}\,\right)
+    \\
+    & = &
+        \left(\,
+            \dfrac{X_{\nu}}{N_{\nu}}
+            \,\right)^{\!3}
+        \; + \;
+        O_{p}\!\left(\,\dfrac{1}{\sqrt{n_{\nu}}}\,\right)
+    \end{eqnarray*}
+    Now, recall that by the Denominator Positivity regularity condition,
+    \,$\dfrac{X_{\nu}}{N_{\nu}}$\,
+    is bounded from below away from zero.
+    Hence,
+    \,$\left(\,\dfrac{1}{X_{\nu} \slash N_{\nu}}\,\right)^{3}$\,
+    is bounded from above, from which Claim 2 follows immediately.
+    This completes the proof of Claim 2.
+
+    \vskip 0.5cm
+    Next, we introduce the following notation for the residual:
+    \begin{equation*}
+    \Delta_{\nu}
+    \;\; := \;\;
+        \widehat{R}_{\nu}
+        \; - \;
+        R_{\nu}
+        \; - \;
+        \dfrac{1}{X_{\nu}}
+        \cdot
+        \left(\;
+            \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            \,-\,
+            \dfrac{ Y_{\nu} }{ X_{\nu} }
+            \,
+            \widehat{X}^{\textnormal{(HT)}}_{\nu}
+            \,\right)
+    \end{equation*}
+    We need to establish:
+    \,$\Delta_{\nu} \, = \, O\!\left(\,\dfrac{1}{n_{\nu}}\,\right)$.\,
+    To this end, note:
+    \begin{eqnarray*}
+    \Delta_{\nu}
+    & := &
+        \dfrac{
+            {\color{white}.}
+            \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            {\color{white}.}
+            }{
+            \widehat{X}^{\textnormal{(HT)}}_{\nu}
+            }
+        \; - \;
+        \dfrac{ Y_{\nu} }{ X_{\nu} }
+        \; - \;
+        \dfrac{1}{X_{\nu}}
+        \cdot
+        \left(\;
+            \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            \,-\,
+            \dfrac{ Y_{\nu} }{ X_{\nu} }
+            \,
+            \widehat{X}^{\textnormal{(HT)}}_{\nu}
+            \,\right)
+    \\
+    & = &
+        \dfrac{
+            {\color{white}.}
+            X_{\nu}\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            \, - \,
+            Y_{\nu}\,\widehat{X}^{\textnormal{(HT)}}_{\nu}
+            {\color{white}.}
+            }{
+            \overset{{\color{white}.}}{X_{\nu}\,\widehat{X}^{\textnormal{(HT)}}_{\nu}}            
+            }
+        \; - \;
+        \dfrac{
+            {\color{white}.}
+            X_{\nu}\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}
+            \, - \,
+            Y_{\nu}\,\widehat{X}^{\textnormal{(HT)}}_{\nu}
+            {\color{white}.}
+            }{
+            \overset{{\color{white}.}}{X_{\nu}^{2}}
+            }
+    \\
+    & = &
+        \left(\,
+            \dfrac{
+                {\color{white}.}
+                X_{\nu}\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}
+                \, - \,
+                Y_{\nu}\,\widehat{X}^{\textnormal{(HT)}}_{\nu}
+                {\color{white}.}
+                }{
+                \overset{{\color{white}.}}{X_{\nu}}
+                }
+            \,\right)
+        \cdot
+        \left(\,
+            \dfrac{
+                1
+                }{
+                \overset{{\color{white}.}}{\widehat{X}^{\textnormal{(HT)}}_{\nu}}
+                }
+            \; - \;
+            \dfrac{
+                1
+                }{
+                \overset{{\color{white}.}}{X_{\nu}}
+                }
+            \,\right)
+    \;\; = \;\;
+        \left(\,
+            \dfrac{
+                {\color{white}.}
+                X_{\nu}\,\widehat{Y}^{\textnormal{(HT)}}_{\nu}
+                \, - \,
+                Y_{\nu}\,\widehat{X}^{\textnormal{(HT)}}_{\nu}
+                {\color{white}.}
+                }{
+                \overset{{\color{white}.}}{X_{\nu}}
+                }
+            \,\right)
+        \cdot
+        \left(\,
+            \dfrac{
+                X_{\nu} \,-\, \widehat{X}^{\textnormal{(HT)}}_{\nu}
+                }{
+                X_{\nu}\,\widehat{X}^{\textnormal{(HT)}}_{\nu}
+                }
+            \,\right)
+    \\
+    & = &
+        \left(\;
+            X_{\nu}
+            \cdot
+            \left(\,
+                \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+                \, - \,
+                Y_{\nu}
+                \,\right)
+            \; \overset{{\color{white}1}}{+} \;
+            Y_{\nu}
+            \cdot
+            \left(\,
+                X_{\nu}
+                \, - \,
+                \widehat{X}^{\textnormal{(HT)}}_{\nu}
+                \,\right)
+            \;\right)
+        \cdot
+        \left(\,
+            \dfrac{
+                X_{\nu} \,-\, \widehat{X}^{\textnormal{(HT)}}_{\nu}
+                }{
+                X_{\nu}^{2}\,\widehat{X}^{\textnormal{(HT)}}_{\nu}
+                }
+            \,\right)
+    \\
+    & = &
+        \left(\;
+            \dfrac{X_{\nu}}{N_{\nu}}
+            \cdot
+            \left(\,
+                \dfrac{
+                    \widehat{Y}^{\textnormal{(HT)}}_{\nu}
+                    \, - \,
+                    Y_{\nu}
+                    }{
+                    N_{\nu}
+                    }
+                \,\right)
+            \; \overset{{\color{white}1}}{+} \;
+            \dfrac{Y_{\nu}}{N_{\nu}}
+            \cdot
+            \left(\,
+                \dfrac{
+                    X_{\nu}
+                    \, - \,
+                    \widehat{X}^{\textnormal{(HT)}}_{\nu}
+                    }{
+                    N_{\nu}
+                    }
+                \,\right)
+            \;\right)
+        \cdot
+        \left(\,
+            \dfrac{
+                \left.\left(\,X_{\nu} \,-\, \widehat{X}^{\textnormal{(HT)}}_{\nu}\,\right)\,\right\slash N_{\nu}
+                }{
+                (X_{\nu}\slash N_{\nu})^{2}\,
+                \left(\left.\widehat{X}^{\textnormal{(HT)}}_{\nu}\right\slash N_{\nu}\right)
+                }
+            \,\right)
+    \\
+    & = &
+        \left(\;
+            O(1) \cdot O_{p}\!\left(\dfrac{1}{\sqrt{n_{\nu}}}\right)
+            \; + \;
+            O(1) \cdot O_{p}\!\left(\dfrac{1}{\sqrt{n_{\nu}}}\right)
+            \;\right)
+        \cdot
+        O_{p}\!\left(\dfrac{1}{\sqrt{n_{\nu}}}\right)
+        \cdot
+        O_{p}(1)\,,
+        \;\;
+        \textnormal{by Claim 1, Claim 2, and Theorem \ref{AsymptoticsHTForDomainTotal}}
+    \\
+    & = &
+        O_{p}\!\left(\dfrac{1}{\sqrt{n_{\nu}}}\right)
+        \cdot
+        O_{p}\!\left(\dfrac{1}{\sqrt{n_{\nu}}}\right)
+    \;\; = \;\;
+        O_{p}\!\left(\dfrac{1}{n_{\nu}}\right),
+    \end{eqnarray*}
+    as required.
+\item
+
 \end{enumerate}
 \qed
 
