@@ -1332,6 +1332,10 @@ Then, the following statements are true:
     \;\; := \;\;
         \widehat{R}_{\nu}
         \; - \;
+        L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+    \;\; = \;\;
+        \widehat{R}_{\nu}
+        \; - \;
         R_{\nu}
         \; - \;
         \dfrac{1}{X_{\nu}}
@@ -1345,7 +1349,7 @@ Then, the following statements are true:
             \,\right)
     \end{equation*}
     We need to establish:
-    \,$\Delta_{\nu} \, = \, O\!\left(\,\dfrac{1}{n_{\nu}}\,\right)$.\,
+    \,$\Delta_{\nu} \, = \, O_{p}\!\left(\,\dfrac{1}{n_{\nu}}\,\right)$.\,
     To this end, note:
     \begin{eqnarray*}
     \Delta_{\nu}
@@ -1533,28 +1537,18 @@ Then, the following statements are true:
             L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
             \,\right]
         \; + \;
-        E\!\left[\,\left(\,
-            \widehat{R}_{\nu}
-            \;-\;
-            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
-            \,\right)^{\!2}\,\right]
-    \\
-    &&
-        + \;
+        E\!\left[\;\Delta_{\nu}^{\!2}\;\right]
+        \; + \;
         2 \cdot
-        E\!\left[\,
-            \left(\,
-                \widehat{R}_{\nu}
-                \;-\;
-                L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
-                \,\right)
+        E\!\left[\;
+            \Delta_{\nu}
             \cdot
             \left(\,
                 L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
                 \,-\,
                 R_{\nu}
                 \,\right)
-            \,\right]
+            \;\right]
     \end{eqnarray*}
     \vskip 0.1cm
     \noindent
@@ -1605,34 +1599,52 @@ Then, the following statements are true:
                 R_{\nu}
                 \,\right)
             \,\right]
+    % \\
+    % & = &
+    %     \Var\!\left[\,
+    %         L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+    %         \,\right]
+    %     \; + \;
+    %     E\!\left[\,\left(\,
+    %         \widehat{R}_{\nu}
+    %         \;-\;
+    %         L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+    %         \,\right)^{\!2}\,\right]
+    % \\
+    % &&
+    %     + \;
+    %     2 \cdot
+    %     E\!\left[\,
+    %         \left(\,
+    %             \widehat{R}_{\nu}
+    %             \;-\;
+    %             L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+    %             \,\right)
+    %         \cdot
+    %         \left(\,
+    %             L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+    %             \,-\,
+    %             R_{\nu}
+    %             \,\right)
+    %         \,\right]
     \\
     & = &
         \Var\!\left[\,
             L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
             \,\right]
         \; + \;
-        E\!\left[\,\left(\,
-            \widehat{R}_{\nu}
-            \;-\;
-            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
-            \,\right)^{\!2}\,\right]
-    \\
-    &&
-        + \;
+        E\!\left[\;\Delta_{\nu}^{\!2}\;\right]
+        \; + \;
         2 \cdot
-        E\!\left[\,
-            \left(\,
-                \widehat{R}_{\nu}
-                \;-\;
-                L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
-                \,\right)
+        E\!\left[\;
+            \Delta_{\nu}
             \cdot
             \left(\,
                 L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
                 \,-\,
                 R_{\nu}
                 \,\right)
-            \,\right],
+            \;\right],
     \end{eqnarray*}
     as required.
     This completes the proof of Claim 1.
@@ -1640,15 +1652,11 @@ Then, the following statements are true:
     \vskip 0.3cm
     \noindent
     \textbf{Claim 2:}\quad
-    \begin{equation*}
-    E\!\left[\,\left(\,
-        \widehat{R}_{\nu}
-        \;-\;
-        L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
-        \,\right)^{\!2}\,\right]
-    \;\; = \;\;
+    $
+    E\!\left[\;\Delta_{\nu}^{\!2}\;\right]
+    \; = \;
         O\!\left(\,\dfrac{1}{n_{\nu}^{2}}\,\right)
-    \end{equation*}
+    $
     \vskip 0.1cm
     \noindent
     Proof of Claim 2:\;\;
