@@ -1054,16 +1054,16 @@ Then, the following statements are true:
     \end{eqnarray*}
 \item
     The sequence of differences
-    \,$
-    \Var\!\left(\,\widehat{R}_{\nu}\,\right)
+    \;$
+    \MSE\!\left(\,\widehat{R}_{\nu}\,\right)
     \,-\,
     \Var\!\left(\,L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)\,\right)
-    $\,
+    $\;
     is of stochastic order
     \,$O_{p}\!\left(\,\dfrac{1}{n_{\nu}}\,\right)$;\,
     more precisely,
     \begin{equation*}
-    \Var\!\left(\,\widehat{R}_{\nu}\,\right)
+    \MSE\!\left(\,\widehat{R}_{\nu}\,\right)
     \;\; = \;\;
         \Var\!\left(\,L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)\,\right)
         \; + \;
@@ -1523,7 +1523,81 @@ Then, the following statements are true:
     \end{eqnarray*}
     as required.
 \item
-
+    \begin{eqnarray*}
+    \MSE\!\left(\,\widehat{R}_{\nu}\,\right)
+    & := &
+        E\!\left[\,\left(\,\widehat{R}_{\nu}\,-\,R_{\nu}\,\right)^{\!2}\,\right]
+    \;\; = \;\;
+        E\!\left[\,\left(\,
+            \widehat{R}_{\nu}
+            {\color{blue}
+            \;-\;
+            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+            \,+\,
+            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+            }
+            \,-\,
+            R_{\nu}
+            \,\right)^{\!2}\,\right]
+    \\
+    & = &
+        E\!\left[\,\left(\,
+            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+            \,-\,
+            R_{\nu}
+            \,\right)^{\!2}\,\right]
+        \; + \;
+        E\!\left[\,\left(\,
+            \widehat{R}_{\nu}
+            \;-\;
+            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+            \,\right)^{\!2}\,\right]
+    \\
+    &&
+        + \;
+        2 \cdot
+        E\!\left[\,
+            \left(\,
+                \widehat{R}_{\nu}
+                \;-\;
+                L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+                \,\right)
+            \cdot
+            \left(\,
+                L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+                \,-\,
+                R_{\nu}
+                \,\right)
+            \,\right]
+    \\
+    & = &
+        \Var\!\left[\,
+            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+            \,\right]
+        \; + \;
+        E\!\left[\,\left(\,
+            \widehat{R}_{\nu}
+            \;-\;
+            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+            \,\right)^{\!2}\,\right]
+    \\
+    &&
+        + \;
+        2 \cdot
+        E\!\left[\,
+            \left(\,
+                \widehat{R}_{\nu}
+                \;-\;
+                L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+                \,\right)
+            \cdot
+            \left(\,
+                L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+                \,-\,
+                R_{\nu}
+                \,\right)
+            \,\right]
+    \end{eqnarray*}
 \end{enumerate}
 \qed
 
