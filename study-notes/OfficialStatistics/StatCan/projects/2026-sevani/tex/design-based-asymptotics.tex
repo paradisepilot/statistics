@@ -1523,6 +1523,42 @@ Then, the following statements are true:
     \end{eqnarray*}
     as required.
 \item
+    \textbf{Claim 1:}\quad
+    $\MSE\!\left(\,\widehat{R}_{\nu}\,\right)$\,
+    can be decomposed as follows:
+    \begin{eqnarray*}
+    \MSE\!\left(\,\widehat{R}_{\nu}\,\right)
+    & = &
+        \Var\!\left[\,
+            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+            \,\right]
+        \; + \;
+        E\!\left[\,\left(\,
+            \widehat{R}_{\nu}
+            \;-\;
+            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+            \,\right)^{\!2}\,\right]
+    \\
+    &&
+        + \;
+        2 \cdot
+        E\!\left[\,
+            \left(\,
+                \widehat{R}_{\nu}
+                \;-\;
+                L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+                \,\right)
+            \cdot
+            \left(\,
+                L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+                \,-\,
+                R_{\nu}
+                \,\right)
+            \,\right]
+    \end{eqnarray*}
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 1:
     \begin{eqnarray*}
     \MSE\!\left(\,\widehat{R}_{\nu}\,\right)
     & := &
@@ -1596,8 +1632,53 @@ Then, the following statements are true:
                 \,-\,
                 R_{\nu}
                 \,\right)
-            \,\right]
+            \,\right],
     \end{eqnarray*}
+    as required.
+    This completes the proof of Claim 1.
+
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 2:}\quad
+    \begin{equation*}
+    E\!\left[\,\left(\,
+        \widehat{R}_{\nu}
+        \;-\;
+        L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+        \,\right)^{\!2}\,\right]
+    \;\; = \;\;
+        O\!\left(\,\dfrac{1}{n_{\nu}^{2}}\,\right)
+    \end{equation*}
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 2:\;\;
+
+
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 3:}\quad
+    \begin{equation*}
+    E\!\left[\,
+        \left(\,
+            \widehat{R}_{\nu}
+            \;-\;
+            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+            \,\right)
+        \cdot
+        \left(\,
+            L_{(X_{\nu},Y_{\nu})}\!\left(\,\widehat{R}_{\nu}\,\right)
+            \,-\,
+            R_{\nu}
+            \,\right)
+        \,\right]
+    \;\; = \;\;
+        O\!\left(\,\dfrac{1}{n_{\nu}^{2}}\,\right)
+    \end{equation*}
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 3:\;\;
+
+
 \end{enumerate}
 \qed
 
