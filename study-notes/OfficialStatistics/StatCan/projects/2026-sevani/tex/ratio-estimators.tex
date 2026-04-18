@@ -1,7 +1,295 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Ratio estimators}
+\section{Ratio estimators -- summary of \S5.5 and \S5.6, \cite{Sarndal1992}}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Taylor linearization technique for variance estimation, \S5.5, \cite{Sarndal1992}}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{proposition}
+\mbox{}
+\vskip 0.1cm
+\noindent
+\textbf{Setting}
+\vskip 0.1cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+    $p : \mathcal{P}(U) \longrightarrow [0,1]$\,
+    is a sampling design satisfying:
+    For each unit \,$i \in U$,\,
+    its probability of selection
+    \,$\pi_{i} \,:=\, \underset{s \ni i}{\sum}\;p(s)$\,
+    is strictly greatly than zero.
+    For each unit \,$i \in U$,\,
+    its design weight is, by definition,
+    \,$w_{i} \,:=\, \dfrac{1}{\pi_{i}}$.\,
+\item
+    For \,$k = 1, 2, \ldots, q$,\,
+    \,$y^{(k)} : U \longrightarrow \Re$\,
+    is an $\Re$-valued population characteristic defined on \,$U$\,
+    and, we denote the population total of \,$y^{(k)}$\, by \,$Y^{(k)}$,\, i.e.,
+    \,$Y^{(k)} \; := \; \underset{i \in U}{\sum}\;y^{(k)}_{i}$.\,
+\item
+    For \,$k = 1, 2, \ldots, q$,\,
+    we denote the Horvitz-Thompson estimator of \,$y^{(k)}$\, by \,$\widehat{Y}^{(k)}$,\, i.e.,
+    \begin{equation*}
+    \widehat{Y}^{(k)}(s)
+    \;\; := \;\;
+        \underset{i \in s}{\sum}\;\dfrac{ y^{(k)}_{i} }{ \pi_{i} }\,,
+    \quad\quad
+    \textnormal{for each \,$s \in \mathcal{P}(U)$\, with \,$p(s) > 0$\,}
+    \end{equation*}
+\item
+    $f : \Re^{q} \longrightarrow \Re$ is a smooth function.
+\end{itemize}
+\vskip 0.1cm
+\noindent
+\textbf{The estimation problem and its approximate solution}
+\vskip 0.1cm
+\noindent
+\begin{itemize}
+\item
+    The target population parameter is:
+    \begin{equation*}
+    f\!\left(\,\mathbf{Y}\,\right)
+    \;\; = \;\;
+        f\!\left(\,Y^{(1)},\ldots,Y^{(q)}\,\right)
+    \end{equation*}
+\item
+    We choose to use the following as its design-based estimator:
+    \begin{equation*}
+    f\!\left(\,\widehat{\mathbf{Y}}(s)\,\right)
+    \;\; = \;\;
+        f\!\left(\,\widehat{Y}^{(1)}(s),\ldots,\widehat{Y}^{(q)}(s)\,\right)
+    \end{equation*}
+\end{itemize}
+\vskip 0.1cm
+\noindent
+\textbf{Conclusions}
+\vskip 0.1cm
+\noindent
+Then, the mean squared error (MSE) of the estimator
+\,$f\!\left(\,\widehat{\mathbf{Y}}(s)\,\right)$\,
+can be approximated as follows:
+\begin{eqnarray*}
+\MSE\!\left(\,
+    f(\,\widehat{\mathbf{Y}}\,)
+    \,\right)
+& := &
+    E\!\left[\,\left(\,
+        f(\,\widehat{\mathbf{Y}}\,)
+        \, - \,
+        f(\,\mathbf{Y}\,)
+        \,\right)^{2}\,\right]
+\\
+& {\color{red}\approx} &
+    \underset{i \in U}{\sum}\;
+    \underset{j \in U}{\sum}\;
+    \left(\,\pi_{ij} - \pi_{i}\pi_{j}\,\right)
+    \cdot
+    \dfrac{u_{i}}{\pi_{i}}
+    \cdot
+    \dfrac{u_{j}}{\pi_{j}}
+\\
+& {\color{red}\approx} &
+    \underset{i \in s}{\sum}\;
+    \underset{j \in s}{\sum}\,
+    \left(\,
+        \dfrac{
+            \pi_{ij} - \pi_{i}\pi_{j}
+            }{
+            \pi_{ij}
+            }
+        \,\right)
+    \cdot
+    \dfrac{\widehat{u}_{i}}{\pi_{i}}
+    \cdot
+    \dfrac{\widehat{u}_{j}}{\pi_{j}}\,,
+\end{eqnarray*}
+where
+\begin{equation*}
+u_{i}
+\;\; := \;\;
+    \overset{q}{\underset{k\,=\,1}{\sum}}\;
+    \dfrac{\partial f}{\partial \xi_{k}}\!\left(\,
+        Y^{(1)},\ldots,Y^{(q)}
+        \,\right)
+    \cdot
+    y^{(k)}_{i}
+\quad\quad
+\textnormal{and}
+\quad\quad
+\widehat{u}_{i}
+\;\; := \;\;
+    \overset{q}{\underset{k\,=\,1}{\sum}}\;
+    \dfrac{\partial f}{\partial \xi_{k}}\!\left(\,
+        \widehat{Y}^{(1)},\ldots,\widehat{Y}^{(q)}
+        \,\right)
+    \cdot
+    y^{(k)}_{i}
+\end{equation*}
+\end{proposition}
+\proof
+By (the multivariate version of) Taylor's Theorem, there exists a function
+\,$h : \Re^{q} \longrightarrow \Re$\, such that
+\begin{equation*}
+\underset{\xi\,\rightarrow\mathbf{Y}}{\lim}\;h(\xi)
+\; = \;
+    0\,,
+\quad\quad
+\textnormal{and}
+\quad\quad
+f\!\left(\,\xi\,\right)
+\; = \;
+    f\!\left(\,\mathbf{Y}\,\right)
+    \; + \;
+    \left(\overset{{\color{white}.}}{\nabla f}\right)\!(\mathbf{Y})
+    \bullet
+    \left(\,\xi - \mathbf{Y}\,\right)
+    \; + \;
+    h(\xi)\cdot\left\Vert\,\xi - \mathbf{Y}\,\right\Vert
+\end{equation*}
+\begin{eqnarray*}
+f\!\left(\,\widehat{\mathbf{Y}}(s)\,\right)
+& = &
+    f\!\left(\,\mathbf{Y}\,\right)
+    \; + \;
+    \left(\overset{{\color{white}.}}{\nabla f}\right)\!(\mathbf{Y})
+    \bullet
+    \left(\,\widehat{\mathbf{Y}}(s) - \mathbf{Y}\,\right)
+    \; + \;
+    h\!\left(\,\widehat{\mathbf{Y}}(s)\,\right)
+    \cdot
+    \left\Vert\,
+        \widehat{\mathbf{Y}}(s) - \mathbf{Y}
+        \,\right\Vert
+\\
+& = &
+    f\!\left(\,Y^{(1)},\ldots,Y^{(q)}\,\right)
+    \; + \;
+    \overset{q}{\underset{k\,=\,1}{\sum}}\;
+    \dfrac{\partial f}{\partial \xi_{k}}\!\left(\,
+        Y^{(1)},\ldots,Y^{(q)}
+        \,\right)
+    \cdot
+    \left(\,\widehat{Y}^{(k)}(s)\,-\,Y^{(k)}\,\right)
+    \; + \;
+    O_{p}\!\left(\,\Vert\,\widehat{\mathbf{Y}} - \mathbf{Y}\,\Vert^{2}\,\right)
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\MSE\!\left(\,
+    f(\,\widehat{\mathbf{Y}}\,)
+    \,\right)
+& := &
+    E\!\left[\,\left(\,
+        f(\,\widehat{\mathbf{Y}}\,)
+        \, - \,
+        f(\,\mathbf{Y}\,)
+        \,\right)^{2}\,\right]
+\\
+& {\color{red}\approx} &
+    E\!\left[\,\left(\,
+        (\overset{{\color{white}.}}{\nabla f})(\mathbf{Y})
+        \bullet
+        \left(\,\widehat{\mathbf{Y}} - \mathbf{Y}\,\right)
+        \,\right)^{2}\,\right]
+\;\; = \;\;
+    E\!\left[\,\left(\,
+        (\overset{{\color{white}.}}{\nabla f})(\mathbf{Y})
+        \bullet
+        \widehat{\mathbf{Y}}
+        \, - \,
+        (\overset{{\color{white}.}}{\nabla f})(\mathbf{Y})
+        \bullet
+            \mathbf{Y}
+        \,\right)^{2}\,\right]
+\\
+& = &
+    \Var\!\left[\;
+        \overset{{\color{white}.}}{
+            (\overset{{\color{white}.}}{\nabla f})(\mathbf{Y})
+            \bullet
+            \widehat{\mathbf{Y}}
+            }
+        \;\right]
+\;\; = \;\;
+    \Var\!\left[\;
+        \overset{{\color{white}.}}{
+            \overset{q}{\underset{k\,=\,1}{\sum}}\;
+            \dfrac{\partial f}{\partial \xi_{k}}\!\left(\,
+                Y^{(1)},\ldots,Y^{(q)}
+                \,\right)
+            \cdot
+            \widehat{Y}^{(k)}(s)
+            }
+        \;\right]
+\\
+& = &
+    \Var\!\left[\;
+        \overset{{\color{white}.}}{
+            \overset{q}{\underset{k\,=\,1}{\sum}}\;
+            \dfrac{\partial f}{\partial \xi_{k}}\!\left(\,
+                Y^{(1)},\ldots,Y^{(q)}
+                \,\right)
+            \cdot
+            \left(\,\underset{i \in s}{\sum}\;\dfrac{y^{(k)}_{i}}{\pi_{i}}\,\right)
+            }
+        \;\right]
+\\
+& = &
+    \Var\!\left[\;
+        \overset{{\color{white}.}}{
+            \underset{i \in s}{\sum}\;
+            \dfrac{1}{\pi_{i}}
+            \left(\,
+                \overset{q}{\underset{k\,=\,1}{\sum}}\;
+                \dfrac{\partial f}{\partial \xi_{k}}\!\left(\,
+                    Y^{(1)},\ldots,Y^{(q)}
+                    \,\right)
+                \cdot
+                y^{(k)}_{i}
+                \,\right)
+            }
+        \;\right]
+\;\; = \;\;
+    \Var\!\left[\;\,
+        \overset{{\color{white}.}}{
+            \underset{i \in s}{\sum}\;\dfrac{u_{i}}{\pi_{i}}
+            }
+        \;\right]
+\\
+& = &
+    \underset{i \in U}{\sum}\;
+    \underset{j \in U}{\sum}\;
+    \left(\,\pi_{ij} - \pi_{i}\pi_{j}\,\right)
+    \cdot
+    \dfrac{u_{i}}{\pi_{i}}
+    \cdot
+    \dfrac{u_{j}}{\pi_{j}}
+\\
+& {\color{red}\approx} &
+    \underset{i \in s}{\sum}\;
+    \underset{j \in s}{\sum}\,
+    \left(\,
+        \dfrac{
+            \pi_{ij} - \pi_{i}\pi_{j}
+            }{
+            \pi_{ij}
+            }
+        \,\right)
+    \cdot
+    \dfrac{\widehat{u}_{i}}{\pi_{i}}
+    \cdot
+    \dfrac{\widehat{u}_{j}}{\pi_{j}}
+\end{eqnarray*}
+
+\qed
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
