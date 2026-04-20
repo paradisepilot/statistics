@@ -1426,32 +1426,6 @@ Then, the following statements are true:
             \right]
     \end{eqnarray*}
 \end{enumerate}
-% We have:
-% \begin{eqnarray*}
-% E_{Y}\!\left[\,
-%     \Var_{SR}\!\left(\,
-%         \left.
-%         \widehat{T}_{Y}
-%         \,\right\vert\,
-%         \Ydot,
-%         \Xobs
-%         \,\right)
-%     \,\right]
-% & \approx &
-%     E_{Y_{M}}\!\left[\,
-%         v(\,s\,;y_{\bullet}\,)
-%         \left\vert\,
-%         s,s_{R},\YsubR,\Xobs
-%         \right.
-%         \right]
-% \;\; = \;\;
-%     v(\,y^{\mu}_{\bullet}\,)
-%     \;+\;
-%     \underset{k \in s_{M}}{\sum}
-%     \left(1-\dfrac{1}{w_{k}}\right)
-%     w_{k}^{2}\,\sigma_{k}^{2}\,,
-% \end{eqnarray*}
-% where
 \end{lemma}
 \proof
 \renewcommand{\theenumi}{\roman{enumi}}
@@ -1514,46 +1488,201 @@ Then, the following statements are true:
 \item
     We compute:
     \begin{eqnarray*}
-    E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \left\vert\,
-        s,s_{R},\YsubR=y_{R},\Xobs
-        \right.
-        \right]
-    & = &
+    &&
         E_{Y_{M}}\!\left[\,
-            \left.
+            v(\,s\,;\Ydot,\Zdot\,)
+            \left\vert\,
+            s,s_{R},\YsubR=y_{R},\Zdot,\Xobs
+            \right.
+            \right]
+    \\
+    & = &
+        E_{Y_{M}}\!\left[\;
+            \dfrac{1}{
+                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+                }
+            \cdot
             \underset{k \in s}{\sum}\,
-            \underset{l \in s}{\sum}\,
-            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-            (d_{k}w_{k}Y_{k})\,(d_{l}w_{l}Y_{l})
-            \;\right\vert\,
-            s,s_{R},\YsubR=y_{R},\Xobs
-            \right]
+            \underset{l \in s}{\sum}\;
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \left(\,
+                \dfrac{d_{k}}{\pi_{k}}
+                \left(\,
+                    Y_{k}
+                    \, - \,
+                    \dfrac{
+                        \widehat{T}(s\,;\Ydot)
+                        }{
+                        \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                        }
+                    \cdot
+                    Z_{k}
+                    \,\right)
+                \!\right)
+            \!
+            \left(\,
+                \dfrac{d_{l}}{\pi_{l}}
+                \left(\,
+                    Y_{l}
+                    \, - \,
+                    \dfrac{
+                        \widehat{T}(s\,;\Ydot)
+                        }{
+                        \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                        }
+                    \cdot
+                    Z_{l}
+                    \,\right)
+                \!\right)
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot,\Xobs
+                \end{array}
+            \right.
+            \!\right]
     \\
     & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+            }
+        \cdot
         \underset{k \in s}{\sum}\,
         \underset{l \in s}{\sum}\;
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
-        d_{k}w_{k}\,d_{l}w_{l}\;
-        E_{Y_{M}}\!\left[\;
-            Y_{k}Y_{l}
-            \,\left\vert\,
-            s,s_{R},\YsubR=y_{R},\Xobs
+        \dfrac{d_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}}{\pi_{l}}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left(\,
+                Y_{k}
+                \, - \,
+                \dfrac{
+                    \widehat{T}(s\,;\Ydot)
+                    }{
+                    \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                    }
+                \cdot
+                Z_{k}
+                \,\right)
+            \!
+            \left(\,
+                Y_{l}
+                \, - \,
+                \dfrac{
+                    \widehat{T}(s\,;\Ydot)
+                    }{
+                    \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                    }
+                \cdot
+                Z_{l}
+                \,\right)
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot,\Xobs
+                \end{array}
             \right.
-            \right]
+            \!\right]
     \\
     & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+            }
+        \cdot
         \underset{k \in s}{\sum}\,
         \underset{l \in s}{\sum}\;
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
-        d_{k}w_{k}\,d_{l}w_{l}\;
+        \dfrac{d_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}}{\pi_{l}}
+        \cdot
         E_{Y_{M}}\!\left[\;
-            Y_{k}Y_{l}
-            \,\left\vert\,
-            \YsubR=y_{R},\Xobs
+            Y_{k}\,Y_{l}
+            \, - \,
+            \dfrac{
+                \widehat{T}(s\,;\Ydot)
+                }{
+                \overset{{\color{white}.}}{\widehat{T}(s\,\Zdot)}
+                }
+            {\color{red}\left(\,Y_{k}Z_{l} \overset{{\color{white}.}}{-} Y_{l}Z_{k}\,\right)}
+            \, + \,
+            Z_{k}\,Z_{l}\,
+            \dfrac{
+                \widehat{T}(s\,;\Ydot)^{2}
+                }{
+                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+                }
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot,\Xobs
+                \end{array}
             \right.
-            \right]
+            \!\right]
+    \\
+    & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+        \dfrac{d_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}}{\pi_{l}}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}\,Y_{l}
+            % \, - \,
+            % \dfrac{
+            %     \widehat{T}(s\,;\Ydot)
+            %     }{
+            %     \overset{{\color{white}.}}{\widehat{T}(s\,\Zdot)}
+            %     }
+            % \left(\,Y_{k}Z_{l} \overset{{\color{white}.}}{-} Y_{l}Z_{k}\,\right)
+            \; + \;
+            Z_{k}\,Z_{l}\,
+            \dfrac{
+                \widehat{T}(s\,;\Ydot)^{2}
+                }{
+                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+                }
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    % \\
+    % & = &
+    %     \underset{k \in s}{\sum}\,
+    %     \underset{l \in s}{\sum}\;
+    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+    %     d_{k}w_{k}\,d_{l}w_{l}\;
+    %     E_{Y_{M}}\!\left[\;
+    %         \left(\,
+    %             y_{k}
+    %             \, - \,
+    %             \dfrac{
+    %                 \widehat{T}(s\,;\Ydot)
+    %                 }{
+    %                 \overset{{\color{white}.}}{\widehat{T}_{z}(s)}
+    %                 }
+    %             \cdot
+    %             z_{k}
+    %             \,\right)
+    %         \left(\,
+    %             y_{l}
+    %             \, - \,
+    %             \dfrac{
+    %                 \widehat{T}(s\,;\Ydot)
+    %                 }{
+    %                 \overset{{\color{white}.}}{\widehat{T}_{z}(s)}
+    %                 }
+    %             \cdot
+    %             z_{l}
+    %             \,\right)
+    %         \,\left\vert\,
+    %         \YsubR=y_{R},\Zdot,\Xobs
+    %         \right.
+    %         \right]
     \\
     & = &
         \cdots
@@ -1600,6 +1729,73 @@ Then, the following statements are true:
             \\
             \widetilde{y}_{k} \cdot \widetilde{y}_{l}\,, & \overset{{\color{white}.}}{\textnormal{otherwise}}
             \end{array}\right.
+    \end{eqnarray*}
+    \begin{eqnarray*}
+    E_{Y_{M}}\!\left[\;
+        \widehat{T}(s\,;\Ydot)^{2}
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},\\ \YsubR=y_{R},\\ \Zdot,\Xobs
+            \end{array}
+        \right.
+        \!\right]
+    & = &
+        E_{Y_{M}}\!\left[\;
+            \left(\,
+                \underset{a \in s}{\sum}\,\dfrac{d_{a}\,Y_{a}}{\pi_{a}}
+                \,\right)
+            \!
+            \left(\,
+                \underset{b \in s}{\sum}\,\dfrac{d_{b}\,Y_{b}}{\pi_{b}}
+                \,\right)
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},\\ \YsubR=y_{R},\\ \Zdot,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
+    & = &
+        \underset{a \in s}{\sum}\,
+        \underset{b \in s}{\sum}\;\,
+        \dfrac{d_{a}}{\pi_{a}}\,
+        \dfrac{d_{b}}{\pi_{b}}\,
+        E_{Y_{M}}\!\left[\;
+            Y_{a}\,Y_{b}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},\\ \YsubR=y_{R},\\ \Zdot,\Xobs
+                \end{array}
+            \right.
+            \;\right]
+    \\
+    & = &
+        \underset{a \in s}{\sum}\,
+        \underset{b \in s}{\sum}\;\,
+        \dfrac{d_{a}}{\pi_{a}}\,
+        \dfrac{d_{b}}{\pi_{b}}\,
+        E_{Y_{M}}\!\left[\;
+            Y_{a}\,Y_{b}
+            \,\left\vert\,
+                \YsubR \overset{{\color{white}1}}{=} y_{R},\Xobs
+            \right.
+            \;\right]
+    \\
+    & = &
+        \left(\,
+            \underset{a \in s}{\sum}\,
+            \underset{b \in s}{\sum}\;\,
+            \dfrac{d_{a}}{\pi_{a}}\,
+            \dfrac{d_{b}}{\pi_{b}}\,
+            \widetilde{y}_{a}\,
+            \widetilde{y}_{b}
+            \,\right)
+        \, + \,
+        \left(\,
+            \underset{a \in {\color{red}s_{M}}}{\sum}\;
+            \dfrac{d_{a}^{\,2}}{\pi_{a}^{2}}\,
+            \sigma^{2}_{a}
+            \,\right)
     \end{eqnarray*}
     \vskip -0.7cm
     \qed
