@@ -1254,33 +1254,35 @@ Then, the following statements are true:
     \,$v_{L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)$\,
     for the sampling variance (see Result 5.6.2, p.178, \cite{Sarndal1992}), i.e.,
     \begin{eqnarray*}
-    v_{L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)
+    &&
+        v_{L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)
+    \\
     & := &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}_{z}(s)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
         \underset{l \in s}{\sum}\;
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
-        \left(\,
+        \left(
             \dfrac{
                 d_{k}\left(\,y_{k}-\widehat{R}_{Y/Z}(s\,;\ydot,\zdot) \cdot z_{k}\,\right)
                 }{
                 \pi_{k}
                 }
-            \,\right)
-        \left(\,
+            \right)
+        \left(
             \dfrac{
                 d_{l}\left(\,y_{l}-\widehat{R}_{Y/Z}(s\,;\ydot,\zdot) \cdot z_{l}\,\right)
                 }{
                 \pi_{l}
                 }
-            \,\right)
+            \right)
     \\
     & = &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}_{z}(s)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -1294,7 +1296,7 @@ Then, the following statements are true:
                 \dfrac{
                     \widehat{T}(s\,;\ydot)
                     }{
-                    \overset{{\color{white}.}}{\widehat{T}_{z}(s)}
+                    \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)}
                     }
                 \cdot
                 z_{k}
@@ -1308,12 +1310,51 @@ Then, the following statements are true:
                 \dfrac{
                     \widehat{T}(s\,;\ydot)
                     }{
-                    \overset{{\color{white}.}}{\widehat{T}_{z}(s)}
+                    \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)}
                     }
                 \cdot
                 z_{l}
                 \,\right)
             \right)
+    \\
+    & = &
+        \dfrac{
+            v_{\textnormal{HT}}(\,s\,;\ydot\,)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \; + \;
+        \dfrac{
+            (-2)\left.\widehat{T}(s\,;\ydot)\right\slash\widehat{T}(s\,;\zdot)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \underset{k \in s}{\sum}\;
+            \underset{l \in s}{\sum}
+                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                \dfrac{d_{k}\,\widetilde{y}_{k}}{\pi_{k}}\,
+                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+            \right)
+    \\
+    &&
+        \; + \;
+        \dfrac{
+            \left.
+            \widehat{T}(s\,;\ydot)^{2}
+            \right\slash
+            \widehat{T}(s\,;\zdot)^{2}
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
+        v_{\textnormal{HT}}(s\,;\zdot)
     \end{eqnarray*}
     then
     \,$
@@ -2038,7 +2079,7 @@ Then, the following statements are true:
         \dfrac{
             1
             }{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -2120,6 +2161,7 @@ Then, the following statements are true:
         \textnormal{by Claim 1, Claim 2 and Claim 3}
     \\
     & = &
+        {\color{blue}
         \dfrac{
             v(\,s\,;\widetilde{y}_{\bullet}\,)
             }{
@@ -2127,6 +2169,7 @@ Then, the following statements are true:
                 \widehat{T}(s\,;\zdot)^{2}
                 }
             }
+        }
         \; + \;
         \dfrac{
             1
@@ -2143,9 +2186,10 @@ Then, the following statements are true:
             \,\right)
     \\
     &&
+        {\color{blue}
         \; + \;
         \dfrac{
-            (-2)\left.\widehat{T}(s\,;\ydot)\right\slash\widehat{T}(s\,;\zdot)
+            (-2)\left.\widehat{T}(s\,;\widetilde{y}_{\bullet})\right\slash\widehat{T}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
                 \widehat{T}(s\,;\zdot)^{2}
@@ -2158,6 +2202,7 @@ Then, the following statements are true:
                 \dfrac{d_{k}\,\widetilde{y}_{k}}{\pi_{k}}\,
                 \dfrac{d_{l}\,z_{l}}{\pi_{l}}
             \right)
+        }
         \, + \,
         \dfrac{
             (-2)
@@ -2175,6 +2220,7 @@ Then, the following statements are true:
             \right)
     \\
     &&
+        {\color{blue}
         \; + \;
         \dfrac{
             \left.
@@ -2188,6 +2234,7 @@ Then, the following statements are true:
             }
         \cdot
         v(s\,;\zdot)
+        }
         \; + \;
         \dfrac{
             \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
