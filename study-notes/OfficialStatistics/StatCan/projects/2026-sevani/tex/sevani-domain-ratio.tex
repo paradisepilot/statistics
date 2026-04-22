@@ -6,7 +6,7 @@
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \subsection{Probabilistic framework of SEVANI \cite{Beaumont2011}}
-\label{ProbabilisticFrameworkDomainRatio}
+\label{DomainRatioProbabilisticFramework}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -176,12 +176,13 @@
 \item
     $\left(\,\Ydot\,,\Zdot\,,\Xdotdot\,\right)$\, and \,$\Sdot$\, are (unconditionally) independent.
 \item
-    $\left(\,\Ydot\,,\Zdot\,\right)$\,
+    % $\left(\,\Ydot\,,\Zdot\,\right)$\,
+    $\Ydot$\,
     and
     \,$(\,\Sdot\,,\Rdot\,)$\,
-    are {\color{red}conditionally independent} given \,$\Xdotdot$.
+    are {\color{red}conditionally independent} given \,$\left(\,\Zdot\,,\Xdotdot\,\right)$.
 \item
-    $\Cov\!\left(\;Y_{k}\,,\,Y_{l}\;\left\vert\;\Xdotdot\right.\right) \,=\, 0$,\,
+    $\Cov\!\left(\;Y_{k}\,,\,Y_{l}\;\left\vert\;\Zdot\,,\Xdotdot\right.\right) \,=\, 0$,\,
     for each \,$k, l \in U$\, with \,$k \neq l$.
 \end{itemize}
 
@@ -265,403 +266,403 @@ and
 \;$Y^{*}_{i} \,=\, Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)$.\,
 \end{definition}
 
-\vskip 0.3cm
-\begin{lemma}[A formula for \,$\widetilde{T}_{Y}$]
-\mbox{}
-\vskip 0.1cm
-\noindent
-\begin{eqnarray*}
-\widetilde{T}_{Y}
-& = &
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-    \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-\end{eqnarray*}
-\end{lemma}
-\proof
-\begin{eqnarray*}
-\widetilde{T}_{Y}
-& := &
-    \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
-\;\; = \;\;
-    \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\left(\,
-        R_{i}\,Y_{i}
-        \overset{{\color{white}.}}{+}
-        (1-R_{i})\,Y^{*}_{i}
-        \,\right)
-\\
-& = &
-    \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,R_{i}\,Y_{i}
-    \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,(1-R_{i})\,Y^{*}_{i}
-\;\; = \;\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,R_{i}\,Y_{i}
-    \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
-\\
-& = &
-    {\color{red}
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-    \;\overset{{\color{white}.}}{-}\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-    }
-    \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,R_{i}\,Y_{i}
-    \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
-\\
-& = &
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-    \;\overset{{\color{white}.}}{-}\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y_{i}
-    \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
-\\
-& = &
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
-    \;\overset{{\color{white}.}}{+}\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-\end{eqnarray*}
-\vskip -0.5cm
-\qed
+% \vskip 0.3cm
+% \begin{lemma}[A formula for \,$\widetilde{T}_{Y}$]
+% \mbox{}
+% \vskip 0.1cm
+% \noindent
+% \begin{eqnarray*}
+% \widetilde{T}_{Y}
+% & = &
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+%     \;\overset{{\color{white}.}}{+}\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+% \end{eqnarray*}
+% \end{lemma}
+% \proof
+% \begin{eqnarray*}
+% \widetilde{T}_{Y}
+% & := &
+%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+% \;\; = \;\;
+%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\left(\,
+%         R_{i}\,Y_{i}
+%         \overset{{\color{white}.}}{+}
+%         (1-R_{i})\,Y^{*}_{i}
+%         \,\right)
+% \\
+% & = &
+%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,R_{i}\,Y_{i}
+%     \;\overset{{\color{white}.}}{+}\;
+%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,(1-R_{i})\,Y^{*}_{i}
+% \;\; = \;\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,R_{i}\,Y_{i}
+%     \;\overset{{\color{white}.}}{+}\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
+% \\
+% & = &
+%     {\color{red}
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+%     \;\overset{{\color{white}.}}{-}\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+%     }
+%     \;\overset{{\color{white}.}}{+}\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,R_{i}\,Y_{i}
+%     \;\overset{{\color{white}.}}{+}\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
+% \\
+% & = &
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+%     \;\overset{{\color{white}.}}{-}\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y_{i}
+%     \;\overset{{\color{white}.}}{+}\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
+% \\
+% & = &
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+%     \;\overset{{\color{white}.}}{+}\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+% \end{eqnarray*}
+% \vskip -0.5cm
+% \qed
+
+%         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+% \vskip 0.3cm
+% \begin{lemma}[Conditional bias of \,$\widetilde{T}_{Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
+% \label{biasTtilde}
+% \mbox{}
+% \vskip 0.1cm
+% \noindent
+% Let
+% \begin{eqnarray*}
+% \widetilde{T}_{Y}
+% \;\; = \;\;
+%     \widetilde{T}_{Y}(\,
+%         \Sdot\,,\,
+%         \Rdot\,,\,
+%         \Ydot\,,\,
+%         \Xdotdot\,;\,
+%         \dbullet
+%         \,)
+% & := &
+%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+% \;\; = \;\;
+%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+%         R_{i}\,Y_{i}
+%         \overset{{\color{white}.}}{+}
+%         (1-R_{i})\,Y^{*}_{i}
+%         \,\right)
+% \end{eqnarray*}
+% be an imputation estimator for the domain total
+% \;$T_{Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
+% where
+% \begin{equation*}
+% \widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}
+% \quad\;\;\textnormal{and}\quad\;
+% Y^{*}_{i} \;=\; Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+% \end{equation*}
+% \vskip 0.2cm
+% \noindent
+% Suppose the quantities
+% \,$
+% \Sdot\,,\,
+% \Rdot\,,\,
+% \Ydot\,,\,
+% \Xdotdot\,,\,
+% \dbullet
+% $\,
+% satisfy the probabilistic assumptions specified
+% in Subsection \ref{DomainRatioProbabilisticFramework}.
+% \vskip 0.2cm
+% \noindent
+% Then, the following statements are true:
+% \renewcommand{\theenumi}{\roman{enumi}}
+% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+% \begin{enumerate}
+% \item
+%     The \textbf{overall bias}
+%     \,$
+%     \bias\!\left(\;
+%         \left.
+%         \widetilde{T}_{Y}
+%         \;\right\vert\,
+%         \Zdot,\Xobs
+%         \,\right)
+%     $\,
+%     of
+%     \,$\widetilde{T}_{Y}$\,
+%     satisfies:
+%     \begin{eqnarray*}
+%     \bias\!\left(\;
+%         \left.
+%         \widetilde{T}_{Y}
+%         \;\right\vert\,
+%         \Zdot,\Xobs
+%         \,\right)
+%     & := &
+%         E\!\left[\;
+%             \left.
+%             \widetilde{T}_{Y} - T_{Y}
+%             \,\right\vert\,
+%             \Zdot,\Xobs
+%             \,\right]
+%     \;\; = \;\;
+%         E_{SR}\!\left(\;
+%             \overset{{\color{white}.}}{E_{Y}\!\left[\;
+%                 \left.
+%                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%                 \;\right\vert\,
+%                 s,s_{R},\Zdot,\Xobs
+%                 \,\right]}
+%             \;\right),
+%     \end{eqnarray*}
+%     where
+%     \,$
+%     \widehat{T}_{Y}
+%     \; = \;
+%         \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
+%     \; = \;
+%         \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     $\,
+%     is the Horvitz-Thompson estimator for the domain total.
+% \item
+%     The \textbf{conditional model bias}
+%     \,$
+%     E_{Y}\!\left[\;
+%         \left.
+%         \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%         \;\right\vert\,
+%         s,s_{R},\Xobs
+%         \,\right]
+%     $\,
+%     can be expressed as follows:
+%     \begin{eqnarray*}
+%     E_{Y}\!\left[\;
+%         \left.
+%         \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%         \;\right\vert\,
+%         s,s_{R},\Xobs
+%         \,\right]
+%     & = &
+%         \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,d_{i}\,w_{i}\,
+%         E_{Y}\!\left[\;
+%             \left.
+%             Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
+%             \;\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right]
+%     \end{eqnarray*}
+% \item
+%     Consequently, we have the following alternative expression for the overall bias:
+%     \begin{eqnarray*}
+%     \bias\!\left(\;
+%         \left.
+%         \widetilde{T}_{Y}
+%         \;\right\vert\,
+%         \Xobs
+%         \,\right)
+%     & := &
+%         E\!\left[\;
+%             \left.
+%             \widetilde{T}_{Y} - T_{Y}
+%             \,\right\vert\,
+%             \Xobs
+%             \,\right]
+%     \;\; = \;\;
+%         E_{SR}\!\left(\;
+%             \overset{{\color{white}.}}{E_{Y}\!\left[\;
+%                 \left.
+%                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%                 \;\right\vert\,
+%                 s,s_{R},\Xobs
+%                 \,\right]}
+%             \;\right)
+%     \\
+%     & = &
+%         E_{SR}\!\left[\;
+%             \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,d_{i}\,w_{i}\,
+%             E_{Y}\!\left[\;
+%                 \left.
+%                 Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
+%                 \;\right\vert\,
+%                 s,s_{R},\Xobs
+%                 \,\right]
+%             \,\right]
+%     \end{eqnarray*}
+% \end{enumerate}
+% \end{lemma}
+% %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+% \begin{remark}\label{remarkSmallUnitBias}
+% \mbox{}
+% \vskip -0.1cm
+% \noindent
+% \begin{itemize}
+% \item
+%     In practice, we therefore would like to choose an imputation strategy such that
+%     \begin{equation*}
+%     E_{Y}\!\left[\;
+%         \left.
+%         Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
+%         \;\right\vert\,
+%         s,s_{R},\Xobs
+%         \,\right]
+%     \;\; \approx \;\;
+%         0,
+%     \quad
+%     \textnormal{for each \,$i \in s_{M}$}
+%     \end{equation*}
+%     See the paragraph after Equation (5.2), p.175, \cite{Beaumont2011}.
+% \item
+%     The conditioning on \,$\Xobs$\, is largely suppressed in \cite{Beaumont2011} for notational brevity;
+%     see the last sentence in the second paragraph of \S4, p.173, \cite{Beaumont2011}.
+%     We have restored it in our notation in these study notes.
+% \end{itemize}
+% \end{remark}
+% %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+% \proofof Lemma \ref{biasTtilde}
+% \vskip 0.1cm
+% \renewcommand{\theenumi}{\roman{enumi}}
+% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+% \begin{enumerate}
+% \item
+%     We compute:
+%     \begin{eqnarray*}
+%     \bias\!\left(\;
+%         \left.
+%         \widetilde{T}_{Y}
+%         \;\right\vert\,
+%         \Xobs
+%         \,\right)
+%     & := &
+%         E\!\left[\;
+%             \left.
+%             \widetilde{T}_{Y} - T_{Y}
+%             \,\right\vert\,
+%             \Xobs
+%             \,\right]
+%     \;\; = \;\;
+%         E\!\left[\;
+%             \left.
+%             \widetilde{T}_{Y} - \widehat{T}_{Y} + \widehat{T}_{Y} - T_{Y}
+%             \,\right\vert\,
+%             \Xobs
+%             \,\right]
+%     \\
+%     & = &
+%         E_{SRY}\!\left[\,
+%             \left.
+%             \widetilde{T}_{Y} - \widehat{T}_{Y}
+%             \,\right\vert\,
+%             \Xobs
+%             \,\right]
+%         \; + \;
+%         E_{YSR}\!\left[\,
+%             \left.
+%             \widehat{T}_{Y} - T_{Y}
+%             \,\right\vert\,
+%             \Xobs
+%             \,\right]
+%     \\
+%     & = &
+%         E_{SR}\!\left(\,
+%             \overset{{\color{white}.}}{E_{Y}\!\left[\;
+%                 \left.
+%                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%                 \;\right\vert\,
+%                 s,s_{R},\Xobs
+%                 \,\right]}
+%             \;\right)
+%         \; + \;
+%         E_{Y}\!\left(\,
+%             \overset{{\color{white}.}}{E_{SR}\!\left[\;
+%                 \left.
+%                 \widehat{T}_{Y} \overset{{\color{white}.}}{-} T_{Y}
+%                 \;\right\vert\,
+%                 \Ydot,\Xobs
+%                 \,\right]}
+%             \;\right)
+%     \\
+%     & = &
+%         E_{SR}\!\left(\,
+%             \overset{{\color{white}.}}{E_{Y}\!\left[\;
+%                 \left.
+%                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%                 \;\right\vert\,
+%                 s,s_{R},\Xobs
+%                 \,\right]}
+%             \;\right)
+%         \; + \;
+%         E_{Y}\!\left(\;\overset{{\color{white}.}}{0}\;\right),
+%         \;\;
+%         \textnormal{by design-unbiasedness of \,$\widehat{T}_{Y}$}
+%     \\
+%     & = &
+%         E_{SR}\!\left(\,
+%             \overset{{\color{white}.}}{E_{Y}\!\left[\;
+%                 \left.
+%                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%                 \;\right\vert\,
+%                 s,s_{R},\Xobs
+%                 \,\right]}
+%             \;\right),
+%     \end{eqnarray*}
+%     as required.
+% \item
+%     We compute:
+%     \begin{eqnarray*}
+%     &&
+%         E_{Y}\!\left[\;
+%             \left.
+%             \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%             \;\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right]
+%     \\
+%     & = &
+%         E_{Y}\!\left[\;
+%             \left.
+%             \left(\,
+%                 \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%                 \overset{{\color{white}.}}{+}
+%                 \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+%                 \,\right)
+%             \,\overset{{\color{white}.}}{-}\,
+%             \left(\,
+%                 \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%                 \overset{{\color{white}.}}{+}
+%                 \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%                 \,\right)
+%             \;\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right]
+%     \\
+%     & = &
+%         E_{Y}\!\left[\;\,
+%             \left.
+%             \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,(Y_{k}^{*}-Y_{k})
+%             \;\,\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right]
+%     \;\; = \;\;
+%         \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,
+%         E_{Y}\!\left[\;\,
+%             Y_{k}^{*}-Y_{k}
+%             \,\left\vert\;
+%             s,s_{R},\Xobs
+%             \right.
+%             \,\right],
+%     \end{eqnarray*}
+%     as required.
+% \item
+%     Immediate by the preceding statements.
+%     \qed
+% \end{enumerate}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.3cm
-\begin{lemma}[Conditional bias of \,$\widetilde{T}_{Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
-\label{biasTtilde}
-\mbox{}
-\vskip 0.1cm
-\noindent
-Let
-\begin{eqnarray*}
-\widetilde{T}_{Y}
-\;\; = \;\;
-    \widetilde{T}_{Y}(\,
-        \Sdot\,,\,
-        \Rdot\,,\,
-        \Ydot\,,\,
-        \Xdotdot\,;\,
-        \dbullet
-        \,)
-& := &
-    \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
-\;\; = \;\;
-    \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
-        R_{i}\,Y_{i}
-        \overset{{\color{white}.}}{+}
-        (1-R_{i})\,Y^{*}_{i}
-        \,\right)
-\end{eqnarray*}
-be an imputation estimator for the domain total
-\;$T_{Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
-where
-\begin{equation*}
-\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}
-\quad\;\;\textnormal{and}\quad\;
-Y^{*}_{i} \;=\; Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
-\end{equation*}
-\vskip 0.2cm
-\noindent
-Suppose the quantities
-\,$
-\Sdot\,,\,
-\Rdot\,,\,
-\Ydot\,,\,
-\Xdotdot\,,\,
-\dbullet
-$\,
-satisfy the probabilistic assumptions specified
-in Subsection \ref{ProbabilisticFrameworkDomainRatio}.
-\vskip 0.2cm
-\noindent
-Then, the following statements are true:
-\renewcommand{\theenumi}{\roman{enumi}}
-\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
-\begin{enumerate}
-\item
-    The \textbf{overall bias}
-    \,$
-    \bias\!\left(\;
-        \left.
-        \widetilde{T}_{Y}
-        \;\right\vert\,
-        \Zdot,\Xobs
-        \,\right)
-    $\,
-    of
-    \,$\widetilde{T}_{Y}$\,
-    satisfies:
-    \begin{eqnarray*}
-    \bias\!\left(\;
-        \left.
-        \widetilde{T}_{Y}
-        \;\right\vert\,
-        \Zdot,\Xobs
-        \,\right)
-    & := &
-        E\!\left[\;
-            \left.
-            \widetilde{T}_{Y} - T_{Y}
-            \,\right\vert\,
-            \Zdot,\Xobs
-            \,\right]
-    \;\; = \;\;
-        E_{SR}\!\left(\;
-            \overset{{\color{white}.}}{E_{Y}\!\left[\;
-                \left.
-                \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
-                \;\right\vert\,
-                s,s_{R},\Zdot,\Xobs
-                \,\right]}
-            \;\right),
-    \end{eqnarray*}
-    where
-    \,$
-    \widehat{T}_{Y}
-    \; = \;
-        \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
-    \; = \;
-        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-    $\,
-    is the Horvitz-Thompson estimator for the domain total.
-\item
-    The \textbf{conditional model bias}
-    \,$
-    E_{Y}\!\left[\;
-        \left.
-        \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
-    $\,
-    can be expressed as follows:
-    \begin{eqnarray*}
-    E_{Y}\!\left[\;
-        \left.
-        \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
-    & = &
-        \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,d_{i}\,w_{i}\,
-        E_{Y}\!\left[\;
-            \left.
-            Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
-    \end{eqnarray*}
-\item
-    Consequently, we have the following alternative expression for the overall bias:
-    \begin{eqnarray*}
-    \bias\!\left(\;
-        \left.
-        \widetilde{T}_{Y}
-        \;\right\vert\,
-        \Xobs
-        \,\right)
-    & := &
-        E\!\left[\;
-            \left.
-            \widetilde{T}_{Y} - T_{Y}
-            \,\right\vert\,
-            \Xobs
-            \,\right]
-    \;\; = \;\;
-        E_{SR}\!\left(\;
-            \overset{{\color{white}.}}{E_{Y}\!\left[\;
-                \left.
-                \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
-                \;\right\vert\,
-                s,s_{R},\Xobs
-                \,\right]}
-            \;\right)
-    \\
-    & = &
-        E_{SR}\!\left[\;
-            \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,d_{i}\,w_{i}\,
-            E_{Y}\!\left[\;
-                \left.
-                Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-                \;\right\vert\,
-                s,s_{R},\Xobs
-                \,\right]
-            \,\right]
-    \end{eqnarray*}
-\end{enumerate}
-\end{lemma}
-%%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-\begin{remark}\label{remarkSmallUnitBias}
-\mbox{}
-\vskip -0.1cm
-\noindent
-\begin{itemize}
-\item
-    In practice, we therefore would like to choose an imputation strategy such that
-    \begin{equation*}
-    E_{Y}\!\left[\;
-        \left.
-        Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
-    \;\; \approx \;\;
-        0,
-    \quad
-    \textnormal{for each \,$i \in s_{M}$}
-    \end{equation*}
-    See the paragraph after Equation (5.2), p.175, \cite{Beaumont2011}.
-\item
-    The conditioning on \,$\Xobs$\, is largely suppressed in \cite{Beaumont2011} for notational brevity;
-    see the last sentence in the second paragraph of \S4, p.173, \cite{Beaumont2011}.
-    We have restored it in our notation in these study notes.
-\end{itemize}
-\end{remark}
-%%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-\proofof Lemma \ref{biasTtilde}
-\vskip 0.1cm
-\renewcommand{\theenumi}{\roman{enumi}}
-\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
-\begin{enumerate}
-\item
-    We compute:
-    \begin{eqnarray*}
-    \bias\!\left(\;
-        \left.
-        \widetilde{T}_{Y}
-        \;\right\vert\,
-        \Xobs
-        \,\right)
-    & := &
-        E\!\left[\;
-            \left.
-            \widetilde{T}_{Y} - T_{Y}
-            \,\right\vert\,
-            \Xobs
-            \,\right]
-    \;\; = \;\;
-        E\!\left[\;
-            \left.
-            \widetilde{T}_{Y} - \widehat{T}_{Y} + \widehat{T}_{Y} - T_{Y}
-            \,\right\vert\,
-            \Xobs
-            \,\right]
-    \\
-    & = &
-        E_{SRY}\!\left[\,
-            \left.
-            \widetilde{T}_{Y} - \widehat{T}_{Y}
-            \,\right\vert\,
-            \Xobs
-            \,\right]
-        \; + \;
-        E_{YSR}\!\left[\,
-            \left.
-            \widehat{T}_{Y} - T_{Y}
-            \,\right\vert\,
-            \Xobs
-            \,\right]
-    \\
-    & = &
-        E_{SR}\!\left(\,
-            \overset{{\color{white}.}}{E_{Y}\!\left[\;
-                \left.
-                \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
-                \;\right\vert\,
-                s,s_{R},\Xobs
-                \,\right]}
-            \;\right)
-        \; + \;
-        E_{Y}\!\left(\,
-            \overset{{\color{white}.}}{E_{SR}\!\left[\;
-                \left.
-                \widehat{T}_{Y} \overset{{\color{white}.}}{-} T_{Y}
-                \;\right\vert\,
-                \Ydot,\Xobs
-                \,\right]}
-            \;\right)
-    \\
-    & = &
-        E_{SR}\!\left(\,
-            \overset{{\color{white}.}}{E_{Y}\!\left[\;
-                \left.
-                \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
-                \;\right\vert\,
-                s,s_{R},\Xobs
-                \,\right]}
-            \;\right)
-        \; + \;
-        E_{Y}\!\left(\;\overset{{\color{white}.}}{0}\;\right),
-        \;\;
-        \textnormal{by design-unbiasedness of \,$\widehat{T}_{Y}$}
-    \\
-    & = &
-        E_{SR}\!\left(\,
-            \overset{{\color{white}.}}{E_{Y}\!\left[\;
-                \left.
-                \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
-                \;\right\vert\,
-                s,s_{R},\Xobs
-                \,\right]}
-            \;\right),
-    \end{eqnarray*}
-    as required.
-\item
-    We compute:
-    \begin{eqnarray*}
-    &&
-        E_{Y}\!\left[\;
-            \left.
-            \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
-    \\
-    & = &
-        E_{Y}\!\left[\;
-            \left.
-            \left(\,
-                \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-                \overset{{\color{white}.}}{+}
-                \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
-                \,\right)
-            \,\overset{{\color{white}.}}{-}\,
-            \left(\,
-                \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-                \overset{{\color{white}.}}{+}
-                \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-                \,\right)
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
-    \\
-    & = &
-        E_{Y}\!\left[\;\,
-            \left.
-            \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,(Y_{k}^{*}-Y_{k})
-            \;\,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
-    \;\; = \;\;
-        \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,
-        E_{Y}\!\left[\;\,
-            Y_{k}^{*}-Y_{k}
-            \,\left\vert\;
-            s,s_{R},\Xobs
-            \right.
-            \,\right],
-    \end{eqnarray*}
-    as required.
-\item
-    Immediate by the preceding statements.
-    \qed
-\end{enumerate}
-
-        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-% \vskip 0.5cm
-\clearpage
+% \clearpage
+\vskip 0.5cm
 \subsection{Decomposition of the MSE of the imputation ratio estimator}
 \setcounter{theorem}{0}
 
@@ -758,7 +759,7 @@ Suppose the quantities
 \Xdotdot\,,\,
 \dbullet
 $\,
-satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFrameworkDomainRatio}.
+satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
 \vskip 0.2cm
 \noindent
 Then,
@@ -1175,7 +1176,7 @@ Suppose the quantities
 \Xdotdot\,,\,
 \dbullet
 $\,
-satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFrameworkDomainRatio}.
+satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
 \vskip 0.2cm
 \noindent
 Then, the following statements are true:
@@ -2402,440 +2403,484 @@ Then, the following statements are true:
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-%\vskip 0.5cm
-\clearpage
-\subsection{Composite linear imputation estimator}
-\setcounter{theorem}{0}
+% %\vskip 0.5cm
+% \clearpage
+% \subsection{Composite linear imputation estimator}
+% \setcounter{theorem}{0}
 
-        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+%         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.3cm
-\begin{definition}[Composite linear imputation estimator;\, see \S3 in \cite{Beaumont2011}]
-\label{LinearImputationEstimator}
-\mbox{}
-\vskip 0.1cm
-\noindent
-An imputation estimator
-\begin{equation*}
-\widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;\,X_{\bullet\bullet},\dbullet\,)
-\;\; = \;\;
-    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-    \;+\,
-    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
-\end{equation*}
-is called a \textbf{composite linear imputation estimator}
-if there exists \,$J \in \N$\, such that
-\begin{center}
-\begin{minipage}{6.2in}
-for each \,$s \subset U$,\,
-each \,$s_{R} \subset s$,\,
-{\color{red}each} \,{\color{red}$k \in s_{M} := s \,\backslash\, s_{R}$},\,
-there exist
-\begin{equation*}
-\left\{\;\;\begin{array}{ccl}
-j
-& = &
-    j(\,k,s,s_{R}\,;\Xobs\,) \;\in\; \{1,2,\ldots,J\},
-\\
-\varphi^{(j)}_{0k}
-& \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
-    \varphi^{(j)}_{0k}(\,s,s_{R}\,;X_{\bullet\bullet}\,),
-    \quad
-    \textnormal{and}
-\\
-\varphi^{(j)}_{lk}
-& \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
-    \varphi^{(j)}_{lk}(\,s,s_{R}\,;X_{\bullet\bullet}\,),
-    \;\;
-    \textnormal{{\color{red}for each \,$l \in s_{R}$}}
-\end{array}\right.
-\end{equation*}
+% \vskip 0.3cm
+% \begin{definition}[Composite linear imputation estimator;\, see \S3 in \cite{Beaumont2011}]
+% \label{LinearImputationEstimator}
+% \mbox{}
+% \vskip 0.1cm
+% \noindent
+% An imputation estimator
 % \begin{equation*}
-% \varphi^{(j)}_{0k} = \varphi^{(j)}_{0k}(s,s_{R},X_{\bullet\bullet})
-% \quad\textnormal{and}\quad
-% \varphi^{(j)}_{lk} = \varphi^{(j)}_{lk}(s,s_{R},X_{\bullet\bullet}),
-% \;\;
-% \textnormal{for \,$j \in \{1,2,\ldots,J\}$,\, $l \in s_{R}$}
+% \widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;\,X_{\bullet\bullet},\dbullet\,)
+% \;\; = \;\;
+%     \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     \;+\,
+%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
 % \end{equation*}
-such that
-\begin{equation*}
-Y_{{\color{red}k}}^{*}
-\;\; = \;\;
-    \varphi^{(j)}_{0k}
-    \,+\,
-    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{l{\color{red}k}}\,Y_{l}\
-% \quad
-% \textnormal{for some \,$j \in \{1,2,\ldots,J\}$\, depending on \,$s,\,s_{R},\,\Xobs$}
-\end{equation*}
-\end{minipage}
-\end{center}
-\end{definition}
-
-        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-\vskip 0.5cm
-\begin{lemma}[$\widetilde{T}_{Y} - \widehat{T}_{Y}$ as sum of \,$\Xobs$-conditionally independent summands;\, Equation (5.8) in \cite{Beaumont2011}]
-\label{EqnFivePtEight}
-\mbox{}
-\vskip 0.1cm
-\noindent
-Let
-\begin{equation*}
-\widetilde{T}_{Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
-\;\; = \;\;
-    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-    \;+\,
-    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
-\end{equation*}
-be a composite linear imputation estimator for the domain total
-\,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
-with
-\begin{equation*}
-Y_{k}^{*}
-\;\; = \;\;
-    \varphi^{(j)}_{0k}
-    \,+\,
-    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
-\quad
-\textnormal{for \,$k \in s_{M} := s \,\backslash\,s_{R}$}
-\end{equation*}
-Define:
-\begin{equation*}
-W^{(+)}_{{\color{red}0}}
-\;\; := \;\;
-    \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
-        \,\right),
-\quad\quad
-W^{(+)}_{{\color{red}l}}
-\;\; := \;\;
-    \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}l}k}
-        \,\right),
-\;\;
-\textnormal{for each \,$l \in s_{R}$}
-\end{equation*}
-Then, the following equalities hold:
-\renewcommand{\theenumi}{\roman{enumi}}
-\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
-\begin{enumerate}
-\item
-    % $
-    % \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
-    % \;\; = \;\;
-    %     \left(\;
-    %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{k \in s_{M}^{(j)}}{\sum}\;
-    %         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
-    %         \,\right)
-    %     \;+\;
-    %     \underset{k \in s_{R}}{\sum}
-    %     \left(\;
-    %         d_{k}\,w_{k}
-    %         \,+\,
-    %         \left(\;
-    %             \overset{J}{\underset{j=1}{\sum}}\;
-    %             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
-    %             \right)
-    %         \right)
-    %     Y_{k}
-    % $
-    $
-    \widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet},\dbullet\,)
-    \;\; = \;\;
-        W^{(+)}_{0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\!\left(\,d_{l}\,w_{l} \,+\, W^{(+)}_{l}\,\right)Y_{l}
-    $
-\item
-    % $
-    % \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
-    % \;-\;
-    % \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,)
-    % \;\; = \;\;
-    %     \left(\;
-    %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
-    %         \,\right)
-    %     \;+\;
-    %     \underset{k \in s_{R}}{\sum}\!
-    %     \left(\;
-    %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
-    %         \right)
-    %     Y_{k}
-    %     \;-\;
-    %     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-    % $
-    $
-    \widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet}\,\dbullet\,)
-    \;-\;
-    \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
-    \;\; = \;\;
-        W^{(+)}_{0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}W^{(+)}_{l}\,Y_{l}
-        \;-\;
-        \underset{k \in s_{M}}{\sum}d_{k}\,w_{k}\,Y_{k}
-    $,\\
-    where
-    \,$
-    \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
-    \;\; = \;\;
-        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-    $\,
-    is the Horvitz-Thompson estimator.
-\end{enumerate}
-% \begin{eqnarray*}
-% \widetilde{T}_{Y}{\color{white}....}
+% is called a \textbf{composite linear imputation estimator}
+% if there exists \,$J \in \N$\, such that
+% \begin{center}
+% \begin{minipage}{6.2in}
+% for each \,$s \subset U$,\,
+% each \,$s_{R} \subset s$,\,
+% {\color{red}each} \,{\color{red}$k \in s_{M} := s \,\backslash\, s_{R}$},\,
+% there exist
+% \begin{equation*}
+% \left\{\;\;\begin{array}{ccl}
+% j
 % & = &
-%     \left(\;
-%         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{k \in s_{M}^{(j)}}{\sum}\;
-%         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
-%         \,\right)
-%     \;+\;
-%     \underset{k \in s_{R}}{\sum}
-%     \left(\;
-%         d_{k}\,w_{k}
-%         \,+\,
-%         \left(\;
-%             \overset{J}{\underset{j=1}{\sum}}\;
-%             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
-%             \right)
-%         \right)
-%     Y_{k}
+%     j(\,k,s,s_{R}\,;\Xobs\,) \;\in\; \{1,2,\ldots,J\},
 % \\
-% \widetilde{T}_{Y}
-% \,-\,
-% \widehat{T}_{Y}
-% & = &
-%     \left(\;
-%         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
-%         \,\right)
-%     \;+\;
-%     \underset{k \in s_{R}}{\sum}\!
-%     \left(\;
-%         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
-%         \right)
-%     Y_{k}
-%     \;-\;
-%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-% \end{eqnarray*}
-\end{lemma}
-\proof
-\begin{enumerate}
-\item
-    Straightforward algebra:
-    \begin{eqnarray*}
-    \widetilde{T}_{Y}
-    \;\; = \;\;
-    \widetilde{T}_{Y}\!\left(\,s,s_{R},\Ydot\,;\,\dbullet\,\right)
-    & = &
-        \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
-        \,+\,
-        \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
-    \;\; = \;\;
-        \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
-        \,+\,
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,
-        d_{k}\,w_{k}\,Y_{k}^{*}
-    \\
-    & = &
-        \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
-        \,+\,
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,
-        d_{k}\,w_{k}\left(\,
-            \varphi^{(j)}_{0k}
-            \,+\,
-            \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
-            \right)
-    \\
-    & = &
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k \in s_{M}^{(j)}}{\sum}\;
-            d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
-            \,\right)
-        \,+\,
-        \left(\;
-            \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
-            \,+\,
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k \in s_{M}^{(j)}}{\sum}\,
-            d_{k}\,w_{k}\left(\,
-                \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
-                \right)
-            \,\right)
-    % \\
-    % & {\color{green}=} &
-    %     \left(\;
-    %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{k \in s_{M}^{(j)}}{\sum}\;
-    %         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
-    %         \,\right)
-    %     \,+\,
-    %     \left(\;
-    %         \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
-    %         \,+\,
-    %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{{\color{red}l}\,\in\,s_{M}^{(j)}}{\sum}\,
-    %         w_{{\color{red}l}}\,d_{{\color{red}l}}\left(\,
-    %             \underset{{\color{red}k}\,\in\,s_{R}}{\sum}\,\varphi^{(j)}_{{\color{red}kl}}\,Y_{{\color{red}k}}
-    %             \right)
-    %         \,\right)
-    \\
-    & = &
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k \in s_{M}^{(j)}}{\sum}\;
-            d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
-            \,\right)
-        \,+\,
-        \left(\;
-            \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
-            \,+\,
-            \underset{l \in s_{R}}{\sum}\!\left(\;
-                \overset{J}{\underset{j=1}{\sum}}\;
-                \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{lk}
-                \right)
-            Y_{l}
-            \right)
-    \\
-    & = &
-        \left(\;
-            \overset{J}{\underset{j=1}{\sum}}\;
-            \underset{k \in s_{M}^{(j)}}{\sum}\;
-            d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
-            \,\right)
-        \,+\,
-        \underset{l \in s_{R}}{\sum}
-        \left(\;
-            d_{l}\,w_{l}
-            \,+\,
-            \left(\;
-                \overset{J}{\underset{j=1}{\sum}}\;
-                \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{lk}
-                \right)
-            \right)
-        Y_{l}
-    \\
-    & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
-        W^{(+)}_{0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\left(\,w_{l}d_{l} \,+\, W^{(+)}_{l}\,\right)Y_{l}
-    \end{eqnarray*}
-\item
-    We again compute:
-    \begin{eqnarray*}
-    \widetilde{T}_{Y}
-    \,-\,
-    \widehat{T}_{Y}
-    % & = &
-    %     \left(\;
-    %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{k \in s_{M}^{(j)}}{\sum}\;
-    %         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
-    %         \,\right)
-    %     \;+\;
-    %     \underset{k \in s_{R}}{\sum}
-    %     \left(\;
-    %         d_{k}\,w_{k}
-    %         \,+\,
-    %         \left(\;
-    %             \overset{J}{\underset{j=1}{\sum}}\;
-    %             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
-    %             \right)
-    %         \right)
-    %     Y_{k}
-    %     \;-\;
-    %     \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-    & = &
-        W^{(+)}_{0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\!
-        \left(\;
-            d_{l}\,w_{l}
-            \,+\,
-            W^{(+)}_{l}
-            \right)
-        Y_{l}
-        \;-\;
-        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-    \\
-    & = &
-        W^{(+)}_{0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\,d_{l}\,w_{l}\,Y_{l}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,Y_{l}
-        \;-\;
-        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-    \\
-    & = &
-        W^{(+)}_{0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,Y_{l}
-        \;-\;
-        \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}\,,
-    \end{eqnarray*}
-    as required.
-    \qed
-\end{enumerate}
+% \varphi^{(j)}_{0k}
+% & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
+%     \varphi^{(j)}_{0k}(\,s,s_{R}\,;X_{\bullet\bullet}\,),
+%     \quad
+%     \textnormal{and}
+% \\
+% \varphi^{(j)}_{lk}
+% & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
+%     \varphi^{(j)}_{lk}(\,s,s_{R}\,;X_{\bullet\bullet}\,),
+%     \;\;
+%     \textnormal{{\color{red}for each \,$l \in s_{R}$}}
+% \end{array}\right.
+% \end{equation*}
+% % \begin{equation*}
+% % \varphi^{(j)}_{0k} = \varphi^{(j)}_{0k}(s,s_{R},X_{\bullet\bullet})
+% % \quad\textnormal{and}\quad
+% % \varphi^{(j)}_{lk} = \varphi^{(j)}_{lk}(s,s_{R},X_{\bullet\bullet}),
+% % \;\;
+% % \textnormal{for \,$j \in \{1,2,\ldots,J\}$,\, $l \in s_{R}$}
+% % \end{equation*}
+% such that
+% \begin{equation*}
+% Y_{{\color{red}k}}^{*}
+% \;\; = \;\;
+%     \varphi^{(j)}_{0k}
+%     \,+\,
+%     \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{l{\color{red}k}}\,Y_{l}\
+% % \quad
+% % \textnormal{for some \,$j \in \{1,2,\ldots,J\}$\, depending on \,$s,\,s_{R},\,\Xobs$}
+% \end{equation*}
+% \end{minipage}
+% \end{center}
+% \end{definition}
 
-        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+%         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 % \vskip 0.5cm
-\clearpage
+% \begin{lemma}[$\widetilde{T}_{Y} - \widehat{T}_{Y}$ as sum of \,$\Xobs$-conditionally independent summands;\, Equation (5.8) in \cite{Beaumont2011}]
+% \label{PopTotalImputationError}
+% \mbox{}
+% \vskip 0.1cm
+% \noindent
+% Let
+% \begin{equation*}
+% \widetilde{T}_{Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+% \;\; = \;\;
+%     \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     \;+\,
+%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+% \end{equation*}
+% be a composite linear imputation estimator for the domain total
+% \,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
+% with
+% \begin{equation*}
+% Y_{k}^{*}
+% \;\; = \;\;
+%     \varphi^{(j)}_{0k}
+%     \,+\,
+%     \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
+% \quad
+% \textnormal{for \,$k \in s_{M} := s \,\backslash\,s_{R}$}
+% \end{equation*}
+% Define:
+% \begin{equation*}
+% W^{(+)}_{{\color{red}0}}
+% \;\; := \;\;
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+%         \,\right),
+% \quad\quad
+% W^{(+)}_{{\color{red}l}}
+% \;\; := \;\;
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}l}k}
+%         \,\right),
+% \;\;
+% \textnormal{for each \,$l \in s_{R}$}
+% \end{equation*}
+% Then, the following equalities hold:
+% \renewcommand{\theenumi}{\roman{enumi}}
+% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+% \begin{enumerate}
+% \item
+%     % $
+%     % \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+%     % \;\; = \;\;
+%     %     \left(\;
+%     %         \overset{J}{\underset{j=1}{\sum}}\;
+%     %         \underset{k \in s_{M}^{(j)}}{\sum}\;
+%     %         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+%     %         \,\right)
+%     %     \;+\;
+%     %     \underset{k \in s_{R}}{\sum}
+%     %     \left(\;
+%     %         d_{k}\,w_{k}
+%     %         \,+\,
+%     %         \left(\;
+%     %             \overset{J}{\underset{j=1}{\sum}}\;
+%     %             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
+%     %             \right)
+%     %         \right)
+%     %     Y_{k}
+%     % $
+%     $
+%     \widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet},\dbullet\,)
+%     \;\; = \;\;
+%         W^{(+)}_{0}
+%         \;+\;
+%         \underset{l \in s_{R}}{\sum}\!\left(\,d_{l}\,w_{l} \,+\, W^{(+)}_{l}\,\right)Y_{l}
+%     $
+% \item
+%     % $
+%     % \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+%     % \;-\;
+%     % \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,)
+%     % \;\; = \;\;
+%     %     \left(\;
+%     %         \overset{J}{\underset{j=1}{\sum}}\;
+%     %         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+%     %         \,\right)
+%     %     \;+\;
+%     %     \underset{k \in s_{R}}{\sum}\!
+%     %     \left(\;
+%     %         \overset{J}{\underset{j=1}{\sum}}\;
+%     %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
+%     %         \right)
+%     %     Y_{k}
+%     %     \;-\;
+%     %     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     % $
+%     $
+%     \widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet}\,\dbullet\,)
+%     \;-\;
+%     \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
+%     \;\; = \;\;
+%         W^{(+)}_{0}
+%         \;+\;
+%         \underset{l \in s_{R}}{\sum}W^{(+)}_{l}\,Y_{l}
+%         \;-\;
+%         \underset{k \in s_{M}}{\sum}d_{k}\,w_{k}\,Y_{k}
+%     $,\\
+%     where
+%     \,$
+%     \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
+%     \;\; = \;\;
+%         \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     $\,
+%     is the Horvitz-Thompson estimator.
+% \end{enumerate}
+% % \begin{eqnarray*}
+% % \widetilde{T}_{Y}{\color{white}....}
+% % & = &
+% %     \left(\;
+% %         \overset{J}{\underset{j=1}{\sum}}\;
+% %         \underset{k \in s_{M}^{(j)}}{\sum}\;
+% %         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+% %         \,\right)
+% %     \;+\;
+% %     \underset{k \in s_{R}}{\sum}
+% %     \left(\;
+% %         d_{k}\,w_{k}
+% %         \,+\,
+% %         \left(\;
+% %             \overset{J}{\underset{j=1}{\sum}}\;
+% %             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
+% %             \right)
+% %         \right)
+% %     Y_{k}
+% % \\
+% % \widetilde{T}_{Y}
+% % \,-\,
+% % \widehat{T}_{Y}
+% % & = &
+% %     \left(\;
+% %         \overset{J}{\underset{j=1}{\sum}}\;
+% %         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+% %         \,\right)
+% %     \;+\;
+% %     \underset{k \in s_{R}}{\sum}\!
+% %     \left(\;
+% %         \overset{J}{\underset{j=1}{\sum}}\;
+% %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
+% %         \right)
+% %     Y_{k}
+% %     \;-\;
+% %     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+% % \end{eqnarray*}
+% \end{lemma}
+% \proof
+% \begin{enumerate}
+% \item
+%     Straightforward algebra:
+%     \begin{eqnarray*}
+%     \widetilde{T}_{Y}
+%     \;\; = \;\;
+%     \widetilde{T}_{Y}\!\left(\,s,s_{R},\Ydot\,;\,\dbullet\,\right)
+%     & = &
+%         \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+%         \,+\,
+%         \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+%     \;\; = \;\;
+%         \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+%         \,+\,
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,
+%         d_{k}\,w_{k}\,Y_{k}^{*}
+%     \\
+%     & = &
+%         \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+%         \,+\,
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,
+%         d_{k}\,w_{k}\left(\,
+%             \varphi^{(j)}_{0k}
+%             \,+\,
+%             \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
+%             \right)
+%     \\
+%     & = &
+%         \left(\;
+%             \overset{J}{\underset{j=1}{\sum}}\;
+%             \underset{k \in s_{M}^{(j)}}{\sum}\;
+%             d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+%             \,\right)
+%         \,+\,
+%         \left(\;
+%             \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+%             \,+\,
+%             \overset{J}{\underset{j=1}{\sum}}\;
+%             \underset{k \in s_{M}^{(j)}}{\sum}\,
+%             d_{k}\,w_{k}\left(\,
+%                 \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
+%                 \right)
+%             \,\right)
+%     % \\
+%     % & {\color{green}=} &
+%     %     \left(\;
+%     %         \overset{J}{\underset{j=1}{\sum}}\;
+%     %         \underset{k \in s_{M}^{(j)}}{\sum}\;
+%     %         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+%     %         \,\right)
+%     %     \,+\,
+%     %     \left(\;
+%     %         \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+%     %         \,+\,
+%     %         \overset{J}{\underset{j=1}{\sum}}\;
+%     %         \underset{{\color{red}l}\,\in\,s_{M}^{(j)}}{\sum}\,
+%     %         w_{{\color{red}l}}\,d_{{\color{red}l}}\left(\,
+%     %             \underset{{\color{red}k}\,\in\,s_{R}}{\sum}\,\varphi^{(j)}_{{\color{red}kl}}\,Y_{{\color{red}k}}
+%     %             \right)
+%     %         \,\right)
+%     \\
+%     & = &
+%         \left(\;
+%             \overset{J}{\underset{j=1}{\sum}}\;
+%             \underset{k \in s_{M}^{(j)}}{\sum}\;
+%             d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+%             \,\right)
+%         \,+\,
+%         \left(\;
+%             \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+%             \,+\,
+%             \underset{l \in s_{R}}{\sum}\!\left(\;
+%                 \overset{J}{\underset{j=1}{\sum}}\;
+%                 \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{lk}
+%                 \right)
+%             Y_{l}
+%             \right)
+%     \\
+%     & = &
+%         \left(\;
+%             \overset{J}{\underset{j=1}{\sum}}\;
+%             \underset{k \in s_{M}^{(j)}}{\sum}\;
+%             d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+%             \,\right)
+%         \,+\,
+%         \underset{l \in s_{R}}{\sum}
+%         \left(\;
+%             d_{l}\,w_{l}
+%             \,+\,
+%             \left(\;
+%                 \overset{J}{\underset{j=1}{\sum}}\;
+%                 \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{lk}
+%                 \right)
+%             \right)
+%         Y_{l}
+%     \\
+%     & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
+%         W^{(+)}_{0}
+%         \;+\;
+%         \underset{l \in s_{R}}{\sum}\left(\,w_{l}d_{l} \,+\, W^{(+)}_{l}\,\right)Y_{l}
+%     \end{eqnarray*}
+% \item
+%     We again compute:
+%     \begin{eqnarray*}
+%     \widetilde{T}_{Y}
+%     \,-\,
+%     \widehat{T}_{Y}
+%     % & = &
+%     %     \left(\;
+%     %         \overset{J}{\underset{j=1}{\sum}}\;
+%     %         \underset{k \in s_{M}^{(j)}}{\sum}\;
+%     %         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+%     %         \,\right)
+%     %     \;+\;
+%     %     \underset{k \in s_{R}}{\sum}
+%     %     \left(\;
+%     %         d_{k}\,w_{k}
+%     %         \,+\,
+%     %         \left(\;
+%     %             \overset{J}{\underset{j=1}{\sum}}\;
+%     %             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
+%     %             \right)
+%     %         \right)
+%     %     Y_{k}
+%     %     \;-\;
+%     %     \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     & = &
+%         W^{(+)}_{0}
+%         \;+\;
+%         \underset{l \in s_{R}}{\sum}\!
+%         \left(\;
+%             d_{l}\,w_{l}
+%             \,+\,
+%             W^{(+)}_{l}
+%             \right)
+%         Y_{l}
+%         \;-\;
+%         \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     \\
+%     & = &
+%         W^{(+)}_{0}
+%         \;+\;
+%         \underset{l \in s_{R}}{\sum}\,d_{l}\,w_{l}\,Y_{l}
+%         \;+\;
+%         \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,Y_{l}
+%         \;-\;
+%         \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     \\
+%     & = &
+%         W^{(+)}_{0}
+%         \;+\;
+%         \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,Y_{l}
+%         \;-\;
+%         \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}\,,
+%     \end{eqnarray*}
+%     as required.
+%     \qed
+% \end{enumerate}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+% \clearpage
+\vskip 0.5cm
 \subsection{Estimator for the nonresponse variance component of
 \,$\MSE\!\left(\left.\widetilde{R}_{Y/Z}\,\right\vert\Zdot,\Xobs\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.3cm
 \begin{lemma}[Estimator for nonresponse variance -- case of domain ratio]
-\label{NonresponseVarianceDomainRatio}
+\label{DomainRatioNonresponseVariance}
 \mbox{}
 \vskip 0.1cm
 \noindent
 Let
-\begin{equation*}
-\widetilde{T}_{Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+\begin{eqnarray*}
+\widetilde{R}_{Y/Z}
+& = &
+    \widetilde{R}_{Y/Z}(\,
+        \Sdot\,,\,
+        \Rdot\,,\,
+        \Ydot\,,\,
+        \Zdot\,;\,
+        \Xdotdot\,,\,
+        \dbullet
+        \,)
+\;\;\; := \;\;\;
+    \dfrac{
+        \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+        }{
+        \overset{{\color{white}.}}{
+            \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
+            }
+        }
 \;\; = \;\;
-    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-    \;+\,
-    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
-\end{equation*}
-be a composite linear imputation estimator for the domain total
-\,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
-with
+    \dfrac{
+        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+            R_{i}\,Y_{i}
+            \overset{{\color{white}.}}{+}
+            (1-R_{i})\,Y^{*}_{i}
+            \,\right)
+        }{
+        \overset{{\color{white}.}}{
+            \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
+            }
+        }
+\end{eqnarray*}
+be an imputation estimator for the domain ratio
+\;$
+R_{Y/Z}
+\, := \,
+    \dfrac{T_{Y}}{\overset{{\color{white}.}}{T_{Z}}}
+\, = \,
+    \dfrac{
+        {\color{white}.}
+        \underset{i \in U}{\sum}\;d_{i}\,Y_{i}
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\underset{i \in U}{\sum}\;d_{i}\,Z_{i}}
+        }
+$,\;
+where
+\,$\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+and
 \begin{equation*}
-Y_{k}^{*}
+Y^{*}_{k}
+\;\; = \;\;
+    Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
 \;\; = \;\;
     \varphi^{(j)}_{0k}
     \,+\,
     \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
-\quad
-\textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
+    \quad
+    \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
 \end{equation*}
+\vskip 0.1cm
+\noindent
 Define:
 \,$
 \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
-    \,\left\vert\,
-    \Xobs
+    \,\left\vert\;
+    \Zdot,\Xobs
     \right.
     \,\right]
 $,\,
 \,$
 \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
-    \,\left\vert\,
-    \Xobs
+    \,\left\vert\;
+    \Zdot,\Xobs
     \right.
     \,\right]
 $,\,
@@ -2858,15 +2903,27 @@ W^{(+)}_{{\color{red}l}}
 \end{equation*}
 \vskip 0.2cm
 \noindent
+% Suppose the quantities
+% \,$
+% \Sdot\,,\,
+% \Rdot\,,\,
+% \Ydot\,,\,
+% \Xdotdot\,,\,
+% \dbullet
+% $\,
+% satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFramework}.
+\vskip 0.2cm
+\noindent
 Suppose the quantities
 \,$
 \Sdot\,,\,
 \Rdot\,,\,
 \Ydot\,,\,
+\Zdot\,,\,
 \Xdotdot\,,\,
 \dbullet
 $\,
-satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFramework}.
+satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
 \vskip 0.2cm
 \noindent
 Then, the following statements are true:
@@ -2875,53 +2932,67 @@ Then, the following statements are true:
 \begin{enumerate}
 \item
     $
-    E_{Y}\!\left[\,
-        \left.
+    E_{Y}\!\left[\;
         (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Zdot,\Xobs
-        \,\right]
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot,\Xobs
+            \end{array}
+        \right.
+        \!\right]
     $\,
     is an $(\Sdot,\Rdot)$-unbiased estimator for the nonresponse variance\\
     \,$
     E_{SR}\!\left[\,
-    E_{Y}\!\left[\,
-        \left.
+    E_{Y}\!\left[\;
         (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Zdot,\Xobs
-        \,\right]
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot,\Xobs
+            \end{array}
+        \right.
+        \!\right]
         \right]
     $.
-    % i.e.,
-    % \begin{equation*}
-    % E_{SR}\!\left[\,
-    % E_{Y}\!\left[\,
-    %     \left.
-    %     (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
-    %     \,\right\vert\,
-    %     s,s_{R},\Xobs
-    %     \,\right]
-    %     \,\right]
-    % \end{equation*}
 \item
     $
     E_{Y}\!\left[\,
-        \left.
         (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Zdot,\Xobs
-        \,\right]
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot,\Xobs
+            \end{array}
+        \right.
+        \!\right]
     $\,
     can be expressed in explicit computable form as follows:
     \begin{eqnarray*}
-    E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Z}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Zdot,\Xobs
-        \,\right]
+    &&
+        E_{Y}\!\left[\,
+            (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Z}\,)^{2}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
     & = &
+        \dfrac{
+            1}{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}
                 \left(W^{(+)}_{l}\right)^{2}\sigma_{l}^{2}
@@ -2929,9 +3000,16 @@ Then, the following statements are true:
             \underset{k \in s_{M}}{\sum}\,
                 d_{k}\,w_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
-    \\
-    &&
-        +\;
+    % \\
+    % &&
+        \; + \;
+        \dfrac{
+            1}{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
         \left(\,
             W^{(+)}_{0}
             \,+\,
@@ -2940,37 +3018,6 @@ Then, the following statements are true:
             \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,\mu_{k}
             \,\right)^{2}
     \end{eqnarray*}
-    % where
-    % \,$
-    % \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
-    %     \,\left\vert\,
-    %     \Xobs
-    %     \right.
-    %     \,\right]
-    % $,\,
-    % \,$
-    % \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
-    %     \,\left\vert\,
-    %     \Xobs
-    %     \right.
-    %     \,\right]
-    % $,\,
-    % and
-    % \begin{equation*}
-    % W^{(+)}_{{\color{red}0}}
-    % \;\; := \;\;
-    %     \left(\;
-    %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
-    %         \,\right),
-    % \quad\quad
-    % W^{(+)}_{{\color{red}k}}
-    % \;\; := \;\;
-    %     \left(\;
-    %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}k}l}
-    %         \,\right)
-    % \end{equation*}
 \end{enumerate}
 \end{lemma}
 \proof
@@ -2980,28 +3027,40 @@ Then, the following statements are true:
 \item
     \textbf{Claim 1:}\quad
     \begin{eqnarray*}
-    E_{Y}\!\left[\,
-        \left.
+    E_{Y}\!\left[\;\,
         (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Zdot,\Xobs
-        \,\right]
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot,\Xobs
+            \end{array}
+        \right.
+        \!\right]
     & \approx &
-        \Var_{Y}\!\left[\,
-            \left.
+        \Var_{Y}\!\left[\;\,
             \widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}
-            \,\right\vert\,
-            s,s_{R},\Zdot,\Xobs
-            \,\right]
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \right.
+            \!\right]
     \\
     &&
         +\,
-        E_{Y}\!\left[\,
-            \left.
+        E_{Y}\!\left[\;\,
             \widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}
-            \,\right\vert\,
-            s,s_{R},\Zdot,\Xobs
-            \,\right]^{2}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \right.
+            \!\right]^{2}
     \end{eqnarray*}
     \vskip 0.1cm
     \noindent
@@ -3023,14 +3082,18 @@ Then, the following statements are true:
     \vskip 0.5cm
     \textbf{Claim 2:}\quad
     \begin{equation*}
-    \Var_{Y}\!\left[\,
-        \left.
+    \Var_{Y}\!\left[\;\,
         \widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}
-        \,\right\vert\,
-        s,s_{R},\Zdot,\Xobs
-        \,\right]
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot,\Xobs
+            \end{array}
+        \right.
+        \!\right]
     \;\; = \;\;
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}
@@ -3043,48 +3106,31 @@ Then, the following statements are true:
     \vskip 0.1cm
     \noindent
     Proof of Claim 2:\;\;
-    % which implies
-    % \,$E\!\left[\,X^{2}\,\right] \,=\, \Var[\,X\,] \,+\,\mu_{X}^{2}$.\,
-    % Hence,
-    % \begin{eqnarray*}
-    % E_{Y}\!\left[\,
-    %     \left.
-    %     (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
-    %     \,\right\vert\,
-    %     s,s_{R},\Xobs
-    %     \,\right]
-    % & = &
-    %     \Var_{Y}\!\left[\,
-    %         \left.
-    %         \widetilde{T}_{Y} - \widehat{T}_{Y}
-    %         \,\right\vert\,
-    %         s,s_{R},\Xobs
-    %         \,\right]
-    %     \,+\,
-    %     E_{Y}\!\left[\,
-    %         \left.
-    %         \widetilde{T}_{Y} - \widehat{T}_{Y}
-    %         \,\right\vert\,
-    %         s,s_{R},\Xobs
-    %         \,\right]^{2}
-    % \end{eqnarray*}
     \begin{eqnarray*}
     &&
-        \Var_{Y}\!\left[\,
-            \left.
+        \Var_{Y}\!\left[\;\,
             \widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}
-            \,\right\vert\,
-            s,s_{R},\Zdot,\Xobs
-            \,\right]
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \right.
+            \!\right]
     \;\; = \;\;
         \Var_{Y}\!\left[\;
             \left.
             \dfrac{ \widetilde{T}_{Y} }{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }
             \,-\,
             \dfrac{ \widehat{T}_{Y} }{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }
-            \;\right\vert\,
-            s,s_{R},\Zdot,\Xobs
-            \,\right]
+            \;\right\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \!\right]
     \\
     & = &
         \Var_{Y}\!\left[\;
@@ -3094,23 +3140,31 @@ Then, the following statements are true:
                 \,-\,
                 \widehat{T}_{Y}
                 \,\right)
-            \;\right\vert\,
-            s,s_{R},\Zdot,\Xobs
-            \,\right]
+            \;\right\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \!\right]
     \;\; = \;\;
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\;
-            \left.
                 \widetilde{T}_{Y}
                 \,-\,
                 \widehat{T}_{Y}
-            \;\right\vert\,
-            s,s_{R},\Zdot,\Xobs
-            \,\right]
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \right.
+            \!\right]
     \\
     & = &
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\,
             \left.
@@ -3119,28 +3173,36 @@ Then, the following statements are true:
             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
             \,-\,
             \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-            \,\right\vert\,
-            s,s_{R},\Zdot,\Xobs
-            \,\right],
+            \;\right\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \!\right],
         \;\;
-        \textnormal{by Lemma \ref{EqnFivePtEight}(ii)}
+        \textnormal{by Lemma \ref{PopTotalImputationError}(ii)}
     \\
     & = &
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\;
             \left.
             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
             \,-\,
             \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-            \,\right\vert\,
-            s,s_{R},\Zdot,\Xobs
-            \,\right]
+            \;\right\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \!\right]
         % \;\;
         % \textnormal{since $W^{(+)}_{0}$ is constant upon conditioning on $s, s_{R}$}
     \\
     & = &
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}
@@ -3148,19 +3210,27 @@ Then, the following statements are true:
             \cdot
             \Var_{Y}\!\left[\;
                 Y_{l}
-                \,\left\vert\,
-                s,s_{R},\Zdot,\Xobs
+                \,\left\vert
+                \begin{array}{c}
+                    s,s_{R},
+                    \\
+                    \Zdot,\Xobs
+                    \end{array}
                 \right.
-                \right]
+                \!\right]
             \,\;+\;
             \underset{k \in s_{M}}{\sum}
             \!\left(d_{k}\,w_{k}\right)^{2}
             \cdot
             \Var_{Y}\!\left[\;Y_{k}
-                \,\left\vert\,
-                s,s_{R},\Zdot,\Xobs
+                \,\left\vert
+                \begin{array}{c}
+                    s,s_{R},
+                    \\
+                    \Zdot,\Xobs
+                    \end{array}
                 \right.
-                \,\right]
+                \!\right]
             \;\right),
     \\
     &&
@@ -3175,7 +3245,7 @@ Then, the following statements are true:
             $}
     \\
     & = &
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}
@@ -3203,7 +3273,7 @@ Then, the following statements are true:
         \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Zdot,\Xobs$}
     \\
     & = &
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}
@@ -3227,14 +3297,22 @@ Then, the following statements are true:
     \vskip 0.5cm
     \textbf{Claim 3:}\quad
     \begin{equation*}
-    E_{Y}\!\left[\,
-        \left.
+    E_{Y}\!\left[\;
         \widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}
-        \,\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot,\Xobs
+            \end{array}
+        \right.
+        \!\right]
     \;\; = \;\;
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }\,\right)
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)}
+            }
         \cdot
         \left(\;
             W^{(+)}_{0}
@@ -3249,85 +3327,214 @@ Then, the following statements are true:
     Proof of Claim 3:\;\;
     \begin{eqnarray*}
     &&
-        E_{Y}\!\left[\,
+        E_{Y}\!\left[\;
+            \widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \;\; = \;\;
+        E_{Y}\!\left[\;
             \left.
-            \widetilde{T}_{Y} - \widehat{T}_{Y}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \dfrac{
+                \widetilde{T}_{Y}
+                }{
+                \overset{{\color{white}.}}{
+                    \widehat{T}(s\,;\Zdot)
+                    }
+                }
+            \, - \,
+            \dfrac{
+                \widehat{T}_{Y}
+                }{
+                \overset{{\color{white}.}}{
+                    \widehat{T}(s\,;\Zdot)
+                    }
+                }
+            \;\right\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \!\right]
     \\
     & = &
-        E_{Y}\!\left[\,
+        E_{Y}\!\left[\;
+            \left.
+            \dfrac{
+                1
+                }{
+                \overset{{\color{white}.}}{
+                    \widehat{T}(s\,;\Zdot)
+                    }
+                }
+            \cdot
+            \left(\,
+                \widetilde{T}_{Y}
+                \, - \,
+                \widehat{T}_{Y}
+                \,\right)
+            \;\right\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \!\right]
+    \;\; = \;\;
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)
+                }
+            }
+        \cdot
+        E_{Y}\!\left[\;\,
+            \left.
+            \widetilde{T}_{Y}
+            \, - \,
+            \widehat{T}_{Y}
+            \;\right\vert\!
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \!\right]
+    \\
+    & = &
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)
+                }
+            }
+        \cdot
+        E_{Y}\!\left[\;
             \left.
             W^{(+)}_{0}
             \,+\,
             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
             \,-\,
             \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right],
+            \;\,\right\vert\!
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot,\Xobs
+                \end{array}
+            \!\right],
         \quad
-        \textnormal{by Lemma \ref{EqnFivePtEight}(ii)}
+        \textnormal{by Lemma \ref{PopTotalImputationError}(ii)}
     \\
     & = &
-        W^{(+)}_{0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\;
-        W^{(+)}_{l}
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)
+                }
+            }
         \cdot
-        E_{Y}\!\left[\;
-            Y_{l}
-            \,\left\vert\,
-            s,s_{R},\Xobs
-            \right.
-            \right]
-        \,\;-\;
-        \underset{k \in s_{M}}{\sum}\;
-        d_{k}\,w_{k}
-        \cdot
-        E_{Y}\!\left[\;Y_{k}
-            \,\left\vert\,
-            s,s_{R},\Xobs
-            \right.
-            \,\right]
+        \left(\;
+            W^{(+)}_{0}
+            \;+\;
+            \underset{l \in s_{R}}{\sum}\;
+            W^{(+)}_{l}
+            \cdot
+            E_{Y}\!\left[\;
+                Y_{l}
+                \,\left\vert
+                \begin{array}{c}
+                    s,s_{R},
+                    \\
+                    \Zdot,\Xobs
+                    \end{array}
+                \right.
+                \!\right]
+            \,\;-\;
+            \underset{k \in s_{M}}{\sum}\;
+            d_{k}\,w_{k}
+            \cdot
+            E_{Y}\!\left[\;
+                Y_{k}
+                \,\left\vert
+                \begin{array}{c}
+                    s,s_{R},
+                    \\
+                    \Zdot,\Xobs
+                    \end{array}
+                \right.
+                \!\right]
+            \;\right)
     \\
     & = &
-        W^{(+)}_{0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\;
-        W^{(+)}_{l}
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)
+                }
+            }
         \cdot
-        E_{Y}\!\left[\;
-            Y_{l}
-            \,\left\vert\,
-            \Xobs
-            \right.
-            \right]
-        \,\;-\;
-        \underset{k \in s_{M}}{\sum}\;
-        d_{k}\,w_{k}
-        \cdot
-        E_{Y}\!\left[\;Y_{k}
-            \,\left\vert\,
-            \Xobs
-            \right.
-            \,\right],
-        \;\;
-        \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Xobs$}
+        \left(\;
+            W^{(+)}_{0}
+            \;+\;
+            \underset{l \in s_{R}}{\sum}\;
+            W^{(+)}_{l}
+            \cdot
+            E_{Y}\!\left[\;
+                Y_{l}
+                \,\left\vert\,
+                \Zdot,\Xobs
+                \right.
+                \right]
+            \,\;-\;
+            \underset{k \in s_{M}}{\sum}\;
+            d_{k}\,w_{k}
+            \cdot
+            E_{Y}\!\left[\;Y_{k}
+                \,\left\vert\,
+                \Zdot,\Xobs
+                \right.
+                \,\right]
+            \;\right),
+    \\
+    &&
+        \quad
+        \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Zdot,\Xobs$}
     \\
     & = &
-        W^{(+)}_{0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,\mu_{l}
-        \,\;-\;
-        \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,\mu_{k}\,,
-        \;\;
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)
+                }
+            }
+        \cdot
+        \left(\;
+            W^{(+)}_{0}
+            \;+\;
+            \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,\mu_{l}
+            \,\;-\;
+            \underset{k \in s_{M}}{\sum}\,
+                d_{k}\,w_{k}\,\mu_{k}
+            \;\right),
+    \\
+    &&
+        \quad
         \textnormal{by definition of
             \,$\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
                 \,\left\vert\,
-                \Xobs
+                \Zdot,\Xobs
                 \right.
                 \,\right]$}
     \end{eqnarray*}
@@ -3343,14 +3550,14 @@ Then, the following statements are true:
 
 % \vskip 0.5cm
 \clearpage
-\subsection{Unbiased estimator for the sampling-nonresponse covariance component\\ of
-\,$\MSE\!\left(\,\widetilde{T}_{Y}\left\vert\,\Xobs\right.\right)$}
+\subsection{Estimator for the sampling-nonresponse covariance component of
+\,$\MSE\!\left(\,\left.\widetilde{R}_{Y/Z}\;\right\vert\,\Zdot,\Xobs\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{lemma}[Unbiased estimator for sampling-nonresponse covariance; Equations (5.11) \& (5.12) in \cite{Beaumont2011}]
-\label{MixedVariance}
+\begin{lemma}[Estimator for sampling-nonresponse covariance]
+\label{PopRatioMixedVariance}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -3620,7 +3827,7 @@ Then, the following statements are true:
             s,s_{R},\Xobs
             \,\right),
             \quad
-            \textnormal{by Lemma \ref{EqnFivePtEight}(ii)}
+            \textnormal{by Lemma \ref{PopTotalImputationError}(ii)}
     \\
     & = &
         \Cov_{Y}\!\left(\;
