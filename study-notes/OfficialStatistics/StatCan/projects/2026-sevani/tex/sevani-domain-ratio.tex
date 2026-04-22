@@ -1184,7 +1184,7 @@ Then, the following statements are true:
 \begin{enumerate}
 \item
     If
-    \;$v(\,s\,;y_{\bullet},z_{\bullet}\,)$\,
+    \;$v(\,s\,;y_{\bullet},\zdot\,)$\,
     is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
     \begin{equation*}
     E_{S}\!\left[\;
@@ -1253,7 +1253,7 @@ Then, the following statements are true:
     is taken to be the {\color{red}approximately} design-unbiased linearization-based estimator
     for the sampling variance (see Result 5.6.2, p.178, \cite{Sarndal1992}), i.e.,
     \begin{eqnarray*}
-    v(\,s\,;y_{\bullet},z_{\bullet}\,)
+    v(\,s\,;y_{\bullet},\zdot\,)
     & := &
         \dfrac{1}{
             \overset{{\color{white}.}}{\widehat{T}_{z}(s)^{2}}
@@ -1339,16 +1339,16 @@ Then, the following statements are true:
     \\
     & = &
         {\color{blue}
+        v_{L(Y/Z)}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)
+        \; + \;
         \dfrac{
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;z_{\bullet})^{2}
+                \widehat{T}(s\,;\zdot)^{2}
                 }
             }
         \left(\,
-            v(\,s\,;\widetilde{y}_{\bullet}\,)
-            \;+\;
             \underset{k \in s_{M}}{\sum}\;
             d_{k}
             \left(1-\dfrac{1}{w_{k}}\right)
@@ -1357,110 +1357,37 @@ Then, the following statements are true:
         }
     \\
     &&
-        \; - \;
-        \dfrac{
-            2
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}(s\,;z_{\bullet})^{3}
-                }
-            }
-            \left(\,
-                \widehat{T}(s\,;\widetilde{y}_{\bullet})
-                \cdot
-                \underset{k \in s}{\sum}\;
-                \underset{l \in s}{\sum}\;
-                    \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
-                    \dfrac{d_{k}\,\widetilde{y}_{k}}{\pi_{k}}\,
-                    \dfrac{d_{l}\,z_{l}}{\pi_{l}}
-                \; + \;
-                \underset{k \in {\color{red}s_{M}}}{\sum}\;
-                \underset{l \in s}{\sum}\;
-                    \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
-                    \dfrac{d_{k}^{\,2}\,\sigma^{2}_{k}}{\pi_{k}^{2}}\,
-                    \dfrac{d_{l}\,z_{l}}{\pi_{l}}
-                \,\right)
-    \\
-    &&
         \; + \;
         \dfrac{
-            \widehat{T}(s\,;\widetilde{y}_{\bullet})^{2}
-            \;+
+            (-2)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{3}
+                }
+            }
+        \left(\,
+            \underset{k \in {\color{red}s_{M}}}{\sum}\;
+            \underset{l \in s}{\sum}
+                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                \dfrac{d_{k}^{\,2}\,\sigma^{2}_{k}}{\pi_{k}^{2}}\,
+                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+            \right)
+        \; + \;
+        \dfrac{
             \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;z_{\bullet})^{2}
+                \widehat{T}(s\,;\zdot)^{2}
                 }
             }
         \cdot
         \dfrac{
-            v(s\,;z_{\bullet})
+            v(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;z_{\bullet})^{2}
+                \widehat{T}(s\,;\zdot)^{2}
                 }
             }
-    % \;\;\; = \;\;\;
-    %     v(\,s\,;\,\widetilde{y}_{\bullet},z_{\bullet}\,)
-    %     \;+\;
-    %     \dfrac{
-    %         \underset{k \in s_{M}}{\sum}\;
-    %         d_{k}\left(1-\pi_{k}\right)w_{k}^{2}\,\sigma_{k}^{2}
-    %         }{
-    %         \left(\;
-    %             \underset{k \in s}{\sum}\;d_{k}\,w_{k}\,z_{k}
-    %             \,\right)^{\!2}
-    %         }
-    % \\
-    % & = &
-    %     \dfrac{1}{
-    %         \overset{{\color{white}.}}{\widehat{T}_{z}^{2}}
-    %         }
-    %     \cdot
-    %     \underset{k \in s}{\sum}\,
-    %     \underset{l \in s}{\sum}\;
-    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-    %     % \left(\,\dfrac{d_{k}(y_{k}-\widehat{R}z_{k})}{\pi_{k}}\,\right)
-    %     % \left(\,\dfrac{d_{l}(y_{l}-\widehat{R}z_{k})}{\pi_{l}}\,\right)
-    %     \left(\,
-    %         \dfrac{d_{k}}{\pi_{k}}
-    %         \left(\,
-    %             {\color{red}\widetilde{y}_{k}}
-    %             \, - \,
-    %             \dfrac{
-    %                 \widehat{T}(s\,;{\color{red}\widetilde{y}_{\bullet}})
-    %                 }{
-    %                 \overset{{\color{white}.}}{\widehat{T}_{z}(s)}
-    %                 }
-    %             \cdot
-    %             z_{k}
-    %             \,\right)
-    %         \right)
-    %     \left(\,
-    %         \dfrac{d_{l}}{\pi_{l}}
-    %         \left(\,
-    %             {\color{red}\widetilde{y}_{l}}
-    %             \, - \,
-    %             \dfrac{
-    %                 \widehat{T}(s\,;{\color{red}\widetilde{y}_{\bullet}})
-    %                 }{
-    %                 \overset{{\color{white}.}}{\widehat{T}_{z}(s)}
-    %                 }
-    %             \cdot
-    %             z_{l}
-    %             \,\right)
-    %         \right)
-    % % \\
-    % % &&
-    %     \; + \;
-    %     \dfrac{
-    %         \underset{k \in s_{M}}{\sum}\;
-    %         d_{k}\left(1-\pi_{k}\right)w_{k}^{2}\,\sigma_{k}^{2}
-    %         }{
-    %         \left(\;
-    %             \underset{k \in s}{\sum}\;d_{k}\,w_{k}\,z_{k}
-    %             \,\right)^{\!2}
-    %         }
     \end{eqnarray*}
     where
     \,$\widetilde{y}_{\bullet}$\,
@@ -1550,7 +1477,7 @@ Then, the following statements are true:
                 \,\right)
             \,\right],
     \;\;
-    \textnormal{by hypothesis on \,$v(\,s\,;y_{\bullet},z_{\bullet}\,)$}
+    \textnormal{by hypothesis on \,$v(\,s\,;y_{\bullet},\zdot\,)$}
     \end{eqnarray*}
 \item
     We first state and proof a number of claims.
@@ -2129,7 +2056,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;z_{\bullet})^{2}
+                \widehat{T}(s\,;\zdot)^{2}
                 }
             }
         \left(\,
@@ -2148,7 +2075,7 @@ Then, the following statements are true:
             2
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;z_{\bullet})^{3}
+                \widehat{T}(s\,;\zdot)^{3}
                 }
             }
             \left(\,
@@ -2176,20 +2103,156 @@ Then, the following statements are true:
             \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;z_{\bullet})^{2}
+                \widehat{T}(s\,;\zdot)^{2}
                 }
             }
         \cdot
         \dfrac{
-            v(s\,;z_{\bullet})
+            v(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;z_{\bullet})^{2}
+                \widehat{T}(s\,;\zdot)^{2}
                 }
             }
         \,,
         \quad
         \textnormal{by Claim 1, Claim 2 and Claim 3}
+    \\
+    & = &
+        \dfrac{
+            v(\,s\,;\widetilde{y}_{\bullet}\,)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \; + \;
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \underset{k \in s_{M}}{\sum}\;
+            d_{k}
+            \left(1-\dfrac{1}{w_{k}}\right)
+            w_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \dfrac{
+            (-2)\left.\widehat{T}(s\,;\ydot)\right\slash\widehat{T}(s\,;\zdot)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \underset{k \in s}{\sum}\;
+            \underset{l \in s}{\sum}
+                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                \dfrac{d_{k}\,\widetilde{y}_{k}}{\pi_{k}}\,
+                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+            \right)
+        \, + \,
+        \dfrac{
+            (-2)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{3}
+                }
+            }
+        \left(\,
+            \underset{k \in {\color{red}s_{M}}}{\sum}\;
+            \underset{l \in s}{\sum}
+                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                \dfrac{d_{k}^{\,2}\,\sigma^{2}_{k}}{\pi_{k}^{2}}\,
+                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+            \right)
+    \\
+    &&
+        \; + \;
+        \dfrac{
+            \left.
+            \widehat{T}(s\,;\widetilde{y}_{\bullet})^{2}
+            \right\slash
+            \widehat{T}(s\,;\zdot)^{2}
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
+        v(s\,;\zdot)
+        \; + \;
+        \dfrac{
+            \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
+        \dfrac{
+            v(s\,;\zdot)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+    \\
+    & = &
+        v_{L(Y/Z)}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)
+        \; + \;
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \underset{k \in s_{M}}{\sum}\;
+            d_{k}
+            \left(1-\dfrac{1}{w_{k}}\right)
+            w_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \dfrac{
+            (-2)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{3}
+                }
+            }
+        \left(\,
+            \underset{k \in {\color{red}s_{M}}}{\sum}\;
+            \underset{l \in s}{\sum}
+                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                \dfrac{d_{k}^{\,2}\,\sigma^{2}_{k}}{\pi_{k}^{2}}\,
+                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+            \right)
+        \; + \;
+        \dfrac{
+            \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
+        \dfrac{
+            v(s\,;\zdot)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,;\zdot)^{2}
+                }
+            }
     \end{eqnarray*}
     as required.
     \vskip -0.7cm
