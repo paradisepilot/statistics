@@ -1527,10 +1527,12 @@ Then, the following statements are true:
     \noindent
     \textbf{Claim 1:}\quad
     \begin{eqnarray*}
-    E_{Y_{M}}\!\left[\;
+    E_{Y_{M}}\!\left[\;\,
         Y_{k}Y_{l}
-        \,\left\vert\,
-        \YsubR=y_{R},\Xobs
+        \;\left\vert
+        \begin{array}{c}
+            s,s_{R},\\ \YsubR=y_{R},\\ \Zdot,\Xobs
+            \end{array}
         \right.
         \right]
     & = &
@@ -1542,12 +1544,26 @@ Then, the following statements are true:
     \end{eqnarray*}
     Proof of Claim 1: Observe that
     \begin{eqnarray*}
-    E_{Y_{M}}\!\left[\;
+        E_{Y_{M}}\!\left[\;\,
         Y_{k}Y_{l}
-        \,\left\vert\,
-        \YsubR=y_{R},\Xobs
+        \;\left\vert
+        \begin{array}{c}
+            s,s_{R},\\ \YsubR=y_{R},\\ \Zdot,\Xobs
+            \end{array}
         \right.
         \right]
+    & = &
+        E_{Y_{M}}\!\left[\;
+            Y_{k}Y_{l}
+            \;\left\vert
+            \begin{array}{c}
+                \YsubR=y_{R},
+                \\
+                \Xobs
+                \end{array}
+                \right.
+            \right]
+    \\
     & = &
         \left\{\begin{array}{cl}
             y_{k} \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{R}$}}
