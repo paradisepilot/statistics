@@ -265,19 +265,19 @@ Then, we have:
         \!\right]
 \\
 & = &
-    \underset{l \in s_{R}}{\sum}\;
-    \underset{m \in s_{R}}{\sum}
-    \Cov_{Y}\!\left[\;
-        A_{l} \,, A_{m}
+    \underset{a \in s_{R}}{\sum}\;
+    \underset{c \in s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, C_{c}
         \,\left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \right.
         \!\right]
-    \; + \;
-    \underset{k \in s_{M}}{\sum}\;
-    \underset{m \in s_{M}}{\sum}
-    \Cov_{Y}\!\left[\;
-        B_{k} \,, B_{m}
+    \; - \;
+    \underset{a \in s_{R}}{\sum}\;
+    \underset{d \in U \backslash s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, D_{d}
         \,\left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \right.
@@ -285,11 +285,19 @@ Then, we have:
 \\
 &&
     \; - \;
-    2 \cdot
-    \underset{l \in s_{R}}{\sum}\;
-    \underset{k \in s_{M}}{\sum}
-    \Cov_{Y}\!\left[\;
-        A_{l} \,, B_{k}
+    \underset{b \in s_{M}}{\sum}\;
+    \underset{c \in s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, C_{c}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+    \; + \;
+    \underset{b \in s_{M}}{\sum}\;
+    \underset{d \in U \backslash s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, D_{d}
         \,\left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \right.
@@ -299,114 +307,79 @@ Then, we have:
 \proof
 \begin{eqnarray*}
 &&
-    \Var_{Y}\!\left[\;
+    \Cov_{Y}\!\left[\;
         \left.
-        \underset{l \in s_{R}}{\sum}\,A_{l}
+        \underset{a \in s_{R}}{\sum}A_{a}
         \,-\,
-        \underset{k \in s_{M}}{\sum}\,B_{k}
+        \underset{b \in s_{M}}{\sum}B_{b}
+        \;,\;
+        \underset{c \in s}{\sum}\,C_{c}
+        \;-
+        \underset{d \in U \backslash s}{\sum}D_{d}
         \;\right\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \!\right]
-\;\; = \;\;
-    \Var_{Y}\!\left[\;
+\\
+& = &
+    \Cov_{Y}\!\left[\;
         \left.
-        \underset{l \in U}{\sum}\;I_{l}R_{l}A_{l}
+        \underset{a \in U}{\sum}\,I_{a}R_{a}A_{a}
         \,-\,
-        \underset{k \in U}{\sum}\,I_{k}(1-R_{k})B_{k}
+        \underset{b \in U}{\sum}\,I_{b}(1-R_{b})B_{b}
+        \;,\;
+        \underset{c \in U}{\sum}\,I_{c}C_{c}
+        \;-
+        \underset{d \in U}{\sum}\,(1-I_{d})D_{d}
         \;\right\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \!\right]
 \\
 & = &
-    \Var_{Y}\!\left[\;
-        \left.
-        \underset{l \in U}{\sum}\;I_{l}R_{l}A_{l}
-        \;\right\vert\!
-        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-        \!\right]
-    \; + \;
-    \Var_{Y}\!\left[\;
-        \left.
-        \underset{k \in U}{\sum}\,I_{k}(1-R_{k})B_{k}
-        \;\right\vert\!
-        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-        \!\right]
-\\
-&&
-    \; - \;
-    2 \cdot
     \Cov_{Y}\!\left[\;
         \left.
-        \underset{l \in U}{\sum}\;I_{l}R_{l}A_{l}
-        \; , \;
-        \underset{k \in U}{\sum}\,I_{k}(1-R_{k})B_{k}
+        \underset{a \in U}{\sum}\,I_{a}R_{a}A_{a}
+        \;,\;
+        \underset{c \in U}{\sum}\,I_{c}C_{c}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+    \; - \;
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{a \in U}{\sum}\,I_{a}R_{a}A_{a}
+        \;,\;
+        \underset{d \in U}{\sum}\,(1-I_{d})D_{d}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+&&
+    \; - \;
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{b \in U}{\sum}\,I_{b}(1-R_{b})B_{b}
+        \;,\;
+        \underset{c \in U}{\sum}\,I_{c}C_{c}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+    \; + \;
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{b \in U}{\sum}\,I_{b}(1-R_{b})B_{b}
+        \;,\;
+        \underset{d \in U}{\sum}\,(1-I_{d})D_{d}
         \;\right\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \!\right]
 \\
 & = &
-    \underset{l \in U}{\sum}\;
-    \underset{m \in U}{\sum}\;
-    \Cov_{Y}\!\left[\;
-        I_{l}R_{l}A_{l}
-        \,,\,
-        I_{m}R_{m}A_{m}
-        \;\left\vert\!
-        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-        \right.
-        \!\right]
-\\
-&&
-    \; + \;
-    \underset{k \in U}{\sum}\;
-    \underset{m \in U}{\sum}\;
-    \Cov_{Y}\!\left[\;
-        I_{k}(1-R_{k})B_{k}
-        \,,\,
-        I_{m}(1-R_{m})B_{m}
-        \;\left\vert\!
-        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-        \right.
-        \!\right]
-\\
-&&
-    \; - \;
-    2 \cdot
-    \underset{l \in U}{\sum}\;
-    \underset{k \in U}{\sum}\;
-    \Cov_{Y}\!\left[\;
-        I_{l}R_{l}A_{l}
-        \, , \,
-        I_{k}(1-R_{k})B_{k}
-        \;\left\vert\!
-        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-        \right.
-        \!\right]
-\\
-& = &
-    \underset{l \in U}{\sum}\;
-    \underset{m \in U}{\sum}\;
-    I_{l}(s) \cdot I_{m}(s) \cdot R_{l}(s,s_{R}) \cdot R_{m}(s,s_{R})
+    \underset{a \in U}{\sum}\;
+    \underset{c \in U}{\sum}\;
+    I_{a}(s) \cdot R_{a}(s,s_{R}) \cdot I_{c}(s)
     \cdot
-    \Cov_{Y}\!\left[\;
-        A_{l}
-        \,,\,
-        A_{m}
-        \,\left\vert\!
-        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-        \right.
-        \!\right]
-\\
-&&
-    \; + \;
-    \underset{k \in U}{\sum}\;
-    \underset{m \in U}{\sum}\;
-    I_{k}(s) \cdot I_{m}(s) \cdot (1-R_{k}(s,s_{R})) \cdot (1-R_{m}(s,s_{R}))
-    \cdot
-    \Cov_{Y}\!\left[\;
-        B_{k}
-        \,,\,
-        B_{m}
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, C_{c}
         \,\left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \right.
@@ -414,38 +387,57 @@ Then, we have:
 \\
 &&
     \; - \;
-    2 \cdot
-    \underset{l \in U}{\sum}\;
-    \underset{k \in U}{\sum}\;
-    I_{l}(s) \cdot I_{k}(s) \cdot R_{l}(s,s_{R}) \cdot (1-R_{k}(s,s_{R}))
+    \underset{a \in U}{\sum}\;
+    \underset{d \in U}{\sum}\;
+    I_{a}(s) \cdot R_{a}(s,s_{R}) \cdot (1-I_{d}(s))
     \cdot
-    \Cov_{Y}\!\left[\;
-        A_{l}
-        \, , \,
-        B_{k}
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, D_{d}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    \underset{b \in U}{\sum}\;
+    \underset{c \in U}{\sum}\;
+    I_{b}(s) \cdot (1-R_{b}(s,s_{R})) \cdot I_{c}(s)
+    \cdot
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, C_{c}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; + \;
+    \underset{b \in U}{\sum}\;
+    \underset{d \in U}{\sum}\;
+    I_{b}(s) \cdot (1-R_{b}(s,s_{R})) \cdot (1-I_{d}(s))
+    \cdot
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, D_{d}
         \,\left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \right.
         \!\right]
 \\
 & = &
-    \underset{l \in s_{R}}{\sum}\;
-    \underset{m \in s_{R}}{\sum}
-    \Cov_{Y}\!\left[\;
-        A_{l}
-        \,,\,
-        A_{m}
+    \underset{a \in s_{R}}{\sum}\;
+    \underset{c \in s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, C_{c}
         \,\left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \right.
         \!\right]
-    \; + \;
-    \underset{k \in s_{M}}{\sum}\;
-    \underset{m \in s_{M}}{\sum}
-    \Cov_{Y}\!\left[\;
-        B_{k}
-        \,,\,
-        B_{m}
+    \; - \;
+    \underset{a \in s_{R}}{\sum}\;
+    \underset{d \in U \backslash s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, D_{d}
         \,\left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \right.
@@ -453,13 +445,19 @@ Then, we have:
 \\
 &&
     \; - \;
-    2 \cdot
-    \underset{l \in s_{R}}{\sum}\;
-    \underset{k \in s_{M}}{\sum}
-    \Cov_{Y}\!\left[\;
-        A_{l}
-        \, , \,
-        B_{k}
+    \underset{b \in s_{M}}{\sum}\;
+    \underset{c \in s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, C_{c}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+    \; + \;
+    \underset{b \in s_{M}}{\sum}\;
+    \underset{d \in U \backslash s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, D_{d}
         \,\left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \right.
