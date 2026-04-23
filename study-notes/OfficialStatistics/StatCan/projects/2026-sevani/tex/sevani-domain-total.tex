@@ -1846,6 +1846,233 @@ Then, the following equalities hold:
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\begin{lemma}\label{sRsMPullOutOfVariance}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let
+\,$\mathbf{A}_{\bullet} = (A_{1},\ldots,A_{N}) : \Omega\otimes\mathcal{P}(U) \longrightarrow \Re^{N}$\,
+and
+\,$\mathbf{B}_{\bullet} = (B_{1},\ldots,B_{N}) : \Omega\otimes\mathcal{P}(U) \longrightarrow \Re^{N}$\,
+be (arbitrary) random $\Re^{N}$-valued variables defined on the product probability space
+\,$\Omega\otimes\mathcal{P}(U)$.\,
+Then, we have:
+\begin{eqnarray*}
+\Var_{Y}\!\left[\;
+    \left.
+    \underset{l \in s_{R}}{\sum}A_{l}
+    \,-\,
+    \underset{k \in s_{M}}{\sum}B_{k}
+    \;\right\vert\!
+    \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+    \!\right]
+& = &
+    \underset{l \in s_{R}}{\sum}\;
+    \underset{m \in s_{R}}{\sum}
+    \Cov_{Y}\!\left[\;
+        A_{l} \,, A_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+    \; + \;
+    \underset{k \in s_{M}}{\sum}\;
+    \underset{m \in s_{M}}{\sum}
+    \Cov_{Y}\!\left[\;
+        B_{k} \,, B_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    2 \cdot
+    \underset{l \in s_{R}}{\sum}\;
+    \underset{k \in s_{M}}{\sum}
+    \Cov_{Y}\!\left[\;
+        A_{l} \,, B_{k}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\end{eqnarray*}
+\end{lemma}
+\proof
+\begin{eqnarray*}
+&&
+    \Var_{Y}\!\left[\;
+        \left.
+        \underset{l \in s_{R}}{\sum}\,A_{l}
+        \,-\,
+        \underset{k \in s_{M}}{\sum}\,B_{k}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\;\; = \;\;
+    \Var_{Y}\!\left[\;
+        \left.
+        \underset{l \in U}{\sum}\;I_{l}R_{l}A_{l}
+        \,-\,
+        \underset{k \in U}{\sum}\,I_{k}(1-R_{k})B_{k}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+& = &
+    \Var_{Y}\!\left[\;
+        \left.
+        \underset{l \in U}{\sum}\;I_{l}R_{l}A_{l}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+    \; + \;
+    \Var_{Y}\!\left[\;
+        \left.
+        \underset{k \in U}{\sum}\,I_{k}(1-R_{k})B_{k}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+&&
+    \; - \;
+    2 \cdot
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{l \in U}{\sum}\;I_{l}R_{l}A_{l}
+        \; , \;
+        \underset{k \in U}{\sum}\,I_{k}(1-R_{k})B_{k}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+& = &
+    \underset{l \in U}{\sum}\;
+    \underset{m \in U}{\sum}\;
+    \Cov_{Y}\!\left[\;
+        I_{l}R_{l}A_{l}
+        \,,\,
+        I_{m}R_{m}A_{m}
+        \;\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; + \;
+    \underset{k \in U}{\sum}\;
+    \underset{m \in U}{\sum}\;
+    \Cov_{Y}\!\left[\;
+        I_{k}(1-R_{k})B_{k}
+        \,,\,
+        I_{m}(1-R_{m})B_{m}
+        \;\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    2 \cdot
+    \underset{l \in U}{\sum}\;
+    \underset{k \in U}{\sum}\;
+    \Cov_{Y}\!\left[\;
+        I_{l}R_{l}A_{l}
+        \, , \,
+        I_{k}(1-R_{k})B_{k}
+        \;\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+& = &
+    \underset{l \in U}{\sum}\;
+    \underset{m \in U}{\sum}\;
+    I_{l}(s) \cdot I_{m}(s) \cdot R_{l}(s,s_{R}) \cdot R_{m}(s,s_{R})
+    \cdot
+    \Cov_{Y}\!\left[\;
+        A_{l}
+        \,,\,
+        A_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; + \;
+    \underset{k \in U}{\sum}\;
+    \underset{m \in U}{\sum}\;
+    I_{k}(s) \cdot I_{m}(s) \cdot (1-R_{k}(s,s_{R})) \cdot (1-R_{m}(s,s_{R}))
+    \cdot
+    \Cov_{Y}\!\left[\;
+        B_{k}
+        \,,\,
+        B_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    2 \cdot
+    \underset{l \in U}{\sum}\;
+    \underset{k \in U}{\sum}\;
+    I_{l}(s) \cdot I_{k}(s) \cdot R_{l}(s,s_{R}) \cdot (1-R_{k}(s,s_{R}))
+    \cdot
+    \Cov_{Y}\!\left[\;
+        A_{l}
+        \, , \,
+        B_{k}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+& = &
+    \underset{l \in s_{R}}{\sum}\;
+    \underset{m \in s_{R}}{\sum}
+    \Cov_{Y}\!\left[\;
+        A_{l}
+        \,,\,
+        A_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+    \; + \;
+    \underset{k \in s_{M}}{\sum}\;
+    \underset{m \in s_{M}}{\sum}
+    \Cov_{Y}\!\left[\;
+        B_{k}
+        \,,\,
+        B_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    2 \cdot
+    \underset{l \in s_{R}}{\sum}\;
+    \underset{k \in s_{M}}{\sum}
+    \Cov_{Y}\!\left[\;
+        A_{l}
+        \, , \,
+        B_{k}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\end{eqnarray*}
+This completes the proof of the Lemma.
+\qed
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\clearpage
 \begin{lemma}[Unbiased estimator for nonresponse variance; Equations (5.9) \& (5.10) in \cite{Beaumont2011}]
 \label{NonresponseVariance}
 \mbox{}
@@ -2145,24 +2372,64 @@ Then, the following statements are true:
         \textnormal{since $W^{(+)}_{0}$ is constant upon conditioning on $s, s_{R}$}
     \\
     & = &
+        \underset{l \in s_{R}}{\sum}\,
+        \underset{m \in s_{R}}{\sum}\,
+        \Cov_{Y}\!\left[\;
+            W^{(+)}_{l}\,Y_{l}
+            \,,
+            W^{(+)}_{m}\,Y_{m}
+            \,\left\vert
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right]
+        \; + \;
+        \underset{k \in s_{M}}{\sum}\,
+        \underset{m \in s_{M}}{\sum}\,
+        \Cov_{Y}\!\left[\;
+            d_{k}\,w_{k}\,Y_{k}
+            \,,
+            d_{m}\,w_{m}\,Y_{m}
+            \,\left\vert
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right]
+    \\
+    &&
+        \; - \;
+        2 \cdot
+        \underset{l \in s_{R}}{\sum}\;
+        \underset{k \in s_{M}}{\sum}\,
+        \Cov_{Y}\!\left[\;
+            W^{(+)}_{l}\,Y_{l}
+            \,,\,
+            d_{k}\,w_{k}\,Y_{k}
+            \,\left\vert
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right],
+        \;\;
+        \textnormal{by Lemma \ref{sRsMPullOutOfVariance}}
+    \\
+    & = &
         \underset{l \in s_{R}}{\sum}
         \!\left(W^{(+)}_{l}\right)^{2}
         \cdot
         \Var_{Y}\!\left[\;
             Y_{l}
-            \,\left\vert\,
-            s,s_{R},\Xobs
+            \,\left\vert
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \right]
+            \!\right]
         \,\;+\;
         \underset{k \in s_{M}}{\sum}
         \!\left(d_{k}\,w_{k}\right)^{2}
         \cdot
-        \Var_{Y}\!\left[\;Y_{k}
-            \,\left\vert\,
-            s,s_{R},\Xobs
+        \Var_{Y}\!\left[\;
+            Y_{k}
+            \,\left\vert
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \,\right],
+            \!\right],
     \\
     &&
         \quad\quad\quad
@@ -2172,8 +2439,9 @@ Then, the following statements are true:
             \,=\,
             \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Xobs\right.\,\right)
             \,=\,
-            0
-            $}
+            0$,\,
+            whenever \,$a \neq b$
+            }
     \\
     & = &
         \underset{l \in s_{R}}{\sum}
