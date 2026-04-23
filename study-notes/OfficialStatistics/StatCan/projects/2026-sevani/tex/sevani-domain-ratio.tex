@@ -3862,94 +3862,103 @@ Then, the following statements are true:
 \begin{enumerate}
 \item
     $
-    E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)
-        (\,  \widehat{T}_{Y} - T_{Y}\,)
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+    E_{Y}\!\left[\;
+        (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)
+        (\,  \widehat{R}_{Y/Z} - R_{Y/Z}\,)
+        \;\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot\,,\Xobs
+            \end{array}
+        \right.
+        \!\right]
     $\,
     is an $(\Sdot,\Rdot)$-unbiased estimator for the mixed variance\\
     \,$
     E_{SR}\!\left[\,
-    E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)
-        (\,  \widehat{T}_{Y} - T_{Y}\,)
-        \;\right\vert\,
-        s,s_{R},\Xobs
+    E_{Y}\!\left[\;
+        (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)
+        (\,  \widehat{R}_{Y/Z} - R_{Y/Z}\,)
+        \;\left\vert\,
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot\,,\Xobs
+            \end{array}
+        \right.
+        \!\right]
         \,\right]
-        \right]
     $.
 \item
-    The above estimator
-    % \,$
-    % E_{Y}\!\left[\,
-    %     \left.
-    %     (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)
-    %     (\,  \widehat{T}_{Y} - T_{Y}\,)
-    %     \;\right\vert\,
-    %     s,s_{R},\Xobs
-    %     \,\right]
-    % $\,
-    can be expressed as follows:
+    The above estimator can be expressed as follows:
     \begin{eqnarray*}
-    E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)
-        (\,  \widehat{T}_{Y} - T_{Y}\,)
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+    &&
+        E_{Y}\!\left[\;
+            (\,\widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}\,)
+            (\,  \widehat{R}_{Y/Z} - R_{Y/Z}\,)
+            \;\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
     & = &
-        \Cov_{Y}\!\left(\,
-            \left.
-            \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \Cov_{Y}\!\left(\;\,
+            \widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}
             \,,\,
-            \widehat{T}_{Y} - T_{Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right)
+            \widehat{R}_{Y/Z} - R_{Y/Z}
+            \;\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\!\right)
     \\
     &&
-        +\;
-        E_{Y}\!\left[\;
-            \left.
-            \widetilde{T}_{Y} - \widehat{T}_{Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+        \; + \;
+        E_{Y}\!\left[\;\,
+            \widetilde{R}_{Y/Z} - \widehat{R}_{Y/Z}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
         \cdot
-        {\color{red}E_{Y}\!\left[\;
-            \left.
-            \widehat{T}_{Y} - T_{Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]}
+        {\color{red}E_{Y}\!\left[\;\,
+            \widehat{R}_{Y/Z} - R_{Y/Z}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]}
     \end{eqnarray*}
 \item
-    The above covarince term
-    % \,$
-    % \Cov_{Y}\!\left(\,
-    %     \left.
-    %     \widetilde{T}_{Y} - \widehat{T}_{Y}
-    %     \,,\,
-    %     \widehat{T}_{Y} - T_{Y}
-    %     \;\right\vert\,
-    %     s,s_{R},\Xobs
-    %     \,\right)
-    % $\,
-    can be expressed in explicit computable form as follows:
+    The above covarince term can be expressed in explicit computable form as follows:
     \begin{eqnarray*}
-    \Cov_{Y}\!\left(\,
-        \left.
+    \Cov_{Y}\!\left(\;\,
         \widetilde{T}_{Y} - \widehat{T}_{Y}
         \,,\,
         \widehat{T}_{Y} - T_{Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right)
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot\,,\Xobs
+            \end{array}
+        \right.
+        \!\!\right)
     & = &
         \underset{l \in s_{R}}{\sum}\,
             d_{l}\,W^{(+)}_{l}\,(w_{k}-1)\,\sigma_{l}^{2}
@@ -3957,46 +3966,6 @@ Then, the following statements are true:
         \underset{k \in s_{M}}{\sum}\,
             d_{k}\,w_{k}\,(w_{1}-1)\,\sigma_{k}^{2}
     \end{eqnarray*}
-    % where
-    % \,$
-    % \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
-    %     \,\left\vert\,
-    %     \Xobs
-    %     \right.
-    %     \,\right]
-    % $,\,
-    % \,$
-    % \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
-    %     \,\left\vert\,
-    %     \Xobs
-    %     \right.
-    %     \,\right]
-    % $,\;
-    % for \,$k \in s = s_{R} \sqcup s_{M}$.\,
-    % and
-    % \;$
-    % W^{(+)}_{{\color{red}k}}
-    % \;\; := \;\;
-    %     \left(\;
-    %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}k}l}
-    %         \,\right)
-    % $.\,
-    % \begin{equation*}
-    % % W^{(+)}_{{\color{red}0}}
-    % % \;\; := \;\;
-    % %     \left(\;
-    % %         \overset{J}{\underset{j=1}{\sum}}\;
-    % %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
-    % %         \,\right),
-    % % \quad\quad
-    % W^{(+)}_{{\color{red}k}}
-    % \;\; := \;\;
-    %     \left(\;
-    %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}k}l}
-    %         \,\right)
-    % \end{equation*}
 \end{enumerate}
 \end{lemma}
 \proof
@@ -4004,6 +3973,47 @@ Then, the following statements are true:
 \item
     Nothing to prove.
 \item
+    % \begin{eqnarray*}
+    % &&
+    %     E_{Y}\!\left[\;
+    %         \left(\,\widetilde{R}_{Y/Z} \, - \, \widehat{R}_{Y/Z}\,\right)
+    %         \!
+    %         \left(\,  \widehat{R}_{Y/Z} \, - \, R_{Y/Z}\,\right)
+    %         \;\left\vert
+    %         \begin{array}{c}
+    %             s,s_{R},
+    %             \\
+    %             \Zdot\,,\Xobs
+    %             \end{array}
+    %         \right.
+    %         \!\right]
+    % \\
+    % & = &
+    %     E_{Y}\!\left[\;
+    %         \left.
+    %         \left(\,
+    %             \dfrac{ \widetilde{T}_{Y} }{ \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)} }
+    %             \, - \,
+    %             \dfrac{ \widehat{T}_{Y} }{ \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)} }
+    %             \,\right)
+    %         \!
+    %         \left(\,
+    %             \dfrac{ \widehat{T}_{Y} }{ \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)} }
+    %             \, - \,
+    %             \dfrac{ T_{Y} }{ \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)} }
+    %             \, + \,
+    %             \dfrac{ T_{Y} }{ \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)} }
+    %             \, - \,
+    %             \dfrac{ T_{Y} }{ \overset{{\color{white}.}}{T_{Z}} }
+    %             \,\right)
+    %         \;\,\right\vert
+    %         \begin{array}{c}
+    %             s,s_{R},
+    %             \\
+    %             \Zdot\,,\Xobs
+    %             \end{array}
+    %         \!\right]
+    % \end{eqnarray*}
     The required result follows from the following general fact:
     \begin{equation*}
     \Cov(\,X,Y\,)
