@@ -2664,21 +2664,72 @@ Then, the following statements are true:
             \,\right)
     \\
     & = &
-        \underset{l \in s_{R}}{\sum}\,
-        d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\Var_{Y}\!\left[\,
-            Y_{l}
-            \left\vert\,
-            s,s_{R},\Xobs
+        \underset{l \in s_{R}}{\sum}\;
+        \underset{k \in s}{\sum}\;
+        \Cov_{Y}\!\left(\;
+            W^{(+)}_{l}\,Y_{l}
+            \;,\,
+            d_{k}(w_{k}-1)Y_{k}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \right]
+            \!\right)
+        \; - \;
+        \underset{l \in s_{R}}{\sum}\;
+        \underset{k \in U \backslash s}{\sum}\,
+        \Cov_{Y}\!\left(\;
+            W^{(+)}_{l}\,Y_{l}
+            \;,\,
+            d_{k}Y_{k}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right)
+    \\
+    &&
+        \; - \;
+        \underset{k \in s_{M}}{\sum}\;
+        \underset{l \in s}{\sum}\;
+        \Cov_{Y}\!\left(\;
+            d_{k}\,w_{k}\,Y_{k}
+            \;,\,
+            d_{l}(w_{l}-1)Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right)
+        \; + \;
+        \underset{k \in s_{M}}{\sum}\;
+        \underset{l \in U \backslash s}{\sum}\,
+        \Cov_{Y}\!\left(\;
+            d_{k}\,w_{k}\,Y_{k}
+            \;,\,
+            d_{l}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right),
+    \\
+    &&
+        \quad\quad\quad
+        \textnormal{by Lemma \ref{sRsMPullOutOfCovariance}}
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+        d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\Var_{Y}\!\left[\;
+            Y_{l}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right]
         \;-\;
         \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\,
+        d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\;
             Y_{k}
-            \left\vert\,
-            s,s_{R},\Xobs
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \right],
+            \!\right],
     \\
     &&
         \quad\quad\quad
