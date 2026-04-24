@@ -3947,24 +3947,66 @@ Then, the following statements are true:
 \item
     The above covarince term can be expressed in explicit computable form as follows:
     \begin{eqnarray*}
-    \Cov_{Y}\!\left(\;\,
-        \widetilde{T}_{Y} - \widehat{T}_{Y}
-        \,,\,
-        \widehat{T}_{Y} - T_{Y}
-        \,\left\vert
-        \begin{array}{c}
-            s,s_{R},
-            \\
-            \Zdot\,,\Xobs
-            \end{array}
-        \right.
-        \!\!\right)
+    &&
+        \Cov_{Y}\!\left(\;\,
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,,\,
+            \widehat{T}_{Y} - T_{Y}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\!\right)
+    \\
     & = &
-        \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{l}\,(w_{k}-1)\,\sigma_{l}^{2}
-        \,-\,
-        \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,(w_{1}-1)\,\sigma_{k}^{2}
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,,\zdot)^{2}
+                }
+            }
+        \cdot
+        \left(\;
+            \underset{l \in s_{R}}{\sum}\,
+            d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
+            \;\;-\;
+            \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \left(\,
+            \dfrac{
+                {\color{white}.}
+                T_{Z} \,-\, \widehat{T}(s\,,\zdot)
+                {\color{white}.}
+                }{
+                \overset{{\color{white}.}}{
+                    T_{Z}
+                    }
+                }           
+            \,\right)
+        \cdot
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,,\zdot)^{2}
+                }
+            }
+        \cdot
+        \left(\,
+            \underset{l \in s_{R}}{\sum}\,
+            d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
+            \;\;-\;
+            \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}\,\sigma_{k}^{2}
+            \,\right)
     \end{eqnarray*}
 \end{enumerate}
 \end{lemma}
@@ -3973,47 +4015,6 @@ Then, the following statements are true:
 \item
     Nothing to prove.
 \item
-    % \begin{eqnarray*}
-    % &&
-    %     E_{Y}\!\left[\;
-    %         \left(\,\widetilde{R}_{Y/Z} \, - \, \widehat{R}_{Y/Z}\,\right)
-    %         \!
-    %         \left(\,  \widehat{R}_{Y/Z} \, - \, R_{Y/Z}\,\right)
-    %         \;\left\vert
-    %         \begin{array}{c}
-    %             s,s_{R},
-    %             \\
-    %             \Zdot\,,\Xobs
-    %             \end{array}
-    %         \right.
-    %         \!\right]
-    % \\
-    % & = &
-    %     E_{Y}\!\left[\;
-    %         \left.
-    %         \left(\,
-    %             \dfrac{ \widetilde{T}_{Y} }{ \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)} }
-    %             \, - \,
-    %             \dfrac{ \widehat{T}_{Y} }{ \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)} }
-    %             \,\right)
-    %         \!
-    %         \left(\,
-    %             \dfrac{ \widehat{T}_{Y} }{ \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)} }
-    %             \, - \,
-    %             \dfrac{ T_{Y} }{ \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)} }
-    %             \, + \,
-    %             \dfrac{ T_{Y} }{ \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)} }
-    %             \, - \,
-    %             \dfrac{ T_{Y} }{ \overset{{\color{white}.}}{T_{Z}} }
-    %             \,\right)
-    %         \;\,\right\vert
-    %         \begin{array}{c}
-    %             s,s_{R},
-    %             \\
-    %             \Zdot\,,\Xobs
-    %             \end{array}
-    %         \!\right]
-    % \end{eqnarray*}
     The required result follows from the following general fact:
     \begin{equation*}
     \Cov(\,X,Y\,)
@@ -4035,7 +4036,254 @@ Then, the following statements are true:
         \mu_{X}\,\mu_{Y}
     \end{equation*}
 \item
-    We compute:
+    \textbf{Claim 1:}
+    \begin{eqnarray*}
+    \Cov_{Y}\!\left(\;
+        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \,,\,
+        \widehat{T}_{Y} - T_{Y}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right)
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+        d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
+        \;\;-\;
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+    \end{eqnarray*}
+    \vskip -0.2cm
+    \noindent
+    Proof of Claim 1:\;\;
+    \begin{eqnarray*}
+    &&
+        \Cov_{Y}\!\left(\;
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,,\,
+            \widehat{T}_{Y} - T_{Y}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right)
+    \\
+    & = &
+        \Cov_{Y}\!\left(\;
+            W^{(+)}_{0}
+            \,+\,
+            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
+            \;-
+            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
+            \;,\;
+            \underset{k \in s}{\sum}\;d_{k}w_{k}Y_{k}
+            \;-
+            \underset{k \in U}{\sum}\;d_{k}Y_{k}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right),
+            \quad
+            \textnormal{by Lemma \ref{PopTotalImputationError}(ii)}
+    \\
+    & = &
+        \Cov_{Y}\!\left(\;
+            \left.
+            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
+            \;-
+            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
+            \;,\;
+            \underset{k \in s}{\sum}\;d_{k}(w_{k}-1)Y_{k}
+            \;-
+            \underset{k \in U \backslash s}{\sum}d_{k}Y_{k}
+            \;\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\right)
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+        d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\Var_{Y}\!\left[\;
+            Y_{l}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right]
+        \;-\;
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\;
+            Y_{k}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right],
+    \\
+    &&
+        \quad\quad\quad
+        \textnormal{since
+            \,$
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Xobs\right.\right)
+            \,=\,
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Xobs\right.\right)
+            \,=\,
+            0
+            $,\, whenever \,$a \neq b$}
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+        d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\Var_{Y}\!\left[\,
+            Y_{l}
+            \left\vert\,
+            \Xobs
+            \right.
+            \right]
+        \,-\,
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\,
+            Y_{k}^{2}
+            \left\vert\,
+            \Xobs
+            \right.
+            \right],
+        \;\;
+        \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Xobs$}
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+        d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
+        \;\;-\;
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+    \end{eqnarray*}
+    This completes the proof of Claim 1.
+
+    \vskip 0.5cm
+    \noindent
+    \textbf{Claim 2:}
+    \begin{eqnarray*}
+    \Cov_{Y}\!\left(\;
+        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \,,\,
+        T_{Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right)
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+        d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
+        \;\;-\;
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}\,w_{k}\,\sigma_{k}^{2}
+    \end{eqnarray*}
+    \vskip -0.2cm
+    \noindent
+    Proof of Claim 1:\;\;
+    \begin{eqnarray*}
+    &&
+        \Cov_{Y}\!\left(\;
+            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \,,\,
+            T_{Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right)
+    \\
+    & = &
+        \Cov_{Y}\!\left(\;
+            W^{(+)}_{0}
+            \,+\,
+            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
+            \;-
+            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
+            \;,\;
+            \underset{a \in s_{R}}{\sum}\;d_{a}Y_{a}
+            \;+
+            \underset{b \in s_{M}}{\sum}\;d_{b}Y_{b}
+            \;+
+            \underset{c \in U \backslash s}{\sum}\;d_{c}Y_{c}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right),
+    \\
+    &&
+            \quad
+            \textnormal{by Lemma \ref{PopTotalImputationError}(ii)}
+    \\
+    & = &
+        \Cov_{Y}\!\left(\;
+            \left.
+            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
+            \;-
+            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
+            \;,\;
+            \underset{a \in s_{R}}{\sum}\;d_{a}Y_{a}
+            \;+
+            \underset{b \in s_{M}}{\sum}\;d_{b}Y_{b}
+            \;+
+            \underset{c \in U \backslash s}{\sum}\;d_{c}Y_{c}
+            \;\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\right)
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+        d_{l}\,W^{(+)}_{l}\,\Var_{Y}\!\left[\;
+            Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right]
+        \;-\;
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}^{2}\,w_{k}\,\Var_{Y}\!\left[\;
+            Y_{k}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\right],
+    \\
+    &&
+        \quad\quad\quad
+        \textnormal{since
+            \,$
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Xobs\right.\right)
+            \,=\,
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Xobs\right.\right)
+            \,=\,
+            0
+            $,\, whenever \,$a \neq b$}
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+        d_{l}\,W^{(+)}_{l}\,\Var_{Y}\!\left[\,
+            Y_{l}
+            \left\vert\,
+            \Xobs
+            \right.
+            \right]
+        \,-\,
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}\,w_{k}\,\Var_{Y}\!\left[\,
+            Y_{k}
+            \left\vert\,
+            \Xobs
+            \right.
+            \right],
+        \;\;
+        \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Xobs$}
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+        d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
+        \;\;-\;
+        \underset{k \in s_{M}}{\sum}\,
+        d_{k}\,w_{k}\,\sigma_{k}^{2}
+    \end{eqnarray*}
+    This completes the proof of Claim 2.
+
+    \vskip 0.5cm
+    We now compute:
     \begin{eqnarray*}
     &&
         \Cov_{Y}\!\left(\;
@@ -4314,111 +4562,114 @@ Then, the following statements are true:
                 \Zdot,\Xobs
                 \end{array}
             \!\right)
-    \end{eqnarray*}
-    \vskip 1.5cm
-    \begin{eqnarray*}
-    &&
-        \Cov_{Y}\!\left(\,
-            \left.
-            \widetilde{T}_{Y} - \widehat{T}_{Y}
-            \,,\,
-            \widehat{T}_{Y} - T_{Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right)
     \\
     & = &
-        \Cov_{Y}\!\left(\,
-            \left.
-            W^{(+)}_{0}
-            \,+\,
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
-            \;-
-            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
-            \;,\;
-            \underset{k \in s}{\sum}\;d_{k}w_{k}Y_{k}
-            \;-
-            \underset{k \in U}{\sum}\;d_{k}Y_{k}
-            \;\right\vert\,
-            s,s_{R},\Xobs
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,,\zdot)^{2}
+                }
+            }
+        \cdot
+        \left(\;
+            \underset{l \in s_{R}}{\sum}\,
+            d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
+            \;\;-\;
+            \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \left(\,
+            % \dfrac{
+            %     \widehat{T}(s\,,\zdot)
+            %     }{
+            %     \overset{{\color{white}.}}{
+            %         \widehat{T}(s\,,\zdot)
+            %         }
+            %     }
+            1
+            \, - \,
+            \dfrac{
+                {\color{white}.}
+                \widehat{T}(s\,,\zdot)
+                {\color{white}.}
+                }{
+                \overset{{\color{white}.}}{
+                    T_{Z}
+                    }
+                }           
+            \,\right)
+        \cdot
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,,\zdot)^{2}
+                }
+            }
+        \cdot
+        \left(\,
+            \underset{l \in s_{R}}{\sum}\,
+            d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
+            \;\;-\;
+            \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}\,\sigma_{k}^{2}
             \,\right),
-            \quad
-            \textnormal{by Lemma \ref{PopTotalImputationError}(ii)}
+        \quad
+        \textnormal{by Claim 1, Claim 2}
     \\
     & = &
-        \Cov_{Y}\!\left(\;
-            \left.
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
-            \;-
-            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
-            \;,\;
-            \underset{k \in s}{\sum}\;d_{k}(w_{k}-1)Y_{k}
-            \;-
-            \underset{k \in U \backslash s}{\sum}d_{k}Y_{k}
-            \;\right\vert\,
-            s,s_{R},\Xobs
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,,\zdot)^{2}
+                }
+            }
+        \cdot
+        \left(\;
+            \underset{l \in s_{R}}{\sum}\,
+            d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
+            \;\;-\;
+            \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
             \,\right)
     \\
-    & = &
-        \underset{l \in s_{R}}{\sum}\,
-        d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\Var_{Y}\!\left[\,
-            Y_{l}
-            \left\vert\,
-            s,s_{R},\Xobs
-            \right.
-            \right]
-        \;-\;
-        \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\,
-            Y_{k}
-            \left\vert\,
-            s,s_{R},\Xobs
-            \right.
-            \right],
-    \\
     &&
-        \quad\quad\quad
-        \textnormal{since
-            \,$
-            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Xobs\right.\right)
-            \,=\,
-            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Xobs\right.\right)
-            \,=\,
-            0
-            $,\, whenever \,$a \neq b$}
-    \\
-    & = &
-        \underset{l \in s_{R}}{\sum}\,
-        d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\Var_{Y}\!\left[\,
-            Y_{l}
-            \left\vert\,
-            \Xobs
-            \right.
-            \right]
-        \,-\,
-        \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\,
-            Y_{k}^{2}
-            \left\vert\,
-            \Xobs
-            \right.
-            \right],
-        \;\;
-        \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Xobs$}
-    \\
-    & = &
-        \underset{l \in s_{R}}{\sum}\,
-        d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
-        \;\;-\;
-        \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+        \; + \;
+        \left(\,
+            \dfrac{
+                {\color{white}.}
+                T_{Z} \,-\, \widehat{T}(s\,,\zdot)
+                {\color{white}.}
+                }{
+                \overset{{\color{white}.}}{
+                    T_{Z}
+                    }
+                }           
+            \,\right)
+        \cdot
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}(s\,,\zdot)^{2}
+                }
+            }
+        \cdot
+        \left(\,
+            \underset{l \in s_{R}}{\sum}\,
+            d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
+            \;\;-\;
+            \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}\,\sigma_{k}^{2}
+            \,\right),
+        \quad
+        \textnormal{as required}
     \end{eqnarray*}
-    % where
-    % the third equality follows from the conditional independence
-    % \,$Y_{k} \perp Y_{l} \;\,\vert\; \Xobs$ whenever \,$k \neq l$,\,
-    % while
-    % the fourth equality follows from the conditional independence
-    % \,$\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Xobs$.\,
     \vskip 0.1cm
     \noindent
     This completes the proof of the Lemma.
