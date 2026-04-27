@@ -41,11 +41,14 @@
     $\Xdotdot\,=\,\left(\,\overset{{\color{white}.}}{X_{ij}}\,\right) : \Omega \longrightarrow \Re^{N \times r}$\,
     is an $\Re^{N \times r}$-valued random variable defined on \,$\Omega$.
 \item
+    $\Cdotdot\,=\,\left(\,\overset{{\color{white}.}}{C_{ij}}\,\right) : \Omega \longrightarrow \Re^{N \times q}$\,
+    is an $\Re^{N \times q}$-valued random variable defined on \,$\Omega$.
+\item
     $\Sdot \,=\, (S_{1},S_{2},\ldots,S_{N})^{T} : \mathcal{P}(U) \longrightarrow \{0,1\}^{N \times 1}$\,
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\mathcal{P}(U)$,\,
     i.e., $\mathcal{P}(\mathcal{P}(U))$-measurable map.
 \item
-    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \otimes \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
+    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{black}\Omega \otimes \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\Omega \times \mathcal{P}(U)$,\,
     i.e., $\left(\mathscr{A} \overset{{\color{white}.}}{\times} \mathcal{P}(\mathcal{P}(U))\right)$-measurable map
     that satisfies:
@@ -118,7 +121,12 @@
 \item
     $\Xdotdot$
     \,--\,
-    $\Re^{r}$-valued auxiliary variable.
+    $\Re^{r}$-valued (auxiliary) predictor variables for imputation.
+\item
+    $\Cdotdot$
+    \,--\,
+    $\Re^{q}$-valued (auxiliary) {\color{red}calibration variables}
+    (in terms of which calibration constraints are expressed).
 \item
     $\Sdot$
     \,--\,
@@ -163,15 +171,17 @@
 \begin{itemize}
 \item
     $\pi_{i} \,:=\, P(\,S_{i} = 1\,) \,:=\, \pi\!\left(\,\left\{\,\left. s \overset{{\color{white}.}}{\subset} U \,\right\vert\, i \in s\,\right\}\,\right) \,>\, 0$,\,
-    for each \,$i \in U$,\,
-    and
-    \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
+    for each \,$i \in U$.\,
+    % and
+    % \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
 \item
-    $\left(\,\Ydot\,,\Xdotdot\,\right)$\, and \,$\Sdot$\, are (unconditionally) independent.
+    $\left(\,\Ydot\,,\Cdotdot\,,\Xdotdot\,\right)$\, and \,$\Sdot$\, are (unconditionally) independent.
 \item
-    $\Ydot$\, and \,$(\,\Sdot\,,\Rdot\,)$\, are {\color{red}conditionally independent} given \,$\Xdotdot$.
+    $\Ydot$\, and \,$(\,\Sdot\,,\Rdot\,)$\,
+    are {\color{red}conditionally independent} given
+    \,$(\,\Cdotdot\,,\Xdotdot\,)$.
 \item
-    $\Cov\!\left(\;Y_{k}\,,\,Y_{l}\;\left\vert\;\Xdotdot\right.\right) \,=\, 0$,\,
+    $\Cov\!\left(\;Y_{k}\,,\,Y_{l}\;\left\vert\;\Cdotdot\,,\Xdotdot\right.\right) \,=\, 0$,\,
     for each \,$k, l \in U$\, with \,$k \neq l$.
 \end{itemize}
 
@@ -220,7 +230,8 @@ is a random variable of the form:
         \,\right),
 \end{eqnarray*}
 where
-\;$\widetilde{Y}_{i} \,=\, R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$\;
+\;$w_{i} \,=\, w_{i}(\Sdot,\Cdotdot)$,\;
+\;$\widetilde{Y}_{i} \,=\, R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\;
 and
 \;$Y^{*}_{i} \,=\, Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)$.\,
 \end{definition}
