@@ -5,7 +5,7 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\subsection{Precise formulation of the variance estimation problem}
+\subsection{Formulation of the target variability quantification problem}
 \label{DomainRatioFormulationOfVarianceEstimationProblem}
 \setcounter{theorem}{0}
 
@@ -187,98 +187,138 @@ Suppose:
     \end{minipage}
     \end{center}
 \end{itemize}
-is to be used as an (imputation) estimator for the domain ratio
-\;$
-R_{Y/Z}
-\, := \,
-    \dfrac{T_{Y}}{\overset{{\color{white}.}}{T_{Z}}}
-\, = \,
-    \dfrac{
-        {\color{white}.}
-        \underset{i \in U}{\sum}\;d_{i}\,Y_{i}
-        {\color{white}.}
-        }{
-        \overset{{\color{white}.}}{\underset{i \in U}{\sum}\;d_{i}\,Z_{i}}
-        }
-$,\;
-where
-\,$\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
-and
-\begin{equation*}
-Y^{*}_{k}
-\;\; = \;\;
-    Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
-\;\; = \;\;
-    \varphi^{(j)}_{0k}
-    \,+\,
-    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
-    \quad
-    \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
-\end{equation*}
 \vskip 0.1cm
 \noindent
-Define:
-\,$
-\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
-    \,\left\vert\;
-    \Zdot\,,\Xobs
-    \right.
-    \,\right]
-$,\,
-\,$
-\sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
-    \,\left\vert\;
-    \Zdot\,,\Xobs
-    \right.
-    \,\right]
-$,\,
+\textbf{The variability quantification problem \& proposed solution}
+\vskip 0.1cm
+\begin{center}
+\begin{minipage}{5.5in}
+We seek quantify the variability of
+\,$\widetilde{R}_{d,Y/Z}$\,
+as an estimator for
+\,$R_{Y/Z} \; := \; \dfrac{T_{d,Y}}{T_{d,Z}}$.
+\vskip 0.1cm
+In what follows, the conditional mean squared error (MSE)
 \begin{equation*}
-W^{(+)}_{{\color{red}0}}
+\MSE\!\left(\;
+    \left.
+    \widetilde{R}_{d,Y/Z}
+    \;\right\vert\!
+    \begin{array}{c} \Zdot\,,\Xdotdot \end{array}
+    \!\right)
 \;\; := \;\;
-    \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
-        \,\right),
-\quad\;\;\textnormal{and}\quad\;\;
-W^{(+)}_{{\color{red}l}}
-\;\; := \;\;
-    \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
-        \,\right),
-\;\;
-\textnormal{for each \,$l \in s_{R}$}
+    E\!\left[\;\left(\,
+        \left.
+        \widetilde{R}_{d,Y/Z}
+        \, - \,
+        R_{d,Y/Z}
+        \,\right)^{\!2}
+        \;\right\vert\!
+        \begin{array}{c} \Zdot\,,\Xdotdot \end{array}
+        \!\right]
 \end{equation*}
+of
+\,$\widetilde{R}_{d,Y/Z}$\,
+given \,$\Zdot$\, and \,$\Xdotdot$\,
+is proposed for this purpose.
 \vskip 0.2cm
 \noindent
+In addition, a (computable) estimator for the above quantity will be proposed.
+\end{minipage}
+\end{center}
+\noindent
+% is to be used as an (imputation) estimator for the domain ratio
+% \;$
+% R_{Y/Z}
+% \, := \,
+%     \dfrac{T_{Y}}{\overset{{\color{white}.}}{T_{Z}}}
+% \, = \,
+%     \dfrac{
+%         {\color{white}.}
+%         \underset{i \in U}{\sum}\;d_{i}\,Y_{i}
+%         {\color{white}.}
+%         }{
+%         \overset{{\color{white}.}}{\underset{i \in U}{\sum}\;d_{i}\,Z_{i}}
+%         }
+% $,\;
+% where
+% \,$\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+% and
+% \begin{equation*}
+% Y^{*}_{k}
+% \;\; = \;\;
+%     Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+% \;\; = \;\;
+%     \varphi^{(j)}_{0k}
+%     \,+\,
+%     \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
+%     \quad
+%     \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
+% \end{equation*}
+% \vskip 0.1cm
+% \noindent
+% Define:
+% \,$
+% \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+%     \,\left\vert\;
+%     \Zdot\,,\Xobs
+%     \right.
+%     \,\right]
+% $,\,
+% \,$
+% \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+%     \,\left\vert\;
+%     \Zdot\,,\Xobs
+%     \right.
+%     \,\right]
+% $,\,
+% \begin{equation*}
+% W^{(+)}_{{\color{red}0}}
+% \;\; := \;\;
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+%         \,\right),
+% \quad\;\;\textnormal{and}\quad\;\;
+% W^{(+)}_{{\color{red}l}}
+% \;\; := \;\;
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
+%         \,\right),
+% \;\;
+% \textnormal{for each \,$l \in s_{R}$}
+% \end{equation*}
+% \vskip 0.2cm
+% \noindent
+% % Suppose the quantities
+% % \,$
+% % \Sdot\,,\,
+% % \Rdot\,,\,
+% % \Ydot\,,\,
+% % \Xdotdot\,,\,
+% % \dbullet
+% % $\,
+% % satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFramework}.
+% \vskip 0.2cm
+% \noindent
 % Suppose the quantities
 % \,$
 % \Sdot\,,\,
 % \Rdot\,,\,
 % \Ydot\,,\,
+% \Zdot\,,\,
 % \Xdotdot\,,\,
 % \dbullet
 % $\,
-% satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFramework}.
-\vskip 0.2cm
-\noindent
-Suppose the quantities
-\,$
-\Sdot\,,\,
-\Rdot\,,\,
-\Ydot\,,\,
-\Zdot\,,\,
-\Xdotdot\,,\,
-\dbullet
-$\,
-satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
-\vskip 0.2cm
-\noindent
+% satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
+% \vskip 0.2cm
+% \noindent
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.5cm
-\subsection{Probabilistic framework of SEVANI \cite{Beaumont2011}}
+\subsection{Probabilistic framework}
 \label{DomainRatioProbabilisticFramework}
 \setcounter{theorem}{0}
 
@@ -470,74 +510,74 @@ satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioPr
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\clearpage
-\subsection{Imputation ratio estimator}
-\setcounter{theorem}{0}
+% \clearpage
+% \subsection{Imputation ratio estimator}
+% \setcounter{theorem}{0}
 
-        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+%         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.2cm
-\begin{definition}[Imputation ratio estimator \,$\widetilde{R}_{Y/Z}$]
-\mbox{}
-\vskip 0.1cm
-\noindent
-An \textbf{imputation ratio estimator} for the domain ratio
-\begin{equation*}
-R_{Y/Z}
-\;\; := \;\;
-    \dfrac{ T_{Y} }{ \overset{{\color{white}.}}{T_{Z}} }
-\;\; = \;\;
-    \dfrac{
-        \underset{i \in U}{\sum}\,d_{i}Y_{i}
-        }{
-        \overset{{\color{white}.}}{\underset{i \in U}{\sum}\,d_{i}Z_{i}}
-        }
-\end{equation*}
-is the random variable of the form:
-\begin{eqnarray*}
-{\color{red}\widetilde{R}_{Y/Z}}
-& = &
-    \widetilde{R}_{Y/Z}(\,
-        \Sdot\,,\,
-        \Rdot\,,\,
-        \Ydot\,,\,
-        \Zdot\,,\,
-        \Xdotdot\,;\,
-        \dbullet
-        \,)
-\;\; := \;\;
-    {\color{red}
-    \dfrac{
-        {\color{white}.}
-        \widetilde{T}_{Y}
-        {\color{white}.}
-        }{
-        \overset{{\color{white}.}}{\widehat{T}_{Z}}
-        }
-    }
-\\
-& = &
-    \dfrac{
-        \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
-        }{
-        \overset{{\color{white}.}}{\underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}}
-        }
-\;\; = \;\;
-    \dfrac{
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
-            R_{i}\,Y_{i}
-            \overset{{\color{white}.}}{+}
-            (1-R_{i})\,Y^{*}_{i}
-            \,\right)
-        }{
-        \overset{{\color{white}.}}{\underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}}
-        }
-\end{eqnarray*}
-where
-\;$\widetilde{Y}_{i} \,=\, R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$\;
-and
-\;$Y^{*}_{i} \,=\, Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)$.\,
-\end{definition}
+% \vskip 0.2cm
+% \begin{definition}[Imputation ratio estimator \,$\widetilde{R}_{Y/Z}$]
+% \mbox{}
+% \vskip 0.1cm
+% \noindent
+% An \textbf{imputation ratio estimator} for the domain ratio
+% \begin{equation*}
+% R_{Y/Z}
+% \;\; := \;\;
+%     \dfrac{ T_{Y} }{ \overset{{\color{white}.}}{T_{Z}} }
+% \;\; = \;\;
+%     \dfrac{
+%         \underset{i \in U}{\sum}\,d_{i}Y_{i}
+%         }{
+%         \overset{{\color{white}.}}{\underset{i \in U}{\sum}\,d_{i}Z_{i}}
+%         }
+% \end{equation*}
+% is the random variable of the form:
+% \begin{eqnarray*}
+% {\color{red}\widetilde{R}_{Y/Z}}
+% & = &
+%     \widetilde{R}_{Y/Z}(\,
+%         \Sdot\,,\,
+%         \Rdot\,,\,
+%         \Ydot\,,\,
+%         \Zdot\,,\,
+%         \Xdotdot\,;\,
+%         \dbullet
+%         \,)
+% \;\; := \;\;
+%     {\color{red}
+%     \dfrac{
+%         {\color{white}.}
+%         \widetilde{T}_{Y}
+%         {\color{white}.}
+%         }{
+%         \overset{{\color{white}.}}{\widehat{T}_{Z}}
+%         }
+%     }
+% \\
+% & = &
+%     \dfrac{
+%         \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+%         }{
+%         \overset{{\color{white}.}}{\underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}}
+%         }
+% \;\; = \;\;
+%     \dfrac{
+%         \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+%             R_{i}\,Y_{i}
+%             \overset{{\color{white}.}}{+}
+%             (1-R_{i})\,Y^{*}_{i}
+%             \,\right)
+%         }{
+%         \overset{{\color{white}.}}{\underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}}
+%         }
+% \end{eqnarray*}
+% where
+% \;$\widetilde{Y}_{i} \,=\, R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$\;
+% and
+% \;$Y^{*}_{i} \,=\, Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)$.\,
+% \end{definition}
 
 % \vskip 0.3cm
 % \begin{lemma}[A formula for \,$\widetilde{T}_{Y}$]
