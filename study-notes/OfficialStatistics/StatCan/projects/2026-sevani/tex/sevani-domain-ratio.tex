@@ -51,7 +51,7 @@ Suppose:
     \begin{eqnarray*}
     \widetilde{R}_{d,Y/Z}
     & = &
-        \widetilde{R}_{Y/Z}(\,
+        \widetilde{R}_{d,Y/Z}(\,
             \Sdot\,,\,
             \Rdot\,,\,
             \Ydot\,,\,
@@ -69,10 +69,10 @@ Suppose:
             }
     \;\; :=: \;\;
         \dfrac{
-            \widehat{T}_{d}(s\,;\widetilde{Y}_{\bullet})
+            \widehat{T}(s\,;\pi,d_{\bullet},\widetilde{Y}_{\bullet})
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\Zdot)
+                \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                 }
             }
     \\
@@ -100,9 +100,10 @@ Suppose:
     where
     \begin{itemize}
     \item
-        $w_{i}$, for each population unit \,$i \in U$,\,
-        is the (known, non-random) design weight of \,$i \in U$,\,
-        i.e., reciprocal of the selection probability (assumed strictly positive) of \,$i \in U$,\,
+        $w_{i} \,:=\, \dfrac{1}{\pi_{i}}$,\, for each population unit \,$i \in U$,\,
+        is the (\textit{a priori} known, non-random) design weight of \,$i \in U$,\,
+        i.e., reciprocal of the selection probability \,$\pi_{i}$\,
+        (assumed strictly positive) of \,$i \in U$,\,
     \item
         $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$ is the vector of $\{0,1\}$-valued selection indicator variables,
     \item
@@ -127,25 +128,64 @@ Suppose:
         is an imputed value for
         \,$Y_{k}$\, and \,$Y^{*}_{k}$\,
         may depend on
-        \,$\Sdot,\Rdot,\Ydot,\Xdotdot$\,.
-        % where, for each \,$k \in s_{M} = s\,\backslash\,s_{R}$,\,
-        % \,$Y^{*}_{k} \,=\, Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)$\,
-        % is an imputed value for \,$Y_{k}$\, and \,$Y^{*}_{k}$\, may depend on
-        % \,$\Sdot,\Rdot,\Ydot,\Xdotdot$\,.
+        \,$\Sdot,\Rdot,\Ydot,\Xdotdot$\,,
+    \item
+        $\widehat{T}(s\,;\pi,d_{\bullet},\xi_{\bullet})$\,
+        is the Horvitz-Thompson estimator for the domain total
+        \,$T_{d,\xi} \,:=\, \underset{i\,\in\,U}{\sum}\,d_{i}\xi_{i}$\,
+        of an arbitrary population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
+        \begin{equation*}
+        \widehat{T}(s\,;\pi,d_{\bullet},\xi_{\bullet})
+        \;\; := \;\;
+            \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\xi_{i}
+        \;\; = \;\;
+            \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,\xi_{i}
+        \end{equation*}
     \end{itemize}
 \item
-    Furthermore,
+    Furthermore, \,$Y^{*}_{k}$\, ($k \in s_{M}$) is \textbf{composite-linear},
+    i.e., there exists \,$J \in \N$\, such that
+    \begin{center}
+    \begin{minipage}{6.2in}
+    for each admissible sample \,$s \subset U$,\,
+    each \,$s_{R} \subset s$,\,
+    {\color{red}each} \,{\color{red}$k \in s_{M} := s \,\backslash\, s_{R}$},\,
+    there exist
     \begin{equation*}
-    Y^{*}_{k}
+    \left\{\;\;\begin{array}{ccl}
+    j
+    & = &
+        j(\,k,s,s_{R}\,;\Xobs\,) \;\in\; \{1,2,\ldots,J\},
+    \\
+    \varphi^{(j)}_{0k}
+    & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
+        \varphi^{(j)}_{0k}(\,s,s_{R}\,;X_{\bullet\bullet}\,),
+        \quad
+        \textnormal{and}
+    \\
+    \varphi^{(j)}_{lk}
+    & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
+        \varphi^{(j)}_{lk}(\,s,s_{R}\,;X_{\bullet\bullet}\,),
+        \;\;
+        \textnormal{{\color{red}for each \,$l \in s_{R}$}}
+    \end{array}\right.
+    \end{equation*}
+    such that
+    \begin{equation*}
+    Y_{{\color{red}k}}^{*}
     \;\; = \;\;
         Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
     \;\; = \;\;
         \varphi^{(j)}_{0k}
         \,+\,
-        \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
+        \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{l{\color{red}k}}\,Y_{l}\,,
         \quad
-        \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
+        \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$},
+    % \quad
+    % \textnormal{for some \,$j \in \{1,2,\ldots,J\}$\, depending on \,$s,\,s_{R},\,\Xobs$}
     \end{equation*}
+    \end{minipage}
+    \end{center}
 \end{itemize}
 is to be used as an (imputation) estimator for the domain ratio
 \;$
