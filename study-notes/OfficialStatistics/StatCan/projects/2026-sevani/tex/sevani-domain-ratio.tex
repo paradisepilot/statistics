@@ -11,6 +11,183 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+Suppose:
+\begin{itemize}
+\item
+    We would like to estimate -- based on survey sample data --
+    a domain ratio
+    (the ratio of two population totals)
+    \begin{equation*}
+    R_{d,Y/Z}
+    \;\; := \;\;
+        \dfrac{T_{d,Y}}{\overset{{\color{white}.}}{T_{d,Z}}}
+    \;\; = \;\;
+        \dfrac{
+            {\color{white}.}
+            \underset{i \in U}{\sum}\;d_{i}Y_{i}
+            {\color{white}.}
+            }{
+            \overset{{\color{white}.}}{\underset{i \in U}{\sum}\;d_{i}Z_{i}}
+            }\,,
+    \end{equation*}
+    where \,$U = \{\,1,2,\ldots,N\,\} \subset \N$\, is the population,
+    $d_{\bullet} = (d_{1},\ldots,d_{N})$ is the vector of (\{0,1\}-valued) domain indicators,
+    and
+    \,$\Ydot = (Y_{1},\ldots,Y_{N})$,\,
+    \,$\Zdot = (Z_{1},\ldots,Z_{N})$\,
+    are two $\Re$-valued population characteristics.
+\item
+    $Z_{k}$\, is successfully observed or measured
+    for each population unit \,$k$\, in the selected sample,
+    but \,$Y_{k}$\, are missing for some of the units in the selected sample.
+    We would thus like to estimate \,$R_{d,Y/Z}$\,
+    with an imputation estimator of the following form:
+    \begin{eqnarray*}
+    \widetilde{R}_{d,Y/Z}
+    & = &
+        \widetilde{R}_{Y/Z}(\,
+            \Sdot\,,\,
+            \Rdot\,,\,
+            \Ydot\,,\,
+            \Zdot\,;\,
+            \Xdotdot\,,\,
+            \dbullet
+            \,)
+    \;\; := \;\;
+        \dfrac{
+            \widetilde{T}_{d,Y}
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\Zdot)
+                }
+            }
+    \\
+    & = &
+        \dfrac{
+            \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+            }{
+            \overset{{\color{white}.}}{
+                \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
+                }
+            }
+    \;\; = \;\;
+        \dfrac{
+            \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+                R_{i}\,Y_{i}
+                \overset{{\color{white}.}}{+}
+                (1-R_{i})\,Y^{*}_{i}
+                \,\right)
+            }{
+            \overset{{\color{white}.}}{
+                \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
+                }
+            }\,,
+    \end{eqnarray*}
+        where
+    \,$\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+    and
+    \begin{equation*}
+    Y^{*}_{k}
+    \;\; = \;\;
+        Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+    \;\; = \;\;
+        \varphi^{(j)}_{0k}
+        \,+\,
+        \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
+        \quad
+        \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
+    \end{equation*}
+\end{itemize}
+is to be used as an (imputation) estimator for the domain ratio
+\;$
+R_{Y/Z}
+\, := \,
+    \dfrac{T_{Y}}{\overset{{\color{white}.}}{T_{Z}}}
+\, = \,
+    \dfrac{
+        {\color{white}.}
+        \underset{i \in U}{\sum}\;d_{i}\,Y_{i}
+        {\color{white}.}
+        }{
+        \overset{{\color{white}.}}{\underset{i \in U}{\sum}\;d_{i}\,Z_{i}}
+        }
+$,\;
+where
+\,$\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+and
+\begin{equation*}
+Y^{*}_{k}
+\;\; = \;\;
+    Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+\;\; = \;\;
+    \varphi^{(j)}_{0k}
+    \,+\,
+    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
+    \quad
+    \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
+\end{equation*}
+\vskip 0.1cm
+\noindent
+Define:
+\,$
+\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+    \,\left\vert\;
+    \Zdot\,,\Xobs
+    \right.
+    \,\right]
+$,\,
+\,$
+\sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+    \,\left\vert\;
+    \Zdot\,,\Xobs
+    \right.
+    \,\right]
+$,\,
+\begin{equation*}
+W^{(+)}_{{\color{red}0}}
+\;\; := \;\;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+        \,\right),
+\quad\;\;\textnormal{and}\quad\;\;
+W^{(+)}_{{\color{red}l}}
+\;\; := \;\;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
+        \,\right),
+\;\;
+\textnormal{for each \,$l \in s_{R}$}
+\end{equation*}
+\vskip 0.2cm
+\noindent
+% Suppose the quantities
+% \,$
+% \Sdot\,,\,
+% \Rdot\,,\,
+% \Ydot\,,\,
+% \Xdotdot\,,\,
+% \dbullet
+% $\,
+% satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFramework}.
+\vskip 0.2cm
+\noindent
+Suppose the quantities
+\,$
+\Sdot\,,\,
+\Rdot\,,\,
+\Ydot\,,\,
+\Zdot\,,\,
+\Xdotdot\,,\,
+\dbullet
+$\,
+satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
+\vskip 0.2cm
+\noindent
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \vskip 0.5cm
 \subsection{Probabilistic framework of SEVANI \cite{Beaumont2011}}
 \label{DomainRatioProbabilisticFramework}
