@@ -5389,32 +5389,34 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     & = &
         E_{Y}\!\left[\,
         \Var_{SR}\!\left(\,
-            \left.
             \widehat{R}_{d,Y/Z}
-            \,\right\vert\,
-            \Ydot,
-            \Zdot\,,\Xobs
-            \,\right)
-            \,\right]
-        \;+\;
-        E_{SR}\!\left[\,
-        E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
-            \,\right\vert\,
-            s,s_{R},\Zdot\,,\Xobs
-            \,\right]
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Zdot\,,\Xobs \end{array}
+            \right.
+            \!\!\right)
             \,\right]
     \\
     &&
-        +\;2\,
+        \;+\;
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
-            \,\right\vert\,
-            s,s_{R},\Zdot\,,\Xobs
+            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
+            \right.
+            \!\right]
             \,\right]
+    \\
+    &&
+        \;+\;
+        2\cdot
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            (\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
+            \right.
+            \!\right]
             \,\right]
     \end{eqnarray*}
     We use the following nomenclature to refer the three summands in the right-hand side:
@@ -5510,7 +5512,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         % \textnormal{{\color{white}..}component{\color{white}..}}
         \end{array}\right)
     & := &
-        2\,
+        2\cdot
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
             \left.
@@ -5527,11 +5529,11 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     as follows:
     \begin{eqnarray*}
     &&
-        \left(\!\!\begin{array}{c}
+        \left(\!\begin{array}{c}
             \textnormal{sampling}
             \\
             \textnormal{variance component}
-            \!\!\!\end{array}\right)
+            \!\!\end{array}\right)
     \;\; := \;\;
         E_{Y}\!\left[\,
         \Var_{S}\!\left(\,
