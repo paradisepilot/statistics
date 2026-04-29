@@ -99,17 +99,31 @@ Suppose:
         $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$\,
         is the vector of $\{0,1\}$-valued selection indicator variables, and
     \item
-        \,$\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
+        $\widehat{T}_{d,\xi} \, :=: \,\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
         is the \textit{Horvitz-Thompson estimator for the domain total}
         \,$T_{d,\xi} \,:=\, \underset{i\,\in\,U}{\sum}\,d_{i}\xi_{i}$\,
         of an arbitrary population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
         \begin{equation*}
-        \widehat{T}_{d}(s\,;\xi_{\bullet})
+        \widehat{T}_{d,\xi}
+        \;\; :=: \;\;
+            \widehat{T}_{d}(s\,;\xi_{\bullet})
         \;\; := \;\;
             \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\xi_{i}
         \;\; = \;\;
             \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,\xi_{i}
         \end{equation*}
+        We will use the alternative notations
+        \,$\widehat{T}_{d,\xi}$\, and \,$\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
+        interchangeably, noting that the former is notationally more succinct,
+        while the latter allows us to emphasize that
+        \,$\xi_{\bullet}$\,
+        is being considered as an argument to the formula
+        \begin{equation*}
+        \widehat{T}_{d}(s\,;\xi_{\bullet})
+        \;\; := \;\;
+            \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\xi_{i}
+        \end{equation*}
+        for the Horvitz-Thompson population total estimator.
     \end{itemize}
 \item
     The value of \,$Z_{i}$\, has been successfully observed or measured
@@ -649,7 +663,7 @@ will be proposed.
 %         \widetilde{T}_{d,Y}
 %         {\color{white}.}
 %         }{
-%         \overset{{\color{white}.}}{\widehat{T}_{Z}}
+%         \overset{{\color{white}.}}{\widehat{T}_{d,Z}}
 %         }
 %     }
 % \\
@@ -3657,9 +3671,9 @@ Then, the following statements are true:
     \;\; = \;\;
         \Var_{Y}\!\left[\;
             \left.
-            \dfrac{ \widetilde{T}_{d,Y} }{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }
+            \dfrac{ \widetilde{T}_{d,Y} }{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)} }
             \,-\,
-            \dfrac{ \widehat{T}_{d,Y} }{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }
+            \dfrac{ \widehat{T}_{d,Y} }{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)} }
             \;\right\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3671,7 +3685,7 @@ Then, the following statements are true:
     & = &
         \Var_{Y}\!\left[\;
             \left.
-            \dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }\left(\,
+            \dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)} }\left(\,
                 \widetilde{T}_{d,Y}
                 \,-\,
                 \widehat{T}_{d,Y}
