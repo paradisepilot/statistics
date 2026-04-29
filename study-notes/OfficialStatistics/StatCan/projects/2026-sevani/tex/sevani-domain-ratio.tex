@@ -4372,9 +4372,19 @@ Then, the following statements are true:
     \\
     &&
         \; + \;
-        E_{Y}\!\left[\;\,
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
-            \,\left\vert
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)
+                }
+            }
+        \cdot
+        E_{Y}\!\left[\;
+            \widetilde{T}_{d,Y}
+            \, - \,
+            \widehat{T}_{d,Y}
+            \;\left\vert\!
             \begin{array}{c}
                 s,s_{R},
                 \\
@@ -4434,7 +4444,7 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{black}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -4484,7 +4494,7 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{red}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -4520,7 +4530,7 @@ Then, the following statements are true:
 \item
     Nothing to prove.
 \item
-    The required result follows from the following general fact:
+    Recall the following general fact:
     \begin{equation*}
     \Cov(\,X,Y\,)
     \;\; := \;\;
@@ -4538,8 +4548,121 @@ Then, the following statements are true:
     \;\; = \;\;
         \Cov(\,X,Y\,)
         \; + \;
-        \mu_{X}\,\mu_{Y}
+        \mu_{X}\,\mu_{Y}\,,
     \end{equation*}
+    which in turn implies
+    \begin{eqnarray*}
+    &&
+        E_{Y}\!\left[\;
+            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)
+            (\,  \widehat{R}_{d,Y/Z} - R_{d,Y/Z}\,)
+            \;\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
+    & = &
+        \Cov_{Y}\!\left(\;\,
+            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \,,\,
+            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \;\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\!\right)
+    \\
+    &&
+        \; + \;
+        E_{Y}\!\left[\;\,
+            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+        \cdot
+        {\color{black}E_{Y}\!\left[\;\,
+            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]}
+    \end{eqnarray*}
+    Next, observe that
+    \begin{eqnarray*}
+    E_{Y}\!\left[\;\,
+        \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot\,,\Xobs
+            \end{array}
+        \right.
+        \!\right]
+    & = &
+        E_{Y}\!\left[\;
+            \left.
+            \dfrac{
+                \widetilde{T}_{d,Y}
+                }{
+                \overset{{\color{white}.}}{
+                    \widehat{T}_{d}(s\,;\Zdot)
+                    }
+                }
+            \, - \,
+            \dfrac{
+                \widehat{T}_{d,Y}
+                }{
+                \overset{{\color{white}.}}{
+                    \widehat{T}_{d}(s\,;\Zdot)
+                    }
+                }
+            \;\right\vert\!
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \!\right]
+    \\
+    & = &
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)
+                }
+            }
+        \cdot
+        E_{Y}\!\left[\;
+            \widetilde{T}_{d,Y}
+            \, - \,
+            \widehat{T}_{d,Y}
+            \;\left\vert\!
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \end{eqnarray*}
 \item
     \textbf{Claim 1:}
     \begin{eqnarray*}
@@ -6020,9 +6143,19 @@ Then, we have the following results:
         \; + \;
         2
         \cdot
-        E_{Y}\!\left[\;\,
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
-            \,\left\vert
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)
+                }
+            }
+        \cdot
+        E_{Y}\!\left[\;
+            \widetilde{T}_{d,Y}
+            \, - \,
+            \widehat{T}_{d,Y}
+            \;\left\vert\!
             \begin{array}{c}
                 s,s_{R},
                 \\
@@ -6134,7 +6267,7 @@ Then, we have the following results:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{red}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -6167,22 +6300,43 @@ Then, we have the following results:
     \textbf{Important Remark:}
     \vskip 0.05cm
     \noindent
-    Note that the above estimation/approximation of the mixed variance component
+    Note that the above estimation/approximation
+    of the sampling-nonresponse covariance component
     disregards the following term:
     \begin{equation*}
-    2\,\cdot E_{Y}\!\left[\;
-        \left.
-        \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+    2
     \cdot
-    {\color{red}E_{Y}\!\left[\;
-        \left.
-        \widehat{T}_{d,Y} - T_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]}
+    \dfrac{
+        1
+        }{
+        \overset{{\color{white}.}}{
+            \widehat{T}_{d}(s\,;\zdot)
+            }
+        }
+    \cdot
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y}
+        \, - \,
+        \widehat{T}_{d,Y}
+        \;\left\vert\!
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot\,,\Xobs
+            \end{array}
+        \right.
+        \!\right]
+    \cdot
+    {\color{red}E_{Y}\!\left[\;\,
+        \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot\,,\Xobs
+            \end{array}
+        \right.
+        \!\right]}
     \end{equation*}
     The reason this has to be done in practice is that, in practice,
     there is usually insufficient data/information to compute or estimate
@@ -6190,32 +6344,53 @@ Then, we have the following results:
     \,$
     E_{Y}\!\left[\;
         \left.
-        \widehat{T}_{d,Y} - T_{d,Y}
+        \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
         \;\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
     $\,
-    (indicated in red above), as \,$T_{d,Y}$\, involves population units
-    that are not selected in the sample.
+    (indicated in red above), as \,$R_{d,Y/Z}$\, involves population units
+    that are not selected in the sample (hence, not observed).
     \vskip 0.1cm
     \noindent
-    Obviously, the above estimation/approximation of the mixed variance component
+    Obviously, the above estimation/approximation
+    of the sampling-nonresponse covariance component
     is acceptable only if the quantity
-    \,$
-    2\,\cdot E_{Y}\!\left[\;
-        \left.
-        \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+    \begin{equation*}
+    2
     \cdot
-    {\color{black}E_{Y}\!\left[\;
-        \left.
-        \widehat{T}_{d,Y} - T_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]}
-    $\,
+    \dfrac{
+        1
+        }{
+        \overset{{\color{white}.}}{
+            \widehat{T}_{d}(s\,;\zdot)
+            }
+        }
+    \cdot
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y}
+        \, - \,
+        \widehat{T}_{d,Y}
+        \;\left\vert\!
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot\,,\Xobs
+            \end{array}
+        \right.
+        \!\right]
+    \cdot
+    {\color{black}E_{Y}\!\left[\;\,
+        \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+        \,\left\vert
+        \begin{array}{c}
+            s,s_{R},
+            \\
+            \Zdot\,,\Xobs
+            \end{array}
+        \right.
+        \!\right]}
+    \end{equation*}
     is small.
     \vskip 0.1cm
     \noindent
@@ -6225,7 +6400,7 @@ Then, we have the following results:
         \left.
         \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
         \;\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
     $\,
     is small;
@@ -6237,7 +6412,7 @@ Then, we have the following results:
         \left.
         \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
         \;\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
     & = &
         \underset{k\in{\color{red}s_{M}}}{\sum}\,d_{k}\,w_{k}\,
@@ -6245,7 +6420,7 @@ Then, we have the following results:
             \left.
             Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
             \;\right\vert\,
-            s,s_{R},\Xobs
+            s,s_{R},\Zdot,\Xobs
             \,\right]
     \end{eqnarray*}
     This harks back to our earlier remark (Remark \ref{remarkSmallUnitBias}) that,
@@ -6255,7 +6430,7 @@ Then, we have the following results:
         \left.
         Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
         \;\right\vert\,
-        s,s_{R},\Xobs
+        s,s_{R},\Zdot,\Xobs
         \,\right]
     \;\; \approx \;\;
         0,
