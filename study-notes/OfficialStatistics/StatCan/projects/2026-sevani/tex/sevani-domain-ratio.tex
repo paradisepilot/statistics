@@ -58,10 +58,10 @@ Suppose:
             }
     \;\; :=: \;\;
         \dfrac{
-            \widehat{T}(s\,;\pi,d_{\bullet},\Ydot)
+            \widehat{T}_{d}(s\,;\Ydot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                \widehat{T}_{d}(s\,;\Zdot)
                 }
             }
     \\
@@ -99,12 +99,12 @@ Suppose:
         $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$\,
         is the vector of $\{0,1\}$-valued selection indicator variables, and
     \item
-        \,$\widehat{T}(s\,;\pi,d_{\bullet},\xi_{\bullet})$\,
+        \,$\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
         is the \textit{Horvitz-Thompson estimator for the domain total}
         \,$T_{d,\xi} \,:=\, \underset{i\,\in\,U}{\sum}\,d_{i}\xi_{i}$\,
         of an arbitrary population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
         \begin{equation*}
-        \widehat{T}(s\,;\pi,d_{\bullet},\xi_{\bullet})
+        \widehat{T}_{d}(s\,;\xi_{\bullet})
         \;\; := \;\;
             \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\xi_{i}
         \;\; = \;\;
@@ -144,10 +144,10 @@ Suppose:
             }
     \;\; :=: \;\;
         \dfrac{
-            \widehat{T}(s\,;\pi,d_{\bullet},\widetilde{Y}_{\bullet})
+            \widehat{T}_{d}(s\,;\widetilde{Y}_{\bullet})
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                \widehat{T}_{d}(s\,;\Zdot)
                 }
             }
     \\
@@ -1550,7 +1550,7 @@ Then, the following statements are true:
     \\
     & := &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -1573,7 +1573,7 @@ Then, the following statements are true:
     \\
     & = &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -1585,9 +1585,9 @@ Then, the following statements are true:
                 y_{k}
                 \, - \,
                 \dfrac{
-                    \widehat{T}(s\,;\ydot)
+                    \widehat{T}_{d}(s\,;\ydot)
                     }{
-                    \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)}
+                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
                     }
                 \cdot
                 z_{k}
@@ -1599,9 +1599,9 @@ Then, the following statements are true:
                 y_{l}
                 \, - \,
                 \dfrac{
-                    \widehat{T}(s\,;\ydot)
+                    \widehat{T}_{d}(s\,;\ydot)
                     }{
-                    \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)}
+                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
                     }
                 \cdot
                 z_{l}
@@ -1613,15 +1613,15 @@ Then, the following statements are true:
             v_{\textnormal{HT}}(\,s\,;\ydot\,)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \; + \;
         \dfrac{
-            (-2)\left.\widehat{T}(s\,;\ydot)\right\slash\widehat{T}(s\,;\zdot)
+            (-2)\left.\widehat{T}_{d}(s\,;\ydot)\right\slash\widehat{T}_{d}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \left(\,
@@ -1636,12 +1636,12 @@ Then, the following statements are true:
         \; + \;
         \dfrac{
             \left.
-            \widehat{T}(s\,;\ydot)^{2}
+            \widehat{T}_{d}(s\,;\ydot)^{2}
             \right\slash
-            \widehat{T}(s\,;\zdot)^{2}
+            \widehat{T}_{d}(s\,;\zdot)^{2}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -1678,7 +1678,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \left(\,
@@ -1695,7 +1695,7 @@ Then, the following statements are true:
             (-2)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{3}
+                \widehat{T}_{d}(s\,;\zdot)^{3}
                 }
             }
         \left(\,
@@ -1710,7 +1710,7 @@ Then, the following statements are true:
             \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -1718,7 +1718,7 @@ Then, the following statements are true:
             v_{\textnormal{HT}}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
     \end{eqnarray*}
@@ -1830,7 +1830,7 @@ Then, the following statements are true:
     \\
     & = &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -1845,18 +1845,18 @@ Then, the following statements are true:
             {\color{black}2}
             \cdot
             \dfrac{
-                \widehat{T}(s\,;\Ydot)
+                \widehat{T}_{d}(s\,;\Ydot)
                 }{
-                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
                 }
             \cdot
             {\color{black}Y_{k}Z_{l}}
             \, + \,
             Z_{k}\,Z_{l}\,
             \dfrac{
-                \widehat{T}(s\,;\Ydot)^{2}
+                \widehat{T}_{d}(s\,;\Ydot)^{2}
                 }{
-                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
                 }
             \,\left\vert
             \begin{array}{c}
@@ -1882,51 +1882,51 @@ Then, the following statements are true:
     & = &
         E_{Y_{M}}\!\left[\;
             \dfrac{1}{
-                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
                 }
             \cdot
             \underset{k \in s}{\sum}\,
             \underset{l \in s}{\sum}\;
             \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
-            \left(\,
-                \dfrac{d_{k}}{\pi_{k}}
-                \left(\,
+            \left(
+                \dfrac{d_{k}}{\pi_{k}}\!
+                \left(
                     Y_{k}
-                    \, - \,
+                    -
                     \dfrac{
-                        \widehat{T}(s\,;\Ydot)
+                        \widehat{T}_{d}(s\,;\Ydot)
                         }{
-                        \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                        \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
                         }
                     \cdot
                     Z_{k}
-                    \,\right)
-                \!\right)
+                    \right)
+                \!\!\right)
             \!
-            \left(\,
+            \left(
                 \dfrac{d_{l}}{\pi_{l}}
-                \left(\,
+                \left(
                     Y_{l}
-                    \, - \,
+                    -
                     \dfrac{
-                        \widehat{T}(s\,;\Ydot)
+                        \widehat{T}_{d}(s\,;\Ydot)
                         }{
-                        \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                        \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
                         }
                     \cdot
                     Z_{l}
-                    \,\right)
-                \!\right)
-            \,\left\vert
+                    \right)
+                \!\!\right)
+            \,\left\vert\!
             \begin{array}{c}
                 s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
-            \!\right]
+            \!\!\right]
     \\
     & = &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -1940,9 +1940,9 @@ Then, the following statements are true:
                 Y_{k}
                 \, - \,
                 \dfrac{
-                    \widehat{T}(s\,;\Ydot)
+                    \widehat{T}_{d}(s\,;\Ydot)
                     }{
-                    \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
                     }
                 \cdot
                 Z_{k}
@@ -1952,9 +1952,9 @@ Then, the following statements are true:
                 Y_{l}
                 \, - \,
                 \dfrac{
-                    \widehat{T}(s\,;\Ydot)
+                    \widehat{T}_{d}(s\,;\Ydot)
                     }{
-                    \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
                     }
                 \cdot
                 Z_{l}
@@ -1968,7 +1968,7 @@ Then, the following statements are true:
     \\
     & = &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -1981,17 +1981,17 @@ Then, the following statements are true:
             Y_{k}\,Y_{l}
             \, - \,
             \dfrac{
-                \widehat{T}(s\,;\Ydot)
+                \widehat{T}_{d}(s\,;\Ydot)
                 }{
-                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
                 }
             {\color{black}\left(\,Y_{k}Z_{l} \overset{{\color{white}.}}{+} Y_{l}Z_{k}\,\right)}
             \, + \,
             Z_{k}\,Z_{l}\,
             \dfrac{
-                \widehat{T}(s\,;\Ydot)^{2}
+                \widehat{T}_{d}(s\,;\Ydot)^{2}
                 }{
-                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
                 }
             \,\left\vert
             \begin{array}{c}
@@ -2002,7 +2002,7 @@ Then, the following statements are true:
     \\
     & = &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -2017,18 +2017,18 @@ Then, the following statements are true:
             {\color{red}2}
             \cdot
             \dfrac{
-                \widehat{T}(s\,;\Ydot)
+                \widehat{T}_{d}(s\,;\Ydot)
                 }{
-                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
                 }
             \cdot
             {\color{red}Y_{k}Z_{l}}
             \, + \,
             Z_{k}\,Z_{l}\,
             \dfrac{
-                \widehat{T}(s\,;\Ydot)^{2}
+                \widehat{T}_{d}(s\,;\Ydot)^{2}
                 }{
-                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
                 }
             \,\left\vert
             \begin{array}{c}
@@ -2100,7 +2100,7 @@ Then, the following statements are true:
     \textbf{Claim 2:}\quad
     \begin{eqnarray*}
     E_{Y_{M}}\!\left[\;
-        \widehat{T}(s\,;\Ydot)^{2}
+        \widehat{T}_{d}(s\,;\Ydot)^{2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
@@ -2120,7 +2120,7 @@ Then, the following statements are true:
     Proof of Claim 2:\;\;
     \begin{eqnarray*}
     E_{Y_{M}}\!\left[\;
-        \widehat{T}(s\,;\Ydot)^{2}
+        \widehat{T}_{d}(s\,;\Ydot)^{2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
@@ -2217,7 +2217,7 @@ Then, the following statements are true:
     \textbf{Claim 3:}\quad
     \begin{eqnarray*}
     E_{Y_{M}}\!\left[\;
-        \widehat{T}(s\,;\Ydot) \cdot Y_{k}
+        \widehat{T}_{d}(s\,;\Ydot) \cdot Y_{k}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
@@ -2247,7 +2247,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
-            \widehat{T}(s\,;\Ydot) \cdot Y_{k}
+            \widehat{T}_{d}(s\,;\Ydot) \cdot Y_{k}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
@@ -2400,7 +2400,7 @@ Then, the following statements are true:
     % & = &
     %     E_{Y_{M}}\!\left[\;
     %         \dfrac{1}{
-    %             \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+    %             \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
     %             }
     %         \cdot
     %         \underset{k \in s}{\sum}\,
@@ -2412,9 +2412,9 @@ Then, the following statements are true:
     %                 Y_{k}
     %                 \, - \,
     %                 \dfrac{
-    %                     \widehat{T}(s\,;\Ydot)
+    %                     \widehat{T}_{d}(s\,;\Ydot)
     %                     }{
-    %                     \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+    %                     \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
     %                     }
     %                 \cdot
     %                 Z_{k}
@@ -2427,9 +2427,9 @@ Then, the following statements are true:
     %                 Y_{l}
     %                 \, - \,
     %                 \dfrac{
-    %                     \widehat{T}(s\,;\Ydot)
+    %                     \widehat{T}_{d}(s\,;\Ydot)
     %                     }{
-    %                     \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+    %                     \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
     %                     }
     %                 \cdot
     %                 Z_{l}
@@ -2444,7 +2444,7 @@ Then, the following statements are true:
     % \\
     % & = &
     %     \dfrac{1}{
-    %         \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+    %         \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
     %         }
     %     \cdot
     %     \underset{k \in s}{\sum}\,
@@ -2458,9 +2458,9 @@ Then, the following statements are true:
     %             Y_{k}
     %             \, - \,
     %             \dfrac{
-    %                 \widehat{T}(s\,;\Ydot)
+    %                 \widehat{T}_{d}(s\,;\Ydot)
     %                 }{
-    %                 \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
     %                 }
     %             \cdot
     %             Z_{k}
@@ -2470,9 +2470,9 @@ Then, the following statements are true:
     %             Y_{l}
     %             \, - \,
     %             \dfrac{
-    %                 \widehat{T}(s\,;\Ydot)
+    %                 \widehat{T}_{d}(s\,;\Ydot)
     %                 }{
-    %                 \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
     %                 }
     %             \cdot
     %             Z_{l}
@@ -2486,7 +2486,7 @@ Then, the following statements are true:
     % \\
     % & = &
     %     \dfrac{1}{
-    %         \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+    %         \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
     %         }
     %     \cdot
     %     \underset{k \in s}{\sum}\,
@@ -2499,17 +2499,17 @@ Then, the following statements are true:
     %         Y_{k}\,Y_{l}
     %         \, - \,
     %         \dfrac{
-    %             \widehat{T}(s\,;\Ydot)
+    %             \widehat{T}_{d}(s\,;\Ydot)
     %             }{
-    %             \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+    %             \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
     %             }
     %         {\color{black}\left(\,Y_{k}Z_{l} \overset{{\color{white}.}}{+} Y_{l}Z_{k}\,\right)}
     %         \, + \,
     %         Z_{k}\,Z_{l}\,
     %         \dfrac{
-    %             \widehat{T}(s\,;\Ydot)^{2}
+    %             \widehat{T}_{d}(s\,;\Ydot)^{2}
     %             }{
-    %             \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+    %             \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
     %             }
     %         \,\left\vert
     %         \begin{array}{c}
@@ -2520,7 +2520,9 @@ Then, the following statements are true:
     \\
     & = &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -2535,18 +2537,18 @@ Then, the following statements are true:
             {\color{black}2}
             \cdot
             \dfrac{
-                \widehat{T}(s\,;\Ydot)
+                \widehat{T}_{d}(s\,;\Ydot)
                 }{
-                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)}
+                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
                 }
             \cdot
             {\color{black}Y_{k}Z_{l}}
             \, + \,
             Z_{k}\,Z_{l}\,
             \dfrac{
-                \widehat{T}(s\,;\Ydot)^{2}
+                \widehat{T}_{d}(s\,;\Ydot)^{2}
                 }{
-                \overset{{\color{white}.}}{\widehat{T}(s\,;\Zdot)^{2}}
+                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
                 }
             \,\left\vert
             \begin{array}{c}
@@ -2562,7 +2564,7 @@ Then, the following statements are true:
     & = &
         \; {\color{white}+} \;
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -2585,7 +2587,7 @@ Then, the following statements are true:
         \dfrac{
             (-2)
             }{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{3}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{3}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -2595,7 +2597,7 @@ Then, the following statements are true:
         \dfrac{d_{l}z_{l}}{\pi_{l}}
         \cdot
         E_{Y_{M}}\!\left[\;\,
-            \widehat{T}(s\,;\Ydot) \cdot Y_{k}
+            \widehat{T}_{d}(s\,;\Ydot) \cdot Y_{k}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
@@ -2608,11 +2610,11 @@ Then, the following statements are true:
         \dfrac{
             1
             }{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         E_{Y_{M}}\!\left[\;\,
-            \widehat{T}(s\,;\Ydot)^{2}
+            \widehat{T}_{d}(s\,;\Ydot)^{2}
             \;\left\vert
             \begin{array}{c}
                 s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
@@ -2623,7 +2625,7 @@ Then, the following statements are true:
         \dfrac{
             1
             }{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -2642,7 +2644,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \left(\,
@@ -2661,7 +2663,7 @@ Then, the following statements are true:
             2
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{3}
+                \widehat{T}_{d}(s\,;\zdot)^{3}
                 }
             }
             \left(\,
@@ -2689,7 +2691,7 @@ Then, the following statements are true:
             \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -2697,7 +2699,7 @@ Then, the following statements are true:
             v_{\textnormal{HT}}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \,,
@@ -2710,7 +2712,7 @@ Then, the following statements are true:
             v_{\textnormal{HT}}(\,s\,;\widetilde{y}_{\bullet}\,)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         }
@@ -2719,7 +2721,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \left(\,
@@ -2733,10 +2735,10 @@ Then, the following statements are true:
         \; + \;
         {\color{blue}
         \dfrac{
-            (-2)\left.\widehat{T}(s\,;\widetilde{y}_{\bullet})\right\slash\widehat{T}(s\,;\zdot)
+            (-2)\left.\widehat{T}(s\,;\widetilde{y}_{\bullet})\right\slash\widehat{T}_{d}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \left(\,
@@ -2754,7 +2756,7 @@ Then, the following statements are true:
             (-2)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{3}
+                \widehat{T}_{d}(s\,;\zdot)^{3}
                 }
             }
         \left(\,
@@ -2772,10 +2774,10 @@ Then, the following statements are true:
             \left.
             \widehat{T}(s\,;\widetilde{y}_{\bullet})^{2}
             \right\slash
-            \widehat{T}(s\,;\zdot)^{2}
+            \widehat{T}_{d}(s\,;\zdot)^{2}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -2786,7 +2788,7 @@ Then, the following statements are true:
             \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -2794,7 +2796,7 @@ Then, the following statements are true:
             v_{\textnormal{HT}}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
     \\
@@ -2805,7 +2807,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \left(\,
@@ -2821,7 +2823,7 @@ Then, the following statements are true:
             (-2)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{3}
+                \widehat{T}_{d}(s\,;\zdot)^{3}
                 }
             }
         \left(\,
@@ -2836,7 +2838,7 @@ Then, the following statements are true:
             \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -2844,7 +2846,7 @@ Then, the following statements are true:
             v_{\textnormal{HT}}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             },
     \\
@@ -3532,7 +3534,7 @@ Then, the following statements are true:
         \dfrac{
             1}{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -3627,7 +3629,7 @@ Then, the following statements are true:
         \right.
         \!\right]
     \;\; = \;\;
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}
@@ -3682,7 +3684,7 @@ Then, the following statements are true:
                 \end{array}
             \!\right]
     \;\; = \;\;
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\;
                 \widetilde{T}_{d,Y}
@@ -3698,7 +3700,7 @@ Then, the following statements are true:
             \!\right]
     \\
     & = &
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\,
             \left.
@@ -3718,7 +3720,7 @@ Then, the following statements are true:
         \textnormal{by Lemma \ref{PopTotalImputationError}(ii)}
     \\
     & = &
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\;
             \left.
@@ -3736,7 +3738,7 @@ Then, the following statements are true:
         % \textnormal{since $W^{(+)}_{0}$ is constant upon conditioning on $s, s_{R}$}
     \\
     & = &
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}
@@ -3781,7 +3783,7 @@ Then, the following statements are true:
             }}
     \\
     & = &
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}
@@ -3811,7 +3813,7 @@ Then, the following statements are true:
             }}
     \\
     & = &
-        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
+        \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}
@@ -3853,7 +3855,7 @@ Then, the following statements are true:
         \dfrac{
             1
             }{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
             }
         \cdot
         \left(\;
@@ -3886,7 +3888,7 @@ Then, the following statements are true:
                 \widetilde{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \, - \,
@@ -3894,7 +3896,7 @@ Then, the following statements are true:
                 \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \;\right\vert
@@ -3912,7 +3914,7 @@ Then, the following statements are true:
                 1
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \cdot
@@ -3933,7 +3935,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)
+                \widehat{T}_{d}(s\,;\zdot)
                 }
             }
         \cdot
@@ -3955,7 +3957,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)
+                \widehat{T}_{d}(s\,;\zdot)
                 }
             }
         \cdot
@@ -3981,7 +3983,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)
+                \widehat{T}_{d}(s\,;\zdot)
                 }
             }
         \cdot
@@ -4022,7 +4024,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)
+                \widehat{T}_{d}(s\,;\zdot)
                 }
             }
         \cdot
@@ -4060,7 +4062,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)
+                \widehat{T}_{d}(s\,;\zdot)
                 }
             }
         \cdot
@@ -4414,8 +4416,8 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                % \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                % \widehat{T}_{d}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -4432,7 +4434,7 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -4445,7 +4447,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -4462,7 +4464,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -4482,7 +4484,7 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -4495,7 +4497,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \left. \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2} \right\slash N^{2}
+                \left. \widehat{T}_{d}(s\,;\zdot)^{2} \right\slash N^{2}
                 }
             }
         \cdot
@@ -4812,7 +4814,7 @@ Then, the following statements are true:
                 \widetilde{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \, - \,
@@ -4820,7 +4822,7 @@ Then, the following statements are true:
                 \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \; , \;
@@ -4828,7 +4830,7 @@ Then, the following statements are true:
                 \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \, - \,
@@ -4856,7 +4858,7 @@ Then, the following statements are true:
                 \widetilde{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \, - \,
@@ -4864,7 +4866,7 @@ Then, the following statements are true:
                 \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \; , \;
@@ -4872,7 +4874,7 @@ Then, the following statements are true:
                 \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \,{\color{blue}
@@ -4881,7 +4883,7 @@ Then, the following statements are true:
                 T_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \, + \,
@@ -4889,7 +4891,7 @@ Then, the following statements are true:
                 T_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             }\,
@@ -4918,7 +4920,7 @@ Then, the following statements are true:
                 \widetilde{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \, - \,
@@ -4926,7 +4928,7 @@ Then, the following statements are true:
                 \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \; , \;
@@ -4934,7 +4936,7 @@ Then, the following statements are true:
                 \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \, - \,
@@ -4942,7 +4944,7 @@ Then, the following statements are true:
                 T_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \;\,\right\vert\!
@@ -4961,7 +4963,7 @@ Then, the following statements are true:
                 \widetilde{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \, - \,
@@ -4969,7 +4971,7 @@ Then, the following statements are true:
                 \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \; , \;
@@ -4977,7 +4979,7 @@ Then, the following statements are true:
                 T_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
+                    \widehat{T}_{d}(s\,;\Zdot)
                     }
                 }
             \, - \,
@@ -5003,7 +5005,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -5030,7 +5032,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+                \widehat{T}_{d}(s\,;\zdot)
                 }
             }
         \cdot
@@ -5039,7 +5041,7 @@ Then, the following statements are true:
                 1
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+                    \widehat{T}_{d}(s\,;\zdot)
                     }
                 }
             \, - \,
@@ -5074,7 +5076,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -5090,17 +5092,17 @@ Then, the following statements are true:
         \; + \;
         \left(\,
             % \dfrac{
-            %     \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+            %     \widehat{T}_{d}(s\,;\zdot)
             %     }{
             %     \overset{{\color{white}.}}{
-            %         \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+            %         \widehat{T}_{d}(s\,;\zdot)
             %         }
             %     }
             1
             \, - \,
             \dfrac{
                 {\color{white}.}
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+                \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -5113,7 +5115,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -5132,7 +5134,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -5149,7 +5151,7 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -5162,7 +5164,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -5179,7 +5181,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -5199,7 +5201,7 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -5212,7 +5214,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \left. \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2} \right\slash N^{2}
+                \left. \widehat{T}_{d}(s\,;\zdot)^{2} \right\slash N^{2}
                 }
             }
         \cdot
@@ -5602,7 +5604,7 @@ Then, we have the following results:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \left(\,
@@ -5619,7 +5621,7 @@ Then, we have the following results:
             (-2)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{3}
+                \widehat{T}_{d}(s\,;\zdot)^{3}
                 }
             }
         \left(\,
@@ -5634,7 +5636,7 @@ Then, we have the following results:
             \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -5642,7 +5644,7 @@ Then, we have the following results:
             v_{\textnormal{HT}}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
     \end{eqnarray*}
@@ -5675,7 +5677,7 @@ Then, we have the following results:
     \\
     & := &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -5698,7 +5700,7 @@ Then, we have the following results:
     \\
     & = &
         \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)^{2}}
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
             }
         \cdot
         \underset{k \in s}{\sum}\,
@@ -5710,9 +5712,9 @@ Then, we have the following results:
                 y_{k}
                 \, - \,
                 \dfrac{
-                    \widehat{T}(s\,;\ydot)
+                    \widehat{T}_{d}(s\,;\ydot)
                     }{
-                    \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)}
+                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
                     }
                 \cdot
                 z_{k}
@@ -5724,9 +5726,9 @@ Then, we have the following results:
                 y_{l}
                 \, - \,
                 \dfrac{
-                    \widehat{T}(s\,;\ydot)
+                    \widehat{T}_{d}(s\,;\ydot)
                     }{
-                    \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)}
+                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
                     }
                 \cdot
                 z_{l}
@@ -5738,15 +5740,19 @@ Then, we have the following results:
             v_{\textnormal{HT}}(\,s\,;\ydot\,)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \; + \;
         \dfrac{
-            (-2)\left.\widehat{T}(s\,;\ydot)\right\slash\widehat{T}(s\,;\zdot)
+            (-2)\cdot
+            \left.
+            \widehat{T}_{d}(s\,;\ydot)
+            \right\slash
+            \widehat{T}_{d}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \left(\,
@@ -5761,12 +5767,12 @@ Then, we have the following results:
         \; + \;
         \dfrac{
             \left.
-            \widehat{T}(s\,;\ydot)^{2}
+            \widehat{T}_{d}(s\,;\ydot)^{2}
             \right\slash
-            \widehat{T}(s\,;\zdot)^{2}
+            \widehat{T}_{d}(s\,;\zdot)^{2}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -5853,7 +5859,7 @@ Then, we have the following results:
         \dfrac{
             1}{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -6057,7 +6063,7 @@ Then, we have the following results:
             2
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -6076,7 +6082,7 @@ Then, we have the following results:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -6089,7 +6095,7 @@ Then, we have the following results:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -6106,7 +6112,7 @@ Then, we have the following results:
             2
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
         \cdot
@@ -6128,7 +6134,7 @@ Then, we have the following results:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
+                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -6141,7 +6147,7 @@ Then, we have the following results:
             1
             }{
             \overset{{\color{white}.}}{
-                \left. \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2} \right\slash N^{2}
+                \left. \widehat{T}_{d}(s\,;\zdot)^{2} \right\slash N^{2}
                 }
             }
         \cdot
