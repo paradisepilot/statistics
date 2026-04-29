@@ -326,7 +326,7 @@ will be proposed.
 % \;$
 % R_{d,Y/Z}
 % \, := \,
-%     \dfrac{T_{Y}}{\overset{{\color{white}.}}{T_{Z}}}
+%     \dfrac{T_{d,Y}}{\overset{{\color{white}.}}{T_{d,Z}}}
 % \, = \,
 %     \dfrac{
 %         {\color{white}.}
@@ -622,7 +622,7 @@ will be proposed.
 % \begin{equation*}
 % R_{d,Y/Z}
 % \;\; := \;\;
-%     \dfrac{ T_{Y} }{ \overset{{\color{white}.}}{T_{Z}} }
+%     \dfrac{ T_{d,Y} }{ \overset{{\color{white}.}}{T_{d,Z}} }
 % \;\; = \;\;
 %     \dfrac{
 %         \underset{i \in U}{\sum}\,d_{i}Y_{i}
@@ -646,7 +646,7 @@ will be proposed.
 %     {\color{red}
 %     \dfrac{
 %         {\color{white}.}
-%         \widetilde{T}_{Y}
+%         \widetilde{T}_{d,Y}
 %         {\color{white}.}
 %         }{
 %         \overset{{\color{white}.}}{\widehat{T}_{Z}}
@@ -677,12 +677,12 @@ will be proposed.
 % \end{definition}
 
 % \vskip 0.3cm
-% \begin{lemma}[A formula for \,$\widetilde{T}_{Y}$]
+% \begin{lemma}[A formula for \,$\widetilde{T}_{d,Y}$]
 % \mbox{}
 % \vskip 0.1cm
 % \noindent
 % \begin{eqnarray*}
-% \widetilde{T}_{Y}
+% \widetilde{T}_{d,Y}
 % & = &
 %     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
 %     \;\overset{{\color{white}.}}{+}\;
@@ -691,7 +691,7 @@ will be proposed.
 % \end{lemma}
 % \proof
 % \begin{eqnarray*}
-% \widetilde{T}_{Y}
+% \widetilde{T}_{d,Y}
 % & := &
 %     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
 % \;\; = \;\;
@@ -739,16 +739,16 @@ will be proposed.
 %         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 % \vskip 0.3cm
-% \begin{lemma}[Conditional bias of \,$\widetilde{T}_{Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
+% \begin{lemma}[Conditional bias of \,$\widetilde{T}_{d,Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
 % \label{biasTtilde}
 % \mbox{}
 % \vskip 0.1cm
 % \noindent
 % Let
 % \begin{eqnarray*}
-% \widetilde{T}_{Y}
+% \widetilde{T}_{d,Y}
 % \;\; = \;\;
-%     \widetilde{T}_{Y}(\,
+%     \widetilde{T}_{d,Y}(\,
 %         \Sdot\,,\,
 %         \Rdot\,,\,
 %         \Ydot\,,\,
@@ -765,7 +765,7 @@ will be proposed.
 %         \,\right)
 % \end{eqnarray*}
 % be an imputation estimator for the domain total
-% \;$T_{Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
+% \;$T_{d,Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
 % where
 % \begin{equation*}
 % \widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}
@@ -795,25 +795,25 @@ will be proposed.
 %     \,$
 %     \bias\!\left(\;
 %         \left.
-%         \widetilde{T}_{Y}
+%         \widetilde{T}_{d,Y}
 %         \;\right\vert\,
 %         \Zdot\,,\Xobs
 %         \,\right)
 %     $\,
 %     of
-%     \,$\widetilde{T}_{Y}$\,
+%     \,$\widetilde{T}_{d,Y}$\,
 %     satisfies:
 %     \begin{eqnarray*}
 %     \bias\!\left(\;
 %         \left.
-%         \widetilde{T}_{Y}
+%         \widetilde{T}_{d,Y}
 %         \;\right\vert\,
 %         \Zdot\,,\Xobs
 %         \,\right)
 %     & := &
 %         E\!\left[\;
 %             \left.
-%             \widetilde{T}_{Y} - T_{Y}
+%             \widetilde{T}_{d,Y} - T_{d,Y}
 %             \,\right\vert\,
 %             \Zdot\,,\Xobs
 %             \,\right]
@@ -821,7 +821,7 @@ will be proposed.
 %         E_{SR}\!\left(\;
 %             \overset{{\color{white}.}}{E_{Y}\!\left[\;
 %                 \left.
-%                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
 %                 \;\right\vert\,
 %                 s,s_{R},\Zdot\,,\Xobs
 %                 \,\right]}
@@ -829,9 +829,9 @@ will be proposed.
 %     \end{eqnarray*}
 %     where
 %     \,$
-%     \widehat{T}_{Y}
+%     \widehat{T}_{d,Y}
 %     \; = \;
-%         \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
+%         \widehat{T}_{d,Y}(\,s,\Ydot\,;\,\dbullet\,)
 %     \; = \;
 %         \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
 %     $\,
@@ -841,7 +841,7 @@ will be proposed.
 %     \,$
 %     E_{Y}\!\left[\;
 %         \left.
-%         \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%         \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
 %         \;\right\vert\,
 %         s,s_{R},\Xobs
 %         \,\right]
@@ -850,7 +850,7 @@ will be proposed.
 %     \begin{eqnarray*}
 %     E_{Y}\!\left[\;
 %         \left.
-%         \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%         \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
 %         \;\right\vert\,
 %         s,s_{R},\Xobs
 %         \,\right]
@@ -868,14 +868,14 @@ will be proposed.
 %     \begin{eqnarray*}
 %     \bias\!\left(\;
 %         \left.
-%         \widetilde{T}_{Y}
+%         \widetilde{T}_{d,Y}
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right)
 %     & := &
 %         E\!\left[\;
 %             \left.
-%             \widetilde{T}_{Y} - T_{Y}
+%             \widetilde{T}_{d,Y} - T_{d,Y}
 %             \,\right\vert\,
 %             \Xobs
 %             \,\right]
@@ -883,7 +883,7 @@ will be proposed.
 %         E_{SR}\!\left(\;
 %             \overset{{\color{white}.}}{E_{Y}\!\left[\;
 %                 \left.
-%                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
 %                 \;\right\vert\,
 %                 s,s_{R},\Xobs
 %                 \,\right]}
@@ -940,21 +940,21 @@ will be proposed.
 %     \begin{eqnarray*}
 %     \bias\!\left(\;
 %         \left.
-%         \widetilde{T}_{Y}
+%         \widetilde{T}_{d,Y}
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right)
 %     & := &
 %         E\!\left[\;
 %             \left.
-%             \widetilde{T}_{Y} - T_{Y}
+%             \widetilde{T}_{d,Y} - T_{d,Y}
 %             \,\right\vert\,
 %             \Xobs
 %             \,\right]
 %     \;\; = \;\;
 %         E\!\left[\;
 %             \left.
-%             \widetilde{T}_{Y} - \widehat{T}_{Y} + \widehat{T}_{Y} - T_{Y}
+%             \widetilde{T}_{d,Y} - \widehat{T}_{d,Y} + \widehat{T}_{d,Y} - T_{d,Y}
 %             \,\right\vert\,
 %             \Xobs
 %             \,\right]
@@ -962,14 +962,14 @@ will be proposed.
 %     & = &
 %         E_{SRY}\!\left[\,
 %             \left.
-%             \widetilde{T}_{Y} - \widehat{T}_{Y}
+%             \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
 %             \,\right\vert\,
 %             \Xobs
 %             \,\right]
 %         \; + \;
 %         E_{YSR}\!\left[\,
 %             \left.
-%             \widehat{T}_{Y} - T_{Y}
+%             \widehat{T}_{d,Y} - T_{d,Y}
 %             \,\right\vert\,
 %             \Xobs
 %             \,\right]
@@ -978,7 +978,7 @@ will be proposed.
 %         E_{SR}\!\left(\,
 %             \overset{{\color{white}.}}{E_{Y}\!\left[\;
 %                 \left.
-%                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
 %                 \;\right\vert\,
 %                 s,s_{R},\Xobs
 %                 \,\right]}
@@ -987,7 +987,7 @@ will be proposed.
 %         E_{Y}\!\left(\,
 %             \overset{{\color{white}.}}{E_{SR}\!\left[\;
 %                 \left.
-%                 \widehat{T}_{Y} \overset{{\color{white}.}}{-} T_{Y}
+%                 \widehat{T}_{d,Y} \overset{{\color{white}.}}{-} T_{d,Y}
 %                 \;\right\vert\,
 %                 \Ydot,\Xobs
 %                 \,\right]}
@@ -997,7 +997,7 @@ will be proposed.
 %         E_{SR}\!\left(\,
 %             \overset{{\color{white}.}}{E_{Y}\!\left[\;
 %                 \left.
-%                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
 %                 \;\right\vert\,
 %                 s,s_{R},\Xobs
 %                 \,\right]}
@@ -1005,13 +1005,13 @@ will be proposed.
 %         \; + \;
 %         E_{Y}\!\left(\;\overset{{\color{white}.}}{0}\;\right),
 %         \;\;
-%         \textnormal{by design-unbiasedness of \,$\widehat{T}_{Y}$}
+%         \textnormal{by design-unbiasedness of \,$\widehat{T}_{d,Y}$}
 %     \\
 %     & = &
 %         E_{SR}\!\left(\,
 %             \overset{{\color{white}.}}{E_{Y}\!\left[\;
 %                 \left.
-%                 \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
 %                 \;\right\vert\,
 %                 s,s_{R},\Xobs
 %                 \,\right]}
@@ -1024,7 +1024,7 @@ will be proposed.
 %     &&
 %         E_{Y}\!\left[\;
 %             \left.
-%             \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+%             \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
 %             \;\right\vert\,
 %             s,s_{R},\Xobs
 %             \,\right]
@@ -1394,7 +1394,7 @@ we will use the following nomenclature:
 % E_{Y}\!\left[\,
 % E_{SR}\!\left[\,
 %     \left.
-%     (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+%     (\,\widehat{T}_{d,Y} - T_{d,Y}\,)^{2}
 %     \,\right\vert\,
 %     \Ydot,
 %     \Xobs
@@ -1408,7 +1408,7 @@ we will use the following nomenclature:
 % E_{Y}\!\left[\,
 % E_{SR}\!\left[\,
 %     \left.
-%     (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+%     (\,\widehat{T}_{d,Y} - T_{d,Y}\,)^{2}
 %     \,\right\vert\,
 %     \Ydot,
 %     \Xobs
@@ -1418,7 +1418,7 @@ we will use the following nomenclature:
 %     E_{Y}\!\left[\,
 %     \Var_{SR}\!\left(\,
 %         \left.
-%         \widehat{T}_{Y}
+%         \widehat{T}_{d,Y}
 %         \,\right\vert\,
 %         \Ydot,
 %         \Xobs
@@ -1430,7 +1430,7 @@ we will use the following nomenclature:
 % E_{Y}\!\left[\,
 % E_{SR}\!\left[\,
 %     \left.
-%     (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+%     (\,\widehat{T}_{d,Y} - T_{d,Y}\,)^{2}
 %     \,\right\vert\,
 %     \Ydot,
 %     \Xobs
@@ -1440,7 +1440,7 @@ we will use the following nomenclature:
 %     E_{Y}\!\left[\,
 %     E_{SR}\!\left[\,
 %         \left.
-%         (\,\widehat{T}_{Y} - T_{Y}\,)^{2}
+%         (\,\widehat{T}_{d,Y} - T_{d,Y}\,)^{2}
 %         \,\right\vert\,
 %         s,s_{R},\YsubR,\Xobs
 %         \,\right]
@@ -2879,7 +2879,7 @@ Then, the following statements are true:
 % \;\; = \;\;
 %     \Var_{SR}\!\left(\,
 %         \left.
-%         \widehat{T}_{Y}
+%         \widehat{T}_{d,Y}
 %         \,\right\vert\,
 %         \Ydot,
 %         \Xobs
@@ -2889,7 +2889,7 @@ Then, the following statements are true:
 % \begin{equation*}
 % \Var_{SR}\!\left(\,
 %     \left.
-%     \widehat{T}_{Y}
+%     \widehat{T}_{d,Y}
 %     \,\right\vert\,
 %     \Ydot,
 %     \Xobs
@@ -2901,7 +2901,7 @@ Then, the following statements are true:
 % E_{Y}\!\left[\,
 %     \Var_{SR}\!\left(\,
 %         \left.
-%         \widehat{T}_{Y}
+%         \widehat{T}_{d,Y}
 %         \,\right\vert\,
 %         \Ydot,
 %         \Xobs
@@ -2956,7 +2956,7 @@ Then, the following statements are true:
 % \noindent
 % An imputation estimator
 % \begin{equation*}
-% \widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;\,X_{\bullet\bullet},\dbullet\,)
+% \widetilde{T}_{d,Y}(\,s,s_{R},\Ydot\,;\,X_{\bullet\bullet},\dbullet\,)
 % \;\; = \;\;
 %     \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
 %     \;+\,
@@ -3013,21 +3013,21 @@ Then, the following statements are true:
 %         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 % \vskip 0.5cm
-% \begin{lemma}[$\widetilde{T}_{Y} - \widehat{T}_{Y}$ as sum of \,$\Xobs$-conditionally independent summands;\, Equation (5.8) in \cite{Beaumont2011}]
+% \begin{lemma}[$\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}$ as sum of \,$\Xobs$-conditionally independent summands;\, Equation (5.8) in \cite{Beaumont2011}]
 % \label{PopTotalImputationError}
 % \mbox{}
 % \vskip 0.1cm
 % \noindent
 % Let
 % \begin{equation*}
-% \widetilde{T}_{Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+% \widetilde{T}_{d,Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
 % \;\; = \;\;
 %     \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
 %     \;+\,
 %     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
 % \end{equation*}
 % be a composite linear imputation estimator for the domain total
-% \,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
+% \,$T_{d,Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
 % with
 % \begin{equation*}
 % Y_{k}^{*}
@@ -3062,7 +3062,7 @@ Then, the following statements are true:
 % \begin{enumerate}
 % \item
 %     % $
-%     % \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+%     % \widetilde{T}_{d,Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
 %     % \;\; = \;\;
 %     %     \left(\;
 %     %         \overset{J}{\underset{j=1}{\sum}}\;
@@ -3082,7 +3082,7 @@ Then, the following statements are true:
 %     %     Y_{k}
 %     % $
 %     $
-%     \widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet},\dbullet\,)
+%     \widetilde{T}_{d,Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet},\dbullet\,)
 %     \;\; = \;\;
 %         W^{(+)}_{0}
 %         \;+\;
@@ -3090,9 +3090,9 @@ Then, the following statements are true:
 %     $
 % \item
 %     % $
-%     % \widetilde{T}_{Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
+%     % \widetilde{T}_{d,Y}(\,s,s_{R}\,;\,y_{\bullet}\,)
 %     % \;-\;
-%     % \widehat{T}_{Y}(\,s\,;\,y_{\bullet}\,)
+%     % \widehat{T}_{d,Y}(\,s\,;\,y_{\bullet}\,)
 %     % \;\; = \;\;
 %     %     \left(\;
 %     %         \overset{J}{\underset{j=1}{\sum}}\;
@@ -3109,9 +3109,9 @@ Then, the following statements are true:
 %     %     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
 %     % $
 %     $
-%     \widetilde{T}_{Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet}\,\dbullet\,)
+%     \widetilde{T}_{d,Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet}\,\dbullet\,)
 %     \;-\;
-%     \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
+%     \widehat{T}_{d,Y}(\,s,\Ydot\,;\,\dbullet\,)
 %     \;\; = \;\;
 %         W^{(+)}_{0}
 %         \;+\;
@@ -3121,14 +3121,14 @@ Then, the following statements are true:
 %     $,\\
 %     where
 %     \,$
-%     \widehat{T}_{Y}(\,s,\Ydot\,;\,\dbullet\,)
+%     \widehat{T}_{d,Y}(\,s,\Ydot\,;\,\dbullet\,)
 %     \;\; = \;\;
 %         \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
 %     $\,
 %     is the Horvitz-Thompson estimator.
 % \end{enumerate}
 % % \begin{eqnarray*}
-% % \widetilde{T}_{Y}{\color{white}....}
+% % \widetilde{T}_{d,Y}{\color{white}....}
 % % & = &
 % %     \left(\;
 % %         \overset{J}{\underset{j=1}{\sum}}\;
@@ -3147,9 +3147,9 @@ Then, the following statements are true:
 % %         \right)
 % %     Y_{k}
 % % \\
-% % \widetilde{T}_{Y}
+% % \widetilde{T}_{d,Y}
 % % \,-\,
-% % \widehat{T}_{Y}
+% % \widehat{T}_{d,Y}
 % % & = &
 % %     \left(\;
 % %         \overset{J}{\underset{j=1}{\sum}}\;
@@ -3171,9 +3171,9 @@ Then, the following statements are true:
 % \item
 %     Straightforward algebra:
 %     \begin{eqnarray*}
-%     \widetilde{T}_{Y}
+%     \widetilde{T}_{d,Y}
 %     \;\; = \;\;
-%     \widetilde{T}_{Y}\!\left(\,s,s_{R},\Ydot\,;\,\dbullet\,\right)
+%     \widetilde{T}_{d,Y}\!\left(\,s,s_{R},\Ydot\,;\,\dbullet\,\right)
 %     & = &
 %         \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
 %         \,+\,
@@ -3273,9 +3273,9 @@ Then, the following statements are true:
 % \item
 %     We again compute:
 %     \begin{eqnarray*}
-%     \widetilde{T}_{Y}
+%     \widetilde{T}_{d,Y}
 %     \,-\,
-%     \widehat{T}_{Y}
+%     \widehat{T}_{d,Y}
 %     % & = &
 %     %     \left(\;
 %     %         \overset{J}{\underset{j=1}{\sum}}\;
@@ -3344,68 +3344,73 @@ Then, the following statements are true:
 \mbox{}
 \vskip 0.1cm
 \noindent
-Let
-\begin{eqnarray*}
-\widetilde{R}_{d,Y/Z}
-& = &
-    \widetilde{R}_{d,Y/Z}(\,
-        \Sdot\,,\,
-        \Rdot\,,\,
-        \Ydot\,,\,
-        \Zdot\,;\,
-        \Xdotdot\,,\,
-        \dbullet
-        \,)
-\;\;\; := \;\;\;
-    \dfrac{
-        \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
-        }{
-        \overset{{\color{white}.}}{
-            \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
-            }
-        }
-\;\; = \;\;
-    \dfrac{
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
-            R_{i}\,Y_{i}
-            \overset{{\color{white}.}}{+}
-            (1-R_{i})\,Y^{*}_{i}
-            \,\right)
-        }{
-        \overset{{\color{white}.}}{
-            \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
-            }
-        }
-\end{eqnarray*}
-be an imputation estimator for the domain ratio
-\;$
-R_{d,Y/Z}
-\, := \,
-    \dfrac{T_{Y}}{\overset{{\color{white}.}}{T_{Z}}}
-\, = \,
-    \dfrac{
-        {\color{white}.}
-        \underset{i \in U}{\sum}\;d_{i}\,Y_{i}
-        {\color{white}.}
-        }{
-        \overset{{\color{white}.}}{\underset{i \in U}{\sum}\;d_{i}\,Z_{i}}
-        }
-$,\;
-where
-\,$\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+Suppose we are given quantities as described in Subsection
+\ref{DomainRatioFormulationOfVarianceEstimationProblem}
 and
-\begin{equation*}
-Y^{*}_{k}
-\;\; = \;\;
-    Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
-\;\; = \;\;
-    \varphi^{(j)}_{0k}
-    \,+\,
-    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
-    \quad
-    \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
-\end{equation*}
-\vskip 0.1cm
+that they satisfy probabilistic properties as described in Subsection
+\ref{DomainRatioProbabilisticFramework}.
+% Let
+% \begin{eqnarray*}
+% \widetilde{R}_{d,Y/Z}
+% & = &
+%     \widetilde{R}_{d,Y/Z}(\,
+%         \Sdot\,,\,
+%         \Rdot\,,\,
+%         \Ydot\,,\,
+%         \Zdot\,;\,
+%         \Xdotdot\,,\,
+%         \dbullet
+%         \,)
+% \;\;\; := \;\;\;
+%     \dfrac{
+%         \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+%         }{
+%         \overset{{\color{white}.}}{
+%             \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
+%             }
+%         }
+% \;\; = \;\;
+%     \dfrac{
+%         \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+%             R_{i}\,Y_{i}
+%             \overset{{\color{white}.}}{+}
+%             (1-R_{i})\,Y^{*}_{i}
+%             \,\right)
+%         }{
+%         \overset{{\color{white}.}}{
+%             \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
+%             }
+%         }
+% \end{eqnarray*}
+% be an imputation estimator for the domain ratio
+% \;$
+% R_{d,Y/Z}
+% \, := \,
+%     \dfrac{T_{d,Y}}{\overset{{\color{white}.}}{T_{d,Z}}}
+% \, = \,
+%     \dfrac{
+%         {\color{white}.}
+%         \underset{i \in U}{\sum}\;d_{i}\,Y_{i}
+%         {\color{white}.}
+%         }{
+%         \overset{{\color{white}.}}{\underset{i \in U}{\sum}\;d_{i}\,Z_{i}}
+%         }
+% $,\;
+% where
+% \,$\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+% and
+% \begin{equation*}
+% Y^{*}_{k}
+% \;\; = \;\;
+%     Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+% \;\; = \;\;
+%     \varphi^{(j)}_{0k}
+%     \,+\,
+%     \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
+%     \quad
+%     \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
+% \end{equation*}
+\vskip 0.2cm
 \noindent
 Define:
 \,$
@@ -3439,8 +3444,8 @@ W^{(+)}_{{\color{red}l}}
 \;\;
 \textnormal{for each \,$l \in s_{R}$}
 \end{equation*}
-\vskip 0.2cm
-\noindent
+% \vskip 0.2cm
+% \noindent
 % Suppose the quantities
 % \,$
 % \Sdot\,,\,
@@ -3450,19 +3455,19 @@ W^{(+)}_{{\color{red}l}}
 % \dbullet
 % $\,
 % satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFramework}.
-\vskip 0.2cm
-\noindent
-Suppose the quantities
-\,$
-\Sdot\,,\,
-\Rdot\,,\,
-\Ydot\,,\,
-\Zdot\,,\,
-\Xdotdot\,,\,
-\dbullet
-$\,
-satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
-\vskip 0.2cm
+% \vskip 0.2cm
+% \noindent
+% Suppose the quantities
+% \,$
+% \Sdot\,,\,
+% \Rdot\,,\,
+% \Ydot\,,\,
+% \Zdot\,,\,
+% \Xdotdot\,,\,
+% \dbullet
+% $\,
+% satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
+\vskip 0.1cm
 \noindent
 Then, the following statements are true:
 \renewcommand{\theenumi}{\roman{enumi}}
@@ -3513,7 +3518,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{Z}\,)^{2}
+            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3650,9 +3655,9 @@ Then, the following statements are true:
     \;\; = \;\;
         \Var_{Y}\!\left[\;
             \left.
-            \dfrac{ \widetilde{T}_{Y} }{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }
+            \dfrac{ \widetilde{T}_{d,Y} }{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }
             \,-\,
-            \dfrac{ \widehat{T}_{Y} }{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }
+            \dfrac{ \widehat{T}_{d,Y} }{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }
             \;\right\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3665,9 +3670,9 @@ Then, the following statements are true:
         \Var_{Y}\!\left[\;
             \left.
             \dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{Z}} }\left(\,
-                \widetilde{T}_{Y}
+                \widetilde{T}_{d,Y}
                 \,-\,
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
                 \,\right)
             \;\right\vert
             \begin{array}{c}
@@ -3680,9 +3685,9 @@ Then, the following statements are true:
         \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\;
-                \widetilde{T}_{Y}
+                \widetilde{T}_{d,Y}
                 \,-\,
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3764,14 +3769,16 @@ Then, the following statements are true:
     \\
     &&
         \quad\quad\quad
-        \textnormal{since
+        \overset{{\color{white}.}}{\textnormal{
+            since
             \,$
             \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Zdot\,,\Xobs\right.\,\right)
             \,=\,
             \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Zdot\,,\Xobs\right.\,\right)
             \,=\,
             0
-            $}
+            $
+            }}
     \\
     & = &
         \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
@@ -3799,7 +3806,9 @@ Then, the following statements are true:
     \\
     &&
         \quad\quad\quad
-        \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Zdot\,,\Xobs$}
+        \overset{{\color{white}.}}{\textnormal{
+            since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Zdot\,,\Xobs$
+            }}
     \\
     & = &
         \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}(s\,;\zdot)} }\,\right)^{\!2}
@@ -3814,12 +3823,16 @@ Then, the following statements are true:
     \\
     &&
         \quad\quad\quad
-        \textnormal{by definition of
-            \,$\sigma_{a}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{a}
+        \overset{{\color{white}.}}{\textnormal{
+            by definition of
+            \,$
+            \sigma_{a}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{a}
                 \,\left\vert\;
                 \Zdot\,,\Xobs
                 \right.
-                \,\right]$}
+                \,\right]
+            $
+            }}
     \end{eqnarray*}
     This completes the proof of Claim 2.
 
@@ -3870,7 +3883,7 @@ Then, the following statements are true:
         E_{Y}\!\left[\;
             \left.
             \dfrac{
-                \widetilde{T}_{Y}
+                \widetilde{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
                     \widehat{T}(s\,;\Zdot)
@@ -3878,7 +3891,7 @@ Then, the following statements are true:
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
                     \widehat{T}(s\,;\Zdot)
@@ -3904,9 +3917,9 @@ Then, the following statements are true:
                 }
             \cdot
             \left(\,
-                \widetilde{T}_{Y}
+                \widetilde{T}_{d,Y}
                 \, - \,
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
                 \,\right)
             \;\right\vert
             \begin{array}{c}
@@ -3926,9 +3939,9 @@ Then, the following statements are true:
         \cdot
         E_{Y}\!\left[\;\,
             \left.
-            \widetilde{T}_{Y}
+            \widetilde{T}_{d,Y}
             \, - \,
-            \widehat{T}_{Y}
+            \widehat{T}_{d,Y}
             \;\right\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -4037,8 +4050,10 @@ Then, the following statements are true:
             \;\right),
     \\
     &&
-        \quad
-        \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Zdot\,,\Xobs$}
+        \quad\quad\quad
+        \overset{{\color{white}.}}{\textnormal{
+            since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Zdot\,,\Xobs$
+        }}
     \\
     & = &
         \dfrac{
@@ -4059,13 +4074,17 @@ Then, the following statements are true:
             \;\right),
     \\
     &&
-        \quad
-        \textnormal{by definition of
-            \,$\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+        \quad\quad\quad
+        \overset{{\color{white}.}}{\textnormal{
+            by definition of
+            \,$
+            \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
                 \,\left\vert\,
                 \Zdot\,,\Xobs
                 \right.
-                \,\right]$}
+                \,\right]
+            $
+            }}
     \end{eqnarray*}
     This completes the proof of Claim 3.
 
@@ -4090,16 +4109,21 @@ Then, the following statements are true:
 \mbox{}
 \vskip 0.1cm
 \noindent
+Suppose we are given quantities as described in Subsection
+\ref{DomainRatioFormulationOfVarianceEstimationProblem}
+and
+that they satisfy probabilistic properties as described in Subsection
+\ref{DomainRatioProbabilisticFramework}.
 % Let
 % \begin{equation*}
-% \widetilde{T}_{Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+% \widetilde{T}_{d,Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
 % \;\; = \;\;
 %     \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
 %     \;+\,
 %     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
 % \end{equation*}
 % be a composite linear imputation estimator for the domain total
-% \,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
+% \,$T_{d,Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
 % with
 % \begin{equation*}
 % Y_{k}^{*}
@@ -4160,68 +4184,68 @@ Then, the following statements are true:
 % satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
 % \vskip 0.2cm
 % \noindent
-Suppose
-\begin{eqnarray*}
-\widetilde{R}_{d,Y/Z}
-& = &
-    \widetilde{R}_{d,Y/Z}(\,
-        \Sdot\,,\,
-        \Rdot\,,\,
-        \Ydot\,,\,
-        \Zdot\,;\,
-        \Xdotdot\,,\,
-        \dbullet
-        \,)
-\;\;\; := \;\;\;
-    \dfrac{
-        \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
-        }{
-        \overset{{\color{white}.}}{
-            \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
-            }
-        }
-\;\; = \;\;
-    \dfrac{
-        \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
-            R_{i}\,Y_{i}
-            \overset{{\color{white}.}}{+}
-            (1-R_{i})\,Y^{*}_{i}
-            \,\right)
-        }{
-        \overset{{\color{white}.}}{
-            \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
-            }
-        }
-\end{eqnarray*}
-is to be used as an (imputation) estimator for the domain ratio
-\;$
-R_{d,Y/Z}
-\, := \,
-    \dfrac{T_{Y}}{\overset{{\color{white}.}}{T_{Z}}}
-\, = \,
-    \dfrac{
-        {\color{white}.}
-        \underset{i \in U}{\sum}\;d_{i}\,Y_{i}
-        {\color{white}.}
-        }{
-        \overset{{\color{white}.}}{\underset{i \in U}{\sum}\;d_{i}\,Z_{i}}
-        }
-$,\;
-where
-\,$\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
-and
-\begin{equation*}
-Y^{*}_{k}
-\;\; = \;\;
-    Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
-\;\; = \;\;
-    \varphi^{(j)}_{0k}
-    \,+\,
-    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
-    \quad
-    \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
-\end{equation*}
-\vskip 0.1cm
+% Suppose
+% \begin{eqnarray*}
+% \widetilde{R}_{d,Y/Z}
+% & = &
+%     \widetilde{R}_{d,Y/Z}(\,
+%         \Sdot\,,\,
+%         \Rdot\,,\,
+%         \Ydot\,,\,
+%         \Zdot\,;\,
+%         \Xdotdot\,,\,
+%         \dbullet
+%         \,)
+% \;\;\; := \;\;\;
+%     \dfrac{
+%         \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+%         }{
+%         \overset{{\color{white}.}}{
+%             \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
+%             }
+%         }
+% \;\; = \;\;
+%     \dfrac{
+%         \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+%             R_{i}\,Y_{i}
+%             \overset{{\color{white}.}}{+}
+%             (1-R_{i})\,Y^{*}_{i}
+%             \,\right)
+%         }{
+%         \overset{{\color{white}.}}{
+%             \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
+%             }
+%         }
+% \end{eqnarray*}
+% is to be used as an (imputation) estimator for the domain ratio
+% \;$
+% R_{d,Y/Z}
+% \, := \,
+%     \dfrac{T_{d,Y}}{\overset{{\color{white}.}}{T_{d,Z}}}
+% \, = \,
+%     \dfrac{
+%         {\color{white}.}
+%         \underset{i \in U}{\sum}\;d_{i}\,Y_{i}
+%         {\color{white}.}
+%         }{
+%         \overset{{\color{white}.}}{\underset{i \in U}{\sum}\;d_{i}\,Z_{i}}
+%         }
+% $,\;
+% where
+% \,$\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+% and
+% \begin{equation*}
+% Y^{*}_{k}
+% \;\; = \;\;
+%     Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+% \;\; = \;\;
+%     \varphi^{(j)}_{0k}
+%     \,+\,
+%     \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
+%     \quad
+%     \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
+% \end{equation*}
+\vskip 0.2cm
 \noindent
 Define:
 \,$
@@ -4255,8 +4279,8 @@ W^{(+)}_{{\color{red}l}}
 \;\;
 \textnormal{for each \,$l \in s_{R}$}
 \end{equation*}
-\vskip 0.2cm
-\noindent
+% \vskip 0.2cm
+% \noindent
 % Suppose the quantities
 % \,$
 % \Sdot\,,\,
@@ -4266,18 +4290,18 @@ W^{(+)}_{{\color{red}l}}
 % \dbullet
 % $\,
 % satisfy the probabilistic assumptions specified in Subsection \ref{ProbabilisticFramework}.
-\vskip 0.2cm
-\noindent
-Suppose the quantities
-\,$
-\Sdot\,,\,
-\Rdot\,,\,
-\Ydot\,,\,
-\Zdot\,,\,
-\Xdotdot\,,\,
-\dbullet
-$\,
-satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
+% \vskip 0.2cm
+% \noindent
+% Suppose the quantities
+% \,$
+% \Sdot\,,\,
+% \Rdot\,,\,
+% \Ydot\,,\,
+% \Zdot\,,\,
+% \Xdotdot\,,\,
+% \dbullet
+% $\,
+% satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
 \vskip 0.2cm
 \noindent
 Then, the following statements are true:
@@ -4373,9 +4397,9 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         \Cov_{Y}\!\left(\;\,
-            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
             \,,\,
-            \widehat{T}_{Y} - T_{Y}
+            \widehat{T}_{d,Y} - T_{d,Y}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -4390,7 +4414,8 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                % \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -4407,11 +4432,11 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{Z} \,-\, \widehat{T}(s\,,\zdot)
+                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{Z}
+                    T_{d,Z}
                     }
                 }           
             \,\right)
@@ -4420,7 +4445,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -4437,7 +4462,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -4452,12 +4477,12 @@ Then, the following statements are true:
     &&
         \; + \;
         \left(\,
-            \dfrac{1}{T_{Z} \slash N}
+            \dfrac{1}{T_{d,Z} \slash N}
             \,\right)
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{Z} \,-\, \widehat{T}(s\,,\zdot)
+                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -4470,7 +4495,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \left. \widehat{T}(s\,,\zdot)^{2} \right\slash N^{2}
+                \left. \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2} \right\slash N^{2}
                 }
             }
         \cdot
@@ -4517,11 +4542,11 @@ Then, the following statements are true:
     \textbf{Claim 1:}
     \begin{eqnarray*}
     \Cov_{Y}\!\left(\;
-        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
         \,,\,
-        \widehat{T}_{Y} - T_{Y}
+        \widehat{T}_{d,Y} - T_{d,Y}
         \,\left\vert\!
-        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
         \right.
         \!\right)
     & = &
@@ -4537,11 +4562,11 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         \Cov_{Y}\!\left(\;
-            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
             \,,\,
-            \widehat{T}_{Y} - T_{Y}
+            \widehat{T}_{d,Y} - T_{d,Y}
             \,\left\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \right.
             \!\right)
     \\
@@ -4557,7 +4582,7 @@ Then, the following statements are true:
             \;-
             \underset{k \in U}{\sum}\;d_{k}Y_{k}
             \,\left\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \right.
             \!\right),
             \quad
@@ -4574,7 +4599,7 @@ Then, the following statements are true:
             \;-
             \underset{k \in U \backslash s}{\sum}d_{k}Y_{k}
             \;\right\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \!\right)
     \\
     & = &
@@ -4582,7 +4607,7 @@ Then, the following statements are true:
         d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\Var_{Y}\!\left[\;
             Y_{l}
             \;\left\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \right.
             \!\right]
         \;-\;
@@ -4590,7 +4615,7 @@ Then, the following statements are true:
         d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\;
             Y_{k}
             \;\left\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \right.
             \!\right],
     \\
@@ -4598,19 +4623,19 @@ Then, the following statements are true:
         \quad\quad\quad
         \textnormal{since
             \,$
-            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Xobs\right.\right)
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Zdot,\Xobs\right.\right)
             \,=\,
-            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Xobs\right.\right)
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Zdot,\Xobs\right.\right)
             \,=\,
             0
             $,\, whenever \,$a \neq b$}
     \\
-    & = &
+    & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
         \underset{l \in s_{R}}{\sum}\,
         d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\Var_{Y}\!\left[\,
             Y_{l}
             \left\vert\,
-            \Xobs
+            \Zdot,\Xobs
             \right.
             \right]
         \,-\,
@@ -4618,13 +4643,15 @@ Then, the following statements are true:
         d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\,
             Y_{k}^{2}
             \left\vert\,
-            \Xobs
+            \Zdot,\Xobs
             \right.
             \right],
-        \;\;
-        \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Xobs$}
     \\
-    & = &
+    &&
+        \quad\quad\quad
+        \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Zdot,\Xobs$}
+    \\
+    & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
         \underset{l \in s_{R}}{\sum}\,
         d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
         \;\;-\;
@@ -4638,11 +4665,11 @@ Then, the following statements are true:
     \textbf{Claim 2:}
     \begin{eqnarray*}
     \Cov_{Y}\!\left(\;
-        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
         \,,\,
-        T_{Y}
+        T_{d,Y}
         \left\vert\!
-        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
         \right.
         \!\right)
     & = &
@@ -4658,11 +4685,11 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         \Cov_{Y}\!\left(\;
-            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
             \,,\,
-            T_{Y}
+            T_{d,Y}
             \left\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \right.
             \!\right)
     \\
@@ -4680,7 +4707,7 @@ Then, the following statements are true:
             \;+
             \underset{c \in U \backslash s}{\sum}\;d_{c}Y_{c}
             \,\left\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \right.
             \!\right),
     \\
@@ -4701,7 +4728,7 @@ Then, the following statements are true:
             \;+
             \underset{c \in U \backslash s}{\sum}\;d_{c}Y_{c}
             \;\right\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \!\right)
     \\
     & = &
@@ -4709,7 +4736,7 @@ Then, the following statements are true:
         d_{l}\,W^{(+)}_{l}\,\Var_{Y}\!\left[\;
             Y_{l}
             \,\left\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \right.
             \!\right]
         \;-\;
@@ -4717,7 +4744,7 @@ Then, the following statements are true:
         d_{k}^{2}\,w_{k}\,\Var_{Y}\!\left[\;
             Y_{k}
             \,\left\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \right.
             \!\right],
     \\
@@ -4725,19 +4752,19 @@ Then, the following statements are true:
         \quad\quad\quad
         \textnormal{since
             \,$
-            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Xobs\right.\right)
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Zdot,\Xobs\right.\right)
             \,=\,
-            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Xobs\right.\right)
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Zdot,\Xobs\right.\right)
             \,=\,
             0
             $,\, whenever \,$a \neq b$}
     \\
-    & = &
+    & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
         \underset{l \in s_{R}}{\sum}\,
         d_{l}\,W^{(+)}_{l}\,\Var_{Y}\!\left[\,
             Y_{l}
             \left\vert\,
-            \Xobs
+            \Zdot,\Xobs
             \right.
             \right]
         \,-\,
@@ -4745,13 +4772,13 @@ Then, the following statements are true:
         d_{k}\,w_{k}\,\Var_{Y}\!\left[\,
             Y_{k}
             \left\vert\,
-            \Xobs
+            \Zdot,\Xobs
             \right.
             \right],
         \;\;
-        \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Xobs$}
+        \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Zdot,\Xobs$}
     \\
-    & = &
+    & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
         \underset{l \in s_{R}}{\sum}\,
         d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
         \;\;-\;
@@ -4781,36 +4808,36 @@ Then, the following statements are true:
         \Cov_{Y}\!\left(\;
             \left.
             \dfrac{
-                \widetilde{T}_{Y}
+                \widetilde{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \; , \;
             \dfrac{
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
                 {\color{white}..}
-                T_{Y}
+                T_{d,Y}
                 {\color{white}..}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{Z}
+                    T_{d,Z}
                     }
                 }           
             \;\,\right\vert\!
@@ -4825,96 +4852,96 @@ Then, the following statements are true:
         \Cov_{Y}\!\left(\;
             \left.
             \dfrac{
-                \widetilde{T}_{Y}
+                \widetilde{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \; , \;
             \dfrac{
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \,{\color{blue}
             \, - \,
             \dfrac{
-                T_{Y}
+                T_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \, + \,
             \dfrac{
-                T_{Y}
+                T_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             }\,
             \, - \,
             \dfrac{
                 {\color{white}..}
-                T_{Y}
+                T_{d,Y}
                 {\color{white}..}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{Z}
+                    T_{d,Z}
                     }
                 }           
-            \;\,\right\vert\!
+            \;\,\right\vert\!\!
             \begin{array}{c}
                 s,s_{R},
                 \\
                 \Zdot,\Xobs
                 \end{array}
-            \!\right)
+            \!\!\right)
     \\
     & = &
         \Cov_{Y}\!\left(\;
             \left.
             \dfrac{
-                \widetilde{T}_{Y}
+                \widetilde{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \; , \;
             \dfrac{
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                T_{Y}
+                T_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \;\,\right\vert\!
@@ -4930,36 +4957,36 @@ Then, the following statements are true:
         \Cov_{Y}\!\left(\;
             \left.
             \dfrac{
-                \widetilde{T}_{Y}
+                \widetilde{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{Y}
+                \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \; , \;
             \dfrac{
-                T_{Y}
+                T_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\Zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
                 {\color{white}..}
-                T_{Y}
+                T_{d,Y}
                 {\color{white}..}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{Z}
+                    T_{d,Z}
                     }
                 }           
             \;\,\right\vert\!
@@ -4975,19 +5002,19 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
         \Cov_{Y}\!\left(\;
             \left.
-            \widetilde{T}_{Y}
+            \widetilde{T}_{d,Y}
             \, - \,
-            \widehat{T}_{Y}
+            \widehat{T}_{d,Y}
             \; , \;
-            \widehat{T}_{Y}
+            \widehat{T}_{d,Y}
             \, - \,
-            T_{Y}
+            T_{d,Y}
             \;\,\right\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -5002,7 +5029,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
                 }
             }
         \cdot
@@ -5011,7 +5038,7 @@ Then, the following statements are true:
                 1
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}(s\,,\zdot)
+                    \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
                     }
                 }
             \, - \,
@@ -5021,18 +5048,18 @@ Then, the following statements are true:
                 {\color{white}..}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{Z}
+                    T_{d,Z}
                     }
                 }           
             \,\right)
         \cdot
         \Cov_{Y}\!\left(\;
             \left.
-            \widetilde{T}_{Y}
+            \widetilde{T}_{d,Y}
             \, - \,
-            \widehat{T}_{Y}
+            \widehat{T}_{d,Y}
             \; , \;
-            T_{Y}
+            T_{d,Y}
             \;\,\right\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -5046,7 +5073,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -5062,21 +5089,21 @@ Then, the following statements are true:
         \; + \;
         \left(\,
             % \dfrac{
-            %     \widehat{T}(s\,,\zdot)
+            %     \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
             %     }{
             %     \overset{{\color{white}.}}{
-            %         \widehat{T}(s\,,\zdot)
+            %         \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
             %         }
             %     }
             1
             \, - \,
             \dfrac{
                 {\color{white}.}
-                \widehat{T}(s\,,\zdot)
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{Z}
+                    T_{d,Z}
                     }
                 }           
             \,\right)
@@ -5085,7 +5112,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -5104,7 +5131,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -5121,11 +5148,11 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{Z} \,-\, \widehat{T}(s\,,\zdot)
+                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{Z}
+                    T_{d,Z}
                     }
                 }           
             \,\right)
@@ -5134,7 +5161,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -5151,7 +5178,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -5166,12 +5193,12 @@ Then, the following statements are true:
     &&
         \; + \;
         \left(\,
-            \dfrac{1}{T_{Z} \slash N}
+            \dfrac{1}{T_{d,Z} \slash N}
             \,\right)
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{Z} \,-\, \widehat{T}(s\,,\zdot)
+                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -5184,7 +5211,7 @@ Then, the following statements are true:
             1
             }{
             \overset{{\color{white}.}}{
-                \left. \widehat{T}(s\,,\zdot)^{2} \right\slash N^{2}
+                \left. \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2} \right\slash N^{2}
                 }
             }
         \cdot
@@ -5199,8 +5226,12 @@ Then, the following statements are true:
                 \overset{{\color{white}.}}{N^{2}}                
                 }
             \,\right),
+    \\
+    &&
         \quad
-        \textnormal{as required}
+        \overset{{\color{white}.}}{\textnormal{
+            as required
+            }}
     \end{eqnarray*}
     \vskip 0.1cm
     \noindent
@@ -5221,14 +5252,14 @@ Then, the following statements are true:
 \noindent
 Let
 \begin{equation*}
-\widetilde{T}_{Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+\widetilde{T}_{d,Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
 \;\; = \;\;
     \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
     \;+\,
     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
 \end{equation*}
 be a composite linear imputation estimator for the domain total
-\,$T_{Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
+\,$T_{d,Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
 with
 \begin{equation*}
 Y_{k}^{*}
@@ -5296,14 +5327,14 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     % \begin{eqnarray*}
     % \MSE\!\left(\;
     %     \left.
-    %     \widetilde{T}_{Y}
+    %     \widetilde{T}_{d,Y}
     %     \;\right\vert\,
     %     \Xobs
     %     \,\right)
     % & := &
     %     E\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{Y} - T_{Y}\,)^{2}
+    %         (\,\widetilde{T}_{d,Y} - T_{d,Y}\,)^{2}
     %         \,\right\vert\,
     %         \Xobs
     %         \,\right]
@@ -5312,7 +5343,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     E_{Y}\!\left[\,
     %     \Var_{SR}\!\left(\,
     %         \left.
-    %         \widehat{T}_{Y}
+    %         \widehat{T}_{d,Y}
     %         \,\right\vert\,
     %         \Ydot,
     %         \Xobs
@@ -5322,7 +5353,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     E_{SR}\!\left[\,
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+    %         (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5333,7 +5364,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     E_{SR}\!\left[\,
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+    %         (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5396,7 +5427,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     E_{Y}\!\left[\,
     %     \Var_{SR}\!\left(\,
     %         \left.
-    %         \widehat{T}_{Y}
+    %         \widehat{T}_{d,Y}
     %         \,\right\vert\,
     %         \Ydot,
     %         \Xobs
@@ -5412,7 +5443,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     E_{SR}\!\left[\,
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+    %         (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5428,7 +5459,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     E_{SR}\!\left[\,
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+    %         (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5714,7 +5745,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     E_{SR}\!\left[\,
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+    %         (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5722,7 +5753,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     % \;\; {\color{red}\approx} \;\;
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{Y} - \widehat{T}_{Y}\,)^{2}
+    %         (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5766,7 +5797,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
             \,\right]
     \;\; {\color{red}\approx} \;\;
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{Z}\,)^{2}
+            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -5818,7 +5849,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     E_{SR}\!\left[\,
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+    %         (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5828,7 +5859,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     2\,
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{Y} \,-\, \widehat{T}_{Y}\,)(\,\widehat{T}_{Y} \,-\, T_{Y}\,)
+    %         (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5837,9 +5868,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     2\cdot
     %     \Cov_{Y}\!\left(\,
     %         \left.
-    %         \widetilde{T}_{Y} - \widehat{T}_{Y}
+    %         \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
     %         \,,\,
-    %         \widehat{T}_{Y} - T_{Y}
+    %         \widehat{T}_{d,Y} - T_{d,Y}
     %         \;\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right)
@@ -5849,14 +5880,14 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     2\cdot
     %     E_{Y}\!\left[\;
     %         \left.
-    %         \widetilde{T}_{Y} - \widehat{T}_{Y}
+    %         \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
     %         \;\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
     %     \cdot
     %     {\color{red}E_{Y}\!\left[\;
     %         \left.
-    %         \widehat{T}_{Y} - T_{Y}
+    %         \widehat{T}_{d,Y} - T_{d,Y}
     %         \;\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]}
@@ -5865,9 +5896,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     %     2\cdot
     %     \Cov_{Y}\!\left(\,
     %         \left.
-    %         \widetilde{T}_{Y} - \widehat{T}_{Y}
+    %         \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
     %         \,,\,
-    %         \widehat{T}_{Y} - T_{Y}
+    %         \widehat{T}_{d,Y} - T_{d,Y}
     %         \;\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right)
@@ -5967,9 +5998,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         2
         \cdot
         \Cov_{Y}\!\left(\;\,
-            \widetilde{T}_{Y} - \widehat{T}_{Y}
+            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
             \,,\,
-            \widehat{T}_{Y} - T_{Y}
+            \widehat{T}_{d,Y} - T_{d,Y}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -5984,7 +6015,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
             2
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -6003,11 +6034,11 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{Z} \,-\, \widehat{T}(s\,,\zdot)
+                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{Z}
+                    T_{d,Z}
                     }
                 }           
             \,\right)
@@ -6016,7 +6047,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
             1
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -6033,7 +6064,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
             2
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}(s\,,\zdot)^{2}
+                \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2}
                 }
             }
         \cdot
@@ -6050,12 +6081,12 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         2
         \cdot
         \left(\,
-            \dfrac{1}{T_{Z} \slash N}
+            \dfrac{1}{T_{d,Z} \slash N}
             \,\right)
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{Z} \,-\, \widehat{T}(s\,,\zdot)
+                T_{d,Z} \,-\, \widehat{T}(s\,;\pi,d_{\bullet},\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -6068,7 +6099,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
             1
             }{
             \overset{{\color{white}.}}{
-                \left. \widehat{T}(s\,,\zdot)^{2} \right\slash N^{2}
+                \left. \widehat{T}(s\,;\pi,d_{\bullet},\zdot)^{2} \right\slash N^{2}
                 }
             }
         \cdot
@@ -6093,14 +6124,14 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \begin{equation*}
     2\,\cdot E_{Y}\!\left[\;
         \left.
-        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
     \cdot
     {\color{red}E_{Y}\!\left[\;
         \left.
-        \widehat{T}_{Y} - T_{Y}
+        \widehat{T}_{d,Y} - T_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]}
@@ -6111,12 +6142,12 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \,$
     E_{Y}\!\left[\;
         \left.
-        \widehat{T}_{Y} - T_{Y}
+        \widehat{T}_{d,Y} - T_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
     $\,
-    (indicated in red above), as \,$T_{Y}$\, involves population units
+    (indicated in red above), as \,$T_{d,Y}$\, involves population units
     that are not selected in the sample.
     \vskip 0.1cm
     \noindent
@@ -6125,14 +6156,14 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \,$
     2\,\cdot E_{Y}\!\left[\;
         \left.
-        \widetilde{T}_{Y} - \widehat{T}_{Y}
+        \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
     \cdot
     {\color{black}E_{Y}\!\left[\;
         \left.
-        \widehat{T}_{Y} - T_{Y}
+        \widehat{T}_{d,Y} - T_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]}
@@ -6144,7 +6175,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \,$
     E_{Y}\!\left[\;
         \left.
-        \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -6156,7 +6187,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \begin{eqnarray*}
     E_{Y}\!\left[\;
         \left.
-        \widetilde{T}_{Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
