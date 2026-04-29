@@ -5251,45 +5251,28 @@ Then, the following statements are true:
 
 \vskip 0.1cm
 \noindent
-Let
-\begin{equation*}
-\widetilde{T}_{d,Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
-\;\; = \;\;
-    \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
-    \;+\,
-    \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
-\end{equation*}
-be a composite linear imputation estimator for the domain total
-\,$T_{d,Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
-with
-\begin{equation*}
-Y_{k}^{*}
-\;\; = \;\;
-    \varphi^{(j)}_{0k}
-    \,+\,
-    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
-\quad
-\textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
-\end{equation*}
+Suppose we are given quantities as described in Subsection
+\ref{DomainRatioFormulationOfVarianceEstimationProblem}
+and
+that they satisfy probabilistic properties as described in Subsection
+\ref{DomainRatioProbabilisticFramework}.
+\vskip 0.2cm
+\noindent
 Define:
-\;$
+\,$
 \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
-    \,\left\vert\,
-    \Xobs
+    \,\left\vert\;
+    \Zdot\,,\Xobs
     \right.
     \,\right]
 $,\,
 \,$
 \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
-    \,\left\vert\,
-    \Xobs
+    \,\left\vert\;
+    \Zdot\,,\Xobs
     \right.
     \,\right]
-$,\;
-for \,$k \in s = s_{R} \sqcup s_{M}$.\,
-\vskip 0.1cm
-\noindent
-Define also:
+$,\,
 \begin{equation*}
 W^{(+)}_{{\color{red}0}}
 \;\; := \;\;
@@ -5307,21 +5290,77 @@ W^{(+)}_{{\color{red}l}}
 \;\;
 \textnormal{for each \,$l \in s_{R}$}
 \end{equation*}
+% Let
+% \begin{equation*}
+% \widetilde{T}_{d,Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
+% \;\; = \;\;
+%     \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     \;+\,
+%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+% \end{equation*}
+% be a composite linear imputation estimator for the domain total
+% \,$T_{d,Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
+% with
+% \begin{equation*}
+% Y_{k}^{*}
+% \;\; = \;\;
+%     \varphi^{(j)}_{0k}
+%     \,+\,
+%     \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
+% \quad
+% \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
+% \end{equation*}
+% Define:
+% \;$
+% \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+%     \,\left\vert\,
+%     \Xobs
+%     \right.
+%     \,\right]
+% $,\,
+% \,$
+% \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+%     \,\left\vert\,
+%     \Xobs
+%     \right.
+%     \,\right]
+% $,\;
+% for \,$k \in s = s_{R} \sqcup s_{M}$.\,
+% \vskip 0.1cm
+% \noindent
+% Define also:
+% \begin{equation*}
+% W^{(+)}_{{\color{red}0}}
+% \;\; := \;\;
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+%         \,\right),
+% \quad\;\;\textnormal{and}\quad\;\;
+% W^{(+)}_{{\color{red}l}}
+% \;\; := \;\;
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
+%         \,\right),
+% \;\;
+% \textnormal{for each \,$l \in s_{R}$}
+% \end{equation*}
+% \vskip 0.2cm
+% \noindent
+% Suppose the quantities
+% \,$
+% \Sdot\,,\,
+% \Rdot\,,\,
+% \Ydot\,,\,
+% \Zdot\,,\,
+% \Xdotdot\,,\,
+% \dbullet
+% $\,
+% satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
 \vskip 0.2cm
 \noindent
-Suppose the quantities
-\,$
-\Sdot\,,\,
-\Rdot\,,\,
-\Ydot\,,\,
-\Zdot\,,\,
-\Xdotdot\,,\,
-\dbullet
-$\,
-satisfy the probabilistic assumptions specified in Subsection \ref{DomainRatioProbabilisticFramework}.
-\vskip 0.2cm
-\noindent
-Then, the following summarizes the results in \cite{Beaumont2011}:
+Then, we have the following results:
 \begin{itemize}
 \item
     By Lemma \ref{DomainRatioDecompositionMSETtilde}, we have the following decomposition:
@@ -5838,7 +5877,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \end{eqnarray*}
 \item
     By Lemma \ref{DomainRatioMixedVariance},
-    the mixed variance component can be estimated
+    the sampling-nonresponse covariance component can be estimated
     (though \textbf{\color{red}without proof of consistency})
     as follows:
     % \begin{eqnarray*}
