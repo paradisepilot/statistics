@@ -5993,6 +5993,7 @@ Then, we have the following results:
             \!\right]
     \\
     & = &
+        {\color{blue}
         \dfrac{
             1}{
             \overset{{\color{white}.}}{
@@ -6017,6 +6018,7 @@ Then, we have the following results:
                 \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,\mu_{k}
                 \,\right)^{\!2}
             \,\right\}
+        }
     \end{eqnarray*}
 \item
     By Lemma \ref{DomainRatioMixedVariance},
@@ -6255,6 +6257,7 @@ Then, we have the following results:
             \,\right)
     \\
     & = &
+        {\color{blue}
         \dfrac{
             2
             }{
@@ -6270,6 +6273,7 @@ Then, we have the following results:
             \underset{k \in s_{M}}{\sum}\,
             d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
             \,\right)
+        }
     \\
     &&
         \; + \;
@@ -6311,147 +6315,292 @@ Then, we have the following results:
             \,\right)
     \end{eqnarray*}
 \item
-    \textbf{Important Remark:}
-    \vskip 0.05cm
-    \noindent
-    Note that the above estimation/approximation
-    of the sampling-nonresponse covariance component
-    disregards the following term:
-    \begin{equation*}
-    2
-    \cdot
-    \dfrac{
-        1
-        }{
-        \overset{{\color{white}.}}{
-            \widehat{T}_{d}(s\,;\zdot)
+    \textbf{Important Remarks:}
+    \begin{itemize}
+    \item
+        Note that the above estimation/approximation
+        of the sampling-nonresponse covariance component
+        disregards the following term:
+        \begin{equation*}
+        2
+        \cdot
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)
+                }
             }
-        }
-    \cdot
-    E_{Y}\!\left[\;
-        \widetilde{T}_{d,Y}
-        \, - \,
-        \widehat{T}_{d,Y}
-        \;\left\vert\!
-        \begin{array}{c}
-            s,s_{R},
-            \\
-            \Zdot\,,\Xobs
-            \end{array}
-        \right.
-        \!\right]
-    \cdot
-    {\color{red}E_{Y}\!\left[\;\,
-        \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
-        \,\left\vert
-        \begin{array}{c}
-            s,s_{R},
-            \\
-            \Zdot\,,\Xobs
-            \end{array}
-        \right.
-        \!\right]}
-    \end{equation*}
-    The reason this has to be done in practice is that, in practice,
-    there is usually insufficient data/information to compute or estimate
-    the quantity
-    \,$
-    E_{Y}\!\left[\;
-        \left.
-        \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
-        \;\right\vert\,
-        s,s_{R},\Zdot,\Xobs
-        \,\right]
-    $\,
-    (indicated in red above), as \,$R_{d,Y/Z}$\, involves population units
-    that are not selected in the sample (hence, not observed).
-    \vskip 0.1cm
-    \noindent
-    Obviously, the above estimation/approximation
-    of the sampling-nonresponse covariance component
-    is acceptable only if the quantity
-    \begin{equation*}
-    2
-    \cdot
-    \dfrac{
-        1
-        }{
-        \overset{{\color{white}.}}{
-            \widehat{T}_{d}(s\,;\zdot)
+        \cdot
+        E_{Y}\!\left[\;
+            \widetilde{T}_{d,Y}
+            \, - \,
+            \widehat{T}_{d,Y}
+            \;\left\vert\!
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+        \cdot
+        {\color{red}E_{Y}\!\left[\;\,
+            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]}
+        \end{equation*}
+        The reason this has to be done in practice is that, in practice,
+        there is usually insufficient data/information to compute or estimate
+        the quantity
+        \,$
+        E_{Y}\!\left[\;
+            \left.
+            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \;\right\vert\,
+            s,s_{R},\Zdot,\Xobs
+            \,\right]
+        $\,
+        (indicated in red above), as \,$R_{d,Y/Z}$\, involves population units
+        that are not selected in the sample (hence, not observed).
+        \vskip 0.1cm
+        \noindent
+        Obviously, the above estimation/approximation
+        of the sampling-nonresponse covariance component
+        is acceptable only if the quantity
+        \begin{equation*}
+        2
+        \cdot
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)
+                }
             }
-        }
-    \cdot
-    E_{Y}\!\left[\;
-        \widetilde{T}_{d,Y}
-        \, - \,
-        \widehat{T}_{d,Y}
-        \;\left\vert\!
-        \begin{array}{c}
-            s,s_{R},
-            \\
-            \Zdot\,,\Xobs
-            \end{array}
-        \right.
-        \!\right]
-    \cdot
-    {\color{black}E_{Y}\!\left[\;\,
-        \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
-        \,\left\vert
-        \begin{array}{c}
-            s,s_{R},
-            \\
-            \Zdot\,,\Xobs
-            \end{array}
-        \right.
-        \!\right]}
-    \end{equation*}
-    is small.
-    \vskip 0.1cm
-    \noindent
-    For this, in practice, we thus {\color{red}tacitly assume} that the quantity
-    \,$
-    E_{Y}\!\left[\;
-        \left.
-        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Zdot,\Xobs
-        \,\right]
-    $\,
-    is small;
-    recall that this quantity is called the \textbf{conditional model bias}
-    (see Lemma \ref{biasTtilde}), and
-    it can be expressed as follows:
-    \begin{eqnarray*}
-    E_{Y}\!\left[\;
-        \left.
-        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Zdot,\Xobs
-        \,\right]
-    & = &
-        \underset{k\in{\color{red}s_{M}}}{\sum}\,d_{k}\,w_{k}\,
+        \cdot
+        E_{Y}\!\left[\;
+            \widetilde{T}_{d,Y}
+            \, - \,
+            \widehat{T}_{d,Y}
+            \;\left\vert\!
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+        \cdot
+        {\color{black}E_{Y}\!\left[\;\,
+            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]}
+        \end{equation*}
+        is small.
+        \vskip 0.1cm
+        \noindent
+        For this, in practice, we thus {\color{red}tacitly assume} that the quantity
+        \,$
+        E_{Y}\!\left[\;
+            \left.
+            \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+            \;\right\vert\,
+            s,s_{R},\Zdot,\Xobs
+            \,\right]
+        $\,
+        is small;
+        recall that this quantity is called the \textbf{conditional model bias}
+        (see Lemma \ref{biasTtilde}), and
+        it can be expressed as follows:
+        \begin{eqnarray*}
+        E_{Y}\!\left[\;
+            \left.
+            \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+            \;\right\vert\,
+            s,s_{R},\Zdot,\Xobs
+            \,\right]
+        & = &
+            \underset{k\in{\color{red}s_{M}}}{\sum}\,d_{k}\,w_{k}\,
+            E_{Y}\!\left[\;
+                \left.
+                Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+                \;\right\vert\,
+                s,s_{R},\Zdot,\Xobs
+                \,\right]
+        \end{eqnarray*}
+        This harks back to our earlier remark (Remark \ref{remarkSmallUnitBias}) that,
+        in practice, we would like to choose an imputation strategy such that
+        \begin{equation*}
         E_{Y}\!\left[\;
             \left.
             Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
             \;\right\vert\,
             s,s_{R},\Zdot,\Xobs
             \,\right]
-    \end{eqnarray*}
-    This harks back to our earlier remark (Remark \ref{remarkSmallUnitBias}) that,
-    in practice, we would like to choose an imputation strategy such that
-    \begin{equation*}
-    E_{Y}\!\left[\;
-        \left.
-        Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
-        \;\right\vert\,
-        s,s_{R},\Zdot,\Xobs
-        \,\right]
-    \;\; \approx \;\;
-        0,
-    \quad
-    \textnormal{for each \,$k \in s_{M}$}
-    \end{equation*}
-    See the paragraph after Equation (5.2), p.175, \cite{Beaumont2011}.
+        \;\; \approx \;\;
+            0,
+        \quad
+        \textnormal{for each \,$k \in s_{M}$}
+        \end{equation*}
+        See the paragraph after Equation (5.2), p.175, \cite{Beaumont2011}.
+        \vskip 0.3cm
+    \item
+        The second summand
+        \begin{equation*}
+        2
+        \cdot
+        \left(\,
+            \dfrac{1}{T_{d,Z} \slash N}
+            \,\right)
+        \left(\,
+            \dfrac{
+                {\color{white}.}
+                {\color{red}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{white}.}
+                }{
+                \overset{{\color{white}.}}{
+                    N
+                    }
+                }           
+            \,\right)
+        \cdot
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \left. \widehat{T}_{d}(s\,;\zdot)^{2} \right\slash N^{2}
+                }
+            }
+        \cdot
+        \left(\,
+            \dfrac{
+                \underset{l \in s_{R}}{\sum}\,
+                d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
+                \;\;-\;
+                \underset{k \in s_{M}}{\sum}\,
+                d_{k}\,w_{k}\,\sigma_{k}^{2}
+                }{
+                \overset{{\color{white}.}}{N^{2}}                
+                }
+            \,\right)
+        \end{equation*}
+        in the expression for the sampling-nonresponse covariance component
+        would also probably have to be disregarded in practice,
+        due to the presence of the term \,$T_{d,Z}$
+        (domain total of the population characteristic $\Zdot$),\,
+        which is usually unknown in practice.
+        \vskip 0.1cm
+        In order to justify the omission of the second summand,
+        one could attempt to find (practically usefull) ``regularity conditions"
+        that are sufficient to force the second summand to be
+        \,$O_{p}\!\left(\,1/n^{\delta}\,\right)$,\,
+        for some \,$\delta > 0$,\,
+        where \,$n$\, here denotes the sample size.
+        We may not be too far from such a sufficent collection of regularity conditions.
+        Recall that
+        \begin{itemize}
+        \item
+            we have the general asymptotic result for the Horvitz-Thompson domain total estimator:
+            \begin{equation*}
+            \dfrac{
+                {\color{white}.}
+                \widehat{T}_{d}(s\,;\zdot) \,-\, {\color{black}T_{d,Z}}
+                {\color{white}.}
+                }{
+                \overset{{\color{white}.}}{
+                    N
+                    }
+                }
+            \;\; = \;\;
+                O_{p}\!\left(\dfrac{1}{\sqrt{\textnormal{\,sample size\,}}}\right),
+            \quad
+            \textnormal{under suitable regularity conditions on \,$\Zdot$,\, and}
+            \end{equation*}
+        \item
+            $T_{d,Z} \slash N$\, being asymptotically bounded away from zero
+            is one of the regularity conditions often assumed in order to establish
+            consistency for the Horvitz-Thomposon ratio estimator.
+        \end{itemize}
+        Hence, it may be sufficient provided one could find
+        a ``suitable'' (practically applicable) regularity condition on
+        \,$W^{(+)}_{l}$,\, $\sigma^{2}_{k}$,\, and \,$w_{k} = 1/\pi_{k}$\,
+        such that
+        \begin{equation*}
+        \dfrac{
+            {\color{white}.}
+            \underset{l \in s_{R}}{\sum}\,
+            d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
+            \;\,-\,
+            \underset{k \in s_{M}}{\sum}\,
+            d_{k}\,w_{k}\,\sigma_{k}^{2}
+            {\color{white}.}
+            }{
+            \overset{{\color{white}.}}{N^{2}}                
+            }
+        \;\; = \;\;
+            O_{p}\!\left(\,1\,\right)
+        \end{equation*}
+        If such a regularity condition is available,
+        we should be able to invoke it, in conjuction with the other two more standard regularity conditions above,
+        so as to conclude that
+        \begin{equation*}
+        2
+        \cdot
+        \left(\,
+            \dfrac{1}{T_{d,Z} \slash N}
+            \,\right)
+        \left(\,
+            \dfrac{
+                {\color{white}.}
+                {\color{black}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{white}.}
+                }{
+                \overset{{\color{white}.}}{
+                    N
+                    }
+                }           
+            \,\right)
+        \cdot
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \left. \widehat{T}_{d}(s\,;\zdot)^{2} \right\slash N^{2}
+                }
+            }
+        \cdot
+        \left(\,
+            \dfrac{
+                \underset{l \in s_{R}}{\sum}\,
+                d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
+                \;\;-\;
+                \underset{k \in s_{M}}{\sum}\,
+                d_{k}\,w_{k}\,\sigma_{k}^{2}
+                }{
+                \overset{{\color{white}.}}{N^{2}}                
+                }
+            \,\right)
+        \;\; = \;\;
+            O_{p}\!\left(\,\dfrac{1}{n^{\delta}}\,\right),
+        \end{equation*}
+        for some \,$\delta > 0$,\,
+        where \,$n$\, denotes the sample size.
+        Such an asymptotic result would suffice to justify disregarding the second summand,
+        when estimating sampling-nonresponse covariance component in practice.
+    \end{itemize}
 \end{itemize}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
