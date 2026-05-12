@@ -1,7 +1,7 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Variance estimation methodology for composite linear imputation estimators for {\color{red}domain ratios}}
+\section{Variance estimation for composite linear imputation estimators for {\color{red}domain ratios}}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -14,9 +14,9 @@
 Suppose:
 \begin{itemize}
 \item
-    We would like to estimate -- based on probability sample data --
-    a domain ratio
-    (the ratio of two population totals)
+    We would like to estimate
+    -- using data collected according to a probability sample --
+    a domain ratio (the ratio of two population totals)
     \begin{equation*}
     R_{d,Y/Z}
     \;\; := \;\;
@@ -36,8 +36,9 @@ Suppose:
     \,$\Ydot = (Y_{1},\ldots,Y_{N})$,\,
     \,$\Zdot = (Z_{1},\ldots,Z_{N})$\,
     are two $\Re$-valued population characteristics.
-    \vskip 0.1cm
-    We remind ourselves here that, if there are no missing data for the units in the selected sample,
+\item
+    Aside/Reminder:
+    If there are no missing data for the units in the selected sample,
     then the \textit{Horvitz-Thompson ratio estimator}
     \begin{eqnarray*}
     \widehat{R}_{d,Y/Z}
@@ -86,14 +87,14 @@ Suppose:
                 }
             }\,,
     \end{eqnarray*}
-    may be a natural choice as an estimator for
+    is a common choice as an estimator for
     \,$R_{d,Y/Z}$,\,
     where
     \begin{itemize}
     \item
         $w_{i} \,:=\, \dfrac{1}{\pi_{i}}$,\, for each population unit \,$i \in U$,\,
         is the (\textit{a priori} known, non-random) design weight of \,$i \in U$,\,
-        i.e., reciprocal of the selection probability \,$\pi_{i}$\,
+        i.e., the reciprocal of the selection probability \,$\pi_{i}$\,
         (assumed strictly positive) of \,$i \in U$,\,
     \item
         $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$\,
@@ -102,9 +103,9 @@ Suppose:
         $\widehat{T}_{d,\xi} \, :=: \,\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
         is the \textit{Horvitz-Thompson estimator for the domain total}
         \,$T_{d,\xi} \,:=\, \underset{i\,\in\,U}{\sum}\,d_{i}\xi_{i}$\,
-        of an arbitrary population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
+        of an arbitrary $\Re$-valued population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
         \begin{equation*}
-        \widehat{T}_{d,\xi}
+        \widehat{T}_{d,\xi}(s)
         \;\; :=: \;\;
             \widehat{T}_{d}(s\,;\xi_{\bullet})
         \;\; := \;\;
@@ -113,7 +114,7 @@ Suppose:
             \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,\xi_{i}
         \end{equation*}
         We will use the alternative notations
-        \,$\widehat{T}_{d,\xi}$\, and \,$\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
+        \,$\widehat{T}_{d,\xi}(s)$\, and \,$\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
         interchangeably, noting that the former is notationally more succinct,
         while the latter allows us to emphasize that
         \,$\xi_{\bullet}$\,
@@ -125,13 +126,43 @@ Suppose:
         \end{equation*}
         for the Horvitz-Thompson population total estimator.
     \end{itemize}
+    Recall also that the following Horvitz-Thompson variance estimator
+    \begin{equation*}
+    v_{\textnormal{HT}}(\,s\,;\xi_{\bullet}\,)
+    \;\; := \;\;
+        \underset{i \in s}{\sum}\,
+        \underset{j \in s}{\sum}\;
+        \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
+        \cdot
+        \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
+        \cdot
+        \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}
+    \end{equation*}
+    is a design-unbiased estimator for the sampling variance of
+    \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$,\,
+    i.e.,
+    \begin{equation*}
+    E_{S}\!\left[\;
+        v_{\textnormal{HT}}(\,s\,;\xi_{\bullet}\,)
+        \,\left\vert
+        \begin{array}{c} \xi_{\bullet} \end{array}
+        \right.
+        \!\right]
+    \;\; = \;\;
+        \Var_{S}\!\left(\,
+            \left.
+            \widehat{T}_{d}(s\,;\xi_{\bullet})
+            \;\right\vert\!
+            \begin{array}{c} \xi_{\bullet} \end{array}
+            \!\!\right)
+    \end{equation*}
 \item
     The value of \,$Z_{i}$\, has been successfully observed or measured
     for each population unit \,$i$\, in the selected sample \,$s \subset U$.\,
-    However, the value of \,$Y_{l}$\, has been successfully observed
+    On the other hand, the value of \,$Y_{l}$\, has been successfully observed
     only for units \,$l$\, in the (random) ``responding'' subsample
     \,$s_{R} \subset s \subset U$;\,
-    in other words, the measurement of \,$Y_{k}$\, failed for each unit \,$k$\,
+    in other words, the measurement of \,$Y_{k}$\, somehow failed for each unit \,$k$\,
     in the ``nonresponding'' subsample
     \,$s_{M} \, := \,s \,\backslash\, s_{R} \,\subset\, U$.\,
 \item
@@ -288,12 +319,12 @@ Suppose:
 \begin{center}
 \textbf{The variability quantification problem$\overset{{\color{white}1}}{\textnormal{\color{white}.}}$\& proposed solution}
 \end{center}
-We seek quantify the variability of
+We seek to quantify the variability of
 \,$\widetilde{R}_{d,Y/Z}$\,
 as an estimator for
 \,$R_{d,Y/Z} \; := \; \dfrac{T_{d,Y}}{T_{d,Z}}$.
 \vskip 0.1cm
-In these study notes, the conditional mean squared error (MSE)
+Following \cite{Beaumont2011} (which treats domain totals), the conditional mean squared error (MSE)
 \begin{equation*}
 \MSE\!\left(\;
     \left.
@@ -471,9 +502,11 @@ will be proposed.
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\mathcal{P}(U)$,\,
     i.e., $\mathcal{P}(\mathcal{P}(U))$-measurable map.
 \item
-    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \otimes \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
-    is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\Omega \times \mathcal{P}(U)$,\,
-    i.e., $\left(\mathscr{A} \overset{{\color{white}.}}{\times} \mathcal{P}(\mathcal{P}(U))\right)$-measurable map
+    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
+    is a $\{0,1\}^{N \times 1}$-valued random variable defined on the product probability space
+    \,$\Omega \times \mathcal{P}(U)$,\,
+    i.e.,
+    \,$\left(\mathscr{A} \overset{{\color{white}.}}{\otimes} \mathcal{P}(\mathcal{P}(U))\right)$-measurable map
     that satisfies:
     % \begin{equation*}
     % \mu\!\left(\left\{\;
@@ -504,7 +537,7 @@ will be proposed.
     %     0
     % \end{equation*}
     \begin{equation*}
-    (\,\mu\times\pi\,)\!\left(\;\,
+    (\,\mu\otimes\pi\,)\!\left(\;\,
         \underset{k \in U}{\bigcup}\left\{\;
             (\omega,s) \in \Omega\times\mathcal{P}(U)
             \;\left\vert
@@ -1102,7 +1135,7 @@ will be proposed.
 Suppose we are given quantities as described in Subsection
 \ref{DomainRatioFormulationOfVarianceEstimationProblem}
 and
-that they satisfy probabilistic properties as described in Subsection
+that they satisfy the probabilistic assumptions as described in Subsection
 \ref{DomainRatioProbabilisticFramework}.
 Then, the condition mean squared error
 \,$
@@ -1482,7 +1515,7 @@ we will use the following nomenclature:
 Suppose we are given quantities as described in Subsection
 \ref{DomainRatioFormulationOfVarianceEstimationProblem}
 and
-that they satisfy probabilistic properties as described in Subsection
+that they satisfy the probabilistic assumptions as described in Subsection
 \ref{DomainRatioProbabilisticFramework}.
 Then, the following statements are true:
 \renewcommand{\theenumi}{\roman{enumi}}
@@ -1537,20 +1570,22 @@ Then, the following statements are true:
     E_{Y_{R}}\,
     E_{Y_{M}}\!\left[\,
         v(\,s\,;\Ydot,\Zdot\,)
-        \,\left\vert\;
-        s,s_{R},\YsubR,\Zdot\,,\Xobs
+        \,\left\vert\!
+        \begin{array}{c}
+        s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+        \end{array}
         \right.
-        \,\right]
+        \!\right]
     \;\; = \;\;
         E_{Y}\!\left[\,
             \Var_{S}\!\left(\,
-                \left.
                 \widehat{R}_{d,Y/Z}
-                \,\right\vert\,
-                \Ydot,
-                \Zdot,
-                \Xobs
-                \,\right)
+                \,\left\vert\!
+                \begin{array}{c}
+                \Ydot, \\ \Zdot, \Xobs
+                \end{array}
+                \right.
+                \!\!\right)
             \,\right]
     \end{equation*}
 \item
@@ -1781,51 +1816,67 @@ Then, the following statements are true:
         E_{Y_{R}}\,
         E_{Y_{M}}\!\left[\,
             v(\,s\,;\Ydot,\Zdot\,)
-            \,\left\vert\;
-            s,s_{R},\YsubR,\Zdot\,,\Xobs
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Zdot\,,\Xobs \end{array}
             \right.
-            \,\right]
-    \\
-    & = &
+            \!\right]
+    \;\; = \;\;
         E_{SR}\,
         E_{Y}\!\left[\,
             v(\,s\,;\Ydot,\Zdot\,)
-            \,\left\vert\;
-            s,s_{R},\Zdot\,,\Xobs
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
             \right.
-            \,\right]
+            \!\right]
     \\
     & = &
         E_{Y}\,
         E_{SR}\!\left[\,
             v(\,s\,;\Ydot,\Zdot\,)
-            \,\left\vert\;
-            \Ydot,\Zdot\,,\Xobs
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Zdot\,,\Xobs \end{array}
             \right.
-            \,\right]
-    \\
-    & = &
+            \!\right]
+    \;\; = \;\;
         E_{Y}\,
         E_{S}\!\left[\,
             v(\,s\,;\Ydot,\Zdot\,)
-            \,\left\vert\;
-            \Ydot,\Zdot\,,\Xobs
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Zdot\,,\Xobs \end{array}
             \right.
-            \,\right]
+            \!\right]
     \\
     & = &
         E_{Y}\!\left[\,
             \Var_{S}\!\left(\,
-                \left.
                 \widehat{R}_{d,Y/Z}
-                \,\right\vert\,
-                \Ydot,
-                \Zdot,
-                \Xobs
-                \,\right)
+                \,\left\vert\!
+                \begin{array}{c} \Ydot, \\ \Zdot, \Xobs \end{array}
+                \right.
+                \!\!\right)
             \,\right],
-    \;\;
-    \textnormal{by hypothesis on \,$v(\,s\,;y_{\bullet},\zdot\,)$}
+    \\
+    &&
+    \quad
+    \textnormal{by hypothesis that
+    \,$
+    E_{S}\!\left[\;
+        v(\,s\,;\Ydot,\Zdot\,)
+        \,\left\vert\;
+        \Ydot,\Zdot\,,\Xobs
+        \right.
+        \,\right]
+    \; = \;
+        \Var_{S}\!\left(\,
+            \left.
+            \widehat{R}_{d,Y/Z}
+            \,\right\vert\,
+            \Ydot,
+            \Zdot,
+            \Xobs
+            \,\right)
+    $
+    }
     \end{eqnarray*}
 \item
     We first state and proof a number of claims.
