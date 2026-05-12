@@ -126,7 +126,27 @@ Suppose:
         \end{equation*}
         for the Horvitz-Thompson population total estimator.
     \end{itemize}
-    Recall also that the following Horvitz-Thompson variance estimator
+    Recall (Result 2.8.1, p.43, \cite{Sarndal1992}) also that
+    the sampling variance of 
+    \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$\,
+    is given by
+    \begin{equation*}
+    \Var_{S}\!\left(\,
+        \left.
+        \widehat{T}_{d}(s\,;\xi_{\bullet})
+        \;\right\vert\!
+        \begin{array}{c} \xi_{\bullet} \end{array}
+        \!\!\right)
+    \;\; = \;\;\,
+        \underset{i \in U}{\sum}\,
+        \underset{j \in U}{\sum}\;
+        \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
+        \cdot
+        \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
+        \cdot
+        \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}\,,
+    \end{equation*}
+    and the following Horvitz-Thompson variance estimator
     \begin{equation*}
     v_{\textnormal{HT}}(\,s\,;\xi_{\bullet}\,)
     \;\; := \;\;
@@ -155,6 +175,14 @@ Suppose:
             \;\right\vert\!
             \begin{array}{c} \xi_{\bullet} \end{array}
             \!\!\right)
+    % \;\; = \;\;
+    %     \underset{i \in U}{\sum}\,
+    %     \underset{j \in U}{\sum}\;
+    %     \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
+    %     \cdot
+    %     \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
+    %     \cdot
+    %     \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}
     \end{equation*}
 \item
     The value of \,$Z_{i}$\, has been successfully observed or measured
