@@ -1761,7 +1761,7 @@ Then, the following statements are true:
             }
         \left(\,
             \underset{k \in s_{M}}{\sum}\;
-            d_{k}
+            d_{k}^{2}
             \left(1-\dfrac{1}{w_{k}}\right)
             w_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
@@ -2146,7 +2146,7 @@ Then, the following statements are true:
         \right]
     & = &
         \left\{\begin{array}{cl}
-            \sigma_{k}^{2} \,+\, \widetilde{y}_{k}^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+            \widetilde{y}_{k}^{2} \,+\, \sigma_{k}^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
             \\
             \widetilde{y}_{k} \cdot \widetilde{y}_{l}\,, & \overset{{\color{white}.}}{\textnormal{otherwise}}
             \end{array}\right.
@@ -2202,7 +2202,7 @@ Then, the following statements are true:
         \right.
         \!\right]
     & = &
-        \widehat{T}(s\,;\widetilde{y}_{\bullet})^{2}
+        \widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})^{2}
         \; + \;
         \left(\,
             \underset{a \in {\color{black}s_{M}}}{\sum}
@@ -2297,7 +2297,7 @@ Then, the following statements are true:
             \,\right)
     \\
     & = &
-        \widehat{T}(s\,;\widetilde{y}_{\bullet})^{2}
+        \widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})^{2}
         \; + \;
         \left(\,
             \underset{a \in {\color{black}s_{M}}}{\sum}
@@ -2322,13 +2322,13 @@ Then, the following statements are true:
         \left\{\begin{array}{ll}
             \widetilde{y}_{k}
             \cdot
-            \widehat{T}(s\,;\widetilde{y}_{\bullet})\,,
+            \widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})\,,
             &
             \textnormal{for \,$k \in s_{R}$}
             \\
             \overset{{\color{white}\textnormal{\Large$1$}}}{\widetilde{y}_{k}}
             \cdot
-            \widehat{T}(s\,;\widetilde{y}_{\bullet})
+            \widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})
             \; + \;
             \dfrac{d_{k}}{\pi_{k}}\cdot\sigma^{2}_{k}\,,
             &
@@ -2462,13 +2462,13 @@ Then, the following statements are true:
         \left\{\begin{array}{ll}
             \widetilde{y}_{k}
             \cdot
-            \widehat{T}(s\,;\widetilde{y}_{\bullet})\,,
+            \widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})\,,
             &
             \textnormal{for \,$k \in s_{R}$}
             \\
             \widetilde{y}_{k}
             \cdot
-            \widehat{T}(s\,;\widetilde{y}_{\bullet})
+            \widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})
             \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
             \dfrac{d_{k}}{\pi_{k}}\cdot\sigma^{2}_{k}\,,
             &
@@ -2745,7 +2745,7 @@ Then, the following statements are true:
             \widehat{V}_{\textnormal{HT}}(\,s\,;\widetilde{y}_{\bullet}\,)
             \;+\;
             \underset{k \in s_{M}}{\sum}\;
-            d_{k}
+            d_{k}^{2}
             \left(1-\dfrac{1}{w_{k}}\right)
             w_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
@@ -2761,7 +2761,7 @@ Then, the following statements are true:
                 }
             }
             \left(\,
-                \widehat{T}(s\,;\widetilde{y}_{\bullet})
+                \widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})
                 \cdot
                 \underset{k \in s}{\sum}\;
                 \underset{l \in s}{\sum}\;
@@ -2779,8 +2779,8 @@ Then, the following statements are true:
     &&
         \; + \;
         \dfrac{
-            % E_{Y_{M}}\!\left[\,\widehat{T}(s\,;\widetilde{y}_{\bullet})^{2}\,\right]
-            \widehat{T}(s\,;\widetilde{y}_{\bullet})^{2}
+            % E_{Y_{M}}\!\left[\,\widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})^{2}\,\right]
+            \widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})^{2}
             \;+
             \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
             }{
@@ -2820,7 +2820,7 @@ Then, the following statements are true:
             }
         \left(\,
             \underset{k \in s_{M}}{\sum}\;
-            d_{k}
+            d_{k}^{2}
             \left(1-\dfrac{1}{w_{k}}\right)
             w_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
@@ -2829,7 +2829,7 @@ Then, the following statements are true:
         \; + \;
         {\color{blue}
         \dfrac{
-            (-2)\left.\widehat{T}(s\,;\widetilde{y}_{\bullet})\right\slash\widehat{T}_{d}(s\,;\zdot)
+            (-2)\left.\widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})\right\slash\widehat{T}_{d}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
                 \widehat{T}_{d}(s\,;\zdot)^{2}
@@ -2866,7 +2866,7 @@ Then, the following statements are true:
         {\color{blue}
         \dfrac{
             \left.
-            \widehat{T}(s\,;\widetilde{y}_{\bullet})^{2}
+            \widehat{T}_{d}(s\,;\widetilde{y}_{\bullet})^{2}
             \right\slash
             \widehat{T}_{d}(s\,;\zdot)^{2}
             }{
@@ -2906,7 +2906,7 @@ Then, the following statements are true:
             }
         \left(\,
             \underset{k \in s_{M}}{\sum}\;
-            d_{k}
+            d_{k}^{2}
             \left(1-\dfrac{1}{w_{k}}\right)
             w_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
