@@ -832,14 +832,23 @@ Then, the following statements are true:
         \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
         \right.
         \!\!\right]
-    & {\color{red}\neq} &
-        \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,\widetilde{w}_{i}\,d_{i}\,
-        E_{Y}\!\left[\;
-            Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-            \;\left\vert
+    & = &
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}^{*}-Y_{k}
+            \;\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
             \right.
-            \,\right]
+            \!\!\right]
+        \; + \;
+        \underset{k \in s}{\sum}\;
+        (\widetilde{w}_{k}\,-\,w_{k})\,d_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
     \end{eqnarray*}
 \item
     Consequently, we have the following alternative expression for the overall bias:
@@ -1000,9 +1009,24 @@ Then, the following statements are true:
     We compute:
     \begin{eqnarray*}
     &&
-        E_{Y}\!\left[\;
-            \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
-            \;\left\vert
+        E_{Y}\!\left[\;\,
+            \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \;\; = \;\;
+        E_{Y}\!\left[\;\,
+            \widetilde{T}_{d,Y}
+            {\color{blue}
+            \,\overset{{\color{white}.}}{-}\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,\overset{{\color{white}.}}{+}\,
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            }
+            \overset{{\color{white}.}}{-}\,
+            \widehat{T}_{d,Y}
+            \;\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
             \right.
             \!\!\right]
@@ -1017,29 +1041,61 @@ Then, the following statements are true:
                 \,\right)
             \,\overset{{\color{white}.}}{-}\,
             \left(\,
-                \underset{k \in s_{R}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
+                \underset{k \in s_{R}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
                 \overset{{\color{white}.}}{+}
-                \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
+                \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
                 \,\right)
-            \;\right\vert
+            \;\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+    \\
+    &&
+        \; + \;
+        E_{Y}\!\left[\;
+            \left.
+            \left(\,
+                \underset{k \in s}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+                \,\right)
+            \,\overset{{\color{white}.}}{-}\,
+            \left(\,
+                \underset{k \in s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
+                \,\right)
+            \;\right\vert\!
             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
             \!\!\right]
     \\
     & = &
-        E_{Y}\!\left[\;\,
+        E_{Y}\!\left[\;
             \left.
             \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,(Y_{k}^{*}-Y_{k})
-            \;\,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
-    \;\; = \;\;
+            \;\,\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        \; + \;
+        E_{Y}\!\left[\;
+            \left.
+            \underset{k \in s}{\sum}\;(\widetilde{w}_{k}-w_{k})\,d_{k}\,Y_{k}
+            \;\,\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+    \\
+    & = &
         \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,
         E_{Y}\!\left[\;\,
             Y_{k}^{*}-Y_{k}
-            \,\left\vert\;
-            s,s_{R},\Xobs
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
             \right.
-            \,\right],
+            \!\!\right]
+        \; + \;
+        \underset{k \in s}{\sum}\;
+        (\widetilde{w}_{k}\,-\,w_{k})\,d_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right],
     \end{eqnarray*}
     as required.
 \item
