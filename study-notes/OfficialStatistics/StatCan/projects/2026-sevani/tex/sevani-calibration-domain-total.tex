@@ -719,48 +719,7 @@ Suppose we are given quantities as described in Subsection
 and
 that they satisfy the probabilistic assumptions as described in Subsection
 \ref{CalibrationDomainTotalProbabilisticFramework}.
-Let
-\begin{eqnarray*}
-\widetilde{T}_{d,Y}
-\;\; = \;\;
-    \widetilde{T}_{d,Y}(\,
-        \Sdot\,,\,
-        \Rdot\,,\,
-        \Ydot\,,\,
-        \Gdotdot\,,\,
-        \Xdotdot\,;\,
-        \dbullet
-        \,)
-& := &
-    \underset{i\,\in\,s}{\sum}\;\widetilde{w}_{i}\,d_{i}\,\widetilde{Y}_{i}
-\;\; = \;\;
-    \underset{i\,\in\,U}{\sum}\;\widetilde{w}_{i}\,d_{i}\,S_{i}\left(\,
-        R_{i}\,Y_{i}
-        \overset{{\color{white}.}}{+}
-        (1-R_{i})\,Y^{*}_{i}
-        \,\right)
-\end{eqnarray*}
-be an imputation estimator for the domain total
-\;$T_{Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
-where
-\begin{equation*}
-\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}
-\quad\;\;\textnormal{and}\quad\;
-Y^{*}_{i} \;=\; Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
-\end{equation*}
-\vskip 0.2cm
-\noindent
-Suppose the quantities
-\,$
-\Sdot\,,\,
-\Rdot\,,\,
-\Ydot\,,\,
-\Gdotdot\,,\,
-\Xdotdot\,,\,
-\dbullet
-$\,
-satisfy the probabilistic assumptions specified in Subsection \ref{CalibrationDomainTotalProbabilisticFramework}.
-\vskip 0.2cm
+\vskip 0.1cm
 \noindent
 Then, the following statements are true:
 \renewcommand{\theenumi}{\roman{enumi}}
@@ -841,6 +800,24 @@ Then, the following statements are true:
             \right.
             \!\!\right]
         \; + \;
+        E_{Y}\!\left[\;\,
+            \widehat{Y}^{\textnormal{(cal)}}_{d,Y}
+            \,-\,
+            \widehat{Y}_{d,Y}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}^{*}-Y_{k}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        \; + \;
         \underset{k \in s}{\sum}\;
         (\widetilde{w}_{k}\,-\,w_{k})\,d_{k}\,
         E_{Y}\!\left[\;\,
@@ -853,13 +830,14 @@ Then, the following statements are true:
 \item
     Consequently, we have the following alternative expression for the overall bias:
     \begin{eqnarray*}
-    \bias\!\left(\;
-        \left.
-        \widetilde{T}_{d,Y}
-        \;\right\vert\,
-        \Gdotdot,\Xobs
-        \,\right)
-    & := &
+    &&
+        \bias\!\left(\;
+            \left.
+            \widetilde{T}_{d,Y}
+            \;\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right)
+    \;\; := \;\;
         E\!\left[\;
             \left.
             \widetilde{T}_{d,Y} - T_{Y}
@@ -867,25 +845,74 @@ Then, the following statements are true:
             \Gdotdot,\Xobs
             \,\right]
     \;\; = \;\;
-        E_{SR}\!\left(\;
+        E_{SR}\!\left(
             \overset{{\color{white}.}}{E_{Y}\!\left[\;
-                \left.
                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
-                \;\right\vert\,
-                s,s_{R},\Gdotdot,\Xobs
-                \,\right]}
+                \;\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
             \;\right)
     \\
     & = &
-        E_{SR}\!\left[\;
-            \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,\widetilde{w}_{i}\,d_{i}\,
+        E_{SR}\!\left(\;
+            \underset{k\,\in\,{\color{red}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
             E_{Y}\!\left[\;
-                \left.
-                Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-                \;\right\vert\,
-                s,s_{R},\Gdotdot,\Xobs
-                \,\right]
-            \,\right]
+                Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \;\right)
+            \; + \;
+        E_{SR}\!\left(
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+                \;\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \,\right)
+    \\
+    & = &
+        E_{SR}\!\left(\;
+            \underset{k\,\in\,{\color{red}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+            E_{Y}\!\left[\;
+                Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \;\right)
+            \; + \;
+        E_{Y}\!\left(
+            \overset{{\color{white}.}}{E_{SR}\!\left[\;
+                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{Y}
+                \;\left\vert\!
+                \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \,\right)
+    \\
+    & = &
+        E_{SR}\!\left(\;
+            \underset{k\,\in\,{\color{red}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+            E_{Y}\!\left[\;
+                Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \; + \;
+            \underset{k \in {\color{red}s}}{\sum}\;
+            (\widetilde{w}_{k}\,-\,w_{k})\,d_{k}\,
+            E_{Y}\!\left[\;\,
+                Y_{k}
+                \;\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
     \end{eqnarray*}
 \end{enumerate}
 \end{lemma}
@@ -1051,17 +1078,13 @@ Then, the following statements are true:
     \\
     &&
         \; + \;
-        E_{Y}\!\left[\;
-            \left.
-            \left(\,
-                \underset{k \in s}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
-                \,\right)
+        E_{Y}\!\left[\;\,
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
             \,\overset{{\color{white}.}}{-}\,
-            \left(\,
-                \underset{k \in s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
-                \,\right)
-            \;\right\vert\!
+            \widehat{T}_{d,Y}
+            \,\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
             \!\!\right]
     \\
     & = &
@@ -1072,6 +1095,44 @@ Then, the following statements are true:
             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
             \!\!\right]
         \; + \;
+        E_{Y}\!\left[\;\,
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,\overset{{\color{white}.}}{-}\,
+            \widehat{T}_{d,Y}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        {\color{blue}
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}^{*}-Y_{k}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        \; + \;
+        E_{Y}\!\left[\;\,
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,\overset{{\color{white}.}}{-}\,
+            \widehat{T}_{d,Y}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        }
+    \\
+    & = &
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}^{*}-Y_{k}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        \; + \;
         E_{Y}\!\left[\;
             \left.
             \underset{k \in s}{\sum}\;(\widetilde{w}_{k}-w_{k})\,d_{k}\,Y_{k}
@@ -1080,6 +1141,7 @@ Then, the following statements are true:
             \!\!\right]
     \\
     & = &
+        {\color{blue}
         \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,
         E_{Y}\!\left[\;\,
             Y_{k}^{*}-Y_{k}
@@ -1095,11 +1157,12 @@ Then, the following statements are true:
             \;\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
             \right.
-            \!\!\right],
+            \!\!\right]
+        },
     \end{eqnarray*}
     as required.
 \item
-    Immediate by the preceding statements.
+    Immediate by the preceding conclusions.
     \qed
 \end{enumerate}
 
@@ -1113,7 +1176,7 @@ Then, the following statements are true:
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.3cm
-\begin{lemma}[Decomposition of \,$\MSE(\,\widetilde{T}_{d,Y}\,\vert\,\Xobs\,)$; see Equation (5.3) in \cite{Beaumont2011}]
+\begin{lemma}[Decomposition of \,$\MSE(\,\widetilde{T}_{d,Y}\,\vert\,\Gdotdot,\Xobs\,)$; compare Equation (5.3) in \cite{Beaumont2011}]
 \label{DecompositionMSETtilde}
 \mbox{}
 \vskip 0.1cm
@@ -1156,7 +1219,8 @@ Suppose the quantities
 \Xdotdot\,,\,
 \dbullet
 $\,
-satisfy the probabilistic assumptions specified in Subsection \ref{CalibrationDomainTotalProbabilisticFramework}.
+satisfy the probabilistic assumptions specified
+in Subsection \ref{CalibrationDomainTotalProbabilisticFramework}.
 \vskip 0.2cm
 \noindent
 Then,
