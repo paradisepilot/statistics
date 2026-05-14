@@ -39,7 +39,7 @@ Suppose:
 \item
     Aside/Reminder:
     If there are no missing data for the units in the selected sample,
-    then the \textit{Horvitz-Thompson ratio estimator}
+    then the \textit{Horvitz-Thompson domain ratio estimator}
     \begin{eqnarray*}
     \widehat{R}_{d,Y/Z}
     & = &
@@ -69,21 +69,21 @@ Suppose:
     & = &
         \dfrac{
             {\color{white}.}
-            \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Y_{i}
+            \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y_{i}
             {\color{white}.}
             }{
             \overset{{\color{white}.}}{
-                \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
+                \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Z_{i}
                 }
             }
     \;\; = \;\;
         \dfrac{
             {\color{white}.}
-            \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+            \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
             {\color{white}.}
             }{
             \overset{{\color{white}.}}{
-                \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
+                \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Z_{i}
                 }
             }\,,
     \end{eqnarray*}
@@ -109,9 +109,9 @@ Suppose:
         \;\; :=: \;\;
             \widehat{T}_{d}(s\,;\xi_{\bullet})
         \;\; := \;\;
-            \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\xi_{i}
+            \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
         \;\; = \;\;
-            \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,\xi_{i}
+            \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,\xi_{i}
         \end{equation*}
         We will use the alternative notations
         \,$\widehat{T}_{d,\xi}(s)$\, and \,$\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
@@ -122,7 +122,7 @@ Suppose:
         \begin{equation*}
         \widehat{T}_{d}(s\,;\xi_{\bullet})
         \;\; := \;\;
-            \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\xi_{i}
+            \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
         \end{equation*}
         for the Horvitz-Thompson population total estimator.
     \end{itemize}
@@ -226,22 +226,22 @@ Suppose:
     \\
     & = &
         \dfrac{
-            \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Y^{\dagger}_{i}
+            \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y^{\dagger}_{i}
             }{
             \overset{{\color{white}.}}{
-                \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
+                \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Z_{i}
                 }
             }
     \;\; = \;\;
         \dfrac{
-            \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+            \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\left(\,
                 R_{i}\,Y_{i}
                 \overset{{\color{white}.}}{+}
                 (1-R_{i})\,Y^{*}_{i}
                 \,\right)
             }{
             \overset{{\color{white}.}}{
-                \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
+                \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Z_{i}
                 }
             }\,,
     \end{eqnarray*}
@@ -285,9 +285,9 @@ Suppose:
     %     \begin{equation*}
     %     \widehat{T}(s\,;\pi,d_{\bullet},\xi_{\bullet})
     %     \;\; := \;\;
-    %         \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\xi_{i}
+    %         \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
     %     \;\; = \;\;
-    %         \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,\xi_{i}
+    %         \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,\xi_{i}
     %     \end{equation*}
     \end{itemize}
 \item
@@ -307,13 +307,13 @@ Suppose:
     \\
     \varphi^{(j)}_{0k}
     & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
-        \varphi^{(j)}_{0k}(\,s,s_{R}\,;X_{\bullet\bullet}\,),
+        \varphi^{(j)}_{0k}(\,s,s_{R}\,;\Xdotdot\,),
         \quad
         \textnormal{and}
     \\
     \varphi^{(j)}_{lk}
     & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
-        \varphi^{(j)}_{lk}(\,s,s_{R}\,;X_{\bullet\bullet}\,),
+        \varphi^{(j)}_{lk}(\,s,s_{R}\,;\Xdotdot\,),
         \;\;
         \textnormal{{\color{red}for each \,$l \in s_{R}$}}
     \end{array}\right.
@@ -446,14 +446,14 @@ will be proposed.
 % \;\; := \;\;
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
 %         \,\right),
 % \quad\;\;\textnormal{and}\quad\;\;
 % W^{(+)}_{{\color{red}l}}
 % \;\; := \;\;
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{{\color{red}l}k}
 %         \,\right),
 % \;\;
 % \textnormal{for each \,$l \in s_{R}$}
@@ -731,19 +731,19 @@ will be proposed.
 % \\
 % & = &
 %     \dfrac{
-%         \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+%         \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
 %         }{
-%         \overset{{\color{white}.}}{\underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}}
+%         \overset{{\color{white}.}}{\underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Z_{i}}
 %         }
 % \;\; = \;\;
 %     \dfrac{
-%         \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\left(\,
 %             R_{i}\,Y_{i}
 %             \overset{{\color{white}.}}{+}
 %             (1-R_{i})\,Y^{*}_{i}
 %             \,\right)
 %         }{
-%         \overset{{\color{white}.}}{\underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}}
+%         \overset{{\color{white}.}}{\underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Z_{i}}
 %         }
 % \end{eqnarray*}
 % where
@@ -760,54 +760,54 @@ will be proposed.
 % \begin{eqnarray*}
 % \widetilde{T}_{d,Y}
 % & = &
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
 %     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 % \end{eqnarray*}
 % \end{lemma}
 % \proof
 % \begin{eqnarray*}
 % \widetilde{T}_{d,Y}
 % & := &
-%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+%     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
 % \;\; = \;\;
-%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\left(\,
+%     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\left(\,
 %         R_{i}\,Y_{i}
 %         \overset{{\color{white}.}}{+}
 %         (1-R_{i})\,Y^{*}_{i}
 %         \,\right)
 % \\
 % & = &
-%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,R_{i}\,Y_{i}
+%     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,R_{i}\,Y_{i}
 %     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,(1-R_{i})\,Y^{*}_{i}
+%     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,(1-R_{i})\,Y^{*}_{i}
 % \;\; = \;\;
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,R_{i}\,Y_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,R_{i}\,Y_{i}
 %     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
 % \\
 % & = &
 %     {\color{red}
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
 %     \;\overset{{\color{white}.}}{-}\;
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
 %     }
 %     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,R_{i}\,Y_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,R_{i}\,Y_{i}
 %     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
 % \\
 % & = &
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
 %     \;\overset{{\color{white}.}}{-}\;
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,Y_{i}
 %     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
 % \\
 % & = &
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Y_{i}
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
 %     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
 % \end{eqnarray*}
 % \vskip -0.5cm
 % \qed
@@ -832,9 +832,9 @@ will be proposed.
 %         \dbullet
 %         \,)
 % & := &
-%     \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+%     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
 % \;\; = \;\;
-%     \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\left(\,
 %         R_{i}\,Y_{i}
 %         \overset{{\color{white}.}}{+}
 %         (1-R_{i})\,Y^{*}_{i}
@@ -909,7 +909,7 @@ will be proposed.
 %     \; = \;
 %         \widehat{T}_{d,Y}(\,s,\Ydot\,;\,\dbullet\,)
 %     \; = \;
-%         \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%         \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
 %     $\,
 %     is the Horvitz-Thompson estimator for the domain total.
 % \item
@@ -931,7 +931,7 @@ will be proposed.
 %         s,s_{R},\Xobs
 %         \,\right]
 %     & = &
-%         \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,d_{i}\,w_{i}\,
+%         \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,w_{i}\,d_{i}\,
 %         E_{Y}\!\left[\;
 %             \left.
 %             Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
@@ -967,7 +967,7 @@ will be proposed.
 %     \\
 %     & = &
 %         E_{SR}\!\left[\;
-%             \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,d_{i}\,w_{i}\,
+%             \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,w_{i}\,d_{i}\,
 %             E_{Y}\!\left[\;
 %                 \left.
 %                 Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
@@ -1109,15 +1109,15 @@ will be proposed.
 %         E_{Y}\!\left[\;
 %             \left.
 %             \left(\,
-%                 \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%                 \underset{k \in s_{R}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
 %                 \overset{{\color{white}.}}{+}
-%                 \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+%                 \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}^{*}
 %                 \,\right)
 %             \,\overset{{\color{white}.}}{-}\,
 %             \left(\,
-%                 \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%                 \underset{k \in s_{R}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
 %                 \overset{{\color{white}.}}{+}
-%                 \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%                 \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
 %                 \,\right)
 %             \;\right\vert\,
 %             s,s_{R},\Xobs
@@ -1126,12 +1126,12 @@ will be proposed.
 %     & = &
 %         E_{Y}\!\left[\;\,
 %             \left.
-%             \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,(Y_{k}^{*}-Y_{k})
+%             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,(Y_{k}^{*}-Y_{k})
 %             \;\,\right\vert\,
 %             s,s_{R},\Xobs
 %             \,\right]
 %     \;\; = \;\;
-%         \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,
+%         \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,
 %         E_{Y}\!\left[\;\,
 %             Y_{k}^{*}-Y_{k}
 %             \,\left\vert\;
@@ -1165,7 +1165,7 @@ Suppose we are given quantities as described in Subsection
 and
 that they satisfy the probabilistic assumptions as described in Subsection
 \ref{DomainRatioProbabilisticFramework}.
-Then, the condition mean squared error
+Then, the conditional mean squared error
 \,$
 \MSE\!\left(\;
     \left.
@@ -3054,9 +3054,9 @@ Then, the following statements are true:
 % \begin{equation*}
 % \widetilde{T}_{d,Y}(\,s,s_{R},\Ydot\,;\,X_{\bullet\bullet},\dbullet\,)
 % \;\; = \;\;
-%     \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     \underset{k \in s_{R}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
 %     \;+\,
-%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+%     \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}^{*}
 % \end{equation*}
 % is called a \textbf{composite linear imputation estimator}
 % if there exists \,$J \in \N$\, such that
@@ -3133,22 +3133,22 @@ that they satisfy the probabilistic assumptions as described in Subsection
 %         \,)
 % \;\;\; := \;\;\;
 %     \dfrac{
-%         \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+%         \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
 %         }{
 %         \overset{{\color{white}.}}{
-%             \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
+%             \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Z_{i}
 %             }
 %         }
 % \;\; = \;\;
 %     \dfrac{
-%         \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\left(\,
 %             R_{i}\,Y_{i}
 %             \overset{{\color{white}.}}{+}
 %             (1-R_{i})\,Y^{*}_{i}
 %             \,\right)
 %         }{
 %         \overset{{\color{white}.}}{
-%             \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
+%             \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Z_{i}
 %             }
 %         }
 % \end{eqnarray*}
@@ -3202,14 +3202,14 @@ that they satisfy the probabilistic assumptions as described in Subsection
 % \;\; := \;\;
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
 %         \,\right),
 % \quad\;\;\textnormal{and}\quad\;\;
 % W^{(+)}_{{\color{red}l}}
 % \;\; := \;\;
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{{\color{red}l}k}
 %         \,\right),
 % \;\;
 % \textnormal{for each \,$l \in s_{R}$}
@@ -3219,9 +3219,9 @@ that they satisfy the probabilistic assumptions as described in Subsection
 % \begin{equation*}
 % \widetilde{T}_{d,Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
 % \;\; = \;\;
-%     \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     \underset{k \in s_{R}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
 %     \;+\,
-%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+%     \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}^{*}
 % \end{equation*}
 % be a composite linear imputation estimator for the domain total
 % \,$T_{d,Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
@@ -3241,14 +3241,14 @@ W^{(+)}_{{\color{red}0}}
 \;\; := \;\;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+        \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
         \,\right),
 \quad\quad
 W^{(+)}_{{\color{red}l}}
 \;\; := \;\;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}l}k}
+        \underset{k \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}l}k}
         \,\right),
 \;\;
 \textnormal{for each \,$l \in s_{R}$}
@@ -3264,16 +3264,16 @@ Then, the following equalities hold:
     %     \left(\;
     %         \overset{J}{\underset{j=1}{\sum}}\;
     %         \underset{k \in s_{M}^{(j)}}{\sum}\;
-    %         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+    %         w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
     %         \,\right)
     %     \;+\;
     %     \underset{k \in s_{R}}{\sum}
     %     \left(\;
-    %         d_{k}\,w_{k}
+    %         w_{k}\,d_{k}
     %         \,+\,
     %         \left(\;
     %             \overset{J}{\underset{j=1}{\sum}}\;
-    %             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
+    %             \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
     %             \right)
     %         \right)
     %     Y_{k}
@@ -3287,7 +3287,7 @@ Then, the following equalities hold:
     \;\; = \;\;
         W^{(+)}_{0}
         \;+\;
-        \underset{l \in s_{R}}{\sum}\!\left(\,d_{l}\,w_{l} \,+\, W^{(+)}_{l}\,\right)Y_{l}
+        \underset{l \in s_{R}}{\sum}\!\left(\,w_{l}\,d_{l} \,+\, W^{(+)}_{l}\,\right)Y_{l}
     $
 \item
     % $
@@ -3297,17 +3297,17 @@ Then, the following equalities hold:
     % \;\; = \;\;
     %     \left(\;
     %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+    %         \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
     %         \,\right)
     %     \;+\;
     %     \underset{k \in s_{R}}{\sum}\!
     %     \left(\;
     %         \overset{J}{\underset{j=1}{\sum}}\;
-    %         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
+    %         \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
     %         \right)
     %     Y_{k}
     %     \;-\;
-    %     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+    %     \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
     % $
     $
     \widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}
@@ -3323,13 +3323,13 @@ Then, the following equalities hold:
         \,+\,
         \underset{l \in s_{R}}{\sum}W^{(+)}_{l}\,Y_{l}
         \,-\,
-        \underset{k \in s_{M}}{\sum}d_{k}\,w_{k}\,Y_{k}
+        \underset{k \in s_{M}}{\sum}w_{k}\,d_{k}\,Y_{k}
     $
     % where
     % \,$
     % \widehat{T}_{d,Y}(\,s,\Ydot\,;\,\dbullet\,)
     % \;\; = \;\;
-    %     \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+    %     \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
     % $\,
     % is the Horvitz-Thompson estimator.
 \end{enumerate}
@@ -3339,16 +3339,16 @@ Then, the following equalities hold:
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
 %         \underset{k \in s_{M}^{(j)}}{\sum}\;
-%         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+%         w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
 %         \,\right)
 %     \;+\;
 %     \underset{k \in s_{R}}{\sum}
 %     \left(\;
-%         d_{k}\,w_{k}
+%         w_{k}\,d_{k}
 %         \,+\,
 %         \left(\;
 %             \overset{J}{\underset{j=1}{\sum}}\;
-%             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
+%             \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
 %             \right)
 %         \right)
 %     Y_{k}
@@ -3359,17 +3359,17 @@ Then, the following equalities hold:
 % & = &
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
 %         \,\right)
 %     \;+\;
 %     \underset{k \in s_{R}}{\sum}\!
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
 %         \right)
 %     Y_{k}
 %     \;-\;
-%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
 % \end{eqnarray*}
 \end{lemma}
 \proof
@@ -3385,22 +3385,22 @@ Then, the following equalities hold:
     % \;\; = \;\;
     % \widetilde{T}_{d,Y}\!\left(\,s,s_{R},\Ydot\,;\,\dbullet\,\right)
     \;\; = \;\;
-        \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+        \underset{l \in s_{R}}{\sum}\;w_{l}\,d_{l}\,Y_{l}
         \,+\,
-        \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+        \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}^{*}
     \;\; = \;\;
-        \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+        \underset{l \in s_{R}}{\sum}\;w_{l}\,d_{l}\,Y_{l}
         \,+\,
         \overset{J}{\underset{j=1}{\sum}}\;
         \underset{k \in s_{M}^{(j)}}{\sum}\,
-        d_{k}\,w_{k}\,Y_{k}^{*}
+        w_{k}\,d_{k}\,Y_{k}^{*}
     \\
     & = &
-        \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+        \underset{l \in s_{R}}{\sum}\;w_{l}\,d_{l}\,Y_{l}
         \,+\,
         \overset{J}{\underset{j=1}{\sum}}\;
         \underset{k \in s_{M}^{(j)}}{\sum}\,
-        d_{k}\,w_{k}\left(\,
+        w_{k}\,d_{k}\left(\,
             \varphi^{(j)}_{0k}
             \,+\,
             \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
@@ -3410,15 +3410,15 @@ Then, the following equalities hold:
         \left(\;
             \overset{J}{\underset{j=1}{\sum}}\;
             \underset{k \in s_{M}^{(j)}}{\sum}\;
-            d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
             \,\right)
         \,+\,
         \left(\;
-            \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+            \underset{l \in s_{R}}{\sum}\;w_{l}\,d_{l}\,Y_{l}
             \,+\,
             \overset{J}{\underset{j=1}{\sum}}\;
             \underset{k \in s_{M}^{(j)}}{\sum}\,
-            d_{k}\,w_{k}\left(\,
+            w_{k}\,d_{k}\left(\,
                 \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
                 \right)
             \,\right)
@@ -3427,11 +3427,11 @@ Then, the following equalities hold:
     %     \left(\;
     %         \overset{J}{\underset{j=1}{\sum}}\;
     %         \underset{k \in s_{M}^{(j)}}{\sum}\;
-    %         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+    %         w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
     %         \,\right)
     %     \,+\,
     %     \left(\;
-    %         \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+    %         \underset{l \in s_{R}}{\sum}\;w_{l}\,d_{l}\,Y_{l}
     %         \,+\,
     %         \overset{J}{\underset{j=1}{\sum}}\;
     %         \underset{{\color{red}l}\,\in\,s_{M}^{(j)}}{\sum}\,
@@ -3444,15 +3444,15 @@ Then, the following equalities hold:
         \left(\;
             \overset{J}{\underset{j=1}{\sum}}\;
             \underset{k \in s_{M}^{(j)}}{\sum}\;
-            d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
             \,\right)
         \,+\,
         \left(\;
-            \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+            \underset{l \in s_{R}}{\sum}\;w_{l}\,d_{l}\,Y_{l}
             \,+\,
             \underset{l \in s_{R}}{\sum}\!\left(\;
                 \overset{J}{\underset{j=1}{\sum}}\;
-                \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{lk}
+                \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{lk}
                 \right)
             Y_{l}
             \right)
@@ -3461,16 +3461,16 @@ Then, the following equalities hold:
         \left(\;
             \overset{J}{\underset{j=1}{\sum}}\;
             \underset{k \in s_{M}^{(j)}}{\sum}\;
-            d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+            w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
             \,\right)
         \,+\,
         \underset{l \in s_{R}}{\sum}
         \left(\;
-            d_{l}\,w_{l}
+            w_{l}\,d_{l}
             \,+\,
             \left(\;
                 \overset{J}{\underset{j=1}{\sum}}\;
-                \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{lk}
+                \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{lk}
                 \right)
             \right)
         Y_{l}
@@ -3490,49 +3490,49 @@ Then, the following equalities hold:
     %     \left(\;
     %         \overset{J}{\underset{j=1}{\sum}}\;
     %         \underset{k \in s_{M}^{(j)}}{\sum}\;
-    %         d_{k}\,w_{k}\,\varphi^{(j)}_{0k}
+    %         w_{k}\,d_{k}\,\varphi^{(j)}_{0k}
     %         \,\right)
     %     \;+\;
     %     \underset{k \in s_{R}}{\sum}
     %     \left(\;
-    %         d_{k}\,w_{k}
+    %         w_{k}\,d_{k}
     %         \,+\,
     %         \left(\;
     %             \overset{J}{\underset{j=1}{\sum}}\;
-    %             \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{kl}
+    %             \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{kl}
     %             \right)
     %         \right)
     %     Y_{k}
     %     \;-\;
-    %     \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+    %     \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
     & = &
         W^{(+)}_{0}
         \;+\;
         \underset{l \in s_{R}}{\sum}\!
         \left(\;
-            d_{l}\,w_{l}
+            w_{l}\,d_{l}
             \,+\,
             W^{(+)}_{l}
             \right)
         Y_{l}
         \;-\;
-        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+        \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
     \\
     & = &
         W^{(+)}_{0}
         \;+\;
-        \underset{l \in s_{R}}{\sum}\,d_{l}\,w_{l}\,Y_{l}
+        \underset{l \in s_{R}}{\sum}\,w_{l}\,d_{l}\,Y_{l}
         \;+\;
         \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,Y_{l}
         \;-\;
-        \underset{k\,\in\,s}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+        \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
     \\
     & = &
         W^{(+)}_{0}
         \;+\;
         \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,Y_{l}
         \;-\;
-        \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}\,,
+        \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}\,,
     \end{eqnarray*}
     as required.
     \qed
@@ -3573,22 +3573,22 @@ that they satisfy the probabilistic assumptions as described in Subsection
 %         \,)
 % \;\;\; := \;\;\;
 %     \dfrac{
-%         \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+%         \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
 %         }{
 %         \overset{{\color{white}.}}{
-%             \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
+%             \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Z_{i}
 %             }
 %         }
 % \;\; = \;\;
 %     \dfrac{
-%         \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\left(\,
 %             R_{i}\,Y_{i}
 %             \overset{{\color{white}.}}{+}
 %             (1-R_{i})\,Y^{*}_{i}
 %             \,\right)
 %         }{
 %         \overset{{\color{white}.}}{
-%             \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
+%             \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Z_{i}
 %             }
 %         }
 % \end{eqnarray*}
@@ -3642,14 +3642,14 @@ W^{(+)}_{{\color{red}0}}
 \;\; := \;\;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+        \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
         \,\right),
 \quad\;\;\textnormal{and}\quad\;\;
 W^{(+)}_{{\color{red}l}}
 \;\; := \;\;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
+        \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{{\color{red}l}k}
         \,\right),
 \;\;
 \textnormal{for each \,$l \in s_{R}$}
@@ -3752,7 +3752,7 @@ Then, the following statements are true:
                     \left(W^{(+)}_{l}\right)^{2}\sigma_{l}^{2}
                 \,+\,
                 \underset{k \in s_{M}}{\sum}\,
-                    d_{k}\,w_{k}^{2}\,\sigma_{k}^{2}
+                    w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
                 \,\right)
             \, + \,
             \left(\,
@@ -3760,7 +3760,7 @@ Then, the following statements are true:
                 \,+\,
                 \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,\mu_{l}
                 \,-\,
-                \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,\mu_{k}
+                \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
                 \,\right)^{\!2}
             \,\right\}
     \end{eqnarray*}
@@ -3844,7 +3844,7 @@ Then, the following statements are true:
                 \left(W^{(+)}_{l}\right)^{2}\sigma_{l}^{2}
             \,\;+\;
             \underset{k \in s_{M}}{\sum}\,
-                d_{k}\,w_{k}^{2}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
             \;\right)
     \end{equation*}
     \vskip 0.1cm
@@ -3916,7 +3916,7 @@ Then, the following statements are true:
             \,+\,
             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
             \,-\,
-            \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
             \;\right\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3934,7 +3934,7 @@ Then, the following statements are true:
             \left.
             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
             \,-\,
-            \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
             \;\right\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3964,7 +3964,7 @@ Then, the following statements are true:
                 \!\right]
             \,\;+\;
             \underset{k \in s_{M}}{\sum}
-            \!\left(d_{k}\,w_{k}\right)^{2}
+            \!\left(w_{k}\,d_{k}\right)^{2}
             \cdot
             \Var_{Y}\!\left[\;Y_{k}
                 \,\left\vert
@@ -4028,7 +4028,7 @@ Then, the following statements are true:
                 \left(W^{(+)}_{l}\right)^{2}\sigma_{l}^{2}
             \,\;+\;
             \underset{k \in s_{M}}{\sum}\,
-                d_{k}\,w_{k}^{2}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
             \;\right),
     \\
     &&
@@ -4071,7 +4071,7 @@ Then, the following statements are true:
             \,\;+\;
             \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,\mu_{l}
             \,\;-\;
-            \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,\mu_{k}
+            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
             \,\right)
     \end{equation*}
     \vskip 0.1cm
@@ -4175,7 +4175,7 @@ Then, the following statements are true:
             \,+\,
             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
             \,-\,
-            \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
             \;\,\right\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -4213,7 +4213,7 @@ Then, the following statements are true:
                 \!\right]
             \,\;-\;
             \underset{k \in s_{M}}{\sum}\;
-            d_{k}\,w_{k}
+            w_{k}\,d_{k}
             \cdot
             E_{Y}\!\left[\;
                 Y_{k}
@@ -4250,7 +4250,7 @@ Then, the following statements are true:
                 \right]
             \,\;-\;
             \underset{k \in s_{M}}{\sum}\;
-            d_{k}\,w_{k}
+            w_{k}\,d_{k}
             \cdot
             E_{Y}\!\left[\;Y_{k}
                 \,\left\vert\,
@@ -4280,7 +4280,7 @@ Then, the following statements are true:
             \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,\mu_{l}
             \,\;-\;
             \underset{k \in s_{M}}{\sum}\,
-                d_{k}\,w_{k}\,\mu_{k}
+                w_{k}\,d_{k}\,\mu_{k}
             \;\right),
     \\
     &&
@@ -4328,9 +4328,9 @@ that they satisfy probabilistic properties as described in Subsection
 % \begin{equation*}
 % \widetilde{T}_{d,Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
 % \;\; = \;\;
-%     \underset{l \in s_{R}}{\sum}\;d_{l}\,w_{l}\,Y_{l}
+%     \underset{l \in s_{R}}{\sum}\;w_{l}\,d_{l}\,Y_{l}
 %     \;+\,
-%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+%     \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}^{*}
 % \end{equation*}
 % be a composite linear imputation estimator for the domain total
 % \,$T_{d,Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
@@ -4368,14 +4368,14 @@ that they satisfy probabilistic properties as described in Subsection
 % \;\; := \;\;
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
 %         \,\right),
 % \quad\;\;\textnormal{and}\quad\;\;
 % W^{(+)}_{{\color{red}l}}
 % \;\; := \;\;
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{{\color{red}l}k}
 %         \,\right),
 %     \;\;
 %     \textnormal{for each \,$l \in s_{R}$}
@@ -4408,22 +4408,22 @@ that they satisfy probabilistic properties as described in Subsection
 %         \,)
 % \;\;\; := \;\;\;
 %     \dfrac{
-%         \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,\widetilde{Y}_{i}
+%         \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
 %         }{
 %         \overset{{\color{white}.}}{
-%             \underset{i\,\in\,s}{\sum}\;d_{i}\,w_{i}\,Z_{i}
+%             \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Z_{i}
 %             }
 %         }
 % \;\; = \;\;
 %     \dfrac{
-%         \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\left(\,
+%         \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\left(\,
 %             R_{i}\,Y_{i}
 %             \overset{{\color{white}.}}{+}
 %             (1-R_{i})\,Y^{*}_{i}
 %             \,\right)
 %         }{
 %         \overset{{\color{white}.}}{
-%             \underset{i\,\in\,U}{\sum}\;d_{i}\,w_{i}\,S_{i}\,Z_{i}
+%             \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Z_{i}
 %             }
 %         }
 % \end{eqnarray*}
@@ -4477,14 +4477,14 @@ W^{(+)}_{{\color{red}0}}
 \;\; := \;\;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+        \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
         \,\right),
 \quad\;\;\textnormal{and}\quad\;\;
 W^{(+)}_{{\color{red}l}}
 \;\; := \;\;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
+        \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{{\color{red}l}k}
         \,\right),
 \;\;
 \textnormal{for each \,$l \in s_{R}$}
@@ -4644,7 +4644,7 @@ Then, the following statements are true:
             d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -4674,7 +4674,7 @@ Then, the following statements are true:
             d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,\sigma_{k}^{2}
             \,\right)
     \\
     & = &
@@ -4691,7 +4691,7 @@ Then, the following statements are true:
             d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -4725,7 +4725,7 @@ Then, the following statements are true:
                 d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
                 \;\;-\;
                 \underset{k \in s_{M}}{\sum}\,
-                d_{k}\,w_{k}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}\,\sigma_{k}^{2}
                 }{
                 \overset{{\color{white}.}}{N^{2}}                
                 }
@@ -4887,7 +4887,7 @@ Then, the following statements are true:
         d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
         \;\;-\;
         \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+        w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
     \end{eqnarray*}
     \vskip -0.2cm
     \noindent
@@ -4909,7 +4909,7 @@ Then, the following statements are true:
             \,+\,
             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
             \;-
-            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
+            \underset{k \in s_{M}}{\sum}\,w_{k}\,d_{k}\,Y_{k}
             \;,\;
             \underset{k \in s}{\sum}\;d_{k}w_{k}Y_{k}
             \;-
@@ -4926,7 +4926,7 @@ Then, the following statements are true:
             \left.
             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
             \;-
-            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
+            \underset{k \in s_{M}}{\sum}\,w_{k}\,d_{k}\,Y_{k}
             \;,\;
             \underset{k \in s}{\sum}\;d_{k}(w_{k}-1)Y_{k}
             \;-
@@ -4945,7 +4945,7 @@ Then, the following statements are true:
             \!\right]
         \;-\;
         \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\;
+        w_{k}\,d_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\;
             Y_{k}
             \;\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
@@ -4973,7 +4973,7 @@ Then, the following statements are true:
             \right]
         \,-\,
         \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\,
+        w_{k}\,d_{k}\,(w_{k}-1)\,\Var_{Y}\!\left[\,
             Y_{k}^{2}
             \left\vert\,
             \Zdot,\Xobs
@@ -4989,7 +4989,7 @@ Then, the following statements are true:
         d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
         \;\;-\;
         \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+        w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
     \end{eqnarray*}
     This completes the proof of Claim 1.
 
@@ -5010,7 +5010,7 @@ Then, the following statements are true:
         d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
         \;\;-\;
         \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,\sigma_{k}^{2}
+        w_{k}\,d_{k}\,\sigma_{k}^{2}
     $
     \vskip 0.2cm
     \noindent
@@ -5032,7 +5032,7 @@ Then, the following statements are true:
             \,+\,
             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
             \;-
-            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
+            \underset{k \in s_{M}}{\sum}\,w_{k}\,d_{k}\,Y_{k}
             \;,\;
             \underset{a \in s_{R}}{\sum}\;d_{a}Y_{a}
             \;+
@@ -5053,7 +5053,7 @@ Then, the following statements are true:
             \left.
             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{l}\,Y_{l}
             \;-
-            \underset{k \in s_{M}}{\sum}\,d_{k}\,w_{k}\,Y_{k}
+            \underset{k \in s_{M}}{\sum}\,w_{k}\,d_{k}\,Y_{k}
             \;,\;
             \underset{a \in s_{R}}{\sum}\;d_{a}Y_{a}
             \;+
@@ -5102,7 +5102,7 @@ Then, the following statements are true:
             \right]
         \,-\,
         \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,\Var_{Y}\!\left[\,
+        w_{k}\,d_{k}\,\Var_{Y}\!\left[\,
             Y_{k}
             \left\vert\,
             \Zdot,\Xobs
@@ -5116,7 +5116,7 @@ Then, the following statements are true:
         d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
         \;\;-\;
         \underset{k \in s_{M}}{\sum}\,
-        d_{k}\,w_{k}\,\sigma_{k}^{2}
+        w_{k}\,d_{k}\,\sigma_{k}^{2}
     \end{eqnarray*}
     \vskip -0.2cm
     This completes the proof of Claim 2.
@@ -5416,7 +5416,7 @@ Then, the following statements are true:
             d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -5455,7 +5455,7 @@ Then, the following statements are true:
             d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,\sigma_{k}^{2}
             \,\right),
         \quad
         \textnormal{by Claim 1, Claim 2}
@@ -5474,7 +5474,7 @@ Then, the following statements are true:
             d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -5504,7 +5504,7 @@ Then, the following statements are true:
             d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,\sigma_{k}^{2}
             \,\right)
     \\
     & = &
@@ -5521,7 +5521,7 @@ Then, the following statements are true:
             d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -5555,7 +5555,7 @@ Then, the following statements are true:
                 d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
                 \;\;-\;
                 \underset{k \in s_{M}}{\sum}\,
-                d_{k}\,w_{k}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}\,\sigma_{k}^{2}
                 }{
                 \overset{{\color{white}.}}{N^{2}}                
                 }
@@ -5611,14 +5611,14 @@ W^{(+)}_{{\color{red}0}}
 \;\; := \;\;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+        \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
         \,\right),
 \quad\;\;\textnormal{and}\quad\;\;
 W^{(+)}_{{\color{red}l}}
 \;\; := \;\;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
+        \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{{\color{red}l}k}
         \,\right),
 \;\;
 \textnormal{for each \,$l \in s_{R}$}
@@ -5627,9 +5627,9 @@ W^{(+)}_{{\color{red}l}}
 % \begin{equation*}
 % \widetilde{T}_{d,Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
 % \;\; = \;\;
-%     \underset{k \in s_{R}}{\sum}\;d_{k}\,w_{k}\,Y_{k}
+%     \underset{k \in s_{R}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
 %     \;+\,
-%     \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,Y_{k}^{*}
+%     \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}^{*}
 % \end{equation*}
 % be a composite linear imputation estimator for the domain total
 % \,$T_{d,Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
@@ -5667,14 +5667,14 @@ W^{(+)}_{{\color{red}l}}
 % \;\; := \;\;
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{l \in s_{M}^{(j)}}{\sum}\,d_{l}\,w_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
 %         \,\right),
 % \quad\;\;\textnormal{and}\quad\;\;
 % W^{(+)}_{{\color{red}l}}
 % \;\; := \;\;
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
-%         \underset{k \in s_{M}^{(j)}}{\sum}\,d_{k}\,w_{k}\,\varphi^{(j)}_{{\color{red}l}k}
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,w_{k}\,d_{k}\,\varphi^{(j)}_{{\color{red}l}k}
 %         \,\right),
 % \;\;
 % \textnormal{for each \,$l \in s_{R}$}
@@ -6144,7 +6144,7 @@ Then, we have the following results:
     %             \left(W^{(+)}_{l}\right)^{2}\sigma_{l}^{2}
     %         \,+\,
     %         \underset{k \in s_{M}}{\sum}\,
-    %             d_{k}\,w_{k}^{2}\,\sigma_{k}^{2}
+    %             w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
     %         \,\right)
     %     \;+\;
     %     \left(\,
@@ -6152,7 +6152,7 @@ Then, we have the following results:
     %         \,+\,
     %         \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,\mu_{l}
     %         \,-\,
-    %         \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,\mu_{k}
+    %         \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
     %         \,\right)^{2}
     %     }
     % \end{eqnarray*}
@@ -6201,7 +6201,7 @@ Then, we have the following results:
                     \left(W^{(+)}_{l}\right)^{2}\sigma_{l}^{2}
                 \,+\,
                 \underset{k \in s_{M}}{\sum}\,
-                    d_{k}\,w_{k}^{2}\,\sigma_{k}^{2}
+                    w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
                 \,\right)
             \, + \,
             \left(\,
@@ -6209,7 +6209,7 @@ Then, we have the following results:
                 \,+\,
                 \underset{l \in s_{R}}{\sum}\;W^{(+)}_{l}\,\mu_{l}
                 \,-\,
-                \underset{k \in s_{M}}{\sum}\;d_{k}\,w_{k}\,\mu_{k}
+                \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
                 \,\right)^{\!2}
             \,\right\}
         }
@@ -6292,7 +6292,7 @@ Then, we have the following results:
     %     \;\;-\;
     %     2\,\cdot\!
     %     \underset{k \in s_{M}}{\sum}\,
-    %         d_{k}\,w_{k}\,(w_{1}-1)\,\sigma_{k}^{2}
+    %         w_{k}\,d_{k}\,(w_{1}-1)\,\sigma_{k}^{2}
     %     }
     % \end{eqnarray*}
     \begin{eqnarray*}
@@ -6415,7 +6415,7 @@ Then, we have the following results:
             d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -6447,7 +6447,7 @@ Then, we have the following results:
             d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,\sigma_{k}^{2}
             \,\right)
     \\
     & = &
@@ -6465,7 +6465,7 @@ Then, we have the following results:
             d_{l}\,W^{(+)}_{l}\,(w_{l}-1)\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
             \,\right)
         }
     \\
@@ -6502,7 +6502,7 @@ Then, we have the following results:
                 d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
                 \;\;-\;
                 \underset{k \in s_{M}}{\sum}\,
-                d_{k}\,w_{k}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}\,\sigma_{k}^{2}
                 }{
                 \overset{{\color{white}.}}{N^{2}}                
                 }
@@ -6627,7 +6627,7 @@ Then, we have the following results:
             s,s_{R},\Zdot,\Xobs
             \,\right]
         & = &
-            \underset{k\in{\color{red}s_{M}}}{\sum}\,d_{k}\,w_{k}\,
+            \underset{k\in{\color{red}s_{M}}}{\sum}\,w_{k}\,d_{k}\,
             E_{Y}\!\left[\;
                 \left.
                 Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
@@ -6685,7 +6685,7 @@ Then, we have the following results:
                 d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
                 \;\;-\;
                 \underset{k \in s_{M}}{\sum}\,
-                d_{k}\,w_{k}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}\,\sigma_{k}^{2}
                 }{
                 \overset{{\color{white}.}}{N^{2}}                
                 }
@@ -6739,7 +6739,7 @@ Then, we have the following results:
             d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
             \;\,-\,
             \underset{k \in s_{M}}{\sum}\,
-            d_{k}\,w_{k}\,\sigma_{k}^{2}
+            w_{k}\,d_{k}\,\sigma_{k}^{2}
             {\color{white}.}
             }{
             \overset{{\color{white}.}}{N^{2}}                
@@ -6782,7 +6782,7 @@ Then, we have the following results:
                 d_{l}\,W^{(+)}_{l}\,\sigma_{l}^{2}
                 \;\;-\;
                 \underset{k \in s_{M}}{\sum}\,
-                d_{k}\,w_{k}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}\,\sigma_{k}^{2}
                 }{
                 \overset{{\color{white}.}}{N^{2}}                
                 }
