@@ -1562,11 +1562,11 @@ Then, the following statements are true:
 \begin{enumerate}
 \item
     If
-    \;$v(\,s\,;y_{\bullet},\Gamma_{\bullet\bullet}\,)$\,
-    is an (arbitrary) design-unbiased estimator for the sampling variance component, i.e.,
+    \;$v(\,s\,;y_{\bullet},\gdotdot\,)$\,
+    is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
     \begin{equation*}
     E_{S}\!\left[\;
-        v(\,s\,;\Ydot,\Gdotdot\,)
+        v(\,s\,;\dYdot,\Gdotdot\,)
         \,\left\vert\!
         \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
         \right.
@@ -1582,7 +1582,7 @@ Then, the following statements are true:
     then
     \,$
     E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot,\Gdotdot\,)
+        v(\,s\,;\dYdot,\Gdotdot\,)
         \left\vert\!
         \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
         \right.
@@ -1604,7 +1604,7 @@ Then, the following statements are true:
     E_{SR}\,
     E_{Y_{R}}\,
     E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot,\Gdotdot\,)
+        v(\,s\,;\dYdot,\Gdotdot\,)
         \,\left\vert\!
         \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
         \right.
@@ -1621,7 +1621,7 @@ Then, the following statements are true:
     \end{equation*}
 \item
     If we choose in turn to approximate
-    \,$v(\,s\,;y_{\bullet}\,)$\,
+    \,$v(\,s\,;y_{\bullet},\gdotdot\,)$\,
     by the {\color{red}approximately} design-unbiased linearization-based estimator
     \,$\widehat{V}_{\Gamma(Y)}(\,s\,;\dydot,\gdotdot\,)$\,
     for the sampling variance (see Equation (3.4), p.380, \cite{DevilleSarndal1992}), i.e.,
@@ -1630,8 +1630,8 @@ Then, the following statements are true:
         \widehat{V}_{\Gamma(Y)}(\,s\,;\dydot,\gdotdot\,)
     \\
     & := &
-        \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\;
+        % \underset{k \in s}{\sum}\,
+        \underset{k,l \in s}{\sum}\;
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
         \left(\overset{{\color{white}1}}{
             \widetilde{w}_{k}
@@ -1643,20 +1643,21 @@ Then, the following statements are true:
             }\right)
     \\
     & = &
-        \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\;
+        % \underset{k \in s}{\sum}\,
+        \underset{k,l \in s}{\sum}\;
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
         \left(\overset{{\color{white}1}}{
-            \widetilde{w}_{k}
+            \widetilde{w}_{k}\!
             \left(\,
                 d_{k}y_{k}
                 \, - \,
                 \gamma_{k}^{T}\cdot G(\gdotdot)^{-1}\cdot
                 \underset{i\,\in\,s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
                 \,\right)
-            }\right)
+            }\!\!\right)
+        \!\!
         \left(\overset{{\color{white}1}}{
-            \widetilde{w}_{l}
+            \widetilde{w}_{l}\!
             \left(\,
                 d_{l}y_{l}
                 \, - \,
@@ -1664,79 +1665,100 @@ Then, the following statements are true:
                 % \widehat{B}_{d,\Gamma(Y)}(s\,;\ydot,\gdotdot)
                 \underset{i\,\in\,s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
                 \,\right)
-            }\right)
-    \\
-    & = &
-        \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\;
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-        \left(\,
-            \widetilde{w}_{k}\,d_{k}
-            \left(\,
-                y_{k}
-                \, - \,
-                \dfrac{
-                    \widehat{T}_{d}(s\,;\ydot)
-                    }{
-                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
-                    }
-                \cdot
-                z_{k}
-                \,\right)
-            \right)
-        \left(\,
-            \widetilde{w}_{l}\,d_{l}
-            \left(\,
-                y_{l}
-                \, - \,
-                \dfrac{
-                    \widehat{T}_{d}(s\,;\ydot)
-                    }{
-                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
-                    }
-                \cdot
-                z_{l}
-                \,\right)
-            \right)
-    \\
-    & = &
-        \dfrac{
-            \widehat{V}_{\textnormal{HT}}(\,s\,;\ydot\,)
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\zdot)^{2}
-                }
-            }
-        \; + \;
-        \dfrac{
-            (-2)\left.\widehat{T}_{d}(s\,;\ydot)\right\slash\widehat{T}_{d}(s\,;\zdot)
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\zdot)^{2}
-                }
-            }
-        \left(\,
-            \underset{k \in s}{\sum}\;
-            \underset{l \in s}{\sum}
-                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
-                \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
-                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
-            \right)
-    \\
+            }\!\!\right)
+    % \\
+    % & = &
+    %     \underset{k \in s}{\sum}\,
+    %     \underset{l \in s}{\sum}\;
+    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+    %     \left(\,
+    %         \widetilde{w}_{k}\,d_{k}
+    %         \left(\,
+    %             y_{k}
+    %             \, - \,
+    %             \dfrac{
+    %                 \widehat{T}_{d}(s\,;\ydot)
+    %                 }{
+    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
+    %                 }
+    %             \cdot
+    %             z_{k}
+    %             \,\right)
+    %         \right)
+    %     \left(\,
+    %         \widetilde{w}_{l}\,d_{l}
+    %         \left(\,
+    %             y_{l}
+    %             \, - \,
+    %             \dfrac{
+    %                 \widehat{T}_{d}(s\,;\ydot)
+    %                 }{
+    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
+    %                 }
+    %             \cdot
+    %             z_{l}
+    %             \,\right)
+    %         \right)
+    % \\
+    % & = &
+    %     \dfrac{
+    %         \widehat{V}_{\textnormal{HT}}(\,s\,;\ydot\,)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \; + \;
+    %     \dfrac{
+    %         (-2)\left.\widehat{T}_{d}(s\,;\ydot)\right\slash\widehat{T}_{d}(s\,;\zdot)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \left(\,
+    %         \underset{k \in s}{\sum}\;
+    %         \underset{l \in s}{\sum}
+    %             \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+    %             \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+    %             \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+    %         \right)
+    % \\
+    % &&
+    %     \; + \;
+    %     \dfrac{
+    %         \left.
+    %         \widehat{T}_{d}(s\,;\ydot)^{2}
+    %         \right\slash
+    %         \widehat{T}_{d}(s\,;\zdot)^{2}
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \cdot
+    %     \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+    \end{eqnarray*}
+    then
+    \,$
+    E_{Y_{M}}\!\left[\;
+        \widehat{V}_{\Gamma(Y)}(\,s\,;\dYdot,\Gdotdot\,)
+        \left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    can be expressed as follows:
+    \begin{eqnarray*}
     &&
-        \; + \;
-        \dfrac{
-            \left.
-            \widehat{T}_{d}(s\,;\ydot)^{2}
-            \right\slash
-            \widehat{T}_{d}(s\,;\zdot)^{2}
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\zdot)^{2}
-                }
-            }
-        \cdot
-        \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+        E_{Y_{M}}\!\left[\;
+            \widehat{V}_{\Gamma(Y)}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
     \end{eqnarray*}
 \item
     If
@@ -1842,16 +1864,15 @@ Then, the following statements are true:
         E_{SR}\,
         E_{Y_{R}}\,
         E_{Y_{M}}\!\left[\;
-            v(\,s\,;\Ydot,\Gdotdot\,)
+            v(\,s\,;\dYdot,\Gdotdot\,)
             \,\left\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
             \right.
             \!\!\right]
-    \\
-    & = &
+    \;\; = \;\;
         E_{SR}\,
         E_{Y}\!\left[\,
-            v(\,s\,;\Ydot,\Gdotdot\,)
+            v(\,s\,;\dYdot,\Gdotdot\,)
             \,\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
             \right.
@@ -1860,16 +1881,15 @@ Then, the following statements are true:
     & = &
         E_{Y}\,
         E_{SR}\!\left[\,
-            v(\,s\,;\Ydot,\Gdotdot\,)
+            v(\,s\,;\dYdot,\Gdotdot\,)
             \,\left\vert\!
             \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
             \right.
             \!\!\right]
-    \\
-    & = &
+    \;\; = \;\;
         E_{Y}\,
         E_{S}\!\left[\,
-            v(\,s\,;\Ydot,\Gdotdot\,)
+            v(\,s\,;\dYdot,\Gdotdot\,)
             \,\left\vert\!
             \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
             \right.
@@ -1890,22 +1910,70 @@ Then, the following statements are true:
 \item
     We compute:
     \begin{eqnarray*}
-    E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \left\vert\,
-        s,s_{R},\YsubR=y_{R},\Xobs
-        \right.
-        \right]
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{V}_{\Gamma(Y)}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
     & = &
         E_{Y_{M}}\!\left[\,
+            \textnormal{\scriptsize$
+            \underset{k,l \in s}{\sum}\,
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \left(\overset{{\color{white}1}}{
+                \widetilde{w}_{k}\!
+                \left(\,
+                    d_{k}y_{k}
+                    \, - \,
+                    \gamma_{k}^{T}\cdot G(\gdotdot)^{-1}\cdot
+                    \underset{i \in s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
+                    \,\right)
+                }\!\!\right)
+            \!\!
+            \left(\overset{{\color{white}1}}{
+                \widetilde{w}_{l}\!
+                \left(\,
+                    d_{l}y_{l}
+                    \, - \,
+                    \gamma_{l}^{T}\cdot G(\gdotdot)^{-1}\cdot
+                    \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
+                    \,\right)
+                }\!\!\right)
+                $}
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\!
             \left.
-            \underset{k \in s}{\sum}\,
-            \underset{l \in s}{\sum}\,
-            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-            (d_{k}\widetilde{w}_{k}Y_{k})\,(d_{l}\widetilde{w}_{l}Y_{l})
-            \;\right\vert\,
-            s,s_{R},\YsubR=y_{R},\Xobs
-            \right]
+            \textnormal{\scriptsize$
+            \left(\,
+                d_{k}y_{k}
+                \, - \,
+                \gamma_{k}^{T}\cdot G(\gdotdot)^{-1}\cdot
+                \underset{i \in s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
+                \,\right)
+            \!\!
+            \left(\,
+                d_{l}y_{l}
+                \, - \,
+                \gamma_{l}^{T}\cdot G(\gdotdot)^{-1}\cdot
+                \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
+                \,\right)
+            $}
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
     \\
     & = &
         \underset{k \in s}{\sum}\,
