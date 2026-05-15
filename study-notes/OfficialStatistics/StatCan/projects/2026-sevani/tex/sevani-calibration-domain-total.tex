@@ -1620,6 +1620,125 @@ Then, the following statements are true:
             \,\right]
     \end{equation*}
 \item
+    If we choose in turn to approximate
+    \,$v(\,s\,;y_{\bullet}\,)$\,
+    by the {\color{red}approximately} design-unbiased linearization-based estimator
+    \,$\widehat{V}_{\Gamma(Y)}(\,s\,;\dydot,\gdotdot\,)$\,
+    for the sampling variance (see Equation (3.4), p.380, \cite{DevilleSarndal1992}), i.e.,
+    \begin{eqnarray*}
+    &&
+        \widehat{V}_{\Gamma(Y)}(\,s\,;\dydot,\gdotdot\,)
+    \\
+    & := &
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \left(\overset{{\color{white}1}}{
+            \widetilde{w}_{k}
+            \left(\,d_{k}y_{k}-\gamma_{k}^{T}\cdot\widehat{B}_{\Gamma(Y)}(s\,;\dydot,\gdotdot)\,\right)
+            }\right)
+        \left(\overset{{\color{white}1}}{
+            \widetilde{w}_{l}
+            \left(\,d_{l}y_{l}-\gamma_{l}^{T}\cdot\widehat{B}_{\Gamma(Y)}(s\,;\dydot,\gdotdot)\,\right)
+            }\right)
+    \\
+    & = &
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \left(\overset{{\color{white}1}}{
+            \widetilde{w}_{k}
+            \left(\,
+                d_{k}y_{k}
+                \, - \,
+                \gamma_{k}^{T}\cdot G(\gdotdot)^{-1}\cdot
+                \underset{i\,\in\,s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
+                \,\right)
+            }\right)
+        \left(\overset{{\color{white}1}}{
+            \widetilde{w}_{l}
+            \left(\,
+                d_{l}y_{l}
+                \, - \,
+                \gamma_{l}^{T}\cdot G(\gdotdot)^{-1}\cdot
+                % \widehat{B}_{d,\Gamma(Y)}(s\,;\ydot,\gdotdot)
+                \underset{i\,\in\,s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
+                \,\right)
+            }\right)
+    \\
+    & = &
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        \left(\,
+            \widetilde{w}_{k}\,d_{k}
+            \left(\,
+                y_{k}
+                \, - \,
+                \dfrac{
+                    \widehat{T}_{d}(s\,;\ydot)
+                    }{
+                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
+                    }
+                \cdot
+                z_{k}
+                \,\right)
+            \right)
+        \left(\,
+            \widetilde{w}_{l}\,d_{l}
+            \left(\,
+                y_{l}
+                \, - \,
+                \dfrac{
+                    \widehat{T}_{d}(s\,;\ydot)
+                    }{
+                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
+                    }
+                \cdot
+                z_{l}
+                \,\right)
+            \right)
+    \\
+    & = &
+        \dfrac{
+            \widehat{V}_{\textnormal{HT}}(\,s\,;\ydot\,)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \; + \;
+        \dfrac{
+            (-2)\left.\widehat{T}_{d}(s\,;\ydot)\right\slash\widehat{T}_{d}(s\,;\zdot)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \underset{k \in s}{\sum}\;
+            \underset{l \in s}{\sum}
+                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+            \right)
+    \\
+    &&
+        \; + \;
+        \dfrac{
+            \left.
+            \widehat{T}_{d}(s\,;\ydot)^{2}
+            \right\slash
+            \widehat{T}_{d}(s\,;\zdot)^{2}
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
+        \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+    \end{eqnarray*}
+\item
     If
     \,$v(\,s\,;y_{\bullet}\,)$\,
     is taken to be the (design-unbiased) Horvitz-Thompson estimator for the sampling variance, i.e.,
