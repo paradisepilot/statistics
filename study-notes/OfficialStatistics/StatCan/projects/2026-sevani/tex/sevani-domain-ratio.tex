@@ -148,7 +148,7 @@ Suppose:
     \end{equation*}
     and the following Horvitz-Thompson variance estimator
     \begin{equation*}
-    \widehat{V}_{\textnormal{HT}}(\,s\,;\xi_{\bullet}\,)
+    \widehat{V}_{d,\textnormal{HT}}(\,s\,;\xi_{\bullet}\,)
     \;\; := \;\;
         \underset{i \in s}{\sum}\,
         \underset{j \in s}{\sum}\;
@@ -164,7 +164,7 @@ Suppose:
     \begin{equation*}
     E_{S}\!\left[\;
         \left.
-        \widehat{V}_{\textnormal{HT}}(\,s\,;\xi_{\bullet}\,)
+        \widehat{V}_{d,\textnormal{HT}}(\,s\,;\xi_{\bullet}\,)
         \;\right\vert\!
         \begin{array}{c} \xi_{\bullet} \end{array}
         \!\right]
@@ -1528,17 +1528,17 @@ we will use the following nomenclature:
 
 % \vskip 0.5cm
 \clearpage
-\subsection{Approximately unbiased estimator for the sampling variance component\\of
+\subsection{Estimator for the sampling variance component\\of
 \,$\MSE\!\left(\,\widetilde{R}_{d,Y/Z}\left\vert\,\Zdot\,,\Xobs\,\right.\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.2cm
-\begin{lemma}[Approximately unbiased estimator for sampling variance component for ratio estimators]
+\begin{lemma}[Estimator for sampling variance component for ratio estimators]
 \label{DomainRatioSamplingVariance}
 \mbox{}
-\vskip -0.3cm
+\vskip 0.1cm
 \noindent
 Suppose we are given quantities as described in Subsection
 \ref{DomainRatioFormulationOfVarianceEstimationProblem}
@@ -1620,11 +1620,11 @@ Then, the following statements are true:
     If we choose in turn to approximate
     \,$v(\,s\,;y_{\bullet}\,)$\,
     by the {\color{red}approximately} design-unbiased linearization-based estimator
-    \,$\widehat{V}_{L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)$\,
+    \,$\widehat{V}_{d,L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)$\,
     for the sampling variance (see Result 5.6.2, p.178, \cite{Sarndal1992}), i.e.,
     \begin{eqnarray*}
     &&
-        \widehat{V}_{L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)
+        \widehat{V}_{d,L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)
     \\
     & := &
         \dfrac{1}{
@@ -1634,20 +1634,24 @@ Then, the following statements are true:
         \underset{k \in s}{\sum}\,
         \underset{l \in s}{\sum}\;
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
-        \left(
+        \left(\,
             \dfrac{
-                d_{k}\left(\,y_{k}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot z_{k}\,\right)
+                % \left(\,
+                d_{k}y_{k}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot d_{k}z_{k}
+                % \,\right)
                 }{
                 \pi_{k}
                 }
-            \right)
-        \left(
+            \,\right)
+        \left(\,
             \dfrac{
-                d_{l}\left(\,y_{l}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot z_{l}\,\right)
+                % \left(\,
+                d_{l}y_{l}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot d_{l}z_{l}
+                % \,\right)
                 }{
                 \pi_{l}
                 }
-            \right)
+            \,\right)
     \\
     & = &
         \dfrac{1}{
@@ -1688,7 +1692,7 @@ Then, the following statements are true:
     \\
     & = &
         \dfrac{
-            \widehat{V}_{\textnormal{HT}}(\,s\,;\ydot\,)
+            \widehat{V}_{d,\textnormal{HT}}(\,s\,;\ydot\,)
             }{
             \overset{{\color{white}.}}{
                 \widehat{T}_{d}(s\,;\zdot)^{2}
@@ -1723,12 +1727,12 @@ Then, the following statements are true:
                 }
             }
         \cdot
-        \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+        \widehat{V}_{d,\textnormal{HT}}(s\,;\zdot)
     \end{eqnarray*}
     then
     \,$
     E_{Y_{M}}\!\left[\,
-        \widehat{V}_{L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
+        \widehat{V}_{d,L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
         \left\vert\,
         s,s_{R},\YsubR = y_{R},\Zdot\,,\Xobs
         \right.
@@ -1738,7 +1742,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
-            \widehat{V}_{L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
+            \widehat{V}_{d,L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
             \,\left\vert\,
             \begin{array}{c}
                 s,s_{R},\\
@@ -1750,7 +1754,7 @@ Then, the following statements are true:
     \\
     & = &
         {\color{blue}
-        \widehat{V}_{L(Y/Z)}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)
+        \widehat{V}_{d,L(Y/Z)}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)
         \; + \;
         \dfrac{
             1
@@ -1793,7 +1797,7 @@ Then, the following statements are true:
             }
         \cdot
         \dfrac{
-            \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+            \widehat{V}_{d,\textnormal{HT}}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
                 \widehat{T}_{d}(s\,;\zdot)^{2}
@@ -1914,7 +1918,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
-            \widehat{V}_{L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
+            \widehat{V}_{d,L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
             \,\left\vert\,
             \begin{array}{c}
                 s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
@@ -1965,7 +1969,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
-            \widehat{V}_{L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
+            \widehat{V}_{d,L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
             \,\left\vert\,
             \begin{array}{c}
                 s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
@@ -2483,7 +2487,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
-            \widehat{V}_{L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
+            \widehat{V}_{d,L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
             \,\left\vert\,
             \begin{array}{c}
                 s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
@@ -2742,7 +2746,7 @@ Then, the following statements are true:
                 }
             }
         \left(\,
-            \widehat{V}_{\textnormal{HT}}(\,s\,;\widetilde{y}_{\bullet}\,)
+            \widehat{V}_{d,\textnormal{HT}}(\,s\,;\widetilde{y}_{\bullet}\,)
             \;+\;
             \underset{k \in s_{M}}{\sum}\;
             d_{k}^{2}
@@ -2790,7 +2794,7 @@ Then, the following statements are true:
             }
         \cdot
         \dfrac{
-            \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+            \widehat{V}_{d,\textnormal{HT}}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
                 \widehat{T}_{d}(s\,;\zdot)^{2}
@@ -2803,7 +2807,7 @@ Then, the following statements are true:
     & = &
         {\color{blue}
         \dfrac{
-            \widehat{V}_{\textnormal{HT}}(\,s\,;\widetilde{y}_{\bullet}\,)
+            \widehat{V}_{d,\textnormal{HT}}(\,s\,;\widetilde{y}_{\bullet}\,)
             }{
             \overset{{\color{white}.}}{
                 \widehat{T}_{d}(s\,;\zdot)^{2}
@@ -2875,7 +2879,7 @@ Then, the following statements are true:
                 }
             }
         \cdot
-        \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+        \widehat{V}_{d,\textnormal{HT}}(s\,;\zdot)
         }
         \; + \;
         \dfrac{
@@ -2887,7 +2891,7 @@ Then, the following statements are true:
             }
         \cdot
         \dfrac{
-            \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+            \widehat{V}_{d,\textnormal{HT}}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
                 \widehat{T}_{d}(s\,;\zdot)^{2}
@@ -2895,7 +2899,7 @@ Then, the following statements are true:
             }
     \\
     & = &
-        \widehat{V}_{L(Y/Z)}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)
+        \widehat{V}_{d,L(Y/Z)}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)
         \; + \;
         \dfrac{
             1
@@ -2937,7 +2941,7 @@ Then, the following statements are true:
             }
         \cdot
         \dfrac{
-            \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+            \widehat{V}_{d,\textnormal{HT}}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
                 \widehat{T}_{d}(s\,;\zdot)^{2}
@@ -2949,7 +2953,7 @@ Then, the following statements are true:
         \overset{{\color{white}1}}{
             \textnormal{noting that
                 the sum of the quantities in blue above equals
-                \,$\widehat{V}_{L(Y/Z)}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)$
+                \,$\widehat{V}_{d,L(Y/Z)}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)$
                 }
             }
     \end{eqnarray*}
@@ -5917,7 +5921,7 @@ Then, we have the following results:
             \,\right]
     \;\;\, {\color{red}\approx} \;\;\,
         E_{Y_{M}}\!\left[\;
-            \widehat{V}_{L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
+            \widehat{V}_{d,L(Y/Z)}(\,s\,;\Ydot,\Zdot\,)
             \,\left\vert\,
             \begin{array}{c}
                 s,s_{R},\\
@@ -5929,7 +5933,7 @@ Then, we have the following results:
     \\
     & = &
         {\color{blue}
-        \widehat{V}_{L(Y/Z)}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)
+        \widehat{V}_{d,L(Y/Z)}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)
         \; + \;
         \dfrac{
             1
@@ -5972,7 +5976,7 @@ Then, we have the following results:
             }
         \cdot
         \dfrac{
-            \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+            \widehat{V}_{d,\textnormal{HT}}(s\,;\zdot)
             }{
             \overset{{\color{white}.}}{
                 \widehat{T}_{d}(s\,;\zdot)^{2}
@@ -5991,7 +5995,7 @@ Then, we have the following results:
             \end{array}\right.
     \end{equation*}
     and
-    \,$\widehat{V}_{L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)$\,
+    \,$\widehat{V}_{d,L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)$\,
     is the Linearization-based estimator for the sampling variance
     of the Horvitz-Thompson population ratio estimator, i.e.,
     % \begin{equation*}
@@ -6004,7 +6008,7 @@ Then, we have the following results:
     % \end{equation*}
     \begin{eqnarray*}
     &&
-        \widehat{V}_{L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)
+        \widehat{V}_{d,L(Y/Z)}(\,s\,;y_{\bullet},\zdot\,)
     \\
     & := &
         \dfrac{1}{
@@ -6068,7 +6072,7 @@ Then, we have the following results:
     \\
     & = &
         \dfrac{
-            \widehat{V}_{\textnormal{HT}}(\,s\,;\ydot\,)
+            \widehat{V}_{d,\textnormal{HT}}(\,s\,;\ydot\,)
             }{
             \overset{{\color{white}.}}{
                 \widehat{T}_{d}(s\,;\zdot)^{2}
@@ -6107,7 +6111,7 @@ Then, we have the following results:
                 }
             }
         \cdot
-        \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
+        \widehat{V}_{d,\textnormal{HT}}(s\,;\zdot)
     \end{eqnarray*}
 \item
     By Lemma \ref{DomainRatioNonresponseVariance},
