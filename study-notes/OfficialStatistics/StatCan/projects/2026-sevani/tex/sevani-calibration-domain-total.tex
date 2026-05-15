@@ -1630,7 +1630,6 @@ Then, the following statements are true:
         \widehat{V}_{\Gamma(Y)}(\,s\,;\dydot,\gdotdot\,)
     \\
     & := &
-        % \underset{k \in s}{\sum}\,
         \underset{k,l \in s}{\sum}\;
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
         \left(\overset{{\color{white}1}}{
@@ -1643,29 +1642,22 @@ Then, the following statements are true:
             }\right)
     \\
     & = &
-        % \underset{k \in s}{\sum}\,
         \underset{k,l \in s}{\sum}\;
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
-        \left(\overset{{\color{white}1}}{
-            \widetilde{w}_{k}\!
-            \left(\,
-                d_{k}y_{k}
-                \, - \,
-                \gamma_{k}^{T}\cdot G(\gdotdot)^{-1}\cdot
-                \underset{i\,\in\,s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
-                \,\right)
-            }\!\!\right)
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        \widetilde{w}_{k}\widetilde{w}_{l}
+        \left(\,
+            d_{k}y_{k}
+            \, - \,
+            \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
+            \underset{i \in s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
+            \,\right)
         \!\!
-        \left(\overset{{\color{white}1}}{
-            \widetilde{w}_{l}\!
-            \left(\,
-                d_{l}y_{l}
-                \, - \,
-                \gamma_{l}^{T}\cdot G(\gdotdot)^{-1}\cdot
-                % \widehat{B}_{d,\Gamma(Y)}(s\,;\ydot,\gdotdot)
-                \underset{i\,\in\,s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
-                \,\right)
-            }\!\!\right)
+        \left(\,
+            d_{l}y_{l}
+            \, - \,
+            \gamma_{l}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
+            \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
+            \,\right)
     % \\
     % & = &
     %     \underset{k \in s}{\sum}\,
@@ -1922,26 +1914,21 @@ Then, the following statements are true:
         E_{Y_{M}}\!\left[\,
             \textnormal{\scriptsize$
             \underset{k,l \in s}{\sum}\,
-            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
-            \left(\overset{{\color{white}1}}{
-                \widetilde{w}_{k}\!
-                \left(\,
-                    d_{k}y_{k}
-                    \, - \,
-                    \gamma_{k}^{T}\cdot G(\gdotdot)^{-1}\cdot
-                    \underset{i \in s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
-                    \,\right)
-                }\!\!\right)
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+            \widetilde{w}_{k}\widetilde{w}_{l}
+            \left(
+                d_{k}y_{k}
+                \, - \,
+                \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
+                \underset{i \in s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
+                \right)
             \!\!
-            \left(\overset{{\color{white}1}}{
-                \widetilde{w}_{l}\!
-                \left(\,
-                    d_{l}y_{l}
-                    \, - \,
-                    \gamma_{l}^{T}\cdot G(\gdotdot)^{-1}\cdot
-                    \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
-                    \,\right)
-                }\!\!\right)
+            \left(
+                d_{l}y_{l}
+                \, - \,
+                \gamma_{l}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
+                \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
+                \right)
                 $}
             \left\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
@@ -1957,18 +1944,47 @@ Then, the following statements are true:
         E_{Y_{M}}\!\left[\!
             \left.
             \textnormal{\scriptsize$
-            \left(\,
+            \left(
                 d_{k}y_{k}
                 \, - \,
-                \gamma_{k}^{T}\cdot G(\gdotdot)^{-1}\cdot
-                \underset{i \in s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
-                \,\right)
+                \underset{i \in s}{\sum}\,
+                    \widetilde{w}_{i}q_{i}
+                    \!\left(\!\gamma_{k}^{T}\,G(s,\gdotdot)^{-1}\,\gamma_{i}\!\right)\!
+                    d_{i}y_{i}
+                \right)
             \!\!
             \left(\,
                 d_{l}y_{l}
                 \, - \,
-                \gamma_{l}^{T}\cdot G(\gdotdot)^{-1}\cdot
-                \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
+                \underset{j \in s}{\sum}\,
+                    \widetilde{w}_{j}q_{j}
+                    \!\left(\!\gamma_{l}^{T}\,G(s,\gdotdot)^{-1}\,\gamma_{j}\!\right)\!
+                    d_{j}y_{j}
+                \,\right)
+            $}
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\!
+            \left.
+            \textnormal{\scriptsize$
+            \left(
+                d_{k}y_{k}
+                \, - \,
+                \underset{i \in s}{\sum}\,c_{ik}(s,\gdotdot)\,d_{i}y_{i}
+                \right)
+            \!\!
+            \left(\,
+                d_{l}y_{l}
+                \, - \,
+                \underset{j \in s}{\sum}\,c_{jk}(s,\gdotdot)\,d_{j}y_{j}
                 \,\right)
             $}
             \right\vert\!
