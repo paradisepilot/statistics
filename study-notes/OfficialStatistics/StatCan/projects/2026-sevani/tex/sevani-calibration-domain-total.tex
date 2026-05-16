@@ -1900,7 +1900,10 @@ Then, the following statements are true:
     \textnormal{by hypothesis on \,$v(\,s\,;y_{\bullet},\Gamma_{\bullet\bullet}\,)$}
     \end{eqnarray*}
 \item
-    We compute:
+    We proceed by establishing a series of claims.
+    \vskip 0.1cm
+    \noindent
+    \textbf{Claim 1:}\quad
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
@@ -1911,31 +1914,104 @@ Then, the following statements are true:
             \!\!\right]
     \\
     & = &
-        E_{Y_{M}}\!\left[\,
-            \textnormal{\scriptsize$
-            \underset{k,l \in s}{\sum}\,
-            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-            \widetilde{w}_{k}\widetilde{w}_{l}
-            \left(
-                d_{k}y_{k}
-                \, - \,
-                \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
-                \underset{i \in s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
-                \right)
-            \!\!
-            \left(
-                d_{l}y_{l}
-                \, - \,
-                \gamma_{l}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
-                \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
-                \right)
-                $}
+        {\color{white}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}d_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    &&
+        {\color{black}-}\;2\,
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                Y_{k}Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    &&
+        {\color{black}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                    Y_{i}
+                    Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \end{eqnarray*}
+    Proof of Claim 1:
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{V}_{\Gamma(Y)}(\,s\,;\dYdot,\Gdotdot\,)
             \left\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
             \right.
             \!\!\right]
     \\
     & = &
+        \textnormal{\footnotesize$
+        E_{Y_{M}}\!\left[\,
+            \textnormal{\scriptsize$
+            \underset{k,l \in s}{\sum}\,
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+            \widetilde{w}_{k}\widetilde{w}_{l}
+            \left(
+                d_{k}Y_{k}
+                \, - \,
+                \gamma_{k}^{T}\cdot G(s,\Gdotdot)^{-1}\cdot
+                \underset{i \in s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}Y_{i}
+                \right)
+            \!\!
+            \left(
+                d_{l}Y_{l}
+                \, - \,
+                \gamma_{l}^{T}\cdot G(s,\Gdotdot)^{-1}\cdot
+                \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}Y_{j}
+                \right)
+                $}
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        $}
+    \\
+    & = &
+        \textnormal{\footnotesize$
         \underset{k,l \in s}{\sum}\,
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
         \cdot
@@ -1945,28 +2021,30 @@ Then, the following statements are true:
             \left.
             \textnormal{\scriptsize$
             \left(
-                d_{k}y_{k}
-                \, - \,
+                d_{k}Y_{k}
+                -
                 \underset{i \in s}{\sum}\,
                     \widetilde{w}_{i}q_{i}
-                    \!\left(\!\gamma_{k}^{T}\,G(s,\gdotdot)^{-1}\,\gamma_{i}\!\right)\!
-                    d_{i}y_{i}
+                    \!\left(\!\gamma_{k}^{T}\,G(s,\Gdotdot)^{-1}\,\gamma_{i}\!\right)\!
+                    d_{i}Y_{i}
                 \right)
             \!\!
             \left(\,
-                d_{l}y_{l}
-                \, - \,
+                d_{l}Y_{l}
+                -
                 \underset{j \in s}{\sum}\,
                     \widetilde{w}_{j}q_{j}
-                    \!\left(\!\gamma_{l}^{T}\,G(s,\gdotdot)^{-1}\,\gamma_{j}\!\right)\!
-                    d_{j}y_{j}
+                    \!\left(\!\gamma_{l}^{T}\,G(s,\Gdotdot)^{-1}\,\gamma_{j}\!\right)\!
+                    d_{j}Y_{j}
                 \,\right)
             $}
             \right\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
             \!\!\right]
+        $}
     \\
     & = &
+        \textnormal{\footnotesize$
         \underset{k,l \in s}{\sum}\,
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
         \cdot
@@ -1976,55 +2054,300 @@ Then, the following statements are true:
             \left.
             \textnormal{\scriptsize$
             \left(
-                d_{k}y_{k}
+                d_{k}Y_{k}
                 \, - \,
-                \underset{i \in s}{\sum}\,c_{ik}(s,\gdotdot)\,d_{i}y_{i}
+                \underset{i \in s}{\sum}\,\rho_{ki}(s,\Gdotdot)\,d_{i}Y_{i}
                 \right)
             \!\!
             \left(\,
-                d_{l}y_{l}
+                d_{l}Y_{l}
                 \, - \,
-                \underset{j \in s}{\sum}\,c_{jk}(s,\gdotdot)\,d_{j}y_{j}
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
                 \,\right)
             $}
             \right\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
             \!\!\right]
+        $}
     \\
     & = &
-        \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\;
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
-        d_{k}\widetilde{w}_{k}\,d_{l}\widetilde{w}_{l}\;
+        \textnormal{\footnotesize$
+        {\color{white}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            d_{k}Y_{k} \cdot d_{l}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}-}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left.
+            d_{k}Y_{k}
+            \cdot\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \,\right)
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}-}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left.
+            d_{l}Y_{l}
+            \cdot\!
+            \left(\,
+                \underset{i \in s}{\sum}\,\rho_{ki}(s,\Gdotdot)\,d_{i}Y_{i}
+                \,\right)
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[
+            \left.
+            \left(\,
+                \underset{i \in s}{\sum}\,\rho_{ki}(s,\Gdotdot)\,d_{i}y_{i}
+                \right)
+            \!\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}y_{j}
+                \right)
+            \,\right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    & = &
+        \textnormal{\footnotesize$
+        {\color{white}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            d_{k}Y_{k} \cdot d_{l}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}-}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left.
+            d_{k}Y_{k}
+            \cdot\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \,\right)
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}-}\;
+        \underset{{\color{red}l},{\color{red}k} \in s}{\sum}\,
+        \dfrac{\pi_{{\color{red}lk}} - \pi_{{\color{red}l}}\pi_{{\color{red}k}}}{\pi_{{\color{red}lk}}}
+        \cdot
+        \widetilde{w}_{{\color{red}l}}\,\widetilde{w}_{{\color{red}k}}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left.
+            d_{{\color{red}k}}Y_{{\color{red}k}}
+            \cdot\!
+            \left(\,
+                \underset{{\color{red}j} \in s}{\sum}\,
+                \rho_{{\color{red}lj}}(s,\Gdotdot)\,d_{{\color{red}j}}Y_{{\color{red}j}}
+                \,\right)
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[
+            \left.
+            \left(\,
+                \underset{i \in s}{\sum}\,\rho_{ki}(s,\Gdotdot)\,d_{i}Y_{i}
+                \right)
+            \!\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \right)
+            \,\right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    & = &
+        \textnormal{\footnotesize$
+        {\color{white}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            d_{k}Y_{k} \cdot d_{l}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}-}\;2\,
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left.
+            d_{k}Y_{k}
+            \cdot\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \,\right)
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[
+            \left.
+            \left(\,
+                \underset{i \in s}{\sum}\,\rho_{ki}(s,\Gdotdot)\,d_{i}Y_{i}
+                \right)
+            \!\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \right)
+            \,\right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    & = &
+        {\color{white}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}d_{l}
+        \cdot
         E_{Y_{M}}\!\left[\;
             Y_{k}Y_{l}
-            \,\left\vert\,
-            s,s_{R},\YsubR=y_{R},\Xobs
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
             \right.
-            \right]
+            \!\!\right]
     \\
-    & = &
-        \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\;
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
-        d_{k}\widetilde{w}_{k}\,d_{l}\widetilde{w}_{l}\;
-        E_{Y_{M}}\!\left[\;
-            Y_{k}Y_{l}
-            \,\left\vert\,
-            \YsubR=y_{R},\Xobs
-            \right.
-            \right]
-    \\
-    & = &
-        \cdots
-        \;\; = \;\;
-        v(\,s\,;\widetilde{y}_{\bullet}\,)
-        \;+\;
-        \underset{k \in s_{M}}{\sum}\;
+    &&
+        {\color{black}-}\;2\,
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
         d_{k}
-        \left(1-\dfrac{1}{\widetilde{w}_{k}}\right)
-        \widetilde{w}_{k}^{2}\,\sigma_{k}^{2}\,,
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                Y_{k}Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    &&
+        {\color{black}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                    Y_{i}
+                    Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
     \end{eqnarray*}
+    This completes the proof of Claim 1.
+    \vskip 0.1cm
+    \noindent
     where the last equality follows from the observation:
     \begin{eqnarray*}
     E_{Y_{M}}\!\left[\;
