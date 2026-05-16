@@ -1658,78 +1658,6 @@ Then, the following statements are true:
             \gamma_{l}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
             \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
             \,\right)
-    % \\
-    % & = &
-    %     \underset{k \in s}{\sum}\,
-    %     \underset{l \in s}{\sum}\;
-    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-    %     \left(\,
-    %         \widetilde{w}_{k}\,d_{k}
-    %         \left(\,
-    %             y_{k}
-    %             \, - \,
-    %             \dfrac{
-    %                 \widehat{T}_{d}(s\,;\ydot)
-    %                 }{
-    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
-    %                 }
-    %             \cdot
-    %             z_{k}
-    %             \,\right)
-    %         \right)
-    %     \left(\,
-    %         \widetilde{w}_{l}\,d_{l}
-    %         \left(\,
-    %             y_{l}
-    %             \, - \,
-    %             \dfrac{
-    %                 \widehat{T}_{d}(s\,;\ydot)
-    %                 }{
-    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
-    %                 }
-    %             \cdot
-    %             z_{l}
-    %             \,\right)
-    %         \right)
-    % \\
-    % & = &
-    %     \dfrac{
-    %         \widehat{V}_{\textnormal{HT}}(\,s\,;\ydot\,)
-    %         }{
-    %         \overset{{\color{white}.}}{
-    %             \widehat{T}_{d}(s\,;\zdot)^{2}
-    %             }
-    %         }
-    %     \; + \;
-    %     \dfrac{
-    %         (-2)\left.\widehat{T}_{d}(s\,;\ydot)\right\slash\widehat{T}_{d}(s\,;\zdot)
-    %         }{
-    %         \overset{{\color{white}.}}{
-    %             \widehat{T}_{d}(s\,;\zdot)^{2}
-    %             }
-    %         }
-    %     \left(\,
-    %         \underset{k \in s}{\sum}\;
-    %         \underset{l \in s}{\sum}
-    %             \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
-    %             \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
-    %             \dfrac{d_{l}\,z_{l}}{\pi_{l}}
-    %         \right)
-    % \\
-    % &&
-    %     \; + \;
-    %     \dfrac{
-    %         \left.
-    %         \widehat{T}_{d}(s\,;\ydot)^{2}
-    %         \right\slash
-    %         \widehat{T}_{d}(s\,;\zdot)^{2}
-    %         }{
-    %         \overset{{\color{white}.}}{
-    %             \widehat{T}_{d}(s\,;\zdot)^{2}
-    %             }
-    %         }
-    %     \cdot
-    %     \widehat{V}_{\textnormal{HT}}(s\,;\zdot)
     \end{eqnarray*}
     then
     \,$
@@ -1751,71 +1679,135 @@ Then, the following statements are true:
             \!\!\right]
     \\
     & = &
-    \end{eqnarray*}
-\item
-    If
-    \,$v(\,s\,;y_{\bullet}\,)$\,
-    is taken to be the (design-unbiased) Horvitz-Thompson estimator for the sampling variance, i.e.,
-    \begin{equation*}
-    v(\,s\,;y_{\bullet}\,)
-    \;\; := \;\;
-        \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\,
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-        (d_{k}\widetilde{w}_{k}y_{k})\,(d_{l}\widetilde{w}_{l}y_{l})
-    \end{equation*}
-    then
-    \,$
-    E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \left\vert\,
-        s,s_{R},\YsubR = y_{R},\Xobs
-        \right.
-        \right]
-    $\,
-    can be expressed as follows:
-    \begin{equation*}
-    E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \left\vert\,
-        s,s_{R},\YsubR=y_{R},\Xobs
-        \right.
-        \right]
-    \;\; = \;\;
-        v(\,s\,;\,\widetilde{y}_{\bullet}\,)
-        \;+\;
-        \underset{k \in s_{M}}{\sum}\;
-        d_{k}\left(1-\dfrac{1}{\widetilde{w}_{k}}\right)\widetilde{w}_{k}^{2}\,\sigma_{k}^{2}\,,
-    \end{equation*}
-    where
-    \,$\widetilde{y}_{\bullet}$\,
-    is given by:
-    \begin{equation*}
-    \widetilde{y}_{k}
-    \;\; := \;\;
-        \left\{\begin{array}{cl}
-            y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
-            \\
-            % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
-            \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
-            \end{array}\right.,
-    \end{equation*}
-    and, for \,$k \in s_{M}$,\, the parameters
-    \,$\mu_{k}$\, and \,$\sigma_{k}^{2}$\,
-    are given by:
-    \begin{eqnarray*}
-    \mu_{k}
-    & := &
-        {\color{white}...}E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]
+        {\color{blue}
+        \left(\,
+            \underset{k,l \in s}{\sum}
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \cdot\!
+            \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+            \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+            \,\right)
+        \, - \; 2 \cdot
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        }
     \\
-    \sigma_{k}^{2}
-    & := &
-        \Var_{Y}\!\left[\;
-            Y_{k}
-            \,\left\vert\;
-            \Xobs
-            \right.
-            \right]
+    &&
+        {\color{blue}
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        }
+    \\
+    &&
+        \; + \;
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        \; - \; 2 \cdot
+        \underset{k \in {\color{red}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{red}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+    \\
+    & = &
+        {\color{blue}
+        \widehat{V}_{\Gamma(Y)}(\,s\,;\dbullet{\color{red}\widetilde{y}_{\bullet}},\gdotdot\,)
+        }
+        \; + \,
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        \, - \; 2 \cdot
+        \underset{k \in {\color{red}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{red}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
     \end{eqnarray*}
 \end{enumerate}
 % We have:
@@ -2423,9 +2415,26 @@ Then, the following statements are true:
             \!\!\right]
     \\
     & = &
-        ????
+        \left(\,
+            \underset{k,l \in s}{\sum}
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \cdot\!
+            \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+            \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+            \,\right)
+        \; + \;
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
     \end{eqnarray*}
-    Proof of Claim 2:\;\;
+    Proof of Claim 2:\;\; Immediate by Claim 1.
+
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 3:}\quad
     \begin{eqnarray*}
     &&
         \underset{k,l \in s}{\sum}\,
@@ -2433,11 +2442,335 @@ Then, the following statements are true:
         \cdot
         \widetilde{w}_{k}\,\widetilde{w}_{l}
         \cdot
-        d_{k}d_{l}
+        d_{k}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                Y_{k}Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    % \\
+    % & = &
+    %     \underset{k,l \in s}{\sum}\,
+    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+    %     \cdot
+    %     \widetilde{w}_{k}\,\widetilde{w}_{l}
+    %     \cdot\!
+    %     \left(\,
+    %         \underset{j \in s}{\sum}\;
+    %         \rho_{lj}(s,\gdotdot)
+    %         \cdot
+    %         d_{k}\,\widetilde{y}_{k}
+    %         \cdot
+    %         d_{j}\,\widetilde{y}_{j}
+    %         \,\right)
+    % \\
+    % &&
+    %     \; + \;
+    %     \underset{k \in {\color{black}s_{M}}}{\sum}\,
+    %     \underset{l \in {\color{black}s}}{\sum}\,
+    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+    %     \cdot
+    %     \widetilde{w}_{k}\,\widetilde{w}_{l}
+    %     \cdot
+    %     \rho_{lk}(s,\gdotdot)
+    %     \cdot
+    %     d_{k}^{2}\,
+    %     \sigma_{k}^{2}
+    \\
+    & {\color{black}=} &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
         \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k \in {\color{black}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \end{eqnarray*}
+    Proof of Claim 3:\;\; 
+    \begin{eqnarray*}
+    &&
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                Y_{k}Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)\,d_{j}
+            \cdot
+            \widetilde{y}_{k}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k \in {\color{red}s_{M}}}{\sum}\,
+        \underset{l \in {\color{red}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}
+        \cdot\!
+        \left(\,\overset{{\color{white}1}}{\rho_{lk}(s,\gdotdot)\,d_{k}\cdot\sigma_{k}^{2}}\,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k \in {\color{black}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \end{eqnarray*}
+    This completes the proof of Claim 3.
+
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 4:}\quad
+    \begin{eqnarray*}
+    &&
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                    Y_{i}
+                    Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{black}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+    \end{eqnarray*}
+    Proof of Claim 4:\;\;
+    \begin{eqnarray*}
+    &&
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                    Y_{i}
+                    Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,d_{j}
+            \cdot
+            \widetilde{y}_{i}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in {\color{red}s_{M}} }{\sum}\,
+            \rho_{kj}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,d_{j}
+            \cdot
+            \sigma_{j}^{2}
+            \,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in {\color{black}s_{M}} }{\sum}\,
+            \rho_{kj}(s,\gdotdot)
+            \cdot
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}^{2}\,\sigma_{j}^{2}
+            \,\right)
+    \end{eqnarray*}
+    This completes the proof of Claim 4.
+
+    \vskip 0.5cm
+    \noindent
+    We are now ready to complete the proof of this Lemma:
+    \begin{eqnarray*}
+    &&
         E_{Y_{M}}\!\left[\;
-            Y_{k}Y_{l}
-            \,\left\vert\!
+            \widehat{V}_{\Gamma(Y)}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
             \right.
             \!\!\right]
@@ -2449,12 +2782,6 @@ Then, the following statements are true:
             \cdot\!
             \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
             \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
-            % E_{Y_{M}}\!\left[\;
-            %     Y_{k}Y_{l}
-            %     \,\left\vert\!
-            %     \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
-            %     \right.
-            %     \!\!\right]
             \,\right)
         \; + \;
         \left(\,
@@ -2463,7 +2790,202 @@ Then, the following statements are true:
             \cdot
             \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
+    \\
+    &&
+        \; - \; 2 \cdot
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; - \; 2 \cdot
+        \underset{k \in {\color{black}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{black}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+    \\
+    & = &
+        \left(\,
+            \underset{k,l \in s}{\sum}
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \cdot\!
+            \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+            \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+            \,\right)
+        \, - \; 2 \cdot
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        \; - \; 2 \cdot
+        \underset{k \in {\color{black}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{black}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
     \end{eqnarray*}
+
+    % \begin{eqnarray*}
+    % &&
+    %     \underset{k,l \in s}{\sum}\,
+    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+    %     \cdot
+    %     \widetilde{w}_{k}\,\widetilde{w}_{l}
+    %     \cdot
+    %     d_{k}d_{l}
+    %     \cdot
+    %     E_{Y_{M}}\!\left[\;
+    %         Y_{k}Y_{l}
+    %         \,\left\vert\!
+    %         \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+    %         \right.
+    %         \!\!\right]
+    % \\
+    % & = &
+    %     \left(\,
+    %         \underset{k,l \in s}{\sum}
+    %         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+    %         \cdot\!
+    %         \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+    %         \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+    %         \,\right)
+    %     \; + \;
+    %     \left(\,
+    %         \underset{k\in {\color{red}s_{M}}}{\sum}\!
+    %         \left(\,1-\pi_{k}\,\right)
+    %         \cdot
+    %         \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+    %         \,\right)
+    % \end{eqnarray*}
     % \vskip -0.7cm
     \qed
 \end{enumerate}
