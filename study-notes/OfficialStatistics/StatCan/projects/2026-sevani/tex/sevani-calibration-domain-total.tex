@@ -2346,45 +2346,125 @@ Then, the following statements are true:
             \,\right)
     \end{eqnarray*}
     This completes the proof of Claim 0.
-    \vskip 0.1cm
-    \noindent
-    where the last equality follows from the observation:
+
+    \vskip 0.5cm
+    \textbf{Claim 1:}\quad
     \begin{eqnarray*}
-    E_{Y_{M}}\!\left[\;
+    E_{Y_{M}}\!\left[\;\,
         Y_{k}Y_{l}
-        \,\left\vert\,
-        \YsubR=y_{R},\Xobs
+        \;\left\vert
+        \begin{array}{c}
+            s,s_{R},\YsubR, \\ \Gdotdot\,,\Xobs
+            \end{array}
         \right.
         \right]
     & = &
         \left\{\begin{array}{cl}
-            y_{k} \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{R}$}}
-            \\
-            y_{k} \cdot E[\,Y_{l}\,\vert\,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{R}$,\, $l \in s_{M}$}}
-            \\
-            E[\,Y_{k}\vert\,\Xobs\,] \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{M}$,\, $l \in s_{R}$}}
-            \\
-            E[\,Y_{k}\vert\,\Xobs\,] \cdot E[\,Y_{l}\vert\,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{M}$,\, $k \neq l$}}
-            \\
-            \Var(\,Y_{k}\,\vert\,\Xobs) + E[\,Y_{k}\,\vert\,\Xobs\,]^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
-            \end{array}\right.
-    \end{eqnarray*}
-    which is equivalent to the following more compact expression:
-    \begin{eqnarray*}
-    E_{Y_{M}}\!\left[\;
-        Y_{k}Y_{l}
-        \,\left\vert\,
-        \YsubR=y_{R},\Xobs
-        \right.
-        \right]
-    & = &
-        \left\{\begin{array}{cl}
-            \sigma_{k}^{2} \,+\, \widetilde{y}_{k}^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+            \widetilde{y}_{k}^{2} \,+\, \sigma_{k}^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
             \\
             \widetilde{y}_{k} \cdot \widetilde{y}_{l}\,, & \overset{{\color{white}.}}{\textnormal{otherwise}}
             \end{array}\right.
     \end{eqnarray*}
-    \vskip -0.7cm
+    Proof of Claim 1:\;\; Observe that
+    \begin{eqnarray*}
+        E_{Y_{M}}\!\left[\;\,
+        Y_{k}Y_{l}
+        \;\left\vert
+        \begin{array}{c}
+            s,s_{R},\YsubR, \\ \Gdotdot\,,\Xobs
+            \end{array}
+        \right.
+        \!\!\right]
+    & = &
+        E_{Y_{M}}\!\left[\;
+            Y_{k}Y_{l}
+            \;\left\vert\!
+            \begin{array}{c}
+                \YsubR,
+                \\
+                \Gdotdot\,,\Xobs
+                \end{array}
+                \right.
+            \!\!\right]
+    \\
+    & = &
+        \left\{\begin{array}{cl}
+            y_{k} \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{R}$}}
+            \\
+            y_{k} \cdot E[\;Y_{l}\;\vert\;\Gdotdot\,,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{R}$,\, $l \in s_{M}$}}
+            \\
+            E[\;Y_{k}\;\vert\;\Gdotdot\,,\Xobs\,] \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{M}$,\, $l \in s_{R}$}}
+            \\
+            E[\;Y_{k}\;\vert\;\Gdotdot\,,\Xobs\,] \cdot E[\;Y_{l}\;\vert\;\Gdotdot\,,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{M}$,\, $k \neq l$}}
+            \\
+            \Var(\,Y_{k}\,\vert\,\Gdotdot\,,\Xobs) + E[\,Y_{k}\,\vert\,\Gdotdot\,,\Xobs\,]^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+            \end{array}\right.,
+    \end{eqnarray*}
+    from which Claim 1 follows readily.
+    This completes the proof of Claim 1.
+
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 2:}\quad
+    \begin{eqnarray*}
+    &&
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}d_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        ????
+    \end{eqnarray*}
+    Proof of Claim 2:\;\;
+    \begin{eqnarray*}
+    &&
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}d_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        \left(\,
+            \underset{k,l \in s}{\sum}
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \cdot\!
+            \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+            \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+            % E_{Y_{M}}\!\left[\;
+            %     Y_{k}Y_{l}
+            %     \,\left\vert\!
+            %     \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            %     \right.
+            %     \!\!\right]
+            \,\right)
+        \; + \;
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+    \end{eqnarray*}
+    % \vskip -0.7cm
     \qed
 \end{enumerate}
 % \vskip 1.0cm
