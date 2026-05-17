@@ -1820,7 +1820,7 @@ Then, the following statements are true:
             \,\right]
     \end{equation*}
 \item
-    If we choose in turn to approximate
+    Suppose we choose in turn to approximate
     \,$v(\,s\,;y_{\bullet},\gdotdot\,)$\,
     by the {\color{red}approximately} design-unbiased linearization-based estimator
     \,$\widehat{V}_{\Gamma(Y)}(\,s\,;\dydot,\gdotdot\,)$\,
@@ -1849,17 +1849,84 @@ Then, the following statements are true:
             d_{k}y_{k}
             \, - \,
             \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
-            \underset{i \in s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
+            \underset{i \in s}{\sum}\;\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
             \,\right)
         \!\!
         \left(\,
             d_{l}y_{l}
             \, - \,
             \gamma_{l}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
-            \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
+            \underset{j \in s}{\sum}\;\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
             \,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        \widetilde{w}_{k}\widetilde{w}_{l}
+        \left(
+            d_{k}y_{k}
+            -
+            \underset{i \in s}{\sum}\;
+            \widetilde{w}_{i}q_{i}
+            \left(\overset{{\color{white}.}}{
+                \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot\gamma_{i}
+                }\right)
+            d_{i}y_{i}
+            \right)
+        \!\!
+        \left(
+            d_{l}y_{l}
+            -
+            \underset{j \in s}{\sum}\;
+            \widetilde{w}_{j}q_{j}
+            \left(\overset{{\color{white}.}}{
+                \gamma_{l}^{T}\cdot G(s,\gdotdot)^{-1}\cdot\gamma_{j}
+                }\right)
+            d_{j}y_{j}
+            \right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        \widetilde{w}_{k}\widetilde{w}_{l}
+        \left(
+            d_{k}y_{k}
+            -
+            \underset{i \in s}{\sum}\;
+            \rho_{ki}(s\,;\gdotdot)\,
+            d_{i}y_{i}
+            \right)
+        \!\!
+        \left(
+            d_{l}y_{l}
+            -
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s\,;\gdotdot)\,
+            d_{j}y_{j}
+            \right)\!,
     \end{eqnarray*}
-    then
+    where
+    \begin{eqnarray*}
+    G(s,\gdotdot)
+    & = &
+        \underset{i \in s}{\sum}\;
+        \widetilde{w}_{i}\,q_{i} \cdot \gamma_{i} \cdot \gamma_{i}^{T}
+        \;\; \in \;\; \Re^{q \times q}\,,
+    \\
+    \widehat{B}_{\Gamma(Y)}(s\,;\dydot,\gdotdot)
+    & = &
+        \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
+        \underset{i \in s}{\sum}\;
+        \widetilde{w}_{i}q_{i} \cdot \gamma_{i} \cdot d_{i}y_{i}\,,
+    \\
+    \rho_{ki}(s\,;\gdotdot)
+    & = &
+        \widetilde{w}_{i}q_{i}
+        \left(\overset{{\color{white}.}}{
+            \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot\gamma_{i}
+            }\right)
+    \end{eqnarray*}
+    Then,
     \,$
     E_{Y_{M}}\!\left[\;
         \widehat{V}_{\Gamma(Y)}(\,s\,;\dYdot,\Gdotdot\,)
