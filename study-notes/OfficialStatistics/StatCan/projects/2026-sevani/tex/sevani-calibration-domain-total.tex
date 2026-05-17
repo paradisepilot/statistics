@@ -33,27 +33,7 @@ Suppose:
     \vskip 0.01cm
     \noindent
     If there were no missing data in \,$\ydot$\, for the units in the selected sample,
-    then the \textit{Horvitz-Thompson domain total estimator}
-    \begin{eqnarray*}
-    \widehat{T}^{\textnormal{(HT)}}_{d,Y}
-    & :=: &
-        \widehat{T}^{\textnormal{(HT)}}(s\,;\dydot)
-    \;\; := \;\;
-        \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y_{i}\,,
-    \end{eqnarray*}
-    is a design-unbiased estimator for
-    \,$T_{d,Y}$,\,
-    where
-    \begin{itemize}
-    \item
-        $w_{i} \,:=\, \dfrac{1}{\pi_{i}}$,\, for each population unit \,$i \in U$,\,
-        is the (\textit{a priori} known, non-random) design weight of \,$i \in U$,\,
-        i.e., the reciprocal of the selection probability \,$\pi_{i}$\,
-        (assumed strictly positive) of \,$i \in U$,\,
-    \item
-        $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$\,
-        is the vector of $\{0,1\}$-valued selection indicator variables, and
-    \item
+    then the \textit{Horvitz-Thompson domain total estimator\! \footnote{
         We will use the alternative notations
         \,$\widehat{T}_{d,\xi}^{\textnormal{(HT)}}$\,
         and
@@ -68,11 +48,33 @@ Suppose:
             \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
         \end{equation*}
         for the Horvitz-Thompson population total estimator.
+        }
+    }
+    \begin{eqnarray*}
+    \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+    & :=: &
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\dydot)
+    \;\; := \;\;
+        \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y_{i}\,,
+    \end{eqnarray*}
+    is a design-unbiased estimator for
+    \,$T_{d,Y}$,\,
+    where
+    \begin{itemize}
+    \item
+        $s \subset U$\, is the selected sample, and
+        $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$\,
+        is the vector of $\{0,1\}$-valued selection indicator variables,
+    \item
+        $w_{i} \,:=\, \dfrac{1}{\pi_{i}}$,\, for each population unit \,$i \in U$,\,
+        is the (\textit{a priori} known, non-random) design weight of \,$i \in U$,\,
+        i.e., the reciprocal of the selection probability \,$\pi_{i}$\,
+        (assumed strictly positive) of \,$i \in U$.\,
     \end{itemize}
     Recall (Result 2.8.1, p.43, \cite{Sarndal1992}) also that
     the sampling variance of 
     \,$
-    \widehat{T}^{\textnormal{(HT)}}_{d,\xi_{\bullet}}
+    \widehat{T}^{\textnormal{(HT)}}_{d,\xi}
     \,=\,
         \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
     $\,
@@ -108,7 +110,7 @@ Suppose:
     is a design-unbiased estimator for the sampling variance of
     % \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$,\,
     \,$
-    \widehat{T}^{\textnormal{(HT)}}_{d,\xi_{\bullet}}(s)
+    \widehat{T}^{\textnormal{(HT)}}_{d,\xi_{\bullet}}
     \,=\,
         \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
     $,\,
