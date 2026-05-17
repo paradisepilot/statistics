@@ -92,20 +92,35 @@ Suppose:
     where
     \begin{itemize}
     \item
+        $s \subset U$\, is the selected sample, and
+        $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$\,
+        is the vector of $\{0,1\}$-valued selection indicator variables,
+    \item
         $w_{i} \,:=\, \dfrac{1}{\pi_{i}}$,\, for each population unit \,$i \in U$,\,
         is the (\textit{a priori} known, non-random) design weight of \,$i \in U$,\,
         i.e., the reciprocal of the selection probability \,$\pi_{i}$\,
         (assumed strictly positive) of \,$i \in U$,\,
     \item
-        $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$\,
-        is the vector of $\{0,1\}$-valued selection indicator variables, and
-    \item
         $\widehat{T}_{d,\xi} \, :=: \,\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
-        is the \textit{Horvitz-Thompson estimator for the domain total}
+        is the \textit{Horvitz-Thompson estimator\! \footnote{
+        We will use the alternative notations
+            \,$\widehat{T}_{d,\xi}$\, and \,$\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
+            interchangeably, noting that the former is notationally more succinct,
+            while the latter allows us to emphasize that
+            \,$\xi_{\bullet}$\,
+            is being considered as an argument to the formula
+            \begin{equation*}
+            \widehat{T}_{d}(s\,;\xi_{\bullet})
+            \;\; := \;\;
+                \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
+            \end{equation*}
+            for the Horvitz-Thompson population total estimator.
+            }
+        for the domain total}
         \,$T_{d,\xi} \,:=\, \underset{i\,\in\,U}{\sum}\,d_{i}\xi_{i}$\,
         of an arbitrary $\Re$-valued population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
         \begin{equation*}
-        \widehat{T}_{d,\xi}(s)
+        \widehat{T}_{d,\xi}
         \;\; :=: \;\;
             \widehat{T}_{d}(s\,;\xi_{\bullet})
         \;\; := \;\;
@@ -113,18 +128,6 @@ Suppose:
         \;\; = \;\;
             \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,\xi_{i}
         \end{equation*}
-        We will use the alternative notations
-        \,$\widehat{T}_{d,\xi}(s)$\, and \,$\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
-        interchangeably, noting that the former is notationally more succinct,
-        while the latter allows us to emphasize that
-        \,$\xi_{\bullet}$\,
-        is being considered as an argument to the formula
-        \begin{equation*}
-        \widehat{T}_{d}(s\,;\xi_{\bullet})
-        \;\; := \;\;
-            \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
-        \end{equation*}
-        for the Horvitz-Thompson population total estimator.
     \end{itemize}
     Recall (Result 2.8.1, p.43, \cite{Sarndal1992}) also that
     the sampling variance of 
@@ -159,7 +162,7 @@ Suppose:
         \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}
     \end{equation*}
     is a design-unbiased estimator for the sampling variance of
-    \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$,\,
+    \,$\widehat{T}_{d,\xi_{\bullet}} \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$,\,
     i.e.,
     \begin{equation*}
     E_{S}\!\left[\;
