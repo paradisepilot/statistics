@@ -24,18 +24,20 @@ Suppose:
         \underset{i \in U}{\sum}\;d_{i}Y_{i}\,,
     \end{equation*}
     where \,$U = \{\,1,2,\ldots,N\,\} \subset \N$\, represents the population,
-    $d_{\bullet} = (d_{1},\ldots,d_{N}) \in \{0,1\}^{N}$ is the vector of domain membership indicators,
+    $\dbullet = (d_{1},\ldots,d_{N}) \in \{0,1\}^{N}$ is the vector of domain membership indicators,
     and
     \,$\Ydot = (Y_{1},\ldots,Y_{N})$\,
     is an $\Re$-valued population characteristic.
 \item
-    Aside/Reminder:
-    If there are no missing data for the units in the selected sample,
+    Aside/Reminder \#1:
+    \vskip 0.01cm
+    \noindent
+    If there were no missing data in \,$\ydot$\, for the units in the selected sample,
     then the \textit{Horvitz-Thompson domain total estimator}
     \begin{eqnarray*}
-    \widehat{T}_{d,Y}
+    \widehat{T}^{\textnormal{(HT)}}_{d,Y}
     & :=: &
-        \widehat{T}_{d}(s\,;\Ydot)
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\dydot)
     \;\; := \;\;
         \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y_{i}\,,
     \end{eqnarray*}
@@ -53,13 +55,15 @@ Suppose:
         is the vector of $\{0,1\}$-valued selection indicator variables, and
     \item
         We will use the alternative notations
-        \,$\widehat{T}_{d,\xi}(s)$\, and \,$\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
+        \,$\widehat{T}_{d,\xi}^{\textnormal{(HT)}}$\,
+        and
+        \,$\widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})$\,
         interchangeably, noting that the former is notationally more succinct,
         while the latter allows us to emphasize that the population characteristic
         \,$\xi_{\bullet}$\,
         is being considered as an argument to the formula
         \begin{equation*}
-        \widehat{T}_{d}(s\,;\xi_{\bullet})
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
         \;\; := \;\;
             \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
         \end{equation*}
@@ -67,12 +71,16 @@ Suppose:
     \end{itemize}
     Recall (Result 2.8.1, p.43, \cite{Sarndal1992}) also that
     the sampling variance of 
-    \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$\,
+    \,$
+    \widehat{T}^{\textnormal{(HT)}}_{d,\xi_{\bullet}}
+    \,=\,
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+    $\,
     is given by
     \begin{equation*}
     \Var_{S}\!\left(\,
         \left.
-        \widehat{T}_{d}(s\,;\xi_{\bullet})
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
         \;\right\vert\!
         \begin{array}{c} \xi_{\bullet} \end{array}
         \!\!\right)
@@ -98,7 +106,12 @@ Suppose:
         \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}
     \end{equation*}
     is a design-unbiased estimator for the sampling variance of
-    \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$,\,
+    % \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$,\,
+    \,$
+    \widehat{T}^{\textnormal{(HT)}}_{d,\xi_{\bullet}}(s)
+    \,=\,
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+    $,\,
     i.e.,
     \begin{equation*}
     E_{S}\!\left[\;
@@ -110,7 +123,7 @@ Suppose:
     \;\; = \;\;
         \Var_{S}\!\left(\,
             \left.
-            \widehat{T}_{d}(s\,;\xi_{\bullet})
+            \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
             \;\right\vert\!
             \begin{array}{c} \xi_{\bullet} \end{array}
             \!\!\right)
@@ -124,6 +137,180 @@ Suppose:
     %     \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}
     \end{equation*}
 \item
+    $\gamma \,=\, \left(\,\gamma^{(1)},\ldots,\gamma^{(q)}\,\right)^{T} : U \longrightarrow \Re^{q}$\,
+    is an $\Re^{q}$-valued population characteristic such that
+    \begin{itemize}
+    \item
+        its population total
+        \;$
+        T_{\gamma} \, := \, \underset{i \in U}{\sum}\;\gamma_{i} \,\in\, \Re^{q}
+        $\;
+        is known, and
+    \item
+        the unit-level values of \,$\gamma$\, are known for each unit in the selected sample \,$s$.\,
+    \end{itemize}
+\item
+    Aside/Reminder \#2:
+    \vskip 0.01cm
+    \noindent
+    Since data for \,$\gamma$\, are assumed available as described above,
+    if there were no missing data in \,$\ydot$\, for the units in the selected sample,
+    then one can also use (for coherence and small sampling variability)
+    the \textit{calibration domain total estimator}:
+    \begin{eqnarray*}
+    \widehat{T}_{d,Y}^{\textnormal{(cal)}}
+    & :=: &
+    \widehat{T}^{\textnormal{(cal)}}(\,s\,;\dYdot,\gdotdot\,)
+    \;\; := \;\;
+        \underset{i \in s}{\sum}\;
+        {\color{red}\widetilde{w}_{i}}\,d_{i}\,Y_{i}
+    \\
+    & = &
+        \underset{i \in s}{\sum}\;\,
+        {\color{red}
+        w_{i}
+        \cdot
+        \left\{\;
+            1
+            \,+\,
+            \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)^{T}
+            \cdot
+            \left(\;
+                \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
+                \,\right)^{\!-1}
+            \gamma_{i}q_{i}
+            \,\right\}
+        }
+        \cdot
+        d_{i}\,Y_{i}
+    \\
+    & = &
+        \left(\,\underset{i \in s}{\sum}\;w_{i} \cdot d_{i}\,Y_{i}\,\right)
+        \; + \;
+        \left(\,
+            \underset{i \in s}{\sum}\;\,
+            w_{i}\cdot
+                \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)^{T}
+                \cdot
+                \left(\;
+                    \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
+                    \,\right)^{\!-1}
+            \gamma_{i}\,q_{i}\,d_{i}\,Y_{i}
+            \,\right)
+    \\
+    & = &
+        \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \; + \;
+        {\color{blue}
+        \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)^{T}
+        \cdot
+        \left(\;
+            \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
+            \,\right)^{\!-1}
+        }
+        \cdot
+        \left(\;\,
+            \underset{i \in s}{\sum}\;
+            w_{i}\,\gamma_{i}\,q_{i}\,d_{i}\,Y_{i}
+            \,\right)
+    \\
+    & = &
+        \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \; + \;
+        {\color{blue}H(s\,;\gdotdot)}
+        \cdot
+        \left(\;\,
+            \underset{i \in s}{\sum}\;
+            w_{i}\,q_{i} \cdot \gamma_{i} \cdot d_{i}\,Y_{i}
+            \,\right)
+    \;\; = \;\;
+        \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \; + \;
+        \underset{i \in s}{\sum}\;
+        w_{i}\,q_{i}
+        \cdot\!
+        \left(\,\overset{{\color{white}.}}{H(s\,;\gdotdot)\cdot\gamma_{i}}\,\right)
+        \!\cdot
+        d_{i}\,Y_{i}\,,
+    % \\
+    % & = &
+    %     \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+    %     \; + \;
+    %     \left(
+    %         \left(\;
+    %             \underset{k \in s}{\sum}\,q_{k}w_{k}\gamma_{k}\gamma_{k}^{T}
+    %             \,\right)^{\!-1}
+    %         \cdot
+    %         \underset{i \in s}{\sum}\;
+    %         w_{i}\,\gamma_{i}\,q_{i}\,d_{i}\,y_{i}
+    %         \,\right)^{\!\!T}
+    %     \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)
+    \end{eqnarray*}
+    where
+    \begin{itemize}
+    \item
+        $\Gdotdot \,=\, \left(\,\Gamma_{ij}\,\right) \,\in\, \Re^{N \times q}$\,
+        is a matrix containing the values of the $\Re^{q}$-valued calibration variable
+        \begin{equation*}
+        \gamma \,=\, \left(\,\gamma^{(1)},\ldots,\gamma^{(q)}\,\right)^{T} : U \longrightarrow \Re^{q}
+        \end{equation*}
+        for all units in the population,
+        where the $i^{\textnormal{th}}$ row of \,$\Gdotdot$\, corresponds to the vector
+        \,$\gamma_{i} \,=\, \left(\,\gamma^{(1)}_{i},\ldots,\gamma^{(q)}_{i}\,\right)^{\!T} \,\in\, \Re^{q}$\,
+        of values of the calibration variables for populaton unit \,$i \in U$,\,
+    \item
+        for each population unit \,$i \in U$,\,
+        \,$\widetilde{w}_{i} = \widetilde{w}_{i}(\,s\,;\Gdotdot\,)$\,
+        is the sample-dependent calibration weight
+        % \footnote{In the SEVANI theory,
+        %     the calibration weights
+        %     \,$\widetilde{w}_{i} = \widetilde{w}_{i}(s\,;\Gdotdot)$\,
+        %     only need to be functions of the selected sample \,$s \subset U$\, and
+        %     the ``calibration variables'' \,$\Gdotdot$;\, in practice,
+        %     the calibration weights form the solution to a certain optimization problem involving
+        %     \,$s$,\, $\Gdotdot$,\, and the design weights \,$\widetilde{w}_{i}$.
+        %     }
+        of \,$i \in U$,
+        where
+        \begin{eqnarray*}
+        \widetilde{w}_{i}
+        & :=: &
+            \widetilde{w}_{i}(\,s\,;\Gdotdot\,)
+        \;\, := \;\,
+            w_{i}
+            \cdot
+            \left\{\,\overset{{\color{white}.}}{
+                1 \,+\, H(s\,;\Gdotdot)\cdot\gamma_{i}q_{i}
+                }\,\right\}
+        \\
+        & = &
+            w_{i}
+            \cdot
+            \left\{\;
+                1
+                \,+\,
+                \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)^{T}
+                \cdot
+                \left(\;
+                    \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
+                    \,\right)^{\!-1}
+                \gamma_{i}q_{i}
+                \,\right\},
+        \end{eqnarray*}
+        and
+        \begin{equation*}
+        H(s\,;\Gdotdot)
+        \;\; := \;\;
+            \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)^{T}
+            \cdot
+            \left(\;
+                \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
+                \,\right)^{\!-1}
+        \;\; \in \;\;
+            \Re^{q \times q}
+        \end{equation*}
+    \end{itemize}
+\item
     The value of \,$Y_{l}$\, has been successfully observed
     only for units \,$l$\, in the (random) ``responding'' subsample
     \,$s_{R} \subset s \subset U$;\,
@@ -132,7 +319,8 @@ Suppose:
     \,$s_{M} \, := \,s \,\backslash\, s_{R} \,\subset\, U$.\,
 \item
     We would like to estimate \,$T_{d,Y}$\,
-    with an imputation estimator of the following form:
+    with a ``calibration estimator with imputation,''
+    more precisely, one of the following form:
     \begin{eqnarray*}
     \widetilde{T}_{d,Y}
     & = &
@@ -155,21 +343,31 @@ Suppose:
     \end{eqnarray*}
     where
     \begin{itemize}
-    \item
-        $\Gdotdot \,=\, \left(\,\Gamma_{ij}\,\right) \,\in\, \Re^{N \times q}$\,
-        is a random matrix containing the values of the $\Re^{q}$-valued calibration variable
-        for all units in the population,
-        where the $i^{\textnormal{th}}$ row of \,$\Gdotdot$\, corresponds to populaton unit \,$i \in U$,\,
-    \item
-        for each population unit \,$i \in U$,\,
-        \,$\widetilde{w}_{i} = \widetilde{w}_{i}(\,s\,;\Gdotdot\,)$\,
-        is the calibration weight of \,$i \in U$
-        (in the SEVANI theory, the calibration weights
-        \,$\widetilde{w}_{i} = \widetilde{w}_{i}(s\,;\Gdotdot)$'s\,
-        only need to be functions of the selected sample \,$s \subset U$\, and
-        the ``calibration variables'' \,$\Gdotdot$;\, in practice,
-        the calibration weights form the solution to a certain optimization problem involving
-        \,$s$,\, $\Gdotdot$,\, and the design weights \,$\widetilde{w}_{i}$),\,
+    % \item
+    %     $\Gdotdot \,=\, \left(\,\Gamma_{ij}\,\right) \,\in\, \Re^{N \times q}$\,
+    %     is a random matrix containing the values of the $\Re^{q}$-valued calibration variable
+    %     for all units in the population,
+    %     where the $i^{\textnormal{th}}$ row of \,$\Gdotdot$\, corresponds to populaton unit \,$i \in U$,\,
+    % \item
+    %     for each population unit \,$i \in U$,\,
+    %     \,$\widetilde{w}_{i} = \widetilde{w}_{i}(\,s\,;\Gdotdot\,)$\,
+    %     is the calibration weight\footnote{In the SEVANI theory, the calibration weights
+    %         \,$\widetilde{w}_{i} = \widetilde{w}_{i}(s\,;\Gdotdot)$\,
+    %         only need to be functions of the selected sample \,$s \subset U$\, and
+    %         the ``calibration variables'' \,$\Gdotdot$;\, in practice,
+    %         the calibration weights form the solution to a certain optimization problem involving
+    %         \,$s$,\, $\Gdotdot$,\, and the design weights \,$\widetilde{w}_{i}$.
+    %         }
+    %     of \,$i \in U$,
+    %     where
+    %     \begin{equation*}
+    %     \widetilde{w}_{i}
+    %     \;\; = \;\;
+    %         \widetilde{w}_{i}(\,s\,;\Gdotdot\,)
+    %     \;\; := \;\;
+    %     \end{equation*}
+    %     \vskip 0.1cm
+    %     \noindent
     \item
         $\Rdot \,=\, (R_{1},\ldots,R_{N})^{T}$ is the vector of $\{0,1\}$-valued response indicator variables,
     \item
@@ -194,12 +392,12 @@ Suppose:
         may depend on
         \,$\Sdot,\Rdot,\Ydot,\Xdotdot$.\,
     % \item
-    %     $\widehat{T}(s\,;\pi,d_{\bullet},\xi_{\bullet})$\,
+    %     $\widehat{T}(s\,;\pi,\dbullet,\xi_{\bullet})$\,
     %     is the Horvitz-Thompson estimator for the domain total
     %     \,$T_{d,\xi} \,:=\, \underset{i\,\in\,U}{\sum}\,d_{i}\xi_{i}$\,
     %     of an arbitrary population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
     %     \begin{equation*}
-    %     \widehat{T}(s\,;\pi,d_{\bullet},\xi_{\bullet})
+    %     \widehat{T}(s\,;\pi,\dbullet,\xi_{\bullet})
     %     \;\; := \;\;
     %         \underset{i\,\in\,s}{\sum}\;\widetilde{w}_{i}\,d_{i}\,\xi_{i}
     %     \;\; = \;\;
@@ -291,12 +489,12 @@ Suppose:
 %         may depend on
 %         \,$\Sdot,\Rdot,\Ydot,\Xdotdot$.\,
 %     % \item
-%     %     $\widehat{T}(s\,;\pi,d_{\bullet},\xi_{\bullet})$\,
+%     %     $\widehat{T}(s\,;\pi,\dbullet,\xi_{\bullet})$\,
 %     %     is the Horvitz-Thompson estimator for the domain total
 %     %     \,$T_{d,\xi} \,:=\, \underset{i\,\in\,U}{\sum}\,d_{i}\xi_{i}$\,
 %     %     of an arbitrary population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
 %     %     \begin{equation*}
-%     %     \widehat{T}(s\,;\pi,d_{\bullet},\xi_{\bullet})
+%     %     \widehat{T}(s\,;\pi,\dbullet,\xi_{\bullet})
 %     %     \;\; := \;\;
 %     %         \underset{i\,\in\,s}{\sum}\;\widetilde{w}_{i}\,d_{i}\,\xi_{i}
 %     %     \;\; = \;\;
