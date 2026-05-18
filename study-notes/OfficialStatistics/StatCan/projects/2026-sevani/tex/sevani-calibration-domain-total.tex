@@ -610,17 +610,41 @@ will be proposed.
 \noindent
 Lastly, we define the following entities that will repeatedly appear
 in the formulas we will derive in these notes:
-\begin{eqnarray*}
+\begin{equation*}
+\mu_{k}
+\; := \;
+    E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Zdot\,,\Xobs\right.\right],
+\quad\quad
+\sigma_{k}^{2}
+\; := \;
+    \Var_{Y}\!\left[\;
+        Y_{k}
+        \,\left\vert\;
+        \Zdot\,,\Xobs
+        \right.
+        \right]
+\end{equation*}
+\begin{equation*}
+\widetilde{y}_{k}
+\; := \;
+    \left\{\begin{array}{cl}
+        y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+        \\
+        % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+        \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+        \end{array}\right.
+\end{equation*}
+\begin{equation*}
 \widetilde{W}^{(+)}_{d,{\color{red}0}}
-& := &
+\; := \;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
         \underset{l \in s_{M}^{(j)}}{\sum}\,
         \widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
         \,\right),
-\\ \\
+\quad\quad
 \widetilde{W}^{(+)}_{d,{\color{red}l}}
-& := &
+\; := \;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
         \underset{k \in s_{M}^{(j)}}{\sum}\,
@@ -628,7 +652,44 @@ in the formulas we will derive in these notes:
         \,\right),
 \;\;
 \textnormal{for each \,$l \in s_{R}$}
-\end{eqnarray*}
+\end{equation*}
+\vskip 0.3cm
+\noindent
+Note that
+\,$\widetilde{y}_{k}$,\,
+\,$W^{(+)}_{d,{\color{black}0}}$\,
+and
+\,$W^{(+)}_{d,{\color{black}l}}$\,
+depend on the full selected sample
+\,$s \subset U$\,
+and the responding subsample
+\,$s_{R} \subset s \subset U$.\,
+
+% \vskip 0.5cm
+% \noindent
+% {\color{red}
+% Lastly, we define the following entities that will repeatedly appear
+% in the formulas we will derive in these notes:
+% \begin{eqnarray*}
+% \widetilde{W}^{(+)}_{d,{\color{red}0}}
+% & := &
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,
+%         \widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+%         \,\right),
+% \\ \\
+% \widetilde{W}^{(+)}_{d,{\color{red}l}}
+% & := &
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,
+%         \widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}l}k}
+%         \,\right),
+% \;\;
+% \textnormal{for each \,$l \in s_{R}$}
+% \end{eqnarray*}
+% }
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -927,7 +988,7 @@ Then,
         \left.
         \left(\,
             \widetilde{T}_{d,Y}
-            {\color{red}
+            {\color{blue}
             \;-\;
             \widehat{T}^{\textnormal{(cal)}}_{d,Y}
             \,+\,
@@ -956,7 +1017,7 @@ Then,
         \,\right]
 \\
 & = &
-    {\color{blue}
+    {\color{black}
     E_{Y}\!\left[\,
     E_{SR}\!\left[\,
         \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}\right)^{2}
@@ -967,7 +1028,7 @@ Then,
         \,\right]
     }
     \;+\;
-    {\color{blue}
+    {\color{black}
     E_{SR}\!\left[\,
     E_{Y}\!\left[
         \left.
@@ -993,7 +1054,7 @@ Then,
 \\
 & = &
     E_{Y}\!\left[\,
-        {\color{blue}
+        {\color{black}
         \Var_{S}\!\left(\;
             \widehat{T}^{\textnormal{(cal)}}_{d,Y}
             \,\left\vert\!
@@ -1190,24 +1251,24 @@ Then, the following statements are true:
     Suppose we choose to approximate
     \,$v(\,s\,;y_{\bullet},\gdotdot\,)$\,
     with the {\color{red}approximate variance estimator}
-    \,$\widehat{AV}^{\textnormal{(cal)}}_{Y}(\,s\,;\dydot,\gdotdot\,)$\,
+    \,$\widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dydot,\gdotdot\,)$\,
     for the sampling variance of the calibration domain total estimator
     \,$\widehat{T}^{\textnormal{cal}}_{d,Y}$\,
     (see Equation (3.4), p.380, \cite{DevilleSarndal1992}), i.e.,
     \begin{eqnarray*}
     &&
-        \widehat{AV}^{\textnormal{(cal)}}_{Y}(\,s\,;\dydot,\gdotdot\,)
+        \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dydot,\gdotdot\,)
     \\
     & := &
         \underset{k,l \in s}{\sum}\;
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
         \left(\overset{{\color{white}1}}{
             \widetilde{w}_{k}
-            \left(\,d_{k}y_{k}-\gamma_{k}^{T}\cdot\widehat{B}_{\Gamma(Y)}(s\,;\dydot,\gdotdot)\,\right)
+            \left(\,d_{k}y_{k}-\gamma_{k}^{T}\cdot\widehat{B}(s\,;\dydot,\gdotdot)\,\right)
             }\right)
         \left(\overset{{\color{white}1}}{
             \widetilde{w}_{l}
-            \left(\,d_{l}y_{l}-\gamma_{l}^{T}\cdot\widehat{B}_{\Gamma(Y)}(s\,;\dydot,\gdotdot)\,\right)
+            \left(\,d_{l}y_{l}-\gamma_{l}^{T}\cdot\widehat{B}(s\,;\dydot,\gdotdot)\,\right)
             }\right)
     \\
     & = &
@@ -1282,7 +1343,7 @@ Then, the following statements are true:
         \widetilde{w}_{i}\,q_{i} \cdot \gamma_{i} \cdot \gamma_{i}^{T}
         \;\; \in \;\; \Re^{q \times q}\,,
     \\
-    \widehat{B}_{\Gamma(Y)}(s\,;\dydot,\gdotdot)
+    \widehat{B}(s\,;\dydot,\gdotdot)
     & = &
         \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
         \underset{i \in s}{\sum}\;
@@ -1298,7 +1359,7 @@ Then, the following statements are true:
     Then,
     \,$
     E_{Y_{M}}\!\left[\;
-        \widehat{AV}^{\textnormal{(cal)}}_{Y}(\,s\,;\dYdot,\Gdotdot\,)
+        \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
         \left\vert\!
         \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
         \right.
@@ -1308,7 +1369,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
-            \widehat{AV}^{\textnormal{(cal)}}_{Y}(\,s\,;\dYdot,\Gdotdot\,)
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
             \left\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
             \right.
@@ -1408,7 +1469,7 @@ Then, the following statements are true:
     \\
     & = &
         {\color{blue}
-        \widehat{AV}^{\textnormal{(cal)}}_{Y}(\,s\,;\dbullet{\color{red}\widetilde{y}_{\bullet}},\gdotdot\,)
+        \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dbullet{\color{red}\widetilde{y}_{\bullet}},\gdotdot\,)
         }
         \; + \,
         \left(\,
@@ -1417,7 +1478,9 @@ Then, the following statements are true:
             \cdot
             \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
-        \, - \; 2 \cdot
+    \\
+    &&
+        \; - \; 2 \cdot
         \underset{k \in {\color{red}s_{M}}}{\sum}\,
         \underset{l \in {\color{black}s}}{\sum}\,
         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
@@ -1535,7 +1598,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
-            \widehat{AV}^{\textnormal{(cal)}}_{Y}(\,s\,;\dYdot,\Gdotdot\,)
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
             \left\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
             \right.
@@ -1570,12 +1633,14 @@ Then, the following statements are true:
             \underset{j \in s}{\sum}\;
             \rho_{lj}(s,\gdotdot)\,d_{j}
             \cdot
+            {\color{red}
             E_{Y_{M}}\!\left[\;
                 Y_{k}Y_{j}
                 \,\left\vert\!
                 \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
                 \right.
                 \!\!\right]
+            }
             \,\right)
     \\
     &&
@@ -1592,6 +1657,7 @@ Then, the following statements are true:
             \cdot
             d_{i}\,d_{j}
             \cdot
+            {\color{red}
             E_{Y_{M}}\!\left[\;
                     Y_{i}
                     Y_{j}
@@ -1599,13 +1665,14 @@ Then, the following statements are true:
                 \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
                 \right.
                 \!\!\right]
+            }
             \,\right)
     \end{eqnarray*}
     Proof of Claim 0:
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
-            \widehat{AV}^{\textnormal{(cal)}}_{Y}(\,s\,;\dYdot,\Gdotdot\,)
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
             \left\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
             \right.
@@ -2405,7 +2472,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
-            \widehat{AV}^{\textnormal{(cal)}}_{Y}(\,s\,;\dYdot,\Gdotdot\,)
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
             \left\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
             \right.
