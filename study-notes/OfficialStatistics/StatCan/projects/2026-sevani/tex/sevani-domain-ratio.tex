@@ -389,6 +389,28 @@ will be proposed.
 Lastly, we define the following entities that will repeatedly appear
 in the formulas we will derive in these notes:
 \begin{eqnarray*}
+\mu_{k}
+& := &
+    {\color{white}...}E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Zdot\,,\Xobs\right.\right]
+\\ \\
+\sigma_{k}^{2}
+& := &
+    \Var_{Y}\!\left[\;
+        Y_{k}
+        \,\left\vert\;
+        \Zdot\,,\Xobs
+        \right.
+        \right]
+\\ \\
+\widetilde{y}_{k}
+& := &
+    \left\{\begin{array}{cl}
+        y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+        \\
+        % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+        \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+        \end{array}\right.
+\\ \\
 W^{(+)}_{d,{\color{red}0}}
 & := &
     \left(\;
@@ -405,6 +427,15 @@ W^{(+)}_{d,{\color{red}l}}
 \;\;
 \textnormal{for each \,$l \in s_{R}$}
 \end{eqnarray*}
+Note that
+\,$\widetilde{y}_{k}$,\,
+\,$W^{(+)}_{d,{\color{black}0}}$\,
+and
+\,$W^{(+)}_{d,{\color{black}l}}$\,
+depend on the full selected sample
+\,$s \subset U$\,
+and the responding subsample
+\,$s_{R} \subset s \subset U$.\,
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -1448,8 +1479,8 @@ we will use the following nomenclature:
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-% \vskip 0.5cm
-\clearpage
+% \clearpage
+\vskip 0.5cm
 \subsection{Estimator for the sampling variance component of
 \,$\MSE\!\left(\,\widetilde{R}_{d,Y/Z}\left\vert\,\Zdot\,,\Xobs\,\right.\right)$}
 \setcounter{theorem}{0}
@@ -1650,6 +1681,74 @@ Then, the following statements are true:
             }
         \cdot
         \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+    \\
+    & = &
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left\{\,
+            \begin{array}{l}
+                \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
+                2\cdot\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)
+                \cdot\!
+                \left(\,
+                    \underset{k \in s}{\sum}\;
+                    \underset{l \in s}{\sum}
+                        \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                        \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+                        \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+                    \right)
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
+                \widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)^{2}
+                \cdot
+                \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+                \end{array}
+            \right\}
+    %     {\color{red}@}
+    %     \dfrac{
+    %         \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \; + \;
+    %     \dfrac{
+    %         (-2)\left.\widehat{T}_{d}(s\,;\ydot)\right\slash\widehat{T}_{d}(s\,;\zdot)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \left(\,
+    %         \underset{k \in s}{\sum}\;
+    %         \underset{l \in s}{\sum}
+    %             \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+    %             \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+    %             \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+    %         \right)
+    % \\
+    % &&
+    %     \; + \;
+    %     \dfrac{
+    %         \left.
+    %         \widehat{T}_{d}(s\,;\ydot)^{2}
+    %         \right\slash
+    %         \widehat{T}_{d}(s\,;\zdot)^{2}
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \cdot
+    %     \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
     \end{eqnarray*}
     Then,
     \,$
@@ -1722,36 +1821,36 @@ Then, the following statements are true:
                 }
             }
     \end{eqnarray*}
-    where
-    \,$\widetilde{y}_{\bullet}$\,
-    is given by:
-    \begin{equation*}
-    \widetilde{y}_{k}
-    \;\; := \;\;
-        \left\{\begin{array}{cl}
-            y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
-            \\
-            % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
-            \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
-            \end{array}\right.,
-    \end{equation*}
-    and, for \,$k \in s_{M}$,\, the parameters
-    \,$\mu_{k}$\, and \,$\sigma_{k}^{2}$\,
-    are given by:
-    \begin{eqnarray*}
-    \mu_{k}
-    & := &
-        {\color{white}...}E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Zdot\,,\Xobs\right.\right]
-    \\
-    \sigma_{k}^{2}
-    & := &
-        \Var_{Y}\!\left[\;
-            Y_{k}
-            \,\left\vert\;
-            \Zdot\,,\Xobs
-            \right.
-            \right]
-    \end{eqnarray*}
+    % where
+    % \,$\widetilde{y}_{\bullet}$\,
+    % is given by:
+    % \begin{equation*}
+    % \widetilde{y}_{k}
+    % \;\; := \;\;
+    %     \left\{\begin{array}{cl}
+    %         y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+    %         \\
+    %         % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+    %         \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+    %         \end{array}\right.,
+    % \end{equation*}
+    % and, for \,$k \in s_{M}$,\, the parameters
+    % \,$\mu_{k}$\, and \,$\sigma_{k}^{2}$\,
+    % are given by:
+    % \begin{eqnarray*}
+    % \mu_{k}
+    % & := &
+    %     {\color{white}...}E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Zdot\,,\Xobs\right.\right]
+    % \\
+    % \sigma_{k}^{2}
+    % & := &
+    %     \Var_{Y}\!\left[\;
+    %         Y_{k}
+    %         \,\left\vert\;
+    %         \Zdot\,,\Xobs
+    %         \right.
+    %         \right]
+    % \end{eqnarray*}
 \end{enumerate}
 \end{lemma}
 \proof
@@ -3226,7 +3325,7 @@ Then, the following statements are true:
                     \left(W^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
                 \,+\,
                 \underset{k \in s_{M}}{\sum}\,
-                    w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
+                    w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
                 \,\right)
             \, + \,
             \left(\,
@@ -3479,7 +3578,7 @@ Then, the following statements are true:
                 \right]
             \,\;+\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}^{2}\,d_{k}
+            w_{k}^{2}\,d_{k}^{2}
             \cdot
             \Var_{Y}\!\left[\;Y_{k}
                 \,\left\vert\,
@@ -3502,7 +3601,7 @@ Then, the following statements are true:
                 \left(W^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
             \,\;+\;
             \underset{k \in s_{M}}{\sum}\,
-                w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
+                w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
             \;\right),
     \\
     &&
@@ -3780,8 +3879,8 @@ Then, the following statements are true:
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-% \vskip 0.5cm
-\clearpage
+% \clearpage
+\vskip 0.5cm
 \subsection{Estimator for sampling-nonresponse covariance component of
 \,$\MSE\!\left(\,\left.\widetilde{R}_{d,Y/Z}\;\right\vert\,\Zdot\,,\Xobs\right)$}
 \setcounter{theorem}{0}
@@ -3927,10 +4026,10 @@ Then, the following statements are true:
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,(w_{l}-1)\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -3957,10 +4056,10 @@ Then, the following statements are true:
         \cdot
         \left(\,
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,\sigma_{k}^{2}
+            w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
     \\
     & = &
@@ -3974,10 +4073,10 @@ Then, the following statements are true:
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,(w_{l}-1)\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -4008,10 +4107,10 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 \underset{l \in s_{R}}{\sum}\,
-                d_{l}\,W^{(+)}_{d,l}\,\sigma_{l}^{2}
+                W^{(+)}_{d,l}\,d_{l}\,\sigma_{l}^{2}
                 \;\;-\;
                 \underset{k \in s_{M}}{\sum}\,
-                w_{k}\,d_{k}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
                 }{
                 \overset{{\color{white}.}}{N^{2}}                
                 }
@@ -4170,10 +4269,10 @@ Then, the following statements are true:
         \!\right)
     & = &
         \underset{l \in s_{R}}{\sum}\,
-        d_{l}\,W^{(+)}_{d,l}\,(w_{l}-1)\,\sigma_{l}^{2}
+        W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
         \;\;-\;
         \underset{k \in s_{M}}{\sum}\,
-        w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+        w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
     \end{eqnarray*}
     \vskip -0.2cm
     \noindent
@@ -4197,7 +4296,7 @@ Then, the following statements are true:
             \;-
             \underset{k \in s_{M}}{\sum}\,w_{k}\,d_{k}\,Y_{k}
             \;,\;
-            \underset{k \in s}{\sum}\;d_{k}w_{k}Y_{k}
+            \underset{k \in s}{\sum}\;w_{k}d_{k}Y_{k}
             \;-
             \underset{k \in U}{\sum}\;d_{k}Y_{k}
             \,\left\vert\!
@@ -4214,7 +4313,7 @@ Then, the following statements are true:
             \;-
             \underset{k \in s_{M}}{\sum}\,w_{k}\,d_{k}\,Y_{k}
             \;,\;
-            \underset{k \in s}{\sum}\;d_{k}(w_{k}-1)Y_{k}
+            \underset{k \in s}{\sum}\;(w_{k}-1)d_{k}Y_{k}
             \;-
             \underset{k \in U \backslash s}{\sum}d_{k}Y_{k}
             \;\right\vert\!
@@ -4231,7 +4330,7 @@ Then, the following statements are true:
             \!\right]
         \;-\;
         \underset{k \in s_{M}}{\sum}\,
-        w_{k}\,(w_{k}-1)\,d_{k}\,\Var_{Y}\!\left[\;
+        w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\Var_{Y}\!\left[\;
             Y_{k}
             \;\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
@@ -4259,7 +4358,7 @@ Then, the following statements are true:
             \right]
         \,-\,
         \underset{k \in s_{M}}{\sum}\,
-        w_{k}\,(w_{k}-1)\,d_{k}\,\Var_{Y}\!\left[\,
+        w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\Var_{Y}\!\left[\,
             Y_{k}
             \left\vert\,
             \Zdot,\Xobs
@@ -4268,14 +4367,14 @@ Then, the following statements are true:
     \\
     &&
         \quad\quad\quad
-        \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Zdot,\Xobs$}
+        \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; (\Zdot,\Xobs)$}
     \\
     & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
         \underset{l \in s_{R}}{\sum}\,
         W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
         \;\;-\;
         \underset{k \in s_{M}}{\sum}\,
-        w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+        w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
     \end{eqnarray*}
     This completes the proof of Claim 1.
 
@@ -4293,10 +4392,10 @@ Then, the following statements are true:
         \!\right)
     \;\; = \;\;
         \underset{l \in s_{R}}{\sum}\,
-        d_{l}\,W^{(+)}_{d,l}\,\sigma_{l}^{2}
+        W^{(+)}_{d,l}\,d_{l}\,\sigma_{l}^{2}
         \;\;-\;
         \underset{k \in s_{M}}{\sum}\,
-        w_{k}\,d_{k}\,\sigma_{k}^{2}
+        w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
     $
     \vskip 0.2cm
     \noindent
@@ -4352,7 +4451,7 @@ Then, the following statements are true:
     \\
     & = &
         \underset{l \in s_{R}}{\sum}\,
-        d_{l}\,W^{(+)}_{d,l}\,\Var_{Y}\!\left[\;
+        W^{(+)}_{d,l}\,d_{l}\,\Var_{Y}\!\left[\;
             Y_{l}
             \,\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
@@ -4360,7 +4459,7 @@ Then, the following statements are true:
             \!\right]
         \;-\;
         \underset{k \in s_{M}}{\sum}\,
-        d_{k}^{2}\,w_{k}\,\Var_{Y}\!\left[\;
+        w_{k}\,d_{k}^{2}\,\Var_{Y}\!\left[\;
             Y_{k}
             \,\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
@@ -4380,7 +4479,7 @@ Then, the following statements are true:
     \\
     & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
         \underset{l \in s_{R}}{\sum}\,
-        d_{l}\,W^{(+)}_{d,l}\,\Var_{Y}\!\left[\,
+        W^{(+)}_{d,l}\,d_{l}\,\Var_{Y}\!\left[\,
             Y_{l}
             \left\vert\,
             \Zdot,\Xobs
@@ -4388,7 +4487,7 @@ Then, the following statements are true:
             \right]
         \,-\,
         \underset{k \in s_{M}}{\sum}\,
-        w_{k}\,d_{k}\,\Var_{Y}\!\left[\,
+        w_{k}\,d_{k}^{2}\,\Var_{Y}\!\left[\,
             Y_{k}
             \left\vert\,
             \Zdot,\Xobs
@@ -4399,10 +4498,10 @@ Then, the following statements are true:
     \\
     & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
         \underset{l \in s_{R}}{\sum}\,
-        d_{l}\,W^{(+)}_{d,l}\,\sigma_{l}^{2}
+        W^{(+)}_{d,l}\,d_{l}\,\sigma_{l}^{2}
         \;\;-\;
         \underset{k \in s_{M}}{\sum}\,
-        w_{k}\,d_{k}\,\sigma_{k}^{2}
+        w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
     \end{eqnarray*}
     \vskip -0.2cm
     This completes the proof of Claim 2.
@@ -4447,7 +4546,7 @@ Then, the following statements are true:
                 \widehat{T}_{d,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    {\color{red}\widehat{T}_{d}(s\,;\Zdot)}
                     }
                 }
             \, - \,
@@ -4457,7 +4556,7 @@ Then, the following statements are true:
                 {\color{white}..}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{d,Z}
+                    {\color{red}T_{d,Z}}
                     }
                 }           
             \;\,\right\vert\!
@@ -4699,10 +4798,10 @@ Then, the following statements are true:
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,(w_{l}-1)\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -4738,10 +4837,10 @@ Then, the following statements are true:
         \cdot
         \left(\,
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,\sigma_{k}^{2}
+            w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right),
         \quad
         \textnormal{by Claim 1, Claim 2}
@@ -4757,10 +4856,10 @@ Then, the following statements are true:
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,(w_{l}-1)\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -4787,10 +4886,10 @@ Then, the following statements are true:
         \cdot
         \left(\,
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,\sigma_{k}^{2}
+            w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
     \\
     & = &
@@ -4804,10 +4903,10 @@ Then, the following statements are true:
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,(w_{l}-1)\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -4838,10 +4937,10 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 \underset{l \in s_{R}}{\sum}\,
-                d_{l}\,W^{(+)}_{d,l}\,\sigma_{l}^{2}
+                W^{(+)}_{d,l}\,d_{l}\,\sigma_{l}^{2}
                 \;\;-\;
                 \underset{k \in s_{M}}{\sum}\,
-                w_{k}\,d_{k}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
                 }{
                 \overset{{\color{white}.}}{N^{2}}                
                 }
