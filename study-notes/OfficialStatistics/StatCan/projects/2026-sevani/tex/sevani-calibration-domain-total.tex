@@ -16,7 +16,7 @@ Suppose:
 \begin{itemize}
 \item
     We would like to estimate
-    -- using data collected according to a probability sample --
+    -- using data from a probability sample --
     a domain total
     \begin{equation*}
     T_{d,Y}
@@ -537,7 +537,7 @@ Suppose:
     \;\; = \;\;
         Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
     \;\; = \;\;
-        \varphi^{(j)}_{0k}
+        \varphi^{(j)}_{0{\color{red}k}}
         \,+\,
         \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{l{\color{red}k}}\,Y_{l}\,,
         \quad
@@ -772,7 +772,7 @@ and the responding subsample
     %     0
     % \end{equation*}
     \begin{equation*}
-    (\,\mu\otimes\pi\,)\!\left(\;\,
+    (\,\lambda\otimes\pi\,)\!\left(\;\,
         \underset{k \in U}{\bigcup}\left\{\;
             (\omega,s) \in \Omega\times\mathcal{P}(U)
             \;\left\vert
@@ -812,7 +812,7 @@ and the responding subsample
 \item
     $\Xdotdot$
     \,--\,
-    $\Re^{r}$-valued (auxiliary) predictor variables for imputation.
+    $\Re^{r}$-valued (auxiliary) predictor variables for $\Ydot$.
 \item
     $\Gdotdot$
     \,--\,
@@ -860,11 +860,49 @@ and the responding subsample
 \noindent
 \textbf{Probabilistic assumptions}
 \begin{itemize}
+% \item
+%     $\pi_{i} \,:=\, P(\,S_{i} = 1\,) \,:=\, \pi\!\left(\,\left\{\,\left. s \overset{{\color{white}.}}{\subset} U \,\right\vert\, i \in s\,\right\}\,\right) \,>\, 0$,\,
+%     for each \,$i \in U$.\,
+%     % and
+%     % \,$\widetilde{w}_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
 \item
-    $\pi_{i} \,:=\, P(\,S_{i} = 1\,) \,:=\, \pi\!\left(\,\left\{\,\left. s \overset{{\color{white}.}}{\subset} U \,\right\vert\, i \in s\,\right\}\,\right) \,>\, 0$,\,
-    for each \,$i \in U$.\,
-    % and
-    % \,$\widetilde{w}_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
+    The unit-level selection probabilities are all strictly positive, i.e.,
+    \begin{equation*}
+    \pi_{i}
+    \; := \;
+        P(\,S_{i} = 1\,)
+    \; := \;
+        \pi\!\left(\,\left\{\,
+            \left.
+            s \overset{{\color{white}.}}{\subset} U
+            \,\right\vert\,
+            i \in s
+            \,\right\}
+        \,\right)
+    \;\; > \;\;
+        0,\,
+    \textnormal{for each \,$i \in U$\,
+    % and \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
+    }
+    \end{equation*}
+\item
+    The second-order joint selection probabilities are all strictly positive, i.e.,
+    \begin{equation*}
+    \pi_{ij}
+    \; := \;
+        P(\,S_{i} = S_{j} = 1\,)
+    \; := \;
+        \pi\!\left(\,\left\{\,
+            \left.
+            s \overset{{\color{white}.}}{\subset} U
+            \,\right\vert\,
+            i, j \in s
+            \,\right\}
+        \,\right)
+    \;\; > \;\;
+        0,\,
+    \textnormal{for each \,$i,j \in U$,\, with $i \neq j$}
+    \end{equation*}
 \item
     $\left(\,\Ydot\,,\Gdotdot\,,\Xdotdot\,\right)$\, and \,$\Sdot$\, are (unconditionally) independent.
 \item
