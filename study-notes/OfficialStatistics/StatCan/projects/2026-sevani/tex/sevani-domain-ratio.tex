@@ -1,7 +1,7 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Variance estimation for estimators for {\color{red}domain ratios} where composite linear imputation has been applied in the {\color{red}numerator}}
+\section{Extended SEVANI: Variance estimation for estimators for {\color{red}domain ratios} where composite linear imputation has been applied in the {\color{red}numerator}}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -5134,7 +5134,7 @@ Then, we have the following results:
 \item
     By Lemma \ref{DomainRatioSamplingVariance},
     the sampling variance component can be estimated
-    (though \textbf{\color{red}without proof of consistency})
+    % (though \textbf{\color{red}without proof of consistency})
     as follows:
     \begin{eqnarray*}
     &&
@@ -5184,6 +5184,7 @@ Then, we have the following results:
         }
     \\
     &&
+        {\color{red}
         \; + \;
         \dfrac{
             (-2)
@@ -5215,184 +5216,141 @@ Then, we have the following results:
                 \widehat{T}_{d}(s\,;\zdot)^{2}
                 }
             }
+        }
     \end{eqnarray*}
-    where
-    \begin{equation*}
-    \widetilde{y}_{k}
-    \;\; := \;\;
-        \left\{\begin{array}{cl}
-            y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
-            \\
-            % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
-            \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
-            \end{array}\right.
-    \end{equation*}
-    and
-    \,$\widehat{AV}^{\textnormal{(lin)}}(\,s\,;y_{\bullet},\zdot\,)$\,
-    is the Linearization-based estimator for the sampling variance
-    of the Horvitz-Thompson population ratio estimator, i.e.,
+    % where
     % \begin{equation*}
-    % v(\,s\,;y_{\bullet}\,)
+    % \widetilde{y}_{k}
     % \;\; := \;\;
-    %     \underset{k \in s}{\sum}\,
-    %     \underset{l \in s}{\sum}\,
-    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-    %     (d_{k}w_{k}y_{k})\,(d_{l}w_{l}y_{l})\,,
+    %     \left\{\begin{array}{cl}
+    %         y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+    %         \\
+    %         % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+    %         \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+    %         \end{array}\right.
     % \end{equation*}
-    \begin{eqnarray*}
-    &&
-        \widehat{AV}^{\textnormal{(lin)}}(\,s\,;y_{\bullet},\zdot\,)
-    \\
-    & := &
-        \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
-            }
-        \cdot
-        \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\;
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
-        \left(
-            \dfrac{
-                d_{k}\left(\,y_{k}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot z_{k}\,\right)
-                }{
-                \pi_{k}
-                }
-            \right)
-        \left(
-            \dfrac{
-                d_{l}\left(\,y_{l}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot z_{l}\,\right)
-                }{
-                \pi_{l}
-                }
-            \right)
-    \\
-    & = &
-        \dfrac{1}{
-            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
-            }
-        \cdot
-        \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\;
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-        \left(\,
-            \dfrac{d_{k}}{\pi_{k}}
-            \left(\,
-                y_{k}
-                \, - \,
-                \dfrac{
-                    \widehat{T}_{d}(s\,;\ydot)
-                    }{
-                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
-                    }
-                \cdot
-                z_{k}
-                \,\right)
-            \right)
-        \left(\,
-            \dfrac{d_{l}}{\pi_{l}}
-            \left(\,
-                y_{l}
-                \, - \,
-                \dfrac{
-                    \widehat{T}_{d}(s\,;\ydot)
-                    }{
-                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
-                    }
-                \cdot
-                z_{l}
-                \,\right)
-            \right)
-    \\
-    & = &
-        \dfrac{
-            \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\zdot)^{2}
-                }
-            }
-        \; + \;
-        \dfrac{
-            (-2)\cdot
-            \left.
-            \widehat{T}_{d}(s\,;\ydot)
-            \right\slash
-            \widehat{T}_{d}(s\,;\zdot)
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\zdot)^{2}
-                }
-            }
-        \left(\,
-            \underset{k \in s}{\sum}\;
-            \underset{l \in s}{\sum}
-                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
-                \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
-                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
-            \right)
-    \\
-    &&
-        \; + \;
-        \dfrac{
-            \left.
-            \widehat{T}_{d}(s\,;\ydot)^{2}
-            \right\slash
-            \widehat{T}_{d}(s\,;\zdot)^{2}
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\zdot)^{2}
-                }
-            }
-        \cdot
-        \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
-    \end{eqnarray*}
+    % and
+    % \,$\widehat{AV}^{\textnormal{(lin)}}(\,s\,;y_{\bullet},\zdot\,)$\,
+    % is the Linearization-based estimator for the sampling variance
+    % of the Horvitz-Thompson population ratio estimator, i.e.,
+    % % \begin{equation*}
+    % % v(\,s\,;y_{\bullet}\,)
+    % % \;\; := \;\;
+    % %     \underset{k \in s}{\sum}\,
+    % %     \underset{l \in s}{\sum}\,
+    % %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+    % %     (d_{k}w_{k}y_{k})\,(d_{l}w_{l}y_{l})\,,
+    % % \end{equation*}
+    % \begin{eqnarray*}
+    % &&
+    %     \widehat{AV}^{\textnormal{(lin)}}(\,s\,;y_{\bullet},\zdot\,)
+    % \\
+    % & := &
+    %     \dfrac{1}{
+    %         \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+    %         }
+    %     \cdot
+    %     \underset{k \in s}{\sum}\,
+    %     \underset{l \in s}{\sum}\;
+    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+    %     \left(
+    %         \dfrac{
+    %             d_{k}\left(\,y_{k}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot z_{k}\,\right)
+    %             }{
+    %             \pi_{k}
+    %             }
+    %         \right)
+    %     \left(
+    %         \dfrac{
+    %             d_{l}\left(\,y_{l}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot z_{l}\,\right)
+    %             }{
+    %             \pi_{l}
+    %             }
+    %         \right)
+    % \\
+    % & = &
+    %     \dfrac{1}{
+    %         \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+    %         }
+    %     \cdot
+    %     \underset{k \in s}{\sum}\,
+    %     \underset{l \in s}{\sum}\;
+    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+    %     \left(\,
+    %         \dfrac{d_{k}}{\pi_{k}}
+    %         \left(\,
+    %             y_{k}
+    %             \, - \,
+    %             \dfrac{
+    %                 \widehat{T}_{d}(s\,;\ydot)
+    %                 }{
+    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
+    %                 }
+    %             \cdot
+    %             z_{k}
+    %             \,\right)
+    %         \right)
+    %     \left(\,
+    %         \dfrac{d_{l}}{\pi_{l}}
+    %         \left(\,
+    %             y_{l}
+    %             \, - \,
+    %             \dfrac{
+    %                 \widehat{T}_{d}(s\,;\ydot)
+    %                 }{
+    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
+    %                 }
+    %             \cdot
+    %             z_{l}
+    %             \,\right)
+    %         \right)
+    % \\
+    % & = &
+    %     \dfrac{
+    %         \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \; + \;
+    %     \dfrac{
+    %         (-2)\cdot
+    %         \left.
+    %         \widehat{T}_{d}(s\,;\ydot)
+    %         \right\slash
+    %         \widehat{T}_{d}(s\,;\zdot)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \left(\,
+    %         \underset{k \in s}{\sum}\;
+    %         \underset{l \in s}{\sum}
+    %             \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+    %             \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+    %             \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+    %         \right)
+    % \\
+    % &&
+    %     \; + \;
+    %     \dfrac{
+    %         \left.
+    %         \widehat{T}_{d}(s\,;\ydot)^{2}
+    %         \right\slash
+    %         \widehat{T}_{d}(s\,;\zdot)^{2}
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \cdot
+    %     \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+    % \end{eqnarray*}
 \item
     By Lemma \ref{DomainRatioNonresponseVariance},
     the nonresponse variance component can be estimated as follows:
-    % \begin{eqnarray*}
-    % \left(\!\begin{array}{c}
-    %     \textnormal{nonresponse}
-    %     \\
-    %     \textnormal{variance}
-    %     \\
-    %     \textnormal{{\color{white}..}component{\color{white}..}}
-    %     \end{array}\!\right)
-    % & := &
-    %     E_{SR}\!\left[\,
-    %     E_{Y}\!\left[\,
-    %         \left.
-    %         (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
-    %         \,\right\vert\,
-    %         s,s_{R},\Xobs
-    %         \,\right]
-    %         \,\right]
-    % \;\; {\color{red}\approx} \;\;
-    %     E_{Y}\!\left[\,
-    %         \left.
-    %         (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
-    %         \,\right\vert\,
-    %         s,s_{R},\Xobs
-    %         \,\right]
-    % \\
-    % & = &
-    %     {\color{blue}
-    %     \left(\;
-    %         \underset{l \in s_{R}}{\sum}
-    %             \left(W^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
-    %         \,+\,
-    %         \underset{k \in s_{M}}{\sum}\,
-    %             w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
-    %         \,\right)
-    %     \;+\;
-    %     \left(\,
-    %         W^{(+)}_{d,0}
-    %         \,+\,
-    %         \underset{l \in s_{R}}{\sum}\;W^{(+)}_{d,l}\,\mu_{l}
-    %         \,-\,
-    %         \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
-    %         \,\right)^{2}
-    %     }
-    % \end{eqnarray*}
     \begin{eqnarray*}
     &&
     \left(\!\begin{array}{c}
@@ -5454,84 +5412,8 @@ Then, we have the following results:
 \item
     By Lemma \ref{DomainRatioMixedVariance},
     the sampling-nonresponse covariance component can be estimated
-    (though \textbf{\color{red}without proof of consistency})
+    % (though \textbf{\color{red}without proof of consistency})
     as follows:
-    % \begin{eqnarray*}
-    % \left(\!\begin{array}{c}
-    %     \textnormal{sampling-nonresponse}
-    %     \\
-    %     \textnormal{covariance}
-    %     \end{array}\!\right)
-    % & := &
-    %     2\,
-    %     E_{SR}\!\left[\,
-    %     E_{Y}\!\left[\,
-    %         \left.
-    %         (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
-    %         \,\right\vert\,
-    %         s,s_{R},\Xobs
-    %         \,\right]
-    %         \,\right]
-    % \\
-    % & \approx &
-    %     2\,
-    %     E_{Y}\!\left[\,
-    %         \left.
-    %         (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
-    %         \,\right\vert\,
-    %         s,s_{R},\Xobs
-    %         \,\right]
-    % \\
-    % & = &
-    %     2\cdot
-    %     \Cov_{Y}\!\left(\,
-    %         \left.
-    %         \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
-    %         \,,\,
-    %         \widehat{T}_{d,Y} - T_{d,Y}
-    %         \;\right\vert\,
-    %         s,s_{R},\Xobs
-    %         \,\right)
-    % \\
-    % &&
-    %     +\;
-    %     2\cdot
-    %     E_{Y}\!\left[\;
-    %         \left.
-    %         \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
-    %         \;\right\vert\,
-    %         s,s_{R},\Xobs
-    %         \,\right]
-    %     \cdot
-    %     {\color{red}E_{Y}\!\left[\;
-    %         \left.
-    %         \widehat{T}_{d,Y} - T_{d,Y}
-    %         \;\right\vert\,
-    %         s,s_{R},\Xobs
-    %         \,\right]}
-    % \\
-    % & {\color{red}\approx} &
-    %     2\cdot
-    %     \Cov_{Y}\!\left(\,
-    %         \left.
-    %         \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
-    %         \,,\,
-    %         \widehat{T}_{d,Y} - T_{d,Y}
-    %         \;\right\vert\,
-    %         s,s_{R},\Xobs
-    %         \,\right)
-    % \\
-    % & = &
-    %     {\color{blue}
-    %     2\,\cdot\!
-    %     \underset{l \in s_{R}}{\sum}\,
-    %         d_{l}\,W^{(+)}_{d,l}\,(w_{l}-1)\,\sigma_{l}^{2}
-    %     \;\;-\;
-    %     2\,\cdot\!
-    %     \underset{k \in s_{M}}{\sum}\,
-    %         w_{k}\,d_{k}\,(w_{1}-1)\,\sigma_{k}^{2}
-    %     }
-    % \end{eqnarray*}
     \begin{eqnarray*}
     &&
         \left(\!\begin{array}{c}
@@ -5639,6 +5521,7 @@ Then, we have the following results:
             \!\!\right)
     \\
     & = &
+        {\color{blue}
         \dfrac{
             2
             }{
@@ -5649,13 +5532,15 @@ Then, we have the following results:
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,(w_{l}-1)\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
+        }
     \\
     &&
+        {\color{red}
         \; + \;
         2
         \cdot
@@ -5681,14 +5566,15 @@ Then, we have the following results:
         \cdot
         \left(\,
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,\sigma_{k}^{2}
+            w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
+        }
     \\
     & = &
-        {\color{blue}
+        {\color{gray}
         \dfrac{
             2
             }{
@@ -5699,14 +5585,15 @@ Then, we have the following results:
         \cdot
         \left(\;
             \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,W^{(+)}_{d,l}\,(w_{l}-1)\,\sigma_{l}^{2}
+            W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
             \;\;-\;
             \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,(w_{k}-1)\,\sigma_{k}^{2}
+            w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
         }
     \\
     &&
+        {\color{gray}
         \; + \;
         2
         \cdot
@@ -5716,7 +5603,7 @@ Then, we have the following results:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                {\color{red}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{gray}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -5736,14 +5623,15 @@ Then, we have the following results:
         \left(\,
             \dfrac{
                 \underset{l \in s_{R}}{\sum}\,
-                d_{l}\,W^{(+)}_{d,l}\,\sigma_{l}^{2}
+                W^{(+)}_{d,l}\,d_{l}\,\sigma_{l}^{2}
                 \;\;-\;
                 \underset{k \in s_{M}}{\sum}\,
-                w_{k}\,d_{k}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
                 }{
                 \overset{{\color{white}.}}{N^{2}}                
                 }
             \,\right)
+        }
     \end{eqnarray*}
 \item
     \textbf{Important Remarks:}
@@ -5919,10 +5807,10 @@ Then, we have the following results:
         \left(\,
             \dfrac{
                 \underset{l \in s_{R}}{\sum}\,
-                d_{l}\,W^{(+)}_{d,l}\,\sigma_{l}^{2}
+                W^{(+)}_{d,l}\,d_{l}\,\sigma_{l}^{2}
                 \;\;-\;
                 \underset{k \in s_{M}}{\sum}\,
-                w_{k}\,d_{k}\,\sigma_{k}^{2}
+                w_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
                 }{
                 \overset{{\color{white}.}}{N^{2}}                
                 }
