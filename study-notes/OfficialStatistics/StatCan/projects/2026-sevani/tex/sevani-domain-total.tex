@@ -16,7 +16,7 @@ Suppose:
 \begin{itemize}
 \item
     We would like to estimate
-    -- using data collected according to a probability sample --
+    -- using data from a probability sample --
     a domain total
     \begin{equation*}
     T_{d,Y}
@@ -29,7 +29,7 @@ Suppose:
     \,$\Ydot = (Y_{1},\ldots,Y_{N})$\,
     is an $\Re$-valued population characteristic.
 \item
-    Aside/Reminder \#1:
+    Aside/Reminder:
     \vskip 0.01cm
     \noindent
     If there were no missing data in \,$\ydot$\, for the units in the selected sample,
@@ -53,7 +53,8 @@ Suppose:
     \begin{eqnarray*}
     \widehat{T}^{\textnormal{(HT)}}_{d,Y}
     & :=: &
-        \widehat{T}^{\textnormal{(HT)}}(s\,;\dydot)
+        % \widehat{T}^{\textnormal{(HT)}}(s\,;\dydot)
+        \widehat{T}^{\textnormal{(HT)}}(\,\Sdot,\Ydot\,;\dbullet\,)
     \;\; := \;\;
         \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y_{i}\,,
     \end{eqnarray*}
@@ -62,7 +63,7 @@ Suppose:
     where
     \begin{itemize}
     \item
-        $s \subset U$\, is the selected sample, and
+        $s \subset U$\, is the (random) selected sample, and
         $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$\,
         is the vector of $\{0,1\}$-valued selection indicator variables,
     \item
@@ -75,15 +76,15 @@ Suppose:
     the sampling variance of 
     \,$
     \widehat{T}^{\textnormal{(HT)}}_{d,\xi}
-    \,=\,
-        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+    % \,=\,
+    %     \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
     $\,
     is given by
     \begin{equation*}
     \Var_{S}\!\left(\,
         \left.
-        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
-        \;\right\vert\!
+        \widehat{T}^{\textnormal{(HT)}}_{d,\xi}
+        \,\right\vert\!
         \begin{array}{c} \xi_{\bullet} \end{array}
         \!\!\right)
     \;\; = \;\;\,
@@ -219,7 +220,7 @@ Suppose:
     \;\; = \;\;
         Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
     \;\; = \;\;
-        \varphi^{(j)}_{0k}
+        \varphi^{(j)}_{0{\color{red}k}}
         \,+\,
         \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{l{\color{red}k}}\,Y_{l}\,,
         \quad
@@ -389,12 +390,12 @@ and the responding subsample
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\mathcal{P}(U)$,\,
     i.e., $\mathcal{P}(\mathcal{P}(U))$-measurable map.
 \item
-    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \otimes \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
+    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\Omega \times \mathcal{P}(U)$,\,
-    i.e., $\left(\mathscr{A} \overset{{\color{white}.}}{\times} \mathcal{P}(\mathcal{P}(U))\right)$-measurable map
+    i.e., $\left(\mathscr{A} \overset{{\color{white}.}}{\otimes} \mathcal{P}(\mathcal{P}(U))\right)$-measurable map
     that satisfies:
     \begin{equation*}
-    (\,\mu\times\pi\,)\!\left(\;\,
+    (\,\lambda\otimes\pi\,)\!\left(\;\,
         \underset{k \in U}{\bigcup}\left\{\;
             (\omega,s) \in \Omega\times\mathcal{P}(U)
             \;\left\vert
@@ -434,7 +435,7 @@ and the responding subsample
 \item
     $\Xdotdot$
     \,--\,
-    $\Re^{r}$-valued auxiliary variable.
+    $\Re^{r}$-valued auxiliary variable (to be used as predictor variables for $\Ydot$). 
 \item
     $\Sdot$
     \,--\,
@@ -478,10 +479,43 @@ and the responding subsample
 \textbf{Probabilistic assumptions}
 \begin{itemize}
 \item
-    $\pi_{i} \,:=\, P(\,S_{i} = 1\,) \,:=\, \pi\!\left(\,\left\{\,\left. s \overset{{\color{white}.}}{\subset} U \,\right\vert\, i \in s\,\right\}\,\right) \,>\, 0$,\,
-    for each \,$i \in U$,\,
-    and
-    \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
+    The unit-level selection probabilities are all strictly positive, i.e.,
+    \begin{equation*}
+    \pi_{i}
+    \; := \;
+        P(\,S_{i} = 1\,)
+    \; := \;
+        \pi\!\left(\,\left\{\,
+            \left.
+            s \overset{{\color{white}.}}{\subset} U
+            \,\right\vert\,
+            i \in s
+            \,\right\}
+        \,\right)
+    \;\; > \;\;
+        0,\,
+    \textnormal{for each \,$i \in U$\,
+    % and \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
+    }
+    \end{equation*}
+\item
+    The second-order joint selection probabilities are all strictly positive, i.e.,
+    \begin{equation*}
+    \pi_{ij}
+    \; := \;
+        P(\,S_{i} = S_{j} = 1\,)
+    \; := \;
+        \pi\!\left(\,\left\{\,
+            \left.
+            s \overset{{\color{white}.}}{\subset} U
+            \,\right\vert\,
+            i, j \in s
+            \,\right\}
+        \,\right)
+    \;\; > \;\;
+        0,\,
+    \textnormal{for each \,$i,j \in U$,\, with $i \neq j$}
+    \end{equation*}
 \item
     $\left(\,\Ydot\,,\Xdotdot\,\right)$\, and \,$\Sdot$\, are (unconditionally) independent.
 \item
@@ -580,7 +614,7 @@ Then, we have:
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.3cm
-\begin{lemma}[Conditional bias of \,$\widetilde{T}_{d,Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
+\begin{lemma}[Conditional bias of \,$\widetilde{T}_{d,Y}$; see Equation (5.2) in \cite{Beaumont2011}]
 \label{biasTtilde}
 \mbox{}
 \vskip 0.1cm
@@ -1295,7 +1329,7 @@ Then, the following statements are true:
     E_{Y_{M}}\!\left[\,
         v(\,s\,;\dbullet\Ydot\,)
         \left\vert\,
-        s,s_{R},\YsubR = y_{R},\Xobs
+        s,s_{R},\YsubR,\Xobs
         \right.
         \right]
     $\,
@@ -1304,7 +1338,7 @@ Then, the following statements are true:
     E_{Y_{M}}\!\left[\,
         v(\,s\,;\dbullet\Ydot\,)
         \left\vert\,
-        s,s_{R},\YsubR=y_{R},\Xobs
+        s,s_{R},\YsubR,\Xobs
         \right.
         \right]
     \;\; = \;\;
@@ -1376,7 +1410,7 @@ Then, the following statements are true:
     E_{Y_{M}}\!\left[\,
         v(\,s\,;\dbullet\Ydot\,)
         \left\vert\,
-        s,s_{R},\YsubR=y_{R},\Xobs
+        s,s_{R},\YsubR,\Xobs
         \right.
         \right]
     & = &
@@ -1387,7 +1421,7 @@ Then, the following statements are true:
             \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
             (d_{k}w_{k}Y_{k})\,(d_{l}w_{l}Y_{l})
             \;\right\vert\,
-            s,s_{R},\YsubR=y_{R},\Xobs
+            s,s_{R},\YsubR,\Xobs
             \right]
     \\
     & = &
@@ -1398,7 +1432,7 @@ Then, the following statements are true:
         E_{Y_{M}}\!\left[\;
             Y_{k}Y_{l}
             \,\left\vert\,
-            s,s_{R},\YsubR=y_{R},\Xobs
+            s,s_{R},\YsubR,\Xobs
             \right.
             \right]
     \\
@@ -1410,7 +1444,7 @@ Then, the following statements are true:
         E_{Y_{M}}\!\left[\;
             Y_{k}Y_{l}
             \,\left\vert\,
-            \YsubR=y_{R},\Xobs
+            \YsubR,\Xobs
             \right.
             \right]
     \\
@@ -1428,7 +1462,7 @@ Then, the following statements are true:
     E_{Y_{M}}\!\left[\;
         Y_{k}Y_{l}
         \,\left\vert\,
-        \YsubR=y_{R},\Xobs
+        \YsubR,\Xobs
         \right.
         \right]
     & = &
@@ -1449,7 +1483,7 @@ Then, the following statements are true:
     E_{Y_{M}}\!\left[\;
         Y_{k}Y_{l}
         \,\left\vert\,
-        \YsubR=y_{R},\Xobs
+        \YsubR,\Xobs
         \right.
         \right]
     & = &
