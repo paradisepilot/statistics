@@ -341,7 +341,8 @@ We seek to quantify the variability of
 as an estimator for
 \,$R_{d,Y/Z} \; := \; \dfrac{T_{d,Y}}{T_{d,Z}}$.
 \vskip 0.1cm
-Following \cite{Beaumont2011} (which treats domain totals), the conditional mean squared error (MSE)
+Following \cite{Beaumont2011} (which treats domain totals),
+the conditional mean squared error (MSE) given \,$\Zdot$\, and \,$\Xdotdot$\,
 \begin{equation*}
 \MSE\!\left(\;
     \left.
@@ -363,9 +364,7 @@ Following \cite{Beaumont2011} (which treats domain totals), the conditional mean
 of
 \,$\widetilde{R}_{d,Y/Z}$\,
 as estimator for
-\,$R_{d,Y/Z}$,\,
-given
-\,$\Zdot$\, and \,$\Xdotdot$,\,
+\,$R_{d,Y/Z}$\,
 is proposed for this purpose.
 \vskip 0.3cm
 \noindent
@@ -388,45 +387,49 @@ will be proposed.
 \noindent
 Lastly, we define the following entities that will repeatedly appear
 in the formulas we will derive in these notes:
-\begin{eqnarray*}
+\begin{equation*}
 \mu_{k}
-& := &
-    {\color{white}...}E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Zdot\,,\Xobs\right.\right]
-\\ \\
+\; := \;
+    {\color{white}...}E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Zdot\,,\Xobs\right.\right],
+\quad\quad
 \sigma_{k}^{2}
-& := &
+\; := \;
     \Var_{Y}\!\left[\;
         Y_{k}
         \,\left\vert\;
         \Zdot\,,\Xobs
         \right.
         \right]
-\\ \\
+\end{equation*}
+\begin{equation*}
 \widetilde{y}_{k}
-& := &
+\; := \;
     \left\{\begin{array}{cl}
         y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
         \\
         % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
         \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
         \end{array}\right.
-\\ \\
+\end{equation*}
+\begin{equation*}
 W^{(+)}_{d,{\color{red}0}}
-& := &
+\; := \;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
         \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
         \,\right),
-\\ \\
+\quad\quad
 W^{(+)}_{d,{\color{red}l}}
-& := &
+\; := \;
     \left(\;
         \overset{J}{\underset{j=1}{\sum}}\;
         \underset{k \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}l}k}
         \,\right),
 \;\;
 \textnormal{for each \,$l \in s_{R}$}
-\end{eqnarray*}
+\end{equation*}
+\vskip 0.2cm
+\noindent
 Note that
 \,$\widetilde{y}_{k}$,\,
 \,$W^{(+)}_{d,{\color{black}0}}$\,
