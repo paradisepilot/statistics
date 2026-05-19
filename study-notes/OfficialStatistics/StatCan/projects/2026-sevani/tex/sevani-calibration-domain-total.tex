@@ -1,7 +1,7 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Variance estimation for {\color{red}calibration} estimators with composite linear imputation for {\color{red}domain totals}}
+\section{Extended SEVANI: Variance estimation for {\color{red}calibration} estimators with composite linear imputation for {\color{red}domain totals}}
 \label{sectionSEVANICalibrationDomainTotal}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -888,14 +888,14 @@ and the responding subsample
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-% \vskip 0.5cm
-\clearpage
+% \clearpage
+\vskip 0.5cm
 \subsection{Decomposition of the MSE of the imputation estimator}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.3cm
+\vskip 0.1cm
 \begin{lemma}[Decomposition of \,$\MSE(\,\widetilde{T}_{d,Y}\,\vert\,\Gdotdot,\Xobs\,)$; compare Equation (5.3) in \cite{Beaumont2011}]
 \label{CalibrationDomainTotalDecompositionMSETtilde}
 \mbox{}
@@ -1165,13 +1165,13 @@ we will use the following nomenclature:
 
 % \vskip 0.5cm
 \clearpage
-\subsection{Estimator for the sampling variance component of
+\subsection{Estimator for sampling variance component of
 \,$\MSE\!\left(\,\left.\widetilde{T}_{d,Y}\,\right\vert\Gdotdot,\Xobs\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\vskip 0.3cm
+\vskip 0.1cm
 \begin{lemma}[Estimator for sampling variance component; compare Equation (5.5) in \cite{Beaumont2011}]
 \label{CalibrationDomainTotalSamplingVariance}
 \mbox{}
@@ -4185,123 +4185,64 @@ Then, the following statements are true:
 
 \vskip 0.1cm
 \noindent
-Let
-\begin{equation*}
-\widetilde{T}_{d,Y}(\,s,s_{R},Y_{\bullet}\,;\,X_{\bullet\bullet},\dbullet\,)
-\;\; = \;\;
-    \underset{k \in s_{R}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
-    \;+\,
-    \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}^{*}
-\end{equation*}
-be a composite linear imputation estimator for the domain total
-\,$T_{d,Y} \,:=\, \underset{k \in U}{\sum}\,d_{k}Y_{k}$,\,
-with
-\begin{equation*}
-Y_{k}^{*}
-\;\; = \;\;
-    \varphi^{(j)}_{0k}
-    \,+\,
-    \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}\,,
-\quad
-\textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$}
-\end{equation*}
-Define:
-\;$
-\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
-    \,\left\vert\,
-    \Xobs
-    \right.
-    \,\right]
-$,\,
-\,$
-\sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
-    \,\left\vert\,
-    \Xobs
-    \right.
-    \,\right]
-$,\;
-for \,$k \in s = s_{R} \sqcup s_{M}$.\,
+Suppose we are given quantities as described in Subsection
+\ref{CalibrationDomainTotalFormulationOfVarianceEstimationProblem}
+and
+that they satisfy the probabilistic assumptions as described in Subsection
+\ref{CalibrationDomainTotalProbabilisticFramework}.
 \vskip 0.1cm
 \noindent
-Define also:
-\begin{equation*}
-W^{(+)}_{{\color{red}0}}
-\;\; := \;\;
-    \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{l \in s_{M}^{(j)}}{\sum}\,\widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
-        \,\right),
-\quad\;\;\textnormal{and}\quad\;\;
-W^{(+)}_{{\color{red}l}}
-\;\; := \;\;
-    \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,\varphi^{(j)}_{{\color{red}l}k}
-        \,\right),
-\;\;
-\textnormal{for each \,$l \in s_{R}$}
-\end{equation*}
-\vskip 0.2cm
-\noindent
-Suppose the quantities
-\,$
-\Sdot\,,\,
-\Rdot\,,\,
-\Ydot\,,\,
-\Xdotdot\,,\,
-\dbullet
-$\,
-satisfy the probabilistic assumptions specified in Subsection \ref{CalibrationDomainTotalProbabilisticFramework}.
-\vskip 0.2cm
-\noindent
-Then, the following summarizes the results in \cite{Beaumont2011}:
+Then, we have the following results:
 \begin{itemize}
 \item
-    By Lemma \ref{DecompositionMSETtilde}, we have the following decomposition:
+    By Lemma \ref{CalibrationDomainTotalDecompositionMSETtilde}, we have the following decomposition:
     \begin{eqnarray*}
     \MSE\!\left(\;
         \left.
         \widetilde{T}_{d,Y}
         \;\right\vert\,
-        \Xobs
+        \Gdotdot,\Xobs
         \,\right)
     & := &
         E\!\left[\,
             \left.
             (\,\widetilde{T}_{d,Y} - T_{d,Y}\,)^{2}
             \,\right\vert\,
-            \Xobs
+            \Gdotdot,\Xobs
             \,\right]
     \\
     & = &
         E_{Y}\!\left[\,
-        \Var_{SR}\!\left(\,
-            \left.
-            \widehat{T}_{d,Y}
-            \,\right\vert\,
-            \Ydot,
-            \Xobs
-            \,\right)
-            \,\right]
-        \;+\;
-        E_{SR}\!\left[\,
-        E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+        \Var_{SR}\!\left(\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
             \,\right]
     \\
     &&
-        +\;2\,
+        \; + \;
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
-            \,\right\vert\,
-            s,s_{R},\Xobs
+            (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,)^{2}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
             \,\right]
+    \\
+    &&
+        \; + \; 2 \,
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,\right)
+            \!
+            \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
             \,\right]
     \end{eqnarray*}
     We use the following nomenclature to refer the three summands in the right-hand side:
@@ -4313,13 +4254,12 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         \end{array}\right)
     & := &
         E_{Y}\!\left[\,
-        \Var_{SR}\!\left(\,
-            \left.
-            \widehat{T}_{d,Y}
-            \,\right\vert\,
-            \Ydot,
-            \Xobs
-            \,\right)
+        \Var_{SR}\!\left(\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
             \,\right]
     \\
     \left(\begin{array}{c}
@@ -4330,11 +4270,11 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     & := &
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,)^{2}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
             \,\right]
     \\
     \left(\begin{array}{c}
@@ -4343,85 +4283,195 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         \textnormal{covariance}
         \end{array}\right)
     & := &
-        2\,
+        2 \,
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,\right)
+            \!
+            \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
             \,\right]
     \end{eqnarray*}
 \item
-    By Lemma \ref{SamplingVariance}, the sampling variance component can be estimated as follows:
+    By Lemma \ref{CalibrationDomainTotalSamplingVariance},
+    the sampling variance component can be estimated as follows:
     \begin{eqnarray*}
-    \left(\!\begin{array}{c}
-        \textnormal{sampling}
-        \\
-        \textnormal{variance component}
-        \end{array}\!\right)
-    & := &
+    &&
+        \left(\!\begin{array}{c}
+            \textnormal{sampling}
+            \\
+            \textnormal{variance component}
+            \end{array}\!\right)
+    \;\; := \;\;
         E_{Y}\!\left[\,
-        \Var_{SR}\!\left(\,
-            \left.
-            \widehat{T}_{d,Y}
-            \,\right\vert\,
-            \Ydot,
-            \Xobs
-            \,\right)
-            \,\right]
-    \;\; = \;\;
-        E_{SR}\,
-        E_{Y_{R}}\,
-        E_{Y_{M}}\!\left[\,
-            v(\,s\,;\Ydot\,)
-            \,\left\vert\;
-            s,s_{R},\YsubR,\Xobs
+        \Var_{SR}\!\left(\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
             \right.
+            \!\!\right)
             \,\right]
     \\
     & {\color{red}\approx} &
-    E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \left\vert\,
-        s,s_{R},\YsubR=y_{R},\Xobs
-        \right.
-        \right]
-    \;\; = \;\;
+        E_{SR}\,
+        E_{Y_{R}}\,
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \;\; {\color{red}\approx} \;\;
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        {\color{black}
+        \left(\,
+            \underset{k,l \in s}{\sum}
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \cdot\!
+            \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+            \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+            \,\right)
+        \, - \; 2 \cdot
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        }
+    \\
+    &&
+        {\color{black}
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        }
+    \\
+    &&
+        \; + \;
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        \; - \; 2 \cdot
+        \underset{k \in {\color{red}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{red}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+    \\
+    & = &
         {\color{blue}
-        v(\,s\,;\widetilde{y}_{\bullet}\,)
-        \;+\;
-        \underset{k \in s_{M}}{\sum}\;
-        d_{k}
-        \left(1-\dfrac{1}{\widetilde{w}_{k}}\right)
-        \widetilde{w}_{k}^{2}\,\sigma_{k}^{2}
-        }\,,
+        \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dbullet{\color{red}\widetilde{y}_{\bullet}},\gdotdot\,)
+        \; + \,
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        }
+    \\
+    &&
+        {\color{red}
+        \; - \; 2 \cdot
+        \underset{k \in {\color{red}s_{M}}}{\sum}\,
+        \underset{l \in {\color{red}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+        }
+    \\
+    &&
+        {\color{red}
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{red}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+        }
     \end{eqnarray*}
-    where
-    \,$v(\,s\,;y_{\bullet}\,)$\,
-    is the (design-unbiased) Horvitz-Thompson estimator for sampling variance, i.e.,
-    \begin{equation*}
-    v(\,s\,;y_{\bullet}\,)
-    \;\; := \;\;
-        \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\,
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-        (d_{k}\widetilde{w}_{k}y_{k})\,(d_{l}\widetilde{w}_{l}y_{l})\,,
-    \end{equation*}
-    and
-    \begin{equation*}
-    \widetilde{y}_{k}
-    \;\; := \;\;
-        \left\{\begin{array}{cl}
-            y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
-            \\
-            % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
-            \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
-            \end{array}\right.
-    \end{equation*}
 \item
-    By Lemma \ref{NonresponseVariance}, the nonresponse variance component can be estimated as follows:
+    By Lemma \ref{CalibrationDomainTotalNonresponseVariance},
+    the nonresponse variance component can be estimated as follows:
     \begin{eqnarray*}
     \left(\!\begin{array}{c}
         \textnormal{nonresponse}
@@ -4433,19 +4483,19 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     & := &
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,)^{2}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
             \,\right]
     \;\; {\color{red}\approx} \;\;
         E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,)^{2}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
     \\
     & = &
         {\color{blue}
@@ -4467,7 +4517,8 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         }
     \end{eqnarray*}
 \item
-    By Lemma \ref{MixedVariance}, the mixed variance component can be estimated as follows:
+    By Lemma \ref{CalibrationDomainTotalMixedVariance},
+    the sampling-nonresponse covariance component can be estimated as follows:
     \begin{eqnarray*}
     \left(\!\begin{array}{c}
         \textnormal{sampling-nonresponse}
@@ -4475,73 +4526,68 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         \textnormal{covariance}
         \end{array}\!\right)
     & := &
-        2\,
+        2 \,
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,\right)
+            \!
+            \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
             \,\right]
     \\
     & \approx &
-        2\,
+        2 \,
         E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,\right)
+            \!
+            \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
     \\
     & = &
-        2\cdot
+        2 \cdot
         \Cov_{Y}\!\left(\,
-            \left.
-            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
             \,,\,
-            \widehat{T}_{d,Y} - T_{d,Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right)
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
     \\
     &&
-        +\;
-        2\cdot
+        \; + \;
+        2 \cdot
         E_{Y}\!\left[\;
-            \left.
-            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
         \cdot
-        {\color{red}E_{Y}\!\left[\;
-            \left.
-            \widehat{T}_{d,Y} - T_{d,Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]}
+        {\color{red}
+        E_{Y}\!\left[\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        }
     \\
     & {\color{red}\approx} &
-        2\cdot
-        \Cov_{Y}\!\left(\,
-            \left.
-            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
-            \,,\,
-            \widehat{T}_{d,Y} - T_{d,Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right)
-    \\
-    & = &
         {\color{blue}
-        2\,\cdot\!
-        \underset{l \in s_{R}}{\sum}\,
-            d_{l}\,\widetilde{W}^{(+)}_{d,l}\,(\widetilde{w}_{l}-1)\,\sigma_{l}^{2}
-        \;\;-\;
-        2\,\cdot\!
-        \underset{k \in s_{M}}{\sum}\,
-            \widetilde{w}_{k}\,d_{k}\,(\widetilde{w}_{1}-1)\,\sigma_{k}^{2}
+        2\cdot\!\left(\;
+            \underset{l \in s_{R}}{\sum}\,
+                \widetilde{W}^{(+)}_{d,l}\,(\widetilde{w}_{k}-1)\,d_{l}\,\sigma_{l}^{2}
+            \; - \;
+            \underset{k \in s_{M}}{\sum}\,
+                \widetilde{w}_{k}\,(\widetilde{w}_{1}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
         }
     \end{eqnarray*}
 \item
@@ -4551,30 +4597,33 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     Note that the above estimation/approximation of the mixed variance component
     disregards the following term:
     \begin{equation*}
-    2\,\cdot E_{Y}\!\left[\;
-        \left.
-        \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+    2 \cdot
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
     \cdot
-    {\color{red}E_{Y}\!\left[\;
-        \left.
-        \widehat{T}_{d,Y} - T_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]}
+    {\color{red}
+    E_{Y}\!\left[\;
+        \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    }
     \end{equation*}
     The reason this has to be done in practice is that, in practice,
     there is usually insufficient data/information to compute or estimate
     the quantity
     \,$
     E_{Y}\!\left[\;
-        \left.
-        \widehat{T}_{d,Y} - T_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
     $\,
     (indicated in red above), as \,$T_{d,Y}$\, involves population units
     that are not selected in the sample.
@@ -4583,19 +4632,22 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     Obviously, the above estimation/approximation of the mixed variance component
     is acceptable only if the quantity
     \,$
-    2\,\cdot E_{Y}\!\left[\;
-        \left.
-        \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+    2 \cdot
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
     \cdot
-    {\color{black}E_{Y}\!\left[\;
-        \left.
-        \widehat{T}_{d,Y} - T_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]}
+    {\color{black}
+    E_{Y}\!\left[\;
+        \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    }
     $\,
     is small.
     \vskip 0.1cm
@@ -4603,41 +4655,59 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     For this, in practice, we thus {\color{red}tacitly assume} that the quantity
     \,$
     E_{Y}\!\left[\;
-        \left.
-        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
     $\,
     is small;
     recall that this quantity is called the \textbf{conditional model bias}
-    (see Lemma \ref{biasTtilde}), and
+    (see Lemma \ref{CalibrationDomainTotalBiasTtilde}), and
     it can be expressed as follows:
+    % {\color{blue}
+    % \begin{eqnarray*}
+    % E_{Y}\!\left[\;
+    %     \left.
+    %     \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+    %     \;\right\vert\,
+    %     s,s_{R},\Xobs
+    %     \,\right]
+    % & = &
+    %     \underset{k\in{\color{red}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+    %     E_{Y}\!\left[\;
+    %         \left.
+    %         Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+    %         \;\right\vert\,
+    %         s,s_{R},\Xobs
+    %         \,\right]
+    % \end{eqnarray*}
+    % }
     \begin{eqnarray*}
     E_{Y}\!\left[\;
-        \left.
-        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
     & = &
-        \underset{k\in{\color{red}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
-        E_{Y}\!\left[\;
-            \left.
-            Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}^{*}-Y_{k}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
     \end{eqnarray*}
     This harks back to our earlier remark (Remark \ref{remarkSmallUnitBias}) that,
     in practice, we would like to choose an imputation strategy such that
     \begin{equation*}
-    E_{Y}\!\left[\;
-        \left.
-        Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+    E_{Y}\!\left[\;\,
+        Y_{k}^{*}-Y_{k}
+        \;\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
     \;\; \approx \;\;
         0,
     \quad
