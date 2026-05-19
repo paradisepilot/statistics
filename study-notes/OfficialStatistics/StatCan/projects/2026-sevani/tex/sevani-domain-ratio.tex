@@ -16,7 +16,7 @@ Suppose:
 \begin{itemize}
 \item
     We would like to estimate
-    -- using data collected according to a probability sample --
+    -- using data from a probability sample --
     a domain ratio (the ratio of two population totals)
     \begin{equation*}
     R_{d,Y/Z}
@@ -39,7 +39,7 @@ Suppose:
     are two $\Re$-valued population characteristics.
 \item
     Aside/Reminder:
-    If there were no missing data for the units in the selected sample,
+    If there were no missing data for the units in the (random) selected sample,
     then the \textit{Horvitz-Thompson domain ratio estimator}
     \begin{eqnarray*}
     \widehat{R}_{d,Y/Z}
@@ -316,7 +316,7 @@ Suppose:
     \;\; = \;\;
         Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
     \;\; = \;\;
-        \varphi^{(j)}_{0k}
+        \varphi^{(j)}_{0{\color{red}k}}
         \,+\,
         \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{l{\color{red}k}}\,Y_{l}\,,
         \quad
@@ -522,7 +522,7 @@ and the responding subsample
     %     0
     % \end{equation*}
     \begin{equation*}
-    (\,\mu\otimes\pi\,)\!\left(\;\,
+    (\,\lambda\otimes\pi\,)\!\left(\;\,
         \underset{k \in U}{\bigcup}\left\{\;
             (\omega,s) \in \Omega\times\mathcal{P}(U)
             \;\left\vert
@@ -568,7 +568,7 @@ and the responding subsample
 \item
     $\Xdotdot$
     \,--\,
-    $\Re^{r}$-valued auxiliary variable.
+    $\Re^{r}$-valued auxiliary variable (to be used as predictor variables for $\Ydot$).
 \item
     $\Sdot$
     \,--\,
@@ -611,11 +611,49 @@ and the responding subsample
 \noindent
 \textbf{Probabilistic assumptions}
 \begin{itemize}
+% \item
+%     $\pi_{i} \,:=\, P(\,S_{i} = 1\,) \,:=\, \pi\!\left(\,\left\{\,\left. s \overset{{\color{white}.}}{\subset} U \,\right\vert\, i \in s\,\right\}\,\right) \,>\, 0$,\,
+%     for each \,$i \in U$,\,
+%     and
+%     \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
 \item
-    $\pi_{i} \,:=\, P(\,S_{i} = 1\,) \,:=\, \pi\!\left(\,\left\{\,\left. s \overset{{\color{white}.}}{\subset} U \,\right\vert\, i \in s\,\right\}\,\right) \,>\, 0$,\,
-    for each \,$i \in U$,\,
-    and
-    \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
+    The unit-level selection probabilities are all strictly positive, i.e.,
+    \begin{equation*}
+    \pi_{i}
+    \; := \;
+        P(\,S_{i} = 1\,)
+    \; := \;
+        \pi\!\left(\,\left\{\,
+            \left.
+            s \overset{{\color{white}.}}{\subset} U
+            \,\right\vert\,
+            i \in s
+            \,\right\}
+        \,\right)
+    \;\; > \;\;
+        0,\,
+    \textnormal{for each \,$i \in U$\,
+    % and \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
+    }
+    \end{equation*}
+\item
+    The second-order joint selection probabilities are all strictly positive, i.e.,
+    \begin{equation*}
+    \pi_{ij}
+    \; := \;
+        P(\,S_{i} = S_{j} = 1\,)
+    \; := \;
+        \pi\!\left(\,\left\{\,
+            \left.
+            s \overset{{\color{white}.}}{\subset} U
+            \,\right\vert\,
+            i, j \in s
+            \,\right\}
+        \,\right)
+    \;\; > \;\;
+        0,\,
+    \textnormal{for each \,$i,j \in U$,\, with $i \neq j$}
+    \end{equation*}
 \item
     $\left(\,\Ydot\,,\Zdot\,,\Xdotdot\,\right)$\, and \,$\Sdot$\, are (unconditionally) independent.
 \item
@@ -1721,7 +1759,7 @@ Then, the following statements are true:
     E_{Y_{M}}\!\left[\;
         \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
         \,\left\vert\!
-        \begin{array}{c} s,s_{R},\YsubR = y_{R}, \\ \Zdot\,,\Xobs \end{array}
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Zdot\,,\Xobs \end{array}
         \right.
         \!\!\right]
     $\,
@@ -1731,7 +1769,7 @@ Then, the following statements are true:
         E_{Y_{M}}\!\left[\;
             \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
             \,\left\vert\!
-            \begin{array}{c} s,s_{R},\YsubR = y_{R}, \\ \Zdot\,,\Xobs \end{array}
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Zdot\,,\Xobs \end{array}
             \right.
             \!\!\right]
     \\
@@ -1864,7 +1902,7 @@ Then, the following statements are true:
     }
     \end{eqnarray*}
 \item
-    We first state and proof a number of claims.
+    We first state and prove a number of claims.
     \vskip 0.3cm
     \noindent
     \textbf{Claim 0:}\quad
@@ -1874,7 +1912,7 @@ Then, the following statements are true:
             \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
             \,\left\vert\,
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -1911,7 +1949,7 @@ Then, the following statements are true:
                 }
             \,\left\vert
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -1925,7 +1963,7 @@ Then, the following statements are true:
             \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
             \,\left\vert\,
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -1970,7 +2008,7 @@ Then, the following statements are true:
                 \!\!\right)
             \,\left\vert\!
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\!\right]
@@ -2012,7 +2050,7 @@ Then, the following statements are true:
                 \,\right)
             \,\left\vert
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2046,7 +2084,7 @@ Then, the following statements are true:
                 }
             \,\left\vert
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2083,7 +2121,7 @@ Then, the following statements are true:
                 }
             \,\left\vert
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2097,7 +2135,7 @@ Then, the following statements are true:
         Y_{k}Y_{l}
         \;\left\vert
         \begin{array}{c}
-            s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+            s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
             \end{array}
         \right.
         \right]
@@ -2114,7 +2152,7 @@ Then, the following statements are true:
         Y_{k}Y_{l}
         \;\left\vert
         \begin{array}{c}
-            s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+            s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
             \end{array}
         \right.
         \right]
@@ -2123,7 +2161,7 @@ Then, the following statements are true:
             Y_{k}Y_{l}
             \;\left\vert
             \begin{array}{c}
-                \YsubR=y_{R},
+                \YsubR,
                 \\
                 \Zdot\,,\Xobs
                 \end{array}
@@ -2154,7 +2192,7 @@ Then, the following statements are true:
         \widehat{T}_{d}(s\,;\Ydot)^{2}
         \,\left\vert
         \begin{array}{c}
-            s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+            s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
             \end{array}
         \right.
         \!\right]
@@ -2174,7 +2212,7 @@ Then, the following statements are true:
         \widehat{T}_{d}(s\,;\Ydot)^{2}
         \,\left\vert
         \begin{array}{c}
-            s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+            s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
             \end{array}
         \right.
         \!\right]
@@ -2189,7 +2227,7 @@ Then, the following statements are true:
                 \,\right)
             \,\left\vert
             \begin{array}{c}
-                s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2203,7 +2241,7 @@ Then, the following statements are true:
             Y_{a}\,Y_{b}
             \,\left\vert
             \begin{array}{c}
-                s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \;\right]
@@ -2271,7 +2309,7 @@ Then, the following statements are true:
         \widehat{T}_{d}(s\,;\Ydot) \cdot Y_{k}
         \,\left\vert
         \begin{array}{c}
-            s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+            s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
             \end{array}
         \right.
         \!\right]
@@ -2301,7 +2339,7 @@ Then, the following statements are true:
             \widehat{T}_{d}(s\,;\Ydot) \cdot Y_{k}
             \,\left\vert
             \begin{array}{c}
-                s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2314,7 +2352,7 @@ Then, the following statements are true:
             Y_{k}
             \,\left\vert
             \begin{array}{c}
-                s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2326,7 +2364,7 @@ Then, the following statements are true:
             Y_{a}\,Y_{k}
             \,\left\vert
             \begin{array}{c}
-                s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2337,7 +2375,7 @@ Then, the following statements are true:
             Y_{a}\,Y_{k}
             \,\left\vert
             \begin{array}{c}
-                s,s_{R},\\ \YsubR=y_{R},\\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2349,7 +2387,7 @@ Then, the following statements are true:
     %         Y_{a}\,Y_{k}
     %         \,\left\vert
     %         \begin{array}{c}
-    %             \YsubR=y_{R},\\ \Zdot\,,\Xobs
+    %             \YsubR,\\ \Zdot\,,\Xobs
     %             \end{array}
     %         \right.
     %         \!\right]
@@ -2360,7 +2398,7 @@ Then, the following statements are true:
     %         Y_{a}\,Y_{k}
     %         \,\left\vert
     %         \begin{array}{c}
-    %             \YsubR=y_{R},\\ \Zdot\,,\Xobs
+    %             \YsubR,\\ \Zdot\,,\Xobs
     %             \end{array}
     %         \right.
     %         \!\right]
@@ -2443,7 +2481,7 @@ Then, the following statements are true:
             \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
             \,\left\vert\,
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2488,7 +2526,7 @@ Then, the following statements are true:
     %             \!\right)
     %         \,\left\vert
     %         \begin{array}{c}
-    %             s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+    %             s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
     %             \end{array}
     %         \right.
     %         \!\right]
@@ -2530,7 +2568,7 @@ Then, the following statements are true:
     %             \,\right)
     %         \,\left\vert
     %         \begin{array}{c}
-    %             s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+    %             s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
     %             \end{array}
     %         \right.
     %         \!\right]
@@ -2564,7 +2602,7 @@ Then, the following statements are true:
     %             }
     %         \,\left\vert
     %         \begin{array}{c}
-    %             s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+    %             s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
     %             \end{array}
     %         \right.
     %         \!\right]
@@ -2603,7 +2641,7 @@ Then, the following statements are true:
                 }
             \,\left\vert
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right],
@@ -2628,7 +2666,7 @@ Then, the following statements are true:
             Y_{k}\,Y_{l}
             \;\left\vert
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2651,7 +2689,7 @@ Then, the following statements are true:
             \widehat{T}_{d}(s\,;\Ydot) \cdot Y_{k}
             \,\left\vert
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2668,7 +2706,7 @@ Then, the following statements are true:
             \widehat{T}_{d}(s\,;\Ydot)^{2}
             \;\left\vert
             \begin{array}{c}
-                s,s_{R}, \\ \YsubR=y_{R}, \\ \Zdot\,,\Xobs
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
                 \end{array}
             \right.
             \!\right]
@@ -2701,10 +2739,9 @@ Then, the following statements are true:
         \left(\,
             \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\widetilde{y}_{\bullet}\,)
             \;+\;
-            \underset{k \in s_{M}}{\sum}\;
-            d_{k}^{2}
+            \underset{k \in s_{M}}{\sum}\!
             \left(1-\dfrac{1}{w_{k}}\right)
-            w_{k}^{2}\,\sigma_{k}^{2}
+            w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
         }
     \\
@@ -2776,10 +2813,9 @@ Then, the following statements are true:
                 }
             }
         \left(\,
-            \underset{k \in s_{M}}{\sum}\;
-            d_{k}^{2}
+            \underset{k \in s_{M}}{\sum}\!
             \left(1-\dfrac{1}{w_{k}}\right)
-            w_{k}^{2}\,\sigma_{k}^{2}
+            w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
     \\
     &&
@@ -2906,7 +2942,7 @@ Then, the following statements are true:
         \overset{{\color{white}1}}{
             \textnormal{noting that
                 the sum of the quantities in blue above equals
-                \,$\widehat{AV}^{\textnormal{(lin)}}(\,s\,;\widetilde{y}_{\bullet},\zdot\,)$
+                \,$\widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\widetilde{y}_{\bullet},\dbullet\zdot\,)$
                 }
             }
     \end{eqnarray*}
@@ -5094,7 +5130,7 @@ Then, we have the following results:
             \,\left\vert\,
             \begin{array}{c}
                 s,s_{R},\\
-                \YsubR = y_{R},\\
+                \YsubR,\\
                 \Zdot\,,\Xobs
                 \end{array}
             \right.
