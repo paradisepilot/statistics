@@ -53,7 +53,8 @@ Suppose:
     \begin{eqnarray*}
     \widehat{T}^{\textnormal{(HT)}}_{d,Y}
     & :=: &
-        \widehat{T}^{\textnormal{(HT)}}(s\,;\dydot)
+        % \widehat{T}^{\textnormal{(HT)}}(s\,;\dydot)
+        \widehat{T}^{\textnormal{(HT)}}(\,\Sdot,\Ydot\,;\dbullet\,)
     \;\; := \;\;
         \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y_{i}\,,
     \end{eqnarray*}
@@ -82,7 +83,7 @@ Suppose:
     \begin{equation*}
     \Var_{S}\!\left(\,
         \left.
-        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+        \widehat{T}^{\textnormal{(HT)}}_{d,\xi} %(s\,;\dbullet\xi_{\bullet})
         \;\right\vert\!
         \begin{array}{c} \xi_{\bullet} \end{array}
         \!\!\right)
@@ -97,7 +98,7 @@ Suppose:
     \end{equation*}
     and the following Horvitz-Thompson variance estimator
     \begin{equation*}
-    \widehat{V}_{\textnormal{HT}}(\,s\,;\xi_{\bullet}\,)
+    \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\xi_{\bullet}\,)
     \;\; := \;\;
         \underset{i \in s}{\sum}\,
         \underset{j \in s}{\sum}\;
@@ -118,14 +119,14 @@ Suppose:
     \begin{equation*}
     E_{S}\!\left[\;
         \left.
-        \widehat{V}_{\textnormal{HT}}(\,s\,;\xi_{\bullet}\,)
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\xi_{\bullet}\,)
         \;\right\vert\!
         \begin{array}{c} \xi_{\bullet} \end{array}
         \!\right]
     \;\; = \;\;
         \Var_{S}\!\left(\,
             \left.
-            \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+            \widehat{T}^{\textnormal{(HT)}}_{d,\xi} %(s\,;\dbullet\xi_{\bullet})
             \;\right\vert\!
             \begin{array}{c} \xi_{\bullet} \end{array}
             \!\!\right)
@@ -157,7 +158,7 @@ Suppose:
     \noindent
     Since data for \,$\gamma$\, are assumed available as described above,
     if there were no missing data in \,$\ydot$\, for the units in the selected sample,
-    then one can also use (for coherence and small sampling variability)
+    then one can also use (for coherence and smaller sampling variability)
     the \textit{calibration domain total estimator}:
     \begin{eqnarray*}
     \widehat{T}_{d,Y}^{\textnormal{(cal)}}
@@ -254,11 +255,20 @@ Suppose:
         $\Gdotdot \,=\, \left(\,\Gamma_{ij}\,\right) \,\in\, \Re^{N \times q}$\,
         is a matrix containing the values of the $\Re^{q}$-valued calibration variable
         \begin{equation*}
-        \gamma \,=\, \left(\,\gamma^{(1)},\ldots,\gamma^{(q)}\,\right)^{T} : U \longrightarrow \Re^{q}
+        \gamma
+        \, = \,
+            \left(\,\gamma^{(1)},\ldots,\gamma^{(q)}\,\right)^{T} :
+            U \, \longrightarrow \, \Re^{q} = \Re^{q \times 1}
         \end{equation*}
         for all units in the population,
         where the $i^{\textnormal{th}}$ row of \,$\Gdotdot$\, corresponds to the vector
-        \,$\gamma_{i} \,=\, \left(\,\gamma^{(1)}_{i},\ldots,\gamma^{(q)}_{i}\,\right)^{\!T} \,\in\, \Re^{q}$\,
+        \begin{equation*}
+        \gamma_{i}
+        \, = \,
+            \left(\,\gamma^{(1)}_{i},\ldots,\gamma^{(q)}_{i}\,\right)^{\!T}
+        \, \in\,
+            \Re^{q} = \Re^{q \times 1}
+        \end{equation*}
         of values of the calibration variables for populaton unit \,$i \in U$,\,
     \item
         for each population unit \,$i \in U$,\,
@@ -309,7 +319,7 @@ Suppose:
                 \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
                 \,\right)^{\!-1}
         \;\; \in \;\;
-            \Re^{q \times q}
+            \Re^{1 \times q}
         \end{equation*}
     \end{itemize}
 \item
@@ -1200,8 +1210,8 @@ we will use the following nomenclature:
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-% \vskip 0.5cm
-\clearpage
+% \clearpage
+\vskip 0.5cm
 \subsection{Estimator for sampling variance component of
 \,$\MSE\!\left(\,\left.\widetilde{T}_{d,Y}\,\right\vert\Gdotdot,\Xobs\right)$}
 \setcounter{theorem}{0}
@@ -1290,7 +1300,7 @@ Then, the following statements are true:
     with the {\color{red}approximate variance estimator}
     \,$\widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dydot,\gdotdot\,)$\,
     for the sampling variance of the calibration domain total estimator
-    \,$\widehat{T}^{\textnormal{cal}}_{d,Y}$\,
+    \,$\widehat{T}^{\textnormal{(cal)}}_{d,Y}$\,
     (see Equation (3.4), p.380, \cite{DevilleSarndal1992}), i.e.,
     \begin{eqnarray*}
     &&
@@ -1384,7 +1394,8 @@ Then, the following statements are true:
     & = &
         \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
         \underset{i \in s}{\sum}\;
-        \widetilde{w}_{i}q_{i} \cdot \gamma_{i} \cdot d_{i}y_{i}\,,
+        \widetilde{w}_{i}q_{i} \cdot \gamma_{i} \cdot d_{i}y_{i}
+        \;\; \in \;\; \Re\,,
     \\
     \rho_{ki}(s\,;\gdotdot)
     & = &
@@ -1392,6 +1403,7 @@ Then, the following statements are true:
         \left(\overset{{\color{white}.}}{
             \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot\gamma_{i}
             }\right)
+        \;\; \in \;\; \Re
     \end{eqnarray*}
     Then,
     \,$
