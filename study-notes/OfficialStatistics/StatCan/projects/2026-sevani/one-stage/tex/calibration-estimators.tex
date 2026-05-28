@@ -1,0 +1,551 @@
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Calibration estimators}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Definition of calibration estimators}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{definition}
+\mbox{}
+\vskip 0.05cm
+\noindent
+Suppose:
+\begin{itemize}
+\item
+    $p : \mathcal{P}(U) \longrightarrow [0,1]$\,
+    is a sampling design satisfying:
+    For each unit \,$i \in U$,\,
+    its probability of selection
+    \,$\pi_{i} \,:=\, \underset{s \ni i}{\sum}\;p(s)$\,
+    is strictly greatly than zero.
+    For each unit \,$i \in U$,\,
+    its design weight is, by definition,
+    \,$w_{i} \,:=\, \dfrac{1}{\pi_{i}}$.\,
+\item
+    $x^{(1)}$,\, $x^{(2)}$,\, $\ldots$\;,\, $x^{(q)}$\,
+    are a (finite) collection of ($\Re$-valued) population characteristics
+    whose respective population totals are known,
+    i.e., the following vector of population totals is known:
+    \begin{equation*}
+    T_{\mathbf{x}}
+    \;\; := \;\;
+        \left(\;\,
+            \underset{i \in U}{\sum}\,x_{i}^{(1)}
+            \,,\,
+            \underset{i \in U}{\sum}\,x_{i}^{(2)}
+            \,,\,
+            \ldots
+            \,,\,
+            \underset{i \in U}{\sum}\,x_{i}^{(q)}
+            \;\,\right)
+    \end{equation*}
+\item
+    $y : U \longrightarrow \Re$\,
+    is a population characteristic and
+    \,$T_{y} \,:=\, \underset{i \in U}{\sum}\;y_{i}$\,
+    is the population total of \,$y$.
+\item
+    $q_{i} > 0$,\, for each \,$i \in U$,\, has been prescribed.
+\end{itemize}
+The \textbf{calibration estimator} for the population total \,$T_{y}$\, of \,$y$\,
+is defined as follows:
+\begin{eqnarray*}
+\widehat{T}_{y}^{\textnormal{(cal)}}(\,s\,;\mathbf{x}_{\bullet},w_{\bullet},q_{\bullet}\,)
+& :=: &
+\widehat{T}_{y}^{\textnormal{(cal)}}(\,s\,)
+\;\; := \;\;
+    \underset{i \in s}{\sum}\;
+    w^{\textnormal{(cal)}}_{i}\,y_{i}\,,
+\end{eqnarray*}
+where
+\,$w^{\textnormal{(cal)}}_{\bullet}$\,
+is a solution to the following optimization problem:
+\begin{equation*}
+\underset{w^{\textnormal{(cal)}}_{\bullet}}{\argmin}
+\left\{\;\,
+    \left.
+    \chi^{2}(w^{\textnormal{(cal)}}_{\bullet})
+    \;:=\;
+        \underset{i \in s}{\sum}\,
+        \dfrac{(w^{\textnormal{(cal)}}_{i}-w_{i})^{2}}{q_{i}w_{i}}
+    \;\;\right\vert\;\;
+        \underset{i \in s}{\sum}\;
+        w^{\textnormal{(cal)}}_{i}\,\mathbf{x}_{i}
+        \,=\,
+        T_{\mathbf{x}}
+    \;\,\right\}
+\end{equation*}
+\end{definition}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\subsection{Explicit formulas for calibration estimators}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\mbox{}
+\vskip 0.01cm
+\noindent
+\begin{enumerate}
+\item
+    The optimization problem
+    \begin{equation*}
+    \underset{w^{\textnormal{(cal)}}_{\bullet}}{\argmin}
+    \left\{\;\,
+        \left.
+        \chi^{2}(w^{\textnormal{(cal)}}_{\bullet})
+        \;:=\;
+            \underset{i \in s}{\sum}\,
+            \dfrac{(w^{\textnormal{(cal)}}_{i}-w_{i})^{2}}{q_{i}w_{i}}
+        \;\;\right\vert\;\;
+            \underset{i \in s}{\sum}\;
+            w^{\textnormal{(cal)}}_{i}\,\mathbf{x}_{i}
+            \,=\,
+            T_{\mathbf{x}}
+        \;\,\right\}
+    \end{equation*}
+    admits a unique solution
+    \,$w^{\textnormal{(cal)}}_{\bullet}$\,
+    given by:
+    \begin{equation*}
+    w^{\textnormal{(cal)}}_{i}
+    \;\; = \;\;
+        w_{i}\cdot\left\{\;
+            1
+            \,+\,
+            \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+            \cdot
+            \left(\;
+                \underset{k \in s}{\sum}\;\,q_{k}\,w_{k}\cdot\mathbf{x}_{k}\cdot\mathbf{x}_{k}^{T}
+                \,\right)^{\!-1}
+            \mathbf{x}_{i}q_{i}
+            \,\right\}
+    \end{equation*}
+\item
+    The calibration estimator can be expressed as follows:
+    \begin{eqnarray*}
+    \widehat{T}_{y}^{\textnormal{(cal)}}
+    & := &
+        \underset{i \in s}{\sum}\;
+        w^{\textnormal{(cal)}}_{i}\,y_{i}
+    \;\; = \;\;
+        \widehat{T}^{\textnormal{(HT)}}_{y}
+        \; + \;
+        \left(
+            \left(\;
+                \underset{k \in s}{\sum}\;\,q_{k}\,w_{k}\cdot\mathbf{x}_{k}\cdot\mathbf{x}_{k}^{T}
+                \,\right)^{\!-1}
+            \cdot
+            \underset{i \in s}{\sum}\;
+            w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+            \,\right)^{\!\!T}
+        \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)
+    \end{eqnarray*}
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+    We proceed by the Method of Lagrange Multipliers.
+    More precisely, we solve the following system of equations:
+    \begin{equation*}
+    \left\{\;\;\begin{array}{l}
+    \nabla_{w_{\bullet}^{\textnormal{(cal)}}}\!\left(\,
+        \chi^{2}
+        \,\right)
+    \; - \;
+    \overset{q}{\underset{r = 1}{\sum}}\;\lambda^{(r)}\,
+        \nabla_{w_{\bullet}^{\textnormal{(cal)}}}\!\left(\,
+            \underset{i \in s}{\sum}\;
+            w^{\textnormal{(cal)}}_{i}\,x^{(r)}_{i}
+            \,-\,
+            T_{X^{(r)}}
+            \,\right)
+    \;\; = \;\;
+        0
+    \\
+    \overset{{\color{white}1}}{
+        \underset{i \in s}{\sum}\;
+            w^{\textnormal{(cal)}}_{i}\,\mathbf{x}_{i}
+            \,=\,
+            T_{\mathbf{x}}
+        }
+    \end{array}\right.
+    \end{equation*}
+    for
+    \,$\lambda = \left(\,\lambda^{(1)},\lambda^{(2)},\ldots,\lambda^{(q)}\,\right)$\,
+    and
+    \,$w^{\textnormal{(cal)}}_{\bullet} = \left\{\,w^{\textnormal{(cal)}}_{i}\,\right\}_{i \in s}$.\,
+    \vskip 0.1cm
+    \noindent
+    Now, observe:
+    \begin{equation*}
+    \dfrac{\partial\,\chi^{2}}{\partial\,w_{i}^{\textnormal{(cal)}}}
+    \;\; = \;\;
+        \dfrac{2\cdot(w_{i}^{\textnormal{(cal)}} - w_{i})}{q_{i}w_{i}}\,,
+    \quad\quad\textnormal{and}\quad\quad
+    \dfrac{\partial}{\partial\,w_{i}^{\textnormal{(cal)}}}\!\left(\ 
+        \underset{j \in s}{\sum}\;
+        w^{\textnormal{(cal)}}_{j}\,x^{(r)}_{j}
+        \,-\,
+        T_{X^{(r)}}
+        \right)
+    \;\; = \;\;
+        x^{(r)}_{i}
+    \end{equation*}
+    Hence,
+    \begin{eqnarray*}
+    &&
+        \dfrac{\partial\,\chi^{2}}{\partial\,w_{i}^{\textnormal{(cal)}}}
+        \,-\,
+        \overset{q}{\underset{r = 1}{\sum}}\;\,
+        \lambda^{(r)} \cdot \dfrac{\partial}{\partial\,w_{i}^{\textnormal{(cal)}}}\!\left(\ 
+            \underset{j \in s}{\sum}\;
+            w^{\textnormal{(cal)}}_{j}\,x^{(r)}_{j}
+            \,-\,
+            T_{X^{(r)}}
+            \right)
+        \; = \;
+            0
+    \\
+    & \Longrightarrow &
+        \dfrac{2\cdot(w_{i}^{\textnormal{(cal)}} - w_{i})}{q_{i}w_{i}}
+        \; - \;
+        \overset{q}{\underset{r = 1}{\sum}}\;\,
+        \lambda^{(r)} \cdot x^{(r)}_{i}
+        \; = \;
+            0
+    \\
+    & \Longrightarrow &
+        w_{i}^{\textnormal{(cal)}}
+        \;\; = \;\;
+            w_{i}\cdot\left\{\;
+                1 + \overset{q}{\underset{r = 1}{\sum}}\;\lambda^{(r)}\,q_{i}\,x^{(r)}_{i}
+                \;\right\}
+        \;\; = \;\;
+            w_{i}\cdot\left\{\;
+                1 + q_{i}\,\mathbf{x}_{i}^{T}\cdot\lambda
+                \;\right\}
+        \;\; = \;\;
+            w_{i}\cdot\left\{\;
+                1 + \lambda^{T} \cdot \mathbf{x}_{i}\,q_{i}
+                \;\right\}
+    \end{eqnarray*}
+    % \begin{equation*}
+    % w_{i}^{\textnormal{(cal)}}
+    % \;\; = \;\;
+    %     w_{i}\cdot\left\{\;
+    %         1 + \overset{q}{\underset{r = 1}{\sum}}\;\lambda^{(r)}\,q_{i}\,x^{(r)}_{i}
+    %         \;\right\}
+    % \;\; = \;\;
+    %     w_{i}\cdot\left\{\;
+    %         1 + q_{i}\mathbf{x}_{i}^{T}\cdot\lambda
+    %         \;\right\}
+    % \end{equation*}
+    Hence,
+    \begin{eqnarray*}
+    \underset{i \in s}{\sum}\;
+        w^{\textnormal{(cal)}}_{i}\,\mathbf{x}_{i}
+        \,=\,
+        T_{\mathbf{x}}
+    & \Longrightarrow &
+        \underset{i \in s}{\sum}\;
+            w_{i}\cdot\left(\;
+                1 + q_{i}\mathbf{x}_{i}^{T}\cdot\lambda
+                \;\right)
+            \,\mathbf{x}_{i}
+            \,=\,
+            T_{\mathbf{x}}
+    \\
+    & \Longrightarrow &
+        \left(\;
+            \underset{i \in s}{\sum}\;w_{i}\,q_{i}\cdot\mathbf{x}_{i}\cdot\mathbf{x}_{i}^{T}
+            \;\right)\cdot\lambda
+        \;\; = \;\;
+            T_{\mathbf{x}} \,-\, \widehat{T}^{\textnormal{(HT)}}_{\mathbf{x}}
+    \\
+    & \Longrightarrow &
+        \lambda
+        \;\; = \;\;
+            \left(\;
+                \underset{i \in s}{\sum}\;w_{i}\,q_{i}\cdot\mathbf{x}_{i}\cdot\mathbf{x}_{i}^{T}
+                \;\right)^{\!\!-1}
+            \cdot
+            \left(\,T_{\mathbf{x}} \,-\, \widehat{T}^{\textnormal{(HT)}}_{\mathbf{x}}\,\right)
+    \\
+    & \Longrightarrow &
+        \lambda^{T}
+        \;\; = \;\;
+            \left(\,T_{\mathbf{x}} \,-\, \widehat{T}^{\textnormal{(HT)}}_{\mathbf{x}}\,\right)^{T}
+            \cdot
+            \left(\;
+                \underset{i \in s}{\sum}\;w_{i}\,q_{i}\cdot\mathbf{x}_{i}\cdot\mathbf{x}_{i}^{T}
+                \;\right)^{\!\!-1}
+    \end{eqnarray*}
+    Hence,
+    \begin{eqnarray*}
+    w_{i}^{\textnormal{(cal)}}
+    & = &
+        w_{i}\cdot\left(\;
+            1 + \lambda^{T} \cdot \mathbf{x}_{i}\,q_{i}
+            \;\right)
+    \;\; = \;\;
+        w_{i}\cdot\left\{\;
+            1
+            \,+\,
+            \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+            \cdot
+            \left(\;
+                \underset{k \in s}{\sum}\;\,q_{k}\,w_{k}\cdot\mathbf{x}_{k}\cdot\mathbf{x}_{k}^{T}
+                \,\right)^{\!-1}
+            \mathbf{x}_{i}\,q_{i}
+            \,\right\}
+    \end{eqnarray*}
+\item
+    This is a straightforward computation:
+    \begin{eqnarray*}
+    \widehat{T}_{y}^{\textnormal{(cal)}}
+    & := &
+        \underset{i \in s}{\sum}\;
+        w^{\textnormal{(cal)}}_{i}\,y_{i}
+    \;\; = \;\;
+        \underset{i \in s}{\sum}\;\,
+        w_{i}\cdot\left\{\;
+            1
+            \,+\,
+            \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+            \cdot
+            \left(\;
+                \underset{k \in s}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+                \,\right)^{\!-1}
+            \mathbf{x}_{i}q_{i}
+            \,\right\}
+        y_{i}
+    \\
+    & = &
+        \left(\,\underset{i \in s}{\sum}\;w_{i} \cdot y_{i}\,\right)
+        \; + \;
+        \left(\,
+            \underset{i \in s}{\sum}\;\,
+            w_{i}\cdot
+                \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+                \cdot
+                \left(\;
+                    \underset{k \in s}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+                    \,\right)^{\!-1}
+                \mathbf{x}_{i}q_{i}
+            y_{i}
+            \,\right)
+    \\
+    & = &
+        \widehat{T}^{\textnormal{(HT)}}_{y}
+        \; + \;
+        \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)^{T}
+        \cdot
+        \left(\;
+            \underset{k \in s}{\sum}\;q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+            \,\right)^{\!-1}
+        \cdot
+        \left(\;\,
+            \underset{i \in s}{\sum}\;
+            w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+            \,\right)
+    \\
+    & = &
+        \widehat{T}^{\textnormal{(HT)}}_{y}
+        \; + \;
+        \left(
+            \left(\;
+                \underset{k \in s}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+                \,\right)^{\!-1}
+            \cdot
+            \underset{i \in s}{\sum}\;
+            w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+            \,\right)^{\!\!T}
+        \left(\,T_{\mathbf{x}} - \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}\,\right)
+    \end{eqnarray*}
+\end{enumerate}
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\subsection{Asymptotics}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\begin{eqnarray*}
+\widehat{T}_{y}^{\textnormal{(cal)}}
+& = &
+    \widehat{T}^{\textnormal{(HT)}}_{y}
+    \; - \;
+    \left(
+        \left(\;
+            \underset{k \in {\color{red}U}}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+            \,\right)^{\!-1}
+        \cdot
+        \underset{i \in {\color{red}U}}{\sum}\;
+        w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+        \,\right)^{\!\!T}
+    \cdot\,
+    \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\end{eqnarray*}
+\end{lemma}
+\proof
+
+\qed
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
+\subsection{Variance of calibration estimators}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\begin{eqnarray*}
+\Var\!\left(\,\widehat{T}_{y}^{\textnormal{(cal)}}\,\right)
+& = &
+    \Var\!\left(\,
+        \widehat{T}^{\textnormal{(HT)}}_{y}
+        \; - \;
+        \left(
+            \left(\;
+                \underset{k \in {\color{red}U}}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+                \,\right)^{\!-1}
+            \cdot
+            \underset{i \in {\color{red}U}}{\sum}\;
+            w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+            \,\right)^{\!\!T}
+        \cdot\,
+        \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}
+        \,\right)
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\\
+& = &
+    \Var\!\left(\,
+        \widehat{T}^{\textnormal{(HT)}}_{y}
+        \; - \;
+        \left(\,\mathbf{B}^{\textnormal{(cal)}}(q_{\bullet},w_{\bullet},x_{\bullet},y_{\bullet})\,\right)^{T}
+        \!\cdot
+        \widehat{T}_{\mathbf{x}}^{\textnormal{(HT)}}
+        \,\right)
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\\
+& = &
+    \Var\!\left[\;\,
+        \underset{i \in s}{\sum}\;
+        w_{i}
+        \left(\,
+            y_{i}
+            \, - \,
+            \left(\,\mathbf{B}^{\textnormal{(cal)}}(q_{\bullet},w_{\bullet},x_{\bullet},y_{\bullet})\,\right)^{T}
+            \!\cdot
+            \mathbf{x}_{i}
+            \,\right)
+        \,\right]
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\\
+& = &
+    \Var\!\left[\;\,
+        \underset{i \in s}{\sum}\;w_{i}\,e_{i}
+        \,\right]
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\;\; = \;\;
+    \Var\!\left[\;\,
+        \widehat{T}^{\textnormal{(cal)}}_{e}
+        \;\right]
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\\
+& = &
+    \underset{i \in U}{\sum}\;
+    \underset{j \in U}{\sum}\;
+    \left(\,\pi_{ij} - \pi_{i}\pi_{j}\,\right)
+    \dfrac{e_{i}}{\pi_{i}}\,
+    \dfrac{e_{j}}{\pi_{j}}
+    \; + \;
+    o_{P}\!\left(\,N\sqrt{n}\,\right)
+\\
+& \approx &
+    \underset{i \in {\color{red}s}}{\sum}\;
+    \underset{j \in {\color{red}s}}{\sum}\;
+    \dfrac{\left(\,\pi_{ij} - \pi_{i}\pi_{j}\,\right)}{\pi_{ij}}
+    \dfrac{e_{i}}{\pi_{i}}\,
+    \dfrac{e_{j}}{\pi_{j}}
+\\
+\widehat{\Var}\!\left(\,\widehat{T}_{y}^{\textnormal{(cal)}}\,\right)
+& := &
+    \underset{i \in {\color{black}s}}{\sum}\;
+    \underset{j \in {\color{black}s}}{\sum}\;
+    \dfrac{\left(\,\pi_{ij} - \pi_{i}\pi_{j}\,\right)}{\pi_{ij}}
+    \dfrac{\widehat{e}_{i}}{\pi_{i}}\,
+    \dfrac{\widehat{e}_{j}}{\pi_{j}}
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+e_{i}
+& := &
+    y_{i}
+    \, - \,
+    \left(\,\mathbf{B}^{\textnormal{(cal)}}(q_{\bullet},w_{\bullet},x_{\bullet},y_{\bullet})\,\right)^{T}
+    \!\cdot\,
+    \mathbf{x}_{i}
+\\
+\widehat{e}_{i}
+& := &
+    y_{i}
+    \, - \,
+    \left(\;\widehat{\mathbf{B}}_{s}^{\textnormal{(cal)}}\,\right)^{T}
+    \!\cdot\,
+    \mathbf{x}_{i}
+\;\; = \;\;
+    y_{i}
+    \, - \,
+    \left(
+        \left(\;
+            \underset{k \in {\color{red}s}}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+            \,\right)^{\!-1}
+        \cdot
+        \underset{i \in {\color{red}s}}{\sum}\;
+        w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+        \,\right)^{\!\!T}
+    \!\cdot\,
+    \mathbf{x}_{i}
+\\
+\mathbf{B}^{\textnormal{(cal)}}(q_{\bullet},w_{\bullet},x_{\bullet},y_{\bullet})
+& := &
+    \left(\;
+        \underset{k \in {\color{red}U}}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+        \,\right)^{\!-1}
+    \cdot\;
+    \underset{i \in {\color{red}U}}{\sum}\;
+    w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+\\
+\widehat{\mathbf{B}}_{s}^{\textnormal{(cal)}}
+& := &
+    \left(\;
+        \underset{k \in {\color{red}s}}{\sum}\,q_{k}w_{k}\mathbf{x}_{k}\mathbf{x}_{k}^{T}
+        \,\right)^{\!-1}
+    \cdot\;
+    \underset{i \in {\color{red}s}}{\sum}\;
+    w_{i}\,\mathbf{x}_{i}\,q_{i}\,y_{i}
+\end{eqnarray*}
+\end{lemma}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

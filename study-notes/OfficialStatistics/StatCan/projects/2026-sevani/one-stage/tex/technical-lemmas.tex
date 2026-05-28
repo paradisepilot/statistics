@@ -1,0 +1,471 @@
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Technical lemmas}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}\label{sRsMPullOutOfVariance}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let
+\,$\mathbf{A}_{\bullet} = (A_{1},\ldots,A_{N}) : \Omega\times\mathcal{P}(U) \longrightarrow \Re^{N}$\,
+and
+\,$\mathbf{B}_{\bullet} = (B_{1},\ldots,B_{N}) : \Omega\times\mathcal{P}(U) \longrightarrow \Re^{N}$\,
+be (arbitrary) random $\Re^{N}$-valued variables defined on the product probability space
+\,$\Omega\times\mathcal{P}(U)$.\,
+Then, we have:
+\begin{eqnarray*}
+\Var_{Y}\!\left[\;
+    \left.
+    \underset{l \in s_{R}}{\sum}A_{l}
+    \,-\,
+    \underset{k \in s_{M}}{\sum}B_{k}
+    \;\right\vert\!
+    \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+    \!\right]
+& = &
+    \underset{l \in s_{R}}{\sum}\;
+    \underset{m \in s_{R}}{\sum}
+    \Cov_{Y}\!\left[\;
+        A_{l} \,, A_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+    \; + \;
+    \underset{k \in s_{M}}{\sum}\;
+    \underset{m \in s_{M}}{\sum}
+    \Cov_{Y}\!\left[\;
+        B_{k} \,, B_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    2 \cdot
+    \underset{l \in s_{R}}{\sum}\;
+    \underset{k \in s_{M}}{\sum}
+    \Cov_{Y}\!\left[\;
+        A_{l} \,, B_{k}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\end{eqnarray*}
+\end{lemma}
+\proof
+\begin{eqnarray*}
+&&
+    \Var_{Y}\!\left[\;
+        \left.
+        \underset{l \in s_{R}}{\sum}\,A_{l}
+        \,-\,
+        \underset{k \in s_{M}}{\sum}\,B_{k}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\;\; = \;\;
+    \Var_{Y}\!\left[\;
+        \left.
+        \underset{l \in U}{\sum}\;S_{l}R_{l}A_{l}
+        \,-\,
+        \underset{k \in U}{\sum}\,S_{k}(1-R_{k})B_{k}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+& = &
+    \Var_{Y}\!\left[\;
+        \left.
+        \underset{l \in U}{\sum}\;S_{l}R_{l}A_{l}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+    \; + \;
+    \Var_{Y}\!\left[\;
+        \left.
+        \underset{k \in U}{\sum}\,S_{k}(1-R_{k})B_{k}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+&&
+    \; - \;
+    2 \cdot
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{l \in U}{\sum}\;S_{l}R_{l}A_{l}
+        \; , \;
+        \underset{k \in U}{\sum}\,S_{k}(1-R_{k})B_{k}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+& = &
+    \underset{l \in U}{\sum}\;
+    \underset{m \in U}{\sum}\;
+    \Cov_{Y}\!\left[\;
+        S_{l}R_{l}A_{l}
+        \,,\,
+        S_{m}R_{m}A_{m}
+        \;\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; + \;
+    \underset{k \in U}{\sum}\;
+    \underset{m \in U}{\sum}\;
+    \Cov_{Y}\!\left[\;
+        S_{k}(1-R_{k})B_{k}
+        \,,\,
+        S_{m}(1-R_{m})B_{m}
+        \;\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    2 \cdot
+    \underset{l \in U}{\sum}\;
+    \underset{k \in U}{\sum}\;
+    \Cov_{Y}\!\left[\;
+        S_{l}R_{l}A_{l}
+        \, , \,
+        S_{k}(1-R_{k})B_{k}
+        \;\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+& = &
+    \underset{l \in U}{\sum}\;
+    \underset{m \in U}{\sum}\;
+    S_{l}(s) \cdot S_{m}(s) \cdot R_{l}(s,s_{R}) \cdot R_{m}(s,s_{R})
+    \cdot
+    \Cov_{Y}\!\left[\;
+        A_{l}
+        \,,\,
+        A_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; + \;
+    \underset{k \in U}{\sum}\;
+    \underset{m \in U}{\sum}\;
+    S_{k}(s) \cdot S_{m}(s) \cdot (1-R_{k}(s,s_{R})) \cdot (1-R_{m}(s,s_{R}))
+    \cdot
+    \Cov_{Y}\!\left[\;
+        B_{k}
+        \,,\,
+        B_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    2 \cdot
+    \underset{l \in U}{\sum}\;
+    \underset{k \in U}{\sum}\;
+    S_{l}(s) \cdot S_{k}(s) \cdot R_{l}(s,s_{R}) \cdot (1-R_{k}(s,s_{R}))
+    \cdot
+    \Cov_{Y}\!\left[\;
+        A_{l}
+        \, , \,
+        B_{k}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+& = &
+    \underset{l \in s_{R}}{\sum}\;
+    \underset{m \in s_{R}}{\sum}
+    \Cov_{Y}\!\left[\;
+        A_{l}
+        \,,\,
+        A_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+    \; + \;
+    \underset{k \in s_{M}}{\sum}\;
+    \underset{m \in s_{M}}{\sum}
+    \Cov_{Y}\!\left[\;
+        B_{k}
+        \,,\,
+        B_{m}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    2 \cdot
+    \underset{l \in s_{R}}{\sum}\;
+    \underset{k \in s_{M}}{\sum}
+    \Cov_{Y}\!\left[\;
+        A_{l}
+        \, , \,
+        B_{k}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\end{eqnarray*}
+This completes the proof of the Lemma.
+\qed
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\clearpage
+\begin{lemma}\label{sRsMPullOutOfCovariance}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let
+\begin{equation*}
+\begin{array}{cclcccl}
+\mathbf{A}_{\bullet} & = & (A_{1},\ldots,A_{N}) : \Omega\times\mathcal{P}(U) \longrightarrow \Re^{N},
+&{\color{white}22222}&
+\mathbf{B}_{\bullet} & = & (B_{1},\ldots,B_{N}) : \Omega\times\mathcal{P}(U) \longrightarrow \Re^{N},
+\\
+\mathbf{C}_{\bullet} & = & (C_{1},\ldots,C_{N}) : \Omega\times\mathcal{P}(U) \longrightarrow \Re^{N},
+&&
+\mathbf{D}_{\bullet} & = & (D_{1},\ldots,D_{N}) : \Omega\times\mathcal{P}(U) \longrightarrow \Re^{N}{\color{white},}
+\end{array}
+\end{equation*}
+be (arbitrary) random $\Re^{N}$-valued variables defined on the product probability space
+\,$\Omega\times\mathcal{P}(U)$.\,
+Then, we have:
+\begin{eqnarray*}
+&&
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{a \in s_{R}}{\sum}A_{l}
+        \,-\,
+        \underset{b \in s_{M}}{\sum}B_{k}
+        \;,\;
+        \underset{c \in s}{\sum}C_{l}
+        \;-
+        \underset{d \in U \backslash s}{\sum}D_{k}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+& = &
+    \underset{a \in s_{R}}{\sum}\;
+    \underset{c \in s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, C_{c}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+    \; - \;
+    \underset{a \in s_{R}}{\sum}\;
+    \underset{d \in U \backslash s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, D_{d}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    \underset{b \in s_{M}}{\sum}\;
+    \underset{c \in s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, C_{c}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+    \; + \;
+    \underset{b \in s_{M}}{\sum}\;
+    \underset{d \in U \backslash s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, D_{d}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\end{eqnarray*}
+\end{lemma}
+\proof
+\begin{eqnarray*}
+&&
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{a \in s_{R}}{\sum}A_{a}
+        \,-\,
+        \underset{b \in s_{M}}{\sum}B_{b}
+        \;,\;
+        \underset{c \in s}{\sum}\,C_{c}
+        \;-
+        \underset{d \in U \backslash s}{\sum}D_{d}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+& = &
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{a \in U}{\sum}\,S_{a}R_{a}A_{a}
+        \,-\,
+        \underset{b \in U}{\sum}\,S_{b}(1-R_{b})B_{b}
+        \;,\;
+        \underset{c \in U}{\sum}\,S_{c}C_{c}
+        \;-
+        \underset{d \in U}{\sum}\,(1-S_{d})D_{d}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+& = &
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{a \in U}{\sum}\,S_{a}R_{a}A_{a}
+        \;,\;
+        \underset{c \in U}{\sum}\,S_{c}C_{c}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+    \; - \;
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{a \in U}{\sum}\,S_{a}R_{a}A_{a}
+        \;,\;
+        \underset{d \in U}{\sum}\,(1-S_{d})D_{d}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+&&
+    \; - \;
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{b \in U}{\sum}\,S_{b}(1-R_{b})B_{b}
+        \;,\;
+        \underset{c \in U}{\sum}\,S_{c}C_{c}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+    \; + \;
+    \Cov_{Y}\!\left[\;
+        \left.
+        \underset{b \in U}{\sum}\,S_{b}(1-R_{b})B_{b}
+        \;,\;
+        \underset{d \in U}{\sum}\,(1-S_{d})D_{d}
+        \;\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\right]
+\\
+& = &
+    \underset{a \in U}{\sum}\;
+    \underset{c \in U}{\sum}\;
+    S_{a}(s) \cdot R_{a}(s,s_{R}) \cdot S_{c}(s)
+    \cdot
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, C_{c}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    \underset{a \in U}{\sum}\;
+    \underset{d \in U}{\sum}\;
+    S_{a}(s) \cdot R_{a}(s,s_{R}) \cdot (1-S_{d}(s))
+    \cdot
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, D_{d}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    \underset{b \in U}{\sum}\;
+    \underset{c \in U}{\sum}\;
+    S_{b}(s) \cdot (1-R_{b}(s,s_{R})) \cdot S_{c}(s)
+    \cdot
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, C_{c}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; + \;
+    \underset{b \in U}{\sum}\;
+    \underset{d \in U}{\sum}\;
+    S_{b}(s) \cdot (1-R_{b}(s,s_{R})) \cdot (1-S_{d}(s))
+    \cdot
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, D_{d}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+& = &
+    \underset{a \in s_{R}}{\sum}\;
+    \underset{c \in s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, C_{c}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+    \; - \;
+    \underset{a \in s_{R}}{\sum}\;
+    \underset{d \in U \backslash s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        A_{a} \,, D_{d}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\\
+&&
+    \; - \;
+    \underset{b \in s_{M}}{\sum}\;
+    \underset{c \in s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, C_{c}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+    \; + \;
+    \underset{b \in s_{M}}{\sum}\;
+    \underset{d \in U \backslash s}{\sum}\;
+    \Cov_{Y}\!\left[\,
+        B_{b} \,, D_{d}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\right]
+\end{eqnarray*}
+This completes the proof of the Lemma.
+\qed
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

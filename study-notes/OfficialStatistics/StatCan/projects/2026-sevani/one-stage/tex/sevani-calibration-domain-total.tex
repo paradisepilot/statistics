@@ -1,0 +1,4768 @@
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\section{Extended SEVANI: Variance estimation for {\color{red}calibration} estimators with composite linear imputation for {\color{red}domain totals}}
+\label{CalibrationDomainTotalSEVANI}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\subsection{Formulation of the target variability quantification problem}
+\label{CalibrationDomainTotalFormulationOfVarianceEstimationProblem}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+Suppose:
+\begin{itemize}
+\item
+    We would like to estimate
+    -- using data from a probability sample --
+    a domain total
+    \begin{equation*}
+    T_{d,Y}
+    \;\; := \;\;
+        \underset{i \in U}{\sum}\;d_{i}Y_{i}\,,
+    \end{equation*}
+    where \,$U = \{\,1,2,\ldots,N\,\} \subset \N$\, represents the population,
+    $\dbullet = (d_{1},\ldots,d_{N}) \in \{0,1\}^{N}$ is the vector of domain membership indicators,
+    and
+    \,$\Ydot = (Y_{1},\ldots,Y_{N})$\,
+    is an $\Re$-valued population characteristic.
+\item
+    Aside/Reminder \#1:
+    \vskip 0.01cm
+    \noindent
+    If there were no missing data in \,$\ydot$\, for the units in the selected sample,
+    then the \textit{Horvitz-Thompson domain total estimator\! \footnote{
+        We will use the alternative notations
+        \,$\widehat{T}_{d,\xi}^{\textnormal{(HT)}}$\,
+        and
+        \,$\widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})$\,
+        interchangeably, noting that the former is notationally more succinct,
+        while the latter allows us to emphasize that the population characteristic
+        \,$\xi_{\bullet}$\,
+        is being considered as an argument to the formula
+        \begin{equation*}
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+        \;\; := \;\;
+            \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
+        \end{equation*}
+        for the Horvitz-Thompson population total estimator.
+        }
+    }
+    \begin{eqnarray*}
+    \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+    & :=: &
+        % \widehat{T}^{\textnormal{(HT)}}(s\,;\dydot)
+        \widehat{T}^{\textnormal{(HT)}}(\,\Sdot,\Ydot\,;\dbullet\,)
+    \;\; := \;\;
+        \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y_{i}\,,
+    \end{eqnarray*}
+    is a design-unbiased estimator for
+    \,$T_{d,Y}$,\,
+    where
+    \begin{itemize}
+    \item
+        $s \subset U$\, is the selected sample, and
+        $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$\,
+        is the vector of $\{0,1\}$-valued selection indicator variables,
+    \item
+        $w_{i} \,:=\, \dfrac{1}{\pi_{i}}$,\, for each population unit \,$i \in U$,\,
+        is the (\textit{a priori} known, non-random) design weight of \,$i \in U$,\,
+        i.e., the reciprocal of the selection probability \,$\pi_{i}$\,
+        (assumed strictly positive) of \,$i \in U$.\,
+    \end{itemize}
+    Recall (Result 2.8.1, p.43, \cite{Sarndal1992}) also that
+    the sampling variance of 
+    \,$
+    \widehat{T}^{\textnormal{(HT)}}_{d,\xi}
+    \,=\,
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+    $\,
+    is given by
+    \begin{equation*}
+    \Var_{S}\!\left(\,
+        \left.
+        \widehat{T}^{\textnormal{(HT)}}_{d,\xi} %(s\,;\dbullet\xi_{\bullet})
+        \;\right\vert\!
+        \begin{array}{c} \xi_{\bullet} \end{array}
+        \!\!\right)
+    \;\; = \;\;\,
+        \underset{i \in U}{\sum}\,
+        \underset{j \in U}{\sum}\;
+        \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
+        \cdot
+        \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
+        \cdot
+        \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}\,,
+    \end{equation*}
+    and the following Horvitz-Thompson variance estimator
+    \begin{equation*}
+    \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\xi_{\bullet}\,)
+    \;\; := \;\;
+        \underset{i \in s}{\sum}\,
+        \underset{j \in s}{\sum}\;
+        \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
+        \cdot
+        \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
+        \cdot
+        \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}
+    \end{equation*}
+    is a design-unbiased estimator for the sampling variance of
+    % \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$,\,
+    \,$
+    \widehat{T}^{\textnormal{(HT)}}_{d,\xi_{\bullet}}
+    \,=\,
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+    $,\,
+    i.e.,
+    \begin{equation*}
+    E_{S}\!\left[\;
+        \left.
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\xi_{\bullet}\,)
+        \;\right\vert\!
+        \begin{array}{c} \xi_{\bullet} \end{array}
+        \!\right]
+    \;\; = \;\;
+        \Var_{S}\!\left(\,
+            \left.
+            \widehat{T}^{\textnormal{(HT)}}_{d,\xi} %(s\,;\dbullet\xi_{\bullet})
+            \;\right\vert\!
+            \begin{array}{c} \xi_{\bullet} \end{array}
+            \!\!\right)
+    % \;\; = \;\;
+    %     \underset{i \in U}{\sum}\,
+    %     \underset{j \in U}{\sum}\;
+    %     \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
+    %     \cdot
+    %     \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
+    %     \cdot
+    %     \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}
+    \end{equation*}
+\item
+    $\gamma \,=\, \left(\,\gamma^{(1)},\ldots,\gamma^{(q)}\,\right)^{T} : U \longrightarrow \Re^{q}$\,
+    is an $\Re^{q}$-valued population characteristic such that
+    \begin{itemize}
+    \item
+        its population total
+        \;$
+        T_{\gamma} \, := \, \underset{i \in U}{\sum}\;\gamma_{i} \,\in\, \Re^{q}
+        $\;
+        is known, and
+    \item
+        the unit-level values of \,$\gamma$\, are known for each unit in the selected sample \,$s$.\,
+    \end{itemize}
+\item
+    Aside/Reminder \#2:
+    \vskip 0.01cm
+    \noindent
+    Since data for \,$\gamma$\, are assumed available as described above,
+    if there were no missing data in \,$\ydot$\, for the units in the selected sample,
+    then one can also use (for coherence and smaller sampling variability)
+    the \textit{calibration domain total estimator}:
+    \begin{eqnarray*}
+    \widehat{T}_{d,Y}^{\textnormal{(cal)}}
+    & :=: &
+    \widehat{T}^{\textnormal{(cal)}}(\,s\,;\dYdot,\gdotdot\,)
+    \;\; := \;\;
+        \underset{i \in s}{\sum}\;
+        {\color{red}\widetilde{w}_{i}}\,d_{i}\,Y_{i}
+    \\
+    & = &
+        \underset{i \in s}{\sum}\;\,
+        {\color{red}
+        w_{i}
+        \cdot
+        \left\{\;
+            1
+            \,+\,
+            \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)^{T}
+            \cdot
+            \left(\;
+                \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
+                \,\right)^{\!-1}
+            \gamma_{i}q_{i}
+            \,\right\}
+        }
+        \cdot
+        d_{i}\,Y_{i}
+    \\
+    & = &
+        \left(\,\underset{i \in s}{\sum}\;w_{i} \cdot d_{i}\,Y_{i}\,\right)
+        \; + \;
+        \left(\,
+            \underset{i \in s}{\sum}\;\,
+            w_{i}\cdot
+                \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)^{T}
+                \cdot
+                \left(\;
+                    \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
+                    \,\right)^{\!-1}
+            \gamma_{i}\,q_{i}\,d_{i}\,Y_{i}
+            \,\right)
+    \\
+    & = &
+        \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \; + \;
+        {\color{blue}
+        \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)^{T}
+        \cdot
+        \left(\;
+            \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
+            \,\right)^{\!-1}
+        }
+        \cdot
+        \left(\;\,
+            \underset{i \in s}{\sum}\;
+            w_{i}\,\gamma_{i}\,q_{i}\,d_{i}\,Y_{i}
+            \,\right)
+    \\
+    & = &
+        \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \; + \;
+        {\color{blue}H(s\,;\gdotdot)}
+        \cdot
+        \left(\;\,
+            \underset{i \in s}{\sum}\;
+            w_{i}\,q_{i} \cdot \gamma_{i} \cdot d_{i}\,Y_{i}
+            \,\right)
+    \;\; = \;\;
+        \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \; + \;
+        \underset{i \in s}{\sum}\;
+        w_{i}\,q_{i}
+        \cdot\!
+        \left(\,\overset{{\color{white}.}}{H(s\,;\gdotdot)\cdot\gamma_{i}}\,\right)
+        \!\cdot
+        d_{i}\,Y_{i}\,,
+    % \\
+    % & = &
+    %     \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+    %     \; + \;
+    %     \left(
+    %         \left(\;
+    %             \underset{k \in s}{\sum}\,q_{k}w_{k}\gamma_{k}\gamma_{k}^{T}
+    %             \,\right)^{\!-1}
+    %         \cdot
+    %         \underset{i \in s}{\sum}\;
+    %         w_{i}\,\gamma_{i}\,q_{i}\,d_{i}\,y_{i}
+    %         \,\right)^{\!\!T}
+    %     \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)
+    \end{eqnarray*}
+    where
+    \begin{itemize}
+    \item
+        $\Gdotdot \,=\, \left(\,\Gamma_{ij}\,\right) \,\in\, \Re^{N \times q}$\,
+        is a matrix containing the values of the $\Re^{q}$-valued calibration variable
+        \begin{equation*}
+        \gamma
+        \, = \,
+            \left(\,\gamma^{(1)},\ldots,\gamma^{(q)}\,\right)^{T} :
+            U \, \longrightarrow \, \Re^{q} = \Re^{q \times 1}
+        \end{equation*}
+        for all units in the population,
+        where the $i^{\textnormal{th}}$ row of \,$\Gdotdot$\, corresponds to the vector
+        \begin{equation*}
+        \gamma_{i}
+        \, = \,
+            \left(\,\gamma^{(1)}_{i},\ldots,\gamma^{(q)}_{i}\,\right)^{\!T}
+        \, \in\,
+            \Re^{q} = \Re^{q \times 1}
+        \end{equation*}
+        of values of the calibration variables for populaton unit \,$i \in U$,\,
+    \item
+        for each population unit \,$i \in U$,\,
+        \,$\widetilde{w}_{i} = \widetilde{w}_{i}(\,s\,;\Gdotdot\,)$\,
+        is the sample-dependent calibration weight
+        % \footnote{In the SEVANI theory,
+        %     the calibration weights
+        %     \,$\widetilde{w}_{i} = \widetilde{w}_{i}(s\,;\Gdotdot)$\,
+        %     only need to be functions of the selected sample \,$s \subset U$\, and
+        %     the ``calibration variables'' \,$\Gdotdot$;\, in practice,
+        %     the calibration weights form the solution to a certain optimization problem involving
+        %     \,$s$,\, $\Gdotdot$,\, and the design weights \,$\widetilde{w}_{i}$.
+        %     }
+        of \,$i \in U$,
+        where
+        \begin{eqnarray*}
+        \widetilde{w}_{i}
+        & :=: &
+            \widetilde{w}_{i}(\,s\,;\Gdotdot\,)
+        \;\, := \;\,
+            w_{i}
+            \cdot
+            \left\{\,\overset{{\color{white}.}}{
+                1 \,+\, H(s\,;\Gdotdot)\cdot\gamma_{i}q_{i}
+                }\,\right\}
+        \\
+        & = &
+            w_{i}
+            \cdot
+            \left\{\;
+                1
+                \,+\,
+                \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)^{T}
+                \cdot
+                \left(\;
+                    \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
+                    \,\right)^{\!-1}
+                \gamma_{i}q_{i}
+                \,\right\},
+        \end{eqnarray*}
+        and
+        \begin{equation*}
+        H(s\,;\Gdotdot)
+        \;\; := \;\;
+            \left(\,T_{\gamma} - \widehat{T}_{\gamma}^{\textnormal{(HT)}}\,\right)^{T}
+            \cdot
+            \left(\;
+                \underset{k \in s}{\sum}\;w_{k}q_{k}\cdot\gamma_{k}\gamma_{k}^{T}
+                \,\right)^{\!-1}
+        \;\; \in \;\;
+            \Re^{1 \times q}
+        \end{equation*}
+    \end{itemize}
+\item
+    The value of \,$Y_{l}$\, has been successfully observed
+    only for units \,$l$\, in the (random) ``responding'' subsample
+    \,$s_{R} \subset s \subset U$;\,
+    in other words, the measurement of \,$Y_{k}$\, somehow failed for each unit \,$k$\,
+    in the ``nonresponding'' subsample
+    \,$s_{M} \, := \,s \,\backslash\, s_{R} \,\subset\, U$.\,
+\item
+    We would like to estimate \,$T_{d,Y}$\,
+    with a ``calibration estimator with imputation,''
+    more precisely, one of the following form:
+    \begin{eqnarray*}
+    \widetilde{T}_{d,Y}
+    & = &
+        \widetilde{T}_{d,Y}(\,
+            \Sdot\,,\,
+            \Rdot\,,\,
+            \Ydot\,;\,
+            \Gdotdot\,,\,
+            \Xdotdot\,,\,
+            \dbullet
+            \,)
+    \;\; = \;\;
+        \underset{i\,\in\,s}{\sum}\;\widetilde{w}_{i}\,d_{i}\,Y^{\dagger}_{i}
+    \;\; = \;\;
+        \underset{i\,\in\,U}{\sum}\;\widetilde{w}_{i}\,S_{i}\,d_{i}\left(\,
+            R_{i}\,Y_{i}
+            \overset{{\color{white}.}}{+}
+            (1-R_{i})\,Y^{*}_{i}
+            \,\right),
+    \end{eqnarray*}
+    where
+    \begin{itemize}
+    % \item
+    %     $\Gdotdot \,=\, \left(\,\Gamma_{ij}\,\right) \,\in\, \Re^{N \times q}$\,
+    %     is a random matrix containing the values of the $\Re^{q}$-valued calibration variable
+    %     for all units in the population,
+    %     where the $i^{\textnormal{th}}$ row of \,$\Gdotdot$\, corresponds to populaton unit \,$i \in U$,\,
+    % \item
+    %     for each population unit \,$i \in U$,\,
+    %     \,$\widetilde{w}_{i} = \widetilde{w}_{i}(\,s\,;\Gdotdot\,)$\,
+    %     is the calibration weight\footnote{In the SEVANI theory, the calibration weights
+    %         \,$\widetilde{w}_{i} = \widetilde{w}_{i}(s\,;\Gdotdot)$\,
+    %         only need to be functions of the selected sample \,$s \subset U$\, and
+    %         the ``calibration variables'' \,$\Gdotdot$;\, in practice,
+    %         the calibration weights form the solution to a certain optimization problem involving
+    %         \,$s$,\, $\Gdotdot$,\, and the design weights \,$\widetilde{w}_{i}$.
+    %         }
+    %     of \,$i \in U$,
+    %     where
+    %     \begin{equation*}
+    %     \widetilde{w}_{i}
+    %     \;\; = \;\;
+    %         \widetilde{w}_{i}(\,s\,;\Gdotdot\,)
+    %     \;\; := \;\;
+    %     \end{equation*}
+    %     \vskip 0.1cm
+    %     \noindent
+    \item
+        $\Rdot \,=\, (R_{1},\ldots,R_{N})^{T}$ is the vector of $\{0,1\}$-valued response indicator variables,
+    \item
+        $\Xdotdot \,=\, \left(\,X_{ij}\,\right) \,\in\, \overline{\Re}^{N \times r}$\,
+        is a random matrix containing the values of the $\Re$predictor variables for $\Ydot$,
+        where the $i^{\textnormal{th}}$ row of \,$\Xdotdot$\, corresponds to populaton unit \,$i \in U$,\,
+        and where \,$\overline{R} \,:=\, \Re \sqcup \{\,\texttt{NA}\,\}$\,
+        is an extension of $\Re$ alllowing for missing values in \,$\Xdotdot$,\, and
+    \item
+        for each \,$i \in s$,\,
+        \,$Y^{\dagger}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+        and
+        \begin{equation*}
+        Y^{*}_{k}
+        \;\; = \;\;
+            Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)\,,
+        \quad
+        \textnormal{for each \,$k \in s_{M} = s\,\backslash\,s_{R}$},
+        \end{equation*}
+        is an imputed value for
+        \,$Y_{k}$\, and \,$Y^{*}_{k}$\,
+        may depend on
+        \,$\Sdot,\Rdot,\Ydot,\Xdotdot$.\,
+    % \item
+    %     $\widehat{T}(s\,;\pi,\dbullet,\xi_{\bullet})$\,
+    %     is the Horvitz-Thompson estimator for the domain total
+    %     \,$T_{d,\xi} \,:=\, \underset{i\,\in\,U}{\sum}\,d_{i}\xi_{i}$\,
+    %     of an arbitrary population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
+    %     \begin{equation*}
+    %     \widehat{T}(s\,;\pi,\dbullet,\xi_{\bullet})
+    %     \;\; := \;\;
+    %         \underset{i\,\in\,s}{\sum}\;\widetilde{w}_{i}\,d_{i}\,\xi_{i}
+    %     \;\; = \;\;
+    %         \underset{i\,\in\,U}{\sum}\;\widetilde{w}_{i}\,d_{i}\,S_{i}\,\xi_{i}
+    %     \end{equation*}
+    \end{itemize}
+% \item
+%     {\color{red}We would like to estimate \,$R_{d,Y/Z}$\,}
+%     with an imputation estimator of the following form:
+%     \begin{eqnarray*}
+%     \widetilde{R}_{d,Y/Z}
+%     & = &
+%         \widetilde{R}_{d,Y/Z}(\,
+%             \Sdot\,,\,
+%             \Rdot\,,\,
+%             \Ydot\,,\,
+%             \Zdot\,;\,
+%             \Xdotdot\,,\,
+%             \dbullet
+%             \,)
+%     \;\; := \;\;
+%         \dfrac{
+%             \widetilde{T}_{d,Y}
+%             }{
+%             \overset{{\color{white}.}}{
+%                 \widehat{T}_{d,Z}
+%                 }
+%             }
+%     \;\; :=: \;\;
+%         \dfrac{
+%             \widehat{T}_{d}(s\,;\widetilde{Y}_{\bullet})
+%             }{
+%             \overset{{\color{white}.}}{
+%                 \widehat{T}_{d}(s\,;\Zdot)
+%                 }
+%             }
+%     \\
+%     & = &
+%         \dfrac{
+%             \underset{i\,\in\,s}{\sum}\;\widetilde{w}_{i}\,d_{i}\,\widetilde{Y}_{i}
+%             }{
+%             \overset{{\color{white}.}}{
+%                 \underset{i\,\in\,s}{\sum}\;\widetilde{w}_{i}\,d_{i}\,Z_{i}
+%                 }
+%             }
+%     \;\; = \;\;
+%         \dfrac{
+%             \underset{i\,\in\,U}{\sum}\;\widetilde{w}_{i}\,d_{i}\,S_{i}\left(\,
+%                 R_{i}\,Y_{i}
+%                 \overset{{\color{white}.}}{+}
+%                 (1-R_{i})\,Y^{*}_{i}
+%                 \,\right)
+%             }{
+%             \overset{{\color{white}.}}{
+%                 \underset{i\,\in\,U}{\sum}\;\widetilde{w}_{i}\,d_{i}\,S_{i}\,Z_{i}
+%                 }
+%             }\,,
+%     \end{eqnarray*}
+%     where
+%     \begin{itemize}
+%     % \item
+%     %     $\widetilde{w}_{i} \,:=\, \dfrac{1}{\pi_{i}}$,\, for each population unit \,$i \in U$,\,
+%     %     is the (\textit{a priori} known, non-random) design weight of \,$i \in U$,\,
+%     %     i.e., reciprocal of the selection probability \,$\pi_{i}$\,
+%     %     (assumed strictly positive) of \,$i \in U$,\,
+%     % \item
+%     %     $\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$ is the vector of $\{0,1\}$-valued selection indicator variables,
+%     \item
+%         $\Rdot \,=\, (R_{1},\ldots,R_{N})^{T}$ is the vector of $\{0,1\}$-valued response indicator variables,
+%     \item
+%         $\Xdotdot \,=\, \left(\,X_{ij}\,\right) \,\in\, \overline{\Re}^{N \times r}$\,
+%         is a random matrix containing the predictor variables for $\Ydot$,
+%         where the $i^{\textnormal{th}}$ row of \,$\Xdotdot$\, corresponds to populaton unit \,$i \in U$,\,
+%         and where \,$\overline{R} \,:=\, \Re \sqcup \{\,\texttt{NA}\,\}$\,
+%         is an extension of $\Re$ alllowing for missing values in \,$\Xdotdot$,\, and
+%     \item
+%         for each \,$i \in s$,\,
+%         \,$\widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+%         and
+%         \begin{equation*}
+%         Y^{*}_{k}
+%         \;\; = \;\;
+%             Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)\,,
+%         \quad
+%         \textnormal{for each \,$k \in s_{M} = s\,\backslash\,s_{R}$},
+%         \end{equation*}
+%         is an imputed value for
+%         \,$Y_{k}$\, and \,$Y^{*}_{k}$\,
+%         may depend on
+%         \,$\Sdot,\Rdot,\Ydot,\Xdotdot$.\,
+%     % \item
+%     %     $\widehat{T}(s\,;\pi,\dbullet,\xi_{\bullet})$\,
+%     %     is the Horvitz-Thompson estimator for the domain total
+%     %     \,$T_{d,\xi} \,:=\, \underset{i\,\in\,U}{\sum}\,d_{i}\xi_{i}$\,
+%     %     of an arbitrary population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
+%     %     \begin{equation*}
+%     %     \widehat{T}(s\,;\pi,\dbullet,\xi_{\bullet})
+%     %     \;\; := \;\;
+%     %         \underset{i\,\in\,s}{\sum}\;\widetilde{w}_{i}\,d_{i}\,\xi_{i}
+%     %     \;\; = \;\;
+%     %         \underset{i\,\in\,U}{\sum}\;\widetilde{w}_{i}\,d_{i}\,S_{i}\,\xi_{i}
+%     %     \end{equation*}
+%     \end{itemize}
+\item
+    Furthermore, \,$Y^{*}_{k}$\, ($k \in s_{M}$) is \textbf{composite-linear},
+    i.e., there exists \,$J \in \N$\, such that
+    \begin{center}
+    \begin{minipage}{6.2in}
+    for each admissible sample \,$s \subset U$,\,
+    each \,$s_{R} \subset s$,\,
+    {\color{red}each} \,{\color{red}$k \in s_{M} := s \,\backslash\, s_{R}$},\,
+    there exist
+    \begin{equation*}
+    \left\{\;\;\begin{array}{ccl}
+    j
+    & = &
+        j(\,k,s,s_{R}\,;\Xobs\,) \;\in\; \{1,2,\ldots,J\},
+    \\
+    \varphi^{(j)}_{0k}
+    & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
+        \varphi^{(j)}_{0k}(\,s,s_{R}\,;\Xdotdot\,),
+        \quad
+        \textnormal{and}
+    \\
+    \varphi^{(j)}_{lk}
+    & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
+        \varphi^{(j)}_{lk}(\,s,s_{R}\,;\Xdotdot\,),
+        \;\;
+        \textnormal{{\color{red}for each \,$l \in s_{R}$}}
+    \end{array}\right.
+    \end{equation*}
+    such that
+    \begin{equation*}
+    Y_{{\color{red}k}}^{*}
+    \;\; = \;\;
+        Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+    \;\; = \;\;
+        \varphi^{(j)}_{0{\color{red}k}}
+        \,+\,
+        \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{l{\color{red}k}}\,Y_{l}\,,
+        \quad
+        \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$},
+    % \quad
+    % \textnormal{for some \,$j \in \{1,2,\ldots,J\}$\, depending on \,$s,\,s_{R},\,\Xobs$}
+    \end{equation*}
+    \end{minipage}
+    \end{center}
+\end{itemize}
+\vskip 0.1cm
+\begin{center}
+\begin{minipage}{5.5in}
+% \begin{tcolorbox}[arc=2mm, colback=blue!5!white, colframe=blue!75!black]
+% \begin{tcolorbox}[arc=2mm, colback=blue!5!white, colframe=black]
+% \begin{tcolorbox}[arc=8px, colback=blue!5!white, colframe=black]
+\begin{tcolorbox}[arc=8px, colback=white, colframe=black]
+\begin{center}
+\textbf{The variability quantification problem$\overset{{\color{white}1}}{\textnormal{\color{white}.}}$\& proposed solution}
+\end{center}
+We seek to quantify the variability of
+\,$\widetilde{T}_{d,Y}$\,
+as an estimator for
+\,$T_{d,Y}$.
+\vskip 0.1cm
+In these study notes,
+the conditional mean squared error (MSE) given \,$\Zdot$\, and \,$\Xdotdot$\,
+\begin{equation*}
+\MSE\!\left(\;
+    \left.
+    \widetilde{T}_{d,Y}
+    \;\right\vert\!
+    \begin{array}{c} \Gdotdot\,,\Xdotdot \end{array}
+    \!\right)
+\;\; := \;\;
+    E\!\left[\;\left(\,
+        \left.
+        \widetilde{T}_{d,Y}
+        \, - \,
+        T_{d,Y}
+        \,\right)^{\!2}
+        \;\right\vert\!
+        \begin{array}{c} \Gdotdot\,,\Xdotdot \end{array}
+        \!\right]
+\end{equation*}
+of
+\,$\widetilde{R}_{d,Y/Z}$\,
+as estimator for
+\,$R_{d,Y/Z}$\,
+is proposed for this purpose.
+\vskip 0.3cm
+\noindent
+In addition, an approximate, but computable, estimator for
+\,$
+\MSE\!\left(\;
+    \left.
+    \widetilde{T}_{d,Y}
+    \;\right\vert\!
+    \begin{array}{c} \Gdotdot\,,\Xdotdot \end{array}
+    \!\right)
+$\,
+will be proposed.
+\vskip -0.25cm
+{\color{white}.}
+\end{tcolorbox}
+\end{minipage}
+\end{center}
+\vskip 0.3cm
+\noindent
+Lastly, we define the following entities that will repeatedly appear
+in the formulas we will derive in these notes:
+\begin{equation*}
+\mu_{k}
+\; := \;
+    E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Gdotdot\,,\Xobs\right.\right],
+\quad\quad
+\sigma_{k}^{2}
+\; := \;
+    \Var_{Y}\!\left[\;
+        Y_{k}
+        \,\left\vert\;
+        \Gdotdot\,,\Xobs
+        \right.
+        \right]
+\end{equation*}
+\begin{equation*}
+\widetilde{y}_{k}
+\; := \;
+    \left\{\begin{array}{cl}
+        y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+        \\
+        % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+        \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+        \end{array}\right.
+\end{equation*}
+\begin{equation*}
+\widetilde{W}^{(+)}_{d,{\color{red}0}}
+\; := \;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{l \in s_{M}^{(j)}}{\sum}\,
+        \widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+        \,\right),
+\quad\quad
+\widetilde{W}^{(+)}_{d,{\color{red}l}}
+\; := \;
+    \left(\;
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k \in s_{M}^{(j)}}{\sum}\,
+        \widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}l}k}
+        \,\right),
+\;\;
+\textnormal{for each \,$l \in s_{R}$}
+\end{equation*}
+\vskip 0.3cm
+\noindent
+Note that
+\,$\widetilde{y}_{k}$,\,
+\,$\widetilde{W}^{(+)}_{d,{\color{black}0}}$\,
+and
+\,$\widetilde{W}^{(+)}_{d,{\color{black}l}}$\,
+depend on the full selected sample
+\,$s \subset U$\,
+and the responding subsample
+\,$s_{R} \subset s \subset U$.\,
+
+% \vskip 0.5cm
+% \noindent
+% {\color{red}
+% Lastly, we define the following entities that will repeatedly appear
+% in the formulas we will derive in these notes:
+% \begin{eqnarray*}
+% \widetilde{W}^{(+)}_{d,{\color{red}0}}
+% & := &
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,
+%         \widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+%         \,\right),
+% \\ \\
+% \widetilde{W}^{(+)}_{d,{\color{red}l}}
+% & := &
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,
+%         \widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}l}k}
+%         \,\right),
+% \;\;
+% \textnormal{for each \,$l \in s_{R}$}
+% \end{eqnarray*}
+% }
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+% \vskip 1.0cm
+\clearpage
+\subsection{Probabilistic framework}
+\label{CalibrationDomainTotalProbabilisticFramework}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\noindent
+\textbf{Probability spaces}
+\begin{itemize}
+\item
+    Let
+    \,$U \,=\, \{1,2,\ldots,N\}$.\,
+    Let
+    \,$\mathcal{P}(U) \,=\, \mathcal{P}(\{1,2,\ldots,N\})$\,
+    denote the power set (set of all subsets) of \,$U$.\,
+    Let
+    \,$\left(\,\mathcal{P}(U)\,,\mathcal{P}(\mathcal{P}(U))\,,\overset{{\color{white}-}}{\pi}\,\right)$\,
+    be the probability space induced by a sampling design, i.e.,
+    a probability mass function defined on
+    \,$\mathcal{P}(U)$.\,
+\item
+    Let \,$\left(\,\Omega,\mathscr{A},\lambda\,\right)$\, be a probability space.
+\end{itemize}
+
+\vskip 0.2cm
+\noindent
+\textbf{Random variables}
+\begin{itemize}
+\item
+    $\Ydot \,=\, (Y_{1},Y_{2},\ldots,Y_{N})^{T} : \Omega \longrightarrow \Re^{N \times 1}$\,
+    is an $\Re^{N \times 1}$-valued random variable defined on \,$\Omega$,\,
+    i.e., $\mathscr{A}$-measurable map.
+\item
+    $\Xdotdot\,=\,\left(\,\overset{{\color{white}.}}{X_{ij}}\,\right) : \Omega \longrightarrow \Re^{N \times r}$\,
+    is an $\Re^{N \times r}$-valued random variable defined on \,$\Omega$.
+\item
+    $\Gdotdot\,=\,\left(\,\overset{{\color{white}.}}{C_{ij}}\,\right) : \Omega \longrightarrow \Re^{N \times q}$\,
+    is an $\Re^{N \times q}$-valued random variable defined on \,$\Omega$.
+\item
+    $\Sdot \,=\, (S_{1},S_{2},\ldots,S_{N})^{T} : \mathcal{P}(U) \longrightarrow \{0,1\}^{N \times 1}$\,
+    is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\mathcal{P}(U)$,\,
+    i.e., $\mathcal{P}(\mathcal{P}(U))$-measurable map.
+\item
+    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{black}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
+    is a $\{0,1\}^{N \times 1}$-valued random variable defined on the product probability space
+    \,$\Omega \times \mathcal{P}(U)$,\,
+    i.e.,
+    \,$\left(\mathscr{A} \overset{{\color{white}.}}{\otimes} \mathcal{P}(\mathcal{P}(U))\right)$-measurable map
+    that satisfies:
+    % \begin{equation*}
+    % \mu\!\left(\left\{\;
+    %     \omega \in \Omega
+    %     \;\left\vert\;
+    %     S_{k}(s) = 0
+    %     \,\overset{{\color{white}1}}{\Longrightarrow}\,
+    %     R_{k}(\omega,s_{R}) = 0
+    %     \right.
+    %     \;\right\}\right)
+    % \; = \;
+    %     1\,,
+    % \quad
+    % \textnormal{for each \,$k \in U$,\, and each \,$s_{R} \subset s \subset U$}
+    % \end{equation*}
+    % \begin{equation*}
+    % (\,\mu\times\pi\,)\!\left(\left\{\;
+    %     (\omega,s) \in \Omega
+    %     \;\left\vert\;
+    %     \begin{array}{c}
+    %     S_{k}(s) = 0, \,\textnormal{and}\; R_{k}(\omega,s) = 1,
+    %     \\
+    %     \overset{{\color{white}.}}{\textnormal{for one or more $k \in U$}}
+    %     \end{array}
+    %     \right.
+    %     \;\right\}\right)
+    % \; = \;
+    %     0
+    % \end{equation*}
+    \begin{equation*}
+    (\,\lambda\otimes\pi\,)\!\left(\;\,
+        \underset{k \in U}{\bigcup}\left\{\;
+            (\omega,s) \in \Omega\times\mathcal{P}(U)
+            \;\left\vert
+            \begin{array}{c}
+            S_{k}(s) = 0, %\,\textnormal{and}\;
+            \\
+            \overset{{\color{white}.}}{R_{k}(\omega,s) = 1}
+            \end{array}
+            \right.
+            \!\!\right\}
+        \;\right)
+    \; = \;
+        0
+    \end{equation*}
+    Note that this condition stipulates that,
+    whenver a population unit \,$k \in U$\, is not selected in the (random) sample \,$s \subset U$,\,
+    then it is not a respondent either.
+\end{itemize}
+
+\vskip 0.2cm
+\noindent
+\textbf{Interpretation}
+\begin{itemize}
+\item
+    $U = \{1,2,\ldots,N\}$
+    \,--\,
+    index set of the target (finite) population of interest,
+    and \,$N$\, is the (finite) size of the target population.
+\item
+    $\left(\,\Omega,\mathscr{A},\lambda\,\right)$
+    \,--\,
+    underlying source of stochasticity of the imputation model (or superpopulation model).
+\item
+    $\Ydot$
+    \,--\,
+    $\Re$-valued target variable (population characteristic).
+\item
+    $\Xdotdot$
+    \,--\,
+    $\Re^{r}$-valued (auxiliary) predictor variables for $\Ydot$.
+\item
+    $\Gdotdot$
+    \,--\,
+    $\Re^{q}$-valued (auxiliary) {\color{red}calibration variables}
+    (in terms of which calibration constraints are expressed).
+\item
+    $\Sdot$
+    \,--\,
+    $\{0,1\}$-valued binary variable indicating, for each \,$s \subset U$,\,
+    whether a population unit \,$k \in U$\, is selected in \,$s$.\,
+    More precisely, for each \,$s \subset U$,\, we have:
+    \begin{equation*}
+    S_{k}(s)
+    \;\; = \;\;
+        \left\{\begin{array}{cl}
+            1\,, & \textnormal{if \,$k \in s$},
+            \\
+            0\,, & \textnormal{otherwise}.
+            \end{array}\right.
+    \end{equation*}
+\item
+    $\Rdot$
+    \,--\,
+    $\{0,1\}$-valued binary variable indicating, for almost every outcome
+    \,$\omega \in \Omega$\,
+    and each
+    \,$(s,s_{R}) \in \mathcal{P}(U) \times \mathcal{P}(U)$\,
+    satisfying
+    \,$s_{R} \subset s$,\,
+    whether a selected population unit \,$ k \in s$\,
+    is a respondent or not.
+    % More precisely, for each \,$s \subset U$ and each \,$k \in s$,\, we have:
+    % \begin{equation*}
+    % R_{k}(\omega,s_{R})
+    % \;\; = \;\;
+    %     \left\{\begin{array}{cl}
+    %         1\,, & \textnormal{if \,$k \in s_{R}$},
+    %         \\
+    %         0\,, & \textnormal{otherwise}.
+    %         \end{array}\right.
+    % \end{equation*}
+\end{itemize}
+
+\vskip 0.2cm
+\noindent
+\textbf{Probabilistic assumptions}
+\begin{itemize}
+% \item
+%     $\pi_{i} \,:=\, P(\,S_{i} = 1\,) \,:=\, \pi\!\left(\,\left\{\,\left. s \overset{{\color{white}.}}{\subset} U \,\right\vert\, i \in s\,\right\}\,\right) \,>\, 0$,\,
+%     for each \,$i \in U$.\,
+%     % and
+%     % \,$\widetilde{w}_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
+\item
+    The unit-level selection probabilities are all strictly positive, i.e.,
+    \begin{equation*}
+    \pi_{i}
+    \; := \;
+        P(\,S_{i} = 1\,)
+    \; := \;
+        \pi\!\left(\,\left\{\,
+            \left.
+            s \overset{{\color{white}.}}{\subset} U
+            \,\right\vert\,
+            i \in s
+            \,\right\}
+        \,\right)
+    \;\; > \;\;
+        0,\,
+    \textnormal{for each \,$i \in U$\,
+    % and \,$w_{i} \,:=\, \dfrac{1}{P(\,S_{i} = 1\,)}$,\, for each \,$i \in U$.
+    }
+    \end{equation*}
+\item
+    The second-order joint selection probabilities are all strictly positive, i.e.,
+    \begin{equation*}
+    \pi_{ij}
+    \; := \;
+        P(\,S_{i} = S_{j} = 1\,)
+    \; := \;
+        \pi\!\left(\,\left\{\,
+            \left.
+            s \overset{{\color{white}.}}{\subset} U
+            \,\right\vert\,
+            i, j \in s
+            \,\right\}
+        \,\right)
+    \;\; > \;\;
+        0,\,
+    \textnormal{for each \,$i,j \in U$,\, with $i \neq j$}
+    \end{equation*}
+\item
+    $\left(\,\Ydot\,,\Gdotdot\,,\Xdotdot\,\right)$\, and \,$\Sdot$\, are (unconditionally) independent.
+\item
+    $\Ydot$\, and \,$(\,\Sdot\,,\Rdot\,)$\,
+    are {\color{red}conditionally independent} given
+    \,$(\,\Gdotdot\,,\Xdotdot\,)$.
+\item
+    $\Cov\!\left(\;Y_{k}\,,\,Y_{l}\;\left\vert\;\Gdotdot\,,\Xdotdot\right.\right) \,=\, 0$,\,
+    for each \,$k, l \in U$\, with \,$k \neq l$.
+\end{itemize}
+
+\vskip 0.2cm
+\noindent
+\textbf{(Non-random) parameters}
+\begin{itemize}
+\item
+    $\dbullet \,=\, (d_{1},d_{2},\ldots,d_{N}) \in \{0,1\}^{N}$\,
+    is a (non-random, binary) domain membership indicator.
+\end{itemize}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+% \clearpage
+\vskip 0.5cm
+\subsection{Decomposition of the MSE of the imputation estimator}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.1cm
+\begin{lemma}[Decomposition of \,$\MSE(\,\widetilde{T}_{d,Y}\,\vert\,\Gdotdot,\Xobs\,)$; compare Equation (5.3) in \cite{Beaumont2011}]
+\label{CalibrationDomainTotalDecompositionMSETtilde}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose we are given quantities as described in Subsection
+\ref{CalibrationDomainTotalFormulationOfVarianceEstimationProblem}
+and
+that they satisfy the probabilistic assumptions as described in Subsection
+\ref{CalibrationDomainTotalProbabilisticFramework}.
+\vskip 0.1cm
+\noindent
+Then,
+\begin{eqnarray*}
+\MSE\!\left(\;
+    \left.
+    \widetilde{T}_{d,Y}
+    \;\right\vert\,
+    \Gdotdot,\Xobs
+    \,\right)
+& := &
+    E\!\left[\,
+        \left.
+        (\,\widetilde{T}_{d,Y} - T_{d,Y}\,)^{2}
+        \,\right\vert\,
+        \Gdotdot,\Xobs
+        \,\right]
+\\
+& = &
+    E_{Y}\!\left[\,
+    \Var_{SR}\!\left(\;
+        \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \,\left\vert\!
+        \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right)
+        \,\right]
+    \;+\;
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,)^{2}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+        \,\right]
+\\
+&&
+    \; + \; 2 \,
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,\right)
+        \!
+        \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+        \,\right]
+\end{eqnarray*}
+\end{lemma}
+\proof
+\begin{eqnarray*}
+&&
+\MSE\!\left(\;
+    \left.
+    \widetilde{T}_{d,Y}
+    \;\right\vert\,
+    \Gdotdot,\Xobs
+    \,\right)
+% \\
+% & := &
+\;\; := \;\;
+    E\!\left[\,
+        \left.
+        (\,\widetilde{T}_{d,Y} - T_{d,Y}\,)^{2}
+        \,\right\vert\,
+        \Gdotdot,\Xobs
+        \,\right]
+\;\; = \;\;
+    E_{YSR}\!\left[\,
+        \left.
+        (\,\widetilde{T}_{d,Y} - T_{d,Y}\,)^{2}
+        \,\right\vert\,
+        \Gdotdot,\Xobs
+        \,\right]
+\\
+& = &
+    E_{YSR}\!\left[
+        \left.
+        \left(\,
+            \widetilde{T}_{d,Y}
+            {\color{blue}
+            \;-\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,+\,
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            }
+            \,-\,
+            T_{d,Y}
+            \right)^{2}
+        \,\right\vert\,
+        \Gdotdot,\Xobs
+        \,\right]
+\\
+& = &
+    E_{YSR}\!\left[\,
+        \left.
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\right)^{2}
+        \,+\,
+        2\,
+        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)
+        \!
+        \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\right)
+        \,+\,
+        \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}\right)^{2}
+        \,\right\vert\,
+        \Gdotdot,\Xobs
+        \,\right]
+\\
+& = &
+    {\color{black}
+    E_{Y}\!\left[\,
+    E_{SR}\!\left[\,
+        \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}\right)^{2}
+        \left\vert\!
+        \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+        \,\right]
+    }
+    \;+\;
+    {\color{black}
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[
+        \left.
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)^{2}
+        \,\right\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \!\!\right]
+        \,\right]
+    }
+\\
+&&
+    +\;2\,
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)
+        \!
+        \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\right)
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+        \,\right]
+\\
+& = &
+    E_{Y}\!\left[\,
+        {\color{black}
+        \Var_{S}\!\left(\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\!\right)
+            }
+        \,\right]
+    \; + \;
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)^{2}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+        \,\right]
+\\
+&&
+    \; + \; 2 \,
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)
+        \!
+        \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\right)
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+        \,\right]
+\end{eqnarray*}
+\vskip -0.5cm
+\qed
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.75cm
+\noindent
+To refer to the three summands in the above decomposition of
+\begin{equation*}
+\MSE\!\left(\,
+    \left.
+    \widetilde{T}_{d,Y}
+    \,\right\vert\,
+    \Gdotdot,\Xobs
+    \,\right)
+\;\; := \;\;
+    E\!\left[
+        \left.
+        (\,\widetilde{T}_{d,Y} - T_{d,Y}\,)^{2}
+        \,\right\vert\,
+        \Gdotdot,\Xobs
+        \,\right],
+\end{equation*}
+we will use the following nomenclature:
+\vskip 0.01cm
+\begin{eqnarray*}
+\left(\begin{array}{c}
+    \textnormal{sampling}
+    \\
+    \textnormal{\;\,variance component\;\,}
+    \end{array}\right)
+& := &
+    E_{Y}\!\left[\,
+        \Var_{S}\!\left(\,
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\!\right)
+        \,\right]
+\\ \\
+\left(\begin{array}{c}
+    \textnormal{nonresponse}
+    \\
+    \textnormal{\;\,variance component\;\,}
+    \end{array}\right)
+& := &
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)^{2}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+        \,\right]
+\\ \\
+\left(\begin{array}{c}
+    \textnormal{sampling-nonresponse}
+    \\
+    \textnormal{covariance}
+    \end{array}\right)
+& := &
+    2 \,
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)
+        \!
+        \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\right)
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+        \,\right]
+\end{eqnarray*}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+% \clearpage
+\vskip 0.5cm
+\subsection{Estimator for sampling variance component of
+\,$\MSE\!\left(\,\left.\widetilde{T}_{d,Y}\,\right\vert\Gdotdot,\Xobs\right)$}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.1cm
+\begin{lemma}[Estimator for sampling variance component; compare Equation (5.5) in \cite{Beaumont2011}]
+\label{CalibrationDomainTotalSamplingVariance}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose we are given quantities as described in Subsection
+\ref{CalibrationDomainTotalFormulationOfVarianceEstimationProblem}
+and
+that they satisfy the probabilistic assumptions as described in Subsection
+\ref{CalibrationDomainTotalProbabilisticFramework}.
+\vskip 0.1cm
+\noindent
+Then, the following statements are true:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    If
+    \;$v(\,s\,;y_{\bullet},\gdotdot\,)$\,
+    is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
+    \begin{equation*}
+    E_{S}\!\left[\;
+        v(\,s\,;\dYdot,\Gdotdot\,)
+        \,\left\vert\!
+        \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    \;\; = \;\;
+        \Var_{S}\!\left(\,
+            \left.
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \;\right\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right),
+    \end{equation*}
+    then
+    \,$
+    E_{Y_{M}}\!\left[\,
+        v(\,s\,;\dYdot,\Gdotdot\,)
+        \left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    is an $(\Sdot,\Rdot,\YsubR)$-unbiased estimator for
+    \,$
+    E_{Y}\!\left[\,
+        \Var_{S}\!\left(\,
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
+    \,\right]
+    $,\,
+    i.e.,
+    \begin{equation*}
+    E_{SR}\,
+    E_{Y_{R}}\,
+    E_{Y_{M}}\!\left[\,
+        v(\,s\,;\dYdot,\Gdotdot\,)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    \;\; = \;\;
+        E_{Y}\!\left[\,
+            \Var_{S}\!\left(\,
+                \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+                \left\vert\!
+                \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right)
+            \,\right]
+    \end{equation*}
+\item
+    Suppose we choose to approximate
+    \,$v(\,s\,;y_{\bullet},\gdotdot\,)$\,
+    with the {\color{red}approximate variance estimator}
+    \,$\widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dydot,\gdotdot\,)$\,
+    for the sampling variance of the calibration domain total estimator
+    \,$\widehat{T}^{\textnormal{(cal)}}_{d,Y}$\,
+    (see Equation (3.4), p.380, \cite{DevilleSarndal1992}), i.e.,
+    \begin{eqnarray*}
+    &&
+        \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dydot,\gdotdot\,)
+    \\
+    & := &
+        \underset{k,l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \left(\overset{{\color{white}1}}{
+            \widetilde{w}_{k}
+            \left(\,d_{k}y_{k}-\gamma_{k}^{T}\cdot\widehat{B}(s\,;\dydot,\gdotdot)\,\right)
+            }\right)
+        \left(\overset{{\color{white}1}}{
+            \widetilde{w}_{l}
+            \left(\,d_{l}y_{l}-\gamma_{l}^{T}\cdot\widehat{B}(s\,;\dydot,\gdotdot)\,\right)
+            }\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        \widetilde{w}_{k}\widetilde{w}_{l}
+        \left(\,
+            d_{k}y_{k}
+            \, - \,
+            \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
+            \underset{i \in s}{\sum}\;\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}y_{i}
+            \,\right)
+        \!\!
+        \left(\,
+            d_{l}y_{l}
+            \, - \,
+            \gamma_{l}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
+            \underset{j \in s}{\sum}\;\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}y_{j}
+            \,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        \widetilde{w}_{k}\widetilde{w}_{l}
+        \left(
+            d_{k}y_{k}
+            -
+            \underset{i \in s}{\sum}\;
+            \widetilde{w}_{i}q_{i}
+            \left(\overset{{\color{white}.}}{
+                \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot\gamma_{i}
+                }\right)
+            d_{i}y_{i}
+            \right)
+        \!\!
+        \left(
+            d_{l}y_{l}
+            -
+            \underset{j \in s}{\sum}\;
+            \widetilde{w}_{j}q_{j}
+            \left(\overset{{\color{white}.}}{
+                \gamma_{l}^{T}\cdot G(s,\gdotdot)^{-1}\cdot\gamma_{j}
+                }\right)
+            d_{j}y_{j}
+            \right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        \widetilde{w}_{k}\widetilde{w}_{l}
+        \left(
+            d_{k}y_{k}
+            -
+            \underset{i \in s}{\sum}\;
+            \rho_{ki}(s\,;\gdotdot)\,
+            d_{i}y_{i}
+            \right)
+        \!\!
+        \left(
+            d_{l}y_{l}
+            -
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s\,;\gdotdot)\,
+            d_{j}y_{j}
+            \right)\!,
+    \end{eqnarray*}
+    where
+    \begin{eqnarray*}
+    G(s,\gdotdot)
+    & = &
+        \underset{i \in s}{\sum}\;
+        \widetilde{w}_{i}\,q_{i} \cdot \gamma_{i} \cdot \gamma_{i}^{T}
+        \;\; \in \;\; \Re^{q \times q}\,,
+    \\
+    \widehat{B}(s\,;\dydot,\gdotdot)
+    & = &
+        \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot
+        \underset{i \in s}{\sum}\;
+        \widetilde{w}_{i}q_{i} \cdot \gamma_{i} \cdot d_{i}y_{i}
+        \;\; \in \;\; \Re\,,
+    \\
+    \rho_{ki}(s\,;\gdotdot)
+    & = &
+        \widetilde{w}_{i}q_{i}
+        \left(\overset{{\color{white}.}}{
+            \gamma_{k}^{T}\cdot G(s,\gdotdot)^{-1}\cdot\gamma_{i}
+            }\right)
+        \;\; \in \;\; \Re
+    \end{eqnarray*}
+    Then,
+    \,$
+    E_{Y_{M}}\!\left[\;
+        \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
+        \left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    can be expressed as follows:
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        {\color{blue}
+        \left(\,
+            \underset{k,l \in s}{\sum}
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \cdot\!
+            \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+            \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+            \,\right)
+        \, - \; 2 \cdot
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        }
+    \\
+    &&
+        {\color{blue}
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        }
+    \\
+    &&
+        \; + \;
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        \; - \; 2 \cdot
+        \underset{k \in {\color{red}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{red}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+    \\
+    & = &
+        {\color{blue}
+        \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dbullet{\color{red}\widetilde{y}_{\bullet}},\gdotdot\,)
+        }
+        \; + \,
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+    \\
+    &&
+        \; - \; 2 \cdot
+        \underset{k \in {\color{red}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{red}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+    \end{eqnarray*}
+\end{enumerate}
+% We have:
+% \begin{eqnarray*}
+% E_{Y}\!\left[\,
+%     \Var_{SR}\!\left(\,
+%         \left.
+%         \widehat{T}_{d,Y}
+%         \,\right\vert\,
+%         \Ydot,
+%         \Xobs
+%         \,\right)
+%     \,\right]
+% & \approx &
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;y_{\bullet}\,)
+%         \left\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \right]
+% \;\; = \;\;
+%     v(\,y^{\mu}_{\bullet}\,)
+%     \;+\;
+%     \underset{k \in s_{M}}{\sum}
+%     \left(1-\dfrac{1}{\widetilde{w}_{k}}\right)
+%     \widetilde{w}_{k}^{2}\,\sigma_{k}^{2}\,,
+% \end{eqnarray*}
+% where
+\end{lemma}
+\proof
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    We simply compute:
+    \begin{eqnarray*}
+    &&
+        E_{SR}\,
+        E_{Y_{R}}\,
+        E_{Y_{M}}\!\left[\;
+            v(\,s\,;\dYdot,\Gdotdot\,)
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \;\; = \;\;
+        E_{SR}\,
+        E_{Y}\!\left[\,
+            v(\,s\,;\dYdot,\Gdotdot\,)
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        E_{Y}\,
+        E_{SR}\!\left[\,
+            v(\,s\,;\dYdot,\Gdotdot\,)
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \;\; = \;\;
+        E_{Y}\,
+        E_{S}\!\left[\,
+            v(\,s\,;\dYdot,\Gdotdot\,)
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        E_{Y}\!\left[\,
+            \Var_{S}\!\left(\,
+                \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+                \left\vert\!
+                \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\!\right)
+            \,\right],
+    \;\;
+    \textnormal{by hypothesis on \,$v(\,s\,;y_{\bullet},\Gamma_{\bullet\bullet}\,)$}
+    \end{eqnarray*}
+\item
+    We proceed by establishing a series of claims.
+    \vskip 0.1cm
+    \noindent
+    \textbf{Claim 0:}\quad
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        {\color{white}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}d_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    &&
+        {\color{black}-}\;2\,
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)\,d_{j}
+            \cdot
+            {\color{red}
+            E_{Y_{M}}\!\left[\;
+                Y_{k}Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            }
+            \,\right)
+    \\
+    &&
+        {\color{black}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,d_{j}
+            \cdot
+            {\color{red}
+            E_{Y_{M}}\!\left[\;
+                    Y_{i}
+                    Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            }
+            \,\right)
+    \end{eqnarray*}
+    Proof of Claim 0:
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        \textnormal{\footnotesize$
+        E_{Y_{M}}\!\left[\,
+            \textnormal{\scriptsize$
+            \underset{k,l \in s}{\sum}\,
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+            \widetilde{w}_{k}\widetilde{w}_{l}
+            \left(
+                d_{k}Y_{k}
+                \, - \,
+                \gamma_{k}^{T}\cdot G(s,\Gdotdot)^{-1}\cdot
+                \underset{i \in s}{\sum}\,\widetilde{w}_{i}q_{i}\gamma_{i}d_{i}Y_{i}
+                \right)
+            \!\!
+            \left(
+                d_{l}Y_{l}
+                \, - \,
+                \gamma_{l}^{T}\cdot G(s,\Gdotdot)^{-1}\cdot
+                \underset{j \in s}{\sum}\,\widetilde{w}_{j}q_{j}\gamma_{j}d_{j}Y_{j}
+                \right)
+                $}
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        $}
+    \\
+    & = &
+        \textnormal{\footnotesize$
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\!
+            \left.
+            \textnormal{\scriptsize$
+            \left(
+                d_{k}Y_{k}
+                -
+                \underset{i \in s}{\sum}\,
+                    \widetilde{w}_{i}q_{i}
+                    \!\left(\!\gamma_{k}^{T}\,G(s,\Gdotdot)^{-1}\,\gamma_{i}\!\right)\!
+                    d_{i}Y_{i}
+                \right)
+            \!\!
+            \left(\,
+                d_{l}Y_{l}
+                -
+                \underset{j \in s}{\sum}\,
+                    \widetilde{w}_{j}q_{j}
+                    \!\left(\!\gamma_{l}^{T}\,G(s,\Gdotdot)^{-1}\,\gamma_{j}\!\right)\!
+                    d_{j}Y_{j}
+                \,\right)
+            $}
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    & = &
+        \textnormal{\footnotesize$
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\!
+            \left.
+            \textnormal{\scriptsize$
+            \left(
+                d_{k}Y_{k}
+                \, - \,
+                \underset{i \in s}{\sum}\,\rho_{ki}(s,\Gdotdot)\,d_{i}Y_{i}
+                \right)
+            \!\!
+            \left(\,
+                d_{l}Y_{l}
+                \, - \,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \,\right)
+            $}
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    & = &
+        \textnormal{\footnotesize$
+        {\color{white}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            d_{k}Y_{k} \cdot d_{l}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}-}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left.
+            d_{k}Y_{k}
+            \cdot\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \,\right)
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}-}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left.
+            d_{l}Y_{l}
+            \cdot\!
+            \left(\,
+                \underset{i \in s}{\sum}\,\rho_{ki}(s,\Gdotdot)\,d_{i}Y_{i}
+                \,\right)
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[
+            \left.
+            \left(\,
+                \underset{i \in s}{\sum}\,\rho_{ki}(s,\Gdotdot)\,d_{i}y_{i}
+                \right)
+            \!\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}y_{j}
+                \right)
+            \,\right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    & = &
+        \textnormal{\footnotesize$
+        {\color{white}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            d_{k}Y_{k} \cdot d_{l}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}-}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left.
+            d_{k}Y_{k}
+            \cdot\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \,\right)
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}-}\;
+        \underset{{\color{red}l},{\color{red}k} \in s}{\sum}\,
+        \dfrac{\pi_{{\color{red}lk}} - \pi_{{\color{red}l}}\pi_{{\color{red}k}}}{\pi_{{\color{red}lk}}}
+        \cdot
+        \widetilde{w}_{{\color{red}l}}\,\widetilde{w}_{{\color{red}k}}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left.
+            d_{{\color{red}k}}Y_{{\color{red}k}}
+            \cdot\!
+            \left(\,
+                \underset{{\color{red}j} \in s}{\sum}\,
+                \rho_{{\color{red}lj}}(s,\Gdotdot)\,d_{{\color{red}j}}Y_{{\color{red}j}}
+                \,\right)
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[
+            \left.
+            \left(\,
+                \underset{i \in s}{\sum}\,\rho_{ki}(s,\Gdotdot)\,d_{i}Y_{i}
+                \right)
+            \!\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \right)
+            \,\right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    & = &
+        \textnormal{\footnotesize$
+        {\color{white}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            d_{k}Y_{k} \cdot d_{l}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}-}\;2\,
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left.
+            d_{k}Y_{k}
+            \cdot\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \,\right)
+            \right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    &&
+        \textnormal{\footnotesize$
+        {\color{black}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        E_{Y_{M}}\!\left[
+            \left.
+            \left(\,
+                \underset{i \in s}{\sum}\,\rho_{ki}(s,\Gdotdot)\,d_{i}Y_{i}
+                \right)
+            \!\!
+            \left(\,
+                \underset{j \in s}{\sum}\,\rho_{lj}(s,\Gdotdot)\,d_{j}Y_{j}
+                \right)
+            \,\right\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+        $}
+    \\
+    & = &
+        {\color{white}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}d_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    &&
+        {\color{black}-}\;2\,
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                Y_{k}Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    &&
+        {\color{black}+}\;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                    Y_{i}
+                    Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \end{eqnarray*}
+    This completes the proof of Claim 0.
+
+    \vskip 0.5cm
+    \textbf{Claim 1:}\quad
+    \begin{eqnarray*}
+    E_{Y_{M}}\!\left[\;\,
+        Y_{k}Y_{l}
+        \;\left\vert
+        \begin{array}{c}
+            s,s_{R},\YsubR, \\ \Gdotdot\,,\Xobs
+            \end{array}
+        \right.
+        \right]
+    & = &
+        \left\{\begin{array}{cl}
+            \widetilde{y}_{k}^{2} \,+\, \sigma_{k}^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+            \\
+            \widetilde{y}_{k} \cdot \widetilde{y}_{l}\,, & \overset{{\color{white}.}}{\textnormal{otherwise}}
+            \end{array}\right.
+    \end{eqnarray*}
+    Proof of Claim 1:\;\; Observe that
+    \begin{eqnarray*}
+        E_{Y_{M}}\!\left[\;\,
+        Y_{k}Y_{l}
+        \;\left\vert
+        \begin{array}{c}
+            s,s_{R},\YsubR, \\ \Gdotdot\,,\Xobs
+            \end{array}
+        \right.
+        \!\!\right]
+    & = &
+        E_{Y_{M}}\!\left[\;
+            Y_{k}Y_{l}
+            \;\left\vert\!
+            \begin{array}{c}
+                \YsubR,
+                \\
+                \Gdotdot\,,\Xobs
+                \end{array}
+                \right.
+            \!\!\right]
+    \\
+    & = &
+        \left\{\begin{array}{cl}
+            y_{k} \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{R}$}}
+            \\
+            y_{k} \cdot E[\;Y_{l}\;\vert\;\Gdotdot\,,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{R}$,\, $l \in s_{M}$}}
+            \\
+            E[\;Y_{k}\;\vert\;\Gdotdot\,,\Xobs\,] \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{M}$,\, $l \in s_{R}$}}
+            \\
+            E[\;Y_{k}\;\vert\;\Gdotdot\,,\Xobs\,] \cdot E[\;Y_{l}\;\vert\;\Gdotdot\,,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{M}$,\, $k \neq l$}}
+            \\
+            \Var(\,Y_{k}\,\vert\,\Gdotdot\,,\Xobs) + E[\,Y_{k}\,\vert\,\Gdotdot\,,\Xobs\,]^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+            \end{array}\right.,
+    \end{eqnarray*}
+    from which Claim 1 follows readily.
+    This completes the proof of Claim 1.
+
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 2:}\quad
+    \begin{eqnarray*}
+    &&
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}d_{l}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        \left(\,
+            \underset{k,l \in s}{\sum}
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \cdot\!
+            \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+            \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+            \,\right)
+        \; + \;
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+    \end{eqnarray*}
+    Proof of Claim 2:\;\; Immediate by Claim 1.
+
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 3:}\quad
+    \begin{eqnarray*}
+    &&
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                Y_{k}Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    % \\
+    % & = &
+    %     \underset{k,l \in s}{\sum}\,
+    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+    %     \cdot
+    %     \widetilde{w}_{k}\,\widetilde{w}_{l}
+    %     \cdot\!
+    %     \left(\,
+    %         \underset{j \in s}{\sum}\;
+    %         \rho_{lj}(s,\gdotdot)
+    %         \cdot
+    %         d_{k}\,\widetilde{y}_{k}
+    %         \cdot
+    %         d_{j}\,\widetilde{y}_{j}
+    %         \,\right)
+    % \\
+    % &&
+    %     \; + \;
+    %     \underset{k \in {\color{black}s_{M}}}{\sum}\,
+    %     \underset{l \in {\color{black}s}}{\sum}\,
+    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+    %     \cdot
+    %     \widetilde{w}_{k}\,\widetilde{w}_{l}
+    %     \cdot
+    %     \rho_{lk}(s,\gdotdot)
+    %     \cdot
+    %     d_{k}^{2}\,
+    %     \sigma_{k}^{2}
+    \\
+    & {\color{black}=} &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k \in {\color{black}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \end{eqnarray*}
+    Proof of Claim 3:\;\; 
+    \begin{eqnarray*}
+    &&
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                Y_{k}Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)\,d_{j}
+            \cdot
+            \widetilde{y}_{k}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k \in {\color{red}s_{M}}}{\sum}\,
+        \underset{l \in {\color{red}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        d_{k}
+        \cdot\!
+        \left(\,\overset{{\color{white}1}}{\rho_{lk}(s,\gdotdot)\,d_{k}\cdot\sigma_{k}^{2}}\,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k \in {\color{black}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \end{eqnarray*}
+    This completes the proof of Claim 3.
+
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 4:}\quad
+    \begin{eqnarray*}
+    &&
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                    Y_{i}
+                    Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{black}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+    \end{eqnarray*}
+    Proof of Claim 4:\;\;
+    \begin{eqnarray*}
+    &&
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,d_{j}
+            \cdot
+            E_{Y_{M}}\!\left[\;
+                    Y_{i}
+                    Y_{j}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,d_{j}
+            \cdot
+            \widetilde{y}_{i}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in {\color{red}s_{M}} }{\sum}\,
+            \rho_{kj}(s,\gdotdot)\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,d_{j}
+            \cdot
+            \sigma_{j}^{2}
+            \,\right)
+    \\
+    & = &
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in {\color{black}s_{M}} }{\sum}\,
+            \rho_{kj}(s,\gdotdot)
+            \cdot
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}^{2}\,\sigma_{j}^{2}
+            \,\right)
+    \end{eqnarray*}
+    This completes the proof of Claim 4.
+
+    \vskip 0.5cm
+    \noindent
+    We are now ready to complete the proof of this Lemma:
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        \left(\,
+            \underset{k,l \in s}{\sum}
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \cdot\!
+            \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+            \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+            \,\right)
+        \; + \;
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+    \\
+    &&
+        \; - \; 2 \cdot
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; - \; 2 \cdot
+        \underset{k \in {\color{black}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{black}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+    \\
+    & = &
+        \left(\,
+            \underset{k,l \in s}{\sum}
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \cdot\!
+            \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+            \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+            \,\right)
+        \, - \; 2 \cdot
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        \; - \; 2 \cdot
+        \underset{k \in {\color{black}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{black}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+    \end{eqnarray*}
+    \vskip -0.7cm
+    \qed
+\end{enumerate}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+%\vskip 0.5cm
+\clearpage
+\subsection{Expressing the imputation error
+\,$\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}$\,
+as a sum of $(\Gdotdot,\Xobs)$-conditionally independent summands}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.1cm
+\begin{lemma}[$\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}$
+as sum of $(\Gdotdot,\Xobs)$-conditionally independent summands]
+\label{CalibrationDomainTotalImputationError}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose we are given quantities as described in Subsection
+\ref{CalibrationDomainTotalFormulationOfVarianceEstimationProblem}
+and
+that they satisfy the probabilistic assumptions as described in Subsection
+\ref{CalibrationDomainTotalProbabilisticFramework}.
+\vskip 0.1cm
+\noindent
+Then, the following equalities hold:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    $
+    \widetilde{T}_{d,Y}(\,s,s_{R},\Ydot\,;\Gdotdot,\Xobs,\dbullet\,)
+    \;\; = \;\;
+        \widetilde{W}^{(+)}_{d,0}
+        \;+\;
+        \underset{l \in s_{R}}{\sum}\!\left(\,
+            \widetilde{w}_{l}\,d_{l}
+            \, + \,
+            \widetilde{W}^{(+)}_{d,l}
+            \,\right)Y_{l}
+    $
+\item
+    $
+    \widetilde{T}_{d,Y}(\,s,s_{R},\Ydot\,;\Gdotdot,\Xobs,\dbullet\,)
+    \;-\;
+    \widehat{T}^{\textnormal{(cal)}}_{d,Y}(\,s,\Ydot\,;\,\Gdotdot,\dbullet\,)
+    \;\; = \;\;
+        \widetilde{W}^{(+)}_{d,0}
+        \;+\;
+        \underset{l \in s_{R}}{\sum}\widetilde{W}^{(+)}_{d,l}\,Y_{l}
+        \;-\;
+        \underset{k \in s_{M}}{\sum}\widetilde{w}_{k}\,d_{k}\,Y_{k}
+    $\,,\\
+    where
+    \,$
+    \widehat{T}^{\textnormal{(cal)}}_{d,Y}(\,s,\Ydot\,;\,\Gdotdot,\dbullet\,)
+    \; = \;
+        \underset{k\,\in\,s}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+    $\,
+    is the calibration estimator.
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+    Straightforward algebra:
+    \begin{eqnarray*}
+    \widetilde{T}_{d,Y}
+    & = &
+        \widetilde{T}_{d,Y}\!\left(\,s,s_{R},\Ydot\,;\,\Gdotdot,\Xobs,\dbullet\,\right)
+    \;\; = \;\;
+        \underset{l \in s_{R}}{\sum}\;\widetilde{w}_{l}\,d_{l}\,Y_{l}
+        \,+\,
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}^{*}
+    \;\; = \;\;
+        \underset{l \in s_{R}}{\sum}\;\widetilde{w}_{l}\,d_{l}\,Y_{l}
+        \,+\,
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k \in s_{M}^{(j)}}{\sum}\,
+        \widetilde{w}_{k}\,d_{k}\,Y_{k}^{*}
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}\;\widetilde{w}_{l}\,d_{l}\,Y_{l}
+        \,+\,
+        \overset{J}{\underset{j=1}{\sum}}\;
+        \underset{k \in s_{M}^{(j)}}{\sum}\,
+        \widetilde{w}_{k}\,d_{k}\left(\,
+            \varphi^{(j)}_{0k}
+            \,+\,
+            \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
+            \right)
+    \\
+    & = &
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k \in s_{M}^{(j)}}{\sum}\;
+            \widetilde{w}_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \,+\,
+        \left(\;
+            \underset{l \in s_{R}}{\sum}\;\widetilde{w}_{l}\,d_{l}\,Y_{l}
+            \,+\,
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k \in s_{M}^{(j)}}{\sum}\,
+            \widetilde{w}_{k}\,d_{k}\left(\,
+                \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{lk}\,Y_{l}
+                \right)
+            \,\right)
+    % \\
+    % & {\color{green}=} &
+    %     \left(\;
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{k \in s_{M}^{(j)}}{\sum}\;
+    %         \widetilde{w}_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+    %         \,\right)
+    %     \,+\,
+    %     \left(\;
+    %         \underset{l \in s_{R}}{\sum}\;\widetilde{w}_{l}\,d_{l}\,Y_{l}
+    %         \,+\,
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{{\color{red}l}\,\in\,s_{M}^{(j)}}{\sum}\,
+    %         \widetilde{w}_{{\color{red}l}}\,d_{{\color{red}l}}\left(\,
+    %             \underset{{\color{red}k}\,\in\,s_{R}}{\sum}\,\varphi^{(j)}_{{\color{red}kl}}\,Y_{{\color{red}k}}
+    %             \right)
+    %         \,\right)
+    \\
+    & = &
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k \in s_{M}^{(j)}}{\sum}\;
+            \widetilde{w}_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \,+\,
+        \left(\;
+            \underset{l \in s_{R}}{\sum}\;\widetilde{w}_{l}\,d_{l}\,Y_{l}
+            \,+\,
+            \underset{l \in s_{R}}{\sum}\!\left(\;
+                \overset{J}{\underset{j=1}{\sum}}\;
+                \underset{k \in s_{M}^{(j)}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,\varphi^{(j)}_{lk}
+                \right)
+            Y_{l}
+            \right)
+    \\
+    & = &
+        \left(\;
+            \overset{J}{\underset{j=1}{\sum}}\;
+            \underset{k \in s_{M}^{(j)}}{\sum}\;
+            \widetilde{w}_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+            \,\right)
+        \,+\,
+        \underset{l \in s_{R}}{\sum}
+        \left(\;
+            \widetilde{w}_{l}\,d_{l}
+            \,+\,
+            \left(\;
+                \overset{J}{\underset{j=1}{\sum}}\;
+                \underset{k \in s_{M}^{(j)}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,\varphi^{(j)}_{lk}
+                \right)
+            \right)
+        Y_{l}
+    \\
+    & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
+        \widetilde{W}^{(+)}_{d,0}
+        \;+\;
+        \underset{l \in s_{R}}{\sum}\left(\,\widetilde{w}_{l}d_{l} \,+\, \widetilde{W}^{(+)}_{d,l}\,\right)Y_{l}
+    \end{eqnarray*}
+\item
+    We again compute:
+    \begin{eqnarray*}
+    \widetilde{T}_{d,Y}
+    \,-\,
+    \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+    % & = &
+    %     \left(\;
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{k \in s_{M}^{(j)}}{\sum}\;
+    %         \widetilde{w}_{k}\,d_{k}\,\varphi^{(j)}_{0k}
+    %         \,\right)
+    %     \;+\;
+    %     \underset{k \in s_{R}}{\sum}
+    %     \left(\;
+    %         \widetilde{w}_{k}\,d_{k}
+    %         \,+\,
+    %         \left(\;
+    %             \overset{J}{\underset{j=1}{\sum}}\;
+    %             \underset{l \in s_{M}^{(j)}}{\sum}\,\widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{kl}
+    %             \right)
+    %         \right)
+    %     Y_{k}
+    %     \;-\;
+    %     \underset{k\,\in\,s}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+    & = &
+        \widetilde{W}^{(+)}_{d,0}
+        \;+\;
+        \underset{l \in s_{R}}{\sum}\!
+        \left(\;
+            \widetilde{w}_{l}\,d_{l}
+            \,+\,
+            \widetilde{W}^{(+)}_{d,l}
+            \right)
+        Y_{l}
+        \;-\;
+        \underset{k\,\in\,s}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+    \\
+    & = &
+        \widetilde{W}^{(+)}_{d,0}
+        \;+\;
+        \underset{l \in s_{R}}{\sum}\,\widetilde{w}_{l}\,d_{l}\,Y_{l}
+        \;+\;
+        \underset{l \in s_{R}}{\sum}\;\widetilde{W}^{(+)}_{d,l}\,Y_{l}
+        \;-\;
+        \underset{k\,\in\,s}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+    \\
+    & = &
+        \widetilde{W}^{(+)}_{d,0}
+        \;+\;
+        \underset{l \in s_{R}}{\sum}\;\widetilde{W}^{(+)}_{d,l}\,Y_{l}
+        \;-\;
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}\,,
+    \end{eqnarray*}
+    as required.
+    \qed
+\end{enumerate}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+% \vskip 0.5cm
+\clearpage
+\subsection{Estimator for nonresponse variance component of
+\,$\MSE\!\left(\,\left.\widetilde{T}_{d,Y}\,\right\vert\Xobs\right)$}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.1cm
+\begin{lemma}[Estimator for nonresponse variance; compare Equations (5.9) \& (5.10) in \cite{Beaumont2011}]
+\label{CalibrationDomainTotalNonresponseVariance}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose we are given quantities as described in Subsection
+\ref{CalibrationDomainTotalFormulationOfVarianceEstimationProblem}
+and
+that they satisfy the probabilistic assumptions as described in Subsection
+\ref{CalibrationDomainTotalProbabilisticFramework}.
+\vskip 0.1cm
+\noindent
+Then, the following statements are true:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    $
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)^{2}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    is an $(\Sdot,\Rdot)$-unbiased estimator for the nonresponse variance\\
+    \,$
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)^{2}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+        \right]
+    $.
+\item
+    $
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)^{2}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    can be expressed in explicit computable form as follows:
+    \begin{eqnarray*}
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)^{2}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    & = &
+        \left(\;
+            \underset{l \in s_{R}}{\sum}
+                \left(\widetilde{W}^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
+            \,\;+\;
+            \underset{k \in s_{M}}{\sum}\,
+                \widetilde{w}_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \left(\;
+            \widetilde{W}^{(+)}_{d,0}
+            \,\;+\;
+            \underset{l \in s_{R}}{\sum}\;\widetilde{W}^{(+)}_{d,l}\,\mu_{l}
+            \,\;-\;
+            \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,\mu_{k}
+            \,\right)^{2}
+    \end{eqnarray*}
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+    Nothing to prove.
+\item
+    \textbf{Claim 1:}\quad
+    \begin{equation*}
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)^{2}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    \;\; = \;\;
+        \Var_{Y}\!\left[\;
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        \,+\,
+        E_{Y}\!\left[\;
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]^{2}
+    \end{equation*}
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 1:\;\;
+    Claim 1 follows immediately from the following well-known equality:
+    \begin{equation*}
+    \Var[\,X\,]
+    \; := \;
+        E\!\left[\,\overset{{\color{white}.}}{(X - \mu_{X})^{2}}\,\right]
+    \; = \;
+        E\!\left[\,\overset{{\color{white}.}}{X^{2} - 2\,\mu_{X}\,X + \mu_{X}^{2}}\,\right]
+    \; = \;
+        \cdots
+    \; = \;
+        E\!\left[\,X^{2}\,\right] \,-\, \mu_{X}^{2}\,,
+    \end{equation*}
+    This completes the proof of Claim 1.
+
+    \vskip 0.5cm
+    \textbf{Claim 2:}\quad
+    \begin{equation*}
+    \Var_{Y}\!\left[\;
+        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    \;\; = \;\;
+        \underset{l \in s_{R}}{\sum}
+            \left(\widetilde{W}^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
+        \,\;+\;
+        \underset{k \in s_{M}}{\sum}\,
+            \widetilde{w}_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
+    \end{equation*}
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 2:\;\;
+    \begin{eqnarray*}
+    &&
+        \Var_{Y}\!\left[\;
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        \Var_{Y}\!\left[\,
+            \left.
+            \widetilde{W}^{(+)}_{d,0}
+            \,+\,
+            \underset{l \in s_{R}}{\sum}\,\widetilde{W}^{(+)}_{d,l}\,Y_{l}
+            \,-\,
+            \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+            \,\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right],
+        \;\;
+        \textnormal{by Lemma \ref{CalibrationDomainTotalImputationError}(ii)}
+    \\
+    & = &
+        \Var_{Y}\!\left[\;
+            \left.
+            \underset{l \in s_{R}}{\sum}\,\widetilde{W}^{(+)}_{d,l}\,Y_{l}
+            \,-\,
+            \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+            \,\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right],
+        \;\;
+        \textnormal{since $\widetilde{W}^{(+)}_{d,0}$ is constant upon conditioning on $s, s_{R}$}
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+        \underset{m \in s_{R}}{\sum}\,
+        \Cov_{Y}\!\left[\;
+            \widetilde{W}^{(+)}_{d,l}\,Y_{l}
+            \,,
+            W^{(+)}_{m}\,Y_{m}
+            \,\left\vert
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\right]
+        \; + \;
+        \underset{k \in s_{M}}{\sum}\,
+        \underset{m \in s_{M}}{\sum}\,
+        \Cov_{Y}\!\left[\;
+            \widetilde{w}_{k}\,d_{k}\,Y_{k}
+            \,,
+            \widetilde{w}_{m}\,d_{m}\,Y_{m}
+            \,\left\vert
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\right]
+    \\
+    &&
+        \; - \;
+        2 \cdot
+        \underset{l \in s_{R}}{\sum}\;
+        \underset{k \in s_{M}}{\sum}\,
+        \Cov_{Y}\!\left[\;
+            \widetilde{W}^{(+)}_{d,l}\,Y_{l}
+            \,,\,
+            \widetilde{w}_{k}\,d_{k}\,Y_{k}
+            \,\left\vert
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\right],
+        \;\;
+        \textnormal{by Lemma \ref{sRsMPullOutOfVariance}}
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}
+        \!\left(\widetilde{W}^{(+)}_{d,l}\right)^{2}
+        \cdot
+        \Var_{Y}\!\left[\;
+            Y_{l}
+            \,\left\vert
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\right]
+        \,\;+\;
+        \underset{k \in s_{M}}{\sum}
+        \!\left(\widetilde{w}_{k}\,d_{k}\right)^{2}
+        \cdot
+        \Var_{Y}\!\left[\;
+            Y_{k}
+            \,\left\vert
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\right],
+    \\
+    &&
+        \quad\quad\quad
+        \textnormal{since
+            \,$
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Gdotdot,\Xobs\right.\,\right)
+            \,=\,
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Gdotdot,\Xobs\right.\,\right)
+            \,=\,
+            0$,\,
+            whenever \,$a \neq b$
+            }
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}
+        \!\left(\widetilde{W}^{(+)}_{d,l}\right)^{2}
+        \cdot
+        \Var_{Y}\!\left[\;
+            Y_{l}
+            \,\left\vert\,
+            \Gdotdot,\Xobs
+            \right.
+            \right]
+        \,\;+\;
+        \underset{k \in s_{M}}{\sum}\,
+        \widetilde{w}_{k}^{2}\,d_{k}
+        \cdot
+        \Var_{Y}\!\left[\;Y_{k}
+            \,\left\vert\,
+            \Gdotdot,\Xobs
+            \right.
+            \,\right],
+        \;\;
+        \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Gdotdot,\Xobs$}
+    \\
+    & = &
+        \underset{l \in s_{R}}{\sum}
+            \left(\widetilde{W}^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
+        \,\;+\;
+        \underset{k \in s_{M}}{\sum}\,
+            \widetilde{w}_{k}\,d_{k}^{2}\,\sigma_{k}^{2}\,,
+        \;\;
+        \textnormal{by definition of
+            \,$\sigma_{a}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{a}
+                \,\left\vert\,
+                \Gdotdot,\Xobs
+                \right.
+                \,\right]$}
+    \end{eqnarray*}
+    This completes the proof of Claim 2.
+
+    \vskip 0.5cm
+    \textbf{Claim 3:}\quad
+    \begin{equation*}
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    \;\; = \;\;
+        \widetilde{W}^{(+)}_{d,0}
+        \,\;+\;
+        \underset{l \in s_{R}}{\sum}\;\widetilde{W}^{(+)}_{d,l}\,\mu_{l}
+        \,\;-\;
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,\mu_{k}
+    \end{equation*}
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 3:\;\;
+    \begin{eqnarray*}
+    &&
+        E_{Y}\!\left[\;
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        E_{Y}\!\left[\;
+            \left.
+            \widetilde{W}^{(+)}_{d,0}
+            \,+\,
+            \underset{l \in s_{R}}{\sum}\,\widetilde{W}^{(+)}_{d,l}\,Y_{l}
+            \,-\,
+            \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+            \;\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right],
+        \quad
+        \textnormal{by Lemma \ref{CalibrationDomainTotalImputationError}(ii)}
+    \\
+    & = &
+        \widetilde{W}^{(+)}_{d,0}
+        \;+\;
+        \underset{l \in s_{R}}{\sum}\;
+        \widetilde{W}^{(+)}_{d,l}
+        \cdot
+        E_{Y}\!\left[\;
+            Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        \,\;-\;
+        \underset{k \in s_{M}}{\sum}\;
+        \widetilde{w}_{k}\,d_{k}
+        \cdot
+        E_{Y}\!\left[\;
+            Y_{k}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        \widetilde{W}^{(+)}_{d,0}
+        \;+\;
+        \underset{l \in s_{R}}{\sum}\;
+        \widetilde{W}^{(+)}_{d,l}
+        \cdot
+        E_{Y}\!\left[\;
+            Y_{l}
+            \left\vert\,
+            \Gdotdot,\Xobs
+            \right.
+            \right]
+        \,\;-\;
+        \underset{k \in s_{M}}{\sum}\;
+        \widetilde{w}_{k}\,d_{k}
+        \cdot
+        E_{Y}\!\left[\;
+            Y_{k}
+            \left\vert\,
+            \Gdotdot,\Xobs
+            \right.
+            \,\right],
+        \;\;
+        \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Gdotdot,\Xobs$}
+    \\
+    & = &
+        \widetilde{W}^{(+)}_{d,0}
+        \;+\;
+        \underset{l \in s_{R}}{\sum}\;\widetilde{W}^{(+)}_{d,l}\,\mu_{l}
+        \,\;-\;
+        \underset{k \in s_{M}}{\sum}\,
+            \widetilde{w}_{k}\,d_{k}\,\mu_{k}\,,
+        \quad
+        \textnormal{by definition of
+            \,$\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+                \,\left\vert\,
+                \Gdotdot,\Xobs
+                \right.
+                \,\right]$}
+    \end{eqnarray*}
+    This completes the proof of Claim 3.
+
+    \vskip 0.3cm
+    \noindent
+    The required result now follows immediately from Claim 1, Claim 2, and Claim 3.
+    \qed
+\end{enumerate}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+% \vskip 0.5cm
+\clearpage
+\subsection{Estimator for sampling-nonresponse covariance component of
+\,$\MSE\!\left(\,\widetilde{T}_{d,Y}\left\vert\,\Xobs\right.\right)$}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}[Estimator for sampling-nonresponse covariance;
+compare Equations (5.11) \& (5.12) in \cite{Beaumont2011}]
+\label{CalibrationDomainTotalMixedVariance}
+\mbox{}
+\vskip -0.3cm
+\noindent
+Suppose we are given quantities as described in Subsection
+\ref{CalibrationDomainTotalFormulationOfVarianceEstimationProblem}
+and
+that they satisfy the probabilistic assumptions as described in Subsection
+\ref{CalibrationDomainTotalProbabilisticFramework}.
+\vskip 0.1cm
+\noindent
+Then, the following statements are true:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    $
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)
+        \!
+        \left(\,  \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}\right)
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    is an $(\Sdot,\Rdot)$-unbiased estimator for the mixed variance\\
+    \,$
+    E_{SR}\!\left[\,
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)
+        \!
+        \left(\,  \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}\right)
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+        \right]
+    $.
+\item
+    The above estimator can be expressed as follows:
+    \begin{eqnarray*}
+    E_{Y}\!\left[\,
+        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\right)
+        \!
+        \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}\right)
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    & = &
+        \Cov_{Y}\!\left(\,
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,,\,
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
+    \\
+    &&
+        +\;
+        E_{Y}\!\left[\;
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        \cdot
+        {\color{red}
+        E_{Y}\!\left[\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        }
+    \end{eqnarray*}
+\item
+    The above covarince term
+    can be expressed in explicit computable form as follows:
+    \begin{eqnarray*}
+    \Cov_{Y}\!\left(\,
+        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \,,\,
+        \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right)
+    & = &
+        \underset{l \in s_{R}}{\sum}\,
+            \widetilde{W}^{(+)}_{d,l}\,(\widetilde{w}_{k}-1)\,d_{l}\,\sigma_{l}^{2}
+        \,-\,
+        \underset{k \in s_{M}}{\sum}\,
+            \widetilde{w}_{k}\,(\widetilde{w}_{1}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
+    \end{eqnarray*}
+    % where
+    % \,$
+    % \mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+    %     \,\left\vert\,
+    %     \Xobs
+    %     \right.
+    %     \,\right]
+    % $,\,
+    % \,$
+    % \sigma_{k}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{k}
+    %     \,\left\vert\,
+    %     \Xobs
+    %     \right.
+    %     \,\right]
+    % $,\;
+    % for \,$k \in s = s_{R} \sqcup s_{M}$.\,
+    % and
+    % \;$
+    % W^{(+)}_{{\color{red}k}}
+    % \;\; := \;\;
+    %     \left(\;
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{l \in s_{M}^{(j)}}{\sum}\,\widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}k}l}
+    %         \,\right)
+    % $.\,
+    % \begin{equation*}
+    % % W^{(+)}_{{\color{red}0}}
+    % % \;\; := \;\;
+    % %     \left(\;
+    % %         \overset{J}{\underset{j=1}{\sum}}\;
+    % %         \underset{l \in s_{M}^{(j)}}{\sum}\,\widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+    % %         \,\right),
+    % % \quad\quad
+    % W^{(+)}_{{\color{red}k}}
+    % \;\; := \;\;
+    %     \left(\;
+    %         \overset{J}{\underset{j=1}{\sum}}\;
+    %         \underset{l \in s_{M}^{(j)}}{\sum}\,\widetilde{w}_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}k}l}
+    %         \,\right)
+    % \end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+    Nothing to prove.
+\item
+    The required result follows from the following general fact:
+    \begin{equation*}
+    \Cov(\,X,Y\,)
+    \;\; := \;\;
+        E\!\left[\,\overset{{\color{white}.}}{(X - \mu_{X})(Y - \mu_{Y})}\,\right]
+    \;\; = \;\;
+        \cdots
+    \;\; = \;\;
+        E\!\left[\,\overset{{\color{white}.}}{XY}\,\right]
+        \; - \;
+        \mu_{X}\,\mu_{Y}\,,
+    \end{equation*}
+    which implies
+    \begin{equation*}
+    E\!\left[\,\overset{{\color{white}.}}{XY}\,\right]
+    \;\; = \;\;
+        \Cov(\,X,Y\,)
+        \; + \;
+        \mu_{X}\,\mu_{Y}
+    \end{equation*}
+\item
+    We compute:
+    \begin{eqnarray*}
+    &&
+        \Cov_{Y}\!\left(\,
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,,\,
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
+    \\
+    & = &
+        \Cov_{Y}\!\left(\,
+            \widetilde{W}^{(+)}_{d,0}
+            \,+\,
+            \underset{l \in s_{R}}{\sum}\,\widetilde{W}^{(+)}_{d,l}\,Y_{l}
+            \;-
+            \underset{k \in s_{M}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,Y_{k}
+            \;,\;
+            \underset{k \in s}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+            \;-
+            \underset{k \in U}{\sum}\;d_{k}\,Y_{k}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right),
+            \;\;
+            \textnormal{by Lemma \ref{CalibrationDomainTotalImputationError}(ii)}
+    \\
+    & = &
+        \Cov_{Y}\!\left(\;
+            \underset{l \in s_{R}}{\sum}\,\widetilde{W}^{(+)}_{d,l}\,Y_{l}
+            \;-
+            \underset{k \in s_{M}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,Y_{k}
+            \;,\;
+            \underset{k \in s}{\sum}\;(\widetilde{w}_{k}-1)\,d_{k}\,Y_{k}
+            \;-
+            \underset{k \in U \backslash s}{\sum}d_{k}\,Y_{k}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
+    \\
+    & = &
+        \overset{{\color{white}\textnormal{\Large$1$}}}{
+            \underset{l \in s_{R}}{\sum}\;
+            \underset{k \in s}{\sum}\;
+            \Cov_{Y}\!\left(\;
+                \widetilde{W}^{(+)}_{d,l}\,Y_{l}
+                \;,\,
+                (\widetilde{w}_{k}-1)\,d_{k}Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right)
+            \; - \;
+            \underset{l \in s_{R}}{\sum}\;
+            \underset{k \in U \backslash s}{\sum}\,
+            \Cov_{Y}\!\left(\;
+                \widetilde{W}^{(+)}_{d,l}\,Y_{l}
+                \;,\,
+                d_{k}Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right)
+        }
+    \\
+    &&
+        \; - \;
+        \underset{k \in s_{M}}{\sum}\;
+        \underset{l \in s}{\sum}\;
+        \Cov_{Y}\!\left(\;
+            \widetilde{w}_{k}\,d_{k}\,Y_{k}
+            \;,\,
+            (\widetilde{w}_{l}-1)d_{l}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
+        \; + \;
+        \underset{k \in s_{M}}{\sum}\;
+        \underset{l \in U \backslash s}{\sum}\,
+        \Cov_{Y}\!\left(\;
+            \widetilde{w}_{k}\,d_{k}\,Y_{k}
+            \;,\,
+            d_{l}Y_{l}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right),
+    \\
+    &&
+        \quad\quad\quad
+        \textnormal{by Lemma \ref{sRsMPullOutOfCovariance}}
+    \\
+    & = &
+        \overset{{\color{white}\textnormal{\Large$1$}}}{
+            \underset{l \in s_{R}}{\sum}\;
+            \widetilde{W}^{(+)}_{d,l}\,(\widetilde{w}_{l}-1)\,d_{l}\,\Var_{Y}\!\left[\;
+                Y_{l}
+                \;\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\right]
+            \;-\;
+            \underset{k \in s_{M}}{\sum}\,
+            \widetilde{w}_{k}\,(\widetilde{w}_{k}-1)\,d_{k}^{2}\,\Var_{Y}\!\left[\;
+                Y_{k}
+                \;\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\right],
+        }
+    \\
+    &&
+        \quad\quad\quad
+        \textnormal{since
+            \,$
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Gdotdot,\Xobs\right.\right)
+            \,=\,
+            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Gdotdot,\Xobs\right.\right)
+            \,=\,
+            0
+            $,\, whenever \,$a \neq b$}
+    \\
+    & = &
+        \overset{{\color{white}\textnormal{\huge$1$}}}{
+            \underset{l \in s_{R}}{\sum}\;
+            \widetilde{W}^{(+)}_{d,l}\,(\widetilde{w}_{l}-1)\,d_{l}\,\Var_{Y}\!\left[\,
+                Y_{l}
+                \left\vert\,
+                \Gdotdot,\Xobs
+                \right.
+                \right]
+            \,-\,
+            \underset{k \in s_{M}}{\sum}\,
+            \widetilde{w}_{k}\,(\widetilde{w}_{k}-1)\,d_{k}^{2}\,\Var_{Y}\!\left[\,
+                Y_{k}
+                \left\vert\,
+                \Gdotdot,\Xobs
+                \right.
+                \right],
+        }
+    \\
+    &&
+        \quad\quad\quad
+        \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; (\Gdotdot,\Xobs)$}
+    \\
+    & = &
+        \overset{{\color{white}\textnormal{\huge$1$}}}{
+            \underset{l \in s_{R}}{\sum}\,
+            \widetilde{W}^{(+)}_{d,l}\,(\widetilde{w}_{l}-1)\,d_{l}\,\sigma_{l}^{2}
+            \;\;-\;
+            \underset{k \in s_{M}}{\sum}\,
+            \widetilde{w}_{k}\,(\widetilde{w}_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
+        }
+    \end{eqnarray*}
+    % where
+    % the third equality follows from the conditional independence
+    % \,$Y_{k} \perp Y_{l} \;\,\vert\; \Xobs$ whenever \,$k \neq l$,\,
+    % while
+    % the fourth equality follows from the conditional independence
+    % \,$\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Xobs$.\,
+    \vskip 0.1cm
+    \noindent
+    This completes the proof of the Lemma.
+    \qed
+\end{enumerate}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\clearpage
+\subsection{Conditional bias of \,$\widetilde{T}_{d,Y}$}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.1cm
+\begin{lemma}[Conditional bias of \,$\widetilde{T}_{d,Y}$; compare Equation (5.2) in \cite{Beaumont2011}]
+\label{CalibrationDomainTotalBiasTtilde}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose we are given quantities as described in Subsection
+\ref{CalibrationDomainTotalFormulationOfVarianceEstimationProblem}
+and
+that they satisfy the probabilistic assumptions as described in Subsection
+\ref{CalibrationDomainTotalProbabilisticFramework}.
+\vskip 0.1cm
+\noindent
+Then, the following statements are true:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    The \textbf{overall bias}
+    \,$
+    \bias\!\left(\;
+        \left.
+        \widetilde{T}_{d,Y}
+        \;\right\vert\,
+        \Gdotdot,\Xobs
+        \,\right)
+    $\,
+    of
+    \;$\widetilde{T}_{d,Y}$\,
+    as an estimator for the domain total
+    \,$T_{d,Y}$\,
+    satisfies:
+    \begin{eqnarray*}
+    \bias\!\left(\;
+        \left.
+        \widetilde{T}_{d,Y}
+        \;\right\vert\,
+        \Gdotdot,\Xobs
+        \,\right)
+    & := &
+        E\!\left[\;
+            \left.
+            \widetilde{T}_{d,Y} - T_{d,Y}
+            \,\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right]
+    \;\; = \;\;
+        E_{SR}\!\left(\;
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \;\left\vert
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \;\right),
+    \end{eqnarray*}
+    where
+    \,$
+    \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+    \; = \;
+        \widehat{T}^{\textnormal{(HT)}}(s,\dbullet\Ydot)
+    \; = \;
+        \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
+    $\,
+    is the Horvitz-Thompson estimator for the domain total
+    \,$T_{d,Y}$.\,
+\item
+    The \textbf{conditional model bias}
+    \,$
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    can be expressed as follows:
+    \begin{eqnarray*}
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    & = &
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}^{*}-Y_{k}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \end{eqnarray*}
+\item
+    Consequently, we have the following alternative expression for the overall bias:
+    \begin{eqnarray*}
+    &&
+        \bias\!\left(\;
+            \left.
+            \widetilde{T}_{d,Y}
+            \;\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right)
+    \;\; := \;\;
+        E\!\left[\;
+            \left.
+            \widetilde{T}_{d,Y} - T_{d,Y}
+            \,\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right]
+    \;\; = \;\;
+        E_{SR}\!\left(
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \;\right)
+    \\
+    & = &
+        E_{SR}\!\left(
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \widetilde{T}_{d,Y}
+                \,\overset{{\color{white}.}}{-}\,
+                \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+                \left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \;\right)
+        \; + \;
+        E_{SR}\!\left(
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+                \,\overset{{\color{white}.}}{-}\,
+                \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \;\right)
+    % \\
+    % & = &
+    %     E_{SR}\!\left(\;
+    %         \underset{k\in{\color{red}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+    %         E_{Y}\!\left[\;
+    %             Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+    %             \,\left\vert\!
+    %             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+    %             \right.
+    %             \!\!\right]
+    %         \; + \;
+    %         \underset{k\in{\color{red}s}}{\sum}\;
+    %         (\widetilde{w}_{k}\,-\,w_{k})\,d_{k}\,
+    %         E_{Y}\!\left[\;\,
+    %             Y_{k}
+    %             \,\left\vert\!
+    %             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+    %             \right.
+    %             \!\!\right]
+    %         \,\right)
+    % \\
+    % & = &
+    %     E_{SR}\!\left(\;
+    %         \underset{k\in{\color{red}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+    %         E_{Y}\!\left[\;
+    %             Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+    %             \,\left\vert\!
+    %             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+    %             \right.
+    %             \!\!\right]
+    %         \,\right)
+    %     \; + \;
+    %     E_{SR}\!\left(
+    %         \overset{{\color{white}.}}{E_{Y}\!\left[\;
+    %             \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+    %             \,\overset{{\color{white}.}}{-}\,
+    %             \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+    %             \left\vert\!
+    %             \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+    %             \right.
+    %             \!\!\right]}
+    %         \;\right)
+    \\
+    & = &
+        E_{SR}\!\left(\;
+            \underset{k\in{\color{black}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+            E_{Y}\!\left[\;
+                Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+        \; + \;
+        E_{S}\!\left(\,
+            \left.
+            \widehat{T}^{\textnormal{(cal)}}_{d,\mu}
+            \,\overset{{\color{white}.}}{-}\,
+            \widehat{T}^{\textnormal{(HT)}}_{d,\mu}
+            \;\right\vert\!\!
+            \begin{array}{c} \Gdotdot,\Xobs \end{array}
+            \!\!\right)
+    \end{eqnarray*}
+\end{enumerate}
+\end{lemma}
+%%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+\begin{remark}\label{CalibrationDomainTotalRemarkSmallUnitBias}
+\mbox{}
+\vskip -0.1cm
+\noindent
+\begin{itemize}
+\item
+    In practice, we therefore would like to choose an imputation strategy such that
+    \begin{equation*}
+    E_{Y}\!\left[\;
+        \left.
+        Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
+        \;\right\vert\,
+        s,s_{R},\Gdotdot,\Xobs
+        \,\right]
+    \;\; \approx \;\;
+        0,
+    \quad
+    \textnormal{for each \,$i \in s_{M}$}
+    \end{equation*}
+    See the paragraph after Equation (5.2), p.175, \cite{Beaumont2011}.
+\item
+    The conditioning on \,$\Xobs$\, is largely suppressed in \cite{Beaumont2011} for notational brevity;
+    see the last sentence in the second paragraph of \S4, p.173, \cite{Beaumont2011}.
+    We have restored it in our notation in these study notes.
+\end{itemize}
+\end{remark}
+%%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+\vskip 0.3cm
+\noindent
+\proofof Lemma \ref{CalibrationDomainTotalBiasTtilde}
+\vskip 0.1cm
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    We compute:
+    \begin{eqnarray*}
+    \bias\!\left(\;
+        \left.
+        \widetilde{T}_{d,Y}
+        \;\right\vert\,
+        \Gdotdot,\Xobs
+        \,\right)
+    & := &
+        E\!\left[\;
+            \left.
+            \widetilde{T}_{d,Y} - T_{d,Y}
+            \,\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right]
+    \;\; = \;\;
+        E\!\left[\;
+            \left.
+            \widetilde{T}_{d,Y}
+            -
+            \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            +
+            \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            -
+            T_{d,Y}
+            \,\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right]
+    \\
+    & = &
+        E_{SRY}\!\left[\,
+            \left.
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \,\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right]
+        \; + \;
+        E_{YSR}\!\left[\,
+            \left.
+            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+            \,\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right]
+    \\
+    & = &
+        E_{SR}\!\left(\,
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \;\left\vert
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \;\right)
+        \; + \;
+        E_{Y}\!\left(\,
+            \overset{{\color{white}.}}{E_{SR}\!\left[\;
+                \widehat{T}^{\textnormal{(HT)}}_{d,Y} \overset{{\color{white}.}}{-} T_{d,Y}
+                \;\left\vert
+                \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \;\right)
+    \\
+    & = &
+        E_{SR}\!\left(\,
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \;\left\vert
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \;\right)
+        \; + \;
+        E_{Y}\!\left(\;\overset{{\color{white}.}}{0}\;\right),
+        \;\;
+        \textnormal{by design-unbiasedness of \,$\widehat{T}^{\textnormal{(HT)}}_{d,Y}$}
+    \\
+    & = &
+        E_{SR}\!\left(\,
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \;\left\vert
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \;\right),
+    \end{eqnarray*}
+    as required.
+\item
+    We compute:
+    \begin{eqnarray*}
+    &&
+        E_{Y}\!\left[\;
+            \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        E_{Y}\!\left[
+            \left.
+            \left(\,
+                \underset{k \in s_{R}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+                \overset{{\color{white}.}}{+}
+                \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}^{*}
+                \,\right)
+            \,\overset{{\color{white}.}}{-}\,
+            \left(\,
+                \underset{k \in s_{R}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+                \overset{{\color{white}.}}{+}
+                \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,Y_{k}
+                \,\right)
+            \;\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+    \\
+    & = &
+        E_{Y}\!\left[\;
+            \left.
+            \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,(Y_{k}^{*}-Y_{k})
+            \;\,\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \!\!\right]
+    \\
+    & = &
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}^{*}-Y_{k}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right],
+    \end{eqnarray*}
+    as required.
+\item
+    We compute:
+    \begin{eqnarray*}
+    &&
+        \bias\!\left(\;
+            \left.
+            \widetilde{T}_{d,Y}
+            \;\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right)
+    \;\; := \;\;
+        E\!\left[\;
+            \left.
+            \widetilde{T}_{d,Y} - T_{d,Y}
+            \,\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right]
+    \;\; = \;\;
+        E_{SR}\!\left(
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \;\right)
+    \\
+    & = &
+        E_{SR}\!\left(
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \widetilde{T}_{d,Y}
+                \,\overset{{\color{white}.}}{-}\,
+                \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+                \,\overset{{\color{white}.}}{+}\,
+                \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+                \,\overset{{\color{white}.}}{-}\,
+                \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \;\right)
+    \\
+    & = &
+        E_{SR}\!\left(\;
+            \underset{k \in {\color{red}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+            E_{Y}\!\left[\;
+                Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+        \; + \;
+        E_{SR}\!\left(
+            \overset{{\color{white}.}}{E_{Y}\!\left[\;
+                \underset{k \in {\color{red}s} }{\sum}\;(\widetilde{w}_{k}-w_{k})\,d_{k}\,Y_{k}
+                \left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]}
+            \,\right)
+    \\
+    & = &
+        E_{SR}\!\left(\;
+            \underset{k\in{\color{black}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+            E_{Y}\!\left[\;
+                Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+        \; + \;
+        E_{SR}\!\left(\;
+            \underset{k\in{\color{black}s}}{\sum}\;
+            (\widetilde{w}_{k}\,-\,w_{k})\,d_{k}\,
+            E_{Y}\!\left[\;\,
+                Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    & = &
+        E_{SR}\!\left(\;
+            \underset{k\in{\color{black}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+            E_{Y}\!\left[\;
+                Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+        \; + \;
+        E_{SR}\!\left(\;
+            \underset{k\in{\color{black}s}}{\sum}\;
+            (\widetilde{w}_{k}\,-\,w_{k})\,d_{k}\,
+            E_{Y}\!\left[\;\,
+                Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+    \\
+    & = &
+        E_{SR}\!\left(\;
+            \underset{k\in{\color{black}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+            E_{Y}\!\left[\;
+                Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+        \; + \;
+        E_{{\color{red}S}}\!\left(\;
+            \left.
+            \underset{k\in{\color{black}s}}{\sum}\;
+            (\widetilde{w}_{k}\,-\,w_{k})\,d_{k}\,\mu_{k}
+            \;\right\vert\!\!
+            \begin{array}{c} \Gdotdot,\Xobs \end{array}
+            \!\!\right)
+    \\
+    & = &
+        E_{SR}\!\left(\;
+            \underset{k\in{\color{black}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+            E_{Y}\!\left[\;
+                Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+                \,\left\vert\!
+                \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+                \right.
+                \!\!\right]
+            \,\right)
+        \; + \;
+        E_{S}\!\left(\;
+            \left.
+            \widehat{T}^{\textnormal{(cal)}}_{d,\mu}
+            \,\overset{{\color{white}.}}{-}\,
+            \widehat{T}^{\textnormal{(HT)}}_{d,\mu}
+            \;\right\vert\!\!
+            \begin{array}{c} \Gdotdot,\Xobs \end{array}
+            \!\!\right)
+    \end{eqnarray*}
+    \qed
+\end{enumerate}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+% \vskip 0.5cm
+\clearpage
+\subsection{Summary: variance estimation for composite linear imputation estimators in practice}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.1cm
+\noindent
+Suppose we are given quantities as described in Subsection
+\ref{CalibrationDomainTotalFormulationOfVarianceEstimationProblem}
+and
+that they satisfy the probabilistic assumptions as described in Subsection
+\ref{CalibrationDomainTotalProbabilisticFramework}.
+\vskip 0.1cm
+\noindent
+Then, we have the following results:
+\begin{itemize}
+\item
+    By Lemma \ref{CalibrationDomainTotalDecompositionMSETtilde}, we have the following decomposition:
+    \begin{eqnarray*}
+    \MSE\!\left(\;
+        \left.
+        \widetilde{T}_{d,Y}
+        \;\right\vert\,
+        \Gdotdot,\Xobs
+        \,\right)
+    & := &
+        E\!\left[\,
+            \left.
+            (\,\widetilde{T}_{d,Y} - T_{d,Y}\,)^{2}
+            \,\right\vert\,
+            \Gdotdot,\Xobs
+            \,\right]
+    \\
+    & = &
+        E_{Y}\!\left[\,
+        \Var_{SR}\!\left(\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
+            \,\right]
+    \\
+    &&
+        \; + \;
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,)^{2}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+            \,\right]
+    \\
+    &&
+        \; + \; 2 \,
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,\right)
+            \!
+            \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+            \,\right]
+    \end{eqnarray*}
+    We use the following nomenclature to refer the three summands in the right-hand side:
+    \begin{eqnarray*}
+    \left(\begin{array}{c}
+        \textnormal{sampling}
+        \\
+        \textnormal{\;\,variance component\;\,}
+        \end{array}\right)
+    & := &
+        E_{Y}\!\left[\,
+        \Var_{SR}\!\left(\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
+            \,\right]
+    \\
+    \left(\begin{array}{c}
+        \textnormal{nonresponse}
+        \\
+        \textnormal{\;\,variance component\;\,}
+        \end{array}\right)
+    & := &
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,)^{2}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+            \,\right]
+    \\
+    \left(\begin{array}{c}
+        \textnormal{sampling-nonresponse}
+        \\
+        \textnormal{covariance}
+        \end{array}\right)
+    & := &
+        2 \,
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,\right)
+            \!
+            \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+            \,\right]
+    \end{eqnarray*}
+\item
+    By Lemma \ref{CalibrationDomainTotalSamplingVariance},
+    the sampling variance component can be estimated as follows:
+    \begin{eqnarray*}
+    &&
+        \left(\!\begin{array}{c}
+            \textnormal{sampling}
+            \\
+            \textnormal{variance component}
+            \end{array}\!\right)
+    \;\; := \;\;
+        E_{Y}\!\left[\,
+        \Var_{SR}\!\left(\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
+            \,\right]
+    \\
+    & {\color{red}\approx} &
+        E_{SR}\,
+        E_{Y_{R}}\,
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \;\; {\color{red}\approx} \;\;
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dYdot,\Gdotdot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        {\color{black}
+        \left(\,
+            \underset{k,l \in s}{\sum}
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \cdot\!
+            \left(\widetilde{w}_{k}d_{k}\widetilde{y}_{k}\right)
+            \left(\widetilde{w}_{l}d_{l}\widetilde{y}_{l}\right)
+            \,\right)
+        \, - \; 2 \cdot
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,d_{k}\,\widetilde{y}_{k}
+        \cdot
+        \,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{j \in s}{\sum}\;
+            \rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        }
+    \\
+    &&
+        {\color{black}
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in s}{\sum}\;
+            % \underset{j \in s}{\sum}\;
+            \rho_{ki}(s,\gdotdot)
+            %\rho_{lj}(s,\gdotdot)
+            \cdot
+            d_{i}\,\widetilde{y}_{i}
+            % \cdot
+            % d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            % \underset{i \in s}{\sum}\,
+            \underset{j \in s}{\sum}\;
+            % \rho_{ki}(s,\gdotdot)
+            \rho_{lj}(s,\gdotdot)
+            % \cdot
+            % d_{i}\,\widetilde{y}_{i}
+            \cdot
+            d_{j}\,\widetilde{y}_{j}
+            \,\right)
+        }
+    \\
+    &&
+        \; + \;
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        \; - \; 2 \cdot
+        \underset{k \in {\color{red}s_{M}}}{\sum}\,
+        \underset{l \in {\color{black}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+    \\
+    &&
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{red}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+    \\
+    & = &
+        {\color{blue}
+        \widehat{AV}^{\textnormal{(cal)}}(\,s\,;\dbullet{\color{red}\widetilde{y}_{\bullet}},\gdotdot\,)
+        \; + \,
+        \left(\,
+            \underset{k\in {\color{red}s_{M}}}{\sum}\!
+            \left(\,1-\pi_{k}\,\right)
+            \cdot
+            \widetilde{w}_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        }
+    \\
+    &&
+        {\color{red}
+        \; - \; 2 \cdot
+        \underset{k \in {\color{red}s_{M}}}{\sum}\,
+        \underset{l \in {\color{red}s}}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot
+        \rho_{lk}(s,\gdotdot)
+        \cdot
+        d_{k}^{2}\,
+        \sigma_{k}^{2}
+        }
+    \\
+    &&
+        {\color{red}
+        \; + \;
+        \underset{k,l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \cdot
+        \widetilde{w}_{k}\,\widetilde{w}_{l}
+        \cdot\!
+        \left(\,
+            \underset{i \in {\color{red}s_{M}} }{\sum}\,
+            \rho_{ki}(s,\gdotdot)
+            \cdot
+            \rho_{li}(s,\gdotdot)
+            \cdot
+            d_{i}^{2}\,\sigma_{i}^{2}
+            \,\right)
+        }
+    \end{eqnarray*}
+\item
+    By Lemma \ref{CalibrationDomainTotalNonresponseVariance},
+    the nonresponse variance component can be estimated as follows:
+    \begin{eqnarray*}
+    \left(\!\begin{array}{c}
+        \textnormal{nonresponse}
+        \\
+        \textnormal{variance}
+        \\
+        \textnormal{{\color{white}..}component{\color{white}..}}
+        \end{array}\!\right)
+    & := &
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,)^{2}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+            \,\right]
+    \;\; {\color{red}\approx} \;\;
+        E_{Y}\!\left[\,
+            (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,)^{2}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        {\color{blue}
+        \left(\;
+            \underset{l \in s_{R}}{\sum}
+                \left(\widetilde{W}^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
+            \,+\,
+            \underset{k \in s_{M}}{\sum}\,
+                \widetilde{w}_{k}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        \;+\;
+        \left(\,
+            \widetilde{W}^{(+)}_{d,0}
+            \,+\,
+            \underset{l \in s_{R}}{\sum}\;\widetilde{W}^{(+)}_{d,l}\,\mu_{l}
+            \,-\,
+            \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,\mu_{k}
+            \,\right)^{2}
+        }
+    \end{eqnarray*}
+\item
+    By Lemma \ref{CalibrationDomainTotalMixedVariance},
+    the sampling-nonresponse covariance component can be estimated as follows:
+    \begin{eqnarray*}
+    \left(\!\begin{array}{c}
+        \textnormal{sampling-nonresponse}
+        \\
+        \textnormal{covariance}
+        \end{array}\!\right)
+    & := &
+        2 \,
+        E_{SR}\!\left[\,
+        E_{Y}\!\left[\,
+            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,\right)
+            \!
+            \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+            \,\right]
+    \\
+    & \approx &
+        2 \,
+        E_{Y}\!\left[\,
+            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(cal)}}_{d,Y}\,\right)
+            \!
+            \left(\,\widehat{T}^{\textnormal{(cal)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        2 \cdot
+        \Cov_{Y}\!\left(\,
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \,,\,
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right)
+    \\
+    &&
+        \; + \;
+        2 \cdot
+        E_{Y}\!\left[\;
+            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        \cdot
+        {\color{red}
+        E_{Y}\!\left[\;
+            \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+        }
+    \\
+    & {\color{red}\approx} &
+        {\color{blue}
+        2\cdot\!\left(\;
+            \underset{l \in s_{R}}{\sum}\,
+                \widetilde{W}^{(+)}_{d,l}\,(\widetilde{w}_{k}-1)\,d_{l}\,\sigma_{l}^{2}
+            \; - \;
+            \underset{k \in s_{M}}{\sum}\,
+                \widetilde{w}_{k}\,(\widetilde{w}_{1}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        }
+    \end{eqnarray*}
+\item
+    \textbf{Important Remark:}
+    \vskip 0.05cm
+    \noindent
+    Note that the above estimation/approximation of the mixed variance component
+    disregards the following term:
+    \begin{equation*}
+    2 \cdot
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    \cdot
+    {\color{red}
+    E_{Y}\!\left[\;
+        \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    }
+    \end{equation*}
+    The reason this has to be done in practice is that, in practice,
+    there is usually insufficient data/information to compute or estimate
+    the quantity
+    \,$
+    E_{Y}\!\left[\;
+        \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    (indicated in red above), as \,$T_{d,Y}$\, involves population units
+    that are not selected in the sample.
+    \vskip 0.1cm
+    \noindent
+    Obviously, the above estimation/approximation of the mixed variance component
+    is acceptable only if the quantity
+    \,$
+    2 \cdot
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    \cdot
+    {\color{black}
+    E_{Y}\!\left[\;
+        \widehat{T}^{\textnormal{(cal)}}_{d,Y} - T_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    }
+    $\,
+    is small.
+    \vskip 0.1cm
+    \noindent
+    For this, in practice, we thus {\color{red}tacitly assume} that the quantity
+    \,$
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    is small;
+    recall that this quantity is called the \textbf{conditional model bias}
+    (see Lemma \ref{CalibrationDomainTotalBiasTtilde}), and
+    it can be expressed as follows:
+    % {\color{blue}
+    % \begin{eqnarray*}
+    % E_{Y}\!\left[\;
+    %     \left.
+    %     \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+    %     \;\right\vert\,
+    %     s,s_{R},\Xobs
+    %     \,\right]
+    % & = &
+    %     \underset{k\in{\color{red}s_{M}}}{\sum}\,\widetilde{w}_{k}\,d_{k}\,
+    %     E_{Y}\!\left[\;
+    %         \left.
+    %         Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+    %         \;\right\vert\,
+    %         s,s_{R},\Xobs
+    %         \,\right]
+    % \end{eqnarray*}
+    % }
+    \begin{eqnarray*}
+    E_{Y}\!\left[\;
+        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(cal)}}_{d,Y}
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    & = &
+        \underset{k \in s_{M}}{\sum}\;\widetilde{w}_{k}\,d_{k}\,
+        E_{Y}\!\left[\;\,
+            Y_{k}^{*}-Y_{k}
+            \;\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \end{eqnarray*}
+    This harks back to our earlier remark (Remark \ref{remarkSmallUnitBias}) that,
+    in practice, we would like to choose an imputation strategy such that
+    \begin{equation*}
+    E_{Y}\!\left[\;\,
+        Y_{k}^{*}-Y_{k}
+        \;\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Gdotdot,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    \;\; \approx \;\;
+        0,
+    \quad
+    \textnormal{for each \,$k \in s_{M}$}
+    \end{equation*}
+    See the paragraph after Equation (5.2), p.175, \cite{Beaumont2011}.
+\end{itemize}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%

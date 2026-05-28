@@ -1,0 +1,223 @@
+
+\documentclass[10pt, letterpaper]{article}
+
+% package used to set margins, adjust parameters with caution
+\usepackage[left = 0.70in, right = 0.70in, top = 1.0in, bottom = 1.0in]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% package used to include special header and footer formatting
+\usepackage{fancyhdr}
+
+% package used to include special formatting for image and table captions
+\usepackage[small,bf,justification=raggedright,format=hang]{caption}
+
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{bm}
+
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{verbatim}
+%\usepackage{doublespace}
+\usepackage{colortbl}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \setlength{\leftmargini}{35px}
+% \setlength{\leftmarginii}{35px}
+% \setlength{\leftmarginiii}{35px}
+
+\setlength{\leftmargini}{15px}
+\setlength{\leftmarginii}{15px}
+\setlength{\leftmarginiii}{15px}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\renewcommand{\theenumi}{\arabic{enumi}}
+% \renewcommand{\labelenumi}{\mbox{}\;\theenumi.$\;$}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,\theenumi.$\quad$}
+
+\renewcommand{\theenumii}{\alph{enumii}}
+\renewcommand{\labelenumii}{\mbox{}\;\;\,\theenumii)$\quad$}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+\renewcommand{\labelenumiii}{\mbox{}\;\;\,\theenumiii)$\quad$}
+
+\renewcommand{\theequation}{\thesection .\arabic{equation}}
+
+\newcounter{theorem}
+
+\newtheorem{example}[theorem]{Example}
+\renewcommand{\theexample}{\thesubsection .\arabic{example}}
+
+\newtheorem{definition}[theorem]{Definition}
+\renewcommand{\thedefinition}{\thesubsection .\arabic{definition}}
+
+\newtheorem{theorem}[theorem]{Theorem}
+\renewcommand{\thetheorem}{\thesubsection .\arabic{theorem}}
+
+\newtheorem{proposition}[theorem]{Proposition}
+\renewcommand{\theproposition}{\thesubsection .\arabic{proposition}}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\renewcommand{\theconjecture}{\thesubsection .\arabic{conjecture}}
+
+\newtheorem{lemma}[theorem]{Lemma}
+% \renewcommand{\thelemma}{\thesection .\thesubsection .\arabic{lemma}}
+\renewcommand{\thelemma}{\thesubsection .\arabic{lemma}}
+
+\newtheorem{corollary}[theorem]{Corollary}
+\renewcommand{\thecorollary}{\thesubsection .\arabic{corollary}}
+
+\newtheorem{remark}[theorem]{Remark}
+\renewcommand{\theremark}{\thesubsection .\arabic{remark}}
+
+\newtheorem{notation}[theorem]{Notation}
+\renewcommand{\thenotation}{\thesubsection .\arabic{notation}}
+
+\renewcommand{\thetable}{\thesubsection .\arabic{table}}
+
+\renewcommand{\thefigure}{\thesubsection .\arabic{figure}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand*{\proof}{\noindent {\small P{\scriptsize ROOF}} \quad}
+\newcommand*{\proofof}{\noindent {\small P{\scriptsize ROOF OF }}}
+\newcommand*{\proofoutline}{\noindent {\small O{\scriptsize UTLINE OF PROOF}} \quad}
+\newcommand*{\proofoutlineof}{\noindent {\small O{\scriptsize UTLINE OF PROOF OF }}}
+\newcommand*{\qed}{\hfill $\Box$}
+\newcommand*{\hdiamond}{\hfill $\Diamond$}
+
+\renewcommand*{\Re}{\mathbb{R}}
+\renewcommand*{\d}{\textnormal{d}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\varemptyset}{\varnothing}
+\renewcommand{\i}{\textnormal{\bf i}}
+
+\newcommand{\diag}{\textnormal{diag}}
+\newcommand{\proj}{\textnormal{proj}}
+\newcommand{\rot}{\textnormal{rot}}
+
+\newcommand{\ev}{\textnormal{ev}}
+\newcommand{\rank}{\textnormal{rank}}
+\renewcommand*{\span}{\textnormal{span}}
+\newcommand*{\domain}{\textnormal{domain}}
+\newcommand*{\codomain}{\textnormal{codomain}}
+\newcommand{\Col}{\textnormal{Col}}
+\newcommand{\image}{\textnormal{image}}
+\newcommand{\Var}{\textnormal{Var}}
+%\newcommand{\Hess}{\textnormal{Hess}}
+\newcommand{\Hess}{\nabla^{2}}
+\newcommand{\Cov}{\textnormal{Cov}}
+\newcommand{\MSE}{\textnormal{MSE}}
+\newcommand{\SVar}{\textnormal{SVar}}
+
+\newcommand*{\longhookrightarrow}{\ensuremath{\lhook\joinrel\relbar\joinrel\rightarrow}}
+
+%\newcommand{\Czo}{C([0,1],\Re)}
+\newcommand{\Czo}{C[0,1]}
+
+\newcommand{\logisticBetaX}{
+	\dfrac{\exp\!\left(\,\beta^{T} \cdot x \,\right)}{1 \,+\, \exp\!\left(\,\beta^{T} \cdot x \,\right)}
+}
+
+\newcommand{\oneMinusLogisticBetaX}{
+	\dfrac{1}{1 \,+\, \exp\!\left(\,\beta^{T} \cdot x \,\right)}
+}
+
+\newcommand{\argmin}{\textnormal{argmin}}
+\newcommand{\argmax}{\textnormal{argmax}}
+
+\newcommand{\bias}{\textnormal{Bias}}
+% \newcommand{\Xobs}{\mathbf{X}^{\textnormal{(obs)}}_{\bullet\bullet}}
+\newcommand{\Xobs}{\mathbf{X}_{\bullet\bullet}}
+\newcommand{\Xdotdot}{\mathbf{X}_{\bullet\bullet}}
+\newcommand{\Gdotdot}{\mathbf{\Gamma}_{\bullet\bullet}}
+\newcommand{\gdotdot}{\Gamma_{\bullet\bullet}}
+\newcommand{\Ydot}{\mathbf{Y}_{\bullet}}
+\newcommand{\Zdot}{\mathbf{Z}_{\bullet}}
+\newcommand{\ydot}{y_{\bullet}}
+\newcommand{\zdot}{z_{\bullet}}
+\newcommand{\Sdot}{\mathbf{S}_{\bullet}}
+\newcommand{\Rdot}{\mathbf{R}_{\bullet}}
+\newcommand{\rhoDot}{\rho_{\bullet}}
+\newcommand{\YsubR}{\mathbf{Y}_{\!R}}
+\newcommand{\dbullet}{d_{\bullet}}
+\newcommand{\dYdot}{d_{\bullet}Y_{\bullet}}
+\newcommand{\dydot}{d_{\bullet}y_{\bullet}}
+\newcommand{\HT}{\textnormal{(HT)}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setcounter{page}{1}
+
+\pagestyle{fancy}
+
+\lhead[MethSys/ESMD/StatCan]{Study Notes}
+\rhead[Study Notes]{MethSys/ESMD/StatCan}
+\chead[]{{\Large\bf SEVANI for One-Stage Cluster Sampling} \\
+\vskip 0.1cm \normalsize \today}
+\lfoot[]{}
+\cfoot[]{}
+\rfoot[]{\thepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\mbox{}
+\vskip -0.75cm
+{\color{white}.}
+
+\vskip 1.5cm\input{tex/abstract}
+% \vskip 1.5cm\input{tex/operational-objective}
+\vskip 1.5cm\input{tex/GEst-Generalized-Estimators-to-One-Stage-Clustering-Sampling}
+\clearpage\input{tex/sevani-domain-total}
+\clearpage\input{tex/sevani-domain-ratio}
+\clearpage\input{tex/sevani-calibration-domain-total}
+% \clearpage\input{tex/questions}
+
+          %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\clearpage
+\appendix
+\input{tex/technical-lemmas}
+% \clearpage\input{tex/estimation-muk-sigmak}
+\clearpage\input{tex/conditional-expectation}
+% \clearpage\input{tex/ratio-estimators}
+% \clearpage\input{tex/calibration-estimators}
+% \clearpage\input{tex/design-based-asymptotics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{alpha}
+%\bibliographystyle{plain}
+%\bibliographystyle{amsplain}
+\vskip 1.0cm
+\bibliographystyle{acm}
+\bibliography{tex/z-bibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
