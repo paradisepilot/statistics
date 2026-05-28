@@ -294,7 +294,178 @@ Imputation estimator:
         \,\right)
     Y_{ij}
 \end{eqnarray*}
+Sampling variance component:
+\begin{eqnarray*}
+&&
+    E_{Y_{M}}\!\left[\,
+        v(\,s\,;\abullet\Ydot\,)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+        \right.
+        \!\!\right]
+\;\; = \;\;
+    E_{Y_{M}}\!\left[\,
+        \left.
+        \underset{i \in s}{\sum}\,
+        \underset{k \in s}{\sum}\,
+        \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\,
+        \dfrac{(\alpha Y)_{i}}{\pi_{i}}
+        \,
+        \dfrac{(\alpha Y)_{k}}{\pi_{k}}
+        \;\right\vert\!\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+        \!\!\right]
+\\
+& = &
+    E_{Y_{M}}\!\left[\,
+        \left.
+        \underset{i \in s}{\sum}\,
+        \underset{k \in s}{\sum}\,
+        \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\,
+        \dfrac{1}{\pi_{i}}
+        \,
+        \dfrac{1}{\pi_{k}}
+        \left(\,
+            \underset{j\in\mathcal{C}_{i}}{\sum}\,
+            \alpha_{ij}Y_{ij}
+            \right)
+        \left(\,
+            \underset{l\in\mathcal{C}_{k}}{\sum}\,
+            \alpha_{kl}Y_{kl}
+            \right)
+        \,\right\vert\!\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+        \!\!\right]
+\\
+& = &
+    E_{Y_{M}}\!\left[\,
+        \left.
+        \underset{i \in s}{\sum}\,
+        \underset{k \in s}{\sum}\,
+        \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\,
+        \dfrac{1}{\pi_{i}}
+        \,
+        \dfrac{1}{\pi_{k}}
+        \,
+        \underset{j\in\mathcal{C}_{i}}{\sum}\,
+        \underset{l\in\mathcal{C}_{k}}{\sum}\,
+        \alpha_{ij}\alpha_{kl}\,Y_{ij}Y_{kl}
+        \,\right\vert\!\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+        \!\!\right]
+\\
+& = &
+    E_{Y_{M}}\!\left[\,
+        \left.
+        \underset{i \in s}{\sum}\,
+        \underset{j\in\mathcal{C}_{i}}{\sum}\;
+        \underset{k \in s}{\sum}\,
+        \underset{l\in\mathcal{C}_{k}}{\sum}\,
+        \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\,
+        \dfrac{\alpha_{ij}}{\pi_{i}}
+        \,
+        \dfrac{\alpha_{kl}}{\pi_{k}}
+        \,
+        Y_{ij}Y_{kl}
+        \,\right\vert\!\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+        \!\!\right]
+\\
+& = &
+    \underset{i \in s}{\sum}\,
+    \underset{j\in\mathcal{C}_{i}}{\sum}\;
+    \underset{k \in s}{\sum}\,
+    \underset{l\in\mathcal{C}_{k}}{\sum}\,
+    \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\,
+    \dfrac{\alpha_{ij}}{\pi_{i}}
+    \,
+    \dfrac{\alpha_{kl}}{\pi_{k}}
+    \,
+    E_{Y_{M}}\!\left[\,
+        Y_{ij}Y_{kl}
+        \left\vert\!\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+        \right.
+        \!\!\right]
+\\
+& = &
+    \underset{i \in s}{\sum}\,
+    \underset{j\in\mathcal{C}_{i}}{\sum}\;
+    \underset{k \in s}{\sum}\,
+    \underset{l\in\mathcal{C}_{k}}{\sum}\,
+    \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\,
+    \dfrac{\alpha_{ij}}{\pi_{i}}
+    \,
+    \dfrac{\alpha_{kl}}{\pi_{k}}
+    \,
+    E_{Y_{M}}\!\left[\,
+        Y_{ij}Y_{kl}
+        \left\vert\!\!
+        \begin{array}{c} \YsubR, \\ \Xobs \end{array}
+        \right.
+        \!\!\right]
+\\
+& = &
+    \cdots
+    \;\; = \;\;
+    v(\,s\,;\abullet\widetilde{y}_{\bullet}\,)
+    \;+\;
+    \underset{i \in s}{\sum}\,
+    \underset{j\in(\mathcal{C}_{i})_{M}}{\sum}
+    \dfrac{1 - \pi_{i}}{\pi_{i}^{2}}\,
+    \alpha_{ij}^{2}\,\sigma_{ij}^{2}\,,
+\end{eqnarray*}
+where the last equality follows from the observation:
+\begin{eqnarray*}
+E_{Y_{M}}\!\left[\,
+    Y_{ij}Y_{kl}
+    \left\vert\!\!
+    \begin{array}{c} \YsubR, \\ \Xobs \end{array}
+    \right.
+    \!\!\right]
+& = &
+    \left\{\begin{array}{cl}
+        y_{ij} \cdot y_{kl}\,, &
+        \underset{{\color{white}.}}
+        {\textnormal{for \,$j \in (\mathcal{C}_{i})_{R}$, \,$l \in (\mathcal{C}_{k})_{R}$}}
+        \\
+        y_{ij} \cdot E[\,Y_{kl}\,\vert\,\Xobs\,]\,, &
+        \underset{{\color{white}.}}
+        {\textnormal{for \,$j \in (\mathcal{C}_{i})_{R}$, \,$l \in (\mathcal{C}_{k})_{M}$}}
+        \\
+        E[\,Y_{ij}\,\vert\,\Xobs\,] \cdot y_{kl}\,, &
+        \underset{{\color{white}.}}
+        {\textnormal{for \,$j \in (\mathcal{C}_{i})_{M}$, \,$l \in (\mathcal{C}_{k})_{R}$}}
+        \\
+        E[\,Y_{ij}\,\vert\,\Xobs\,] \cdot E[\,Y_{kl}\,\vert\,\Xobs\,]\,, &
+        \underset{{\color{white}.}}
+        {\textnormal{for \,$(i,j) \neq (k,l)$,\, $j \in (\mathcal{C}_{i})_{M}$, \,$l \in (\mathcal{C}_{k})_{M}$}}
+        % {\textnormal{for \,$k,l \in s_{M}$,\, $k \neq l$}}
+        \\
+        \Var(\,Y_{ij}\,\vert\,\Xobs) + E[\,Y_{ij}\,\vert\,\Xobs\,]^{2}\,, &
+        \underset{{\color{white}.}}
+        {\textnormal{for \,$(i,j) = (k,l)$,\, $j \in (\mathcal{C}_{i})_{M}$}}
+        \end{array}\right.
+\end{eqnarray*}
+which is equivalent to the following more compact expression:
+\begin{eqnarray*}
+E_{Y_{M}}\!\left[\,
+    Y_{ij}Y_{kl}
+    \left\vert\!\!
+    \begin{array}{c} \YsubR, \\ \Xobs \end{array}
+    \right.
+    \!\!\right]
+& = &
+    \left\{\begin{array}{cl}
+        \widetilde{y}_{ij}^{2} \,+\, \sigma_{ij}^{2}\,, &
+        \textnormal{for \,$(i,j) = (k,l)$,\, $j \in (\mathcal{C}_{i})_{M}$}
+        \\
+        \widetilde{y}_{ij} \cdot \widetilde{y}_{kl}\,, & \overset{{\color{white}1}}{\textnormal{otherwise}}
+        \end{array}\right.
+\end{eqnarray*}
 
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \subsection{Formulation of the target variability quantification problem}
