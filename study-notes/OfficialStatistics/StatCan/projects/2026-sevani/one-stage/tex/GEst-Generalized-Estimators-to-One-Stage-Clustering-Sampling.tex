@@ -226,10 +226,12 @@ Imputation estimator:
     \; + \;
     \underset{{\color{red}i} \in s}{\sum}\;
     \underset{{\color{red}j} \in (\mathcal{C}_{i})_{R}}{\sum}\;
-    \underset{m \in {\color{black}s}}{\sum}\;
-    \underset{n \in (\mathcal{C}_{m})_{M}}{\sum}
+    \underset{{\color{blue}m} \in {\color{black}s}}{\sum}\;
+    \underset{{\color{blue}n} \in (\mathcal{C}_{m})_{M}}{\sum}
     \dfrac{
-        \alpha_{mn}\,\varphi_{{\color{red}ij},{\color{black}mn}}\,Y_{{\color{red}ij}}
+        \alpha_{{\color{blue}mn}}\,
+        \varphi_{{\color{red}ij},{\color{blue}mn}}\,
+        Y_{{\color{red}ij}}
         }{
         \pi_{m}
         }
@@ -252,8 +254,6 @@ Imputation estimator:
             \pi_{i}
             }
         \; + \;
-        % \underset{{\color{red}i} \in s}{\sum}\;
-        % \underset{{\color{red}j} \in (\mathcal{C}_{i})_{R}}{\sum}\;
         \underset{m \in {\color{black}s}}{\sum}\;
         \underset{n \in (\mathcal{C}_{m})_{M}}{\sum}
         \dfrac{
@@ -261,6 +261,36 @@ Imputation estimator:
             }{
             \pi_{m}
             }
+        \,\right)
+    Y_{ij}
+\\
+& = &
+    % \underset{i \in {\color{black}s}}{\sum}\;
+    % \underset{k \in (\mathcal{C}_{i})_{M}}{\sum}
+    % \dfrac{
+    %     \alpha_{ik}\,\varphi_{0,{\color{black}ik}}
+    %     }{
+    %     \pi_{i}
+    %     }
+    W^{(+)}_{\alpha,0}
+    \; + \;
+    \underset{i \in {\color{black}s}}{\sum}\;
+    \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+    \left(\,
+        \dfrac{
+            \alpha_{ij} %Y_{ij}
+            }{
+            \pi_{i}
+            }
+        \; + \,
+        % \underset{m \in {\color{black}s}}{\sum}\;
+        % \underset{n \in (\mathcal{C}_{m})_{M}}{\sum}
+        % \dfrac{
+        %     \alpha_{mn}\,\varphi_{{\color{black}ij},{\color{black}mn}} %\,Y_{{\color{red}ij}}
+        %     }{
+        %     \pi_{m}
+        %     }
+        W^{(+)}_{\alpha,ij}
         \,\right)
     Y_{ij}
 \end{eqnarray*}
