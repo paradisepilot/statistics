@@ -1,12 +1,12 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{SEVANI: From G-Est Generalized Estimators to One-Stage Cluster Sampling}
+\section{SEVANI: From G-Est Estimators for Generalized Totals to One-Stage Cluster Sampling}
 \label{GEstToOneStageClusterSampling}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\subsection{???}
+\subsection{Generalized Totals}
 \label{Whatever}
 \setcounter{theorem}{0}
 
@@ -43,7 +43,8 @@ uses a three-level hierarchy of ``units'':
     estimation units
     \begin{itemize}
     \item
-        {\color{red}Domain membership indicators} are defined at the level of estimation units.
+        In practice, {\color{red}domain membership indicators} are defined
+        at the level of estimation units.
     \end{itemize}
 \end{itemize}
 
@@ -95,7 +96,15 @@ where
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
+\vskip 0.5cm
+\subsection{Rewriting generalized totals as sums over imputation units via allocation factors}
+\label{Whatever}
+\setcounter{theorem}{0}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
 \begin{lemma}
+\label{GeneralizedTotalsAsSumsOverImputationUnits}
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -157,116 +166,6 @@ Y_{ij}
 \;\, := \;
     \underset{k \in \mathcal{E}_{ij}}{\sum}Y_{ijk}
 \end{equation*}
-%  generalized total can be re-expressed as 
-% Suppose we are given quantities as described in Subsection
-% \ref{DomainTotalFormulationOfVarianceEstimationProblem}
-% and
-% that they satisfy the probabilistic assumptions as described in Subsection
-% \ref{DomainTotalProbabilisticFramework}.
-% \vskip 0.1cm
-% \noindent
-% Then, the following statements are true:
-% \renewcommand{\theenumi}{\roman{enumi}}
-% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
-% \begin{enumerate}
-% \item
-%     If
-%     \;$v(\,s\,;\abullet\ydot\,)$\,
-%     is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
-%     \begin{equation*}
-%     E_{S}\!\left[\;
-%         v(\,s\,;\abullet\Ydot\,)
-%         \,\left\vert\;
-%         \Ydot,\Xobs
-%         \right.
-%         \,\right]
-%     \;\; = \;\;
-%         \Var_{S}\!\left(\,
-%             \left.
-%             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-%             \,\right\vert\,
-%             \Ydot,
-%             \Xobs
-%             \,\right),
-%     \end{equation*}
-%     then
-%     \,$
-%     E_{Y_{M}}\!\left[\,
-%         v(\,s\,;\abullet\Ydot\,)
-%         \left\vert\,
-%         s,s_{R},\YsubR,\Xobs
-%         \right.
-%         \right]
-%     $\,
-%     is an $(\Sdot,\Rdot,\YsubR)$-unbiased estimator for
-%     \,$
-%     E_{Y}\!\left[\,
-%         \Var_{S}\!\left(\,
-%             \left.
-%             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-%             \,\right\vert\,
-%             \Ydot,
-%             \Xobs
-%             \,\right)
-%     \,\right]
-%     $,\,
-%     i.e.,
-%     \begin{equation*}
-%     E_{SR}\,
-%     E_{Y_{R}}\,
-%     E_{Y_{M}}\!\left[\,
-%         v(\,s\,;\abullet\Ydot\,)
-%         \,\left\vert\;
-%         s,s_{R},\YsubR,\Xobs
-%         \right.
-%         \,\right]
-%     \;\; = \;\;
-%         E_{Y}\!\left[\,
-%             \Var_{S}\!\left(\,
-%                 \left.
-%                 \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-%                 \,\right\vert\,
-%                 \Ydot,
-%                 \Xobs
-%                 \,\right)
-%             \,\right]
-%     \end{equation*}
-% \item
-%     If
-%     \,$v(\,s\,;\abullet\ydot\,)$\,
-%     is taken to be the (design-unbiased) Horvitz-Thompson estimator for the sampling variance, i.e.,
-%     \begin{equation*}
-%     v(\,s\,;\abullet\ydot\,)
-%     \;\; := \;\;
-%         \underset{k \in s}{\sum}\,
-%         \underset{l \in s}{\sum}\,
-%         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-%         (w_{k}d_{k}y_{k})\,(w_{l}d_{l}y_{l})
-%     \end{equation*}
-%     then
-%     \,$
-%     E_{Y_{M}}\!\left[\,
-%         v(\,s\,;\dbullet\Ydot\,)
-%         \left\vert\,
-%         s,s_{R},\YsubR,\Xobs
-%         \right.
-%         \right]
-%     $\,
-%     can be expressed as follows:
-%     \begin{equation*}
-%     E_{Y_{M}}\!\left[\,
-%         v(\,s\,;\dbullet\Ydot\,)
-%         \left\vert\,
-%         s,s_{R},\YsubR,\Xobs
-%         \right.
-%         \right]
-%     \;\; = \;\;
-%         v(\,s\,;\,\dbullet\widetilde{y}_{\bullet}\,)
-%         \;+\;
-%         \underset{k \in s_{M}}{\sum}\;
-%         \left(1-\dfrac{1}{w_{k}}\right)w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
-%     \end{equation*}
-% \end{enumerate}
 \end{lemma}
 \proof
 % \begin{eqnarray*}
@@ -325,32 +224,72 @@ T_{\alpha Y}
 & = &
     \underset{i \in U}{\sum}\;
     \underset{j \in \mathcal{C}_{i}}{\sum}\;
-    \alpha_{ij}Y_{ij} %\,,
-    % \quad
-    % \textnormal{where}\;\;\;
-    % \alpha_{ij} \, := \, \underset{k \in \mathcal{E}_{ij}}{\sum}\,\alpha_{ijk}\,f_{ijk}
-% \\
-% (\alpha Y)_{i}
-% & := &
-%     \underset{j \in \mathcal{C}_{i}}{\sum}\;
-%     \underset{k \in \mathcal{E}_{ij}}{\sum}\;
-%     \alpha_{ijk}Y_{ijk}
-% \;\; = \;\;
-%     \underset{j \in \mathcal{C}_{i}}{\sum}\;
-%     \underset{k \in \mathcal{E}_{ij}}{\sum}\;
-%     \alpha_{ijk}\,f_{ijk}\,Y_{ij}
-% \;\; = \;\;
-%     \underset{j \in \mathcal{C}_{i}}{\sum}\!
-%     \left(\,
-%         \underset{k \in \mathcal{E}_{ij}}{\sum}\;
-%         \alpha_{ijk}\,f_{ijk}
-%         \,\right)
-%     Y_{ij}
-% \;\; = \;\;
-%     \underset{j \in \mathcal{C}_{i}}{\sum}\,
-%     \alpha_{ij}Y_{ij}
+    \alpha_{ij}Y_{ij}
 \end{eqnarray*}
+\vskip -0.5cm
 \qed
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{remark}
+\mbox{}
+\vskip 0.1cm
+\noindent
+\begin{itemize}
+\item
+    The \,$f_{ijk} \in \Re$\, are known as \textbf{allocation factors}.
+\item
+    For each \,$i \in U$\, and \,$j \in \mathcal{C}_{i}$,\, we have:
+    \;\;$
+    \underset{k\in\mathcal{E}_{ij}}{\sum}Y_{ijk}
+    \; =: \;
+        Y_{ij}
+    \; \neq \;
+        0
+    \quad\Longrightarrow\quad
+    \underset{k\in\mathcal{E}_{ij}}{\sum}f_{ijk}
+    \; = \;
+        1
+    $\;
+    \vskip 0.1cm
+    \noindent
+    Indeed,
+    \begin{equation*}
+    Y_{ij}
+    \; := \;
+        \underset{k\in\mathcal{E}_{ij}}{\sum}Y_{ijk}
+    \; = \;
+        \underset{k\in\mathcal{E}_{ij}}{\sum}f_{ijk}Y_{ij}
+    \quad\Longrightarrow\quad
+    \left(\,
+        1
+        \, - \,
+        \underset{k\in\mathcal{E}_{ij}}{\sum}f_{ijk}
+        \,\right)
+    \!\cdot
+    Y_{ij}
+    \; = \;
+        0
+    \quad\Longrightarrow\quad
+    \underset{k\in\mathcal{E}_{ij}}{\sum}f_{ijk}
+    \, = \,
+        1\,,
+    \;\;
+    \textnormal{whenever \,$Y_{ij} \neq 0$}
+    \end{equation*}
+\item
+    By Lemma \ref{GeneralizedTotalsAsSumsOverImputationUnits},
+    we may regard ageneralized total \,$T_{\alpha Y}$
+    (\textit{a priori} defined as a sum over the estimation units)
+    as a sum over the imputation units.
+    This allows us to simplify the implementation of SEVANI
+    by suppressing the estimation units, i.e.,
+    by considering only a two-level hierarchy of units:
+    the sampling units and the imputation units.
+\end{itemize}
+\end{remark}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 1.0cm
 \noindent
