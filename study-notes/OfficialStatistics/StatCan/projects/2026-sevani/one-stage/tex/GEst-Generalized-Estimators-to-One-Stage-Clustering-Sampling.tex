@@ -12,37 +12,295 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{eqnarray*}
+Statistics Canada's Integrated Business Survey Program (IBSP)
+uses a three-level hierarchy of ``units'':
+\begin{itemize}
+\item
+    sampling units
+    \begin{itemize}
+    \item
+        The sampling design is defined at the level of sampling units.
+    \item
+        Each sampling unit is composed of one or more imputation units.
+    \end{itemize}
+\item
+    imputation units
+    \begin{itemize}
+    \item
+        Collection and imputation is performed at the level of imputation units.
+    \item
+        Each imputation unit is composed of one or more estimation units.
+    \item
+        It is assumed that the sampling design is {\color{red}one-stage cluster sampling},
+        in the sense that, the sample is a probability sample of \textit{sampling units}, and
+        for each selected \textit{sampling unit},
+        all of its constituent \textit{imputation units} are selected.
+        In standard cluster sampling terminology,
+        the \textit{sampling units} are called the \textit{primary sampling units} (PSU),
+        while the \textit{imputation units} are called the \textit{secondary sampling units} (SSU).
+    \end{itemize}
+\item
+    estimation units
+    \begin{itemize}
+    \item
+        {\color{red}Domain membership indicators} are defined at the level of estimation units.
+    \end{itemize}
+\end{itemize}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.3cm
+\noindent
+G-Est is a Statistics Canada generalized system that computes (among other functionalities)
+point and variance estimates (from probability sample data) for population parameters of the following form:
+
+\vskip 0.3cm
+\begin{definition}[Generalized total]
+\mbox{}
+\vskip 0.1cm
+\noindent
+A \textbf{generalized total} is a population parameter of the following form:
+\begin{equation*}
 T_{\alpha Y}
-& := &
+\;\; := \;\;
+    \underset{i \in U}{\sum}\;\;
+    \underset{j \in \mathcal{C}_{i}}{\sum}\;
+    \underset{k \in \mathcal{E}_{ij}}{\sum}\;
+    \alpha_{ijk}Y_{ijk}\,,
+\end{equation*}
+where
+\begin{itemize}
+\item
+    $U$\, is the population of sampling units (i.e., primary sampling units),
+\item
+    $\mathcal{C}_{i}$,\, for \,$i \in U$,\,
+    is the collection of imputation units (i.e., secondary sampling units)
+    belonging to sampling unit $i \in U$,
+\item
+    $\mathcal{E}_{ij}$,\, for \,$i \in U$\, and \,$j \in \mathcal{C}_{i}$,\,
+    is the collection of estimation units
+    belonging to imputation unit \,$j \in \mathcal{C}_{i}$\, of sampling unit $i \in U$,
+\item
+    $Y_{ijk} \in \Re$\, is the value
+    of an ($\Re$-valued) population characteristic \,$\mathbf{Y}$\,
+    defined at the level of the estimation units; more precisely,
+    \,$Y_{ijk}$\, is the value of \,$\mathbf{Y}$\,
+    for estimation unit \,$k \in \mathcal{E}_{ij}$\,
+    of imputation unit \,$j \in \mathcal{C}_{i}$\,
+    belonging to sampling unit \,$i \in U$,\,
+\item
+    $\alpha_{ijk} \in \Re$\, is the coefficient defined at the level of the estimation unit.
+\end{itemize}
+\end{definition}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\begin{lemma}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Let
+\begin{equation*}
+T_{\alpha Y}
+\;\; := \;\;
+    \underset{i \in U}{\sum}\;\;
+    \underset{j \in \mathcal{C}_{i}}{\sum}\;
+    \underset{k \in \mathcal{E}_{ij}}{\sum}\;
+    \alpha_{ijk}Y_{ijk}\,,
+\end{equation*}
+be a generalized total.
+\vskip 0.1cm
+\noindent
+Suppose that there exists a collection
+\begin{equation*}
+\left\{\;\,
+    f_{ijk} \in \Re
+    \;\,\left\vert\,
+    \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i}, \\ k \in \mathcal{E}_{ij} \end{array}
+    \right.
+    \!\!\right\}
+\end{equation*}
+of real numbers such that
+\begin{equation*}
+Y_{ijk}
+\; = \;
+    f_{ijk}\cdot\!\left(\,
+        \underset{l\in\mathcal{E}_{ij}}{\sum}\,Y_{ijl}
+        \right),
+\quad
+\textnormal{for each \,$i \in U$,\, \,$j \in \mathcal{C}_{i}$,\, and \,$k \in \mathcal{E}_{ij}$}
+\end{equation*}
+Then, the generalized total \,$T_{\alpha Y}$\,
+(\textit{a priori} defined as a sum over the estimation units)
+can be re-expressed as a sum over the imputation units; more precisely,
+\begin{equation*}
+T_{\alpha Y}
+\;\; := \;\;
     \underset{i \in U}{\sum}\;\;
     \underset{j \in \mathcal{C}_{i}}{\sum}\;
     \underset{k \in \mathcal{E}_{ij}}{\sum}\;
     \alpha_{ijk}Y_{ijk}
 \;\; = \;\;
     \underset{i \in U}{\sum}\;
-    (\alpha Y)_{i}
-\\
-Y_{ijk}
-& = &
-    f^{(Y)}_{ijk}\,Y_{ij}\,,
-    \quad
-    \textnormal{where}\;\;
-    \underset{k \in \mathcal{E}_{ij}}{\sum}f^{(Y)}_{ijk} \,=\, 1
-\\
+    \underset{j \in \mathcal{C}_{i}}{\sum}\;
+    \alpha_{ij}Y_{ij}\,,
+\end{equation*}
+where
+\begin{equation*}
+\alpha_{ij}
+\;\, := \;
+    \underset{k \in \mathcal{E}_{ij}}{\sum}\,\alpha_{ijk}\,f_{ijk}
+\quad\quad
+\textnormal{and}
+\quad\quad
 Y_{ij}
-& = &
+\;\, := \;
     \underset{k \in \mathcal{E}_{ij}}{\sum}Y_{ijk}
-\;\; = \;\;
-    \underset{k \in \mathcal{E}_{ij}}{\sum}f^{(Y)}_{ijk}\,Y_{ij}
-\;\; = \;\;
-    \left(\,\underset{k \in \mathcal{E}_{ij}}{\sum}f^{(Y)}_{ijk}\right)
-    \!\cdot
-    Y_{ij}
-\;\; = \;\;
-    Y_{ij}
-\end{eqnarray*}
-Hence,
+\end{equation*}
+%  generalized total can be re-expressed as 
+% Suppose we are given quantities as described in Subsection
+% \ref{DomainTotalFormulationOfVarianceEstimationProblem}
+% and
+% that they satisfy the probabilistic assumptions as described in Subsection
+% \ref{DomainTotalProbabilisticFramework}.
+% \vskip 0.1cm
+% \noindent
+% Then, the following statements are true:
+% \renewcommand{\theenumi}{\roman{enumi}}
+% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+% \begin{enumerate}
+% \item
+%     If
+%     \;$v(\,s\,;\abullet\ydot\,)$\,
+%     is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
+%     \begin{equation*}
+%     E_{S}\!\left[\;
+%         v(\,s\,;\abullet\Ydot\,)
+%         \,\left\vert\;
+%         \Ydot,\Xobs
+%         \right.
+%         \,\right]
+%     \;\; = \;\;
+%         \Var_{S}\!\left(\,
+%             \left.
+%             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%             \,\right\vert\,
+%             \Ydot,
+%             \Xobs
+%             \,\right),
+%     \end{equation*}
+%     then
+%     \,$
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\abullet\Ydot\,)
+%         \left\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \right]
+%     $\,
+%     is an $(\Sdot,\Rdot,\YsubR)$-unbiased estimator for
+%     \,$
+%     E_{Y}\!\left[\,
+%         \Var_{S}\!\left(\,
+%             \left.
+%             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%             \,\right\vert\,
+%             \Ydot,
+%             \Xobs
+%             \,\right)
+%     \,\right]
+%     $,\,
+%     i.e.,
+%     \begin{equation*}
+%     E_{SR}\,
+%     E_{Y_{R}}\,
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\abullet\Ydot\,)
+%         \,\left\vert\;
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \,\right]
+%     \;\; = \;\;
+%         E_{Y}\!\left[\,
+%             \Var_{S}\!\left(\,
+%                 \left.
+%                 \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%                 \,\right\vert\,
+%                 \Ydot,
+%                 \Xobs
+%                 \,\right)
+%             \,\right]
+%     \end{equation*}
+% \item
+%     If
+%     \,$v(\,s\,;\abullet\ydot\,)$\,
+%     is taken to be the (design-unbiased) Horvitz-Thompson estimator for the sampling variance, i.e.,
+%     \begin{equation*}
+%     v(\,s\,;\abullet\ydot\,)
+%     \;\; := \;\;
+%         \underset{k \in s}{\sum}\,
+%         \underset{l \in s}{\sum}\,
+%         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+%         (w_{k}d_{k}y_{k})\,(w_{l}d_{l}y_{l})
+%     \end{equation*}
+%     then
+%     \,$
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\dbullet\Ydot\,)
+%         \left\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \right]
+%     $\,
+%     can be expressed as follows:
+%     \begin{equation*}
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\dbullet\Ydot\,)
+%         \left\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \right]
+%     \;\; = \;\;
+%         v(\,s\,;\,\dbullet\widetilde{y}_{\bullet}\,)
+%         \;+\;
+%         \underset{k \in s_{M}}{\sum}\;
+%         \left(1-\dfrac{1}{w_{k}}\right)w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+%     \end{equation*}
+% \end{enumerate}
+\end{lemma}
+\proof
+% \begin{eqnarray*}
+% T_{\alpha Y}
+% & := &
+%     \underset{i \in U}{\sum}\;\;
+%     \underset{j \in \mathcal{C}_{i}}{\sum}\;
+%     \underset{k \in \mathcal{E}_{ij}}{\sum}\;
+%     \alpha_{ijk}Y_{ijk}
+% \;\; = \;\;
+%     \underset{i \in U}{\sum}\;
+%     (\alpha Y)_{i}
+% \\
+% Y_{ijk}
+% & = &
+%     f^{(Y)}_{ijk}\,Y_{ij}\,,
+%     \quad
+%     \textnormal{where}\;\;
+%     \underset{k \in \mathcal{E}_{ij}}{\sum}f^{(Y)}_{ijk} \,=\, 1
+% \\
+% Y_{ij}
+% & = &
+%     \underset{k \in \mathcal{E}_{ij}}{\sum}Y_{ijk}
+% \;\; = \;\;
+%     \underset{k \in \mathcal{E}_{ij}}{\sum}f^{(Y)}_{ijk}\,Y_{ij}
+% \;\; = \;\;
+%     \left(\,\underset{k \in \mathcal{E}_{ij}}{\sum}f^{(Y)}_{ijk}\right)
+%     \!\cdot
+%     Y_{ij}
+% \;\; = \;\;
+%     Y_{ij}
+% \end{eqnarray*}
+% Hence,
+Straightforward algebra:
 \begin{eqnarray*}
 T_{\alpha Y}
 & := &
@@ -54,45 +312,49 @@ T_{\alpha Y}
     \underset{i \in U}{\sum}\;\;
     \underset{j \in \mathcal{C}_{i}}{\sum}\;
     \underset{k \in \mathcal{E}_{ij}}{\sum}\;
-    \alpha_{ijk}\,f^{(Y)}_{ijk}\,Y_{ij}
+    \alpha_{ijk}\,\left(f_{ijk}\,Y_{ij}\right)
 \;\; = \;\;
     \underset{i \in U}{\sum}\;
     \underset{j \in \mathcal{C}_{i}}{\sum}\!
     \left(\,
         \underset{k \in \mathcal{E}_{ij}}{\sum}\,
-        \alpha_{ijk}\,f^{(Y)}_{ijk}
+        \alpha_{ijk}\,f_{ijk}
         \right)
     \!\cdot Y_{ij}
 \\
 & = &
     \underset{i \in U}{\sum}\;
     \underset{j \in \mathcal{C}_{i}}{\sum}\;
-    \alpha_{ij}Y_{ij}\,,
-    \quad
-    \textnormal{where}\;\;\;
-    \alpha_{ij} \, := \, \underset{k \in \mathcal{E}_{ij}}{\sum}\,\alpha_{ijk}\,f^{(Y)}_{ijk}
-\\
-(\alpha Y)_{i}
-& := &
-    \underset{j \in \mathcal{C}_{i}}{\sum}\;
-    \underset{k \in \mathcal{E}_{ij}}{\sum}\;
-    \alpha_{ijk}Y_{ijk}
-\;\; = \;\;
-    \underset{j \in \mathcal{C}_{i}}{\sum}\;
-    \underset{k \in \mathcal{E}_{ij}}{\sum}\;
-    \alpha_{ijk}\,f^{(Y)}_{ijk}\,Y_{ij}
-\;\; = \;\;
-    \underset{j \in \mathcal{C}_{i}}{\sum}\!
-    \left(\,
-        \underset{k \in \mathcal{E}_{ij}}{\sum}\;
-        \alpha_{ijk}\,f^{(Y)}_{ijk}
-        \,\right)
-    Y_{ij}
-\;\; = \;\;
-    \underset{j \in \mathcal{C}_{i}}{\sum}\,
-    \alpha_{ij}Y_{ij}
+    \alpha_{ij}Y_{ij} %\,,
+    % \quad
+    % \textnormal{where}\;\;\;
+    % \alpha_{ij} \, := \, \underset{k \in \mathcal{E}_{ij}}{\sum}\,\alpha_{ijk}\,f_{ijk}
+% \\
+% (\alpha Y)_{i}
+% & := &
+%     \underset{j \in \mathcal{C}_{i}}{\sum}\;
+%     \underset{k \in \mathcal{E}_{ij}}{\sum}\;
+%     \alpha_{ijk}Y_{ijk}
+% \;\; = \;\;
+%     \underset{j \in \mathcal{C}_{i}}{\sum}\;
+%     \underset{k \in \mathcal{E}_{ij}}{\sum}\;
+%     \alpha_{ijk}\,f_{ijk}\,Y_{ij}
+% \;\; = \;\;
+%     \underset{j \in \mathcal{C}_{i}}{\sum}\!
+%     \left(\,
+%         \underset{k \in \mathcal{E}_{ij}}{\sum}\;
+%         \alpha_{ijk}\,f_{ijk}
+%         \,\right)
+%     Y_{ij}
+% \;\; = \;\;
+%     \underset{j \in \mathcal{C}_{i}}{\sum}\,
+%     \alpha_{ij}Y_{ij}
 \end{eqnarray*}
-Horvitz-Thompson estimator:
+\qed
+
+\vskip 1.0cm
+\noindent
+\textbf{Horvitz-Thompson estimator:}
 \begin{eqnarray*}
 \widehat{T}^{\HT}_{\alpha Y}({\color{red}s})
 & = &
@@ -352,7 +614,126 @@ Imputation estimator:
     \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
     \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
 \end{eqnarray*}
-Sampling variance component:
+\textbf{Sampling variance component:}
+\vskip 0.1cm
+\begin{lemma}[Unbiased estimator for sampling variance component; Equation (5.5) in \cite{Beaumont2011}]
+\label{DomainTotalSamplingVariance}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose we are given quantities as described in Subsection
+\ref{DomainTotalFormulationOfVarianceEstimationProblem}
+and
+that they satisfy the probabilistic assumptions as described in Subsection
+\ref{DomainTotalProbabilisticFramework}.
+\vskip 0.1cm
+\noindent
+Then, the following statements are true:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    If
+    \;$v(\,s\,;\abullet\ydot\,)$\,
+    is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
+    \begin{equation*}
+    E_{S}\!\left[\;
+        v(\,s\,;\abullet\Ydot\,)
+        \,\left\vert\;
+        \Ydot,\Xobs
+        \right.
+        \,\right]
+    \;\; = \;\;
+        \Var_{S}\!\left(\,
+            \left.
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+            \,\right\vert\,
+            \Ydot,
+            \Xobs
+            \,\right),
+    \end{equation*}
+    then
+    \,$
+    E_{Y_{M}}\!\left[\,
+        v(\,s\,;\abullet\Ydot\,)
+        \left\vert\,
+        s,s_{R},\YsubR,\Xobs
+        \right.
+        \right]
+    $\,
+    is an $(\Sdot,\Rdot,\YsubR)$-unbiased estimator for
+    \,$
+    E_{Y}\!\left[\,
+        \Var_{S}\!\left(\,
+            \left.
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+            \,\right\vert\,
+            \Ydot,
+            \Xobs
+            \,\right)
+    \,\right]
+    $,\,
+    i.e.,
+    \begin{equation*}
+    E_{SR}\,
+    E_{Y_{R}}\,
+    E_{Y_{M}}\!\left[\,
+        v(\,s\,;\abullet\Ydot\,)
+        \,\left\vert\;
+        s,s_{R},\YsubR,\Xobs
+        \right.
+        \,\right]
+    \;\; = \;\;
+        E_{Y}\!\left[\,
+            \Var_{S}\!\left(\,
+                \left.
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+                \,\right\vert\,
+                \Ydot,
+                \Xobs
+                \,\right)
+            \,\right]
+    \end{equation*}
+\item
+    If
+    \,$v(\,s\,;\abullet\ydot\,)$\,
+    is taken to be the (design-unbiased) Horvitz-Thompson estimator for the sampling variance, i.e.,
+    \begin{equation*}
+    v(\,s\,;\abullet\ydot\,)
+    \;\; := \;\;
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\,
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        (w_{k}d_{k}y_{k})\,(w_{l}d_{l}y_{l})
+    \end{equation*}
+    then
+    \,$
+    E_{Y_{M}}\!\left[\,
+        v(\,s\,;\dbullet\Ydot\,)
+        \left\vert\,
+        s,s_{R},\YsubR,\Xobs
+        \right.
+        \right]
+    $\,
+    can be expressed as follows:
+    \begin{equation*}
+    E_{Y_{M}}\!\left[\,
+        v(\,s\,;\dbullet\Ydot\,)
+        \left\vert\,
+        s,s_{R},\YsubR,\Xobs
+        \right.
+        \right]
+    \;\; = \;\;
+        v(\,s\,;\abullet\widetilde{y}_{\bullet}\,)
+        \;+\;
+        \underset{i \in s}{\sum}\,
+        \underset{j\in(\mathcal{C}_{i})_{M}}{\sum}
+        \dfrac{1 - \pi_{i}}{\pi_{i}^{2}}\;
+        \alpha_{ij}^{2}\,\sigma_{ij}^{2}
+    \end{equation*}
+\end{enumerate}
+\end{lemma}
+\proof
 \begin{eqnarray*}
 &&
     E_{Y_{M}}\!\left[\,
