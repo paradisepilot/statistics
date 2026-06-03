@@ -483,30 +483,66 @@ of SSUs.
 \textbf{Random variables}
 \begin{itemize}
 \item
-    $\Ydot \,=\, (Y_{1},Y_{2},\ldots,Y_{N})^{T} : \Omega \longrightarrow \Re^{N \times 1}$\,
-    is an $\Re^{N \times 1}$-valued random variable defined on \,$\Omega$,\,
-    i.e., $\mathscr{A}$-measurable map.
+    $
+    \Ydot
+    \, = \,
+        \left\{\;
+            Y_{ij} : \Omega \longrightarrow \Re
+            \,\left\vert
+            \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i} \end{array}
+            \right.
+            \!\!\right\}
+    $\,
+    is a collection of $\Re$-valued random variables
+    (i.e., $\mathscr{A}$-measurable maps)
+    defined on \,$\Omega$,\,
+    where \,$\mathcal{C}_{i}$\, is a finite set, for each \,$i \in U$.
 \item
-    $\Xdotdot\,=\,\left(\,\overset{{\color{white}.}}{X_{ij}}\,\right) : \Omega \longrightarrow \Re^{N \times r}$\,
-    is an $\Re^{N \times r}$-valued random variable defined on \,$\Omega$.
+    $
+    \Xdotdot
+    \, = \,
+        \left\{\,
+            X_{ij} : \Omega \longrightarrow \Re^{r}
+            \left\vert
+            \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i} \end{array}
+            \right.
+            \!\!\right\}
+    $\,
+    is a collection of $\Re^{r}$-valued random variables defined on \,$\Omega$,\,
 \item
     $\Sdot \,=\, (S_{1},S_{2},\ldots,S_{N})^{T} : \mathcal{P}(U) \longrightarrow \{0,1\}^{N \times 1}$\,
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\mathcal{P}(U)$,\,
     i.e., $\mathcal{P}(\mathcal{P}(U))$-measurable map.
 \item
-    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
-    is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\Omega \times \mathcal{P}(U)$,\,
-    i.e., $\left(\mathscr{A} \overset{{\color{white}.}}{\otimes} \mathcal{P}(\mathcal{P}(U))\right)$-measurable map
-    that satisfies:
+    % $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
+    % \vskip 0.1cm
+    $
+    \Rdot
+    \, = \,
+        \left\{\,
+            R_{ij} : {\color{red}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}
+            \,\left\vert
+            \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i} \end{array}
+            \right.
+            \!\!\right\}
+    $\,
+    is a collection of $\{0,1\}$-valued random variables
+    % defined on \,$\Omega$,\,
+    % where \,$\mathcal{C}_{i}$\, is a finite set, for each \,$i \in U$.
+    % is a $\{0,1\}^{N \times 1}$-valued random variable
+    defined on \,$\Omega \times \mathcal{P}(U)$,\,
+    i.e.,
+    $\left(\mathscr{A} \overset{{\color{white}.}}{\otimes} \mathcal{P}(\mathcal{P}(U))\right)$-measurable maps, that satisfies:
     \begin{equation*}
     (\,\lambda\otimes\pi\,)\!\left(\;\,
-        \underset{k \in U}{\bigcup}\left\{\;
+        \underset{i \in U}{\bigcup}\left\{\;
             (\omega,s) \in \Omega\times\mathcal{P}(U)
             \;\left\vert
             \begin{array}{c}
-            S_{k}(s) = 0, %\,\textnormal{and}\;
+            S_{i}(s) = 0, %\,\textnormal{and}\;
             \\
-            \overset{{\color{white}.}}{R_{k}(\omega,s) = 1}
+            \overset{{\color{white}.}}{R_{ij}(\omega,s) = 1},\;
+            \textnormal{for some $j \in \mathcal{C}_{i}$}
             \end{array}
             \right.
             \!\!\right\}
@@ -515,8 +551,8 @@ of SSUs.
         0
     \end{equation*}
     Note that this condition stipulates that,
-    whenver a population unit \,$k \in U$\, is not selected in the (random) sample \,$s \subset U$,\,
-    then it is not a respondent either.
+    whenver a PSU \,$i \in U$\, is not selected in the (random) sample \,$s \subset U$,\,
+    then none of its SSUs can be a respondents.
 \end{itemize}
 
 \vskip 0.2cm
@@ -526,8 +562,8 @@ of SSUs.
 \item
     $U = \{1,2,\ldots,N\}$
     \,--\,
-    index set of the target (finite) population of interest,
-    and \,$N$\, is the (finite) size of the target population.
+    index set of the target (finite) population of primary sampling units (PSU),
+    and \,$N$\, is the (finite) size of the target population of PSUs.
 \item
     $\left(\,\Omega,\mathscr{A},\lambda\,\right)$
     \,--\,
@@ -535,7 +571,7 @@ of SSUs.
 \item
     $\Ydot$
     \,--\,
-    $\Re$-valued target variable (population characteristic).
+    $\Re$-valued target variable (population characteristic defined at the level of the SSUs).
 \item
     $\Xdotdot$
     \,--\,
@@ -558,14 +594,15 @@ of SSUs.
 \item
     $\Rdot$
     \,--\,
-    $\{0,1\}$-valued binary variable indicating, for almost every outcome
-    \,$\omega \in \Omega$\,
-    and each
-    \,$(s,s_{R}) \in \mathcal{P}(U) \times \mathcal{P}(U)$\,
-    satisfying
-    \,$s_{R} \subset s$,\,
-    whether a selected population unit \,$ k \in s$\,
-    is a respondent or not.
+    $\{0,1\}$-valued binary variable indicating
+    % for almost every outcome
+    % \,$\omega \in \Omega$\,
+    % and each
+    % \,$(s,s_{R}) \in \mathcal{P}(U) \times \mathcal{P}(U)$\,
+    % satisfying
+    % \,$s_{R} \subset s$,\,
+    whether an SSU in a selected PSU \,$i \in s$\,
+    is a respondent SSU or not.
     % More precisely, for each \,$s \subset U$ and each \,$k \in s$,\, we have:
     % \begin{equation*}
     % R_{k}(\omega,s_{R})
@@ -625,8 +662,8 @@ of SSUs.
 \item
     $\Ydot$\, and \,$(\,\Sdot\,,\Rdot\,)$\, are {\color{red}conditionally independent} given \,$\Xdotdot$.
 \item
-    $\Cov\!\left(\;Y_{k}\,,\,Y_{l}\;\left\vert\;\Xdotdot\right.\right) \,=\, 0$,\,
-    for each \,$k, l \in U$\, with \,$k \neq l$.
+    $\Cov\!\left(\;Y_{ij}\,,\,Y_{kl}\;\left\vert\;\Xdotdot\right.\right) \,=\, 0$,\,
+    for each \,$(i,j) \neq (k,l)$.
 \end{itemize}
 
 \vskip 0.2cm
@@ -634,8 +671,18 @@ of SSUs.
 \textbf{(Non-random) parameters}
 \begin{itemize}
 \item
-    $\dbullet \,=\, (d_{1},d_{2},\ldots,d_{N}) \in \{0,1\}^{N}$\,
-    is a (non-random, binary) domain membership indicator.
+    $
+    \abullet
+    \, = \,
+        \left\{\,
+            \alpha_{ij} \in \Re
+            \,\left\vert
+            \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i} \end{array}
+            \right.
+            \!\!\right\}
+    $\,
+    is a collection of (non-random)
+    $\Re$-valued coefficients defined at the level of the SSUs.
 \end{itemize}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
