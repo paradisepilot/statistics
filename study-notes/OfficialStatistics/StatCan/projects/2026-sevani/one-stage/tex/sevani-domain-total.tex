@@ -1,7 +1,7 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{SEVANI: Variance estimation methodology \cite{Beaumont2011} for {\color{red}Horvitz-Thompson} estimators with composite linear imputation for {\color{red}domain totals}}
+\section{SEVANI: Variance estimation methodology \cite{Beaumont2011} for {\color{red}Horvitz-Thompson} estimators under one-stage cluster sampling with composite linear imputation for {\color{red}generalized totals}}
 \label{DomainTotalSEVANI}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -16,54 +16,90 @@ Suppose:
 \begin{itemize}
 \item
     We would like to estimate
-    -- using data from a probability sample --
-    a domain total
+    -- using data from a one-stage cluster sample --
+    a \textbf{generalized total}
     \begin{equation*}
-    T_{d,Y}
+    T_{\alpha Y}
     \;\; := \;\;
-        \underset{i \in U}{\sum}\;d_{i}Y_{i}\,,
+        \underset{i \in U}{\sum}\;
+        \underset{j \in \mathcal{C}_{j}}{\sum}\;
+        \alpha_{ij}Y_{ij}\,,
     \end{equation*}
-    where \,$U = \{\,1,2,\ldots,N\,\} \subset \N$\, represents the population,
-    $\dbullet = (d_{1},\ldots,d_{N}) \in \{0,1\}^{N}$ is the vector of domain membership indicators,
-    and
-    \,$\Ydot = (Y_{1},\ldots,Y_{N})$\,
-    is an $\Re$-valued population characteristic.
+    where
+    \begin{itemize}
+    \item
+        $U = \{\,1,2,\ldots,N\,\} \subset \N$\,
+        denotes the population of the primary sampling units (PSU),
+    \item
+        for each \,$i \in U$,\,
+        \,$\mathcal{C}_{j}$\, denotes the collection of all secondary sampling units (SSU)
+        belonging to PSU \,$i \in U$,
+    \item
+        $
+        \Ydot \, = \, \left\{\,
+            \left.
+            \overset{{\color{white}.}}{Y_{ij}}
+            \,\right\vert\,
+            i \in U, j \in \mathcal{C}_{i}
+            \,\right\}
+        $\,
+        is an $\Re$-valued population characteristic defined at the level of the SSUs, and
+    \item
+        $
+        \abullet \, = \, \left\{\,
+            \left.
+            \overset{{\color{white}1}}{\alpha_{ij}}
+            \;\right\vert\,
+            i \in U, j \in \mathcal{C}_{i}
+            \,\right\}
+        $\,
+        is the collection of coefficients defined at the level of the SSUs.
+    \end{itemize}
 \item
     Aside/Reminder:
     \vskip 0.01cm
     \noindent
     If there were no missing data in \,$\ydot$\, for the units in the selected sample,
-    then the \textit{Horvitz-Thompson domain total estimator\! \footnote{
+    then the \textit{Horvitz-Thompson generalized total estimator\! \footnote{
         We will use the alternative notations
-        \,$\widehat{T}_{d,\xi}^{\textnormal{(HT)}}$\,
+        \,$\widehat{T}_{\alpha\xi}^{\textnormal{(HT)}}$\,
         and
-        \,$\widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})$\,
+        \,$\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet\xi_{\bullet})$\,
         interchangeably, noting that the former is notationally more succinct,
         while the latter allows us to emphasize that the population characteristic
         \,$\xi_{\bullet}$\,
         is being considered as an argument to the formula
         \begin{equation*}
-        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet\xi_{\bullet})
         \;\; := \;\;
-            \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
+            \underset{i\,\in\,s}{\sum}\;
+                \dfrac{1}{\pi_{i}}\!
+                \left(\;
+                    \underset{j \in \mathcal{C}_{j}}{\sum}\;\alpha_{ij}\xi_{ij}
+                    \right)
         \end{equation*}
         for the Horvitz-Thompson population total estimator.
         }
     }
     \begin{eqnarray*}
-    \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+    \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
     & :=: &
         % \widehat{T}^{\textnormal{(HT)}}(s\,;\dydot)
-        \widehat{T}^{\textnormal{(HT)}}(\,\Sdot,\Ydot\,;\dbullet\,)
+        \widehat{T}^{\textnormal{(HT)}}(\,\Sdot,\Ydot\,;\abullet\,)
     \;\; := \;\;
-        \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y_{i}\,,
+        \underset{i\,\in\,s}{\sum}\;
+            \dfrac{1}{\pi_{i}}
+            \left(\;
+                \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                \alpha_{ij}Y_{ij}
+                \right)
     \end{eqnarray*}
     is a design-unbiased estimator for
-    \,$T_{d,Y}$,\,
+    \,$T_{\alpha Y}$,\,
     where
     \begin{itemize}
     \item
-        $s \subset U$\, is the (random) selected sample, and
+        $s \subset U$\, is the (random) selected sample of PSUs, and
         \,$\Sdot \,=\, (S_{1},\ldots,S_{N})^{T}$\,
         is the vector of $\{0,1\}$-valued selection indicator variables,
     \item
@@ -72,98 +108,145 @@ Suppose:
         i.e., the reciprocal of the selection probability \,$\pi_{i}$\,
         (assumed strictly positive) of \,$i \in U$.\,
     \end{itemize}
-    Recall (Result 2.8.1, p.43, \cite{Sarndal1992}) also that
-    the sampling variance of 
+    Recall (Result 4.3.1, p.137, \cite{Sarndal1992}) also that
+    the sampling variance of the Horvitz-Thompson population total estimator
+    under a two-stage cluster sampling design is:
+    \begin{equation*}
+    \Var_{\,\textnormal{2-stage}}
+    \;\; = \;\;
+        \Var_{\,\textnormal{PSU}}
+        \; + \;
+        \Var_{\,\textnormal{SSU}}
+    \end{equation*}
+    Since we are considering only one-stage cluster sampling
+    (i.e., two-stage cluster sampling where the second-stage sampling is a census),
+    the subsampling variance \,$\Var_{\,\textnormal{SSU}}$\, is zero.
+    Hence, the sampling variance of
     \,$
-    \widehat{T}^{\textnormal{(HT)}}_{d,\xi}
+    \widehat{T}^{\textnormal{(HT)}}_{\alpha\xi}
     % \,=\,
     %     \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
     $\,
-    is given by
+    has only the \,$\Var_{\,\textnormal{PSU}}$\, term, i.e.,
     \begin{equation*}
     \Var_{S}\!\left(\,
         \left.
-        \widehat{T}^{\textnormal{(HT)}}_{d,\xi}
+        \widehat{T}^{\textnormal{(HT)}}_{\alpha\xi}
         \,\right\vert\!
         \begin{array}{c} \xi_{\bullet} \end{array}
         \!\!\right)
     \;\; = \;\;\,
         \underset{i \in U}{\sum}\,
-        \underset{j \in U}{\sum}\;
-        \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
-        \cdot
-        \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
-        \cdot
-        \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}\,,
+        \underset{k \in U}{\sum}\,
+        \left(\,\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\,\right)
+        \cdot\!
+        \left(\,
+            \dfrac{1}{\pi_{i}}\,
+            \underset{j\in\mathcal{C}_{i}}{\sum}\;\alpha_{ij}Y_{ij}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            \dfrac{1}{\pi_{i}}\,
+            \underset{l\in\mathcal{C}_{k}}{\sum}\;\alpha_{kl}Y_{kl}
+            \,\right),
     \end{equation*}
     and the following Horvitz-Thompson variance estimator
     \begin{equation*}
-    \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\xi_{\bullet}\,)
+    \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet\xi_{\bullet}\,)
     \;\; := \;\;
         \underset{i \in s}{\sum}\,
-        \underset{j \in s}{\sum}\;
-        \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
-        \cdot
-        \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
-        \cdot
-        \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}
+        \underset{k \in s}{\sum}\;
+        \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}
+        \cdot\!
+        \left(\,
+            \dfrac{1}{\pi_{i}}\,
+            \underset{j\in\mathcal{C}_{i}}{\sum}\;\alpha_{ij}Y_{ij}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            \dfrac{1}{\pi_{i}}\,
+            \underset{l\in\mathcal{C}_{k}}{\sum}\;\alpha_{kl}Y_{kl}
+            \,\right),
     \end{equation*}
     is a design-unbiased estimator for the sampling variance of
     % \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$,\,
     \,$
-    \widehat{T}^{\textnormal{(HT)}}_{d,\xi_{\bullet}}
+    \widehat{T}^{\textnormal{(HT)}}_{\alpha\xi}
     \,=\,
-        \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet\xi_{\bullet})
     $,\,
     i.e.,
     \begin{equation*}
     E_{S}\!\left[\;
         \left.
-        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\xi_{\bullet}\,)
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet\xi_{\bullet}\,)
         \;\right\vert\!
         \begin{array}{c} \xi_{\bullet} \end{array}
         \!\right]
     \;\; = \;\;
         \Var_{S}\!\left(\,
             \left.
-            \widehat{T}^{\textnormal{(HT)}}_{d,\xi} %(s\,;\dbullet\xi_{\bullet})
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha\xi} %(s\,;\dbullet\xi_{\bullet})
             \;\right\vert\!
             \begin{array}{c} \xi_{\bullet} \end{array}
             \!\!\right)
     \end{equation*}
 \item
-    The value of \,$Y_{l}$\, has been successfully observed
-    only for units \,$l$\, in the (random) ``responding'' subsample
-    \,$s_{R} \subset s \subset U$;\,
-    in other words, the measurement of \,$Y_{k}$\, somehow failed for each unit \,$k$\,
-    in the ``nonresponding'' subsample
-    \,$s_{M} \, := \,s \,\backslash\, s_{R} \,\subset\, U$.\,
+    For each PSU \,$i \in s$,\,
+    the values of \,$Y_{ij}$\, have been successfully observed
+    only for SSUs \,$j \in \mathcal{C}_{i}$\,
+    in the (random) ``responding'' subsample of SSUs
+    \,$(\mathcal{C}_{i})_{R} \subset \mathcal{C}_{i} \subset U$;\,
+    in other words, the measurement of \,$Y_{ij}$\, somehow failed for each SSU
+    \,$j \in (\mathcal{C}_{i})_{M} \, := \,\mathcal{C}_{i} \,\backslash\, (\mathcal{C}_{i})_{R}$.\,
+    \,$(\mathcal{C}_{i})_{M}$\,
+    is called the ``nonresponding'' subsample.
 \item
-    We would like to estimate \,$T_{d,Y}$\,
+    We would like to estimate \,$T_{\alpha Y}$\,
     with an imputation estimator of the following form:
     \begin{eqnarray*}
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha Y}
     & = &
-        \widetilde{T}_{d,Y}(\,
+        \widetilde{T}_{\alpha Y}(\,
             \Sdot\,,\,
             \Rdot\,,\,
             \Ydot\,;\,
             \Xdotdot\,,\,
-            \dbullet
+            \abullet
             \,)
+    \\
+    & = &
+        \underset{i\,\in\,s}{\sum}\;
+        \dfrac{1}{\pi_{i}}\!
+        \left(\;
+            \underset{j \in \mathcal{C}_{i}}{\sum}\;\alpha_{ij}\,Y^{\dagger}_{ij}
+            \right)
     \;\; = \;\;
-        \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y^{\dagger}_{i}
-    \;\; = \;\;
-        \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,d_{i}\left(\,
-            R_{i}\,Y_{i}
-            \overset{{\color{white}.}}{+}
-            (1-R_{i})\,Y^{*}_{i}
-            \,\right),
+        \underset{i\,\in\,U}{\sum}\;
+            \dfrac{S_{i}}{\pi_{i}}
+            \left(\;
+                \underset{j \in \mathcal{C}_{i}}{\sum}\;\alpha_{ij}\!
+                \left(
+                    R_{ij}\,Y_{ij}
+                    \overset{{\color{white}.}}{+}
+                    (1-R_{ij})\,Y^{*}_{ij}
+                    \right)
+                \right),
     \end{eqnarray*}
     where
     \begin{itemize}
     \item
-        $\Rdot \,=\, (R_{1},\ldots,R_{N})^{T}$ is the vector of $\{0,1\}$-valued response indicator variables,
+        $
+        \Rdot
+        \,=\,
+            \left\{\,
+                R_{ij}
+                \,\left\vert
+                \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i} \end{array}
+                \right.
+                \!\!\right\}
+        $\,
+        is the collection of $\{0,1\}$-valued imputation-unit-level response indicator variables,
     \item
         $\Xdotdot \,=\, \left(\,X_{ij}\,\right) \,\in\, \overline{\Re}^{N \times r}$\,
         is a random matrix containing the values of the $\Re$predictor variables for $\Ydot$,
@@ -171,63 +254,75 @@ Suppose:
         and where \,$\overline{R} \,:=\, \Re \sqcup \{\,\texttt{NA}\,\}$\,
         is an extension of $\Re$ alllowing for missing values in \,$\Xdotdot$,\, and
     \item
-        for each \,$i \in s$,\,
-        \,$Y^{\dagger}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+        for each \,$i \in s$\, and \,$j \in \mathcal{C}_{i}$,\,
+        \,$Y^{\dagger}_{ij} \;=\; R_{ij}\,Y_{ij}+(1-R_{ij})\,Y^{*}_{ij}$,\,
         and
         \begin{equation*}
-        Y^{*}_{k}
+        Y^{*}_{ij}
         \;\; = \;\;
-            Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)\,,
+            Y^{*}_{ij}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)\,,
         \quad
-        \textnormal{for each \,$k \in s_{M} = s\,\backslash\,s_{R}$},
+        \textnormal{for each \,$j \in (\mathcal{C}_{i})_{M} = \mathcal{C}_{i}\,\backslash\,(\mathcal{C}_{i})_{R}$},
         \end{equation*}
         is an imputed value for
-        \,$Y_{k}$\, and \,$Y^{*}_{k}$\,
+        \,$Y_{ij}$\, and \,$Y^{*}_{ij}$\,
         may depend on
         \,$\Sdot,\Rdot,\Ydot,\Xdotdot$.\,
     \end{itemize}
 \item
-    Furthermore, \,$Y^{*}_{k}$\, ($k \in s_{M}$) is \textbf{composite-linear},
-    i.e., there exists \,$J \in \N$\, such that
+    Furthermore, \,$Y^{*}_{kl}$\, ($k \in s$,\, $l \in (\mathcal{C}_{k})_{M}$)
+    is \textbf{composite linear}, i.e., % there exists \,$J \in \N$\, such that
     \begin{center}
-    \begin{minipage}{6.2in}
+    \begin{minipage}{6.3in}
     for each admissible sample \,$s \subset U$,\,
-    each \,$s_{R} \subset s$,\,
-    {\color{red}each} \,{\color{red}$k \in s_{M} := s \,\backslash\, s_{R}$},\,
+    each \,$s_{R} := \underset{i \in s}{\bigcup}\,(\mathcal{C}_{i})_{R}$,\,
+    {\color{red}
+        each
+        \,$k \in s$,\,
+        and each
+        \,$l \in (\mathcal{C}_{k})_{M} := \mathcal{C}_{k} \,\backslash\, (\mathcal{C}_{k})_{R}${\color{black},}
+    }
+    \vskip 0.01cm
+    \noindent
     there exist
     \begin{equation*}
     \left\{\;\;\begin{array}{ccl}
-    j
-    & = &
-        j(\,k,s,s_{R}\,;\Xobs\,) \;\in\; \{1,2,\ldots,J\},
-    \\
-    \varphi^{(j)}_{0k}
-    & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
-        \varphi^{(j)}_{0k}(\,s,s_{R}\,;\Xdotdot\,),
+    % j
+    % & = &
+    %     j(\,k,s,s_{R}\,;\Xobs\,) \;\in\; \{1,2,\ldots,J\},
+    % \\
+    \varphi_{0,kl}
+    & \overset{{\color{white}\textnormal{\small$1$}}}{=} &
+        \varphi_{0,kl}(\,s,s_{R}\,;\Xdotdot\,),
         \quad
         \textnormal{and}
     \\
-    \varphi^{(j)}_{lk}
+    \varphi_{ij,kl}
     & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
-        \varphi^{(j)}_{lk}(\,s,s_{R}\,;\Xdotdot\,),
+        \varphi_{ij,kl}(\,s,s_{R}\,;\Xdotdot\,),
         \;\;
-        \textnormal{{\color{red}for each \,$l \in s_{R}$}}
+        \textnormal{{\color{red}for each \,$i \in s$,\, $j \in (\mathcal{C}_{i})_{R}$}}
     \end{array}\right.
     \end{equation*}
     such that
-    \begin{equation*}
-    Y_{{\color{red}k}}^{*}
-    \;\; = \;\;
-        Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
-    \;\; = \;\;
-        \varphi^{(j)}_{0{\color{red}k}}
-        \,+\,
-        \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{l{\color{red}k}}\,Y_{l}\,,
+    \begin{eqnarray*}
+    Y_{{\color{red}kl}}^{*}
+    & = &
+        Y^{*}_{kl}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+    \\
+    & = &
+        \varphi_{0,{\color{red}kl}}
+        \, + \,
+        \underset{i \in s}{\sum}\;
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\,
+        \varphi_{ij,{\color{red}kl}}\,Y_{ij}\,,
         \quad
-        \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$},
-    % \quad
-    % \textnormal{for some \,$j \in \{1,2,\ldots,J\}$\, depending on \,$s,\,s_{R},\,\Xobs$}
-    \end{equation*}
+        \textnormal{
+            for each
+            \,$k \in s$,
+            \,$l \in (\mathcal{C}_{k})_{M} := \mathcal{C}_{k} \,\backslash\, (\mathcal{C}_{k})_{R}$
+            },
+    \end{eqnarray*}
     \end{minipage}
     \end{center}
 \end{itemize}
@@ -242,34 +337,34 @@ Suppose:
 \textbf{The variability quantification problem$\overset{{\color{white}1}}{\textnormal{\color{white}.}}$\& proposed solution}
 \end{center}
 We seek to quantify the variability of
-\,$\widetilde{T}_{d,Y}$\,
+\,$\widetilde{T}_{\alpha Y}$\,
 as an estimator for
-\,$T_{d,Y}$.
+\,$T_{\alpha Y}$.
 \vskip 0.1cm
 In these study notes,
 the conditional mean squared error (MSE) given \,$\Xdotdot$\,
 \begin{equation*}
 \MSE\!\left(\;
     \left.
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha Y}
     \;\right\vert\!
     \begin{array}{c} \Xdotdot \end{array}
     \!\right)
 \;\; := \;\;
     E\!\left[\;\left(\,
         \left.
-        \widetilde{T}_{d,Y}
+        \widetilde{T}_{\alpha Y}
         \, - \,
-        T_{d,Y}
-        \,\right)^{\!2}
+        T_{\alpha Y}
+        \right)^{\!2}
         \;\right\vert\!
         \begin{array}{c} \Xdotdot \end{array}
         \!\right]
 \end{equation*}
 of
-\,$\widetilde{T}_{d,Y}$\,
+\,$\widetilde{T}_{\alpha Y}$\,
 as estimator for
-\,$T_{d,Y}$\,
+\,$T_{\alpha Y}$\,
 is proposed for this purpose.
 \vskip 0.3cm
 \noindent
@@ -277,10 +372,10 @@ In addition, an approximate, but computable, estimator for
 \,$
 \MSE\!\left(\;
     \left.
-    \widetilde{T}_{d,Y}
-    \;\right\vert\!
-    \begin{array}{c} \Gdotdot\,,\Xdotdot \end{array}
-    \!\right)
+    \widetilde{T}_{\alpha Y}
+    \;\right\vert\!\!
+    \begin{array}{c} \Xdotdot \end{array}
+    \!\!\right)
 $\,
 will be proposed.
 \vskip -0.25cm
@@ -293,59 +388,68 @@ will be proposed.
 Lastly, we define the following entities that will repeatedly appear
 in the formulas we will derive in these notes:
 \begin{equation*}
-\mu_{k}
+\mu_{ij}
 \; := \;
-    E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right],
+    E_{Y}\!\left[\;Y_{ij}\,\left\vert\;\Xobs\right.\right],
 \quad\quad
-\sigma_{k}^{2}
+\sigma_{ij}^{2}
 \; := \;
     \Var_{Y}\!\left[\;
-        Y_{k}
+        Y_{ij}
         \,\left\vert\;
         \Xobs
         \right.
         \right]
 \end{equation*}
 \begin{equation*}
-\widetilde{y}_{k}
+\widetilde{y}_{ij}
 \; := \;
     \left\{\begin{array}{cl}
-        y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+        y_{ij}, & \textnormal{for \,$i \in s$,\, $j \,\in\, (\mathcal{C}_{i})_{R}$}
         \\
         % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
-        \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+        \overset{{\color{white}\textnormal{\large1}}}{\mu_{ij}}, & \textnormal{for \,$i \in s$,\, $j \,\in\, (\mathcal{C}_{i})_{M} \,:=\, \mathcal{C}_{i} \,\backslash\, (\mathcal{C}_{i})_{R}$}
         \end{array}\right.
 \end{equation*}
 \begin{equation*}
-W^{(+)}_{d,{\color{red}0}}
+W^{(+)}_{\alpha,{\color{red}0}}
 \; := \;
     \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{l \in s_{M}^{(j)}}{\sum}\,
-        w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
-        \,\right),
+        \underset{k \in s}{\sum}\;
+        \underset{l \in (\mathcal{C}_{i})_{M}}{\sum}\,
+        \dfrac{
+            \alpha_{kl}\,\varphi_{{\color{red}0},kl}
+            }{
+            \pi_{k}
+            }
+        \right),
 \quad\quad
-W^{(+)}_{d,{\color{red}l}}
+W^{(+)}_{\alpha,{\color{red}ij}}
 \; := \;
     \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,
-        w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}l}k}
-        \,\right),
+        \underset{k \in s}{\sum}\;
+        \underset{l \in (\mathcal{C}_{i})_{M}}{\sum}\,
+        \dfrac{
+            \alpha_{kl}\,\varphi_{{\color{red}ij},kl}
+            }{
+            \pi_{k}
+            }
+        \right),
 \;\;
-\textnormal{for each \,$l \in s_{R}$}
+\textnormal{for each \,$i \in s$,\, $j \in (\mathcal{C}_{i})_{R}$}
 \end{equation*}
 \vskip 0.3cm
 \noindent
 Note that
-\,$\widetilde{y}_{k}$,\,
-\,$W^{(+)}_{d,{\color{black}0}}$\,
+\,$\widetilde{y}_{ij}$,\,
+\,$W^{(+)}_{\alpha,{\color{black}0}}$\,
 and
-\,$W^{(+)}_{d,{\color{black}l}}$\,
+\,$W^{(+)}_{\alpha,{\color{black}ij}}$\,
 depend on the full selected sample
 \,$s \subset U$\,
-and the responding subsample
-\,$s_{R} \subset s \subset U$.\,
+of PSUs and the responding subsample
+\,$s_{R} = \underset{i \in s}{\bigcup}\,(\mathcal{C}_{i})_{R}$\,
+of SSUs.
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -538,13 +642,13 @@ and the responding subsample
 
 % \clearpage
 \vskip 1.0cm
-\subsection{Overall bias and conditional bias of \,$\widetilde{T}_{d,Y}$}
+\subsection{Overall bias and conditional bias of \,$\widetilde{T}_{\alpha Y}$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.1cm
-\begin{lemma}[A formula for \,$\widetilde{T}_{d,Y}$]
+\begin{lemma}[A formula for \,$\widetilde{T}_{\alpha Y}$]
 \mbox{}
 \vskip 0.1cm
 \noindent
@@ -557,7 +661,7 @@ that they satisfy the probabilistic assumptions as described in Subsection
 \noindent
 Then, we have:
 \begin{eqnarray*}
-\widetilde{T}_{d,Y}
+\widetilde{T}_{\alpha Y}
 & = &
     \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,d_{i}\,Y_{i}
     \;\overset{{\color{white}.}}{+}\;
@@ -566,7 +670,7 @@ Then, we have:
 \end{lemma}
 \proof
 \begin{eqnarray*}
-\widetilde{T}_{d,Y}
+\widetilde{T}_{\alpha Y}
 & := &
     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
 \;\; = \;\;
@@ -614,7 +718,7 @@ Then, we have:
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.3cm
-\begin{lemma}[Conditional bias of \,$\widetilde{T}_{d,Y}$; see Equation (5.2) in \cite{Beaumont2011}]
+\begin{lemma}[Conditional bias of \,$\widetilde{T}_{\alpha Y}$; see Equation (5.2) in \cite{Beaumont2011}]
 \label{biasTtilde}
 \mbox{}
 \vskip 0.1cm
@@ -635,25 +739,25 @@ Then, the following statements are true:
     \,$
     \bias\!\left(\;
         \left.
-        \widetilde{T}_{d,Y}
+        \widetilde{T}_{\alpha Y}
         \;\right\vert\,
         \Xobs
         \,\right)
     $\,
     of
-    \,$\widetilde{T}_{d,Y}$\,
+    \,$\widetilde{T}_{\alpha Y}$\,
     satisfies:
     \begin{eqnarray*}
     \bias\!\left(\;
         \left.
-        \widetilde{T}_{d,Y}
+        \widetilde{T}_{\alpha Y}
         \;\right\vert\,
         \Xobs
         \,\right)
     & := &
         E\!\left[\;
             \left.
-            \widetilde{T}_{d,Y} - T_{d,Y}
+            \widetilde{T}_{\alpha Y} - T_{\alpha Y}
             \,\right\vert\,
             \Xobs
             \,\right]
@@ -661,7 +765,7 @@ Then, the following statements are true:
         E_{SR}\!\left(\;
             \overset{{\color{white}.}}{E_{Y}\!\left[\;
                 \left.
-                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
                 \;\right\vert\,
                 s,s_{R},\Xobs
                 \,\right]}
@@ -681,7 +785,7 @@ Then, the following statements are true:
     \,$
     E_{Y}\!\left[\;
         \left.
-        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -690,7 +794,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     E_{Y}\!\left[\;
         \left.
-        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -708,14 +812,14 @@ Then, the following statements are true:
     \begin{eqnarray*}
     \bias\!\left(\;
         \left.
-        \widetilde{T}_{d,Y}
+        \widetilde{T}_{\alpha Y}
         \;\right\vert\,
         \Xobs
         \,\right)
     & := &
         E\!\left[\;
             \left.
-            \widetilde{T}_{d,Y} - T_{d,Y}
+            \widetilde{T}_{\alpha Y} - T_{\alpha Y}
             \,\right\vert\,
             \Xobs
             \,\right]
@@ -723,7 +827,7 @@ Then, the following statements are true:
         E_{SR}\!\left(\;
             \overset{{\color{white}.}}{E_{Y}\!\left[\;
                 \left.
-                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
                 \;\right\vert\,
                 s,s_{R},\Xobs
                 \,\right]}
@@ -780,21 +884,21 @@ Then, the following statements are true:
     \begin{eqnarray*}
     \bias\!\left(\;
         \left.
-        \widetilde{T}_{d,Y}
+        \widetilde{T}_{\alpha Y}
         \;\right\vert\,
         \Xobs
         \,\right)
     & := &
         E\!\left[\;
             \left.
-            \widetilde{T}_{d,Y} - T_{d,Y}
+            \widetilde{T}_{\alpha Y} - T_{\alpha Y}
             \,\right\vert\,
             \Xobs
             \,\right]
     \;\; = \;\;
         E\!\left[\;
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y} + \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y} + \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
             \,\right\vert\,
             \Xobs
             \,\right]
@@ -802,14 +906,14 @@ Then, the following statements are true:
     & = &
         E_{SRY}\!\left[\,
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \,\right\vert\,
             \Xobs
             \,\right]
         \; + \;
         E_{YSR}\!\left[\,
             \left.
-            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
             \,\right\vert\,
             \Xobs
             \,\right]
@@ -818,7 +922,7 @@ Then, the following statements are true:
         E_{SR}\!\left(\,
             \overset{{\color{white}.}}{E_{Y}\!\left[\;
                 \left.
-                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
                 \;\right\vert\,
                 s,s_{R},\Xobs
                 \,\right]}
@@ -827,7 +931,7 @@ Then, the following statements are true:
         E_{Y}\!\left(\,
             \overset{{\color{white}.}}{E_{SR}\!\left[\;
                 \left.
-                \widehat{T}^{\textnormal{(HT)}}_{d,Y} \overset{{\color{white}.}}{-} T_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{d,Y} \overset{{\color{white}.}}{-} T_{\alpha Y}
                 \;\right\vert\,
                 \Ydot,\Xobs
                 \,\right]}
@@ -837,7 +941,7 @@ Then, the following statements are true:
         E_{SR}\!\left(\,
             \overset{{\color{white}.}}{E_{Y}\!\left[\;
                 \left.
-                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
                 \;\right\vert\,
                 s,s_{R},\Xobs
                 \,\right]}
@@ -851,7 +955,7 @@ Then, the following statements are true:
         E_{SR}\!\left(\,
             \overset{{\color{white}.}}{E_{Y}\!\left[\;
                 \left.
-                \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+                \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
                 \;\right\vert\,
                 s,s_{R},\Xobs
                 \,\right]}
@@ -864,7 +968,7 @@ Then, the following statements are true:
     &&
         E_{Y}\!\left[\;
             \left.
-            \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -919,7 +1023,7 @@ Then, the following statements are true:
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.1cm
-\begin{lemma}[Decomposition of \,$\MSE(\,\widetilde{T}_{d,Y}\,\vert\,\Xobs\,)$; see Equation (5.3) in \cite{Beaumont2011}]
+\begin{lemma}[Decomposition of \,$\MSE(\,\widetilde{T}_{\alpha Y}\,\vert\,\Xobs\,)$; see Equation (5.3) in \cite{Beaumont2011}]
 \label{DecompositionMSETtilde}
 \mbox{}
 \vskip 0.1cm
@@ -935,14 +1039,14 @@ Then, we have:
 \begin{eqnarray*}
 \MSE\!\left(\;
     \left.
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha Y}
     \;\right\vert\,
     \Xobs
     \,\right)
 & := &
     E\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} - T_{d,Y}\,\right)^{2}
+        \left(\,\widetilde{T}_{\alpha Y} - T_{\alpha Y}\,\right)^{2}
         \,\right\vert\,
         \Xobs
         \,\right]
@@ -961,7 +1065,7 @@ Then, we have:
     E_{SR}\!\left[\,
     E_{Y}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -972,9 +1076,9 @@ Then, we have:
     E_{SR}\!\left[\,
     E_{Y}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
+        \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
         \!\!
-        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{\alpha Y}\,\right)
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -986,21 +1090,21 @@ Then, we have:
 &&
 \MSE\!\left(\;
     \left.
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha Y}
     \;\right\vert\,
     \Xobs
     \,\right)
 \;\; := \;\;
     E\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} - T_{d,Y}\,\right)^{2}
+        \left(\,\widetilde{T}_{\alpha Y} - T_{\alpha Y}\,\right)^{2}
         \,\right\vert\,
         \Xobs
         \,\right]
 \;\; = \;\;
     E_{YSR}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} - T_{d,Y}\,\right)^{2}
+        \left(\,\widetilde{T}_{\alpha Y} - T_{\alpha Y}\,\right)^{2}
         \,\right\vert\,
         \Xobs
         \,\right]
@@ -1009,7 +1113,7 @@ Then, we have:
     E_{YSR}\!\left[\,
         \left.
         \left(\,
-            \widetilde{T}_{d,Y}
+            \widetilde{T}_{\alpha Y}
             {\color{blue}
             \; - \;\,
             \widehat{T}^{\textnormal{(HT)}}_{d,Y}
@@ -1017,7 +1121,7 @@ Then, we have:
             \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             }
             \, - \,
-            T_{d,Y}
+            T_{\alpha Y}
             \,\right)^{2}
         \,\right\vert\,
         \Xobs
@@ -1026,14 +1130,14 @@ Then, we have:
 & = &
     E_{YSR}\!\left[\,
         \left.
-        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
         \,+\,
         2
-        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
+        \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
         \!\!
-        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{\alpha Y}\,\right)
         \,+\,
-        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}\,\right)^{2}
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}\,\right)^{2}
         \,\right\vert\,
         \Xobs
         \,\right]
@@ -1042,7 +1146,7 @@ Then, we have:
     {\color{black}
     E_{YSR}\!\left[
         \left.
-        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}\,\right)^{2}
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}\,\right)^{2}
         \,\right\vert\,
         \Xobs
         \,\right]
@@ -1051,7 +1155,7 @@ Then, we have:
     {\color{black}
     E_{YSR}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
         \,\right\vert\,
         \Xobs
         \,\right]
@@ -1062,9 +1166,9 @@ Then, we have:
     2 \cdot
     E_{YSR}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
+        \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
         \!\!
-        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{\alpha Y}\,\right)
         \,\right\vert\,
         \Xobs
         \,\right]
@@ -1074,7 +1178,7 @@ Then, we have:
     E_{Y}\!\left[\,
     E_{SR}\!\left[
         \left.
-        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}\,\right)^{2}
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}\,\right)^{2}
         \,\right\vert\,
         \Ydot,
         \Xobs
@@ -1086,7 +1190,7 @@ Then, we have:
     E_{SR}\!\left[\,
     E_{Y}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -1098,9 +1202,9 @@ Then, we have:
     E_{SR}\!\left[\,
     E_{Y}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
+        \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
         \!\!
-        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{\alpha Y}\,\right)
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -1122,7 +1226,7 @@ Then, we have:
     E_{SR}\!\left[\,
     E_{Y}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -1133,9 +1237,9 @@ Then, we have:
     E_{SR}\!\left[\,
     E_{Y}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
+        \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
         \!\!
-        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{\alpha Y}\,\right)
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -1152,14 +1256,14 @@ To refer to the three summands in the above decomposition of
 \,$
 \MSE\!\left(\;
     \left.
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha Y}
     \;\right\vert\,
     \Xobs
     \,\right)
 \, := \,
     E\!\left[\,
         \left.
-        (\,\widetilde{T}_{d,Y} - T_{d,Y}\,)^{2}
+        (\,\widetilde{T}_{\alpha Y} - T_{\alpha Y}\,)^{2}
         \,\right\vert\,
         \Xobs
         \,\right]
@@ -1196,7 +1300,7 @@ we will use the following nomenclature:
     E_{SR}\!\left[\,
     E_{Y}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)^{2}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -1214,9 +1318,9 @@ we will use the following nomenclature:
     E_{SR}\!\left[\,
     E_{Y}\!\left[
         \left.
-        \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
+        \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
         \!\!
-        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{\alpha Y}\,\right)
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -1228,7 +1332,7 @@ we will use the following nomenclature:
 % \vskip 1.0cm
 \clearpage
 \subsection{Unbiased estimator for the sampling variance component of
-\,$\MSE\!\left(\,\widetilde{T}_{d,Y}\left\vert\,\Xobs\right.\right)$}
+\,$\MSE\!\left(\,\widetilde{T}_{\alpha Y}\left\vert\,\Xobs\right.\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -1501,13 +1605,13 @@ Then, the following statements are true:
 
 % \clearpage
 \vskip 0.8cm
-\subsection{$\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}$
+\subsection{$\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}$
 as sum of \,$\Xobs$-conditionally independent summands; compare Equation (5.8) in \cite{Beaumont2011}}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\begin{lemma}[$\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}$ as a sum of \,$\Xobs$-conditionally independent summands]
+\begin{lemma}[$\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}$ as a sum of \,$\Xobs$-conditionally independent summands]
 \label{DomainTotalImputationError}
 \mbox{}
 \vskip 0.1cm
@@ -1525,23 +1629,23 @@ Then, the following equalities hold:
 \begin{enumerate}
 \item
     $
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha Y}
     \;\; = \;\;
-        \widetilde{T}_{d,Y}(\,s,s_{R},\Ydot\,;\Xobs,\dbullet\,)
+        \widetilde{T}_{\alpha Y}(\,s,s_{R},\Ydot\,;\Xobs,\dbullet\,)
     \;\; = \;\;
-        W^{(+)}_{d,0}
+        W^{(+)}_{\alpha,0}
         \;+\;
-        \underset{l \in s_{R}}{\sum}\!\left(\,d_{l}\,w_{l} \,+\, W^{(+)}_{d,l}\,\right)Y_{l}
+        \underset{l \in s_{R}}{\sum}\!\left(\,d_{l}\,w_{l} \,+\, W^{(+)}_{\alpha,kl}\,\right)Y_{l}
     $
 \item
     $
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha Y}
     \, - \,
     \widehat{T}^{\textnormal{(HT)}}_{d,Y}
     \;\; = \;\;
-        W^{(+)}_{d,0}
+        W^{(+)}_{\alpha,0}
         \;+\;
-        \underset{l \in s_{R}}{\sum}W^{(+)}_{d,l}\,Y_{l}
+        \underset{l \in s_{R}}{\sum}W^{(+)}_{\alpha,kl}\,Y_{l}
         \;\;-\;
         \underset{k \in s_{M}}{\sum}w_{k}\,d_{k}\,Y_{k}
     $,\\
@@ -1561,9 +1665,9 @@ Then, the following equalities hold:
 \item
     Straightforward algebra:
     \begin{eqnarray*}
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha Y}
     & = &
-        \widetilde{T}_{d,Y}\!\left(\,s,s_{R},\Ydot\,;\,\Xobs,\dbullet\,\right)
+        \widetilde{T}_{\alpha Y}\!\left(\,s,s_{R},\Ydot\,;\,\Xobs,\dbullet\,\right)
     \;\; = \;\;
         \underset{l \in s_{R}}{\sum}\;w_{l}\,d_{l}\,Y_{l}
         \,+\,
@@ -1639,42 +1743,42 @@ Then, the following equalities hold:
         Y_{l}
     \\
     & \overset{{\color{white}\textnormal{\LARGE$1$}}}{=} &
-        W^{(+)}_{d,0}
+        W^{(+)}_{\alpha,0}
         \;+\;
-        \underset{l \in s_{R}}{\sum}\left(\,w_{l}d_{l} \,+\, W^{(+)}_{d,l}\,\right)Y_{l}
+        \underset{l \in s_{R}}{\sum}\left(\,w_{l}d_{l} \,+\, W^{(+)}_{\alpha,kl}\,\right)Y_{l}
     \end{eqnarray*}
 \item
     We again compute:
     \begin{eqnarray*}
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha Y}
     \,-\,
     \widehat{T}^{\textnormal{(HT)}}_{d,Y}
     & = &
-        W^{(+)}_{d,0}
+        W^{(+)}_{\alpha,0}
         \;+\;
         \underset{l \in s_{R}}{\sum}\!
         \left(\;
             w_{l}\,d_{l}
             \,+\,
-            W^{(+)}_{d,l}
+            W^{(+)}_{\alpha,kl}
             \right)
         Y_{l}
         \;-\;
         \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
     \\
     & = &
-        W^{(+)}_{d,0}
+        W^{(+)}_{\alpha,0}
         \;+\;
         \underset{l \in s_{R}}{\sum}\,w_{l}\,d_{l}\,Y_{l}
         \;+\;
-        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{d,l}\,Y_{l}
+        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,Y_{l}
         \;-\;
         \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
     \\
     & = &
-        W^{(+)}_{d,0}
+        W^{(+)}_{\alpha,0}
         \;+\;
-        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{d,l}\,Y_{l}
+        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,Y_{l}
         \;-\;
         \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}\,,
     \end{eqnarray*}
@@ -1687,7 +1791,7 @@ Then, the following equalities hold:
 % \clearpage
 \vskip 1.0cm
 \subsection{Unbiased estimator for the nonresponse variance component of
-\,$\MSE\!\left(\,\widetilde{T}_{d,Y}\left\vert\,\Xobs\right.\right)$}
+\,$\MSE\!\left(\,\widetilde{T}_{\alpha Y}\left\vert\,\Xobs\right.\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -1713,7 +1817,7 @@ Then, the following statements are true:
     $
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)^{2}
+        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)^{2}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -1723,7 +1827,7 @@ Then, the following statements are true:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)^{2}
+        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)^{2}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -1733,7 +1837,7 @@ Then, the following statements are true:
     $
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)^{2}
+        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)^{2}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -1742,14 +1846,14 @@ Then, the following statements are true:
     \begin{eqnarray*}
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)^{2}
+        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)^{2}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
     & = &
         \left(\;
             \underset{l \in s_{R}}{\sum}
-                \left(W^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
+                \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
             \,+\,
             \underset{k \in s_{M}}{\sum}\,
                 w_{k}^{2}\,d_{k}\,\sigma_{k}^{2}
@@ -1758,9 +1862,9 @@ Then, the following statements are true:
     &&
         +\;
         \left(\,
-            W^{(+)}_{d,0}
+            W^{(+)}_{\alpha,0}
             \,+\,
-            \underset{l \in s_{R}}{\sum}\;W^{(+)}_{d,l}\,\mu_{l}
+            \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
             \,-\,
             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
             \,\right)^{2}
@@ -1776,21 +1880,21 @@ Then, the following statements are true:
     \begin{equation*}
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)^{2}
+        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)^{2}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
     \;\; = \;\;
         \Var_{Y}\!\left[\,
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
         \,+\,
         E_{Y}\!\left[\,
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]^{2}
@@ -1817,13 +1921,13 @@ Then, the following statements are true:
     \begin{equation*}
     \Var_{Y}\!\left[\,
         \left.
-        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
     \;\; = \;\;
         \underset{l \in s_{R}}{\sum}
-            \left(W^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
+            \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
         \,\;+\;
         \underset{k \in s_{M}}{\sum}\,
             w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
@@ -1835,7 +1939,7 @@ Then, the following statements are true:
     &&
         \Var_{Y}\!\left[\,
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -1843,9 +1947,9 @@ Then, the following statements are true:
     & = &
         \Var_{Y}\!\left[\,
             \left.
-            W^{(+)}_{d,0}
+            W^{(+)}_{\alpha,0}
             \,+\,
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{d,l}\,Y_{l}
+            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
             \,-\,
             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
             \,\right\vert\,
@@ -1857,20 +1961,20 @@ Then, the following statements are true:
     & = &
         \Var_{Y}\!\left[\;
             \left.
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{d,l}\,Y_{l}
+            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
             \,-\,
             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right],
         \;\;
-        \textnormal{since $W^{(+)}_{d,0}$ is constant upon conditioning on $s, s_{R}$}
+        \textnormal{since $W^{(+)}_{\alpha,0}$ is constant upon conditioning on $s, s_{R}$}
     \\
     & = &
         \underset{l \in s_{R}}{\sum}\,
         \underset{m \in s_{R}}{\sum}\,
         \Cov_{Y}\!\left[\;
-            W^{(+)}_{d,l}\,Y_{l}
+            W^{(+)}_{\alpha,kl}\,Y_{l}
             \,,
             W^{(+)}_{m}\,Y_{m}
             \,\left\vert
@@ -1895,7 +1999,7 @@ Then, the following statements are true:
         \underset{l \in s_{R}}{\sum}\;
         \underset{k \in s_{M}}{\sum}\,
         \Cov_{Y}\!\left[\;
-            W^{(+)}_{d,l}\,Y_{l}
+            W^{(+)}_{\alpha,kl}\,Y_{l}
             \,,\,
             w_{k}\,d_{k}\,Y_{k}
             \,\left\vert
@@ -1907,7 +2011,7 @@ Then, the following statements are true:
     \\
     & = &
         \underset{l \in s_{R}}{\sum}
-        \!\left(W^{(+)}_{d,l}\right)^{2}
+        \!\left(W^{(+)}_{\alpha,kl}\right)^{2}
         \cdot
         \Var_{Y}\!\left[\;
             Y_{l}
@@ -1940,7 +2044,7 @@ Then, the following statements are true:
     \\
     & = &
         \underset{l \in s_{R}}{\sum}
-        \!\left(W^{(+)}_{d,l}\right)^{2}
+        \!\left(W^{(+)}_{\alpha,kl}\right)^{2}
         \cdot
         \Var_{Y}\!\left[\;
             Y_{l}
@@ -1962,7 +2066,7 @@ Then, the following statements are true:
     \\
     & = &
         \underset{l \in s_{R}}{\sum}
-            \left(W^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
+            \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
         \,\;+\;
         \underset{k \in s_{M}}{\sum}\,
             w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}\,,
@@ -1981,14 +2085,14 @@ Then, the following statements are true:
     \begin{equation*}
     E_{Y}\!\left[\,
         \left.
-        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
         \,\right\vert\,
         s,s_{R},\Xobs
         \,\right]
     \;\; = \;\;
-        W^{(+)}_{d,0}
+        W^{(+)}_{\alpha,0}
         \,\;+\;
-        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{d,l}\,\mu_{l}
+        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
         \,\;-\;
         \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
     \end{equation*}
@@ -1999,7 +2103,7 @@ Then, the following statements are true:
     &&
         E_{Y}\!\left[\,
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -2007,9 +2111,9 @@ Then, the following statements are true:
     & = &
         E_{Y}\!\left[\,
             \left.
-            W^{(+)}_{d,0}
+            W^{(+)}_{\alpha,0}
             \,+\,
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{d,l}\,Y_{l}
+            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
             \,-\,
             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
             \,\right\vert\,
@@ -2019,10 +2123,10 @@ Then, the following statements are true:
         \textnormal{by Lemma \ref{DomainTotalImputationError}(ii)}
     \\
     & = &
-        W^{(+)}_{d,0}
+        W^{(+)}_{\alpha,0}
         \;+\;
         \underset{l \in s_{R}}{\sum}\;
-        W^{(+)}_{d,l}
+        W^{(+)}_{\alpha,kl}
         \cdot
         E_{Y}\!\left[\;
             Y_{l}
@@ -2041,10 +2145,10 @@ Then, the following statements are true:
             \,\right]
     \\
     & = &
-        W^{(+)}_{d,0}
+        W^{(+)}_{\alpha,0}
         \;+\;
         \underset{l \in s_{R}}{\sum}\;
-        W^{(+)}_{d,l}
+        W^{(+)}_{\alpha,kl}
         \cdot
         E_{Y}\!\left[\;
             Y_{l}
@@ -2065,9 +2169,9 @@ Then, the following statements are true:
         \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Xobs$}
     \\
     & = &
-        W^{(+)}_{d,0}
+        W^{(+)}_{\alpha,0}
         \;+\;
-        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{d,l}\,\mu_{l}
+        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
         \,\;-\;
         \underset{k \in s_{M}}{\sum}\,
             w_{k}\,d_{k}\,\mu_{k}\,,
@@ -2092,7 +2196,7 @@ Then, the following statements are true:
 % \vskip 0.5cm
 \clearpage
 \subsection{Estimator for the sampling-nonresponse covariance component of
-\,$\MSE\!\left(\,\widetilde{T}_{d,Y}\left\vert\,\Xobs\right.\right)$;
+\,$\MSE\!\left(\,\widetilde{T}_{\alpha Y}\left\vert\,\Xobs\right.\right)$;
 compare Equations (5.11) \& (5.12) in \cite{Beaumont2011}}
 \setcounter{theorem}{0}
 
@@ -2119,8 +2223,8 @@ Then, the following statements are true:
     $
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)
-        (\,  \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}\,)
+        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)
+        (\,  \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}\,)
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -2130,8 +2234,8 @@ Then, the following statements are true:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)
-        (\,  \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}\,)
+        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)
+        (\,  \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}\,)
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -2143,8 +2247,8 @@ Then, the following statements are true:
     &&
         E_{Y}\!\left[\,
             \left.
-            (\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)
-            (\,  \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}\,)
+            (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,)
+            (\,  \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}\,)
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -2152,9 +2256,9 @@ Then, the following statements are true:
     & = &
         \Cov_{Y}\!\left(\,
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \,,\,
-            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right)
@@ -2163,14 +2267,14 @@ Then, the following statements are true:
         +\;
         E_{Y}\!\left[\;
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right]
         \cdot
         {\color{red}E_{Y}\!\left[\;
             \left.
-            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right]}
@@ -2180,15 +2284,15 @@ Then, the following statements are true:
     \begin{eqnarray*}
     \Cov_{Y}\!\left(\,
         \left.
-        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
         \,,\,
-        \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+        \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right)
     & = &
         \underset{l \in s_{R}}{\sum}\,
-            W^{(+)}_{d,l}\,(w_{k}-1)\,d_{l}\,\sigma_{l}^{2}
+            W^{(+)}_{\alpha,kl}\,(w_{k}-1)\,d_{l}\,\sigma_{l}^{2}
         \,-\,
         \underset{k \in s_{M}}{\sum}\,
             w_{k}\,(w_{1}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
@@ -2226,9 +2330,9 @@ Then, the following statements are true:
     &&
         \Cov_{Y}\!\left(\,
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \,,\,
-            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right)
@@ -2236,9 +2340,9 @@ Then, the following statements are true:
     & = &
         \Cov_{Y}\!\left(\,
             \left.
-            W^{(+)}_{d,0}
+            W^{(+)}_{\alpha,0}
             \,+\,
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{d,l}\,Y_{l}
+            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
             \;-
             \underset{k \in s_{M}}{\sum}\,w_{k}\,d_{k}\,Y_{k}
             \;,\;
@@ -2254,7 +2358,7 @@ Then, the following statements are true:
     & = &
         \Cov_{Y}\!\left(\;
             \left.
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{d,l}\,Y_{l}
+            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
             \;-
             \underset{k \in s_{M}}{\sum}\,w_{k}\,d_{k}\,Y_{k}
             \;,\;
@@ -2269,7 +2373,7 @@ Then, the following statements are true:
         \underset{l \in s_{R}}{\sum}\;
         \underset{k \in s}{\sum}\;
         \Cov_{Y}\!\left(\;
-            W^{(+)}_{d,l}\,Y_{l}
+            W^{(+)}_{\alpha,kl}\,Y_{l}
             \;,\,
             (w_{k}-1)\,d_{k}Y_{k}
             \,\left\vert\!
@@ -2280,7 +2384,7 @@ Then, the following statements are true:
         \underset{l \in s_{R}}{\sum}\;
         \underset{k \in U \backslash s}{\sum}\,
         \Cov_{Y}\!\left(\;
-            W^{(+)}_{d,l}\,Y_{l}
+            W^{(+)}_{\alpha,kl}\,Y_{l}
             \;,\,
             d_{k}Y_{k}
             \,\left\vert\!
@@ -2318,7 +2422,7 @@ Then, the following statements are true:
     \\
     & = &
         \underset{l \in s_{R}}{\sum}\,
-        W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\Var_{Y}\!\left[\;
+        W^{(+)}_{\alpha,kl}\,(w_{l}-1)\,d_{l}\,\Var_{Y}\!\left[\;
             Y_{l}
             \;\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
@@ -2346,7 +2450,7 @@ Then, the following statements are true:
     \\
     & = &
         \underset{l \in s_{R}}{\sum}\,
-        W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\Var_{Y}\!\left[\,
+        W^{(+)}_{\alpha,kl}\,(w_{l}-1)\,d_{l}\,\Var_{Y}\!\left[\,
             Y_{l}
             \left\vert\,
             \Xobs
@@ -2365,7 +2469,7 @@ Then, the following statements are true:
     \\
     & = &
         \underset{l \in s_{R}}{\sum}\,
-        W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
+        W^{(+)}_{\alpha,kl}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
         \;\;-\;
         \underset{k \in s_{M}}{\sum}\,
         w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
@@ -2407,14 +2511,14 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \begin{eqnarray*}
     \MSE\!\left(\;
         \left.
-        \widetilde{T}_{d,Y}
+        \widetilde{T}_{\alpha Y}
         \;\right\vert\,
         \Xobs
         \,\right)
     & := &
         E\!\left[
             \left.
-            \left(\,\widetilde{T}_{d,Y} - T_{d,Y}\right)^{2}
+            \left(\,\widetilde{T}_{\alpha Y} - T_{\alpha Y}\right)^{2}
             \,\right\vert\,
             \Xobs
             \,\right]
@@ -2433,7 +2537,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         E_{SR}\!\left[\,
         E_{Y}\!\left[
             \left.
-            \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)^{2}
+            \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)^{2}
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -2444,9 +2548,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         E_{SR}\!\left[\,
         E_{Y}\!\left[
             \left.
-            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)
+            \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)
             \!\!
-            \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{d,Y}\right)
+            \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{\alpha Y}\right)
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -2479,7 +2583,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         E_{SR}\!\left[\,
         E_{Y}\!\left[
             \left.
-            \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)^{2}
+            \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)^{2}
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -2495,9 +2599,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         E_{SR}\!\left[\,
         E_{Y}\!\left[
             \left.
-            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
+            \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\,\right)
             \!\!
-            \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{d,Y}\,\right)
+            \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{\alpha Y}\,\right)
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -2586,7 +2690,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         E_{SR}\!\left[\,
         E_{Y}\!\left[
             \left.
-            \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)^{2}
+            \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)^{2}
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -2594,7 +2698,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \;\; {\color{red}\approx} \;\;
         E_{Y}\!\left[
             \left.
-            \left(\,\widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)^{2}
+            \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)^{2}
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -2603,16 +2707,16 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         {\color{blue}
         \left(\;
             \underset{l \in s_{R}}{\sum}
-                \left(W^{(+)}_{d,l}\right)^{2}\sigma_{l}^{2}
+                \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
             \,+\,
             \underset{k \in s_{M}}{\sum}\,
                 w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
             \,\right)
         \;+\;
         \left(\,
-            W^{(+)}_{d,0}
+            W^{(+)}_{\alpha,0}
             \,+\,
-            \underset{l \in s_{R}}{\sum}\;W^{(+)}_{d,l}\,\mu_{l}
+            \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
             \,-\,
             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
             \,\right)^{2}
@@ -2632,9 +2736,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         E_{SR}\!\left[\,
         E_{Y}\!\left[
             \left.
-            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)
+            \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)
             \!\!
-            \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{d,Y}\right)
+            \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{\alpha Y}\right)
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -2644,9 +2748,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         2\cdot
         E_{Y}\!\left[
             \left.
-            \left(\,\widetilde{T}_{d,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)
+            \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{d,Y}\right)
             \!\!
-            \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{d,Y}\right)
+            \left(\,\widehat{T}^{\textnormal{(HT)}}_{d,Y} \,-\, T_{\alpha Y}\right)
             \,\right\vert\,
             s,s_{R},\Xobs
             \,\right]
@@ -2655,9 +2759,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         2\cdot
         \Cov_{Y}\!\left(\,
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \,,\,
-            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right)
@@ -2667,14 +2771,14 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         2\cdot
         E_{Y}\!\left[\;
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right]
         \cdot
         {\color{red}E_{Y}\!\left[\;
             \left.
-            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right]}
@@ -2683,9 +2787,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         2\cdot
         \Cov_{Y}\!\left(\,
             \left.
-            \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
             \,,\,
-            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
             \;\right\vert\,
             s,s_{R},\Xobs
             \,\right)
@@ -2694,7 +2798,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         {\color{blue}
         2\,\cdot\!\left(\;
             \underset{l \in s_{R}}{\sum}\,
-                W^{(+)}_{d,l}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
+                W^{(+)}_{\alpha,kl}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
             \;\,-\;
             \underset{k \in s_{M}}{\sum}\,
                 w_{k}\,(w_{1}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
@@ -2710,14 +2814,14 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \begin{equation*}
     2\,\cdot E_{Y}\!\left[\;
         \left.
-        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
     \cdot
     {\color{red}E_{Y}\!\left[\;
         \left.
-        \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+        \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]}
@@ -2728,12 +2832,12 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \,$
     E_{Y}\!\left[\;
         \left.
-        \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+        \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
     $\,
-    (indicated in red above), as \,$T_{d,Y}$\, involves population units
+    (indicated in red above), as \,$T_{\alpha Y}$\, involves population units
     that are not selected in the sample.
     \vskip 0.1cm
     \noindent
@@ -2742,14 +2846,14 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \,$
     2\,\cdot E_{Y}\!\left[\;
         \left.
-        \widetilde{T}_{d,Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
     \cdot
     {\color{black}E_{Y}\!\left[\;
         \left.
-        \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{d,Y}
+        \widehat{T}^{\textnormal{(HT)}}_{d,Y} - T_{\alpha Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]}
@@ -2761,7 +2865,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \,$
     E_{Y}\!\left[\;
         \left.
-        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
@@ -2773,7 +2877,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \begin{eqnarray*}
     E_{Y}\!\left[\;
         \left.
-        \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
+        \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{d,Y}
         \;\right\vert\,
         s,s_{R},\Xobs
         \,\right]
