@@ -152,7 +152,7 @@ Suppose:
     \end{equation*}
     and the following Horvitz-Thompson variance estimator
     \begin{equation*}
-    \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet\xi_{\bullet}\,)
+    \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\xi_{\bullet}\,)
     \;\; := \;\;
         \underset{i \in s}{\sum}\,
         \underset{k \in s}{\sum}\;
@@ -1410,14 +1410,12 @@ we will use the following nomenclature:
     \textnormal{sampling}
     \\
     \textnormal{\;\,variance component\;\,}
-    % \\
-    % \textnormal{{\color{white}..}component{\color{white}..}}
     \end{array}\right)
 & := &
     E_{Y}\!\left[\,
     \Var_{S}\!\left(\,
         \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-        \,\left\vert\!
+        \left\vert\!
         \begin{array}{c} \Ydot, \\ \Xobs \end{array}
         \right.
         \!\!\right)
@@ -1444,17 +1442,15 @@ we will use the following nomenclature:
     \textnormal{sampling-nonresponse}
     \\
     \textnormal{covariance}
-    % \\
-    % \textnormal{{\color{white}..}component{\color{white}..}}
     \end{array}\right)
 & := &
     2\cdot
     E_{SR}\!\left[\,
     E_{Y}\!\left[
         \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,\right)
-        \!\!
+        \!
         \left(\,\widehat{T}^{\textnormal{(HT)}}_{\alpha Y} \,-\, T_{\alpha Y}\,\right)
-        \,\left\vert\!
+        \left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
         \right.
         \!\!\right]
@@ -1490,250 +1486,700 @@ Then, the following statements are true:
 \begin{enumerate}
 \item
     If
-    \;$v(\,s\,;y_{\bullet}\,)$\,
+    \;$v(\,s\,;\abullet,\ydot\,)$\,
     is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
     \begin{equation*}
     E_{S}\!\left[\;
-        v(\,s\,;\Ydot\,)
-        \,\left\vert\;
-        \Ydot,\Xobs
+        v(\,s\,;\abullet,\Ydot\,)
+        \,\left\vert\!
+        \begin{array}{c} \Ydot, \\ \Xobs \end{array}
         \right.
-        \,\right]
+        \!\!\right]
     \;\; = \;\;
         \Var_{S}\!\left(\,
-            \left.
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \,\right\vert\,
-            \Ydot,
-            \Xobs
-            \,\right),
+            \left\vert\!
+            \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+            \right.
+            \!\!\right),
     \end{equation*}
     then
     \,$
     E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \left\vert\,
-        s,s_{R},\YsubR,\Xobs
+        v(\,s\,;\abullet,\Ydot\,)
+        \left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
         \right.
-        \right]
+        \!\!\right]
     $\,
     is an $(\Sdot,\Rdot,\YsubR)$-unbiased estimator for
     \,$
     E_{Y}\!\left[\,
         \Var_{S}\!\left(\,
-            \left.
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \,\right\vert\,
-            \Ydot,
-            \Xobs
-            \,\right)
-    \,\right]
+            \left\vert\!
+            \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+            \right.
+            \!\!\right)
+        \,\right]
     $,\,
     i.e.,
     \begin{equation*}
     E_{SR}\,
     E_{Y_{R}}\,
     E_{Y_{M}}\!\left[\,
-        v(\,s\,;\Ydot\,)
-        \,\left\vert\;
-        s,s_{R},\YsubR,\Xobs
+        v(\,s\,;\abullet,\Ydot\,)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
         \right.
-        \,\right]
+        \!\!\right]
     \;\; = \;\;
         E_{Y}\!\left[\,
             \Var_{S}\!\left(\,
-                \left.
                 \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-                \,\right\vert\,
-                \Ydot,
-                \Xobs
-                \,\right)
+                \left\vert\!
+                \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+                \right.
+                \!\!\right)
             \,\right]
     \end{equation*}
 \item
     If
-    \,$v(\,s\,;\dydot\,)$\,
+    \,$v(\,s\,;\abullet,\ydot\,)$\,
     is taken to be the (design-unbiased) Horvitz-Thompson estimator for the sampling variance, i.e.,
     \begin{equation*}
-    v(\,s\,;\dydot\,)
+    v(\,s\,;\abullet,\ydot\,)
+    \;\; = \;\;
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\ydot\,)
     \;\; := \;\;
+        \underset{i \in s}{\sum}\,
         \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\,
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-        (w_{k}d_{k}y_{k})\,(w_{l}d_{l}y_{l})
+        \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}
+        \left(\,
+            \dfrac{1}{\pi_{i}}\,
+            \underset{j\in\mathcal{C}_{i}}{\sum}\,
+            \alpha_{ij}\,y_{ij}
+            \right)
+        \!
+        \left(\,
+            \dfrac{1}{\pi_{k}}\,
+            \underset{l\in\mathcal{C}_{k}}{\sum}\,
+            \alpha_{kl}\,y_{kl}
+            \right)
     \end{equation*}
     then
     \,$
-    E_{Y_{M}}\!\left[\,
-        v(\,s\,;\dbullet\Ydot\,)
-        \left\vert\,
-        s,s_{R},\YsubR,\Xobs
+    E_{Y_{M}}\!\left[\;
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\Ydot\,)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
         \right.
-        \right]
+        \!\!\right]
     $\,
     can be expressed as follows:
     \begin{equation*}
-    E_{Y_{M}}\!\left[\,
-        v(\,s\,;\dbullet\Ydot\,)
-        \left\vert\,
-        s,s_{R},\YsubR,\Xobs
+    E_{Y_{M}}\!\left[\;
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\Ydot\,)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
         \right.
-        \right]
+        \!\!\right]
     \;\; = \;\;
-        v(\,s\,;\,\dbullet\widetilde{y}_{\bullet}\,)
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\widetilde{y}_{\bullet}\,)
         \;+\;
-        \underset{k \in s_{M}}{\sum}\;
-        \left(1-\dfrac{1}{w_{k}}\right)w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}
+        \dfrac{1-\pi_{i}}{\pi_{i}^{2}}\,
+        \alpha_{ij}^{2}\,
+        \sigma_{ij}^{2}
     \end{equation*}
 \end{enumerate}
+% \vskip 0.1cm
+% {\color{red}?????}
+% \vskip 0.1cm
+% Suppose we are given quantities as described in Subsection
+% \ref{DomainTotalFormulationOfVarianceEstimationProblem}
+% and
+% that they satisfy the probabilistic assumptions as described in Subsection
+% \ref{DomainTotalProbabilisticFramework}.
+% \vskip 0.1cm
+% \noindent
+% Then, the following statements are true:
+% \renewcommand{\theenumi}{\roman{enumi}}
+% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+% \begin{enumerate}
+% \item
+%     If
+%     \;$v(\,s\,;\abullet\ydot\,)$\,
+%     is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
+%     \begin{equation*}
+%     E_{S}\!\left[\;
+%         v(\,s\,;\abullet\Ydot\,)
+%         \,\left\vert\;
+%         \Ydot,\Xobs
+%         \right.
+%         \,\right]
+%     \;\; = \;\;
+%         \Var_{S}\!\left(\,
+%             \left.
+%             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%             \,\right\vert\,
+%             \Ydot,
+%             \Xobs
+%             \,\right),
+%     \end{equation*}
+%     then
+%     \,$
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\abullet\Ydot\,)
+%         \left\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \right]
+%     $\,
+%     is an $(\Sdot,\Rdot,\YsubR)$-unbiased estimator for
+%     \,$
+%     E_{Y}\!\left[\,
+%         \Var_{S}\!\left(\,
+%             \left.
+%             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%             \,\right\vert\,
+%             \Ydot,
+%             \Xobs
+%             \,\right)
+%     \,\right]
+%     $,\,
+%     i.e.,
+%     \begin{equation*}
+%     E_{SR}\,
+%     E_{Y_{R}}\,
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\abullet\Ydot\,)
+%         \,\left\vert\;
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \,\right]
+%     \;\; = \;\;
+%         E_{Y}\!\left[\,
+%             \Var_{S}\!\left(\,
+%                 \left.
+%                 \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%                 \,\right\vert\,
+%                 \Ydot,
+%                 \Xobs
+%                 \,\right)
+%             \,\right]
+%     \end{equation*}
+% \item
+%     If
+%     \,$v(\,s\,;\abullet\ydot\,)$\,
+%     is taken to be the (design-unbiased) Horvitz-Thompson estimator for the sampling variance, i.e.,
+%     \begin{equation*}
+%     v(\,s\,;\abullet\ydot\,)
+%     \;\; := \;\;
+%         \underset{k \in s}{\sum}\,
+%         \underset{l \in s}{\sum}\,
+%         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+%         (w_{k}d_{k}y_{k})\,(w_{l}d_{l}y_{l})
+%     \end{equation*}
+%     then
+%     \,$
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\dbullet\Ydot\,)
+%         \left\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \right]
+%     $\,
+%     can be expressed as follows:
+%     \begin{equation*}
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\dbullet\Ydot\,)
+%         \left\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \right]
+%     \;\; = \;\;
+%         v(\,s\,;\abullet\widetilde{y}_{\bullet}\,)
+%         \;+\;
+%         \underset{i \in s}{\sum}\,
+%         \underset{j\in(\mathcal{C}_{i})_{M}}{\sum}
+%         \dfrac{1 - \pi_{i}}{\pi_{i}^{2}}\;
+%         \alpha_{ij}^{2}\,\sigma_{ij}^{2}
+%     \end{equation*}
+% \end{enumerate}
 \end{lemma}
 \proof
-\renewcommand{\theenumi}{\roman{enumi}}
-\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
 \begin{enumerate}
 \item
     We simply compute:
     \begin{eqnarray*}
-    E_{SR}\,
-    E_{Y_{R}}\,
-    E_{Y_{M}}\!\left[\,
-        v(\,s\,;\dbullet\Ydot\,)
-        \,\left\vert\;
-        s,s_{R},\YsubR,\Xobs
-        \right.
-        \,\right]
-    & = &
+    &&
         E_{SR}\,
-        E_{Y}\!\left[\,
-            v(\,s\,;\dbullet\Ydot\,)
-            \,\left\vert\;
-            s,s_{R},\Xobs
+        E_{Y_{R}}\,
+        E_{Y_{M}}\!\left[\;
+            v(\,s\,;\abullet,\Ydot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
             \right.
-            \,\right]
+            \!\!\right]
+    \;\; = \;\;
+        E_{SR}\,
+        E_{Y}\!\left[\;
+            v(\,s\,;\abullet,\Ydot\,)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
     \\
     & = &
         E_{Y}\,
-        E_{SR}\!\left[\,
-            v(\,s\,;\dbullet\Ydot\,)
-            \,\left\vert\;
-            \Ydot,\Xobs
+        E_{SR}\!\left[\;
+            v(\,s\,;\abullet,\Ydot\,)
+            \left\vert\!
+            \begin{array}{c} \Ydot, \\ \Xobs \end{array}
             \right.
-            \,\right]
-    \\
-    & = &
+            \!\!\right]
+    \;\; = \;\;
         E_{Y}\,
-        E_{S}\!\left[\,
-            v(\,s\,;\dbullet\Ydot\,)
-            \,\left\vert\;
-            \Ydot,\Xobs
+        E_{S}\!\left[\;
+            v(\,s\,;\abullet,\Ydot\,)
+            \left\vert\!
+            \begin{array}{c} \Ydot, \\ \Xobs \end{array}
             \right.
-            \,\right]
+            \!\!\right]
     \\
     & = &
         E_{Y}\!\left[\,
             \Var_{S}\!\left(\,
-                \left.
                 \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-                \,\right\vert\,
-                \Ydot,
-                \Xobs
-                \,\right)
+                \left\vert\!
+                \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+                \right.
+                \!\!\right)
             \,\right],
     \;\;
-    \textnormal{by hypothesis on \,$v(\,s\,;\dydot\,)$}
+    \textnormal{by unbiasedness hypothesis on \,$v(\,s\,;\abullet,\ydot\,)$}
     \end{eqnarray*}
 \item
     We compute:
     \begin{eqnarray*}
     E_{Y_{M}}\!\left[\,
-        v(\,s\,;\dbullet\Ydot\,)
-        \left\vert\,
-        s,s_{R},\YsubR,\Xobs
+        % v(\,s\,;\abullet,\Ydot\,)
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\Ydot\,)
+        \left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
         \right.
-        \right]
+        \!\!\right]
     & = &
         E_{Y_{M}}\!\left[\,
             \left.
+            \underset{i \in s}{\sum}\,
             \underset{k \in s}{\sum}\,
-            \underset{l \in s}{\sum}\,
-            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-            (d_{k}w_{k}Y_{k})\,(d_{l}w_{l}Y_{l})
-            \;\right\vert\,
-            s,s_{R},\YsubR,\Xobs
-            \right]
+            \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}
+            \left(\,
+                \dfrac{1}{\pi_{i}}\,
+                \underset{j\in\mathcal{C}_{i}}{\sum}\,
+                \alpha_{ij}Y_{ij}
+                \right)
+            \!
+            \left(\,
+                \dfrac{1}{\pi_{k}}\,
+                \underset{l\in\mathcal{C}_{k}}{\sum}\,
+                \alpha_{kl}Y_{kl}
+                \right)
+            \,\right\vert\!\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+            \!\!\right]
+    % \\
+    % & = &
+    %     E_{Y_{M}}\!\left[\,
+    %         \left.
+    %         \underset{i \in s}{\sum}\,
+    %         \underset{k \in s}{\sum}\,
+    %         \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\,
+    %         \dfrac{1}{\pi_{i}}
+    %         \,
+    %         \dfrac{1}{\pi_{k}}
+    %         \,
+    %         \underset{j\in\mathcal{C}_{i}}{\sum}\,
+    %         \underset{l\in\mathcal{C}_{k}}{\sum}\,
+    %         \alpha_{ij}\alpha_{kl}\,Y_{ij}Y_{kl}
+    %         \,\right\vert\!\!
+    %         \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+    %         \!\!\right]
     \\
     & = &
-        \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\;
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
-        d_{k}w_{k}\,d_{l}w_{l}\;
-        E_{Y_{M}}\!\left[\;
-            Y_{k}Y_{l}
-            \,\left\vert\,
-            s,s_{R},\YsubR,\Xobs
-            \right.
-            \right]
+        E_{Y_{M}}\!\left[\,
+            \left.
+            \underset{i \in s}{\sum}\,
+            \underset{j\in\mathcal{C}_{i}}{\sum}\;
+            \underset{k \in s}{\sum}\,
+            \underset{l\in\mathcal{C}_{k}}{\sum}\;
+            \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\,
+            \dfrac{\alpha_{ij}}{\pi_{i}}
+            \,
+            \dfrac{\alpha_{kl}}{\pi_{k}}
+            \cdot
+            Y_{ij}Y_{kl}
+            \,\right\vert\!\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+            \!\!\right]
     \\
     & = &
+        \underset{i \in s}{\sum}\,
+        \underset{j\in\mathcal{C}_{i}}{\sum}\;
         \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\;
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
-        d_{k}w_{k}\,d_{l}w_{l}\;
-        E_{Y_{M}}\!\left[\;
-            Y_{k}Y_{l}
-            \,\left\vert\,
-            \YsubR,\Xobs
+        \underset{l\in\mathcal{C}_{k}}{\sum}\;
+        \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\,
+        \dfrac{\alpha_{ij}}{\pi_{i}}
+        \,
+        \dfrac{\alpha_{kl}}{\pi_{k}}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            Y_{ij}Y_{kl}
+            \left\vert\!\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
             \right.
-            \right]
+            \!\!\right]
+    \\
+    & = &
+        \underset{i \in s}{\sum}\,
+        \underset{j\in\mathcal{C}_{i}}{\sum}\;
+        \underset{k \in s}{\sum}\,
+        \underset{l\in\mathcal{C}_{k}}{\sum}\;
+        \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}\,
+        \dfrac{\alpha_{ij}}{\pi_{i}}
+        \,
+        \dfrac{\alpha_{kl}}{\pi_{k}}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            Y_{ij}Y_{kl}
+            \left\vert\!\!
+            \begin{array}{c} \YsubR, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
     \\
     & = &
         \cdots
         \;\; = \;\;
-        v(\,s\,;\dbullet\widetilde{y}_{\bullet}\,)
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\widetilde{y}_{\bullet}\,)
         \;+\;
-        \underset{k \in s_{M}}{\sum}\!
-        \left(1-\dfrac{1}{w_{k}}\right)
-        w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}\,,
+        \underset{i \in s}{\sum}\,
+        \underset{j\in(\mathcal{C}_{i})_{M}}{\sum}
+        \dfrac{1 - \pi_{i}}{\pi_{i}^{2}}\;
+        \alpha_{ij}^{2}\,\sigma_{ij}^{2}\,,
     \end{eqnarray*}
     where the last equality follows from the observation:
     \begin{eqnarray*}
-    E_{Y_{M}}\!\left[\;
-        Y_{k}Y_{l}
-        \,\left\vert\,
-        \YsubR,\Xobs
+    E_{Y_{M}}\!\left[\,
+        Y_{ij}Y_{kl}
+        \left\vert\!\!
+        \begin{array}{c} \YsubR, \\ \Xobs \end{array}
         \right.
-        \right]
+        \!\!\right]
     & = &
         \left\{\begin{array}{cl}
-            y_{k} \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{R}$}}
+            y_{ij} \cdot y_{kl}\,, &
+            \underset{{\color{white}.}}
+            {\textnormal{for \,$j \in (\mathcal{C}_{i})_{R}$, \,$l \in (\mathcal{C}_{k})_{R}$}}
             \\
-            y_{k} \cdot E[\,Y_{l}\,\vert\,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{R}$,\, $l \in s_{M}$}}
+            y_{ij} \cdot E[\,Y_{kl}\,\vert\,\Xobs\,]\,, &
+            \underset{{\color{white}.}}
+            {\textnormal{for \,$j \in (\mathcal{C}_{i})_{R}$, \,$l \in (\mathcal{C}_{k})_{M}$}}
             \\
-            E[\,Y_{k}\vert\,\Xobs\,] \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{M}$,\, $l \in s_{R}$}}
+            E[\,Y_{ij}\,\vert\,\Xobs\,] \cdot y_{kl}\,, &
+            \underset{{\color{white}.}}
+            {\textnormal{for \,$j \in (\mathcal{C}_{i})_{M}$, \,$l \in (\mathcal{C}_{k})_{R}$}}
             \\
-            E[\,Y_{k}\vert\,\Xobs\,] \cdot E[\,Y_{l}\vert\,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{M}$,\, $k \neq l$}}
+            E[\,Y_{ij}\,\vert\,\Xobs\,] \cdot E[\,Y_{kl}\,\vert\,\Xobs\,]\,, &
+            \underset{{\color{white}.}}
+            {\textnormal{for \,$(i,j) \neq (k,l)$,\, $j \in (\mathcal{C}_{i})_{M}$, \,$l \in (\mathcal{C}_{k})_{M}$}}
+            % {\textnormal{for \,$k,l \in s_{M}$,\, $k \neq l$}}
             \\
-            \Var(\,Y_{k}\,\vert\,\Xobs) + E[\,Y_{k}\,\vert\,\Xobs\,]^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+            \Var(\,Y_{ij}\,\vert\,\Xobs) + E[\,Y_{ij}\,\vert\,\Xobs\,]^{2}\,, &
+            \underset{{\color{white}.}}
+            {\textnormal{for \,$(i,j) = (k,l)$,\, $j \in (\mathcal{C}_{i})_{M}$}}
             \end{array}\right.
     \end{eqnarray*}
     which is equivalent to the following more compact expression:
     \begin{eqnarray*}
-    E_{Y_{M}}\!\left[\;
-        Y_{k}Y_{l}
-        \,\left\vert\,
-        \YsubR,\Xobs
+    E_{Y_{M}}\!\left[\,
+        Y_{ij}Y_{kl}
+        \left\vert\!\!
+        \begin{array}{c} \YsubR, \\ \Xobs \end{array}
         \right.
-        \right]
+        \!\!\right]
     & = &
         \left\{\begin{array}{cl}
-            \widetilde{y}_{k}^{2} \,+\, \sigma_{k}^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+            \widetilde{y}_{ij}^{2} \,+\, \sigma_{ij}^{2}\,, &
+            \textnormal{for \,$(i,j) = (k,l)$,\, $j \in (\mathcal{C}_{i})_{M}$}
             \\
-            \widetilde{y}_{k} \cdot \widetilde{y}_{l}\,, & \overset{{\color{white}.}}{\textnormal{otherwise}}
+            \widetilde{y}_{ij} \cdot \widetilde{y}_{kl}\,, & \overset{{\color{white}1}}{\textnormal{otherwise}}
             \end{array}\right.
     \end{eqnarray*}
     \vskip -0.7cm
     \qed
 \end{enumerate}
+% \begin{lemma}[Unbiased estimator for sampling variance component; Equation (5.5) in \cite{Beaumont2011}]
+% \label{DomainTotalSamplingVariance}
+% \mbox{}
+% \vskip 0.1cm
+% \noindent
+% Suppose we are given quantities as described in Subsection
+% \ref{DomainTotalFormulationOfVarianceEstimationProblem}
+% and
+% that they satisfy the probabilistic assumptions as described in Subsection
+% \ref{DomainTotalProbabilisticFramework}.
+% \vskip 0.1cm
+% \noindent
+% Then, the following statements are true:
+% \renewcommand{\theenumi}{\roman{enumi}}
+% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+% \begin{enumerate}
+% \item
+%     If
+%     \;$v(\,s\,;\abullet,\ydot\,)$\,
+%     is an (arbitrary) design-unbiased estimator for the sampling variance, i.e.,
+%     \begin{equation*}
+%     E_{S}\!\left[\;
+%         v(\,s\,;\abullet,\Ydot\,)
+%         \,\left\vert\!
+%         \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+%         \right.
+%         \!\!\right]
+%     \;\; = \;\;
+%         \Var_{S}\!\left(\,
+%             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%             \left\vert\!
+%             \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+%             \right.
+%             \!\!\right),
+%     \end{equation*}
+%     then
+%     \,$
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\abullet,\Ydot\,)
+%         \left\vert\!
+%         \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+%         \right.
+%         \!\!\right]
+%     $\,
+%     is an $(\Sdot,\Rdot,\YsubR)$-unbiased estimator for
+%     \,$
+%     E_{Y}\!\left[\,
+%         \Var_{S}\!\left(\,
+%             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%             \left\vert\!
+%             \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+%             \right.
+%             \!\!\right)
+%         \,\right]
+%     $,\,
+%     i.e.,
+%     \begin{equation*}
+%     E_{SR}\,
+%     E_{Y_{R}}\,
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\abullet,\Ydot\,)
+%         \,\left\vert\!
+%         \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
+%         \right.
+%         \!\!\right]
+%     \;\; = \;\;
+%         E_{Y}\!\left[\,
+%             \Var_{S}\!\left(\,
+%                 \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%                 \left\vert\!
+%                 \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+%                 \right.
+%                 \!\!\right)
+%             \,\right]
+%     \end{equation*}
+% \item
+%     If
+%     \,$v(\,s\,;\abullet,\ydot\,)$\,
+%     is taken to be the (design-unbiased) Horvitz-Thompson estimator for the sampling variance, i.e.,
+%     \begin{equation*}
+%     v(\,s\,;\abullet,\ydot\,)
+%     \;\; := \;\;
+%         \underset{k \in s}{\sum}\,
+%         \underset{l \in s}{\sum}\,
+%         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+%         (w_{k}d_{k}y_{k})\,(w_{l}d_{l}y_{l})
+%     \end{equation*}
+%     then
+%     \,$
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\dbullet\Ydot\,)
+%         \left\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \right]
+%     $\,
+%     can be expressed as follows:
+%     \begin{equation*}
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\dbullet\Ydot\,)
+%         \left\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \right]
+%     \;\; = \;\;
+%         v(\,s\,;\,\dbullet\widetilde{y}_{\bullet}\,)
+%         \;+\;
+%         \underset{k \in s_{M}}{\sum}\;
+%         \left(1-\dfrac{1}{w_{k}}\right)w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+%     \end{equation*}
+% \end{enumerate}
+% \end{lemma}
+% \proof
+% \renewcommand{\theenumi}{\roman{enumi}}
+% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+% \begin{enumerate}
+% \item
+%     We simply compute:
+%     \begin{eqnarray*}
+%     E_{SR}\,
+%     E_{Y_{R}}\,
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\dbullet\Ydot\,)
+%         \,\left\vert\;
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \,\right]
+%     & = &
+%         E_{SR}\,
+%         E_{Y}\!\left[\,
+%             v(\,s\,;\dbullet\Ydot\,)
+%             \,\left\vert\;
+%             s,s_{R},\Xobs
+%             \right.
+%             \,\right]
+%     \\
+%     & = &
+%         E_{Y}\,
+%         E_{SR}\!\left[\,
+%             v(\,s\,;\dbullet\Ydot\,)
+%             \,\left\vert\;
+%             \Ydot,\Xobs
+%             \right.
+%             \,\right]
+%     \\
+%     & = &
+%         E_{Y}\,
+%         E_{S}\!\left[\,
+%             v(\,s\,;\dbullet\Ydot\,)
+%             \,\left\vert\;
+%             \Ydot,\Xobs
+%             \right.
+%             \,\right]
+%     \\
+%     & = &
+%         E_{Y}\!\left[\,
+%             \Var_{S}\!\left(\,
+%                 \left.
+%                 \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%                 \,\right\vert\,
+%                 \Ydot,
+%                 \Xobs
+%                 \,\right)
+%             \,\right],
+%     \;\;
+%     \textnormal{by hypothesis on \,$v(\,s\,;\dydot\,)$}
+%     \end{eqnarray*}
+% \item
+%     We compute:
+%     \begin{eqnarray*}
+%     E_{Y_{M}}\!\left[\,
+%         v(\,s\,;\dbullet\Ydot\,)
+%         \left\vert\,
+%         s,s_{R},\YsubR,\Xobs
+%         \right.
+%         \right]
+%     & = &
+%         E_{Y_{M}}\!\left[\,
+%             \left.
+%             \underset{k \in s}{\sum}\,
+%             \underset{l \in s}{\sum}\,
+%             \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+%             (d_{k}w_{k}Y_{k})\,(d_{l}w_{l}Y_{l})
+%             \;\right\vert\,
+%             s,s_{R},\YsubR,\Xobs
+%             \right]
+%     \\
+%     & = &
+%         \underset{k \in s}{\sum}\,
+%         \underset{l \in s}{\sum}\;
+%         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+%         d_{k}w_{k}\,d_{l}w_{l}\;
+%         E_{Y_{M}}\!\left[\;
+%             Y_{k}Y_{l}
+%             \,\left\vert\,
+%             s,s_{R},\YsubR,\Xobs
+%             \right.
+%             \right]
+%     \\
+%     & = &
+%         \underset{k \in s}{\sum}\,
+%         \underset{l \in s}{\sum}\;
+%         \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+%         d_{k}w_{k}\,d_{l}w_{l}\;
+%         E_{Y_{M}}\!\left[\;
+%             Y_{k}Y_{l}
+%             \,\left\vert\,
+%             \YsubR,\Xobs
+%             \right.
+%             \right]
+%     \\
+%     & = &
+%         \cdots
+%         \;\; = \;\;
+%         v(\,s\,;\dbullet\widetilde{y}_{\bullet}\,)
+%         \;+\;
+%         \underset{k \in s_{M}}{\sum}\!
+%         \left(1-\dfrac{1}{w_{k}}\right)
+%         w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}\,,
+%     \end{eqnarray*}
+%     where the last equality follows from the observation:
+%     \begin{eqnarray*}
+%     E_{Y_{M}}\!\left[\;
+%         Y_{k}Y_{l}
+%         \,\left\vert\,
+%         \YsubR,\Xobs
+%         \right.
+%         \right]
+%     & = &
+%         \left\{\begin{array}{cl}
+%             y_{k} \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{R}$}}
+%             \\
+%             y_{k} \cdot E[\,Y_{l}\,\vert\,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{R}$,\, $l \in s_{M}$}}
+%             \\
+%             E[\,Y_{k}\vert\,\Xobs\,] \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{M}$,\, $l \in s_{R}$}}
+%             \\
+%             E[\,Y_{k}\vert\,\Xobs\,] \cdot E[\,Y_{l}\vert\,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{M}$,\, $k \neq l$}}
+%             \\
+%             \Var(\,Y_{k}\,\vert\,\Xobs) + E[\,Y_{k}\,\vert\,\Xobs\,]^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+%             \end{array}\right.
+%     \end{eqnarray*}
+%     which is equivalent to the following more compact expression:
+%     \begin{eqnarray*}
+%     E_{Y_{M}}\!\left[\;
+%         Y_{k}Y_{l}
+%         \,\left\vert\,
+%         \YsubR,\Xobs
+%         \right.
+%         \right]
+%     & = &
+%         \left\{\begin{array}{cl}
+%             \widetilde{y}_{k}^{2} \,+\, \sigma_{k}^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+%             \\
+%             \widetilde{y}_{k} \cdot \widetilde{y}_{l}\,, & \overset{{\color{white}.}}{\textnormal{otherwise}}
+%             \end{array}\right.
+%     \end{eqnarray*}
+%     \vskip -0.7cm
+%     \qed
+% \end{enumerate}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
