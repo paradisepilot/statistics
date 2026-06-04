@@ -3131,80 +3131,99 @@ Then, the following statements are true:
 \item
     $
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)
-        (\,  \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}\,)
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,\right)
+        \!
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}\,\right)
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\!\right]
     $\,
-    is an $(\Sdot,\Rdot)$-unbiased estimator for the mixed variance\\
+    is an $(\Sdot,\Rdot)$-unbiased estimator for the sampling-nonresponse covariance component
     \,$
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)
-        (\,  \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}\,)
-        \;\right\vert\,
-        s,s_{R},\Xobs
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,\right)
+        \!
+        \left(\,\widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}\,\right)
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\!\right]
         \,\right]
-        \right]
     $.
 \item
     The above estimator can be expressed as follows:
     \begin{eqnarray*}
     &&
         E_{Y}\!\left[\,
-            \left.
-            (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)
-            (\,  \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}\,)
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,\right)
+            \!
+            \left(\,\widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}\,\right)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
     \\
     & = &
         \Cov_{Y}\!\left(\,
-            \left.
             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
             \,,\,
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right)
-    \\
-    &&
-        +\;
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right)
+        \; + \;
         E_{Y}\!\left[\;
-            \left.
             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
         \cdot
         {\color{red}E_{Y}\!\left[\;
-            \left.
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]}
     \end{eqnarray*}
 \item
     The above covariance term can be expressed in explicit computable form as follows:
     \begin{eqnarray*}
-    \Cov_{Y}\!\left(\,
-        \left.
-        \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-        \,,\,
-        \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right)
-    & = &
-        \underset{l \in s_{R}}{\sum}\,
-            W^{(+)}_{\alpha,kl}\,(w_{k}-1)\,d_{l}\,\sigma_{l}^{2}
-        \,-\,
-        \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,(w_{1}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
+    &&
+        \Cov_{Y}\!\left(\,
+            \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+            \,,\,
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right)
+    \;\; = \;\;
+        \underset{i \in {\color{black}s}}{\sum}
+        \left(\dfrac{1}{\pi_{i}}-1\right)
+        \!\cdot\!
+        \left(\;
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\,
+            W^{(+)}_{\alpha,ij}\cdot\alpha_{ij}\cdot\sigma_{ij}^{2}
+            \; - \,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\,
+            \dfrac{ \alpha_{ij}^{2} }{ \pi_{i} }
+            \cdot\sigma_{ij}^{2}
+            \,\right)
+    % \\
+    % & = &
+    %     \underset{i \in s}{\sum}\,
+    %     \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+    %         \left(\dfrac{1}{\pi_{i}}-1\right)
+    %         W^{(+)}_{\alpha,ij}\,\alpha_{ij}\,\sigma_{ij}^{2}
+    %     \,-\,
+    %     \underset{i \in s}{\sum}\,
+    %     \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+    %         \left(\dfrac{1}{\pi_{i}}-1\right)
+    %         \dfrac{1}{\pi_{i}}\,\alpha_{ij}^{2}\,\sigma_{ij}^{2}
     \end{eqnarray*}
 \end{enumerate}
 \end{lemma}
@@ -3238,150 +3257,255 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         \Cov_{Y}\!\left(\,
-            \left.
             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
             \,,\,
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right)
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right)
     \\
     & = &
         \Cov_{Y}\!\left(\,
             \left.
             W^{(+)}_{\alpha,0}
-            \,+\,
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
-            \;-
-            \underset{k \in s_{M}}{\sum}\,w_{k}\,d_{k}\,Y_{k}
+            \; + \,
+            \underset{i \in {\color{black}s}}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+            W^{(+)}_{\alpha,ij}\,Y_{ij}
+            \; - \;
+            \underset{i \in {\color{black}s}}{\sum}\;
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+            \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
             \;,\;
-            \underset{k \in s}{\sum}\;w_{k}d_{k}Y_{k}
+            % \underset{k \in s}{\sum}\;w_{k}d_{k}Y_{k}
+            \underset{i \in {\color{black}s}}{\sum}\;
+            \underset{j \in \mathcal{C}_{i}}{\sum}\,
+            \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
             \;-
-            \underset{k \in U}{\sum}\;d_{k}Y_{k}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right),
-            \quad
-            \textnormal{by Lemma \ref{GeneralizedTotalImputationError}(ii)}
+            % \underset{k \in U}{\sum}\;d_{k}Y_{k}
+            \underset{i \in {\color{black}U}}{\sum}\;
+            \underset{j \in \mathcal{C}_{i}}{\sum}\;
+            \alpha_{ij}Y_{ij}
+            \;\right\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right),
+    \\
+    &&
+        \quad\quad
+        \textnormal{by Lemma \ref{GeneralizedTotalImputationError}(ii)}
     \\
     & = &
-        \Cov_{Y}\!\left(\;
+        \Cov_{Y}\!\left(\,
             \left.
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
-            \;-
-            \underset{k \in s_{M}}{\sum}\,w_{k}\,d_{k}\,Y_{k}
+            \underset{i \in {\color{black}s}}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+            W^{(+)}_{\alpha,ij}\,Y_{ij}
+            \; - \;
+            \underset{i \in {\color{black}s}}{\sum}\;
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+            \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
             \;,\;
-            \underset{k \in s}{\sum}\;(w_{k}-1)\,d_{k}Y_{k}
+            \underset{i \in {\color{black}s}}{\sum}\;
+            \underset{j \in \mathcal{C}_{i}}{\sum}\!
+            \left(\dfrac{1}{\pi_{i}}-1\right)\alpha_{ij}Y_{ij}
             \;-
-            \underset{k \in U \backslash s}{\sum}d_{k}Y_{k}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right)
+            \underset{i \in {\color{black}U \backslash s}}{\sum}\;
+            \underset{j \in \mathcal{C}_{i}}{\sum}\;
+            \alpha_{ij}Y_{ij}
+            \;\right\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right)
     \\
     & = &
-        \underset{l \in s_{R}}{\sum}\;
-        \underset{k \in s}{\sum}\;
-        \Cov_{Y}\!\left(\;
-            W^{(+)}_{\alpha,kl}\,Y_{l}
-            \;,\,
-            (w_{k}-1)\,d_{k}Y_{k}
-            \,\left\vert\!
+        \underset{i \in {\color{black}s}}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\;\,
+        \underset{k \in {\color{black}s}}{\sum}\,
+        \underset{l \in \mathcal{C}_{k}}{\sum}\;
+        \Cov_{Y}\!\left(\,
+            \left.
+            W^{(+)}_{\alpha,ij}\,Y_{ij}
+            \;,\;
+            \left(\dfrac{1}{\pi_{k}}-1\right)\alpha_{kl}Y_{kl}
+            \;\right\vert\!\!
             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-            \right.
-            \!\right)
-        \; - \;
-        \underset{l \in s_{R}}{\sum}\;
-        \underset{k \in U \backslash s}{\sum}\,
-        \Cov_{Y}\!\left(\;
-            W^{(+)}_{\alpha,kl}\,Y_{l}
-            \;,\,
-            d_{k}Y_{k}
-            \,\left\vert\!
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-            \right.
-            \!\right)
+            \!\!\right)
     \\
     &&
         \; - \;
-        \underset{k \in s_{M}}{\sum}\;
-        \underset{l \in s}{\sum}\;
-        \Cov_{Y}\!\left(\;
-            w_{k}\,d_{k}\,Y_{k}
+        \underset{i \in {\color{black}s}}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\;\,
+        \underset{k \in {\color{black}U \backslash s}}{\sum}\;
+        \underset{l \in \mathcal{C}_{i}}{\sum}\;
+        \Cov_{Y}\!\left(\,
+            \left.
+            W^{(+)}_{\alpha,ij}\,Y_{ij}
+            % \; - \;
+            % \underset{i \in {\color{black}s}}{\sum}\;
+            % \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+            % \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
             \;,\,
-            (w_{l}-1)\,d_{l}Y_{l}
-            \,\left\vert\!
+            % \underset{i \in {\color{black}s}}{\sum}\;
+            % \underset{j \in \mathcal{C}_{i}}{\sum}\!
+            % \left(\dfrac{1}{\pi_{i}}-1\right)\alpha_{ij}Y_{ij}
+            % \;-
+            \alpha_{kl}Y_{kl}
+            \;\right\vert\!\!
             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-            \right.
-            \!\right)
+            \!\!\right)
+    \\
+    &&
+        \; - \;
+        \underset{i \in {\color{black}s}}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\;\,
+        \underset{k \in {\color{black}s}}{\sum}\;
+        \underset{l \in \mathcal{C}_{i}}{\sum}\;
+        \Cov_{Y}\!\left(\,
+            \left.
+            % \underset{i \in {\color{black}s}}{\sum}\,
+            % \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+            % W^{(+)}_{\alpha,ij}\,Y_{ij}
+            % \; - \;
+            \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
+            \;,\;
+            \left(\dfrac{1}{\pi_{k}}-1\right)\alpha_{kl}Y_{kl}
+            % \;-
+            % \underset{i \in {\color{black}U \backslash s}}{\sum}\;
+            % \underset{j \in \mathcal{C}_{i}}{\sum}\;
+            % \alpha_{ij}Y_{ij}
+            \;\right\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right)
+    \\
+    &&
         \; + \;
-        \underset{k \in s_{M}}{\sum}\;
-        \underset{l \in U \backslash s}{\sum}\,
-        \Cov_{Y}\!\left(\;
-            w_{k}\,d_{k}\,Y_{k}
-            \;,\,
-            d_{l}Y_{l}
-            \,\left\vert\!
+        \underset{i \in {\color{black}s}}{\sum}\;
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\;\,
+        \underset{k \in {\color{black}U \backslash s}}{\sum}\;
+        \underset{l \in \mathcal{C}_{i}}{\sum}\;
+        \Cov_{Y}\!\left(\,
+            \left.
+            % \underset{i \in {\color{black}s}}{\sum}\,
+            % \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+            % W^{(+)}_{\alpha,ij}\,Y_{ij}
+            % \; - \;
+            \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
+            \;,\;
+            % \underset{i \in {\color{black}s}}{\sum}\;
+            % \underset{j \in \mathcal{C}_{i}}{\sum}\!
+            % \left(\dfrac{1}{\pi_{i}}-1\right)\alpha_{ij}Y_{ij}
+            % \;-
+            \alpha_{kl}Y_{kl}
+            \;\right\vert\!\!
             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-            \right.
-            \!\right),
-    \\
-    &&
-        \quad\quad\quad
+            \!\!\right),
+        \quad
         \textnormal{by Lemma \ref{sRsMPullOutOfCovariance}}
     \\
     & = &
-        \underset{l \in s_{R}}{\sum}\,
-        W^{(+)}_{\alpha,kl}\,(w_{l}-1)\,d_{l}\,\Var_{Y}\!\left[\;
-            Y_{l}
-            \;\left\vert\!
+        \underset{i \in {\color{black}s}}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+        \left(\dfrac{1}{\pi_{i}}-1\right)\!\cdot
+        W^{(+)}_{\alpha,ij}\cdot\alpha_{ij}\cdot
+        \Var_{Y}\!\left(\,
+            Y_{ij}
+            \,\left\vert\!\!
             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \!\right]
-        \;-\;
-        \underset{k \in s_{M}}{\sum}\,
-        w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\Var_{Y}\!\left[\;
-            Y_{k}
-            \;\left\vert\!
+            \!\!\right)
+    \\
+    &&
+        \; - \;
+        \underset{i \in {\color{black}s}}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+        \left(\dfrac{1}{\pi_{i}}-1\right)\!
+        \cdot
+        \dfrac{ \alpha_{ij} }{ \pi_{i} } \cdot \alpha_{ij}
+        \cdot
+        \Var_{Y}\!\left(\,
+            Y_{ij}
+            \,\left\vert\!\!
             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \!\right],
+            \!\!\right),
     \\
     &&
         \quad\quad\quad
         \textnormal{since
             \,$
-            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Xobs\right.\right)
+            \Cov\!\left(\,Y_{ij},Y_{kl}\,\left\vert\,s,s_{R},\Xobs\right.\right)
             \,=\,
-            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Xobs\right.\right)
+            \Cov\!\left(\,Y_{ij},Y_{kl}\,\left\vert\,\Xobs\right.\right)
             \,=\,
             0
-            $,\, whenever \,$a \neq b$}
+            $,\, whenever \,$(i,j) \neq (k,l)$}
     \\
     & = &
-        \underset{l \in s_{R}}{\sum}\,
-        W^{(+)}_{\alpha,kl}\,(w_{l}-1)\,d_{l}\,\Var_{Y}\!\left[\,
-            Y_{l}
-            \left\vert\,
-            \Xobs
-            \right.
-            \right]
-        \,-\,
-        \underset{k \in s_{M}}{\sum}\,
-        w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\Var_{Y}\!\left[\,
-            Y_{k}
-            \left\vert\,
-            \Xobs
-            \right.
-            \right],
-        \;\;
+        \underset{i \in {\color{black}s}}{\sum}
+        \left(\dfrac{1}{\pi_{i}}-1\right)
+        \!\cdot\!
+        \left(\;
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\,
+            W^{(+)}_{\alpha,ij}\cdot\alpha_{ij}\cdot
+            \Var_{Y}\!\left(\,
+                Y_{ij}
+                \,\left\vert\!\!
+                \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+                \right.
+                \!\!\right)
+            \; - \,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\,
+            \dfrac{ \alpha_{ij}^{2} }{ \pi_{i} }
+            \cdot
+            \Var_{Y}\!\left(\,
+                Y_{ij}
+                \,\left\vert\!\!
+                \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+                \right.
+                \!\!\right)
+            \right)
+    \\
+    & = &
+        \underset{i \in {\color{black}s}}{\sum}
+        \left(\dfrac{1}{\pi_{i}}-1\right)
+        \!\cdot\!
+        \left(\;
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\,
+            W^{(+)}_{\alpha,ij}\cdot\alpha_{ij}\cdot
+            \Var_{Y}\!\left(\,
+                Y_{ij}
+                \left\vert\!\!
+                \begin{array}{c} \Xobs \end{array}
+                \right.
+                \!\!\right)
+            \; - \,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\,
+            \dfrac{ \alpha_{ij}^{2} }{ \pi_{i} }
+            \cdot
+            \Var_{Y}\!\left(\,
+                Y_{ij}
+                \left\vert\!\!
+                \begin{array}{c} \Xobs \end{array}
+                \right.
+                \!\!\right)
+            \right)
+    \\
+    &&
+        \quad\quad
         \textnormal{since $\Ydot \perp (\Sdot,\Rdot) \;\vert\; \Xobs$}
     \\
     & = &
-        \underset{l \in s_{R}}{\sum}\,
-        W^{(+)}_{\alpha,kl}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
-        \;\;-\;
-        \underset{k \in s_{M}}{\sum}\,
-        w_{k}\,(w_{k}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
+        \underset{i \in {\color{black}s}}{\sum}
+        \left(\dfrac{1}{\pi_{i}}-1\right)
+        \!\cdot\!
+        \left(\;
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\,
+            W^{(+)}_{\alpha,ij}\cdot\alpha_{ij}\cdot\sigma_{ij}^{2}
+            \; - \,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\,
+            \dfrac{ \alpha_{ij}^{2} }{ \pi_{i} }
+            \cdot\sigma_{ij}^{2}
+            \,\right)
     \end{eqnarray*}
     % where
     % the third equality follows from the conditional independence
