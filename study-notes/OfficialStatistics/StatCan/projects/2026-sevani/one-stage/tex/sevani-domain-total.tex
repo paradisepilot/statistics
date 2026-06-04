@@ -2263,61 +2263,75 @@ Then, the following statements are true:
     $
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)^{2}
+        \,\right\vert\!\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\!\right]
     $\,
     is an $(\Sdot,\Rdot)$-unbiased estimator for the nonresponse variance\\
     \,$
-    E_{SR}\!\left[\,
+    E_{SR}\!\left[
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)^{2}
+        \,\right\vert\!\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\!\right]
         \right]
     $.
 \item
     $
-    E_{Y}\!\left[\,
+    E_{Y}\!\left[
         \left.
-        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)^{2}
+        \,\right\vert\!\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\!\right]
     $\,
     can be expressed in explicit computable form as follows:
     \begin{eqnarray*}
-    E_{Y}\!\left[\,
+    E_{Y}\!\left[
         \left.
-        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)^{2}
+        \,\right\vert\!\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \!\!\right]
     & = &
         \left(\;
-            \underset{l \in s_{R}}{\sum}
-                \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
-            \,+\,
-            \underset{k \in s_{M}}{\sum}\,
-                w_{k}^{2}\,d_{k}\,\sigma_{k}^{2}
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+            \left(\,W^{(+)}_{\alpha,ij}\,\right)^{\!2}
+            \cdot
+            \sigma^{2}_{ij}
+            \;\; + \;\;
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+            \left(\,
+                \dfrac{ \alpha_{ij} }{ \pi_{i} }
+                \,\right)^{\!2}
+            \cdot
+            \sigma^{2}_{ij}
             \,\right)
     \\
     &&
-        +\;
+        \; + \;
         \left(\,
             W^{(+)}_{\alpha,0}
-            \,+\,
-            \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
-            \,-\,
-            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
+            \;\, + \;\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}
+            W^{(+)}_{\alpha,ij}\cdot\mu_{ij}
+            \;\,-\;\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}
+            \dfrac{ \alpha_{ij} }{ \pi_{i} }\cdot\mu_{ij}
             \,\right)^{2}
     \end{eqnarray*}
 \end{enumerate}
 \end{lemma}
 \proof
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
 \begin{enumerate}
 \item
     Nothing to prove.
@@ -2325,25 +2339,25 @@ Then, the following statements are true:
     \textbf{Claim 1:}\quad
     \begin{equation*}
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)^{2}
+        \left\vert\!\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\!\right]
     \;\; = \;\;
-        \Var_{Y}\!\left[\,
-            \left.
+        \Var_{Y}\!\left[\;
             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
         \,+\,
-        E_{Y}\!\left[\,
-            \left.
+        E_{Y}\!\left[\;
             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]^{2}
+            \left\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]^{2}
     \end{equation*}
     \vskip 0.1cm
     \noindent
@@ -2362,280 +2376,729 @@ Then, the following statements are true:
     \end{equation*}
     This completes the proof of Claim 1.
 
-    \vskip 0.5cm
+    \vskip 0.4cm
     \textbf{Claim 2:}\quad
     \begin{equation*}
-    \Var_{Y}\!\left[\,
-        \left.
+    \Var_{Y}\!\left[\;
         \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-        \,\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \left\vert\!\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\!\right]
     \;\; = \;\;
-        \underset{l \in s_{R}}{\sum}
-            \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
-        \,\;+\;
-        \underset{k \in s_{M}}{\sum}\,
-            w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+        \left(\,W^{(+)}_{\alpha,ij}\,\right)^{\!2}
+        \cdot
+        \sigma^{2}_{ij}
+        \;\; + \;\;
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+        \left(\,
+            \dfrac{ \alpha_{ij} }{ \pi_{i} }
+            \,\right)^{\!2}
+        \cdot
+        \sigma^{2}_{ij}
     \end{equation*}
     \vskip 0.1cm
     \noindent
     Proof of Claim 2:\;\;
     \begin{eqnarray*}
     &&
-        \Var_{Y}\!\left[\,
-            \left.
+        \Var_{Y}\!\left[\;
             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
     \\
     & = &
         \Var_{Y}\!\left[\,
             \left.
             W^{(+)}_{\alpha,0}
-            \,+\,
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
-            \,-\,
-            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right],
+            \; + \,
+            \underset{i \in {\color{black}s}}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+            W^{(+)}_{\alpha,ij}\,Y_{ij}
+            \; - \;
+            \underset{i \in {\color{black}s}}{\sum}\;
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+            \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
+            \;\right\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right],
         \;\;
         \textnormal{by Lemma \ref{GeneralizedTotalImputationError}(ii)}
     \\
     & = &
         \Var_{Y}\!\left[\;
             \left.
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
-            \,-\,
-            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right],
+            \underset{i \in {\color{black}s}}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+            W^{(+)}_{\alpha,ij}\,Y_{ij}
+            \; - \;
+            \underset{i \in {\color{black}s}}{\sum}\;
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+            \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
+            \;\right\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right],
         \;\;
         \textnormal{since $W^{(+)}_{\alpha,0}$ is constant upon conditioning on $s, s_{R}$}
     \\
     & = &
-        \underset{l \in s_{R}}{\sum}\,
-        \underset{m \in s_{R}}{\sum}\,
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\;\;
+        \underset{k \in s}{\sum}\,
+        \underset{l \in (\mathcal{C}_{k})_{R}}{\sum}
         \Cov_{Y}\!\left[\;
-            W^{(+)}_{\alpha,kl}\,Y_{l}
+            W^{(+)}_{\alpha,ij}\,Y_{ij}
             \,,
-            W^{(+)}_{m}\,Y_{m}
-            \,\left\vert
+            W^{(+)}_{\alpha,kl}\,Y_{kl}
+            \left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \!\right]
-        \; + \;
-        \underset{k \in s_{M}}{\sum}\,
-        \underset{m \in s_{M}}{\sum}\,
-        \Cov_{Y}\!\left[\;
-            w_{k}\,d_{k}\,Y_{k}
-            \,,
-            w_{m}\,d_{m}\,Y_{m}
-            \,\left\vert
-            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
-            \right.
-            \!\right]
+            \!\!\right]
     \\
     &&
-        \; - \;
-        2 \cdot
-        \underset{l \in s_{R}}{\sum}\;
-        \underset{k \in s_{M}}{\sum}\,
+        \; + \;\;
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\;\;
+        \underset{k \in s}{\sum}\,
+        \underset{l \in (\mathcal{C}_{k})_{M}}{\sum}
         \Cov_{Y}\!\left[\;
-            W^{(+)}_{\alpha,kl}\,Y_{l}
-            \,,\,
-            w_{k}\,d_{k}\,Y_{k}
-            \,\left\vert
+            \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
+            \,,
+            \dfrac{ \alpha_{kl}Y_{kl} }{ \pi_{k} }
+            \left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \!\right],
+            \!\!\right]
+    \\
+    &&
+        \; - \;\;
+        2 \cdot
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\;\;
+        \underset{k \in s}{\sum}\,
+        \underset{l \in (\mathcal{C}_{k})_{M}}{\sum}
+        \Cov_{Y}\!\left[\;
+            W^{(+)}_{\alpha,ij}\,Y_{ij}
+            \,,\,
+            \dfrac{ \alpha_{kl}\,Y_{kl} }{ \pi_{k} } %w_{k}\,d_{k}\,Y_{k}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right],
         \;\;
         \textnormal{by Lemma \ref{sRsMPullOutOfVariance}}
     \\
     & = &
-        \underset{l \in s_{R}}{\sum}
-        \!\left(W^{(+)}_{\alpha,kl}\right)^{2}
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+        \left(\,W^{(+)}_{\alpha,ij}\,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\;
-            Y_{l}
-            \,\left\vert
+            Y_{ij}
+            \left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \!\right]
-        \,\;+\;
-        \underset{k \in s_{M}}{\sum}
-        \!\left(w_{k}\,d_{k}\right)^{2}
+            \!\!\right]
+        \; + \;\;
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+        \left(\,
+            \dfrac{ \alpha_{ij} }{ \pi_{i} }
+            \,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\;
-            Y_{k}
-            \,\left\vert
+            Y_{ij}
+            \left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \!\right],
+            \!\!\right],
     \\
     &&
         \quad\quad\quad
         \textnormal{since
             \,$
-            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Xobs\right.\,\right)
+            \Cov\!\left(\,Y_{ij},Y_{kl}\,\left\vert\,s,s_{R},\Xobs\right.\,\right)
             \,=\,
-            \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Xobs\right.\,\right)
+            \Cov\!\left(\,Y_{ij},Y_{kl}\,\left\vert\,\Xobs\right.\,\right)
             \,=\,
             0$,\,
-            whenever \,$a \neq b$
+            whenever \,$(i.j) \neq (k,l))$
             }
     \\
     & = &
-        \underset{l \in s_{R}}{\sum}
-        \!\left(W^{(+)}_{\alpha,kl}\right)^{2}
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+        \left(\,W^{(+)}_{\alpha,ij}\,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\;
-            Y_{l}
-            \,\left\vert\,
-            \Xobs
+            Y_{ij}
+            \left\vert\!
+            \begin{array}{c} \Xobs \end{array}
             \right.
-            \right]
-        \,\;+\;
-        \underset{k \in s_{M}}{\sum}\,
-        w_{k}^{2}\,d_{k}^{2}
+            \!\!\right]
+        \; + \;\;
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+        \left(\,
+            \dfrac{ \alpha_{ij} }{ \pi_{i} }
+            \,\right)^{\!2}
         \cdot
-        \Var_{Y}\!\left[\;Y_{k}
-            \,\left\vert\,
-            \Xobs
+        \Var_{Y}\!\left[\;
+            Y_{ij}
+            \left\vert\!
+            \begin{array}{c} \Xobs \end{array}
             \right.
-            \,\right],
-        \;\;
-        \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Xobs$}
+            \!\!\right],
+    \\
+    &&
+        \quad\quad\quad
+        \textnormal{since
+            $\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Xobs$
+            }
     \\
     & = &
-        \underset{l \in s_{R}}{\sum}
-            \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
-        \,\;+\;
-        \underset{k \in s_{M}}{\sum}\,
-            w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}\,,
-        \;\;
-        \textnormal{by definition of
-            \,$\sigma_{a}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{a}
-                \,\left\vert\,
-                \Xobs
-                \right.
-                \,\right]$}
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+        \left(\,W^{(+)}_{\alpha,ij}\,\right)^{\!2}
+        \cdot
+        \sigma^{2}_{ij}
+        \; + \;\;
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+        \left(\,
+            \dfrac{ \alpha_{ij} }{ \pi_{i} }
+            \,\right)^{\!2}
+        \cdot
+        \sigma^{2}_{ij}\,,
     \end{eqnarray*}
     This completes the proof of Claim 2.
 
-    \vskip 0.5cm
+    \vskip 0.4cm
     \textbf{Claim 3:}\quad
     \begin{equation*}
-    E_{Y}\!\left[\,
-        \left.
+    E_{Y}\!\left[\;
         \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-        \,\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\!\right]
     \;\; = \;\;
         W^{(+)}_{\alpha,0}
-        \,\;+\;
-        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
-        \,\;-\;
-        \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
+        \;\, + \;\,
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}
+        W^{(+)}_{\alpha,ij}\cdot\mu_{ij}
+        \;\,-\;\,
+        \underset{i \in s}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}
+        \dfrac{ \alpha_{ij} }{ \pi_{i} }\cdot\mu_{ij}
     \end{equation*}
     \vskip 0.1cm
     \noindent
     Proof of Claim 3:\;\;
     \begin{eqnarray*}
     &&
-        E_{Y}\!\left[\,
-            \left.
+        E_{Y}\!\left[\;
             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
     \\
     & = &
         E_{Y}\!\left[\,
             \left.
             W^{(+)}_{\alpha,0}
-            \,+\,
-            \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
-            \,-\,
-            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right],
+            \; + \,
+            \underset{i \in {\color{black}s}}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+            W^{(+)}_{\alpha,ij}\,Y_{ij}
+            \; - \;
+            \underset{i \in {\color{black}s}}{\sum}\;
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+            \dfrac{ \alpha_{ij}Y_{ij} }{ \pi_{i} }
+            \;\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right],
         \quad
         \textnormal{by Lemma \ref{GeneralizedTotalImputationError}(ii)}
     \\
     & = &
         W^{(+)}_{\alpha,0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\;
-        W^{(+)}_{\alpha,kl}
+        \;\, + \;\,
+        \underset{i \in {\color{black}s}}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+        W^{(+)}_{\alpha,ij}
         \cdot
         E_{Y}\!\left[\;
-            Y_{l}
-            \,\left\vert\,
-            s,s_{R},\Xobs
+            Y_{ij}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \right]
-        \,\;-\;
-        \underset{k \in s_{M}}{\sum}\;
-        w_{k}\,d_{k}
+            \!\!\right]
+        \;\, - \;\,
+        \underset{i \in {\color{black}s}}{\sum}\;
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+        \dfrac{ \alpha_{ij} }{ \pi_{i} }
         \cdot
-        E_{Y}\!\left[\;Y_{k}
-            \,\left\vert\,
-            s,s_{R},\Xobs
+        E_{Y}\!\left[\;Y_{ij}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
             \right.
-            \,\right]
+            \!\!\right]
     \\
     & = &
         W^{(+)}_{\alpha,0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\;
-        W^{(+)}_{\alpha,kl}
+        \;\, + \;\,
+        \underset{i \in {\color{black}s}}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+        W^{(+)}_{\alpha,ij}
         \cdot
         E_{Y}\!\left[\;
-            Y_{l}
-            \,\left\vert\,
-            \Xobs
+            Y_{ij}
+            \,\left\vert\!
+            \begin{array}{c} \Xobs \end{array}
             \right.
-            \right]
-        \,\;-\;
-        \underset{k \in s_{M}}{\sum}\;
-        w_{k}\,d_{k}
+            \!\!\right]
+        \;\, - \;\,
+        \underset{i \in {\color{black}s}}{\sum}\;
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+        \dfrac{ \alpha_{ij} }{ \pi_{i} }
         \cdot
-        E_{Y}\!\left[\;Y_{k}
-            \,\left\vert\,
-            \Xobs
+        E_{Y}\!\left[\;Y_{ij}
+            \,\left\vert\!
+            \begin{array}{c} \Xobs \end{array}
             \right.
-            \,\right],
+            \!\!\right],
         \;\;
         \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Xobs$}
     \\
     & = &
         W^{(+)}_{\alpha,0}
-        \;+\;
-        \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
-        \,\;-\;
-        \underset{k \in s_{M}}{\sum}\,
-            w_{k}\,d_{k}\,\mu_{k}\,,
+        \;\, + \;\,
+        \underset{i \in {\color{black}s}}{\sum}\,
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+        W^{(+)}_{\alpha,ij}
+        \cdot
+        \mu_{ij}
+        \;\, - \;\,
+        \underset{i \in {\color{black}s}}{\sum}\;
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+        \dfrac{ \alpha_{ij} }{ \pi_{i} }
+        \cdot
+        \mu_{ij}\,,
         \;\;
         \textnormal{by definition of
-            \,$\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+            \,$\mu_{ij} \;:=\, E_{Y}\!\left[\;Y_{ij}
                 \,\left\vert\,
                 \Xobs
                 \right.
                 \,\right]$}
     \end{eqnarray*}
     This completes the proof of Claim 3.
-
-    \vskip 0.3cm
+    \vskip 0.1cm
     \noindent
     The required result now follows immediately from Claim 1, Claim 2, and Claim 3.
     \qed
 \end{enumerate}
+% \begin{lemma}[Unbiased estimator for nonresponse variance; Equations (5.9) \& (5.10) in \cite{Beaumont2011}]
+% \label{GeneralizedTotalNonresponseVariance}
+% \mbox{}
+% \vskip 0.1cm
+% \noindent
+% Suppose we are given quantities as described in Subsection
+% \ref{GeneralizedTotalFormulationOfVarianceEstimationProblem}
+% and
+% that they satisfy the probabilistic assumptions as described in Subsection
+% \ref{GeneralizedTotalProbabilisticFramework}.
+% \vskip 0.1cm
+% \noindent
+% Then, the following statements are true:
+% \renewcommand{\theenumi}{\roman{enumi}}
+% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+% \begin{enumerate}
+% \item
+%     $
+%     E_{Y}\!\left[\,
+%         \left.
+%         (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)^{2}
+%         \,\right\vert\,
+%         s,s_{R},\Xobs
+%         \,\right]
+%     $\,
+%     is an $(\Sdot,\Rdot)$-unbiased estimator for the nonresponse variance\\
+%     \,$
+%     E_{SR}\!\left[\,
+%     E_{Y}\!\left[\,
+%         \left.
+%         (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)^{2}
+%         \,\right\vert\,
+%         s,s_{R},\Xobs
+%         \,\right]
+%         \right]
+%     $.
+% \item
+%     $
+%     E_{Y}\!\left[\,
+%         \left.
+%         (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)^{2}
+%         \,\right\vert\,
+%         s,s_{R},\Xobs
+%         \,\right]
+%     $\,
+%     can be expressed in explicit computable form as follows:
+%     \begin{eqnarray*}
+%     E_{Y}\!\left[\,
+%         \left.
+%         (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)^{2}
+%         \,\right\vert\,
+%         s,s_{R},\Xobs
+%         \,\right]
+%     & = &
+%         \left(\;
+%             \underset{l \in s_{R}}{\sum}
+%                 \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
+%             \,+\,
+%             \underset{k \in s_{M}}{\sum}\,
+%                 w_{k}^{2}\,d_{k}\,\sigma_{k}^{2}
+%             \,\right)
+%     \\
+%     &&
+%         +\;
+%         \left(\,
+%             W^{(+)}_{\alpha,0}
+%             \,+\,
+%             \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
+%             \,-\,
+%             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
+%             \,\right)^{2}
+%     \end{eqnarray*}
+% \end{enumerate}
+% \end{lemma}
+% \proof
+% \begin{enumerate}
+% \item
+%     Nothing to prove.
+% \item
+%     \textbf{Claim 1:}\quad
+%     \begin{equation*}
+%     E_{Y}\!\left[\,
+%         \left.
+%         (\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,)^{2}
+%         \,\right\vert\,
+%         s,s_{R},\Xobs
+%         \,\right]
+%     \;\; = \;\;
+%         \Var_{Y}\!\left[\,
+%             \left.
+%             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%             \,\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right]
+%         \,+\,
+%         E_{Y}\!\left[\,
+%             \left.
+%             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%             \,\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right]^{2}
+%     \end{equation*}
+%     \vskip 0.1cm
+%     \noindent
+%     Proof of Claim 1:\;\;
+%     Claim 1 follows immediately from the following well-known equality:
+%     \begin{equation*}
+%     \Var[\,X\,]
+%     \; := \;
+%         E\!\left[\,\overset{{\color{white}.}}{(X - \mu_{X})^{2}}\,\right]
+%     \; = \;
+%         E\!\left[\,\overset{{\color{white}.}}{X^{2} - 2\,\mu_{X}\,X + \mu_{X}^{2}}\,\right]
+%     \; = \;
+%         \cdots
+%     \; = \;
+%         E\!\left[\,X^{2}\,\right] \,-\, \mu_{X}^{2}\,,
+%     \end{equation*}
+%     This completes the proof of Claim 1.
+
+%     \vskip 0.5cm
+%     \textbf{Claim 2:}\quad
+%     \begin{equation*}
+%     \Var_{Y}\!\left[\,
+%         \left.
+%         \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%         \,\right\vert\,
+%         s,s_{R},\Xobs
+%         \,\right]
+%     \;\; = \;\;
+%         \underset{l \in s_{R}}{\sum}
+%             \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
+%         \,\;+\;
+%         \underset{k \in s_{M}}{\sum}\,
+%             w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+%     \end{equation*}
+%     \vskip 0.1cm
+%     \noindent
+%     Proof of Claim 2:\;\;
+%     \begin{eqnarray*}
+%     &&
+%         \Var_{Y}\!\left[\,
+%             \left.
+%             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%             \,\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right]
+%     \\
+%     & = &
+%         \Var_{Y}\!\left[\,
+%             \left.
+%             W^{(+)}_{\alpha,0}
+%             \,+\,
+%             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
+%             \,-\,
+%             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
+%             \,\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right],
+%         \;\;
+%         \textnormal{by Lemma \ref{GeneralizedTotalImputationError}(ii)}
+%     \\
+%     & = &
+%         \Var_{Y}\!\left[\;
+%             \left.
+%             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
+%             \,-\,
+%             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
+%             \,\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right],
+%         \;\;
+%         \textnormal{since $W^{(+)}_{\alpha,0}$ is constant upon conditioning on $s, s_{R}$}
+%     \\
+%     & = &
+%         \underset{l \in s_{R}}{\sum}\,
+%         \underset{m \in s_{R}}{\sum}\,
+%         \Cov_{Y}\!\left[\;
+%             W^{(+)}_{\alpha,kl}\,Y_{l}
+%             \,,
+%             W^{(+)}_{m}\,Y_{m}
+%             \,\left\vert
+%             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+%             \right.
+%             \!\right]
+%         \; + \;
+%         \underset{k \in s_{M}}{\sum}\,
+%         \underset{m \in s_{M}}{\sum}\,
+%         \Cov_{Y}\!\left[\;
+%             w_{k}\,d_{k}\,Y_{k}
+%             \,,
+%             w_{m}\,d_{m}\,Y_{m}
+%             \,\left\vert
+%             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+%             \right.
+%             \!\right]
+%     \\
+%     &&
+%         \; - \;
+%         2 \cdot
+%         \underset{l \in s_{R}}{\sum}\;
+%         \underset{k \in s_{M}}{\sum}\,
+%         \Cov_{Y}\!\left[\;
+%             W^{(+)}_{\alpha,kl}\,Y_{l}
+%             \,,\,
+%             w_{k}\,d_{k}\,Y_{k}
+%             \,\left\vert
+%             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+%             \right.
+%             \!\right],
+%         \;\;
+%         \textnormal{by Lemma \ref{sRsMPullOutOfVariance}}
+%     \\
+%     & = &
+%         \underset{l \in s_{R}}{\sum}
+%         \!\left(W^{(+)}_{\alpha,kl}\right)^{2}
+%         \cdot
+%         \Var_{Y}\!\left[\;
+%             Y_{l}
+%             \,\left\vert
+%             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+%             \right.
+%             \!\right]
+%         \,\;+\;
+%         \underset{k \in s_{M}}{\sum}
+%         \!\left(w_{k}\,d_{k}\right)^{2}
+%         \cdot
+%         \Var_{Y}\!\left[\;
+%             Y_{k}
+%             \,\left\vert
+%             \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+%             \right.
+%             \!\right],
+%     \\
+%     &&
+%         \quad\quad\quad
+%         \textnormal{since
+%             \,$
+%             \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,s,s_{R},\Xobs\right.\,\right)
+%             \,=\,
+%             \Cov\!\left(\,Y_{a},Y_{b}\,\left\vert\,\Xobs\right.\,\right)
+%             \,=\,
+%             0$,\,
+%             whenever \,$a \neq b$
+%             }
+%     \\
+%     & = &
+%         \underset{l \in s_{R}}{\sum}
+%         \!\left(W^{(+)}_{\alpha,kl}\right)^{2}
+%         \cdot
+%         \Var_{Y}\!\left[\;
+%             Y_{l}
+%             \,\left\vert\,
+%             \Xobs
+%             \right.
+%             \right]
+%         \,\;+\;
+%         \underset{k \in s_{M}}{\sum}\,
+%         w_{k}^{2}\,d_{k}^{2}
+%         \cdot
+%         \Var_{Y}\!\left[\;Y_{k}
+%             \,\left\vert\,
+%             \Xobs
+%             \right.
+%             \,\right],
+%         \;\;
+%         \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Xobs$}
+%     \\
+%     & = &
+%         \underset{l \in s_{R}}{\sum}
+%             \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
+%         \,\;+\;
+%         \underset{k \in s_{M}}{\sum}\,
+%             w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}\,,
+%         \;\;
+%         \textnormal{by definition of
+%             \,$\sigma_{a}^{2} \;:=\, \Var_{Y}\!\left[\;Y_{a}
+%                 \,\left\vert\,
+%                 \Xobs
+%                 \right.
+%                 \,\right]$}
+%     \end{eqnarray*}
+%     This completes the proof of Claim 2.
+
+%     \vskip 0.5cm
+%     \textbf{Claim 3:}\quad
+%     \begin{equation*}
+%     E_{Y}\!\left[\,
+%         \left.
+%         \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%         \,\right\vert\,
+%         s,s_{R},\Xobs
+%         \,\right]
+%     \;\; = \;\;
+%         W^{(+)}_{\alpha,0}
+%         \,\;+\;
+%         \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
+%         \,\;-\;
+%         \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
+%     \end{equation*}
+%     \vskip 0.1cm
+%     \noindent
+%     Proof of Claim 3:\;\;
+%     \begin{eqnarray*}
+%     &&
+%         E_{Y}\!\left[\,
+%             \left.
+%             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+%             \,\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right]
+%     \\
+%     & = &
+%         E_{Y}\!\left[\,
+%             \left.
+%             W^{(+)}_{\alpha,0}
+%             \,+\,
+%             \underset{l \in s_{R}}{\sum}\,W^{(+)}_{\alpha,kl}\,Y_{l}
+%             \,-\,
+%             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
+%             \,\right\vert\,
+%             s,s_{R},\Xobs
+%             \,\right],
+%         \quad
+%         \textnormal{by Lemma \ref{GeneralizedTotalImputationError}(ii)}
+%     \\
+%     & = &
+%         W^{(+)}_{\alpha,0}
+%         \;+\;
+%         \underset{l \in s_{R}}{\sum}\;
+%         W^{(+)}_{\alpha,kl}
+%         \cdot
+%         E_{Y}\!\left[\;
+%             Y_{l}
+%             \,\left\vert\,
+%             s,s_{R},\Xobs
+%             \right.
+%             \right]
+%         \,\;-\;
+%         \underset{k \in s_{M}}{\sum}\;
+%         w_{k}\,d_{k}
+%         \cdot
+%         E_{Y}\!\left[\;Y_{k}
+%             \,\left\vert\,
+%             s,s_{R},\Xobs
+%             \right.
+%             \,\right]
+%     \\
+%     & = &
+%         W^{(+)}_{\alpha,0}
+%         \;+\;
+%         \underset{l \in s_{R}}{\sum}\;
+%         W^{(+)}_{\alpha,kl}
+%         \cdot
+%         E_{Y}\!\left[\;
+%             Y_{l}
+%             \,\left\vert\,
+%             \Xobs
+%             \right.
+%             \right]
+%         \,\;-\;
+%         \underset{k \in s_{M}}{\sum}\;
+%         w_{k}\,d_{k}
+%         \cdot
+%         E_{Y}\!\left[\;Y_{k}
+%             \,\left\vert\,
+%             \Xobs
+%             \right.
+%             \,\right],
+%         \;\;
+%         \textnormal{since \,$\Ydot \perp (\Sdot,\Rdot) \;\;\vert\;\, \Xobs$}
+%     \\
+%     & = &
+%         W^{(+)}_{\alpha,0}
+%         \;+\;
+%         \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
+%         \,\;-\;
+%         \underset{k \in s_{M}}{\sum}\,
+%             w_{k}\,d_{k}\,\mu_{k}\,,
+%         \;\;
+%         \textnormal{by definition of
+%             \,$\mu_{k} \;:=\, E_{Y}\!\left[\;Y_{k}
+%                 \,\left\vert\,
+%                 \Xobs
+%                 \right.
+%                 \,\right]$}
+%     \end{eqnarray*}
+%     This completes the proof of Claim 3.
+
+%     \vskip 0.3cm
+%     \noindent
+%     The required result now follows immediately from Claim 1, Claim 2, and Claim 3.
+%     \qed
+% \end{enumerate}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
