@@ -3767,32 +3767,31 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         \Var_{SR}\!\left(\,
             \left.
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \,\right\vert\,
-            \Ydot,
-            \Xobs
-            \,\right)
-            \,\right]
+            \,\right\vert\!\!
+            \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+            \!\!\right)
+            \right]
         \;+\;
         E_{SR}\!\left[\,
         E_{Y}\!\left[
             \left.
             \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)^{2}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \,\right\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right]
             \,\right]
     \\
     &&
         +\;2\cdot
         E_{SR}\!\left[\,
         E_{Y}\!\left[
-            \left.
             \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)
             \!\!
             \left(\,\widehat{T}^{\textnormal{(HT)}}_{\alpha Y} \,-\, T_{\alpha Y}\right)
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
             \,\right]
     \end{eqnarray*}
     We use the following nomenclature to refer the three summands in the right-hand side:
@@ -3807,10 +3806,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         \Var_{SR}\!\left(\,
             \left.
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \,\right\vert\,
-            \Ydot,
-            \Xobs
-            \,\right)
+            \,\right\vert\!\!
+            \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+            \!\!\right)
             \,\right]
     \\
     \left(\begin{array}{c}
@@ -3823,9 +3821,9 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         E_{Y}\!\left[
             \left.
             \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)^{2}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \,\right\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right]
             \,\right]
     \\
     \left(\begin{array}{c}
@@ -3837,13 +3835,13 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         2\cdot
         E_{SR}\!\left[\,
         E_{Y}\!\left[
-            \left.
             \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\,\right)
-            \!\!
+            \!
             \left(\,\widehat{T}^{\textnormal{(HT)}}_{\alpha Y} \,-\, T_{\alpha Y}\,\right)
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
             \,\right]
     \end{eqnarray*}
 \item
@@ -3860,16 +3858,15 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         \Var_{SR}\!\left(\,
             \left.
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \,\right\vert\,
-            \Ydot,
-            \Xobs
-            \,\right)
+            \,\right\vert\!
+            \begin{array}{c} \Ydot, \\ \Xobs \end{array}
+            \!\!\right)
             \,\right]
     \;\; = \;\;
         E_{SR}\,
         E_{Y_{R}}\,
         E_{Y_{M}}\!\left[\;
-            \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\Ydot\,)
+            \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\Ydot\,)
             \,\left\vert\!
             \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
             \right.
@@ -3877,7 +3874,7 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \\
     & {\color{red}\approx} &
     E_{Y_{M}}\!\left[\;
-        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\Ydot\,)
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\Ydot\,)
         \,\left\vert\!
         \begin{array}{c} s,s_{R},\YsubR, \\ \Xobs \end{array}
         \right.
@@ -3885,38 +3882,101 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     \\
     & = &
         {\color{blue}
-        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\widetilde{y}_{\bullet}\,)
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\widetilde{y}_{\bullet}\,)
         \;+\;
-        \underset{k \in s_{M}}{\sum}\;
-        d_{k}
-        \left(1-\dfrac{1}{w_{k}}\right)
-        w_{k}^{2}\,\sigma_{k}^{2}
+        \underset{i \in s}{\sum}\;
+        \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\;
+        \dfrac{ 1 - \pi_{i} }{ \pi_{i}^{2} }
+        \,\alpha_{ij}^{2}\,\sigma_{ij}^{2}
         }\,,
     \end{eqnarray*}
     where
     \,$\widehat{V}^{\textnormal{(HT)}}(\,s\,;\dydot\,)$\,
     is the (design-unbiased) Horvitz-Thompson estimator for sampling variance, i.e.,
     \begin{equation*}
-    \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dydot\,)
+    \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\ydot\,)
     \;\; := \;\;
+        \underset{i \in s}{\sum}\,
         \underset{k \in s}{\sum}\,
-        \underset{l \in s}{\sum}\,
-        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
-        (w_{k}d_{k}y_{k})\,(w_{l}d_{l}y_{l})\,,
+        \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}
+        \left(\,
+            \dfrac{1}{\pi_{i}}\,
+            \underset{j\in\mathcal{C}_{i}}{\sum}\,
+            \alpha_{ij}\,y_{ij}
+            \right)
+        \!
+        \left(\,
+            \dfrac{1}{\pi_{k}}\,
+            \underset{l\in\mathcal{C}_{k}}{\sum}\,
+            \alpha_{kl}\,y_{kl}
+            \right)
     \end{equation*}
     and
     \begin{equation*}
-    \widetilde{y}_{k}
-    \;\; := \;\;
+    \widetilde{y}_{ij}
+    \; := \;
         \left\{\begin{array}{cl}
-            y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+            y_{ij}, & \textnormal{for \,$i \in s$,\, $j \,\in\, (\mathcal{C}_{i})_{R}$}
             \\
-            \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+            % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+            \overset{{\color{white}\textnormal{\large1}}}{\mu_{ij}}, & \textnormal{for \,$i \in s$,\, $j \,\in\, (\mathcal{C}_{i})_{M} \,:=\, \mathcal{C}_{i} \,\backslash\, (\mathcal{C}_{i})_{R}$}
             \end{array}\right.
     \end{equation*}
 \item
     By Lemma \ref{GeneralizedTotalNonresponseVariance},
     the nonresponse variance component can be estimated as follows:
+    \begin{eqnarray*}
+    &&
+        E_{Y}\!\left[
+            \left.
+            \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)^{2}
+            \,\right\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right]
+    \\
+    & = &
+        \left(\;
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+            \left(\,W^{(+)}_{\alpha,ij}\,\right)^{\!2}
+            \cdot
+            \sigma^{2}_{ij}
+            \;\; + \;\;
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+            \left(\,
+                \dfrac{ \alpha_{ij} }{ \pi_{i} }
+                \,\right)^{\!2}
+            \cdot
+            \sigma^{2}_{ij}
+            {\color{blue}
+            \;\; + \;\;
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\,
+            I_{ij}
+            \cdot\!
+            \left(\,
+                \dfrac{ \alpha_{ij} }{ \pi_{i} }
+                \,\right)^{\!2}
+            \cdot
+            \sigma_{ij}^{2}
+            }
+            \,\right)
+    \\
+    &&
+        \; + \;
+        \left(\,
+            W^{(+)}_{\alpha,0}
+            \;\, + \;\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}
+            W^{(+)}_{\alpha,ij}\cdot\mu_{ij}
+            \;\,-\;\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}
+            \dfrac{ \alpha_{ij} }{ \pi_{i} }\cdot\mu_{ij}
+            \,\right)^{2}
+    \end{eqnarray*}
     \begin{eqnarray*}
     \left(\!\begin{array}{c}
         \textnormal{nonresponse}
@@ -3930,36 +3990,79 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
         E_{Y}\!\left[
             \left.
             \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)^{2}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \,\right\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right]
             \,\right]
     \;\; {\color{red}\approx} \;\;
         E_{Y}\!\left[
             \left.
             \left(\,\widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)^{2}
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \,\right\vert\!\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \!\!\right]
     \\
     & = &
-        {\color{blue}
         \left(\;
-            \underset{l \in s_{R}}{\sum}
-                \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
-            \,+\,
-            \underset{k \in s_{M}}{\sum}\,
-                w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\!
+            \left(\,W^{(+)}_{\alpha,ij}\,\right)^{\!2}
+            \cdot
+            \sigma^{2}_{ij}
+            \;\; + \;\;
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\!
+            \left(\,
+                \dfrac{ \alpha_{ij} }{ \pi_{i} }
+                \,\right)^{\!2}
+            \cdot
+            \sigma^{2}_{ij}
+            {\color{blue}
+            \;\; + \;\;
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\,
+            I_{ij}
+            \cdot\!
+            \left(\,
+                \dfrac{ \alpha_{ij} }{ \pi_{i} }
+                \,\right)^{\!2}
+            \cdot
+            \sigma_{ij}^{2}
+            }
             \,\right)
-        \;+\;
+    \\
+    &&
+        \; + \;
         \left(\,
             W^{(+)}_{\alpha,0}
-            \,+\,
-            \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
-            \,-\,
-            \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
+            \;\, + \;\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}
+            W^{(+)}_{\alpha,ij}\cdot\mu_{ij}
+            \;\,-\;\,
+            \underset{i \in s}{\sum}\,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}
+            \dfrac{ \alpha_{ij} }{ \pi_{i} }\cdot\mu_{ij}
             \,\right)^{2}
-        }
+    % \\
+    % & = &
+    %     {\color{blue}
+    %     \left(\;
+    %         \underset{l \in s_{R}}{\sum}
+    %             \left(W^{(+)}_{\alpha,kl}\right)^{2}\sigma_{l}^{2}
+    %         \,+\,
+    %         \underset{k \in s_{M}}{\sum}\,
+    %             w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+    %         \,\right)
+    %     \;+\;
+    %     \left(\,
+    %         W^{(+)}_{\alpha,0}
+    %         \,+\,
+    %         \underset{l \in s_{R}}{\sum}\;W^{(+)}_{\alpha,kl}\,\mu_{l}
+    %         \,-\,
+    %         \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,\mu_{k}
+    %         \,\right)^{2}
+    %     }
     \end{eqnarray*}
 \item
     By Lemma \ref{GeneralizedTotalMixedVariance},
@@ -3973,76 +4076,90 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     & := &
         2\cdot
         E_{SR}\!\left[\,
-        E_{Y}\!\left[
-            \left.
+        E_{Y}\!\left[\,
             \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)
-            \!\!
+            \!
             \left(\,\widehat{T}^{\textnormal{(HT)}}_{\alpha Y} \,-\, T_{\alpha Y}\right)
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
             \,\right]
     \\
     & \approx &
         2\cdot
         E_{Y}\!\left[
-            \left.
             \left(\,\widetilde{T}_{\alpha Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}\right)
-            \!\!
+            \!
             \left(\,\widehat{T}^{\textnormal{(HT)}}_{\alpha Y} \,-\, T_{\alpha Y}\right)
-            \,\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
     \\
     & = &
         2\cdot
         \Cov_{Y}\!\left(\,
-            \left.
             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
             \,,\,
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right)
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right)
     \\
     &&
         +\;
         2\cdot
         E_{Y}\!\left[\;
-            \left.
             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]
         \cdot
         {\color{red}E_{Y}\!\left[\;
-            \left.
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]}
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right]}
     \\
     & {\color{red}\approx} &
         2\cdot
         \Cov_{Y}\!\left(\,
-            \left.
             \widetilde{T}_{\alpha Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
             \,,\,
             \widehat{T}^{\textnormal{(HT)}}_{\alpha Y} - T_{\alpha Y}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right)
+            \left\vert\!
+            \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+            \right.
+            \!\!\right)
     \\
     & = &
-        {\color{blue}
-        2\,\cdot\!\left(\;
-            \underset{l \in s_{R}}{\sum}\,
-                W^{(+)}_{\alpha,kl}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
-            \;\,-\;
-            \underset{k \in s_{M}}{\sum}\,
-                w_{k}\,(w_{1}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
+        2 \,\cdot
+        \underset{i \in {\color{black}s}}{\sum}
+        \left(\dfrac{1}{\pi_{i}}-1\right)
+        \!\cdot\!
+        \left(\;
+            \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\,
+            W^{(+)}_{\alpha,ij}\cdot\alpha_{ij}\cdot\sigma_{ij}^{2}
+            \; - \,
+            \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}\,
+            \dfrac{ \alpha_{ij}^{2} }{ \pi_{i} }
+            \cdot\sigma_{ij}^{2}
             \,\right)
-        }
+    % \\
+    % & = &
+    %     {\color{blue}
+    %     2\,\cdot\!\left(\;
+    %         \underset{l \in s_{R}}{\sum}\,
+    %             W^{(+)}_{\alpha,kl}\,(w_{l}-1)\,d_{l}\,\sigma_{l}^{2}
+    %         \;\,-\;
+    %         \underset{k \in s_{M}}{\sum}\,
+    %             w_{k}\,(w_{1}-1)\,d_{k}^{2}\,\sigma_{k}^{2}
+    %         \,\right)
+    %     }
     \end{eqnarray*}
 \item
     \textbf{Important Remark:}
@@ -4113,35 +4230,59 @@ Then, the following summarizes the results in \cite{Beaumont2011}:
     recall that this quantity is called the \textbf{conditional model bias}
     (see Lemma \ref{biasTtilde}), and
     it can be expressed as follows:
+    % \begin{eqnarray*}
+    % E_{Y}\!\left[\;
+    %     \left.
+    %     \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
+    %     \;\right\vert\,
+    %     s,s_{R},\Xobs
+    %     \,\right]
+    % & = &
+    %     \underset{k\in{\color{red}s_{M}}}{\sum}\,d_{k}\,w_{k}\,
+    %     E_{Y}\!\left[\;
+    %         \left.
+    %         Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
+    %         \;\right\vert\,
+    %         s,s_{R},\Xobs
+    %         \,\right]
+    % \end{eqnarray*}
     \begin{eqnarray*}
     E_{Y}\!\left[\;
-        \left.
         \widetilde{T}_{\alpha Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha Y}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        \left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\!\right]
     & = &
-        \underset{k\in{\color{red}s_{M}}}{\sum}\,d_{k}\,w_{k}\,
-        E_{Y}\!\left[\;
-            \left.
-            Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
-            \;\right\vert\,
-            s,s_{R},\Xobs
-            \,\right]
+        \underset{i\,\in\,s}{\sum}\;\,
+            \dfrac{1}{\pi_{i}}
+            \left(\;
+                \underset{j \in (\mathcal{C}_{i})_{M}}{\sum}
+                \alpha_{ij}
+                \cdot
+                E_{Y}\!\left[\;
+                    Y^{*}_{ij} \overset{{\color{white}.}}{-} Y_{ij}
+                    \left\vert\!
+                    \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+                    \right.
+                    \!\!\right]
+                \,\right)
     \end{eqnarray*}
     This harks back to our earlier remark (Remark \ref{remarkSmallUnitBias}) that,
     in practice, we would like to choose an imputation strategy such that
     \begin{equation*}
     E_{Y}\!\left[\;
-        \left.
-        Y^{*}_{k} \overset{{\color{white}.}}{-} Y_{k}
-        \;\right\vert\,
-        s,s_{R},\Xobs
-        \,\right]
+        Y^{*}_{ij}
+        \overset{{\color{white}.}}{-}
+        Y_{ij}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Xobs \end{array}
+        \right.
+        \!\!\right]
     \;\; \approx \;\;
         0,
     \quad
-    \textnormal{for each \,$k \in s_{M}$}
+    \textnormal{for each \,$i \in s$,\, $j \in (\mathcal{C}_{i})_{M}$}
     \end{equation*}
     See the paragraph after Equation (5.2), p.175, \cite{Beaumont2011}.
 \end{itemize}
