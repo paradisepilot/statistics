@@ -1,13 +1,13 @@
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\section{Extended SEVANI: Variance estimation for estimators for {\color{red}domain ratios} where composite linear imputation has been applied in the {\color{red}numerator}}
+\section{Extended SEVANI: Variance estimation for estimators for {\color{red}generalized ratios} where composite linear imputation has been applied in the {\color{red}numerator}}
 \label{DomainRatioSEVANI}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \subsection{Formulation of the target variability quantification problem}
-\label{DomainRatioFormulationOfVarianceEstimationProblem}
+\label{GeneralizedRatioFormulationOfVarianceEstimationProblem}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -16,35 +16,74 @@ Suppose:
 \begin{itemize}
 \item
     We would like to estimate
-    -- using data from a probability sample --
+    -- using data from a one-stage cluster sample --
     a domain ratio (the ratio of two population totals)
     \begin{equation*}
-    R_{d,Y/Z}
+    R_{\alpha,Y/Z}
     \;\; := \;\;
-        \dfrac{T_{d,Y}}{\overset{{\color{white}.}}{T_{d,Z}}}
+        \dfrac{T_{\alpha,Y}}{\overset{{\color{white}.}}{T_{\alpha,Z}}}
     \;\; = \;\;
         \dfrac{
             {\color{white}.}
-            \underset{i \in U}{\sum}\;d_{i}Y_{i}
+            \underset{i \in U}{\sum}\;
+            \underset{j \in \mathcal{C}_{j}}{\sum}\;
+            \alpha_{ij}\,Y_{ij}
             {\color{white}.}
             }{
-            \overset{{\color{white}.}}{\underset{i \in U}{\sum}\;d_{i}Z_{i}}
+            \overset{{\color{white}.}}{
+                \underset{i \in U}{\sum}\;
+                \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                \alpha_{ij}\,Z_{ij}
+                }
             }\,,
     \end{equation*}
-    where \,$U = \{\,1,2,\ldots,N\,\} \subset \N$\, represents the population,
-    $d_{\bullet} = (d_{1},\ldots,d_{N}) \in \{0,1\}^{N}$ is the vector of domain membership indicators,
-    and
-    \,$\Ydot = (Y_{1},\ldots,Y_{N})$,\,
-    \,$\Zdot = (Z_{1},\ldots,Z_{N})$\,
-    are two $\Re$-valued population characteristics.
+    where
+    \begin{itemize}
+    \item
+        ${\color{red}U} = \{\,1,2,\ldots,N\,\} \subset \N$\,
+        denotes the population of the primary sampling units (PSU),
+    \item
+        for each \,$i \in U$,\,
+        \,${\color{red}\mathcal{C}_{j}}$\,
+        denotes the collection of all secondary sampling units (SSU) belonging to PSU \,$i \in U$,
+    \item
+        $
+        {\color{red}\Ydot} \, = \, \left\{\,
+            \left.
+            \overset{{\color{white}.}}{Y_{ij}}
+            \,\right\vert\,
+            i \in U, j \in \mathcal{C}_{i}
+            \,\right\}
+        $\,
+        and
+        \,$
+        {\color{red}\Zdot} \, = \, \left\{\,
+            \left.
+            \overset{{\color{white}.}}{Z_{ij}}
+            \,\right\vert\,
+            i \in U, j \in \mathcal{C}_{i}
+            \,\right\}
+        $\,
+        are $\Re$-valued population characteristics defined at the level of the SSUs, and
+    \item
+        $
+        {\color{red}\abullet} \, = \, \left\{\,
+            \left.
+            \overset{{\color{white}1}}{\alpha_{ij}}
+            \;\right\vert\,
+            i \in U, j \in \mathcal{C}_{i}
+            \,\right\}
+        $\,
+        is the collection of coefficients defined at the level of the SSUs.
+    \end{itemize}
 \item
     Aside/Reminder:
     If there were no missing data for the units in the (random) selected sample,
     then the \textit{Horvitz-Thompson domain ratio estimator}
     \begin{eqnarray*}
-    \widehat{R}_{d,Y/Z}
+    \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
     & = &
-        \widehat{R}_{d,Y/Z}(\,
+        \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}(\,
             \Sdot\,,\,
             \Ydot\,,\,
             \Zdot\,;\,
@@ -52,44 +91,64 @@ Suppose:
             \,)
     \;\; := \;\;
         \dfrac{
-            \widehat{T}_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}_{d,Z}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Z}
                 }
             }
     \;\; :=: \;\;
         \dfrac{
-            \widehat{T}_{d}(s\,;\Ydot)
+            \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\Zdot)
+                \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                 }
             }
     \\
     & = &
         \dfrac{
             {\color{white}.}
-            \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y_{i}
+            \underset{i \in s}{\sum}\;
+                \dfrac{1}{\pi_{i}}\!
+                \left(\;
+                    \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                    \alpha_{ij}Y_{ij}
+                    \right)
             {\color{white}.}
             }{
             \overset{{\color{white}.}}{
-                \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Z_{i}
+                \underset{i \in s}{\sum}\;
+                    \dfrac{1}{\pi_{i}}\!
+                    \left(\;
+                        \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                        \alpha_{ij}Z_{ij}
+                        \right)
                 }
             }
     \;\; = \;\;
         \dfrac{
             {\color{white}.}
-            \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,d_{i}\,Y_{i}
+            \underset{i \in U}{\sum}\;
+                \dfrac{S_{i}}{\pi_{i}}\!
+                \left(\;
+                    \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                    \alpha_{ij}Y_{ij}
+                    \right)
             {\color{white}.}
             }{
             \overset{{\color{white}.}}{
-                \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,d_{i}\,Z_{i}
+                \underset{i \in U}{\sum}\;
+                    \dfrac{S_{i}}{\pi_{i}}\!
+                    \left(\;
+                        \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                        \alpha_{ij}Z_{ij}
+                        \right)
                 }
-            }\,,
+            }
     \end{eqnarray*}
     is a common choice as an estimator for
-    \,$R_{d,Y/Z}$,\,
+    \,$R_{\alpha,Y/Z}$,\,
     where
     \begin{itemize}
     \item
@@ -102,150 +161,243 @@ Suppose:
         i.e., the reciprocal of the selection probability \,$\pi_{i}$\,
         (assumed strictly positive) of \,$i \in U$,\,
     \item
-        $\widehat{T}_{d,\xi} \, :=: \,\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
+        $\widehat{T}^{\textnormal{(HT)}}_{\alpha,\xi} \, :=: \,\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\xi_{\bullet})$\,
         is the \textit{Horvitz-Thompson estimator\! \footnote{
         We will use the alternative notations
-            \,$\widehat{T}_{d,\xi}$\, and \,$\widehat{T}_{d}(s\,;\xi_{\bullet})$\,
+            \,$\widehat{T}^{\textnormal{(HT)}}_{\alpha,\xi}$\, and \,$\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\xi_{\bullet})$\,
             interchangeably, noting that the former is notationally more succinct,
             while the latter allows us to emphasize that
             \,$\xi_{\bullet}$\,
             is being considered as an argument to the formula
             \begin{equation*}
-            \widehat{T}_{d}(s\,;\xi_{\bullet})
+            \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\xi_{\bullet})
             \;\; := \;\;
                 \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
             \end{equation*}
             for the Horvitz-Thompson population total estimator.
             }
-        for the domain total}
-        \,$T_{d,\xi} \,:=\, \underset{i\,\in\,U}{\sum}\,d_{i}\xi_{i}$\,
-        of an arbitrary $\Re$-valued population characteristic \,$\xi_{i}$ ($i \in U$),\, i.e.,
+        for the generalized total}
+        \,$
+        T_{\alpha,\xi}
+        \, := \,
+            \underset{i \in U}{\sum}\;
+            \underset{j \in \mathcal{C}_{j}}{\sum}\;
+            \alpha_{ij}\,\xi_{ij}
+        $\,
+        of an arbitrary $\Re$-valued population characteristic
+        \,$\xi_{ij}$ ($i \in U$, $j \in \mathcal{C}_{i}$),\, i.e.,
         \begin{equation*}
-        \widehat{T}_{d,\xi}
+        \widehat{T}^{\textnormal{(HT)}}_{\alpha,\xi}
         \;\; :=: \;\;
-            \widehat{T}_{d}(s\,;\xi_{\bullet})
-        \;\; := \;\;
-            \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\xi_{i}
+            \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\xi_{\bullet})
         \;\; = \;\;
-            \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,d_{i}\,\xi_{i}
+            \underset{i \in s}{\sum}\;
+                \dfrac{1}{\pi_{i}}\!
+                \left(\;
+                    \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                    \alpha_{ij}\,\xi_{ij}
+                    \right)
+        \;\; = \;\;
+            \underset{i \in U}{\sum}\;
+                \dfrac{S_{i}}{\pi_{i}}\!
+                \left(\;
+                    \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                    \alpha_{ij}\,\xi_{ij}
+                    \right)
         \end{equation*}
     \end{itemize}
-    Recall (Result 2.8.1, p.43, \cite{Sarndal1992}) also that
-    the sampling variance of 
-    \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$\,
-    is given by
+    Recall (Result 4.3.1, p.137, \cite{Sarndal1992}) also that
+    the sampling variance of the Horvitz-Thompson population total estimator
+    under a two-stage cluster sampling design is:
+    \begin{equation*}
+    \Var_{\,\textnormal{2-stage}}
+    \;\; = \;\;
+        \Var_{\,\textnormal{PSU}}
+        \; + \;
+        \Var_{\,\textnormal{SSU}}
+    \end{equation*}
+    Since we are considering only one-stage cluster sampling
+    (i.e., two-stage cluster sampling where the second-stage sampling is a census),
+    the subsampling variance \,$\Var_{\,\textnormal{SSU}}$\, is zero.
+    Hence, the sampling variance of
+    \,$
+    \widehat{T}^{\textnormal{(HT)}}_{\alpha,\xi}
+    % \,=\,
+    %     \widehat{T}^{\textnormal{(HT)}}(s\,;\dbullet\xi_{\bullet})
+    $\,
+    has only the \,$\Var_{\,\textnormal{PSU}}$\, term, i.e.,
     \begin{equation*}
     \Var_{S}\!\left(\,
         \left.
-        \widehat{T}_{d}(s\,;\xi_{\bullet})
-        \;\right\vert\!
+        \widehat{T}^{\textnormal{(HT)}}_{\alpha,\xi}
+        \,\right\vert\!\!
         \begin{array}{c} \xi_{\bullet} \end{array}
         \!\!\right)
     \;\; = \;\;\,
         \underset{i \in U}{\sum}\,
-        \underset{j \in U}{\sum}\;
-        \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
-        \cdot
-        \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
-        \cdot
-        \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}\,,
+        \underset{k \in U}{\sum}\,
+        \left(\,\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\,\right)
+        \cdot\!
+        \left(\,
+            \dfrac{1}{\pi_{i}}\,
+            \underset{j\in\mathcal{C}_{i}}{\sum}\;\alpha_{ij}\,\xi_{ij}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            \dfrac{1}{\pi_{i}}\,
+            \underset{l\in\mathcal{C}_{k}}{\sum}\;\alpha_{kl}\,\xi_{kl}
+            \,\right),
     \end{equation*}
     and the following Horvitz-Thompson variance estimator
     \begin{equation*}
-    \widehat{V}^{\textnormal{(HT)}}(\,s\,;\xi_{\bullet}\,)
+    \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\xi_{\bullet}\,)
     \;\; := \;\;
         \underset{i \in s}{\sum}\,
-        \underset{j \in s}{\sum}\;
-        \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
-        \cdot
-        \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
-        \cdot
-        \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}
+        \underset{k \in s}{\sum}\;
+        \dfrac{\pi_{ik} - \pi_{i}\pi_{k}}{\pi_{ik}}
+        \cdot\!
+        \left(\,
+            \dfrac{1}{\pi_{i}}\,
+            \underset{j\in\mathcal{C}_{i}}{\sum}\;\alpha_{ij}\,\xi_{ij}
+            \,\right)
+        \!\cdot\!
+        \left(\,
+            \dfrac{1}{\pi_{i}}\,
+            \underset{l\in\mathcal{C}_{k}}{\sum}\;\alpha_{kl}\,\xi_{kl}
+            \,\right),
     \end{equation*}
     is a design-unbiased estimator for the sampling variance of
-    \,$\widehat{T}_{d,\xi_{\bullet}} \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$,\,
+    % \,$\widehat{T}_{d,\xi_{\bullet}}(s) \,=\, \widehat{T}_{d}(s\,;\xi_{\bullet})$,\,
+    \,$
+    \widehat{T}^{\textnormal{(HT)}}_{\alpha,\xi}
+    \,=\,
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\xi_{\bullet})
+    $,\,
     i.e.,
     \begin{equation*}
     E_{S}\!\left[\;
         \left.
-        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\xi_{\bullet}\,)
+        \widehat{V}^{\textnormal{(HT)}}(\,s\,;\abullet,\xi_{\bullet}\,)
         \;\right\vert\!
         \begin{array}{c} \xi_{\bullet} \end{array}
         \!\right]
     \;\; = \;\;
         \Var_{S}\!\left(\,
             \left.
-            \widehat{T}_{d}(s\,;\xi_{\bullet})
-            \;\right\vert\!
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,\xi} %(s\,;\dbullet\xi_{\bullet})
+            \,\right\vert\!
             \begin{array}{c} \xi_{\bullet} \end{array}
             \!\!\right)
-    % \;\; = \;\;
-    %     \underset{i \in U}{\sum}\,
-    %     \underset{j \in U}{\sum}\;
-    %     \dfrac{\pi_{ij} - \pi_{i}\pi_{j}}{\pi_{ij}}
-    %     \cdot
-    %     \dfrac{d_{i}\,\xi_{i}}{\pi_{i}}
-    %     \cdot
-    %     \dfrac{d_{j}\,\xi_{j}}{\pi_{j}}
     \end{equation*}
 \item
-    The value of \,$Z_{i}$\, has been successfully observed or measured
-    for each population unit \,$i$\, in the selected sample \,$s \subset U$.\,
-    On the other hand, the value of \,$Y_{l}$\, has been successfully observed
-    only for units \,$l$\, in the (random) ``responding'' subsample
-    \,$s_{R} \subset s \subset U$;\,
-    in other words, the measurement of \,$Y_{k}$\, somehow failed for each unit \,$k$\,
-    in the ``nonresponding'' subsample
-    \,$s_{M} \, := \,s \,\backslash\, s_{R} \,\subset\, U$.\,
+    For each selected PSU \,$i \in s \subset U$,\,
+    the values of \,$Y_{ij}$\, have been successfully observed
+    only for SSUs \,$j \in \mathcal{C}_{i}$\,
+    in the (random) ``responding'' subsample of SSUs
+    \,${\color{red}(\mathcal{C}_{i})_{R}} \subset \mathcal{C}_{i}$;\,
+    in other words, the measurement of \,$Y_{ij}$\, somehow failed for each SSU
+    \,$
+    j
+    \in
+        {\color{red}(\mathcal{C}_{i})_{M}}
+    \, := \,
+        \mathcal{C}_{i} \,\backslash\, (\mathcal{C}_{i})_{R}
+    $.\,
+    \,$(\mathcal{C}_{i})_{M}$\,
+    is called the ``nonresponding'' subsample of the selected PSU \,$i \in s \subset U$.\,
+    We will also use
+    \,${\color{red}s_{R}} \, := \, \underset{i \in s}{\bigcup}\,(\mathcal{C}_{i})_{R}$\,
+    to denote the full (random) collection of selected and responding SSUs.
+    \vskip 0.1cm
+    On the other hand, we assume that
+    the value of \,$Z_{ij}$\, has been successfully observed or measured
+    for each selected PSU \,$i \in s \subset U$\, and
+    for each SSU \,$j \in \mathcal{C}_{i}$\, in the selected PSU \,$i \in s \subset U$.
 \item
-    We would like to estimate \,$R_{d,Y/Z}$\,
+    We would like to estimate \,$R_{\alpha,Y/Z}$\,
     with an imputation estimator of the following form:
     \begin{eqnarray*}
-    \widetilde{R}_{d,Y/Z}
+    \widetilde{R}_{\alpha,Y/Z}
     & = &
-        \widetilde{R}_{d,Y/Z}(\,
+        \widetilde{R}_{\alpha,Y/Z}(\,
             \Sdot\,,\,
             \Rdot\,,\,
             \Ydot\,,\,
             \Zdot\,;\,
             \Xdotdot\,,\,
-            \dbullet
+            \abullet
             \,)
     \;\; := \;\;
         \dfrac{
-            \widetilde{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y}
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}_{d,Z}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Z}
                 }
             }
     \;\; :=: \;\;
         \dfrac{
-            \widehat{T}_{d}(s\,;Y^{\dagger}_{\bullet})
+            \widehat{T}(s\,;\abullet,Y^{\dagger}_{\bullet})
             }{
             \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\Zdot)
+                \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                 }
             }
     \\
     & = &
         \dfrac{
-            \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y^{\dagger}_{i}
+            {\color{white}.}
+            \underset{i \in s}{\sum}\;
+                \dfrac{1}{\pi_{i}}\!
+                \left(\;
+                    \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                    \alpha_{ij}Y_{ij}^{\dagger}
+                    \right)
+            {\color{white}.}
             }{
             \overset{{\color{white}.}}{
-                \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Z_{i}
+                \underset{i \in s}{\sum}\;
+                    \dfrac{1}{\pi_{i}}\!
+                    \left(\;
+                        \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                        \alpha_{ij}Z_{ij}
+                        \right)
                 }
             }
+    % \;\; = \;\;
+    %     \dfrac{
+    %         \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Y^{\dagger}_{i}
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Z_{i}
+    %             }
+    %         }
     \;\; = \;\;
         \dfrac{
-            \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,d_{i}\left(\,
-                R_{i}\,Y_{i}
-                \overset{{\color{white}.}}{+}
-                (1-R_{i})\,Y^{*}_{i}
-                \,\right)
+            % \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,d_{i}\left(\,
+            %     R_{i}\,Y_{i}
+            %     \overset{{\color{white}.}}{+}
+            %     (1-R_{i})\,Y^{*}_{i}
+            %     \,\right)
+            \underset{i\,\in\,U}{\sum}\;
+                \dfrac{S_{i}}{\pi_{i}}
+                \left(\;
+                    \underset{j \in \mathcal{C}_{i}}{\sum}\;\alpha_{ij}\!
+                    \left(
+                        R_{ij}\,Y_{ij}
+                        \overset{{\color{white}.}}{+}
+                        (1-R_{ij})\,Y^{*}_{ij}
+                        \right)
+                    \right)
             }{
             \overset{{\color{white}.}}{
-                \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,d_{i}\,Z_{i}
+                % \underset{i\,\in\,U}{\sum}\;w_{i}\,S_{i}\,d_{i}\,Z_{i}
+                \underset{i \in U}{\sum}\;
+                    \dfrac{S_{i}}{\pi_{i}}\!
+                    \left(\;
+                        \underset{j \in \mathcal{C}_{j}}{\sum}\;
+                        \alpha_{ij}Z_{ij}
+                        \right)
                 }
             }\,,
     \end{eqnarray*}
@@ -267,65 +419,125 @@ Suppose:
         and where \,$\overline{R} \,:=\, \Re \sqcup \{\,\texttt{NA}\,\}$\,
         is an extension of $\Re$ alllowing for missing values in \,$\Xdotdot$,\, and
     \item
-        for each \,$i \in s$,\,
-        \,$Y^{\dagger}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$,\,
+        for each \,$i \in s$,\, $j \in \mathcal{C}_{i}$,\, we have
+        \,$Y^{\dagger}_{ij} \;=\; R_{ij}\,Y_{ij}+(1-R_{ij})\,Y^{*}_{ij}$,\,
         and
         \begin{equation*}
-        Y^{*}_{k}
+        Y^{*}_{ij}
         \;\; = \;\;
-            Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)\,,
+            Y^{*}_{ij}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)\,,
         \quad
-        \textnormal{for each \,$k \in s_{M} = s\,\backslash\,s_{R}$},
+        \textnormal{for each \,$i \in s \subset U$,
+        \,$j \in (\mathcal{C}_{i})_{M} = \mathcal{C}_{i}\,\backslash\,(\mathcal{C}_{i})_{R}$
+        },
         \end{equation*}
         is an imputed value for
-        \,$Y_{k}$\, and \,$Y^{*}_{k}$\,
+        \,$Y_{ij}$\, and \,$Y^{*}_{ij}$\,
         may depend on
         \,$\Sdot,\Rdot,\Ydot,\Xdotdot$.\,
     \end{itemize}
 \item
-    Furthermore, \,$Y^{*}_{k}$\, ($k \in s_{M}$) is \textbf{composite-linear},
-    i.e., there exists \,$J \in \N$\, such that
+    Furthermore, \,$Y^{*}_{kl}$\, ($k \in s$,\, $l \in (\mathcal{C}_{k})_{M}$)
+    is \textbf{composite linear}, i.e., % there exists \,$J \in \N$\, such that
     \begin{center}
-    \begin{minipage}{6.2in}
+    \begin{minipage}{6.3in}
     for each admissible sample \,$s \subset U$,\,
-    each \,$s_{R} \subset s$,\,
-    {\color{red}each} \,{\color{red}$k \in s_{M} := s \,\backslash\, s_{R}$},\,
+    each \,$s_{R} := \underset{i \in s}{\bigcup}\,(\mathcal{C}_{i})_{R}$,\,
+    {\color{red}
+        each
+        \,$k \in s$,\,
+        and each
+        \,$l \in (\mathcal{C}_{k})_{M} := \mathcal{C}_{k} \,\backslash\, (\mathcal{C}_{k})_{R}${\color{black},}
+    }
+    \vskip 0.01cm
+    \noindent
     there exist
     \begin{equation*}
     \left\{\;\;\begin{array}{ccl}
-    j
-    & = &
-        j(\,k,s,s_{R}\,;\Xobs\,) \;\in\; \{1,2,\ldots,J\},
-    \\
-    \varphi^{(j)}_{0k}
-    & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
-        \varphi^{(j)}_{0k}(\,s,s_{R}\,;\Xdotdot\,),
+    % j
+    % & = &
+    %     j(\,k,s,s_{R}\,;\Xobs\,) \;\in\; \{1,2,\ldots,J\},
+    % \\
+    \varphi_{0,kl}
+    & \overset{{\color{white}\textnormal{\small$1$}}}{=} &
+        \varphi_{0,kl}(\,s,s_{R}\,;\Xdotdot\,),
         \quad
         \textnormal{and}
     \\
-    \varphi^{(j)}_{lk}
+    \varphi_{ij,kl}
     & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
-        \varphi^{(j)}_{lk}(\,s,s_{R}\,;\Xdotdot\,),
+        \varphi_{ij,kl}(\,s,s_{R}\,;\Xdotdot\,),
         \;\;
-        \textnormal{{\color{red}for each \,$l \in s_{R}$}}
+        \textnormal{{\color{red}for each \,$i \in s$,\, $j \in (\mathcal{C}_{i})_{R}$}}
     \end{array}\right.
     \end{equation*}
     such that
-    \begin{equation*}
-    Y_{{\color{red}k}}^{*}
-    \;\; = \;\;
-        Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
-    \;\; = \;\;
-        \varphi^{(j)}_{0{\color{red}k}}
-        \,+\,
-        \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{l{\color{red}k}}\,Y_{l}\,,
+    \begin{eqnarray*}
+    Y_{{\color{red}kl}}^{*}
+    & = &
+        Y^{*}_{kl}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+    \\
+    & = &
+        \varphi_{0,{\color{red}kl}}
+        \, + \,
+        \underset{i \in s}{\sum}\;
+        \underset{j \in (\mathcal{C}_{i})_{R}}{\sum}\,
+        \varphi_{ij,{\color{red}kl}}\,Y_{ij}\,,
         \quad
-        \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$},
-    % \quad
-    % \textnormal{for some \,$j \in \{1,2,\ldots,J\}$\, depending on \,$s,\,s_{R},\,\Xobs$}
-    \end{equation*}
+        \textnormal{
+            for each
+            \,$k \in s$,
+            \,$l \in (\mathcal{C}_{k})_{M} := \mathcal{C}_{k} \,\backslash\, (\mathcal{C}_{k})_{R}$
+            },
+    \end{eqnarray*}
     \end{minipage}
     \end{center}
+% \item
+%     Furthermore, \,$Y^{*}_{ij}$\,
+%     ($i \in s \subset U$,\, $j \in (\mathcal{C}_{i})_{M}$)
+%     is \textbf{composite-linear},
+%     i.e., there exists \,$J \in \N$\, such that
+%     \begin{center}
+%     \begin{minipage}{6.2in}
+%     for each admissible sample \,$s \subset U$,\,
+%     each \,$s_{R} \subset s$,\,
+%     {\color{red}each} \,{\color{red}$k \in s_{M} := s \,\backslash\, s_{R}$},\,
+%     there exist
+%     \begin{equation*}
+%     \left\{\;\;\begin{array}{ccl}
+%     j
+%     & = &
+%         j(\,k,s,s_{R}\,;\Xobs\,) \;\in\; \{1,2,\ldots,J\},
+%     \\
+%     \varphi^{(j)}_{0k}
+%     & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
+%         \varphi^{(j)}_{0k}(\,s,s_{R}\,;\Xdotdot\,),
+%         \quad
+%         \textnormal{and}
+%     \\
+%     \varphi^{(j)}_{lk}
+%     & \overset{{\color{white}\textnormal{\Large$1$}}}{=} &
+%         \varphi^{(j)}_{lk}(\,s,s_{R}\,;\Xdotdot\,),
+%         \;\;
+%         \textnormal{{\color{red}for each \,$l \in s_{R}$}}
+%     \end{array}\right.
+%     \end{equation*}
+%     such that
+%     \begin{equation*}
+%     Y_{{\color{red}k}}^{*}
+%     \;\; = \;\;
+%         Y^{*}_{k}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
+%     \;\; = \;\;
+%         \varphi^{(j)}_{0{\color{red}k}}
+%         \,+\,
+%         \underset{l \in s_{R}}{\sum}\,\varphi^{(j)}_{l{\color{red}k}}\,Y_{l}\,,
+%         \quad
+%         \textnormal{for each \,$k \in s_{M} := s \,\backslash\, s_{R}$},
+%     % \quad
+%     % \textnormal{for some \,$j \in \{1,2,\ldots,J\}$\, depending on \,$s,\,s_{R},\,\Xobs$}
+%     \end{equation*}
+%     \end{minipage}
+%     \end{center}
 \end{itemize}
 \vskip 0.1cm
 \begin{center}
@@ -338,34 +550,34 @@ Suppose:
 \textbf{The variability quantification problem$\overset{{\color{white}1}}{\textnormal{\color{white}.}}$\& proposed solution}
 \end{center}
 We seek to quantify the variability of
-\,$\widetilde{R}_{d,Y/Z}$\,
+\,$\widetilde{R}_{\alpha,Y/Z}$\,
 as an estimator for
-\,$R_{d,Y/Z} \; := \; \dfrac{T_{d,Y}}{T_{d,Z}}$.
+\,$R_{\alpha,Y/Z} \; := \; \dfrac{T_{\alpha,Y}}{T_{\alpha,Z}}$.
 \vskip 0.1cm
-Following \cite{Beaumont2011} (which treats domain totals),
+Following \cite{Beaumont2011} (which treats generalized totals),
 the conditional mean squared error (MSE) given \,$\Zdot$\, and \,$\Xdotdot$\,
 \begin{equation*}
 \MSE\!\left(\;
     \left.
-    \widetilde{R}_{d,Y/Z}
+    \widetilde{R}_{\alpha,Y/Z}
     \;\right\vert\!
     \begin{array}{c} \Zdot\,,\Xdotdot \end{array}
     \!\right)
 \;\; := \;\;
     E\!\left[\;\left(\,
         \left.
-        \widetilde{R}_{d,Y/Z}
+        \widetilde{R}_{\alpha,Y/Z}
         \, - \,
-        R_{d,Y/Z}
+        R_{\alpha,Y/Z}
         \,\right)^{\!2}
         \;\right\vert\!
         \begin{array}{c} \Zdot\,,\Xdotdot \end{array}
         \!\right]
 \end{equation*}
 of
-\,$\widetilde{R}_{d,Y/Z}$\,
+\,$\widetilde{R}_{\alpha,Y/Z}$\,
 as estimator for
-\,$R_{d,Y/Z}$\,
+\,$R_{\alpha,Y/Z}$\,
 is proposed for this purpose.
 \vskip 0.3cm
 \noindent
@@ -373,7 +585,7 @@ In addition, an approximate, but computable, estimator for
 \,$
 \MSE\!\left(\;
     \left.
-    \widetilde{R}_{d,Y/Z}
+    \widetilde{R}_{\alpha,Y/Z}
     \;\right\vert\!
     \begin{array}{c} \Zdot\,,\Xdotdot \end{array}
     \!\right)
@@ -384,62 +596,134 @@ will be proposed.
 \end{tcolorbox}
 \end{minipage}
 \end{center}
-\vskip 0.2cm
+\vskip 0.3cm
 \noindent
 Lastly, we define the following entities that will repeatedly appear
 in the formulas we will derive in these notes:
 \begin{equation*}
-\mu_{k}
+\mu_{ij}
 \; := \;
-    E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Zdot\,,\Xobs\right.\right],
+    E_{Y}\!\left[\;
+        Y_{ij}
+        \,\left\vert\!
+        \begin{array}{c} \Zdot, \\ \Xobs \end{array}
+        \right.
+        \!\!\right],
 \quad\quad
-\sigma_{k}^{2}
+\sigma_{ij}^{2}
 \; := \;
     \Var_{Y}\!\left[\;
-        Y_{k}
-        \,\left\vert\;
-        \Zdot\,,\Xobs
+        Y_{ij}
+        \,\left\vert\!
+        \begin{array}{c} \Zdot, \\ \Xobs \end{array}
         \right.
-        \right]
+        \!\!\right]
 \end{equation*}
 \begin{equation*}
-\widetilde{y}_{k}
+\widetilde{y}_{ij}
 \; := \;
     \left\{\begin{array}{cl}
-        y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+        y_{ij}, & \textnormal{for \,$i \in s$,\, $j \,\in\, (\mathcal{C}_{i})_{R}$}
         \\
         % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
-        \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+        \overset{{\color{white}\textnormal{\large1}}}{\mu_{ij}}, & \textnormal{for \,$i \in s$,\, $j \,\in\, (\mathcal{C}_{i})_{M} \,:=\, \mathcal{C}_{i} \,\backslash\, (\mathcal{C}_{i})_{R}$}
         \end{array}\right.
 \end{equation*}
 \begin{equation*}
-W^{(+)}_{d,{\color{red}0}}
+W^{(+)}_{\alpha,{\color{red}0}}
 \; := \;
     \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
-        \,\right),
+        \underset{k \in s}{\sum}\;
+        \underset{l \in (\mathcal{C}_{i})_{M}}{\sum}\,
+        \dfrac{
+            \alpha_{kl}\,\varphi_{{\color{red}0},kl}
+            }{
+            \pi_{k}
+            }
+        \right),
 \quad\quad
-W^{(+)}_{d,{\color{red}l}}
+W^{(+)}_{\alpha,{\color{red}ij}}
 \; := \;
     \left(\;
-        \overset{J}{\underset{j=1}{\sum}}\;
-        \underset{k \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}l}k}
-        \,\right),
+        \underset{k \in s}{\sum}\;
+        \underset{l \in (\mathcal{C}_{i})_{M}}{\sum}\,
+        \dfrac{
+            \alpha_{kl}\,\varphi_{{\color{red}ij},kl}
+            }{
+            \pi_{k}
+            }
+        \right),
 \;\;
-\textnormal{for each \,$l \in s_{R}$}
+\textnormal{for each \,$i \in s$,\, $j \in (\mathcal{C}_{i})_{R}$}
 \end{equation*}
-\vskip 0.2cm
+\vskip 0.3cm
 \noindent
 Note that
-\,$\widetilde{y}_{k}$,\,
-\,$W^{(+)}_{d,{\color{black}0}}$\,
+\,$\widetilde{y}_{ij}$,\,
+\,$W^{(+)}_{\alpha,{\color{black}0}}$\,
 and
-\,$W^{(+)}_{d,{\color{black}l}}$\,
+\,$W^{(+)}_{\alpha,{\color{black}ij}}$\,
 depend on the full selected sample
 \,$s \subset U$\,
-and the responding subsample
-\,$s_{R} \subset s \subset U$.\,
+of PSUs and the responding subsample
+\,$s_{R} = \underset{i \in s}{\bigcup}\,(\mathcal{C}_{i})_{R}$\,
+of SSUs.
+% \vskip 0.2cm
+% \noindent
+% Lastly, we define the following entities that will repeatedly appear
+% in the formulas we will derive in these notes:
+% \begin{equation*}
+% \mu_{k}
+% \; := \;
+%     E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Zdot\,,\Xobs\right.\right],
+% \quad\quad
+% \sigma_{k}^{2}
+% \; := \;
+%     \Var_{Y}\!\left[\;
+%         Y_{k}
+%         \,\left\vert\;
+%         \Zdot\,,\Xobs
+%         \right.
+%         \right]
+% \end{equation*}
+% \begin{equation*}
+% \widetilde{y}_{k}
+% \; := \;
+%     \left\{\begin{array}{cl}
+%         y_{k}, & \textnormal{for \,$k \,\in\, s_{R}$}
+%         \\
+%         % \overset{{\color{white}1}}{E_{Y}\!\left[\;Y_{k}\,\left\vert\;\Xobs\right.\right]}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+%         \overset{{\color{white}\textnormal{\large1}}}{\mu_{k}}, & \textnormal{for \,$k \,\in\, s_{M} \,:=\, s \,\backslash\, s_{R}$}
+%         \end{array}\right.
+% \end{equation*}
+% \begin{equation*}
+% W^{(+)}_{d,{\color{red}0}}
+% \; := \;
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{l \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}0}l}
+%         \,\right),
+% \quad\quad
+% W^{(+)}_{d,{\color{red}l}}
+% \; := \;
+%     \left(\;
+%         \overset{J}{\underset{j=1}{\sum}}\;
+%         \underset{k \in s_{M}^{(j)}}{\sum}\,w_{l}\,d_{l}\,\varphi^{(j)}_{{\color{red}l}k}
+%         \,\right),
+% \;\;
+% \textnormal{for each \,$l \in s_{R}$}
+% \end{equation*}
+% \vskip 0.2cm
+% \noindent
+% Note that
+% \,$\widetilde{y}_{k}$,\,
+% \,$W^{(+)}_{d,{\color{black}0}}$\,
+% and
+% \,$W^{(+)}_{d,{\color{black}l}}$\,
+% depend on the full selected sample
+% \,$s \subset U$\,
+% and the responding subsample
+% \,$s_{R} \subset s \subset U$.\,
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
@@ -685,15 +969,15 @@ and the responding subsample
 %         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 % \vskip 0.2cm
-% \begin{definition}[Imputation ratio estimator \,$\widetilde{R}_{d,Y/Z}$]
+% \begin{definition}[Imputation ratio estimator \,$\widetilde{R}_{\alpha,Y/Z}$]
 % \mbox{}
 % \vskip 0.1cm
 % \noindent
 % An \textbf{imputation ratio estimator} for the domain ratio
 % \begin{equation*}
-% R_{d,Y/Z}
+% R_{\alpha,Y/Z}
 % \;\; := \;\;
-%     \dfrac{ T_{d,Y} }{ \overset{{\color{white}.}}{T_{d,Z}} }
+%     \dfrac{ T_{\alpha,Y} }{ \overset{{\color{white}.}}{T_{\alpha,Z}} }
 % \;\; = \;\;
 %     \dfrac{
 %         \underset{i \in U}{\sum}\,d_{i}Y_{i}
@@ -703,9 +987,9 @@ and the responding subsample
 % \end{equation*}
 % is the random variable of the form:
 % \begin{eqnarray*}
-% {\color{red}\widetilde{R}_{d,Y/Z}}
+% {\color{red}\widetilde{R}_{\alpha,Y/Z}}
 % & = &
-%     \widetilde{R}_{d,Y/Z}(\,
+%     \widetilde{R}_{\alpha,Y/Z}(\,
 %         \Sdot\,,\,
 %         \Rdot\,,\,
 %         \Ydot\,,\,
@@ -717,10 +1001,10 @@ and the responding subsample
 %     {\color{red}
 %     \dfrac{
 %         {\color{white}.}
-%         \widetilde{T}_{d,Y}
+%         \widetilde{T}_{\alpha,Y}
 %         {\color{white}.}
 %         }{
-%         \overset{{\color{white}.}}{\widehat{T}_{d,Z}}
+%         \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}_{\alpha,Z}}
 %         }
 %     }
 % \\
@@ -748,12 +1032,12 @@ and the responding subsample
 % \end{definition}
 
 % \vskip 0.3cm
-% \begin{lemma}[A formula for \,$\widetilde{T}_{d,Y}$]
+% \begin{lemma}[A formula for \,$\widetilde{T}_{\alpha,Y}$]
 % \mbox{}
 % \vskip 0.1cm
 % \noindent
 % \begin{eqnarray*}
-% \widetilde{T}_{d,Y}
+% \widetilde{T}_{\alpha,Y}
 % & = &
 %     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
 %     \;\overset{{\color{white}.}}{+}\;
@@ -762,7 +1046,7 @@ and the responding subsample
 % \end{lemma}
 % \proof
 % \begin{eqnarray*}
-% \widetilde{T}_{d,Y}
+% \widetilde{T}_{\alpha,Y}
 % & := &
 %     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
 % \;\; = \;\;
@@ -810,16 +1094,16 @@ and the responding subsample
 %         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 % \vskip 0.3cm
-% \begin{lemma}[Conditional bias of \,$\widetilde{T}_{d,Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
+% \begin{lemma}[Conditional bias of \,$\widetilde{T}_{\alpha,Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
 % \label{biasTtilde}
 % \mbox{}
 % \vskip 0.1cm
 % \noindent
 % Let
 % \begin{eqnarray*}
-% \widetilde{T}_{d,Y}
+% \widetilde{T}_{\alpha,Y}
 % \;\; = \;\;
-%     \widetilde{T}_{d,Y}(\,
+%     \widetilde{T}_{\alpha,Y}(\,
 %         \Sdot\,,\,
 %         \Rdot\,,\,
 %         \Ydot\,,\,
@@ -835,8 +1119,8 @@ and the responding subsample
 %         (1-R_{i})\,Y^{*}_{i}
 %         \,\right)
 % \end{eqnarray*}
-% be an imputation estimator for the domain total
-% \;$T_{d,Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
+% be an imputation estimator for the generalized total
+% \;$T_{\alpha,Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
 % where
 % \begin{equation*}
 % \widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}
@@ -866,25 +1150,25 @@ and the responding subsample
 %     \,$
 %     \bias\!\left(\;
 %         \left.
-%         \widetilde{T}_{d,Y}
+%         \widetilde{T}_{\alpha,Y}
 %         \;\right\vert\,
 %         \Zdot\,,\Xobs
 %         \,\right)
 %     $\,
 %     of
-%     \,$\widetilde{T}_{d,Y}$\,
+%     \,$\widetilde{T}_{\alpha,Y}$\,
 %     satisfies:
 %     \begin{eqnarray*}
 %     \bias\!\left(\;
 %         \left.
-%         \widetilde{T}_{d,Y}
+%         \widetilde{T}_{\alpha,Y}
 %         \;\right\vert\,
 %         \Zdot\,,\Xobs
 %         \,\right)
 %     & := &
 %         E\!\left[\;
 %             \left.
-%             \widetilde{T}_{d,Y} - T_{d,Y}
+%             \widetilde{T}_{\alpha,Y} - T_{\alpha,Y}
 %             \,\right\vert\,
 %             \Zdot\,,\Xobs
 %             \,\right]
@@ -892,7 +1176,7 @@ and the responding subsample
 %         E_{SR}\!\left(\;
 %             \overset{{\color{white}.}}{E_{Y}\!\left[\;
 %                 \left.
-%                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+%                 \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %                 \;\right\vert\,
 %                 s,s_{R},\Zdot\,,\Xobs
 %                 \,\right]}
@@ -900,19 +1184,19 @@ and the responding subsample
 %     \end{eqnarray*}
 %     where
 %     \,$
-%     \widehat{T}_{d,Y}
+%     \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %     \; = \;
-%         \widehat{T}_{d,Y}(\,s,\Ydot\,;\,\dbullet\,)
+%         \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}(\,s,\Ydot\,;\,\dbullet\,)
 %     \; = \;
 %         \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
 %     $\,
-%     is the Horvitz-Thompson estimator for the domain total.
+%     is the Horvitz-Thompson estimator for the generalized total.
 % \item
 %     The \textbf{conditional model bias}
 %     \,$
 %     E_{Y}\!\left[\;
 %         \left.
-%         \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+%         \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %         \;\right\vert\,
 %         s,s_{R},\Xobs
 %         \,\right]
@@ -921,7 +1205,7 @@ and the responding subsample
 %     \begin{eqnarray*}
 %     E_{Y}\!\left[\;
 %         \left.
-%         \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+%         \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %         \;\right\vert\,
 %         s,s_{R},\Xobs
 %         \,\right]
@@ -939,14 +1223,14 @@ and the responding subsample
 %     \begin{eqnarray*}
 %     \bias\!\left(\;
 %         \left.
-%         \widetilde{T}_{d,Y}
+%         \widetilde{T}_{\alpha,Y}
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right)
 %     & := &
 %         E\!\left[\;
 %             \left.
-%             \widetilde{T}_{d,Y} - T_{d,Y}
+%             \widetilde{T}_{\alpha,Y} - T_{\alpha,Y}
 %             \,\right\vert\,
 %             \Xobs
 %             \,\right]
@@ -954,7 +1238,7 @@ and the responding subsample
 %         E_{SR}\!\left(\;
 %             \overset{{\color{white}.}}{E_{Y}\!\left[\;
 %                 \left.
-%                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+%                 \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %                 \;\right\vert\,
 %                 s,s_{R},\Xobs
 %                 \,\right]}
@@ -1011,21 +1295,21 @@ and the responding subsample
 %     \begin{eqnarray*}
 %     \bias\!\left(\;
 %         \left.
-%         \widetilde{T}_{d,Y}
+%         \widetilde{T}_{\alpha,Y}
 %         \;\right\vert\,
 %         \Xobs
 %         \,\right)
 %     & := &
 %         E\!\left[\;
 %             \left.
-%             \widetilde{T}_{d,Y} - T_{d,Y}
+%             \widetilde{T}_{\alpha,Y} - T_{\alpha,Y}
 %             \,\right\vert\,
 %             \Xobs
 %             \,\right]
 %     \;\; = \;\;
 %         E\!\left[\;
 %             \left.
-%             \widetilde{T}_{d,Y} - \widehat{T}_{d,Y} + \widehat{T}_{d,Y} - T_{d,Y}
+%             \widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} + \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}
 %             \,\right\vert\,
 %             \Xobs
 %             \,\right]
@@ -1033,14 +1317,14 @@ and the responding subsample
 %     & = &
 %         E_{SRY}\!\left[\,
 %             \left.
-%             \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
+%             \widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %             \,\right\vert\,
 %             \Xobs
 %             \,\right]
 %         \; + \;
 %         E_{YSR}\!\left[\,
 %             \left.
-%             \widehat{T}_{d,Y} - T_{d,Y}
+%             \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}
 %             \,\right\vert\,
 %             \Xobs
 %             \,\right]
@@ -1049,7 +1333,7 @@ and the responding subsample
 %         E_{SR}\!\left(\,
 %             \overset{{\color{white}.}}{E_{Y}\!\left[\;
 %                 \left.
-%                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+%                 \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %                 \;\right\vert\,
 %                 s,s_{R},\Xobs
 %                 \,\right]}
@@ -1058,7 +1342,7 @@ and the responding subsample
 %         E_{Y}\!\left(\,
 %             \overset{{\color{white}.}}{E_{SR}\!\left[\;
 %                 \left.
-%                 \widehat{T}_{d,Y} \overset{{\color{white}.}}{-} T_{d,Y}
+%                 \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} \overset{{\color{white}.}}{-} T_{\alpha,Y}
 %                 \;\right\vert\,
 %                 \Ydot,\Xobs
 %                 \,\right]}
@@ -1068,7 +1352,7 @@ and the responding subsample
 %         E_{SR}\!\left(\,
 %             \overset{{\color{white}.}}{E_{Y}\!\left[\;
 %                 \left.
-%                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+%                 \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %                 \;\right\vert\,
 %                 s,s_{R},\Xobs
 %                 \,\right]}
@@ -1076,13 +1360,13 @@ and the responding subsample
 %         \; + \;
 %         E_{Y}\!\left(\;\overset{{\color{white}.}}{0}\;\right),
 %         \;\;
-%         \textnormal{by design-unbiasedness of \,$\widehat{T}_{d,Y}$}
+%         \textnormal{by design-unbiasedness of \,$\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}$}
 %     \\
 %     & = &
 %         E_{SR}\!\left(\,
 %             \overset{{\color{white}.}}{E_{Y}\!\left[\;
 %                 \left.
-%                 \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+%                 \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %                 \;\right\vert\,
 %                 s,s_{R},\Xobs
 %                 \,\right]}
@@ -1095,7 +1379,7 @@ and the responding subsample
 %     &&
 %         E_{Y}\!\left[\;
 %             \left.
-%             \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+%             \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %             \;\right\vert\,
 %             s,s_{R},\Xobs
 %             \,\right]
@@ -1144,7 +1428,7 @@ and the responding subsample
 
 % \vskip 1.0cm
 \clearpage
-\subsection{Decomposition of \,$\MSE\!\left(\,\left.\widetilde{R}_{d,Y/Z}\;\right\vert\,\Zdot\,,\Xobs\,\right)$}
+\subsection{Decomposition of \,$\MSE\!\left(\,\left.\widetilde{R}_{\alpha,Y/Z}\;\right\vert\,\Zdot\,,\Xobs\,\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -1156,7 +1440,7 @@ and the responding subsample
 \vskip 0.1cm
 \noindent
 Suppose we are given quantities as described in Subsection
-\ref{DomainRatioFormulationOfVarianceEstimationProblem}
+\ref{GeneralizedRatioFormulationOfVarianceEstimationProblem}
 and
 that they satisfy the probabilistic assumptions as described in Subsection
 \ref{DomainRatioProbabilisticFramework}.
@@ -1164,27 +1448,27 @@ Then, the conditional mean squared error
 \,$
 \MSE\!\left(\;
     \left.
-    \widetilde{R}_{d,Y/Z}
+    \widetilde{R}_{\alpha,Y/Z}
     \;\right\vert\,
     \Zdot\,,\Xobs
     \,\right)
 $\,
-of \,$\widetilde{R}_{d,Y/Z}$\,
+of \,$\widetilde{R}_{\alpha,Y/Z}$\,
 as estimator for
-\,$R_{d,Y/Z}$,\,
+\,$R_{\alpha,Y/Z}$,\,
 given \,$\Zdot$\, and \,$\Xdotdot$,\,
 can be additively decomposed as follows:
 \begin{eqnarray*}
 \MSE\!\left(\;
     \left.
-    \widetilde{R}_{d,Y/Z}
+    \widetilde{R}_{\alpha,Y/Z}
     \;\right\vert\,
     \Zdot\,,\Xobs
     \,\right)
 & := &
     E\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} - R_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1193,7 +1477,7 @@ can be additively decomposed as follows:
     E_{Y}\!\left[\,
     \Var_{S}\!\left(\,
         \left.
-        \widehat{R}_{d,Y/Z}
+        \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
         \,\right\vert\,
         \Ydot,
         \Zdot\,,\Xobs
@@ -1205,7 +1489,7 @@ can be additively decomposed as follows:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         s,s_{R},\Zdot\,,\Xobs
         \,\right]
@@ -1217,7 +1501,7 @@ can be additively decomposed as follows:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
+        (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
         \,\right\vert\,
         s,s_{R},\Zdot\,,\Xobs
         \,\right]
@@ -1229,7 +1513,7 @@ can be additively decomposed as follows:
 &&
 \MSE\!\left(\;
     \left.
-    \widetilde{R}_{d,Y/Z}
+    \widetilde{R}_{\alpha,Y/Z}
     \;\right\vert\,
     \Zdot\,,\Xobs
     \,\right)
@@ -1238,14 +1522,14 @@ can be additively decomposed as follows:
 \;\; := \;\;
     E\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} - R_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
 \;\; = \;\;
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} - R_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1253,9 +1537,9 @@ can be additively decomposed as follows:
 & = &
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} \;{\color{red}-\; \widehat{R}_{d,Y/Z} \;+\; \widehat{R}_{d,Y/Z}}
+        (\,\widetilde{R}_{\alpha,Y/Z} \;{\color{red}-\; \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \;+\; \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}}
         \,-\,
-        R_{d,Y/Z}\,)^{2}
+        R_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1263,11 +1547,11 @@ can be additively decomposed as follows:
 & = &
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
         \,+\,
-        2\,(\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
+        2\,(\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
         \,+\,
-        (\,\widehat{R}_{d,Y/Z} - R_{d,Y/Z}\,)^{2}
+        (\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1276,7 +1560,7 @@ can be additively decomposed as follows:
     {\color{black}
     E_{YSR}\!\left[\,
         \left.
-        (\,\widehat{R}_{d,Y/Z} - R_{d,Y/Z}\,)^{2}
+        (\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1287,7 +1571,7 @@ can be additively decomposed as follows:
     {\color{black}
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1298,7 +1582,7 @@ can be additively decomposed as follows:
     2\cdot
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
+        (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1308,7 +1592,7 @@ can be additively decomposed as follows:
     E_{Y}\!\left[\,
     E_{SR}\!\left[\,
         \left.
-        (\,\widehat{R}_{d,Y/Z} - R_{d,Y/Z}\,)^{2}
+        (\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         \Ydot,
         \Zdot\,,\Xobs
@@ -1322,7 +1606,7 @@ can be additively decomposed as follows:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         s,s_{R},\Zdot\,,\Xobs
         \,\right]
@@ -1335,7 +1619,7 @@ can be additively decomposed as follows:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
+        (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
         \,\right\vert\,
         s,s_{R},\Zdot\,,\Xobs
         \,\right]
@@ -1346,7 +1630,7 @@ can be additively decomposed as follows:
     {\color{blue}
     \Var_{S}\!\left(\,
         \left.
-        \widehat{R}_{d,Y/Z}
+        \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
         \,\right\vert\,
         \Ydot,
         \Zdot\,,\Xobs
@@ -1359,7 +1643,7 @@ can be additively decomposed as follows:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         s,s_{R},\Zdot\,,\Xobs
         \,\right]
@@ -1371,7 +1655,7 @@ can be additively decomposed as follows:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
+        (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
         \,\right\vert\,
         s,s_{R},\Zdot\,,\Xobs
         \,\right]
@@ -1388,14 +1672,14 @@ To refer to the three summands in the above decomposition of
 \begin{equation*}
 \MSE\!\left(\,
     \left.
-    \widetilde{R}_{d,Y/Z}
+    \widetilde{R}_{\alpha,Y/Z}
     \;\right\vert\,
     \Zdot\,,\Xobs
     \,\right)
 \, := \,
     E\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} - R_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right],
@@ -1414,7 +1698,7 @@ we will use the following nomenclature:
     E_{Y}\!\left[\,
     \Var_{S}\!\left(\,
         \left.
-        \widehat{R}_{d,Y/Z}
+        \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
         \,\right\vert\,
         \Ydot,
         \Zdot\,,\Xobs
@@ -1432,7 +1716,7 @@ we will use the following nomenclature:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
         \,\right\vert\,
         s,s_{R},\Zdot\,,\Xobs
         \,\right]
@@ -1450,7 +1734,7 @@ we will use the following nomenclature:
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
         \left.
-        (\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
+        (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
         \,\right\vert\,
         s,s_{R},\Zdot\,,\Xobs
         \,\right]
@@ -1465,7 +1749,7 @@ we will use the following nomenclature:
 % E_{Y}\!\left[\,
 % E_{SR}\!\left[\,
 %     \left.
-%     (\,\widehat{T}_{d,Y} - T_{d,Y}\,)^{2}
+%     (\,\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}\,)^{2}
 %     \,\right\vert\,
 %     \Ydot,
 %     \Xobs
@@ -1479,7 +1763,7 @@ we will use the following nomenclature:
 % E_{Y}\!\left[\,
 % E_{SR}\!\left[\,
 %     \left.
-%     (\,\widehat{T}_{d,Y} - T_{d,Y}\,)^{2}
+%     (\,\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}\,)^{2}
 %     \,\right\vert\,
 %     \Ydot,
 %     \Xobs
@@ -1489,7 +1773,7 @@ we will use the following nomenclature:
 %     E_{Y}\!\left[\,
 %     \Var_{SR}\!\left(\,
 %         \left.
-%         \widehat{T}_{d,Y}
+%         \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 %         \,\right\vert\,
 %         \Ydot,
 %         \Xobs
@@ -1501,7 +1785,7 @@ we will use the following nomenclature:
 % E_{Y}\!\left[\,
 % E_{SR}\!\left[\,
 %     \left.
-%     (\,\widehat{T}_{d,Y} - T_{d,Y}\,)^{2}
+%     (\,\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}\,)^{2}
 %     \,\right\vert\,
 %     \Ydot,
 %     \Xobs
@@ -1511,7 +1795,7 @@ we will use the following nomenclature:
 %     E_{Y}\!\left[\,
 %     E_{SR}\!\left[\,
 %         \left.
-%         (\,\widehat{T}_{d,Y} - T_{d,Y}\,)^{2}
+%         (\,\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}\,)^{2}
 %         \,\right\vert\,
 %         s,s_{R},\YsubR,\Xobs
 %         \,\right]
@@ -1524,7 +1808,7 @@ we will use the following nomenclature:
 % \clearpage
 \vskip 0.5cm
 \subsection{Estimator for the sampling variance component of
-\,$\MSE\!\left(\,\widetilde{R}_{d,Y/Z}\left\vert\,\Zdot\,,\Xobs\,\right.\right)$}
+\,$\MSE\!\left(\,\widetilde{R}_{\alpha,Y/Z}\left\vert\,\Zdot\,,\Xobs\,\right.\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -1536,7 +1820,7 @@ we will use the following nomenclature:
 \vskip 0.1cm
 \noindent
 Suppose we are given quantities as described in Subsection
-\ref{DomainRatioFormulationOfVarianceEstimationProblem}
+\ref{GeneralizedRatioFormulationOfVarianceEstimationProblem}
 and
 that they satisfy the probabilistic assumptions as described in Subsection
 \ref{DomainRatioProbabilisticFramework}.
@@ -1558,7 +1842,7 @@ Then, the following statements are true:
     \;\; = \;\;
         \Var_{S}\!\left(\,
             \left.
-            \widehat{R}_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\right\vert\,
             \Ydot,
             \Zdot,
@@ -1580,7 +1864,7 @@ Then, the following statements are true:
     \,$
     E_{Y}\!\left[\,
         \Var_{S}\!\left(\,
-            \widehat{R}_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\left\vert\!
             \begin{array}{c} \Ydot,\\ \Zdot, \Xobs \end{array}
             \right.
@@ -1602,7 +1886,7 @@ Then, the following statements are true:
     \;\; = \;\;
         E_{Y}\!\left[\,
             \Var_{S}\!\left(\,
-                \widehat{R}_{d,Y/Z}
+                \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
                 \,\left\vert\!
                 \begin{array}{c}
                 \Ydot, \\ \Zdot, \Xobs
@@ -1632,7 +1916,7 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 % \left(\,
-                d_{k}y_{k}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot d_{k}z_{k}
+                d_{k}y_{k}-\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}(s\,;\ydot,\zdot) \cdot d_{k}z_{k}
                 % \,\right)
                 }{
                 \pi_{k}
@@ -1641,7 +1925,7 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 % \left(\,
-                d_{l}y_{l}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot d_{l}z_{l}
+                d_{l}y_{l}-\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}(s\,;\ydot,\zdot) \cdot d_{l}z_{l}
                 % \,\right)
                 }{
                 \pi_{l}
@@ -1737,7 +2021,7 @@ Then, the following statements are true:
                 \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
                 \\
                 \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
-                2\cdot\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)
+                2\cdot\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}(s\,;\ydot,\zdot)
                 \cdot\!
                 \left(\,
                     \underset{k \in s}{\sum}\;
@@ -1748,7 +2032,7 @@ Then, the following statements are true:
                     \right)
                 \\
                 \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
-                \widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)^{2}
+                \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}(s\,;\ydot,\zdot)^{2}
                 \cdot
                 \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
                 \end{array}
@@ -1871,7 +2155,7 @@ Then, the following statements are true:
     & = &
         E_{Y}\!\left[\,
             \Var_{S}\!\left(\,
-                \widehat{R}_{d,Y/Z}
+                \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
                 \,\left\vert\!
                 \begin{array}{c} \Ydot, \\ \Zdot, \Xobs \end{array}
                 \right.
@@ -1891,7 +2175,7 @@ Then, the following statements are true:
     \; = \;
         \Var_{S}\!\left(\,
             \left.
-            \widehat{R}_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\right\vert\,
             \Ydot,
             \Zdot,
@@ -1933,18 +2217,18 @@ Then, the following statements are true:
             {\color{black}2}
             \cdot
             \dfrac{
-                \widehat{T}_{d}(s\,;\Ydot)
+                \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
                 }{
-                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+                \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
                 }
             \cdot
             {\color{black}Y_{k}Z_{l}}
             \, + \,
             Z_{k}\,Z_{l}\,
             \dfrac{
-                \widehat{T}_{d}(s\,;\Ydot)^{2}
+                \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)^{2}
                 }{
-                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
+                \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)^{2}}
                 }
             \,\left\vert
             \begin{array}{c}
@@ -1970,7 +2254,7 @@ Then, the following statements are true:
     & = &
         E_{Y_{M}}\!\left[\;
             \dfrac{1}{
-                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
+                \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)^{2}}
                 }
             \cdot
             \underset{k \in s}{\sum}\,
@@ -1982,9 +2266,9 @@ Then, the following statements are true:
                     Y_{k}
                     -
                     \dfrac{
-                        \widehat{T}_{d}(s\,;\Ydot)
+                        \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
                         }{
-                        \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+                        \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
                         }
                     \cdot
                     Z_{k}
@@ -1997,9 +2281,9 @@ Then, the following statements are true:
                     Y_{l}
                     -
                     \dfrac{
-                        \widehat{T}_{d}(s\,;\Ydot)
+                        \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
                         }{
-                        \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+                        \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
                         }
                     \cdot
                     Z_{l}
@@ -2028,9 +2312,9 @@ Then, the following statements are true:
                 Y_{k}
                 \, - \,
                 \dfrac{
-                    \widehat{T}_{d}(s\,;\Ydot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
                     }{
-                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+                    \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
                     }
                 \cdot
                 Z_{k}
@@ -2040,9 +2324,9 @@ Then, the following statements are true:
                 Y_{l}
                 \, - \,
                 \dfrac{
-                    \widehat{T}_{d}(s\,;\Ydot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
                     }{
-                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+                    \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
                     }
                 \cdot
                 Z_{l}
@@ -2069,17 +2353,17 @@ Then, the following statements are true:
             Y_{k}\,Y_{l}
             \, - \,
             \dfrac{
-                \widehat{T}_{d}(s\,;\Ydot)
+                \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
                 }{
-                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+                \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
                 }
             {\color{black}\left(\,Y_{k}Z_{l} \overset{{\color{white}.}}{+} Y_{l}Z_{k}\,\right)}
             \, + \,
             Z_{k}\,Z_{l}\,
             \dfrac{
-                \widehat{T}_{d}(s\,;\Ydot)^{2}
+                \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)^{2}
                 }{
-                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
+                \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)^{2}}
                 }
             \,\left\vert
             \begin{array}{c}
@@ -2105,18 +2389,18 @@ Then, the following statements are true:
             {\color{red}2}
             \cdot
             \dfrac{
-                \widehat{T}_{d}(s\,;\Ydot)
+                \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
                 }{
-                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+                \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
                 }
             \cdot
             {\color{red}Y_{k}Z_{l}}
             \, + \,
             Z_{k}\,Z_{l}\,
             \dfrac{
-                \widehat{T}_{d}(s\,;\Ydot)^{2}
+                \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)^{2}
                 }{
-                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
+                \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)^{2}}
                 }
             \,\left\vert
             \begin{array}{c}
@@ -2188,7 +2472,7 @@ Then, the following statements are true:
     \textbf{Claim 2:}\quad
     \begin{eqnarray*}
     E_{Y_{M}}\!\left[\;
-        \widehat{T}_{d}(s\,;\Ydot)^{2}
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)^{2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
@@ -2208,7 +2492,7 @@ Then, the following statements are true:
     Proof of Claim 2:\;\;
     \begin{eqnarray*}
     E_{Y_{M}}\!\left[\;
-        \widehat{T}_{d}(s\,;\Ydot)^{2}
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)^{2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
@@ -2305,7 +2589,7 @@ Then, the following statements are true:
     \textbf{Claim 3:}\quad
     \begin{eqnarray*}
     E_{Y_{M}}\!\left[\;
-        \widehat{T}_{d}(s\,;\Ydot) \cdot Y_{k}
+        \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot) \cdot Y_{k}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
@@ -2335,7 +2619,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y_{M}}\!\left[\;
-            \widehat{T}_{d}(s\,;\Ydot) \cdot Y_{k}
+            \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot) \cdot Y_{k}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
@@ -2488,7 +2772,7 @@ Then, the following statements are true:
     % & = &
     %     E_{Y_{M}}\!\left[\;
     %         \dfrac{1}{
-    %             \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
+    %             \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)^{2}}
     %             }
     %         \cdot
     %         \underset{k \in s}{\sum}\,
@@ -2500,9 +2784,9 @@ Then, the following statements are true:
     %                 Y_{k}
     %                 \, - \,
     %                 \dfrac{
-    %                     \widehat{T}_{d}(s\,;\Ydot)
+    %                     \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
     %                     }{
-    %                     \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+    %                     \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
     %                     }
     %                 \cdot
     %                 Z_{k}
@@ -2515,9 +2799,9 @@ Then, the following statements are true:
     %                 Y_{l}
     %                 \, - \,
     %                 \dfrac{
-    %                     \widehat{T}_{d}(s\,;\Ydot)
+    %                     \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
     %                     }{
-    %                     \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+    %                     \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
     %                     }
     %                 \cdot
     %                 Z_{l}
@@ -2546,9 +2830,9 @@ Then, the following statements are true:
     %             Y_{k}
     %             \, - \,
     %             \dfrac{
-    %                 \widehat{T}_{d}(s\,;\Ydot)
+    %                 \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
     %                 }{
-    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+    %                 \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
     %                 }
     %             \cdot
     %             Z_{k}
@@ -2558,9 +2842,9 @@ Then, the following statements are true:
     %             Y_{l}
     %             \, - \,
     %             \dfrac{
-    %                 \widehat{T}_{d}(s\,;\Ydot)
+    %                 \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
     %                 }{
-    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+    %                 \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
     %                 }
     %             \cdot
     %             Z_{l}
@@ -2587,17 +2871,17 @@ Then, the following statements are true:
     %         Y_{k}\,Y_{l}
     %         \, - \,
     %         \dfrac{
-    %             \widehat{T}_{d}(s\,;\Ydot)
+    %             \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
     %             }{
-    %             \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+    %             \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
     %             }
     %         {\color{black}\left(\,Y_{k}Z_{l} \overset{{\color{white}.}}{+} Y_{l}Z_{k}\,\right)}
     %         \, + \,
     %         Z_{k}\,Z_{l}\,
     %         \dfrac{
-    %             \widehat{T}_{d}(s\,;\Ydot)^{2}
+    %             \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)^{2}
     %             }{
-    %             \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
+    %             \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)^{2}}
     %             }
     %         \,\left\vert
     %         \begin{array}{c}
@@ -2625,18 +2909,18 @@ Then, the following statements are true:
             {\color{black}2}
             \cdot
             \dfrac{
-                \widehat{T}_{d}(s\,;\Ydot)
+                \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)
                 }{
-                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)}
+                \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
                 }
             \cdot
             {\color{black}Y_{k}Z_{l}}
             \, + \,
             Z_{k}\,Z_{l}\,
             \dfrac{
-                \widehat{T}_{d}(s\,;\Ydot)^{2}
+                \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)^{2}
                 }{
-                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
+                \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)^{2}}
                 }
             \,\left\vert
             \begin{array}{c}
@@ -2685,7 +2969,7 @@ Then, the following statements are true:
         \dfrac{d_{l}z_{l}}{\pi_{l}}
         \cdot
         E_{Y_{M}}\!\left[\;\,
-            \widehat{T}_{d}(s\,;\Ydot) \cdot Y_{k}
+            \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot) \cdot Y_{k}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
@@ -2702,7 +2986,7 @@ Then, the following statements are true:
             }
         \cdot
         E_{Y_{M}}\!\left[\;\,
-            \widehat{T}_{d}(s\,;\Ydot)^{2}
+            \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Ydot)^{2}
             \;\left\vert
             \begin{array}{c}
                 s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
@@ -2954,20 +3238,20 @@ Then, the following statements are true:
 
 \clearpage
 \subsection{Expressing the imputation error
-\,$\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}$\,
+\,$\widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}$\,
 as a sum of $(\Xobs)$-conditionally independent summands}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.1cm
-\begin{lemma}[$\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}$ as sum of $(\Xobs)$-conditionally independent summands]
+\begin{lemma}[$\widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}$ as sum of $(\Xobs)$-conditionally independent summands]
 \label{DomainRatioNumeratorImputationError}
 \mbox{}
 \vskip 0.1cm
 \noindent
 Suppose we are given quantities as described in Subsection
-\ref{DomainRatioFormulationOfVarianceEstimationProblem}
+\ref{GeneralizedRatioFormulationOfVarianceEstimationProblem}
 and
 that they satisfy the probabilistic assumptions as described in Subsection
 \ref{DomainRatioProbabilisticFramework}.
@@ -2979,7 +3263,7 @@ Then, the following equalities hold:
 \begin{enumerate}
 \item
     $
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha,Y}
     \;\; = \;\;
     \widehat{T}_{d}(\,s\,;\Ydot^{\dagger}\,)
     % \;\; = \;\;
@@ -2991,13 +3275,13 @@ Then, the following equalities hold:
     $
 \item
     $
-    \widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}
+    \widetilde{T}_{\alpha,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
     \;\; = \;\;
-    % \widetilde{T}_{d,Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet}\,\dbullet\,)
+    % \widetilde{T}_{\alpha,Y}(\,s,s_{R},\Ydot\,;X_{\bullet\bullet}\,\dbullet\,)
     % \widehat{T}_{d}(\,s\,;\Ydot^{\dagger}(\Sdot,\Rdot,\Ydot,\Xdotdot)\,)
     \widehat{T}_{d}(\,s\,;\Ydot^{\dagger}\,)
     \,-\,
-    % \widehat{T}_{d,Y}(\,s,\Ydot\,;\,\dbullet\,)
+    % \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}(\,s,\Ydot\,;\,\dbullet\,)
     \widehat{T}_{d}(\,s\,;\Ydot\,)
     \;\; = \;\;
         W^{(+)}_{d,0}
@@ -3008,14 +3292,14 @@ Then, the following equalities hold:
     $
     % where
     % \,$
-    % \widehat{T}_{d,Y}(\,s,\Ydot\,;\,\dbullet\,)
+    % \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}(\,s,\Ydot\,;\,\dbullet\,)
     % \;\; = \;\;
     %     \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
     % $\,
     % is the Horvitz-Thompson estimator.
 \end{enumerate}
 % \begin{eqnarray*}
-% \widetilde{T}_{d,Y}{\color{white}....}
+% \widetilde{T}_{\alpha,Y}{\color{white}....}
 % & = &
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
@@ -3034,9 +3318,9 @@ Then, the following equalities hold:
 %         \right)
 %     Y_{k}
 % \\
-% \widetilde{T}_{d,Y}
+% \widetilde{T}_{\alpha,Y}
 % \,-\,
-% \widehat{T}_{d,Y}
+% \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
 % & = &
 %     \left(\;
 %         \overset{J}{\underset{j=1}{\sum}}\;
@@ -3058,13 +3342,13 @@ Then, the following equalities hold:
 \item
     Straightforward algebra:
     \begin{eqnarray*}
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha,Y}
     & = &
     \widehat{T}_{d}(\,s\,;\Ydot^{\dagger}\,)
     % \;\; = \;\;
     % \widehat{T}_{d}(\,s\,;\Ydot^{\dagger}(\Sdot,\Rdot,\Ydot,\Xdotdot)\,)
     % \;\; = \;\;
-    % \widetilde{T}_{d,Y}\!\left(\,s,s_{R},\Ydot\,;\,\dbullet\,\right)
+    % \widetilde{T}_{\alpha,Y}\!\left(\,s,s_{R},\Ydot\,;\,\dbullet\,\right)
     \;\; = \;\;
         \underset{l \in s_{R}}{\sum}\;w_{l}\,d_{l}\,Y_{l}
         \,+\,
@@ -3164,9 +3448,9 @@ Then, the following equalities hold:
 \item
     We again compute:
     \begin{eqnarray*}
-    \widetilde{T}_{d,Y}
+    \widetilde{T}_{\alpha,Y}
     \,-\,
-    \widehat{T}_{d,Y}
+    \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
     & = &
         W^{(+)}_{d,0}
         \;+\;
@@ -3205,7 +3489,7 @@ Then, the following equalities hold:
 % \vskip 1.0cm
 \clearpage
 \subsection{Estimator for the nonresponse variance component of
-\,$\MSE\!\left(\left.\widetilde{R}_{d,Y/Z}\,\right\vert\Zdot\,,\Xobs\right)$}
+\,$\MSE\!\left(\left.\widetilde{R}_{\alpha,Y/Z}\,\right\vert\Zdot\,,\Xobs\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -3217,7 +3501,7 @@ Then, the following equalities hold:
 \vskip 0.1cm
 \noindent
 Suppose we are given quantities as described in Subsection
-\ref{DomainRatioFormulationOfVarianceEstimationProblem}
+\ref{GeneralizedRatioFormulationOfVarianceEstimationProblem}
 and
 that they satisfy the probabilistic assumptions as described in Subsection
 \ref{DomainRatioProbabilisticFramework}.
@@ -3230,7 +3514,7 @@ Then, the following statements are true:
 \item
     $
     E_{Y}\!\left[\;
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -3244,7 +3528,7 @@ Then, the following statements are true:
     \,$
     E_{SR}\!\left[\,
     E_{Y}\!\left[\;
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -3258,7 +3542,7 @@ Then, the following statements are true:
 \item
     $
     E_{Y}\!\left[\,
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -3272,7 +3556,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3318,7 +3602,7 @@ Then, the following statements are true:
     \textbf{Claim 1:}\quad
     \begin{eqnarray*}
     E_{Y}\!\left[\;\,
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -3329,7 +3613,7 @@ Then, the following statements are true:
         \!\right]
     & \approx &
         \Var_{Y}\!\left[\;\,
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3340,7 +3624,7 @@ Then, the following statements are true:
             \!\right]
         \; + \;
         E_{Y}\!\left[\;\,
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3371,7 +3655,7 @@ Then, the following statements are true:
     \textbf{Claim 2:}\quad
     \begin{equation*}
     \Var_{Y}\!\left[\;\,
-        \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+        \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -3397,7 +3681,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         \Var_{Y}\!\left[\;\,
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3409,9 +3693,9 @@ Then, the following statements are true:
     \;\; = \;\;
         \Var_{Y}\!\left[\;
             \left.
-            \dfrac{ \widetilde{T}_{d,Y} }{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)} }
+            \dfrac{ \widetilde{T}_{\alpha,Y} }{ \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)} }
             \,-\,
-            \dfrac{ \widehat{T}_{d,Y} }{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)} }
+            \dfrac{ \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} }{ \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)} }
             \;\right\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3423,10 +3707,10 @@ Then, the following statements are true:
     & = &
         \Var_{Y}\!\left[\;
             \left.
-            \dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)} }\left(\,
-                \widetilde{T}_{d,Y}
+            \dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)} }\left(\,
+                \widetilde{T}_{\alpha,Y}
                 \,-\,
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 \,\right)
             \;\right\vert
             \begin{array}{c}
@@ -3439,9 +3723,9 @@ Then, the following statements are true:
         \left(\,\dfrac{1}{ \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)} }\,\right)^{\!2}
         \cdot
         \Var_{Y}\!\left[\;
-                \widetilde{T}_{d,Y}
+                \widetilde{T}_{\alpha,Y}
                 \,-\,
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3594,7 +3878,7 @@ Then, the following statements are true:
     \textbf{Claim 3:}\quad
     \begin{equation*}
     E_{Y}\!\left[\;
-        \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+        \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -3624,7 +3908,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y}\!\left[\;
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3637,18 +3921,18 @@ Then, the following statements are true:
         E_{Y}\!\left[\;
             \left.
             \dfrac{
-                \widetilde{T}_{d,Y}
+                \widetilde{T}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \;\right\vert
@@ -3666,14 +3950,14 @@ Then, the following statements are true:
                 1
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \cdot
             \left(\,
-                \widetilde{T}_{d,Y}
+                \widetilde{T}_{\alpha,Y}
                 \, - \,
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 \,\right)
             \;\right\vert
             \begin{array}{c}
@@ -3693,9 +3977,9 @@ Then, the following statements are true:
         \cdot
         E_{Y}\!\left[\;\,
             \left.
-            \widetilde{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y}
             \, - \,
-            \widehat{T}_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \;\right\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -3853,7 +4137,7 @@ Then, the following statements are true:
 % \clearpage
 \vskip 0.5cm
 \subsection{Estimator for sampling-nonresponse covariance component of
-\,$\MSE\!\left(\,\left.\widetilde{R}_{d,Y/Z}\;\right\vert\,\Zdot\,,\Xobs\right)$}
+\,$\MSE\!\left(\,\left.\widetilde{R}_{\alpha,Y/Z}\;\right\vert\,\Zdot\,,\Xobs\right)$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -3864,7 +4148,7 @@ Then, the following statements are true:
 \vskip 0.1cm
 \noindent
 Suppose we are given quantities as described in Subsection
-\ref{DomainRatioFormulationOfVarianceEstimationProblem}
+\ref{GeneralizedRatioFormulationOfVarianceEstimationProblem}
 and
 that they satisfy probabilistic properties as described in Subsection
 \ref{DomainRatioProbabilisticFramework}.
@@ -3877,8 +4161,8 @@ Then, the following statements are true:
 \item
     $
     E_{Y}\!\left[\;
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)
-        (\,  \widehat{R}_{d,Y/Z} - R_{d,Y/Z}\,)
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)
+        (\,  \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)
         \;\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -3892,8 +4176,8 @@ Then, the following statements are true:
     \,$
     E_{SR}\!\left[\,
     E_{Y}\!\left[\;
-        (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)
-        (\,  \widehat{R}_{d,Y/Z} - R_{d,Y/Z}\,)
+        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)
+        (\,  \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)
         \;\left\vert\,
         \begin{array}{c}
             s,s_{R},
@@ -3909,8 +4193,8 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y}\!\left[\;
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)
-            (\,  \widehat{R}_{d,Y/Z} - R_{d,Y/Z}\,)
+            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)
+            (\,  \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)
             \;\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3922,9 +4206,9 @@ Then, the following statements are true:
     \\
     & = &
         \Cov_{Y}\!\left(\;\,
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,,\,
-            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}
             \;\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3945,9 +4229,9 @@ Then, the following statements are true:
             }
         \cdot
         E_{Y}\!\left[\;
-            \widetilde{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y}
             \, - \,
-            \widehat{T}_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \;\left\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -3958,7 +4242,7 @@ Then, the following statements are true:
             \!\right]
         \cdot
         {\color{red}E_{Y}\!\left[\;\,
-            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3973,9 +4257,9 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         \Cov_{Y}\!\left(\;\,
-            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \,,\,
-            \widehat{T}_{d,Y} - T_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -4008,11 +4292,11 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                {\color{black}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{black}T_{\alpha,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{d,Z}
+                    T_{\alpha,Z}
                     }
                 }           
             \,\right)
@@ -4053,12 +4337,12 @@ Then, the following statements are true:
     &&
         \; + \;
         \left(\,
-            \dfrac{1}{T_{d,Z} \slash N}
+            \dfrac{1}{T_{\alpha,Z} \slash N}
             \,\right)
         \left(\,
             \dfrac{
                 {\color{white}.}
-                {\color{red}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{red}T_{\alpha,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -4118,8 +4402,8 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y}\!\left[\;
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)
-            (\,  \widehat{R}_{d,Y/Z} - R_{d,Y/Z}\,)
+            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)
+            (\,  \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)
             \;\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -4131,9 +4415,9 @@ Then, the following statements are true:
     \\
     & = &
         \Cov_{Y}\!\left(\;\,
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,,\,
-            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}
             \;\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -4146,7 +4430,7 @@ Then, the following statements are true:
     &&
         \; + \;
         E_{Y}\!\left[\;\,
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -4157,7 +4441,7 @@ Then, the following statements are true:
             \!\right]
         \cdot
         {\color{black}E_{Y}\!\left[\;\,
-            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -4170,7 +4454,7 @@ Then, the following statements are true:
     Next, observe that
     \begin{eqnarray*}
     E_{Y}\!\left[\;\,
-        \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+        \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -4183,18 +4467,18 @@ Then, the following statements are true:
         E_{Y}\!\left[\;
             \left.
             \dfrac{
-                \widetilde{T}_{d,Y}
+                \widetilde{T}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \;\right\vert\!
@@ -4215,9 +4499,9 @@ Then, the following statements are true:
             }
         \cdot
         E_{Y}\!\left[\;
-            \widetilde{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y}
             \, - \,
-            \widehat{T}_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \;\left\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -4231,9 +4515,9 @@ Then, the following statements are true:
     \textbf{Claim 1:}
     \begin{eqnarray*}
     \Cov_{Y}\!\left(\;
-        \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
+        \widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
         \,,\,
-        \widehat{T}_{d,Y} - T_{d,Y}
+        \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}
         \,\left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
         \right.
@@ -4251,9 +4535,9 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         \Cov_{Y}\!\left(\;
-            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \,,\,
-            \widehat{T}_{d,Y} - T_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}
             \,\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \right.
@@ -4354,9 +4638,9 @@ Then, the following statements are true:
     \textbf{Claim 2:}\quad
     $
     \Cov_{Y}\!\left(\;
-        \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
+        \widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
         \,,\,
-        T_{d,Y}
+        T_{\alpha,Y}
         \left\vert\!
         \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
         \right.
@@ -4374,9 +4658,9 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         \Cov_{Y}\!\left(\;
-            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \,,\,
-            T_{d,Y}
+            T_{\alpha,Y}
             \left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot,\Xobs \end{array}
             \right.
@@ -4483,9 +4767,9 @@ Then, the following statements are true:
     &&
         \Cov_{Y}\!\left(\;
             \left.
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,,\,
-            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}
             \;\right\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -4498,36 +4782,36 @@ Then, the following statements are true:
         \Cov_{Y}\!\left(\;
             \left.
             \dfrac{
-                \widetilde{T}_{d,Y}
+                \widetilde{T}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \; , \;
             \dfrac{
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    {\color{red}\widehat{T}_{d}(s\,;\Zdot)}
+                    {\color{red}\widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)}
                     }
                 }
             \, - \,
             \dfrac{
                 {\color{white}..}
-                T_{d,Y}
+                T_{\alpha,Y}
                 {\color{white}..}
                 }{
                 \overset{{\color{white}.}}{
-                    {\color{red}T_{d,Z}}
+                    {\color{red}T_{\alpha,Z}}
                     }
                 }           
             \;\,\right\vert\!
@@ -4542,54 +4826,54 @@ Then, the following statements are true:
         \Cov_{Y}\!\left(\;
             \left.
             \dfrac{
-                \widetilde{T}_{d,Y}
+                \widetilde{T}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \; , \;
             \dfrac{
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \,{\color{blue}
             \, - \,
             \dfrac{
-                T_{d,Y}
+                T_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \, + \,
             \dfrac{
-                T_{d,Y}
+                T_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             }\,
             \, - \,
             \dfrac{
                 {\color{white}..}
-                T_{d,Y}
+                T_{\alpha,Y}
                 {\color{white}..}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{d,Z}
+                    T_{\alpha,Z}
                     }
                 }           
             \;\,\right\vert\!\!
@@ -4604,34 +4888,34 @@ Then, the following statements are true:
         \Cov_{Y}\!\left(\;
             \left.
             \dfrac{
-                \widetilde{T}_{d,Y}
+                \widetilde{T}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \; , \;
             \dfrac{
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                T_{d,Y}
+                T_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \;\,\right\vert\!
@@ -4647,36 +4931,36 @@ Then, the following statements are true:
         \Cov_{Y}\!\left(\;
             \left.
             \dfrac{
-                \widetilde{T}_{d,Y}
+                \widetilde{T}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
-                \widehat{T}_{d,Y}
+                \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \; , \;
             \dfrac{
-                T_{d,Y}
+                T_{\alpha,Y}
                 }{
                 \overset{{\color{white}.}}{
-                    \widehat{T}_{d}(s\,;\Zdot)
+                    \widehat{T}^{\textnormal{(HT)}}(s\,;\abullet,\Zdot)
                     }
                 }
             \, - \,
             \dfrac{
                 {\color{white}..}
-                T_{d,Y}
+                T_{\alpha,Y}
                 {\color{white}..}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{d,Z}
+                    T_{\alpha,Z}
                     }
                 }           
             \;\,\right\vert\!
@@ -4698,13 +4982,13 @@ Then, the following statements are true:
         \cdot
         \Cov_{Y}\!\left(\;
             \left.
-            \widetilde{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y}
             \, - \,
-            \widehat{T}_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \; , \;
-            \widehat{T}_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \, - \,
-            T_{d,Y}
+            T_{\alpha,Y}
             \;\,\right\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -4738,18 +5022,18 @@ Then, the following statements are true:
                 {\color{white}..}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{d,Z}
+                    T_{\alpha,Z}
                     }
                 }           
             \,\right)
         \cdot
         \Cov_{Y}\!\left(\;
             \left.
-            \widetilde{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y}
             \, - \,
-            \widehat{T}_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \; , \;
-            T_{d,Y}
+            T_{\alpha,Y}
             \;\,\right\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -4793,7 +5077,7 @@ Then, the following statements are true:
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{d,Z}
+                    T_{\alpha,Z}
                     }
                 }           
             \,\right)
@@ -4838,11 +5122,11 @@ Then, the following statements are true:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                T_{\alpha,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{d,Z}
+                    T_{\alpha,Z}
                     }
                 }           
             \,\right)
@@ -4883,12 +5167,12 @@ Then, the following statements are true:
     &&
         \; + \;
         \left(\,
-            \dfrac{1}{T_{d,Z} \slash N}
+            \dfrac{1}{T_{\alpha,Z} \slash N}
             \,\right)
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                T_{\alpha,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -4941,7 +5225,7 @@ Then, the following statements are true:
 \vskip 0.1cm
 \noindent
 Suppose we are given quantities as described in Subsection
-\ref{DomainRatioFormulationOfVarianceEstimationProblem}
+\ref{GeneralizedRatioFormulationOfVarianceEstimationProblem}
 and
 that they satisfy probabilistic properties as described in Subsection
 \ref{DomainRatioProbabilisticFramework}.
@@ -4954,14 +5238,14 @@ Then, we have the following results:
     \begin{eqnarray*}
     \MSE\!\left(\;
         \left.
-        \widetilde{R}_{d,Y/Z}
+        \widetilde{R}_{\alpha,Y/Z}
         \;\right\vert\,
         \Zdot\,,\Xobs
         \,\right)
     & := &
         E\!\left[\,
             \left.
-            (\,\widetilde{R}_{d,Y/Z} - R_{d,Y/Z}\,)^{2}
+            (\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
             \,\right\vert\,
             \Zdot\,,\Xobs
             \,\right]
@@ -4969,7 +5253,7 @@ Then, we have the following results:
     & = &
         E_{Y}\!\left[\,
         \Var_{SR}\!\left(\,
-            \widehat{R}_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\left\vert\!
             \begin{array}{c} \Ydot, \\ \Zdot\,,\Xobs \end{array}
             \right.
@@ -4980,7 +5264,7 @@ Then, we have the following results:
         \;+\;
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
             \,\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
             \right.
@@ -4992,7 +5276,7 @@ Then, we have the following results:
         2\cdot
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
+            (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
             \,\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
             \right.
@@ -5010,7 +5294,7 @@ Then, we have the following results:
     %     E_{Y}\!\left[\,
     %     \Var_{SR}\!\left(\,
     %         \left.
-    %         \widehat{T}_{d,Y}
+    %         \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
     %         \,\right\vert\,
     %         \Ydot,
     %         \Xobs
@@ -5026,7 +5310,7 @@ Then, we have the following results:
     %     E_{SR}\!\left[\,
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{d,Y} - \widehat{T}_{d,Y}\,)^{2}
+    %         (\,\widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}\,)^{2}
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5042,7 +5326,7 @@ Then, we have the following results:
     %     E_{SR}\!\left[\,
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{d,Y} \,-\, \widehat{T}_{d,Y}\,)(\,\widehat{T}_{d,Y} \,-\, T_{d,Y}\,)
+    %         (\,\widetilde{T}_{\alpha,Y} \,-\, \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}\,)(\,\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} \,-\, T_{\alpha,Y}\,)
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5060,7 +5344,7 @@ Then, we have the following results:
         E_{Y}\!\left[\,
         \Var_{S}\!\left(\,
             \left.
-            \widehat{R}_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\right\vert\,
             \Ydot,
             \Zdot\,,\Xobs
@@ -5078,7 +5362,7 @@ Then, we have the following results:
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
             \left.
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
             \,\right\vert\,
             s,s_{R},\Zdot\,,\Xobs
             \,\right]
@@ -5096,7 +5380,7 @@ Then, we have the following results:
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
             \left.
-            (\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
+            (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
             \,\right\vert\,
             s,s_{R},\Zdot\,,\Xobs
             \,\right]
@@ -5117,7 +5401,7 @@ Then, we have the following results:
     \;\; := \;\;
         E_{Y}\!\left[\,
         \Var_{S}\!\left(\,
-            \widehat{R}_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c} \Ydot, \\ \Zdot\,,\Xobs \end{array}
             \right.
@@ -5226,14 +5510,14 @@ Then, we have the following results:
     %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
     %     \left(
     %         \dfrac{
-    %             d_{k}\left(\,y_{k}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot z_{k}\,\right)
+    %             d_{k}\left(\,y_{k}-\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}(s\,;\ydot,\zdot) \cdot z_{k}\,\right)
     %             }{
     %             \pi_{k}
     %             }
     %         \right)
     %     \left(
     %         \dfrac{
-    %             d_{l}\left(\,y_{l}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot z_{l}\,\right)
+    %             d_{l}\left(\,y_{l}-\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}(s\,;\ydot,\zdot) \cdot z_{l}\,\right)
     %             }{
     %             \pi_{l}
     %             }
@@ -5335,14 +5619,14 @@ Then, we have the following results:
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
             \left.
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
             \,\right\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
             \!\right]
             \,\right]
     \;\; {\color{red}\approx} \;\;
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)^{2}
+            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -5397,7 +5681,7 @@ Then, we have the following results:
         \cdot
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{d,Y/Z} \,-\, \widehat{R}_{d,Y/Z}\,)(\,\widehat{R}_{d,Y/Z} \,-\, R_{d,Y/Z}\,)
+            (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -5412,8 +5696,8 @@ Then, we have the following results:
         2
         \cdot
         E_{Y}\!\left[\;
-            (\,\widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}\,)
-            (\,  \widehat{R}_{d,Y/Z} - R_{d,Y/Z}\,)
+            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)
+            (\,  \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)
             \;\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -5427,9 +5711,9 @@ Then, we have the following results:
         2
         \cdot
         \Cov_{Y}\!\left(\;\,
-            \widetilde{R}_{d,Y/Z} - \widehat{R}_{d,Y/Z}
+            \widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
             \,,\,
-            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}
             \;\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -5452,9 +5736,9 @@ Then, we have the following results:
             }
         \cdot
         E_{Y}\!\left[\;
-            \widetilde{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y}
             \, - \,
-            \widehat{T}_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \;\left\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -5465,7 +5749,7 @@ Then, we have the following results:
             \!\right]
         \cdot
         {\color{red}E_{Y}\!\left[\;\,
-            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -5479,9 +5763,9 @@ Then, we have the following results:
         2
         \cdot
         \Cov_{Y}\!\left(\;\,
-            \widetilde{T}_{d,Y} - \widehat{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \,,\,
-            \widehat{T}_{d,Y} - T_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -5518,11 +5802,11 @@ Then, we have the following results:
         \left(\,
             \dfrac{
                 {\color{white}.}
-                T_{d,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                T_{\alpha,Z} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
-                    T_{d,Z}
+                    T_{\alpha,Z}
                     }
                 }           
             \,\right)
@@ -5569,12 +5853,12 @@ Then, we have the following results:
         2
         \cdot
         \left(\,
-            \dfrac{1}{T_{d,Z} \slash N}
+            \dfrac{1}{T_{\alpha,Z} \slash N}
             \,\right)
         \left(\,
             \dfrac{
                 {\color{white}.}
-                {\color{gray}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{gray}T_{\alpha,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -5623,9 +5907,9 @@ Then, we have the following results:
             }
         \cdot
         E_{Y}\!\left[\;
-            \widetilde{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y}
             \, - \,
-            \widehat{T}_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \;\left\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -5636,7 +5920,7 @@ Then, we have the following results:
             \!\right]
         \cdot
         {\color{red}E_{Y}\!\left[\;\,
-            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -5652,12 +5936,12 @@ Then, we have the following results:
         \,$
         E_{Y}\!\left[\;
             \left.
-            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}
             \;\right\vert\,
             s,s_{R},\Zdot,\Xobs
             \,\right]
         $\,
-        (indicated in red above), as \,$R_{d,Y/Z}$\, involves population units
+        (indicated in red above), as \,$R_{\alpha,Y/Z}$\, involves population units
         that are not selected in the sample (hence, not observed).
         \vskip 0.1cm
         \noindent
@@ -5676,9 +5960,9 @@ Then, we have the following results:
             }
         \cdot
         E_{Y}\!\left[\;
-            \widetilde{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y}
             \, - \,
-            \widehat{T}_{d,Y}
+            \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \;\left\vert\!
             \begin{array}{c}
                 s,s_{R},
@@ -5689,7 +5973,7 @@ Then, we have the following results:
             \!\right]
         \cdot
         {\color{black}E_{Y}\!\left[\;\,
-            \widehat{R}_{d,Y/Z} - R_{d,Y/Z}
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -5706,7 +5990,7 @@ Then, we have the following results:
         \,$
         E_{Y}\!\left[\;
             \left.
-            \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \;\right\vert\,
             s,s_{R},\Zdot,\Xobs
             \,\right]
@@ -5718,7 +6002,7 @@ Then, we have the following results:
         \begin{eqnarray*}
         E_{Y}\!\left[\;
             \left.
-            \widetilde{T}_{d,Y} \overset{{\color{white}.}}{-} \widehat{T}_{d,Y}
+            \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
             \;\right\vert\,
             s,s_{R},\Zdot,\Xobs
             \,\right]
@@ -5753,12 +6037,12 @@ Then, we have the following results:
         2
         \cdot
         \left(\,
-            \dfrac{1}{T_{d,Z} \slash N}
+            \dfrac{1}{T_{\alpha,Z} \slash N}
             \,\right)
         \left(\,
             \dfrac{
                 {\color{white}.}
-                {\color{red}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{red}T_{\alpha,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -5789,8 +6073,8 @@ Then, we have the following results:
         \end{equation*}
         in the expression for the sampling-nonresponse covariance component
         would also probably have to be disregarded in practice,
-        due to the presence of the term \,$T_{d,Z}$
-        (domain total of the population characteristic $\Zdot$),\,
+        due to the presence of the term \,$T_{\alpha,Z}$
+        (generalized total of the population characteristic $\Zdot$),\,
         which is usually unknown in practice.
         \vskip 0.1cm
         In order to justify the omission of the second summand,
@@ -5803,11 +6087,11 @@ Then, we have the following results:
         Recall that
         \begin{itemize}
         \item
-            we have the general asymptotic result for the Horvitz-Thompson domain total estimator:
+            we have the general asymptotic result for the Horvitz-Thompson generalized total estimator:
             \begin{equation*}
             \dfrac{
                 {\color{white}.}
-                \widehat{T}_{d}(s\,;\zdot) \,-\, {\color{black}T_{d,Z}}
+                \widehat{T}_{d}(s\,;\zdot) \,-\, {\color{black}T_{\alpha,Z}}
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
@@ -5820,7 +6104,7 @@ Then, we have the following results:
             \textnormal{under suitable regularity conditions on \,$\Zdot$,\, and}
             \end{equation*}
         \item
-            $T_{d,Z} \slash N$\, being asymptotically bounded away from zero
+            $T_{\alpha,Z} \slash N$\, being asymptotically bounded away from zero
             is one of the regularity conditions often assumed in order to establish
             consistency for the Horvitz-Thomposon ratio estimator.
         \end{itemize}
@@ -5850,12 +6134,12 @@ Then, we have the following results:
         2
         \cdot
         \left(\,
-            \dfrac{1}{T_{d,Z} \slash N}
+            \dfrac{1}{T_{\alpha,Z} \slash N}
             \,\right)
         \left(\,
             \dfrac{
                 {\color{white}.}
-                {\color{black}T_{d,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
+                {\color{black}T_{\alpha,Z}} \,-\, \widehat{T}_{d}(s\,;\zdot)
                 {\color{white}.}
                 }{
                 \overset{{\color{white}.}}{
