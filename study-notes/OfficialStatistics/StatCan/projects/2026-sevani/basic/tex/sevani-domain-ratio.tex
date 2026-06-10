@@ -1530,6 +1530,466 @@ we will use the following nomenclature:
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \vskip 0.1cm
+\begin{lemma}[Linearization-based approximate variance estimators for domain ratios]
+\label{ApproximateVarianceEstimatorsForDomainRatios}
+\mbox{}
+\vskip 0.1cm
+\noindent
+Suppose we are given quantities as described in Subsection
+\ref{GeneralizedRatioFormulationOfVarianceEstimationProblem}
+and
+that they satisfy the probabilistic assumptions as described in Subsection
+\ref{DomainRatioProbabilisticFramework}.
+Then, the following statements are true:
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
+\begin{enumerate}
+\item
+    For the Horvitz-Thompson domain ratio estimator
+    \,$\widehat{R}_{d,Y/Z}(\,s\,;\ydot,\zdot\,)$,\,
+    its {\color{red}linearization-based approximate sampling variance} 
+    \,$AV^{\textnormal{(lin)}}(\,\dbullet\ydot,\dbullet\zdot\,)$\,
+    given in Equation (5.6.6), Result 5.6.2, p.178, \cite{Sarndal1992}
+    can be expressed explicitly as follows:
+    \begin{eqnarray*}
+    AV^{\textnormal{(lin)}}(\,\dbullet\ydot,\dbullet\zdot\,)
+    & := &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{T_{d,Z}^{\,2}}
+            }
+        \cdot
+        \underset{i \in U}{\sum}\;
+        \underset{k \in U}{\sum}
+        \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+        \!
+        \left(\,
+            \dfrac{
+                d_{i}y_{i} \,-\, R_{d,Y/Z}\cdot d_{i}z_{i}
+                }{
+                \pi_{i}
+                }
+            \,\right)
+        \!
+        \left(\,
+            \dfrac{
+                d_{k}y_{k} \,-\, R_{d,Y/Z}\cdot d_{k}z_{k}
+                }{
+                \pi_{k}
+                }
+            \,\right)
+    % \\
+    % & = &
+    %     \dfrac{1}{
+    %         \overset{{\color{white}.}}{T_{d,Z}^{\,2}}
+    %         }
+    %     \cdot
+    %     \underset{i \in U}{\sum}\;
+    %     \underset{k \in U}{\sum}
+    %     \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+    %     \dfrac{1}{\pi_{i}}
+    %     \,
+    %     \dfrac{1}{\pi_{k}}
+    %     \!
+    %     \left\{\,
+    %         \left(\,
+    %             \underset{j\in\mathcal{C}_{i}}{\sum}\alpha_{ij}y_{ij}
+    %             \right)
+    %         \!
+    %         \left(\,
+    %             \underset{l\in\mathcal{C}_{k}}{\sum}\alpha_{kl}y_{kl}
+    %             \right)
+    %         \, + \,
+    %         R_{d,Y/Z}^{\,2}\cdot
+    %         \!
+    %         \left(\,
+    %             \underset{j\in\mathcal{C}_{i}}{\sum}\alpha_{ij}z_{ij}
+    %             \right)
+    %         \!
+    %         \left(\,
+    %             \underset{l\in\mathcal{C}_{k}}{\sum}\alpha_{kl}z_{kl}
+    %             \right)
+    %         \,\right\}
+    % \\
+    % &&
+    %     \; - \;
+    %     \dfrac{
+    %         2 \cdot\!R_{d,Y/Z}
+    %         }{
+    %         \overset{{\color{white}.}}{T_{d,Z}^{\,2}}
+    %         }
+    %     \cdot
+    %     \underset{i \in U}{\sum}\;
+    %     \underset{k \in U}{\sum}
+    %     \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+    %     \dfrac{1}{\pi_{i}}
+    %     \,
+    %     \dfrac{1}{\pi_{k}}
+    %     \!
+    %     \left(\,
+    %         \underset{j\in\mathcal{C}_{i}}{\sum}\alpha_{ij}y_{ij}
+    %         \right)
+    %     \!
+    %     \left(\,
+    %         \underset{l\in\mathcal{C}_{k}}{\sum}\alpha_{kl}z_{kl}
+    %         \right)
+    \\
+    & = &
+        \cdots
+    \;\; = \;\;
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                T_{d,z}^{\,2}
+                }
+            }
+        \left\{\,
+            \begin{array}{l}
+                V^{\textnormal{(HT)}}(\,\dbullet\ydot\,)
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
+                2\cdot\!R_{d,Y/Z}
+                \cdot
+                \underset{i \in U}{\sum}\;
+                \underset{k \in U}{\sum}
+                \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+                \dfrac{d_{i}y_{i}}{\pi_{i}}
+                \,
+                \dfrac{d_{k}y_{k}}{\pi_{k}}
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
+                R_{d,Y/Z}^{\,2}
+                \cdot
+                V^{\textnormal{(HT)}}(\,\dbullet\zdot\,)
+                \end{array}
+            \right\}
+    \end{eqnarray*}
+\item
+    For the Horvitz-Thompson domain ratio estimator
+    \,$\widehat{R}_{d,Y/Z}(\,s\,;\ydot,\zdot\,)$,\,
+    its {\color{red}linearization-based approximate sampling variance estimator} 
+    \,$\widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\ydot,\dbullet\zdot\,)$\,
+    given in Equation (5.6.7), Result 5.6.2, p.178, \cite{Sarndal1992}
+    can be expressed explicitly as follows:
+    \begin{eqnarray*}
+    &&
+        \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\ydot,\dbullet\zdot\,)
+    \\
+    & := &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
+        \underset{i \in s}{\sum}\;
+        \underset{k \in s}{\sum}\;
+        \dfrac{
+            \pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}
+            }{
+            \pi_{ik}
+            }
+        \!
+        \left(\,
+            \dfrac{
+                d_{i}y_{i} \,-\, \widehat{R}_{d,Y/Z}(\,s\,;\ydot,\zdot\,) \cdot d_{i}z_{i}
+                }{
+                \pi_{i}
+                }
+            \,\right)
+        \!
+        \left(\,
+            \dfrac{
+                d_{k}y_{k} \,-\, \widehat{R}_{d,Y/Z}(\,s\,;\ydot,\zdot\,) \cdot d_{k}z_{k}
+                }{
+                \pi_{k}
+                }
+            \,\right)
+    \\
+    & = &
+        \cdots
+    \;\; = \;\;
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left\{\,
+            \begin{array}{l}
+                \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
+                2\cdot\!
+                \widehat{R}_{d,Y/Z}(\,s\,;\ydot,\zdot\,)
+                \cdot
+                \underset{i \in s}{\sum}\;
+                \underset{k \in s}{\sum}\;
+                \dfrac{
+                    \pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}
+                    }{
+                    \pi_{ik}
+                    }
+                \,
+                \dfrac{d_{i}y_{i}}{\pi_{i}}
+                \,
+                \dfrac{d_{k}z_{k}}{\pi_{k}}
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
+                \widehat{R}_{d,Y/Z}(\,s\,;\ydot,\zdot\,)^{2}
+                \cdot
+                \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\zdot\,)
+                \end{array}
+            \right\}
+    \end{eqnarray*}
+\end{enumerate}
+\end{lemma}
+\proof
+\begin{enumerate}
+\item
+    We compute:
+    \begin{eqnarray*}
+    AV^{\textnormal{(lin)}}(\,\dbullet\ydot,\dbullet\zdot\,)
+    & := &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{T_{d,Z}^{\,2}}
+            }
+        \cdot
+        \underset{i \in U}{\sum}\;
+        \underset{k \in U}{\sum}
+        \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+        \!
+        \left(\,
+            \dfrac{
+                d_{i}y_{i} \,-\, R_{d,Y/Z}\cdot d_{i}z_{i}
+                }{
+                \pi_{i}
+                }
+            \,\right)
+        \!
+        \left(\,
+            \dfrac{
+                d_{k}y_{k} \,-\, R_{d,Y/Z}\cdot d_{k}z_{k}
+                }{
+                \pi_{k}
+                }
+            \,\right)
+    \\
+    &&
+        {\color{white}1}
+    \\
+    & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{T_{d,Z}^{\,2}}
+            }
+        \cdot
+        \underset{i \in U}{\sum}\;
+        \underset{k \in U}{\sum}
+        \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+        \dfrac{1}{\pi_{i}}
+        \,
+        \dfrac{1}{\pi_{k}}
+        \!
+        \left(\,
+            d_{i}y_{i} \cdot d_{k}y_{k}
+            \, + \,
+            R_{d,Y/Z}^{\,2} \cdot d_{i}z_{i} \cdot d_{k}z_{k}
+            \,\right)
+    \\
+    &&
+        \; - \;
+        \dfrac{
+            2 \cdot\!R_{d,Y/Z}
+            }{
+            \overset{{\color{white}.}}{T_{d,Z}^{\,2}}
+            }
+        \cdot
+        \underset{i \in U}{\sum}\;
+        \underset{k \in U}{\sum}
+        \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+        \dfrac{d_{i}y_{i}}{\pi_{i}}
+        \,
+        \dfrac{d_{k}z_{k}}{\pi_{k}}
+    \\
+    &&
+        {\color{white}1}
+    \\
+    & = &
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                T_{d,z}^{\,2}
+                }
+            }
+        \left\{\,
+            \begin{array}{l}
+                V^{\textnormal{(HT)}}(\,\dbullet\ydot\,)
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
+                2\cdot\!R_{d,Y/Z}
+                \cdot
+                \underset{i \in U}{\sum}\;
+                \underset{k \in U}{\sum}
+                \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+                \dfrac{d_{i}y_{i}}{\pi_{i}}
+                \,
+                \dfrac{d_{k}z_{k}}{\pi_{k}}
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
+                R_{d,Y/Z}^{\,2}
+                \cdot
+                V^{\textnormal{(HT)}}(\,\dbullet\zdot\,)
+                \end{array}
+            \right\}
+    \end{eqnarray*}
+\item
+    We compute:
+    \begin{eqnarray*}
+    &&
+        \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\ydot,\dbullet\zdot\,)
+    \\
+    & := &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \left(\,
+            \dfrac{
+                % \left(\,
+                d_{k}y_{k}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot d_{k}z_{k}
+                % \,\right)
+                }{
+                \pi_{k}
+                }
+            \,\right)
+        \left(\,
+            \dfrac{
+                % \left(\,
+                d_{l}y_{l}-\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot) \cdot d_{l}z_{l}
+                % \,\right)
+                }{
+                \pi_{l}
+                }
+            \,\right)
+    \\
+    & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+        \left(\,
+            \dfrac{d_{k}}{\pi_{k}}
+            \left(\,
+                y_{k}
+                \, - \,
+                \dfrac{
+                    \widehat{T}_{d}(s\,;\ydot)
+                    }{
+                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
+                    }
+                \cdot
+                z_{k}
+                \,\right)
+            \right)
+        \left(\,
+            \dfrac{d_{l}}{\pi_{l}}
+            \left(\,
+                y_{l}
+                \, - \,
+                \dfrac{
+                    \widehat{T}_{d}(s\,;\ydot)
+                    }{
+                    \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
+                    }
+                \cdot
+                z_{l}
+                \,\right)
+            \right)
+    \\
+    & = &
+        \dfrac{
+            \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \; + \;
+        \dfrac{
+            (-2)\left.\widehat{T}_{d}(s\,;\ydot)\right\slash\widehat{T}_{d}(s\,;\zdot)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \underset{k \in s}{\sum}\;
+            \underset{l \in s}{\sum}
+                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+            \right)
+    \\
+    &&
+        \; + \;
+        \dfrac{
+            \left.
+            \widehat{T}_{d}(s\,;\ydot)^{2}
+            \right\slash
+            \widehat{T}_{d}(s\,;\zdot)^{2}
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
+        \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+    \\
+    & = &
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left\{\,
+            \begin{array}{l}
+                \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
+                2\cdot\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)
+                \cdot\!
+                \left(\,
+                    \underset{k \in s}{\sum}\;
+                    \underset{l \in s}{\sum}
+                        \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                        \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+                        \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+                    \right)
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
+                \widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)^{2}
+                \cdot
+                \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+                \end{array}
+            \right\}
+    \end{eqnarray*}
+    \vskip -0.5cm
+    \qed
+\end{enumerate}
+
+        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
+
+\vskip 0.5cm
 \begin{lemma}[Estimator for sampling variance component for ratio estimators]
 \label{DomainRatioSamplingVariance}
 \mbox{}
