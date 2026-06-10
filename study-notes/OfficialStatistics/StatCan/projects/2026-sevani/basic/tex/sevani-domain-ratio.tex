@@ -2074,9 +2074,11 @@ Then, the following statements are true:
 \item
     Suppose we choose to approximate
     \,$v(\,s\,;y_{\bullet}\,)$\,
-    with the {\color{red}approximately} design-unbiased linearization-based estimator
-    \,$\widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\ydot,\dbullet\zdot\,)$\,
-    for the sampling variance (see Result 5.6.2, p.178, \cite{Sarndal1992}), i.e.,
+    with the {\color{red}linearization-based approximate variance estimator}
+    \vskip 0.01cm
+    $\widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\ydot,\dbullet\zdot\,)$\,
+    for the sampling variance (see Equation
+    (5.6.7), Result 5.6.2, p.178, \cite{Sarndal1992}), i.e.,
     \begin{eqnarray*}
     &&
         \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\ydot,\dbullet\zdot\,)
@@ -2144,75 +2146,75 @@ Then, the following statements are true:
                 z_{l}
                 \,\right)
             \right)
-    \\
-    & = &
-        \dfrac{
-            \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\zdot)^{2}
-                }
-            }
-        \; + \;
-        \dfrac{
-            (-2)\left.\widehat{T}_{d}(s\,;\ydot)\right\slash\widehat{T}_{d}(s\,;\zdot)
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\zdot)^{2}
-                }
-            }
-        \left(\,
-            \underset{k \in s}{\sum}\;
-            \underset{l \in s}{\sum}
-                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
-                \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
-                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
-            \right)
-    \\
-    &&
-        \; + \;
-        \dfrac{
-            \left.
-            \widehat{T}_{d}(s\,;\ydot)^{2}
-            \right\slash
-            \widehat{T}_{d}(s\,;\zdot)^{2}
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\zdot)^{2}
-                }
-            }
-        \cdot
-        \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
-    \\
-    & = &
-        \dfrac{
-            1
-            }{
-            \overset{{\color{white}.}}{
-                \widehat{T}_{d}(s\,;\zdot)^{2}
-                }
-            }
-        \left\{\,
-            \begin{array}{l}
-                \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
-                \\
-                \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
-                2\cdot\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)
-                \cdot\!
-                \left(\,
-                    \underset{k \in s}{\sum}\;
-                    \underset{l \in s}{\sum}
-                        \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
-                        \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
-                        \dfrac{d_{l}\,z_{l}}{\pi_{l}}
-                    \right)
-                \\
-                \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
-                \widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)^{2}
-                \cdot
-                \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
-                \end{array}
-            \right\}
+    % \\
+    % & = &
+    %     \dfrac{
+    %         \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \; + \;
+    %     \dfrac{
+    %         (-2)\left.\widehat{T}_{d}(s\,;\ydot)\right\slash\widehat{T}_{d}(s\,;\zdot)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \left(\,
+    %         \underset{k \in s}{\sum}\;
+    %         \underset{l \in s}{\sum}
+    %             \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+    %             \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+    %             \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+    %         \right)
+    % \\
+    % &&
+    %     \; + \;
+    %     \dfrac{
+    %         \left.
+    %         \widehat{T}_{d}(s\,;\ydot)^{2}
+    %         \right\slash
+    %         \widehat{T}_{d}(s\,;\zdot)^{2}
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \cdot
+    %     \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+    % \\
+    % & = &
+    %     \dfrac{
+    %         1
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \left\{\,
+    %         \begin{array}{l}
+    %             \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
+    %             \\
+    %             \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
+    %             2\cdot\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)
+    %             \cdot\!
+    %             \left(\,
+    %                 \underset{k \in s}{\sum}\;
+    %                 \underset{l \in s}{\sum}
+    %                     \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+    %                     \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+    %                     \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+    %                 \right)
+    %             \\
+    %             \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
+    %             \widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)^{2}
+    %             \cdot
+    %             \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+    %             \end{array}
+    %         \right\}
     \end{eqnarray*}
     Then,
     \,$
