@@ -2074,6 +2074,241 @@ Then, the following statements are true:
 \item
     Suppose we choose to approximate
     \,$v(\,s\,;y_{\bullet}\,)$\,
+    with the following {\color{red}variant}
+    \,$\widehat{AV}^{\textnormal{($\circ$)}}(\,s\,;\dbullet\ydot,\dbullet\zdot\,)$\,
+    of the \textbf{linearization-based approximate variance}
+    \,$AV^{\textnormal{(lin)}}(\,\dbullet\ydot,\dbullet\zdot\,)$\,
+    for the sampling variance (see Equation
+    (5.6.6), Result 5.6.2, p.178, \cite{Sarndal1992}), i.e.,
+    \begin{eqnarray*}
+    &&
+        \widehat{AV}^{\textnormal{($\circ$)}}(\,s\,;\dbullet\ydot,\dbullet\zdot\,)
+    \\
+    & := &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+        \left(\,
+            \dfrac{
+                d_{k}y_{k} - {\color{red}R_{d,Y/Z}} \cdot d_{k}z_{k}
+                }{
+                \pi_{k}
+                }
+            \,\right)
+        \left(\,
+            \dfrac{
+                d_{l}y_{l} - {\color{red}R_{d,Y/Z}} \cdot d_{l}z_{l}
+                }{
+                \pi_{l}
+                }
+            \,\right)
+    % \\
+    % & = &
+    %     \dfrac{1}{
+    %         \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+    %         }
+    %     \cdot
+    %     \underset{k \in s}{\sum}\,
+    %     \underset{l \in s}{\sum}\;
+    %     \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\,
+    %     \left(\,
+    %         \dfrac{d_{k}}{\pi_{k}}
+    %         \left(\,
+    %             y_{k}
+    %             \, - \,
+    %             \dfrac{
+    %                 \widehat{T}_{d}(s\,;\ydot)
+    %                 }{
+    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
+    %                 }
+    %             \cdot
+    %             z_{k}
+    %             \,\right)
+    %         \right)
+    %     \left(\,
+    %         \dfrac{d_{l}}{\pi_{l}}
+    %         \left(\,
+    %             y_{l}
+    %             \, - \,
+    %             \dfrac{
+    %                 \widehat{T}_{d}(s\,;\ydot)
+    %                 }{
+    %                 \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)}
+    %                 }
+    %             \cdot
+    %             z_{l}
+    %             \,\right)
+    %         \right)
+    % \\
+    % & = &
+    %     \dfrac{
+    %         \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \; + \;
+    %     \dfrac{
+    %         (-2)\left.\widehat{T}_{d}(s\,;\ydot)\right\slash\widehat{T}_{d}(s\,;\zdot)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \left(\,
+    %         \underset{k \in s}{\sum}\;
+    %         \underset{l \in s}{\sum}
+    %             \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+    %             \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+    %             \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+    %         \right)
+    % \\
+    % &&
+    %     \; + \;
+    %     \dfrac{
+    %         \left.
+    %         \widehat{T}_{d}(s\,;\ydot)^{2}
+    %         \right\slash
+    %         \widehat{T}_{d}(s\,;\zdot)^{2}
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \cdot
+    %     \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+    % \\
+    % & = &
+    %     \dfrac{
+    %         1
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \left\{\,
+    %         \begin{array}{l}
+    %             \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\ydot\,)
+    %             \\
+    %             \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
+    %             2\cdot\widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)
+    %             \cdot\!
+    %             \left(\,
+    %                 \underset{k \in s}{\sum}\;
+    %                 \underset{l \in s}{\sum}
+    %                     \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+    %                     \dfrac{d_{k}\,y_{k}}{\pi_{k}}\,
+    %                     \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+    %                 \right)
+    %             \\
+    %             \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
+    %             \widehat{R}_{d,Y/Z}(s\,;\ydot,\zdot)^{2}
+    %             \cdot
+    %             \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+    %             \end{array}
+    %         \right\}
+    \end{eqnarray*}
+    Then,
+    \,$
+    E_{Y_{M}}\!\left[\;
+        \widehat{AV}^{\textnormal{($\circ$)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    can be expressed as follows:
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{($\circ$)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
+            \,\left\vert\,
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
+    & = &
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left\{\begin{array}{l}
+            \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\widetilde{y}_{\bullet}\,)
+            \\
+            \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
+            2 \cdot {\color{red}R_{d,Y/Z}} \cdot
+            \left(\,
+                \underset{k \in s}{\sum}\;
+                \underset{l \in s}{\sum}
+                    \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                    \dfrac{d_{k}\,\widetilde{y}_{k}}{\pi_{k}}\,
+                    \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+                \right)
+            \\
+            \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
+            {\color{red}R_{d,Y/Z}^{2}}
+            \cdot
+            \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+            \end{array}\right\}
+        \; + \;
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \underset{k \in s_{M}}{\sum}\!
+            \left(1-\dfrac{1}{w_{k}}\right)
+            w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+    \end{eqnarray*}
+    Consequently, if we replace in the above expression each occurrence of
+    \,$R_{d,Y/Z}$\,
+    with
+    \,$\widehat{R}_{d,Y/Z}(s\,;{\color{red}\widetilde{y}_{\bullet}},\zdot)$,\,
+    we obtain the following approximation:
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{($\circ$)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Zdot\,,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & \approx &
+        {\color{blue}
+        \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\widetilde{y}_{\bullet},\dbullet\zdot\,)
+        \; + \;
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \underset{k \in s_{M}}{\sum}\!\!
+            \left(1-\dfrac{1}{w_{k}}\right)
+            w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        }
+    \end{eqnarray*}
+\item
+    Suppose we choose to approximate
+    \,$v(\,s\,;y_{\bullet}\,)$\,
     with the {\color{red}linearization-based approximate variance estimator}
     \vskip 0.01cm
     $\widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\ydot,\dbullet\zdot\,)$\,
@@ -2361,6 +2596,548 @@ Then, the following statements are true:
             \,\right)
     $
     }
+    \end{eqnarray*}
+\item
+    We first state and prove a number of claims.
+    \vskip 0.3cm
+    \noindent
+    \textbf{Claim 0:}\quad
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{($\circ$)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
+            \,\left\vert\,
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
+    & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+        \dfrac{d_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}}{\pi_{l}}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}\,Y_{l}
+            \, - \,
+            {\color{black}2}
+            \cdot
+            R_{d,Y/Z}
+            \cdot
+            {\color{black}Y_{k}Z_{l}}
+            \, + \,
+            R_{d,Y/Z}^{2}
+            \cdot
+            Z_{k}\,Z_{l}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \end{eqnarray*}
+    \vskip 0.1cm
+    \noindent
+    Proof of Claim 0:\;\;
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
+            \,\left\vert\,
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
+    & = &
+        E_{Y_{M}}\!\left[\;
+            \dfrac{1}{
+                \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\Zdot)^{2}}
+                }
+            \cdot
+            \underset{k \in s}{\sum}\,
+            \underset{l \in s}{\sum}\;
+            \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}
+            \left(
+                \dfrac{d_{k}}{\pi_{k}}\!
+                \left(
+                    Y_{k} \,-\, R_{d,Y/Z} \cdot Z_{k}
+                    \right)
+                \!\right)
+            \!
+            \left(
+                \dfrac{d_{l}}{\pi_{l}}
+                \left(
+                    Y_{l} \,-\, R_{d,Y/Z} \cdot Z_{l}
+                    \right)
+                \!\right)
+            \,\left\vert\!
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+        \dfrac{d_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}}{\pi_{l}}
+        \cdot
+        E_{Y_{M}}\!\left[\,
+            \left(\,
+                Y_{k} \,-\, R_{d,Y/Z} \cdot Z_{k}
+                \,\right)
+            \!
+            \left(\,
+                Y_{l} \,-\, R_{d,Y/Z} \cdot Z_{l}
+                \,\right)
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
+    & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+        \dfrac{d_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}}{\pi_{l}}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}\,Y_{l}
+            \, - \,
+            R_{d,Y/Z}
+            \cdot
+            {\color{black}\left(\,Y_{k}Z_{l} \overset{{\color{white}.}}{+} Y_{l}Z_{k}\,\right)}
+            \, + \,
+            R_{d,Y/Z} \cdot Z_{k}\,Z_{l}\,
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
+    & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+        \dfrac{d_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}}{\pi_{l}}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}\,Y_{l}
+            \, - \,
+            {\color{red}2}
+            \cdot
+            R_{d,Y/Z}
+            \cdot
+            {\color{red}Y_{k}Z_{l}}
+            \, + \,
+            R_{d,Y/Z}^{2}
+            \cdot
+            Z_{k}\,Z_{l}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \end{eqnarray*}
+    This completes the proof of Claim 0.
+
+    \vskip 0.5cm
+    \textbf{Claim 1:}\quad
+    \begin{eqnarray*}
+    E_{Y_{M}}\!\left[\;\,
+        Y_{k}Y_{l}
+        \;\left\vert
+        \begin{array}{c}
+            s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+            \end{array}
+        \right.
+        \right]
+    & = &
+        \left\{\begin{array}{cl}
+            \widetilde{y}_{k}^{2} \,+\, \sigma_{k}^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+            \\
+            \widetilde{y}_{k} \cdot \widetilde{y}_{l}\,, & \overset{{\color{white}.}}{\textnormal{otherwise}}
+            \end{array}\right.
+    \end{eqnarray*}
+    Proof of Claim 1: Observe that
+    \begin{eqnarray*}
+        E_{Y_{M}}\!\left[\;\,
+        Y_{k}Y_{l}
+        \;\left\vert
+        \begin{array}{c}
+            s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+            \end{array}
+        \right.
+        \right]
+    & = &
+        E_{Y_{M}}\!\left[\;
+            Y_{k}Y_{l}
+            \;\left\vert
+            \begin{array}{c}
+                \YsubR,
+                \\
+                \Zdot\,,\Xobs
+                \end{array}
+                \right.
+            \right]
+    \\
+    & = &
+        \left\{\begin{array}{cl}
+            y_{k} \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{R}$}}
+            \\
+            y_{k} \cdot E[\,Y_{l}\,\vert\,\Zdot\,,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{R}$,\, $l \in s_{M}$}}
+            \\
+            E[\,Y_{k}\vert\,\Zdot\,,\Xobs\,] \cdot y_{l}\,, & \underset{{\color{white}.}}{\textnormal{for \,$k \in s_{M}$,\, $l \in s_{R}$}}
+            \\
+            E[\,Y_{k}\vert\,\Zdot\,,\Xobs\,] \cdot E[\,Y_{l}\vert\,\Zdot\,,\Xobs\,]\,, & \underset{{\color{white}.}}{\textnormal{for \,$k,l \in s_{M}$,\, $k \neq l$}}
+            \\
+            \Var(\,Y_{k}\,\vert\,\Zdot\,,\Xobs) + E[\,Y_{k}\,\vert\,\Zdot\,,\Xobs\,]^{2}\,, & \textnormal{for \,$k = l \in s_{M}$}
+            \end{array}\right.,
+    \end{eqnarray*}
+    from which Claim 1 follows readily.
+    This completes the proof of Claim 1.
+
+    \vskip 0.5cm        
+    \noindent
+    We now finish the proof by computing:
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{($\circ$)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
+            \,\left\vert\,
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
+    & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+        \dfrac{d_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}}{\pi_{l}}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}\,Y_{l}
+            \, - \,
+            {\color{black}2}
+            \cdot
+            R_{d,Y/Z}
+            \cdot
+            {\color{black}Y_{k}Z_{l}}
+            \, + \,
+            R_{d,Y/Z}^{2}
+            \cdot
+            Z_{k}\,Z_{l}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right],
+    \\
+    &&
+        \quad
+        \overset{{\color{white}.}}{\textnormal{by Claim 0}}
+    \\
+    & = &
+        \; {\color{white}+} \;
+        \dfrac{1}{
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+        \dfrac{d_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}}{\pi_{l}}
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}\,Y_{l}
+            \;\left\vert
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+    \\
+    &&
+        \; + \;
+        \dfrac{
+            (-2) \cdot R_{d,Y/Z}
+            }{
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+        \dfrac{d_{k}}{\pi_{k}}\,
+        \cdot
+        E_{Y_{M}}\!\left[\;
+            Y_{k}
+            \,\left\vert
+            \begin{array}{c}
+                s,s_{R},\YsubR, \\ \Zdot\,,\Xobs
+                \end{array}
+            \right.
+            \!\right]
+        \cdot
+        \dfrac{d_{l}z_{l}}{\pi_{l}}
+    \\
+    &&
+        \; + \;
+        \dfrac{
+            R_{d,Y/Z}^{2}
+            }{
+            \overset{{\color{white}.}}{\widehat{T}_{d}(s\,;\zdot)^{2}}
+            }
+        \cdot
+        \underset{k \in s}{\sum}\,
+        \underset{l \in s}{\sum}\;
+        \dfrac{\pi_{kl} - \pi_{k}\pi_{l}}{\pi_{kl}}\;
+        \dfrac{d_{k}\,z_{k}}{\pi_{k}}\,
+        \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+    % \\
+    % & \underset{{\color{white}\textnormal{\LARGE$1$}}}{\overset{{\color{white}\textnormal{\huge$1$}}}{=}} &
+    %     \cdots
+    %     \;\; = \;\;
+    \\
+    & = &
+        {\color{black}
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\widetilde{y}_{\bullet}\,)
+            \;+\;
+            \underset{k \in s_{M}}{\sum}\!
+            \left(1-\dfrac{1}{w_{k}}\right)
+            w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        }
+        \; - \;
+        \dfrac{
+            2 \cdot R_{d,Y/Z}
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+            \left(\;
+                \underset{k \in s}{\sum}\;
+                \underset{l \in s}{\sum}\;
+                    \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                    \dfrac{d_{k}\,\widetilde{y}_{k}}{\pi_{k}}\,
+                    \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+                \,\right)
+    \\
+    &&
+        \; + \;
+        \dfrac{
+            R_{d,Y/Z}^{2}
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
+        \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+        \,,
+        \quad
+        \textnormal{by Claim 1}
+    % \\
+    % & = &
+    %     {\color{blue}
+    %     \dfrac{
+    %         \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\widetilde{y}_{\bullet}\,)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \; + \;
+    %     \dfrac{
+    %         (-2) \cdot R_{d,Y/Z}
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \left(\,
+    %         \underset{k \in s}{\sum}\;
+    %         \underset{l \in s}{\sum}
+    %             \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+    %             \dfrac{d_{k}\,\widetilde{y}_{k}}{\pi_{k}}\,
+    %             \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+    %         \right)
+    %     }
+    % \\
+    % &&
+    %     \; + \;
+    %     {\color{blue}
+    %     \dfrac{
+    %         R_{d,Y/Z}^{2}
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \cdot
+    %     \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+    %     }
+    %     \; + \;
+    %     \dfrac{
+    %         1
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \left(\,
+    %         \underset{k \in s_{M}}{\sum}\!
+    %         \left(1-\dfrac{1}{w_{k}}\right)
+    %         w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+    %         \,\right)
+    \\
+    & = &
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left\{\begin{array}{l}
+            \widehat{V}^{\textnormal{(HT)}}(\,s\,;\dbullet\widetilde{y}_{\bullet}\,)
+            \\
+            \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
+            2 \cdot R_{d,Y/Z} \cdot
+            \left(\,
+                \underset{k \in s}{\sum}\;
+                \underset{l \in s}{\sum}
+                    \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                    \dfrac{d_{k}\,\widetilde{y}_{k}}{\pi_{k}}\,
+                    \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+                \right)
+            \\
+            \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
+            R_{d,Y/Z}^{2}
+            \cdot
+            \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+            \end{array}\right\}
+        \; + \;
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \underset{k \in s_{M}}{\sum}\!
+            \left(1-\dfrac{1}{w_{k}}\right)
+            w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+    % \\
+    % & = &
+    %     \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\widetilde{y}_{\bullet},\dbullet\zdot\,)
+    %     \; + \;
+    %     \dfrac{
+    %         1
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \left(\,
+    %         \underset{k \in s_{M}}{\sum}\;
+    %         d_{k}^{2}
+    %         \left(1-\dfrac{1}{w_{k}}\right)
+    %         w_{k}^{2}\,\sigma_{k}^{2}
+    %         \,\right)
+    % \\
+    % &&
+    %     \; + \;
+    %     \dfrac{
+    %         (-2)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{3}
+    %             }
+    %         }
+    %     \left(\,
+    %         \underset{k \in {\color{red}s_{M}}}{\sum}\;
+    %         \underset{l \in s}{\sum}
+    %             \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+    %             \dfrac{d_{k}^{\,2}\,\sigma^{2}_{k}}{\pi_{k}^{2}}\,
+    %             \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+    %         \right)
+    %     \; + \;
+    %     \dfrac{
+    %         \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         }
+    %     \cdot
+    %     \dfrac{
+    %         \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+    %         }{
+    %         \overset{{\color{white}.}}{
+    %             \widehat{T}_{d}(s\,;\zdot)^{2}
+    %             }
+    %         },
+    % \\
+    % &&
+    %     \quad
+    %     \overset{{\color{white}1}}{
+    %         \textnormal{noting that
+    %             the sum of the quantities in blue above equals
+    %             \,$\widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\widetilde{y}_{\bullet},\dbullet\zdot\,)$
+    %             }
+    %         }
     \end{eqnarray*}
 \item
     We first state and prove a number of claims.
