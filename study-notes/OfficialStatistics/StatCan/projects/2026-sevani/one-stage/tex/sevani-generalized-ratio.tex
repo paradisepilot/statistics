@@ -87,7 +87,7 @@ Suppose:
             \Sdot\,,\,
             \Ydot\,,\,
             \Zdot\,;\,
-            \dbullet
+            \abullet
             \,)
     \;\; := \;\;
         \dfrac{
@@ -757,63 +757,77 @@ of SSUs.
 \textbf{Random variables}
 \begin{itemize}
 \item
-    $\Ydot \,=\, (Y_{1},Y_{2},\ldots,Y_{N})^{T} : \Omega \longrightarrow \Re^{N \times 1}$\,
-    is an $\Re^{N \times 1}$-valued random variable defined on \,$\Omega$,\,
-    i.e., $\mathscr{A}$-measurable map.
+    $
+    \Ydot
+    \, = \,
+        \left\{\;
+            Y_{ij} : \Omega \longrightarrow \Re
+            \,\left\vert
+            \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i} \end{array}
+            \right.
+            \!\!\right\}
+    $\,
+    and
+    \,$
+    \Zdot
+    \, = \,
+        \left\{\;
+            Z_{ij} : \Omega \longrightarrow \Re
+            \,\left\vert
+            \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i} \end{array}
+            \right.
+            \!\!\right\}
+    $\,
+    are two collections of $\Re$-valued random variables
+    (i.e., $\mathscr{A}$-measurable maps)
+    defined on \,$\Omega$,\,
+    where \,$\mathcal{C}_{i}$\, is a finite set, for each \,$i \in U$.
 \item
-    $\Zdot \,=\, (Z_{1},Z_{2},\ldots,Z_{N})^{T} : \Omega \longrightarrow \Re^{N \times 1}$\,
-    is an $\Re^{N \times 1}$-valued random variable defined on \,$\Omega$.\,
-\item
-    $\Xdotdot\,=\,\left(\,\overset{{\color{white}.}}{X_{ij}}\,\right) : \Omega \longrightarrow \Re^{N \times r}$\,
-    is an $\Re^{N \times r}$-valued random variable defined on \,$\Omega$.
+    $
+    \Xdotdot
+    \, = \,
+        \left\{\,
+            X_{ij} : \Omega \longrightarrow \Re^{r}
+            \left\vert
+            \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i} \end{array}
+            \right.
+            \!\!\right\}
+    $\,
+    is a collection of $\Re^{r}$-valued random variables defined on \,$\Omega$.\,
 \item
     $\Sdot \,=\, (S_{1},S_{2},\ldots,S_{N})^{T} : \mathcal{P}(U) \longrightarrow \{0,1\}^{N \times 1}$\,
     is a $\{0,1\}^{N \times 1}$-valued random variable defined on \,$\mathcal{P}(U)$,\,
     i.e., $\mathcal{P}(\mathcal{P}(U))$-measurable map.
 \item
-    $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
-    is a $\{0,1\}^{N \times 1}$-valued random variable defined on the product probability space
-    \,$\Omega \times \mathcal{P}(U)$,\,
+    % $\Rdot \,=\, (R_{1},R_{2},\ldots,R_{N})^{T} : {\color{red}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}^{N \times 1}$\,
+    % \vskip 0.1cm
+    $
+    \Rdot
+    \, = \,
+        \left\{\,
+            R_{ij} : {\color{red}\Omega \times \mathcal{P}(U)} \longrightarrow \{0,1\}
+            \,\left\vert
+            \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i} \end{array}
+            \right.
+            \!\!\right\}
+    $\,
+    is a collection of $\{0,1\}$-valued random variables
+    % defined on \,$\Omega$,\,
+    % where \,$\mathcal{C}_{i}$\, is a finite set, for each \,$i \in U$.
+    % is a $\{0,1\}^{N \times 1}$-valued random variable
+    defined on \,$\Omega \times \mathcal{P}(U)$,\,
     i.e.,
-    \,$\left(\mathscr{A} \overset{{\color{white}.}}{\otimes} \mathcal{P}(\mathcal{P}(U))\right)$-measurable map
-    that satisfies:
-    % \begin{equation*}
-    % \mu\!\left(\left\{\;
-    %     \omega \in \Omega
-    %     \;\left\vert\;
-    %     S_{k}(s) = 0
-    %     \,\overset{{\color{white}1}}{\Longrightarrow}\,
-    %     R_{k}(\omega,s_{R}) = 0
-    %     \right.
-    %     \;\right\}\right)
-    % \; = \;
-    %     1\,,
-    % \quad
-    % \textnormal{for each \,$k \in U$,\, and each \,$s_{R} \subset s \subset U$}
-    % \end{equation*}
-    % \begin{equation*}
-    % (\,\mu\times\pi\,)\!\left(\left\{\;
-    %     (\omega,s) \in \Omega
-    %     \;\left\vert\;
-    %     \begin{array}{c}
-    %     S_{k}(s) = 0, \,\textnormal{and}\; R_{k}(\omega,s) = 1,
-    %     \\
-    %     \overset{{\color{white}.}}{\textnormal{for one or more $k \in U$}}
-    %     \end{array}
-    %     \right.
-    %     \;\right\}\right)
-    % \; = \;
-    %     0
-    % \end{equation*}
+    $\left(\mathscr{A} \overset{{\color{white}.}}{\otimes} \mathcal{P}(\mathcal{P}(U))\right)$-measurable maps, that satisfies:
     \begin{equation*}
     (\,\lambda\otimes\pi\,)\!\left(\;\,
-        \underset{k \in U}{\bigcup}\left\{\;
+        \underset{i \in U}{\bigcup}\left\{\;
             (\omega,s) \in \Omega\times\mathcal{P}(U)
             \;\left\vert
             \begin{array}{c}
-            S_{k}(s) = 0, %\,\textnormal{and}\;
+            S_{i}(s) = 0, %\,\textnormal{and}\;
             \\
-            \overset{{\color{white}.}}{R_{k}(\omega,s) = 1}
+            \overset{{\color{white}.}}{R_{ij}(\omega,s) = 1},\;
+            \textnormal{for some $j \in \mathcal{C}_{i}$}
             \end{array}
             \right.
             \!\!\right\}
@@ -822,8 +836,8 @@ of SSUs.
         0
     \end{equation*}
     Note that this condition stipulates that,
-    whenver a population unit \,$k \in U$\, is not selected in the (random) sample \,$s \subset U$,\,
-    then it is not a respondent either.
+    whenver a PSU \,$i \in U$\, is not selected in the (random) sample \,$s \subset U$,\,
+    then none of its SSUs can be a respondents.
 \end{itemize}
 
 \vskip 0.2cm
@@ -833,7 +847,7 @@ of SSUs.
 \item
     $U = \{1,2,\ldots,N\}$
     \,--\,
-    index set of the target (finite) population of interest,
+    index set of the target (finite) population of primary sampling units (PSU),
     and \,$N$\, is the (finite) size of the target population.
 \item
     $\left(\,\Omega,\mathscr{A},\lambda\,\right)$
@@ -844,11 +858,13 @@ of SSUs.
 \item
     $\Ydot$
     \,--\,
-    numerator of the $\Re$-valued target variable (population characteristic).
+    numerator of the $\Re$-valued target variable
+    (population characteristic defined at the level of the SSUs).
 \item
     $\Zdot$
     \,--\,
-    denominator of the $\Re$-valued target variable (population characteristic).
+    denominator of the $\Re$-valued target variable
+    (population characteristic defined at the level of the SSUs).
 \item
     $\Xdotdot$
     \,--\,
@@ -857,7 +873,7 @@ of SSUs.
     $\Sdot$
     \,--\,
     $\{0,1\}$-valued binary variable indicating, for each \,$s \subset U$,\,
-    whether a population unit \,$k \in U$\, is selected in \,$s$.\,
+    whether a primary sampling unit (PSU) \,$k \in U$\, is selected in \,$s$.\,
     More precisely, for each \,$s \subset U$,\, we have:
     \begin{equation*}
     S_{k}(s)
@@ -871,24 +887,9 @@ of SSUs.
 \item
     $\Rdot$
     \,--\,
-    $\{0,1\}$-valued binary variable indicating, for almost every outcome
-    \,$\omega \in \Omega$\,
-    and each
-    \,$(s,s_{R}) \in \mathcal{P}(U) \times \mathcal{P}(U)$\,
-    satisfying
-    \,$s_{R} \subset s$,\,
-    whether a selected population unit \,$ k \in s$\,
-    is a respondent or not.
-    % More precisely, for each \,$s \subset U$ and each \,$k \in s$,\, we have:
-    % \begin{equation*}
-    % R_{k}(\omega,s_{R})
-    % \;\; = \;\;
-    %     \left\{\begin{array}{cl}
-    %         1\,, & \textnormal{if \,$k \in s_{R}$},
-    %         \\
-    %         0\,, & \textnormal{otherwise}.
-    %         \end{array}\right.
-    % \end{equation*}
+    $\{0,1\}$-valued binary variable indicating
+    whether an SSU in a selected PSU \,$i \in s$\,
+    is a respondent SSU or not.
 \end{itemize}
 
 \vskip 0.2cm
@@ -947,8 +948,8 @@ of SSUs.
     \,$(\,\Sdot\,,\Rdot\,)$\,
     are {\color{red}conditionally independent} given \,$\left(\,\Zdot\,,\Xdotdot\,\right)$.
 \item
-    $\Cov\!\left(\;Y_{k}\,,\,Y_{l}\;\left\vert\;\Zdot\,,\Xdotdot\right.\right) \,=\, 0$,\,
-    for each \,$k, l \in U$\, with \,$k \neq l$.
+    $\Cov\!\left(\;Y_{ij}\,,\,Y_{kl}\;\left\vert\;\Xdotdot\right.\right) \,=\, 0$,\,
+    for each \,$(i,j) \neq (k,l)$.
 \end{itemize}
 
 \vskip 0.2cm
@@ -956,479 +957,34 @@ of SSUs.
 \textbf{(Non-random) parameters}
 \begin{itemize}
 \item
-    $\dbullet \,=\, (d_{1},d_{2},\ldots,d_{N}) \in \{0,1\}^{N}$\,
-    is a (non-random, binary) domain membership indicator.
+    $
+    \abullet
+    \, = \,
+        \left\{\,
+            \alpha_{ij} \in \Re
+            \,\left\vert
+            \begin{array}{c} i \in U, \\ j \in \mathcal{C}_{i} \end{array}
+            \right.
+            \!\!\right\}
+    $\,
+    is a collection of (non-random)
+    $\Re$-valued coefficients defined at the level of the SSUs.
 \end{itemize}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 % \clearpage
-% \subsection{Imputation ratio estimator}
-% \setcounter{theorem}{0}
-
-%         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-% \vskip 0.2cm
-% \begin{definition}[Imputation ratio estimator \,$\widetilde{R}_{\alpha,Y/Z}$]
-% \mbox{}
-% \vskip 0.1cm
-% \noindent
-% An \textbf{imputation ratio estimator} for the domain ratio
-% \begin{equation*}
-% R_{\alpha,Y/Z}
-% \;\; := \;\;
-%     \dfrac{ T_{\alpha,Y} }{ \overset{{\color{white}.}}{T_{\alpha,Z}} }
-% \;\; = \;\;
-%     \dfrac{
-%         \underset{i \in U}{\sum}\,d_{i}Y_{i}
-%         }{
-%         \overset{{\color{white}.}}{\underset{i \in U}{\sum}\,d_{i}Z_{i}}
-%         }
-% \end{equation*}
-% is the random variable of the form:
-% \begin{eqnarray*}
-% {\color{red}\widetilde{R}_{\alpha,Y/Z}}
-% & = &
-%     \widetilde{R}_{\alpha,Y/Z}(\,
-%         \Sdot\,,\,
-%         \Rdot\,,\,
-%         \Ydot\,,\,
-%         \Zdot\,,\,
-%         \Xdotdot\,;\,
-%         \dbullet
-%         \,)
-% \;\; := \;\;
-%     {\color{red}
-%     \dfrac{
-%         {\color{white}.}
-%         \widetilde{T}_{\alpha,Y}
-%         {\color{white}.}
-%         }{
-%         \overset{{\color{white}.}}{\widehat{T}^{\textnormal{(HT)}}_{\alpha,Z}}
-%         }
-%     }
-% \\
-% & = &
-%     \dfrac{
-%         \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
-%         }{
-%         \overset{{\color{white}.}}{\underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,Z_{i}}
-%         }
-% \;\; = \;\;
-%     \dfrac{
-%         \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\left(\,
-%             R_{i}\,Y_{i}
-%             \overset{{\color{white}.}}{+}
-%             (1-R_{i})\,Y^{*}_{i}
-%             \,\right)
-%         }{
-%         \overset{{\color{white}.}}{\underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Z_{i}}
-%         }
-% \end{eqnarray*}
-% where
-% \;$\widetilde{Y}_{i} \,=\, R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}$\;
-% and
-% \;$Y^{*}_{i} \,=\, Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)$.\,
-% \end{definition}
-
-% \vskip 0.3cm
-% \begin{lemma}[A formula for \,$\widetilde{T}_{\alpha,Y}$]
-% \mbox{}
-% \vskip 0.1cm
-% \noindent
-% \begin{eqnarray*}
-% \widetilde{T}_{\alpha,Y}
-% & = &
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
-%     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-% \end{eqnarray*}
-% \end{lemma}
-% \proof
-% \begin{eqnarray*}
-% \widetilde{T}_{\alpha,Y}
-% & := &
-%     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
-% \;\; = \;\;
-%     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\left(\,
-%         R_{i}\,Y_{i}
-%         \overset{{\color{white}.}}{+}
-%         (1-R_{i})\,Y^{*}_{i}
-%         \,\right)
-% \\
-% & = &
-%     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,R_{i}\,Y_{i}
-%     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,(1-R_{i})\,Y^{*}_{i}
-% \;\; = \;\;
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,R_{i}\,Y_{i}
-%     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
-% \\
-% & = &
-%     {\color{red}
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
-%     \;\overset{{\color{white}.}}{-}\;
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
-%     }
-%     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,R_{i}\,Y_{i}
-%     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
-% \\
-% & = &
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
-%     \;\overset{{\color{white}.}}{-}\;
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,Y_{i}
-%     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,Y^{*}_{i}
-% \\
-% & = &
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,Y_{i}
-%     \;\overset{{\color{white}.}}{+}\;
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\,(1-R_{i})\,(Y^{*}_{i}-Y_{i})
-% \end{eqnarray*}
-% \vskip -0.5cm
-% \qed
-
-%         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-% \vskip 0.3cm
-% \begin{lemma}[Conditional bias of \,$\widetilde{T}_{\alpha,Y}$; see Equation (5.2) in \cite{Beaumont2011} and preceding paragraph]
-% \label{biasTtilde}
-% \mbox{}
-% \vskip 0.1cm
-% \noindent
-% Let
-% \begin{eqnarray*}
-% \widetilde{T}_{\alpha,Y}
-% \;\; = \;\;
-%     \widetilde{T}_{\alpha,Y}(\,
-%         \Sdot\,,\,
-%         \Rdot\,,\,
-%         \Ydot\,,\,
-%         \Xdotdot\,;\,
-%         \dbullet
-%         \,)
-% & := &
-%     \underset{i\,\in\,s}{\sum}\;w_{i}\,d_{i}\,\widetilde{Y}_{i}
-% \;\; = \;\;
-%     \underset{i\,\in\,U}{\sum}\;w_{i}\,d_{i}\,S_{i}\left(\,
-%         R_{i}\,Y_{i}
-%         \overset{{\color{white}.}}{+}
-%         (1-R_{i})\,Y^{*}_{i}
-%         \,\right)
-% \end{eqnarray*}
-% be an imputation estimator for the generalized total
-% \;$T_{\alpha,Y} \,:=\, \underset{i \in U}{\sum}\,d_{i}Y_{i}$,\;
-% where
-% \begin{equation*}
-% \widetilde{Y}_{i} \;=\; R_{i}\,Y_{i}+(1-R_{i})\,Y^{*}_{i}
-% \quad\;\;\textnormal{and}\quad\;
-% Y^{*}_{i} \;=\; Y^{*}_{i}(\,\Sdot,\Rdot,\Ydot,\Xdotdot\,)
-% \end{equation*}
-% \vskip 0.2cm
-% \noindent
-% Suppose the quantities
-% \,$
-% \Sdot\,,\,
-% \Rdot\,,\,
-% \Ydot\,,\,
-% \Xdotdot\,,\,
-% \dbullet
-% $\,
-% satisfy the probabilistic assumptions specified
-% in Subsection \ref{DomainRatioProbabilisticFramework}.
-% \vskip 0.2cm
-% \noindent
-% Then, the following statements are true:
-% \renewcommand{\theenumi}{\roman{enumi}}
-% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
-% \begin{enumerate}
-% \item
-%     The \textbf{overall bias}
-%     \,$
-%     \bias\!\left(\;
-%         \left.
-%         \widetilde{T}_{\alpha,Y}
-%         \;\right\vert\,
-%         \Zdot\,,\Xobs
-%         \,\right)
-%     $\,
-%     of
-%     \,$\widetilde{T}_{\alpha,Y}$\,
-%     satisfies:
-%     \begin{eqnarray*}
-%     \bias\!\left(\;
-%         \left.
-%         \widetilde{T}_{\alpha,Y}
-%         \;\right\vert\,
-%         \Zdot\,,\Xobs
-%         \,\right)
-%     & := &
-%         E\!\left[\;
-%             \left.
-%             \widetilde{T}_{\alpha,Y} - T_{\alpha,Y}
-%             \,\right\vert\,
-%             \Zdot\,,\Xobs
-%             \,\right]
-%     \;\; = \;\;
-%         E_{SR}\!\left(\;
-%             \overset{{\color{white}.}}{E_{Y}\!\left[\;
-%                 \left.
-%                 \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%                 \;\right\vert\,
-%                 s,s_{R},\Zdot\,,\Xobs
-%                 \,\right]}
-%             \;\right),
-%     \end{eqnarray*}
-%     where
-%     \,$
-%     \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%     \; = \;
-%         \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}(\,s,\Ydot\,;\,\dbullet\,)
-%     \; = \;
-%         \underset{k\,\in\,s}{\sum}\;w_{k}\,d_{k}\,Y_{k}
-%     $\,
-%     is the Horvitz-Thompson estimator for the generalized total.
-% \item
-%     The \textbf{conditional model bias}
-%     \,$
-%     E_{Y}\!\left[\;
-%         \left.
-%         \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%         \;\right\vert\,
-%         s,s_{R},\Xobs
-%         \,\right]
-%     $\,
-%     can be expressed as follows:
-%     \begin{eqnarray*}
-%     E_{Y}\!\left[\;
-%         \left.
-%         \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%         \;\right\vert\,
-%         s,s_{R},\Xobs
-%         \,\right]
-%     & = &
-%         \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,w_{i}\,d_{i}\,
-%         E_{Y}\!\left[\;
-%             \left.
-%             Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-%             \;\right\vert\,
-%             s,s_{R},\Xobs
-%             \,\right]
-%     \end{eqnarray*}
-% \item
-%     Consequently, we have the following alternative expression for the overall bias:
-%     \begin{eqnarray*}
-%     \bias\!\left(\;
-%         \left.
-%         \widetilde{T}_{\alpha,Y}
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right)
-%     & := &
-%         E\!\left[\;
-%             \left.
-%             \widetilde{T}_{\alpha,Y} - T_{\alpha,Y}
-%             \,\right\vert\,
-%             \Xobs
-%             \,\right]
-%     \;\; = \;\;
-%         E_{SR}\!\left(\;
-%             \overset{{\color{white}.}}{E_{Y}\!\left[\;
-%                 \left.
-%                 \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%                 \;\right\vert\,
-%                 s,s_{R},\Xobs
-%                 \,\right]}
-%             \;\right)
-%     \\
-%     & = &
-%         E_{SR}\!\left[\;
-%             \underset{i\,\in\,{\color{red}s_{M}}}{\sum}\,w_{i}\,d_{i}\,
-%             E_{Y}\!\left[\;
-%                 \left.
-%                 Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-%                 \;\right\vert\,
-%                 s,s_{R},\Xobs
-%                 \,\right]
-%             \,\right]
-%     \end{eqnarray*}
-% \end{enumerate}
-% \end{lemma}
-% %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-% \begin{remark}\label{remarkSmallUnitBias}
-% \mbox{}
-% \vskip -0.1cm
-% \noindent
-% \begin{itemize}
-% \item
-%     In practice, we therefore would like to choose an imputation strategy such that
-%     \begin{equation*}
-%     E_{Y}\!\left[\;
-%         \left.
-%         Y^{*}_{i} \overset{{\color{white}.}}{-} Y_{i}
-%         \;\right\vert\,
-%         s,s_{R},\Xobs
-%         \,\right]
-%     \;\; \approx \;\;
-%         0,
-%     \quad
-%     \textnormal{for each \,$i \in s_{M}$}
-%     \end{equation*}
-%     See the paragraph after Equation (5.2), p.175, \cite{Beaumont2011}.
-% \item
-%     The conditioning on \,$\Xobs$\, is largely suppressed in \cite{Beaumont2011} for notational brevity;
-%     see the last sentence in the second paragraph of \S4, p.173, \cite{Beaumont2011}.
-%     We have restored it in our notation in these study notes.
-% \end{itemize}
-% \end{remark}
-% %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-% \proofof Lemma \ref{biasTtilde}
-% \vskip 0.1cm
-% \renewcommand{\theenumi}{\roman{enumi}}
-% \renewcommand{\labelenumi}{\mbox{}\;\;\,(\theenumi)$\quad$}
-% \begin{enumerate}
-% \item
-%     We compute:
-%     \begin{eqnarray*}
-%     \bias\!\left(\;
-%         \left.
-%         \widetilde{T}_{\alpha,Y}
-%         \;\right\vert\,
-%         \Xobs
-%         \,\right)
-%     & := &
-%         E\!\left[\;
-%             \left.
-%             \widetilde{T}_{\alpha,Y} - T_{\alpha,Y}
-%             \,\right\vert\,
-%             \Xobs
-%             \,\right]
-%     \;\; = \;\;
-%         E\!\left[\;
-%             \left.
-%             \widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} + \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}
-%             \,\right\vert\,
-%             \Xobs
-%             \,\right]
-%     \\
-%     & = &
-%         E_{SRY}\!\left[\,
-%             \left.
-%             \widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%             \,\right\vert\,
-%             \Xobs
-%             \,\right]
-%         \; + \;
-%         E_{YSR}\!\left[\,
-%             \left.
-%             \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}
-%             \,\right\vert\,
-%             \Xobs
-%             \,\right]
-%     \\
-%     & = &
-%         E_{SR}\!\left(\,
-%             \overset{{\color{white}.}}{E_{Y}\!\left[\;
-%                 \left.
-%                 \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%                 \;\right\vert\,
-%                 s,s_{R},\Xobs
-%                 \,\right]}
-%             \;\right)
-%         \; + \;
-%         E_{Y}\!\left(\,
-%             \overset{{\color{white}.}}{E_{SR}\!\left[\;
-%                 \left.
-%                 \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} \overset{{\color{white}.}}{-} T_{\alpha,Y}
-%                 \;\right\vert\,
-%                 \Ydot,\Xobs
-%                 \,\right]}
-%             \;\right)
-%     \\
-%     & = &
-%         E_{SR}\!\left(\,
-%             \overset{{\color{white}.}}{E_{Y}\!\left[\;
-%                 \left.
-%                 \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%                 \;\right\vert\,
-%                 s,s_{R},\Xobs
-%                 \,\right]}
-%             \;\right)
-%         \; + \;
-%         E_{Y}\!\left(\;\overset{{\color{white}.}}{0}\;\right),
-%         \;\;
-%         \textnormal{by design-unbiasedness of \,$\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}$}
-%     \\
-%     & = &
-%         E_{SR}\!\left(\,
-%             \overset{{\color{white}.}}{E_{Y}\!\left[\;
-%                 \left.
-%                 \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%                 \;\right\vert\,
-%                 s,s_{R},\Xobs
-%                 \,\right]}
-%             \;\right),
-%     \end{eqnarray*}
-%     as required.
-% \item
-%     We compute:
-%     \begin{eqnarray*}
-%     &&
-%         E_{Y}\!\left[\;
-%             \left.
-%             \widetilde{T}_{\alpha,Y} \overset{{\color{white}.}}{-} \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%             \;\right\vert\,
-%             s,s_{R},\Xobs
-%             \,\right]
-%     \\
-%     & = &
-%         E_{Y}\!\left[\;
-%             \left.
-%             \left(\,
-%                 \underset{k \in s_{R}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
-%                 \overset{{\color{white}.}}{+}
-%                 \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}^{*}
-%                 \,\right)
-%             \,\overset{{\color{white}.}}{-}\,
-%             \left(\,
-%                 \underset{k \in s_{R}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
-%                 \overset{{\color{white}.}}{+}
-%                 \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,Y_{k}
-%                 \,\right)
-%             \;\right\vert\,
-%             s,s_{R},\Xobs
-%             \,\right]
-%     \\
-%     & = &
-%         E_{Y}\!\left[\;\,
-%             \left.
-%             \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,(Y_{k}^{*}-Y_{k})
-%             \;\,\right\vert\,
-%             s,s_{R},\Xobs
-%             \,\right]
-%     \;\; = \;\;
-%         \underset{k \in s_{M}}{\sum}\;w_{k}\,d_{k}\,
-%         E_{Y}\!\left[\;\,
-%             Y_{k}^{*}-Y_{k}
-%             \,\left\vert\;
-%             s,s_{R},\Xobs
-%             \right.
-%             \,\right],
-%     \end{eqnarray*}
-%     as required.
-% \item
-%     Immediate by the preceding statements.
-%     \qed
-% \end{enumerate}
-
-        %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
-
-% \vskip 1.0cm
-\clearpage
-\subsection{Decomposition of \,$\MSE\!\left(\,\left.\widetilde{R}_{\alpha,Y/Z}\;\right\vert\,\Zdot\,,\Xobs\,\right)$}
+\vskip 1.0cm
+\subsection{Decomposition of
+\,$
+\MSE\!\left(\,
+    \left.
+    \widetilde{R}_{\alpha,Y/Z}
+    \;\right\vert\!\!
+    \begin{array}{c} \Zdot, \Xobs \end{array}
+    \!\!\right)
+$\,
+}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -1446,12 +1002,12 @@ that they satisfy the probabilistic assumptions as described in Subsection
 \ref{DomainRatioProbabilisticFramework}.
 Then, the conditional mean squared error
 \,$
-\MSE\!\left(\;
+\MSE\!\left(\,
     \left.
     \widetilde{R}_{\alpha,Y/Z}
-    \;\right\vert\,
-    \Zdot\,,\Xobs
-    \,\right)
+    \;\right\vert\!\!
+    \begin{array}{c} \Zdot, \Xobs \end{array}
+    \!\!\right)
 $\,
 of \,$\widetilde{R}_{\alpha,Y/Z}$\,
 as estimator for
@@ -1459,16 +1015,16 @@ as estimator for
 given \,$\Zdot$\, and \,$\Xdotdot$,\,
 can be additively decomposed as follows:
 \begin{eqnarray*}
-\MSE\!\left(\;
+\MSE\!\left(\,
     \left.
     \widetilde{R}_{\alpha,Y/Z}
-    \;\right\vert\,
-    \Zdot\,,\Xobs
-    \,\right)
+    \;\right\vert\!\!
+    \begin{array}{c} \Zdot, \Xobs \end{array}
+    \!\!\right)
 & := &
     E\!\left[\,
         \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
+        \left(\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\right)^{\!2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1476,23 +1032,20 @@ can be additively decomposed as follows:
 & = &
     E_{Y}\!\left[\,
     \Var_{S}\!\left(\,
-        \left.
         \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
-        \,\right\vert\,
-        \Ydot,
-        \Zdot\,,\Xobs
-        \,\right)
+        \,\left\vert\!
+        \begin{array}{c} \Ydot, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right)
         \,\right]
-\\
-&&
     \;+\;
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Zdot\,,\Xobs
-        \,\right]
+        \left(\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
         \,\right]
 \\
 &&
@@ -1500,11 +1053,13 @@ can be additively decomposed as follows:
     2\cdot
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
-        \,\right\vert\,
-        s,s_{R},\Zdot\,,\Xobs
-        \,\right]
+        \left(\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)
+        \!
+        \left(\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\right)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
         \,\right]
 \end{eqnarray*}
 \end{lemma}
@@ -1517,19 +1072,17 @@ can be additively decomposed as follows:
     \;\right\vert\,
     \Zdot\,,\Xobs
     \,\right)
-% \\
-% & := &
 \;\; := \;\;
     E\!\left[\,
         \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
+        \left(\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\right)^{\!2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
 \;\; = \;\;
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
+        \left(\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\right)^{\!2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1537,9 +1090,17 @@ can be additively decomposed as follows:
 & = &
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} \;{\color{red}-\; \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \;+\; \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}}
-        \,-\,
-        R_{\alpha,Y/Z}\,)^{2}
+        \left(
+            \widetilde{R}_{\alpha,Y/Z}
+            {\color{blue}
+            \;-\;
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
+            \;+\;
+            \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
+            }
+            \, - \,
+            R_{\alpha,Y/Z}
+            \right)^{\!2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1547,11 +1108,13 @@ can be additively decomposed as follows:
 & = &
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+        \left(\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
         \,+\,
-        2\,(\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
+        2\left(\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)
+        \!
+        \left(\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\right)
         \,+\,
-        (\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
+        \left(\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\right)^{\!2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1560,18 +1123,16 @@ can be additively decomposed as follows:
     {\color{black}
     E_{YSR}\!\left[\,
         \left.
-        (\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
+        \left(\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\right)^{\!2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
     }
-\\
-&&
     \;+\;
     {\color{black}
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+        \left(\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1582,7 +1143,9 @@ can be additively decomposed as follows:
     2\cdot
     E_{YSR}\!\left[\,
         \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
+        \left(\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)
+        \!
+        \left(\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\right)
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right]
@@ -1591,25 +1154,22 @@ can be additively decomposed as follows:
     {\color{blue}
     E_{Y}\!\left[\,
     E_{SR}\!\left[\,
-        \left.
-        (\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
-        \,\right\vert\,
-        \Ydot,
-        \Zdot\,,\Xobs
-        \,\right]
+        \left(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\right)^{\!2}
+        \,\left\vert\!
+        \begin{array}{c} \Ydot, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
         \,\right]
     }
-\\
-&&
     \;+\;
     {\color{blue}
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Zdot\,,\Xobs
-        \,\right]
+        \left(\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
         \,\right]
     }
 \\
@@ -1618,35 +1178,34 @@ can be additively decomposed as follows:
     2\cdot
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
-        \,\right\vert\,
-        s,s_{R},\Zdot\,,\Xobs
-        \,\right]
+        \left(\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)
+        \!
+        \left(\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\right)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
         \,\right]
 \\
 & = &
     E_{Y}\!\left[\,
     {\color{blue}
     \Var_{S}\!\left(\,
-        \left.
         \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
-        \,\right\vert\,
-        \Ydot,
-        \Zdot\,,\Xobs
-        \,\right)
+        \,\left\vert\!
+        \begin{array}{c} \Ydot, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right)
         }
         \,\right]
-\\
-&&
     \;+\;
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Zdot\,,\Xobs
-        \,\right]
+        \left(\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
         \,\right]
 \\
 &&
@@ -1654,11 +1213,13 @@ can be additively decomposed as follows:
     2\cdot
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
-        \,\right\vert\,
-        s,s_{R},\Zdot\,,\Xobs
-        \,\right]
+        \left(\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)
+        \!
+        \left(\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\right)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
         \,\right]
 \end{eqnarray*}
 \vskip -0.5cm
@@ -1676,10 +1237,10 @@ To refer to the three summands in the above decomposition of
     \;\right\vert\,
     \Zdot\,,\Xobs
     \,\right)
-\, := \,
+\;\; := \;\;
     E\!\left[\,
         \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
+        \left(\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\right)^{\!2}
         \,\right\vert\,
         \Zdot\,,\Xobs
         \,\right],
@@ -1697,12 +1258,11 @@ we will use the following nomenclature:
 & := &
     E_{Y}\!\left[\,
     \Var_{S}\!\left(\,
-        \left.
         \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
-        \,\right\vert\,
-        \Ydot,
-        \Zdot\,,\Xobs
-        \,\right)
+        \,\left\vert\!
+        \begin{array}{c} \Ydot, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right)
         \,\right]
 \\ \\
 \left(\begin{array}{c}
@@ -1715,11 +1275,11 @@ we will use the following nomenclature:
 & := &
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
-        \,\right\vert\,
-        s,s_{R},\Zdot\,,\Xobs
-        \,\right]
+        \left(\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
         \,\right]
 \\ \\
 \left(\begin{array}{c}
@@ -1733,82 +1293,29 @@ we will use the following nomenclature:
     2\,
     E_{SR}\!\left[\,
     E_{Y}\!\left[\,
-        \left.
-        (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
-        \,\right\vert\,
-        s,s_{R},\Zdot\,,\Xobs
-        \,\right]
+        \left(\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)
+        \!
+        \left(\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\right)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
         \,\right]
 \end{eqnarray*}
-% \vskip 0.5cm
-% \noindent
-% The first term above
-% \,--\,
-% i.e.,
-% $
-% E_{Y}\!\left[\,
-% E_{SR}\!\left[\,
-%     \left.
-%     (\,\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}\,)^{2}
-%     \,\right\vert\,
-%     \Ydot,
-%     \Xobs
-%     \,\right]
-%     \,\right]
-% $
-% \,--\,
-% is called the \textit{sampling variance} in \cite{Beaumont2011}.
-% First, note that
-% \begin{eqnarray*}
-% E_{Y}\!\left[\,
-% E_{SR}\!\left[\,
-%     \left.
-%     (\,\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}\,)^{2}
-%     \,\right\vert\,
-%     \Ydot,
-%     \Xobs
-%     \,\right]
-%     \,\right]
-% & = &
-%     E_{Y}\!\left[\,
-%     \Var_{SR}\!\left(\,
-%         \left.
-%         \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}
-%         \,\right\vert\,
-%         \Ydot,
-%         \Xobs
-%         \,\right)
-%         \,\right]
-% \end{eqnarray*}
-% It is asserted that
-% \begin{eqnarray*}
-% E_{Y}\!\left[\,
-% E_{SR}\!\left[\,
-%     \left.
-%     (\,\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}\,)^{2}
-%     \,\right\vert\,
-%     \Ydot,
-%     \Xobs
-%     \,\right]
-%     \,\right]
-% & \approx &
-%     E_{Y}\!\left[\,
-%     E_{SR}\!\left[\,
-%         \left.
-%         (\,\widehat{T}^{\textnormal{(HT)}}_{\alpha,Y} - T_{\alpha,Y}\,)^{2}
-%         \,\right\vert\,
-%         s,s_{R},\YsubR,\Xobs
-%         \,\right]
-%         \,\right]
-% \end{eqnarray*}
-% See \cite{Beaumont2009} as well as Equation (5.5), p.175, \cite{Beaumont2011}.
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 % \clearpage
 \vskip 0.5cm
 \subsection{Estimator for the sampling variance component of
-\,$\MSE\!\left(\,\widetilde{R}_{\alpha,Y/Z}\left\vert\,\Zdot\,,\Xobs\,\right.\right)$}
+\,$
+\MSE\!\left(
+    \left.
+    \widetilde{R}_{\alpha,Y/Z}
+    \;\right\vert\!\!
+    \begin{array}{c} \Zdot\,,\Xobs \end{array}
+    \!\!\right)
+$}
 \setcounter{theorem}{0}
 
         %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
@@ -1835,19 +1342,17 @@ Then, the following statements are true:
     \begin{equation*}
     E_{S}\!\left[\;
         v(\,s\,;\Ydot,\Zdot\,)
-        \,\left\vert\;
-        \Ydot,\Zdot\,,\Xobs
+        \,\left\vert\!
+        \begin{array}{c} \Ydot, \\ \Zdot\,,\Xobs \end{array}
         \right.
-        \,\right]
+        \!\!\right]
     \;\; = \;\;
         \Var_{S}\!\left(\,
-            \left.
             \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}
-            \,\right\vert\,
-            \Ydot,
-            \Zdot,
-            \Xobs
-            \,\right),
+            \,\left\vert\!
+            \begin{array}{c} \Ydot, \\ \Zdot,\Xobs \end{array}
+            \right.
+            \!\!\right),
     \end{equation*}
     then
     \,$
@@ -1895,6 +1400,215 @@ Then, the following statements are true:
                 \!\!\right)
             \,\right]
     \end{equation*}
+\item
+    Suppose we choose to approximate
+    \,$v(\,s\,;y_{\bullet}\,)$\,
+    with the {\color{red}approximately} design-unbiased linearization-based estimator
+    \,$AV^{\textnormal{(lin)}}(\,s\,;\abullet,\ydot,\zdot\,)$\,
+    for the sampling variance (see Result 5.6.2, p.178, \cite{Sarndal1992}), i.e.,
+    \begin{eqnarray*}
+    &&
+        AV^{\textnormal{(lin)}}(\,\abullet,\ydot,\zdot\,)
+    \\
+    & := &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{T_{\alpha,Z}^{\,2}}
+            }
+        \cdot
+        \underset{i \in U}{\sum}\;
+        \underset{k \in U}{\sum}
+        \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+        \!
+        \left(\,
+            \dfrac{
+                \left(\,
+                    \underset{j\in\mathcal{C}_{i}}{\sum}\alpha_{ij}y_{ij}
+                    \right)
+                -
+                R_{\alpha,Y/Z}\cdot\!\left(\,
+                    \underset{j\in\mathcal{C}_{i}}{\sum}\alpha_{ij}z_{ij}
+                    \right)
+                }{
+                \pi_{i}
+                }
+            \,\right)
+        \!
+        \left(\,
+            \dfrac{
+                \left(\,
+                    \underset{l\in\mathcal{C}_{k}}{\sum}\alpha_{kl}y_{kl}
+                    \right)
+                -
+                R_{\alpha,Y/Z}\cdot\!\left(\,
+                    \underset{l\in\mathcal{C}_{k}}{\sum}\alpha_{kl}z_{kl}
+                    \right)
+                }{
+                \pi_{k}
+                }
+            \,\right)
+    \\
+    & = &
+        \dfrac{1}{
+            \overset{{\color{white}.}}{T_{\alpha,Z}^{\,2}}
+            }
+        \cdot
+        \underset{i \in U}{\sum}\;
+        \underset{k \in U}{\sum}
+        \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+        \dfrac{1}{\pi_{i}}
+        \,
+        \dfrac{1}{\pi_{k}}
+        \!
+        \left\{\,
+            \left(\,
+                \underset{j\in\mathcal{C}_{i}}{\sum}\alpha_{ij}y_{ij}
+                \right)
+            \!
+            \left(\,
+                \underset{l\in\mathcal{C}_{k}}{\sum}\alpha_{kl}y_{kl}
+                \right)
+            \, + \,
+            R_{\alpha,Y/Z}^{\,2}\cdot
+            \!
+            \left(\,
+                \underset{j\in\mathcal{C}_{i}}{\sum}\alpha_{ij}z_{ij}
+                \right)
+            \!
+            \left(\,
+                \underset{l\in\mathcal{C}_{k}}{\sum}\alpha_{kl}z_{kl}
+                \right)
+            \,\right\}
+    \\
+    &&
+        \; - \;
+        \dfrac{
+            2 \cdot\!R_{\alpha,Y/Z}
+            }{
+            \overset{{\color{white}.}}{T_{\alpha,Z}^{\,2}}
+            }
+        \cdot
+        \underset{i \in U}{\sum}\;
+        \underset{k \in U}{\sum}
+        \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+        \dfrac{1}{\pi_{i}}
+        \,
+        \dfrac{1}{\pi_{k}}
+        \!
+        \left(\,
+            \underset{j\in\mathcal{C}_{i}}{\sum}\alpha_{ij}y_{ij}
+            \right)
+        \!
+        \left(\,
+            \underset{l\in\mathcal{C}_{k}}{\sum}\alpha_{kl}z_{kl}
+            \right)
+    \\
+    & = &
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                T_{\alpha,z}^{\,2}
+                }
+            }
+        \left\{\,
+            \begin{array}{l}
+                V^{\textnormal{(HT)}}(\,\abullet,\ydot\,)
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{-} \;
+                2\cdot\!R_{\alpha,Y/Z}
+                \cdot
+                \underset{i \in U}{\sum}\;
+                \underset{k \in U}{\sum}
+                \left(\pi_{ik} \overset{{\color{white}.}}{-} \pi_{i}\pi_{k}\right)
+                \dfrac{1}{\pi_{i}}
+                \,
+                \dfrac{1}{\pi_{k}}
+                \!
+                \left(\,
+                    \underset{j\in\mathcal{C}_{i}}{\sum}\alpha_{ij}y_{ij}
+                    \right)
+                \!
+                \left(\,
+                    \underset{l\in\mathcal{C}_{k}}{\sum}\alpha_{kl}z_{kl}
+                    \right)
+                \\
+                \; \overset{{\color{white}\textnormal{\Large$1$}}}{+} \;
+                R_{\alpha,Y/Z}^{\,2}
+                \cdot
+                V^{\textnormal{(HT)}}(\abullet,\zdot)
+                \end{array}
+            \right\}
+    \end{eqnarray*}
+    Then,
+    \,$
+    E_{Y_{M}}\!\left[\;
+        AV^{\textnormal{(lin)}}(\,\abullet,\Ydot,\Zdot\,)
+        \,\left\vert\!
+        \begin{array}{c} s,s_{R},\YsubR, \\ \Zdot\,,\Xobs \end{array}
+        \right.
+        \!\!\right]
+    $\,
+    can be expressed as follows:
+    \begin{eqnarray*}
+    &&
+        E_{Y_{M}}\!\left[\;
+            \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\Ydot,\dbullet\Zdot\,)
+            \,\left\vert\!
+            \begin{array}{c} s,s_{R},\YsubR, \\ \Zdot\,,\Xobs \end{array}
+            \right.
+            \!\!\right]
+    \\
+    & = &
+        {\color{blue}
+        \widehat{AV}^{\textnormal{(lin)}}(\,s\,;\dbullet\widetilde{y}_{\bullet},\dbullet\zdot\,)
+        \; + \;
+        \dfrac{
+            1
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \left(\,
+            \underset{k \in s_{M}}{\sum}\!\!
+            \left(1-\dfrac{1}{w_{k}}\right)
+            w_{k}^{2}\,d_{k}^{2}\,\sigma_{k}^{2}
+            \,\right)
+        }
+    \\
+    &&
+        \; + \;
+        \dfrac{
+            (-2)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{3}
+                }
+            }
+        \left(\,
+            \underset{k \in {\color{red}s_{M}}}{\sum}\;
+            \underset{l \in s}{\sum}
+                \left(\dfrac{\pi_{kl}-\pi_{k}\pi_{l}}{\pi_{kl}}\right)
+                \dfrac{d_{k}^{\,2}\,\sigma^{2}_{k}}{\pi_{k}^{2}}\,
+                \dfrac{d_{l}\,z_{l}}{\pi_{l}}
+            \right)
+        \; + \;
+        \dfrac{
+            \underset{k \in s_{M}}{\sum}\,d_{k}^{\,2}\sigma^{2}_{k}/\pi_{k}^{2}
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+        \cdot
+        \dfrac{
+            \widehat{V}^{\textnormal{(HT)}}(s\,;\dbullet\zdot)
+            }{
+            \overset{{\color{white}.}}{
+                \widehat{T}_{d}(s\,;\zdot)^{2}
+                }
+            }
+    \end{eqnarray*}
 \item
     Suppose we choose to approximate
     \,$v(\,s\,;y_{\bullet}\,)$\,
@@ -3514,7 +3228,7 @@ Then, the following statements are true:
 \item
     $
     E_{Y}\!\left[\;
-        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+        \left(\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -3528,7 +3242,7 @@ Then, the following statements are true:
     \,$
     E_{SR}\!\left[\,
     E_{Y}\!\left[\;
-        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+        \left(\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -3542,7 +3256,7 @@ Then, the following statements are true:
 \item
     $
     E_{Y}\!\left[\,
-        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+        \left(\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -3556,7 +3270,7 @@ Then, the following statements are true:
     \begin{eqnarray*}
     &&
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+            \left(\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
@@ -3602,7 +3316,7 @@ Then, the following statements are true:
     \textbf{Claim 1:}\quad
     \begin{eqnarray*}
     E_{Y}\!\left[\;\,
-        (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+        \left(\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
         \,\left\vert
         \begin{array}{c}
             s,s_{R},
@@ -5245,7 +4959,7 @@ Then, we have the following results:
     & := &
         E\!\left[\,
             \left.
-            (\,\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\,)^{2}
+            \left(\widetilde{R}_{\alpha,Y/Z} - R_{\alpha,Y/Z}\right)^{\!2}
             \,\right\vert\,
             \Zdot\,,\Xobs
             \,\right]
@@ -5264,7 +4978,7 @@ Then, we have the following results:
         \;+\;
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+            \left(\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
             \,\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
             \right.
@@ -5276,7 +4990,9 @@ Then, we have the following results:
         2\cdot
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\,)
+            \left(\widetilde{R}_{\alpha,Y/Z} \,-\, \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)
+            \!
+            \left(\,\widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z} \,-\, R_{\alpha,Y/Z}\right)
             \,\left\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
             \right.
@@ -5310,7 +5026,7 @@ Then, we have the following results:
     %     E_{SR}\!\left[\,
     %     E_{Y}\!\left[\,
     %         \left.
-    %         (\,\widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}\,)^{2}
+    %         \left(\widetilde{T}_{\alpha,Y} - \widehat{T}^{\textnormal{(HT)}}_{\alpha,Y}\right)^{\!2}
     %         \,\right\vert\,
     %         s,s_{R},\Xobs
     %         \,\right]
@@ -5362,7 +5078,7 @@ Then, we have the following results:
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
             \left.
-            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+            \left(\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
             \,\right\vert\,
             s,s_{R},\Zdot\,,\Xobs
             \,\right]
@@ -5619,14 +5335,14 @@ Then, we have the following results:
         E_{SR}\!\left[\,
         E_{Y}\!\left[\,
             \left.
-            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+            \left(\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
             \,\right\vert\!
             \begin{array}{c} s,s_{R}, \\ \Zdot\,,\Xobs \end{array}
             \!\right]
             \,\right]
     \;\; {\color{red}\approx} \;\;
         E_{Y}\!\left[\,
-            (\,\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\,)^{2}
+            \left(\widetilde{R}_{\alpha,Y/Z} - \widehat{R}^{\textnormal{(HT)}}_{\alpha,Y/Z}\right)^{\!2}
             \,\left\vert
             \begin{array}{c}
                 s,s_{R},
