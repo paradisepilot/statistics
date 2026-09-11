@@ -1,0 +1,45 @@
+
+%The Horvitz-Thompson estimator under stratified random sampling:
+%\vskip -0.5cm
+\begin{eqnarray*}
+T^{(r)}_{p}
+& := &
+% 	\underset{i\,\in\,\mathcal{U}_{p}}{\sum}\;y^{(r)}_{i}
+% \;\, \approx \;\;
+% 	{\color{red}\widehat{A^{(r)}_{p}}^{\textnormal{HT}}}
+% \;\, {\color{black}:=} \;\;
+	{\color{black}\underset{i\,\in\mathcal{S}_{p}}{\sum}\,\dfrac{y^{(r)}_{i}}{\pi_{i}}}
+\;\; = \;\;
+	\overset{K}{\underset{k = 1}{\sum}}
+	\left(
+		\underset{i\,\in\mathcal{S}_{p,k}}{\sum}\dfrac{y^{(r)}_{i}}{\pi_{i}}
+		\right),
+	\quad
+	\textnormal{noting that
+		\,$T^{(r)}_{(p,k)} \,=\, \underset{i\,\in\mathcal{S}_{p,k}}{\sum}\dfrac{y^{(r)}_{i}}{\pi_{i}}$
+		}
+\\
+& = &
+	\overset{K}{\underset{k = 1}{\sum}}
+	\left(
+		\underset{i\,\in\mathcal{S}_{p,k}}{\sum}\,
+		\dfrac{M_{p,k}}{m_{p,k}}\,y^{(r)}_{i}
+		\right),
+	\quad
+	\textnormal{since \,$\pi_{i} \,=\, \dfrac{m_{p,k}}{M_{p,k}}$,\, for each \,$i \in \mathcal{S}_{p,k}$}
+\\
+& = &
+	\overset{K}{\underset{k = 1}{\sum}}\;
+	M_{p,k}
+	\left(
+		\dfrac{1}{m_{p,k}}
+		\cdot\!
+		\underset{i\,\in\mathcal{S}_{p,k}}{\sum}
+		y^{(r)}_{i}
+		\right)
+\;\; = \;\;
+	\overset{K}{\underset{k=1}{\sum}}\;
+	M_{p,k}
+	\cdot
+	\widehat{\overline{y}}^{(r)}_{p,k}
+\end{eqnarray*}

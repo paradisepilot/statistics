@@ -1,0 +1,44 @@
+
+%The Horvitz-Thompson estimator under stratified random sampling:
+%\vskip -0.5cm
+\begin{eqnarray*}
+% \widehat{\Var}\!\left(\,\widehat{A^{(k)}_{r}}^{\textnormal{HT}}\,\right)
+\widehat{\Var}\!\left(\;
+	\overset{{\color{white}.}}{T^{(r)}_{p}}
+	\,\right)
+& = &
+	\overset{K}{\underset{k=1}{\sum}}\;\,
+	\widehat{\Var}\!\left(\,
+		\overset{{\color{white}.}}{T^{(r)}_{p,k}}
+		\,\right)
+	% \left(\,1 \,-\, \dfrac{m_{p,k}}{M_{p,k}}\,\right)
+	% \cdot
+	% M_{p,k}^{2}
+	% \cdot
+	% \dfrac{s_{p,k}^{2}}{m_{p,k}}
+\;\; = \;\;
+	\overset{K}{\underset{k=1}{\sum}}
+	\left(\,1 \,-\, \dfrac{m_{p,k}}{M_{p,k}}\,\right)
+	\cdot
+	M_{p,k}^{2}
+	\cdot
+	\dfrac{s_{p,k}^{2}}{m_{p,k}}
+\end{eqnarray*}
+where
+\begin{equation*}
+s_{p,k}^{2}
+\; = \;
+	\dfrac{1}{m_{p,k}\,-\,1}
+	\cdot\!
+	\underset{i\,\in\mathcal{S}_{p,k}}{\sum}\!
+	\left(\,y^{(r)}_{i} \,-\, \overline{y}^{(k)}_{p,k}\,\right)^{2}
+\quad\quad
+\textnormal{and}
+\quad\quad\;\;
+\widehat{\overline{y}}^{(r)}_{p,k}
+\; = \;
+	\dfrac{1}{m_{p,k}}
+	\cdot\!
+	\underset{i\,\in\mathcal{S}_{p,k}}{\sum}
+	y^{(r)}_{i}
+\end{equation*}

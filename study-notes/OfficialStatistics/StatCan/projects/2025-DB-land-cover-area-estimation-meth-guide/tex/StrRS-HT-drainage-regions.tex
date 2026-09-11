@@ -1,0 +1,340 @@
+
+%\renewcommand*{\ref}{\textnormal{ref}}
+%\newcommand*{\map}{\textnormal{map}}
+
+%%%%%%%%%%
+
+\begin{eqnarray*}
+\mathcal{A}^{(r)}_{d}
+	& = &
+	\underset{p}{\sum}\;
+	\mathcal{A}^{(r)}_{p\,\cap\,d}
+\;\; = \;\;
+	\underset{p}{\sum}\;
+	\overset{K}{\underset{k=1}{\sum}}\;\,
+	\mathcal{A}^{(r)}_{(p,k)\,\cap\,d}
+\\
+	& = &
+	{\color{blue}
+	\underset{p}{\sum}\;
+	\overset{K}{\underset{k=1}{\sum}}\;\,
+	\mathcal{A}_{(p,k)\,\cap\,d}
+	%A_{\textnormal{{\tiny cell}}}
+	%\,\cdot\,
+	%M_{r,j}
+	\cdot
+	P\!\left(
+		\left. C_{\textnormal{ref}} \overset{{\color{white}1}}{=} r \,\;\right\vert\!\!
+		\begin{array}{c} R = p\,\cap\,d, \\ C_{\textnormal{map}} = k \end{array}
+		\!\!\right)}
+% & {\color{red}\approx} &
+\;\; {\color{red}\approx} \;\;
+	{\color{blue}
+	\underset{p}{\sum}\;
+	\overset{K}{\underset{k=1}{\sum}}\;\,
+	\mathcal{A}_{(p,k)\,\cap\,d}
+	%A_{\textnormal{{\tiny cell}}}
+	%\,\cdot\,
+	%M_{r,j}
+	\cdot
+	{\color{red}\widehat{P}}\!\left(
+		\left. C_{\textnormal{ref}} \overset{{\color{white}1}}{=} r \,\;\right\vert\!\!
+		\begin{array}{c} {\color{red}R = p}, \\ C_{\textnormal{map}} = k \end{array}
+		\!\!\right)}
+\\
+& = &
+	\underset{p}{\sum}\;
+	\overset{K}{\underset{k=1}{\sum}}\;\,
+	\mathcal{A}_{(p,k)\,\cap\,d}
+	%A_{\textnormal{{\tiny cell}}}
+	%\,\cdot\,
+	%M_{r,j}
+	\,\cdot
+	\dfrac{
+		\left(\,\begin{array}{c}
+			%\textnormal{\tiny \# grid cells of reference class \,$k$}
+			\textnormal{\small land area of reference class \,$r$}
+			\\
+			\textnormal{\small in selected grid cells}
+			\\
+			\textnormal{\small of map class \,$k$\, in ecoprovince \,$p$}
+			\end{array}\,\right)
+		}{
+		\left(\,\begin{array}{c}
+			%\textnormal{\tiny \# grid cells}
+			\textnormal{\small total area (land or otherwise)}
+			\\
+			\textnormal{\small of selected grid cells}
+			\\
+			\textnormal{\small of map class \,$k$\, in ecoprovince \,$p$}
+			\end{array}\,\right)
+		}
+% \\
+% & = &
+\;\; = \;\;
+	\underset{p}{\sum}\;\,
+	\overset{K}{\underset{k=1}{\sum}}\;\,
+	\mathcal{A}_{(p,k)\,\cap\,d}
+	%A_{\textnormal{{\tiny cell}}}
+	%\,\cdot\,
+	%M_{r,j}
+	\,\cdot
+	\left(\,
+		\dfrac{
+			\underset{i\,\in\mathcal{S}_{p,k}}{\sum} y^{(r)}_{i}
+			}{
+			{\color{white}.}
+			A_{\textnormal{{\tiny cell}}}
+			\cdot
+			\left\vert\;
+				\overset{{\color{white}.}}{\mathcal{S}_{p,k}}
+				\;\right\vert
+			{\color{white}.}
+			}
+		\,\right)
+\\
+& = &
+	\underset{p}{\sum}\;\,
+	\overset{K}{\underset{k=1}{\sum}}\;
+	\left(\,
+		\dfrac{
+			\mathcal{A}_{(p,k)\,\cap\,d} %A^{(p,k)}_{d}
+			}{
+			\mathcal{A}_{\textnormal{{\tiny cell}}}
+			}
+		\,\right)
+	\,\cdot
+	\left(\;
+		\dfrac{1}{\vert\,\overset{{\color{white}.}}{\mathcal{S}_{p,k}}\,\vert}
+		\cdot\!
+		\underset{i\,\in\mathcal{S}_{p,k}}{\sum}\,y^{(r)}_{i}
+		\,\right)
+% \\
+% & = &
+\;\; = \;\;\;
+	\underset{p}{\sum}\;\,
+	\overset{K}{\underset{k=1}{\sum}}\;
+	\left(\,
+		\dfrac{
+			\mathcal{A}_{(p,k)\,\cap\,d} %A^{(p,k)}_{d}
+			}{
+			\mathcal{A}_{\textnormal{{\tiny cell}}}
+			}
+		\,\right)
+	\,\cdot\,
+	\widehat{\overline{y}}^{(r)}_{p,k}
+	% \left(\;
+	% 	\dfrac{1}{\vert\,\overset{{\color{white}.}}{\mathcal{S}_{p,k}}\,\vert}
+	% 	\cdot\!
+	% 	\underset{i\,\in\mathcal{S}_{p,k}}{\sum}\,y^{(r)}_{i}
+	% 	\,\right)
+\end{eqnarray*}
+\noindent
+where
+\begin{equation*}
+\widehat{\overline{y}}^{(r)}_{p,k}
+\;\;\; := \;\;\;
+	\dfrac{1}{\vert\,\overset{{\color{white}.}}{\mathcal{S}_{p,k}}\,\vert}
+	\cdot\!
+	\underset{i\,\in\mathcal{S}_{p,k}}{\sum}\,y^{(r)}_{i}
+\;\;\; = \;\;\;
+	\left\{\begin{array}{c}
+	\textnormal{\small Horvitz-Thompson estimate of}
+	\\
+	\textnormal{\small the average land area of reference class $r$}
+	\\
+	\textnormal{\small for grid cells of map class $k$ in ecoprovince $p$}
+	\end{array}\right\}
+\end{equation*}
+\begin{multicols}{2}
+
+	\begin{center}
+	\begin{minipage}{3.25in}
+	\begin{eqnarray*}
+	\mathcal{A}^{(r)}_{d}
+	& := &
+		\left\{\begin{array}{c}
+		\textnormal{\small land area}
+		\\
+		\textnormal{\small of reference class $r$}
+		\\
+		\textnormal{\small in drainage region $d$}
+		\end{array}\right\}
+	\\ \\ \\
+	\mathcal{A}^{(r)}_{p\,\cap\,d}
+	& := &
+		\left\{\begin{array}{c}
+		\textnormal{\small land area}
+		\\
+		\textnormal{\small of reference class $r$}
+		\\
+		\textnormal{\small in the intersection of}
+		\\
+		\textnormal{\small ecoprovince $p$}
+		\\
+		\textnormal{\small and drainage region $d$}
+		\end{array}\right\}
+	\end{eqnarray*}
+	\end{minipage}
+	\end{center}
+
+\columnbreak
+
+	\begin{center}
+	\begin{minipage}{3.25in}
+	\begin{eqnarray*}
+	\mathcal{A}^{(r)}_{(p,k)\,\cap\,d}
+	& := &
+		\left\{\begin{array}{c}
+		\textnormal{\small land area}
+		\\
+		\textnormal{\small of reference class $r$ and map class $k$}
+		\\
+		\textnormal{\small in the intersection}
+		\\
+		\textnormal{\small of ecoprovince $p$ and drainage region $d$}
+		\end{array}\right\}
+	\\
+	\mathcal{A}_{(p,k)\,\cap\,d}
+	& := &
+		\left\{\begin{array}{c}
+		\textnormal{\small land area of map class $k$}
+		\\
+		\textnormal{\small in the intersection}
+		\\
+		\textnormal{\small of ecoprovince $p$ and drainage region $d$}
+		\end{array}\right\}
+	\\
+	\mathcal{A}_{\textnormal{cell}}
+	& := &
+		\left\{\begin{array}{c}
+		\textnormal{\small (constant) area}
+		\\
+		\textnormal{\small of a grid cell}
+		\end{array}\right\}
+	\end{eqnarray*}
+	\end{minipage}
+	\end{center}
+
+\end{multicols}
+\vskip -0.5cm
+\begin{eqnarray*}
+P\!\left(
+	\left.
+		C_{\textnormal{ref}} \overset{{\color{white}1}}{=} r
+		\,\;\right\vert\!
+	\begin{array}{c} R = p \cap d \\ C_{\textnormal{map}} = k \end{array}
+	\,\right)
+& := &
+	\left\{\begin{array}{c}
+	\textnormal{\small conditional probability}
+	\\
+	\textnormal{\small for an arbitrary point in a grid cell}
+	\\
+	\textnormal{\small to be of reference class $r$}
+	\\
+	\textnormal{\small given that the grid cell lies in the intersection of}
+	\\
+	\textnormal{\small ecoprovince $p$ and drainage region $d$}
+	\\
+	\textnormal{\small and has map class $k$}
+	\end{array}\right\}
+\\
+\widehat{P}\!\left(
+	\left.
+		C_{\textnormal{ref}} \overset{{\color{white}1}}{=} r
+		\,\;\right\vert\!
+	\begin{array}{c} R = p \\ C_{\textnormal{map}} = k \end{array}
+	\,\right)
+& := &
+	\overset{{\color{white}\textnormal{\large$1$}}}{
+		\left\{\begin{array}{c}
+		\textnormal{\small estimated conditional probability}
+		\\
+		\textnormal{\small for an arbitrary point in a grid cell}
+		\\
+		\textnormal{\small to be of reference class $r$}
+		\\
+		\textnormal{\small given that the grid cell lies in ecoprovince $p$}
+		\\
+		\textnormal{\small and has map class $k$}
+		\end{array}\right\}
+	}
+\end{eqnarray*}
+
+% 	\begin{equation*}
+% 	d = \textnormal{DR or SDA},
+% 	\;
+% 	k = \textnormal{reference class},
+% 	\end{equation*}
+% 	\begin{equation*}
+% 	{\color{white}22222222.}
+% 	r = \textnormal{ecoprovince},
+% 	\;
+% 	j = \textnormal{map class},	
+% 	\;
+% 	(p,k) = \textnormal{stratum},
+% 	\end{equation*}
+% %	\begin{eqnarray*}
+% %	M_{r,j}
+% %	& := &
+% %		\left\{\begin{array}{c}
+% %		\textnormal{\tiny number of grid cells}
+% %		\\
+% %		\textnormal{\tiny of map class $j$}
+% %		\\
+% %		\textnormal{\tiny in ecoprovince $r$}
+% %		\end{array}\right\}
+% %	\end{eqnarray*}
+% 	\vskip -0.25cm
+% 	\begin{eqnarray*}
+% 	\widehat{P}\!\left(
+% 		\left. C_{\textnormal{ref}} \overset{{\color{white}1}}{=} k \,\;\right\vert\, R = r, C_{\textnormal{map}} = j
+% 		\,\right)
+% 	\\
+% 	& := &
+% 		\left\{\begin{array}{c}
+% 		\textnormal{\tiny estimated conditional probability}
+% 		\\
+% 		\textnormal{\tiny for an arbitrary point in a grid cell}
+% 		\\
+% 		\textnormal{\tiny to be of reference class $k$}
+% 		\\
+% 		\textnormal{\tiny given that the grid cell lies in ecoprovince $r$}
+% 		\\
+% 		\textnormal{\tiny and has map class $j$}
+% 		\end{array}\right\}
+% 	\end{eqnarray*}
+% 	\vskip -0.5cm
+% 	\begin{eqnarray*}
+% 	A^{(\cdots)}_{\;\,\cdots}
+% 	\!\!\!\!
+% 	& := &
+% 		\left\{\,\begin{array}{c}
+% 		\textnormal{\tiny area of}
+% 		\\
+% 		\textnormal{\tiny $\cdots$}
+% 		\end{array}\,\right\}
+% 	\\
+% 	\overset{{\color{white}\textnormal{\Large1}}}{y^{(r)}_{i}}
+% 	{\color{white}22}
+% 	\!\!\!\!
+% 	& := &
+% 		\left\{\begin{array}{c}
+% 		\textnormal{\tiny land area in the $i^{\textnormal{\,th}}$ grid cell}
+% 		\\
+% 		\textnormal{\tiny of reference class $k$}
+% 		\end{array}\!\right\}
+% 	\\
+% 	\overset{{\color{white}\textnormal{\Large1}}}{\mathcal{S}_{r,j}}
+% 	{\color{white}22}
+% 	\!\!\!\!
+% 	& := &
+% 		\left\{\,\begin{array}{c}
+% 		\textnormal{\tiny sample of grid cells}
+% 		\\
+% 		\textnormal{\tiny selected from \,$\mathcal{U}_{r,j}$}
+% 		\end{array}\,\right\}
+% 	\end{eqnarray*}
+
+%%%%%%%%%%

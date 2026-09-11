@@ -1,0 +1,373 @@
+
+\renewcommand*{\ref}{\textnormal{ref}}
+\newcommand*{\map}{\textnormal{map}}
+
+%%%%%%%%%%
+\begin{frame}{\vskip -0.5cm \large Horvitz-Thompson estimator under stratified simple random sampling}
+
+\scriptsize
+
+\begin{multicols}{2}
+
+	\begin{flushleft}
+	\begin{minipage}{6.5cm}
+	\input{tex/StrRS-HT}
+	\end{minipage}
+	\end{flushleft}
+
+\columnbreak
+
+	\begin{flushright}
+	\begin{minipage}{6.5cm}
+	where
+	\vskip -0.5cm
+	\begin{eqnarray*}
+	A^{(k)}_{r}
+	& := &
+		\left\{\begin{array}{c}
+		\textnormal{\tiny area of {\color{red}reference class $k$}}
+		\\
+		\textnormal{\tiny in ecoprovince \,$r$}
+		\end{array}\right\}
+	\\
+	\mathcal{U}_{r}{\color{white}..}
+	& := &
+		\left\{\!\!\begin{array}{c}
+		\textnormal{\tiny collection of all grid cells}
+		\\
+		\textnormal{\tiny in ecoprovince \,$r$}
+		\end{array}\!\!\right\}
+	\\
+	y^{(k)}_{i}
+	& := &
+		\left\{\begin{array}{c}
+		\textnormal{\tiny land area in the $i^{\textnormal{\,th}}$ grid cell}
+		\\
+		\textnormal{\tiny of reference class $k$}
+		\end{array}\!\right\}
+%	\\
+%	\mathcal{S}_{r}
+%	& := &
+%		\left\{\!\!\begin{array}{c}
+%		\textnormal{\tiny collection of \textit{selected} SU's}
+%		\\
+%		\textnormal{\tiny in the LCCH region $r$}
+%		\end{array}\!\!\right\}
+	\\
+	\mathcal{U}_{r,j}
+	& := &
+		\left\{\!\!\begin{array}{c}
+		\textnormal{\tiny collection ({\color{black}stratum}) of all grid cells}
+		\\
+		\textnormal{\tiny of {\color{red}map class \,$j$}\, in ecoprovince \,$r$}
+		\end{array}\!\!\right\}
+	\\
+	j{\color{white}..}
+	& = &
+		1, 2, \ldots, K\,, \;\;\textnormal{($K$ = \# map classes)}
+	\\
+	M_{r,j}
+	& := &
+		\left\vert\;\,\overset{{\color{white}.}}{\mathcal{U}_{r,j}}\;\right\vert
+	\;\, = \;\,
+		\left\{\!\!\begin{array}{c}
+		\textnormal{\tiny number of all grid cells}
+		\\
+		\textnormal{\tiny in stratum \,$\mathcal{U}_{r,j}$}
+		\end{array}\!\!\right\}
+	\\
+	\mathcal{S}_{r,j}
+	& := &
+		\left\{\!\!\begin{array}{c}
+		\textnormal{\tiny{\color{red}simple random sample} of grid cells}
+		\\
+		\textnormal{\tiny selected from \,$\mathcal{U}_{r,j}$}
+		\end{array}\!\!\right\}
+	\\
+	m_{r,j}
+	& := &
+		\left\vert\;\overset{{\color{white}.}}{\mathcal{S}_{r,j}}\;\right\vert
+	\;\, = \;\,
+		\left\{\!\!\begin{array}{c}
+		\textnormal{\tiny number of all grid cells}
+		\\
+		\textnormal{\tiny in stratum \,$\mathcal{S}_{r,j}$}
+		\end{array}\!\!\right\}
+%	\\
+%	M_{r,j}
+%	& := &
+%		\left\{\!\!\begin{array}{c}
+%		\textnormal{\tiny number of PSU's in the stratum defined by\!:}
+%		\\
+%		\textnormal{\tiny in LCCH region $r$ and of \textit{central} map class $j$}
+%		\end{array}\!\!\right\}
+%	\\
+%	m_{r,j}
+%	& := &
+%		\left\vert\,\overset{{\color{white}.}}{\mathcal{S}_{r,j}}\,\right\vert
+%	\;\, = \;\,
+%		\left\{\!\!\begin{array}{c}
+%		\textnormal{\tiny number of (\textit{selected})}
+%		\\
+%		\textnormal{\tiny PSU's in \,$\mathcal{S}_{r,j}$}
+%		\end{array}\!\!\right\}
+%	\\
+%	\pi_{i}
+%	& := &
+%		\left\{\!\!\begin{array}{c}
+%		\textnormal{\tiny selection}
+%		\\
+%		\textnormal{\tiny probability}
+%		\\
+%		\textnormal{\tiny of PSU $i$}
+%		\end{array}\!\!\!\right\}
+%	\; = \;
+%		\dfrac{m_{r,j}}{M_{r,j}}\,,
+%		\;\;
+%		\textnormal{for each $i \in \mathcal{S}_{r,j}$}
+%	\\
+%	\overline{y}^{(k)}_{r,j}
+%	& := &
+%		\left\{\!\!\begin{array}{c}
+%		\textnormal{\tiny average number of grid cells}
+%		\\
+%		\textnormal{\tiny of reference class $k$}
+%		\\
+%		\textnormal{\tiny among PSU's in \,$\mathcal{S}_{r,j}$}
+%		\end{array}\!\!\!\right\}
+	\end{eqnarray*}
+	\end{minipage}
+	\end{flushright}
+
+\end{multicols}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+\begin{frame}{\vskip -0.5cm \large Variance \& CV estimators of the Horvitz-Thompson estimator}
+
+\scriptsize
+
+\begin{multicols}{2}
+
+	\begin{flushleft}
+	\begin{minipage}{6.5cm}
+	\input{tex/StrRS-HT-Var}
+	\end{minipage}
+	\end{flushleft}
+
+\columnbreak
+
+	\begin{flushright}
+	\begin{minipage}{6.5cm}
+	where
+	\vskip -0.5cm
+	\begin{eqnarray*}
+%	A^{(k)}_{r}
+%	& := &
+%		\left\{\begin{array}{c}
+%		\textnormal{\tiny area of reference class $k$}
+%		\\
+%		\textnormal{\tiny in ecoprovince \,$r$}
+%		\end{array}\right\}
+%	\\
+%	\mathcal{U}_{r}
+%	& := &
+%		\left\{\!\!\begin{array}{c}
+%		\textnormal{\tiny collection of all grid cells}
+%		\\
+%		\textnormal{\tiny in ecoprovince \,$r$}
+%		\end{array}\!\!\right\}
+%	\\
+	y^{(k)}_{i}
+	& := &
+		\left\{\begin{array}{c}
+		\textnormal{\tiny land area in the $i^{\textnormal{\,th}}$ grid cell}
+		\\
+		\textnormal{\tiny of reference class $k$}
+		\end{array}\!\right\}
+	\\
+	\mathcal{U}_{r,j}
+	& := &
+		\left\{\!\!\begin{array}{c}
+		\textnormal{\tiny collection ({\color{black}stratum}) of all grid cells}
+		\\
+		\textnormal{\tiny of map class \,$j$\, in ecoprovince \,$r$}
+		\end{array}\!\!\right\}
+	\\
+	M_{r,j}
+	& := &
+		\left\vert\;\,\overset{{\color{white}.}}{\mathcal{U}_{r,j}}\;\right\vert
+	\;\, = \;\,
+		\left\{\!\!\begin{array}{c}
+		\textnormal{\tiny number of all grid cells}
+		\\
+		\textnormal{\tiny in stratum \,$\mathcal{U}_{r,j}$}
+		\end{array}\!\!\right\}
+	\\
+	\mathcal{S}_{r,j}
+	& := &
+		\left\{\!\!\begin{array}{c}
+		\textnormal{\tiny{\color{red}simple random sample} of grid cells}
+		\\
+		\textnormal{\tiny selected from \,$\mathcal{U}_{r,j}$}
+		\end{array}\!\!\right\}
+	\\
+	m_{r,j}
+	& := &
+		\left\vert\;\overset{{\color{white}.}}{\mathcal{S}_{r,j}}\;\right\vert
+	\;\, = \;\,
+		\left\{\!\!\begin{array}{c}
+		\textnormal{\tiny number of all grid cells}
+		\\
+		\textnormal{\tiny in stratum \,$\mathcal{S}_{r,j}$}
+		\end{array}\!\!\right\}
+%	\\
+%	M_{r,j}
+%	& := &
+%		\left\{\!\!\begin{array}{c}
+%		\textnormal{\tiny number of PSU's in the stratum defined by\!:}
+%		\\
+%		\textnormal{\tiny in LCCH region $r$ and of \textit{central} map class $j$}
+%		\end{array}\!\!\right\}
+%	\\
+%	m_{r,j}
+%	& := &
+%		\left\vert\,\overset{{\color{white}.}}{\mathcal{S}_{r,j}}\,\right\vert
+%	\;\, = \;\,
+%		\left\{\!\!\begin{array}{c}
+%		\textnormal{\tiny number of (\textit{selected})}
+%		\\
+%		\textnormal{\tiny PSU's in \,$\mathcal{S}_{r,j}$}
+%		\end{array}\!\!\right\}
+%	\\
+%	\pi_{i}
+%	& := &
+%		\left\{\!\!\begin{array}{c}
+%		\textnormal{\tiny selection}
+%		\\
+%		\textnormal{\tiny probability}
+%		\\
+%		\textnormal{\tiny of PSU $i$}
+%		\end{array}\!\!\!\right\}
+%	\; = \;
+%		\dfrac{m_{r,j}}{M_{r,j}}\,,
+%		\;\;
+%		\textnormal{for each $i \in \mathcal{S}_{r,j}$}
+%	\\
+%	\overline{y}^{(k)}_{r,j}
+%	& := &
+%		\left\{\!\!\begin{array}{c}
+%		\textnormal{\tiny average number of grid cells}
+%		\\
+%		\textnormal{\tiny of reference class $k$}
+%		\\
+%		\textnormal{\tiny among PSU's in \,$\mathcal{S}_{r,j}$}
+%		\end{array}\!\!\!\right\}
+	\end{eqnarray*}
+	\end{minipage}
+	\end{flushright}
+
+\end{multicols}
+
+\textbf{Coefficient of variation (CV) estimator:}
+\begin{eqnarray*}
+\widehat{\textnormal{CV}}\!\left(\,\widehat{A^{(k)}_{{\color{black}r}}}^{\textnormal{HT}}\,\right)
+& = &
+	\left.
+		\sqrt{{\color{white}.}\Var\!\left(\,\widehat{A^{(k)}_{{\color{black}r}}}^{\textnormal{HT}}\,\right){\color{white}.}}
+		\right/
+	\widehat{A^{(k)}_{{\color{black}r}}}^{\textnormal{HT}}
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
+\begin{frame}{\vskip -0.5cm \large HT \& variance estimators for an ecozone, say, $z = r_{1} \cup r_{2} \cup r_{3}$}
+
+\scriptsize
+
+\begin{eqnarray*}
+\widehat{A^{(k)}_{{\color{red}z}}}^{\textnormal{HT}}
+& \!\! = &
+	\widehat{A^{(k)}_{{\color{red}r_{1}}}}^{\textnormal{HT}}
+	\,+\,
+	\widehat{A^{(k)}_{{\color{red}r_{2}}}}^{\textnormal{HT}}
+	\,+\,
+	\widehat{A^{(k)}_{{\color{red}r_{3}}}}^{\textnormal{HT}}
+\;\; = \quad
+	\overset{K}{\underset{j=1}{\sum}}\;
+	M_{{\color{red}r_{1}},j}
+	\cdot
+	\overline{y}^{(k)}_{{\color{red}r_{1}},j}
+	\;+\;
+	\overset{K}{\underset{j=1}{\sum}}\;
+	M_{{\color{red}r_{2}},j}
+	\cdot
+	\overline{y}^{(k)}_{{\color{red}r_{2}},j}
+	\;+\;
+	\overset{K}{\underset{j=1}{\sum}}\;
+	M_{{\color{red}r_{3}},j}
+	\cdot
+	\overline{y}^{(k)}_{{\color{red}r_{3}},j}
+\\
+& \textnormal{\LARGE\color{white}1} &
+\\
+\widehat{\Var}\!\left(\,\widehat{A^{(k)}_{{\color{red}z}}}^{\textnormal{HT}}\,\right)
+& = &
+	\widehat{\Var}\!\left(\,\widehat{A^{(k)}_{{\color{red}r_{1}}}}^{\textnormal{HT}}\,\right)
+	\,+\,
+	\widehat{\Var}\!\left(\,\widehat{A^{(k)}_{{\color{red}r_{2}}}}^{\textnormal{HT}}\,\right)
+	\,+\,
+	\widehat{\Var}\!\left(\,\widehat{A^{(k)}_{{\color{red}r_{3}}}}^{\textnormal{HT}}\,\right)
+\\
+& \!\! = \!\! &
+	\textnormal{\tiny$
+	\overset{K}{\underset{j=1}{\sum}}
+	\left(\,1 \,-\, \dfrac{m_{{\color{red}r_{1}},j}}{M_{{\color{red}r_{1}},j}}\,\right)
+	\cdot
+	M_{{\color{red}r_{1}},j}^{2}
+	\cdot
+	\dfrac{s_{{\color{red}r_{1}},j}^{2}}{m_{{\color{red}r_{1}},j}}
+	\;+\;
+	\overset{K}{\underset{j=1}{\sum}}
+	\left(\,1 \,-\, \dfrac{m_{{\color{red}r_{2}},j}}{M_{{\color{red}r_{2}},j}}\,\right)
+	\cdot
+	M_{{\color{red}r_{2}},j}^{2}
+	\cdot
+	\dfrac{s_{{\color{red}r_{2}},j}^{2}}{m_{{\color{red}r_{2}},j}}
+	\;+\;
+	\overset{K}{\underset{j=1}{\sum}}
+	\left(\,1 \,-\, \dfrac{m_{{\color{red}r_{3}},j}}{M_{{\color{red}r_{3}},j}}\,\right)
+	\cdot
+	M_{{\color{red}r_{3}},j}^{2}
+	\cdot
+	\dfrac{s_{{\color{red}r_{3}},j}^{2}}{m_{{\color{red}r_{3}},j}}
+	$}
+\\
+& \textnormal{\LARGE\color{white}1} &
+\\
+\widehat{\textnormal{CV}}\!\left(\,\widehat{A^{(k)}_{{\color{red}z}}}^{\textnormal{HT}}\,\right)
+%\;\; = \;\;
+%	\dfrac{
+%		\sqrt{{\color{white}.}\Var\!\left(\,\widehat{A^{(k)}_{{\color{red}z}}}^{\textnormal{HT}}\,\right){\color{white}.}}
+%		}{
+%		\widehat{A^{(k)}_{{\color{red}z}}}^{\textnormal{HT}}
+%		}
+& = &
+	\left.
+		\sqrt{
+			{\color{white}.}
+			\widehat{\Var}\!\left(\,\widehat{A^{(k)}_{{\color{red}z}}}^{\textnormal{HT}}\,\right)
+			{\color{white}.}
+			}
+		\right/
+	\widehat{A^{(k)}_{{\color{red}z}}}^{\textnormal{HT}}
+\end{eqnarray*}
+
+\end{frame}
+\normalsize
+
+%%%%%%%%%%
