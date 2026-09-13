@@ -6,17 +6,17 @@
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
 \subsection{Sampling frame / stratification}
-The stratification was by ecoprovince and stratification land cover type, i.e., by assigning to 
+The stratification was by ecoprovince and \textit{stratification} land cover type, i.e., by assigning to 
 each sampling unit (grid cell) an ecoprovince as well as a stratification land cover type. 
-Roughly speaking, the ecoprovince assigned to each sampling unit was (of course) the 
-ecoprovince that geographically contains that sampling unit. More precisely, the sampling 
-units were assigned their respective ecoprovinces by rasterization of the ecoprovince 
-polygons (Census 2021?) to the 100 metre $\times$ 100 metre CoE reference geospatial grid. On 
-the other hand, each sampling unit was assigned a stratification land cover type by 
-resampling by majority rule the LCR map
-(precisely, CoE Land Cover Register version 1.0 dataset \cite{StatCanCoELCR2025})
-(whose underlying grid is the 30 metre $\times$ 30 metre CoE reference geospatial grid)
-to the 100 metre $\times$ 100 metre CoE reference geospatial grid. 
+The ecoprovince assigned to each sampling unit was (of course) the 
+ecoprovince that geographically contains that sampling unit,
+according to the rasterization of the ecoprovince polygons (vector data)
+to the 100 metre $\times$ 100 metre CoE reference geospatial grid \cite{StatCanCoEGridSystem2025}.
+On the other hand, each sampling unit was assigned a stratification land cover type by 
+resampling by majority rule the LCR map \cite{StatCanCoELCR2025}
+(whose underlying grid is the 30 metre $\times$ 30 metre
+CoE reference geospatial grid \cite{StatCanCoEGridSystem2025})
+to the 100 metre $\times$ 100 metre CoE reference geospatial grid \cite{StatCanCoEGridSystem2025}. 
 In what follows, we will refer to this resulting 100 metre $\times$ 100 metre land cover map
 as the \textit{stratification map}.
 
@@ -28,18 +28,20 @@ There are 53 ecoprovinces and 10 stratification land cover types (in the simplif
 typology); hence, there are 530 distinct combinations of ecoprovinces and stratification land 
 cover types. However, there were only 423 strata, since certain combinations of 
 ecoprovinces and stratification land cover types did not occur in the stratification map. The 
-total sample size was 5,011 (number of selected sampling units). The number of sampling 
-units allocated to each stratum ranged from 3 to 57. Informed by the results of proof-ofconcept and simulation studies designed to gauge the behaviour of the estimation procedure 
-at the required scale, sample allocation decisions were made in an expert-driven fashion, 
-balancing between maximally reducing the variability of the estimators for key target 
-variables and ensuring a manageable final sample size. 
+total sample size was 5,011 (number of selected sampling units).
+The number of sampling units allocated to each stratum ranged from 3 to 57.
+Informed by the results of proof-of-concept and simulation studies
+designed to gauge the behaviour of the estimation procedure at the required scale,
+sample allocation decisions were made in an expert-driven fashion,
+balancing between minimizing the variability of the estimators
+for high-priority target variables and ensuring a manageable final sample size. 
  
 \subsection{Sampling design}
 The sampling design was stratified simple random sampling without replacement. In other 
 words, for each stratum (a combination of ecoprovince and stratification land cover type), a 
 simple random sample without replacement of fixed size (according to the chosen sample 
 allocation) was chosen from the collection of sampling units belonging to that stratum, and 
-the sample for each stratum was chosen independently of the sample for every other 
+the sample for each stratum was chosen independently of the sample from every other 
 stratum.
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
