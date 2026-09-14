@@ -5,7 +5,7 @@
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\subsection{Area estimates for ecoprovinces $\times$ reference land cover types}
+\subsection{Area estimates for reference land cover types by ecoprovince}
 For each ecoprovince \,$p$\, and reference land cover type \,$r$,\,
 we computed the estimate \,$A_{p}^{(r)}$\,
 for the area of the reference land cover type \,$r$\, within the ecoprovince \,$p$\, as follows:
@@ -27,7 +27,7 @@ Lastly, for each ecoprovince \,$p$,\, the estimates
 \,$A_{p}^{(r)}$’s\,
 for different reference land cover types \,$r$\, were obtained from the
 \,$T_{p}^{(r)}$'s\,
-by {\color{red}calibrating} the
+by {\color{black}calibrating} the
 \,$T_{p}^{(r)}$’s\,
 to the known area of the ecoprovince \,$p$.\, 
 
@@ -39,6 +39,7 @@ can be given as follows:
 \input{tex/StrRS-HT}
 where
 \begin{multicols}{2}
+
     \begin{center}
     \begin{minipage}{3.25in}
     \begin{eqnarray*}
@@ -77,7 +78,9 @@ where
     \end{eqnarray*}
     \end{minipage}
     \end{center}
+
 \columnbreak
+
     \begin{center}
     \begin{minipage}{3.25in}
     \begin{eqnarray*}
@@ -98,7 +101,7 @@ where
         \left\{\!\!\begin{array}{c}
         \textnormal{\small number of all grid cells}
         \\
-        \textnormal{\small in stratum \,$\mathcal{S}_{p,k}$}
+        \textnormal{\small in sample \,$\mathcal{S}_{p,k}$}
         \end{array}\!\!\right\}
     \\
     y^{(r)}_{i}
@@ -119,6 +122,7 @@ where
     \end{eqnarray*}
     \end{minipage}
     \end{center}
+
 \end{multicols}
 \noindent
 And, the variance estimator of \,$T^{(r)}_{p}$\, can be given by:
@@ -126,7 +130,7 @@ And, the variance estimator of \,$T^{(r)}_{p}$\, can be given by:
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\subsection{Area estimates for ecozones $\times$ reference land cover types}
+\subsection{Area estimates for reference land cover types by ecozones}
 Since the partition by ecoprovinces is a refinement of that by ecozones
 (i.e., each ecozone is made up of its constituent ecoprovinces),
 the area estimate for reference land cover type \,$r$\,
@@ -141,23 +145,23 @@ cover type \,$r$\, within ecozone \,$z$\, is the sum of the variance estimates o
 
 \subsection{Area estimates for reference land cover types over inland Canada}
 These were generated analogously as their ecoprovince and ecozone counterparts.
-Since the land mass of Canada is partitioned into ecozones,
-the area estimate for reference land cover type \,$r$\, over all of Canada
+Since inland Canada is partitioned into ecozones,
+the area estimate for reference land cover type \,$r$\, over inland Canada
 is the sum of the area estimates for reference land cover type \,$r$\,
 over all the ecozones.
 The variance estimate for the Horvitz-Thompson area estimator for 
-reference land cover type \,$r$\, over all of Canada is the sum of the variance estimates of its 
-summands (summing over all ecozones). 
+reference land cover type \,$r$\, over inland Canada
+is the sum of the variance estimates of its summands (summing over all ecozones). 
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\subsection{Area estimates for drainage regions $\times$ reference land cover types}
+\subsection{Area estimates for reference land cover types by drainage regions}
 Recall that our stratification was done by ecoprovince and stratification land cover type.
 On the other hand, the partition by ecoprovinces is not a refinement of that by drainage 
 regions.
 The preceding approach of generating ecozone-level estimates from ecoprovince-level ones
-(straightforward addition of estimates of constituent ecoprovinces) is not 
-applicable.
+(straightforward addition of point and variance estimates of constituent ecoprovinces)
+is not applicable.
 Instead, the area estimate for a given drainage region \,$d$\, and reference land 
 cover type \,$r$\, was computed as the weighted sum of the stratum-specific Horvitz-Thompson 
 mean area estimates for the reference land cover type \,$r$\,, where the mean area estimate
@@ -181,9 +185,9 @@ in drainage region \,$d$\, was estimated as follows:
 
           %%%%% ~~~~~~~~~~~~~~~~~~~~ %%%%%
 
-\subsection{Area estimates for sub-drainage areas $\times$ reference land cover types and for major 
-drainage areas $\times$ reference land cover types}
-This aforementioned area estimation approach for drainage regions $\times$
+\subsection{Area estimates for reference land cover types by sub-drainage areas or by major 
+drainage areas}
+The aforementioned area estimation approach for drainage regions $\times$
 reference land cover types is also directly applicable to sub-drainage area $\times$
 reference land cover types, as well as for major drainage areas $\times$ reference land cover types.
 We applied the same estimation procedure to generate these two sets of area estimates. 
@@ -197,7 +201,7 @@ There are two data tables in the release \cite{StatCanCoELandCoverArea2025}:
 \begin{enumerate}
 \item
     area estimates by reference land cover type and
-    ecoprovince/ecozone \cite{StatCanCoELandCoverAreaEcoprovinces},
+    ecoprovince/ecozone \cite{StatCanCoELandCoverAreaEcoprovinces}, and
 \item
     area estimates by reference land cover type and
     drainage region/sub-drainage area/major drainage area \cite{StatCanCoELandCoverAreaDrainageRegions}.
@@ -205,7 +209,7 @@ There are two data tables in the release \cite{StatCanCoELandCoverArea2025}:
 Note that:
 \begin{itemize}
 \item
-    both tables contain land-cover-specific area estimates for inland Canada,
+    both tables contain land-cover-specific area estimates for inland Canada, and
 \item
     the areas of the target geographies (ecoprovinces, drainage regions, etc.) are known \textit{a priori}.
 \end{itemize}
@@ -214,7 +218,8 @@ Note that:
 \noindent
 Calibration was performed on Table (i)
 to ensure, for each given ecoprovince,
-the area estimates of different reference land cover types within that ecoprovince
+that the area estimates of different reference land cover types
+within that ecoprovince
 sum to the \textit{a priori} known area of that ecoprovince.
 
 \vskip 0.5cm
